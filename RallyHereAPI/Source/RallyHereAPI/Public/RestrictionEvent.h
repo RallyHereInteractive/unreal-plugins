@@ -12,9 +12,9 @@
 #include "RestrictionIssuerType.h"
 #include "RestrictionReasonCode.h"
 #include "RestrictionType.h"
-#include "RestrictionCreate.generated.h"
+#include "RestrictionEvent.generated.h"
 
-/** @defgroup RHAPI_RestrictionCreate RallyHere API Model RestrictionCreate
+/** @defgroup RHAPI_RestrictionEvent RallyHere API Model RestrictionEvent
  *  @{
  */
 
@@ -22,7 +22,7 @@
  * @brief Restriction applied to a player
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_RestrictionCreate : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_RestrictionEvent : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -42,17 +42,32 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionCreate : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Type of restriction */
+	/** @brief Type of restriction.  null means removing all rstrictions */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_RestrictionType Type{  };
-	/** @brief Gets the value of Type */
-	ERHAPI_RestrictionType& GetType() { return Type; }
-	/** @brief Gets the value of Type */
-	const ERHAPI_RestrictionType& GetType() const { return Type; }
-	/** @brief Sets the value of Type */
-	void SetType(const ERHAPI_RestrictionType& NewValue) { Type = NewValue;   }
-	/** @brief Sets the value of Type using move semantics */
-	void SetType(ERHAPI_RestrictionType&& NewValue) { Type = NewValue;   }
+	ERHAPI_RestrictionType Type_Optional{  };
+	/** @brief true if Type_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Type_IsSet{ false };
+	/** @brief Gets the value of Type_Optional, regardless of it having been set */
+	ERHAPI_RestrictionType& GetType() { return Type_Optional; }
+	/** @brief Gets the value of Type_Optional, regardless of it having been set */
+	const ERHAPI_RestrictionType& GetType() const { return Type_Optional; }
+	/** @brief Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_RestrictionType& GetType(const ERHAPI_RestrictionType& DefaultValue) const { if (Type_IsSet) return Type_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false */
+	bool GetType(ERHAPI_RestrictionType& OutValue) const { if (Type_IsSet) OutValue = Type_Optional; return Type_IsSet; }
+	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_RestrictionType* GetTypeOrNull() { if (Type_IsSet) return (&Type_Optional); return nullptr; }
+	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_RestrictionType* GetTypeOrNull() const { if (Type_IsSet) return (&Type_Optional); return nullptr; }
+	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true */
+	void SetType(const ERHAPI_RestrictionType& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
+	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics */
+	void SetType(ERHAPI_RestrictionType&& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
+	/** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
+	void ClearType() { Type_IsSet = false;  }
+	/** @brief Checks whether Type_Optional has been set */
+	bool IsTypeSet() const { return Type_IsSet; }
 
 	/** @brief Reason the restriction was applied */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -158,6 +173,42 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionCreate : public FRHAPI_Model
 	void ClearReasonDetail() { ReasonDetail_IsSet = false;  }
 	/** @brief Checks whether ReasonDetail_Optional has been set */
 	bool IsReasonDetailSet() const { return ReasonDetail_IsSet; }
+
+	/** @brief Unique ID identifying the restriction */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString RestrictionEventId{  };
+	/** @brief Gets the value of RestrictionEventId */
+	FString& GetRestrictionEventId() { return RestrictionEventId; }
+	/** @brief Gets the value of RestrictionEventId */
+	const FString& GetRestrictionEventId() const { return RestrictionEventId; }
+	/** @brief Sets the value of RestrictionEventId */
+	void SetRestrictionEventId(const FString& NewValue) { RestrictionEventId = NewValue;   }
+	/** @brief Sets the value of RestrictionEventId using move semantics */
+	void SetRestrictionEventId(FString&& NewValue) { RestrictionEventId = NewValue;   }
+
+	/** @brief Person the restriction was applied to */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid PersonId{  };
+	/** @brief Gets the value of PersonId */
+	FGuid& GetPersonId() { return PersonId; }
+	/** @brief Gets the value of PersonId */
+	const FGuid& GetPersonId() const { return PersonId; }
+	/** @brief Sets the value of PersonId */
+	void SetPersonId(const FGuid& NewValue) { PersonId = NewValue;   }
+	/** @brief Sets the value of PersonId using move semantics */
+	void SetPersonId(FGuid&& NewValue) { PersonId = NewValue;   }
+
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime Created{  };
+	/** @brief Gets the value of Created */
+	FDateTime& GetCreated() { return Created; }
+	/** @brief Gets the value of Created */
+	const FDateTime& GetCreated() const { return Created; }
+	/** @brief Sets the value of Created */
+	void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
+	/** @brief Sets the value of Created using move semantics */
+	void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
 };
 
 /** @} */

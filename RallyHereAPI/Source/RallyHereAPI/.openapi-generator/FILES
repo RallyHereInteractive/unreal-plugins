@@ -5,7 +5,6 @@ Private/AdAPI.cpp
 Private/AdOpportunities.cpp
 Private/AdOpportunity.cpp
 Private/AdditionalJoinParams.cpp
-Private/AgreementMessage.cpp
 Private/AllPlayerDeserterStatuses.cpp
 Private/AuditEvent.cpp
 Private/AuditResponse.cpp
@@ -146,6 +145,7 @@ Private/LeaderboardSortOrder.cpp
 Private/LeaderboardSource.cpp
 Private/LinkAction.cpp
 Private/LocationInner.cpp
+Private/LoginCompleteMessage.cpp
 Private/LoginHistoryEntry.cpp
 Private/LoginHistoryPage.cpp
 Private/LoginLootReward.cpp
@@ -192,6 +192,9 @@ Private/MatchSegmentRequest.cpp
 Private/MatchSegmentWithPlayers.cpp
 Private/MatchSession.cpp
 Private/MatchState.cpp
+Private/MatchTimeline.cpp
+Private/MatchTimelineEvent.cpp
+Private/MatchTimelinePage.cpp
 Private/MatchValuesOnly.cpp
 Private/MatchWithPlayers.cpp
 Private/MatchmakingInfo.cpp
@@ -357,6 +360,8 @@ Private/ReportReason.cpp
 Private/ReportsAPI.cpp
 Private/Restriction.cpp
 Private/RestrictionCreate.cpp
+Private/RestrictionEvent.cpp
+Private/RestrictionHistory.cpp
 Private/RestrictionIssuerType.cpp
 Private/RestrictionReasonCode.cpp
 Private/RestrictionType.cpp
@@ -425,7 +430,6 @@ Public/AdAPI.h
 Public/AdOpportunities.h
 Public/AdOpportunity.h
 Public/AdditionalJoinParams.h
-Public/AgreementMessage.h
 Public/AllPlayerDeserterStatuses.h
 Public/AuditEvent.h
 Public/AuditResponse.h
@@ -566,6 +570,7 @@ Public/LeaderboardSortOrder.h
 Public/LeaderboardSource.h
 Public/LinkAction.h
 Public/LocationInner.h
+Public/LoginCompleteMessage.h
 Public/LoginHistoryEntry.h
 Public/LoginHistoryPage.h
 Public/LoginLootReward.h
@@ -612,6 +617,9 @@ Public/MatchSegmentRequest.h
 Public/MatchSegmentWithPlayers.h
 Public/MatchSession.h
 Public/MatchState.h
+Public/MatchTimeline.h
+Public/MatchTimelineEvent.h
+Public/MatchTimelinePage.h
 Public/MatchValuesOnly.h
 Public/MatchWithPlayers.h
 Public/MatchmakingInfo.h
@@ -777,6 +785,8 @@ Public/ReportReason.h
 Public/ReportsAPI.h
 Public/Restriction.h
 Public/RestrictionCreate.h
+Public/RestrictionEvent.h
+Public/RestrictionHistory.h
 Public/RestrictionIssuerType.h
 Public/RestrictionReasonCode.h
 Public/RestrictionType.h

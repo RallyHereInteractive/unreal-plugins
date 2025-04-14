@@ -119,6 +119,37 @@ struct RALLYHEREAPI_API FRHAPI_GuideFull : public FRHAPI_Model
 	/** @brief Checks whether ShortDesc_Optional is set to null */
 	bool IsShortDescNull() const { return ShortDesc_IsSet && ShortDesc_IsNull; }
 
+	/** @brief Promotion priority of this guide in searches */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 PromotionPriority_Optional{ 0 };
+	/** @brief true if PromotionPriority_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PromotionPriority_IsSet{ false };
+	/** @brief Gets the value of PromotionPriority_Optional, regardless of it having been set */
+	int32& GetPromotionPriority() { return PromotionPriority_Optional; }
+	/** @brief Gets the value of PromotionPriority_Optional, regardless of it having been set */
+	const int32& GetPromotionPriority() const { return PromotionPriority_Optional; }
+	/** @brief Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetPromotionPriority(const int32& DefaultValue) const { if (PromotionPriority_IsSet) return PromotionPriority_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPromotionPriority(int32& OutValue) const { if (PromotionPriority_IsSet) OutValue = PromotionPriority_Optional; return PromotionPriority_IsSet; }
+	/** @brief Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetPromotionPriorityOrNull() { if (PromotionPriority_IsSet) return (&PromotionPriority_Optional); return nullptr; }
+	/** @brief Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetPromotionPriorityOrNull() const { if (PromotionPriority_IsSet) return (&PromotionPriority_Optional); return nullptr; }
+	/** @brief Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true */
+	void SetPromotionPriority(const int32& NewValue) { PromotionPriority_Optional = NewValue; PromotionPriority_IsSet = true;  }
+	/** @brief Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics */
+	void SetPromotionPriority(int32&& NewValue) { PromotionPriority_Optional = NewValue; PromotionPriority_IsSet = true;  }
+	/** @brief Clears the value of PromotionPriority_Optional and sets PromotionPriority_IsSet to false */
+	void ClearPromotionPriority() { PromotionPriority_Optional = 0; PromotionPriority_IsSet = false;  }
+	/** @brief Checks whether PromotionPriority_Optional has been set */
+	bool IsPromotionPrioritySet() const { return PromotionPriority_IsSet; }
+	/** @brief Returns true if PromotionPriority_Optional is set and matches the default value */
+	bool IsPromotionPriorityDefaultValue() const { return PromotionPriority_IsSet && PromotionPriority_Optional == 0; }
+	/** @brief Sets the value of PromotionPriority_Optional to its default and also sets PromotionPriority_IsSet to true */
+	void SetPromotionPriorityToDefault() { SetPromotionPriority(0); }
+
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref1_Optional{  };
 	/** @brief true if Ref1_Optional has been set to a value */

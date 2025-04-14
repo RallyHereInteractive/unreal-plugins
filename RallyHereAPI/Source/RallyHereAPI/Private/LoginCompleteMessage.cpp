@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "AgreementMessage.h"
+#include "LoginCompleteMessage.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_AgreementMessage
+// Implementation for FRHAPI_LoginCompleteMessage
 
-void FRHAPI_AgreementMessage::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_LoginCompleteMessage::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	if (AuthSuccess_IsSet)
@@ -46,10 +46,15 @@ void FRHAPI_AgreementMessage::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("needs_privacy_policy"));
 		RallyHereAPI::WriteJsonValue(Writer, NeedsPrivacyPolicy_Optional);
 	}
+	if (Restrictions_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("restrictions"));
+		RallyHereAPI::WriteJsonValue(Writer, Restrictions_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_AgreementMessage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_LoginCompleteMessage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))
@@ -86,6 +91,12 @@ bool FRHAPI_AgreementMessage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		NeedsPrivacyPolicy_IsSet = TryGetJsonValue(JsonNeedsPrivacyPolicyField, NeedsPrivacyPolicy_Optional);
 		ParseSuccess &= NeedsPrivacyPolicy_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonRestrictionsField = (*Object)->TryGetField(TEXT("restrictions"));
+	if (JsonRestrictionsField.IsValid())
+	{
+		Restrictions_IsSet = TryGetJsonValue(JsonRestrictionsField, Restrictions_Optional);
+		ParseSuccess &= Restrictions_IsSet;
 	}
 
 	return ParseSuccess;

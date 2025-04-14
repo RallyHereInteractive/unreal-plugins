@@ -46,6 +46,6854 @@ struct RALLYHEREAPI_API FRHAPI_MatchRequest : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int1_Optional{ 0 };
+	/** @brief true if Int1_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int1_IsSet{ false };
+	/** @brief true if Int1_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int1_IsNull{ false };
+	/** @brief Gets the value of Int1_Optional, regardless of it having been set */
+	int32& GetInt1() { return Int1_Optional; }
+	/** @brief Gets the value of Int1_Optional, regardless of it having been set */
+	const int32& GetInt1() const { return Int1_Optional; }
+	/** @brief Gets the value of Int1_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt1(const int32& DefaultValue) const { if (Int1_IsSet) return Int1_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int1_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt1(int32& OutValue) const { if (Int1_IsSet && !Int1_IsNull) OutValue = Int1_Optional; return Int1_IsSet; }
+	/** @brief Returns a pointer to Int1_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt1OrNull() { if (Int1_IsSet) return (Int1_IsNull ? nullptr : &Int1_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int1_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt1OrNull() const { if (Int1_IsSet) return (Int1_IsNull ? nullptr : &Int1_Optional); return nullptr; }
+	/** @brief Sets the value of Int1_Optional and also sets Int1_IsSet to true */
+	void SetInt1(const int32& NewValue) { Int1_Optional = NewValue; Int1_IsSet = true; Int1_IsNull = false; }
+	/** @brief Sets the value of Int1_Optional and also sets Int1_IsSet to true using move semantics */
+	void SetInt1(int32&& NewValue) { Int1_Optional = NewValue; Int1_IsSet = true; Int1_IsNull = false; }
+	/** @brief Clears the value of Int1_Optional and sets Int1_IsSet to false */
+	void ClearInt1() { Int1_Optional = 0; Int1_IsSet = false; Int1_IsNull = false; }
+	/** @brief Checks whether Int1_Optional has been set */
+	bool IsInt1Set() const { return Int1_IsSet; }
+	/** @brief Returns true if Int1_Optional is set and matches the default value */
+	bool IsInt1DefaultValue() const { return Int1_IsSet && Int1_Optional == 0; }
+	/** @brief Sets the value of Int1_Optional to its default and also sets Int1_IsSet to true */
+	void SetInt1ToDefault() { SetInt1(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt1ToNull() { Int1_IsSet = true; Int1_IsNull = true; }
+	/** @brief Checks whether Int1_Optional is set to null */
+	bool IsInt1Null() const { return Int1_IsSet && Int1_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int2_Optional{ 0 };
+	/** @brief true if Int2_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int2_IsSet{ false };
+	/** @brief true if Int2_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int2_IsNull{ false };
+	/** @brief Gets the value of Int2_Optional, regardless of it having been set */
+	int32& GetInt2() { return Int2_Optional; }
+	/** @brief Gets the value of Int2_Optional, regardless of it having been set */
+	const int32& GetInt2() const { return Int2_Optional; }
+	/** @brief Gets the value of Int2_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt2(const int32& DefaultValue) const { if (Int2_IsSet) return Int2_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int2_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt2(int32& OutValue) const { if (Int2_IsSet && !Int2_IsNull) OutValue = Int2_Optional; return Int2_IsSet; }
+	/** @brief Returns a pointer to Int2_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt2OrNull() { if (Int2_IsSet) return (Int2_IsNull ? nullptr : &Int2_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int2_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt2OrNull() const { if (Int2_IsSet) return (Int2_IsNull ? nullptr : &Int2_Optional); return nullptr; }
+	/** @brief Sets the value of Int2_Optional and also sets Int2_IsSet to true */
+	void SetInt2(const int32& NewValue) { Int2_Optional = NewValue; Int2_IsSet = true; Int2_IsNull = false; }
+	/** @brief Sets the value of Int2_Optional and also sets Int2_IsSet to true using move semantics */
+	void SetInt2(int32&& NewValue) { Int2_Optional = NewValue; Int2_IsSet = true; Int2_IsNull = false; }
+	/** @brief Clears the value of Int2_Optional and sets Int2_IsSet to false */
+	void ClearInt2() { Int2_Optional = 0; Int2_IsSet = false; Int2_IsNull = false; }
+	/** @brief Checks whether Int2_Optional has been set */
+	bool IsInt2Set() const { return Int2_IsSet; }
+	/** @brief Returns true if Int2_Optional is set and matches the default value */
+	bool IsInt2DefaultValue() const { return Int2_IsSet && Int2_Optional == 0; }
+	/** @brief Sets the value of Int2_Optional to its default and also sets Int2_IsSet to true */
+	void SetInt2ToDefault() { SetInt2(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt2ToNull() { Int2_IsSet = true; Int2_IsNull = true; }
+	/** @brief Checks whether Int2_Optional is set to null */
+	bool IsInt2Null() const { return Int2_IsSet && Int2_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int3_Optional{ 0 };
+	/** @brief true if Int3_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int3_IsSet{ false };
+	/** @brief true if Int3_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int3_IsNull{ false };
+	/** @brief Gets the value of Int3_Optional, regardless of it having been set */
+	int32& GetInt3() { return Int3_Optional; }
+	/** @brief Gets the value of Int3_Optional, regardless of it having been set */
+	const int32& GetInt3() const { return Int3_Optional; }
+	/** @brief Gets the value of Int3_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt3(const int32& DefaultValue) const { if (Int3_IsSet) return Int3_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int3_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt3(int32& OutValue) const { if (Int3_IsSet && !Int3_IsNull) OutValue = Int3_Optional; return Int3_IsSet; }
+	/** @brief Returns a pointer to Int3_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt3OrNull() { if (Int3_IsSet) return (Int3_IsNull ? nullptr : &Int3_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int3_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt3OrNull() const { if (Int3_IsSet) return (Int3_IsNull ? nullptr : &Int3_Optional); return nullptr; }
+	/** @brief Sets the value of Int3_Optional and also sets Int3_IsSet to true */
+	void SetInt3(const int32& NewValue) { Int3_Optional = NewValue; Int3_IsSet = true; Int3_IsNull = false; }
+	/** @brief Sets the value of Int3_Optional and also sets Int3_IsSet to true using move semantics */
+	void SetInt3(int32&& NewValue) { Int3_Optional = NewValue; Int3_IsSet = true; Int3_IsNull = false; }
+	/** @brief Clears the value of Int3_Optional and sets Int3_IsSet to false */
+	void ClearInt3() { Int3_Optional = 0; Int3_IsSet = false; Int3_IsNull = false; }
+	/** @brief Checks whether Int3_Optional has been set */
+	bool IsInt3Set() const { return Int3_IsSet; }
+	/** @brief Returns true if Int3_Optional is set and matches the default value */
+	bool IsInt3DefaultValue() const { return Int3_IsSet && Int3_Optional == 0; }
+	/** @brief Sets the value of Int3_Optional to its default and also sets Int3_IsSet to true */
+	void SetInt3ToDefault() { SetInt3(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt3ToNull() { Int3_IsSet = true; Int3_IsNull = true; }
+	/** @brief Checks whether Int3_Optional is set to null */
+	bool IsInt3Null() const { return Int3_IsSet && Int3_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int4_Optional{ 0 };
+	/** @brief true if Int4_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int4_IsSet{ false };
+	/** @brief true if Int4_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int4_IsNull{ false };
+	/** @brief Gets the value of Int4_Optional, regardless of it having been set */
+	int32& GetInt4() { return Int4_Optional; }
+	/** @brief Gets the value of Int4_Optional, regardless of it having been set */
+	const int32& GetInt4() const { return Int4_Optional; }
+	/** @brief Gets the value of Int4_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt4(const int32& DefaultValue) const { if (Int4_IsSet) return Int4_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int4_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt4(int32& OutValue) const { if (Int4_IsSet && !Int4_IsNull) OutValue = Int4_Optional; return Int4_IsSet; }
+	/** @brief Returns a pointer to Int4_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt4OrNull() { if (Int4_IsSet) return (Int4_IsNull ? nullptr : &Int4_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int4_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt4OrNull() const { if (Int4_IsSet) return (Int4_IsNull ? nullptr : &Int4_Optional); return nullptr; }
+	/** @brief Sets the value of Int4_Optional and also sets Int4_IsSet to true */
+	void SetInt4(const int32& NewValue) { Int4_Optional = NewValue; Int4_IsSet = true; Int4_IsNull = false; }
+	/** @brief Sets the value of Int4_Optional and also sets Int4_IsSet to true using move semantics */
+	void SetInt4(int32&& NewValue) { Int4_Optional = NewValue; Int4_IsSet = true; Int4_IsNull = false; }
+	/** @brief Clears the value of Int4_Optional and sets Int4_IsSet to false */
+	void ClearInt4() { Int4_Optional = 0; Int4_IsSet = false; Int4_IsNull = false; }
+	/** @brief Checks whether Int4_Optional has been set */
+	bool IsInt4Set() const { return Int4_IsSet; }
+	/** @brief Returns true if Int4_Optional is set and matches the default value */
+	bool IsInt4DefaultValue() const { return Int4_IsSet && Int4_Optional == 0; }
+	/** @brief Sets the value of Int4_Optional to its default and also sets Int4_IsSet to true */
+	void SetInt4ToDefault() { SetInt4(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt4ToNull() { Int4_IsSet = true; Int4_IsNull = true; }
+	/** @brief Checks whether Int4_Optional is set to null */
+	bool IsInt4Null() const { return Int4_IsSet && Int4_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int5_Optional{ 0 };
+	/** @brief true if Int5_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int5_IsSet{ false };
+	/** @brief true if Int5_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int5_IsNull{ false };
+	/** @brief Gets the value of Int5_Optional, regardless of it having been set */
+	int32& GetInt5() { return Int5_Optional; }
+	/** @brief Gets the value of Int5_Optional, regardless of it having been set */
+	const int32& GetInt5() const { return Int5_Optional; }
+	/** @brief Gets the value of Int5_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt5(const int32& DefaultValue) const { if (Int5_IsSet) return Int5_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int5_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt5(int32& OutValue) const { if (Int5_IsSet && !Int5_IsNull) OutValue = Int5_Optional; return Int5_IsSet; }
+	/** @brief Returns a pointer to Int5_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt5OrNull() { if (Int5_IsSet) return (Int5_IsNull ? nullptr : &Int5_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int5_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt5OrNull() const { if (Int5_IsSet) return (Int5_IsNull ? nullptr : &Int5_Optional); return nullptr; }
+	/** @brief Sets the value of Int5_Optional and also sets Int5_IsSet to true */
+	void SetInt5(const int32& NewValue) { Int5_Optional = NewValue; Int5_IsSet = true; Int5_IsNull = false; }
+	/** @brief Sets the value of Int5_Optional and also sets Int5_IsSet to true using move semantics */
+	void SetInt5(int32&& NewValue) { Int5_Optional = NewValue; Int5_IsSet = true; Int5_IsNull = false; }
+	/** @brief Clears the value of Int5_Optional and sets Int5_IsSet to false */
+	void ClearInt5() { Int5_Optional = 0; Int5_IsSet = false; Int5_IsNull = false; }
+	/** @brief Checks whether Int5_Optional has been set */
+	bool IsInt5Set() const { return Int5_IsSet; }
+	/** @brief Returns true if Int5_Optional is set and matches the default value */
+	bool IsInt5DefaultValue() const { return Int5_IsSet && Int5_Optional == 0; }
+	/** @brief Sets the value of Int5_Optional to its default and also sets Int5_IsSet to true */
+	void SetInt5ToDefault() { SetInt5(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt5ToNull() { Int5_IsSet = true; Int5_IsNull = true; }
+	/** @brief Checks whether Int5_Optional is set to null */
+	bool IsInt5Null() const { return Int5_IsSet && Int5_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int6_Optional{ 0 };
+	/** @brief true if Int6_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int6_IsSet{ false };
+	/** @brief true if Int6_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int6_IsNull{ false };
+	/** @brief Gets the value of Int6_Optional, regardless of it having been set */
+	int32& GetInt6() { return Int6_Optional; }
+	/** @brief Gets the value of Int6_Optional, regardless of it having been set */
+	const int32& GetInt6() const { return Int6_Optional; }
+	/** @brief Gets the value of Int6_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt6(const int32& DefaultValue) const { if (Int6_IsSet) return Int6_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int6_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt6(int32& OutValue) const { if (Int6_IsSet && !Int6_IsNull) OutValue = Int6_Optional; return Int6_IsSet; }
+	/** @brief Returns a pointer to Int6_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt6OrNull() { if (Int6_IsSet) return (Int6_IsNull ? nullptr : &Int6_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int6_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt6OrNull() const { if (Int6_IsSet) return (Int6_IsNull ? nullptr : &Int6_Optional); return nullptr; }
+	/** @brief Sets the value of Int6_Optional and also sets Int6_IsSet to true */
+	void SetInt6(const int32& NewValue) { Int6_Optional = NewValue; Int6_IsSet = true; Int6_IsNull = false; }
+	/** @brief Sets the value of Int6_Optional and also sets Int6_IsSet to true using move semantics */
+	void SetInt6(int32&& NewValue) { Int6_Optional = NewValue; Int6_IsSet = true; Int6_IsNull = false; }
+	/** @brief Clears the value of Int6_Optional and sets Int6_IsSet to false */
+	void ClearInt6() { Int6_Optional = 0; Int6_IsSet = false; Int6_IsNull = false; }
+	/** @brief Checks whether Int6_Optional has been set */
+	bool IsInt6Set() const { return Int6_IsSet; }
+	/** @brief Returns true if Int6_Optional is set and matches the default value */
+	bool IsInt6DefaultValue() const { return Int6_IsSet && Int6_Optional == 0; }
+	/** @brief Sets the value of Int6_Optional to its default and also sets Int6_IsSet to true */
+	void SetInt6ToDefault() { SetInt6(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt6ToNull() { Int6_IsSet = true; Int6_IsNull = true; }
+	/** @brief Checks whether Int6_Optional is set to null */
+	bool IsInt6Null() const { return Int6_IsSet && Int6_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int7_Optional{ 0 };
+	/** @brief true if Int7_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int7_IsSet{ false };
+	/** @brief true if Int7_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int7_IsNull{ false };
+	/** @brief Gets the value of Int7_Optional, regardless of it having been set */
+	int32& GetInt7() { return Int7_Optional; }
+	/** @brief Gets the value of Int7_Optional, regardless of it having been set */
+	const int32& GetInt7() const { return Int7_Optional; }
+	/** @brief Gets the value of Int7_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt7(const int32& DefaultValue) const { if (Int7_IsSet) return Int7_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int7_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt7(int32& OutValue) const { if (Int7_IsSet && !Int7_IsNull) OutValue = Int7_Optional; return Int7_IsSet; }
+	/** @brief Returns a pointer to Int7_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt7OrNull() { if (Int7_IsSet) return (Int7_IsNull ? nullptr : &Int7_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int7_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt7OrNull() const { if (Int7_IsSet) return (Int7_IsNull ? nullptr : &Int7_Optional); return nullptr; }
+	/** @brief Sets the value of Int7_Optional and also sets Int7_IsSet to true */
+	void SetInt7(const int32& NewValue) { Int7_Optional = NewValue; Int7_IsSet = true; Int7_IsNull = false; }
+	/** @brief Sets the value of Int7_Optional and also sets Int7_IsSet to true using move semantics */
+	void SetInt7(int32&& NewValue) { Int7_Optional = NewValue; Int7_IsSet = true; Int7_IsNull = false; }
+	/** @brief Clears the value of Int7_Optional and sets Int7_IsSet to false */
+	void ClearInt7() { Int7_Optional = 0; Int7_IsSet = false; Int7_IsNull = false; }
+	/** @brief Checks whether Int7_Optional has been set */
+	bool IsInt7Set() const { return Int7_IsSet; }
+	/** @brief Returns true if Int7_Optional is set and matches the default value */
+	bool IsInt7DefaultValue() const { return Int7_IsSet && Int7_Optional == 0; }
+	/** @brief Sets the value of Int7_Optional to its default and also sets Int7_IsSet to true */
+	void SetInt7ToDefault() { SetInt7(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt7ToNull() { Int7_IsSet = true; Int7_IsNull = true; }
+	/** @brief Checks whether Int7_Optional is set to null */
+	bool IsInt7Null() const { return Int7_IsSet && Int7_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int8_Optional{ 0 };
+	/** @brief true if Int8_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int8_IsSet{ false };
+	/** @brief true if Int8_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int8_IsNull{ false };
+	/** @brief Gets the value of Int8_Optional, regardless of it having been set */
+	int32& GetInt8() { return Int8_Optional; }
+	/** @brief Gets the value of Int8_Optional, regardless of it having been set */
+	const int32& GetInt8() const { return Int8_Optional; }
+	/** @brief Gets the value of Int8_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt8(const int32& DefaultValue) const { if (Int8_IsSet) return Int8_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int8_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt8(int32& OutValue) const { if (Int8_IsSet && !Int8_IsNull) OutValue = Int8_Optional; return Int8_IsSet; }
+	/** @brief Returns a pointer to Int8_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt8OrNull() { if (Int8_IsSet) return (Int8_IsNull ? nullptr : &Int8_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int8_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt8OrNull() const { if (Int8_IsSet) return (Int8_IsNull ? nullptr : &Int8_Optional); return nullptr; }
+	/** @brief Sets the value of Int8_Optional and also sets Int8_IsSet to true */
+	void SetInt8(const int32& NewValue) { Int8_Optional = NewValue; Int8_IsSet = true; Int8_IsNull = false; }
+	/** @brief Sets the value of Int8_Optional and also sets Int8_IsSet to true using move semantics */
+	void SetInt8(int32&& NewValue) { Int8_Optional = NewValue; Int8_IsSet = true; Int8_IsNull = false; }
+	/** @brief Clears the value of Int8_Optional and sets Int8_IsSet to false */
+	void ClearInt8() { Int8_Optional = 0; Int8_IsSet = false; Int8_IsNull = false; }
+	/** @brief Checks whether Int8_Optional has been set */
+	bool IsInt8Set() const { return Int8_IsSet; }
+	/** @brief Returns true if Int8_Optional is set and matches the default value */
+	bool IsInt8DefaultValue() const { return Int8_IsSet && Int8_Optional == 0; }
+	/** @brief Sets the value of Int8_Optional to its default and also sets Int8_IsSet to true */
+	void SetInt8ToDefault() { SetInt8(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt8ToNull() { Int8_IsSet = true; Int8_IsNull = true; }
+	/** @brief Checks whether Int8_Optional is set to null */
+	bool IsInt8Null() const { return Int8_IsSet && Int8_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int9_Optional{ 0 };
+	/** @brief true if Int9_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int9_IsSet{ false };
+	/** @brief true if Int9_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int9_IsNull{ false };
+	/** @brief Gets the value of Int9_Optional, regardless of it having been set */
+	int32& GetInt9() { return Int9_Optional; }
+	/** @brief Gets the value of Int9_Optional, regardless of it having been set */
+	const int32& GetInt9() const { return Int9_Optional; }
+	/** @brief Gets the value of Int9_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt9(const int32& DefaultValue) const { if (Int9_IsSet) return Int9_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int9_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt9(int32& OutValue) const { if (Int9_IsSet && !Int9_IsNull) OutValue = Int9_Optional; return Int9_IsSet; }
+	/** @brief Returns a pointer to Int9_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt9OrNull() { if (Int9_IsSet) return (Int9_IsNull ? nullptr : &Int9_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int9_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt9OrNull() const { if (Int9_IsSet) return (Int9_IsNull ? nullptr : &Int9_Optional); return nullptr; }
+	/** @brief Sets the value of Int9_Optional and also sets Int9_IsSet to true */
+	void SetInt9(const int32& NewValue) { Int9_Optional = NewValue; Int9_IsSet = true; Int9_IsNull = false; }
+	/** @brief Sets the value of Int9_Optional and also sets Int9_IsSet to true using move semantics */
+	void SetInt9(int32&& NewValue) { Int9_Optional = NewValue; Int9_IsSet = true; Int9_IsNull = false; }
+	/** @brief Clears the value of Int9_Optional and sets Int9_IsSet to false */
+	void ClearInt9() { Int9_Optional = 0; Int9_IsSet = false; Int9_IsNull = false; }
+	/** @brief Checks whether Int9_Optional has been set */
+	bool IsInt9Set() const { return Int9_IsSet; }
+	/** @brief Returns true if Int9_Optional is set and matches the default value */
+	bool IsInt9DefaultValue() const { return Int9_IsSet && Int9_Optional == 0; }
+	/** @brief Sets the value of Int9_Optional to its default and also sets Int9_IsSet to true */
+	void SetInt9ToDefault() { SetInt9(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt9ToNull() { Int9_IsSet = true; Int9_IsNull = true; }
+	/** @brief Checks whether Int9_Optional is set to null */
+	bool IsInt9Null() const { return Int9_IsSet && Int9_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int10_Optional{ 0 };
+	/** @brief true if Int10_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int10_IsSet{ false };
+	/** @brief true if Int10_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int10_IsNull{ false };
+	/** @brief Gets the value of Int10_Optional, regardless of it having been set */
+	int32& GetInt10() { return Int10_Optional; }
+	/** @brief Gets the value of Int10_Optional, regardless of it having been set */
+	const int32& GetInt10() const { return Int10_Optional; }
+	/** @brief Gets the value of Int10_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt10(const int32& DefaultValue) const { if (Int10_IsSet) return Int10_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int10_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt10(int32& OutValue) const { if (Int10_IsSet && !Int10_IsNull) OutValue = Int10_Optional; return Int10_IsSet; }
+	/** @brief Returns a pointer to Int10_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt10OrNull() { if (Int10_IsSet) return (Int10_IsNull ? nullptr : &Int10_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int10_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt10OrNull() const { if (Int10_IsSet) return (Int10_IsNull ? nullptr : &Int10_Optional); return nullptr; }
+	/** @brief Sets the value of Int10_Optional and also sets Int10_IsSet to true */
+	void SetInt10(const int32& NewValue) { Int10_Optional = NewValue; Int10_IsSet = true; Int10_IsNull = false; }
+	/** @brief Sets the value of Int10_Optional and also sets Int10_IsSet to true using move semantics */
+	void SetInt10(int32&& NewValue) { Int10_Optional = NewValue; Int10_IsSet = true; Int10_IsNull = false; }
+	/** @brief Clears the value of Int10_Optional and sets Int10_IsSet to false */
+	void ClearInt10() { Int10_Optional = 0; Int10_IsSet = false; Int10_IsNull = false; }
+	/** @brief Checks whether Int10_Optional has been set */
+	bool IsInt10Set() const { return Int10_IsSet; }
+	/** @brief Returns true if Int10_Optional is set and matches the default value */
+	bool IsInt10DefaultValue() const { return Int10_IsSet && Int10_Optional == 0; }
+	/** @brief Sets the value of Int10_Optional to its default and also sets Int10_IsSet to true */
+	void SetInt10ToDefault() { SetInt10(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt10ToNull() { Int10_IsSet = true; Int10_IsNull = true; }
+	/** @brief Checks whether Int10_Optional is set to null */
+	bool IsInt10Null() const { return Int10_IsSet && Int10_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int11_Optional{ 0 };
+	/** @brief true if Int11_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int11_IsSet{ false };
+	/** @brief true if Int11_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int11_IsNull{ false };
+	/** @brief Gets the value of Int11_Optional, regardless of it having been set */
+	int32& GetInt11() { return Int11_Optional; }
+	/** @brief Gets the value of Int11_Optional, regardless of it having been set */
+	const int32& GetInt11() const { return Int11_Optional; }
+	/** @brief Gets the value of Int11_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt11(const int32& DefaultValue) const { if (Int11_IsSet) return Int11_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int11_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt11(int32& OutValue) const { if (Int11_IsSet && !Int11_IsNull) OutValue = Int11_Optional; return Int11_IsSet; }
+	/** @brief Returns a pointer to Int11_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt11OrNull() { if (Int11_IsSet) return (Int11_IsNull ? nullptr : &Int11_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int11_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt11OrNull() const { if (Int11_IsSet) return (Int11_IsNull ? nullptr : &Int11_Optional); return nullptr; }
+	/** @brief Sets the value of Int11_Optional and also sets Int11_IsSet to true */
+	void SetInt11(const int32& NewValue) { Int11_Optional = NewValue; Int11_IsSet = true; Int11_IsNull = false; }
+	/** @brief Sets the value of Int11_Optional and also sets Int11_IsSet to true using move semantics */
+	void SetInt11(int32&& NewValue) { Int11_Optional = NewValue; Int11_IsSet = true; Int11_IsNull = false; }
+	/** @brief Clears the value of Int11_Optional and sets Int11_IsSet to false */
+	void ClearInt11() { Int11_Optional = 0; Int11_IsSet = false; Int11_IsNull = false; }
+	/** @brief Checks whether Int11_Optional has been set */
+	bool IsInt11Set() const { return Int11_IsSet; }
+	/** @brief Returns true if Int11_Optional is set and matches the default value */
+	bool IsInt11DefaultValue() const { return Int11_IsSet && Int11_Optional == 0; }
+	/** @brief Sets the value of Int11_Optional to its default and also sets Int11_IsSet to true */
+	void SetInt11ToDefault() { SetInt11(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt11ToNull() { Int11_IsSet = true; Int11_IsNull = true; }
+	/** @brief Checks whether Int11_Optional is set to null */
+	bool IsInt11Null() const { return Int11_IsSet && Int11_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int12_Optional{ 0 };
+	/** @brief true if Int12_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int12_IsSet{ false };
+	/** @brief true if Int12_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int12_IsNull{ false };
+	/** @brief Gets the value of Int12_Optional, regardless of it having been set */
+	int32& GetInt12() { return Int12_Optional; }
+	/** @brief Gets the value of Int12_Optional, regardless of it having been set */
+	const int32& GetInt12() const { return Int12_Optional; }
+	/** @brief Gets the value of Int12_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt12(const int32& DefaultValue) const { if (Int12_IsSet) return Int12_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int12_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt12(int32& OutValue) const { if (Int12_IsSet && !Int12_IsNull) OutValue = Int12_Optional; return Int12_IsSet; }
+	/** @brief Returns a pointer to Int12_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt12OrNull() { if (Int12_IsSet) return (Int12_IsNull ? nullptr : &Int12_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int12_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt12OrNull() const { if (Int12_IsSet) return (Int12_IsNull ? nullptr : &Int12_Optional); return nullptr; }
+	/** @brief Sets the value of Int12_Optional and also sets Int12_IsSet to true */
+	void SetInt12(const int32& NewValue) { Int12_Optional = NewValue; Int12_IsSet = true; Int12_IsNull = false; }
+	/** @brief Sets the value of Int12_Optional and also sets Int12_IsSet to true using move semantics */
+	void SetInt12(int32&& NewValue) { Int12_Optional = NewValue; Int12_IsSet = true; Int12_IsNull = false; }
+	/** @brief Clears the value of Int12_Optional and sets Int12_IsSet to false */
+	void ClearInt12() { Int12_Optional = 0; Int12_IsSet = false; Int12_IsNull = false; }
+	/** @brief Checks whether Int12_Optional has been set */
+	bool IsInt12Set() const { return Int12_IsSet; }
+	/** @brief Returns true if Int12_Optional is set and matches the default value */
+	bool IsInt12DefaultValue() const { return Int12_IsSet && Int12_Optional == 0; }
+	/** @brief Sets the value of Int12_Optional to its default and also sets Int12_IsSet to true */
+	void SetInt12ToDefault() { SetInt12(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt12ToNull() { Int12_IsSet = true; Int12_IsNull = true; }
+	/** @brief Checks whether Int12_Optional is set to null */
+	bool IsInt12Null() const { return Int12_IsSet && Int12_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int13_Optional{ 0 };
+	/** @brief true if Int13_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int13_IsSet{ false };
+	/** @brief true if Int13_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int13_IsNull{ false };
+	/** @brief Gets the value of Int13_Optional, regardless of it having been set */
+	int32& GetInt13() { return Int13_Optional; }
+	/** @brief Gets the value of Int13_Optional, regardless of it having been set */
+	const int32& GetInt13() const { return Int13_Optional; }
+	/** @brief Gets the value of Int13_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt13(const int32& DefaultValue) const { if (Int13_IsSet) return Int13_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int13_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt13(int32& OutValue) const { if (Int13_IsSet && !Int13_IsNull) OutValue = Int13_Optional; return Int13_IsSet; }
+	/** @brief Returns a pointer to Int13_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt13OrNull() { if (Int13_IsSet) return (Int13_IsNull ? nullptr : &Int13_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int13_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt13OrNull() const { if (Int13_IsSet) return (Int13_IsNull ? nullptr : &Int13_Optional); return nullptr; }
+	/** @brief Sets the value of Int13_Optional and also sets Int13_IsSet to true */
+	void SetInt13(const int32& NewValue) { Int13_Optional = NewValue; Int13_IsSet = true; Int13_IsNull = false; }
+	/** @brief Sets the value of Int13_Optional and also sets Int13_IsSet to true using move semantics */
+	void SetInt13(int32&& NewValue) { Int13_Optional = NewValue; Int13_IsSet = true; Int13_IsNull = false; }
+	/** @brief Clears the value of Int13_Optional and sets Int13_IsSet to false */
+	void ClearInt13() { Int13_Optional = 0; Int13_IsSet = false; Int13_IsNull = false; }
+	/** @brief Checks whether Int13_Optional has been set */
+	bool IsInt13Set() const { return Int13_IsSet; }
+	/** @brief Returns true if Int13_Optional is set and matches the default value */
+	bool IsInt13DefaultValue() const { return Int13_IsSet && Int13_Optional == 0; }
+	/** @brief Sets the value of Int13_Optional to its default and also sets Int13_IsSet to true */
+	void SetInt13ToDefault() { SetInt13(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt13ToNull() { Int13_IsSet = true; Int13_IsNull = true; }
+	/** @brief Checks whether Int13_Optional is set to null */
+	bool IsInt13Null() const { return Int13_IsSet && Int13_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int14_Optional{ 0 };
+	/** @brief true if Int14_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int14_IsSet{ false };
+	/** @brief true if Int14_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int14_IsNull{ false };
+	/** @brief Gets the value of Int14_Optional, regardless of it having been set */
+	int32& GetInt14() { return Int14_Optional; }
+	/** @brief Gets the value of Int14_Optional, regardless of it having been set */
+	const int32& GetInt14() const { return Int14_Optional; }
+	/** @brief Gets the value of Int14_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt14(const int32& DefaultValue) const { if (Int14_IsSet) return Int14_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int14_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt14(int32& OutValue) const { if (Int14_IsSet && !Int14_IsNull) OutValue = Int14_Optional; return Int14_IsSet; }
+	/** @brief Returns a pointer to Int14_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt14OrNull() { if (Int14_IsSet) return (Int14_IsNull ? nullptr : &Int14_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int14_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt14OrNull() const { if (Int14_IsSet) return (Int14_IsNull ? nullptr : &Int14_Optional); return nullptr; }
+	/** @brief Sets the value of Int14_Optional and also sets Int14_IsSet to true */
+	void SetInt14(const int32& NewValue) { Int14_Optional = NewValue; Int14_IsSet = true; Int14_IsNull = false; }
+	/** @brief Sets the value of Int14_Optional and also sets Int14_IsSet to true using move semantics */
+	void SetInt14(int32&& NewValue) { Int14_Optional = NewValue; Int14_IsSet = true; Int14_IsNull = false; }
+	/** @brief Clears the value of Int14_Optional and sets Int14_IsSet to false */
+	void ClearInt14() { Int14_Optional = 0; Int14_IsSet = false; Int14_IsNull = false; }
+	/** @brief Checks whether Int14_Optional has been set */
+	bool IsInt14Set() const { return Int14_IsSet; }
+	/** @brief Returns true if Int14_Optional is set and matches the default value */
+	bool IsInt14DefaultValue() const { return Int14_IsSet && Int14_Optional == 0; }
+	/** @brief Sets the value of Int14_Optional to its default and also sets Int14_IsSet to true */
+	void SetInt14ToDefault() { SetInt14(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt14ToNull() { Int14_IsSet = true; Int14_IsNull = true; }
+	/** @brief Checks whether Int14_Optional is set to null */
+	bool IsInt14Null() const { return Int14_IsSet && Int14_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int15_Optional{ 0 };
+	/** @brief true if Int15_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int15_IsSet{ false };
+	/** @brief true if Int15_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int15_IsNull{ false };
+	/** @brief Gets the value of Int15_Optional, regardless of it having been set */
+	int32& GetInt15() { return Int15_Optional; }
+	/** @brief Gets the value of Int15_Optional, regardless of it having been set */
+	const int32& GetInt15() const { return Int15_Optional; }
+	/** @brief Gets the value of Int15_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt15(const int32& DefaultValue) const { if (Int15_IsSet) return Int15_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int15_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt15(int32& OutValue) const { if (Int15_IsSet && !Int15_IsNull) OutValue = Int15_Optional; return Int15_IsSet; }
+	/** @brief Returns a pointer to Int15_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt15OrNull() { if (Int15_IsSet) return (Int15_IsNull ? nullptr : &Int15_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int15_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt15OrNull() const { if (Int15_IsSet) return (Int15_IsNull ? nullptr : &Int15_Optional); return nullptr; }
+	/** @brief Sets the value of Int15_Optional and also sets Int15_IsSet to true */
+	void SetInt15(const int32& NewValue) { Int15_Optional = NewValue; Int15_IsSet = true; Int15_IsNull = false; }
+	/** @brief Sets the value of Int15_Optional and also sets Int15_IsSet to true using move semantics */
+	void SetInt15(int32&& NewValue) { Int15_Optional = NewValue; Int15_IsSet = true; Int15_IsNull = false; }
+	/** @brief Clears the value of Int15_Optional and sets Int15_IsSet to false */
+	void ClearInt15() { Int15_Optional = 0; Int15_IsSet = false; Int15_IsNull = false; }
+	/** @brief Checks whether Int15_Optional has been set */
+	bool IsInt15Set() const { return Int15_IsSet; }
+	/** @brief Returns true if Int15_Optional is set and matches the default value */
+	bool IsInt15DefaultValue() const { return Int15_IsSet && Int15_Optional == 0; }
+	/** @brief Sets the value of Int15_Optional to its default and also sets Int15_IsSet to true */
+	void SetInt15ToDefault() { SetInt15(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt15ToNull() { Int15_IsSet = true; Int15_IsNull = true; }
+	/** @brief Checks whether Int15_Optional is set to null */
+	bool IsInt15Null() const { return Int15_IsSet && Int15_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int16_Optional{ 0 };
+	/** @brief true if Int16_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int16_IsSet{ false };
+	/** @brief true if Int16_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int16_IsNull{ false };
+	/** @brief Gets the value of Int16_Optional, regardless of it having been set */
+	int32& GetInt16() { return Int16_Optional; }
+	/** @brief Gets the value of Int16_Optional, regardless of it having been set */
+	const int32& GetInt16() const { return Int16_Optional; }
+	/** @brief Gets the value of Int16_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt16(const int32& DefaultValue) const { if (Int16_IsSet) return Int16_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int16_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt16(int32& OutValue) const { if (Int16_IsSet && !Int16_IsNull) OutValue = Int16_Optional; return Int16_IsSet; }
+	/** @brief Returns a pointer to Int16_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt16OrNull() { if (Int16_IsSet) return (Int16_IsNull ? nullptr : &Int16_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int16_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt16OrNull() const { if (Int16_IsSet) return (Int16_IsNull ? nullptr : &Int16_Optional); return nullptr; }
+	/** @brief Sets the value of Int16_Optional and also sets Int16_IsSet to true */
+	void SetInt16(const int32& NewValue) { Int16_Optional = NewValue; Int16_IsSet = true; Int16_IsNull = false; }
+	/** @brief Sets the value of Int16_Optional and also sets Int16_IsSet to true using move semantics */
+	void SetInt16(int32&& NewValue) { Int16_Optional = NewValue; Int16_IsSet = true; Int16_IsNull = false; }
+	/** @brief Clears the value of Int16_Optional and sets Int16_IsSet to false */
+	void ClearInt16() { Int16_Optional = 0; Int16_IsSet = false; Int16_IsNull = false; }
+	/** @brief Checks whether Int16_Optional has been set */
+	bool IsInt16Set() const { return Int16_IsSet; }
+	/** @brief Returns true if Int16_Optional is set and matches the default value */
+	bool IsInt16DefaultValue() const { return Int16_IsSet && Int16_Optional == 0; }
+	/** @brief Sets the value of Int16_Optional to its default and also sets Int16_IsSet to true */
+	void SetInt16ToDefault() { SetInt16(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt16ToNull() { Int16_IsSet = true; Int16_IsNull = true; }
+	/** @brief Checks whether Int16_Optional is set to null */
+	bool IsInt16Null() const { return Int16_IsSet && Int16_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int17_Optional{ 0 };
+	/** @brief true if Int17_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int17_IsSet{ false };
+	/** @brief true if Int17_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int17_IsNull{ false };
+	/** @brief Gets the value of Int17_Optional, regardless of it having been set */
+	int32& GetInt17() { return Int17_Optional; }
+	/** @brief Gets the value of Int17_Optional, regardless of it having been set */
+	const int32& GetInt17() const { return Int17_Optional; }
+	/** @brief Gets the value of Int17_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt17(const int32& DefaultValue) const { if (Int17_IsSet) return Int17_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int17_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt17(int32& OutValue) const { if (Int17_IsSet && !Int17_IsNull) OutValue = Int17_Optional; return Int17_IsSet; }
+	/** @brief Returns a pointer to Int17_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt17OrNull() { if (Int17_IsSet) return (Int17_IsNull ? nullptr : &Int17_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int17_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt17OrNull() const { if (Int17_IsSet) return (Int17_IsNull ? nullptr : &Int17_Optional); return nullptr; }
+	/** @brief Sets the value of Int17_Optional and also sets Int17_IsSet to true */
+	void SetInt17(const int32& NewValue) { Int17_Optional = NewValue; Int17_IsSet = true; Int17_IsNull = false; }
+	/** @brief Sets the value of Int17_Optional and also sets Int17_IsSet to true using move semantics */
+	void SetInt17(int32&& NewValue) { Int17_Optional = NewValue; Int17_IsSet = true; Int17_IsNull = false; }
+	/** @brief Clears the value of Int17_Optional and sets Int17_IsSet to false */
+	void ClearInt17() { Int17_Optional = 0; Int17_IsSet = false; Int17_IsNull = false; }
+	/** @brief Checks whether Int17_Optional has been set */
+	bool IsInt17Set() const { return Int17_IsSet; }
+	/** @brief Returns true if Int17_Optional is set and matches the default value */
+	bool IsInt17DefaultValue() const { return Int17_IsSet && Int17_Optional == 0; }
+	/** @brief Sets the value of Int17_Optional to its default and also sets Int17_IsSet to true */
+	void SetInt17ToDefault() { SetInt17(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt17ToNull() { Int17_IsSet = true; Int17_IsNull = true; }
+	/** @brief Checks whether Int17_Optional is set to null */
+	bool IsInt17Null() const { return Int17_IsSet && Int17_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int18_Optional{ 0 };
+	/** @brief true if Int18_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int18_IsSet{ false };
+	/** @brief true if Int18_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int18_IsNull{ false };
+	/** @brief Gets the value of Int18_Optional, regardless of it having been set */
+	int32& GetInt18() { return Int18_Optional; }
+	/** @brief Gets the value of Int18_Optional, regardless of it having been set */
+	const int32& GetInt18() const { return Int18_Optional; }
+	/** @brief Gets the value of Int18_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt18(const int32& DefaultValue) const { if (Int18_IsSet) return Int18_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int18_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt18(int32& OutValue) const { if (Int18_IsSet && !Int18_IsNull) OutValue = Int18_Optional; return Int18_IsSet; }
+	/** @brief Returns a pointer to Int18_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt18OrNull() { if (Int18_IsSet) return (Int18_IsNull ? nullptr : &Int18_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int18_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt18OrNull() const { if (Int18_IsSet) return (Int18_IsNull ? nullptr : &Int18_Optional); return nullptr; }
+	/** @brief Sets the value of Int18_Optional and also sets Int18_IsSet to true */
+	void SetInt18(const int32& NewValue) { Int18_Optional = NewValue; Int18_IsSet = true; Int18_IsNull = false; }
+	/** @brief Sets the value of Int18_Optional and also sets Int18_IsSet to true using move semantics */
+	void SetInt18(int32&& NewValue) { Int18_Optional = NewValue; Int18_IsSet = true; Int18_IsNull = false; }
+	/** @brief Clears the value of Int18_Optional and sets Int18_IsSet to false */
+	void ClearInt18() { Int18_Optional = 0; Int18_IsSet = false; Int18_IsNull = false; }
+	/** @brief Checks whether Int18_Optional has been set */
+	bool IsInt18Set() const { return Int18_IsSet; }
+	/** @brief Returns true if Int18_Optional is set and matches the default value */
+	bool IsInt18DefaultValue() const { return Int18_IsSet && Int18_Optional == 0; }
+	/** @brief Sets the value of Int18_Optional to its default and also sets Int18_IsSet to true */
+	void SetInt18ToDefault() { SetInt18(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt18ToNull() { Int18_IsSet = true; Int18_IsNull = true; }
+	/** @brief Checks whether Int18_Optional is set to null */
+	bool IsInt18Null() const { return Int18_IsSet && Int18_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int19_Optional{ 0 };
+	/** @brief true if Int19_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int19_IsSet{ false };
+	/** @brief true if Int19_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int19_IsNull{ false };
+	/** @brief Gets the value of Int19_Optional, regardless of it having been set */
+	int32& GetInt19() { return Int19_Optional; }
+	/** @brief Gets the value of Int19_Optional, regardless of it having been set */
+	const int32& GetInt19() const { return Int19_Optional; }
+	/** @brief Gets the value of Int19_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt19(const int32& DefaultValue) const { if (Int19_IsSet) return Int19_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int19_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt19(int32& OutValue) const { if (Int19_IsSet && !Int19_IsNull) OutValue = Int19_Optional; return Int19_IsSet; }
+	/** @brief Returns a pointer to Int19_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt19OrNull() { if (Int19_IsSet) return (Int19_IsNull ? nullptr : &Int19_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int19_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt19OrNull() const { if (Int19_IsSet) return (Int19_IsNull ? nullptr : &Int19_Optional); return nullptr; }
+	/** @brief Sets the value of Int19_Optional and also sets Int19_IsSet to true */
+	void SetInt19(const int32& NewValue) { Int19_Optional = NewValue; Int19_IsSet = true; Int19_IsNull = false; }
+	/** @brief Sets the value of Int19_Optional and also sets Int19_IsSet to true using move semantics */
+	void SetInt19(int32&& NewValue) { Int19_Optional = NewValue; Int19_IsSet = true; Int19_IsNull = false; }
+	/** @brief Clears the value of Int19_Optional and sets Int19_IsSet to false */
+	void ClearInt19() { Int19_Optional = 0; Int19_IsSet = false; Int19_IsNull = false; }
+	/** @brief Checks whether Int19_Optional has been set */
+	bool IsInt19Set() const { return Int19_IsSet; }
+	/** @brief Returns true if Int19_Optional is set and matches the default value */
+	bool IsInt19DefaultValue() const { return Int19_IsSet && Int19_Optional == 0; }
+	/** @brief Sets the value of Int19_Optional to its default and also sets Int19_IsSet to true */
+	void SetInt19ToDefault() { SetInt19(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt19ToNull() { Int19_IsSet = true; Int19_IsNull = true; }
+	/** @brief Checks whether Int19_Optional is set to null */
+	bool IsInt19Null() const { return Int19_IsSet && Int19_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int20_Optional{ 0 };
+	/** @brief true if Int20_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int20_IsSet{ false };
+	/** @brief true if Int20_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int20_IsNull{ false };
+	/** @brief Gets the value of Int20_Optional, regardless of it having been set */
+	int32& GetInt20() { return Int20_Optional; }
+	/** @brief Gets the value of Int20_Optional, regardless of it having been set */
+	const int32& GetInt20() const { return Int20_Optional; }
+	/** @brief Gets the value of Int20_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt20(const int32& DefaultValue) const { if (Int20_IsSet) return Int20_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int20_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt20(int32& OutValue) const { if (Int20_IsSet && !Int20_IsNull) OutValue = Int20_Optional; return Int20_IsSet; }
+	/** @brief Returns a pointer to Int20_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt20OrNull() { if (Int20_IsSet) return (Int20_IsNull ? nullptr : &Int20_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int20_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt20OrNull() const { if (Int20_IsSet) return (Int20_IsNull ? nullptr : &Int20_Optional); return nullptr; }
+	/** @brief Sets the value of Int20_Optional and also sets Int20_IsSet to true */
+	void SetInt20(const int32& NewValue) { Int20_Optional = NewValue; Int20_IsSet = true; Int20_IsNull = false; }
+	/** @brief Sets the value of Int20_Optional and also sets Int20_IsSet to true using move semantics */
+	void SetInt20(int32&& NewValue) { Int20_Optional = NewValue; Int20_IsSet = true; Int20_IsNull = false; }
+	/** @brief Clears the value of Int20_Optional and sets Int20_IsSet to false */
+	void ClearInt20() { Int20_Optional = 0; Int20_IsSet = false; Int20_IsNull = false; }
+	/** @brief Checks whether Int20_Optional has been set */
+	bool IsInt20Set() const { return Int20_IsSet; }
+	/** @brief Returns true if Int20_Optional is set and matches the default value */
+	bool IsInt20DefaultValue() const { return Int20_IsSet && Int20_Optional == 0; }
+	/** @brief Sets the value of Int20_Optional to its default and also sets Int20_IsSet to true */
+	void SetInt20ToDefault() { SetInt20(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt20ToNull() { Int20_IsSet = true; Int20_IsNull = true; }
+	/** @brief Checks whether Int20_Optional is set to null */
+	bool IsInt20Null() const { return Int20_IsSet && Int20_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int21_Optional{ 0 };
+	/** @brief true if Int21_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int21_IsSet{ false };
+	/** @brief true if Int21_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int21_IsNull{ false };
+	/** @brief Gets the value of Int21_Optional, regardless of it having been set */
+	int32& GetInt21() { return Int21_Optional; }
+	/** @brief Gets the value of Int21_Optional, regardless of it having been set */
+	const int32& GetInt21() const { return Int21_Optional; }
+	/** @brief Gets the value of Int21_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt21(const int32& DefaultValue) const { if (Int21_IsSet) return Int21_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int21_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt21(int32& OutValue) const { if (Int21_IsSet && !Int21_IsNull) OutValue = Int21_Optional; return Int21_IsSet; }
+	/** @brief Returns a pointer to Int21_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt21OrNull() { if (Int21_IsSet) return (Int21_IsNull ? nullptr : &Int21_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int21_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt21OrNull() const { if (Int21_IsSet) return (Int21_IsNull ? nullptr : &Int21_Optional); return nullptr; }
+	/** @brief Sets the value of Int21_Optional and also sets Int21_IsSet to true */
+	void SetInt21(const int32& NewValue) { Int21_Optional = NewValue; Int21_IsSet = true; Int21_IsNull = false; }
+	/** @brief Sets the value of Int21_Optional and also sets Int21_IsSet to true using move semantics */
+	void SetInt21(int32&& NewValue) { Int21_Optional = NewValue; Int21_IsSet = true; Int21_IsNull = false; }
+	/** @brief Clears the value of Int21_Optional and sets Int21_IsSet to false */
+	void ClearInt21() { Int21_Optional = 0; Int21_IsSet = false; Int21_IsNull = false; }
+	/** @brief Checks whether Int21_Optional has been set */
+	bool IsInt21Set() const { return Int21_IsSet; }
+	/** @brief Returns true if Int21_Optional is set and matches the default value */
+	bool IsInt21DefaultValue() const { return Int21_IsSet && Int21_Optional == 0; }
+	/** @brief Sets the value of Int21_Optional to its default and also sets Int21_IsSet to true */
+	void SetInt21ToDefault() { SetInt21(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt21ToNull() { Int21_IsSet = true; Int21_IsNull = true; }
+	/** @brief Checks whether Int21_Optional is set to null */
+	bool IsInt21Null() const { return Int21_IsSet && Int21_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int22_Optional{ 0 };
+	/** @brief true if Int22_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int22_IsSet{ false };
+	/** @brief true if Int22_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int22_IsNull{ false };
+	/** @brief Gets the value of Int22_Optional, regardless of it having been set */
+	int32& GetInt22() { return Int22_Optional; }
+	/** @brief Gets the value of Int22_Optional, regardless of it having been set */
+	const int32& GetInt22() const { return Int22_Optional; }
+	/** @brief Gets the value of Int22_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt22(const int32& DefaultValue) const { if (Int22_IsSet) return Int22_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int22_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt22(int32& OutValue) const { if (Int22_IsSet && !Int22_IsNull) OutValue = Int22_Optional; return Int22_IsSet; }
+	/** @brief Returns a pointer to Int22_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt22OrNull() { if (Int22_IsSet) return (Int22_IsNull ? nullptr : &Int22_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int22_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt22OrNull() const { if (Int22_IsSet) return (Int22_IsNull ? nullptr : &Int22_Optional); return nullptr; }
+	/** @brief Sets the value of Int22_Optional and also sets Int22_IsSet to true */
+	void SetInt22(const int32& NewValue) { Int22_Optional = NewValue; Int22_IsSet = true; Int22_IsNull = false; }
+	/** @brief Sets the value of Int22_Optional and also sets Int22_IsSet to true using move semantics */
+	void SetInt22(int32&& NewValue) { Int22_Optional = NewValue; Int22_IsSet = true; Int22_IsNull = false; }
+	/** @brief Clears the value of Int22_Optional and sets Int22_IsSet to false */
+	void ClearInt22() { Int22_Optional = 0; Int22_IsSet = false; Int22_IsNull = false; }
+	/** @brief Checks whether Int22_Optional has been set */
+	bool IsInt22Set() const { return Int22_IsSet; }
+	/** @brief Returns true if Int22_Optional is set and matches the default value */
+	bool IsInt22DefaultValue() const { return Int22_IsSet && Int22_Optional == 0; }
+	/** @brief Sets the value of Int22_Optional to its default and also sets Int22_IsSet to true */
+	void SetInt22ToDefault() { SetInt22(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt22ToNull() { Int22_IsSet = true; Int22_IsNull = true; }
+	/** @brief Checks whether Int22_Optional is set to null */
+	bool IsInt22Null() const { return Int22_IsSet && Int22_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int23_Optional{ 0 };
+	/** @brief true if Int23_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int23_IsSet{ false };
+	/** @brief true if Int23_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int23_IsNull{ false };
+	/** @brief Gets the value of Int23_Optional, regardless of it having been set */
+	int32& GetInt23() { return Int23_Optional; }
+	/** @brief Gets the value of Int23_Optional, regardless of it having been set */
+	const int32& GetInt23() const { return Int23_Optional; }
+	/** @brief Gets the value of Int23_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt23(const int32& DefaultValue) const { if (Int23_IsSet) return Int23_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int23_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt23(int32& OutValue) const { if (Int23_IsSet && !Int23_IsNull) OutValue = Int23_Optional; return Int23_IsSet; }
+	/** @brief Returns a pointer to Int23_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt23OrNull() { if (Int23_IsSet) return (Int23_IsNull ? nullptr : &Int23_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int23_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt23OrNull() const { if (Int23_IsSet) return (Int23_IsNull ? nullptr : &Int23_Optional); return nullptr; }
+	/** @brief Sets the value of Int23_Optional and also sets Int23_IsSet to true */
+	void SetInt23(const int32& NewValue) { Int23_Optional = NewValue; Int23_IsSet = true; Int23_IsNull = false; }
+	/** @brief Sets the value of Int23_Optional and also sets Int23_IsSet to true using move semantics */
+	void SetInt23(int32&& NewValue) { Int23_Optional = NewValue; Int23_IsSet = true; Int23_IsNull = false; }
+	/** @brief Clears the value of Int23_Optional and sets Int23_IsSet to false */
+	void ClearInt23() { Int23_Optional = 0; Int23_IsSet = false; Int23_IsNull = false; }
+	/** @brief Checks whether Int23_Optional has been set */
+	bool IsInt23Set() const { return Int23_IsSet; }
+	/** @brief Returns true if Int23_Optional is set and matches the default value */
+	bool IsInt23DefaultValue() const { return Int23_IsSet && Int23_Optional == 0; }
+	/** @brief Sets the value of Int23_Optional to its default and also sets Int23_IsSet to true */
+	void SetInt23ToDefault() { SetInt23(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt23ToNull() { Int23_IsSet = true; Int23_IsNull = true; }
+	/** @brief Checks whether Int23_Optional is set to null */
+	bool IsInt23Null() const { return Int23_IsSet && Int23_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int24_Optional{ 0 };
+	/** @brief true if Int24_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int24_IsSet{ false };
+	/** @brief true if Int24_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int24_IsNull{ false };
+	/** @brief Gets the value of Int24_Optional, regardless of it having been set */
+	int32& GetInt24() { return Int24_Optional; }
+	/** @brief Gets the value of Int24_Optional, regardless of it having been set */
+	const int32& GetInt24() const { return Int24_Optional; }
+	/** @brief Gets the value of Int24_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt24(const int32& DefaultValue) const { if (Int24_IsSet) return Int24_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int24_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt24(int32& OutValue) const { if (Int24_IsSet && !Int24_IsNull) OutValue = Int24_Optional; return Int24_IsSet; }
+	/** @brief Returns a pointer to Int24_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt24OrNull() { if (Int24_IsSet) return (Int24_IsNull ? nullptr : &Int24_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int24_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt24OrNull() const { if (Int24_IsSet) return (Int24_IsNull ? nullptr : &Int24_Optional); return nullptr; }
+	/** @brief Sets the value of Int24_Optional and also sets Int24_IsSet to true */
+	void SetInt24(const int32& NewValue) { Int24_Optional = NewValue; Int24_IsSet = true; Int24_IsNull = false; }
+	/** @brief Sets the value of Int24_Optional and also sets Int24_IsSet to true using move semantics */
+	void SetInt24(int32&& NewValue) { Int24_Optional = NewValue; Int24_IsSet = true; Int24_IsNull = false; }
+	/** @brief Clears the value of Int24_Optional and sets Int24_IsSet to false */
+	void ClearInt24() { Int24_Optional = 0; Int24_IsSet = false; Int24_IsNull = false; }
+	/** @brief Checks whether Int24_Optional has been set */
+	bool IsInt24Set() const { return Int24_IsSet; }
+	/** @brief Returns true if Int24_Optional is set and matches the default value */
+	bool IsInt24DefaultValue() const { return Int24_IsSet && Int24_Optional == 0; }
+	/** @brief Sets the value of Int24_Optional to its default and also sets Int24_IsSet to true */
+	void SetInt24ToDefault() { SetInt24(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt24ToNull() { Int24_IsSet = true; Int24_IsNull = true; }
+	/** @brief Checks whether Int24_Optional is set to null */
+	bool IsInt24Null() const { return Int24_IsSet && Int24_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int25_Optional{ 0 };
+	/** @brief true if Int25_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int25_IsSet{ false };
+	/** @brief true if Int25_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int25_IsNull{ false };
+	/** @brief Gets the value of Int25_Optional, regardless of it having been set */
+	int32& GetInt25() { return Int25_Optional; }
+	/** @brief Gets the value of Int25_Optional, regardless of it having been set */
+	const int32& GetInt25() const { return Int25_Optional; }
+	/** @brief Gets the value of Int25_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt25(const int32& DefaultValue) const { if (Int25_IsSet) return Int25_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int25_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt25(int32& OutValue) const { if (Int25_IsSet && !Int25_IsNull) OutValue = Int25_Optional; return Int25_IsSet; }
+	/** @brief Returns a pointer to Int25_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt25OrNull() { if (Int25_IsSet) return (Int25_IsNull ? nullptr : &Int25_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int25_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt25OrNull() const { if (Int25_IsSet) return (Int25_IsNull ? nullptr : &Int25_Optional); return nullptr; }
+	/** @brief Sets the value of Int25_Optional and also sets Int25_IsSet to true */
+	void SetInt25(const int32& NewValue) { Int25_Optional = NewValue; Int25_IsSet = true; Int25_IsNull = false; }
+	/** @brief Sets the value of Int25_Optional and also sets Int25_IsSet to true using move semantics */
+	void SetInt25(int32&& NewValue) { Int25_Optional = NewValue; Int25_IsSet = true; Int25_IsNull = false; }
+	/** @brief Clears the value of Int25_Optional and sets Int25_IsSet to false */
+	void ClearInt25() { Int25_Optional = 0; Int25_IsSet = false; Int25_IsNull = false; }
+	/** @brief Checks whether Int25_Optional has been set */
+	bool IsInt25Set() const { return Int25_IsSet; }
+	/** @brief Returns true if Int25_Optional is set and matches the default value */
+	bool IsInt25DefaultValue() const { return Int25_IsSet && Int25_Optional == 0; }
+	/** @brief Sets the value of Int25_Optional to its default and also sets Int25_IsSet to true */
+	void SetInt25ToDefault() { SetInt25(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt25ToNull() { Int25_IsSet = true; Int25_IsNull = true; }
+	/** @brief Checks whether Int25_Optional is set to null */
+	bool IsInt25Null() const { return Int25_IsSet && Int25_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int26_Optional{ 0 };
+	/** @brief true if Int26_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int26_IsSet{ false };
+	/** @brief true if Int26_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int26_IsNull{ false };
+	/** @brief Gets the value of Int26_Optional, regardless of it having been set */
+	int32& GetInt26() { return Int26_Optional; }
+	/** @brief Gets the value of Int26_Optional, regardless of it having been set */
+	const int32& GetInt26() const { return Int26_Optional; }
+	/** @brief Gets the value of Int26_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt26(const int32& DefaultValue) const { if (Int26_IsSet) return Int26_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int26_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt26(int32& OutValue) const { if (Int26_IsSet && !Int26_IsNull) OutValue = Int26_Optional; return Int26_IsSet; }
+	/** @brief Returns a pointer to Int26_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt26OrNull() { if (Int26_IsSet) return (Int26_IsNull ? nullptr : &Int26_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int26_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt26OrNull() const { if (Int26_IsSet) return (Int26_IsNull ? nullptr : &Int26_Optional); return nullptr; }
+	/** @brief Sets the value of Int26_Optional and also sets Int26_IsSet to true */
+	void SetInt26(const int32& NewValue) { Int26_Optional = NewValue; Int26_IsSet = true; Int26_IsNull = false; }
+	/** @brief Sets the value of Int26_Optional and also sets Int26_IsSet to true using move semantics */
+	void SetInt26(int32&& NewValue) { Int26_Optional = NewValue; Int26_IsSet = true; Int26_IsNull = false; }
+	/** @brief Clears the value of Int26_Optional and sets Int26_IsSet to false */
+	void ClearInt26() { Int26_Optional = 0; Int26_IsSet = false; Int26_IsNull = false; }
+	/** @brief Checks whether Int26_Optional has been set */
+	bool IsInt26Set() const { return Int26_IsSet; }
+	/** @brief Returns true if Int26_Optional is set and matches the default value */
+	bool IsInt26DefaultValue() const { return Int26_IsSet && Int26_Optional == 0; }
+	/** @brief Sets the value of Int26_Optional to its default and also sets Int26_IsSet to true */
+	void SetInt26ToDefault() { SetInt26(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt26ToNull() { Int26_IsSet = true; Int26_IsNull = true; }
+	/** @brief Checks whether Int26_Optional is set to null */
+	bool IsInt26Null() const { return Int26_IsSet && Int26_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int27_Optional{ 0 };
+	/** @brief true if Int27_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int27_IsSet{ false };
+	/** @brief true if Int27_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int27_IsNull{ false };
+	/** @brief Gets the value of Int27_Optional, regardless of it having been set */
+	int32& GetInt27() { return Int27_Optional; }
+	/** @brief Gets the value of Int27_Optional, regardless of it having been set */
+	const int32& GetInt27() const { return Int27_Optional; }
+	/** @brief Gets the value of Int27_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt27(const int32& DefaultValue) const { if (Int27_IsSet) return Int27_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int27_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt27(int32& OutValue) const { if (Int27_IsSet && !Int27_IsNull) OutValue = Int27_Optional; return Int27_IsSet; }
+	/** @brief Returns a pointer to Int27_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt27OrNull() { if (Int27_IsSet) return (Int27_IsNull ? nullptr : &Int27_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int27_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt27OrNull() const { if (Int27_IsSet) return (Int27_IsNull ? nullptr : &Int27_Optional); return nullptr; }
+	/** @brief Sets the value of Int27_Optional and also sets Int27_IsSet to true */
+	void SetInt27(const int32& NewValue) { Int27_Optional = NewValue; Int27_IsSet = true; Int27_IsNull = false; }
+	/** @brief Sets the value of Int27_Optional and also sets Int27_IsSet to true using move semantics */
+	void SetInt27(int32&& NewValue) { Int27_Optional = NewValue; Int27_IsSet = true; Int27_IsNull = false; }
+	/** @brief Clears the value of Int27_Optional and sets Int27_IsSet to false */
+	void ClearInt27() { Int27_Optional = 0; Int27_IsSet = false; Int27_IsNull = false; }
+	/** @brief Checks whether Int27_Optional has been set */
+	bool IsInt27Set() const { return Int27_IsSet; }
+	/** @brief Returns true if Int27_Optional is set and matches the default value */
+	bool IsInt27DefaultValue() const { return Int27_IsSet && Int27_Optional == 0; }
+	/** @brief Sets the value of Int27_Optional to its default and also sets Int27_IsSet to true */
+	void SetInt27ToDefault() { SetInt27(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt27ToNull() { Int27_IsSet = true; Int27_IsNull = true; }
+	/** @brief Checks whether Int27_Optional is set to null */
+	bool IsInt27Null() const { return Int27_IsSet && Int27_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int28_Optional{ 0 };
+	/** @brief true if Int28_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int28_IsSet{ false };
+	/** @brief true if Int28_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int28_IsNull{ false };
+	/** @brief Gets the value of Int28_Optional, regardless of it having been set */
+	int32& GetInt28() { return Int28_Optional; }
+	/** @brief Gets the value of Int28_Optional, regardless of it having been set */
+	const int32& GetInt28() const { return Int28_Optional; }
+	/** @brief Gets the value of Int28_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt28(const int32& DefaultValue) const { if (Int28_IsSet) return Int28_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int28_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt28(int32& OutValue) const { if (Int28_IsSet && !Int28_IsNull) OutValue = Int28_Optional; return Int28_IsSet; }
+	/** @brief Returns a pointer to Int28_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt28OrNull() { if (Int28_IsSet) return (Int28_IsNull ? nullptr : &Int28_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int28_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt28OrNull() const { if (Int28_IsSet) return (Int28_IsNull ? nullptr : &Int28_Optional); return nullptr; }
+	/** @brief Sets the value of Int28_Optional and also sets Int28_IsSet to true */
+	void SetInt28(const int32& NewValue) { Int28_Optional = NewValue; Int28_IsSet = true; Int28_IsNull = false; }
+	/** @brief Sets the value of Int28_Optional and also sets Int28_IsSet to true using move semantics */
+	void SetInt28(int32&& NewValue) { Int28_Optional = NewValue; Int28_IsSet = true; Int28_IsNull = false; }
+	/** @brief Clears the value of Int28_Optional and sets Int28_IsSet to false */
+	void ClearInt28() { Int28_Optional = 0; Int28_IsSet = false; Int28_IsNull = false; }
+	/** @brief Checks whether Int28_Optional has been set */
+	bool IsInt28Set() const { return Int28_IsSet; }
+	/** @brief Returns true if Int28_Optional is set and matches the default value */
+	bool IsInt28DefaultValue() const { return Int28_IsSet && Int28_Optional == 0; }
+	/** @brief Sets the value of Int28_Optional to its default and also sets Int28_IsSet to true */
+	void SetInt28ToDefault() { SetInt28(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt28ToNull() { Int28_IsSet = true; Int28_IsNull = true; }
+	/** @brief Checks whether Int28_Optional is set to null */
+	bool IsInt28Null() const { return Int28_IsSet && Int28_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int29_Optional{ 0 };
+	/** @brief true if Int29_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int29_IsSet{ false };
+	/** @brief true if Int29_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int29_IsNull{ false };
+	/** @brief Gets the value of Int29_Optional, regardless of it having been set */
+	int32& GetInt29() { return Int29_Optional; }
+	/** @brief Gets the value of Int29_Optional, regardless of it having been set */
+	const int32& GetInt29() const { return Int29_Optional; }
+	/** @brief Gets the value of Int29_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt29(const int32& DefaultValue) const { if (Int29_IsSet) return Int29_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int29_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt29(int32& OutValue) const { if (Int29_IsSet && !Int29_IsNull) OutValue = Int29_Optional; return Int29_IsSet; }
+	/** @brief Returns a pointer to Int29_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt29OrNull() { if (Int29_IsSet) return (Int29_IsNull ? nullptr : &Int29_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int29_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt29OrNull() const { if (Int29_IsSet) return (Int29_IsNull ? nullptr : &Int29_Optional); return nullptr; }
+	/** @brief Sets the value of Int29_Optional and also sets Int29_IsSet to true */
+	void SetInt29(const int32& NewValue) { Int29_Optional = NewValue; Int29_IsSet = true; Int29_IsNull = false; }
+	/** @brief Sets the value of Int29_Optional and also sets Int29_IsSet to true using move semantics */
+	void SetInt29(int32&& NewValue) { Int29_Optional = NewValue; Int29_IsSet = true; Int29_IsNull = false; }
+	/** @brief Clears the value of Int29_Optional and sets Int29_IsSet to false */
+	void ClearInt29() { Int29_Optional = 0; Int29_IsSet = false; Int29_IsNull = false; }
+	/** @brief Checks whether Int29_Optional has been set */
+	bool IsInt29Set() const { return Int29_IsSet; }
+	/** @brief Returns true if Int29_Optional is set and matches the default value */
+	bool IsInt29DefaultValue() const { return Int29_IsSet && Int29_Optional == 0; }
+	/** @brief Sets the value of Int29_Optional to its default and also sets Int29_IsSet to true */
+	void SetInt29ToDefault() { SetInt29(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt29ToNull() { Int29_IsSet = true; Int29_IsNull = true; }
+	/** @brief Checks whether Int29_Optional is set to null */
+	bool IsInt29Null() const { return Int29_IsSet && Int29_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int30_Optional{ 0 };
+	/** @brief true if Int30_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int30_IsSet{ false };
+	/** @brief true if Int30_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int30_IsNull{ false };
+	/** @brief Gets the value of Int30_Optional, regardless of it having been set */
+	int32& GetInt30() { return Int30_Optional; }
+	/** @brief Gets the value of Int30_Optional, regardless of it having been set */
+	const int32& GetInt30() const { return Int30_Optional; }
+	/** @brief Gets the value of Int30_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt30(const int32& DefaultValue) const { if (Int30_IsSet) return Int30_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int30_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt30(int32& OutValue) const { if (Int30_IsSet && !Int30_IsNull) OutValue = Int30_Optional; return Int30_IsSet; }
+	/** @brief Returns a pointer to Int30_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt30OrNull() { if (Int30_IsSet) return (Int30_IsNull ? nullptr : &Int30_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int30_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt30OrNull() const { if (Int30_IsSet) return (Int30_IsNull ? nullptr : &Int30_Optional); return nullptr; }
+	/** @brief Sets the value of Int30_Optional and also sets Int30_IsSet to true */
+	void SetInt30(const int32& NewValue) { Int30_Optional = NewValue; Int30_IsSet = true; Int30_IsNull = false; }
+	/** @brief Sets the value of Int30_Optional and also sets Int30_IsSet to true using move semantics */
+	void SetInt30(int32&& NewValue) { Int30_Optional = NewValue; Int30_IsSet = true; Int30_IsNull = false; }
+	/** @brief Clears the value of Int30_Optional and sets Int30_IsSet to false */
+	void ClearInt30() { Int30_Optional = 0; Int30_IsSet = false; Int30_IsNull = false; }
+	/** @brief Checks whether Int30_Optional has been set */
+	bool IsInt30Set() const { return Int30_IsSet; }
+	/** @brief Returns true if Int30_Optional is set and matches the default value */
+	bool IsInt30DefaultValue() const { return Int30_IsSet && Int30_Optional == 0; }
+	/** @brief Sets the value of Int30_Optional to its default and also sets Int30_IsSet to true */
+	void SetInt30ToDefault() { SetInt30(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt30ToNull() { Int30_IsSet = true; Int30_IsNull = true; }
+	/** @brief Checks whether Int30_Optional is set to null */
+	bool IsInt30Null() const { return Int30_IsSet && Int30_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int31_Optional{ 0 };
+	/** @brief true if Int31_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int31_IsSet{ false };
+	/** @brief true if Int31_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int31_IsNull{ false };
+	/** @brief Gets the value of Int31_Optional, regardless of it having been set */
+	int32& GetInt31() { return Int31_Optional; }
+	/** @brief Gets the value of Int31_Optional, regardless of it having been set */
+	const int32& GetInt31() const { return Int31_Optional; }
+	/** @brief Gets the value of Int31_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt31(const int32& DefaultValue) const { if (Int31_IsSet) return Int31_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int31_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt31(int32& OutValue) const { if (Int31_IsSet && !Int31_IsNull) OutValue = Int31_Optional; return Int31_IsSet; }
+	/** @brief Returns a pointer to Int31_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt31OrNull() { if (Int31_IsSet) return (Int31_IsNull ? nullptr : &Int31_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int31_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt31OrNull() const { if (Int31_IsSet) return (Int31_IsNull ? nullptr : &Int31_Optional); return nullptr; }
+	/** @brief Sets the value of Int31_Optional and also sets Int31_IsSet to true */
+	void SetInt31(const int32& NewValue) { Int31_Optional = NewValue; Int31_IsSet = true; Int31_IsNull = false; }
+	/** @brief Sets the value of Int31_Optional and also sets Int31_IsSet to true using move semantics */
+	void SetInt31(int32&& NewValue) { Int31_Optional = NewValue; Int31_IsSet = true; Int31_IsNull = false; }
+	/** @brief Clears the value of Int31_Optional and sets Int31_IsSet to false */
+	void ClearInt31() { Int31_Optional = 0; Int31_IsSet = false; Int31_IsNull = false; }
+	/** @brief Checks whether Int31_Optional has been set */
+	bool IsInt31Set() const { return Int31_IsSet; }
+	/** @brief Returns true if Int31_Optional is set and matches the default value */
+	bool IsInt31DefaultValue() const { return Int31_IsSet && Int31_Optional == 0; }
+	/** @brief Sets the value of Int31_Optional to its default and also sets Int31_IsSet to true */
+	void SetInt31ToDefault() { SetInt31(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt31ToNull() { Int31_IsSet = true; Int31_IsNull = true; }
+	/** @brief Checks whether Int31_Optional is set to null */
+	bool IsInt31Null() const { return Int31_IsSet && Int31_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int32_Optional{ 0 };
+	/** @brief true if Int32_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int32_IsSet{ false };
+	/** @brief true if Int32_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int32_IsNull{ false };
+	/** @brief Gets the value of Int32_Optional, regardless of it having been set */
+	int32& GetInt32() { return Int32_Optional; }
+	/** @brief Gets the value of Int32_Optional, regardless of it having been set */
+	const int32& GetInt32() const { return Int32_Optional; }
+	/** @brief Gets the value of Int32_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt32(const int32& DefaultValue) const { if (Int32_IsSet) return Int32_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int32_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt32(int32& OutValue) const { if (Int32_IsSet && !Int32_IsNull) OutValue = Int32_Optional; return Int32_IsSet; }
+	/** @brief Returns a pointer to Int32_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt32OrNull() { if (Int32_IsSet) return (Int32_IsNull ? nullptr : &Int32_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int32_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt32OrNull() const { if (Int32_IsSet) return (Int32_IsNull ? nullptr : &Int32_Optional); return nullptr; }
+	/** @brief Sets the value of Int32_Optional and also sets Int32_IsSet to true */
+	void SetInt32(const int32& NewValue) { Int32_Optional = NewValue; Int32_IsSet = true; Int32_IsNull = false; }
+	/** @brief Sets the value of Int32_Optional and also sets Int32_IsSet to true using move semantics */
+	void SetInt32(int32&& NewValue) { Int32_Optional = NewValue; Int32_IsSet = true; Int32_IsNull = false; }
+	/** @brief Clears the value of Int32_Optional and sets Int32_IsSet to false */
+	void ClearInt32() { Int32_Optional = 0; Int32_IsSet = false; Int32_IsNull = false; }
+	/** @brief Checks whether Int32_Optional has been set */
+	bool IsInt32Set() const { return Int32_IsSet; }
+	/** @brief Returns true if Int32_Optional is set and matches the default value */
+	bool IsInt32DefaultValue() const { return Int32_IsSet && Int32_Optional == 0; }
+	/** @brief Sets the value of Int32_Optional to its default and also sets Int32_IsSet to true */
+	void SetInt32ToDefault() { SetInt32(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt32ToNull() { Int32_IsSet = true; Int32_IsNull = true; }
+	/** @brief Checks whether Int32_Optional is set to null */
+	bool IsInt32Null() const { return Int32_IsSet && Int32_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int33_Optional{ 0 };
+	/** @brief true if Int33_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int33_IsSet{ false };
+	/** @brief true if Int33_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int33_IsNull{ false };
+	/** @brief Gets the value of Int33_Optional, regardless of it having been set */
+	int32& GetInt33() { return Int33_Optional; }
+	/** @brief Gets the value of Int33_Optional, regardless of it having been set */
+	const int32& GetInt33() const { return Int33_Optional; }
+	/** @brief Gets the value of Int33_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt33(const int32& DefaultValue) const { if (Int33_IsSet) return Int33_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int33_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt33(int32& OutValue) const { if (Int33_IsSet && !Int33_IsNull) OutValue = Int33_Optional; return Int33_IsSet; }
+	/** @brief Returns a pointer to Int33_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt33OrNull() { if (Int33_IsSet) return (Int33_IsNull ? nullptr : &Int33_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int33_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt33OrNull() const { if (Int33_IsSet) return (Int33_IsNull ? nullptr : &Int33_Optional); return nullptr; }
+	/** @brief Sets the value of Int33_Optional and also sets Int33_IsSet to true */
+	void SetInt33(const int32& NewValue) { Int33_Optional = NewValue; Int33_IsSet = true; Int33_IsNull = false; }
+	/** @brief Sets the value of Int33_Optional and also sets Int33_IsSet to true using move semantics */
+	void SetInt33(int32&& NewValue) { Int33_Optional = NewValue; Int33_IsSet = true; Int33_IsNull = false; }
+	/** @brief Clears the value of Int33_Optional and sets Int33_IsSet to false */
+	void ClearInt33() { Int33_Optional = 0; Int33_IsSet = false; Int33_IsNull = false; }
+	/** @brief Checks whether Int33_Optional has been set */
+	bool IsInt33Set() const { return Int33_IsSet; }
+	/** @brief Returns true if Int33_Optional is set and matches the default value */
+	bool IsInt33DefaultValue() const { return Int33_IsSet && Int33_Optional == 0; }
+	/** @brief Sets the value of Int33_Optional to its default and also sets Int33_IsSet to true */
+	void SetInt33ToDefault() { SetInt33(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt33ToNull() { Int33_IsSet = true; Int33_IsNull = true; }
+	/** @brief Checks whether Int33_Optional is set to null */
+	bool IsInt33Null() const { return Int33_IsSet && Int33_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int34_Optional{ 0 };
+	/** @brief true if Int34_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int34_IsSet{ false };
+	/** @brief true if Int34_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int34_IsNull{ false };
+	/** @brief Gets the value of Int34_Optional, regardless of it having been set */
+	int32& GetInt34() { return Int34_Optional; }
+	/** @brief Gets the value of Int34_Optional, regardless of it having been set */
+	const int32& GetInt34() const { return Int34_Optional; }
+	/** @brief Gets the value of Int34_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt34(const int32& DefaultValue) const { if (Int34_IsSet) return Int34_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int34_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt34(int32& OutValue) const { if (Int34_IsSet && !Int34_IsNull) OutValue = Int34_Optional; return Int34_IsSet; }
+	/** @brief Returns a pointer to Int34_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt34OrNull() { if (Int34_IsSet) return (Int34_IsNull ? nullptr : &Int34_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int34_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt34OrNull() const { if (Int34_IsSet) return (Int34_IsNull ? nullptr : &Int34_Optional); return nullptr; }
+	/** @brief Sets the value of Int34_Optional and also sets Int34_IsSet to true */
+	void SetInt34(const int32& NewValue) { Int34_Optional = NewValue; Int34_IsSet = true; Int34_IsNull = false; }
+	/** @brief Sets the value of Int34_Optional and also sets Int34_IsSet to true using move semantics */
+	void SetInt34(int32&& NewValue) { Int34_Optional = NewValue; Int34_IsSet = true; Int34_IsNull = false; }
+	/** @brief Clears the value of Int34_Optional and sets Int34_IsSet to false */
+	void ClearInt34() { Int34_Optional = 0; Int34_IsSet = false; Int34_IsNull = false; }
+	/** @brief Checks whether Int34_Optional has been set */
+	bool IsInt34Set() const { return Int34_IsSet; }
+	/** @brief Returns true if Int34_Optional is set and matches the default value */
+	bool IsInt34DefaultValue() const { return Int34_IsSet && Int34_Optional == 0; }
+	/** @brief Sets the value of Int34_Optional to its default and also sets Int34_IsSet to true */
+	void SetInt34ToDefault() { SetInt34(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt34ToNull() { Int34_IsSet = true; Int34_IsNull = true; }
+	/** @brief Checks whether Int34_Optional is set to null */
+	bool IsInt34Null() const { return Int34_IsSet && Int34_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int35_Optional{ 0 };
+	/** @brief true if Int35_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int35_IsSet{ false };
+	/** @brief true if Int35_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int35_IsNull{ false };
+	/** @brief Gets the value of Int35_Optional, regardless of it having been set */
+	int32& GetInt35() { return Int35_Optional; }
+	/** @brief Gets the value of Int35_Optional, regardless of it having been set */
+	const int32& GetInt35() const { return Int35_Optional; }
+	/** @brief Gets the value of Int35_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt35(const int32& DefaultValue) const { if (Int35_IsSet) return Int35_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int35_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt35(int32& OutValue) const { if (Int35_IsSet && !Int35_IsNull) OutValue = Int35_Optional; return Int35_IsSet; }
+	/** @brief Returns a pointer to Int35_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt35OrNull() { if (Int35_IsSet) return (Int35_IsNull ? nullptr : &Int35_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int35_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt35OrNull() const { if (Int35_IsSet) return (Int35_IsNull ? nullptr : &Int35_Optional); return nullptr; }
+	/** @brief Sets the value of Int35_Optional and also sets Int35_IsSet to true */
+	void SetInt35(const int32& NewValue) { Int35_Optional = NewValue; Int35_IsSet = true; Int35_IsNull = false; }
+	/** @brief Sets the value of Int35_Optional and also sets Int35_IsSet to true using move semantics */
+	void SetInt35(int32&& NewValue) { Int35_Optional = NewValue; Int35_IsSet = true; Int35_IsNull = false; }
+	/** @brief Clears the value of Int35_Optional and sets Int35_IsSet to false */
+	void ClearInt35() { Int35_Optional = 0; Int35_IsSet = false; Int35_IsNull = false; }
+	/** @brief Checks whether Int35_Optional has been set */
+	bool IsInt35Set() const { return Int35_IsSet; }
+	/** @brief Returns true if Int35_Optional is set and matches the default value */
+	bool IsInt35DefaultValue() const { return Int35_IsSet && Int35_Optional == 0; }
+	/** @brief Sets the value of Int35_Optional to its default and also sets Int35_IsSet to true */
+	void SetInt35ToDefault() { SetInt35(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt35ToNull() { Int35_IsSet = true; Int35_IsNull = true; }
+	/** @brief Checks whether Int35_Optional is set to null */
+	bool IsInt35Null() const { return Int35_IsSet && Int35_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int36_Optional{ 0 };
+	/** @brief true if Int36_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int36_IsSet{ false };
+	/** @brief true if Int36_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int36_IsNull{ false };
+	/** @brief Gets the value of Int36_Optional, regardless of it having been set */
+	int32& GetInt36() { return Int36_Optional; }
+	/** @brief Gets the value of Int36_Optional, regardless of it having been set */
+	const int32& GetInt36() const { return Int36_Optional; }
+	/** @brief Gets the value of Int36_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt36(const int32& DefaultValue) const { if (Int36_IsSet) return Int36_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int36_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt36(int32& OutValue) const { if (Int36_IsSet && !Int36_IsNull) OutValue = Int36_Optional; return Int36_IsSet; }
+	/** @brief Returns a pointer to Int36_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt36OrNull() { if (Int36_IsSet) return (Int36_IsNull ? nullptr : &Int36_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int36_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt36OrNull() const { if (Int36_IsSet) return (Int36_IsNull ? nullptr : &Int36_Optional); return nullptr; }
+	/** @brief Sets the value of Int36_Optional and also sets Int36_IsSet to true */
+	void SetInt36(const int32& NewValue) { Int36_Optional = NewValue; Int36_IsSet = true; Int36_IsNull = false; }
+	/** @brief Sets the value of Int36_Optional and also sets Int36_IsSet to true using move semantics */
+	void SetInt36(int32&& NewValue) { Int36_Optional = NewValue; Int36_IsSet = true; Int36_IsNull = false; }
+	/** @brief Clears the value of Int36_Optional and sets Int36_IsSet to false */
+	void ClearInt36() { Int36_Optional = 0; Int36_IsSet = false; Int36_IsNull = false; }
+	/** @brief Checks whether Int36_Optional has been set */
+	bool IsInt36Set() const { return Int36_IsSet; }
+	/** @brief Returns true if Int36_Optional is set and matches the default value */
+	bool IsInt36DefaultValue() const { return Int36_IsSet && Int36_Optional == 0; }
+	/** @brief Sets the value of Int36_Optional to its default and also sets Int36_IsSet to true */
+	void SetInt36ToDefault() { SetInt36(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt36ToNull() { Int36_IsSet = true; Int36_IsNull = true; }
+	/** @brief Checks whether Int36_Optional is set to null */
+	bool IsInt36Null() const { return Int36_IsSet && Int36_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int37_Optional{ 0 };
+	/** @brief true if Int37_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int37_IsSet{ false };
+	/** @brief true if Int37_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int37_IsNull{ false };
+	/** @brief Gets the value of Int37_Optional, regardless of it having been set */
+	int32& GetInt37() { return Int37_Optional; }
+	/** @brief Gets the value of Int37_Optional, regardless of it having been set */
+	const int32& GetInt37() const { return Int37_Optional; }
+	/** @brief Gets the value of Int37_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt37(const int32& DefaultValue) const { if (Int37_IsSet) return Int37_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int37_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt37(int32& OutValue) const { if (Int37_IsSet && !Int37_IsNull) OutValue = Int37_Optional; return Int37_IsSet; }
+	/** @brief Returns a pointer to Int37_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt37OrNull() { if (Int37_IsSet) return (Int37_IsNull ? nullptr : &Int37_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int37_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt37OrNull() const { if (Int37_IsSet) return (Int37_IsNull ? nullptr : &Int37_Optional); return nullptr; }
+	/** @brief Sets the value of Int37_Optional and also sets Int37_IsSet to true */
+	void SetInt37(const int32& NewValue) { Int37_Optional = NewValue; Int37_IsSet = true; Int37_IsNull = false; }
+	/** @brief Sets the value of Int37_Optional and also sets Int37_IsSet to true using move semantics */
+	void SetInt37(int32&& NewValue) { Int37_Optional = NewValue; Int37_IsSet = true; Int37_IsNull = false; }
+	/** @brief Clears the value of Int37_Optional and sets Int37_IsSet to false */
+	void ClearInt37() { Int37_Optional = 0; Int37_IsSet = false; Int37_IsNull = false; }
+	/** @brief Checks whether Int37_Optional has been set */
+	bool IsInt37Set() const { return Int37_IsSet; }
+	/** @brief Returns true if Int37_Optional is set and matches the default value */
+	bool IsInt37DefaultValue() const { return Int37_IsSet && Int37_Optional == 0; }
+	/** @brief Sets the value of Int37_Optional to its default and also sets Int37_IsSet to true */
+	void SetInt37ToDefault() { SetInt37(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt37ToNull() { Int37_IsSet = true; Int37_IsNull = true; }
+	/** @brief Checks whether Int37_Optional is set to null */
+	bool IsInt37Null() const { return Int37_IsSet && Int37_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int38_Optional{ 0 };
+	/** @brief true if Int38_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int38_IsSet{ false };
+	/** @brief true if Int38_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int38_IsNull{ false };
+	/** @brief Gets the value of Int38_Optional, regardless of it having been set */
+	int32& GetInt38() { return Int38_Optional; }
+	/** @brief Gets the value of Int38_Optional, regardless of it having been set */
+	const int32& GetInt38() const { return Int38_Optional; }
+	/** @brief Gets the value of Int38_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt38(const int32& DefaultValue) const { if (Int38_IsSet) return Int38_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int38_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt38(int32& OutValue) const { if (Int38_IsSet && !Int38_IsNull) OutValue = Int38_Optional; return Int38_IsSet; }
+	/** @brief Returns a pointer to Int38_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt38OrNull() { if (Int38_IsSet) return (Int38_IsNull ? nullptr : &Int38_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int38_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt38OrNull() const { if (Int38_IsSet) return (Int38_IsNull ? nullptr : &Int38_Optional); return nullptr; }
+	/** @brief Sets the value of Int38_Optional and also sets Int38_IsSet to true */
+	void SetInt38(const int32& NewValue) { Int38_Optional = NewValue; Int38_IsSet = true; Int38_IsNull = false; }
+	/** @brief Sets the value of Int38_Optional and also sets Int38_IsSet to true using move semantics */
+	void SetInt38(int32&& NewValue) { Int38_Optional = NewValue; Int38_IsSet = true; Int38_IsNull = false; }
+	/** @brief Clears the value of Int38_Optional and sets Int38_IsSet to false */
+	void ClearInt38() { Int38_Optional = 0; Int38_IsSet = false; Int38_IsNull = false; }
+	/** @brief Checks whether Int38_Optional has been set */
+	bool IsInt38Set() const { return Int38_IsSet; }
+	/** @brief Returns true if Int38_Optional is set and matches the default value */
+	bool IsInt38DefaultValue() const { return Int38_IsSet && Int38_Optional == 0; }
+	/** @brief Sets the value of Int38_Optional to its default and also sets Int38_IsSet to true */
+	void SetInt38ToDefault() { SetInt38(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt38ToNull() { Int38_IsSet = true; Int38_IsNull = true; }
+	/** @brief Checks whether Int38_Optional is set to null */
+	bool IsInt38Null() const { return Int38_IsSet && Int38_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int39_Optional{ 0 };
+	/** @brief true if Int39_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int39_IsSet{ false };
+	/** @brief true if Int39_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int39_IsNull{ false };
+	/** @brief Gets the value of Int39_Optional, regardless of it having been set */
+	int32& GetInt39() { return Int39_Optional; }
+	/** @brief Gets the value of Int39_Optional, regardless of it having been set */
+	const int32& GetInt39() const { return Int39_Optional; }
+	/** @brief Gets the value of Int39_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt39(const int32& DefaultValue) const { if (Int39_IsSet) return Int39_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int39_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt39(int32& OutValue) const { if (Int39_IsSet && !Int39_IsNull) OutValue = Int39_Optional; return Int39_IsSet; }
+	/** @brief Returns a pointer to Int39_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt39OrNull() { if (Int39_IsSet) return (Int39_IsNull ? nullptr : &Int39_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int39_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt39OrNull() const { if (Int39_IsSet) return (Int39_IsNull ? nullptr : &Int39_Optional); return nullptr; }
+	/** @brief Sets the value of Int39_Optional and also sets Int39_IsSet to true */
+	void SetInt39(const int32& NewValue) { Int39_Optional = NewValue; Int39_IsSet = true; Int39_IsNull = false; }
+	/** @brief Sets the value of Int39_Optional and also sets Int39_IsSet to true using move semantics */
+	void SetInt39(int32&& NewValue) { Int39_Optional = NewValue; Int39_IsSet = true; Int39_IsNull = false; }
+	/** @brief Clears the value of Int39_Optional and sets Int39_IsSet to false */
+	void ClearInt39() { Int39_Optional = 0; Int39_IsSet = false; Int39_IsNull = false; }
+	/** @brief Checks whether Int39_Optional has been set */
+	bool IsInt39Set() const { return Int39_IsSet; }
+	/** @brief Returns true if Int39_Optional is set and matches the default value */
+	bool IsInt39DefaultValue() const { return Int39_IsSet && Int39_Optional == 0; }
+	/** @brief Sets the value of Int39_Optional to its default and also sets Int39_IsSet to true */
+	void SetInt39ToDefault() { SetInt39(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt39ToNull() { Int39_IsSet = true; Int39_IsNull = true; }
+	/** @brief Checks whether Int39_Optional is set to null */
+	bool IsInt39Null() const { return Int39_IsSet && Int39_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int40_Optional{ 0 };
+	/** @brief true if Int40_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int40_IsSet{ false };
+	/** @brief true if Int40_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int40_IsNull{ false };
+	/** @brief Gets the value of Int40_Optional, regardless of it having been set */
+	int32& GetInt40() { return Int40_Optional; }
+	/** @brief Gets the value of Int40_Optional, regardless of it having been set */
+	const int32& GetInt40() const { return Int40_Optional; }
+	/** @brief Gets the value of Int40_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt40(const int32& DefaultValue) const { if (Int40_IsSet) return Int40_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int40_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt40(int32& OutValue) const { if (Int40_IsSet && !Int40_IsNull) OutValue = Int40_Optional; return Int40_IsSet; }
+	/** @brief Returns a pointer to Int40_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt40OrNull() { if (Int40_IsSet) return (Int40_IsNull ? nullptr : &Int40_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int40_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt40OrNull() const { if (Int40_IsSet) return (Int40_IsNull ? nullptr : &Int40_Optional); return nullptr; }
+	/** @brief Sets the value of Int40_Optional and also sets Int40_IsSet to true */
+	void SetInt40(const int32& NewValue) { Int40_Optional = NewValue; Int40_IsSet = true; Int40_IsNull = false; }
+	/** @brief Sets the value of Int40_Optional and also sets Int40_IsSet to true using move semantics */
+	void SetInt40(int32&& NewValue) { Int40_Optional = NewValue; Int40_IsSet = true; Int40_IsNull = false; }
+	/** @brief Clears the value of Int40_Optional and sets Int40_IsSet to false */
+	void ClearInt40() { Int40_Optional = 0; Int40_IsSet = false; Int40_IsNull = false; }
+	/** @brief Checks whether Int40_Optional has been set */
+	bool IsInt40Set() const { return Int40_IsSet; }
+	/** @brief Returns true if Int40_Optional is set and matches the default value */
+	bool IsInt40DefaultValue() const { return Int40_IsSet && Int40_Optional == 0; }
+	/** @brief Sets the value of Int40_Optional to its default and also sets Int40_IsSet to true */
+	void SetInt40ToDefault() { SetInt40(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt40ToNull() { Int40_IsSet = true; Int40_IsNull = true; }
+	/** @brief Checks whether Int40_Optional is set to null */
+	bool IsInt40Null() const { return Int40_IsSet && Int40_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int41_Optional{ 0 };
+	/** @brief true if Int41_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int41_IsSet{ false };
+	/** @brief true if Int41_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int41_IsNull{ false };
+	/** @brief Gets the value of Int41_Optional, regardless of it having been set */
+	int32& GetInt41() { return Int41_Optional; }
+	/** @brief Gets the value of Int41_Optional, regardless of it having been set */
+	const int32& GetInt41() const { return Int41_Optional; }
+	/** @brief Gets the value of Int41_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt41(const int32& DefaultValue) const { if (Int41_IsSet) return Int41_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int41_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt41(int32& OutValue) const { if (Int41_IsSet && !Int41_IsNull) OutValue = Int41_Optional; return Int41_IsSet; }
+	/** @brief Returns a pointer to Int41_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt41OrNull() { if (Int41_IsSet) return (Int41_IsNull ? nullptr : &Int41_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int41_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt41OrNull() const { if (Int41_IsSet) return (Int41_IsNull ? nullptr : &Int41_Optional); return nullptr; }
+	/** @brief Sets the value of Int41_Optional and also sets Int41_IsSet to true */
+	void SetInt41(const int32& NewValue) { Int41_Optional = NewValue; Int41_IsSet = true; Int41_IsNull = false; }
+	/** @brief Sets the value of Int41_Optional and also sets Int41_IsSet to true using move semantics */
+	void SetInt41(int32&& NewValue) { Int41_Optional = NewValue; Int41_IsSet = true; Int41_IsNull = false; }
+	/** @brief Clears the value of Int41_Optional and sets Int41_IsSet to false */
+	void ClearInt41() { Int41_Optional = 0; Int41_IsSet = false; Int41_IsNull = false; }
+	/** @brief Checks whether Int41_Optional has been set */
+	bool IsInt41Set() const { return Int41_IsSet; }
+	/** @brief Returns true if Int41_Optional is set and matches the default value */
+	bool IsInt41DefaultValue() const { return Int41_IsSet && Int41_Optional == 0; }
+	/** @brief Sets the value of Int41_Optional to its default and also sets Int41_IsSet to true */
+	void SetInt41ToDefault() { SetInt41(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt41ToNull() { Int41_IsSet = true; Int41_IsNull = true; }
+	/** @brief Checks whether Int41_Optional is set to null */
+	bool IsInt41Null() const { return Int41_IsSet && Int41_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int42_Optional{ 0 };
+	/** @brief true if Int42_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int42_IsSet{ false };
+	/** @brief true if Int42_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int42_IsNull{ false };
+	/** @brief Gets the value of Int42_Optional, regardless of it having been set */
+	int32& GetInt42() { return Int42_Optional; }
+	/** @brief Gets the value of Int42_Optional, regardless of it having been set */
+	const int32& GetInt42() const { return Int42_Optional; }
+	/** @brief Gets the value of Int42_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt42(const int32& DefaultValue) const { if (Int42_IsSet) return Int42_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int42_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt42(int32& OutValue) const { if (Int42_IsSet && !Int42_IsNull) OutValue = Int42_Optional; return Int42_IsSet; }
+	/** @brief Returns a pointer to Int42_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt42OrNull() { if (Int42_IsSet) return (Int42_IsNull ? nullptr : &Int42_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int42_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt42OrNull() const { if (Int42_IsSet) return (Int42_IsNull ? nullptr : &Int42_Optional); return nullptr; }
+	/** @brief Sets the value of Int42_Optional and also sets Int42_IsSet to true */
+	void SetInt42(const int32& NewValue) { Int42_Optional = NewValue; Int42_IsSet = true; Int42_IsNull = false; }
+	/** @brief Sets the value of Int42_Optional and also sets Int42_IsSet to true using move semantics */
+	void SetInt42(int32&& NewValue) { Int42_Optional = NewValue; Int42_IsSet = true; Int42_IsNull = false; }
+	/** @brief Clears the value of Int42_Optional and sets Int42_IsSet to false */
+	void ClearInt42() { Int42_Optional = 0; Int42_IsSet = false; Int42_IsNull = false; }
+	/** @brief Checks whether Int42_Optional has been set */
+	bool IsInt42Set() const { return Int42_IsSet; }
+	/** @brief Returns true if Int42_Optional is set and matches the default value */
+	bool IsInt42DefaultValue() const { return Int42_IsSet && Int42_Optional == 0; }
+	/** @brief Sets the value of Int42_Optional to its default and also sets Int42_IsSet to true */
+	void SetInt42ToDefault() { SetInt42(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt42ToNull() { Int42_IsSet = true; Int42_IsNull = true; }
+	/** @brief Checks whether Int42_Optional is set to null */
+	bool IsInt42Null() const { return Int42_IsSet && Int42_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int43_Optional{ 0 };
+	/** @brief true if Int43_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int43_IsSet{ false };
+	/** @brief true if Int43_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int43_IsNull{ false };
+	/** @brief Gets the value of Int43_Optional, regardless of it having been set */
+	int32& GetInt43() { return Int43_Optional; }
+	/** @brief Gets the value of Int43_Optional, regardless of it having been set */
+	const int32& GetInt43() const { return Int43_Optional; }
+	/** @brief Gets the value of Int43_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt43(const int32& DefaultValue) const { if (Int43_IsSet) return Int43_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int43_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt43(int32& OutValue) const { if (Int43_IsSet && !Int43_IsNull) OutValue = Int43_Optional; return Int43_IsSet; }
+	/** @brief Returns a pointer to Int43_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt43OrNull() { if (Int43_IsSet) return (Int43_IsNull ? nullptr : &Int43_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int43_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt43OrNull() const { if (Int43_IsSet) return (Int43_IsNull ? nullptr : &Int43_Optional); return nullptr; }
+	/** @brief Sets the value of Int43_Optional and also sets Int43_IsSet to true */
+	void SetInt43(const int32& NewValue) { Int43_Optional = NewValue; Int43_IsSet = true; Int43_IsNull = false; }
+	/** @brief Sets the value of Int43_Optional and also sets Int43_IsSet to true using move semantics */
+	void SetInt43(int32&& NewValue) { Int43_Optional = NewValue; Int43_IsSet = true; Int43_IsNull = false; }
+	/** @brief Clears the value of Int43_Optional and sets Int43_IsSet to false */
+	void ClearInt43() { Int43_Optional = 0; Int43_IsSet = false; Int43_IsNull = false; }
+	/** @brief Checks whether Int43_Optional has been set */
+	bool IsInt43Set() const { return Int43_IsSet; }
+	/** @brief Returns true if Int43_Optional is set and matches the default value */
+	bool IsInt43DefaultValue() const { return Int43_IsSet && Int43_Optional == 0; }
+	/** @brief Sets the value of Int43_Optional to its default and also sets Int43_IsSet to true */
+	void SetInt43ToDefault() { SetInt43(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt43ToNull() { Int43_IsSet = true; Int43_IsNull = true; }
+	/** @brief Checks whether Int43_Optional is set to null */
+	bool IsInt43Null() const { return Int43_IsSet && Int43_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int44_Optional{ 0 };
+	/** @brief true if Int44_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int44_IsSet{ false };
+	/** @brief true if Int44_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int44_IsNull{ false };
+	/** @brief Gets the value of Int44_Optional, regardless of it having been set */
+	int32& GetInt44() { return Int44_Optional; }
+	/** @brief Gets the value of Int44_Optional, regardless of it having been set */
+	const int32& GetInt44() const { return Int44_Optional; }
+	/** @brief Gets the value of Int44_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt44(const int32& DefaultValue) const { if (Int44_IsSet) return Int44_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int44_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt44(int32& OutValue) const { if (Int44_IsSet && !Int44_IsNull) OutValue = Int44_Optional; return Int44_IsSet; }
+	/** @brief Returns a pointer to Int44_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt44OrNull() { if (Int44_IsSet) return (Int44_IsNull ? nullptr : &Int44_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int44_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt44OrNull() const { if (Int44_IsSet) return (Int44_IsNull ? nullptr : &Int44_Optional); return nullptr; }
+	/** @brief Sets the value of Int44_Optional and also sets Int44_IsSet to true */
+	void SetInt44(const int32& NewValue) { Int44_Optional = NewValue; Int44_IsSet = true; Int44_IsNull = false; }
+	/** @brief Sets the value of Int44_Optional and also sets Int44_IsSet to true using move semantics */
+	void SetInt44(int32&& NewValue) { Int44_Optional = NewValue; Int44_IsSet = true; Int44_IsNull = false; }
+	/** @brief Clears the value of Int44_Optional and sets Int44_IsSet to false */
+	void ClearInt44() { Int44_Optional = 0; Int44_IsSet = false; Int44_IsNull = false; }
+	/** @brief Checks whether Int44_Optional has been set */
+	bool IsInt44Set() const { return Int44_IsSet; }
+	/** @brief Returns true if Int44_Optional is set and matches the default value */
+	bool IsInt44DefaultValue() const { return Int44_IsSet && Int44_Optional == 0; }
+	/** @brief Sets the value of Int44_Optional to its default and also sets Int44_IsSet to true */
+	void SetInt44ToDefault() { SetInt44(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt44ToNull() { Int44_IsSet = true; Int44_IsNull = true; }
+	/** @brief Checks whether Int44_Optional is set to null */
+	bool IsInt44Null() const { return Int44_IsSet && Int44_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int45_Optional{ 0 };
+	/** @brief true if Int45_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int45_IsSet{ false };
+	/** @brief true if Int45_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int45_IsNull{ false };
+	/** @brief Gets the value of Int45_Optional, regardless of it having been set */
+	int32& GetInt45() { return Int45_Optional; }
+	/** @brief Gets the value of Int45_Optional, regardless of it having been set */
+	const int32& GetInt45() const { return Int45_Optional; }
+	/** @brief Gets the value of Int45_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt45(const int32& DefaultValue) const { if (Int45_IsSet) return Int45_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int45_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt45(int32& OutValue) const { if (Int45_IsSet && !Int45_IsNull) OutValue = Int45_Optional; return Int45_IsSet; }
+	/** @brief Returns a pointer to Int45_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt45OrNull() { if (Int45_IsSet) return (Int45_IsNull ? nullptr : &Int45_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int45_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt45OrNull() const { if (Int45_IsSet) return (Int45_IsNull ? nullptr : &Int45_Optional); return nullptr; }
+	/** @brief Sets the value of Int45_Optional and also sets Int45_IsSet to true */
+	void SetInt45(const int32& NewValue) { Int45_Optional = NewValue; Int45_IsSet = true; Int45_IsNull = false; }
+	/** @brief Sets the value of Int45_Optional and also sets Int45_IsSet to true using move semantics */
+	void SetInt45(int32&& NewValue) { Int45_Optional = NewValue; Int45_IsSet = true; Int45_IsNull = false; }
+	/** @brief Clears the value of Int45_Optional and sets Int45_IsSet to false */
+	void ClearInt45() { Int45_Optional = 0; Int45_IsSet = false; Int45_IsNull = false; }
+	/** @brief Checks whether Int45_Optional has been set */
+	bool IsInt45Set() const { return Int45_IsSet; }
+	/** @brief Returns true if Int45_Optional is set and matches the default value */
+	bool IsInt45DefaultValue() const { return Int45_IsSet && Int45_Optional == 0; }
+	/** @brief Sets the value of Int45_Optional to its default and also sets Int45_IsSet to true */
+	void SetInt45ToDefault() { SetInt45(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt45ToNull() { Int45_IsSet = true; Int45_IsNull = true; }
+	/** @brief Checks whether Int45_Optional is set to null */
+	bool IsInt45Null() const { return Int45_IsSet && Int45_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int46_Optional{ 0 };
+	/** @brief true if Int46_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int46_IsSet{ false };
+	/** @brief true if Int46_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int46_IsNull{ false };
+	/** @brief Gets the value of Int46_Optional, regardless of it having been set */
+	int32& GetInt46() { return Int46_Optional; }
+	/** @brief Gets the value of Int46_Optional, regardless of it having been set */
+	const int32& GetInt46() const { return Int46_Optional; }
+	/** @brief Gets the value of Int46_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt46(const int32& DefaultValue) const { if (Int46_IsSet) return Int46_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int46_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt46(int32& OutValue) const { if (Int46_IsSet && !Int46_IsNull) OutValue = Int46_Optional; return Int46_IsSet; }
+	/** @brief Returns a pointer to Int46_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt46OrNull() { if (Int46_IsSet) return (Int46_IsNull ? nullptr : &Int46_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int46_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt46OrNull() const { if (Int46_IsSet) return (Int46_IsNull ? nullptr : &Int46_Optional); return nullptr; }
+	/** @brief Sets the value of Int46_Optional and also sets Int46_IsSet to true */
+	void SetInt46(const int32& NewValue) { Int46_Optional = NewValue; Int46_IsSet = true; Int46_IsNull = false; }
+	/** @brief Sets the value of Int46_Optional and also sets Int46_IsSet to true using move semantics */
+	void SetInt46(int32&& NewValue) { Int46_Optional = NewValue; Int46_IsSet = true; Int46_IsNull = false; }
+	/** @brief Clears the value of Int46_Optional and sets Int46_IsSet to false */
+	void ClearInt46() { Int46_Optional = 0; Int46_IsSet = false; Int46_IsNull = false; }
+	/** @brief Checks whether Int46_Optional has been set */
+	bool IsInt46Set() const { return Int46_IsSet; }
+	/** @brief Returns true if Int46_Optional is set and matches the default value */
+	bool IsInt46DefaultValue() const { return Int46_IsSet && Int46_Optional == 0; }
+	/** @brief Sets the value of Int46_Optional to its default and also sets Int46_IsSet to true */
+	void SetInt46ToDefault() { SetInt46(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt46ToNull() { Int46_IsSet = true; Int46_IsNull = true; }
+	/** @brief Checks whether Int46_Optional is set to null */
+	bool IsInt46Null() const { return Int46_IsSet && Int46_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int47_Optional{ 0 };
+	/** @brief true if Int47_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int47_IsSet{ false };
+	/** @brief true if Int47_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int47_IsNull{ false };
+	/** @brief Gets the value of Int47_Optional, regardless of it having been set */
+	int32& GetInt47() { return Int47_Optional; }
+	/** @brief Gets the value of Int47_Optional, regardless of it having been set */
+	const int32& GetInt47() const { return Int47_Optional; }
+	/** @brief Gets the value of Int47_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt47(const int32& DefaultValue) const { if (Int47_IsSet) return Int47_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int47_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt47(int32& OutValue) const { if (Int47_IsSet && !Int47_IsNull) OutValue = Int47_Optional; return Int47_IsSet; }
+	/** @brief Returns a pointer to Int47_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt47OrNull() { if (Int47_IsSet) return (Int47_IsNull ? nullptr : &Int47_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int47_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt47OrNull() const { if (Int47_IsSet) return (Int47_IsNull ? nullptr : &Int47_Optional); return nullptr; }
+	/** @brief Sets the value of Int47_Optional and also sets Int47_IsSet to true */
+	void SetInt47(const int32& NewValue) { Int47_Optional = NewValue; Int47_IsSet = true; Int47_IsNull = false; }
+	/** @brief Sets the value of Int47_Optional and also sets Int47_IsSet to true using move semantics */
+	void SetInt47(int32&& NewValue) { Int47_Optional = NewValue; Int47_IsSet = true; Int47_IsNull = false; }
+	/** @brief Clears the value of Int47_Optional and sets Int47_IsSet to false */
+	void ClearInt47() { Int47_Optional = 0; Int47_IsSet = false; Int47_IsNull = false; }
+	/** @brief Checks whether Int47_Optional has been set */
+	bool IsInt47Set() const { return Int47_IsSet; }
+	/** @brief Returns true if Int47_Optional is set and matches the default value */
+	bool IsInt47DefaultValue() const { return Int47_IsSet && Int47_Optional == 0; }
+	/** @brief Sets the value of Int47_Optional to its default and also sets Int47_IsSet to true */
+	void SetInt47ToDefault() { SetInt47(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt47ToNull() { Int47_IsSet = true; Int47_IsNull = true; }
+	/** @brief Checks whether Int47_Optional is set to null */
+	bool IsInt47Null() const { return Int47_IsSet && Int47_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int48_Optional{ 0 };
+	/** @brief true if Int48_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int48_IsSet{ false };
+	/** @brief true if Int48_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int48_IsNull{ false };
+	/** @brief Gets the value of Int48_Optional, regardless of it having been set */
+	int32& GetInt48() { return Int48_Optional; }
+	/** @brief Gets the value of Int48_Optional, regardless of it having been set */
+	const int32& GetInt48() const { return Int48_Optional; }
+	/** @brief Gets the value of Int48_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt48(const int32& DefaultValue) const { if (Int48_IsSet) return Int48_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int48_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt48(int32& OutValue) const { if (Int48_IsSet && !Int48_IsNull) OutValue = Int48_Optional; return Int48_IsSet; }
+	/** @brief Returns a pointer to Int48_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt48OrNull() { if (Int48_IsSet) return (Int48_IsNull ? nullptr : &Int48_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int48_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt48OrNull() const { if (Int48_IsSet) return (Int48_IsNull ? nullptr : &Int48_Optional); return nullptr; }
+	/** @brief Sets the value of Int48_Optional and also sets Int48_IsSet to true */
+	void SetInt48(const int32& NewValue) { Int48_Optional = NewValue; Int48_IsSet = true; Int48_IsNull = false; }
+	/** @brief Sets the value of Int48_Optional and also sets Int48_IsSet to true using move semantics */
+	void SetInt48(int32&& NewValue) { Int48_Optional = NewValue; Int48_IsSet = true; Int48_IsNull = false; }
+	/** @brief Clears the value of Int48_Optional and sets Int48_IsSet to false */
+	void ClearInt48() { Int48_Optional = 0; Int48_IsSet = false; Int48_IsNull = false; }
+	/** @brief Checks whether Int48_Optional has been set */
+	bool IsInt48Set() const { return Int48_IsSet; }
+	/** @brief Returns true if Int48_Optional is set and matches the default value */
+	bool IsInt48DefaultValue() const { return Int48_IsSet && Int48_Optional == 0; }
+	/** @brief Sets the value of Int48_Optional to its default and also sets Int48_IsSet to true */
+	void SetInt48ToDefault() { SetInt48(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt48ToNull() { Int48_IsSet = true; Int48_IsNull = true; }
+	/** @brief Checks whether Int48_Optional is set to null */
+	bool IsInt48Null() const { return Int48_IsSet && Int48_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int49_Optional{ 0 };
+	/** @brief true if Int49_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int49_IsSet{ false };
+	/** @brief true if Int49_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int49_IsNull{ false };
+	/** @brief Gets the value of Int49_Optional, regardless of it having been set */
+	int32& GetInt49() { return Int49_Optional; }
+	/** @brief Gets the value of Int49_Optional, regardless of it having been set */
+	const int32& GetInt49() const { return Int49_Optional; }
+	/** @brief Gets the value of Int49_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt49(const int32& DefaultValue) const { if (Int49_IsSet) return Int49_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int49_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt49(int32& OutValue) const { if (Int49_IsSet && !Int49_IsNull) OutValue = Int49_Optional; return Int49_IsSet; }
+	/** @brief Returns a pointer to Int49_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt49OrNull() { if (Int49_IsSet) return (Int49_IsNull ? nullptr : &Int49_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int49_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt49OrNull() const { if (Int49_IsSet) return (Int49_IsNull ? nullptr : &Int49_Optional); return nullptr; }
+	/** @brief Sets the value of Int49_Optional and also sets Int49_IsSet to true */
+	void SetInt49(const int32& NewValue) { Int49_Optional = NewValue; Int49_IsSet = true; Int49_IsNull = false; }
+	/** @brief Sets the value of Int49_Optional and also sets Int49_IsSet to true using move semantics */
+	void SetInt49(int32&& NewValue) { Int49_Optional = NewValue; Int49_IsSet = true; Int49_IsNull = false; }
+	/** @brief Clears the value of Int49_Optional and sets Int49_IsSet to false */
+	void ClearInt49() { Int49_Optional = 0; Int49_IsSet = false; Int49_IsNull = false; }
+	/** @brief Checks whether Int49_Optional has been set */
+	bool IsInt49Set() const { return Int49_IsSet; }
+	/** @brief Returns true if Int49_Optional is set and matches the default value */
+	bool IsInt49DefaultValue() const { return Int49_IsSet && Int49_Optional == 0; }
+	/** @brief Sets the value of Int49_Optional to its default and also sets Int49_IsSet to true */
+	void SetInt49ToDefault() { SetInt49(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt49ToNull() { Int49_IsSet = true; Int49_IsNull = true; }
+	/** @brief Checks whether Int49_Optional is set to null */
+	bool IsInt49Null() const { return Int49_IsSet && Int49_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int50_Optional{ 0 };
+	/** @brief true if Int50_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int50_IsSet{ false };
+	/** @brief true if Int50_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int50_IsNull{ false };
+	/** @brief Gets the value of Int50_Optional, regardless of it having been set */
+	int32& GetInt50() { return Int50_Optional; }
+	/** @brief Gets the value of Int50_Optional, regardless of it having been set */
+	const int32& GetInt50() const { return Int50_Optional; }
+	/** @brief Gets the value of Int50_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt50(const int32& DefaultValue) const { if (Int50_IsSet) return Int50_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int50_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt50(int32& OutValue) const { if (Int50_IsSet && !Int50_IsNull) OutValue = Int50_Optional; return Int50_IsSet; }
+	/** @brief Returns a pointer to Int50_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt50OrNull() { if (Int50_IsSet) return (Int50_IsNull ? nullptr : &Int50_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int50_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt50OrNull() const { if (Int50_IsSet) return (Int50_IsNull ? nullptr : &Int50_Optional); return nullptr; }
+	/** @brief Sets the value of Int50_Optional and also sets Int50_IsSet to true */
+	void SetInt50(const int32& NewValue) { Int50_Optional = NewValue; Int50_IsSet = true; Int50_IsNull = false; }
+	/** @brief Sets the value of Int50_Optional and also sets Int50_IsSet to true using move semantics */
+	void SetInt50(int32&& NewValue) { Int50_Optional = NewValue; Int50_IsSet = true; Int50_IsNull = false; }
+	/** @brief Clears the value of Int50_Optional and sets Int50_IsSet to false */
+	void ClearInt50() { Int50_Optional = 0; Int50_IsSet = false; Int50_IsNull = false; }
+	/** @brief Checks whether Int50_Optional has been set */
+	bool IsInt50Set() const { return Int50_IsSet; }
+	/** @brief Returns true if Int50_Optional is set and matches the default value */
+	bool IsInt50DefaultValue() const { return Int50_IsSet && Int50_Optional == 0; }
+	/** @brief Sets the value of Int50_Optional to its default and also sets Int50_IsSet to true */
+	void SetInt50ToDefault() { SetInt50(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt50ToNull() { Int50_IsSet = true; Int50_IsNull = true; }
+	/** @brief Checks whether Int50_Optional is set to null */
+	bool IsInt50Null() const { return Int50_IsSet && Int50_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int51_Optional{ 0 };
+	/** @brief true if Int51_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int51_IsSet{ false };
+	/** @brief true if Int51_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int51_IsNull{ false };
+	/** @brief Gets the value of Int51_Optional, regardless of it having been set */
+	int32& GetInt51() { return Int51_Optional; }
+	/** @brief Gets the value of Int51_Optional, regardless of it having been set */
+	const int32& GetInt51() const { return Int51_Optional; }
+	/** @brief Gets the value of Int51_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt51(const int32& DefaultValue) const { if (Int51_IsSet) return Int51_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int51_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt51(int32& OutValue) const { if (Int51_IsSet && !Int51_IsNull) OutValue = Int51_Optional; return Int51_IsSet; }
+	/** @brief Returns a pointer to Int51_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt51OrNull() { if (Int51_IsSet) return (Int51_IsNull ? nullptr : &Int51_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int51_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt51OrNull() const { if (Int51_IsSet) return (Int51_IsNull ? nullptr : &Int51_Optional); return nullptr; }
+	/** @brief Sets the value of Int51_Optional and also sets Int51_IsSet to true */
+	void SetInt51(const int32& NewValue) { Int51_Optional = NewValue; Int51_IsSet = true; Int51_IsNull = false; }
+	/** @brief Sets the value of Int51_Optional and also sets Int51_IsSet to true using move semantics */
+	void SetInt51(int32&& NewValue) { Int51_Optional = NewValue; Int51_IsSet = true; Int51_IsNull = false; }
+	/** @brief Clears the value of Int51_Optional and sets Int51_IsSet to false */
+	void ClearInt51() { Int51_Optional = 0; Int51_IsSet = false; Int51_IsNull = false; }
+	/** @brief Checks whether Int51_Optional has been set */
+	bool IsInt51Set() const { return Int51_IsSet; }
+	/** @brief Returns true if Int51_Optional is set and matches the default value */
+	bool IsInt51DefaultValue() const { return Int51_IsSet && Int51_Optional == 0; }
+	/** @brief Sets the value of Int51_Optional to its default and also sets Int51_IsSet to true */
+	void SetInt51ToDefault() { SetInt51(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt51ToNull() { Int51_IsSet = true; Int51_IsNull = true; }
+	/** @brief Checks whether Int51_Optional is set to null */
+	bool IsInt51Null() const { return Int51_IsSet && Int51_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int52_Optional{ 0 };
+	/** @brief true if Int52_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int52_IsSet{ false };
+	/** @brief true if Int52_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int52_IsNull{ false };
+	/** @brief Gets the value of Int52_Optional, regardless of it having been set */
+	int32& GetInt52() { return Int52_Optional; }
+	/** @brief Gets the value of Int52_Optional, regardless of it having been set */
+	const int32& GetInt52() const { return Int52_Optional; }
+	/** @brief Gets the value of Int52_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt52(const int32& DefaultValue) const { if (Int52_IsSet) return Int52_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int52_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt52(int32& OutValue) const { if (Int52_IsSet && !Int52_IsNull) OutValue = Int52_Optional; return Int52_IsSet; }
+	/** @brief Returns a pointer to Int52_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt52OrNull() { if (Int52_IsSet) return (Int52_IsNull ? nullptr : &Int52_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int52_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt52OrNull() const { if (Int52_IsSet) return (Int52_IsNull ? nullptr : &Int52_Optional); return nullptr; }
+	/** @brief Sets the value of Int52_Optional and also sets Int52_IsSet to true */
+	void SetInt52(const int32& NewValue) { Int52_Optional = NewValue; Int52_IsSet = true; Int52_IsNull = false; }
+	/** @brief Sets the value of Int52_Optional and also sets Int52_IsSet to true using move semantics */
+	void SetInt52(int32&& NewValue) { Int52_Optional = NewValue; Int52_IsSet = true; Int52_IsNull = false; }
+	/** @brief Clears the value of Int52_Optional and sets Int52_IsSet to false */
+	void ClearInt52() { Int52_Optional = 0; Int52_IsSet = false; Int52_IsNull = false; }
+	/** @brief Checks whether Int52_Optional has been set */
+	bool IsInt52Set() const { return Int52_IsSet; }
+	/** @brief Returns true if Int52_Optional is set and matches the default value */
+	bool IsInt52DefaultValue() const { return Int52_IsSet && Int52_Optional == 0; }
+	/** @brief Sets the value of Int52_Optional to its default and also sets Int52_IsSet to true */
+	void SetInt52ToDefault() { SetInt52(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt52ToNull() { Int52_IsSet = true; Int52_IsNull = true; }
+	/** @brief Checks whether Int52_Optional is set to null */
+	bool IsInt52Null() const { return Int52_IsSet && Int52_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int53_Optional{ 0 };
+	/** @brief true if Int53_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int53_IsSet{ false };
+	/** @brief true if Int53_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int53_IsNull{ false };
+	/** @brief Gets the value of Int53_Optional, regardless of it having been set */
+	int32& GetInt53() { return Int53_Optional; }
+	/** @brief Gets the value of Int53_Optional, regardless of it having been set */
+	const int32& GetInt53() const { return Int53_Optional; }
+	/** @brief Gets the value of Int53_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt53(const int32& DefaultValue) const { if (Int53_IsSet) return Int53_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int53_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt53(int32& OutValue) const { if (Int53_IsSet && !Int53_IsNull) OutValue = Int53_Optional; return Int53_IsSet; }
+	/** @brief Returns a pointer to Int53_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt53OrNull() { if (Int53_IsSet) return (Int53_IsNull ? nullptr : &Int53_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int53_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt53OrNull() const { if (Int53_IsSet) return (Int53_IsNull ? nullptr : &Int53_Optional); return nullptr; }
+	/** @brief Sets the value of Int53_Optional and also sets Int53_IsSet to true */
+	void SetInt53(const int32& NewValue) { Int53_Optional = NewValue; Int53_IsSet = true; Int53_IsNull = false; }
+	/** @brief Sets the value of Int53_Optional and also sets Int53_IsSet to true using move semantics */
+	void SetInt53(int32&& NewValue) { Int53_Optional = NewValue; Int53_IsSet = true; Int53_IsNull = false; }
+	/** @brief Clears the value of Int53_Optional and sets Int53_IsSet to false */
+	void ClearInt53() { Int53_Optional = 0; Int53_IsSet = false; Int53_IsNull = false; }
+	/** @brief Checks whether Int53_Optional has been set */
+	bool IsInt53Set() const { return Int53_IsSet; }
+	/** @brief Returns true if Int53_Optional is set and matches the default value */
+	bool IsInt53DefaultValue() const { return Int53_IsSet && Int53_Optional == 0; }
+	/** @brief Sets the value of Int53_Optional to its default and also sets Int53_IsSet to true */
+	void SetInt53ToDefault() { SetInt53(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt53ToNull() { Int53_IsSet = true; Int53_IsNull = true; }
+	/** @brief Checks whether Int53_Optional is set to null */
+	bool IsInt53Null() const { return Int53_IsSet && Int53_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int54_Optional{ 0 };
+	/** @brief true if Int54_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int54_IsSet{ false };
+	/** @brief true if Int54_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int54_IsNull{ false };
+	/** @brief Gets the value of Int54_Optional, regardless of it having been set */
+	int32& GetInt54() { return Int54_Optional; }
+	/** @brief Gets the value of Int54_Optional, regardless of it having been set */
+	const int32& GetInt54() const { return Int54_Optional; }
+	/** @brief Gets the value of Int54_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt54(const int32& DefaultValue) const { if (Int54_IsSet) return Int54_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int54_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt54(int32& OutValue) const { if (Int54_IsSet && !Int54_IsNull) OutValue = Int54_Optional; return Int54_IsSet; }
+	/** @brief Returns a pointer to Int54_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt54OrNull() { if (Int54_IsSet) return (Int54_IsNull ? nullptr : &Int54_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int54_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt54OrNull() const { if (Int54_IsSet) return (Int54_IsNull ? nullptr : &Int54_Optional); return nullptr; }
+	/** @brief Sets the value of Int54_Optional and also sets Int54_IsSet to true */
+	void SetInt54(const int32& NewValue) { Int54_Optional = NewValue; Int54_IsSet = true; Int54_IsNull = false; }
+	/** @brief Sets the value of Int54_Optional and also sets Int54_IsSet to true using move semantics */
+	void SetInt54(int32&& NewValue) { Int54_Optional = NewValue; Int54_IsSet = true; Int54_IsNull = false; }
+	/** @brief Clears the value of Int54_Optional and sets Int54_IsSet to false */
+	void ClearInt54() { Int54_Optional = 0; Int54_IsSet = false; Int54_IsNull = false; }
+	/** @brief Checks whether Int54_Optional has been set */
+	bool IsInt54Set() const { return Int54_IsSet; }
+	/** @brief Returns true if Int54_Optional is set and matches the default value */
+	bool IsInt54DefaultValue() const { return Int54_IsSet && Int54_Optional == 0; }
+	/** @brief Sets the value of Int54_Optional to its default and also sets Int54_IsSet to true */
+	void SetInt54ToDefault() { SetInt54(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt54ToNull() { Int54_IsSet = true; Int54_IsNull = true; }
+	/** @brief Checks whether Int54_Optional is set to null */
+	bool IsInt54Null() const { return Int54_IsSet && Int54_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int55_Optional{ 0 };
+	/** @brief true if Int55_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int55_IsSet{ false };
+	/** @brief true if Int55_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int55_IsNull{ false };
+	/** @brief Gets the value of Int55_Optional, regardless of it having been set */
+	int32& GetInt55() { return Int55_Optional; }
+	/** @brief Gets the value of Int55_Optional, regardless of it having been set */
+	const int32& GetInt55() const { return Int55_Optional; }
+	/** @brief Gets the value of Int55_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt55(const int32& DefaultValue) const { if (Int55_IsSet) return Int55_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int55_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt55(int32& OutValue) const { if (Int55_IsSet && !Int55_IsNull) OutValue = Int55_Optional; return Int55_IsSet; }
+	/** @brief Returns a pointer to Int55_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt55OrNull() { if (Int55_IsSet) return (Int55_IsNull ? nullptr : &Int55_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int55_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt55OrNull() const { if (Int55_IsSet) return (Int55_IsNull ? nullptr : &Int55_Optional); return nullptr; }
+	/** @brief Sets the value of Int55_Optional and also sets Int55_IsSet to true */
+	void SetInt55(const int32& NewValue) { Int55_Optional = NewValue; Int55_IsSet = true; Int55_IsNull = false; }
+	/** @brief Sets the value of Int55_Optional and also sets Int55_IsSet to true using move semantics */
+	void SetInt55(int32&& NewValue) { Int55_Optional = NewValue; Int55_IsSet = true; Int55_IsNull = false; }
+	/** @brief Clears the value of Int55_Optional and sets Int55_IsSet to false */
+	void ClearInt55() { Int55_Optional = 0; Int55_IsSet = false; Int55_IsNull = false; }
+	/** @brief Checks whether Int55_Optional has been set */
+	bool IsInt55Set() const { return Int55_IsSet; }
+	/** @brief Returns true if Int55_Optional is set and matches the default value */
+	bool IsInt55DefaultValue() const { return Int55_IsSet && Int55_Optional == 0; }
+	/** @brief Sets the value of Int55_Optional to its default and also sets Int55_IsSet to true */
+	void SetInt55ToDefault() { SetInt55(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt55ToNull() { Int55_IsSet = true; Int55_IsNull = true; }
+	/** @brief Checks whether Int55_Optional is set to null */
+	bool IsInt55Null() const { return Int55_IsSet && Int55_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int56_Optional{ 0 };
+	/** @brief true if Int56_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int56_IsSet{ false };
+	/** @brief true if Int56_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int56_IsNull{ false };
+	/** @brief Gets the value of Int56_Optional, regardless of it having been set */
+	int32& GetInt56() { return Int56_Optional; }
+	/** @brief Gets the value of Int56_Optional, regardless of it having been set */
+	const int32& GetInt56() const { return Int56_Optional; }
+	/** @brief Gets the value of Int56_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt56(const int32& DefaultValue) const { if (Int56_IsSet) return Int56_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int56_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt56(int32& OutValue) const { if (Int56_IsSet && !Int56_IsNull) OutValue = Int56_Optional; return Int56_IsSet; }
+	/** @brief Returns a pointer to Int56_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt56OrNull() { if (Int56_IsSet) return (Int56_IsNull ? nullptr : &Int56_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int56_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt56OrNull() const { if (Int56_IsSet) return (Int56_IsNull ? nullptr : &Int56_Optional); return nullptr; }
+	/** @brief Sets the value of Int56_Optional and also sets Int56_IsSet to true */
+	void SetInt56(const int32& NewValue) { Int56_Optional = NewValue; Int56_IsSet = true; Int56_IsNull = false; }
+	/** @brief Sets the value of Int56_Optional and also sets Int56_IsSet to true using move semantics */
+	void SetInt56(int32&& NewValue) { Int56_Optional = NewValue; Int56_IsSet = true; Int56_IsNull = false; }
+	/** @brief Clears the value of Int56_Optional and sets Int56_IsSet to false */
+	void ClearInt56() { Int56_Optional = 0; Int56_IsSet = false; Int56_IsNull = false; }
+	/** @brief Checks whether Int56_Optional has been set */
+	bool IsInt56Set() const { return Int56_IsSet; }
+	/** @brief Returns true if Int56_Optional is set and matches the default value */
+	bool IsInt56DefaultValue() const { return Int56_IsSet && Int56_Optional == 0; }
+	/** @brief Sets the value of Int56_Optional to its default and also sets Int56_IsSet to true */
+	void SetInt56ToDefault() { SetInt56(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt56ToNull() { Int56_IsSet = true; Int56_IsNull = true; }
+	/** @brief Checks whether Int56_Optional is set to null */
+	bool IsInt56Null() const { return Int56_IsSet && Int56_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int57_Optional{ 0 };
+	/** @brief true if Int57_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int57_IsSet{ false };
+	/** @brief true if Int57_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int57_IsNull{ false };
+	/** @brief Gets the value of Int57_Optional, regardless of it having been set */
+	int32& GetInt57() { return Int57_Optional; }
+	/** @brief Gets the value of Int57_Optional, regardless of it having been set */
+	const int32& GetInt57() const { return Int57_Optional; }
+	/** @brief Gets the value of Int57_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt57(const int32& DefaultValue) const { if (Int57_IsSet) return Int57_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int57_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt57(int32& OutValue) const { if (Int57_IsSet && !Int57_IsNull) OutValue = Int57_Optional; return Int57_IsSet; }
+	/** @brief Returns a pointer to Int57_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt57OrNull() { if (Int57_IsSet) return (Int57_IsNull ? nullptr : &Int57_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int57_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt57OrNull() const { if (Int57_IsSet) return (Int57_IsNull ? nullptr : &Int57_Optional); return nullptr; }
+	/** @brief Sets the value of Int57_Optional and also sets Int57_IsSet to true */
+	void SetInt57(const int32& NewValue) { Int57_Optional = NewValue; Int57_IsSet = true; Int57_IsNull = false; }
+	/** @brief Sets the value of Int57_Optional and also sets Int57_IsSet to true using move semantics */
+	void SetInt57(int32&& NewValue) { Int57_Optional = NewValue; Int57_IsSet = true; Int57_IsNull = false; }
+	/** @brief Clears the value of Int57_Optional and sets Int57_IsSet to false */
+	void ClearInt57() { Int57_Optional = 0; Int57_IsSet = false; Int57_IsNull = false; }
+	/** @brief Checks whether Int57_Optional has been set */
+	bool IsInt57Set() const { return Int57_IsSet; }
+	/** @brief Returns true if Int57_Optional is set and matches the default value */
+	bool IsInt57DefaultValue() const { return Int57_IsSet && Int57_Optional == 0; }
+	/** @brief Sets the value of Int57_Optional to its default and also sets Int57_IsSet to true */
+	void SetInt57ToDefault() { SetInt57(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt57ToNull() { Int57_IsSet = true; Int57_IsNull = true; }
+	/** @brief Checks whether Int57_Optional is set to null */
+	bool IsInt57Null() const { return Int57_IsSet && Int57_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int58_Optional{ 0 };
+	/** @brief true if Int58_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int58_IsSet{ false };
+	/** @brief true if Int58_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int58_IsNull{ false };
+	/** @brief Gets the value of Int58_Optional, regardless of it having been set */
+	int32& GetInt58() { return Int58_Optional; }
+	/** @brief Gets the value of Int58_Optional, regardless of it having been set */
+	const int32& GetInt58() const { return Int58_Optional; }
+	/** @brief Gets the value of Int58_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt58(const int32& DefaultValue) const { if (Int58_IsSet) return Int58_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int58_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt58(int32& OutValue) const { if (Int58_IsSet && !Int58_IsNull) OutValue = Int58_Optional; return Int58_IsSet; }
+	/** @brief Returns a pointer to Int58_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt58OrNull() { if (Int58_IsSet) return (Int58_IsNull ? nullptr : &Int58_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int58_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt58OrNull() const { if (Int58_IsSet) return (Int58_IsNull ? nullptr : &Int58_Optional); return nullptr; }
+	/** @brief Sets the value of Int58_Optional and also sets Int58_IsSet to true */
+	void SetInt58(const int32& NewValue) { Int58_Optional = NewValue; Int58_IsSet = true; Int58_IsNull = false; }
+	/** @brief Sets the value of Int58_Optional and also sets Int58_IsSet to true using move semantics */
+	void SetInt58(int32&& NewValue) { Int58_Optional = NewValue; Int58_IsSet = true; Int58_IsNull = false; }
+	/** @brief Clears the value of Int58_Optional and sets Int58_IsSet to false */
+	void ClearInt58() { Int58_Optional = 0; Int58_IsSet = false; Int58_IsNull = false; }
+	/** @brief Checks whether Int58_Optional has been set */
+	bool IsInt58Set() const { return Int58_IsSet; }
+	/** @brief Returns true if Int58_Optional is set and matches the default value */
+	bool IsInt58DefaultValue() const { return Int58_IsSet && Int58_Optional == 0; }
+	/** @brief Sets the value of Int58_Optional to its default and also sets Int58_IsSet to true */
+	void SetInt58ToDefault() { SetInt58(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt58ToNull() { Int58_IsSet = true; Int58_IsNull = true; }
+	/** @brief Checks whether Int58_Optional is set to null */
+	bool IsInt58Null() const { return Int58_IsSet && Int58_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int59_Optional{ 0 };
+	/** @brief true if Int59_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int59_IsSet{ false };
+	/** @brief true if Int59_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int59_IsNull{ false };
+	/** @brief Gets the value of Int59_Optional, regardless of it having been set */
+	int32& GetInt59() { return Int59_Optional; }
+	/** @brief Gets the value of Int59_Optional, regardless of it having been set */
+	const int32& GetInt59() const { return Int59_Optional; }
+	/** @brief Gets the value of Int59_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt59(const int32& DefaultValue) const { if (Int59_IsSet) return Int59_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int59_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt59(int32& OutValue) const { if (Int59_IsSet && !Int59_IsNull) OutValue = Int59_Optional; return Int59_IsSet; }
+	/** @brief Returns a pointer to Int59_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt59OrNull() { if (Int59_IsSet) return (Int59_IsNull ? nullptr : &Int59_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int59_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt59OrNull() const { if (Int59_IsSet) return (Int59_IsNull ? nullptr : &Int59_Optional); return nullptr; }
+	/** @brief Sets the value of Int59_Optional and also sets Int59_IsSet to true */
+	void SetInt59(const int32& NewValue) { Int59_Optional = NewValue; Int59_IsSet = true; Int59_IsNull = false; }
+	/** @brief Sets the value of Int59_Optional and also sets Int59_IsSet to true using move semantics */
+	void SetInt59(int32&& NewValue) { Int59_Optional = NewValue; Int59_IsSet = true; Int59_IsNull = false; }
+	/** @brief Clears the value of Int59_Optional and sets Int59_IsSet to false */
+	void ClearInt59() { Int59_Optional = 0; Int59_IsSet = false; Int59_IsNull = false; }
+	/** @brief Checks whether Int59_Optional has been set */
+	bool IsInt59Set() const { return Int59_IsSet; }
+	/** @brief Returns true if Int59_Optional is set and matches the default value */
+	bool IsInt59DefaultValue() const { return Int59_IsSet && Int59_Optional == 0; }
+	/** @brief Sets the value of Int59_Optional to its default and also sets Int59_IsSet to true */
+	void SetInt59ToDefault() { SetInt59(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt59ToNull() { Int59_IsSet = true; Int59_IsNull = true; }
+	/** @brief Checks whether Int59_Optional is set to null */
+	bool IsInt59Null() const { return Int59_IsSet && Int59_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int60_Optional{ 0 };
+	/** @brief true if Int60_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int60_IsSet{ false };
+	/** @brief true if Int60_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int60_IsNull{ false };
+	/** @brief Gets the value of Int60_Optional, regardless of it having been set */
+	int32& GetInt60() { return Int60_Optional; }
+	/** @brief Gets the value of Int60_Optional, regardless of it having been set */
+	const int32& GetInt60() const { return Int60_Optional; }
+	/** @brief Gets the value of Int60_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt60(const int32& DefaultValue) const { if (Int60_IsSet) return Int60_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int60_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt60(int32& OutValue) const { if (Int60_IsSet && !Int60_IsNull) OutValue = Int60_Optional; return Int60_IsSet; }
+	/** @brief Returns a pointer to Int60_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt60OrNull() { if (Int60_IsSet) return (Int60_IsNull ? nullptr : &Int60_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int60_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt60OrNull() const { if (Int60_IsSet) return (Int60_IsNull ? nullptr : &Int60_Optional); return nullptr; }
+	/** @brief Sets the value of Int60_Optional and also sets Int60_IsSet to true */
+	void SetInt60(const int32& NewValue) { Int60_Optional = NewValue; Int60_IsSet = true; Int60_IsNull = false; }
+	/** @brief Sets the value of Int60_Optional and also sets Int60_IsSet to true using move semantics */
+	void SetInt60(int32&& NewValue) { Int60_Optional = NewValue; Int60_IsSet = true; Int60_IsNull = false; }
+	/** @brief Clears the value of Int60_Optional and sets Int60_IsSet to false */
+	void ClearInt60() { Int60_Optional = 0; Int60_IsSet = false; Int60_IsNull = false; }
+	/** @brief Checks whether Int60_Optional has been set */
+	bool IsInt60Set() const { return Int60_IsSet; }
+	/** @brief Returns true if Int60_Optional is set and matches the default value */
+	bool IsInt60DefaultValue() const { return Int60_IsSet && Int60_Optional == 0; }
+	/** @brief Sets the value of Int60_Optional to its default and also sets Int60_IsSet to true */
+	void SetInt60ToDefault() { SetInt60(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt60ToNull() { Int60_IsSet = true; Int60_IsNull = true; }
+	/** @brief Checks whether Int60_Optional is set to null */
+	bool IsInt60Null() const { return Int60_IsSet && Int60_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int61_Optional{ 0 };
+	/** @brief true if Int61_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int61_IsSet{ false };
+	/** @brief true if Int61_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int61_IsNull{ false };
+	/** @brief Gets the value of Int61_Optional, regardless of it having been set */
+	int32& GetInt61() { return Int61_Optional; }
+	/** @brief Gets the value of Int61_Optional, regardless of it having been set */
+	const int32& GetInt61() const { return Int61_Optional; }
+	/** @brief Gets the value of Int61_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt61(const int32& DefaultValue) const { if (Int61_IsSet) return Int61_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int61_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt61(int32& OutValue) const { if (Int61_IsSet && !Int61_IsNull) OutValue = Int61_Optional; return Int61_IsSet; }
+	/** @brief Returns a pointer to Int61_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt61OrNull() { if (Int61_IsSet) return (Int61_IsNull ? nullptr : &Int61_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int61_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt61OrNull() const { if (Int61_IsSet) return (Int61_IsNull ? nullptr : &Int61_Optional); return nullptr; }
+	/** @brief Sets the value of Int61_Optional and also sets Int61_IsSet to true */
+	void SetInt61(const int32& NewValue) { Int61_Optional = NewValue; Int61_IsSet = true; Int61_IsNull = false; }
+	/** @brief Sets the value of Int61_Optional and also sets Int61_IsSet to true using move semantics */
+	void SetInt61(int32&& NewValue) { Int61_Optional = NewValue; Int61_IsSet = true; Int61_IsNull = false; }
+	/** @brief Clears the value of Int61_Optional and sets Int61_IsSet to false */
+	void ClearInt61() { Int61_Optional = 0; Int61_IsSet = false; Int61_IsNull = false; }
+	/** @brief Checks whether Int61_Optional has been set */
+	bool IsInt61Set() const { return Int61_IsSet; }
+	/** @brief Returns true if Int61_Optional is set and matches the default value */
+	bool IsInt61DefaultValue() const { return Int61_IsSet && Int61_Optional == 0; }
+	/** @brief Sets the value of Int61_Optional to its default and also sets Int61_IsSet to true */
+	void SetInt61ToDefault() { SetInt61(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt61ToNull() { Int61_IsSet = true; Int61_IsNull = true; }
+	/** @brief Checks whether Int61_Optional is set to null */
+	bool IsInt61Null() const { return Int61_IsSet && Int61_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int62_Optional{ 0 };
+	/** @brief true if Int62_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int62_IsSet{ false };
+	/** @brief true if Int62_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int62_IsNull{ false };
+	/** @brief Gets the value of Int62_Optional, regardless of it having been set */
+	int32& GetInt62() { return Int62_Optional; }
+	/** @brief Gets the value of Int62_Optional, regardless of it having been set */
+	const int32& GetInt62() const { return Int62_Optional; }
+	/** @brief Gets the value of Int62_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt62(const int32& DefaultValue) const { if (Int62_IsSet) return Int62_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int62_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt62(int32& OutValue) const { if (Int62_IsSet && !Int62_IsNull) OutValue = Int62_Optional; return Int62_IsSet; }
+	/** @brief Returns a pointer to Int62_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt62OrNull() { if (Int62_IsSet) return (Int62_IsNull ? nullptr : &Int62_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int62_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt62OrNull() const { if (Int62_IsSet) return (Int62_IsNull ? nullptr : &Int62_Optional); return nullptr; }
+	/** @brief Sets the value of Int62_Optional and also sets Int62_IsSet to true */
+	void SetInt62(const int32& NewValue) { Int62_Optional = NewValue; Int62_IsSet = true; Int62_IsNull = false; }
+	/** @brief Sets the value of Int62_Optional and also sets Int62_IsSet to true using move semantics */
+	void SetInt62(int32&& NewValue) { Int62_Optional = NewValue; Int62_IsSet = true; Int62_IsNull = false; }
+	/** @brief Clears the value of Int62_Optional and sets Int62_IsSet to false */
+	void ClearInt62() { Int62_Optional = 0; Int62_IsSet = false; Int62_IsNull = false; }
+	/** @brief Checks whether Int62_Optional has been set */
+	bool IsInt62Set() const { return Int62_IsSet; }
+	/** @brief Returns true if Int62_Optional is set and matches the default value */
+	bool IsInt62DefaultValue() const { return Int62_IsSet && Int62_Optional == 0; }
+	/** @brief Sets the value of Int62_Optional to its default and also sets Int62_IsSet to true */
+	void SetInt62ToDefault() { SetInt62(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt62ToNull() { Int62_IsSet = true; Int62_IsNull = true; }
+	/** @brief Checks whether Int62_Optional is set to null */
+	bool IsInt62Null() const { return Int62_IsSet && Int62_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int63_Optional{ 0 };
+	/** @brief true if Int63_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int63_IsSet{ false };
+	/** @brief true if Int63_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int63_IsNull{ false };
+	/** @brief Gets the value of Int63_Optional, regardless of it having been set */
+	int32& GetInt63() { return Int63_Optional; }
+	/** @brief Gets the value of Int63_Optional, regardless of it having been set */
+	const int32& GetInt63() const { return Int63_Optional; }
+	/** @brief Gets the value of Int63_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt63(const int32& DefaultValue) const { if (Int63_IsSet) return Int63_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int63_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt63(int32& OutValue) const { if (Int63_IsSet && !Int63_IsNull) OutValue = Int63_Optional; return Int63_IsSet; }
+	/** @brief Returns a pointer to Int63_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt63OrNull() { if (Int63_IsSet) return (Int63_IsNull ? nullptr : &Int63_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int63_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt63OrNull() const { if (Int63_IsSet) return (Int63_IsNull ? nullptr : &Int63_Optional); return nullptr; }
+	/** @brief Sets the value of Int63_Optional and also sets Int63_IsSet to true */
+	void SetInt63(const int32& NewValue) { Int63_Optional = NewValue; Int63_IsSet = true; Int63_IsNull = false; }
+	/** @brief Sets the value of Int63_Optional and also sets Int63_IsSet to true using move semantics */
+	void SetInt63(int32&& NewValue) { Int63_Optional = NewValue; Int63_IsSet = true; Int63_IsNull = false; }
+	/** @brief Clears the value of Int63_Optional and sets Int63_IsSet to false */
+	void ClearInt63() { Int63_Optional = 0; Int63_IsSet = false; Int63_IsNull = false; }
+	/** @brief Checks whether Int63_Optional has been set */
+	bool IsInt63Set() const { return Int63_IsSet; }
+	/** @brief Returns true if Int63_Optional is set and matches the default value */
+	bool IsInt63DefaultValue() const { return Int63_IsSet && Int63_Optional == 0; }
+	/** @brief Sets the value of Int63_Optional to its default and also sets Int63_IsSet to true */
+	void SetInt63ToDefault() { SetInt63(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt63ToNull() { Int63_IsSet = true; Int63_IsNull = true; }
+	/** @brief Checks whether Int63_Optional is set to null */
+	bool IsInt63Null() const { return Int63_IsSet && Int63_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int64_Optional{ 0 };
+	/** @brief true if Int64_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int64_IsSet{ false };
+	/** @brief true if Int64_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int64_IsNull{ false };
+	/** @brief Gets the value of Int64_Optional, regardless of it having been set */
+	int32& GetInt64() { return Int64_Optional; }
+	/** @brief Gets the value of Int64_Optional, regardless of it having been set */
+	const int32& GetInt64() const { return Int64_Optional; }
+	/** @brief Gets the value of Int64_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt64(const int32& DefaultValue) const { if (Int64_IsSet) return Int64_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int64_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt64(int32& OutValue) const { if (Int64_IsSet && !Int64_IsNull) OutValue = Int64_Optional; return Int64_IsSet; }
+	/** @brief Returns a pointer to Int64_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt64OrNull() { if (Int64_IsSet) return (Int64_IsNull ? nullptr : &Int64_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int64_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt64OrNull() const { if (Int64_IsSet) return (Int64_IsNull ? nullptr : &Int64_Optional); return nullptr; }
+	/** @brief Sets the value of Int64_Optional and also sets Int64_IsSet to true */
+	void SetInt64(const int32& NewValue) { Int64_Optional = NewValue; Int64_IsSet = true; Int64_IsNull = false; }
+	/** @brief Sets the value of Int64_Optional and also sets Int64_IsSet to true using move semantics */
+	void SetInt64(int32&& NewValue) { Int64_Optional = NewValue; Int64_IsSet = true; Int64_IsNull = false; }
+	/** @brief Clears the value of Int64_Optional and sets Int64_IsSet to false */
+	void ClearInt64() { Int64_Optional = 0; Int64_IsSet = false; Int64_IsNull = false; }
+	/** @brief Checks whether Int64_Optional has been set */
+	bool IsInt64Set() const { return Int64_IsSet; }
+	/** @brief Returns true if Int64_Optional is set and matches the default value */
+	bool IsInt64DefaultValue() const { return Int64_IsSet && Int64_Optional == 0; }
+	/** @brief Sets the value of Int64_Optional to its default and also sets Int64_IsSet to true */
+	void SetInt64ToDefault() { SetInt64(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt64ToNull() { Int64_IsSet = true; Int64_IsNull = true; }
+	/** @brief Checks whether Int64_Optional is set to null */
+	bool IsInt64Null() const { return Int64_IsSet && Int64_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int65_Optional{ 0 };
+	/** @brief true if Int65_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int65_IsSet{ false };
+	/** @brief true if Int65_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int65_IsNull{ false };
+	/** @brief Gets the value of Int65_Optional, regardless of it having been set */
+	int32& GetInt65() { return Int65_Optional; }
+	/** @brief Gets the value of Int65_Optional, regardless of it having been set */
+	const int32& GetInt65() const { return Int65_Optional; }
+	/** @brief Gets the value of Int65_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt65(const int32& DefaultValue) const { if (Int65_IsSet) return Int65_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int65_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt65(int32& OutValue) const { if (Int65_IsSet && !Int65_IsNull) OutValue = Int65_Optional; return Int65_IsSet; }
+	/** @brief Returns a pointer to Int65_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt65OrNull() { if (Int65_IsSet) return (Int65_IsNull ? nullptr : &Int65_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int65_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt65OrNull() const { if (Int65_IsSet) return (Int65_IsNull ? nullptr : &Int65_Optional); return nullptr; }
+	/** @brief Sets the value of Int65_Optional and also sets Int65_IsSet to true */
+	void SetInt65(const int32& NewValue) { Int65_Optional = NewValue; Int65_IsSet = true; Int65_IsNull = false; }
+	/** @brief Sets the value of Int65_Optional and also sets Int65_IsSet to true using move semantics */
+	void SetInt65(int32&& NewValue) { Int65_Optional = NewValue; Int65_IsSet = true; Int65_IsNull = false; }
+	/** @brief Clears the value of Int65_Optional and sets Int65_IsSet to false */
+	void ClearInt65() { Int65_Optional = 0; Int65_IsSet = false; Int65_IsNull = false; }
+	/** @brief Checks whether Int65_Optional has been set */
+	bool IsInt65Set() const { return Int65_IsSet; }
+	/** @brief Returns true if Int65_Optional is set and matches the default value */
+	bool IsInt65DefaultValue() const { return Int65_IsSet && Int65_Optional == 0; }
+	/** @brief Sets the value of Int65_Optional to its default and also sets Int65_IsSet to true */
+	void SetInt65ToDefault() { SetInt65(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt65ToNull() { Int65_IsSet = true; Int65_IsNull = true; }
+	/** @brief Checks whether Int65_Optional is set to null */
+	bool IsInt65Null() const { return Int65_IsSet && Int65_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int66_Optional{ 0 };
+	/** @brief true if Int66_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int66_IsSet{ false };
+	/** @brief true if Int66_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int66_IsNull{ false };
+	/** @brief Gets the value of Int66_Optional, regardless of it having been set */
+	int32& GetInt66() { return Int66_Optional; }
+	/** @brief Gets the value of Int66_Optional, regardless of it having been set */
+	const int32& GetInt66() const { return Int66_Optional; }
+	/** @brief Gets the value of Int66_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt66(const int32& DefaultValue) const { if (Int66_IsSet) return Int66_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int66_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt66(int32& OutValue) const { if (Int66_IsSet && !Int66_IsNull) OutValue = Int66_Optional; return Int66_IsSet; }
+	/** @brief Returns a pointer to Int66_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt66OrNull() { if (Int66_IsSet) return (Int66_IsNull ? nullptr : &Int66_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int66_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt66OrNull() const { if (Int66_IsSet) return (Int66_IsNull ? nullptr : &Int66_Optional); return nullptr; }
+	/** @brief Sets the value of Int66_Optional and also sets Int66_IsSet to true */
+	void SetInt66(const int32& NewValue) { Int66_Optional = NewValue; Int66_IsSet = true; Int66_IsNull = false; }
+	/** @brief Sets the value of Int66_Optional and also sets Int66_IsSet to true using move semantics */
+	void SetInt66(int32&& NewValue) { Int66_Optional = NewValue; Int66_IsSet = true; Int66_IsNull = false; }
+	/** @brief Clears the value of Int66_Optional and sets Int66_IsSet to false */
+	void ClearInt66() { Int66_Optional = 0; Int66_IsSet = false; Int66_IsNull = false; }
+	/** @brief Checks whether Int66_Optional has been set */
+	bool IsInt66Set() const { return Int66_IsSet; }
+	/** @brief Returns true if Int66_Optional is set and matches the default value */
+	bool IsInt66DefaultValue() const { return Int66_IsSet && Int66_Optional == 0; }
+	/** @brief Sets the value of Int66_Optional to its default and also sets Int66_IsSet to true */
+	void SetInt66ToDefault() { SetInt66(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt66ToNull() { Int66_IsSet = true; Int66_IsNull = true; }
+	/** @brief Checks whether Int66_Optional is set to null */
+	bool IsInt66Null() const { return Int66_IsSet && Int66_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int67_Optional{ 0 };
+	/** @brief true if Int67_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int67_IsSet{ false };
+	/** @brief true if Int67_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int67_IsNull{ false };
+	/** @brief Gets the value of Int67_Optional, regardless of it having been set */
+	int32& GetInt67() { return Int67_Optional; }
+	/** @brief Gets the value of Int67_Optional, regardless of it having been set */
+	const int32& GetInt67() const { return Int67_Optional; }
+	/** @brief Gets the value of Int67_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt67(const int32& DefaultValue) const { if (Int67_IsSet) return Int67_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int67_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt67(int32& OutValue) const { if (Int67_IsSet && !Int67_IsNull) OutValue = Int67_Optional; return Int67_IsSet; }
+	/** @brief Returns a pointer to Int67_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt67OrNull() { if (Int67_IsSet) return (Int67_IsNull ? nullptr : &Int67_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int67_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt67OrNull() const { if (Int67_IsSet) return (Int67_IsNull ? nullptr : &Int67_Optional); return nullptr; }
+	/** @brief Sets the value of Int67_Optional and also sets Int67_IsSet to true */
+	void SetInt67(const int32& NewValue) { Int67_Optional = NewValue; Int67_IsSet = true; Int67_IsNull = false; }
+	/** @brief Sets the value of Int67_Optional and also sets Int67_IsSet to true using move semantics */
+	void SetInt67(int32&& NewValue) { Int67_Optional = NewValue; Int67_IsSet = true; Int67_IsNull = false; }
+	/** @brief Clears the value of Int67_Optional and sets Int67_IsSet to false */
+	void ClearInt67() { Int67_Optional = 0; Int67_IsSet = false; Int67_IsNull = false; }
+	/** @brief Checks whether Int67_Optional has been set */
+	bool IsInt67Set() const { return Int67_IsSet; }
+	/** @brief Returns true if Int67_Optional is set and matches the default value */
+	bool IsInt67DefaultValue() const { return Int67_IsSet && Int67_Optional == 0; }
+	/** @brief Sets the value of Int67_Optional to its default and also sets Int67_IsSet to true */
+	void SetInt67ToDefault() { SetInt67(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt67ToNull() { Int67_IsSet = true; Int67_IsNull = true; }
+	/** @brief Checks whether Int67_Optional is set to null */
+	bool IsInt67Null() const { return Int67_IsSet && Int67_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int68_Optional{ 0 };
+	/** @brief true if Int68_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int68_IsSet{ false };
+	/** @brief true if Int68_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int68_IsNull{ false };
+	/** @brief Gets the value of Int68_Optional, regardless of it having been set */
+	int32& GetInt68() { return Int68_Optional; }
+	/** @brief Gets the value of Int68_Optional, regardless of it having been set */
+	const int32& GetInt68() const { return Int68_Optional; }
+	/** @brief Gets the value of Int68_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt68(const int32& DefaultValue) const { if (Int68_IsSet) return Int68_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int68_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt68(int32& OutValue) const { if (Int68_IsSet && !Int68_IsNull) OutValue = Int68_Optional; return Int68_IsSet; }
+	/** @brief Returns a pointer to Int68_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt68OrNull() { if (Int68_IsSet) return (Int68_IsNull ? nullptr : &Int68_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int68_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt68OrNull() const { if (Int68_IsSet) return (Int68_IsNull ? nullptr : &Int68_Optional); return nullptr; }
+	/** @brief Sets the value of Int68_Optional and also sets Int68_IsSet to true */
+	void SetInt68(const int32& NewValue) { Int68_Optional = NewValue; Int68_IsSet = true; Int68_IsNull = false; }
+	/** @brief Sets the value of Int68_Optional and also sets Int68_IsSet to true using move semantics */
+	void SetInt68(int32&& NewValue) { Int68_Optional = NewValue; Int68_IsSet = true; Int68_IsNull = false; }
+	/** @brief Clears the value of Int68_Optional and sets Int68_IsSet to false */
+	void ClearInt68() { Int68_Optional = 0; Int68_IsSet = false; Int68_IsNull = false; }
+	/** @brief Checks whether Int68_Optional has been set */
+	bool IsInt68Set() const { return Int68_IsSet; }
+	/** @brief Returns true if Int68_Optional is set and matches the default value */
+	bool IsInt68DefaultValue() const { return Int68_IsSet && Int68_Optional == 0; }
+	/** @brief Sets the value of Int68_Optional to its default and also sets Int68_IsSet to true */
+	void SetInt68ToDefault() { SetInt68(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt68ToNull() { Int68_IsSet = true; Int68_IsNull = true; }
+	/** @brief Checks whether Int68_Optional is set to null */
+	bool IsInt68Null() const { return Int68_IsSet && Int68_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int69_Optional{ 0 };
+	/** @brief true if Int69_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int69_IsSet{ false };
+	/** @brief true if Int69_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int69_IsNull{ false };
+	/** @brief Gets the value of Int69_Optional, regardless of it having been set */
+	int32& GetInt69() { return Int69_Optional; }
+	/** @brief Gets the value of Int69_Optional, regardless of it having been set */
+	const int32& GetInt69() const { return Int69_Optional; }
+	/** @brief Gets the value of Int69_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt69(const int32& DefaultValue) const { if (Int69_IsSet) return Int69_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int69_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt69(int32& OutValue) const { if (Int69_IsSet && !Int69_IsNull) OutValue = Int69_Optional; return Int69_IsSet; }
+	/** @brief Returns a pointer to Int69_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt69OrNull() { if (Int69_IsSet) return (Int69_IsNull ? nullptr : &Int69_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int69_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt69OrNull() const { if (Int69_IsSet) return (Int69_IsNull ? nullptr : &Int69_Optional); return nullptr; }
+	/** @brief Sets the value of Int69_Optional and also sets Int69_IsSet to true */
+	void SetInt69(const int32& NewValue) { Int69_Optional = NewValue; Int69_IsSet = true; Int69_IsNull = false; }
+	/** @brief Sets the value of Int69_Optional and also sets Int69_IsSet to true using move semantics */
+	void SetInt69(int32&& NewValue) { Int69_Optional = NewValue; Int69_IsSet = true; Int69_IsNull = false; }
+	/** @brief Clears the value of Int69_Optional and sets Int69_IsSet to false */
+	void ClearInt69() { Int69_Optional = 0; Int69_IsSet = false; Int69_IsNull = false; }
+	/** @brief Checks whether Int69_Optional has been set */
+	bool IsInt69Set() const { return Int69_IsSet; }
+	/** @brief Returns true if Int69_Optional is set and matches the default value */
+	bool IsInt69DefaultValue() const { return Int69_IsSet && Int69_Optional == 0; }
+	/** @brief Sets the value of Int69_Optional to its default and also sets Int69_IsSet to true */
+	void SetInt69ToDefault() { SetInt69(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt69ToNull() { Int69_IsSet = true; Int69_IsNull = true; }
+	/** @brief Checks whether Int69_Optional is set to null */
+	bool IsInt69Null() const { return Int69_IsSet && Int69_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int70_Optional{ 0 };
+	/** @brief true if Int70_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int70_IsSet{ false };
+	/** @brief true if Int70_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int70_IsNull{ false };
+	/** @brief Gets the value of Int70_Optional, regardless of it having been set */
+	int32& GetInt70() { return Int70_Optional; }
+	/** @brief Gets the value of Int70_Optional, regardless of it having been set */
+	const int32& GetInt70() const { return Int70_Optional; }
+	/** @brief Gets the value of Int70_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt70(const int32& DefaultValue) const { if (Int70_IsSet) return Int70_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int70_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt70(int32& OutValue) const { if (Int70_IsSet && !Int70_IsNull) OutValue = Int70_Optional; return Int70_IsSet; }
+	/** @brief Returns a pointer to Int70_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt70OrNull() { if (Int70_IsSet) return (Int70_IsNull ? nullptr : &Int70_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int70_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt70OrNull() const { if (Int70_IsSet) return (Int70_IsNull ? nullptr : &Int70_Optional); return nullptr; }
+	/** @brief Sets the value of Int70_Optional and also sets Int70_IsSet to true */
+	void SetInt70(const int32& NewValue) { Int70_Optional = NewValue; Int70_IsSet = true; Int70_IsNull = false; }
+	/** @brief Sets the value of Int70_Optional and also sets Int70_IsSet to true using move semantics */
+	void SetInt70(int32&& NewValue) { Int70_Optional = NewValue; Int70_IsSet = true; Int70_IsNull = false; }
+	/** @brief Clears the value of Int70_Optional and sets Int70_IsSet to false */
+	void ClearInt70() { Int70_Optional = 0; Int70_IsSet = false; Int70_IsNull = false; }
+	/** @brief Checks whether Int70_Optional has been set */
+	bool IsInt70Set() const { return Int70_IsSet; }
+	/** @brief Returns true if Int70_Optional is set and matches the default value */
+	bool IsInt70DefaultValue() const { return Int70_IsSet && Int70_Optional == 0; }
+	/** @brief Sets the value of Int70_Optional to its default and also sets Int70_IsSet to true */
+	void SetInt70ToDefault() { SetInt70(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt70ToNull() { Int70_IsSet = true; Int70_IsNull = true; }
+	/** @brief Checks whether Int70_Optional is set to null */
+	bool IsInt70Null() const { return Int70_IsSet && Int70_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int71_Optional{ 0 };
+	/** @brief true if Int71_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int71_IsSet{ false };
+	/** @brief true if Int71_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int71_IsNull{ false };
+	/** @brief Gets the value of Int71_Optional, regardless of it having been set */
+	int32& GetInt71() { return Int71_Optional; }
+	/** @brief Gets the value of Int71_Optional, regardless of it having been set */
+	const int32& GetInt71() const { return Int71_Optional; }
+	/** @brief Gets the value of Int71_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt71(const int32& DefaultValue) const { if (Int71_IsSet) return Int71_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int71_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt71(int32& OutValue) const { if (Int71_IsSet && !Int71_IsNull) OutValue = Int71_Optional; return Int71_IsSet; }
+	/** @brief Returns a pointer to Int71_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt71OrNull() { if (Int71_IsSet) return (Int71_IsNull ? nullptr : &Int71_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int71_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt71OrNull() const { if (Int71_IsSet) return (Int71_IsNull ? nullptr : &Int71_Optional); return nullptr; }
+	/** @brief Sets the value of Int71_Optional and also sets Int71_IsSet to true */
+	void SetInt71(const int32& NewValue) { Int71_Optional = NewValue; Int71_IsSet = true; Int71_IsNull = false; }
+	/** @brief Sets the value of Int71_Optional and also sets Int71_IsSet to true using move semantics */
+	void SetInt71(int32&& NewValue) { Int71_Optional = NewValue; Int71_IsSet = true; Int71_IsNull = false; }
+	/** @brief Clears the value of Int71_Optional and sets Int71_IsSet to false */
+	void ClearInt71() { Int71_Optional = 0; Int71_IsSet = false; Int71_IsNull = false; }
+	/** @brief Checks whether Int71_Optional has been set */
+	bool IsInt71Set() const { return Int71_IsSet; }
+	/** @brief Returns true if Int71_Optional is set and matches the default value */
+	bool IsInt71DefaultValue() const { return Int71_IsSet && Int71_Optional == 0; }
+	/** @brief Sets the value of Int71_Optional to its default and also sets Int71_IsSet to true */
+	void SetInt71ToDefault() { SetInt71(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt71ToNull() { Int71_IsSet = true; Int71_IsNull = true; }
+	/** @brief Checks whether Int71_Optional is set to null */
+	bool IsInt71Null() const { return Int71_IsSet && Int71_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int72_Optional{ 0 };
+	/** @brief true if Int72_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int72_IsSet{ false };
+	/** @brief true if Int72_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int72_IsNull{ false };
+	/** @brief Gets the value of Int72_Optional, regardless of it having been set */
+	int32& GetInt72() { return Int72_Optional; }
+	/** @brief Gets the value of Int72_Optional, regardless of it having been set */
+	const int32& GetInt72() const { return Int72_Optional; }
+	/** @brief Gets the value of Int72_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt72(const int32& DefaultValue) const { if (Int72_IsSet) return Int72_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int72_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt72(int32& OutValue) const { if (Int72_IsSet && !Int72_IsNull) OutValue = Int72_Optional; return Int72_IsSet; }
+	/** @brief Returns a pointer to Int72_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt72OrNull() { if (Int72_IsSet) return (Int72_IsNull ? nullptr : &Int72_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int72_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt72OrNull() const { if (Int72_IsSet) return (Int72_IsNull ? nullptr : &Int72_Optional); return nullptr; }
+	/** @brief Sets the value of Int72_Optional and also sets Int72_IsSet to true */
+	void SetInt72(const int32& NewValue) { Int72_Optional = NewValue; Int72_IsSet = true; Int72_IsNull = false; }
+	/** @brief Sets the value of Int72_Optional and also sets Int72_IsSet to true using move semantics */
+	void SetInt72(int32&& NewValue) { Int72_Optional = NewValue; Int72_IsSet = true; Int72_IsNull = false; }
+	/** @brief Clears the value of Int72_Optional and sets Int72_IsSet to false */
+	void ClearInt72() { Int72_Optional = 0; Int72_IsSet = false; Int72_IsNull = false; }
+	/** @brief Checks whether Int72_Optional has been set */
+	bool IsInt72Set() const { return Int72_IsSet; }
+	/** @brief Returns true if Int72_Optional is set and matches the default value */
+	bool IsInt72DefaultValue() const { return Int72_IsSet && Int72_Optional == 0; }
+	/** @brief Sets the value of Int72_Optional to its default and also sets Int72_IsSet to true */
+	void SetInt72ToDefault() { SetInt72(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt72ToNull() { Int72_IsSet = true; Int72_IsNull = true; }
+	/** @brief Checks whether Int72_Optional is set to null */
+	bool IsInt72Null() const { return Int72_IsSet && Int72_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int73_Optional{ 0 };
+	/** @brief true if Int73_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int73_IsSet{ false };
+	/** @brief true if Int73_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int73_IsNull{ false };
+	/** @brief Gets the value of Int73_Optional, regardless of it having been set */
+	int32& GetInt73() { return Int73_Optional; }
+	/** @brief Gets the value of Int73_Optional, regardless of it having been set */
+	const int32& GetInt73() const { return Int73_Optional; }
+	/** @brief Gets the value of Int73_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt73(const int32& DefaultValue) const { if (Int73_IsSet) return Int73_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int73_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt73(int32& OutValue) const { if (Int73_IsSet && !Int73_IsNull) OutValue = Int73_Optional; return Int73_IsSet; }
+	/** @brief Returns a pointer to Int73_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt73OrNull() { if (Int73_IsSet) return (Int73_IsNull ? nullptr : &Int73_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int73_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt73OrNull() const { if (Int73_IsSet) return (Int73_IsNull ? nullptr : &Int73_Optional); return nullptr; }
+	/** @brief Sets the value of Int73_Optional and also sets Int73_IsSet to true */
+	void SetInt73(const int32& NewValue) { Int73_Optional = NewValue; Int73_IsSet = true; Int73_IsNull = false; }
+	/** @brief Sets the value of Int73_Optional and also sets Int73_IsSet to true using move semantics */
+	void SetInt73(int32&& NewValue) { Int73_Optional = NewValue; Int73_IsSet = true; Int73_IsNull = false; }
+	/** @brief Clears the value of Int73_Optional and sets Int73_IsSet to false */
+	void ClearInt73() { Int73_Optional = 0; Int73_IsSet = false; Int73_IsNull = false; }
+	/** @brief Checks whether Int73_Optional has been set */
+	bool IsInt73Set() const { return Int73_IsSet; }
+	/** @brief Returns true if Int73_Optional is set and matches the default value */
+	bool IsInt73DefaultValue() const { return Int73_IsSet && Int73_Optional == 0; }
+	/** @brief Sets the value of Int73_Optional to its default and also sets Int73_IsSet to true */
+	void SetInt73ToDefault() { SetInt73(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt73ToNull() { Int73_IsSet = true; Int73_IsNull = true; }
+	/** @brief Checks whether Int73_Optional is set to null */
+	bool IsInt73Null() const { return Int73_IsSet && Int73_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int74_Optional{ 0 };
+	/** @brief true if Int74_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int74_IsSet{ false };
+	/** @brief true if Int74_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int74_IsNull{ false };
+	/** @brief Gets the value of Int74_Optional, regardless of it having been set */
+	int32& GetInt74() { return Int74_Optional; }
+	/** @brief Gets the value of Int74_Optional, regardless of it having been set */
+	const int32& GetInt74() const { return Int74_Optional; }
+	/** @brief Gets the value of Int74_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt74(const int32& DefaultValue) const { if (Int74_IsSet) return Int74_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int74_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt74(int32& OutValue) const { if (Int74_IsSet && !Int74_IsNull) OutValue = Int74_Optional; return Int74_IsSet; }
+	/** @brief Returns a pointer to Int74_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt74OrNull() { if (Int74_IsSet) return (Int74_IsNull ? nullptr : &Int74_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int74_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt74OrNull() const { if (Int74_IsSet) return (Int74_IsNull ? nullptr : &Int74_Optional); return nullptr; }
+	/** @brief Sets the value of Int74_Optional and also sets Int74_IsSet to true */
+	void SetInt74(const int32& NewValue) { Int74_Optional = NewValue; Int74_IsSet = true; Int74_IsNull = false; }
+	/** @brief Sets the value of Int74_Optional and also sets Int74_IsSet to true using move semantics */
+	void SetInt74(int32&& NewValue) { Int74_Optional = NewValue; Int74_IsSet = true; Int74_IsNull = false; }
+	/** @brief Clears the value of Int74_Optional and sets Int74_IsSet to false */
+	void ClearInt74() { Int74_Optional = 0; Int74_IsSet = false; Int74_IsNull = false; }
+	/** @brief Checks whether Int74_Optional has been set */
+	bool IsInt74Set() const { return Int74_IsSet; }
+	/** @brief Returns true if Int74_Optional is set and matches the default value */
+	bool IsInt74DefaultValue() const { return Int74_IsSet && Int74_Optional == 0; }
+	/** @brief Sets the value of Int74_Optional to its default and also sets Int74_IsSet to true */
+	void SetInt74ToDefault() { SetInt74(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt74ToNull() { Int74_IsSet = true; Int74_IsNull = true; }
+	/** @brief Checks whether Int74_Optional is set to null */
+	bool IsInt74Null() const { return Int74_IsSet && Int74_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int75_Optional{ 0 };
+	/** @brief true if Int75_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int75_IsSet{ false };
+	/** @brief true if Int75_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int75_IsNull{ false };
+	/** @brief Gets the value of Int75_Optional, regardless of it having been set */
+	int32& GetInt75() { return Int75_Optional; }
+	/** @brief Gets the value of Int75_Optional, regardless of it having been set */
+	const int32& GetInt75() const { return Int75_Optional; }
+	/** @brief Gets the value of Int75_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt75(const int32& DefaultValue) const { if (Int75_IsSet) return Int75_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int75_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt75(int32& OutValue) const { if (Int75_IsSet && !Int75_IsNull) OutValue = Int75_Optional; return Int75_IsSet; }
+	/** @brief Returns a pointer to Int75_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt75OrNull() { if (Int75_IsSet) return (Int75_IsNull ? nullptr : &Int75_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int75_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt75OrNull() const { if (Int75_IsSet) return (Int75_IsNull ? nullptr : &Int75_Optional); return nullptr; }
+	/** @brief Sets the value of Int75_Optional and also sets Int75_IsSet to true */
+	void SetInt75(const int32& NewValue) { Int75_Optional = NewValue; Int75_IsSet = true; Int75_IsNull = false; }
+	/** @brief Sets the value of Int75_Optional and also sets Int75_IsSet to true using move semantics */
+	void SetInt75(int32&& NewValue) { Int75_Optional = NewValue; Int75_IsSet = true; Int75_IsNull = false; }
+	/** @brief Clears the value of Int75_Optional and sets Int75_IsSet to false */
+	void ClearInt75() { Int75_Optional = 0; Int75_IsSet = false; Int75_IsNull = false; }
+	/** @brief Checks whether Int75_Optional has been set */
+	bool IsInt75Set() const { return Int75_IsSet; }
+	/** @brief Returns true if Int75_Optional is set and matches the default value */
+	bool IsInt75DefaultValue() const { return Int75_IsSet && Int75_Optional == 0; }
+	/** @brief Sets the value of Int75_Optional to its default and also sets Int75_IsSet to true */
+	void SetInt75ToDefault() { SetInt75(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt75ToNull() { Int75_IsSet = true; Int75_IsNull = true; }
+	/** @brief Checks whether Int75_Optional is set to null */
+	bool IsInt75Null() const { return Int75_IsSet && Int75_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int76_Optional{ 0 };
+	/** @brief true if Int76_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int76_IsSet{ false };
+	/** @brief true if Int76_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int76_IsNull{ false };
+	/** @brief Gets the value of Int76_Optional, regardless of it having been set */
+	int32& GetInt76() { return Int76_Optional; }
+	/** @brief Gets the value of Int76_Optional, regardless of it having been set */
+	const int32& GetInt76() const { return Int76_Optional; }
+	/** @brief Gets the value of Int76_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt76(const int32& DefaultValue) const { if (Int76_IsSet) return Int76_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int76_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt76(int32& OutValue) const { if (Int76_IsSet && !Int76_IsNull) OutValue = Int76_Optional; return Int76_IsSet; }
+	/** @brief Returns a pointer to Int76_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt76OrNull() { if (Int76_IsSet) return (Int76_IsNull ? nullptr : &Int76_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int76_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt76OrNull() const { if (Int76_IsSet) return (Int76_IsNull ? nullptr : &Int76_Optional); return nullptr; }
+	/** @brief Sets the value of Int76_Optional and also sets Int76_IsSet to true */
+	void SetInt76(const int32& NewValue) { Int76_Optional = NewValue; Int76_IsSet = true; Int76_IsNull = false; }
+	/** @brief Sets the value of Int76_Optional and also sets Int76_IsSet to true using move semantics */
+	void SetInt76(int32&& NewValue) { Int76_Optional = NewValue; Int76_IsSet = true; Int76_IsNull = false; }
+	/** @brief Clears the value of Int76_Optional and sets Int76_IsSet to false */
+	void ClearInt76() { Int76_Optional = 0; Int76_IsSet = false; Int76_IsNull = false; }
+	/** @brief Checks whether Int76_Optional has been set */
+	bool IsInt76Set() const { return Int76_IsSet; }
+	/** @brief Returns true if Int76_Optional is set and matches the default value */
+	bool IsInt76DefaultValue() const { return Int76_IsSet && Int76_Optional == 0; }
+	/** @brief Sets the value of Int76_Optional to its default and also sets Int76_IsSet to true */
+	void SetInt76ToDefault() { SetInt76(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt76ToNull() { Int76_IsSet = true; Int76_IsNull = true; }
+	/** @brief Checks whether Int76_Optional is set to null */
+	bool IsInt76Null() const { return Int76_IsSet && Int76_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int77_Optional{ 0 };
+	/** @brief true if Int77_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int77_IsSet{ false };
+	/** @brief true if Int77_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int77_IsNull{ false };
+	/** @brief Gets the value of Int77_Optional, regardless of it having been set */
+	int32& GetInt77() { return Int77_Optional; }
+	/** @brief Gets the value of Int77_Optional, regardless of it having been set */
+	const int32& GetInt77() const { return Int77_Optional; }
+	/** @brief Gets the value of Int77_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt77(const int32& DefaultValue) const { if (Int77_IsSet) return Int77_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int77_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt77(int32& OutValue) const { if (Int77_IsSet && !Int77_IsNull) OutValue = Int77_Optional; return Int77_IsSet; }
+	/** @brief Returns a pointer to Int77_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt77OrNull() { if (Int77_IsSet) return (Int77_IsNull ? nullptr : &Int77_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int77_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt77OrNull() const { if (Int77_IsSet) return (Int77_IsNull ? nullptr : &Int77_Optional); return nullptr; }
+	/** @brief Sets the value of Int77_Optional and also sets Int77_IsSet to true */
+	void SetInt77(const int32& NewValue) { Int77_Optional = NewValue; Int77_IsSet = true; Int77_IsNull = false; }
+	/** @brief Sets the value of Int77_Optional and also sets Int77_IsSet to true using move semantics */
+	void SetInt77(int32&& NewValue) { Int77_Optional = NewValue; Int77_IsSet = true; Int77_IsNull = false; }
+	/** @brief Clears the value of Int77_Optional and sets Int77_IsSet to false */
+	void ClearInt77() { Int77_Optional = 0; Int77_IsSet = false; Int77_IsNull = false; }
+	/** @brief Checks whether Int77_Optional has been set */
+	bool IsInt77Set() const { return Int77_IsSet; }
+	/** @brief Returns true if Int77_Optional is set and matches the default value */
+	bool IsInt77DefaultValue() const { return Int77_IsSet && Int77_Optional == 0; }
+	/** @brief Sets the value of Int77_Optional to its default and also sets Int77_IsSet to true */
+	void SetInt77ToDefault() { SetInt77(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt77ToNull() { Int77_IsSet = true; Int77_IsNull = true; }
+	/** @brief Checks whether Int77_Optional is set to null */
+	bool IsInt77Null() const { return Int77_IsSet && Int77_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int78_Optional{ 0 };
+	/** @brief true if Int78_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int78_IsSet{ false };
+	/** @brief true if Int78_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int78_IsNull{ false };
+	/** @brief Gets the value of Int78_Optional, regardless of it having been set */
+	int32& GetInt78() { return Int78_Optional; }
+	/** @brief Gets the value of Int78_Optional, regardless of it having been set */
+	const int32& GetInt78() const { return Int78_Optional; }
+	/** @brief Gets the value of Int78_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt78(const int32& DefaultValue) const { if (Int78_IsSet) return Int78_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int78_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt78(int32& OutValue) const { if (Int78_IsSet && !Int78_IsNull) OutValue = Int78_Optional; return Int78_IsSet; }
+	/** @brief Returns a pointer to Int78_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt78OrNull() { if (Int78_IsSet) return (Int78_IsNull ? nullptr : &Int78_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int78_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt78OrNull() const { if (Int78_IsSet) return (Int78_IsNull ? nullptr : &Int78_Optional); return nullptr; }
+	/** @brief Sets the value of Int78_Optional and also sets Int78_IsSet to true */
+	void SetInt78(const int32& NewValue) { Int78_Optional = NewValue; Int78_IsSet = true; Int78_IsNull = false; }
+	/** @brief Sets the value of Int78_Optional and also sets Int78_IsSet to true using move semantics */
+	void SetInt78(int32&& NewValue) { Int78_Optional = NewValue; Int78_IsSet = true; Int78_IsNull = false; }
+	/** @brief Clears the value of Int78_Optional and sets Int78_IsSet to false */
+	void ClearInt78() { Int78_Optional = 0; Int78_IsSet = false; Int78_IsNull = false; }
+	/** @brief Checks whether Int78_Optional has been set */
+	bool IsInt78Set() const { return Int78_IsSet; }
+	/** @brief Returns true if Int78_Optional is set and matches the default value */
+	bool IsInt78DefaultValue() const { return Int78_IsSet && Int78_Optional == 0; }
+	/** @brief Sets the value of Int78_Optional to its default and also sets Int78_IsSet to true */
+	void SetInt78ToDefault() { SetInt78(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt78ToNull() { Int78_IsSet = true; Int78_IsNull = true; }
+	/** @brief Checks whether Int78_Optional is set to null */
+	bool IsInt78Null() const { return Int78_IsSet && Int78_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int79_Optional{ 0 };
+	/** @brief true if Int79_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int79_IsSet{ false };
+	/** @brief true if Int79_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int79_IsNull{ false };
+	/** @brief Gets the value of Int79_Optional, regardless of it having been set */
+	int32& GetInt79() { return Int79_Optional; }
+	/** @brief Gets the value of Int79_Optional, regardless of it having been set */
+	const int32& GetInt79() const { return Int79_Optional; }
+	/** @brief Gets the value of Int79_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt79(const int32& DefaultValue) const { if (Int79_IsSet) return Int79_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int79_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt79(int32& OutValue) const { if (Int79_IsSet && !Int79_IsNull) OutValue = Int79_Optional; return Int79_IsSet; }
+	/** @brief Returns a pointer to Int79_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt79OrNull() { if (Int79_IsSet) return (Int79_IsNull ? nullptr : &Int79_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int79_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt79OrNull() const { if (Int79_IsSet) return (Int79_IsNull ? nullptr : &Int79_Optional); return nullptr; }
+	/** @brief Sets the value of Int79_Optional and also sets Int79_IsSet to true */
+	void SetInt79(const int32& NewValue) { Int79_Optional = NewValue; Int79_IsSet = true; Int79_IsNull = false; }
+	/** @brief Sets the value of Int79_Optional and also sets Int79_IsSet to true using move semantics */
+	void SetInt79(int32&& NewValue) { Int79_Optional = NewValue; Int79_IsSet = true; Int79_IsNull = false; }
+	/** @brief Clears the value of Int79_Optional and sets Int79_IsSet to false */
+	void ClearInt79() { Int79_Optional = 0; Int79_IsSet = false; Int79_IsNull = false; }
+	/** @brief Checks whether Int79_Optional has been set */
+	bool IsInt79Set() const { return Int79_IsSet; }
+	/** @brief Returns true if Int79_Optional is set and matches the default value */
+	bool IsInt79DefaultValue() const { return Int79_IsSet && Int79_Optional == 0; }
+	/** @brief Sets the value of Int79_Optional to its default and also sets Int79_IsSet to true */
+	void SetInt79ToDefault() { SetInt79(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt79ToNull() { Int79_IsSet = true; Int79_IsNull = true; }
+	/** @brief Checks whether Int79_Optional is set to null */
+	bool IsInt79Null() const { return Int79_IsSet && Int79_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int80_Optional{ 0 };
+	/** @brief true if Int80_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int80_IsSet{ false };
+	/** @brief true if Int80_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int80_IsNull{ false };
+	/** @brief Gets the value of Int80_Optional, regardless of it having been set */
+	int32& GetInt80() { return Int80_Optional; }
+	/** @brief Gets the value of Int80_Optional, regardless of it having been set */
+	const int32& GetInt80() const { return Int80_Optional; }
+	/** @brief Gets the value of Int80_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt80(const int32& DefaultValue) const { if (Int80_IsSet) return Int80_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int80_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt80(int32& OutValue) const { if (Int80_IsSet && !Int80_IsNull) OutValue = Int80_Optional; return Int80_IsSet; }
+	/** @brief Returns a pointer to Int80_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt80OrNull() { if (Int80_IsSet) return (Int80_IsNull ? nullptr : &Int80_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int80_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt80OrNull() const { if (Int80_IsSet) return (Int80_IsNull ? nullptr : &Int80_Optional); return nullptr; }
+	/** @brief Sets the value of Int80_Optional and also sets Int80_IsSet to true */
+	void SetInt80(const int32& NewValue) { Int80_Optional = NewValue; Int80_IsSet = true; Int80_IsNull = false; }
+	/** @brief Sets the value of Int80_Optional and also sets Int80_IsSet to true using move semantics */
+	void SetInt80(int32&& NewValue) { Int80_Optional = NewValue; Int80_IsSet = true; Int80_IsNull = false; }
+	/** @brief Clears the value of Int80_Optional and sets Int80_IsSet to false */
+	void ClearInt80() { Int80_Optional = 0; Int80_IsSet = false; Int80_IsNull = false; }
+	/** @brief Checks whether Int80_Optional has been set */
+	bool IsInt80Set() const { return Int80_IsSet; }
+	/** @brief Returns true if Int80_Optional is set and matches the default value */
+	bool IsInt80DefaultValue() const { return Int80_IsSet && Int80_Optional == 0; }
+	/** @brief Sets the value of Int80_Optional to its default and also sets Int80_IsSet to true */
+	void SetInt80ToDefault() { SetInt80(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt80ToNull() { Int80_IsSet = true; Int80_IsNull = true; }
+	/** @brief Checks whether Int80_Optional is set to null */
+	bool IsInt80Null() const { return Int80_IsSet && Int80_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int81_Optional{ 0 };
+	/** @brief true if Int81_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int81_IsSet{ false };
+	/** @brief true if Int81_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int81_IsNull{ false };
+	/** @brief Gets the value of Int81_Optional, regardless of it having been set */
+	int32& GetInt81() { return Int81_Optional; }
+	/** @brief Gets the value of Int81_Optional, regardless of it having been set */
+	const int32& GetInt81() const { return Int81_Optional; }
+	/** @brief Gets the value of Int81_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt81(const int32& DefaultValue) const { if (Int81_IsSet) return Int81_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int81_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt81(int32& OutValue) const { if (Int81_IsSet && !Int81_IsNull) OutValue = Int81_Optional; return Int81_IsSet; }
+	/** @brief Returns a pointer to Int81_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt81OrNull() { if (Int81_IsSet) return (Int81_IsNull ? nullptr : &Int81_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int81_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt81OrNull() const { if (Int81_IsSet) return (Int81_IsNull ? nullptr : &Int81_Optional); return nullptr; }
+	/** @brief Sets the value of Int81_Optional and also sets Int81_IsSet to true */
+	void SetInt81(const int32& NewValue) { Int81_Optional = NewValue; Int81_IsSet = true; Int81_IsNull = false; }
+	/** @brief Sets the value of Int81_Optional and also sets Int81_IsSet to true using move semantics */
+	void SetInt81(int32&& NewValue) { Int81_Optional = NewValue; Int81_IsSet = true; Int81_IsNull = false; }
+	/** @brief Clears the value of Int81_Optional and sets Int81_IsSet to false */
+	void ClearInt81() { Int81_Optional = 0; Int81_IsSet = false; Int81_IsNull = false; }
+	/** @brief Checks whether Int81_Optional has been set */
+	bool IsInt81Set() const { return Int81_IsSet; }
+	/** @brief Returns true if Int81_Optional is set and matches the default value */
+	bool IsInt81DefaultValue() const { return Int81_IsSet && Int81_Optional == 0; }
+	/** @brief Sets the value of Int81_Optional to its default and also sets Int81_IsSet to true */
+	void SetInt81ToDefault() { SetInt81(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt81ToNull() { Int81_IsSet = true; Int81_IsNull = true; }
+	/** @brief Checks whether Int81_Optional is set to null */
+	bool IsInt81Null() const { return Int81_IsSet && Int81_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int82_Optional{ 0 };
+	/** @brief true if Int82_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int82_IsSet{ false };
+	/** @brief true if Int82_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int82_IsNull{ false };
+	/** @brief Gets the value of Int82_Optional, regardless of it having been set */
+	int32& GetInt82() { return Int82_Optional; }
+	/** @brief Gets the value of Int82_Optional, regardless of it having been set */
+	const int32& GetInt82() const { return Int82_Optional; }
+	/** @brief Gets the value of Int82_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt82(const int32& DefaultValue) const { if (Int82_IsSet) return Int82_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int82_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt82(int32& OutValue) const { if (Int82_IsSet && !Int82_IsNull) OutValue = Int82_Optional; return Int82_IsSet; }
+	/** @brief Returns a pointer to Int82_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt82OrNull() { if (Int82_IsSet) return (Int82_IsNull ? nullptr : &Int82_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int82_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt82OrNull() const { if (Int82_IsSet) return (Int82_IsNull ? nullptr : &Int82_Optional); return nullptr; }
+	/** @brief Sets the value of Int82_Optional and also sets Int82_IsSet to true */
+	void SetInt82(const int32& NewValue) { Int82_Optional = NewValue; Int82_IsSet = true; Int82_IsNull = false; }
+	/** @brief Sets the value of Int82_Optional and also sets Int82_IsSet to true using move semantics */
+	void SetInt82(int32&& NewValue) { Int82_Optional = NewValue; Int82_IsSet = true; Int82_IsNull = false; }
+	/** @brief Clears the value of Int82_Optional and sets Int82_IsSet to false */
+	void ClearInt82() { Int82_Optional = 0; Int82_IsSet = false; Int82_IsNull = false; }
+	/** @brief Checks whether Int82_Optional has been set */
+	bool IsInt82Set() const { return Int82_IsSet; }
+	/** @brief Returns true if Int82_Optional is set and matches the default value */
+	bool IsInt82DefaultValue() const { return Int82_IsSet && Int82_Optional == 0; }
+	/** @brief Sets the value of Int82_Optional to its default and also sets Int82_IsSet to true */
+	void SetInt82ToDefault() { SetInt82(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt82ToNull() { Int82_IsSet = true; Int82_IsNull = true; }
+	/** @brief Checks whether Int82_Optional is set to null */
+	bool IsInt82Null() const { return Int82_IsSet && Int82_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int83_Optional{ 0 };
+	/** @brief true if Int83_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int83_IsSet{ false };
+	/** @brief true if Int83_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int83_IsNull{ false };
+	/** @brief Gets the value of Int83_Optional, regardless of it having been set */
+	int32& GetInt83() { return Int83_Optional; }
+	/** @brief Gets the value of Int83_Optional, regardless of it having been set */
+	const int32& GetInt83() const { return Int83_Optional; }
+	/** @brief Gets the value of Int83_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt83(const int32& DefaultValue) const { if (Int83_IsSet) return Int83_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int83_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt83(int32& OutValue) const { if (Int83_IsSet && !Int83_IsNull) OutValue = Int83_Optional; return Int83_IsSet; }
+	/** @brief Returns a pointer to Int83_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt83OrNull() { if (Int83_IsSet) return (Int83_IsNull ? nullptr : &Int83_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int83_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt83OrNull() const { if (Int83_IsSet) return (Int83_IsNull ? nullptr : &Int83_Optional); return nullptr; }
+	/** @brief Sets the value of Int83_Optional and also sets Int83_IsSet to true */
+	void SetInt83(const int32& NewValue) { Int83_Optional = NewValue; Int83_IsSet = true; Int83_IsNull = false; }
+	/** @brief Sets the value of Int83_Optional and also sets Int83_IsSet to true using move semantics */
+	void SetInt83(int32&& NewValue) { Int83_Optional = NewValue; Int83_IsSet = true; Int83_IsNull = false; }
+	/** @brief Clears the value of Int83_Optional and sets Int83_IsSet to false */
+	void ClearInt83() { Int83_Optional = 0; Int83_IsSet = false; Int83_IsNull = false; }
+	/** @brief Checks whether Int83_Optional has been set */
+	bool IsInt83Set() const { return Int83_IsSet; }
+	/** @brief Returns true if Int83_Optional is set and matches the default value */
+	bool IsInt83DefaultValue() const { return Int83_IsSet && Int83_Optional == 0; }
+	/** @brief Sets the value of Int83_Optional to its default and also sets Int83_IsSet to true */
+	void SetInt83ToDefault() { SetInt83(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt83ToNull() { Int83_IsSet = true; Int83_IsNull = true; }
+	/** @brief Checks whether Int83_Optional is set to null */
+	bool IsInt83Null() const { return Int83_IsSet && Int83_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int84_Optional{ 0 };
+	/** @brief true if Int84_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int84_IsSet{ false };
+	/** @brief true if Int84_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int84_IsNull{ false };
+	/** @brief Gets the value of Int84_Optional, regardless of it having been set */
+	int32& GetInt84() { return Int84_Optional; }
+	/** @brief Gets the value of Int84_Optional, regardless of it having been set */
+	const int32& GetInt84() const { return Int84_Optional; }
+	/** @brief Gets the value of Int84_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt84(const int32& DefaultValue) const { if (Int84_IsSet) return Int84_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int84_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt84(int32& OutValue) const { if (Int84_IsSet && !Int84_IsNull) OutValue = Int84_Optional; return Int84_IsSet; }
+	/** @brief Returns a pointer to Int84_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt84OrNull() { if (Int84_IsSet) return (Int84_IsNull ? nullptr : &Int84_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int84_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt84OrNull() const { if (Int84_IsSet) return (Int84_IsNull ? nullptr : &Int84_Optional); return nullptr; }
+	/** @brief Sets the value of Int84_Optional and also sets Int84_IsSet to true */
+	void SetInt84(const int32& NewValue) { Int84_Optional = NewValue; Int84_IsSet = true; Int84_IsNull = false; }
+	/** @brief Sets the value of Int84_Optional and also sets Int84_IsSet to true using move semantics */
+	void SetInt84(int32&& NewValue) { Int84_Optional = NewValue; Int84_IsSet = true; Int84_IsNull = false; }
+	/** @brief Clears the value of Int84_Optional and sets Int84_IsSet to false */
+	void ClearInt84() { Int84_Optional = 0; Int84_IsSet = false; Int84_IsNull = false; }
+	/** @brief Checks whether Int84_Optional has been set */
+	bool IsInt84Set() const { return Int84_IsSet; }
+	/** @brief Returns true if Int84_Optional is set and matches the default value */
+	bool IsInt84DefaultValue() const { return Int84_IsSet && Int84_Optional == 0; }
+	/** @brief Sets the value of Int84_Optional to its default and also sets Int84_IsSet to true */
+	void SetInt84ToDefault() { SetInt84(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt84ToNull() { Int84_IsSet = true; Int84_IsNull = true; }
+	/** @brief Checks whether Int84_Optional is set to null */
+	bool IsInt84Null() const { return Int84_IsSet && Int84_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int85_Optional{ 0 };
+	/** @brief true if Int85_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int85_IsSet{ false };
+	/** @brief true if Int85_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int85_IsNull{ false };
+	/** @brief Gets the value of Int85_Optional, regardless of it having been set */
+	int32& GetInt85() { return Int85_Optional; }
+	/** @brief Gets the value of Int85_Optional, regardless of it having been set */
+	const int32& GetInt85() const { return Int85_Optional; }
+	/** @brief Gets the value of Int85_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt85(const int32& DefaultValue) const { if (Int85_IsSet) return Int85_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int85_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt85(int32& OutValue) const { if (Int85_IsSet && !Int85_IsNull) OutValue = Int85_Optional; return Int85_IsSet; }
+	/** @brief Returns a pointer to Int85_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt85OrNull() { if (Int85_IsSet) return (Int85_IsNull ? nullptr : &Int85_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int85_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt85OrNull() const { if (Int85_IsSet) return (Int85_IsNull ? nullptr : &Int85_Optional); return nullptr; }
+	/** @brief Sets the value of Int85_Optional and also sets Int85_IsSet to true */
+	void SetInt85(const int32& NewValue) { Int85_Optional = NewValue; Int85_IsSet = true; Int85_IsNull = false; }
+	/** @brief Sets the value of Int85_Optional and also sets Int85_IsSet to true using move semantics */
+	void SetInt85(int32&& NewValue) { Int85_Optional = NewValue; Int85_IsSet = true; Int85_IsNull = false; }
+	/** @brief Clears the value of Int85_Optional and sets Int85_IsSet to false */
+	void ClearInt85() { Int85_Optional = 0; Int85_IsSet = false; Int85_IsNull = false; }
+	/** @brief Checks whether Int85_Optional has been set */
+	bool IsInt85Set() const { return Int85_IsSet; }
+	/** @brief Returns true if Int85_Optional is set and matches the default value */
+	bool IsInt85DefaultValue() const { return Int85_IsSet && Int85_Optional == 0; }
+	/** @brief Sets the value of Int85_Optional to its default and also sets Int85_IsSet to true */
+	void SetInt85ToDefault() { SetInt85(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt85ToNull() { Int85_IsSet = true; Int85_IsNull = true; }
+	/** @brief Checks whether Int85_Optional is set to null */
+	bool IsInt85Null() const { return Int85_IsSet && Int85_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int86_Optional{ 0 };
+	/** @brief true if Int86_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int86_IsSet{ false };
+	/** @brief true if Int86_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int86_IsNull{ false };
+	/** @brief Gets the value of Int86_Optional, regardless of it having been set */
+	int32& GetInt86() { return Int86_Optional; }
+	/** @brief Gets the value of Int86_Optional, regardless of it having been set */
+	const int32& GetInt86() const { return Int86_Optional; }
+	/** @brief Gets the value of Int86_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt86(const int32& DefaultValue) const { if (Int86_IsSet) return Int86_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int86_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt86(int32& OutValue) const { if (Int86_IsSet && !Int86_IsNull) OutValue = Int86_Optional; return Int86_IsSet; }
+	/** @brief Returns a pointer to Int86_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt86OrNull() { if (Int86_IsSet) return (Int86_IsNull ? nullptr : &Int86_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int86_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt86OrNull() const { if (Int86_IsSet) return (Int86_IsNull ? nullptr : &Int86_Optional); return nullptr; }
+	/** @brief Sets the value of Int86_Optional and also sets Int86_IsSet to true */
+	void SetInt86(const int32& NewValue) { Int86_Optional = NewValue; Int86_IsSet = true; Int86_IsNull = false; }
+	/** @brief Sets the value of Int86_Optional and also sets Int86_IsSet to true using move semantics */
+	void SetInt86(int32&& NewValue) { Int86_Optional = NewValue; Int86_IsSet = true; Int86_IsNull = false; }
+	/** @brief Clears the value of Int86_Optional and sets Int86_IsSet to false */
+	void ClearInt86() { Int86_Optional = 0; Int86_IsSet = false; Int86_IsNull = false; }
+	/** @brief Checks whether Int86_Optional has been set */
+	bool IsInt86Set() const { return Int86_IsSet; }
+	/** @brief Returns true if Int86_Optional is set and matches the default value */
+	bool IsInt86DefaultValue() const { return Int86_IsSet && Int86_Optional == 0; }
+	/** @brief Sets the value of Int86_Optional to its default and also sets Int86_IsSet to true */
+	void SetInt86ToDefault() { SetInt86(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt86ToNull() { Int86_IsSet = true; Int86_IsNull = true; }
+	/** @brief Checks whether Int86_Optional is set to null */
+	bool IsInt86Null() const { return Int86_IsSet && Int86_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int87_Optional{ 0 };
+	/** @brief true if Int87_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int87_IsSet{ false };
+	/** @brief true if Int87_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int87_IsNull{ false };
+	/** @brief Gets the value of Int87_Optional, regardless of it having been set */
+	int32& GetInt87() { return Int87_Optional; }
+	/** @brief Gets the value of Int87_Optional, regardless of it having been set */
+	const int32& GetInt87() const { return Int87_Optional; }
+	/** @brief Gets the value of Int87_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt87(const int32& DefaultValue) const { if (Int87_IsSet) return Int87_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int87_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt87(int32& OutValue) const { if (Int87_IsSet && !Int87_IsNull) OutValue = Int87_Optional; return Int87_IsSet; }
+	/** @brief Returns a pointer to Int87_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt87OrNull() { if (Int87_IsSet) return (Int87_IsNull ? nullptr : &Int87_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int87_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt87OrNull() const { if (Int87_IsSet) return (Int87_IsNull ? nullptr : &Int87_Optional); return nullptr; }
+	/** @brief Sets the value of Int87_Optional and also sets Int87_IsSet to true */
+	void SetInt87(const int32& NewValue) { Int87_Optional = NewValue; Int87_IsSet = true; Int87_IsNull = false; }
+	/** @brief Sets the value of Int87_Optional and also sets Int87_IsSet to true using move semantics */
+	void SetInt87(int32&& NewValue) { Int87_Optional = NewValue; Int87_IsSet = true; Int87_IsNull = false; }
+	/** @brief Clears the value of Int87_Optional and sets Int87_IsSet to false */
+	void ClearInt87() { Int87_Optional = 0; Int87_IsSet = false; Int87_IsNull = false; }
+	/** @brief Checks whether Int87_Optional has been set */
+	bool IsInt87Set() const { return Int87_IsSet; }
+	/** @brief Returns true if Int87_Optional is set and matches the default value */
+	bool IsInt87DefaultValue() const { return Int87_IsSet && Int87_Optional == 0; }
+	/** @brief Sets the value of Int87_Optional to its default and also sets Int87_IsSet to true */
+	void SetInt87ToDefault() { SetInt87(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt87ToNull() { Int87_IsSet = true; Int87_IsNull = true; }
+	/** @brief Checks whether Int87_Optional is set to null */
+	bool IsInt87Null() const { return Int87_IsSet && Int87_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int88_Optional{ 0 };
+	/** @brief true if Int88_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int88_IsSet{ false };
+	/** @brief true if Int88_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int88_IsNull{ false };
+	/** @brief Gets the value of Int88_Optional, regardless of it having been set */
+	int32& GetInt88() { return Int88_Optional; }
+	/** @brief Gets the value of Int88_Optional, regardless of it having been set */
+	const int32& GetInt88() const { return Int88_Optional; }
+	/** @brief Gets the value of Int88_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt88(const int32& DefaultValue) const { if (Int88_IsSet) return Int88_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int88_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt88(int32& OutValue) const { if (Int88_IsSet && !Int88_IsNull) OutValue = Int88_Optional; return Int88_IsSet; }
+	/** @brief Returns a pointer to Int88_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt88OrNull() { if (Int88_IsSet) return (Int88_IsNull ? nullptr : &Int88_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int88_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt88OrNull() const { if (Int88_IsSet) return (Int88_IsNull ? nullptr : &Int88_Optional); return nullptr; }
+	/** @brief Sets the value of Int88_Optional and also sets Int88_IsSet to true */
+	void SetInt88(const int32& NewValue) { Int88_Optional = NewValue; Int88_IsSet = true; Int88_IsNull = false; }
+	/** @brief Sets the value of Int88_Optional and also sets Int88_IsSet to true using move semantics */
+	void SetInt88(int32&& NewValue) { Int88_Optional = NewValue; Int88_IsSet = true; Int88_IsNull = false; }
+	/** @brief Clears the value of Int88_Optional and sets Int88_IsSet to false */
+	void ClearInt88() { Int88_Optional = 0; Int88_IsSet = false; Int88_IsNull = false; }
+	/** @brief Checks whether Int88_Optional has been set */
+	bool IsInt88Set() const { return Int88_IsSet; }
+	/** @brief Returns true if Int88_Optional is set and matches the default value */
+	bool IsInt88DefaultValue() const { return Int88_IsSet && Int88_Optional == 0; }
+	/** @brief Sets the value of Int88_Optional to its default and also sets Int88_IsSet to true */
+	void SetInt88ToDefault() { SetInt88(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt88ToNull() { Int88_IsSet = true; Int88_IsNull = true; }
+	/** @brief Checks whether Int88_Optional is set to null */
+	bool IsInt88Null() const { return Int88_IsSet && Int88_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int89_Optional{ 0 };
+	/** @brief true if Int89_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int89_IsSet{ false };
+	/** @brief true if Int89_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int89_IsNull{ false };
+	/** @brief Gets the value of Int89_Optional, regardless of it having been set */
+	int32& GetInt89() { return Int89_Optional; }
+	/** @brief Gets the value of Int89_Optional, regardless of it having been set */
+	const int32& GetInt89() const { return Int89_Optional; }
+	/** @brief Gets the value of Int89_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt89(const int32& DefaultValue) const { if (Int89_IsSet) return Int89_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int89_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt89(int32& OutValue) const { if (Int89_IsSet && !Int89_IsNull) OutValue = Int89_Optional; return Int89_IsSet; }
+	/** @brief Returns a pointer to Int89_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt89OrNull() { if (Int89_IsSet) return (Int89_IsNull ? nullptr : &Int89_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int89_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt89OrNull() const { if (Int89_IsSet) return (Int89_IsNull ? nullptr : &Int89_Optional); return nullptr; }
+	/** @brief Sets the value of Int89_Optional and also sets Int89_IsSet to true */
+	void SetInt89(const int32& NewValue) { Int89_Optional = NewValue; Int89_IsSet = true; Int89_IsNull = false; }
+	/** @brief Sets the value of Int89_Optional and also sets Int89_IsSet to true using move semantics */
+	void SetInt89(int32&& NewValue) { Int89_Optional = NewValue; Int89_IsSet = true; Int89_IsNull = false; }
+	/** @brief Clears the value of Int89_Optional and sets Int89_IsSet to false */
+	void ClearInt89() { Int89_Optional = 0; Int89_IsSet = false; Int89_IsNull = false; }
+	/** @brief Checks whether Int89_Optional has been set */
+	bool IsInt89Set() const { return Int89_IsSet; }
+	/** @brief Returns true if Int89_Optional is set and matches the default value */
+	bool IsInt89DefaultValue() const { return Int89_IsSet && Int89_Optional == 0; }
+	/** @brief Sets the value of Int89_Optional to its default and also sets Int89_IsSet to true */
+	void SetInt89ToDefault() { SetInt89(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt89ToNull() { Int89_IsSet = true; Int89_IsNull = true; }
+	/** @brief Checks whether Int89_Optional is set to null */
+	bool IsInt89Null() const { return Int89_IsSet && Int89_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int90_Optional{ 0 };
+	/** @brief true if Int90_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int90_IsSet{ false };
+	/** @brief true if Int90_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int90_IsNull{ false };
+	/** @brief Gets the value of Int90_Optional, regardless of it having been set */
+	int32& GetInt90() { return Int90_Optional; }
+	/** @brief Gets the value of Int90_Optional, regardless of it having been set */
+	const int32& GetInt90() const { return Int90_Optional; }
+	/** @brief Gets the value of Int90_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt90(const int32& DefaultValue) const { if (Int90_IsSet) return Int90_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int90_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt90(int32& OutValue) const { if (Int90_IsSet && !Int90_IsNull) OutValue = Int90_Optional; return Int90_IsSet; }
+	/** @brief Returns a pointer to Int90_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt90OrNull() { if (Int90_IsSet) return (Int90_IsNull ? nullptr : &Int90_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int90_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt90OrNull() const { if (Int90_IsSet) return (Int90_IsNull ? nullptr : &Int90_Optional); return nullptr; }
+	/** @brief Sets the value of Int90_Optional and also sets Int90_IsSet to true */
+	void SetInt90(const int32& NewValue) { Int90_Optional = NewValue; Int90_IsSet = true; Int90_IsNull = false; }
+	/** @brief Sets the value of Int90_Optional and also sets Int90_IsSet to true using move semantics */
+	void SetInt90(int32&& NewValue) { Int90_Optional = NewValue; Int90_IsSet = true; Int90_IsNull = false; }
+	/** @brief Clears the value of Int90_Optional and sets Int90_IsSet to false */
+	void ClearInt90() { Int90_Optional = 0; Int90_IsSet = false; Int90_IsNull = false; }
+	/** @brief Checks whether Int90_Optional has been set */
+	bool IsInt90Set() const { return Int90_IsSet; }
+	/** @brief Returns true if Int90_Optional is set and matches the default value */
+	bool IsInt90DefaultValue() const { return Int90_IsSet && Int90_Optional == 0; }
+	/** @brief Sets the value of Int90_Optional to its default and also sets Int90_IsSet to true */
+	void SetInt90ToDefault() { SetInt90(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt90ToNull() { Int90_IsSet = true; Int90_IsNull = true; }
+	/** @brief Checks whether Int90_Optional is set to null */
+	bool IsInt90Null() const { return Int90_IsSet && Int90_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int91_Optional{ 0 };
+	/** @brief true if Int91_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int91_IsSet{ false };
+	/** @brief true if Int91_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int91_IsNull{ false };
+	/** @brief Gets the value of Int91_Optional, regardless of it having been set */
+	int32& GetInt91() { return Int91_Optional; }
+	/** @brief Gets the value of Int91_Optional, regardless of it having been set */
+	const int32& GetInt91() const { return Int91_Optional; }
+	/** @brief Gets the value of Int91_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt91(const int32& DefaultValue) const { if (Int91_IsSet) return Int91_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int91_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt91(int32& OutValue) const { if (Int91_IsSet && !Int91_IsNull) OutValue = Int91_Optional; return Int91_IsSet; }
+	/** @brief Returns a pointer to Int91_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt91OrNull() { if (Int91_IsSet) return (Int91_IsNull ? nullptr : &Int91_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int91_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt91OrNull() const { if (Int91_IsSet) return (Int91_IsNull ? nullptr : &Int91_Optional); return nullptr; }
+	/** @brief Sets the value of Int91_Optional and also sets Int91_IsSet to true */
+	void SetInt91(const int32& NewValue) { Int91_Optional = NewValue; Int91_IsSet = true; Int91_IsNull = false; }
+	/** @brief Sets the value of Int91_Optional and also sets Int91_IsSet to true using move semantics */
+	void SetInt91(int32&& NewValue) { Int91_Optional = NewValue; Int91_IsSet = true; Int91_IsNull = false; }
+	/** @brief Clears the value of Int91_Optional and sets Int91_IsSet to false */
+	void ClearInt91() { Int91_Optional = 0; Int91_IsSet = false; Int91_IsNull = false; }
+	/** @brief Checks whether Int91_Optional has been set */
+	bool IsInt91Set() const { return Int91_IsSet; }
+	/** @brief Returns true if Int91_Optional is set and matches the default value */
+	bool IsInt91DefaultValue() const { return Int91_IsSet && Int91_Optional == 0; }
+	/** @brief Sets the value of Int91_Optional to its default and also sets Int91_IsSet to true */
+	void SetInt91ToDefault() { SetInt91(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt91ToNull() { Int91_IsSet = true; Int91_IsNull = true; }
+	/** @brief Checks whether Int91_Optional is set to null */
+	bool IsInt91Null() const { return Int91_IsSet && Int91_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int92_Optional{ 0 };
+	/** @brief true if Int92_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int92_IsSet{ false };
+	/** @brief true if Int92_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int92_IsNull{ false };
+	/** @brief Gets the value of Int92_Optional, regardless of it having been set */
+	int32& GetInt92() { return Int92_Optional; }
+	/** @brief Gets the value of Int92_Optional, regardless of it having been set */
+	const int32& GetInt92() const { return Int92_Optional; }
+	/** @brief Gets the value of Int92_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt92(const int32& DefaultValue) const { if (Int92_IsSet) return Int92_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int92_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt92(int32& OutValue) const { if (Int92_IsSet && !Int92_IsNull) OutValue = Int92_Optional; return Int92_IsSet; }
+	/** @brief Returns a pointer to Int92_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt92OrNull() { if (Int92_IsSet) return (Int92_IsNull ? nullptr : &Int92_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int92_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt92OrNull() const { if (Int92_IsSet) return (Int92_IsNull ? nullptr : &Int92_Optional); return nullptr; }
+	/** @brief Sets the value of Int92_Optional and also sets Int92_IsSet to true */
+	void SetInt92(const int32& NewValue) { Int92_Optional = NewValue; Int92_IsSet = true; Int92_IsNull = false; }
+	/** @brief Sets the value of Int92_Optional and also sets Int92_IsSet to true using move semantics */
+	void SetInt92(int32&& NewValue) { Int92_Optional = NewValue; Int92_IsSet = true; Int92_IsNull = false; }
+	/** @brief Clears the value of Int92_Optional and sets Int92_IsSet to false */
+	void ClearInt92() { Int92_Optional = 0; Int92_IsSet = false; Int92_IsNull = false; }
+	/** @brief Checks whether Int92_Optional has been set */
+	bool IsInt92Set() const { return Int92_IsSet; }
+	/** @brief Returns true if Int92_Optional is set and matches the default value */
+	bool IsInt92DefaultValue() const { return Int92_IsSet && Int92_Optional == 0; }
+	/** @brief Sets the value of Int92_Optional to its default and also sets Int92_IsSet to true */
+	void SetInt92ToDefault() { SetInt92(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt92ToNull() { Int92_IsSet = true; Int92_IsNull = true; }
+	/** @brief Checks whether Int92_Optional is set to null */
+	bool IsInt92Null() const { return Int92_IsSet && Int92_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int93_Optional{ 0 };
+	/** @brief true if Int93_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int93_IsSet{ false };
+	/** @brief true if Int93_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int93_IsNull{ false };
+	/** @brief Gets the value of Int93_Optional, regardless of it having been set */
+	int32& GetInt93() { return Int93_Optional; }
+	/** @brief Gets the value of Int93_Optional, regardless of it having been set */
+	const int32& GetInt93() const { return Int93_Optional; }
+	/** @brief Gets the value of Int93_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt93(const int32& DefaultValue) const { if (Int93_IsSet) return Int93_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int93_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt93(int32& OutValue) const { if (Int93_IsSet && !Int93_IsNull) OutValue = Int93_Optional; return Int93_IsSet; }
+	/** @brief Returns a pointer to Int93_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt93OrNull() { if (Int93_IsSet) return (Int93_IsNull ? nullptr : &Int93_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int93_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt93OrNull() const { if (Int93_IsSet) return (Int93_IsNull ? nullptr : &Int93_Optional); return nullptr; }
+	/** @brief Sets the value of Int93_Optional and also sets Int93_IsSet to true */
+	void SetInt93(const int32& NewValue) { Int93_Optional = NewValue; Int93_IsSet = true; Int93_IsNull = false; }
+	/** @brief Sets the value of Int93_Optional and also sets Int93_IsSet to true using move semantics */
+	void SetInt93(int32&& NewValue) { Int93_Optional = NewValue; Int93_IsSet = true; Int93_IsNull = false; }
+	/** @brief Clears the value of Int93_Optional and sets Int93_IsSet to false */
+	void ClearInt93() { Int93_Optional = 0; Int93_IsSet = false; Int93_IsNull = false; }
+	/** @brief Checks whether Int93_Optional has been set */
+	bool IsInt93Set() const { return Int93_IsSet; }
+	/** @brief Returns true if Int93_Optional is set and matches the default value */
+	bool IsInt93DefaultValue() const { return Int93_IsSet && Int93_Optional == 0; }
+	/** @brief Sets the value of Int93_Optional to its default and also sets Int93_IsSet to true */
+	void SetInt93ToDefault() { SetInt93(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt93ToNull() { Int93_IsSet = true; Int93_IsNull = true; }
+	/** @brief Checks whether Int93_Optional is set to null */
+	bool IsInt93Null() const { return Int93_IsSet && Int93_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int94_Optional{ 0 };
+	/** @brief true if Int94_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int94_IsSet{ false };
+	/** @brief true if Int94_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int94_IsNull{ false };
+	/** @brief Gets the value of Int94_Optional, regardless of it having been set */
+	int32& GetInt94() { return Int94_Optional; }
+	/** @brief Gets the value of Int94_Optional, regardless of it having been set */
+	const int32& GetInt94() const { return Int94_Optional; }
+	/** @brief Gets the value of Int94_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt94(const int32& DefaultValue) const { if (Int94_IsSet) return Int94_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int94_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt94(int32& OutValue) const { if (Int94_IsSet && !Int94_IsNull) OutValue = Int94_Optional; return Int94_IsSet; }
+	/** @brief Returns a pointer to Int94_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt94OrNull() { if (Int94_IsSet) return (Int94_IsNull ? nullptr : &Int94_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int94_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt94OrNull() const { if (Int94_IsSet) return (Int94_IsNull ? nullptr : &Int94_Optional); return nullptr; }
+	/** @brief Sets the value of Int94_Optional and also sets Int94_IsSet to true */
+	void SetInt94(const int32& NewValue) { Int94_Optional = NewValue; Int94_IsSet = true; Int94_IsNull = false; }
+	/** @brief Sets the value of Int94_Optional and also sets Int94_IsSet to true using move semantics */
+	void SetInt94(int32&& NewValue) { Int94_Optional = NewValue; Int94_IsSet = true; Int94_IsNull = false; }
+	/** @brief Clears the value of Int94_Optional and sets Int94_IsSet to false */
+	void ClearInt94() { Int94_Optional = 0; Int94_IsSet = false; Int94_IsNull = false; }
+	/** @brief Checks whether Int94_Optional has been set */
+	bool IsInt94Set() const { return Int94_IsSet; }
+	/** @brief Returns true if Int94_Optional is set and matches the default value */
+	bool IsInt94DefaultValue() const { return Int94_IsSet && Int94_Optional == 0; }
+	/** @brief Sets the value of Int94_Optional to its default and also sets Int94_IsSet to true */
+	void SetInt94ToDefault() { SetInt94(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt94ToNull() { Int94_IsSet = true; Int94_IsNull = true; }
+	/** @brief Checks whether Int94_Optional is set to null */
+	bool IsInt94Null() const { return Int94_IsSet && Int94_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int95_Optional{ 0 };
+	/** @brief true if Int95_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int95_IsSet{ false };
+	/** @brief true if Int95_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int95_IsNull{ false };
+	/** @brief Gets the value of Int95_Optional, regardless of it having been set */
+	int32& GetInt95() { return Int95_Optional; }
+	/** @brief Gets the value of Int95_Optional, regardless of it having been set */
+	const int32& GetInt95() const { return Int95_Optional; }
+	/** @brief Gets the value of Int95_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt95(const int32& DefaultValue) const { if (Int95_IsSet) return Int95_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int95_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt95(int32& OutValue) const { if (Int95_IsSet && !Int95_IsNull) OutValue = Int95_Optional; return Int95_IsSet; }
+	/** @brief Returns a pointer to Int95_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt95OrNull() { if (Int95_IsSet) return (Int95_IsNull ? nullptr : &Int95_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int95_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt95OrNull() const { if (Int95_IsSet) return (Int95_IsNull ? nullptr : &Int95_Optional); return nullptr; }
+	/** @brief Sets the value of Int95_Optional and also sets Int95_IsSet to true */
+	void SetInt95(const int32& NewValue) { Int95_Optional = NewValue; Int95_IsSet = true; Int95_IsNull = false; }
+	/** @brief Sets the value of Int95_Optional and also sets Int95_IsSet to true using move semantics */
+	void SetInt95(int32&& NewValue) { Int95_Optional = NewValue; Int95_IsSet = true; Int95_IsNull = false; }
+	/** @brief Clears the value of Int95_Optional and sets Int95_IsSet to false */
+	void ClearInt95() { Int95_Optional = 0; Int95_IsSet = false; Int95_IsNull = false; }
+	/** @brief Checks whether Int95_Optional has been set */
+	bool IsInt95Set() const { return Int95_IsSet; }
+	/** @brief Returns true if Int95_Optional is set and matches the default value */
+	bool IsInt95DefaultValue() const { return Int95_IsSet && Int95_Optional == 0; }
+	/** @brief Sets the value of Int95_Optional to its default and also sets Int95_IsSet to true */
+	void SetInt95ToDefault() { SetInt95(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt95ToNull() { Int95_IsSet = true; Int95_IsNull = true; }
+	/** @brief Checks whether Int95_Optional is set to null */
+	bool IsInt95Null() const { return Int95_IsSet && Int95_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int96_Optional{ 0 };
+	/** @brief true if Int96_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int96_IsSet{ false };
+	/** @brief true if Int96_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int96_IsNull{ false };
+	/** @brief Gets the value of Int96_Optional, regardless of it having been set */
+	int32& GetInt96() { return Int96_Optional; }
+	/** @brief Gets the value of Int96_Optional, regardless of it having been set */
+	const int32& GetInt96() const { return Int96_Optional; }
+	/** @brief Gets the value of Int96_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt96(const int32& DefaultValue) const { if (Int96_IsSet) return Int96_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int96_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt96(int32& OutValue) const { if (Int96_IsSet && !Int96_IsNull) OutValue = Int96_Optional; return Int96_IsSet; }
+	/** @brief Returns a pointer to Int96_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt96OrNull() { if (Int96_IsSet) return (Int96_IsNull ? nullptr : &Int96_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int96_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt96OrNull() const { if (Int96_IsSet) return (Int96_IsNull ? nullptr : &Int96_Optional); return nullptr; }
+	/** @brief Sets the value of Int96_Optional and also sets Int96_IsSet to true */
+	void SetInt96(const int32& NewValue) { Int96_Optional = NewValue; Int96_IsSet = true; Int96_IsNull = false; }
+	/** @brief Sets the value of Int96_Optional and also sets Int96_IsSet to true using move semantics */
+	void SetInt96(int32&& NewValue) { Int96_Optional = NewValue; Int96_IsSet = true; Int96_IsNull = false; }
+	/** @brief Clears the value of Int96_Optional and sets Int96_IsSet to false */
+	void ClearInt96() { Int96_Optional = 0; Int96_IsSet = false; Int96_IsNull = false; }
+	/** @brief Checks whether Int96_Optional has been set */
+	bool IsInt96Set() const { return Int96_IsSet; }
+	/** @brief Returns true if Int96_Optional is set and matches the default value */
+	bool IsInt96DefaultValue() const { return Int96_IsSet && Int96_Optional == 0; }
+	/** @brief Sets the value of Int96_Optional to its default and also sets Int96_IsSet to true */
+	void SetInt96ToDefault() { SetInt96(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt96ToNull() { Int96_IsSet = true; Int96_IsNull = true; }
+	/** @brief Checks whether Int96_Optional is set to null */
+	bool IsInt96Null() const { return Int96_IsSet && Int96_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int97_Optional{ 0 };
+	/** @brief true if Int97_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int97_IsSet{ false };
+	/** @brief true if Int97_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int97_IsNull{ false };
+	/** @brief Gets the value of Int97_Optional, regardless of it having been set */
+	int32& GetInt97() { return Int97_Optional; }
+	/** @brief Gets the value of Int97_Optional, regardless of it having been set */
+	const int32& GetInt97() const { return Int97_Optional; }
+	/** @brief Gets the value of Int97_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt97(const int32& DefaultValue) const { if (Int97_IsSet) return Int97_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int97_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt97(int32& OutValue) const { if (Int97_IsSet && !Int97_IsNull) OutValue = Int97_Optional; return Int97_IsSet; }
+	/** @brief Returns a pointer to Int97_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt97OrNull() { if (Int97_IsSet) return (Int97_IsNull ? nullptr : &Int97_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int97_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt97OrNull() const { if (Int97_IsSet) return (Int97_IsNull ? nullptr : &Int97_Optional); return nullptr; }
+	/** @brief Sets the value of Int97_Optional and also sets Int97_IsSet to true */
+	void SetInt97(const int32& NewValue) { Int97_Optional = NewValue; Int97_IsSet = true; Int97_IsNull = false; }
+	/** @brief Sets the value of Int97_Optional and also sets Int97_IsSet to true using move semantics */
+	void SetInt97(int32&& NewValue) { Int97_Optional = NewValue; Int97_IsSet = true; Int97_IsNull = false; }
+	/** @brief Clears the value of Int97_Optional and sets Int97_IsSet to false */
+	void ClearInt97() { Int97_Optional = 0; Int97_IsSet = false; Int97_IsNull = false; }
+	/** @brief Checks whether Int97_Optional has been set */
+	bool IsInt97Set() const { return Int97_IsSet; }
+	/** @brief Returns true if Int97_Optional is set and matches the default value */
+	bool IsInt97DefaultValue() const { return Int97_IsSet && Int97_Optional == 0; }
+	/** @brief Sets the value of Int97_Optional to its default and also sets Int97_IsSet to true */
+	void SetInt97ToDefault() { SetInt97(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt97ToNull() { Int97_IsSet = true; Int97_IsNull = true; }
+	/** @brief Checks whether Int97_Optional is set to null */
+	bool IsInt97Null() const { return Int97_IsSet && Int97_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int98_Optional{ 0 };
+	/** @brief true if Int98_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int98_IsSet{ false };
+	/** @brief true if Int98_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int98_IsNull{ false };
+	/** @brief Gets the value of Int98_Optional, regardless of it having been set */
+	int32& GetInt98() { return Int98_Optional; }
+	/** @brief Gets the value of Int98_Optional, regardless of it having been set */
+	const int32& GetInt98() const { return Int98_Optional; }
+	/** @brief Gets the value of Int98_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt98(const int32& DefaultValue) const { if (Int98_IsSet) return Int98_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int98_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt98(int32& OutValue) const { if (Int98_IsSet && !Int98_IsNull) OutValue = Int98_Optional; return Int98_IsSet; }
+	/** @brief Returns a pointer to Int98_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt98OrNull() { if (Int98_IsSet) return (Int98_IsNull ? nullptr : &Int98_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int98_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt98OrNull() const { if (Int98_IsSet) return (Int98_IsNull ? nullptr : &Int98_Optional); return nullptr; }
+	/** @brief Sets the value of Int98_Optional and also sets Int98_IsSet to true */
+	void SetInt98(const int32& NewValue) { Int98_Optional = NewValue; Int98_IsSet = true; Int98_IsNull = false; }
+	/** @brief Sets the value of Int98_Optional and also sets Int98_IsSet to true using move semantics */
+	void SetInt98(int32&& NewValue) { Int98_Optional = NewValue; Int98_IsSet = true; Int98_IsNull = false; }
+	/** @brief Clears the value of Int98_Optional and sets Int98_IsSet to false */
+	void ClearInt98() { Int98_Optional = 0; Int98_IsSet = false; Int98_IsNull = false; }
+	/** @brief Checks whether Int98_Optional has been set */
+	bool IsInt98Set() const { return Int98_IsSet; }
+	/** @brief Returns true if Int98_Optional is set and matches the default value */
+	bool IsInt98DefaultValue() const { return Int98_IsSet && Int98_Optional == 0; }
+	/** @brief Sets the value of Int98_Optional to its default and also sets Int98_IsSet to true */
+	void SetInt98ToDefault() { SetInt98(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt98ToNull() { Int98_IsSet = true; Int98_IsNull = true; }
+	/** @brief Checks whether Int98_Optional is set to null */
+	bool IsInt98Null() const { return Int98_IsSet && Int98_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int99_Optional{ 0 };
+	/** @brief true if Int99_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int99_IsSet{ false };
+	/** @brief true if Int99_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int99_IsNull{ false };
+	/** @brief Gets the value of Int99_Optional, regardless of it having been set */
+	int32& GetInt99() { return Int99_Optional; }
+	/** @brief Gets the value of Int99_Optional, regardless of it having been set */
+	const int32& GetInt99() const { return Int99_Optional; }
+	/** @brief Gets the value of Int99_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt99(const int32& DefaultValue) const { if (Int99_IsSet) return Int99_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int99_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt99(int32& OutValue) const { if (Int99_IsSet && !Int99_IsNull) OutValue = Int99_Optional; return Int99_IsSet; }
+	/** @brief Returns a pointer to Int99_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt99OrNull() { if (Int99_IsSet) return (Int99_IsNull ? nullptr : &Int99_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int99_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt99OrNull() const { if (Int99_IsSet) return (Int99_IsNull ? nullptr : &Int99_Optional); return nullptr; }
+	/** @brief Sets the value of Int99_Optional and also sets Int99_IsSet to true */
+	void SetInt99(const int32& NewValue) { Int99_Optional = NewValue; Int99_IsSet = true; Int99_IsNull = false; }
+	/** @brief Sets the value of Int99_Optional and also sets Int99_IsSet to true using move semantics */
+	void SetInt99(int32&& NewValue) { Int99_Optional = NewValue; Int99_IsSet = true; Int99_IsNull = false; }
+	/** @brief Clears the value of Int99_Optional and sets Int99_IsSet to false */
+	void ClearInt99() { Int99_Optional = 0; Int99_IsSet = false; Int99_IsNull = false; }
+	/** @brief Checks whether Int99_Optional has been set */
+	bool IsInt99Set() const { return Int99_IsSet; }
+	/** @brief Returns true if Int99_Optional is set and matches the default value */
+	bool IsInt99DefaultValue() const { return Int99_IsSet && Int99_Optional == 0; }
+	/** @brief Sets the value of Int99_Optional to its default and also sets Int99_IsSet to true */
+	void SetInt99ToDefault() { SetInt99(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt99ToNull() { Int99_IsSet = true; Int99_IsNull = true; }
+	/** @brief Checks whether Int99_Optional is set to null */
+	bool IsInt99Null() const { return Int99_IsSet && Int99_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int100_Optional{ 0 };
+	/** @brief true if Int100_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int100_IsSet{ false };
+	/** @brief true if Int100_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int100_IsNull{ false };
+	/** @brief Gets the value of Int100_Optional, regardless of it having been set */
+	int32& GetInt100() { return Int100_Optional; }
+	/** @brief Gets the value of Int100_Optional, regardless of it having been set */
+	const int32& GetInt100() const { return Int100_Optional; }
+	/** @brief Gets the value of Int100_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt100(const int32& DefaultValue) const { if (Int100_IsSet) return Int100_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int100_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt100(int32& OutValue) const { if (Int100_IsSet && !Int100_IsNull) OutValue = Int100_Optional; return Int100_IsSet; }
+	/** @brief Returns a pointer to Int100_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt100OrNull() { if (Int100_IsSet) return (Int100_IsNull ? nullptr : &Int100_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int100_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt100OrNull() const { if (Int100_IsSet) return (Int100_IsNull ? nullptr : &Int100_Optional); return nullptr; }
+	/** @brief Sets the value of Int100_Optional and also sets Int100_IsSet to true */
+	void SetInt100(const int32& NewValue) { Int100_Optional = NewValue; Int100_IsSet = true; Int100_IsNull = false; }
+	/** @brief Sets the value of Int100_Optional and also sets Int100_IsSet to true using move semantics */
+	void SetInt100(int32&& NewValue) { Int100_Optional = NewValue; Int100_IsSet = true; Int100_IsNull = false; }
+	/** @brief Clears the value of Int100_Optional and sets Int100_IsSet to false */
+	void ClearInt100() { Int100_Optional = 0; Int100_IsSet = false; Int100_IsNull = false; }
+	/** @brief Checks whether Int100_Optional has been set */
+	bool IsInt100Set() const { return Int100_IsSet; }
+	/** @brief Returns true if Int100_Optional is set and matches the default value */
+	bool IsInt100DefaultValue() const { return Int100_IsSet && Int100_Optional == 0; }
+	/** @brief Sets the value of Int100_Optional to its default and also sets Int100_IsSet to true */
+	void SetInt100ToDefault() { SetInt100(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt100ToNull() { Int100_IsSet = true; Int100_IsNull = true; }
+	/** @brief Checks whether Int100_Optional is set to null */
+	bool IsInt100Null() const { return Int100_IsSet && Int100_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int101_Optional{ 0 };
+	/** @brief true if Int101_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int101_IsSet{ false };
+	/** @brief true if Int101_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int101_IsNull{ false };
+	/** @brief Gets the value of Int101_Optional, regardless of it having been set */
+	int32& GetInt101() { return Int101_Optional; }
+	/** @brief Gets the value of Int101_Optional, regardless of it having been set */
+	const int32& GetInt101() const { return Int101_Optional; }
+	/** @brief Gets the value of Int101_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt101(const int32& DefaultValue) const { if (Int101_IsSet) return Int101_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int101_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt101(int32& OutValue) const { if (Int101_IsSet && !Int101_IsNull) OutValue = Int101_Optional; return Int101_IsSet; }
+	/** @brief Returns a pointer to Int101_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt101OrNull() { if (Int101_IsSet) return (Int101_IsNull ? nullptr : &Int101_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int101_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt101OrNull() const { if (Int101_IsSet) return (Int101_IsNull ? nullptr : &Int101_Optional); return nullptr; }
+	/** @brief Sets the value of Int101_Optional and also sets Int101_IsSet to true */
+	void SetInt101(const int32& NewValue) { Int101_Optional = NewValue; Int101_IsSet = true; Int101_IsNull = false; }
+	/** @brief Sets the value of Int101_Optional and also sets Int101_IsSet to true using move semantics */
+	void SetInt101(int32&& NewValue) { Int101_Optional = NewValue; Int101_IsSet = true; Int101_IsNull = false; }
+	/** @brief Clears the value of Int101_Optional and sets Int101_IsSet to false */
+	void ClearInt101() { Int101_Optional = 0; Int101_IsSet = false; Int101_IsNull = false; }
+	/** @brief Checks whether Int101_Optional has been set */
+	bool IsInt101Set() const { return Int101_IsSet; }
+	/** @brief Returns true if Int101_Optional is set and matches the default value */
+	bool IsInt101DefaultValue() const { return Int101_IsSet && Int101_Optional == 0; }
+	/** @brief Sets the value of Int101_Optional to its default and also sets Int101_IsSet to true */
+	void SetInt101ToDefault() { SetInt101(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt101ToNull() { Int101_IsSet = true; Int101_IsNull = true; }
+	/** @brief Checks whether Int101_Optional is set to null */
+	bool IsInt101Null() const { return Int101_IsSet && Int101_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int102_Optional{ 0 };
+	/** @brief true if Int102_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int102_IsSet{ false };
+	/** @brief true if Int102_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int102_IsNull{ false };
+	/** @brief Gets the value of Int102_Optional, regardless of it having been set */
+	int32& GetInt102() { return Int102_Optional; }
+	/** @brief Gets the value of Int102_Optional, regardless of it having been set */
+	const int32& GetInt102() const { return Int102_Optional; }
+	/** @brief Gets the value of Int102_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt102(const int32& DefaultValue) const { if (Int102_IsSet) return Int102_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int102_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt102(int32& OutValue) const { if (Int102_IsSet && !Int102_IsNull) OutValue = Int102_Optional; return Int102_IsSet; }
+	/** @brief Returns a pointer to Int102_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt102OrNull() { if (Int102_IsSet) return (Int102_IsNull ? nullptr : &Int102_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int102_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt102OrNull() const { if (Int102_IsSet) return (Int102_IsNull ? nullptr : &Int102_Optional); return nullptr; }
+	/** @brief Sets the value of Int102_Optional and also sets Int102_IsSet to true */
+	void SetInt102(const int32& NewValue) { Int102_Optional = NewValue; Int102_IsSet = true; Int102_IsNull = false; }
+	/** @brief Sets the value of Int102_Optional and also sets Int102_IsSet to true using move semantics */
+	void SetInt102(int32&& NewValue) { Int102_Optional = NewValue; Int102_IsSet = true; Int102_IsNull = false; }
+	/** @brief Clears the value of Int102_Optional and sets Int102_IsSet to false */
+	void ClearInt102() { Int102_Optional = 0; Int102_IsSet = false; Int102_IsNull = false; }
+	/** @brief Checks whether Int102_Optional has been set */
+	bool IsInt102Set() const { return Int102_IsSet; }
+	/** @brief Returns true if Int102_Optional is set and matches the default value */
+	bool IsInt102DefaultValue() const { return Int102_IsSet && Int102_Optional == 0; }
+	/** @brief Sets the value of Int102_Optional to its default and also sets Int102_IsSet to true */
+	void SetInt102ToDefault() { SetInt102(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt102ToNull() { Int102_IsSet = true; Int102_IsNull = true; }
+	/** @brief Checks whether Int102_Optional is set to null */
+	bool IsInt102Null() const { return Int102_IsSet && Int102_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int103_Optional{ 0 };
+	/** @brief true if Int103_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int103_IsSet{ false };
+	/** @brief true if Int103_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int103_IsNull{ false };
+	/** @brief Gets the value of Int103_Optional, regardless of it having been set */
+	int32& GetInt103() { return Int103_Optional; }
+	/** @brief Gets the value of Int103_Optional, regardless of it having been set */
+	const int32& GetInt103() const { return Int103_Optional; }
+	/** @brief Gets the value of Int103_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt103(const int32& DefaultValue) const { if (Int103_IsSet) return Int103_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int103_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt103(int32& OutValue) const { if (Int103_IsSet && !Int103_IsNull) OutValue = Int103_Optional; return Int103_IsSet; }
+	/** @brief Returns a pointer to Int103_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt103OrNull() { if (Int103_IsSet) return (Int103_IsNull ? nullptr : &Int103_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int103_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt103OrNull() const { if (Int103_IsSet) return (Int103_IsNull ? nullptr : &Int103_Optional); return nullptr; }
+	/** @brief Sets the value of Int103_Optional and also sets Int103_IsSet to true */
+	void SetInt103(const int32& NewValue) { Int103_Optional = NewValue; Int103_IsSet = true; Int103_IsNull = false; }
+	/** @brief Sets the value of Int103_Optional and also sets Int103_IsSet to true using move semantics */
+	void SetInt103(int32&& NewValue) { Int103_Optional = NewValue; Int103_IsSet = true; Int103_IsNull = false; }
+	/** @brief Clears the value of Int103_Optional and sets Int103_IsSet to false */
+	void ClearInt103() { Int103_Optional = 0; Int103_IsSet = false; Int103_IsNull = false; }
+	/** @brief Checks whether Int103_Optional has been set */
+	bool IsInt103Set() const { return Int103_IsSet; }
+	/** @brief Returns true if Int103_Optional is set and matches the default value */
+	bool IsInt103DefaultValue() const { return Int103_IsSet && Int103_Optional == 0; }
+	/** @brief Sets the value of Int103_Optional to its default and also sets Int103_IsSet to true */
+	void SetInt103ToDefault() { SetInt103(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt103ToNull() { Int103_IsSet = true; Int103_IsNull = true; }
+	/** @brief Checks whether Int103_Optional is set to null */
+	bool IsInt103Null() const { return Int103_IsSet && Int103_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int104_Optional{ 0 };
+	/** @brief true if Int104_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int104_IsSet{ false };
+	/** @brief true if Int104_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int104_IsNull{ false };
+	/** @brief Gets the value of Int104_Optional, regardless of it having been set */
+	int32& GetInt104() { return Int104_Optional; }
+	/** @brief Gets the value of Int104_Optional, regardless of it having been set */
+	const int32& GetInt104() const { return Int104_Optional; }
+	/** @brief Gets the value of Int104_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt104(const int32& DefaultValue) const { if (Int104_IsSet) return Int104_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int104_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt104(int32& OutValue) const { if (Int104_IsSet && !Int104_IsNull) OutValue = Int104_Optional; return Int104_IsSet; }
+	/** @brief Returns a pointer to Int104_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt104OrNull() { if (Int104_IsSet) return (Int104_IsNull ? nullptr : &Int104_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int104_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt104OrNull() const { if (Int104_IsSet) return (Int104_IsNull ? nullptr : &Int104_Optional); return nullptr; }
+	/** @brief Sets the value of Int104_Optional and also sets Int104_IsSet to true */
+	void SetInt104(const int32& NewValue) { Int104_Optional = NewValue; Int104_IsSet = true; Int104_IsNull = false; }
+	/** @brief Sets the value of Int104_Optional and also sets Int104_IsSet to true using move semantics */
+	void SetInt104(int32&& NewValue) { Int104_Optional = NewValue; Int104_IsSet = true; Int104_IsNull = false; }
+	/** @brief Clears the value of Int104_Optional and sets Int104_IsSet to false */
+	void ClearInt104() { Int104_Optional = 0; Int104_IsSet = false; Int104_IsNull = false; }
+	/** @brief Checks whether Int104_Optional has been set */
+	bool IsInt104Set() const { return Int104_IsSet; }
+	/** @brief Returns true if Int104_Optional is set and matches the default value */
+	bool IsInt104DefaultValue() const { return Int104_IsSet && Int104_Optional == 0; }
+	/** @brief Sets the value of Int104_Optional to its default and also sets Int104_IsSet to true */
+	void SetInt104ToDefault() { SetInt104(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt104ToNull() { Int104_IsSet = true; Int104_IsNull = true; }
+	/** @brief Checks whether Int104_Optional is set to null */
+	bool IsInt104Null() const { return Int104_IsSet && Int104_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int105_Optional{ 0 };
+	/** @brief true if Int105_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int105_IsSet{ false };
+	/** @brief true if Int105_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int105_IsNull{ false };
+	/** @brief Gets the value of Int105_Optional, regardless of it having been set */
+	int32& GetInt105() { return Int105_Optional; }
+	/** @brief Gets the value of Int105_Optional, regardless of it having been set */
+	const int32& GetInt105() const { return Int105_Optional; }
+	/** @brief Gets the value of Int105_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt105(const int32& DefaultValue) const { if (Int105_IsSet) return Int105_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int105_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt105(int32& OutValue) const { if (Int105_IsSet && !Int105_IsNull) OutValue = Int105_Optional; return Int105_IsSet; }
+	/** @brief Returns a pointer to Int105_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt105OrNull() { if (Int105_IsSet) return (Int105_IsNull ? nullptr : &Int105_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int105_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt105OrNull() const { if (Int105_IsSet) return (Int105_IsNull ? nullptr : &Int105_Optional); return nullptr; }
+	/** @brief Sets the value of Int105_Optional and also sets Int105_IsSet to true */
+	void SetInt105(const int32& NewValue) { Int105_Optional = NewValue; Int105_IsSet = true; Int105_IsNull = false; }
+	/** @brief Sets the value of Int105_Optional and also sets Int105_IsSet to true using move semantics */
+	void SetInt105(int32&& NewValue) { Int105_Optional = NewValue; Int105_IsSet = true; Int105_IsNull = false; }
+	/** @brief Clears the value of Int105_Optional and sets Int105_IsSet to false */
+	void ClearInt105() { Int105_Optional = 0; Int105_IsSet = false; Int105_IsNull = false; }
+	/** @brief Checks whether Int105_Optional has been set */
+	bool IsInt105Set() const { return Int105_IsSet; }
+	/** @brief Returns true if Int105_Optional is set and matches the default value */
+	bool IsInt105DefaultValue() const { return Int105_IsSet && Int105_Optional == 0; }
+	/** @brief Sets the value of Int105_Optional to its default and also sets Int105_IsSet to true */
+	void SetInt105ToDefault() { SetInt105(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt105ToNull() { Int105_IsSet = true; Int105_IsNull = true; }
+	/** @brief Checks whether Int105_Optional is set to null */
+	bool IsInt105Null() const { return Int105_IsSet && Int105_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int106_Optional{ 0 };
+	/** @brief true if Int106_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int106_IsSet{ false };
+	/** @brief true if Int106_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int106_IsNull{ false };
+	/** @brief Gets the value of Int106_Optional, regardless of it having been set */
+	int32& GetInt106() { return Int106_Optional; }
+	/** @brief Gets the value of Int106_Optional, regardless of it having been set */
+	const int32& GetInt106() const { return Int106_Optional; }
+	/** @brief Gets the value of Int106_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt106(const int32& DefaultValue) const { if (Int106_IsSet) return Int106_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int106_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt106(int32& OutValue) const { if (Int106_IsSet && !Int106_IsNull) OutValue = Int106_Optional; return Int106_IsSet; }
+	/** @brief Returns a pointer to Int106_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt106OrNull() { if (Int106_IsSet) return (Int106_IsNull ? nullptr : &Int106_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int106_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt106OrNull() const { if (Int106_IsSet) return (Int106_IsNull ? nullptr : &Int106_Optional); return nullptr; }
+	/** @brief Sets the value of Int106_Optional and also sets Int106_IsSet to true */
+	void SetInt106(const int32& NewValue) { Int106_Optional = NewValue; Int106_IsSet = true; Int106_IsNull = false; }
+	/** @brief Sets the value of Int106_Optional and also sets Int106_IsSet to true using move semantics */
+	void SetInt106(int32&& NewValue) { Int106_Optional = NewValue; Int106_IsSet = true; Int106_IsNull = false; }
+	/** @brief Clears the value of Int106_Optional and sets Int106_IsSet to false */
+	void ClearInt106() { Int106_Optional = 0; Int106_IsSet = false; Int106_IsNull = false; }
+	/** @brief Checks whether Int106_Optional has been set */
+	bool IsInt106Set() const { return Int106_IsSet; }
+	/** @brief Returns true if Int106_Optional is set and matches the default value */
+	bool IsInt106DefaultValue() const { return Int106_IsSet && Int106_Optional == 0; }
+	/** @brief Sets the value of Int106_Optional to its default and also sets Int106_IsSet to true */
+	void SetInt106ToDefault() { SetInt106(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt106ToNull() { Int106_IsSet = true; Int106_IsNull = true; }
+	/** @brief Checks whether Int106_Optional is set to null */
+	bool IsInt106Null() const { return Int106_IsSet && Int106_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int107_Optional{ 0 };
+	/** @brief true if Int107_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int107_IsSet{ false };
+	/** @brief true if Int107_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int107_IsNull{ false };
+	/** @brief Gets the value of Int107_Optional, regardless of it having been set */
+	int32& GetInt107() { return Int107_Optional; }
+	/** @brief Gets the value of Int107_Optional, regardless of it having been set */
+	const int32& GetInt107() const { return Int107_Optional; }
+	/** @brief Gets the value of Int107_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt107(const int32& DefaultValue) const { if (Int107_IsSet) return Int107_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int107_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt107(int32& OutValue) const { if (Int107_IsSet && !Int107_IsNull) OutValue = Int107_Optional; return Int107_IsSet; }
+	/** @brief Returns a pointer to Int107_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt107OrNull() { if (Int107_IsSet) return (Int107_IsNull ? nullptr : &Int107_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int107_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt107OrNull() const { if (Int107_IsSet) return (Int107_IsNull ? nullptr : &Int107_Optional); return nullptr; }
+	/** @brief Sets the value of Int107_Optional and also sets Int107_IsSet to true */
+	void SetInt107(const int32& NewValue) { Int107_Optional = NewValue; Int107_IsSet = true; Int107_IsNull = false; }
+	/** @brief Sets the value of Int107_Optional and also sets Int107_IsSet to true using move semantics */
+	void SetInt107(int32&& NewValue) { Int107_Optional = NewValue; Int107_IsSet = true; Int107_IsNull = false; }
+	/** @brief Clears the value of Int107_Optional and sets Int107_IsSet to false */
+	void ClearInt107() { Int107_Optional = 0; Int107_IsSet = false; Int107_IsNull = false; }
+	/** @brief Checks whether Int107_Optional has been set */
+	bool IsInt107Set() const { return Int107_IsSet; }
+	/** @brief Returns true if Int107_Optional is set and matches the default value */
+	bool IsInt107DefaultValue() const { return Int107_IsSet && Int107_Optional == 0; }
+	/** @brief Sets the value of Int107_Optional to its default and also sets Int107_IsSet to true */
+	void SetInt107ToDefault() { SetInt107(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt107ToNull() { Int107_IsSet = true; Int107_IsNull = true; }
+	/** @brief Checks whether Int107_Optional is set to null */
+	bool IsInt107Null() const { return Int107_IsSet && Int107_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int108_Optional{ 0 };
+	/** @brief true if Int108_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int108_IsSet{ false };
+	/** @brief true if Int108_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int108_IsNull{ false };
+	/** @brief Gets the value of Int108_Optional, regardless of it having been set */
+	int32& GetInt108() { return Int108_Optional; }
+	/** @brief Gets the value of Int108_Optional, regardless of it having been set */
+	const int32& GetInt108() const { return Int108_Optional; }
+	/** @brief Gets the value of Int108_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt108(const int32& DefaultValue) const { if (Int108_IsSet) return Int108_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int108_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt108(int32& OutValue) const { if (Int108_IsSet && !Int108_IsNull) OutValue = Int108_Optional; return Int108_IsSet; }
+	/** @brief Returns a pointer to Int108_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt108OrNull() { if (Int108_IsSet) return (Int108_IsNull ? nullptr : &Int108_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int108_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt108OrNull() const { if (Int108_IsSet) return (Int108_IsNull ? nullptr : &Int108_Optional); return nullptr; }
+	/** @brief Sets the value of Int108_Optional and also sets Int108_IsSet to true */
+	void SetInt108(const int32& NewValue) { Int108_Optional = NewValue; Int108_IsSet = true; Int108_IsNull = false; }
+	/** @brief Sets the value of Int108_Optional and also sets Int108_IsSet to true using move semantics */
+	void SetInt108(int32&& NewValue) { Int108_Optional = NewValue; Int108_IsSet = true; Int108_IsNull = false; }
+	/** @brief Clears the value of Int108_Optional and sets Int108_IsSet to false */
+	void ClearInt108() { Int108_Optional = 0; Int108_IsSet = false; Int108_IsNull = false; }
+	/** @brief Checks whether Int108_Optional has been set */
+	bool IsInt108Set() const { return Int108_IsSet; }
+	/** @brief Returns true if Int108_Optional is set and matches the default value */
+	bool IsInt108DefaultValue() const { return Int108_IsSet && Int108_Optional == 0; }
+	/** @brief Sets the value of Int108_Optional to its default and also sets Int108_IsSet to true */
+	void SetInt108ToDefault() { SetInt108(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt108ToNull() { Int108_IsSet = true; Int108_IsNull = true; }
+	/** @brief Checks whether Int108_Optional is set to null */
+	bool IsInt108Null() const { return Int108_IsSet && Int108_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int109_Optional{ 0 };
+	/** @brief true if Int109_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int109_IsSet{ false };
+	/** @brief true if Int109_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int109_IsNull{ false };
+	/** @brief Gets the value of Int109_Optional, regardless of it having been set */
+	int32& GetInt109() { return Int109_Optional; }
+	/** @brief Gets the value of Int109_Optional, regardless of it having been set */
+	const int32& GetInt109() const { return Int109_Optional; }
+	/** @brief Gets the value of Int109_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt109(const int32& DefaultValue) const { if (Int109_IsSet) return Int109_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int109_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt109(int32& OutValue) const { if (Int109_IsSet && !Int109_IsNull) OutValue = Int109_Optional; return Int109_IsSet; }
+	/** @brief Returns a pointer to Int109_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt109OrNull() { if (Int109_IsSet) return (Int109_IsNull ? nullptr : &Int109_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int109_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt109OrNull() const { if (Int109_IsSet) return (Int109_IsNull ? nullptr : &Int109_Optional); return nullptr; }
+	/** @brief Sets the value of Int109_Optional and also sets Int109_IsSet to true */
+	void SetInt109(const int32& NewValue) { Int109_Optional = NewValue; Int109_IsSet = true; Int109_IsNull = false; }
+	/** @brief Sets the value of Int109_Optional and also sets Int109_IsSet to true using move semantics */
+	void SetInt109(int32&& NewValue) { Int109_Optional = NewValue; Int109_IsSet = true; Int109_IsNull = false; }
+	/** @brief Clears the value of Int109_Optional and sets Int109_IsSet to false */
+	void ClearInt109() { Int109_Optional = 0; Int109_IsSet = false; Int109_IsNull = false; }
+	/** @brief Checks whether Int109_Optional has been set */
+	bool IsInt109Set() const { return Int109_IsSet; }
+	/** @brief Returns true if Int109_Optional is set and matches the default value */
+	bool IsInt109DefaultValue() const { return Int109_IsSet && Int109_Optional == 0; }
+	/** @brief Sets the value of Int109_Optional to its default and also sets Int109_IsSet to true */
+	void SetInt109ToDefault() { SetInt109(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt109ToNull() { Int109_IsSet = true; Int109_IsNull = true; }
+	/** @brief Checks whether Int109_Optional is set to null */
+	bool IsInt109Null() const { return Int109_IsSet && Int109_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int110_Optional{ 0 };
+	/** @brief true if Int110_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int110_IsSet{ false };
+	/** @brief true if Int110_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int110_IsNull{ false };
+	/** @brief Gets the value of Int110_Optional, regardless of it having been set */
+	int32& GetInt110() { return Int110_Optional; }
+	/** @brief Gets the value of Int110_Optional, regardless of it having been set */
+	const int32& GetInt110() const { return Int110_Optional; }
+	/** @brief Gets the value of Int110_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt110(const int32& DefaultValue) const { if (Int110_IsSet) return Int110_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int110_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt110(int32& OutValue) const { if (Int110_IsSet && !Int110_IsNull) OutValue = Int110_Optional; return Int110_IsSet; }
+	/** @brief Returns a pointer to Int110_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt110OrNull() { if (Int110_IsSet) return (Int110_IsNull ? nullptr : &Int110_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int110_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt110OrNull() const { if (Int110_IsSet) return (Int110_IsNull ? nullptr : &Int110_Optional); return nullptr; }
+	/** @brief Sets the value of Int110_Optional and also sets Int110_IsSet to true */
+	void SetInt110(const int32& NewValue) { Int110_Optional = NewValue; Int110_IsSet = true; Int110_IsNull = false; }
+	/** @brief Sets the value of Int110_Optional and also sets Int110_IsSet to true using move semantics */
+	void SetInt110(int32&& NewValue) { Int110_Optional = NewValue; Int110_IsSet = true; Int110_IsNull = false; }
+	/** @brief Clears the value of Int110_Optional and sets Int110_IsSet to false */
+	void ClearInt110() { Int110_Optional = 0; Int110_IsSet = false; Int110_IsNull = false; }
+	/** @brief Checks whether Int110_Optional has been set */
+	bool IsInt110Set() const { return Int110_IsSet; }
+	/** @brief Returns true if Int110_Optional is set and matches the default value */
+	bool IsInt110DefaultValue() const { return Int110_IsSet && Int110_Optional == 0; }
+	/** @brief Sets the value of Int110_Optional to its default and also sets Int110_IsSet to true */
+	void SetInt110ToDefault() { SetInt110(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt110ToNull() { Int110_IsSet = true; Int110_IsNull = true; }
+	/** @brief Checks whether Int110_Optional is set to null */
+	bool IsInt110Null() const { return Int110_IsSet && Int110_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int111_Optional{ 0 };
+	/** @brief true if Int111_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int111_IsSet{ false };
+	/** @brief true if Int111_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int111_IsNull{ false };
+	/** @brief Gets the value of Int111_Optional, regardless of it having been set */
+	int32& GetInt111() { return Int111_Optional; }
+	/** @brief Gets the value of Int111_Optional, regardless of it having been set */
+	const int32& GetInt111() const { return Int111_Optional; }
+	/** @brief Gets the value of Int111_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt111(const int32& DefaultValue) const { if (Int111_IsSet) return Int111_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int111_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt111(int32& OutValue) const { if (Int111_IsSet && !Int111_IsNull) OutValue = Int111_Optional; return Int111_IsSet; }
+	/** @brief Returns a pointer to Int111_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt111OrNull() { if (Int111_IsSet) return (Int111_IsNull ? nullptr : &Int111_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int111_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt111OrNull() const { if (Int111_IsSet) return (Int111_IsNull ? nullptr : &Int111_Optional); return nullptr; }
+	/** @brief Sets the value of Int111_Optional and also sets Int111_IsSet to true */
+	void SetInt111(const int32& NewValue) { Int111_Optional = NewValue; Int111_IsSet = true; Int111_IsNull = false; }
+	/** @brief Sets the value of Int111_Optional and also sets Int111_IsSet to true using move semantics */
+	void SetInt111(int32&& NewValue) { Int111_Optional = NewValue; Int111_IsSet = true; Int111_IsNull = false; }
+	/** @brief Clears the value of Int111_Optional and sets Int111_IsSet to false */
+	void ClearInt111() { Int111_Optional = 0; Int111_IsSet = false; Int111_IsNull = false; }
+	/** @brief Checks whether Int111_Optional has been set */
+	bool IsInt111Set() const { return Int111_IsSet; }
+	/** @brief Returns true if Int111_Optional is set and matches the default value */
+	bool IsInt111DefaultValue() const { return Int111_IsSet && Int111_Optional == 0; }
+	/** @brief Sets the value of Int111_Optional to its default and also sets Int111_IsSet to true */
+	void SetInt111ToDefault() { SetInt111(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt111ToNull() { Int111_IsSet = true; Int111_IsNull = true; }
+	/** @brief Checks whether Int111_Optional is set to null */
+	bool IsInt111Null() const { return Int111_IsSet && Int111_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int112_Optional{ 0 };
+	/** @brief true if Int112_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int112_IsSet{ false };
+	/** @brief true if Int112_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int112_IsNull{ false };
+	/** @brief Gets the value of Int112_Optional, regardless of it having been set */
+	int32& GetInt112() { return Int112_Optional; }
+	/** @brief Gets the value of Int112_Optional, regardless of it having been set */
+	const int32& GetInt112() const { return Int112_Optional; }
+	/** @brief Gets the value of Int112_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt112(const int32& DefaultValue) const { if (Int112_IsSet) return Int112_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int112_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt112(int32& OutValue) const { if (Int112_IsSet && !Int112_IsNull) OutValue = Int112_Optional; return Int112_IsSet; }
+	/** @brief Returns a pointer to Int112_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt112OrNull() { if (Int112_IsSet) return (Int112_IsNull ? nullptr : &Int112_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int112_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt112OrNull() const { if (Int112_IsSet) return (Int112_IsNull ? nullptr : &Int112_Optional); return nullptr; }
+	/** @brief Sets the value of Int112_Optional and also sets Int112_IsSet to true */
+	void SetInt112(const int32& NewValue) { Int112_Optional = NewValue; Int112_IsSet = true; Int112_IsNull = false; }
+	/** @brief Sets the value of Int112_Optional and also sets Int112_IsSet to true using move semantics */
+	void SetInt112(int32&& NewValue) { Int112_Optional = NewValue; Int112_IsSet = true; Int112_IsNull = false; }
+	/** @brief Clears the value of Int112_Optional and sets Int112_IsSet to false */
+	void ClearInt112() { Int112_Optional = 0; Int112_IsSet = false; Int112_IsNull = false; }
+	/** @brief Checks whether Int112_Optional has been set */
+	bool IsInt112Set() const { return Int112_IsSet; }
+	/** @brief Returns true if Int112_Optional is set and matches the default value */
+	bool IsInt112DefaultValue() const { return Int112_IsSet && Int112_Optional == 0; }
+	/** @brief Sets the value of Int112_Optional to its default and also sets Int112_IsSet to true */
+	void SetInt112ToDefault() { SetInt112(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt112ToNull() { Int112_IsSet = true; Int112_IsNull = true; }
+	/** @brief Checks whether Int112_Optional is set to null */
+	bool IsInt112Null() const { return Int112_IsSet && Int112_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int113_Optional{ 0 };
+	/** @brief true if Int113_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int113_IsSet{ false };
+	/** @brief true if Int113_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int113_IsNull{ false };
+	/** @brief Gets the value of Int113_Optional, regardless of it having been set */
+	int32& GetInt113() { return Int113_Optional; }
+	/** @brief Gets the value of Int113_Optional, regardless of it having been set */
+	const int32& GetInt113() const { return Int113_Optional; }
+	/** @brief Gets the value of Int113_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt113(const int32& DefaultValue) const { if (Int113_IsSet) return Int113_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int113_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt113(int32& OutValue) const { if (Int113_IsSet && !Int113_IsNull) OutValue = Int113_Optional; return Int113_IsSet; }
+	/** @brief Returns a pointer to Int113_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt113OrNull() { if (Int113_IsSet) return (Int113_IsNull ? nullptr : &Int113_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int113_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt113OrNull() const { if (Int113_IsSet) return (Int113_IsNull ? nullptr : &Int113_Optional); return nullptr; }
+	/** @brief Sets the value of Int113_Optional and also sets Int113_IsSet to true */
+	void SetInt113(const int32& NewValue) { Int113_Optional = NewValue; Int113_IsSet = true; Int113_IsNull = false; }
+	/** @brief Sets the value of Int113_Optional and also sets Int113_IsSet to true using move semantics */
+	void SetInt113(int32&& NewValue) { Int113_Optional = NewValue; Int113_IsSet = true; Int113_IsNull = false; }
+	/** @brief Clears the value of Int113_Optional and sets Int113_IsSet to false */
+	void ClearInt113() { Int113_Optional = 0; Int113_IsSet = false; Int113_IsNull = false; }
+	/** @brief Checks whether Int113_Optional has been set */
+	bool IsInt113Set() const { return Int113_IsSet; }
+	/** @brief Returns true if Int113_Optional is set and matches the default value */
+	bool IsInt113DefaultValue() const { return Int113_IsSet && Int113_Optional == 0; }
+	/** @brief Sets the value of Int113_Optional to its default and also sets Int113_IsSet to true */
+	void SetInt113ToDefault() { SetInt113(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt113ToNull() { Int113_IsSet = true; Int113_IsNull = true; }
+	/** @brief Checks whether Int113_Optional is set to null */
+	bool IsInt113Null() const { return Int113_IsSet && Int113_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int114_Optional{ 0 };
+	/** @brief true if Int114_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int114_IsSet{ false };
+	/** @brief true if Int114_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int114_IsNull{ false };
+	/** @brief Gets the value of Int114_Optional, regardless of it having been set */
+	int32& GetInt114() { return Int114_Optional; }
+	/** @brief Gets the value of Int114_Optional, regardless of it having been set */
+	const int32& GetInt114() const { return Int114_Optional; }
+	/** @brief Gets the value of Int114_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt114(const int32& DefaultValue) const { if (Int114_IsSet) return Int114_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int114_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt114(int32& OutValue) const { if (Int114_IsSet && !Int114_IsNull) OutValue = Int114_Optional; return Int114_IsSet; }
+	/** @brief Returns a pointer to Int114_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt114OrNull() { if (Int114_IsSet) return (Int114_IsNull ? nullptr : &Int114_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int114_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt114OrNull() const { if (Int114_IsSet) return (Int114_IsNull ? nullptr : &Int114_Optional); return nullptr; }
+	/** @brief Sets the value of Int114_Optional and also sets Int114_IsSet to true */
+	void SetInt114(const int32& NewValue) { Int114_Optional = NewValue; Int114_IsSet = true; Int114_IsNull = false; }
+	/** @brief Sets the value of Int114_Optional and also sets Int114_IsSet to true using move semantics */
+	void SetInt114(int32&& NewValue) { Int114_Optional = NewValue; Int114_IsSet = true; Int114_IsNull = false; }
+	/** @brief Clears the value of Int114_Optional and sets Int114_IsSet to false */
+	void ClearInt114() { Int114_Optional = 0; Int114_IsSet = false; Int114_IsNull = false; }
+	/** @brief Checks whether Int114_Optional has been set */
+	bool IsInt114Set() const { return Int114_IsSet; }
+	/** @brief Returns true if Int114_Optional is set and matches the default value */
+	bool IsInt114DefaultValue() const { return Int114_IsSet && Int114_Optional == 0; }
+	/** @brief Sets the value of Int114_Optional to its default and also sets Int114_IsSet to true */
+	void SetInt114ToDefault() { SetInt114(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt114ToNull() { Int114_IsSet = true; Int114_IsNull = true; }
+	/** @brief Checks whether Int114_Optional is set to null */
+	bool IsInt114Null() const { return Int114_IsSet && Int114_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int115_Optional{ 0 };
+	/** @brief true if Int115_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int115_IsSet{ false };
+	/** @brief true if Int115_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int115_IsNull{ false };
+	/** @brief Gets the value of Int115_Optional, regardless of it having been set */
+	int32& GetInt115() { return Int115_Optional; }
+	/** @brief Gets the value of Int115_Optional, regardless of it having been set */
+	const int32& GetInt115() const { return Int115_Optional; }
+	/** @brief Gets the value of Int115_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt115(const int32& DefaultValue) const { if (Int115_IsSet) return Int115_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int115_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt115(int32& OutValue) const { if (Int115_IsSet && !Int115_IsNull) OutValue = Int115_Optional; return Int115_IsSet; }
+	/** @brief Returns a pointer to Int115_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt115OrNull() { if (Int115_IsSet) return (Int115_IsNull ? nullptr : &Int115_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int115_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt115OrNull() const { if (Int115_IsSet) return (Int115_IsNull ? nullptr : &Int115_Optional); return nullptr; }
+	/** @brief Sets the value of Int115_Optional and also sets Int115_IsSet to true */
+	void SetInt115(const int32& NewValue) { Int115_Optional = NewValue; Int115_IsSet = true; Int115_IsNull = false; }
+	/** @brief Sets the value of Int115_Optional and also sets Int115_IsSet to true using move semantics */
+	void SetInt115(int32&& NewValue) { Int115_Optional = NewValue; Int115_IsSet = true; Int115_IsNull = false; }
+	/** @brief Clears the value of Int115_Optional and sets Int115_IsSet to false */
+	void ClearInt115() { Int115_Optional = 0; Int115_IsSet = false; Int115_IsNull = false; }
+	/** @brief Checks whether Int115_Optional has been set */
+	bool IsInt115Set() const { return Int115_IsSet; }
+	/** @brief Returns true if Int115_Optional is set and matches the default value */
+	bool IsInt115DefaultValue() const { return Int115_IsSet && Int115_Optional == 0; }
+	/** @brief Sets the value of Int115_Optional to its default and also sets Int115_IsSet to true */
+	void SetInt115ToDefault() { SetInt115(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt115ToNull() { Int115_IsSet = true; Int115_IsNull = true; }
+	/** @brief Checks whether Int115_Optional is set to null */
+	bool IsInt115Null() const { return Int115_IsSet && Int115_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int116_Optional{ 0 };
+	/** @brief true if Int116_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int116_IsSet{ false };
+	/** @brief true if Int116_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int116_IsNull{ false };
+	/** @brief Gets the value of Int116_Optional, regardless of it having been set */
+	int32& GetInt116() { return Int116_Optional; }
+	/** @brief Gets the value of Int116_Optional, regardless of it having been set */
+	const int32& GetInt116() const { return Int116_Optional; }
+	/** @brief Gets the value of Int116_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt116(const int32& DefaultValue) const { if (Int116_IsSet) return Int116_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int116_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt116(int32& OutValue) const { if (Int116_IsSet && !Int116_IsNull) OutValue = Int116_Optional; return Int116_IsSet; }
+	/** @brief Returns a pointer to Int116_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt116OrNull() { if (Int116_IsSet) return (Int116_IsNull ? nullptr : &Int116_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int116_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt116OrNull() const { if (Int116_IsSet) return (Int116_IsNull ? nullptr : &Int116_Optional); return nullptr; }
+	/** @brief Sets the value of Int116_Optional and also sets Int116_IsSet to true */
+	void SetInt116(const int32& NewValue) { Int116_Optional = NewValue; Int116_IsSet = true; Int116_IsNull = false; }
+	/** @brief Sets the value of Int116_Optional and also sets Int116_IsSet to true using move semantics */
+	void SetInt116(int32&& NewValue) { Int116_Optional = NewValue; Int116_IsSet = true; Int116_IsNull = false; }
+	/** @brief Clears the value of Int116_Optional and sets Int116_IsSet to false */
+	void ClearInt116() { Int116_Optional = 0; Int116_IsSet = false; Int116_IsNull = false; }
+	/** @brief Checks whether Int116_Optional has been set */
+	bool IsInt116Set() const { return Int116_IsSet; }
+	/** @brief Returns true if Int116_Optional is set and matches the default value */
+	bool IsInt116DefaultValue() const { return Int116_IsSet && Int116_Optional == 0; }
+	/** @brief Sets the value of Int116_Optional to its default and also sets Int116_IsSet to true */
+	void SetInt116ToDefault() { SetInt116(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt116ToNull() { Int116_IsSet = true; Int116_IsNull = true; }
+	/** @brief Checks whether Int116_Optional is set to null */
+	bool IsInt116Null() const { return Int116_IsSet && Int116_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int117_Optional{ 0 };
+	/** @brief true if Int117_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int117_IsSet{ false };
+	/** @brief true if Int117_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int117_IsNull{ false };
+	/** @brief Gets the value of Int117_Optional, regardless of it having been set */
+	int32& GetInt117() { return Int117_Optional; }
+	/** @brief Gets the value of Int117_Optional, regardless of it having been set */
+	const int32& GetInt117() const { return Int117_Optional; }
+	/** @brief Gets the value of Int117_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt117(const int32& DefaultValue) const { if (Int117_IsSet) return Int117_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int117_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt117(int32& OutValue) const { if (Int117_IsSet && !Int117_IsNull) OutValue = Int117_Optional; return Int117_IsSet; }
+	/** @brief Returns a pointer to Int117_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt117OrNull() { if (Int117_IsSet) return (Int117_IsNull ? nullptr : &Int117_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int117_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt117OrNull() const { if (Int117_IsSet) return (Int117_IsNull ? nullptr : &Int117_Optional); return nullptr; }
+	/** @brief Sets the value of Int117_Optional and also sets Int117_IsSet to true */
+	void SetInt117(const int32& NewValue) { Int117_Optional = NewValue; Int117_IsSet = true; Int117_IsNull = false; }
+	/** @brief Sets the value of Int117_Optional and also sets Int117_IsSet to true using move semantics */
+	void SetInt117(int32&& NewValue) { Int117_Optional = NewValue; Int117_IsSet = true; Int117_IsNull = false; }
+	/** @brief Clears the value of Int117_Optional and sets Int117_IsSet to false */
+	void ClearInt117() { Int117_Optional = 0; Int117_IsSet = false; Int117_IsNull = false; }
+	/** @brief Checks whether Int117_Optional has been set */
+	bool IsInt117Set() const { return Int117_IsSet; }
+	/** @brief Returns true if Int117_Optional is set and matches the default value */
+	bool IsInt117DefaultValue() const { return Int117_IsSet && Int117_Optional == 0; }
+	/** @brief Sets the value of Int117_Optional to its default and also sets Int117_IsSet to true */
+	void SetInt117ToDefault() { SetInt117(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt117ToNull() { Int117_IsSet = true; Int117_IsNull = true; }
+	/** @brief Checks whether Int117_Optional is set to null */
+	bool IsInt117Null() const { return Int117_IsSet && Int117_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int118_Optional{ 0 };
+	/** @brief true if Int118_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int118_IsSet{ false };
+	/** @brief true if Int118_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int118_IsNull{ false };
+	/** @brief Gets the value of Int118_Optional, regardless of it having been set */
+	int32& GetInt118() { return Int118_Optional; }
+	/** @brief Gets the value of Int118_Optional, regardless of it having been set */
+	const int32& GetInt118() const { return Int118_Optional; }
+	/** @brief Gets the value of Int118_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt118(const int32& DefaultValue) const { if (Int118_IsSet) return Int118_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int118_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt118(int32& OutValue) const { if (Int118_IsSet && !Int118_IsNull) OutValue = Int118_Optional; return Int118_IsSet; }
+	/** @brief Returns a pointer to Int118_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt118OrNull() { if (Int118_IsSet) return (Int118_IsNull ? nullptr : &Int118_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int118_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt118OrNull() const { if (Int118_IsSet) return (Int118_IsNull ? nullptr : &Int118_Optional); return nullptr; }
+	/** @brief Sets the value of Int118_Optional and also sets Int118_IsSet to true */
+	void SetInt118(const int32& NewValue) { Int118_Optional = NewValue; Int118_IsSet = true; Int118_IsNull = false; }
+	/** @brief Sets the value of Int118_Optional and also sets Int118_IsSet to true using move semantics */
+	void SetInt118(int32&& NewValue) { Int118_Optional = NewValue; Int118_IsSet = true; Int118_IsNull = false; }
+	/** @brief Clears the value of Int118_Optional and sets Int118_IsSet to false */
+	void ClearInt118() { Int118_Optional = 0; Int118_IsSet = false; Int118_IsNull = false; }
+	/** @brief Checks whether Int118_Optional has been set */
+	bool IsInt118Set() const { return Int118_IsSet; }
+	/** @brief Returns true if Int118_Optional is set and matches the default value */
+	bool IsInt118DefaultValue() const { return Int118_IsSet && Int118_Optional == 0; }
+	/** @brief Sets the value of Int118_Optional to its default and also sets Int118_IsSet to true */
+	void SetInt118ToDefault() { SetInt118(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt118ToNull() { Int118_IsSet = true; Int118_IsNull = true; }
+	/** @brief Checks whether Int118_Optional is set to null */
+	bool IsInt118Null() const { return Int118_IsSet && Int118_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int119_Optional{ 0 };
+	/** @brief true if Int119_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int119_IsSet{ false };
+	/** @brief true if Int119_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int119_IsNull{ false };
+	/** @brief Gets the value of Int119_Optional, regardless of it having been set */
+	int32& GetInt119() { return Int119_Optional; }
+	/** @brief Gets the value of Int119_Optional, regardless of it having been set */
+	const int32& GetInt119() const { return Int119_Optional; }
+	/** @brief Gets the value of Int119_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt119(const int32& DefaultValue) const { if (Int119_IsSet) return Int119_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int119_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt119(int32& OutValue) const { if (Int119_IsSet && !Int119_IsNull) OutValue = Int119_Optional; return Int119_IsSet; }
+	/** @brief Returns a pointer to Int119_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt119OrNull() { if (Int119_IsSet) return (Int119_IsNull ? nullptr : &Int119_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int119_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt119OrNull() const { if (Int119_IsSet) return (Int119_IsNull ? nullptr : &Int119_Optional); return nullptr; }
+	/** @brief Sets the value of Int119_Optional and also sets Int119_IsSet to true */
+	void SetInt119(const int32& NewValue) { Int119_Optional = NewValue; Int119_IsSet = true; Int119_IsNull = false; }
+	/** @brief Sets the value of Int119_Optional and also sets Int119_IsSet to true using move semantics */
+	void SetInt119(int32&& NewValue) { Int119_Optional = NewValue; Int119_IsSet = true; Int119_IsNull = false; }
+	/** @brief Clears the value of Int119_Optional and sets Int119_IsSet to false */
+	void ClearInt119() { Int119_Optional = 0; Int119_IsSet = false; Int119_IsNull = false; }
+	/** @brief Checks whether Int119_Optional has been set */
+	bool IsInt119Set() const { return Int119_IsSet; }
+	/** @brief Returns true if Int119_Optional is set and matches the default value */
+	bool IsInt119DefaultValue() const { return Int119_IsSet && Int119_Optional == 0; }
+	/** @brief Sets the value of Int119_Optional to its default and also sets Int119_IsSet to true */
+	void SetInt119ToDefault() { SetInt119(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt119ToNull() { Int119_IsSet = true; Int119_IsNull = true; }
+	/** @brief Checks whether Int119_Optional is set to null */
+	bool IsInt119Null() const { return Int119_IsSet && Int119_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int120_Optional{ 0 };
+	/** @brief true if Int120_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int120_IsSet{ false };
+	/** @brief true if Int120_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int120_IsNull{ false };
+	/** @brief Gets the value of Int120_Optional, regardless of it having been set */
+	int32& GetInt120() { return Int120_Optional; }
+	/** @brief Gets the value of Int120_Optional, regardless of it having been set */
+	const int32& GetInt120() const { return Int120_Optional; }
+	/** @brief Gets the value of Int120_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt120(const int32& DefaultValue) const { if (Int120_IsSet) return Int120_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int120_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt120(int32& OutValue) const { if (Int120_IsSet && !Int120_IsNull) OutValue = Int120_Optional; return Int120_IsSet; }
+	/** @brief Returns a pointer to Int120_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt120OrNull() { if (Int120_IsSet) return (Int120_IsNull ? nullptr : &Int120_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int120_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt120OrNull() const { if (Int120_IsSet) return (Int120_IsNull ? nullptr : &Int120_Optional); return nullptr; }
+	/** @brief Sets the value of Int120_Optional and also sets Int120_IsSet to true */
+	void SetInt120(const int32& NewValue) { Int120_Optional = NewValue; Int120_IsSet = true; Int120_IsNull = false; }
+	/** @brief Sets the value of Int120_Optional and also sets Int120_IsSet to true using move semantics */
+	void SetInt120(int32&& NewValue) { Int120_Optional = NewValue; Int120_IsSet = true; Int120_IsNull = false; }
+	/** @brief Clears the value of Int120_Optional and sets Int120_IsSet to false */
+	void ClearInt120() { Int120_Optional = 0; Int120_IsSet = false; Int120_IsNull = false; }
+	/** @brief Checks whether Int120_Optional has been set */
+	bool IsInt120Set() const { return Int120_IsSet; }
+	/** @brief Returns true if Int120_Optional is set and matches the default value */
+	bool IsInt120DefaultValue() const { return Int120_IsSet && Int120_Optional == 0; }
+	/** @brief Sets the value of Int120_Optional to its default and also sets Int120_IsSet to true */
+	void SetInt120ToDefault() { SetInt120(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt120ToNull() { Int120_IsSet = true; Int120_IsNull = true; }
+	/** @brief Checks whether Int120_Optional is set to null */
+	bool IsInt120Null() const { return Int120_IsSet && Int120_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int121_Optional{ 0 };
+	/** @brief true if Int121_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int121_IsSet{ false };
+	/** @brief true if Int121_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int121_IsNull{ false };
+	/** @brief Gets the value of Int121_Optional, regardless of it having been set */
+	int32& GetInt121() { return Int121_Optional; }
+	/** @brief Gets the value of Int121_Optional, regardless of it having been set */
+	const int32& GetInt121() const { return Int121_Optional; }
+	/** @brief Gets the value of Int121_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt121(const int32& DefaultValue) const { if (Int121_IsSet) return Int121_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int121_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt121(int32& OutValue) const { if (Int121_IsSet && !Int121_IsNull) OutValue = Int121_Optional; return Int121_IsSet; }
+	/** @brief Returns a pointer to Int121_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt121OrNull() { if (Int121_IsSet) return (Int121_IsNull ? nullptr : &Int121_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int121_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt121OrNull() const { if (Int121_IsSet) return (Int121_IsNull ? nullptr : &Int121_Optional); return nullptr; }
+	/** @brief Sets the value of Int121_Optional and also sets Int121_IsSet to true */
+	void SetInt121(const int32& NewValue) { Int121_Optional = NewValue; Int121_IsSet = true; Int121_IsNull = false; }
+	/** @brief Sets the value of Int121_Optional and also sets Int121_IsSet to true using move semantics */
+	void SetInt121(int32&& NewValue) { Int121_Optional = NewValue; Int121_IsSet = true; Int121_IsNull = false; }
+	/** @brief Clears the value of Int121_Optional and sets Int121_IsSet to false */
+	void ClearInt121() { Int121_Optional = 0; Int121_IsSet = false; Int121_IsNull = false; }
+	/** @brief Checks whether Int121_Optional has been set */
+	bool IsInt121Set() const { return Int121_IsSet; }
+	/** @brief Returns true if Int121_Optional is set and matches the default value */
+	bool IsInt121DefaultValue() const { return Int121_IsSet && Int121_Optional == 0; }
+	/** @brief Sets the value of Int121_Optional to its default and also sets Int121_IsSet to true */
+	void SetInt121ToDefault() { SetInt121(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt121ToNull() { Int121_IsSet = true; Int121_IsNull = true; }
+	/** @brief Checks whether Int121_Optional is set to null */
+	bool IsInt121Null() const { return Int121_IsSet && Int121_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int122_Optional{ 0 };
+	/** @brief true if Int122_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int122_IsSet{ false };
+	/** @brief true if Int122_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int122_IsNull{ false };
+	/** @brief Gets the value of Int122_Optional, regardless of it having been set */
+	int32& GetInt122() { return Int122_Optional; }
+	/** @brief Gets the value of Int122_Optional, regardless of it having been set */
+	const int32& GetInt122() const { return Int122_Optional; }
+	/** @brief Gets the value of Int122_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt122(const int32& DefaultValue) const { if (Int122_IsSet) return Int122_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int122_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt122(int32& OutValue) const { if (Int122_IsSet && !Int122_IsNull) OutValue = Int122_Optional; return Int122_IsSet; }
+	/** @brief Returns a pointer to Int122_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt122OrNull() { if (Int122_IsSet) return (Int122_IsNull ? nullptr : &Int122_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int122_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt122OrNull() const { if (Int122_IsSet) return (Int122_IsNull ? nullptr : &Int122_Optional); return nullptr; }
+	/** @brief Sets the value of Int122_Optional and also sets Int122_IsSet to true */
+	void SetInt122(const int32& NewValue) { Int122_Optional = NewValue; Int122_IsSet = true; Int122_IsNull = false; }
+	/** @brief Sets the value of Int122_Optional and also sets Int122_IsSet to true using move semantics */
+	void SetInt122(int32&& NewValue) { Int122_Optional = NewValue; Int122_IsSet = true; Int122_IsNull = false; }
+	/** @brief Clears the value of Int122_Optional and sets Int122_IsSet to false */
+	void ClearInt122() { Int122_Optional = 0; Int122_IsSet = false; Int122_IsNull = false; }
+	/** @brief Checks whether Int122_Optional has been set */
+	bool IsInt122Set() const { return Int122_IsSet; }
+	/** @brief Returns true if Int122_Optional is set and matches the default value */
+	bool IsInt122DefaultValue() const { return Int122_IsSet && Int122_Optional == 0; }
+	/** @brief Sets the value of Int122_Optional to its default and also sets Int122_IsSet to true */
+	void SetInt122ToDefault() { SetInt122(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt122ToNull() { Int122_IsSet = true; Int122_IsNull = true; }
+	/** @brief Checks whether Int122_Optional is set to null */
+	bool IsInt122Null() const { return Int122_IsSet && Int122_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int123_Optional{ 0 };
+	/** @brief true if Int123_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int123_IsSet{ false };
+	/** @brief true if Int123_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int123_IsNull{ false };
+	/** @brief Gets the value of Int123_Optional, regardless of it having been set */
+	int32& GetInt123() { return Int123_Optional; }
+	/** @brief Gets the value of Int123_Optional, regardless of it having been set */
+	const int32& GetInt123() const { return Int123_Optional; }
+	/** @brief Gets the value of Int123_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt123(const int32& DefaultValue) const { if (Int123_IsSet) return Int123_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int123_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt123(int32& OutValue) const { if (Int123_IsSet && !Int123_IsNull) OutValue = Int123_Optional; return Int123_IsSet; }
+	/** @brief Returns a pointer to Int123_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt123OrNull() { if (Int123_IsSet) return (Int123_IsNull ? nullptr : &Int123_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int123_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt123OrNull() const { if (Int123_IsSet) return (Int123_IsNull ? nullptr : &Int123_Optional); return nullptr; }
+	/** @brief Sets the value of Int123_Optional and also sets Int123_IsSet to true */
+	void SetInt123(const int32& NewValue) { Int123_Optional = NewValue; Int123_IsSet = true; Int123_IsNull = false; }
+	/** @brief Sets the value of Int123_Optional and also sets Int123_IsSet to true using move semantics */
+	void SetInt123(int32&& NewValue) { Int123_Optional = NewValue; Int123_IsSet = true; Int123_IsNull = false; }
+	/** @brief Clears the value of Int123_Optional and sets Int123_IsSet to false */
+	void ClearInt123() { Int123_Optional = 0; Int123_IsSet = false; Int123_IsNull = false; }
+	/** @brief Checks whether Int123_Optional has been set */
+	bool IsInt123Set() const { return Int123_IsSet; }
+	/** @brief Returns true if Int123_Optional is set and matches the default value */
+	bool IsInt123DefaultValue() const { return Int123_IsSet && Int123_Optional == 0; }
+	/** @brief Sets the value of Int123_Optional to its default and also sets Int123_IsSet to true */
+	void SetInt123ToDefault() { SetInt123(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt123ToNull() { Int123_IsSet = true; Int123_IsNull = true; }
+	/** @brief Checks whether Int123_Optional is set to null */
+	bool IsInt123Null() const { return Int123_IsSet && Int123_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int124_Optional{ 0 };
+	/** @brief true if Int124_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int124_IsSet{ false };
+	/** @brief true if Int124_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int124_IsNull{ false };
+	/** @brief Gets the value of Int124_Optional, regardless of it having been set */
+	int32& GetInt124() { return Int124_Optional; }
+	/** @brief Gets the value of Int124_Optional, regardless of it having been set */
+	const int32& GetInt124() const { return Int124_Optional; }
+	/** @brief Gets the value of Int124_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt124(const int32& DefaultValue) const { if (Int124_IsSet) return Int124_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int124_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt124(int32& OutValue) const { if (Int124_IsSet && !Int124_IsNull) OutValue = Int124_Optional; return Int124_IsSet; }
+	/** @brief Returns a pointer to Int124_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt124OrNull() { if (Int124_IsSet) return (Int124_IsNull ? nullptr : &Int124_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int124_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt124OrNull() const { if (Int124_IsSet) return (Int124_IsNull ? nullptr : &Int124_Optional); return nullptr; }
+	/** @brief Sets the value of Int124_Optional and also sets Int124_IsSet to true */
+	void SetInt124(const int32& NewValue) { Int124_Optional = NewValue; Int124_IsSet = true; Int124_IsNull = false; }
+	/** @brief Sets the value of Int124_Optional and also sets Int124_IsSet to true using move semantics */
+	void SetInt124(int32&& NewValue) { Int124_Optional = NewValue; Int124_IsSet = true; Int124_IsNull = false; }
+	/** @brief Clears the value of Int124_Optional and sets Int124_IsSet to false */
+	void ClearInt124() { Int124_Optional = 0; Int124_IsSet = false; Int124_IsNull = false; }
+	/** @brief Checks whether Int124_Optional has been set */
+	bool IsInt124Set() const { return Int124_IsSet; }
+	/** @brief Returns true if Int124_Optional is set and matches the default value */
+	bool IsInt124DefaultValue() const { return Int124_IsSet && Int124_Optional == 0; }
+	/** @brief Sets the value of Int124_Optional to its default and also sets Int124_IsSet to true */
+	void SetInt124ToDefault() { SetInt124(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt124ToNull() { Int124_IsSet = true; Int124_IsNull = true; }
+	/** @brief Checks whether Int124_Optional is set to null */
+	bool IsInt124Null() const { return Int124_IsSet && Int124_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int125_Optional{ 0 };
+	/** @brief true if Int125_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int125_IsSet{ false };
+	/** @brief true if Int125_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int125_IsNull{ false };
+	/** @brief Gets the value of Int125_Optional, regardless of it having been set */
+	int32& GetInt125() { return Int125_Optional; }
+	/** @brief Gets the value of Int125_Optional, regardless of it having been set */
+	const int32& GetInt125() const { return Int125_Optional; }
+	/** @brief Gets the value of Int125_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt125(const int32& DefaultValue) const { if (Int125_IsSet) return Int125_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int125_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt125(int32& OutValue) const { if (Int125_IsSet && !Int125_IsNull) OutValue = Int125_Optional; return Int125_IsSet; }
+	/** @brief Returns a pointer to Int125_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt125OrNull() { if (Int125_IsSet) return (Int125_IsNull ? nullptr : &Int125_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int125_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt125OrNull() const { if (Int125_IsSet) return (Int125_IsNull ? nullptr : &Int125_Optional); return nullptr; }
+	/** @brief Sets the value of Int125_Optional and also sets Int125_IsSet to true */
+	void SetInt125(const int32& NewValue) { Int125_Optional = NewValue; Int125_IsSet = true; Int125_IsNull = false; }
+	/** @brief Sets the value of Int125_Optional and also sets Int125_IsSet to true using move semantics */
+	void SetInt125(int32&& NewValue) { Int125_Optional = NewValue; Int125_IsSet = true; Int125_IsNull = false; }
+	/** @brief Clears the value of Int125_Optional and sets Int125_IsSet to false */
+	void ClearInt125() { Int125_Optional = 0; Int125_IsSet = false; Int125_IsNull = false; }
+	/** @brief Checks whether Int125_Optional has been set */
+	bool IsInt125Set() const { return Int125_IsSet; }
+	/** @brief Returns true if Int125_Optional is set and matches the default value */
+	bool IsInt125DefaultValue() const { return Int125_IsSet && Int125_Optional == 0; }
+	/** @brief Sets the value of Int125_Optional to its default and also sets Int125_IsSet to true */
+	void SetInt125ToDefault() { SetInt125(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt125ToNull() { Int125_IsSet = true; Int125_IsNull = true; }
+	/** @brief Checks whether Int125_Optional is set to null */
+	bool IsInt125Null() const { return Int125_IsSet && Int125_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int126_Optional{ 0 };
+	/** @brief true if Int126_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int126_IsSet{ false };
+	/** @brief true if Int126_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int126_IsNull{ false };
+	/** @brief Gets the value of Int126_Optional, regardless of it having been set */
+	int32& GetInt126() { return Int126_Optional; }
+	/** @brief Gets the value of Int126_Optional, regardless of it having been set */
+	const int32& GetInt126() const { return Int126_Optional; }
+	/** @brief Gets the value of Int126_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt126(const int32& DefaultValue) const { if (Int126_IsSet) return Int126_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int126_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt126(int32& OutValue) const { if (Int126_IsSet && !Int126_IsNull) OutValue = Int126_Optional; return Int126_IsSet; }
+	/** @brief Returns a pointer to Int126_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt126OrNull() { if (Int126_IsSet) return (Int126_IsNull ? nullptr : &Int126_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int126_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt126OrNull() const { if (Int126_IsSet) return (Int126_IsNull ? nullptr : &Int126_Optional); return nullptr; }
+	/** @brief Sets the value of Int126_Optional and also sets Int126_IsSet to true */
+	void SetInt126(const int32& NewValue) { Int126_Optional = NewValue; Int126_IsSet = true; Int126_IsNull = false; }
+	/** @brief Sets the value of Int126_Optional and also sets Int126_IsSet to true using move semantics */
+	void SetInt126(int32&& NewValue) { Int126_Optional = NewValue; Int126_IsSet = true; Int126_IsNull = false; }
+	/** @brief Clears the value of Int126_Optional and sets Int126_IsSet to false */
+	void ClearInt126() { Int126_Optional = 0; Int126_IsSet = false; Int126_IsNull = false; }
+	/** @brief Checks whether Int126_Optional has been set */
+	bool IsInt126Set() const { return Int126_IsSet; }
+	/** @brief Returns true if Int126_Optional is set and matches the default value */
+	bool IsInt126DefaultValue() const { return Int126_IsSet && Int126_Optional == 0; }
+	/** @brief Sets the value of Int126_Optional to its default and also sets Int126_IsSet to true */
+	void SetInt126ToDefault() { SetInt126(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt126ToNull() { Int126_IsSet = true; Int126_IsNull = true; }
+	/** @brief Checks whether Int126_Optional is set to null */
+	bool IsInt126Null() const { return Int126_IsSet && Int126_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int127_Optional{ 0 };
+	/** @brief true if Int127_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int127_IsSet{ false };
+	/** @brief true if Int127_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int127_IsNull{ false };
+	/** @brief Gets the value of Int127_Optional, regardless of it having been set */
+	int32& GetInt127() { return Int127_Optional; }
+	/** @brief Gets the value of Int127_Optional, regardless of it having been set */
+	const int32& GetInt127() const { return Int127_Optional; }
+	/** @brief Gets the value of Int127_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt127(const int32& DefaultValue) const { if (Int127_IsSet) return Int127_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int127_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt127(int32& OutValue) const { if (Int127_IsSet && !Int127_IsNull) OutValue = Int127_Optional; return Int127_IsSet; }
+	/** @brief Returns a pointer to Int127_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt127OrNull() { if (Int127_IsSet) return (Int127_IsNull ? nullptr : &Int127_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int127_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt127OrNull() const { if (Int127_IsSet) return (Int127_IsNull ? nullptr : &Int127_Optional); return nullptr; }
+	/** @brief Sets the value of Int127_Optional and also sets Int127_IsSet to true */
+	void SetInt127(const int32& NewValue) { Int127_Optional = NewValue; Int127_IsSet = true; Int127_IsNull = false; }
+	/** @brief Sets the value of Int127_Optional and also sets Int127_IsSet to true using move semantics */
+	void SetInt127(int32&& NewValue) { Int127_Optional = NewValue; Int127_IsSet = true; Int127_IsNull = false; }
+	/** @brief Clears the value of Int127_Optional and sets Int127_IsSet to false */
+	void ClearInt127() { Int127_Optional = 0; Int127_IsSet = false; Int127_IsNull = false; }
+	/** @brief Checks whether Int127_Optional has been set */
+	bool IsInt127Set() const { return Int127_IsSet; }
+	/** @brief Returns true if Int127_Optional is set and matches the default value */
+	bool IsInt127DefaultValue() const { return Int127_IsSet && Int127_Optional == 0; }
+	/** @brief Sets the value of Int127_Optional to its default and also sets Int127_IsSet to true */
+	void SetInt127ToDefault() { SetInt127(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt127ToNull() { Int127_IsSet = true; Int127_IsNull = true; }
+	/** @brief Checks whether Int127_Optional is set to null */
+	bool IsInt127Null() const { return Int127_IsSet && Int127_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 Int128_Optional{ 0 };
+	/** @brief true if Int128_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int128_IsSet{ false };
+	/** @brief true if Int128_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Int128_IsNull{ false };
+	/** @brief Gets the value of Int128_Optional, regardless of it having been set */
+	int32& GetInt128() { return Int128_Optional; }
+	/** @brief Gets the value of Int128_Optional, regardless of it having been set */
+	const int32& GetInt128() const { return Int128_Optional; }
+	/** @brief Gets the value of Int128_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetInt128(const int32& DefaultValue) const { if (Int128_IsSet) return Int128_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Int128_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInt128(int32& OutValue) const { if (Int128_IsSet && !Int128_IsNull) OutValue = Int128_Optional; return Int128_IsSet; }
+	/** @brief Returns a pointer to Int128_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetInt128OrNull() { if (Int128_IsSet) return (Int128_IsNull ? nullptr : &Int128_Optional); return nullptr; }
+	/** @brief Returns a pointer to Int128_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetInt128OrNull() const { if (Int128_IsSet) return (Int128_IsNull ? nullptr : &Int128_Optional); return nullptr; }
+	/** @brief Sets the value of Int128_Optional and also sets Int128_IsSet to true */
+	void SetInt128(const int32& NewValue) { Int128_Optional = NewValue; Int128_IsSet = true; Int128_IsNull = false; }
+	/** @brief Sets the value of Int128_Optional and also sets Int128_IsSet to true using move semantics */
+	void SetInt128(int32&& NewValue) { Int128_Optional = NewValue; Int128_IsSet = true; Int128_IsNull = false; }
+	/** @brief Clears the value of Int128_Optional and sets Int128_IsSet to false */
+	void ClearInt128() { Int128_Optional = 0; Int128_IsSet = false; Int128_IsNull = false; }
+	/** @brief Checks whether Int128_Optional has been set */
+	bool IsInt128Set() const { return Int128_IsSet; }
+	/** @brief Returns true if Int128_Optional is set and matches the default value */
+	bool IsInt128DefaultValue() const { return Int128_IsSet && Int128_Optional == 0; }
+	/** @brief Sets the value of Int128_Optional to its default and also sets Int128_IsSet to true */
+	void SetInt128ToDefault() { SetInt128(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetInt128ToNull() { Int128_IsSet = true; Int128_IsNull = true; }
+	/** @brief Checks whether Int128_Optional is set to null */
+	bool IsInt128Null() const { return Int128_IsSet && Int128_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str1_Optional{  };
+	/** @brief true if Str1_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str1_IsSet{ false };
+	/** @brief true if Str1_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str1_IsNull{ false };
+	/** @brief Gets the value of Str1_Optional, regardless of it having been set */
+	FString& GetStr1() { return Str1_Optional; }
+	/** @brief Gets the value of Str1_Optional, regardless of it having been set */
+	const FString& GetStr1() const { return Str1_Optional; }
+	/** @brief Gets the value of Str1_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr1(const FString& DefaultValue) const { if (Str1_IsSet) return Str1_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str1_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr1(FString& OutValue) const { if (Str1_IsSet && !Str1_IsNull) OutValue = Str1_Optional; return Str1_IsSet; }
+	/** @brief Returns a pointer to Str1_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr1OrNull() { if (Str1_IsSet) return (Str1_IsNull ? nullptr : &Str1_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str1_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr1OrNull() const { if (Str1_IsSet) return (Str1_IsNull ? nullptr : &Str1_Optional); return nullptr; }
+	/** @brief Sets the value of Str1_Optional and also sets Str1_IsSet to true */
+	void SetStr1(const FString& NewValue) { Str1_Optional = NewValue; Str1_IsSet = true; Str1_IsNull = false; }
+	/** @brief Sets the value of Str1_Optional and also sets Str1_IsSet to true using move semantics */
+	void SetStr1(FString&& NewValue) { Str1_Optional = NewValue; Str1_IsSet = true; Str1_IsNull = false; }
+	/** @brief Clears the value of Str1_Optional and sets Str1_IsSet to false */
+	void ClearStr1() { Str1_IsSet = false; Str1_IsNull = false; }
+	/** @brief Checks whether Str1_Optional has been set */
+	bool IsStr1Set() const { return Str1_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr1ToNull() { Str1_IsSet = true; Str1_IsNull = true; }
+	/** @brief Checks whether Str1_Optional is set to null */
+	bool IsStr1Null() const { return Str1_IsSet && Str1_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str2_Optional{  };
+	/** @brief true if Str2_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str2_IsSet{ false };
+	/** @brief true if Str2_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str2_IsNull{ false };
+	/** @brief Gets the value of Str2_Optional, regardless of it having been set */
+	FString& GetStr2() { return Str2_Optional; }
+	/** @brief Gets the value of Str2_Optional, regardless of it having been set */
+	const FString& GetStr2() const { return Str2_Optional; }
+	/** @brief Gets the value of Str2_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr2(const FString& DefaultValue) const { if (Str2_IsSet) return Str2_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str2_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr2(FString& OutValue) const { if (Str2_IsSet && !Str2_IsNull) OutValue = Str2_Optional; return Str2_IsSet; }
+	/** @brief Returns a pointer to Str2_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr2OrNull() { if (Str2_IsSet) return (Str2_IsNull ? nullptr : &Str2_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str2_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr2OrNull() const { if (Str2_IsSet) return (Str2_IsNull ? nullptr : &Str2_Optional); return nullptr; }
+	/** @brief Sets the value of Str2_Optional and also sets Str2_IsSet to true */
+	void SetStr2(const FString& NewValue) { Str2_Optional = NewValue; Str2_IsSet = true; Str2_IsNull = false; }
+	/** @brief Sets the value of Str2_Optional and also sets Str2_IsSet to true using move semantics */
+	void SetStr2(FString&& NewValue) { Str2_Optional = NewValue; Str2_IsSet = true; Str2_IsNull = false; }
+	/** @brief Clears the value of Str2_Optional and sets Str2_IsSet to false */
+	void ClearStr2() { Str2_IsSet = false; Str2_IsNull = false; }
+	/** @brief Checks whether Str2_Optional has been set */
+	bool IsStr2Set() const { return Str2_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr2ToNull() { Str2_IsSet = true; Str2_IsNull = true; }
+	/** @brief Checks whether Str2_Optional is set to null */
+	bool IsStr2Null() const { return Str2_IsSet && Str2_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str3_Optional{  };
+	/** @brief true if Str3_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str3_IsSet{ false };
+	/** @brief true if Str3_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str3_IsNull{ false };
+	/** @brief Gets the value of Str3_Optional, regardless of it having been set */
+	FString& GetStr3() { return Str3_Optional; }
+	/** @brief Gets the value of Str3_Optional, regardless of it having been set */
+	const FString& GetStr3() const { return Str3_Optional; }
+	/** @brief Gets the value of Str3_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr3(const FString& DefaultValue) const { if (Str3_IsSet) return Str3_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str3_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr3(FString& OutValue) const { if (Str3_IsSet && !Str3_IsNull) OutValue = Str3_Optional; return Str3_IsSet; }
+	/** @brief Returns a pointer to Str3_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr3OrNull() { if (Str3_IsSet) return (Str3_IsNull ? nullptr : &Str3_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str3_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr3OrNull() const { if (Str3_IsSet) return (Str3_IsNull ? nullptr : &Str3_Optional); return nullptr; }
+	/** @brief Sets the value of Str3_Optional and also sets Str3_IsSet to true */
+	void SetStr3(const FString& NewValue) { Str3_Optional = NewValue; Str3_IsSet = true; Str3_IsNull = false; }
+	/** @brief Sets the value of Str3_Optional and also sets Str3_IsSet to true using move semantics */
+	void SetStr3(FString&& NewValue) { Str3_Optional = NewValue; Str3_IsSet = true; Str3_IsNull = false; }
+	/** @brief Clears the value of Str3_Optional and sets Str3_IsSet to false */
+	void ClearStr3() { Str3_IsSet = false; Str3_IsNull = false; }
+	/** @brief Checks whether Str3_Optional has been set */
+	bool IsStr3Set() const { return Str3_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr3ToNull() { Str3_IsSet = true; Str3_IsNull = true; }
+	/** @brief Checks whether Str3_Optional is set to null */
+	bool IsStr3Null() const { return Str3_IsSet && Str3_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str4_Optional{  };
+	/** @brief true if Str4_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str4_IsSet{ false };
+	/** @brief true if Str4_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str4_IsNull{ false };
+	/** @brief Gets the value of Str4_Optional, regardless of it having been set */
+	FString& GetStr4() { return Str4_Optional; }
+	/** @brief Gets the value of Str4_Optional, regardless of it having been set */
+	const FString& GetStr4() const { return Str4_Optional; }
+	/** @brief Gets the value of Str4_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr4(const FString& DefaultValue) const { if (Str4_IsSet) return Str4_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str4_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr4(FString& OutValue) const { if (Str4_IsSet && !Str4_IsNull) OutValue = Str4_Optional; return Str4_IsSet; }
+	/** @brief Returns a pointer to Str4_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr4OrNull() { if (Str4_IsSet) return (Str4_IsNull ? nullptr : &Str4_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str4_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr4OrNull() const { if (Str4_IsSet) return (Str4_IsNull ? nullptr : &Str4_Optional); return nullptr; }
+	/** @brief Sets the value of Str4_Optional and also sets Str4_IsSet to true */
+	void SetStr4(const FString& NewValue) { Str4_Optional = NewValue; Str4_IsSet = true; Str4_IsNull = false; }
+	/** @brief Sets the value of Str4_Optional and also sets Str4_IsSet to true using move semantics */
+	void SetStr4(FString&& NewValue) { Str4_Optional = NewValue; Str4_IsSet = true; Str4_IsNull = false; }
+	/** @brief Clears the value of Str4_Optional and sets Str4_IsSet to false */
+	void ClearStr4() { Str4_IsSet = false; Str4_IsNull = false; }
+	/** @brief Checks whether Str4_Optional has been set */
+	bool IsStr4Set() const { return Str4_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr4ToNull() { Str4_IsSet = true; Str4_IsNull = true; }
+	/** @brief Checks whether Str4_Optional is set to null */
+	bool IsStr4Null() const { return Str4_IsSet && Str4_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str5_Optional{  };
+	/** @brief true if Str5_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str5_IsSet{ false };
+	/** @brief true if Str5_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str5_IsNull{ false };
+	/** @brief Gets the value of Str5_Optional, regardless of it having been set */
+	FString& GetStr5() { return Str5_Optional; }
+	/** @brief Gets the value of Str5_Optional, regardless of it having been set */
+	const FString& GetStr5() const { return Str5_Optional; }
+	/** @brief Gets the value of Str5_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr5(const FString& DefaultValue) const { if (Str5_IsSet) return Str5_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str5_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr5(FString& OutValue) const { if (Str5_IsSet && !Str5_IsNull) OutValue = Str5_Optional; return Str5_IsSet; }
+	/** @brief Returns a pointer to Str5_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr5OrNull() { if (Str5_IsSet) return (Str5_IsNull ? nullptr : &Str5_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str5_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr5OrNull() const { if (Str5_IsSet) return (Str5_IsNull ? nullptr : &Str5_Optional); return nullptr; }
+	/** @brief Sets the value of Str5_Optional and also sets Str5_IsSet to true */
+	void SetStr5(const FString& NewValue) { Str5_Optional = NewValue; Str5_IsSet = true; Str5_IsNull = false; }
+	/** @brief Sets the value of Str5_Optional and also sets Str5_IsSet to true using move semantics */
+	void SetStr5(FString&& NewValue) { Str5_Optional = NewValue; Str5_IsSet = true; Str5_IsNull = false; }
+	/** @brief Clears the value of Str5_Optional and sets Str5_IsSet to false */
+	void ClearStr5() { Str5_IsSet = false; Str5_IsNull = false; }
+	/** @brief Checks whether Str5_Optional has been set */
+	bool IsStr5Set() const { return Str5_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr5ToNull() { Str5_IsSet = true; Str5_IsNull = true; }
+	/** @brief Checks whether Str5_Optional is set to null */
+	bool IsStr5Null() const { return Str5_IsSet && Str5_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str6_Optional{  };
+	/** @brief true if Str6_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str6_IsSet{ false };
+	/** @brief true if Str6_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str6_IsNull{ false };
+	/** @brief Gets the value of Str6_Optional, regardless of it having been set */
+	FString& GetStr6() { return Str6_Optional; }
+	/** @brief Gets the value of Str6_Optional, regardless of it having been set */
+	const FString& GetStr6() const { return Str6_Optional; }
+	/** @brief Gets the value of Str6_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr6(const FString& DefaultValue) const { if (Str6_IsSet) return Str6_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str6_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr6(FString& OutValue) const { if (Str6_IsSet && !Str6_IsNull) OutValue = Str6_Optional; return Str6_IsSet; }
+	/** @brief Returns a pointer to Str6_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr6OrNull() { if (Str6_IsSet) return (Str6_IsNull ? nullptr : &Str6_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str6_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr6OrNull() const { if (Str6_IsSet) return (Str6_IsNull ? nullptr : &Str6_Optional); return nullptr; }
+	/** @brief Sets the value of Str6_Optional and also sets Str6_IsSet to true */
+	void SetStr6(const FString& NewValue) { Str6_Optional = NewValue; Str6_IsSet = true; Str6_IsNull = false; }
+	/** @brief Sets the value of Str6_Optional and also sets Str6_IsSet to true using move semantics */
+	void SetStr6(FString&& NewValue) { Str6_Optional = NewValue; Str6_IsSet = true; Str6_IsNull = false; }
+	/** @brief Clears the value of Str6_Optional and sets Str6_IsSet to false */
+	void ClearStr6() { Str6_IsSet = false; Str6_IsNull = false; }
+	/** @brief Checks whether Str6_Optional has been set */
+	bool IsStr6Set() const { return Str6_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr6ToNull() { Str6_IsSet = true; Str6_IsNull = true; }
+	/** @brief Checks whether Str6_Optional is set to null */
+	bool IsStr6Null() const { return Str6_IsSet && Str6_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str7_Optional{  };
+	/** @brief true if Str7_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str7_IsSet{ false };
+	/** @brief true if Str7_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str7_IsNull{ false };
+	/** @brief Gets the value of Str7_Optional, regardless of it having been set */
+	FString& GetStr7() { return Str7_Optional; }
+	/** @brief Gets the value of Str7_Optional, regardless of it having been set */
+	const FString& GetStr7() const { return Str7_Optional; }
+	/** @brief Gets the value of Str7_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr7(const FString& DefaultValue) const { if (Str7_IsSet) return Str7_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str7_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr7(FString& OutValue) const { if (Str7_IsSet && !Str7_IsNull) OutValue = Str7_Optional; return Str7_IsSet; }
+	/** @brief Returns a pointer to Str7_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr7OrNull() { if (Str7_IsSet) return (Str7_IsNull ? nullptr : &Str7_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str7_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr7OrNull() const { if (Str7_IsSet) return (Str7_IsNull ? nullptr : &Str7_Optional); return nullptr; }
+	/** @brief Sets the value of Str7_Optional and also sets Str7_IsSet to true */
+	void SetStr7(const FString& NewValue) { Str7_Optional = NewValue; Str7_IsSet = true; Str7_IsNull = false; }
+	/** @brief Sets the value of Str7_Optional and also sets Str7_IsSet to true using move semantics */
+	void SetStr7(FString&& NewValue) { Str7_Optional = NewValue; Str7_IsSet = true; Str7_IsNull = false; }
+	/** @brief Clears the value of Str7_Optional and sets Str7_IsSet to false */
+	void ClearStr7() { Str7_IsSet = false; Str7_IsNull = false; }
+	/** @brief Checks whether Str7_Optional has been set */
+	bool IsStr7Set() const { return Str7_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr7ToNull() { Str7_IsSet = true; Str7_IsNull = true; }
+	/** @brief Checks whether Str7_Optional is set to null */
+	bool IsStr7Null() const { return Str7_IsSet && Str7_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str8_Optional{  };
+	/** @brief true if Str8_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str8_IsSet{ false };
+	/** @brief true if Str8_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str8_IsNull{ false };
+	/** @brief Gets the value of Str8_Optional, regardless of it having been set */
+	FString& GetStr8() { return Str8_Optional; }
+	/** @brief Gets the value of Str8_Optional, regardless of it having been set */
+	const FString& GetStr8() const { return Str8_Optional; }
+	/** @brief Gets the value of Str8_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr8(const FString& DefaultValue) const { if (Str8_IsSet) return Str8_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str8_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr8(FString& OutValue) const { if (Str8_IsSet && !Str8_IsNull) OutValue = Str8_Optional; return Str8_IsSet; }
+	/** @brief Returns a pointer to Str8_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr8OrNull() { if (Str8_IsSet) return (Str8_IsNull ? nullptr : &Str8_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str8_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr8OrNull() const { if (Str8_IsSet) return (Str8_IsNull ? nullptr : &Str8_Optional); return nullptr; }
+	/** @brief Sets the value of Str8_Optional and also sets Str8_IsSet to true */
+	void SetStr8(const FString& NewValue) { Str8_Optional = NewValue; Str8_IsSet = true; Str8_IsNull = false; }
+	/** @brief Sets the value of Str8_Optional and also sets Str8_IsSet to true using move semantics */
+	void SetStr8(FString&& NewValue) { Str8_Optional = NewValue; Str8_IsSet = true; Str8_IsNull = false; }
+	/** @brief Clears the value of Str8_Optional and sets Str8_IsSet to false */
+	void ClearStr8() { Str8_IsSet = false; Str8_IsNull = false; }
+	/** @brief Checks whether Str8_Optional has been set */
+	bool IsStr8Set() const { return Str8_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr8ToNull() { Str8_IsSet = true; Str8_IsNull = true; }
+	/** @brief Checks whether Str8_Optional is set to null */
+	bool IsStr8Null() const { return Str8_IsSet && Str8_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str9_Optional{  };
+	/** @brief true if Str9_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str9_IsSet{ false };
+	/** @brief true if Str9_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str9_IsNull{ false };
+	/** @brief Gets the value of Str9_Optional, regardless of it having been set */
+	FString& GetStr9() { return Str9_Optional; }
+	/** @brief Gets the value of Str9_Optional, regardless of it having been set */
+	const FString& GetStr9() const { return Str9_Optional; }
+	/** @brief Gets the value of Str9_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr9(const FString& DefaultValue) const { if (Str9_IsSet) return Str9_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str9_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr9(FString& OutValue) const { if (Str9_IsSet && !Str9_IsNull) OutValue = Str9_Optional; return Str9_IsSet; }
+	/** @brief Returns a pointer to Str9_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr9OrNull() { if (Str9_IsSet) return (Str9_IsNull ? nullptr : &Str9_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str9_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr9OrNull() const { if (Str9_IsSet) return (Str9_IsNull ? nullptr : &Str9_Optional); return nullptr; }
+	/** @brief Sets the value of Str9_Optional and also sets Str9_IsSet to true */
+	void SetStr9(const FString& NewValue) { Str9_Optional = NewValue; Str9_IsSet = true; Str9_IsNull = false; }
+	/** @brief Sets the value of Str9_Optional and also sets Str9_IsSet to true using move semantics */
+	void SetStr9(FString&& NewValue) { Str9_Optional = NewValue; Str9_IsSet = true; Str9_IsNull = false; }
+	/** @brief Clears the value of Str9_Optional and sets Str9_IsSet to false */
+	void ClearStr9() { Str9_IsSet = false; Str9_IsNull = false; }
+	/** @brief Checks whether Str9_Optional has been set */
+	bool IsStr9Set() const { return Str9_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr9ToNull() { Str9_IsSet = true; Str9_IsNull = true; }
+	/** @brief Checks whether Str9_Optional is set to null */
+	bool IsStr9Null() const { return Str9_IsSet && Str9_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str10_Optional{  };
+	/** @brief true if Str10_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str10_IsSet{ false };
+	/** @brief true if Str10_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str10_IsNull{ false };
+	/** @brief Gets the value of Str10_Optional, regardless of it having been set */
+	FString& GetStr10() { return Str10_Optional; }
+	/** @brief Gets the value of Str10_Optional, regardless of it having been set */
+	const FString& GetStr10() const { return Str10_Optional; }
+	/** @brief Gets the value of Str10_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr10(const FString& DefaultValue) const { if (Str10_IsSet) return Str10_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str10_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr10(FString& OutValue) const { if (Str10_IsSet && !Str10_IsNull) OutValue = Str10_Optional; return Str10_IsSet; }
+	/** @brief Returns a pointer to Str10_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr10OrNull() { if (Str10_IsSet) return (Str10_IsNull ? nullptr : &Str10_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str10_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr10OrNull() const { if (Str10_IsSet) return (Str10_IsNull ? nullptr : &Str10_Optional); return nullptr; }
+	/** @brief Sets the value of Str10_Optional and also sets Str10_IsSet to true */
+	void SetStr10(const FString& NewValue) { Str10_Optional = NewValue; Str10_IsSet = true; Str10_IsNull = false; }
+	/** @brief Sets the value of Str10_Optional and also sets Str10_IsSet to true using move semantics */
+	void SetStr10(FString&& NewValue) { Str10_Optional = NewValue; Str10_IsSet = true; Str10_IsNull = false; }
+	/** @brief Clears the value of Str10_Optional and sets Str10_IsSet to false */
+	void ClearStr10() { Str10_IsSet = false; Str10_IsNull = false; }
+	/** @brief Checks whether Str10_Optional has been set */
+	bool IsStr10Set() const { return Str10_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr10ToNull() { Str10_IsSet = true; Str10_IsNull = true; }
+	/** @brief Checks whether Str10_Optional is set to null */
+	bool IsStr10Null() const { return Str10_IsSet && Str10_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str11_Optional{  };
+	/** @brief true if Str11_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str11_IsSet{ false };
+	/** @brief true if Str11_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str11_IsNull{ false };
+	/** @brief Gets the value of Str11_Optional, regardless of it having been set */
+	FString& GetStr11() { return Str11_Optional; }
+	/** @brief Gets the value of Str11_Optional, regardless of it having been set */
+	const FString& GetStr11() const { return Str11_Optional; }
+	/** @brief Gets the value of Str11_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr11(const FString& DefaultValue) const { if (Str11_IsSet) return Str11_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str11_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr11(FString& OutValue) const { if (Str11_IsSet && !Str11_IsNull) OutValue = Str11_Optional; return Str11_IsSet; }
+	/** @brief Returns a pointer to Str11_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr11OrNull() { if (Str11_IsSet) return (Str11_IsNull ? nullptr : &Str11_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str11_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr11OrNull() const { if (Str11_IsSet) return (Str11_IsNull ? nullptr : &Str11_Optional); return nullptr; }
+	/** @brief Sets the value of Str11_Optional and also sets Str11_IsSet to true */
+	void SetStr11(const FString& NewValue) { Str11_Optional = NewValue; Str11_IsSet = true; Str11_IsNull = false; }
+	/** @brief Sets the value of Str11_Optional and also sets Str11_IsSet to true using move semantics */
+	void SetStr11(FString&& NewValue) { Str11_Optional = NewValue; Str11_IsSet = true; Str11_IsNull = false; }
+	/** @brief Clears the value of Str11_Optional and sets Str11_IsSet to false */
+	void ClearStr11() { Str11_IsSet = false; Str11_IsNull = false; }
+	/** @brief Checks whether Str11_Optional has been set */
+	bool IsStr11Set() const { return Str11_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr11ToNull() { Str11_IsSet = true; Str11_IsNull = true; }
+	/** @brief Checks whether Str11_Optional is set to null */
+	bool IsStr11Null() const { return Str11_IsSet && Str11_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str12_Optional{  };
+	/** @brief true if Str12_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str12_IsSet{ false };
+	/** @brief true if Str12_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str12_IsNull{ false };
+	/** @brief Gets the value of Str12_Optional, regardless of it having been set */
+	FString& GetStr12() { return Str12_Optional; }
+	/** @brief Gets the value of Str12_Optional, regardless of it having been set */
+	const FString& GetStr12() const { return Str12_Optional; }
+	/** @brief Gets the value of Str12_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr12(const FString& DefaultValue) const { if (Str12_IsSet) return Str12_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str12_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr12(FString& OutValue) const { if (Str12_IsSet && !Str12_IsNull) OutValue = Str12_Optional; return Str12_IsSet; }
+	/** @brief Returns a pointer to Str12_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr12OrNull() { if (Str12_IsSet) return (Str12_IsNull ? nullptr : &Str12_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str12_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr12OrNull() const { if (Str12_IsSet) return (Str12_IsNull ? nullptr : &Str12_Optional); return nullptr; }
+	/** @brief Sets the value of Str12_Optional and also sets Str12_IsSet to true */
+	void SetStr12(const FString& NewValue) { Str12_Optional = NewValue; Str12_IsSet = true; Str12_IsNull = false; }
+	/** @brief Sets the value of Str12_Optional and also sets Str12_IsSet to true using move semantics */
+	void SetStr12(FString&& NewValue) { Str12_Optional = NewValue; Str12_IsSet = true; Str12_IsNull = false; }
+	/** @brief Clears the value of Str12_Optional and sets Str12_IsSet to false */
+	void ClearStr12() { Str12_IsSet = false; Str12_IsNull = false; }
+	/** @brief Checks whether Str12_Optional has been set */
+	bool IsStr12Set() const { return Str12_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr12ToNull() { Str12_IsSet = true; Str12_IsNull = true; }
+	/** @brief Checks whether Str12_Optional is set to null */
+	bool IsStr12Null() const { return Str12_IsSet && Str12_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str13_Optional{  };
+	/** @brief true if Str13_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str13_IsSet{ false };
+	/** @brief true if Str13_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str13_IsNull{ false };
+	/** @brief Gets the value of Str13_Optional, regardless of it having been set */
+	FString& GetStr13() { return Str13_Optional; }
+	/** @brief Gets the value of Str13_Optional, regardless of it having been set */
+	const FString& GetStr13() const { return Str13_Optional; }
+	/** @brief Gets the value of Str13_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr13(const FString& DefaultValue) const { if (Str13_IsSet) return Str13_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str13_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr13(FString& OutValue) const { if (Str13_IsSet && !Str13_IsNull) OutValue = Str13_Optional; return Str13_IsSet; }
+	/** @brief Returns a pointer to Str13_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr13OrNull() { if (Str13_IsSet) return (Str13_IsNull ? nullptr : &Str13_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str13_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr13OrNull() const { if (Str13_IsSet) return (Str13_IsNull ? nullptr : &Str13_Optional); return nullptr; }
+	/** @brief Sets the value of Str13_Optional and also sets Str13_IsSet to true */
+	void SetStr13(const FString& NewValue) { Str13_Optional = NewValue; Str13_IsSet = true; Str13_IsNull = false; }
+	/** @brief Sets the value of Str13_Optional and also sets Str13_IsSet to true using move semantics */
+	void SetStr13(FString&& NewValue) { Str13_Optional = NewValue; Str13_IsSet = true; Str13_IsNull = false; }
+	/** @brief Clears the value of Str13_Optional and sets Str13_IsSet to false */
+	void ClearStr13() { Str13_IsSet = false; Str13_IsNull = false; }
+	/** @brief Checks whether Str13_Optional has been set */
+	bool IsStr13Set() const { return Str13_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr13ToNull() { Str13_IsSet = true; Str13_IsNull = true; }
+	/** @brief Checks whether Str13_Optional is set to null */
+	bool IsStr13Null() const { return Str13_IsSet && Str13_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str14_Optional{  };
+	/** @brief true if Str14_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str14_IsSet{ false };
+	/** @brief true if Str14_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str14_IsNull{ false };
+	/** @brief Gets the value of Str14_Optional, regardless of it having been set */
+	FString& GetStr14() { return Str14_Optional; }
+	/** @brief Gets the value of Str14_Optional, regardless of it having been set */
+	const FString& GetStr14() const { return Str14_Optional; }
+	/** @brief Gets the value of Str14_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr14(const FString& DefaultValue) const { if (Str14_IsSet) return Str14_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str14_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr14(FString& OutValue) const { if (Str14_IsSet && !Str14_IsNull) OutValue = Str14_Optional; return Str14_IsSet; }
+	/** @brief Returns a pointer to Str14_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr14OrNull() { if (Str14_IsSet) return (Str14_IsNull ? nullptr : &Str14_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str14_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr14OrNull() const { if (Str14_IsSet) return (Str14_IsNull ? nullptr : &Str14_Optional); return nullptr; }
+	/** @brief Sets the value of Str14_Optional and also sets Str14_IsSet to true */
+	void SetStr14(const FString& NewValue) { Str14_Optional = NewValue; Str14_IsSet = true; Str14_IsNull = false; }
+	/** @brief Sets the value of Str14_Optional and also sets Str14_IsSet to true using move semantics */
+	void SetStr14(FString&& NewValue) { Str14_Optional = NewValue; Str14_IsSet = true; Str14_IsNull = false; }
+	/** @brief Clears the value of Str14_Optional and sets Str14_IsSet to false */
+	void ClearStr14() { Str14_IsSet = false; Str14_IsNull = false; }
+	/** @brief Checks whether Str14_Optional has been set */
+	bool IsStr14Set() const { return Str14_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr14ToNull() { Str14_IsSet = true; Str14_IsNull = true; }
+	/** @brief Checks whether Str14_Optional is set to null */
+	bool IsStr14Null() const { return Str14_IsSet && Str14_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str15_Optional{  };
+	/** @brief true if Str15_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str15_IsSet{ false };
+	/** @brief true if Str15_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str15_IsNull{ false };
+	/** @brief Gets the value of Str15_Optional, regardless of it having been set */
+	FString& GetStr15() { return Str15_Optional; }
+	/** @brief Gets the value of Str15_Optional, regardless of it having been set */
+	const FString& GetStr15() const { return Str15_Optional; }
+	/** @brief Gets the value of Str15_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr15(const FString& DefaultValue) const { if (Str15_IsSet) return Str15_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str15_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr15(FString& OutValue) const { if (Str15_IsSet && !Str15_IsNull) OutValue = Str15_Optional; return Str15_IsSet; }
+	/** @brief Returns a pointer to Str15_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr15OrNull() { if (Str15_IsSet) return (Str15_IsNull ? nullptr : &Str15_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str15_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr15OrNull() const { if (Str15_IsSet) return (Str15_IsNull ? nullptr : &Str15_Optional); return nullptr; }
+	/** @brief Sets the value of Str15_Optional and also sets Str15_IsSet to true */
+	void SetStr15(const FString& NewValue) { Str15_Optional = NewValue; Str15_IsSet = true; Str15_IsNull = false; }
+	/** @brief Sets the value of Str15_Optional and also sets Str15_IsSet to true using move semantics */
+	void SetStr15(FString&& NewValue) { Str15_Optional = NewValue; Str15_IsSet = true; Str15_IsNull = false; }
+	/** @brief Clears the value of Str15_Optional and sets Str15_IsSet to false */
+	void ClearStr15() { Str15_IsSet = false; Str15_IsNull = false; }
+	/** @brief Checks whether Str15_Optional has been set */
+	bool IsStr15Set() const { return Str15_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr15ToNull() { Str15_IsSet = true; Str15_IsNull = true; }
+	/** @brief Checks whether Str15_Optional is set to null */
+	bool IsStr15Null() const { return Str15_IsSet && Str15_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str16_Optional{  };
+	/** @brief true if Str16_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str16_IsSet{ false };
+	/** @brief true if Str16_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str16_IsNull{ false };
+	/** @brief Gets the value of Str16_Optional, regardless of it having been set */
+	FString& GetStr16() { return Str16_Optional; }
+	/** @brief Gets the value of Str16_Optional, regardless of it having been set */
+	const FString& GetStr16() const { return Str16_Optional; }
+	/** @brief Gets the value of Str16_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr16(const FString& DefaultValue) const { if (Str16_IsSet) return Str16_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str16_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr16(FString& OutValue) const { if (Str16_IsSet && !Str16_IsNull) OutValue = Str16_Optional; return Str16_IsSet; }
+	/** @brief Returns a pointer to Str16_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr16OrNull() { if (Str16_IsSet) return (Str16_IsNull ? nullptr : &Str16_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str16_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr16OrNull() const { if (Str16_IsSet) return (Str16_IsNull ? nullptr : &Str16_Optional); return nullptr; }
+	/** @brief Sets the value of Str16_Optional and also sets Str16_IsSet to true */
+	void SetStr16(const FString& NewValue) { Str16_Optional = NewValue; Str16_IsSet = true; Str16_IsNull = false; }
+	/** @brief Sets the value of Str16_Optional and also sets Str16_IsSet to true using move semantics */
+	void SetStr16(FString&& NewValue) { Str16_Optional = NewValue; Str16_IsSet = true; Str16_IsNull = false; }
+	/** @brief Clears the value of Str16_Optional and sets Str16_IsSet to false */
+	void ClearStr16() { Str16_IsSet = false; Str16_IsNull = false; }
+	/** @brief Checks whether Str16_Optional has been set */
+	bool IsStr16Set() const { return Str16_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr16ToNull() { Str16_IsSet = true; Str16_IsNull = true; }
+	/** @brief Checks whether Str16_Optional is set to null */
+	bool IsStr16Null() const { return Str16_IsSet && Str16_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str17_Optional{  };
+	/** @brief true if Str17_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str17_IsSet{ false };
+	/** @brief true if Str17_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str17_IsNull{ false };
+	/** @brief Gets the value of Str17_Optional, regardless of it having been set */
+	FString& GetStr17() { return Str17_Optional; }
+	/** @brief Gets the value of Str17_Optional, regardless of it having been set */
+	const FString& GetStr17() const { return Str17_Optional; }
+	/** @brief Gets the value of Str17_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr17(const FString& DefaultValue) const { if (Str17_IsSet) return Str17_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str17_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr17(FString& OutValue) const { if (Str17_IsSet && !Str17_IsNull) OutValue = Str17_Optional; return Str17_IsSet; }
+	/** @brief Returns a pointer to Str17_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr17OrNull() { if (Str17_IsSet) return (Str17_IsNull ? nullptr : &Str17_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str17_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr17OrNull() const { if (Str17_IsSet) return (Str17_IsNull ? nullptr : &Str17_Optional); return nullptr; }
+	/** @brief Sets the value of Str17_Optional and also sets Str17_IsSet to true */
+	void SetStr17(const FString& NewValue) { Str17_Optional = NewValue; Str17_IsSet = true; Str17_IsNull = false; }
+	/** @brief Sets the value of Str17_Optional and also sets Str17_IsSet to true using move semantics */
+	void SetStr17(FString&& NewValue) { Str17_Optional = NewValue; Str17_IsSet = true; Str17_IsNull = false; }
+	/** @brief Clears the value of Str17_Optional and sets Str17_IsSet to false */
+	void ClearStr17() { Str17_IsSet = false; Str17_IsNull = false; }
+	/** @brief Checks whether Str17_Optional has been set */
+	bool IsStr17Set() const { return Str17_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr17ToNull() { Str17_IsSet = true; Str17_IsNull = true; }
+	/** @brief Checks whether Str17_Optional is set to null */
+	bool IsStr17Null() const { return Str17_IsSet && Str17_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str18_Optional{  };
+	/** @brief true if Str18_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str18_IsSet{ false };
+	/** @brief true if Str18_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str18_IsNull{ false };
+	/** @brief Gets the value of Str18_Optional, regardless of it having been set */
+	FString& GetStr18() { return Str18_Optional; }
+	/** @brief Gets the value of Str18_Optional, regardless of it having been set */
+	const FString& GetStr18() const { return Str18_Optional; }
+	/** @brief Gets the value of Str18_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr18(const FString& DefaultValue) const { if (Str18_IsSet) return Str18_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str18_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr18(FString& OutValue) const { if (Str18_IsSet && !Str18_IsNull) OutValue = Str18_Optional; return Str18_IsSet; }
+	/** @brief Returns a pointer to Str18_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr18OrNull() { if (Str18_IsSet) return (Str18_IsNull ? nullptr : &Str18_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str18_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr18OrNull() const { if (Str18_IsSet) return (Str18_IsNull ? nullptr : &Str18_Optional); return nullptr; }
+	/** @brief Sets the value of Str18_Optional and also sets Str18_IsSet to true */
+	void SetStr18(const FString& NewValue) { Str18_Optional = NewValue; Str18_IsSet = true; Str18_IsNull = false; }
+	/** @brief Sets the value of Str18_Optional and also sets Str18_IsSet to true using move semantics */
+	void SetStr18(FString&& NewValue) { Str18_Optional = NewValue; Str18_IsSet = true; Str18_IsNull = false; }
+	/** @brief Clears the value of Str18_Optional and sets Str18_IsSet to false */
+	void ClearStr18() { Str18_IsSet = false; Str18_IsNull = false; }
+	/** @brief Checks whether Str18_Optional has been set */
+	bool IsStr18Set() const { return Str18_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr18ToNull() { Str18_IsSet = true; Str18_IsNull = true; }
+	/** @brief Checks whether Str18_Optional is set to null */
+	bool IsStr18Null() const { return Str18_IsSet && Str18_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str19_Optional{  };
+	/** @brief true if Str19_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str19_IsSet{ false };
+	/** @brief true if Str19_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str19_IsNull{ false };
+	/** @brief Gets the value of Str19_Optional, regardless of it having been set */
+	FString& GetStr19() { return Str19_Optional; }
+	/** @brief Gets the value of Str19_Optional, regardless of it having been set */
+	const FString& GetStr19() const { return Str19_Optional; }
+	/** @brief Gets the value of Str19_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr19(const FString& DefaultValue) const { if (Str19_IsSet) return Str19_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str19_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr19(FString& OutValue) const { if (Str19_IsSet && !Str19_IsNull) OutValue = Str19_Optional; return Str19_IsSet; }
+	/** @brief Returns a pointer to Str19_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr19OrNull() { if (Str19_IsSet) return (Str19_IsNull ? nullptr : &Str19_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str19_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr19OrNull() const { if (Str19_IsSet) return (Str19_IsNull ? nullptr : &Str19_Optional); return nullptr; }
+	/** @brief Sets the value of Str19_Optional and also sets Str19_IsSet to true */
+	void SetStr19(const FString& NewValue) { Str19_Optional = NewValue; Str19_IsSet = true; Str19_IsNull = false; }
+	/** @brief Sets the value of Str19_Optional and also sets Str19_IsSet to true using move semantics */
+	void SetStr19(FString&& NewValue) { Str19_Optional = NewValue; Str19_IsSet = true; Str19_IsNull = false; }
+	/** @brief Clears the value of Str19_Optional and sets Str19_IsSet to false */
+	void ClearStr19() { Str19_IsSet = false; Str19_IsNull = false; }
+	/** @brief Checks whether Str19_Optional has been set */
+	bool IsStr19Set() const { return Str19_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr19ToNull() { Str19_IsSet = true; Str19_IsNull = true; }
+	/** @brief Checks whether Str19_Optional is set to null */
+	bool IsStr19Null() const { return Str19_IsSet && Str19_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str20_Optional{  };
+	/** @brief true if Str20_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str20_IsSet{ false };
+	/** @brief true if Str20_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str20_IsNull{ false };
+	/** @brief Gets the value of Str20_Optional, regardless of it having been set */
+	FString& GetStr20() { return Str20_Optional; }
+	/** @brief Gets the value of Str20_Optional, regardless of it having been set */
+	const FString& GetStr20() const { return Str20_Optional; }
+	/** @brief Gets the value of Str20_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr20(const FString& DefaultValue) const { if (Str20_IsSet) return Str20_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str20_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr20(FString& OutValue) const { if (Str20_IsSet && !Str20_IsNull) OutValue = Str20_Optional; return Str20_IsSet; }
+	/** @brief Returns a pointer to Str20_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr20OrNull() { if (Str20_IsSet) return (Str20_IsNull ? nullptr : &Str20_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str20_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr20OrNull() const { if (Str20_IsSet) return (Str20_IsNull ? nullptr : &Str20_Optional); return nullptr; }
+	/** @brief Sets the value of Str20_Optional and also sets Str20_IsSet to true */
+	void SetStr20(const FString& NewValue) { Str20_Optional = NewValue; Str20_IsSet = true; Str20_IsNull = false; }
+	/** @brief Sets the value of Str20_Optional and also sets Str20_IsSet to true using move semantics */
+	void SetStr20(FString&& NewValue) { Str20_Optional = NewValue; Str20_IsSet = true; Str20_IsNull = false; }
+	/** @brief Clears the value of Str20_Optional and sets Str20_IsSet to false */
+	void ClearStr20() { Str20_IsSet = false; Str20_IsNull = false; }
+	/** @brief Checks whether Str20_Optional has been set */
+	bool IsStr20Set() const { return Str20_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr20ToNull() { Str20_IsSet = true; Str20_IsNull = true; }
+	/** @brief Checks whether Str20_Optional is set to null */
+	bool IsStr20Null() const { return Str20_IsSet && Str20_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str21_Optional{  };
+	/** @brief true if Str21_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str21_IsSet{ false };
+	/** @brief true if Str21_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str21_IsNull{ false };
+	/** @brief Gets the value of Str21_Optional, regardless of it having been set */
+	FString& GetStr21() { return Str21_Optional; }
+	/** @brief Gets the value of Str21_Optional, regardless of it having been set */
+	const FString& GetStr21() const { return Str21_Optional; }
+	/** @brief Gets the value of Str21_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr21(const FString& DefaultValue) const { if (Str21_IsSet) return Str21_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str21_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr21(FString& OutValue) const { if (Str21_IsSet && !Str21_IsNull) OutValue = Str21_Optional; return Str21_IsSet; }
+	/** @brief Returns a pointer to Str21_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr21OrNull() { if (Str21_IsSet) return (Str21_IsNull ? nullptr : &Str21_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str21_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr21OrNull() const { if (Str21_IsSet) return (Str21_IsNull ? nullptr : &Str21_Optional); return nullptr; }
+	/** @brief Sets the value of Str21_Optional and also sets Str21_IsSet to true */
+	void SetStr21(const FString& NewValue) { Str21_Optional = NewValue; Str21_IsSet = true; Str21_IsNull = false; }
+	/** @brief Sets the value of Str21_Optional and also sets Str21_IsSet to true using move semantics */
+	void SetStr21(FString&& NewValue) { Str21_Optional = NewValue; Str21_IsSet = true; Str21_IsNull = false; }
+	/** @brief Clears the value of Str21_Optional and sets Str21_IsSet to false */
+	void ClearStr21() { Str21_IsSet = false; Str21_IsNull = false; }
+	/** @brief Checks whether Str21_Optional has been set */
+	bool IsStr21Set() const { return Str21_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr21ToNull() { Str21_IsSet = true; Str21_IsNull = true; }
+	/** @brief Checks whether Str21_Optional is set to null */
+	bool IsStr21Null() const { return Str21_IsSet && Str21_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str22_Optional{  };
+	/** @brief true if Str22_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str22_IsSet{ false };
+	/** @brief true if Str22_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str22_IsNull{ false };
+	/** @brief Gets the value of Str22_Optional, regardless of it having been set */
+	FString& GetStr22() { return Str22_Optional; }
+	/** @brief Gets the value of Str22_Optional, regardless of it having been set */
+	const FString& GetStr22() const { return Str22_Optional; }
+	/** @brief Gets the value of Str22_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr22(const FString& DefaultValue) const { if (Str22_IsSet) return Str22_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str22_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr22(FString& OutValue) const { if (Str22_IsSet && !Str22_IsNull) OutValue = Str22_Optional; return Str22_IsSet; }
+	/** @brief Returns a pointer to Str22_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr22OrNull() { if (Str22_IsSet) return (Str22_IsNull ? nullptr : &Str22_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str22_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr22OrNull() const { if (Str22_IsSet) return (Str22_IsNull ? nullptr : &Str22_Optional); return nullptr; }
+	/** @brief Sets the value of Str22_Optional and also sets Str22_IsSet to true */
+	void SetStr22(const FString& NewValue) { Str22_Optional = NewValue; Str22_IsSet = true; Str22_IsNull = false; }
+	/** @brief Sets the value of Str22_Optional and also sets Str22_IsSet to true using move semantics */
+	void SetStr22(FString&& NewValue) { Str22_Optional = NewValue; Str22_IsSet = true; Str22_IsNull = false; }
+	/** @brief Clears the value of Str22_Optional and sets Str22_IsSet to false */
+	void ClearStr22() { Str22_IsSet = false; Str22_IsNull = false; }
+	/** @brief Checks whether Str22_Optional has been set */
+	bool IsStr22Set() const { return Str22_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr22ToNull() { Str22_IsSet = true; Str22_IsNull = true; }
+	/** @brief Checks whether Str22_Optional is set to null */
+	bool IsStr22Null() const { return Str22_IsSet && Str22_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str23_Optional{  };
+	/** @brief true if Str23_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str23_IsSet{ false };
+	/** @brief true if Str23_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str23_IsNull{ false };
+	/** @brief Gets the value of Str23_Optional, regardless of it having been set */
+	FString& GetStr23() { return Str23_Optional; }
+	/** @brief Gets the value of Str23_Optional, regardless of it having been set */
+	const FString& GetStr23() const { return Str23_Optional; }
+	/** @brief Gets the value of Str23_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr23(const FString& DefaultValue) const { if (Str23_IsSet) return Str23_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str23_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr23(FString& OutValue) const { if (Str23_IsSet && !Str23_IsNull) OutValue = Str23_Optional; return Str23_IsSet; }
+	/** @brief Returns a pointer to Str23_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr23OrNull() { if (Str23_IsSet) return (Str23_IsNull ? nullptr : &Str23_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str23_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr23OrNull() const { if (Str23_IsSet) return (Str23_IsNull ? nullptr : &Str23_Optional); return nullptr; }
+	/** @brief Sets the value of Str23_Optional and also sets Str23_IsSet to true */
+	void SetStr23(const FString& NewValue) { Str23_Optional = NewValue; Str23_IsSet = true; Str23_IsNull = false; }
+	/** @brief Sets the value of Str23_Optional and also sets Str23_IsSet to true using move semantics */
+	void SetStr23(FString&& NewValue) { Str23_Optional = NewValue; Str23_IsSet = true; Str23_IsNull = false; }
+	/** @brief Clears the value of Str23_Optional and sets Str23_IsSet to false */
+	void ClearStr23() { Str23_IsSet = false; Str23_IsNull = false; }
+	/** @brief Checks whether Str23_Optional has been set */
+	bool IsStr23Set() const { return Str23_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr23ToNull() { Str23_IsSet = true; Str23_IsNull = true; }
+	/** @brief Checks whether Str23_Optional is set to null */
+	bool IsStr23Null() const { return Str23_IsSet && Str23_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str24_Optional{  };
+	/** @brief true if Str24_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str24_IsSet{ false };
+	/** @brief true if Str24_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str24_IsNull{ false };
+	/** @brief Gets the value of Str24_Optional, regardless of it having been set */
+	FString& GetStr24() { return Str24_Optional; }
+	/** @brief Gets the value of Str24_Optional, regardless of it having been set */
+	const FString& GetStr24() const { return Str24_Optional; }
+	/** @brief Gets the value of Str24_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr24(const FString& DefaultValue) const { if (Str24_IsSet) return Str24_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str24_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr24(FString& OutValue) const { if (Str24_IsSet && !Str24_IsNull) OutValue = Str24_Optional; return Str24_IsSet; }
+	/** @brief Returns a pointer to Str24_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr24OrNull() { if (Str24_IsSet) return (Str24_IsNull ? nullptr : &Str24_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str24_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr24OrNull() const { if (Str24_IsSet) return (Str24_IsNull ? nullptr : &Str24_Optional); return nullptr; }
+	/** @brief Sets the value of Str24_Optional and also sets Str24_IsSet to true */
+	void SetStr24(const FString& NewValue) { Str24_Optional = NewValue; Str24_IsSet = true; Str24_IsNull = false; }
+	/** @brief Sets the value of Str24_Optional and also sets Str24_IsSet to true using move semantics */
+	void SetStr24(FString&& NewValue) { Str24_Optional = NewValue; Str24_IsSet = true; Str24_IsNull = false; }
+	/** @brief Clears the value of Str24_Optional and sets Str24_IsSet to false */
+	void ClearStr24() { Str24_IsSet = false; Str24_IsNull = false; }
+	/** @brief Checks whether Str24_Optional has been set */
+	bool IsStr24Set() const { return Str24_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr24ToNull() { Str24_IsSet = true; Str24_IsNull = true; }
+	/** @brief Checks whether Str24_Optional is set to null */
+	bool IsStr24Null() const { return Str24_IsSet && Str24_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str25_Optional{  };
+	/** @brief true if Str25_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str25_IsSet{ false };
+	/** @brief true if Str25_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str25_IsNull{ false };
+	/** @brief Gets the value of Str25_Optional, regardless of it having been set */
+	FString& GetStr25() { return Str25_Optional; }
+	/** @brief Gets the value of Str25_Optional, regardless of it having been set */
+	const FString& GetStr25() const { return Str25_Optional; }
+	/** @brief Gets the value of Str25_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr25(const FString& DefaultValue) const { if (Str25_IsSet) return Str25_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str25_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr25(FString& OutValue) const { if (Str25_IsSet && !Str25_IsNull) OutValue = Str25_Optional; return Str25_IsSet; }
+	/** @brief Returns a pointer to Str25_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr25OrNull() { if (Str25_IsSet) return (Str25_IsNull ? nullptr : &Str25_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str25_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr25OrNull() const { if (Str25_IsSet) return (Str25_IsNull ? nullptr : &Str25_Optional); return nullptr; }
+	/** @brief Sets the value of Str25_Optional and also sets Str25_IsSet to true */
+	void SetStr25(const FString& NewValue) { Str25_Optional = NewValue; Str25_IsSet = true; Str25_IsNull = false; }
+	/** @brief Sets the value of Str25_Optional and also sets Str25_IsSet to true using move semantics */
+	void SetStr25(FString&& NewValue) { Str25_Optional = NewValue; Str25_IsSet = true; Str25_IsNull = false; }
+	/** @brief Clears the value of Str25_Optional and sets Str25_IsSet to false */
+	void ClearStr25() { Str25_IsSet = false; Str25_IsNull = false; }
+	/** @brief Checks whether Str25_Optional has been set */
+	bool IsStr25Set() const { return Str25_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr25ToNull() { Str25_IsSet = true; Str25_IsNull = true; }
+	/** @brief Checks whether Str25_Optional is set to null */
+	bool IsStr25Null() const { return Str25_IsSet && Str25_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str26_Optional{  };
+	/** @brief true if Str26_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str26_IsSet{ false };
+	/** @brief true if Str26_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str26_IsNull{ false };
+	/** @brief Gets the value of Str26_Optional, regardless of it having been set */
+	FString& GetStr26() { return Str26_Optional; }
+	/** @brief Gets the value of Str26_Optional, regardless of it having been set */
+	const FString& GetStr26() const { return Str26_Optional; }
+	/** @brief Gets the value of Str26_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr26(const FString& DefaultValue) const { if (Str26_IsSet) return Str26_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str26_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr26(FString& OutValue) const { if (Str26_IsSet && !Str26_IsNull) OutValue = Str26_Optional; return Str26_IsSet; }
+	/** @brief Returns a pointer to Str26_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr26OrNull() { if (Str26_IsSet) return (Str26_IsNull ? nullptr : &Str26_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str26_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr26OrNull() const { if (Str26_IsSet) return (Str26_IsNull ? nullptr : &Str26_Optional); return nullptr; }
+	/** @brief Sets the value of Str26_Optional and also sets Str26_IsSet to true */
+	void SetStr26(const FString& NewValue) { Str26_Optional = NewValue; Str26_IsSet = true; Str26_IsNull = false; }
+	/** @brief Sets the value of Str26_Optional and also sets Str26_IsSet to true using move semantics */
+	void SetStr26(FString&& NewValue) { Str26_Optional = NewValue; Str26_IsSet = true; Str26_IsNull = false; }
+	/** @brief Clears the value of Str26_Optional and sets Str26_IsSet to false */
+	void ClearStr26() { Str26_IsSet = false; Str26_IsNull = false; }
+	/** @brief Checks whether Str26_Optional has been set */
+	bool IsStr26Set() const { return Str26_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr26ToNull() { Str26_IsSet = true; Str26_IsNull = true; }
+	/** @brief Checks whether Str26_Optional is set to null */
+	bool IsStr26Null() const { return Str26_IsSet && Str26_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str27_Optional{  };
+	/** @brief true if Str27_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str27_IsSet{ false };
+	/** @brief true if Str27_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str27_IsNull{ false };
+	/** @brief Gets the value of Str27_Optional, regardless of it having been set */
+	FString& GetStr27() { return Str27_Optional; }
+	/** @brief Gets the value of Str27_Optional, regardless of it having been set */
+	const FString& GetStr27() const { return Str27_Optional; }
+	/** @brief Gets the value of Str27_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr27(const FString& DefaultValue) const { if (Str27_IsSet) return Str27_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str27_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr27(FString& OutValue) const { if (Str27_IsSet && !Str27_IsNull) OutValue = Str27_Optional; return Str27_IsSet; }
+	/** @brief Returns a pointer to Str27_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr27OrNull() { if (Str27_IsSet) return (Str27_IsNull ? nullptr : &Str27_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str27_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr27OrNull() const { if (Str27_IsSet) return (Str27_IsNull ? nullptr : &Str27_Optional); return nullptr; }
+	/** @brief Sets the value of Str27_Optional and also sets Str27_IsSet to true */
+	void SetStr27(const FString& NewValue) { Str27_Optional = NewValue; Str27_IsSet = true; Str27_IsNull = false; }
+	/** @brief Sets the value of Str27_Optional and also sets Str27_IsSet to true using move semantics */
+	void SetStr27(FString&& NewValue) { Str27_Optional = NewValue; Str27_IsSet = true; Str27_IsNull = false; }
+	/** @brief Clears the value of Str27_Optional and sets Str27_IsSet to false */
+	void ClearStr27() { Str27_IsSet = false; Str27_IsNull = false; }
+	/** @brief Checks whether Str27_Optional has been set */
+	bool IsStr27Set() const { return Str27_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr27ToNull() { Str27_IsSet = true; Str27_IsNull = true; }
+	/** @brief Checks whether Str27_Optional is set to null */
+	bool IsStr27Null() const { return Str27_IsSet && Str27_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str28_Optional{  };
+	/** @brief true if Str28_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str28_IsSet{ false };
+	/** @brief true if Str28_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str28_IsNull{ false };
+	/** @brief Gets the value of Str28_Optional, regardless of it having been set */
+	FString& GetStr28() { return Str28_Optional; }
+	/** @brief Gets the value of Str28_Optional, regardless of it having been set */
+	const FString& GetStr28() const { return Str28_Optional; }
+	/** @brief Gets the value of Str28_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr28(const FString& DefaultValue) const { if (Str28_IsSet) return Str28_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str28_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr28(FString& OutValue) const { if (Str28_IsSet && !Str28_IsNull) OutValue = Str28_Optional; return Str28_IsSet; }
+	/** @brief Returns a pointer to Str28_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr28OrNull() { if (Str28_IsSet) return (Str28_IsNull ? nullptr : &Str28_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str28_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr28OrNull() const { if (Str28_IsSet) return (Str28_IsNull ? nullptr : &Str28_Optional); return nullptr; }
+	/** @brief Sets the value of Str28_Optional and also sets Str28_IsSet to true */
+	void SetStr28(const FString& NewValue) { Str28_Optional = NewValue; Str28_IsSet = true; Str28_IsNull = false; }
+	/** @brief Sets the value of Str28_Optional and also sets Str28_IsSet to true using move semantics */
+	void SetStr28(FString&& NewValue) { Str28_Optional = NewValue; Str28_IsSet = true; Str28_IsNull = false; }
+	/** @brief Clears the value of Str28_Optional and sets Str28_IsSet to false */
+	void ClearStr28() { Str28_IsSet = false; Str28_IsNull = false; }
+	/** @brief Checks whether Str28_Optional has been set */
+	bool IsStr28Set() const { return Str28_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr28ToNull() { Str28_IsSet = true; Str28_IsNull = true; }
+	/** @brief Checks whether Str28_Optional is set to null */
+	bool IsStr28Null() const { return Str28_IsSet && Str28_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str29_Optional{  };
+	/** @brief true if Str29_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str29_IsSet{ false };
+	/** @brief true if Str29_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str29_IsNull{ false };
+	/** @brief Gets the value of Str29_Optional, regardless of it having been set */
+	FString& GetStr29() { return Str29_Optional; }
+	/** @brief Gets the value of Str29_Optional, regardless of it having been set */
+	const FString& GetStr29() const { return Str29_Optional; }
+	/** @brief Gets the value of Str29_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr29(const FString& DefaultValue) const { if (Str29_IsSet) return Str29_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str29_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr29(FString& OutValue) const { if (Str29_IsSet && !Str29_IsNull) OutValue = Str29_Optional; return Str29_IsSet; }
+	/** @brief Returns a pointer to Str29_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr29OrNull() { if (Str29_IsSet) return (Str29_IsNull ? nullptr : &Str29_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str29_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr29OrNull() const { if (Str29_IsSet) return (Str29_IsNull ? nullptr : &Str29_Optional); return nullptr; }
+	/** @brief Sets the value of Str29_Optional and also sets Str29_IsSet to true */
+	void SetStr29(const FString& NewValue) { Str29_Optional = NewValue; Str29_IsSet = true; Str29_IsNull = false; }
+	/** @brief Sets the value of Str29_Optional and also sets Str29_IsSet to true using move semantics */
+	void SetStr29(FString&& NewValue) { Str29_Optional = NewValue; Str29_IsSet = true; Str29_IsNull = false; }
+	/** @brief Clears the value of Str29_Optional and sets Str29_IsSet to false */
+	void ClearStr29() { Str29_IsSet = false; Str29_IsNull = false; }
+	/** @brief Checks whether Str29_Optional has been set */
+	bool IsStr29Set() const { return Str29_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr29ToNull() { Str29_IsSet = true; Str29_IsNull = true; }
+	/** @brief Checks whether Str29_Optional is set to null */
+	bool IsStr29Null() const { return Str29_IsSet && Str29_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str30_Optional{  };
+	/** @brief true if Str30_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str30_IsSet{ false };
+	/** @brief true if Str30_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str30_IsNull{ false };
+	/** @brief Gets the value of Str30_Optional, regardless of it having been set */
+	FString& GetStr30() { return Str30_Optional; }
+	/** @brief Gets the value of Str30_Optional, regardless of it having been set */
+	const FString& GetStr30() const { return Str30_Optional; }
+	/** @brief Gets the value of Str30_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr30(const FString& DefaultValue) const { if (Str30_IsSet) return Str30_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str30_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr30(FString& OutValue) const { if (Str30_IsSet && !Str30_IsNull) OutValue = Str30_Optional; return Str30_IsSet; }
+	/** @brief Returns a pointer to Str30_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr30OrNull() { if (Str30_IsSet) return (Str30_IsNull ? nullptr : &Str30_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str30_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr30OrNull() const { if (Str30_IsSet) return (Str30_IsNull ? nullptr : &Str30_Optional); return nullptr; }
+	/** @brief Sets the value of Str30_Optional and also sets Str30_IsSet to true */
+	void SetStr30(const FString& NewValue) { Str30_Optional = NewValue; Str30_IsSet = true; Str30_IsNull = false; }
+	/** @brief Sets the value of Str30_Optional and also sets Str30_IsSet to true using move semantics */
+	void SetStr30(FString&& NewValue) { Str30_Optional = NewValue; Str30_IsSet = true; Str30_IsNull = false; }
+	/** @brief Clears the value of Str30_Optional and sets Str30_IsSet to false */
+	void ClearStr30() { Str30_IsSet = false; Str30_IsNull = false; }
+	/** @brief Checks whether Str30_Optional has been set */
+	bool IsStr30Set() const { return Str30_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr30ToNull() { Str30_IsSet = true; Str30_IsNull = true; }
+	/** @brief Checks whether Str30_Optional is set to null */
+	bool IsStr30Null() const { return Str30_IsSet && Str30_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str31_Optional{  };
+	/** @brief true if Str31_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str31_IsSet{ false };
+	/** @brief true if Str31_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str31_IsNull{ false };
+	/** @brief Gets the value of Str31_Optional, regardless of it having been set */
+	FString& GetStr31() { return Str31_Optional; }
+	/** @brief Gets the value of Str31_Optional, regardless of it having been set */
+	const FString& GetStr31() const { return Str31_Optional; }
+	/** @brief Gets the value of Str31_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr31(const FString& DefaultValue) const { if (Str31_IsSet) return Str31_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str31_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr31(FString& OutValue) const { if (Str31_IsSet && !Str31_IsNull) OutValue = Str31_Optional; return Str31_IsSet; }
+	/** @brief Returns a pointer to Str31_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr31OrNull() { if (Str31_IsSet) return (Str31_IsNull ? nullptr : &Str31_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str31_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr31OrNull() const { if (Str31_IsSet) return (Str31_IsNull ? nullptr : &Str31_Optional); return nullptr; }
+	/** @brief Sets the value of Str31_Optional and also sets Str31_IsSet to true */
+	void SetStr31(const FString& NewValue) { Str31_Optional = NewValue; Str31_IsSet = true; Str31_IsNull = false; }
+	/** @brief Sets the value of Str31_Optional and also sets Str31_IsSet to true using move semantics */
+	void SetStr31(FString&& NewValue) { Str31_Optional = NewValue; Str31_IsSet = true; Str31_IsNull = false; }
+	/** @brief Clears the value of Str31_Optional and sets Str31_IsSet to false */
+	void ClearStr31() { Str31_IsSet = false; Str31_IsNull = false; }
+	/** @brief Checks whether Str31_Optional has been set */
+	bool IsStr31Set() const { return Str31_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr31ToNull() { Str31_IsSet = true; Str31_IsNull = true; }
+	/** @brief Checks whether Str31_Optional is set to null */
+	bool IsStr31Null() const { return Str31_IsSet && Str31_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString Str32_Optional{  };
+	/** @brief true if Str32_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str32_IsSet{ false };
+	/** @brief true if Str32_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Str32_IsNull{ false };
+	/** @brief Gets the value of Str32_Optional, regardless of it having been set */
+	FString& GetStr32() { return Str32_Optional; }
+	/** @brief Gets the value of Str32_Optional, regardless of it having been set */
+	const FString& GetStr32() const { return Str32_Optional; }
+	/** @brief Gets the value of Str32_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetStr32(const FString& DefaultValue) const { if (Str32_IsSet) return Str32_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Str32_Optional and returns true if it has been set, otherwise returns false */
+	bool GetStr32(FString& OutValue) const { if (Str32_IsSet && !Str32_IsNull) OutValue = Str32_Optional; return Str32_IsSet; }
+	/** @brief Returns a pointer to Str32_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetStr32OrNull() { if (Str32_IsSet) return (Str32_IsNull ? nullptr : &Str32_Optional); return nullptr; }
+	/** @brief Returns a pointer to Str32_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetStr32OrNull() const { if (Str32_IsSet) return (Str32_IsNull ? nullptr : &Str32_Optional); return nullptr; }
+	/** @brief Sets the value of Str32_Optional and also sets Str32_IsSet to true */
+	void SetStr32(const FString& NewValue) { Str32_Optional = NewValue; Str32_IsSet = true; Str32_IsNull = false; }
+	/** @brief Sets the value of Str32_Optional and also sets Str32_IsSet to true using move semantics */
+	void SetStr32(FString&& NewValue) { Str32_Optional = NewValue; Str32_IsSet = true; Str32_IsNull = false; }
+	/** @brief Clears the value of Str32_Optional and sets Str32_IsSet to false */
+	void ClearStr32() { Str32_IsSet = false; Str32_IsNull = false; }
+	/** @brief Checks whether Str32_Optional has been set */
+	bool IsStr32Set() const { return Str32_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetStr32ToNull() { Str32_IsSet = true; Str32_IsNull = true; }
+	/** @brief Checks whether Str32_Optional is set to null */
+	bool IsStr32Null() const { return Str32_IsSet && Str32_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float1_Optional{  };
+	/** @brief true if Float1_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float1_IsSet{ false };
+	/** @brief true if Float1_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float1_IsNull{ false };
+	/** @brief Gets the value of Float1_Optional, regardless of it having been set */
+	float& GetFloat1() { return Float1_Optional; }
+	/** @brief Gets the value of Float1_Optional, regardless of it having been set */
+	const float& GetFloat1() const { return Float1_Optional; }
+	/** @brief Gets the value of Float1_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat1(const float& DefaultValue) const { if (Float1_IsSet) return Float1_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float1_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat1(float& OutValue) const { if (Float1_IsSet && !Float1_IsNull) OutValue = Float1_Optional; return Float1_IsSet; }
+	/** @brief Returns a pointer to Float1_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat1OrNull() { if (Float1_IsSet) return (Float1_IsNull ? nullptr : &Float1_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float1_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat1OrNull() const { if (Float1_IsSet) return (Float1_IsNull ? nullptr : &Float1_Optional); return nullptr; }
+	/** @brief Sets the value of Float1_Optional and also sets Float1_IsSet to true */
+	void SetFloat1(const float& NewValue) { Float1_Optional = NewValue; Float1_IsSet = true; Float1_IsNull = false; }
+	/** @brief Sets the value of Float1_Optional and also sets Float1_IsSet to true using move semantics */
+	void SetFloat1(float&& NewValue) { Float1_Optional = NewValue; Float1_IsSet = true; Float1_IsNull = false; }
+	/** @brief Clears the value of Float1_Optional and sets Float1_IsSet to false */
+	void ClearFloat1() { Float1_IsSet = false; Float1_IsNull = false; }
+	/** @brief Checks whether Float1_Optional has been set */
+	bool IsFloat1Set() const { return Float1_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat1ToNull() { Float1_IsSet = true; Float1_IsNull = true; }
+	/** @brief Checks whether Float1_Optional is set to null */
+	bool IsFloat1Null() const { return Float1_IsSet && Float1_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float2_Optional{  };
+	/** @brief true if Float2_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float2_IsSet{ false };
+	/** @brief true if Float2_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float2_IsNull{ false };
+	/** @brief Gets the value of Float2_Optional, regardless of it having been set */
+	float& GetFloat2() { return Float2_Optional; }
+	/** @brief Gets the value of Float2_Optional, regardless of it having been set */
+	const float& GetFloat2() const { return Float2_Optional; }
+	/** @brief Gets the value of Float2_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat2(const float& DefaultValue) const { if (Float2_IsSet) return Float2_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float2_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat2(float& OutValue) const { if (Float2_IsSet && !Float2_IsNull) OutValue = Float2_Optional; return Float2_IsSet; }
+	/** @brief Returns a pointer to Float2_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat2OrNull() { if (Float2_IsSet) return (Float2_IsNull ? nullptr : &Float2_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float2_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat2OrNull() const { if (Float2_IsSet) return (Float2_IsNull ? nullptr : &Float2_Optional); return nullptr; }
+	/** @brief Sets the value of Float2_Optional and also sets Float2_IsSet to true */
+	void SetFloat2(const float& NewValue) { Float2_Optional = NewValue; Float2_IsSet = true; Float2_IsNull = false; }
+	/** @brief Sets the value of Float2_Optional and also sets Float2_IsSet to true using move semantics */
+	void SetFloat2(float&& NewValue) { Float2_Optional = NewValue; Float2_IsSet = true; Float2_IsNull = false; }
+	/** @brief Clears the value of Float2_Optional and sets Float2_IsSet to false */
+	void ClearFloat2() { Float2_IsSet = false; Float2_IsNull = false; }
+	/** @brief Checks whether Float2_Optional has been set */
+	bool IsFloat2Set() const { return Float2_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat2ToNull() { Float2_IsSet = true; Float2_IsNull = true; }
+	/** @brief Checks whether Float2_Optional is set to null */
+	bool IsFloat2Null() const { return Float2_IsSet && Float2_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float3_Optional{  };
+	/** @brief true if Float3_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float3_IsSet{ false };
+	/** @brief true if Float3_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float3_IsNull{ false };
+	/** @brief Gets the value of Float3_Optional, regardless of it having been set */
+	float& GetFloat3() { return Float3_Optional; }
+	/** @brief Gets the value of Float3_Optional, regardless of it having been set */
+	const float& GetFloat3() const { return Float3_Optional; }
+	/** @brief Gets the value of Float3_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat3(const float& DefaultValue) const { if (Float3_IsSet) return Float3_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float3_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat3(float& OutValue) const { if (Float3_IsSet && !Float3_IsNull) OutValue = Float3_Optional; return Float3_IsSet; }
+	/** @brief Returns a pointer to Float3_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat3OrNull() { if (Float3_IsSet) return (Float3_IsNull ? nullptr : &Float3_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float3_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat3OrNull() const { if (Float3_IsSet) return (Float3_IsNull ? nullptr : &Float3_Optional); return nullptr; }
+	/** @brief Sets the value of Float3_Optional and also sets Float3_IsSet to true */
+	void SetFloat3(const float& NewValue) { Float3_Optional = NewValue; Float3_IsSet = true; Float3_IsNull = false; }
+	/** @brief Sets the value of Float3_Optional and also sets Float3_IsSet to true using move semantics */
+	void SetFloat3(float&& NewValue) { Float3_Optional = NewValue; Float3_IsSet = true; Float3_IsNull = false; }
+	/** @brief Clears the value of Float3_Optional and sets Float3_IsSet to false */
+	void ClearFloat3() { Float3_IsSet = false; Float3_IsNull = false; }
+	/** @brief Checks whether Float3_Optional has been set */
+	bool IsFloat3Set() const { return Float3_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat3ToNull() { Float3_IsSet = true; Float3_IsNull = true; }
+	/** @brief Checks whether Float3_Optional is set to null */
+	bool IsFloat3Null() const { return Float3_IsSet && Float3_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float4_Optional{  };
+	/** @brief true if Float4_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float4_IsSet{ false };
+	/** @brief true if Float4_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float4_IsNull{ false };
+	/** @brief Gets the value of Float4_Optional, regardless of it having been set */
+	float& GetFloat4() { return Float4_Optional; }
+	/** @brief Gets the value of Float4_Optional, regardless of it having been set */
+	const float& GetFloat4() const { return Float4_Optional; }
+	/** @brief Gets the value of Float4_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat4(const float& DefaultValue) const { if (Float4_IsSet) return Float4_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float4_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat4(float& OutValue) const { if (Float4_IsSet && !Float4_IsNull) OutValue = Float4_Optional; return Float4_IsSet; }
+	/** @brief Returns a pointer to Float4_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat4OrNull() { if (Float4_IsSet) return (Float4_IsNull ? nullptr : &Float4_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float4_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat4OrNull() const { if (Float4_IsSet) return (Float4_IsNull ? nullptr : &Float4_Optional); return nullptr; }
+	/** @brief Sets the value of Float4_Optional and also sets Float4_IsSet to true */
+	void SetFloat4(const float& NewValue) { Float4_Optional = NewValue; Float4_IsSet = true; Float4_IsNull = false; }
+	/** @brief Sets the value of Float4_Optional and also sets Float4_IsSet to true using move semantics */
+	void SetFloat4(float&& NewValue) { Float4_Optional = NewValue; Float4_IsSet = true; Float4_IsNull = false; }
+	/** @brief Clears the value of Float4_Optional and sets Float4_IsSet to false */
+	void ClearFloat4() { Float4_IsSet = false; Float4_IsNull = false; }
+	/** @brief Checks whether Float4_Optional has been set */
+	bool IsFloat4Set() const { return Float4_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat4ToNull() { Float4_IsSet = true; Float4_IsNull = true; }
+	/** @brief Checks whether Float4_Optional is set to null */
+	bool IsFloat4Null() const { return Float4_IsSet && Float4_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float5_Optional{  };
+	/** @brief true if Float5_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float5_IsSet{ false };
+	/** @brief true if Float5_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float5_IsNull{ false };
+	/** @brief Gets the value of Float5_Optional, regardless of it having been set */
+	float& GetFloat5() { return Float5_Optional; }
+	/** @brief Gets the value of Float5_Optional, regardless of it having been set */
+	const float& GetFloat5() const { return Float5_Optional; }
+	/** @brief Gets the value of Float5_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat5(const float& DefaultValue) const { if (Float5_IsSet) return Float5_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float5_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat5(float& OutValue) const { if (Float5_IsSet && !Float5_IsNull) OutValue = Float5_Optional; return Float5_IsSet; }
+	/** @brief Returns a pointer to Float5_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat5OrNull() { if (Float5_IsSet) return (Float5_IsNull ? nullptr : &Float5_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float5_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat5OrNull() const { if (Float5_IsSet) return (Float5_IsNull ? nullptr : &Float5_Optional); return nullptr; }
+	/** @brief Sets the value of Float5_Optional and also sets Float5_IsSet to true */
+	void SetFloat5(const float& NewValue) { Float5_Optional = NewValue; Float5_IsSet = true; Float5_IsNull = false; }
+	/** @brief Sets the value of Float5_Optional and also sets Float5_IsSet to true using move semantics */
+	void SetFloat5(float&& NewValue) { Float5_Optional = NewValue; Float5_IsSet = true; Float5_IsNull = false; }
+	/** @brief Clears the value of Float5_Optional and sets Float5_IsSet to false */
+	void ClearFloat5() { Float5_IsSet = false; Float5_IsNull = false; }
+	/** @brief Checks whether Float5_Optional has been set */
+	bool IsFloat5Set() const { return Float5_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat5ToNull() { Float5_IsSet = true; Float5_IsNull = true; }
+	/** @brief Checks whether Float5_Optional is set to null */
+	bool IsFloat5Null() const { return Float5_IsSet && Float5_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float6_Optional{  };
+	/** @brief true if Float6_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float6_IsSet{ false };
+	/** @brief true if Float6_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float6_IsNull{ false };
+	/** @brief Gets the value of Float6_Optional, regardless of it having been set */
+	float& GetFloat6() { return Float6_Optional; }
+	/** @brief Gets the value of Float6_Optional, regardless of it having been set */
+	const float& GetFloat6() const { return Float6_Optional; }
+	/** @brief Gets the value of Float6_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat6(const float& DefaultValue) const { if (Float6_IsSet) return Float6_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float6_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat6(float& OutValue) const { if (Float6_IsSet && !Float6_IsNull) OutValue = Float6_Optional; return Float6_IsSet; }
+	/** @brief Returns a pointer to Float6_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat6OrNull() { if (Float6_IsSet) return (Float6_IsNull ? nullptr : &Float6_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float6_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat6OrNull() const { if (Float6_IsSet) return (Float6_IsNull ? nullptr : &Float6_Optional); return nullptr; }
+	/** @brief Sets the value of Float6_Optional and also sets Float6_IsSet to true */
+	void SetFloat6(const float& NewValue) { Float6_Optional = NewValue; Float6_IsSet = true; Float6_IsNull = false; }
+	/** @brief Sets the value of Float6_Optional and also sets Float6_IsSet to true using move semantics */
+	void SetFloat6(float&& NewValue) { Float6_Optional = NewValue; Float6_IsSet = true; Float6_IsNull = false; }
+	/** @brief Clears the value of Float6_Optional and sets Float6_IsSet to false */
+	void ClearFloat6() { Float6_IsSet = false; Float6_IsNull = false; }
+	/** @brief Checks whether Float6_Optional has been set */
+	bool IsFloat6Set() const { return Float6_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat6ToNull() { Float6_IsSet = true; Float6_IsNull = true; }
+	/** @brief Checks whether Float6_Optional is set to null */
+	bool IsFloat6Null() const { return Float6_IsSet && Float6_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float7_Optional{  };
+	/** @brief true if Float7_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float7_IsSet{ false };
+	/** @brief true if Float7_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float7_IsNull{ false };
+	/** @brief Gets the value of Float7_Optional, regardless of it having been set */
+	float& GetFloat7() { return Float7_Optional; }
+	/** @brief Gets the value of Float7_Optional, regardless of it having been set */
+	const float& GetFloat7() const { return Float7_Optional; }
+	/** @brief Gets the value of Float7_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat7(const float& DefaultValue) const { if (Float7_IsSet) return Float7_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float7_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat7(float& OutValue) const { if (Float7_IsSet && !Float7_IsNull) OutValue = Float7_Optional; return Float7_IsSet; }
+	/** @brief Returns a pointer to Float7_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat7OrNull() { if (Float7_IsSet) return (Float7_IsNull ? nullptr : &Float7_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float7_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat7OrNull() const { if (Float7_IsSet) return (Float7_IsNull ? nullptr : &Float7_Optional); return nullptr; }
+	/** @brief Sets the value of Float7_Optional and also sets Float7_IsSet to true */
+	void SetFloat7(const float& NewValue) { Float7_Optional = NewValue; Float7_IsSet = true; Float7_IsNull = false; }
+	/** @brief Sets the value of Float7_Optional and also sets Float7_IsSet to true using move semantics */
+	void SetFloat7(float&& NewValue) { Float7_Optional = NewValue; Float7_IsSet = true; Float7_IsNull = false; }
+	/** @brief Clears the value of Float7_Optional and sets Float7_IsSet to false */
+	void ClearFloat7() { Float7_IsSet = false; Float7_IsNull = false; }
+	/** @brief Checks whether Float7_Optional has been set */
+	bool IsFloat7Set() const { return Float7_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat7ToNull() { Float7_IsSet = true; Float7_IsNull = true; }
+	/** @brief Checks whether Float7_Optional is set to null */
+	bool IsFloat7Null() const { return Float7_IsSet && Float7_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float8_Optional{  };
+	/** @brief true if Float8_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float8_IsSet{ false };
+	/** @brief true if Float8_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float8_IsNull{ false };
+	/** @brief Gets the value of Float8_Optional, regardless of it having been set */
+	float& GetFloat8() { return Float8_Optional; }
+	/** @brief Gets the value of Float8_Optional, regardless of it having been set */
+	const float& GetFloat8() const { return Float8_Optional; }
+	/** @brief Gets the value of Float8_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat8(const float& DefaultValue) const { if (Float8_IsSet) return Float8_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float8_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat8(float& OutValue) const { if (Float8_IsSet && !Float8_IsNull) OutValue = Float8_Optional; return Float8_IsSet; }
+	/** @brief Returns a pointer to Float8_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat8OrNull() { if (Float8_IsSet) return (Float8_IsNull ? nullptr : &Float8_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float8_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat8OrNull() const { if (Float8_IsSet) return (Float8_IsNull ? nullptr : &Float8_Optional); return nullptr; }
+	/** @brief Sets the value of Float8_Optional and also sets Float8_IsSet to true */
+	void SetFloat8(const float& NewValue) { Float8_Optional = NewValue; Float8_IsSet = true; Float8_IsNull = false; }
+	/** @brief Sets the value of Float8_Optional and also sets Float8_IsSet to true using move semantics */
+	void SetFloat8(float&& NewValue) { Float8_Optional = NewValue; Float8_IsSet = true; Float8_IsNull = false; }
+	/** @brief Clears the value of Float8_Optional and sets Float8_IsSet to false */
+	void ClearFloat8() { Float8_IsSet = false; Float8_IsNull = false; }
+	/** @brief Checks whether Float8_Optional has been set */
+	bool IsFloat8Set() const { return Float8_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat8ToNull() { Float8_IsSet = true; Float8_IsNull = true; }
+	/** @brief Checks whether Float8_Optional is set to null */
+	bool IsFloat8Null() const { return Float8_IsSet && Float8_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float9_Optional{  };
+	/** @brief true if Float9_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float9_IsSet{ false };
+	/** @brief true if Float9_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float9_IsNull{ false };
+	/** @brief Gets the value of Float9_Optional, regardless of it having been set */
+	float& GetFloat9() { return Float9_Optional; }
+	/** @brief Gets the value of Float9_Optional, regardless of it having been set */
+	const float& GetFloat9() const { return Float9_Optional; }
+	/** @brief Gets the value of Float9_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat9(const float& DefaultValue) const { if (Float9_IsSet) return Float9_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float9_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat9(float& OutValue) const { if (Float9_IsSet && !Float9_IsNull) OutValue = Float9_Optional; return Float9_IsSet; }
+	/** @brief Returns a pointer to Float9_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat9OrNull() { if (Float9_IsSet) return (Float9_IsNull ? nullptr : &Float9_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float9_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat9OrNull() const { if (Float9_IsSet) return (Float9_IsNull ? nullptr : &Float9_Optional); return nullptr; }
+	/** @brief Sets the value of Float9_Optional and also sets Float9_IsSet to true */
+	void SetFloat9(const float& NewValue) { Float9_Optional = NewValue; Float9_IsSet = true; Float9_IsNull = false; }
+	/** @brief Sets the value of Float9_Optional and also sets Float9_IsSet to true using move semantics */
+	void SetFloat9(float&& NewValue) { Float9_Optional = NewValue; Float9_IsSet = true; Float9_IsNull = false; }
+	/** @brief Clears the value of Float9_Optional and sets Float9_IsSet to false */
+	void ClearFloat9() { Float9_IsSet = false; Float9_IsNull = false; }
+	/** @brief Checks whether Float9_Optional has been set */
+	bool IsFloat9Set() const { return Float9_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat9ToNull() { Float9_IsSet = true; Float9_IsNull = true; }
+	/** @brief Checks whether Float9_Optional is set to null */
+	bool IsFloat9Null() const { return Float9_IsSet && Float9_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float10_Optional{  };
+	/** @brief true if Float10_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float10_IsSet{ false };
+	/** @brief true if Float10_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float10_IsNull{ false };
+	/** @brief Gets the value of Float10_Optional, regardless of it having been set */
+	float& GetFloat10() { return Float10_Optional; }
+	/** @brief Gets the value of Float10_Optional, regardless of it having been set */
+	const float& GetFloat10() const { return Float10_Optional; }
+	/** @brief Gets the value of Float10_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat10(const float& DefaultValue) const { if (Float10_IsSet) return Float10_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float10_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat10(float& OutValue) const { if (Float10_IsSet && !Float10_IsNull) OutValue = Float10_Optional; return Float10_IsSet; }
+	/** @brief Returns a pointer to Float10_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat10OrNull() { if (Float10_IsSet) return (Float10_IsNull ? nullptr : &Float10_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float10_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat10OrNull() const { if (Float10_IsSet) return (Float10_IsNull ? nullptr : &Float10_Optional); return nullptr; }
+	/** @brief Sets the value of Float10_Optional and also sets Float10_IsSet to true */
+	void SetFloat10(const float& NewValue) { Float10_Optional = NewValue; Float10_IsSet = true; Float10_IsNull = false; }
+	/** @brief Sets the value of Float10_Optional and also sets Float10_IsSet to true using move semantics */
+	void SetFloat10(float&& NewValue) { Float10_Optional = NewValue; Float10_IsSet = true; Float10_IsNull = false; }
+	/** @brief Clears the value of Float10_Optional and sets Float10_IsSet to false */
+	void ClearFloat10() { Float10_IsSet = false; Float10_IsNull = false; }
+	/** @brief Checks whether Float10_Optional has been set */
+	bool IsFloat10Set() const { return Float10_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat10ToNull() { Float10_IsSet = true; Float10_IsNull = true; }
+	/** @brief Checks whether Float10_Optional is set to null */
+	bool IsFloat10Null() const { return Float10_IsSet && Float10_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float11_Optional{  };
+	/** @brief true if Float11_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float11_IsSet{ false };
+	/** @brief true if Float11_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float11_IsNull{ false };
+	/** @brief Gets the value of Float11_Optional, regardless of it having been set */
+	float& GetFloat11() { return Float11_Optional; }
+	/** @brief Gets the value of Float11_Optional, regardless of it having been set */
+	const float& GetFloat11() const { return Float11_Optional; }
+	/** @brief Gets the value of Float11_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat11(const float& DefaultValue) const { if (Float11_IsSet) return Float11_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float11_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat11(float& OutValue) const { if (Float11_IsSet && !Float11_IsNull) OutValue = Float11_Optional; return Float11_IsSet; }
+	/** @brief Returns a pointer to Float11_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat11OrNull() { if (Float11_IsSet) return (Float11_IsNull ? nullptr : &Float11_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float11_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat11OrNull() const { if (Float11_IsSet) return (Float11_IsNull ? nullptr : &Float11_Optional); return nullptr; }
+	/** @brief Sets the value of Float11_Optional and also sets Float11_IsSet to true */
+	void SetFloat11(const float& NewValue) { Float11_Optional = NewValue; Float11_IsSet = true; Float11_IsNull = false; }
+	/** @brief Sets the value of Float11_Optional and also sets Float11_IsSet to true using move semantics */
+	void SetFloat11(float&& NewValue) { Float11_Optional = NewValue; Float11_IsSet = true; Float11_IsNull = false; }
+	/** @brief Clears the value of Float11_Optional and sets Float11_IsSet to false */
+	void ClearFloat11() { Float11_IsSet = false; Float11_IsNull = false; }
+	/** @brief Checks whether Float11_Optional has been set */
+	bool IsFloat11Set() const { return Float11_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat11ToNull() { Float11_IsSet = true; Float11_IsNull = true; }
+	/** @brief Checks whether Float11_Optional is set to null */
+	bool IsFloat11Null() const { return Float11_IsSet && Float11_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float12_Optional{  };
+	/** @brief true if Float12_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float12_IsSet{ false };
+	/** @brief true if Float12_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float12_IsNull{ false };
+	/** @brief Gets the value of Float12_Optional, regardless of it having been set */
+	float& GetFloat12() { return Float12_Optional; }
+	/** @brief Gets the value of Float12_Optional, regardless of it having been set */
+	const float& GetFloat12() const { return Float12_Optional; }
+	/** @brief Gets the value of Float12_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat12(const float& DefaultValue) const { if (Float12_IsSet) return Float12_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float12_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat12(float& OutValue) const { if (Float12_IsSet && !Float12_IsNull) OutValue = Float12_Optional; return Float12_IsSet; }
+	/** @brief Returns a pointer to Float12_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat12OrNull() { if (Float12_IsSet) return (Float12_IsNull ? nullptr : &Float12_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float12_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat12OrNull() const { if (Float12_IsSet) return (Float12_IsNull ? nullptr : &Float12_Optional); return nullptr; }
+	/** @brief Sets the value of Float12_Optional and also sets Float12_IsSet to true */
+	void SetFloat12(const float& NewValue) { Float12_Optional = NewValue; Float12_IsSet = true; Float12_IsNull = false; }
+	/** @brief Sets the value of Float12_Optional and also sets Float12_IsSet to true using move semantics */
+	void SetFloat12(float&& NewValue) { Float12_Optional = NewValue; Float12_IsSet = true; Float12_IsNull = false; }
+	/** @brief Clears the value of Float12_Optional and sets Float12_IsSet to false */
+	void ClearFloat12() { Float12_IsSet = false; Float12_IsNull = false; }
+	/** @brief Checks whether Float12_Optional has been set */
+	bool IsFloat12Set() const { return Float12_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat12ToNull() { Float12_IsSet = true; Float12_IsNull = true; }
+	/** @brief Checks whether Float12_Optional is set to null */
+	bool IsFloat12Null() const { return Float12_IsSet && Float12_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float13_Optional{  };
+	/** @brief true if Float13_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float13_IsSet{ false };
+	/** @brief true if Float13_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float13_IsNull{ false };
+	/** @brief Gets the value of Float13_Optional, regardless of it having been set */
+	float& GetFloat13() { return Float13_Optional; }
+	/** @brief Gets the value of Float13_Optional, regardless of it having been set */
+	const float& GetFloat13() const { return Float13_Optional; }
+	/** @brief Gets the value of Float13_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat13(const float& DefaultValue) const { if (Float13_IsSet) return Float13_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float13_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat13(float& OutValue) const { if (Float13_IsSet && !Float13_IsNull) OutValue = Float13_Optional; return Float13_IsSet; }
+	/** @brief Returns a pointer to Float13_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat13OrNull() { if (Float13_IsSet) return (Float13_IsNull ? nullptr : &Float13_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float13_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat13OrNull() const { if (Float13_IsSet) return (Float13_IsNull ? nullptr : &Float13_Optional); return nullptr; }
+	/** @brief Sets the value of Float13_Optional and also sets Float13_IsSet to true */
+	void SetFloat13(const float& NewValue) { Float13_Optional = NewValue; Float13_IsSet = true; Float13_IsNull = false; }
+	/** @brief Sets the value of Float13_Optional and also sets Float13_IsSet to true using move semantics */
+	void SetFloat13(float&& NewValue) { Float13_Optional = NewValue; Float13_IsSet = true; Float13_IsNull = false; }
+	/** @brief Clears the value of Float13_Optional and sets Float13_IsSet to false */
+	void ClearFloat13() { Float13_IsSet = false; Float13_IsNull = false; }
+	/** @brief Checks whether Float13_Optional has been set */
+	bool IsFloat13Set() const { return Float13_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat13ToNull() { Float13_IsSet = true; Float13_IsNull = true; }
+	/** @brief Checks whether Float13_Optional is set to null */
+	bool IsFloat13Null() const { return Float13_IsSet && Float13_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float14_Optional{  };
+	/** @brief true if Float14_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float14_IsSet{ false };
+	/** @brief true if Float14_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float14_IsNull{ false };
+	/** @brief Gets the value of Float14_Optional, regardless of it having been set */
+	float& GetFloat14() { return Float14_Optional; }
+	/** @brief Gets the value of Float14_Optional, regardless of it having been set */
+	const float& GetFloat14() const { return Float14_Optional; }
+	/** @brief Gets the value of Float14_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat14(const float& DefaultValue) const { if (Float14_IsSet) return Float14_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float14_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat14(float& OutValue) const { if (Float14_IsSet && !Float14_IsNull) OutValue = Float14_Optional; return Float14_IsSet; }
+	/** @brief Returns a pointer to Float14_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat14OrNull() { if (Float14_IsSet) return (Float14_IsNull ? nullptr : &Float14_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float14_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat14OrNull() const { if (Float14_IsSet) return (Float14_IsNull ? nullptr : &Float14_Optional); return nullptr; }
+	/** @brief Sets the value of Float14_Optional and also sets Float14_IsSet to true */
+	void SetFloat14(const float& NewValue) { Float14_Optional = NewValue; Float14_IsSet = true; Float14_IsNull = false; }
+	/** @brief Sets the value of Float14_Optional and also sets Float14_IsSet to true using move semantics */
+	void SetFloat14(float&& NewValue) { Float14_Optional = NewValue; Float14_IsSet = true; Float14_IsNull = false; }
+	/** @brief Clears the value of Float14_Optional and sets Float14_IsSet to false */
+	void ClearFloat14() { Float14_IsSet = false; Float14_IsNull = false; }
+	/** @brief Checks whether Float14_Optional has been set */
+	bool IsFloat14Set() const { return Float14_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat14ToNull() { Float14_IsSet = true; Float14_IsNull = true; }
+	/** @brief Checks whether Float14_Optional is set to null */
+	bool IsFloat14Null() const { return Float14_IsSet && Float14_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float15_Optional{  };
+	/** @brief true if Float15_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float15_IsSet{ false };
+	/** @brief true if Float15_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float15_IsNull{ false };
+	/** @brief Gets the value of Float15_Optional, regardless of it having been set */
+	float& GetFloat15() { return Float15_Optional; }
+	/** @brief Gets the value of Float15_Optional, regardless of it having been set */
+	const float& GetFloat15() const { return Float15_Optional; }
+	/** @brief Gets the value of Float15_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat15(const float& DefaultValue) const { if (Float15_IsSet) return Float15_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float15_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat15(float& OutValue) const { if (Float15_IsSet && !Float15_IsNull) OutValue = Float15_Optional; return Float15_IsSet; }
+	/** @brief Returns a pointer to Float15_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat15OrNull() { if (Float15_IsSet) return (Float15_IsNull ? nullptr : &Float15_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float15_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat15OrNull() const { if (Float15_IsSet) return (Float15_IsNull ? nullptr : &Float15_Optional); return nullptr; }
+	/** @brief Sets the value of Float15_Optional and also sets Float15_IsSet to true */
+	void SetFloat15(const float& NewValue) { Float15_Optional = NewValue; Float15_IsSet = true; Float15_IsNull = false; }
+	/** @brief Sets the value of Float15_Optional and also sets Float15_IsSet to true using move semantics */
+	void SetFloat15(float&& NewValue) { Float15_Optional = NewValue; Float15_IsSet = true; Float15_IsNull = false; }
+	/** @brief Clears the value of Float15_Optional and sets Float15_IsSet to false */
+	void ClearFloat15() { Float15_IsSet = false; Float15_IsNull = false; }
+	/** @brief Checks whether Float15_Optional has been set */
+	bool IsFloat15Set() const { return Float15_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat15ToNull() { Float15_IsSet = true; Float15_IsNull = true; }
+	/** @brief Checks whether Float15_Optional is set to null */
+	bool IsFloat15Null() const { return Float15_IsSet && Float15_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float16_Optional{  };
+	/** @brief true if Float16_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float16_IsSet{ false };
+	/** @brief true if Float16_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float16_IsNull{ false };
+	/** @brief Gets the value of Float16_Optional, regardless of it having been set */
+	float& GetFloat16() { return Float16_Optional; }
+	/** @brief Gets the value of Float16_Optional, regardless of it having been set */
+	const float& GetFloat16() const { return Float16_Optional; }
+	/** @brief Gets the value of Float16_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat16(const float& DefaultValue) const { if (Float16_IsSet) return Float16_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float16_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat16(float& OutValue) const { if (Float16_IsSet && !Float16_IsNull) OutValue = Float16_Optional; return Float16_IsSet; }
+	/** @brief Returns a pointer to Float16_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat16OrNull() { if (Float16_IsSet) return (Float16_IsNull ? nullptr : &Float16_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float16_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat16OrNull() const { if (Float16_IsSet) return (Float16_IsNull ? nullptr : &Float16_Optional); return nullptr; }
+	/** @brief Sets the value of Float16_Optional and also sets Float16_IsSet to true */
+	void SetFloat16(const float& NewValue) { Float16_Optional = NewValue; Float16_IsSet = true; Float16_IsNull = false; }
+	/** @brief Sets the value of Float16_Optional and also sets Float16_IsSet to true using move semantics */
+	void SetFloat16(float&& NewValue) { Float16_Optional = NewValue; Float16_IsSet = true; Float16_IsNull = false; }
+	/** @brief Clears the value of Float16_Optional and sets Float16_IsSet to false */
+	void ClearFloat16() { Float16_IsSet = false; Float16_IsNull = false; }
+	/** @brief Checks whether Float16_Optional has been set */
+	bool IsFloat16Set() const { return Float16_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat16ToNull() { Float16_IsSet = true; Float16_IsNull = true; }
+	/** @brief Checks whether Float16_Optional is set to null */
+	bool IsFloat16Null() const { return Float16_IsSet && Float16_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float17_Optional{  };
+	/** @brief true if Float17_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float17_IsSet{ false };
+	/** @brief true if Float17_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float17_IsNull{ false };
+	/** @brief Gets the value of Float17_Optional, regardless of it having been set */
+	float& GetFloat17() { return Float17_Optional; }
+	/** @brief Gets the value of Float17_Optional, regardless of it having been set */
+	const float& GetFloat17() const { return Float17_Optional; }
+	/** @brief Gets the value of Float17_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat17(const float& DefaultValue) const { if (Float17_IsSet) return Float17_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float17_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat17(float& OutValue) const { if (Float17_IsSet && !Float17_IsNull) OutValue = Float17_Optional; return Float17_IsSet; }
+	/** @brief Returns a pointer to Float17_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat17OrNull() { if (Float17_IsSet) return (Float17_IsNull ? nullptr : &Float17_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float17_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat17OrNull() const { if (Float17_IsSet) return (Float17_IsNull ? nullptr : &Float17_Optional); return nullptr; }
+	/** @brief Sets the value of Float17_Optional and also sets Float17_IsSet to true */
+	void SetFloat17(const float& NewValue) { Float17_Optional = NewValue; Float17_IsSet = true; Float17_IsNull = false; }
+	/** @brief Sets the value of Float17_Optional and also sets Float17_IsSet to true using move semantics */
+	void SetFloat17(float&& NewValue) { Float17_Optional = NewValue; Float17_IsSet = true; Float17_IsNull = false; }
+	/** @brief Clears the value of Float17_Optional and sets Float17_IsSet to false */
+	void ClearFloat17() { Float17_IsSet = false; Float17_IsNull = false; }
+	/** @brief Checks whether Float17_Optional has been set */
+	bool IsFloat17Set() const { return Float17_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat17ToNull() { Float17_IsSet = true; Float17_IsNull = true; }
+	/** @brief Checks whether Float17_Optional is set to null */
+	bool IsFloat17Null() const { return Float17_IsSet && Float17_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float18_Optional{  };
+	/** @brief true if Float18_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float18_IsSet{ false };
+	/** @brief true if Float18_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float18_IsNull{ false };
+	/** @brief Gets the value of Float18_Optional, regardless of it having been set */
+	float& GetFloat18() { return Float18_Optional; }
+	/** @brief Gets the value of Float18_Optional, regardless of it having been set */
+	const float& GetFloat18() const { return Float18_Optional; }
+	/** @brief Gets the value of Float18_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat18(const float& DefaultValue) const { if (Float18_IsSet) return Float18_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float18_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat18(float& OutValue) const { if (Float18_IsSet && !Float18_IsNull) OutValue = Float18_Optional; return Float18_IsSet; }
+	/** @brief Returns a pointer to Float18_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat18OrNull() { if (Float18_IsSet) return (Float18_IsNull ? nullptr : &Float18_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float18_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat18OrNull() const { if (Float18_IsSet) return (Float18_IsNull ? nullptr : &Float18_Optional); return nullptr; }
+	/** @brief Sets the value of Float18_Optional and also sets Float18_IsSet to true */
+	void SetFloat18(const float& NewValue) { Float18_Optional = NewValue; Float18_IsSet = true; Float18_IsNull = false; }
+	/** @brief Sets the value of Float18_Optional and also sets Float18_IsSet to true using move semantics */
+	void SetFloat18(float&& NewValue) { Float18_Optional = NewValue; Float18_IsSet = true; Float18_IsNull = false; }
+	/** @brief Clears the value of Float18_Optional and sets Float18_IsSet to false */
+	void ClearFloat18() { Float18_IsSet = false; Float18_IsNull = false; }
+	/** @brief Checks whether Float18_Optional has been set */
+	bool IsFloat18Set() const { return Float18_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat18ToNull() { Float18_IsSet = true; Float18_IsNull = true; }
+	/** @brief Checks whether Float18_Optional is set to null */
+	bool IsFloat18Null() const { return Float18_IsSet && Float18_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float19_Optional{  };
+	/** @brief true if Float19_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float19_IsSet{ false };
+	/** @brief true if Float19_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float19_IsNull{ false };
+	/** @brief Gets the value of Float19_Optional, regardless of it having been set */
+	float& GetFloat19() { return Float19_Optional; }
+	/** @brief Gets the value of Float19_Optional, regardless of it having been set */
+	const float& GetFloat19() const { return Float19_Optional; }
+	/** @brief Gets the value of Float19_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat19(const float& DefaultValue) const { if (Float19_IsSet) return Float19_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float19_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat19(float& OutValue) const { if (Float19_IsSet && !Float19_IsNull) OutValue = Float19_Optional; return Float19_IsSet; }
+	/** @brief Returns a pointer to Float19_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat19OrNull() { if (Float19_IsSet) return (Float19_IsNull ? nullptr : &Float19_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float19_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat19OrNull() const { if (Float19_IsSet) return (Float19_IsNull ? nullptr : &Float19_Optional); return nullptr; }
+	/** @brief Sets the value of Float19_Optional and also sets Float19_IsSet to true */
+	void SetFloat19(const float& NewValue) { Float19_Optional = NewValue; Float19_IsSet = true; Float19_IsNull = false; }
+	/** @brief Sets the value of Float19_Optional and also sets Float19_IsSet to true using move semantics */
+	void SetFloat19(float&& NewValue) { Float19_Optional = NewValue; Float19_IsSet = true; Float19_IsNull = false; }
+	/** @brief Clears the value of Float19_Optional and sets Float19_IsSet to false */
+	void ClearFloat19() { Float19_IsSet = false; Float19_IsNull = false; }
+	/** @brief Checks whether Float19_Optional has been set */
+	bool IsFloat19Set() const { return Float19_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat19ToNull() { Float19_IsSet = true; Float19_IsNull = true; }
+	/** @brief Checks whether Float19_Optional is set to null */
+	bool IsFloat19Null() const { return Float19_IsSet && Float19_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float20_Optional{  };
+	/** @brief true if Float20_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float20_IsSet{ false };
+	/** @brief true if Float20_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float20_IsNull{ false };
+	/** @brief Gets the value of Float20_Optional, regardless of it having been set */
+	float& GetFloat20() { return Float20_Optional; }
+	/** @brief Gets the value of Float20_Optional, regardless of it having been set */
+	const float& GetFloat20() const { return Float20_Optional; }
+	/** @brief Gets the value of Float20_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat20(const float& DefaultValue) const { if (Float20_IsSet) return Float20_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float20_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat20(float& OutValue) const { if (Float20_IsSet && !Float20_IsNull) OutValue = Float20_Optional; return Float20_IsSet; }
+	/** @brief Returns a pointer to Float20_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat20OrNull() { if (Float20_IsSet) return (Float20_IsNull ? nullptr : &Float20_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float20_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat20OrNull() const { if (Float20_IsSet) return (Float20_IsNull ? nullptr : &Float20_Optional); return nullptr; }
+	/** @brief Sets the value of Float20_Optional and also sets Float20_IsSet to true */
+	void SetFloat20(const float& NewValue) { Float20_Optional = NewValue; Float20_IsSet = true; Float20_IsNull = false; }
+	/** @brief Sets the value of Float20_Optional and also sets Float20_IsSet to true using move semantics */
+	void SetFloat20(float&& NewValue) { Float20_Optional = NewValue; Float20_IsSet = true; Float20_IsNull = false; }
+	/** @brief Clears the value of Float20_Optional and sets Float20_IsSet to false */
+	void ClearFloat20() { Float20_IsSet = false; Float20_IsNull = false; }
+	/** @brief Checks whether Float20_Optional has been set */
+	bool IsFloat20Set() const { return Float20_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat20ToNull() { Float20_IsSet = true; Float20_IsNull = true; }
+	/** @brief Checks whether Float20_Optional is set to null */
+	bool IsFloat20Null() const { return Float20_IsSet && Float20_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float21_Optional{  };
+	/** @brief true if Float21_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float21_IsSet{ false };
+	/** @brief true if Float21_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float21_IsNull{ false };
+	/** @brief Gets the value of Float21_Optional, regardless of it having been set */
+	float& GetFloat21() { return Float21_Optional; }
+	/** @brief Gets the value of Float21_Optional, regardless of it having been set */
+	const float& GetFloat21() const { return Float21_Optional; }
+	/** @brief Gets the value of Float21_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat21(const float& DefaultValue) const { if (Float21_IsSet) return Float21_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float21_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat21(float& OutValue) const { if (Float21_IsSet && !Float21_IsNull) OutValue = Float21_Optional; return Float21_IsSet; }
+	/** @brief Returns a pointer to Float21_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat21OrNull() { if (Float21_IsSet) return (Float21_IsNull ? nullptr : &Float21_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float21_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat21OrNull() const { if (Float21_IsSet) return (Float21_IsNull ? nullptr : &Float21_Optional); return nullptr; }
+	/** @brief Sets the value of Float21_Optional and also sets Float21_IsSet to true */
+	void SetFloat21(const float& NewValue) { Float21_Optional = NewValue; Float21_IsSet = true; Float21_IsNull = false; }
+	/** @brief Sets the value of Float21_Optional and also sets Float21_IsSet to true using move semantics */
+	void SetFloat21(float&& NewValue) { Float21_Optional = NewValue; Float21_IsSet = true; Float21_IsNull = false; }
+	/** @brief Clears the value of Float21_Optional and sets Float21_IsSet to false */
+	void ClearFloat21() { Float21_IsSet = false; Float21_IsNull = false; }
+	/** @brief Checks whether Float21_Optional has been set */
+	bool IsFloat21Set() const { return Float21_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat21ToNull() { Float21_IsSet = true; Float21_IsNull = true; }
+	/** @brief Checks whether Float21_Optional is set to null */
+	bool IsFloat21Null() const { return Float21_IsSet && Float21_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float22_Optional{  };
+	/** @brief true if Float22_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float22_IsSet{ false };
+	/** @brief true if Float22_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float22_IsNull{ false };
+	/** @brief Gets the value of Float22_Optional, regardless of it having been set */
+	float& GetFloat22() { return Float22_Optional; }
+	/** @brief Gets the value of Float22_Optional, regardless of it having been set */
+	const float& GetFloat22() const { return Float22_Optional; }
+	/** @brief Gets the value of Float22_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat22(const float& DefaultValue) const { if (Float22_IsSet) return Float22_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float22_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat22(float& OutValue) const { if (Float22_IsSet && !Float22_IsNull) OutValue = Float22_Optional; return Float22_IsSet; }
+	/** @brief Returns a pointer to Float22_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat22OrNull() { if (Float22_IsSet) return (Float22_IsNull ? nullptr : &Float22_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float22_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat22OrNull() const { if (Float22_IsSet) return (Float22_IsNull ? nullptr : &Float22_Optional); return nullptr; }
+	/** @brief Sets the value of Float22_Optional and also sets Float22_IsSet to true */
+	void SetFloat22(const float& NewValue) { Float22_Optional = NewValue; Float22_IsSet = true; Float22_IsNull = false; }
+	/** @brief Sets the value of Float22_Optional and also sets Float22_IsSet to true using move semantics */
+	void SetFloat22(float&& NewValue) { Float22_Optional = NewValue; Float22_IsSet = true; Float22_IsNull = false; }
+	/** @brief Clears the value of Float22_Optional and sets Float22_IsSet to false */
+	void ClearFloat22() { Float22_IsSet = false; Float22_IsNull = false; }
+	/** @brief Checks whether Float22_Optional has been set */
+	bool IsFloat22Set() const { return Float22_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat22ToNull() { Float22_IsSet = true; Float22_IsNull = true; }
+	/** @brief Checks whether Float22_Optional is set to null */
+	bool IsFloat22Null() const { return Float22_IsSet && Float22_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float23_Optional{  };
+	/** @brief true if Float23_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float23_IsSet{ false };
+	/** @brief true if Float23_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float23_IsNull{ false };
+	/** @brief Gets the value of Float23_Optional, regardless of it having been set */
+	float& GetFloat23() { return Float23_Optional; }
+	/** @brief Gets the value of Float23_Optional, regardless of it having been set */
+	const float& GetFloat23() const { return Float23_Optional; }
+	/** @brief Gets the value of Float23_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat23(const float& DefaultValue) const { if (Float23_IsSet) return Float23_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float23_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat23(float& OutValue) const { if (Float23_IsSet && !Float23_IsNull) OutValue = Float23_Optional; return Float23_IsSet; }
+	/** @brief Returns a pointer to Float23_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat23OrNull() { if (Float23_IsSet) return (Float23_IsNull ? nullptr : &Float23_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float23_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat23OrNull() const { if (Float23_IsSet) return (Float23_IsNull ? nullptr : &Float23_Optional); return nullptr; }
+	/** @brief Sets the value of Float23_Optional and also sets Float23_IsSet to true */
+	void SetFloat23(const float& NewValue) { Float23_Optional = NewValue; Float23_IsSet = true; Float23_IsNull = false; }
+	/** @brief Sets the value of Float23_Optional and also sets Float23_IsSet to true using move semantics */
+	void SetFloat23(float&& NewValue) { Float23_Optional = NewValue; Float23_IsSet = true; Float23_IsNull = false; }
+	/** @brief Clears the value of Float23_Optional and sets Float23_IsSet to false */
+	void ClearFloat23() { Float23_IsSet = false; Float23_IsNull = false; }
+	/** @brief Checks whether Float23_Optional has been set */
+	bool IsFloat23Set() const { return Float23_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat23ToNull() { Float23_IsSet = true; Float23_IsNull = true; }
+	/** @brief Checks whether Float23_Optional is set to null */
+	bool IsFloat23Null() const { return Float23_IsSet && Float23_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float24_Optional{  };
+	/** @brief true if Float24_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float24_IsSet{ false };
+	/** @brief true if Float24_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float24_IsNull{ false };
+	/** @brief Gets the value of Float24_Optional, regardless of it having been set */
+	float& GetFloat24() { return Float24_Optional; }
+	/** @brief Gets the value of Float24_Optional, regardless of it having been set */
+	const float& GetFloat24() const { return Float24_Optional; }
+	/** @brief Gets the value of Float24_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat24(const float& DefaultValue) const { if (Float24_IsSet) return Float24_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float24_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat24(float& OutValue) const { if (Float24_IsSet && !Float24_IsNull) OutValue = Float24_Optional; return Float24_IsSet; }
+	/** @brief Returns a pointer to Float24_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat24OrNull() { if (Float24_IsSet) return (Float24_IsNull ? nullptr : &Float24_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float24_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat24OrNull() const { if (Float24_IsSet) return (Float24_IsNull ? nullptr : &Float24_Optional); return nullptr; }
+	/** @brief Sets the value of Float24_Optional and also sets Float24_IsSet to true */
+	void SetFloat24(const float& NewValue) { Float24_Optional = NewValue; Float24_IsSet = true; Float24_IsNull = false; }
+	/** @brief Sets the value of Float24_Optional and also sets Float24_IsSet to true using move semantics */
+	void SetFloat24(float&& NewValue) { Float24_Optional = NewValue; Float24_IsSet = true; Float24_IsNull = false; }
+	/** @brief Clears the value of Float24_Optional and sets Float24_IsSet to false */
+	void ClearFloat24() { Float24_IsSet = false; Float24_IsNull = false; }
+	/** @brief Checks whether Float24_Optional has been set */
+	bool IsFloat24Set() const { return Float24_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat24ToNull() { Float24_IsSet = true; Float24_IsNull = true; }
+	/** @brief Checks whether Float24_Optional is set to null */
+	bool IsFloat24Null() const { return Float24_IsSet && Float24_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float25_Optional{  };
+	/** @brief true if Float25_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float25_IsSet{ false };
+	/** @brief true if Float25_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float25_IsNull{ false };
+	/** @brief Gets the value of Float25_Optional, regardless of it having been set */
+	float& GetFloat25() { return Float25_Optional; }
+	/** @brief Gets the value of Float25_Optional, regardless of it having been set */
+	const float& GetFloat25() const { return Float25_Optional; }
+	/** @brief Gets the value of Float25_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat25(const float& DefaultValue) const { if (Float25_IsSet) return Float25_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float25_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat25(float& OutValue) const { if (Float25_IsSet && !Float25_IsNull) OutValue = Float25_Optional; return Float25_IsSet; }
+	/** @brief Returns a pointer to Float25_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat25OrNull() { if (Float25_IsSet) return (Float25_IsNull ? nullptr : &Float25_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float25_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat25OrNull() const { if (Float25_IsSet) return (Float25_IsNull ? nullptr : &Float25_Optional); return nullptr; }
+	/** @brief Sets the value of Float25_Optional and also sets Float25_IsSet to true */
+	void SetFloat25(const float& NewValue) { Float25_Optional = NewValue; Float25_IsSet = true; Float25_IsNull = false; }
+	/** @brief Sets the value of Float25_Optional and also sets Float25_IsSet to true using move semantics */
+	void SetFloat25(float&& NewValue) { Float25_Optional = NewValue; Float25_IsSet = true; Float25_IsNull = false; }
+	/** @brief Clears the value of Float25_Optional and sets Float25_IsSet to false */
+	void ClearFloat25() { Float25_IsSet = false; Float25_IsNull = false; }
+	/** @brief Checks whether Float25_Optional has been set */
+	bool IsFloat25Set() const { return Float25_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat25ToNull() { Float25_IsSet = true; Float25_IsNull = true; }
+	/** @brief Checks whether Float25_Optional is set to null */
+	bool IsFloat25Null() const { return Float25_IsSet && Float25_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float26_Optional{  };
+	/** @brief true if Float26_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float26_IsSet{ false };
+	/** @brief true if Float26_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float26_IsNull{ false };
+	/** @brief Gets the value of Float26_Optional, regardless of it having been set */
+	float& GetFloat26() { return Float26_Optional; }
+	/** @brief Gets the value of Float26_Optional, regardless of it having been set */
+	const float& GetFloat26() const { return Float26_Optional; }
+	/** @brief Gets the value of Float26_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat26(const float& DefaultValue) const { if (Float26_IsSet) return Float26_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float26_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat26(float& OutValue) const { if (Float26_IsSet && !Float26_IsNull) OutValue = Float26_Optional; return Float26_IsSet; }
+	/** @brief Returns a pointer to Float26_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat26OrNull() { if (Float26_IsSet) return (Float26_IsNull ? nullptr : &Float26_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float26_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat26OrNull() const { if (Float26_IsSet) return (Float26_IsNull ? nullptr : &Float26_Optional); return nullptr; }
+	/** @brief Sets the value of Float26_Optional and also sets Float26_IsSet to true */
+	void SetFloat26(const float& NewValue) { Float26_Optional = NewValue; Float26_IsSet = true; Float26_IsNull = false; }
+	/** @brief Sets the value of Float26_Optional and also sets Float26_IsSet to true using move semantics */
+	void SetFloat26(float&& NewValue) { Float26_Optional = NewValue; Float26_IsSet = true; Float26_IsNull = false; }
+	/** @brief Clears the value of Float26_Optional and sets Float26_IsSet to false */
+	void ClearFloat26() { Float26_IsSet = false; Float26_IsNull = false; }
+	/** @brief Checks whether Float26_Optional has been set */
+	bool IsFloat26Set() const { return Float26_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat26ToNull() { Float26_IsSet = true; Float26_IsNull = true; }
+	/** @brief Checks whether Float26_Optional is set to null */
+	bool IsFloat26Null() const { return Float26_IsSet && Float26_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float27_Optional{  };
+	/** @brief true if Float27_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float27_IsSet{ false };
+	/** @brief true if Float27_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float27_IsNull{ false };
+	/** @brief Gets the value of Float27_Optional, regardless of it having been set */
+	float& GetFloat27() { return Float27_Optional; }
+	/** @brief Gets the value of Float27_Optional, regardless of it having been set */
+	const float& GetFloat27() const { return Float27_Optional; }
+	/** @brief Gets the value of Float27_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat27(const float& DefaultValue) const { if (Float27_IsSet) return Float27_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float27_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat27(float& OutValue) const { if (Float27_IsSet && !Float27_IsNull) OutValue = Float27_Optional; return Float27_IsSet; }
+	/** @brief Returns a pointer to Float27_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat27OrNull() { if (Float27_IsSet) return (Float27_IsNull ? nullptr : &Float27_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float27_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat27OrNull() const { if (Float27_IsSet) return (Float27_IsNull ? nullptr : &Float27_Optional); return nullptr; }
+	/** @brief Sets the value of Float27_Optional and also sets Float27_IsSet to true */
+	void SetFloat27(const float& NewValue) { Float27_Optional = NewValue; Float27_IsSet = true; Float27_IsNull = false; }
+	/** @brief Sets the value of Float27_Optional and also sets Float27_IsSet to true using move semantics */
+	void SetFloat27(float&& NewValue) { Float27_Optional = NewValue; Float27_IsSet = true; Float27_IsNull = false; }
+	/** @brief Clears the value of Float27_Optional and sets Float27_IsSet to false */
+	void ClearFloat27() { Float27_IsSet = false; Float27_IsNull = false; }
+	/** @brief Checks whether Float27_Optional has been set */
+	bool IsFloat27Set() const { return Float27_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat27ToNull() { Float27_IsSet = true; Float27_IsNull = true; }
+	/** @brief Checks whether Float27_Optional is set to null */
+	bool IsFloat27Null() const { return Float27_IsSet && Float27_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float28_Optional{  };
+	/** @brief true if Float28_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float28_IsSet{ false };
+	/** @brief true if Float28_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float28_IsNull{ false };
+	/** @brief Gets the value of Float28_Optional, regardless of it having been set */
+	float& GetFloat28() { return Float28_Optional; }
+	/** @brief Gets the value of Float28_Optional, regardless of it having been set */
+	const float& GetFloat28() const { return Float28_Optional; }
+	/** @brief Gets the value of Float28_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat28(const float& DefaultValue) const { if (Float28_IsSet) return Float28_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float28_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat28(float& OutValue) const { if (Float28_IsSet && !Float28_IsNull) OutValue = Float28_Optional; return Float28_IsSet; }
+	/** @brief Returns a pointer to Float28_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat28OrNull() { if (Float28_IsSet) return (Float28_IsNull ? nullptr : &Float28_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float28_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat28OrNull() const { if (Float28_IsSet) return (Float28_IsNull ? nullptr : &Float28_Optional); return nullptr; }
+	/** @brief Sets the value of Float28_Optional and also sets Float28_IsSet to true */
+	void SetFloat28(const float& NewValue) { Float28_Optional = NewValue; Float28_IsSet = true; Float28_IsNull = false; }
+	/** @brief Sets the value of Float28_Optional and also sets Float28_IsSet to true using move semantics */
+	void SetFloat28(float&& NewValue) { Float28_Optional = NewValue; Float28_IsSet = true; Float28_IsNull = false; }
+	/** @brief Clears the value of Float28_Optional and sets Float28_IsSet to false */
+	void ClearFloat28() { Float28_IsSet = false; Float28_IsNull = false; }
+	/** @brief Checks whether Float28_Optional has been set */
+	bool IsFloat28Set() const { return Float28_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat28ToNull() { Float28_IsSet = true; Float28_IsNull = true; }
+	/** @brief Checks whether Float28_Optional is set to null */
+	bool IsFloat28Null() const { return Float28_IsSet && Float28_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float29_Optional{  };
+	/** @brief true if Float29_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float29_IsSet{ false };
+	/** @brief true if Float29_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float29_IsNull{ false };
+	/** @brief Gets the value of Float29_Optional, regardless of it having been set */
+	float& GetFloat29() { return Float29_Optional; }
+	/** @brief Gets the value of Float29_Optional, regardless of it having been set */
+	const float& GetFloat29() const { return Float29_Optional; }
+	/** @brief Gets the value of Float29_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat29(const float& DefaultValue) const { if (Float29_IsSet) return Float29_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float29_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat29(float& OutValue) const { if (Float29_IsSet && !Float29_IsNull) OutValue = Float29_Optional; return Float29_IsSet; }
+	/** @brief Returns a pointer to Float29_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat29OrNull() { if (Float29_IsSet) return (Float29_IsNull ? nullptr : &Float29_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float29_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat29OrNull() const { if (Float29_IsSet) return (Float29_IsNull ? nullptr : &Float29_Optional); return nullptr; }
+	/** @brief Sets the value of Float29_Optional and also sets Float29_IsSet to true */
+	void SetFloat29(const float& NewValue) { Float29_Optional = NewValue; Float29_IsSet = true; Float29_IsNull = false; }
+	/** @brief Sets the value of Float29_Optional and also sets Float29_IsSet to true using move semantics */
+	void SetFloat29(float&& NewValue) { Float29_Optional = NewValue; Float29_IsSet = true; Float29_IsNull = false; }
+	/** @brief Clears the value of Float29_Optional and sets Float29_IsSet to false */
+	void ClearFloat29() { Float29_IsSet = false; Float29_IsNull = false; }
+	/** @brief Checks whether Float29_Optional has been set */
+	bool IsFloat29Set() const { return Float29_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat29ToNull() { Float29_IsSet = true; Float29_IsNull = true; }
+	/** @brief Checks whether Float29_Optional is set to null */
+	bool IsFloat29Null() const { return Float29_IsSet && Float29_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float30_Optional{  };
+	/** @brief true if Float30_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float30_IsSet{ false };
+	/** @brief true if Float30_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float30_IsNull{ false };
+	/** @brief Gets the value of Float30_Optional, regardless of it having been set */
+	float& GetFloat30() { return Float30_Optional; }
+	/** @brief Gets the value of Float30_Optional, regardless of it having been set */
+	const float& GetFloat30() const { return Float30_Optional; }
+	/** @brief Gets the value of Float30_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat30(const float& DefaultValue) const { if (Float30_IsSet) return Float30_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float30_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat30(float& OutValue) const { if (Float30_IsSet && !Float30_IsNull) OutValue = Float30_Optional; return Float30_IsSet; }
+	/** @brief Returns a pointer to Float30_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat30OrNull() { if (Float30_IsSet) return (Float30_IsNull ? nullptr : &Float30_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float30_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat30OrNull() const { if (Float30_IsSet) return (Float30_IsNull ? nullptr : &Float30_Optional); return nullptr; }
+	/** @brief Sets the value of Float30_Optional and also sets Float30_IsSet to true */
+	void SetFloat30(const float& NewValue) { Float30_Optional = NewValue; Float30_IsSet = true; Float30_IsNull = false; }
+	/** @brief Sets the value of Float30_Optional and also sets Float30_IsSet to true using move semantics */
+	void SetFloat30(float&& NewValue) { Float30_Optional = NewValue; Float30_IsSet = true; Float30_IsNull = false; }
+	/** @brief Clears the value of Float30_Optional and sets Float30_IsSet to false */
+	void ClearFloat30() { Float30_IsSet = false; Float30_IsNull = false; }
+	/** @brief Checks whether Float30_Optional has been set */
+	bool IsFloat30Set() const { return Float30_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat30ToNull() { Float30_IsSet = true; Float30_IsNull = true; }
+	/** @brief Checks whether Float30_Optional is set to null */
+	bool IsFloat30Null() const { return Float30_IsSet && Float30_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float31_Optional{  };
+	/** @brief true if Float31_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float31_IsSet{ false };
+	/** @brief true if Float31_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float31_IsNull{ false };
+	/** @brief Gets the value of Float31_Optional, regardless of it having been set */
+	float& GetFloat31() { return Float31_Optional; }
+	/** @brief Gets the value of Float31_Optional, regardless of it having been set */
+	const float& GetFloat31() const { return Float31_Optional; }
+	/** @brief Gets the value of Float31_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat31(const float& DefaultValue) const { if (Float31_IsSet) return Float31_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float31_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat31(float& OutValue) const { if (Float31_IsSet && !Float31_IsNull) OutValue = Float31_Optional; return Float31_IsSet; }
+	/** @brief Returns a pointer to Float31_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat31OrNull() { if (Float31_IsSet) return (Float31_IsNull ? nullptr : &Float31_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float31_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat31OrNull() const { if (Float31_IsSet) return (Float31_IsNull ? nullptr : &Float31_Optional); return nullptr; }
+	/** @brief Sets the value of Float31_Optional and also sets Float31_IsSet to true */
+	void SetFloat31(const float& NewValue) { Float31_Optional = NewValue; Float31_IsSet = true; Float31_IsNull = false; }
+	/** @brief Sets the value of Float31_Optional and also sets Float31_IsSet to true using move semantics */
+	void SetFloat31(float&& NewValue) { Float31_Optional = NewValue; Float31_IsSet = true; Float31_IsNull = false; }
+	/** @brief Clears the value of Float31_Optional and sets Float31_IsSet to false */
+	void ClearFloat31() { Float31_IsSet = false; Float31_IsNull = false; }
+	/** @brief Checks whether Float31_Optional has been set */
+	bool IsFloat31Set() const { return Float31_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat31ToNull() { Float31_IsSet = true; Float31_IsNull = true; }
+	/** @brief Checks whether Float31_Optional is set to null */
+	bool IsFloat31Null() const { return Float31_IsSet && Float31_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float Float32_Optional{  };
+	/** @brief true if Float32_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float32_IsSet{ false };
+	/** @brief true if Float32_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Float32_IsNull{ false };
+	/** @brief Gets the value of Float32_Optional, regardless of it having been set */
+	float& GetFloat32() { return Float32_Optional; }
+	/** @brief Gets the value of Float32_Optional, regardless of it having been set */
+	const float& GetFloat32() const { return Float32_Optional; }
+	/** @brief Gets the value of Float32_Optional, if it has been set, otherwise it returns DefaultValue */
+	const float& GetFloat32(const float& DefaultValue) const { if (Float32_IsSet) return Float32_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Float32_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFloat32(float& OutValue) const { if (Float32_IsSet && !Float32_IsNull) OutValue = Float32_Optional; return Float32_IsSet; }
+	/** @brief Returns a pointer to Float32_Optional, if it has been set, otherwise returns nullptr */
+	float* GetFloat32OrNull() { if (Float32_IsSet) return (Float32_IsNull ? nullptr : &Float32_Optional); return nullptr; }
+	/** @brief Returns a pointer to Float32_Optional, if it has been set, otherwise returns nullptr */
+	const float* GetFloat32OrNull() const { if (Float32_IsSet) return (Float32_IsNull ? nullptr : &Float32_Optional); return nullptr; }
+	/** @brief Sets the value of Float32_Optional and also sets Float32_IsSet to true */
+	void SetFloat32(const float& NewValue) { Float32_Optional = NewValue; Float32_IsSet = true; Float32_IsNull = false; }
+	/** @brief Sets the value of Float32_Optional and also sets Float32_IsSet to true using move semantics */
+	void SetFloat32(float&& NewValue) { Float32_Optional = NewValue; Float32_IsSet = true; Float32_IsNull = false; }
+	/** @brief Clears the value of Float32_Optional and sets Float32_IsSet to false */
+	void ClearFloat32() { Float32_IsSet = false; Float32_IsNull = false; }
+	/** @brief Checks whether Float32_Optional has been set */
+	bool IsFloat32Set() const { return Float32_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetFloat32ToNull() { Float32_IsSet = true; Float32_IsNull = true; }
+	/** @brief Checks whether Float32_Optional is set to null */
+	bool IsFloat32Null() const { return Float32_IsSet && Float32_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Type_Optional{  };
 	/** @brief true if Type_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

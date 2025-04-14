@@ -38,6 +38,11 @@ void FRHAPI_GuideCreateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		else
 		RallyHereAPI::WriteJsonValue(Writer, ShortDesc_Optional);
 	}
+	if (PromotionPriority_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("promotion_priority"));
+		RallyHereAPI::WriteJsonValue(Writer, PromotionPriority_Optional);
+	}
 	if (Ref1_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("ref_1"));
@@ -294,6 +299,22 @@ void FRHAPI_GuideCreateRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		else
 		RallyHereAPI::WriteJsonValue(Writer, Ref32_Optional);
 	}
+	if (OwnerEntityType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("owner_entity_type"));
+		if (OwnerEntityType_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(OwnerEntityType_Optional));
+	}
+	if (OwnerEntityId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("owner_entity_id"));
+		if (OwnerEntityId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, OwnerEntityId_Optional);
+	}
 	if (Content_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("content"));
@@ -336,6 +357,12 @@ bool FRHAPI_GuideCreateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		ShortDesc_IsNull = JsonShortDescField->IsNull();
 		ShortDesc_IsSet = ShortDesc_IsNull || TryGetJsonValue(JsonShortDescField, ShortDesc_Optional);
 		ParseSuccess &= ShortDesc_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPromotionPriorityField = (*Object)->TryGetField(TEXT("promotion_priority"));
+	if (JsonPromotionPriorityField.IsValid())
+	{
+		PromotionPriority_IsSet = TryGetJsonValue(JsonPromotionPriorityField, PromotionPriority_Optional);
+		ParseSuccess &= PromotionPriority_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRef1Field = (*Object)->TryGetField(TEXT("ref_1"));
 	if (JsonRef1Field.IsValid())
@@ -560,6 +587,20 @@ bool FRHAPI_GuideCreateRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		Ref32_IsNull = JsonRef32Field->IsNull();
 		Ref32_IsSet = Ref32_IsNull || TryGetJsonValue(JsonRef32Field, Ref32_Optional);
 		ParseSuccess &= Ref32_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonOwnerEntityTypeField = (*Object)->TryGetField(TEXT("owner_entity_type"));
+	if (JsonOwnerEntityTypeField.IsValid())
+	{
+		OwnerEntityType_IsNull = JsonOwnerEntityTypeField->IsNull();
+		OwnerEntityType_IsSet = OwnerEntityType_IsNull || TryGetJsonValue(JsonOwnerEntityTypeField, OwnerEntityType_Optional);
+		ParseSuccess &= OwnerEntityType_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonOwnerEntityIdField = (*Object)->TryGetField(TEXT("owner_entity_id"));
+	if (JsonOwnerEntityIdField.IsValid())
+	{
+		OwnerEntityId_IsNull = JsonOwnerEntityIdField->IsNull();
+		OwnerEntityId_IsSet = OwnerEntityId_IsNull || TryGetJsonValue(JsonOwnerEntityIdField, OwnerEntityId_Optional);
+		ParseSuccess &= OwnerEntityId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonContentField = (*Object)->TryGetField(TEXT("content"));
 	if (JsonContentField.IsValid())

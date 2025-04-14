@@ -730,6 +730,37 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplate : public FRHAPI_Model
 	void ClearAdminPlayerNotificationFrequency() { AdminPlayerNotificationFrequency_IsSet = false;  }
 	/** @brief Checks whether AdminPlayerNotificationFrequency_Optional has been set */
 	bool IsAdminPlayerNotificationFrequencySet() const { return AdminPlayerNotificationFrequency_IsSet; }
+
+	/** @brief How many seconds must pass with a player not querying a session before they get culled. If unset or 0, then players will not be culled */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 PlayerCullingTimeout_Optional{ 0 };
+	/** @brief true if PlayerCullingTimeout_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayerCullingTimeout_IsSet{ false };
+	/** @brief Gets the value of PlayerCullingTimeout_Optional, regardless of it having been set */
+	int32& GetPlayerCullingTimeout() { return PlayerCullingTimeout_Optional; }
+	/** @brief Gets the value of PlayerCullingTimeout_Optional, regardless of it having been set */
+	const int32& GetPlayerCullingTimeout() const { return PlayerCullingTimeout_Optional; }
+	/** @brief Gets the value of PlayerCullingTimeout_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetPlayerCullingTimeout(const int32& DefaultValue) const { if (PlayerCullingTimeout_IsSet) return PlayerCullingTimeout_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlayerCullingTimeout_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlayerCullingTimeout(int32& OutValue) const { if (PlayerCullingTimeout_IsSet) OutValue = PlayerCullingTimeout_Optional; return PlayerCullingTimeout_IsSet; }
+	/** @brief Returns a pointer to PlayerCullingTimeout_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetPlayerCullingTimeoutOrNull() { if (PlayerCullingTimeout_IsSet) return (&PlayerCullingTimeout_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlayerCullingTimeout_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetPlayerCullingTimeoutOrNull() const { if (PlayerCullingTimeout_IsSet) return (&PlayerCullingTimeout_Optional); return nullptr; }
+	/** @brief Sets the value of PlayerCullingTimeout_Optional and also sets PlayerCullingTimeout_IsSet to true */
+	void SetPlayerCullingTimeout(const int32& NewValue) { PlayerCullingTimeout_Optional = NewValue; PlayerCullingTimeout_IsSet = true;  }
+	/** @brief Sets the value of PlayerCullingTimeout_Optional and also sets PlayerCullingTimeout_IsSet to true using move semantics */
+	void SetPlayerCullingTimeout(int32&& NewValue) { PlayerCullingTimeout_Optional = NewValue; PlayerCullingTimeout_IsSet = true;  }
+	/** @brief Clears the value of PlayerCullingTimeout_Optional and sets PlayerCullingTimeout_IsSet to false */
+	void ClearPlayerCullingTimeout() { PlayerCullingTimeout_Optional = 0; PlayerCullingTimeout_IsSet = false;  }
+	/** @brief Checks whether PlayerCullingTimeout_Optional has been set */
+	bool IsPlayerCullingTimeoutSet() const { return PlayerCullingTimeout_IsSet; }
+	/** @brief Returns true if PlayerCullingTimeout_Optional is set and matches the default value */
+	bool IsPlayerCullingTimeoutDefaultValue() const { return PlayerCullingTimeout_IsSet && PlayerCullingTimeout_Optional == 0; }
+	/** @brief Sets the value of PlayerCullingTimeout_Optional to its default and also sets PlayerCullingTimeout_IsSet to true */
+	void SetPlayerCullingTimeoutToDefault() { SetPlayerCullingTimeout(0); }
 };
 
 /** @} */

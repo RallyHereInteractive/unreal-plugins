@@ -9,17 +9,18 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "AgreementMessage.generated.h"
+#include "Restriction.h"
+#include "LoginCompleteMessage.generated.h"
 
-/** @defgroup RHAPI_AgreementMessage RallyHere API Model AgreementMessage
+/** @defgroup RHAPI_LoginCompleteMessage RallyHere API Model LoginCompleteMessage
  *  @{
  */
 
 /**
- * @brief Error message for when a user has not agreed to the EULA, TOS, or Privacy Policy
+ * @brief Error message for when a user has not agreed to the required agreements (EULA, TOS, or Privacy Policy), or was denied login for restrictions
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_LoginCompleteMessage : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -183,6 +184,33 @@ struct RALLYHEREAPI_API FRHAPI_AgreementMessage : public FRHAPI_Model
 	bool IsNeedsPrivacyPolicyDefaultValue() const { return NeedsPrivacyPolicy_IsSet && NeedsPrivacyPolicy_Optional == false; }
 	/** @brief Sets the value of NeedsPrivacyPolicy_Optional to its default and also sets NeedsPrivacyPolicy_IsSet to true */
 	void SetNeedsPrivacyPolicyToDefault() { SetNeedsPrivacyPolicy(false); }
+
+	/** @brief Restrictions which prevented login.  Does NOT include unrelated restrictions that didn't prevent login */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_Restriction> Restrictions_Optional{  };
+	/** @brief true if Restrictions_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Restrictions_IsSet{ false };
+	/** @brief Gets the value of Restrictions_Optional, regardless of it having been set */
+	TArray<FRHAPI_Restriction>& GetRestrictions() { return Restrictions_Optional; }
+	/** @brief Gets the value of Restrictions_Optional, regardless of it having been set */
+	const TArray<FRHAPI_Restriction>& GetRestrictions() const { return Restrictions_Optional; }
+	/** @brief Gets the value of Restrictions_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TArray<FRHAPI_Restriction>& GetRestrictions(const TArray<FRHAPI_Restriction>& DefaultValue) const { if (Restrictions_IsSet) return Restrictions_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Restrictions_Optional and returns true if it has been set, otherwise returns false */
+	bool GetRestrictions(TArray<FRHAPI_Restriction>& OutValue) const { if (Restrictions_IsSet) OutValue = Restrictions_Optional; return Restrictions_IsSet; }
+	/** @brief Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr */
+	TArray<FRHAPI_Restriction>* GetRestrictionsOrNull() { if (Restrictions_IsSet) return (&Restrictions_Optional); return nullptr; }
+	/** @brief Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr */
+	const TArray<FRHAPI_Restriction>* GetRestrictionsOrNull() const { if (Restrictions_IsSet) return (&Restrictions_Optional); return nullptr; }
+	/** @brief Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true */
+	void SetRestrictions(const TArray<FRHAPI_Restriction>& NewValue) { Restrictions_Optional = NewValue; Restrictions_IsSet = true;  }
+	/** @brief Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true using move semantics */
+	void SetRestrictions(TArray<FRHAPI_Restriction>&& NewValue) { Restrictions_Optional = NewValue; Restrictions_IsSet = true;  }
+	/** @brief Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false */
+	void ClearRestrictions() { Restrictions_IsSet = false;  }
+	/** @brief Checks whether Restrictions_Optional has been set */
+	bool IsRestrictionsSet() const { return Restrictions_IsSet; }
 };
 
 /** @} */

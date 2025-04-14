@@ -21,6 +21,7 @@ enum class ERHAPI_SearchFavoriteGuideSort : uint8
 	Created UMETA(ToolTip=""),
 	Modified UMETA(ToolTip=""),
 	Upvotes UMETA(ToolTip=""),
+	Promoted UMETA(ToolTip=""),
 	FavoritedAt UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_SearchFavoriteGuideSort& EnumValue);

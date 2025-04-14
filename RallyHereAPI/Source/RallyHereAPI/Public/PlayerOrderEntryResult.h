@@ -54,6 +54,7 @@ enum class ERHAPI_PlayerOrderEntryResult : uint8
 	PermissionDenied UMETA(ToolTip="Permission denied."),
 	FailedToFindAnySubLoot UMETA(ToolTip="Failed to find any sub loot."),
 	FailedToFillAnySubLoot UMETA(ToolTip="Failed to fill any sub loot."),
+	FailedToFillAllRandom UMETA(ToolTip="Not all requested randomly sampled loot could be fulfilled."),
 	CannotMeetLootBlocker UMETA(ToolTip="Loot fulfillment failed because the player failed a &#x60;check_less_than&#x60; Inventory Operation. This means the Players Inventory Quantity is equal or greater than Loot&#39;s quantity."),
 	CannotMeetLootRequired UMETA(ToolTip="Loot fulfillment failed because the player failed a &#x60;check_greater_than_or_equal&#x60; or &#x60;check_greater_than_or_equal_and_subtract&#x60; Inventory Operation. This means the player has less than the Loot&#39;s required quantity."),
 	FailedToConsumeLootRequired UMETA(ToolTip="Failed to consume the given Loot required."),

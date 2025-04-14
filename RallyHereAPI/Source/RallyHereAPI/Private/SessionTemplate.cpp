@@ -139,6 +139,11 @@ void FRHAPI_SessionTemplate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("admin_player_notification_frequency"));
 		RallyHereAPI::WriteJsonValue(Writer, EnumToString(AdminPlayerNotificationFrequency_Optional));
 	}
+	if (PlayerCullingTimeout_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("player_culling_timeout"));
+		RallyHereAPI::WriteJsonValue(Writer, PlayerCullingTimeout_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -290,6 +295,12 @@ bool FRHAPI_SessionTemplate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		AdminPlayerNotificationFrequency_IsSet = TryGetJsonValue(JsonAdminPlayerNotificationFrequencyField, AdminPlayerNotificationFrequency_Optional);
 		ParseSuccess &= AdminPlayerNotificationFrequency_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlayerCullingTimeoutField = (*Object)->TryGetField(TEXT("player_culling_timeout"));
+	if (JsonPlayerCullingTimeoutField.IsValid())
+	{
+		PlayerCullingTimeout_IsSet = TryGetJsonValue(JsonPlayerCullingTimeoutField, PlayerCullingTimeout_Optional);
+		ParseSuccess &= PlayerCullingTimeout_IsSet;
 	}
 
 	return ParseSuccess;

@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "GuideEntityType.h"
 #include "GuideSectionCreate.h"
 #include "GuideCreateRequest.generated.h"
 
@@ -117,6 +118,37 @@ struct RALLYHEREAPI_API FRHAPI_GuideCreateRequest : public FRHAPI_Model
 	void SetShortDescToNull() { ShortDesc_IsSet = true; ShortDesc_IsNull = true; }
 	/** @brief Checks whether ShortDesc_Optional is set to null */
 	bool IsShortDescNull() const { return ShortDesc_IsSet && ShortDesc_IsNull; }
+
+	/** @brief Promotion priority of this guide in searches */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 PromotionPriority_Optional{ 0 };
+	/** @brief true if PromotionPriority_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PromotionPriority_IsSet{ false };
+	/** @brief Gets the value of PromotionPriority_Optional, regardless of it having been set */
+	int32& GetPromotionPriority() { return PromotionPriority_Optional; }
+	/** @brief Gets the value of PromotionPriority_Optional, regardless of it having been set */
+	const int32& GetPromotionPriority() const { return PromotionPriority_Optional; }
+	/** @brief Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetPromotionPriority(const int32& DefaultValue) const { if (PromotionPriority_IsSet) return PromotionPriority_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPromotionPriority(int32& OutValue) const { if (PromotionPriority_IsSet) OutValue = PromotionPriority_Optional; return PromotionPriority_IsSet; }
+	/** @brief Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetPromotionPriorityOrNull() { if (PromotionPriority_IsSet) return (&PromotionPriority_Optional); return nullptr; }
+	/** @brief Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetPromotionPriorityOrNull() const { if (PromotionPriority_IsSet) return (&PromotionPriority_Optional); return nullptr; }
+	/** @brief Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true */
+	void SetPromotionPriority(const int32& NewValue) { PromotionPriority_Optional = NewValue; PromotionPriority_IsSet = true;  }
+	/** @brief Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics */
+	void SetPromotionPriority(int32&& NewValue) { PromotionPriority_Optional = NewValue; PromotionPriority_IsSet = true;  }
+	/** @brief Clears the value of PromotionPriority_Optional and sets PromotionPriority_IsSet to false */
+	void ClearPromotionPriority() { PromotionPriority_Optional = 0; PromotionPriority_IsSet = false;  }
+	/** @brief Checks whether PromotionPriority_Optional has been set */
+	bool IsPromotionPrioritySet() const { return PromotionPriority_IsSet; }
+	/** @brief Returns true if PromotionPriority_Optional is set and matches the default value */
+	bool IsPromotionPriorityDefaultValue() const { return PromotionPriority_IsSet && PromotionPriority_Optional == 0; }
+	/** @brief Sets the value of PromotionPriority_Optional to its default and also sets PromotionPriority_IsSet to true */
+	void SetPromotionPriorityToDefault() { SetPromotionPriority(0); }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref1_Optional{  };
@@ -1173,6 +1205,72 @@ struct RALLYHEREAPI_API FRHAPI_GuideCreateRequest : public FRHAPI_Model
 	void SetRef32ToNull() { Ref32_IsSet = true; Ref32_IsNull = true; }
 	/** @brief Checks whether Ref32_Optional is set to null */
 	bool IsRef32Null() const { return Ref32_IsSet && Ref32_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_GuideEntityType OwnerEntityType_Optional{  };
+	/** @brief true if OwnerEntityType_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OwnerEntityType_IsSet{ false };
+	/** @brief true if OwnerEntityType_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OwnerEntityType_IsNull{ false };
+	/** @brief Gets the value of OwnerEntityType_Optional, regardless of it having been set */
+	ERHAPI_GuideEntityType& GetOwnerEntityType() { return OwnerEntityType_Optional; }
+	/** @brief Gets the value of OwnerEntityType_Optional, regardless of it having been set */
+	const ERHAPI_GuideEntityType& GetOwnerEntityType() const { return OwnerEntityType_Optional; }
+	/** @brief Gets the value of OwnerEntityType_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_GuideEntityType& GetOwnerEntityType(const ERHAPI_GuideEntityType& DefaultValue) const { if (OwnerEntityType_IsSet) return OwnerEntityType_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of OwnerEntityType_Optional and returns true if it has been set, otherwise returns false */
+	bool GetOwnerEntityType(ERHAPI_GuideEntityType& OutValue) const { if (OwnerEntityType_IsSet && !OwnerEntityType_IsNull) OutValue = OwnerEntityType_Optional; return OwnerEntityType_IsSet; }
+	/** @brief Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_GuideEntityType* GetOwnerEntityTypeOrNull() { if (OwnerEntityType_IsSet) return (OwnerEntityType_IsNull ? nullptr : &OwnerEntityType_Optional); return nullptr; }
+	/** @brief Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_GuideEntityType* GetOwnerEntityTypeOrNull() const { if (OwnerEntityType_IsSet) return (OwnerEntityType_IsNull ? nullptr : &OwnerEntityType_Optional); return nullptr; }
+	/** @brief Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true */
+	void SetOwnerEntityType(const ERHAPI_GuideEntityType& NewValue) { OwnerEntityType_Optional = NewValue; OwnerEntityType_IsSet = true; OwnerEntityType_IsNull = false; }
+	/** @brief Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true using move semantics */
+	void SetOwnerEntityType(ERHAPI_GuideEntityType&& NewValue) { OwnerEntityType_Optional = NewValue; OwnerEntityType_IsSet = true; OwnerEntityType_IsNull = false; }
+	/** @brief Clears the value of OwnerEntityType_Optional and sets OwnerEntityType_IsSet to false */
+	void ClearOwnerEntityType() { OwnerEntityType_IsSet = false; OwnerEntityType_IsNull = false; }
+	/** @brief Checks whether OwnerEntityType_Optional has been set */
+	bool IsOwnerEntityTypeSet() const { return OwnerEntityType_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetOwnerEntityTypeToNull() { OwnerEntityType_IsSet = true; OwnerEntityType_IsNull = true; }
+	/** @brief Checks whether OwnerEntityType_Optional is set to null */
+	bool IsOwnerEntityTypeNull() const { return OwnerEntityType_IsSet && OwnerEntityType_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString OwnerEntityId_Optional{  };
+	/** @brief true if OwnerEntityId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OwnerEntityId_IsSet{ false };
+	/** @brief true if OwnerEntityId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool OwnerEntityId_IsNull{ false };
+	/** @brief Gets the value of OwnerEntityId_Optional, regardless of it having been set */
+	FString& GetOwnerEntityId() { return OwnerEntityId_Optional; }
+	/** @brief Gets the value of OwnerEntityId_Optional, regardless of it having been set */
+	const FString& GetOwnerEntityId() const { return OwnerEntityId_Optional; }
+	/** @brief Gets the value of OwnerEntityId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetOwnerEntityId(const FString& DefaultValue) const { if (OwnerEntityId_IsSet) return OwnerEntityId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of OwnerEntityId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetOwnerEntityId(FString& OutValue) const { if (OwnerEntityId_IsSet && !OwnerEntityId_IsNull) OutValue = OwnerEntityId_Optional; return OwnerEntityId_IsSet; }
+	/** @brief Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetOwnerEntityIdOrNull() { if (OwnerEntityId_IsSet) return (OwnerEntityId_IsNull ? nullptr : &OwnerEntityId_Optional); return nullptr; }
+	/** @brief Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetOwnerEntityIdOrNull() const { if (OwnerEntityId_IsSet) return (OwnerEntityId_IsNull ? nullptr : &OwnerEntityId_Optional); return nullptr; }
+	/** @brief Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true */
+	void SetOwnerEntityId(const FString& NewValue) { OwnerEntityId_Optional = NewValue; OwnerEntityId_IsSet = true; OwnerEntityId_IsNull = false; }
+	/** @brief Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true using move semantics */
+	void SetOwnerEntityId(FString&& NewValue) { OwnerEntityId_Optional = NewValue; OwnerEntityId_IsSet = true; OwnerEntityId_IsNull = false; }
+	/** @brief Clears the value of OwnerEntityId_Optional and sets OwnerEntityId_IsSet to false */
+	void ClearOwnerEntityId() { OwnerEntityId_IsSet = false; OwnerEntityId_IsNull = false; }
+	/** @brief Checks whether OwnerEntityId_Optional has been set */
+	bool IsOwnerEntityIdSet() const { return OwnerEntityId_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetOwnerEntityIdToNull() { OwnerEntityId_IsSet = true; OwnerEntityId_IsNull = true; }
+	/** @brief Checks whether OwnerEntityId_Optional is set to null */
+	bool IsOwnerEntityIdNull() const { return OwnerEntityId_IsSet && OwnerEntityId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Content_Optional{  };

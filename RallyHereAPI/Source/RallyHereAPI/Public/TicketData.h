@@ -181,6 +181,37 @@ struct RALLYHEREAPI_API FRHAPI_TicketData : public FRHAPI_Model
 	void ClearRankData() { RankData_IsSet = false;  }
 	/** @brief Checks whether RankData_Optional has been set */
 	bool IsRankDataSet() const { return RankData_IsSet; }
+
+	/** @brief The session this ticket belonged to */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString QueuedSessionId_Optional{ TEXT("unknown") };
+	/** @brief true if QueuedSessionId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool QueuedSessionId_IsSet{ false };
+	/** @brief Gets the value of QueuedSessionId_Optional, regardless of it having been set */
+	FString& GetQueuedSessionId() { return QueuedSessionId_Optional; }
+	/** @brief Gets the value of QueuedSessionId_Optional, regardless of it having been set */
+	const FString& GetQueuedSessionId() const { return QueuedSessionId_Optional; }
+	/** @brief Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetQueuedSessionId(const FString& DefaultValue) const { if (QueuedSessionId_IsSet) return QueuedSessionId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetQueuedSessionId(FString& OutValue) const { if (QueuedSessionId_IsSet) OutValue = QueuedSessionId_Optional; return QueuedSessionId_IsSet; }
+	/** @brief Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetQueuedSessionIdOrNull() { if (QueuedSessionId_IsSet) return (&QueuedSessionId_Optional); return nullptr; }
+	/** @brief Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetQueuedSessionIdOrNull() const { if (QueuedSessionId_IsSet) return (&QueuedSessionId_Optional); return nullptr; }
+	/** @brief Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true */
+	void SetQueuedSessionId(const FString& NewValue) { QueuedSessionId_Optional = NewValue; QueuedSessionId_IsSet = true;  }
+	/** @brief Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics */
+	void SetQueuedSessionId(FString&& NewValue) { QueuedSessionId_Optional = NewValue; QueuedSessionId_IsSet = true;  }
+	/** @brief Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false */
+	void ClearQueuedSessionId() { QueuedSessionId_Optional = TEXT("unknown"); QueuedSessionId_IsSet = false;  }
+	/** @brief Checks whether QueuedSessionId_Optional has been set */
+	bool IsQueuedSessionIdSet() const { return QueuedSessionId_IsSet; }
+	/** @brief Returns true if QueuedSessionId_Optional is set and matches the default value */
+	bool IsQueuedSessionIdDefaultValue() const { return QueuedSessionId_IsSet && QueuedSessionId_Optional == TEXT("unknown"); }
+	/** @brief Sets the value of QueuedSessionId_Optional to its default and also sets QueuedSessionId_IsSet to true */
+	void SetQueuedSessionIdToDefault() { SetQueuedSessionId(TEXT("unknown")); }
 };
 
 /** @} */

@@ -32,6 +32,7 @@
 #include "PurgeRequest.h"
 #include "PurgeResponse.h"
 #include "RestrictionCreate.h"
+#include "RestrictionHistory.h"
 #include "Restrictions.h"
 #include "Role.h"
 #include "UpdatePersonInfoRequest.h"
@@ -970,9 +971,9 @@ struct RALLYHEREAPI_API Traits_GetAllRoles
  *     
  * Required Permissions:
  * 
- * - For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+ * - For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`
  * 
- * - For the player, person or platform identity themselves : `user:audit:self`
+ * - For the player, person, or platform identity themselves : `user:audit:self`
 */
 struct RALLYHEREAPI_API FRequest_GetLinkHistory : public FRequest
 {
@@ -1097,9 +1098,9 @@ struct RALLYHEREAPI_API Traits_GetLinkHistory
  *     
  * Required Permissions:
  * 
- * - For any player, person or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+ * - For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`
  * 
- * - For the player, person or platform identity themselves : `user:audit:self`
+ * - For the player, person, or platform identity themselves : `user:audit:self`
 */
 struct RALLYHEREAPI_API FRequest_GetLoginHistory : public FRequest
 {
@@ -2276,9 +2277,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayerLinksForSelf : public FRequest
 };
 
 /** The response type for FRequest_GetPlayerLinksForSelf */
-struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponseAccessorTemplate<FRHAPI_PlayerLinkedPortalsResponse, FRHAPI_HzApiErrorModel>
+struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponseAccessorTemplate<FRHAPI_PlayerLinkedPortalsResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerLinkedPortalsResponse, FRHAPI_HzApiErrorModel> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerLinkedPortalsResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
 	FResponse_GetPlayerLinksForSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPlayerLinksForSelf() = default;
@@ -2326,6 +2327,11 @@ struct RALLYHEREAPI_API FResponse_GetPlayerLinksForSelf : public FResponseAccess
 	Not Found
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
 
 };
 
@@ -3304,6 +3310,137 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForPerson
 	typedef FResponse_GetQueuePurgeStatusForPerson Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetQueuePurgeStatusForPerson Delegate;
+	/** The API object that supports this API call */
+	typedef FUsersAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Restriction History
+ * Get the restriction history for a given user
+ * 
+ * Required Permissions:
+ * 
+ * - For any player, person, or platform identity (including themselves) any of: `user:*`, `user:audit:any`
+ * 
+ * - For the player, person, or platform identity themselves : `user:audit:self`
+ * 
+ * Viewing issuer and internal reason info Required Permissions:
+ * 
+ * - For any player, person, or platform identity (including themselves) any of: `user:*`, `user:restriction:modify:any`
+*/
+struct RALLYHEREAPI_API FRequest_GetRestrictionHistory : public FRequest
+{
+	FRequest_GetRestrictionHistory();
+	virtual ~FRequest_GetRestrictionHistory() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	/* The player UUID to audit */
+	TOptional<FGuid> PlayerUuid;
+	/* The person ID to audit */
+	TOptional<FGuid> PersonId;
+	/* The platform to audit */
+	TOptional<ERHAPI_Platform> Platform;
+	/* The platform user ID to audit */
+	TOptional<FString> PlatformUserId;
+	/* Token to retrieve the next page of results */
+	TOptional<FString> ContinuationToken;
+};
+
+/** The response type for FRequest_GetRestrictionHistory */
+struct RALLYHEREAPI_API FResponse_GetRestrictionHistory : public FResponseAccessorTemplate<FRHAPI_RestrictionHistory, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_RestrictionHistory, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetRestrictionHistory(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetRestrictionHistory() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_RestrictionHistory Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_RestrictionHistory& OutContent) const { return TryGetContent<FRHAPI_RestrictionHistory>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_RestrictionHistory>& OutContent) const { return TryGetContent<FRHAPI_RestrictionHistory>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_RestrictionHistory* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_RestrictionHistory>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_RestrictionHistory> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_RestrictionHistory>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_RestrictionHistory& OutContent) const;
+
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetRestrictionHistory */
+DECLARE_DELEGATE_OneParam(FDelegate_GetRestrictionHistory, const FResponse_GetRestrictionHistory&);
+
+/** @brief A helper metadata object for GetRestrictionHistory that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetRestrictionHistory
+{
+	/** The request type */
+	typedef FRequest_GetRestrictionHistory Request;
+	/** The response type */
+	typedef FResponse_GetRestrictionHistory Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetRestrictionHistory Delegate;
 	/** The API object that supports this API call */
 	typedef FUsersAPI API;
 	/** A human readable name for this API call */
@@ -4665,6 +4802,8 @@ public:
 	void OnGetQueuePurgeStatusForMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetQueuePurgeStatusForPerson(const FRequest_GetQueuePurgeStatusForPerson& Request, const FDelegate_GetQueuePurgeStatusForPerson& Delegate = FDelegate_GetQueuePurgeStatusForPerson(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetQueuePurgeStatusForPersonResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetQueuePurgeStatusForPerson Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetRestrictionHistory(const FRequest_GetRestrictionHistory& Request, const FDelegate_GetRestrictionHistory& Delegate = FDelegate_GetRestrictionHistory(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetRestrictionHistoryResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetRestrictionHistory Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr Link(const FRequest_Link& Request, const FDelegate_Link& Delegate = FDelegate_Link(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnLinkResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Link Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr LookupPlayerByPortal(const FRequest_LookupPlayerByPortal& Request, const FDelegate_LookupPlayerByPortal& Delegate = FDelegate_LookupPlayerByPortal(), int32 Priority = DefaultRallyHereAPIPriority);
