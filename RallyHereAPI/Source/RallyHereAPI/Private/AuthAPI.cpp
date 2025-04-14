@@ -956,7 +956,7 @@ bool FResponse_Login::TryGetContentFor200(FRHAPI_LoginResult& OutContent) const
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_Login::TryGetContentFor403(FRHAPI_AgreementMessage& OutContent) const
+bool FResponse_Login::TryGetContentFor403(FRHAPI_LoginCompleteMessage& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -1025,11 +1025,11 @@ bool FResponse_Login::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		case 403:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_AgreementMessage Object;
+				FRHAPI_LoginCompleteMessage Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_AgreementMessage>(Object);
+				ParsedContent.Set<FRHAPI_LoginCompleteMessage>(Object);
 				break;
 			} 
 		case 422:

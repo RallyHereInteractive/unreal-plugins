@@ -57,6 +57,11 @@ void FRHAPI_OAuthTokenResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		Writer->WriteIdentifierPrefix(TEXT("error_message"));
 		RallyHereAPI::WriteJsonValue(Writer, ErrorMessage_Optional);
 	}
+	if (Restrictions_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("restrictions"));
+		RallyHereAPI::WriteJsonValue(Writer, Restrictions_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -109,6 +114,12 @@ bool FRHAPI_OAuthTokenResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	{
 		ErrorMessage_IsSet = TryGetJsonValue(JsonErrorMessageField, ErrorMessage_Optional);
 		ParseSuccess &= ErrorMessage_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonRestrictionsField = (*Object)->TryGetField(TEXT("restrictions"));
+	if (JsonRestrictionsField.IsValid())
+	{
+		Restrictions_IsSet = TryGetJsonValue(JsonRestrictionsField, Restrictions_Optional);
+		ParseSuccess &= Restrictions_IsSet;
 	}
 
 	return ParseSuccess;

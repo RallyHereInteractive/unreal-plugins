@@ -94,6 +94,8 @@ FString EnumToString(const ERHAPI_PlayerOrderEntryResult& Value)
 		return TEXT("failed_to_find_any_sub_loot");
 	case ERHAPI_PlayerOrderEntryResult::FailedToFillAnySubLoot:
 		return TEXT("failed_to_fill_any_sub_loot");
+	case ERHAPI_PlayerOrderEntryResult::FailedToFillAllRandom:
+		return TEXT("failed_to_fill_all_random");
 	case ERHAPI_PlayerOrderEntryResult::CannotMeetLootBlocker:
 		return TEXT("cannot_meet_loot_blocker");
 	case ERHAPI_PlayerOrderEntryResult::CannotMeetLootRequired:
@@ -165,6 +167,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryResult& 
 		{ TEXT("permission_denied"), ERHAPI_PlayerOrderEntryResult::PermissionDenied },
 		{ TEXT("failed_to_find_any_sub_loot"), ERHAPI_PlayerOrderEntryResult::FailedToFindAnySubLoot },
 		{ TEXT("failed_to_fill_any_sub_loot"), ERHAPI_PlayerOrderEntryResult::FailedToFillAnySubLoot },
+		{ TEXT("failed_to_fill_all_random"), ERHAPI_PlayerOrderEntryResult::FailedToFillAllRandom },
 		{ TEXT("cannot_meet_loot_blocker"), ERHAPI_PlayerOrderEntryResult::CannotMeetLootBlocker },
 		{ TEXT("cannot_meet_loot_required"), ERHAPI_PlayerOrderEntryResult::CannotMeetLootRequired },
 		{ TEXT("failed_to_consume_loot_required"), ERHAPI_PlayerOrderEntryResult::FailedToConsumeLootRequired },

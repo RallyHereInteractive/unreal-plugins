@@ -1047,6 +1047,14 @@ FString FRequest_CreateInstanceRequest::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/instance"), PathParams);
 
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
 	return Path;
 }
 
@@ -2493,6 +2501,14 @@ FString FRequest_DeleteBrowserInfo::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/browser"), PathParams);
 
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
 	return Path;
 }
 
@@ -2887,6 +2903,230 @@ FHttpRequestPtr Traits_DeletePlatformSessionFromRallyHereSession::DoCall(TShared
 	return InAPI->DeletePlatformSessionFromRallyHereSession(InRequest, InDelegate, InPriority);
 }
 
+FHttpRequestPtr FSessionsAPI::DeleteSession(const FRequest_DeleteSession& Request, const FDelegate_DeleteSession& Delegate /*= FDelegate_DeleteSession()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnDeleteSessionResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FSessionsAPI::OnDeleteSessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteSession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FSessionsAPI::OnDeleteSessionResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_DeleteSession> Response = MakeShared<FResponse_DeleteSession>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_DeleteSession::FRequest_DeleteSession()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_DeleteSession::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/session/v1/session/{session_id}"));
+	return Path;
+}
+
+FName FRequest_DeleteSession::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("DELETE %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_DeleteSession::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("session_id"), ToStringFormatArg(SessionId) }
+	};
+
+	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_DeleteSession::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("DELETE"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSession - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSession - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_DeleteSession - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_DeleteSession::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 204:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT("Forbidden");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_DeleteSession::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 204:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_DeleteSession::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_DeleteSession::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_DeleteSession::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	return true;
+}
+
+FResponse_DeleteSession::FResponse_DeleteSession(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_DeleteSession::Name = TEXT("DeleteSession");
+
+FHttpRequestPtr Traits_DeleteSession::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->DeleteSession(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSessionsAPI::EndInstance(const FRequest_EndInstance& Request, const FDelegate_EndInstance& Delegate /*= FDelegate_EndInstance()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2980,6 +3220,14 @@ FString FRequest_EndInstance::ComputePath() const
 	};
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/instance"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
 	return Path;
 }
@@ -11605,6 +11853,14 @@ FString FRequest_InstanceHealthCheck::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/instance/health"), PathParams);
 
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
 	return Path;
 }
 
@@ -12805,6 +13061,14 @@ FString FRequest_JoinQueue::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/queue"), PathParams);
 
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
 	return Path;
 }
 
@@ -13087,6 +13351,14 @@ FString FRequest_JoinSessionByIdSelf::ComputePath() const
 	};
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/me"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
 	return Path;
 }
@@ -17985,6 +18257,14 @@ FString FRequest_UpdateBrowserInfo::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/browser"), PathParams);
 
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
 	return Path;
 }
 
@@ -18267,6 +18547,14 @@ FString FRequest_UpdateInstanceInfo::ComputePath() const
 	};
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/instance"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
 	return Path;
 }
@@ -18893,6 +19181,14 @@ FString FRequest_UpdateSessionById::ComputePath() const
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}"), PathParams);
 
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
 	return Path;
 }
 
@@ -19195,11 +19491,19 @@ FName FRequest_UpdateSessionPlayerById::GetSimplifiedPathWithVerb() const
 FString FRequest_UpdateSessionPlayerById::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("session_id"), ToStringFormatArg(SessionId) },
-		{ TEXT("player_id"), ToStringFormatArg(PlayerId) }
+		{ TEXT("player_id"), ToStringFormatArg(PlayerId) },
+		{ TEXT("session_id"), ToStringFormatArg(SessionId) }
 	};
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/id/{player_id}"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
 	return Path;
 }
@@ -19505,11 +19809,19 @@ FName FRequest_UpdateSessionPlayerByUuid::GetSimplifiedPathWithVerb() const
 FString FRequest_UpdateSessionPlayerByUuid::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("session_id"), ToStringFormatArg(SessionId) },
-		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("session_id"), ToStringFormatArg(SessionId) }
 	};
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/uuid/{player_uuid}"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
 	return Path;
 }
@@ -19839,11 +20151,19 @@ FName FRequest_UpdateSessionPlayerByUuidV2::GetSimplifiedPathWithVerb() const
 FString FRequest_UpdateSessionPlayerByUuidV2::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
-		{ TEXT("session_id"), ToStringFormatArg(SessionId) },
-		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) }
+		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
+		{ TEXT("session_id"), ToStringFormatArg(SessionId) }
 	};
 
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/{player_uuid}"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
 
 	return Path;
 }

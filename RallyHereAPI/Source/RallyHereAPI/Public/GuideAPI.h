@@ -424,7 +424,7 @@ struct RALLYHEREAPI_API FResponse_DeleteGuideById : public FResponseAccessorTemp
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	Error Codes: - `ErrorCodes.not_found` - Object was not found 
+	 Error Codes: - `not_found` - Object was not found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -493,8 +493,7 @@ struct RALLYHEREAPI_API FRequest_GetEntityFavoriteGuide : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_GuideEntityType EntityType;
 	FString EntityId;
-	TOptional<ERHAPI_SearchFavoriteGuideSort> SortBy;
-	TOptional<ERHAPI_SortDirection> Sort;
+	TOptional<TArray<ERHAPI_SearchFavoriteGuideSort>> SortBy;
 	TOptional<FString> Cursor;
 	TOptional<int32> PageSize;
 	TOptional<ERHAPI_GuideEntityType> OwnerEntityType;
@@ -535,6 +534,7 @@ struct RALLYHEREAPI_API FRequest_GetEntityFavoriteGuide : public FRequest
 	TOptional<FString> Ref30;
 	TOptional<FString> Ref31;
 	TOptional<FString> Ref32;
+	TOptional<TArray<ERHAPI_SortDirection>> Sort;
 };
 
 /** The response type for FRequest_GetEntityFavoriteGuide */
@@ -796,7 +796,7 @@ struct RALLYHEREAPI_API FResponse_GetGuideById : public FResponseAccessorTemplat
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 404
-	Error Codes: - `ErrorCodes.not_found` - Object was not found 
+	 Error Codes: - `not_found` - Object was not found 
 	*/
 	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
 
@@ -959,8 +959,7 @@ struct RALLYHEREAPI_API FRequest_SearchGuides : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	TOptional<ERHAPI_SearchGuideSort> SortBy;
-	TOptional<ERHAPI_SortDirection> Sort;
+	TOptional<TArray<ERHAPI_SearchGuideSort>> SortBy;
 	TOptional<FString> Cursor;
 	TOptional<int32> PageSize;
 	TOptional<ERHAPI_GuideEntityType> OwnerEntityType;
@@ -1001,6 +1000,7 @@ struct RALLYHEREAPI_API FRequest_SearchGuides : public FRequest
 	TOptional<FString> Ref30;
 	TOptional<FString> Ref31;
 	TOptional<FString> Ref32;
+	TOptional<TArray<ERHAPI_SortDirection>> Sort;
 };
 
 /** The response type for FRequest_SearchGuides */

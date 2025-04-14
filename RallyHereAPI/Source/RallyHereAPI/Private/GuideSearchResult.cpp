@@ -38,6 +38,11 @@ void FRHAPI_GuideSearchResult::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 		else
 		RallyHereAPI::WriteJsonValue(Writer, ShortDesc_Optional);
 	}
+	if (PromotionPriority_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("promotion_priority"));
+		RallyHereAPI::WriteJsonValue(Writer, PromotionPriority_Optional);
+	}
 	if (Ref1_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("ref_1"));
@@ -350,6 +355,12 @@ bool FRHAPI_GuideSearchResult::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		ShortDesc_IsNull = JsonShortDescField->IsNull();
 		ShortDesc_IsSet = ShortDesc_IsNull || TryGetJsonValue(JsonShortDescField, ShortDesc_Optional);
 		ParseSuccess &= ShortDesc_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPromotionPriorityField = (*Object)->TryGetField(TEXT("promotion_priority"));
+	if (JsonPromotionPriorityField.IsValid())
+	{
+		PromotionPriority_IsSet = TryGetJsonValue(JsonPromotionPriorityField, PromotionPriority_Optional);
+		ParseSuccess &= PromotionPriority_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRef1Field = (*Object)->TryGetField(TEXT("ref_1"));
 	if (JsonRef1Field.IsValid())

@@ -81,7 +81,7 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionCreate : public FRHAPI_Model
 	/** @brief Checks whether Reason_Optional has been set */
 	bool IsReasonSet() const { return Reason_IsSet; }
 
-	/** @brief Date the restriction expires.  Null means the restriction is permanent */
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Expiration_Optional{  };
 	/** @brief true if Expiration_Optional has been set to a value */
@@ -132,7 +132,7 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionCreate : public FRHAPI_Model
 	/** @brief Sets the value of Issuer using move semantics */
 	void SetIssuer(FString&& NewValue) { Issuer = NewValue;   }
 
-	/** @brief Additional reason describing the restriction */
+	/** @brief Internal-only reason describing the restriction */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ReasonDetail_Optional{  };
 	/** @brief true if ReasonDetail_Optional has been set to a value */

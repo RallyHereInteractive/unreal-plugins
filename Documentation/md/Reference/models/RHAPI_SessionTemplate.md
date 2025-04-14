@@ -68,6 +68,8 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public bool `[`PlayerNotificationFrequency_IsSet`](#structFRHAPI__SessionTemplate_1a88ac6bd193615842594f8235d662f628) | true if PlayerNotificationFrequency_Optional has been set to a value
 `public ERHAPI_PlayerVisibility `[`AdminPlayerNotificationFrequency_Optional`](#structFRHAPI__SessionTemplate_1a4c378f3051e15932451e385b55467bf6) | What subset of notifications an admin client with elevated privileges will receive about players in a session.
 `public bool `[`AdminPlayerNotificationFrequency_IsSet`](#structFRHAPI__SessionTemplate_1a0800679283a7d5d1ea6ee7fa9dba82a6) | true if AdminPlayerNotificationFrequency_Optional has been set to a value
+`public int32 `[`PlayerCullingTimeout_Optional`](#structFRHAPI__SessionTemplate_1ae963851b12ae3d4404870277c7c969db) | How many seconds must pass with a player not querying a session before they get culled. If unset or 0, then players will not be culled.
+`public bool `[`PlayerCullingTimeout_IsSet`](#structFRHAPI__SessionTemplate_1a8100672eaf3c30d4e32ff5e341f4ce31) | true if PlayerCullingTimeout_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionTemplate_1a302c24f09b7e5dc1c95ab028757a4732)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetSessionType`](#structFRHAPI__SessionTemplate_1ad017b59cb852d1a7fe4422da447c6443)`()` | Gets the value of SessionType.
@@ -332,6 +334,18 @@ Template used to create new RallyHere sessions of a specific type. Configurable 
 `public inline void `[`SetAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1a1a460126fd5ae175913eb4667965d36e)`(ERHAPI_PlayerVisibility && NewValue)` | Sets the value of AdminPlayerNotificationFrequency_Optional and also sets AdminPlayerNotificationFrequency_IsSet to true using move semantics.
 `public inline void `[`ClearAdminPlayerNotificationFrequency`](#structFRHAPI__SessionTemplate_1aed149547b3e1c182e446b8fce5b7d5f6)`()` | Clears the value of AdminPlayerNotificationFrequency_Optional and sets AdminPlayerNotificationFrequency_IsSet to false.
 `public inline bool `[`IsAdminPlayerNotificationFrequencySet`](#structFRHAPI__SessionTemplate_1a5ea7daf024acb3141141f83420f61665)`() const` | Checks whether AdminPlayerNotificationFrequency_Optional has been set.
+`public inline int32 & `[`GetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a0843d0ef5c306f25a40e1f4203e848e6)`()` | Gets the value of PlayerCullingTimeout_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a83d2107ad53df8149f790a0dc00ae2fd)`() const` | Gets the value of PlayerCullingTimeout_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a836ee8cf341a88e6ea2c62fec8c2ba6f)`(const int32 & DefaultValue) const` | Gets the value of PlayerCullingTimeout_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a6d9925b7b0e49001b6da209332d30a38)`(int32 & OutValue) const` | Fills OutValue with the value of PlayerCullingTimeout_Optional and returns true if it has been set, otherwise returns false.
+`public inline int32 * `[`GetPlayerCullingTimeoutOrNull`](#structFRHAPI__SessionTemplate_1a4bddafb6c21d8f11386ccf76353c5c5c)`()` | Returns a pointer to PlayerCullingTimeout_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetPlayerCullingTimeoutOrNull`](#structFRHAPI__SessionTemplate_1a07f4c6525a399d8b39d3d618ad28401b)`() const` | Returns a pointer to PlayerCullingTimeout_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a3790ba4bfcf229f34e98395bca12abfc)`(const int32 & NewValue)` | Sets the value of PlayerCullingTimeout_Optional and also sets PlayerCullingTimeout_IsSet to true.
+`public inline void `[`SetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1ad6f9108bab56aa9feae7fb02534fa31c)`(int32 && NewValue)` | Sets the value of PlayerCullingTimeout_Optional and also sets PlayerCullingTimeout_IsSet to true using move semantics.
+`public inline void `[`ClearPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1ac5f91d7657a5e7cae9199856318f4337)`()` | Clears the value of PlayerCullingTimeout_Optional and sets PlayerCullingTimeout_IsSet to false.
+`public inline bool `[`IsPlayerCullingTimeoutSet`](#structFRHAPI__SessionTemplate_1aa2dc33d1e65c8438aa77a41e13714e75)`() const` | Checks whether PlayerCullingTimeout_Optional has been set.
+`public inline bool `[`IsPlayerCullingTimeoutDefaultValue`](#structFRHAPI__SessionTemplate_1a49088bbeaca752e19695881c88507786)`() const` | Returns true if PlayerCullingTimeout_Optional is set and matches the default value.
+`public inline void `[`SetPlayerCullingTimeoutToDefault`](#structFRHAPI__SessionTemplate_1adbc0a086485cde66c84bbe46207c8747)`()` | Sets the value of PlayerCullingTimeout_Optional to its default and also sets PlayerCullingTimeout_IsSet to true.
 
 ### Members
 
@@ -522,6 +536,14 @@ What subset of notifications an admin client with elevated privileges will recei
 #### `public bool `[`AdminPlayerNotificationFrequency_IsSet`](#structFRHAPI__SessionTemplate_1a0800679283a7d5d1ea6ee7fa9dba82a6) <a id="structFRHAPI__SessionTemplate_1a0800679283a7d5d1ea6ee7fa9dba82a6"></a>
 
 true if AdminPlayerNotificationFrequency_Optional has been set to a value
+
+#### `public int32 `[`PlayerCullingTimeout_Optional`](#structFRHAPI__SessionTemplate_1ae963851b12ae3d4404870277c7c969db) <a id="structFRHAPI__SessionTemplate_1ae963851b12ae3d4404870277c7c969db"></a>
+
+How many seconds must pass with a player not querying a session before they get culled. If unset or 0, then players will not be culled.
+
+#### `public bool `[`PlayerCullingTimeout_IsSet`](#structFRHAPI__SessionTemplate_1a8100672eaf3c30d4e32ff5e341f4ce31) <a id="structFRHAPI__SessionTemplate_1a8100672eaf3c30d4e32ff5e341f4ce31"></a>
+
+true if PlayerCullingTimeout_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SessionTemplate_1a584ea37b08d01584233924dd39557b4a"></a>
 
@@ -1587,4 +1609,52 @@ Clears the value of AdminPlayerNotificationFrequency_Optional and sets AdminPlay
 #### `public inline bool `[`IsAdminPlayerNotificationFrequencySet`](#structFRHAPI__SessionTemplate_1a5ea7daf024acb3141141f83420f61665)`() const` <a id="structFRHAPI__SessionTemplate_1a5ea7daf024acb3141141f83420f61665"></a>
 
 Checks whether AdminPlayerNotificationFrequency_Optional has been set.
+
+#### `public inline int32 & `[`GetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a0843d0ef5c306f25a40e1f4203e848e6)`()` <a id="structFRHAPI__SessionTemplate_1a0843d0ef5c306f25a40e1f4203e848e6"></a>
+
+Gets the value of PlayerCullingTimeout_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a83d2107ad53df8149f790a0dc00ae2fd)`() const` <a id="structFRHAPI__SessionTemplate_1a83d2107ad53df8149f790a0dc00ae2fd"></a>
+
+Gets the value of PlayerCullingTimeout_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a836ee8cf341a88e6ea2c62fec8c2ba6f)`(const int32 & DefaultValue) const` <a id="structFRHAPI__SessionTemplate_1a836ee8cf341a88e6ea2c62fec8c2ba6f"></a>
+
+Gets the value of PlayerCullingTimeout_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a6d9925b7b0e49001b6da209332d30a38)`(int32 & OutValue) const` <a id="structFRHAPI__SessionTemplate_1a6d9925b7b0e49001b6da209332d30a38"></a>
+
+Fills OutValue with the value of PlayerCullingTimeout_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline int32 * `[`GetPlayerCullingTimeoutOrNull`](#structFRHAPI__SessionTemplate_1a4bddafb6c21d8f11386ccf76353c5c5c)`()` <a id="structFRHAPI__SessionTemplate_1a4bddafb6c21d8f11386ccf76353c5c5c"></a>
+
+Returns a pointer to PlayerCullingTimeout_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const int32 * `[`GetPlayerCullingTimeoutOrNull`](#structFRHAPI__SessionTemplate_1a07f4c6525a399d8b39d3d618ad28401b)`() const` <a id="structFRHAPI__SessionTemplate_1a07f4c6525a399d8b39d3d618ad28401b"></a>
+
+Returns a pointer to PlayerCullingTimeout_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1a3790ba4bfcf229f34e98395bca12abfc)`(const int32 & NewValue)` <a id="structFRHAPI__SessionTemplate_1a3790ba4bfcf229f34e98395bca12abfc"></a>
+
+Sets the value of PlayerCullingTimeout_Optional and also sets PlayerCullingTimeout_IsSet to true.
+
+#### `public inline void `[`SetPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1ad6f9108bab56aa9feae7fb02534fa31c)`(int32 && NewValue)` <a id="structFRHAPI__SessionTemplate_1ad6f9108bab56aa9feae7fb02534fa31c"></a>
+
+Sets the value of PlayerCullingTimeout_Optional and also sets PlayerCullingTimeout_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPlayerCullingTimeout`](#structFRHAPI__SessionTemplate_1ac5f91d7657a5e7cae9199856318f4337)`()` <a id="structFRHAPI__SessionTemplate_1ac5f91d7657a5e7cae9199856318f4337"></a>
+
+Clears the value of PlayerCullingTimeout_Optional and sets PlayerCullingTimeout_IsSet to false.
+
+#### `public inline bool `[`IsPlayerCullingTimeoutSet`](#structFRHAPI__SessionTemplate_1aa2dc33d1e65c8438aa77a41e13714e75)`() const` <a id="structFRHAPI__SessionTemplate_1aa2dc33d1e65c8438aa77a41e13714e75"></a>
+
+Checks whether PlayerCullingTimeout_Optional has been set.
+
+#### `public inline bool `[`IsPlayerCullingTimeoutDefaultValue`](#structFRHAPI__SessionTemplate_1a49088bbeaca752e19695881c88507786)`() const` <a id="structFRHAPI__SessionTemplate_1a49088bbeaca752e19695881c88507786"></a>
+
+Returns true if PlayerCullingTimeout_Optional is set and matches the default value.
+
+#### `public inline void `[`SetPlayerCullingTimeoutToDefault`](#structFRHAPI__SessionTemplate_1adbc0a086485cde66c84bbe46207c8747)`()` <a id="structFRHAPI__SessionTemplate_1adbc0a086485cde66c84bbe46207c8747"></a>
+
+Sets the value of PlayerCullingTimeout_Optional to its default and also sets PlayerCullingTimeout_IsSet to true.
 

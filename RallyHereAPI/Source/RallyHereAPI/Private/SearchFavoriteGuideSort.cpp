@@ -28,6 +28,8 @@ FString EnumToString(const ERHAPI_SearchFavoriteGuideSort& Value)
 		return TEXT("modified");
 	case ERHAPI_SearchFavoriteGuideSort::Upvotes:
 		return TEXT("upvotes");
+	case ERHAPI_SearchFavoriteGuideSort::Promoted:
+		return TEXT("promoted");
 	case ERHAPI_SearchFavoriteGuideSort::FavoritedAt:
 		return TEXT("favorited_at");
 	}
@@ -42,6 +44,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_SearchFavoriteGuideSort&
 		{ TEXT("created"), ERHAPI_SearchFavoriteGuideSort::Created },
 		{ TEXT("modified"), ERHAPI_SearchFavoriteGuideSort::Modified },
 		{ TEXT("upvotes"), ERHAPI_SearchFavoriteGuideSort::Upvotes },
+		{ TEXT("promoted"), ERHAPI_SearchFavoriteGuideSort::Promoted },
 		{ TEXT("favorited_at"), ERHAPI_SearchFavoriteGuideSort::FavoritedAt },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);

@@ -894,6 +894,265 @@ FHttpRequestPtr Traits_CreateMatchSegment::DoCall(TSharedRef<API> InAPI, const R
 	return InAPI->CreateMatchSegment(InRequest, InDelegate, InPriority);
 }
 
+FHttpRequestPtr FMatchAPI::CreateMatchTimeline(const FRequest_CreateMatchTimeline& Request, const FDelegate_CreateMatchTimeline& Delegate /*= FDelegate_CreateMatchTimeline()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchTimelineResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FMatchAPI::OnCreateMatchTimelineResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchTimeline Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnCreateMatchTimelineResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_CreateMatchTimeline> Response = MakeShared<FResponse_CreateMatchTimeline>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_CreateMatchTimeline::FRequest_CreateMatchTimeline()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_CreateMatchTimeline::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/match/v1/match/{match_id}/timeline"));
+	return Path;
+}
+
+FName FRequest_CreateMatchTimeline::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("POST %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_CreateMatchTimeline::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
+
+	FString Path = FString::Format(TEXT("/match/v1/match/{match_id}/timeline"), PathParams);
+
+	return Path;
+}
+
+bool FRequest_CreateMatchTimeline::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = { TEXT("application/json") };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("POST"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchTimeline - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchTimeline - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+		// Body parameters
+		FString JsonBody;
+		TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonBody);
+
+		WriteJsonValue(Writer, MatchTimeline);
+		Writer->Close();
+
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
+		HttpRequest->SetContentAsString(JsonBody);
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchTimeline - Body parameter (FRHAPI_MatchTimeline) was ignored, not supported in multipart form"));
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchTimeline - Body parameter (FRHAPI_MatchTimeline) was ignored, not supported in urlencoded requests"));
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_CreateMatchTimeline - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_CreateMatchTimeline::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 201:
+		return TEXT("Successful Response");
+	case 400:
+		return TEXT("Bad Request");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_CreateMatchTimeline::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 201:
+		break;
+	case 400:
+		break;
+	case 403:
+		break;
+	case 404:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_CreateMatchTimeline::TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 400)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_CreateMatchTimeline::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_CreateMatchTimeline::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_CreateMatchTimeline::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_CreateMatchTimeline::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	return true;
+}
+
+FResponse_CreateMatchTimeline::FResponse_CreateMatchTimeline(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_CreateMatchTimeline::Name = TEXT("CreateMatchTimeline");
+
+FHttpRequestPtr Traits_CreateMatchTimeline::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->CreateMatchTimeline(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FMatchAPI::DeleteMatch(const FRequest_DeleteMatch& Request, const FDelegate_DeleteMatch& Delegate /*= FDelegate_DeleteMatch()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -2486,6 +2745,312 @@ FString Traits_GetMatchSegment::Name = TEXT("GetMatchSegment");
 FHttpRequestPtr Traits_GetMatchSegment::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
 	return InAPI->GetMatchSegment(InRequest, InDelegate, InPriority);
+}
+
+FHttpRequestPtr FMatchAPI::GetMatchTimelinePage(const FRequest_GetMatchTimelinePage& Request, const FDelegate_GetMatchTimelinePage& Delegate /*= FDelegate_GetMatchTimelinePage()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchTimelinePageResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FMatchAPI::OnGetMatchTimelinePageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchTimelinePage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FMatchAPI::OnGetMatchTimelinePageResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_GetMatchTimelinePage> Response = MakeShared<FResponse_GetMatchTimelinePage>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_GetMatchTimelinePage::FRequest_GetMatchTimelinePage()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetMatchTimelinePage::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/match/v1/match/{match_id}/timeline"));
+	return Path;
+}
+
+FName FRequest_GetMatchTimelinePage::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetMatchTimelinePage::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("match_id"), ToStringFormatArg(MatchId) }
+	};
+
+	FString Path = FString::Format(TEXT("/match/v1/match/{match_id}/timeline"), PathParams);
+
+	TArray<FString> QueryParams;
+	if(Cursor.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("cursor=")) + ToUrlString(Cursor.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_GetMatchTimelinePage::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchTimelinePage - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchTimelinePage - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetMatchTimelinePage - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetMatchTimelinePage::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 404:
+		return TEXT("Not Found");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetMatchTimelinePage::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 404:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetMatchTimelinePage::TryGetContentFor200(FRHAPI_MatchTimelinePage& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetMatchTimelinePage::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetMatchTimelinePage::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 404)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetMatchTimelinePage::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetMatchTimelinePage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_MatchTimelinePage Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_MatchTimelinePage>(Object);
+				break;
+			} 
+		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 404:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 422:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HTTPValidationError Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
+}
+
+FResponse_GetMatchTimelinePage::FResponse_GetMatchTimelinePage(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetMatchTimelinePage::Name = TEXT("GetMatchTimelinePage");
+
+FHttpRequestPtr Traits_GetMatchTimelinePage::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetMatchTimelinePage(InRequest, InDelegate, InPriority);
 }
 
 FHttpRequestPtr FMatchAPI::GetMatches(const FRequest_GetMatches& Request, const FDelegate_GetMatches& Delegate /*= FDelegate_GetMatches()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)

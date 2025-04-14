@@ -19,6 +19,8 @@
 #include "MatchSegmentPatchRequest.h"
 #include "MatchSegmentRequest.h"
 #include "MatchSegmentWithPlayers.h"
+#include "MatchTimeline.h"
+#include "MatchTimelinePage.h"
 #include "MatchWithPlayers.h"
 #include "PagedMatchResponse.h"
 #include "PagedPlayerMatchResponse.h"
@@ -346,6 +348,113 @@ struct RALLYHEREAPI_API Traits_CreateMatchSegment
 	typedef FResponse_CreateMatchSegment Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_CreateMatchSegment Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Create Match Timeline
+ * Create a match timeline.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:edit:any`
+ * 
+ * - For match if the player is the host any of: `match:*`, `match:match:edit:any`, `match:match:edit:authority`
+*/
+struct RALLYHEREAPI_API FRequest_CreateMatchTimeline : public FRequest
+{
+	FRequest_CreateMatchTimeline();
+	virtual ~FRequest_CreateMatchTimeline() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchId;
+	FRHAPI_MatchTimeline MatchTimeline;
+};
+
+/** The response type for FRequest_CreateMatchTimeline */
+struct RALLYHEREAPI_API FResponse_CreateMatchTimeline : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_CreateMatchTimeline(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_CreateMatchTimeline() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+
+	// Individual Response Helpers	
+	/* Response 201
+	Successful Response
+	*/
+
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_CreateMatchTimeline */
+DECLARE_DELEGATE_OneParam(FDelegate_CreateMatchTimeline, const FResponse_CreateMatchTimeline&);
+
+/** @brief A helper metadata object for CreateMatchTimeline that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_CreateMatchTimeline
+{
+	/** The request type */
+	typedef FRequest_CreateMatchTimeline Request;
+	/** The response type */
+	typedef FResponse_CreateMatchTimeline Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_CreateMatchTimeline Delegate;
 	/** The API object that supports this API call */
 	typedef FMatchAPI API;
 	/** A human readable name for this API call */
@@ -984,6 +1093,120 @@ struct RALLYHEREAPI_API Traits_GetMatchSegment
 	typedef FResponse_GetMatchSegment Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetMatchSegment Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Get Match Timeline Page
+ * Get match timeline by match_id.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:match:any:read`
+ * 
+ * - For match if the player was in match any of: `match:*`, `match:match:player:read`
+*/
+struct RALLYHEREAPI_API FRequest_GetMatchTimelinePage : public FRequest
+{
+	FRequest_GetMatchTimelinePage();
+	virtual ~FRequest_GetMatchTimelinePage() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchId;
+	TOptional<FString> Cursor;
+};
+
+/** The response type for FRequest_GetMatchTimelinePage */
+struct RALLYHEREAPI_API FResponse_GetMatchTimelinePage : public FResponseAccessorTemplate<FRHAPI_MatchTimelinePage, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_MatchTimelinePage, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetMatchTimelinePage(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetMatchTimelinePage() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_MatchTimelinePage Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_MatchTimelinePage& OutContent) const { return TryGetContent<FRHAPI_MatchTimelinePage>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_MatchTimelinePage>& OutContent) const { return TryGetContent<FRHAPI_MatchTimelinePage>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_MatchTimelinePage* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_MatchTimelinePage>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_MatchTimelinePage> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_MatchTimelinePage>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_MatchTimelinePage& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetMatchTimelinePage */
+DECLARE_DELEGATE_OneParam(FDelegate_GetMatchTimelinePage, const FResponse_GetMatchTimelinePage&);
+
+/** @brief A helper metadata object for GetMatchTimelinePage that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetMatchTimelinePage
+{
+	/** The request type */
+	typedef FRequest_GetMatchTimelinePage Request;
+	/** The response type */
+	typedef FResponse_GetMatchTimelinePage Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetMatchTimelinePage Delegate;
 	/** The API object that supports this API call */
 	typedef FMatchAPI API;
 	/** A human readable name for this API call */
@@ -2315,6 +2538,8 @@ public:
 	void OnCreateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr CreateMatchSegment(const FRequest_CreateMatchSegment& Request, const FDelegate_CreateMatchSegment& Delegate = FDelegate_CreateMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnCreateMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr CreateMatchTimeline(const FRequest_CreateMatchTimeline& Request, const FDelegate_CreateMatchTimeline& Delegate = FDelegate_CreateMatchTimeline(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnCreateMatchTimelineResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchTimeline Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr DeleteMatch(const FRequest_DeleteMatch& Request, const FDelegate_DeleteMatch& Delegate = FDelegate_DeleteMatch(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnDeleteMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr DeleteMatchPlayer(const FRequest_DeleteMatchPlayer& Request, const FDelegate_DeleteMatchPlayer& Delegate = FDelegate_DeleteMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -2327,6 +2552,8 @@ public:
 	void OnGetMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetMatchSegment(const FRequest_GetMatchSegment& Request, const FDelegate_GetMatchSegment& Delegate = FDelegate_GetMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetMatchTimelinePage(const FRequest_GetMatchTimelinePage& Request, const FDelegate_GetMatchTimelinePage& Delegate = FDelegate_GetMatchTimelinePage(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetMatchTimelinePageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatchTimelinePage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetMatches(const FRequest_GetMatches& Request, const FDelegate_GetMatches& Delegate = FDelegate_GetMatches(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetMatchesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMatches Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetPlayerMatchesSelf(const FRequest_GetPlayerMatchesSelf& Request, const FDelegate_GetPlayerMatchesSelf& Delegate = FDelegate_GetPlayerMatchesSelf(), int32 Priority = DefaultRallyHereAPIPriority);

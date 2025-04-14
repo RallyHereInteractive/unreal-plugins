@@ -30,6 +30,8 @@ struct FRHAPI_TicketData
 `public bool `[`AdditionalJoinParams_IsSet`](#structFRHAPI__TicketData_1a5049238a1b6be89571b0a874642ec4d9) | true if AdditionalJoinParams_Optional has been set to a value
 `public TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > `[`RankData_Optional`](#structFRHAPI__TicketData_1a17b160297ed976f0e281e8965e3f19b3) | List of rank data on the ticket.
 `public bool `[`RankData_IsSet`](#structFRHAPI__TicketData_1af7beadc7517c92c0fe706d91e0e7432f) | true if RankData_Optional has been set to a value
+`public FString `[`QueuedSessionId_Optional`](#structFRHAPI__TicketData_1a1c099479824563aa94d0bba3da65e0cb) | The session this ticket belonged to.
+`public bool `[`QueuedSessionId_IsSet`](#structFRHAPI__TicketData_1a137d40b189749479d57f3d560fa8a93c) | true if QueuedSessionId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__TicketData_1aa6543a65f2b9581b045757d92831a62a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__TicketData_1a9cd3c53afe8fb05319a3927992d4fa1e)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetTicketId`](#structFRHAPI__TicketData_1a9822bbe67bc5e4aaa140902d43e72c4d)`()` | Gets the value of TicketId.
@@ -82,6 +84,18 @@ struct FRHAPI_TicketData
 `public inline void `[`SetRankData`](#structFRHAPI__TicketData_1a8e3dd1e995dcf3256a70c19457a73be4)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > && NewValue)` | Sets the value of RankData_Optional and also sets RankData_IsSet to true using move semantics.
 `public inline void `[`ClearRankData`](#structFRHAPI__TicketData_1aad62250fae5049dc81df972209f53d2e)`()` | Clears the value of RankData_Optional and sets RankData_IsSet to false.
 `public inline bool `[`IsRankDataSet`](#structFRHAPI__TicketData_1a4ecd64a81de014c1294365bbb7900c0f)`() const` | Checks whether RankData_Optional has been set.
+`public inline FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a06f78cb96640d9dcec634feaebb216dc)`()` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1ab367e5406a0803acadbe1c42ddc213ee)`() const` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a5d0fb5baf7e8e77a963e0363a87b1062)`(const FString & DefaultValue) const` | Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1aba0e368bf8363c41232d30baf76dce18)`(FString & OutValue) const` | Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a30786cc7442967bf661c47f6632cd3c9)`()` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a855c6438f7aac58a90bd53bfe13a8a13)`() const` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1ac203aa679a9bbef2b6850c524311857f)`(const FString & NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
+`public inline void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1a5564873032c79a94edde88ad045cdbf4)`(FString && NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
+`public inline void `[`ClearQueuedSessionId`](#structFRHAPI__TicketData_1a28326f3b13bb54b7eeded642f5bde64b)`()` | Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false.
+`public inline bool `[`IsQueuedSessionIdSet`](#structFRHAPI__TicketData_1a0358ce43ffb1a3e58ff345ed9966a365)`() const` | Checks whether QueuedSessionId_Optional has been set.
+`public inline bool `[`IsQueuedSessionIdDefaultValue`](#structFRHAPI__TicketData_1a1942f27b52ea3c3beb3528986d2fa97b)`() const` | Returns true if QueuedSessionId_Optional is set and matches the default value.
+`public inline void `[`SetQueuedSessionIdToDefault`](#structFRHAPI__TicketData_1aea4cbf70a7b3cf1eed858cdd4c6c6b7d)`()` | Sets the value of QueuedSessionId_Optional to its default and also sets QueuedSessionId_IsSet to true.
 
 ### Members
 
@@ -128,6 +142,14 @@ List of rank data on the ticket.
 #### `public bool `[`RankData_IsSet`](#structFRHAPI__TicketData_1af7beadc7517c92c0fe706d91e0e7432f) <a id="structFRHAPI__TicketData_1af7beadc7517c92c0fe706d91e0e7432f"></a>
 
 true if RankData_Optional has been set to a value
+
+#### `public FString `[`QueuedSessionId_Optional`](#structFRHAPI__TicketData_1a1c099479824563aa94d0bba3da65e0cb) <a id="structFRHAPI__TicketData_1a1c099479824563aa94d0bba3da65e0cb"></a>
+
+The session this ticket belonged to.
+
+#### `public bool `[`QueuedSessionId_IsSet`](#structFRHAPI__TicketData_1a137d40b189749479d57f3d560fa8a93c) <a id="structFRHAPI__TicketData_1a137d40b189749479d57f3d560fa8a93c"></a>
+
+true if QueuedSessionId_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__TicketData_1aa6543a65f2b9581b045757d92831a62a)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__TicketData_1aa6543a65f2b9581b045757d92831a62a"></a>
 
@@ -345,4 +367,52 @@ Clears the value of RankData_Optional and sets RankData_IsSet to false.
 #### `public inline bool `[`IsRankDataSet`](#structFRHAPI__TicketData_1a4ecd64a81de014c1294365bbb7900c0f)`() const` <a id="structFRHAPI__TicketData_1a4ecd64a81de014c1294365bbb7900c0f"></a>
 
 Checks whether RankData_Optional has been set.
+
+#### `public inline FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a06f78cb96640d9dcec634feaebb216dc)`()` <a id="structFRHAPI__TicketData_1a06f78cb96640d9dcec634feaebb216dc"></a>
+
+Gets the value of QueuedSessionId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1ab367e5406a0803acadbe1c42ddc213ee)`() const` <a id="structFRHAPI__TicketData_1ab367e5406a0803acadbe1c42ddc213ee"></a>
+
+Gets the value of QueuedSessionId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a5d0fb5baf7e8e77a963e0363a87b1062)`(const FString & DefaultValue) const` <a id="structFRHAPI__TicketData_1a5d0fb5baf7e8e77a963e0363a87b1062"></a>
+
+Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1aba0e368bf8363c41232d30baf76dce18)`(FString & OutValue) const` <a id="structFRHAPI__TicketData_1aba0e368bf8363c41232d30baf76dce18"></a>
+
+Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a30786cc7442967bf661c47f6632cd3c9)`()` <a id="structFRHAPI__TicketData_1a30786cc7442967bf661c47f6632cd3c9"></a>
+
+Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a855c6438f7aac58a90bd53bfe13a8a13)`() const` <a id="structFRHAPI__TicketData_1a855c6438f7aac58a90bd53bfe13a8a13"></a>
+
+Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1ac203aa679a9bbef2b6850c524311857f)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1ac203aa679a9bbef2b6850c524311857f"></a>
+
+Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
+
+#### `public inline void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1a5564873032c79a94edde88ad045cdbf4)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1a5564873032c79a94edde88ad045cdbf4"></a>
+
+Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearQueuedSessionId`](#structFRHAPI__TicketData_1a28326f3b13bb54b7eeded642f5bde64b)`()` <a id="structFRHAPI__TicketData_1a28326f3b13bb54b7eeded642f5bde64b"></a>
+
+Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false.
+
+#### `public inline bool `[`IsQueuedSessionIdSet`](#structFRHAPI__TicketData_1a0358ce43ffb1a3e58ff345ed9966a365)`() const` <a id="structFRHAPI__TicketData_1a0358ce43ffb1a3e58ff345ed9966a365"></a>
+
+Checks whether QueuedSessionId_Optional has been set.
+
+#### `public inline bool `[`IsQueuedSessionIdDefaultValue`](#structFRHAPI__TicketData_1a1942f27b52ea3c3beb3528986d2fa97b)`() const` <a id="structFRHAPI__TicketData_1a1942f27b52ea3c3beb3528986d2fa97b"></a>
+
+Returns true if QueuedSessionId_Optional is set and matches the default value.
+
+#### `public inline void `[`SetQueuedSessionIdToDefault`](#structFRHAPI__TicketData_1aea4cbf70a7b3cf1eed858cdd4c6c6b7d)`()` <a id="structFRHAPI__TicketData_1aea4cbf70a7b3cf1eed858cdd4c6c6b7d"></a>
+
+Sets the value of QueuedSessionId_Optional to its default and also sets QueuedSessionId_IsSet to true.
 

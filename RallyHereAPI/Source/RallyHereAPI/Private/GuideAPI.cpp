@@ -1012,7 +1012,7 @@ FString FResponse_DeleteGuideById::GetHttpResponseCodeDescription(EHttpResponseC
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
-		return TEXT("Error Codes: - &#x60;ErrorCodes.not_found&#x60; - Object was not found ");
+		return TEXT(" Error Codes: - &#x60;not_found&#x60; - Object was not found ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -1199,11 +1199,7 @@ FString FRequest_GetEntityFavoriteGuide::ComputePath() const
 	TArray<FString> QueryParams;
 	if(SortBy.IsSet())
 	{
-		QueryParams.Add(FString(TEXT("sort_by=")) + ToUrlString(SortBy.GetValue()));
-	}
-	if(Sort.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("sort=")) + ToUrlString(Sort.GetValue()));
+		QueryParams.Add(FString(TEXT("sort_by=")) + CollectionToUrlString_multi(SortBy.GetValue(), TEXT("sort_by")));
 	}
 	if(Cursor.IsSet())
 	{
@@ -1364,6 +1360,10 @@ FString FRequest_GetEntityFavoriteGuide::ComputePath() const
 	if(Ref32.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("ref_32=")) + ToUrlString(Ref32.GetValue()));
+	}
+	if(Sort.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("sort=")) + CollectionToUrlString_multi(Sort.GetValue(), TEXT("sort")));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
@@ -1973,7 +1973,7 @@ FString FResponse_GetGuideById::GetHttpResponseCodeDescription(EHttpResponseCode
 	case 403:
 		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
 	case 404:
-		return TEXT("Error Codes: - &#x60;ErrorCodes.not_found&#x60; - Object was not found ");
+		return TEXT(" Error Codes: - &#x60;not_found&#x60; - Object was not found ");
 	case 422:
 		return TEXT("Validation Error");
 	}
@@ -2438,11 +2438,7 @@ FString FRequest_SearchGuides::ComputePath() const
 	TArray<FString> QueryParams;
 	if(SortBy.IsSet())
 	{
-		QueryParams.Add(FString(TEXT("sort_by=")) + ToUrlString(SortBy.GetValue()));
-	}
-	if(Sort.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("sort=")) + ToUrlString(Sort.GetValue()));
+		QueryParams.Add(FString(TEXT("sort_by=")) + CollectionToUrlString_multi(SortBy.GetValue(), TEXT("sort_by")));
 	}
 	if(Cursor.IsSet())
 	{
@@ -2603,6 +2599,10 @@ FString FRequest_SearchGuides::ComputePath() const
 	if(Ref32.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("ref_32=")) + ToUrlString(Ref32.GetValue()));
+	}
+	if(Sort.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("sort=")) + CollectionToUrlString_multi(Sort.GetValue(), TEXT("sort")));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));

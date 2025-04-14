@@ -24,11 +24,11 @@ Restriction applied to a player.
 `public ERHAPI_RestrictionType `[`Type`](#structFRHAPI__RestrictionCreate_1a110e81d8902b59337e66e7e616e6a3fe) | Type of restriction.
 `public ERHAPI_RestrictionReasonCode `[`Reason_Optional`](#structFRHAPI__RestrictionCreate_1aa4e51ff10d65465f44e6aec04a2bb676) | Reason the restriction was applied.
 `public bool `[`Reason_IsSet`](#structFRHAPI__RestrictionCreate_1a46c4e9b710bf676b36d111bd19468ce4) | true if Reason_Optional has been set to a value
-`public FDateTime `[`Expiration_Optional`](#structFRHAPI__RestrictionCreate_1ad29c07e4af7fbcb6a4abbeacb8b3c46f) | Date the restriction expires. Null means the restriction is permanent.
+`public FDateTime `[`Expiration_Optional`](#structFRHAPI__RestrictionCreate_1ad29c07e4af7fbcb6a4abbeacb8b3c46f) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public bool `[`Expiration_IsSet`](#structFRHAPI__RestrictionCreate_1a37ada59cfad3ecce8a0c3a5574caa28b) | true if Expiration_Optional has been set to a value
 `public ERHAPI_RestrictionIssuerType `[`IssuerType`](#structFRHAPI__RestrictionCreate_1abe11d5d16d3b2a151e8ad5255586958c) | Type of the Issuer.
 `public FString `[`Issuer`](#structFRHAPI__RestrictionCreate_1aefdcfacbf07f36db7af539b99b74ffd1) | The creator of the restriction.
-`public FString `[`ReasonDetail_Optional`](#structFRHAPI__RestrictionCreate_1ab584f517df6d46becf6a506b0328b754) | Additional reason describing the restriction.
+`public FString `[`ReasonDetail_Optional`](#structFRHAPI__RestrictionCreate_1ab584f517df6d46becf6a506b0328b754) | Internal-only reason describing the restriction.
 `public bool `[`ReasonDetail_IsSet`](#structFRHAPI__RestrictionCreate_1aa3c0b7e557877efea4bd553473b6878d) | true if ReasonDetail_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__RestrictionCreate_1a560ac591b3992acfd40be3711cbe7ba0)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__RestrictionCreate_1ad36ca37a3a2ce88b52f5eb288597ddba)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
@@ -91,7 +91,7 @@ true if Reason_Optional has been set to a value
 
 #### `public FDateTime `[`Expiration_Optional`](#structFRHAPI__RestrictionCreate_1ad29c07e4af7fbcb6a4abbeacb8b3c46f) <a id="structFRHAPI__RestrictionCreate_1ad29c07e4af7fbcb6a4abbeacb8b3c46f"></a>
 
-Date the restriction expires. Null means the restriction is permanent.
+Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 
 #### `public bool `[`Expiration_IsSet`](#structFRHAPI__RestrictionCreate_1a37ada59cfad3ecce8a0c3a5574caa28b) <a id="structFRHAPI__RestrictionCreate_1a37ada59cfad3ecce8a0c3a5574caa28b"></a>
 
@@ -107,7 +107,7 @@ The creator of the restriction.
 
 #### `public FString `[`ReasonDetail_Optional`](#structFRHAPI__RestrictionCreate_1ab584f517df6d46becf6a506b0328b754) <a id="structFRHAPI__RestrictionCreate_1ab584f517df6d46becf6a506b0328b754"></a>
 
-Additional reason describing the restriction.
+Internal-only reason describing the restriction.
 
 #### `public bool `[`ReasonDetail_IsSet`](#structFRHAPI__RestrictionCreate_1aa3c0b7e557877efea4bd553473b6878d) <a id="structFRHAPI__RestrictionCreate_1aa3c0b7e557877efea4bd553473b6878d"></a>
 

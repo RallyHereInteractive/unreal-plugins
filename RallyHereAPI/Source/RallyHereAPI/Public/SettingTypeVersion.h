@@ -103,15 +103,15 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 
 	/** @brief [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FRHAPI_JsonObject ValueJsonschema{  };
+	TMap<FString, FRHAPI_JsonValue> ValueJsonschema{  };
 	/** @brief Gets the value of ValueJsonschema */
-	FRHAPI_JsonObject& GetValueJsonschema() { return ValueJsonschema; }
+	TMap<FString, FRHAPI_JsonValue>& GetValueJsonschema() { return ValueJsonschema; }
 	/** @brief Gets the value of ValueJsonschema */
-	const FRHAPI_JsonObject& GetValueJsonschema() const { return ValueJsonschema; }
+	const TMap<FString, FRHAPI_JsonValue>& GetValueJsonschema() const { return ValueJsonschema; }
 	/** @brief Sets the value of ValueJsonschema */
-	void SetValueJsonschema(const FRHAPI_JsonObject& NewValue) { ValueJsonschema = NewValue;   }
+	void SetValueJsonschema(const TMap<FString, FRHAPI_JsonValue>& NewValue) { ValueJsonschema = NewValue;   }
 	/** @brief Sets the value of ValueJsonschema using move semantics */
-	void SetValueJsonschema(FRHAPI_JsonObject&& NewValue) { ValueJsonschema = NewValue;   }
+	void SetValueJsonschema(TMap<FString, FRHAPI_JsonValue>&& NewValue) { ValueJsonschema = NewValue;   }
 
 	/** @brief Custom data that was provided when the setting type was created */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

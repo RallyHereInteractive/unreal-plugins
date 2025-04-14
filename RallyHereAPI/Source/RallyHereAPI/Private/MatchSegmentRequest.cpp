@@ -22,6 +22,1542 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MatchSegmentRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
+	if (Int1_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_1"));
+		if (Int1_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int1_Optional);
+	}
+	if (Int2_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_2"));
+		if (Int2_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int2_Optional);
+	}
+	if (Int3_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_3"));
+		if (Int3_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int3_Optional);
+	}
+	if (Int4_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_4"));
+		if (Int4_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int4_Optional);
+	}
+	if (Int5_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_5"));
+		if (Int5_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int5_Optional);
+	}
+	if (Int6_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_6"));
+		if (Int6_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int6_Optional);
+	}
+	if (Int7_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_7"));
+		if (Int7_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int7_Optional);
+	}
+	if (Int8_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_8"));
+		if (Int8_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int8_Optional);
+	}
+	if (Int9_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_9"));
+		if (Int9_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int9_Optional);
+	}
+	if (Int10_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_10"));
+		if (Int10_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int10_Optional);
+	}
+	if (Int11_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_11"));
+		if (Int11_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int11_Optional);
+	}
+	if (Int12_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_12"));
+		if (Int12_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int12_Optional);
+	}
+	if (Int13_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_13"));
+		if (Int13_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int13_Optional);
+	}
+	if (Int14_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_14"));
+		if (Int14_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int14_Optional);
+	}
+	if (Int15_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_15"));
+		if (Int15_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int15_Optional);
+	}
+	if (Int16_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_16"));
+		if (Int16_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int16_Optional);
+	}
+	if (Int17_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_17"));
+		if (Int17_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int17_Optional);
+	}
+	if (Int18_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_18"));
+		if (Int18_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int18_Optional);
+	}
+	if (Int19_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_19"));
+		if (Int19_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int19_Optional);
+	}
+	if (Int20_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_20"));
+		if (Int20_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int20_Optional);
+	}
+	if (Int21_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_21"));
+		if (Int21_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int21_Optional);
+	}
+	if (Int22_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_22"));
+		if (Int22_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int22_Optional);
+	}
+	if (Int23_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_23"));
+		if (Int23_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int23_Optional);
+	}
+	if (Int24_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_24"));
+		if (Int24_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int24_Optional);
+	}
+	if (Int25_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_25"));
+		if (Int25_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int25_Optional);
+	}
+	if (Int26_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_26"));
+		if (Int26_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int26_Optional);
+	}
+	if (Int27_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_27"));
+		if (Int27_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int27_Optional);
+	}
+	if (Int28_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_28"));
+		if (Int28_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int28_Optional);
+	}
+	if (Int29_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_29"));
+		if (Int29_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int29_Optional);
+	}
+	if (Int30_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_30"));
+		if (Int30_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int30_Optional);
+	}
+	if (Int31_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_31"));
+		if (Int31_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int31_Optional);
+	}
+	if (Int32_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_32"));
+		if (Int32_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int32_Optional);
+	}
+	if (Int33_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_33"));
+		if (Int33_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int33_Optional);
+	}
+	if (Int34_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_34"));
+		if (Int34_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int34_Optional);
+	}
+	if (Int35_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_35"));
+		if (Int35_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int35_Optional);
+	}
+	if (Int36_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_36"));
+		if (Int36_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int36_Optional);
+	}
+	if (Int37_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_37"));
+		if (Int37_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int37_Optional);
+	}
+	if (Int38_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_38"));
+		if (Int38_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int38_Optional);
+	}
+	if (Int39_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_39"));
+		if (Int39_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int39_Optional);
+	}
+	if (Int40_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_40"));
+		if (Int40_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int40_Optional);
+	}
+	if (Int41_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_41"));
+		if (Int41_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int41_Optional);
+	}
+	if (Int42_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_42"));
+		if (Int42_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int42_Optional);
+	}
+	if (Int43_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_43"));
+		if (Int43_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int43_Optional);
+	}
+	if (Int44_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_44"));
+		if (Int44_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int44_Optional);
+	}
+	if (Int45_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_45"));
+		if (Int45_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int45_Optional);
+	}
+	if (Int46_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_46"));
+		if (Int46_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int46_Optional);
+	}
+	if (Int47_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_47"));
+		if (Int47_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int47_Optional);
+	}
+	if (Int48_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_48"));
+		if (Int48_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int48_Optional);
+	}
+	if (Int49_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_49"));
+		if (Int49_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int49_Optional);
+	}
+	if (Int50_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_50"));
+		if (Int50_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int50_Optional);
+	}
+	if (Int51_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_51"));
+		if (Int51_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int51_Optional);
+	}
+	if (Int52_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_52"));
+		if (Int52_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int52_Optional);
+	}
+	if (Int53_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_53"));
+		if (Int53_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int53_Optional);
+	}
+	if (Int54_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_54"));
+		if (Int54_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int54_Optional);
+	}
+	if (Int55_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_55"));
+		if (Int55_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int55_Optional);
+	}
+	if (Int56_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_56"));
+		if (Int56_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int56_Optional);
+	}
+	if (Int57_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_57"));
+		if (Int57_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int57_Optional);
+	}
+	if (Int58_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_58"));
+		if (Int58_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int58_Optional);
+	}
+	if (Int59_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_59"));
+		if (Int59_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int59_Optional);
+	}
+	if (Int60_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_60"));
+		if (Int60_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int60_Optional);
+	}
+	if (Int61_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_61"));
+		if (Int61_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int61_Optional);
+	}
+	if (Int62_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_62"));
+		if (Int62_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int62_Optional);
+	}
+	if (Int63_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_63"));
+		if (Int63_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int63_Optional);
+	}
+	if (Int64_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_64"));
+		if (Int64_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int64_Optional);
+	}
+	if (Int65_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_65"));
+		if (Int65_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int65_Optional);
+	}
+	if (Int66_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_66"));
+		if (Int66_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int66_Optional);
+	}
+	if (Int67_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_67"));
+		if (Int67_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int67_Optional);
+	}
+	if (Int68_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_68"));
+		if (Int68_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int68_Optional);
+	}
+	if (Int69_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_69"));
+		if (Int69_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int69_Optional);
+	}
+	if (Int70_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_70"));
+		if (Int70_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int70_Optional);
+	}
+	if (Int71_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_71"));
+		if (Int71_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int71_Optional);
+	}
+	if (Int72_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_72"));
+		if (Int72_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int72_Optional);
+	}
+	if (Int73_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_73"));
+		if (Int73_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int73_Optional);
+	}
+	if (Int74_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_74"));
+		if (Int74_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int74_Optional);
+	}
+	if (Int75_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_75"));
+		if (Int75_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int75_Optional);
+	}
+	if (Int76_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_76"));
+		if (Int76_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int76_Optional);
+	}
+	if (Int77_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_77"));
+		if (Int77_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int77_Optional);
+	}
+	if (Int78_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_78"));
+		if (Int78_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int78_Optional);
+	}
+	if (Int79_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_79"));
+		if (Int79_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int79_Optional);
+	}
+	if (Int80_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_80"));
+		if (Int80_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int80_Optional);
+	}
+	if (Int81_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_81"));
+		if (Int81_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int81_Optional);
+	}
+	if (Int82_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_82"));
+		if (Int82_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int82_Optional);
+	}
+	if (Int83_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_83"));
+		if (Int83_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int83_Optional);
+	}
+	if (Int84_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_84"));
+		if (Int84_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int84_Optional);
+	}
+	if (Int85_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_85"));
+		if (Int85_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int85_Optional);
+	}
+	if (Int86_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_86"));
+		if (Int86_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int86_Optional);
+	}
+	if (Int87_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_87"));
+		if (Int87_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int87_Optional);
+	}
+	if (Int88_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_88"));
+		if (Int88_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int88_Optional);
+	}
+	if (Int89_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_89"));
+		if (Int89_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int89_Optional);
+	}
+	if (Int90_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_90"));
+		if (Int90_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int90_Optional);
+	}
+	if (Int91_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_91"));
+		if (Int91_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int91_Optional);
+	}
+	if (Int92_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_92"));
+		if (Int92_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int92_Optional);
+	}
+	if (Int93_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_93"));
+		if (Int93_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int93_Optional);
+	}
+	if (Int94_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_94"));
+		if (Int94_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int94_Optional);
+	}
+	if (Int95_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_95"));
+		if (Int95_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int95_Optional);
+	}
+	if (Int96_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_96"));
+		if (Int96_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int96_Optional);
+	}
+	if (Int97_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_97"));
+		if (Int97_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int97_Optional);
+	}
+	if (Int98_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_98"));
+		if (Int98_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int98_Optional);
+	}
+	if (Int99_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_99"));
+		if (Int99_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int99_Optional);
+	}
+	if (Int100_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_100"));
+		if (Int100_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int100_Optional);
+	}
+	if (Int101_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_101"));
+		if (Int101_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int101_Optional);
+	}
+	if (Int102_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_102"));
+		if (Int102_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int102_Optional);
+	}
+	if (Int103_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_103"));
+		if (Int103_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int103_Optional);
+	}
+	if (Int104_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_104"));
+		if (Int104_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int104_Optional);
+	}
+	if (Int105_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_105"));
+		if (Int105_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int105_Optional);
+	}
+	if (Int106_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_106"));
+		if (Int106_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int106_Optional);
+	}
+	if (Int107_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_107"));
+		if (Int107_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int107_Optional);
+	}
+	if (Int108_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_108"));
+		if (Int108_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int108_Optional);
+	}
+	if (Int109_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_109"));
+		if (Int109_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int109_Optional);
+	}
+	if (Int110_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_110"));
+		if (Int110_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int110_Optional);
+	}
+	if (Int111_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_111"));
+		if (Int111_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int111_Optional);
+	}
+	if (Int112_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_112"));
+		if (Int112_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int112_Optional);
+	}
+	if (Int113_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_113"));
+		if (Int113_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int113_Optional);
+	}
+	if (Int114_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_114"));
+		if (Int114_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int114_Optional);
+	}
+	if (Int115_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_115"));
+		if (Int115_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int115_Optional);
+	}
+	if (Int116_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_116"));
+		if (Int116_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int116_Optional);
+	}
+	if (Int117_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_117"));
+		if (Int117_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int117_Optional);
+	}
+	if (Int118_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_118"));
+		if (Int118_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int118_Optional);
+	}
+	if (Int119_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_119"));
+		if (Int119_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int119_Optional);
+	}
+	if (Int120_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_120"));
+		if (Int120_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int120_Optional);
+	}
+	if (Int121_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_121"));
+		if (Int121_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int121_Optional);
+	}
+	if (Int122_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_122"));
+		if (Int122_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int122_Optional);
+	}
+	if (Int123_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_123"));
+		if (Int123_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int123_Optional);
+	}
+	if (Int124_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_124"));
+		if (Int124_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int124_Optional);
+	}
+	if (Int125_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_125"));
+		if (Int125_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int125_Optional);
+	}
+	if (Int126_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_126"));
+		if (Int126_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int126_Optional);
+	}
+	if (Int127_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_127"));
+		if (Int127_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int127_Optional);
+	}
+	if (Int128_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("int_128"));
+		if (Int128_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Int128_Optional);
+	}
+	if (Str1_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_1"));
+		if (Str1_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str1_Optional);
+	}
+	if (Str2_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_2"));
+		if (Str2_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str2_Optional);
+	}
+	if (Str3_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_3"));
+		if (Str3_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str3_Optional);
+	}
+	if (Str4_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_4"));
+		if (Str4_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str4_Optional);
+	}
+	if (Str5_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_5"));
+		if (Str5_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str5_Optional);
+	}
+	if (Str6_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_6"));
+		if (Str6_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str6_Optional);
+	}
+	if (Str7_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_7"));
+		if (Str7_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str7_Optional);
+	}
+	if (Str8_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_8"));
+		if (Str8_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str8_Optional);
+	}
+	if (Str9_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_9"));
+		if (Str9_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str9_Optional);
+	}
+	if (Str10_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_10"));
+		if (Str10_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str10_Optional);
+	}
+	if (Str11_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_11"));
+		if (Str11_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str11_Optional);
+	}
+	if (Str12_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_12"));
+		if (Str12_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str12_Optional);
+	}
+	if (Str13_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_13"));
+		if (Str13_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str13_Optional);
+	}
+	if (Str14_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_14"));
+		if (Str14_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str14_Optional);
+	}
+	if (Str15_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_15"));
+		if (Str15_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str15_Optional);
+	}
+	if (Str16_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_16"));
+		if (Str16_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str16_Optional);
+	}
+	if (Str17_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_17"));
+		if (Str17_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str17_Optional);
+	}
+	if (Str18_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_18"));
+		if (Str18_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str18_Optional);
+	}
+	if (Str19_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_19"));
+		if (Str19_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str19_Optional);
+	}
+	if (Str20_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_20"));
+		if (Str20_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str20_Optional);
+	}
+	if (Str21_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_21"));
+		if (Str21_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str21_Optional);
+	}
+	if (Str22_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_22"));
+		if (Str22_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str22_Optional);
+	}
+	if (Str23_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_23"));
+		if (Str23_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str23_Optional);
+	}
+	if (Str24_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_24"));
+		if (Str24_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str24_Optional);
+	}
+	if (Str25_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_25"));
+		if (Str25_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str25_Optional);
+	}
+	if (Str26_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_26"));
+		if (Str26_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str26_Optional);
+	}
+	if (Str27_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_27"));
+		if (Str27_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str27_Optional);
+	}
+	if (Str28_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_28"));
+		if (Str28_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str28_Optional);
+	}
+	if (Str29_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_29"));
+		if (Str29_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str29_Optional);
+	}
+	if (Str30_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_30"));
+		if (Str30_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str30_Optional);
+	}
+	if (Str31_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_31"));
+		if (Str31_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str31_Optional);
+	}
+	if (Str32_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("str_32"));
+		if (Str32_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Str32_Optional);
+	}
+	if (Float1_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_1"));
+		if (Float1_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float1_Optional);
+	}
+	if (Float2_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_2"));
+		if (Float2_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float2_Optional);
+	}
+	if (Float3_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_3"));
+		if (Float3_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float3_Optional);
+	}
+	if (Float4_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_4"));
+		if (Float4_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float4_Optional);
+	}
+	if (Float5_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_5"));
+		if (Float5_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float5_Optional);
+	}
+	if (Float6_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_6"));
+		if (Float6_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float6_Optional);
+	}
+	if (Float7_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_7"));
+		if (Float7_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float7_Optional);
+	}
+	if (Float8_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_8"));
+		if (Float8_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float8_Optional);
+	}
+	if (Float9_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_9"));
+		if (Float9_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float9_Optional);
+	}
+	if (Float10_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_10"));
+		if (Float10_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float10_Optional);
+	}
+	if (Float11_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_11"));
+		if (Float11_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float11_Optional);
+	}
+	if (Float12_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_12"));
+		if (Float12_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float12_Optional);
+	}
+	if (Float13_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_13"));
+		if (Float13_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float13_Optional);
+	}
+	if (Float14_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_14"));
+		if (Float14_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float14_Optional);
+	}
+	if (Float15_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_15"));
+		if (Float15_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float15_Optional);
+	}
+	if (Float16_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_16"));
+		if (Float16_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float16_Optional);
+	}
+	if (Float17_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_17"));
+		if (Float17_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float17_Optional);
+	}
+	if (Float18_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_18"));
+		if (Float18_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float18_Optional);
+	}
+	if (Float19_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_19"));
+		if (Float19_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float19_Optional);
+	}
+	if (Float20_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_20"));
+		if (Float20_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float20_Optional);
+	}
+	if (Float21_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_21"));
+		if (Float21_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float21_Optional);
+	}
+	if (Float22_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_22"));
+		if (Float22_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float22_Optional);
+	}
+	if (Float23_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_23"));
+		if (Float23_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float23_Optional);
+	}
+	if (Float24_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_24"));
+		if (Float24_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float24_Optional);
+	}
+	if (Float25_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_25"));
+		if (Float25_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float25_Optional);
+	}
+	if (Float26_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_26"));
+		if (Float26_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float26_Optional);
+	}
+	if (Float27_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_27"));
+		if (Float27_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float27_Optional);
+	}
+	if (Float28_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_28"));
+		if (Float28_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float28_Optional);
+	}
+	if (Float29_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_29"));
+		if (Float29_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float29_Optional);
+	}
+	if (Float30_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_30"));
+		if (Float30_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float30_Optional);
+	}
+	if (Float31_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_31"));
+		if (Float31_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float31_Optional);
+	}
+	if (Float32_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("float_32"));
+		if (Float32_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, Float32_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("match_segment"));
 	RallyHereAPI::WriteJsonValue(Writer, MatchSegment);
 	if (Type_IsSet)
@@ -111,6 +1647,1350 @@ bool FRHAPI_MatchSegmentRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 
 	bool ParseSuccess = true;
 
+	const TSharedPtr<FJsonValue> JsonInt1Field = (*Object)->TryGetField(TEXT("int_1"));
+	if (JsonInt1Field.IsValid())
+	{
+		Int1_IsNull = JsonInt1Field->IsNull();
+		Int1_IsSet = Int1_IsNull || TryGetJsonValue(JsonInt1Field, Int1_Optional);
+		ParseSuccess &= Int1_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt2Field = (*Object)->TryGetField(TEXT("int_2"));
+	if (JsonInt2Field.IsValid())
+	{
+		Int2_IsNull = JsonInt2Field->IsNull();
+		Int2_IsSet = Int2_IsNull || TryGetJsonValue(JsonInt2Field, Int2_Optional);
+		ParseSuccess &= Int2_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt3Field = (*Object)->TryGetField(TEXT("int_3"));
+	if (JsonInt3Field.IsValid())
+	{
+		Int3_IsNull = JsonInt3Field->IsNull();
+		Int3_IsSet = Int3_IsNull || TryGetJsonValue(JsonInt3Field, Int3_Optional);
+		ParseSuccess &= Int3_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt4Field = (*Object)->TryGetField(TEXT("int_4"));
+	if (JsonInt4Field.IsValid())
+	{
+		Int4_IsNull = JsonInt4Field->IsNull();
+		Int4_IsSet = Int4_IsNull || TryGetJsonValue(JsonInt4Field, Int4_Optional);
+		ParseSuccess &= Int4_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt5Field = (*Object)->TryGetField(TEXT("int_5"));
+	if (JsonInt5Field.IsValid())
+	{
+		Int5_IsNull = JsonInt5Field->IsNull();
+		Int5_IsSet = Int5_IsNull || TryGetJsonValue(JsonInt5Field, Int5_Optional);
+		ParseSuccess &= Int5_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt6Field = (*Object)->TryGetField(TEXT("int_6"));
+	if (JsonInt6Field.IsValid())
+	{
+		Int6_IsNull = JsonInt6Field->IsNull();
+		Int6_IsSet = Int6_IsNull || TryGetJsonValue(JsonInt6Field, Int6_Optional);
+		ParseSuccess &= Int6_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt7Field = (*Object)->TryGetField(TEXT("int_7"));
+	if (JsonInt7Field.IsValid())
+	{
+		Int7_IsNull = JsonInt7Field->IsNull();
+		Int7_IsSet = Int7_IsNull || TryGetJsonValue(JsonInt7Field, Int7_Optional);
+		ParseSuccess &= Int7_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt8Field = (*Object)->TryGetField(TEXT("int_8"));
+	if (JsonInt8Field.IsValid())
+	{
+		Int8_IsNull = JsonInt8Field->IsNull();
+		Int8_IsSet = Int8_IsNull || TryGetJsonValue(JsonInt8Field, Int8_Optional);
+		ParseSuccess &= Int8_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt9Field = (*Object)->TryGetField(TEXT("int_9"));
+	if (JsonInt9Field.IsValid())
+	{
+		Int9_IsNull = JsonInt9Field->IsNull();
+		Int9_IsSet = Int9_IsNull || TryGetJsonValue(JsonInt9Field, Int9_Optional);
+		ParseSuccess &= Int9_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt10Field = (*Object)->TryGetField(TEXT("int_10"));
+	if (JsonInt10Field.IsValid())
+	{
+		Int10_IsNull = JsonInt10Field->IsNull();
+		Int10_IsSet = Int10_IsNull || TryGetJsonValue(JsonInt10Field, Int10_Optional);
+		ParseSuccess &= Int10_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt11Field = (*Object)->TryGetField(TEXT("int_11"));
+	if (JsonInt11Field.IsValid())
+	{
+		Int11_IsNull = JsonInt11Field->IsNull();
+		Int11_IsSet = Int11_IsNull || TryGetJsonValue(JsonInt11Field, Int11_Optional);
+		ParseSuccess &= Int11_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt12Field = (*Object)->TryGetField(TEXT("int_12"));
+	if (JsonInt12Field.IsValid())
+	{
+		Int12_IsNull = JsonInt12Field->IsNull();
+		Int12_IsSet = Int12_IsNull || TryGetJsonValue(JsonInt12Field, Int12_Optional);
+		ParseSuccess &= Int12_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt13Field = (*Object)->TryGetField(TEXT("int_13"));
+	if (JsonInt13Field.IsValid())
+	{
+		Int13_IsNull = JsonInt13Field->IsNull();
+		Int13_IsSet = Int13_IsNull || TryGetJsonValue(JsonInt13Field, Int13_Optional);
+		ParseSuccess &= Int13_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt14Field = (*Object)->TryGetField(TEXT("int_14"));
+	if (JsonInt14Field.IsValid())
+	{
+		Int14_IsNull = JsonInt14Field->IsNull();
+		Int14_IsSet = Int14_IsNull || TryGetJsonValue(JsonInt14Field, Int14_Optional);
+		ParseSuccess &= Int14_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt15Field = (*Object)->TryGetField(TEXT("int_15"));
+	if (JsonInt15Field.IsValid())
+	{
+		Int15_IsNull = JsonInt15Field->IsNull();
+		Int15_IsSet = Int15_IsNull || TryGetJsonValue(JsonInt15Field, Int15_Optional);
+		ParseSuccess &= Int15_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt16Field = (*Object)->TryGetField(TEXT("int_16"));
+	if (JsonInt16Field.IsValid())
+	{
+		Int16_IsNull = JsonInt16Field->IsNull();
+		Int16_IsSet = Int16_IsNull || TryGetJsonValue(JsonInt16Field, Int16_Optional);
+		ParseSuccess &= Int16_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt17Field = (*Object)->TryGetField(TEXT("int_17"));
+	if (JsonInt17Field.IsValid())
+	{
+		Int17_IsNull = JsonInt17Field->IsNull();
+		Int17_IsSet = Int17_IsNull || TryGetJsonValue(JsonInt17Field, Int17_Optional);
+		ParseSuccess &= Int17_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt18Field = (*Object)->TryGetField(TEXT("int_18"));
+	if (JsonInt18Field.IsValid())
+	{
+		Int18_IsNull = JsonInt18Field->IsNull();
+		Int18_IsSet = Int18_IsNull || TryGetJsonValue(JsonInt18Field, Int18_Optional);
+		ParseSuccess &= Int18_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt19Field = (*Object)->TryGetField(TEXT("int_19"));
+	if (JsonInt19Field.IsValid())
+	{
+		Int19_IsNull = JsonInt19Field->IsNull();
+		Int19_IsSet = Int19_IsNull || TryGetJsonValue(JsonInt19Field, Int19_Optional);
+		ParseSuccess &= Int19_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt20Field = (*Object)->TryGetField(TEXT("int_20"));
+	if (JsonInt20Field.IsValid())
+	{
+		Int20_IsNull = JsonInt20Field->IsNull();
+		Int20_IsSet = Int20_IsNull || TryGetJsonValue(JsonInt20Field, Int20_Optional);
+		ParseSuccess &= Int20_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt21Field = (*Object)->TryGetField(TEXT("int_21"));
+	if (JsonInt21Field.IsValid())
+	{
+		Int21_IsNull = JsonInt21Field->IsNull();
+		Int21_IsSet = Int21_IsNull || TryGetJsonValue(JsonInt21Field, Int21_Optional);
+		ParseSuccess &= Int21_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt22Field = (*Object)->TryGetField(TEXT("int_22"));
+	if (JsonInt22Field.IsValid())
+	{
+		Int22_IsNull = JsonInt22Field->IsNull();
+		Int22_IsSet = Int22_IsNull || TryGetJsonValue(JsonInt22Field, Int22_Optional);
+		ParseSuccess &= Int22_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt23Field = (*Object)->TryGetField(TEXT("int_23"));
+	if (JsonInt23Field.IsValid())
+	{
+		Int23_IsNull = JsonInt23Field->IsNull();
+		Int23_IsSet = Int23_IsNull || TryGetJsonValue(JsonInt23Field, Int23_Optional);
+		ParseSuccess &= Int23_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt24Field = (*Object)->TryGetField(TEXT("int_24"));
+	if (JsonInt24Field.IsValid())
+	{
+		Int24_IsNull = JsonInt24Field->IsNull();
+		Int24_IsSet = Int24_IsNull || TryGetJsonValue(JsonInt24Field, Int24_Optional);
+		ParseSuccess &= Int24_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt25Field = (*Object)->TryGetField(TEXT("int_25"));
+	if (JsonInt25Field.IsValid())
+	{
+		Int25_IsNull = JsonInt25Field->IsNull();
+		Int25_IsSet = Int25_IsNull || TryGetJsonValue(JsonInt25Field, Int25_Optional);
+		ParseSuccess &= Int25_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt26Field = (*Object)->TryGetField(TEXT("int_26"));
+	if (JsonInt26Field.IsValid())
+	{
+		Int26_IsNull = JsonInt26Field->IsNull();
+		Int26_IsSet = Int26_IsNull || TryGetJsonValue(JsonInt26Field, Int26_Optional);
+		ParseSuccess &= Int26_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt27Field = (*Object)->TryGetField(TEXT("int_27"));
+	if (JsonInt27Field.IsValid())
+	{
+		Int27_IsNull = JsonInt27Field->IsNull();
+		Int27_IsSet = Int27_IsNull || TryGetJsonValue(JsonInt27Field, Int27_Optional);
+		ParseSuccess &= Int27_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt28Field = (*Object)->TryGetField(TEXT("int_28"));
+	if (JsonInt28Field.IsValid())
+	{
+		Int28_IsNull = JsonInt28Field->IsNull();
+		Int28_IsSet = Int28_IsNull || TryGetJsonValue(JsonInt28Field, Int28_Optional);
+		ParseSuccess &= Int28_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt29Field = (*Object)->TryGetField(TEXT("int_29"));
+	if (JsonInt29Field.IsValid())
+	{
+		Int29_IsNull = JsonInt29Field->IsNull();
+		Int29_IsSet = Int29_IsNull || TryGetJsonValue(JsonInt29Field, Int29_Optional);
+		ParseSuccess &= Int29_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt30Field = (*Object)->TryGetField(TEXT("int_30"));
+	if (JsonInt30Field.IsValid())
+	{
+		Int30_IsNull = JsonInt30Field->IsNull();
+		Int30_IsSet = Int30_IsNull || TryGetJsonValue(JsonInt30Field, Int30_Optional);
+		ParseSuccess &= Int30_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt31Field = (*Object)->TryGetField(TEXT("int_31"));
+	if (JsonInt31Field.IsValid())
+	{
+		Int31_IsNull = JsonInt31Field->IsNull();
+		Int31_IsSet = Int31_IsNull || TryGetJsonValue(JsonInt31Field, Int31_Optional);
+		ParseSuccess &= Int31_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt32Field = (*Object)->TryGetField(TEXT("int_32"));
+	if (JsonInt32Field.IsValid())
+	{
+		Int32_IsNull = JsonInt32Field->IsNull();
+		Int32_IsSet = Int32_IsNull || TryGetJsonValue(JsonInt32Field, Int32_Optional);
+		ParseSuccess &= Int32_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt33Field = (*Object)->TryGetField(TEXT("int_33"));
+	if (JsonInt33Field.IsValid())
+	{
+		Int33_IsNull = JsonInt33Field->IsNull();
+		Int33_IsSet = Int33_IsNull || TryGetJsonValue(JsonInt33Field, Int33_Optional);
+		ParseSuccess &= Int33_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt34Field = (*Object)->TryGetField(TEXT("int_34"));
+	if (JsonInt34Field.IsValid())
+	{
+		Int34_IsNull = JsonInt34Field->IsNull();
+		Int34_IsSet = Int34_IsNull || TryGetJsonValue(JsonInt34Field, Int34_Optional);
+		ParseSuccess &= Int34_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt35Field = (*Object)->TryGetField(TEXT("int_35"));
+	if (JsonInt35Field.IsValid())
+	{
+		Int35_IsNull = JsonInt35Field->IsNull();
+		Int35_IsSet = Int35_IsNull || TryGetJsonValue(JsonInt35Field, Int35_Optional);
+		ParseSuccess &= Int35_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt36Field = (*Object)->TryGetField(TEXT("int_36"));
+	if (JsonInt36Field.IsValid())
+	{
+		Int36_IsNull = JsonInt36Field->IsNull();
+		Int36_IsSet = Int36_IsNull || TryGetJsonValue(JsonInt36Field, Int36_Optional);
+		ParseSuccess &= Int36_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt37Field = (*Object)->TryGetField(TEXT("int_37"));
+	if (JsonInt37Field.IsValid())
+	{
+		Int37_IsNull = JsonInt37Field->IsNull();
+		Int37_IsSet = Int37_IsNull || TryGetJsonValue(JsonInt37Field, Int37_Optional);
+		ParseSuccess &= Int37_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt38Field = (*Object)->TryGetField(TEXT("int_38"));
+	if (JsonInt38Field.IsValid())
+	{
+		Int38_IsNull = JsonInt38Field->IsNull();
+		Int38_IsSet = Int38_IsNull || TryGetJsonValue(JsonInt38Field, Int38_Optional);
+		ParseSuccess &= Int38_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt39Field = (*Object)->TryGetField(TEXT("int_39"));
+	if (JsonInt39Field.IsValid())
+	{
+		Int39_IsNull = JsonInt39Field->IsNull();
+		Int39_IsSet = Int39_IsNull || TryGetJsonValue(JsonInt39Field, Int39_Optional);
+		ParseSuccess &= Int39_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt40Field = (*Object)->TryGetField(TEXT("int_40"));
+	if (JsonInt40Field.IsValid())
+	{
+		Int40_IsNull = JsonInt40Field->IsNull();
+		Int40_IsSet = Int40_IsNull || TryGetJsonValue(JsonInt40Field, Int40_Optional);
+		ParseSuccess &= Int40_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt41Field = (*Object)->TryGetField(TEXT("int_41"));
+	if (JsonInt41Field.IsValid())
+	{
+		Int41_IsNull = JsonInt41Field->IsNull();
+		Int41_IsSet = Int41_IsNull || TryGetJsonValue(JsonInt41Field, Int41_Optional);
+		ParseSuccess &= Int41_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt42Field = (*Object)->TryGetField(TEXT("int_42"));
+	if (JsonInt42Field.IsValid())
+	{
+		Int42_IsNull = JsonInt42Field->IsNull();
+		Int42_IsSet = Int42_IsNull || TryGetJsonValue(JsonInt42Field, Int42_Optional);
+		ParseSuccess &= Int42_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt43Field = (*Object)->TryGetField(TEXT("int_43"));
+	if (JsonInt43Field.IsValid())
+	{
+		Int43_IsNull = JsonInt43Field->IsNull();
+		Int43_IsSet = Int43_IsNull || TryGetJsonValue(JsonInt43Field, Int43_Optional);
+		ParseSuccess &= Int43_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt44Field = (*Object)->TryGetField(TEXT("int_44"));
+	if (JsonInt44Field.IsValid())
+	{
+		Int44_IsNull = JsonInt44Field->IsNull();
+		Int44_IsSet = Int44_IsNull || TryGetJsonValue(JsonInt44Field, Int44_Optional);
+		ParseSuccess &= Int44_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt45Field = (*Object)->TryGetField(TEXT("int_45"));
+	if (JsonInt45Field.IsValid())
+	{
+		Int45_IsNull = JsonInt45Field->IsNull();
+		Int45_IsSet = Int45_IsNull || TryGetJsonValue(JsonInt45Field, Int45_Optional);
+		ParseSuccess &= Int45_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt46Field = (*Object)->TryGetField(TEXT("int_46"));
+	if (JsonInt46Field.IsValid())
+	{
+		Int46_IsNull = JsonInt46Field->IsNull();
+		Int46_IsSet = Int46_IsNull || TryGetJsonValue(JsonInt46Field, Int46_Optional);
+		ParseSuccess &= Int46_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt47Field = (*Object)->TryGetField(TEXT("int_47"));
+	if (JsonInt47Field.IsValid())
+	{
+		Int47_IsNull = JsonInt47Field->IsNull();
+		Int47_IsSet = Int47_IsNull || TryGetJsonValue(JsonInt47Field, Int47_Optional);
+		ParseSuccess &= Int47_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt48Field = (*Object)->TryGetField(TEXT("int_48"));
+	if (JsonInt48Field.IsValid())
+	{
+		Int48_IsNull = JsonInt48Field->IsNull();
+		Int48_IsSet = Int48_IsNull || TryGetJsonValue(JsonInt48Field, Int48_Optional);
+		ParseSuccess &= Int48_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt49Field = (*Object)->TryGetField(TEXT("int_49"));
+	if (JsonInt49Field.IsValid())
+	{
+		Int49_IsNull = JsonInt49Field->IsNull();
+		Int49_IsSet = Int49_IsNull || TryGetJsonValue(JsonInt49Field, Int49_Optional);
+		ParseSuccess &= Int49_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt50Field = (*Object)->TryGetField(TEXT("int_50"));
+	if (JsonInt50Field.IsValid())
+	{
+		Int50_IsNull = JsonInt50Field->IsNull();
+		Int50_IsSet = Int50_IsNull || TryGetJsonValue(JsonInt50Field, Int50_Optional);
+		ParseSuccess &= Int50_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt51Field = (*Object)->TryGetField(TEXT("int_51"));
+	if (JsonInt51Field.IsValid())
+	{
+		Int51_IsNull = JsonInt51Field->IsNull();
+		Int51_IsSet = Int51_IsNull || TryGetJsonValue(JsonInt51Field, Int51_Optional);
+		ParseSuccess &= Int51_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt52Field = (*Object)->TryGetField(TEXT("int_52"));
+	if (JsonInt52Field.IsValid())
+	{
+		Int52_IsNull = JsonInt52Field->IsNull();
+		Int52_IsSet = Int52_IsNull || TryGetJsonValue(JsonInt52Field, Int52_Optional);
+		ParseSuccess &= Int52_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt53Field = (*Object)->TryGetField(TEXT("int_53"));
+	if (JsonInt53Field.IsValid())
+	{
+		Int53_IsNull = JsonInt53Field->IsNull();
+		Int53_IsSet = Int53_IsNull || TryGetJsonValue(JsonInt53Field, Int53_Optional);
+		ParseSuccess &= Int53_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt54Field = (*Object)->TryGetField(TEXT("int_54"));
+	if (JsonInt54Field.IsValid())
+	{
+		Int54_IsNull = JsonInt54Field->IsNull();
+		Int54_IsSet = Int54_IsNull || TryGetJsonValue(JsonInt54Field, Int54_Optional);
+		ParseSuccess &= Int54_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt55Field = (*Object)->TryGetField(TEXT("int_55"));
+	if (JsonInt55Field.IsValid())
+	{
+		Int55_IsNull = JsonInt55Field->IsNull();
+		Int55_IsSet = Int55_IsNull || TryGetJsonValue(JsonInt55Field, Int55_Optional);
+		ParseSuccess &= Int55_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt56Field = (*Object)->TryGetField(TEXT("int_56"));
+	if (JsonInt56Field.IsValid())
+	{
+		Int56_IsNull = JsonInt56Field->IsNull();
+		Int56_IsSet = Int56_IsNull || TryGetJsonValue(JsonInt56Field, Int56_Optional);
+		ParseSuccess &= Int56_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt57Field = (*Object)->TryGetField(TEXT("int_57"));
+	if (JsonInt57Field.IsValid())
+	{
+		Int57_IsNull = JsonInt57Field->IsNull();
+		Int57_IsSet = Int57_IsNull || TryGetJsonValue(JsonInt57Field, Int57_Optional);
+		ParseSuccess &= Int57_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt58Field = (*Object)->TryGetField(TEXT("int_58"));
+	if (JsonInt58Field.IsValid())
+	{
+		Int58_IsNull = JsonInt58Field->IsNull();
+		Int58_IsSet = Int58_IsNull || TryGetJsonValue(JsonInt58Field, Int58_Optional);
+		ParseSuccess &= Int58_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt59Field = (*Object)->TryGetField(TEXT("int_59"));
+	if (JsonInt59Field.IsValid())
+	{
+		Int59_IsNull = JsonInt59Field->IsNull();
+		Int59_IsSet = Int59_IsNull || TryGetJsonValue(JsonInt59Field, Int59_Optional);
+		ParseSuccess &= Int59_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt60Field = (*Object)->TryGetField(TEXT("int_60"));
+	if (JsonInt60Field.IsValid())
+	{
+		Int60_IsNull = JsonInt60Field->IsNull();
+		Int60_IsSet = Int60_IsNull || TryGetJsonValue(JsonInt60Field, Int60_Optional);
+		ParseSuccess &= Int60_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt61Field = (*Object)->TryGetField(TEXT("int_61"));
+	if (JsonInt61Field.IsValid())
+	{
+		Int61_IsNull = JsonInt61Field->IsNull();
+		Int61_IsSet = Int61_IsNull || TryGetJsonValue(JsonInt61Field, Int61_Optional);
+		ParseSuccess &= Int61_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt62Field = (*Object)->TryGetField(TEXT("int_62"));
+	if (JsonInt62Field.IsValid())
+	{
+		Int62_IsNull = JsonInt62Field->IsNull();
+		Int62_IsSet = Int62_IsNull || TryGetJsonValue(JsonInt62Field, Int62_Optional);
+		ParseSuccess &= Int62_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt63Field = (*Object)->TryGetField(TEXT("int_63"));
+	if (JsonInt63Field.IsValid())
+	{
+		Int63_IsNull = JsonInt63Field->IsNull();
+		Int63_IsSet = Int63_IsNull || TryGetJsonValue(JsonInt63Field, Int63_Optional);
+		ParseSuccess &= Int63_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt64Field = (*Object)->TryGetField(TEXT("int_64"));
+	if (JsonInt64Field.IsValid())
+	{
+		Int64_IsNull = JsonInt64Field->IsNull();
+		Int64_IsSet = Int64_IsNull || TryGetJsonValue(JsonInt64Field, Int64_Optional);
+		ParseSuccess &= Int64_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt65Field = (*Object)->TryGetField(TEXT("int_65"));
+	if (JsonInt65Field.IsValid())
+	{
+		Int65_IsNull = JsonInt65Field->IsNull();
+		Int65_IsSet = Int65_IsNull || TryGetJsonValue(JsonInt65Field, Int65_Optional);
+		ParseSuccess &= Int65_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt66Field = (*Object)->TryGetField(TEXT("int_66"));
+	if (JsonInt66Field.IsValid())
+	{
+		Int66_IsNull = JsonInt66Field->IsNull();
+		Int66_IsSet = Int66_IsNull || TryGetJsonValue(JsonInt66Field, Int66_Optional);
+		ParseSuccess &= Int66_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt67Field = (*Object)->TryGetField(TEXT("int_67"));
+	if (JsonInt67Field.IsValid())
+	{
+		Int67_IsNull = JsonInt67Field->IsNull();
+		Int67_IsSet = Int67_IsNull || TryGetJsonValue(JsonInt67Field, Int67_Optional);
+		ParseSuccess &= Int67_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt68Field = (*Object)->TryGetField(TEXT("int_68"));
+	if (JsonInt68Field.IsValid())
+	{
+		Int68_IsNull = JsonInt68Field->IsNull();
+		Int68_IsSet = Int68_IsNull || TryGetJsonValue(JsonInt68Field, Int68_Optional);
+		ParseSuccess &= Int68_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt69Field = (*Object)->TryGetField(TEXT("int_69"));
+	if (JsonInt69Field.IsValid())
+	{
+		Int69_IsNull = JsonInt69Field->IsNull();
+		Int69_IsSet = Int69_IsNull || TryGetJsonValue(JsonInt69Field, Int69_Optional);
+		ParseSuccess &= Int69_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt70Field = (*Object)->TryGetField(TEXT("int_70"));
+	if (JsonInt70Field.IsValid())
+	{
+		Int70_IsNull = JsonInt70Field->IsNull();
+		Int70_IsSet = Int70_IsNull || TryGetJsonValue(JsonInt70Field, Int70_Optional);
+		ParseSuccess &= Int70_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt71Field = (*Object)->TryGetField(TEXT("int_71"));
+	if (JsonInt71Field.IsValid())
+	{
+		Int71_IsNull = JsonInt71Field->IsNull();
+		Int71_IsSet = Int71_IsNull || TryGetJsonValue(JsonInt71Field, Int71_Optional);
+		ParseSuccess &= Int71_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt72Field = (*Object)->TryGetField(TEXT("int_72"));
+	if (JsonInt72Field.IsValid())
+	{
+		Int72_IsNull = JsonInt72Field->IsNull();
+		Int72_IsSet = Int72_IsNull || TryGetJsonValue(JsonInt72Field, Int72_Optional);
+		ParseSuccess &= Int72_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt73Field = (*Object)->TryGetField(TEXT("int_73"));
+	if (JsonInt73Field.IsValid())
+	{
+		Int73_IsNull = JsonInt73Field->IsNull();
+		Int73_IsSet = Int73_IsNull || TryGetJsonValue(JsonInt73Field, Int73_Optional);
+		ParseSuccess &= Int73_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt74Field = (*Object)->TryGetField(TEXT("int_74"));
+	if (JsonInt74Field.IsValid())
+	{
+		Int74_IsNull = JsonInt74Field->IsNull();
+		Int74_IsSet = Int74_IsNull || TryGetJsonValue(JsonInt74Field, Int74_Optional);
+		ParseSuccess &= Int74_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt75Field = (*Object)->TryGetField(TEXT("int_75"));
+	if (JsonInt75Field.IsValid())
+	{
+		Int75_IsNull = JsonInt75Field->IsNull();
+		Int75_IsSet = Int75_IsNull || TryGetJsonValue(JsonInt75Field, Int75_Optional);
+		ParseSuccess &= Int75_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt76Field = (*Object)->TryGetField(TEXT("int_76"));
+	if (JsonInt76Field.IsValid())
+	{
+		Int76_IsNull = JsonInt76Field->IsNull();
+		Int76_IsSet = Int76_IsNull || TryGetJsonValue(JsonInt76Field, Int76_Optional);
+		ParseSuccess &= Int76_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt77Field = (*Object)->TryGetField(TEXT("int_77"));
+	if (JsonInt77Field.IsValid())
+	{
+		Int77_IsNull = JsonInt77Field->IsNull();
+		Int77_IsSet = Int77_IsNull || TryGetJsonValue(JsonInt77Field, Int77_Optional);
+		ParseSuccess &= Int77_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt78Field = (*Object)->TryGetField(TEXT("int_78"));
+	if (JsonInt78Field.IsValid())
+	{
+		Int78_IsNull = JsonInt78Field->IsNull();
+		Int78_IsSet = Int78_IsNull || TryGetJsonValue(JsonInt78Field, Int78_Optional);
+		ParseSuccess &= Int78_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt79Field = (*Object)->TryGetField(TEXT("int_79"));
+	if (JsonInt79Field.IsValid())
+	{
+		Int79_IsNull = JsonInt79Field->IsNull();
+		Int79_IsSet = Int79_IsNull || TryGetJsonValue(JsonInt79Field, Int79_Optional);
+		ParseSuccess &= Int79_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt80Field = (*Object)->TryGetField(TEXT("int_80"));
+	if (JsonInt80Field.IsValid())
+	{
+		Int80_IsNull = JsonInt80Field->IsNull();
+		Int80_IsSet = Int80_IsNull || TryGetJsonValue(JsonInt80Field, Int80_Optional);
+		ParseSuccess &= Int80_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt81Field = (*Object)->TryGetField(TEXT("int_81"));
+	if (JsonInt81Field.IsValid())
+	{
+		Int81_IsNull = JsonInt81Field->IsNull();
+		Int81_IsSet = Int81_IsNull || TryGetJsonValue(JsonInt81Field, Int81_Optional);
+		ParseSuccess &= Int81_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt82Field = (*Object)->TryGetField(TEXT("int_82"));
+	if (JsonInt82Field.IsValid())
+	{
+		Int82_IsNull = JsonInt82Field->IsNull();
+		Int82_IsSet = Int82_IsNull || TryGetJsonValue(JsonInt82Field, Int82_Optional);
+		ParseSuccess &= Int82_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt83Field = (*Object)->TryGetField(TEXT("int_83"));
+	if (JsonInt83Field.IsValid())
+	{
+		Int83_IsNull = JsonInt83Field->IsNull();
+		Int83_IsSet = Int83_IsNull || TryGetJsonValue(JsonInt83Field, Int83_Optional);
+		ParseSuccess &= Int83_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt84Field = (*Object)->TryGetField(TEXT("int_84"));
+	if (JsonInt84Field.IsValid())
+	{
+		Int84_IsNull = JsonInt84Field->IsNull();
+		Int84_IsSet = Int84_IsNull || TryGetJsonValue(JsonInt84Field, Int84_Optional);
+		ParseSuccess &= Int84_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt85Field = (*Object)->TryGetField(TEXT("int_85"));
+	if (JsonInt85Field.IsValid())
+	{
+		Int85_IsNull = JsonInt85Field->IsNull();
+		Int85_IsSet = Int85_IsNull || TryGetJsonValue(JsonInt85Field, Int85_Optional);
+		ParseSuccess &= Int85_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt86Field = (*Object)->TryGetField(TEXT("int_86"));
+	if (JsonInt86Field.IsValid())
+	{
+		Int86_IsNull = JsonInt86Field->IsNull();
+		Int86_IsSet = Int86_IsNull || TryGetJsonValue(JsonInt86Field, Int86_Optional);
+		ParseSuccess &= Int86_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt87Field = (*Object)->TryGetField(TEXT("int_87"));
+	if (JsonInt87Field.IsValid())
+	{
+		Int87_IsNull = JsonInt87Field->IsNull();
+		Int87_IsSet = Int87_IsNull || TryGetJsonValue(JsonInt87Field, Int87_Optional);
+		ParseSuccess &= Int87_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt88Field = (*Object)->TryGetField(TEXT("int_88"));
+	if (JsonInt88Field.IsValid())
+	{
+		Int88_IsNull = JsonInt88Field->IsNull();
+		Int88_IsSet = Int88_IsNull || TryGetJsonValue(JsonInt88Field, Int88_Optional);
+		ParseSuccess &= Int88_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt89Field = (*Object)->TryGetField(TEXT("int_89"));
+	if (JsonInt89Field.IsValid())
+	{
+		Int89_IsNull = JsonInt89Field->IsNull();
+		Int89_IsSet = Int89_IsNull || TryGetJsonValue(JsonInt89Field, Int89_Optional);
+		ParseSuccess &= Int89_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt90Field = (*Object)->TryGetField(TEXT("int_90"));
+	if (JsonInt90Field.IsValid())
+	{
+		Int90_IsNull = JsonInt90Field->IsNull();
+		Int90_IsSet = Int90_IsNull || TryGetJsonValue(JsonInt90Field, Int90_Optional);
+		ParseSuccess &= Int90_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt91Field = (*Object)->TryGetField(TEXT("int_91"));
+	if (JsonInt91Field.IsValid())
+	{
+		Int91_IsNull = JsonInt91Field->IsNull();
+		Int91_IsSet = Int91_IsNull || TryGetJsonValue(JsonInt91Field, Int91_Optional);
+		ParseSuccess &= Int91_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt92Field = (*Object)->TryGetField(TEXT("int_92"));
+	if (JsonInt92Field.IsValid())
+	{
+		Int92_IsNull = JsonInt92Field->IsNull();
+		Int92_IsSet = Int92_IsNull || TryGetJsonValue(JsonInt92Field, Int92_Optional);
+		ParseSuccess &= Int92_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt93Field = (*Object)->TryGetField(TEXT("int_93"));
+	if (JsonInt93Field.IsValid())
+	{
+		Int93_IsNull = JsonInt93Field->IsNull();
+		Int93_IsSet = Int93_IsNull || TryGetJsonValue(JsonInt93Field, Int93_Optional);
+		ParseSuccess &= Int93_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt94Field = (*Object)->TryGetField(TEXT("int_94"));
+	if (JsonInt94Field.IsValid())
+	{
+		Int94_IsNull = JsonInt94Field->IsNull();
+		Int94_IsSet = Int94_IsNull || TryGetJsonValue(JsonInt94Field, Int94_Optional);
+		ParseSuccess &= Int94_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt95Field = (*Object)->TryGetField(TEXT("int_95"));
+	if (JsonInt95Field.IsValid())
+	{
+		Int95_IsNull = JsonInt95Field->IsNull();
+		Int95_IsSet = Int95_IsNull || TryGetJsonValue(JsonInt95Field, Int95_Optional);
+		ParseSuccess &= Int95_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt96Field = (*Object)->TryGetField(TEXT("int_96"));
+	if (JsonInt96Field.IsValid())
+	{
+		Int96_IsNull = JsonInt96Field->IsNull();
+		Int96_IsSet = Int96_IsNull || TryGetJsonValue(JsonInt96Field, Int96_Optional);
+		ParseSuccess &= Int96_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt97Field = (*Object)->TryGetField(TEXT("int_97"));
+	if (JsonInt97Field.IsValid())
+	{
+		Int97_IsNull = JsonInt97Field->IsNull();
+		Int97_IsSet = Int97_IsNull || TryGetJsonValue(JsonInt97Field, Int97_Optional);
+		ParseSuccess &= Int97_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt98Field = (*Object)->TryGetField(TEXT("int_98"));
+	if (JsonInt98Field.IsValid())
+	{
+		Int98_IsNull = JsonInt98Field->IsNull();
+		Int98_IsSet = Int98_IsNull || TryGetJsonValue(JsonInt98Field, Int98_Optional);
+		ParseSuccess &= Int98_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt99Field = (*Object)->TryGetField(TEXT("int_99"));
+	if (JsonInt99Field.IsValid())
+	{
+		Int99_IsNull = JsonInt99Field->IsNull();
+		Int99_IsSet = Int99_IsNull || TryGetJsonValue(JsonInt99Field, Int99_Optional);
+		ParseSuccess &= Int99_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt100Field = (*Object)->TryGetField(TEXT("int_100"));
+	if (JsonInt100Field.IsValid())
+	{
+		Int100_IsNull = JsonInt100Field->IsNull();
+		Int100_IsSet = Int100_IsNull || TryGetJsonValue(JsonInt100Field, Int100_Optional);
+		ParseSuccess &= Int100_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt101Field = (*Object)->TryGetField(TEXT("int_101"));
+	if (JsonInt101Field.IsValid())
+	{
+		Int101_IsNull = JsonInt101Field->IsNull();
+		Int101_IsSet = Int101_IsNull || TryGetJsonValue(JsonInt101Field, Int101_Optional);
+		ParseSuccess &= Int101_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt102Field = (*Object)->TryGetField(TEXT("int_102"));
+	if (JsonInt102Field.IsValid())
+	{
+		Int102_IsNull = JsonInt102Field->IsNull();
+		Int102_IsSet = Int102_IsNull || TryGetJsonValue(JsonInt102Field, Int102_Optional);
+		ParseSuccess &= Int102_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt103Field = (*Object)->TryGetField(TEXT("int_103"));
+	if (JsonInt103Field.IsValid())
+	{
+		Int103_IsNull = JsonInt103Field->IsNull();
+		Int103_IsSet = Int103_IsNull || TryGetJsonValue(JsonInt103Field, Int103_Optional);
+		ParseSuccess &= Int103_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt104Field = (*Object)->TryGetField(TEXT("int_104"));
+	if (JsonInt104Field.IsValid())
+	{
+		Int104_IsNull = JsonInt104Field->IsNull();
+		Int104_IsSet = Int104_IsNull || TryGetJsonValue(JsonInt104Field, Int104_Optional);
+		ParseSuccess &= Int104_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt105Field = (*Object)->TryGetField(TEXT("int_105"));
+	if (JsonInt105Field.IsValid())
+	{
+		Int105_IsNull = JsonInt105Field->IsNull();
+		Int105_IsSet = Int105_IsNull || TryGetJsonValue(JsonInt105Field, Int105_Optional);
+		ParseSuccess &= Int105_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt106Field = (*Object)->TryGetField(TEXT("int_106"));
+	if (JsonInt106Field.IsValid())
+	{
+		Int106_IsNull = JsonInt106Field->IsNull();
+		Int106_IsSet = Int106_IsNull || TryGetJsonValue(JsonInt106Field, Int106_Optional);
+		ParseSuccess &= Int106_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt107Field = (*Object)->TryGetField(TEXT("int_107"));
+	if (JsonInt107Field.IsValid())
+	{
+		Int107_IsNull = JsonInt107Field->IsNull();
+		Int107_IsSet = Int107_IsNull || TryGetJsonValue(JsonInt107Field, Int107_Optional);
+		ParseSuccess &= Int107_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt108Field = (*Object)->TryGetField(TEXT("int_108"));
+	if (JsonInt108Field.IsValid())
+	{
+		Int108_IsNull = JsonInt108Field->IsNull();
+		Int108_IsSet = Int108_IsNull || TryGetJsonValue(JsonInt108Field, Int108_Optional);
+		ParseSuccess &= Int108_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt109Field = (*Object)->TryGetField(TEXT("int_109"));
+	if (JsonInt109Field.IsValid())
+	{
+		Int109_IsNull = JsonInt109Field->IsNull();
+		Int109_IsSet = Int109_IsNull || TryGetJsonValue(JsonInt109Field, Int109_Optional);
+		ParseSuccess &= Int109_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt110Field = (*Object)->TryGetField(TEXT("int_110"));
+	if (JsonInt110Field.IsValid())
+	{
+		Int110_IsNull = JsonInt110Field->IsNull();
+		Int110_IsSet = Int110_IsNull || TryGetJsonValue(JsonInt110Field, Int110_Optional);
+		ParseSuccess &= Int110_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt111Field = (*Object)->TryGetField(TEXT("int_111"));
+	if (JsonInt111Field.IsValid())
+	{
+		Int111_IsNull = JsonInt111Field->IsNull();
+		Int111_IsSet = Int111_IsNull || TryGetJsonValue(JsonInt111Field, Int111_Optional);
+		ParseSuccess &= Int111_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt112Field = (*Object)->TryGetField(TEXT("int_112"));
+	if (JsonInt112Field.IsValid())
+	{
+		Int112_IsNull = JsonInt112Field->IsNull();
+		Int112_IsSet = Int112_IsNull || TryGetJsonValue(JsonInt112Field, Int112_Optional);
+		ParseSuccess &= Int112_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt113Field = (*Object)->TryGetField(TEXT("int_113"));
+	if (JsonInt113Field.IsValid())
+	{
+		Int113_IsNull = JsonInt113Field->IsNull();
+		Int113_IsSet = Int113_IsNull || TryGetJsonValue(JsonInt113Field, Int113_Optional);
+		ParseSuccess &= Int113_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt114Field = (*Object)->TryGetField(TEXT("int_114"));
+	if (JsonInt114Field.IsValid())
+	{
+		Int114_IsNull = JsonInt114Field->IsNull();
+		Int114_IsSet = Int114_IsNull || TryGetJsonValue(JsonInt114Field, Int114_Optional);
+		ParseSuccess &= Int114_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt115Field = (*Object)->TryGetField(TEXT("int_115"));
+	if (JsonInt115Field.IsValid())
+	{
+		Int115_IsNull = JsonInt115Field->IsNull();
+		Int115_IsSet = Int115_IsNull || TryGetJsonValue(JsonInt115Field, Int115_Optional);
+		ParseSuccess &= Int115_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt116Field = (*Object)->TryGetField(TEXT("int_116"));
+	if (JsonInt116Field.IsValid())
+	{
+		Int116_IsNull = JsonInt116Field->IsNull();
+		Int116_IsSet = Int116_IsNull || TryGetJsonValue(JsonInt116Field, Int116_Optional);
+		ParseSuccess &= Int116_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt117Field = (*Object)->TryGetField(TEXT("int_117"));
+	if (JsonInt117Field.IsValid())
+	{
+		Int117_IsNull = JsonInt117Field->IsNull();
+		Int117_IsSet = Int117_IsNull || TryGetJsonValue(JsonInt117Field, Int117_Optional);
+		ParseSuccess &= Int117_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt118Field = (*Object)->TryGetField(TEXT("int_118"));
+	if (JsonInt118Field.IsValid())
+	{
+		Int118_IsNull = JsonInt118Field->IsNull();
+		Int118_IsSet = Int118_IsNull || TryGetJsonValue(JsonInt118Field, Int118_Optional);
+		ParseSuccess &= Int118_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt119Field = (*Object)->TryGetField(TEXT("int_119"));
+	if (JsonInt119Field.IsValid())
+	{
+		Int119_IsNull = JsonInt119Field->IsNull();
+		Int119_IsSet = Int119_IsNull || TryGetJsonValue(JsonInt119Field, Int119_Optional);
+		ParseSuccess &= Int119_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt120Field = (*Object)->TryGetField(TEXT("int_120"));
+	if (JsonInt120Field.IsValid())
+	{
+		Int120_IsNull = JsonInt120Field->IsNull();
+		Int120_IsSet = Int120_IsNull || TryGetJsonValue(JsonInt120Field, Int120_Optional);
+		ParseSuccess &= Int120_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt121Field = (*Object)->TryGetField(TEXT("int_121"));
+	if (JsonInt121Field.IsValid())
+	{
+		Int121_IsNull = JsonInt121Field->IsNull();
+		Int121_IsSet = Int121_IsNull || TryGetJsonValue(JsonInt121Field, Int121_Optional);
+		ParseSuccess &= Int121_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt122Field = (*Object)->TryGetField(TEXT("int_122"));
+	if (JsonInt122Field.IsValid())
+	{
+		Int122_IsNull = JsonInt122Field->IsNull();
+		Int122_IsSet = Int122_IsNull || TryGetJsonValue(JsonInt122Field, Int122_Optional);
+		ParseSuccess &= Int122_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt123Field = (*Object)->TryGetField(TEXT("int_123"));
+	if (JsonInt123Field.IsValid())
+	{
+		Int123_IsNull = JsonInt123Field->IsNull();
+		Int123_IsSet = Int123_IsNull || TryGetJsonValue(JsonInt123Field, Int123_Optional);
+		ParseSuccess &= Int123_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt124Field = (*Object)->TryGetField(TEXT("int_124"));
+	if (JsonInt124Field.IsValid())
+	{
+		Int124_IsNull = JsonInt124Field->IsNull();
+		Int124_IsSet = Int124_IsNull || TryGetJsonValue(JsonInt124Field, Int124_Optional);
+		ParseSuccess &= Int124_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt125Field = (*Object)->TryGetField(TEXT("int_125"));
+	if (JsonInt125Field.IsValid())
+	{
+		Int125_IsNull = JsonInt125Field->IsNull();
+		Int125_IsSet = Int125_IsNull || TryGetJsonValue(JsonInt125Field, Int125_Optional);
+		ParseSuccess &= Int125_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt126Field = (*Object)->TryGetField(TEXT("int_126"));
+	if (JsonInt126Field.IsValid())
+	{
+		Int126_IsNull = JsonInt126Field->IsNull();
+		Int126_IsSet = Int126_IsNull || TryGetJsonValue(JsonInt126Field, Int126_Optional);
+		ParseSuccess &= Int126_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt127Field = (*Object)->TryGetField(TEXT("int_127"));
+	if (JsonInt127Field.IsValid())
+	{
+		Int127_IsNull = JsonInt127Field->IsNull();
+		Int127_IsSet = Int127_IsNull || TryGetJsonValue(JsonInt127Field, Int127_Optional);
+		ParseSuccess &= Int127_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInt128Field = (*Object)->TryGetField(TEXT("int_128"));
+	if (JsonInt128Field.IsValid())
+	{
+		Int128_IsNull = JsonInt128Field->IsNull();
+		Int128_IsSet = Int128_IsNull || TryGetJsonValue(JsonInt128Field, Int128_Optional);
+		ParseSuccess &= Int128_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr1Field = (*Object)->TryGetField(TEXT("str_1"));
+	if (JsonStr1Field.IsValid())
+	{
+		Str1_IsNull = JsonStr1Field->IsNull();
+		Str1_IsSet = Str1_IsNull || TryGetJsonValue(JsonStr1Field, Str1_Optional);
+		ParseSuccess &= Str1_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr2Field = (*Object)->TryGetField(TEXT("str_2"));
+	if (JsonStr2Field.IsValid())
+	{
+		Str2_IsNull = JsonStr2Field->IsNull();
+		Str2_IsSet = Str2_IsNull || TryGetJsonValue(JsonStr2Field, Str2_Optional);
+		ParseSuccess &= Str2_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr3Field = (*Object)->TryGetField(TEXT("str_3"));
+	if (JsonStr3Field.IsValid())
+	{
+		Str3_IsNull = JsonStr3Field->IsNull();
+		Str3_IsSet = Str3_IsNull || TryGetJsonValue(JsonStr3Field, Str3_Optional);
+		ParseSuccess &= Str3_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr4Field = (*Object)->TryGetField(TEXT("str_4"));
+	if (JsonStr4Field.IsValid())
+	{
+		Str4_IsNull = JsonStr4Field->IsNull();
+		Str4_IsSet = Str4_IsNull || TryGetJsonValue(JsonStr4Field, Str4_Optional);
+		ParseSuccess &= Str4_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr5Field = (*Object)->TryGetField(TEXT("str_5"));
+	if (JsonStr5Field.IsValid())
+	{
+		Str5_IsNull = JsonStr5Field->IsNull();
+		Str5_IsSet = Str5_IsNull || TryGetJsonValue(JsonStr5Field, Str5_Optional);
+		ParseSuccess &= Str5_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr6Field = (*Object)->TryGetField(TEXT("str_6"));
+	if (JsonStr6Field.IsValid())
+	{
+		Str6_IsNull = JsonStr6Field->IsNull();
+		Str6_IsSet = Str6_IsNull || TryGetJsonValue(JsonStr6Field, Str6_Optional);
+		ParseSuccess &= Str6_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr7Field = (*Object)->TryGetField(TEXT("str_7"));
+	if (JsonStr7Field.IsValid())
+	{
+		Str7_IsNull = JsonStr7Field->IsNull();
+		Str7_IsSet = Str7_IsNull || TryGetJsonValue(JsonStr7Field, Str7_Optional);
+		ParseSuccess &= Str7_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr8Field = (*Object)->TryGetField(TEXT("str_8"));
+	if (JsonStr8Field.IsValid())
+	{
+		Str8_IsNull = JsonStr8Field->IsNull();
+		Str8_IsSet = Str8_IsNull || TryGetJsonValue(JsonStr8Field, Str8_Optional);
+		ParseSuccess &= Str8_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr9Field = (*Object)->TryGetField(TEXT("str_9"));
+	if (JsonStr9Field.IsValid())
+	{
+		Str9_IsNull = JsonStr9Field->IsNull();
+		Str9_IsSet = Str9_IsNull || TryGetJsonValue(JsonStr9Field, Str9_Optional);
+		ParseSuccess &= Str9_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr10Field = (*Object)->TryGetField(TEXT("str_10"));
+	if (JsonStr10Field.IsValid())
+	{
+		Str10_IsNull = JsonStr10Field->IsNull();
+		Str10_IsSet = Str10_IsNull || TryGetJsonValue(JsonStr10Field, Str10_Optional);
+		ParseSuccess &= Str10_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr11Field = (*Object)->TryGetField(TEXT("str_11"));
+	if (JsonStr11Field.IsValid())
+	{
+		Str11_IsNull = JsonStr11Field->IsNull();
+		Str11_IsSet = Str11_IsNull || TryGetJsonValue(JsonStr11Field, Str11_Optional);
+		ParseSuccess &= Str11_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr12Field = (*Object)->TryGetField(TEXT("str_12"));
+	if (JsonStr12Field.IsValid())
+	{
+		Str12_IsNull = JsonStr12Field->IsNull();
+		Str12_IsSet = Str12_IsNull || TryGetJsonValue(JsonStr12Field, Str12_Optional);
+		ParseSuccess &= Str12_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr13Field = (*Object)->TryGetField(TEXT("str_13"));
+	if (JsonStr13Field.IsValid())
+	{
+		Str13_IsNull = JsonStr13Field->IsNull();
+		Str13_IsSet = Str13_IsNull || TryGetJsonValue(JsonStr13Field, Str13_Optional);
+		ParseSuccess &= Str13_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr14Field = (*Object)->TryGetField(TEXT("str_14"));
+	if (JsonStr14Field.IsValid())
+	{
+		Str14_IsNull = JsonStr14Field->IsNull();
+		Str14_IsSet = Str14_IsNull || TryGetJsonValue(JsonStr14Field, Str14_Optional);
+		ParseSuccess &= Str14_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr15Field = (*Object)->TryGetField(TEXT("str_15"));
+	if (JsonStr15Field.IsValid())
+	{
+		Str15_IsNull = JsonStr15Field->IsNull();
+		Str15_IsSet = Str15_IsNull || TryGetJsonValue(JsonStr15Field, Str15_Optional);
+		ParseSuccess &= Str15_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr16Field = (*Object)->TryGetField(TEXT("str_16"));
+	if (JsonStr16Field.IsValid())
+	{
+		Str16_IsNull = JsonStr16Field->IsNull();
+		Str16_IsSet = Str16_IsNull || TryGetJsonValue(JsonStr16Field, Str16_Optional);
+		ParseSuccess &= Str16_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr17Field = (*Object)->TryGetField(TEXT("str_17"));
+	if (JsonStr17Field.IsValid())
+	{
+		Str17_IsNull = JsonStr17Field->IsNull();
+		Str17_IsSet = Str17_IsNull || TryGetJsonValue(JsonStr17Field, Str17_Optional);
+		ParseSuccess &= Str17_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr18Field = (*Object)->TryGetField(TEXT("str_18"));
+	if (JsonStr18Field.IsValid())
+	{
+		Str18_IsNull = JsonStr18Field->IsNull();
+		Str18_IsSet = Str18_IsNull || TryGetJsonValue(JsonStr18Field, Str18_Optional);
+		ParseSuccess &= Str18_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr19Field = (*Object)->TryGetField(TEXT("str_19"));
+	if (JsonStr19Field.IsValid())
+	{
+		Str19_IsNull = JsonStr19Field->IsNull();
+		Str19_IsSet = Str19_IsNull || TryGetJsonValue(JsonStr19Field, Str19_Optional);
+		ParseSuccess &= Str19_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr20Field = (*Object)->TryGetField(TEXT("str_20"));
+	if (JsonStr20Field.IsValid())
+	{
+		Str20_IsNull = JsonStr20Field->IsNull();
+		Str20_IsSet = Str20_IsNull || TryGetJsonValue(JsonStr20Field, Str20_Optional);
+		ParseSuccess &= Str20_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr21Field = (*Object)->TryGetField(TEXT("str_21"));
+	if (JsonStr21Field.IsValid())
+	{
+		Str21_IsNull = JsonStr21Field->IsNull();
+		Str21_IsSet = Str21_IsNull || TryGetJsonValue(JsonStr21Field, Str21_Optional);
+		ParseSuccess &= Str21_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr22Field = (*Object)->TryGetField(TEXT("str_22"));
+	if (JsonStr22Field.IsValid())
+	{
+		Str22_IsNull = JsonStr22Field->IsNull();
+		Str22_IsSet = Str22_IsNull || TryGetJsonValue(JsonStr22Field, Str22_Optional);
+		ParseSuccess &= Str22_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr23Field = (*Object)->TryGetField(TEXT("str_23"));
+	if (JsonStr23Field.IsValid())
+	{
+		Str23_IsNull = JsonStr23Field->IsNull();
+		Str23_IsSet = Str23_IsNull || TryGetJsonValue(JsonStr23Field, Str23_Optional);
+		ParseSuccess &= Str23_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr24Field = (*Object)->TryGetField(TEXT("str_24"));
+	if (JsonStr24Field.IsValid())
+	{
+		Str24_IsNull = JsonStr24Field->IsNull();
+		Str24_IsSet = Str24_IsNull || TryGetJsonValue(JsonStr24Field, Str24_Optional);
+		ParseSuccess &= Str24_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr25Field = (*Object)->TryGetField(TEXT("str_25"));
+	if (JsonStr25Field.IsValid())
+	{
+		Str25_IsNull = JsonStr25Field->IsNull();
+		Str25_IsSet = Str25_IsNull || TryGetJsonValue(JsonStr25Field, Str25_Optional);
+		ParseSuccess &= Str25_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr26Field = (*Object)->TryGetField(TEXT("str_26"));
+	if (JsonStr26Field.IsValid())
+	{
+		Str26_IsNull = JsonStr26Field->IsNull();
+		Str26_IsSet = Str26_IsNull || TryGetJsonValue(JsonStr26Field, Str26_Optional);
+		ParseSuccess &= Str26_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr27Field = (*Object)->TryGetField(TEXT("str_27"));
+	if (JsonStr27Field.IsValid())
+	{
+		Str27_IsNull = JsonStr27Field->IsNull();
+		Str27_IsSet = Str27_IsNull || TryGetJsonValue(JsonStr27Field, Str27_Optional);
+		ParseSuccess &= Str27_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr28Field = (*Object)->TryGetField(TEXT("str_28"));
+	if (JsonStr28Field.IsValid())
+	{
+		Str28_IsNull = JsonStr28Field->IsNull();
+		Str28_IsSet = Str28_IsNull || TryGetJsonValue(JsonStr28Field, Str28_Optional);
+		ParseSuccess &= Str28_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr29Field = (*Object)->TryGetField(TEXT("str_29"));
+	if (JsonStr29Field.IsValid())
+	{
+		Str29_IsNull = JsonStr29Field->IsNull();
+		Str29_IsSet = Str29_IsNull || TryGetJsonValue(JsonStr29Field, Str29_Optional);
+		ParseSuccess &= Str29_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr30Field = (*Object)->TryGetField(TEXT("str_30"));
+	if (JsonStr30Field.IsValid())
+	{
+		Str30_IsNull = JsonStr30Field->IsNull();
+		Str30_IsSet = Str30_IsNull || TryGetJsonValue(JsonStr30Field, Str30_Optional);
+		ParseSuccess &= Str30_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr31Field = (*Object)->TryGetField(TEXT("str_31"));
+	if (JsonStr31Field.IsValid())
+	{
+		Str31_IsNull = JsonStr31Field->IsNull();
+		Str31_IsSet = Str31_IsNull || TryGetJsonValue(JsonStr31Field, Str31_Optional);
+		ParseSuccess &= Str31_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStr32Field = (*Object)->TryGetField(TEXT("str_32"));
+	if (JsonStr32Field.IsValid())
+	{
+		Str32_IsNull = JsonStr32Field->IsNull();
+		Str32_IsSet = Str32_IsNull || TryGetJsonValue(JsonStr32Field, Str32_Optional);
+		ParseSuccess &= Str32_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat1Field = (*Object)->TryGetField(TEXT("float_1"));
+	if (JsonFloat1Field.IsValid())
+	{
+		Float1_IsNull = JsonFloat1Field->IsNull();
+		Float1_IsSet = Float1_IsNull || TryGetJsonValue(JsonFloat1Field, Float1_Optional);
+		ParseSuccess &= Float1_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat2Field = (*Object)->TryGetField(TEXT("float_2"));
+	if (JsonFloat2Field.IsValid())
+	{
+		Float2_IsNull = JsonFloat2Field->IsNull();
+		Float2_IsSet = Float2_IsNull || TryGetJsonValue(JsonFloat2Field, Float2_Optional);
+		ParseSuccess &= Float2_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat3Field = (*Object)->TryGetField(TEXT("float_3"));
+	if (JsonFloat3Field.IsValid())
+	{
+		Float3_IsNull = JsonFloat3Field->IsNull();
+		Float3_IsSet = Float3_IsNull || TryGetJsonValue(JsonFloat3Field, Float3_Optional);
+		ParseSuccess &= Float3_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat4Field = (*Object)->TryGetField(TEXT("float_4"));
+	if (JsonFloat4Field.IsValid())
+	{
+		Float4_IsNull = JsonFloat4Field->IsNull();
+		Float4_IsSet = Float4_IsNull || TryGetJsonValue(JsonFloat4Field, Float4_Optional);
+		ParseSuccess &= Float4_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat5Field = (*Object)->TryGetField(TEXT("float_5"));
+	if (JsonFloat5Field.IsValid())
+	{
+		Float5_IsNull = JsonFloat5Field->IsNull();
+		Float5_IsSet = Float5_IsNull || TryGetJsonValue(JsonFloat5Field, Float5_Optional);
+		ParseSuccess &= Float5_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat6Field = (*Object)->TryGetField(TEXT("float_6"));
+	if (JsonFloat6Field.IsValid())
+	{
+		Float6_IsNull = JsonFloat6Field->IsNull();
+		Float6_IsSet = Float6_IsNull || TryGetJsonValue(JsonFloat6Field, Float6_Optional);
+		ParseSuccess &= Float6_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat7Field = (*Object)->TryGetField(TEXT("float_7"));
+	if (JsonFloat7Field.IsValid())
+	{
+		Float7_IsNull = JsonFloat7Field->IsNull();
+		Float7_IsSet = Float7_IsNull || TryGetJsonValue(JsonFloat7Field, Float7_Optional);
+		ParseSuccess &= Float7_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat8Field = (*Object)->TryGetField(TEXT("float_8"));
+	if (JsonFloat8Field.IsValid())
+	{
+		Float8_IsNull = JsonFloat8Field->IsNull();
+		Float8_IsSet = Float8_IsNull || TryGetJsonValue(JsonFloat8Field, Float8_Optional);
+		ParseSuccess &= Float8_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat9Field = (*Object)->TryGetField(TEXT("float_9"));
+	if (JsonFloat9Field.IsValid())
+	{
+		Float9_IsNull = JsonFloat9Field->IsNull();
+		Float9_IsSet = Float9_IsNull || TryGetJsonValue(JsonFloat9Field, Float9_Optional);
+		ParseSuccess &= Float9_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat10Field = (*Object)->TryGetField(TEXT("float_10"));
+	if (JsonFloat10Field.IsValid())
+	{
+		Float10_IsNull = JsonFloat10Field->IsNull();
+		Float10_IsSet = Float10_IsNull || TryGetJsonValue(JsonFloat10Field, Float10_Optional);
+		ParseSuccess &= Float10_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat11Field = (*Object)->TryGetField(TEXT("float_11"));
+	if (JsonFloat11Field.IsValid())
+	{
+		Float11_IsNull = JsonFloat11Field->IsNull();
+		Float11_IsSet = Float11_IsNull || TryGetJsonValue(JsonFloat11Field, Float11_Optional);
+		ParseSuccess &= Float11_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat12Field = (*Object)->TryGetField(TEXT("float_12"));
+	if (JsonFloat12Field.IsValid())
+	{
+		Float12_IsNull = JsonFloat12Field->IsNull();
+		Float12_IsSet = Float12_IsNull || TryGetJsonValue(JsonFloat12Field, Float12_Optional);
+		ParseSuccess &= Float12_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat13Field = (*Object)->TryGetField(TEXT("float_13"));
+	if (JsonFloat13Field.IsValid())
+	{
+		Float13_IsNull = JsonFloat13Field->IsNull();
+		Float13_IsSet = Float13_IsNull || TryGetJsonValue(JsonFloat13Field, Float13_Optional);
+		ParseSuccess &= Float13_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat14Field = (*Object)->TryGetField(TEXT("float_14"));
+	if (JsonFloat14Field.IsValid())
+	{
+		Float14_IsNull = JsonFloat14Field->IsNull();
+		Float14_IsSet = Float14_IsNull || TryGetJsonValue(JsonFloat14Field, Float14_Optional);
+		ParseSuccess &= Float14_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat15Field = (*Object)->TryGetField(TEXT("float_15"));
+	if (JsonFloat15Field.IsValid())
+	{
+		Float15_IsNull = JsonFloat15Field->IsNull();
+		Float15_IsSet = Float15_IsNull || TryGetJsonValue(JsonFloat15Field, Float15_Optional);
+		ParseSuccess &= Float15_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat16Field = (*Object)->TryGetField(TEXT("float_16"));
+	if (JsonFloat16Field.IsValid())
+	{
+		Float16_IsNull = JsonFloat16Field->IsNull();
+		Float16_IsSet = Float16_IsNull || TryGetJsonValue(JsonFloat16Field, Float16_Optional);
+		ParseSuccess &= Float16_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat17Field = (*Object)->TryGetField(TEXT("float_17"));
+	if (JsonFloat17Field.IsValid())
+	{
+		Float17_IsNull = JsonFloat17Field->IsNull();
+		Float17_IsSet = Float17_IsNull || TryGetJsonValue(JsonFloat17Field, Float17_Optional);
+		ParseSuccess &= Float17_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat18Field = (*Object)->TryGetField(TEXT("float_18"));
+	if (JsonFloat18Field.IsValid())
+	{
+		Float18_IsNull = JsonFloat18Field->IsNull();
+		Float18_IsSet = Float18_IsNull || TryGetJsonValue(JsonFloat18Field, Float18_Optional);
+		ParseSuccess &= Float18_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat19Field = (*Object)->TryGetField(TEXT("float_19"));
+	if (JsonFloat19Field.IsValid())
+	{
+		Float19_IsNull = JsonFloat19Field->IsNull();
+		Float19_IsSet = Float19_IsNull || TryGetJsonValue(JsonFloat19Field, Float19_Optional);
+		ParseSuccess &= Float19_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat20Field = (*Object)->TryGetField(TEXT("float_20"));
+	if (JsonFloat20Field.IsValid())
+	{
+		Float20_IsNull = JsonFloat20Field->IsNull();
+		Float20_IsSet = Float20_IsNull || TryGetJsonValue(JsonFloat20Field, Float20_Optional);
+		ParseSuccess &= Float20_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat21Field = (*Object)->TryGetField(TEXT("float_21"));
+	if (JsonFloat21Field.IsValid())
+	{
+		Float21_IsNull = JsonFloat21Field->IsNull();
+		Float21_IsSet = Float21_IsNull || TryGetJsonValue(JsonFloat21Field, Float21_Optional);
+		ParseSuccess &= Float21_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat22Field = (*Object)->TryGetField(TEXT("float_22"));
+	if (JsonFloat22Field.IsValid())
+	{
+		Float22_IsNull = JsonFloat22Field->IsNull();
+		Float22_IsSet = Float22_IsNull || TryGetJsonValue(JsonFloat22Field, Float22_Optional);
+		ParseSuccess &= Float22_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat23Field = (*Object)->TryGetField(TEXT("float_23"));
+	if (JsonFloat23Field.IsValid())
+	{
+		Float23_IsNull = JsonFloat23Field->IsNull();
+		Float23_IsSet = Float23_IsNull || TryGetJsonValue(JsonFloat23Field, Float23_Optional);
+		ParseSuccess &= Float23_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat24Field = (*Object)->TryGetField(TEXT("float_24"));
+	if (JsonFloat24Field.IsValid())
+	{
+		Float24_IsNull = JsonFloat24Field->IsNull();
+		Float24_IsSet = Float24_IsNull || TryGetJsonValue(JsonFloat24Field, Float24_Optional);
+		ParseSuccess &= Float24_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat25Field = (*Object)->TryGetField(TEXT("float_25"));
+	if (JsonFloat25Field.IsValid())
+	{
+		Float25_IsNull = JsonFloat25Field->IsNull();
+		Float25_IsSet = Float25_IsNull || TryGetJsonValue(JsonFloat25Field, Float25_Optional);
+		ParseSuccess &= Float25_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat26Field = (*Object)->TryGetField(TEXT("float_26"));
+	if (JsonFloat26Field.IsValid())
+	{
+		Float26_IsNull = JsonFloat26Field->IsNull();
+		Float26_IsSet = Float26_IsNull || TryGetJsonValue(JsonFloat26Field, Float26_Optional);
+		ParseSuccess &= Float26_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat27Field = (*Object)->TryGetField(TEXT("float_27"));
+	if (JsonFloat27Field.IsValid())
+	{
+		Float27_IsNull = JsonFloat27Field->IsNull();
+		Float27_IsSet = Float27_IsNull || TryGetJsonValue(JsonFloat27Field, Float27_Optional);
+		ParseSuccess &= Float27_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat28Field = (*Object)->TryGetField(TEXT("float_28"));
+	if (JsonFloat28Field.IsValid())
+	{
+		Float28_IsNull = JsonFloat28Field->IsNull();
+		Float28_IsSet = Float28_IsNull || TryGetJsonValue(JsonFloat28Field, Float28_Optional);
+		ParseSuccess &= Float28_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat29Field = (*Object)->TryGetField(TEXT("float_29"));
+	if (JsonFloat29Field.IsValid())
+	{
+		Float29_IsNull = JsonFloat29Field->IsNull();
+		Float29_IsSet = Float29_IsNull || TryGetJsonValue(JsonFloat29Field, Float29_Optional);
+		ParseSuccess &= Float29_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat30Field = (*Object)->TryGetField(TEXT("float_30"));
+	if (JsonFloat30Field.IsValid())
+	{
+		Float30_IsNull = JsonFloat30Field->IsNull();
+		Float30_IsSet = Float30_IsNull || TryGetJsonValue(JsonFloat30Field, Float30_Optional);
+		ParseSuccess &= Float30_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat31Field = (*Object)->TryGetField(TEXT("float_31"));
+	if (JsonFloat31Field.IsValid())
+	{
+		Float31_IsNull = JsonFloat31Field->IsNull();
+		Float31_IsSet = Float31_IsNull || TryGetJsonValue(JsonFloat31Field, Float31_Optional);
+		ParseSuccess &= Float31_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFloat32Field = (*Object)->TryGetField(TEXT("float_32"));
+	if (JsonFloat32Field.IsValid())
+	{
+		Float32_IsNull = JsonFloat32Field->IsNull();
+		Float32_IsSet = Float32_IsNull || TryGetJsonValue(JsonFloat32Field, Float32_Optional);
+		ParseSuccess &= Float32_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonMatchSegmentField = (*Object)->TryGetField(TEXT("match_segment"));
 	const bool MatchSegment_IsValid = JsonMatchSegmentField.IsValid() && (!JsonMatchSegmentField->IsNull() && TryGetJsonValue(JsonMatchSegmentField, MatchSegment));
 	ParseSuccess &= MatchSegment_IsValid; 

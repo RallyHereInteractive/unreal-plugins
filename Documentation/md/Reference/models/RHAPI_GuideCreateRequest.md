@@ -26,6 +26,8 @@ struct FRHAPI_GuideCreateRequest
 `public FString `[`ShortDesc_Optional`](#structFRHAPI__GuideCreateRequest_1ac1c2736e890bf9986cfcfdc9d5284e8b) | 
 `public bool `[`ShortDesc_IsSet`](#structFRHAPI__GuideCreateRequest_1ad8b37bca56de0a43334873dea728c872) | true if ShortDesc_Optional has been set to a value
 `public bool `[`ShortDesc_IsNull`](#structFRHAPI__GuideCreateRequest_1a67a523efd8f22003796325c4771c91b4) | true if ShortDesc_Optional has been explicitly set to null
+`public int32 `[`PromotionPriority_Optional`](#structFRHAPI__GuideCreateRequest_1a03c91da7df6fea21388b2f2f37ec49b7) | Promotion priority of this guide in searches.
+`public bool `[`PromotionPriority_IsSet`](#structFRHAPI__GuideCreateRequest_1a976aa2d76d7c384550989a5758ad95e1) | true if PromotionPriority_Optional has been set to a value
 `public FString `[`Ref1_Optional`](#structFRHAPI__GuideCreateRequest_1ad8ac80169576e974c4da07f0a19fa6f0) | 
 `public bool `[`Ref1_IsSet`](#structFRHAPI__GuideCreateRequest_1a232d1aeb1940decc37dcd6c2d42d3a27) | true if Ref1_Optional has been set to a value
 `public bool `[`Ref1_IsNull`](#structFRHAPI__GuideCreateRequest_1adf61ec1036be173782c7f78091a042a3) | true if Ref1_Optional has been explicitly set to null
@@ -122,6 +124,12 @@ struct FRHAPI_GuideCreateRequest
 `public FString `[`Ref32_Optional`](#structFRHAPI__GuideCreateRequest_1a2a043957ac66d2607e4253b40d10ed87) | 
 `public bool `[`Ref32_IsSet`](#structFRHAPI__GuideCreateRequest_1aed825aaabb539ba82d9caf19e8f7e799) | true if Ref32_Optional has been set to a value
 `public bool `[`Ref32_IsNull`](#structFRHAPI__GuideCreateRequest_1a7c5e7294931fe71dbf12ee1f57eaecf1) | true if Ref32_Optional has been explicitly set to null
+`public ERHAPI_GuideEntityType `[`OwnerEntityType_Optional`](#structFRHAPI__GuideCreateRequest_1a458bc81ce5e2035f298b4a1f6951e93a) | 
+`public bool `[`OwnerEntityType_IsSet`](#structFRHAPI__GuideCreateRequest_1a9830dd90fe7e13ad964b62e7b2a48833) | true if OwnerEntityType_Optional has been set to a value
+`public bool `[`OwnerEntityType_IsNull`](#structFRHAPI__GuideCreateRequest_1a0007d4d27d8ca9e70d72d263e72f57fc) | true if OwnerEntityType_Optional has been explicitly set to null
+`public FString `[`OwnerEntityId_Optional`](#structFRHAPI__GuideCreateRequest_1a85c66df1baae6f47f99e68ff2bb488d0) | 
+`public bool `[`OwnerEntityId_IsSet`](#structFRHAPI__GuideCreateRequest_1a2963f937ce0db42e623c037f1101efa7) | true if OwnerEntityId_Optional has been set to a value
+`public bool `[`OwnerEntityId_IsNull`](#structFRHAPI__GuideCreateRequest_1a51dcab32118e5cf5a6f5fd724135a704) | true if OwnerEntityId_Optional has been explicitly set to null
 `public FString `[`Content_Optional`](#structFRHAPI__GuideCreateRequest_1a3bdb62abc23d2ef9ec1e8ebe4e4821d0) | 
 `public bool `[`Content_IsSet`](#structFRHAPI__GuideCreateRequest_1a9a7543e3b4e05e856d8f1df39d0a41e4) | true if Content_Optional has been set to a value
 `public bool `[`Content_IsNull`](#structFRHAPI__GuideCreateRequest_1ad3733c1263fb377ea3be6781ab4bf101) | true if Content_Optional has been explicitly set to null
@@ -157,6 +165,18 @@ struct FRHAPI_GuideCreateRequest
 `public inline bool `[`IsShortDescSet`](#structFRHAPI__GuideCreateRequest_1a667d972860ab4a49ec64556e39aae75b)`() const` | Checks whether ShortDesc_Optional has been set.
 `public inline void `[`SetShortDescToNull`](#structFRHAPI__GuideCreateRequest_1a94c66e240754ef1bd3a0a262d89822ae)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsShortDescNull`](#structFRHAPI__GuideCreateRequest_1ad91a6bb2af815f51d174472bbfd8d9fd)`() const` | Checks whether ShortDesc_Optional is set to null.
+`public inline int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a063b4b27f21ef68f727a70bd2736a8cd)`()` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a5d3acf2b747d88fdd400d6a663093130)`() const` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1af0581b743c6b7dd0cacc1b61ec7d7401)`(const int32 & DefaultValue) const` | Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a58a0bcd2aa97eca092ac98b4a9f0b85c)`(int32 & OutValue) const` | Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false.
+`public inline int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1aaf8f383ef8f57d0ebb7b65b60272f676)`()` | Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1abd6eb8342d9ee296de9a1733a5b1976e)`() const` | Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a0ea0030ca6890651664849fa18489b56)`(const int32 & NewValue)` | Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true.
+`public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1abc46a603640001adb9a870a26618357e)`(int32 && NewValue)` | Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics.
+`public inline void `[`ClearPromotionPriority`](#structFRHAPI__GuideCreateRequest_1ac6c1f7f982ca9f5e2ea5f18c51b64c71)`()` | Clears the value of PromotionPriority_Optional and sets PromotionPriority_IsSet to false.
+`public inline bool `[`IsPromotionPrioritySet`](#structFRHAPI__GuideCreateRequest_1aaa8db84c9285fffb61d8cc37664e3d5f)`() const` | Checks whether PromotionPriority_Optional has been set.
+`public inline bool `[`IsPromotionPriorityDefaultValue`](#structFRHAPI__GuideCreateRequest_1a7a17d8c3843b4e63ed648f09fcb871b3)`() const` | Returns true if PromotionPriority_Optional is set and matches the default value.
+`public inline void `[`SetPromotionPriorityToDefault`](#structFRHAPI__GuideCreateRequest_1a30320ea46c8c5b6a1a943f170c6319ab)`()` | Sets the value of PromotionPriority_Optional to its default and also sets PromotionPriority_IsSet to true.
 `public inline FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a936c0390be75690b48af415faab88fad)`()` | Gets the value of Ref1_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a1a000fb4716a92afa5a60af875141ba4)`() const` | Gets the value of Ref1_Optional, regardless of it having been set.
 `public inline const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1ab4047aa3c2416c2b6129aad9ccfc1c5c)`(const FString & DefaultValue) const` | Gets the value of Ref1_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -541,6 +561,30 @@ struct FRHAPI_GuideCreateRequest
 `public inline bool `[`IsRef32Set`](#structFRHAPI__GuideCreateRequest_1a8d31360799eb74d18c97a24515e6f539)`() const` | Checks whether Ref32_Optional has been set.
 `public inline void `[`SetRef32ToNull`](#structFRHAPI__GuideCreateRequest_1aa62c94c6386004e532dd34a8aeee66e5)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsRef32Null`](#structFRHAPI__GuideCreateRequest_1ae9c997318221e754823c79689d23289b)`() const` | Checks whether Ref32_Optional is set to null.
+`public inline ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ab69a6548c94c0cb36e329a196ecf0530)`()` | Gets the value of OwnerEntityType_Optional, regardless of it having been set.
+`public inline const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ab85f1cdc7b51a09c5ba889d520c6183b)`() const` | Gets the value of OwnerEntityType_Optional, regardless of it having been set.
+`public inline const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a5d6090d1ea9bc272d63d454b7ed77bd1)`(const ERHAPI_GuideEntityType & DefaultValue) const` | Gets the value of OwnerEntityType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a6f10471bc0637b8345c0af2369979f2b)`(ERHAPI_GuideEntityType & OutValue) const` | Fills OutValue with the value of OwnerEntityType_Optional and returns true if it has been set, otherwise returns false.
+`public inline ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1aefb76a691574d7d611ff995748da8d82)`()` | Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
+`public inline const ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1a0e370dd0462385301286d7687c279035)`() const` | Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a21e9aa5cbf2659813505eff66cdf5846)`(const ERHAPI_GuideEntityType & NewValue)` | Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true.
+`public inline void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a7592d9211182a14b97cf6086a7bac3ad)`(ERHAPI_GuideEntityType && NewValue)` | Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true using move semantics.
+`public inline void `[`ClearOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a90b64c42f70bd95a58404b80e5af50a8)`()` | Clears the value of OwnerEntityType_Optional and sets OwnerEntityType_IsSet to false.
+`public inline bool `[`IsOwnerEntityTypeSet`](#structFRHAPI__GuideCreateRequest_1adad69b0e55b5d28d2f65b7df5a5cd2bb)`() const` | Checks whether OwnerEntityType_Optional has been set.
+`public inline void `[`SetOwnerEntityTypeToNull`](#structFRHAPI__GuideCreateRequest_1a402b965ba0a60f8462f608189d8c2d75)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsOwnerEntityTypeNull`](#structFRHAPI__GuideCreateRequest_1ab214262edf5183f6ad9c1da8edb07b91)`() const` | Checks whether OwnerEntityType_Optional is set to null.
+`public inline FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a4e40d42b48731ac10ce7238723f63a55)`()` | Gets the value of OwnerEntityId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a624ea822793f5bd761f66b29f3a4e4c6)`() const` | Gets the value of OwnerEntityId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aec6c92114a059d9ef873acb406bb4506)`(const FString & DefaultValue) const` | Gets the value of OwnerEntityId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aa0c9ba565714f460ba650c922912587a)`(FString & OutValue) const` | Fills OutValue with the value of OwnerEntityId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1ae63d4875a00ca91439ce3c57c51ccc0a)`()` | Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1a0f7be31db07c21a9776133a1748dddf6)`() const` | Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a8d5f1b6952ce4e4450fd8ff3b3583c0b)`(const FString & NewValue)` | Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true.
+`public inline void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ae1fa189bee8c6f84050909f32e1c069d)`(FString && NewValue)` | Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true using move semantics.
+`public inline void `[`ClearOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ac2e91ef60aea7a665e42d3a4ed773dae)`()` | Clears the value of OwnerEntityId_Optional and sets OwnerEntityId_IsSet to false.
+`public inline bool `[`IsOwnerEntityIdSet`](#structFRHAPI__GuideCreateRequest_1a94429cbc56c8d6e91cea76ef7e585fc7)`() const` | Checks whether OwnerEntityId_Optional has been set.
+`public inline void `[`SetOwnerEntityIdToNull`](#structFRHAPI__GuideCreateRequest_1aa8b78978e650921690358e5cbe0b5f03)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsOwnerEntityIdNull`](#structFRHAPI__GuideCreateRequest_1a696b6c1967c94d2320a25b86c5f08a27)`() const` | Checks whether OwnerEntityId_Optional is set to null.
 `public inline FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1aba682504d7bc01f379a25b8b4bb6ef83)`()` | Gets the value of Content_Optional, regardless of it having been set.
 `public inline const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a76aefeb082deb30f37209149f7b5d422)`() const` | Gets the value of Content_Optional, regardless of it having been set.
 `public inline const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a60e401284b1a0541597c94fc76947ed0)`(const FString & DefaultValue) const` | Gets the value of Content_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -585,6 +629,14 @@ true if ShortDesc_Optional has been set to a value
 #### `public bool `[`ShortDesc_IsNull`](#structFRHAPI__GuideCreateRequest_1a67a523efd8f22003796325c4771c91b4) <a id="structFRHAPI__GuideCreateRequest_1a67a523efd8f22003796325c4771c91b4"></a>
 
 true if ShortDesc_Optional has been explicitly set to null
+
+#### `public int32 `[`PromotionPriority_Optional`](#structFRHAPI__GuideCreateRequest_1a03c91da7df6fea21388b2f2f37ec49b7) <a id="structFRHAPI__GuideCreateRequest_1a03c91da7df6fea21388b2f2f37ec49b7"></a>
+
+Promotion priority of this guide in searches.
+
+#### `public bool `[`PromotionPriority_IsSet`](#structFRHAPI__GuideCreateRequest_1a976aa2d76d7c384550989a5758ad95e1) <a id="structFRHAPI__GuideCreateRequest_1a976aa2d76d7c384550989a5758ad95e1"></a>
+
+true if PromotionPriority_Optional has been set to a value
 
 #### `public FString `[`Ref1_Optional`](#structFRHAPI__GuideCreateRequest_1ad8ac80169576e974c4da07f0a19fa6f0) <a id="structFRHAPI__GuideCreateRequest_1ad8ac80169576e974c4da07f0a19fa6f0"></a>
 
@@ -906,6 +958,26 @@ true if Ref32_Optional has been set to a value
 
 true if Ref32_Optional has been explicitly set to null
 
+#### `public ERHAPI_GuideEntityType `[`OwnerEntityType_Optional`](#structFRHAPI__GuideCreateRequest_1a458bc81ce5e2035f298b4a1f6951e93a) <a id="structFRHAPI__GuideCreateRequest_1a458bc81ce5e2035f298b4a1f6951e93a"></a>
+
+#### `public bool `[`OwnerEntityType_IsSet`](#structFRHAPI__GuideCreateRequest_1a9830dd90fe7e13ad964b62e7b2a48833) <a id="structFRHAPI__GuideCreateRequest_1a9830dd90fe7e13ad964b62e7b2a48833"></a>
+
+true if OwnerEntityType_Optional has been set to a value
+
+#### `public bool `[`OwnerEntityType_IsNull`](#structFRHAPI__GuideCreateRequest_1a0007d4d27d8ca9e70d72d263e72f57fc) <a id="structFRHAPI__GuideCreateRequest_1a0007d4d27d8ca9e70d72d263e72f57fc"></a>
+
+true if OwnerEntityType_Optional has been explicitly set to null
+
+#### `public FString `[`OwnerEntityId_Optional`](#structFRHAPI__GuideCreateRequest_1a85c66df1baae6f47f99e68ff2bb488d0) <a id="structFRHAPI__GuideCreateRequest_1a85c66df1baae6f47f99e68ff2bb488d0"></a>
+
+#### `public bool `[`OwnerEntityId_IsSet`](#structFRHAPI__GuideCreateRequest_1a2963f937ce0db42e623c037f1101efa7) <a id="structFRHAPI__GuideCreateRequest_1a2963f937ce0db42e623c037f1101efa7"></a>
+
+true if OwnerEntityId_Optional has been set to a value
+
+#### `public bool `[`OwnerEntityId_IsNull`](#structFRHAPI__GuideCreateRequest_1a51dcab32118e5cf5a6f5fd724135a704) <a id="structFRHAPI__GuideCreateRequest_1a51dcab32118e5cf5a6f5fd724135a704"></a>
+
+true if OwnerEntityId_Optional has been explicitly set to null
+
 #### `public FString `[`Content_Optional`](#structFRHAPI__GuideCreateRequest_1a3bdb62abc23d2ef9ec1e8ebe4e4821d0) <a id="structFRHAPI__GuideCreateRequest_1a3bdb62abc23d2ef9ec1e8ebe4e4821d0"></a>
 
 #### `public bool `[`Content_IsSet`](#structFRHAPI__GuideCreateRequest_1a9a7543e3b4e05e856d8f1df39d0a41e4) <a id="structFRHAPI__GuideCreateRequest_1a9a7543e3b4e05e856d8f1df39d0a41e4"></a>
@@ -1050,6 +1122,54 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsShortDescNull`](#structFRHAPI__GuideCreateRequest_1ad91a6bb2af815f51d174472bbfd8d9fd)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad91a6bb2af815f51d174472bbfd8d9fd"></a>
 
 Checks whether ShortDesc_Optional is set to null.
+
+#### `public inline int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a063b4b27f21ef68f727a70bd2736a8cd)`()` <a id="structFRHAPI__GuideCreateRequest_1a063b4b27f21ef68f727a70bd2736a8cd"></a>
+
+Gets the value of PromotionPriority_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a5d3acf2b747d88fdd400d6a663093130)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5d3acf2b747d88fdd400d6a663093130"></a>
+
+Gets the value of PromotionPriority_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1af0581b743c6b7dd0cacc1b61ec7d7401)`(const int32 & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1af0581b743c6b7dd0cacc1b61ec7d7401"></a>
+
+Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a58a0bcd2aa97eca092ac98b4a9f0b85c)`(int32 & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a58a0bcd2aa97eca092ac98b4a9f0b85c"></a>
+
+Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1aaf8f383ef8f57d0ebb7b65b60272f676)`()` <a id="structFRHAPI__GuideCreateRequest_1aaf8f383ef8f57d0ebb7b65b60272f676"></a>
+
+Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1abd6eb8342d9ee296de9a1733a5b1976e)`() const` <a id="structFRHAPI__GuideCreateRequest_1abd6eb8342d9ee296de9a1733a5b1976e"></a>
+
+Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a0ea0030ca6890651664849fa18489b56)`(const int32 & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0ea0030ca6890651664849fa18489b56"></a>
+
+Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true.
+
+#### `public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1abc46a603640001adb9a870a26618357e)`(int32 && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1abc46a603640001adb9a870a26618357e"></a>
+
+Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPromotionPriority`](#structFRHAPI__GuideCreateRequest_1ac6c1f7f982ca9f5e2ea5f18c51b64c71)`()` <a id="structFRHAPI__GuideCreateRequest_1ac6c1f7f982ca9f5e2ea5f18c51b64c71"></a>
+
+Clears the value of PromotionPriority_Optional and sets PromotionPriority_IsSet to false.
+
+#### `public inline bool `[`IsPromotionPrioritySet`](#structFRHAPI__GuideCreateRequest_1aaa8db84c9285fffb61d8cc37664e3d5f)`() const` <a id="structFRHAPI__GuideCreateRequest_1aaa8db84c9285fffb61d8cc37664e3d5f"></a>
+
+Checks whether PromotionPriority_Optional has been set.
+
+#### `public inline bool `[`IsPromotionPriorityDefaultValue`](#structFRHAPI__GuideCreateRequest_1a7a17d8c3843b4e63ed648f09fcb871b3)`() const` <a id="structFRHAPI__GuideCreateRequest_1a7a17d8c3843b4e63ed648f09fcb871b3"></a>
+
+Returns true if PromotionPriority_Optional is set and matches the default value.
+
+#### `public inline void `[`SetPromotionPriorityToDefault`](#structFRHAPI__GuideCreateRequest_1a30320ea46c8c5b6a1a943f170c6319ab)`()` <a id="structFRHAPI__GuideCreateRequest_1a30320ea46c8c5b6a1a943f170c6319ab"></a>
+
+Sets the value of PromotionPriority_Optional to its default and also sets PromotionPriority_IsSet to true.
 
 #### `public inline FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a936c0390be75690b48af415faab88fad)`()` <a id="structFRHAPI__GuideCreateRequest_1a936c0390be75690b48af415faab88fad"></a>
 
@@ -2586,6 +2706,102 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsRef32Null`](#structFRHAPI__GuideCreateRequest_1ae9c997318221e754823c79689d23289b)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae9c997318221e754823c79689d23289b"></a>
 
 Checks whether Ref32_Optional is set to null.
+
+#### `public inline ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ab69a6548c94c0cb36e329a196ecf0530)`()` <a id="structFRHAPI__GuideCreateRequest_1ab69a6548c94c0cb36e329a196ecf0530"></a>
+
+Gets the value of OwnerEntityType_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ab85f1cdc7b51a09c5ba889d520c6183b)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab85f1cdc7b51a09c5ba889d520c6183b"></a>
+
+Gets the value of OwnerEntityType_Optional, regardless of it having been set.
+
+#### `public inline const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a5d6090d1ea9bc272d63d454b7ed77bd1)`(const ERHAPI_GuideEntityType & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5d6090d1ea9bc272d63d454b7ed77bd1"></a>
+
+Gets the value of OwnerEntityType_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a6f10471bc0637b8345c0af2369979f2b)`(ERHAPI_GuideEntityType & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a6f10471bc0637b8345c0af2369979f2b"></a>
+
+Fills OutValue with the value of OwnerEntityType_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1aefb76a691574d7d611ff995748da8d82)`()` <a id="structFRHAPI__GuideCreateRequest_1aefb76a691574d7d611ff995748da8d82"></a>
+
+Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1a0e370dd0462385301286d7687c279035)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0e370dd0462385301286d7687c279035"></a>
+
+Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a21e9aa5cbf2659813505eff66cdf5846)`(const ERHAPI_GuideEntityType & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a21e9aa5cbf2659813505eff66cdf5846"></a>
+
+Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true.
+
+#### `public inline void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a7592d9211182a14b97cf6086a7bac3ad)`(ERHAPI_GuideEntityType && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a7592d9211182a14b97cf6086a7bac3ad"></a>
+
+Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a90b64c42f70bd95a58404b80e5af50a8)`()` <a id="structFRHAPI__GuideCreateRequest_1a90b64c42f70bd95a58404b80e5af50a8"></a>
+
+Clears the value of OwnerEntityType_Optional and sets OwnerEntityType_IsSet to false.
+
+#### `public inline bool `[`IsOwnerEntityTypeSet`](#structFRHAPI__GuideCreateRequest_1adad69b0e55b5d28d2f65b7df5a5cd2bb)`() const` <a id="structFRHAPI__GuideCreateRequest_1adad69b0e55b5d28d2f65b7df5a5cd2bb"></a>
+
+Checks whether OwnerEntityType_Optional has been set.
+
+#### `public inline void `[`SetOwnerEntityTypeToNull`](#structFRHAPI__GuideCreateRequest_1a402b965ba0a60f8462f608189d8c2d75)`()` <a id="structFRHAPI__GuideCreateRequest_1a402b965ba0a60f8462f608189d8c2d75"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsOwnerEntityTypeNull`](#structFRHAPI__GuideCreateRequest_1ab214262edf5183f6ad9c1da8edb07b91)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab214262edf5183f6ad9c1da8edb07b91"></a>
+
+Checks whether OwnerEntityType_Optional is set to null.
+
+#### `public inline FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a4e40d42b48731ac10ce7238723f63a55)`()` <a id="structFRHAPI__GuideCreateRequest_1a4e40d42b48731ac10ce7238723f63a55"></a>
+
+Gets the value of OwnerEntityId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a624ea822793f5bd761f66b29f3a4e4c6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a624ea822793f5bd761f66b29f3a4e4c6"></a>
+
+Gets the value of OwnerEntityId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aec6c92114a059d9ef873acb406bb4506)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1aec6c92114a059d9ef873acb406bb4506"></a>
+
+Gets the value of OwnerEntityId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aa0c9ba565714f460ba650c922912587a)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1aa0c9ba565714f460ba650c922912587a"></a>
+
+Fills OutValue with the value of OwnerEntityId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1ae63d4875a00ca91439ce3c57c51ccc0a)`()` <a id="structFRHAPI__GuideCreateRequest_1ae63d4875a00ca91439ce3c57c51ccc0a"></a>
+
+Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1a0f7be31db07c21a9776133a1748dddf6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0f7be31db07c21a9776133a1748dddf6"></a>
+
+Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a8d5f1b6952ce4e4450fd8ff3b3583c0b)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a8d5f1b6952ce4e4450fd8ff3b3583c0b"></a>
+
+Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true.
+
+#### `public inline void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ae1fa189bee8c6f84050909f32e1c069d)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ae1fa189bee8c6f84050909f32e1c069d"></a>
+
+Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ac2e91ef60aea7a665e42d3a4ed773dae)`()` <a id="structFRHAPI__GuideCreateRequest_1ac2e91ef60aea7a665e42d3a4ed773dae"></a>
+
+Clears the value of OwnerEntityId_Optional and sets OwnerEntityId_IsSet to false.
+
+#### `public inline bool `[`IsOwnerEntityIdSet`](#structFRHAPI__GuideCreateRequest_1a94429cbc56c8d6e91cea76ef7e585fc7)`() const` <a id="structFRHAPI__GuideCreateRequest_1a94429cbc56c8d6e91cea76ef7e585fc7"></a>
+
+Checks whether OwnerEntityId_Optional has been set.
+
+#### `public inline void `[`SetOwnerEntityIdToNull`](#structFRHAPI__GuideCreateRequest_1aa8b78978e650921690358e5cbe0b5f03)`()` <a id="structFRHAPI__GuideCreateRequest_1aa8b78978e650921690358e5cbe0b5f03"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsOwnerEntityIdNull`](#structFRHAPI__GuideCreateRequest_1a696b6c1967c94d2320a25b86c5f08a27)`() const` <a id="structFRHAPI__GuideCreateRequest_1a696b6c1967c94d2320a25b86c5f08a27"></a>
+
+Checks whether OwnerEntityId_Optional is set to null.
 
 #### `public inline FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1aba682504d7bc01f379a25b8b4bb6ef83)`()` <a id="structFRHAPI__GuideCreateRequest_1aba682504d7bc01f379a25b8b4bb6ef83"></a>
 

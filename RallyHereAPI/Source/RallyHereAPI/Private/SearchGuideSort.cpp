@@ -28,6 +28,8 @@ FString EnumToString(const ERHAPI_SearchGuideSort& Value)
 		return TEXT("modified");
 	case ERHAPI_SearchGuideSort::Upvotes:
 		return TEXT("upvotes");
+	case ERHAPI_SearchGuideSort::Promoted:
+		return TEXT("promoted");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_SearchGuideSort::Values Value (%d)"), (int)Value);
@@ -39,7 +41,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_SearchGuideSort& Value)
 	static TMap<FString, ERHAPI_SearchGuideSort> StringToEnum = { 
 		{ TEXT("created"), ERHAPI_SearchGuideSort::Created },
 		{ TEXT("modified"), ERHAPI_SearchGuideSort::Modified },
-		{ TEXT("upvotes"), ERHAPI_SearchGuideSort::Upvotes },	};
+		{ TEXT("upvotes"), ERHAPI_SearchGuideSort::Upvotes },
+		{ TEXT("promoted"), ERHAPI_SearchGuideSort::Promoted },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
