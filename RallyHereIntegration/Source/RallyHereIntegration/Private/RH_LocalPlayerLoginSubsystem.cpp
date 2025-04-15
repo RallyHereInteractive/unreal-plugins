@@ -1051,7 +1051,7 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
     else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Denied || Resp.GetHttpResponseCode() ==
         EHttpResponseCodes::Forbidden)
     {
-		FRHAPI_AgreementMessage Msg;
+		FRHAPI_LoginCompleteMessage Msg;
 		Resp.TryGetContentFor403(Msg);
 		bool NeedsEula = false, NeedsTos = false, NeedsPrivacyPolicy = false;
 		if ((Msg.GetNeedsEula(NeedsEula) && NeedsEula) || (Msg.GetNeedsTos(NeedsTos) && NeedsTos) ||

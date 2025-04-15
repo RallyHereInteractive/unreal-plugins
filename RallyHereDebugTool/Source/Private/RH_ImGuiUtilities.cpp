@@ -413,6 +413,59 @@ void ImGuiDisplayJsonObject(const TSharedPtr<FJsonObject> JsonObject, bool bHasC
 	}
 }
 
+void ImGuiDisplayJsonObject(const TMap<FString, FRHAPI_JsonValue>& JsonObject, bool bHasCopyAllButton)
+{
+	for (auto jsonValueIt = JsonObject.CreateConstIterator(); jsonValueIt; ++jsonValueIt)
+	{
+		FRHAPI_JsonObject ValueAsObject;
+		TArray<FRHAPI_JsonValue> ValueAsArray;
+		if ((*jsonValueIt).Value.TryGetObject(ValueAsObject))
+		{
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*(*jsonValueIt).Key), RH_DefaultTreeFlags))
+			{
+				ImGuiDisplayJsonObject(ValueAsObject.GetObject(), false);
+				ImGui::TreePop();
+			}
+		}
+		else if ((*jsonValueIt).Value.TryGetArray(ValueAsArray))
+		{
+			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*(*jsonValueIt).Key), RH_DefaultTreeFlags))
+			{
+				TArray<TSharedPtr<FJsonValue>> Values;
+				for (auto& Val : ValueAsArray)
+				{
+					Values.Add(Val.GetValue());
+				}
+				ImGuiDisplayJsonArray(Values);
+				ImGui::TreePop();
+			}
+		}
+		else
+		{
+			ImGuiDisplayCopyableValue((*jsonValueIt).Key, (*jsonValueIt).Value.AsString(), ECopyMode::KeyValue);
+		}
+	}
+	if (bHasCopyAllButton)
+	{
+#if PLATFORM_ALLOWS_COPY
+		if (ImGui::Button("Copy JSON to Clipboard"))
+		{
+			auto OutputObject = MakeShared<FJsonObject>();
+			for (auto Itr = JsonObject.CreateConstIterator(); Itr; ++Itr)
+			{
+				OutputObject->SetField(Itr.Key(), Itr.Value().GetValue());
+			}
+
+			FString OutputString;
+			TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&OutputString);
+			FJsonSerializer::Serialize(OutputObject, Writer);
+
+			FPlatformApplicationMisc::ClipboardCopy(*OutputString);
+		}
+#endif
+	}
+}
+
 void ImGuiDisplayJsonArray(const TArray<TSharedPtr<FJsonValue>> JsonArray)
 {
 	for (int32 i = 0; i < JsonArray.Num(); ++i)

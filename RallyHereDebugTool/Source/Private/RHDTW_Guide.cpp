@@ -729,8 +729,8 @@ bool FRHDTW_Guide::DoCreateNewSearch()
 	ImGui::Text("Create a new Guide Search");
 	ImGui::Separator();
 
-	ImGuiDisplayEnumCombo("SortBy", SearchParams.SortBy);
-	ImGuiDisplayEnumCombo("Sort", SearchParams.Sort);
+	ImGuiDisplayListEnumCombos("SortBy", SearchParams.SortBy);
+	ImGuiDisplayListEnumCombos("Sort", SearchParams.Sort);
 
 	if (ImGui::InputInt("Page Size", &SearchParams.PageSize))
 	{

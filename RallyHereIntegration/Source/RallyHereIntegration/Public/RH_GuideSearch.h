@@ -29,11 +29,11 @@ struct RALLYHEREINTEGRATION_API FRH_GuideSearchRequest
 	
 	/** @brief Field to sort the results by */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	ERHAPI_SearchGuideSort SortBy;
+	TArray<ERHAPI_SearchGuideSort> SortBy;
 	
 	/** @brief Direction to sort the results */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
-	ERHAPI_SortDirection Sort;
+	TArray<ERHAPI_SortDirection> Sort;
 	
 	/** @brief Page Size of the request - 0 will use the default */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Guide|Search")
@@ -197,8 +197,6 @@ struct RALLYHEREINTEGRATION_API FRH_GuideSearchRequest
 
 	FRH_GuideSearchRequest()
 	{
-		Sort = ERHAPI_SortDirection::Desc;
-		SortBy = ERHAPI_SearchGuideSort::Created;
 		PageSize = 0;
 		bDoOwnerSearch = false;
 		OwnerEntityType = ERHAPI_GuideEntityType::Player;
