@@ -1048,6 +1048,19 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Update Browser Info", AutoCreateRefTerm = "CustomData,Delegate"))
 	void BLUEPRINT_DeleteBackfill(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { DeleteBackfill(Delegate); };
 	/**
+	 * @private
+	 * @brief Delete this session, removing it from queue, the browser, and deleting active backfills
+	 * @param [in] Delegate Callback delegate for the deleted session
+	 */
+	virtual void DeleteSession(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::DeleteSession, ); };
+	/**
+	 * @private
+	 * @brief Delete this session, removing it from queue, the browser, and deleting active backfills
+	 * @param [in] Delegate Callback delegate for the deleted session
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Delete Session", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_DeleteSession(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { DeleteSession(Delegate); };
+	/**
 	 * @brief Emit an event to the session audit log
 	 * @param [in] AuditEvent The event to send
 	 * @param [in] Delegate Callback delegate for the completion of the audit event
@@ -1242,6 +1255,12 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with backfill data
 	*/
 	virtual void DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @private
+	 * @brief Delete this session, removing it from queue, the browser, and deleting active backfills
+	 * @param [in] Delegate Callback delegate for the deleted session
+	 */
+	virtual void DeleteSession(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	* @brief Emit an event to the session audit log
 	* @param [in] AuditEvent The event to send
@@ -1529,6 +1548,12 @@ public:
 	* @param [in] Delegate Callback delegate for the session being updated with backfill data
 	*/
 	virtual void DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	/**
+	 * @private
+	 * @brief Delete this session, removing it from queue, the browser, and deleting active backfills
+	 * @param [in] Delegate Callback delegate for the deleted session
+	 */
+	virtual void DeleteSession(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	* @brief Emit an event to the session audit log
 	* @param [in] AuditEvent The event to send
