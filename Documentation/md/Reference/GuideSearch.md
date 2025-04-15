@@ -105,8 +105,8 @@ Input to generate a RH_GuideSearch object from the RH_GuideSubsystem.
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public ERHAPI_SearchGuideSort `[`SortBy`](#structFRH__GuideSearchRequest_1a5c0b3871738f07507779abd8d8792ec2) | Field to sort the results by.
-`public ERHAPI_SortDirection `[`Sort`](#structFRH__GuideSearchRequest_1a69a74e6db2932f2a7694b060bb5c0126) | Direction to sort the results.
+`public TArray< ERHAPI_SearchGuideSort > `[`SortBy`](#structFRH__GuideSearchRequest_1a929f9288637ec209ea22429b26398be5) | Field to sort the results by.
+`public TArray< ERHAPI_SortDirection > `[`Sort`](#structFRH__GuideSearchRequest_1afa6e5b02919302e7bc448f628cc5350d) | Direction to sort the results.
 `public int32 `[`PageSize`](#structFRH__GuideSearchRequest_1aa11345b4b6ac52820fca98380517e5b7) | Page Size of the request - 0 will use the default.
 `public bool `[`bDoOwnerSearch`](#structFRH__GuideSearchRequest_1a1f52bf3978c60127c3323d99b3699375) | Should the owner be checked when searching?
 `public ERHAPI_GuideEntityType `[`OwnerEntityType`](#structFRH__GuideSearchRequest_1af75e3b399e0944765b067afa06695ac6) | Type of the entity that owns the guide.
@@ -151,11 +151,11 @@ Input to generate a RH_GuideSearch object from the RH_GuideSubsystem.
 
 ### Members
 
-#### `public ERHAPI_SearchGuideSort `[`SortBy`](#structFRH__GuideSearchRequest_1a5c0b3871738f07507779abd8d8792ec2) <a id="structFRH__GuideSearchRequest_1a5c0b3871738f07507779abd8d8792ec2"></a>
+#### `public TArray< ERHAPI_SearchGuideSort > `[`SortBy`](#structFRH__GuideSearchRequest_1a929f9288637ec209ea22429b26398be5) <a id="structFRH__GuideSearchRequest_1a929f9288637ec209ea22429b26398be5"></a>
 
 Field to sort the results by.
 
-#### `public ERHAPI_SortDirection `[`Sort`](#structFRH__GuideSearchRequest_1a69a74e6db2932f2a7694b060bb5c0126) <a id="structFRH__GuideSearchRequest_1a69a74e6db2932f2a7694b060bb5c0126"></a>
+#### `public TArray< ERHAPI_SortDirection > `[`Sort`](#structFRH__GuideSearchRequest_1afa6e5b02919302e7bc448f628cc5350d) <a id="structFRH__GuideSearchRequest_1afa6e5b02919302e7bc448f628cc5350d"></a>
 
 Direction to sort the results.
 

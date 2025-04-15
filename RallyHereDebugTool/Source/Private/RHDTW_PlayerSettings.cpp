@@ -252,7 +252,7 @@ void FRHDTW_PlayerSettings::DoSettingsTypes()
 				{
 					if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*FString::Printf(TEXT("%s##%s"), *VersionPair.Key, *Pair.Key)), RH_DefaultTreeFlagsLeaf | ImGuiTreeNodeFlags_DefaultOpen))
 					{
-						ImGuiDisplayJsonObject(VersionPair.Value.GetValueJsonschema().GetObject(), true);
+						ImGuiDisplayJsonObject(VersionPair.Value.GetValueJsonschema(), true);
 						ImGui::TreePop();
 					}
 				}

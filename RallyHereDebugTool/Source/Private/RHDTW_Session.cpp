@@ -548,7 +548,6 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			{
 				RHSession->ForcePollForUpdate(true);
 			}
-
 			auto UpdateTimer = RHSession->GetPollTimeRemaining();
 			if (UpdateTimer >= 0)
 			{
@@ -563,6 +562,11 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			if (ImGui::Button("Leave"))
 			{
 				RHJoinedSession->Leave(false);
+			}
+			ImGui::SameLine();
+			if (ImGui::Button("Delete Session"))
+			{
+				RHJoinedSession->DeleteSession();
 			}
 		}
 		else if (RHInvitedSession != nullptr)

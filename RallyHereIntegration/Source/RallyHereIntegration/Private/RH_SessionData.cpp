@@ -1286,6 +1286,12 @@ void URH_OfflineSession::DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock&
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
+void URH_OfflineSession::DeleteSession(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
+	Leave(false, Delegate);
+}
+
 void URH_OfflineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
 {
 	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
@@ -1854,6 +1860,17 @@ void URH_OnlineSession::DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock& 
 	}
 
 	const auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateBrowserInfoPriority);
+	Helper->Start(Request);
+}
+
+void URH_OnlineSession::DeleteSession(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_DeleteSession BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+
+	const auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionDeletePriority);
 	Helper->Start(Request);
 }
 

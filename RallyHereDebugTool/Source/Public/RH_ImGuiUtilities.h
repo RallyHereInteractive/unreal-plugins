@@ -137,6 +137,7 @@ FORCEINLINE void RALLYHEREDEBUGTOOL_API ImGuiDisplayShortenedCopyableUuid(const 
 
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayJsonObject(const TSharedPtr<FJsonObject> JsonObject, bool bHasCopyAllButton);
 void RALLYHEREDEBUGTOOL_API ImGuiDisplayJsonArray(const TArray<TSharedPtr<FJsonValue>> JsonArray);
+void RALLYHEREDEBUGTOOL_API ImGuiDisplayJsonObject(const TMap<FString, FRHAPI_JsonValue>& JsonObject, bool bHasCopyAllButton);
 
 template<typename ModelType>
 void ImGuiDisplayModelData(const ModelType& Model)
@@ -197,6 +198,36 @@ bool RALLYHEREDEBUGTOOL_API ImGuiDisplayEnumCombo(const FString& ComboLabel, T& 
 		}
 	}
 	return bChanged;
+}
+
+template<typename T>
+bool RALLYHEREDEBUGTOOL_API ImGuiDisplayListEnumCombos(const FString& ComboLabel, TArray<T>& CurrentValue)
+{
+	bool bAnyChanged = false;
+	ImGui::PushID(&ComboLabel);
+
+	ImGui::Text(ComboLabel);
+	ImGui::SameLine();
+
+	for (int32 x = 0; x < CurrentValue.Num(); ++x)
+	{
+		bAnyChanged = ImGuiDisplayEnumCombo(FString::FromInt(x), CurrentValue[x]) || bAnyChanged;
+	}
+
+	if (ImGui::Button("-"))
+	{
+		CurrentValue.Pop();
+		bAnyChanged = true;
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("+"))
+	{
+		CurrentValue.AddDefaulted();
+		bAnyChanged = true;
+	}
+
+	ImGui::PopID();
+	return bAnyChanged;
 }
 
 // changes current value reference if changed, returns true if changed

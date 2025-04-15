@@ -547,6 +547,9 @@ public:
 	/** @brief Sets the request priority of Delete Browser Info calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionDeleteBrowserInfoPriority;
+	/** @brief Sets the request priority of Delete Session calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionDeletePriority;
 	/** @brief Sets the request priority of Instance Health update calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionInstanceHealthUpdatePriority;
