@@ -14444,6 +14444,10 @@ FString FRequest_KickPlayerFromSessionById::ComputePath() const
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/id/{player_id}"), PathParams);
 
 	TArray<FString> QueryParams;
+	if(Reason.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("reason=")) + ToUrlString(Reason.GetValue()));
+	}
 	if(RefreshTtl.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
@@ -14685,6 +14689,10 @@ FString FRequest_KickPlayerFromSessionByUuid::ComputePath() const
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/uuid/{player_uuid}"), PathParams);
 
 	TArray<FString> QueryParams;
+	if(Reason.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("reason=")) + ToUrlString(Reason.GetValue()));
+	}
 	if(RefreshTtl.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
@@ -14950,6 +14958,10 @@ FString FRequest_KickPlayerFromSessionByUuidV2::ComputePath() const
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/{player_uuid}"), PathParams);
 
 	TArray<FString> QueryParams;
+	if(Reason.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("reason=")) + ToUrlString(Reason.GetValue()));
+	}
 	if(RefreshTtl.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
@@ -15691,6 +15703,10 @@ FString FRequest_LeaveSessionByIdSelf::ComputePath() const
 	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/me"), PathParams);
 
 	TArray<FString> QueryParams;
+	if(Reason.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("reason=")) + ToUrlString(Reason.GetValue()));
+	}
 	if(RefreshTtl.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
