@@ -6070,6 +6070,7 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionById : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FString SessionId;
 	int32 PlayerId = 0;
+	TOptional<FString> Reason;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -6176,6 +6177,7 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuid : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FString SessionId;
 	FGuid PlayerUuid;
+	TOptional<FString> Reason;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -6298,6 +6300,7 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuidV2 : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FString SessionId;
 	FGuid PlayerUuid;
+	TOptional<FString> Reason;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -6633,6 +6636,7 @@ struct RALLYHEREAPI_API FRequest_LeaveSessionByIdSelf : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString SessionId;
+	TOptional<FString> Reason;
 	TOptional<bool> RefreshTtl;
 };
 

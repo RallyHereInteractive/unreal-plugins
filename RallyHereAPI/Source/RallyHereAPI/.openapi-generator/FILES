@@ -195,6 +195,7 @@ Private/MatchState.cpp
 Private/MatchTimeline.cpp
 Private/MatchTimelineEvent.cpp
 Private/MatchTimelinePage.cpp
+Private/MatchTimelineProperties.cpp
 Private/MatchValuesOnly.cpp
 Private/MatchWithPlayers.cpp
 Private/MatchmakingInfo.cpp
@@ -620,6 +621,7 @@ Public/MatchState.h
 Public/MatchTimeline.h
 Public/MatchTimelineEvent.h
 Public/MatchTimelinePage.h
+Public/MatchTimelineProperties.h
 Public/MatchValuesOnly.h
 Public/MatchWithPlayers.h
 Public/MatchmakingInfo.h

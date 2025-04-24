@@ -441,6 +441,8 @@ struct RALLYHEREAPI_API Traits_DequeueMeForPurge
  * Required Permissions:
  * 
  * - For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
+ * 
+ * - For the person themselves : `purge:person:self`
 */
 struct RALLYHEREAPI_API FRequest_DequeuePersonForPurge : public FRequest
 {
@@ -3222,6 +3224,8 @@ struct RALLYHEREAPI_API Traits_GetQueuePurgeStatusForMe
  * Required Permissions:
  * 
  * - For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
+ * 
+ * - For the person themselves : `purge:person:self`
 */
 struct RALLYHEREAPI_API FRequest_GetQueuePurgeStatusForPerson : public FRequest
 {
@@ -3687,7 +3691,13 @@ struct RALLYHEREAPI_API Traits_LookupPlayerByPortal
 
 /**
  * @brief Queue Me For Purge
- * Queue person on the access token for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.
+ * Queue a person for purging. This can occur up to a configured amount of time in the future or can occur immediately depending on `suggested_purge_time`.
+ * 
+ * Required Permissions:
+ * 
+ * - For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
+ * 
+ * - For the person themselves : `purge:person:self`
 */
 struct RALLYHEREAPI_API FRequest_QueueMeForPurge : public FRequest
 {
@@ -3799,6 +3809,8 @@ struct RALLYHEREAPI_API Traits_QueueMeForPurge
  * Required Permissions:
  * 
  * - For any person (including themselves) any of: `purge:*:*`, `purge:person:admin`
+ * 
+ * - For the person themselves : `purge:person:self`
 */
 struct RALLYHEREAPI_API FRequest_QueuePersonForPurge : public FRequest
 {
