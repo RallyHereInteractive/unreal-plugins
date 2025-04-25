@@ -561,7 +561,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		{
 			if (ImGui::Button("Leave"))
 			{
-				RHJoinedSession->Leave(false);
+				RHJoinedSession->Leave(false, "Client Leave");
 			}
 			ImGui::SameLine();
 			if (ImGui::Button("Delete Session"))
@@ -578,7 +578,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 			ImGui::SameLine();
 			if (ImGui::Button("Decline"))
 			{
-				RHInvitedSession->Leave(FRH_OnSessionUpdatedDelegate());
+				RHInvitedSession->Leave("Decline Invite", FRH_OnSessionUpdatedDelegate());
 			}
 		}
 		else if (Session.Joinable) // sessions that are freely joinable

@@ -431,13 +431,17 @@ void URH_InvitedSession::Join(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 	URH_OnlineSession::JoinById(GetSessionId(), GetSessionOwner(), Delegate);
 }
 
-void URH_InvitedSession::Leave(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_InvitedSession::Leave(const FString& LeaveReason, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 
 	FRH_SessionLeaveHelper::BaseType::Request Request;
 	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
+	if (!LeaveReason.IsEmpty())
+	{
+		Request.Reason = LeaveReason;
+	}
 
 	auto Helper = MakeShared<FRH_SessionLeaveHelper>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
 	Helper->Start(Request);
@@ -981,7 +985,7 @@ void URH_OfflineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const T
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
-void URH_OfflineSession::Leave(bool bFromOSS, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OfflineSession::Leave(bool bFromOSS, const FString& LeaveReason, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// for now, empty player list to remove all players from the session, then import to clean up
 	FRH_APISessionWithETag UpdateWrapper(SessionData);
@@ -1289,7 +1293,7 @@ void URH_OfflineSession::DeleteBackfill(const FRH_OnSessionUpdatedDelegateBlock&
 void URH_OfflineSession::DeleteSession(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, VeryVerbose, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
-	Leave(false, Delegate);
+	Leave(false, FString(), Delegate);
 }
 
 void URH_OfflineSession::EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate) const
@@ -1588,13 +1592,17 @@ void URH_OnlineSession::UpdatePlayerCustomData(const FGuid& PlayerUuid, const TM
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::Leave(bool bFromOSS, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OnlineSession::Leave(bool bFromOSS, const FString& LeaveReason, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Log, TEXT("[%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *GetSessionId());
 
 	FRH_SessionLeaveHelper::BaseType::Request Request;
 	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
+	if (!LeaveReason.IsEmpty())
+	{ 
+		Request.Reason = LeaveReason;
+	}
 
 	auto Helper = MakeShared<FRH_SessionLeaveHelper>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
 	Helper->Start(Request);
