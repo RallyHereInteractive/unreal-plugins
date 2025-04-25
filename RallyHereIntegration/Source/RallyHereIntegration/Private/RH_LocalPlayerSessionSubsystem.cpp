@@ -994,7 +994,7 @@ void URH_LocalPlayerSessionSubsystem::OnPlatformSessionParticipantsChanged(FName
 			const auto RHSession = Syncer->GetRHSession();
 			if (RHSession != nullptr)
 			{
-				RHSession->Leave(true);
+				RHSession->Leave(true, "Platform Session Participants Changed");
 			}
 		}
 	}

@@ -795,7 +795,7 @@ Invited Sessions are sessions that the player has been invited to.
 --------------------------------|---------------------------------------------
 `public inline virtual bool `[`IsOffline`](#classURH__InvitedSession_1af877279192bb132ceb1128b5fc5f6f2b)`() const` | Gets that an invited session is not an offline session.
 `public virtual void `[`Join`](#classURH__InvitedSession_1a533ddfa3135881b4b4ed6b7f57cb809e)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Accepts to join the session.
-`public virtual void `[`Leave`](#classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Declines to join the session.
+`public virtual void `[`Leave`](#classURH__InvitedSession_1a685d6efd8ef21e58ca01142f09e028e1)`(const FString & LeaveReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Declines to join the session.
 `public virtual void `[`QueryInviterBlockedOnPlatformAsync`](#classURH__InvitedSession_1a3caca59784784c406ee3df3a800492e6)`(const FRH_OnSessionPlayerIsBlockedDelegateBlock & Delegate)` | Determines if the Inviter of this session is blocked by the player on their current platform.
 
 ### Members
@@ -811,7 +811,7 @@ Accepts to join the session.
 #### Parameters
 * `Delegate` The callback delegate for the session being updated by the join.
 
-#### `public virtual void `[`Leave`](#classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__InvitedSession_1ac9e1131d672b7e6f7dd4a476d54e80aa"></a>
+#### `public virtual void `[`Leave`](#classURH__InvitedSession_1a685d6efd8ef21e58ca01142f09e028e1)`(const FString & LeaveReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__InvitedSession_1a685d6efd8ef21e58ca01142f09e028e1"></a>
 
 Declines to join the session.
 
@@ -850,7 +850,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`RemovePlayerPermission`](#classURH__OfflineSession_1a61b2cd0bc8a71e505ad4c336cce13c06)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Revokes a specific session permission from a player.
 `public virtual void `[`SwapPlayerTeams`](#classURH__OfflineSession_1a3c543c48fdc9fe0d82912ef2635bdae4)`(const FGuid & PlayerUuidA,const FGuid & PlayerUuidB,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Swaps the teams of a specified pair of players.
 `public virtual void `[`UpdatePlayerCustomData`](#classURH__OfflineSession_1aa58dc5637c9e083c6990f7832077a60d)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
-`public virtual void `[`Leave`](#classURH__OfflineSession_1ac9879abe8ef573431669f5e4b2c99f14)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
+`public virtual void `[`Leave`](#classURH__OfflineSession_1aa782883d490c19fd1f50dd3349d71dd7)`(bool bFromOSSSession,const FString & LeaveReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OfflineSession_1a15f9d178c350737ffd1c7315b174b9d3)`(const `[`FRHAPI_InstanceRequest`](RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OfflineSession_1a42d2adfee51e818244e98e0d0888f410)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
 `public virtual void `[`GenerateVoipLoginToken`](#classURH__OfflineSession_1ac27726a868507a3200bf8724f57270df)`(const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP login token.
@@ -942,7 +942,7 @@ Swaps the teams of a specified pair of players.
 
 Currently not supported for offline sessions.
 
-#### `public virtual void `[`Leave`](#classURH__OfflineSession_1ac9879abe8ef573431669f5e4b2c99f14)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1ac9879abe8ef573431669f5e4b2c99f14"></a>
+#### `public virtual void `[`Leave`](#classURH__OfflineSession_1aa782883d490c19fd1f50dd3349d71dd7)`(bool bFromOSSSession,const FString & LeaveReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1aa782883d490c19fd1f50dd3349d71dd7"></a>
 
 Leaves the session.
 
@@ -1086,7 +1086,7 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`ChangePlayerTeam`](#classURH__OnlineSession_1ab35d9139e68b21dd3ee9ed779fb37f16)`(const FGuid & PlayerUuid,int32 Team,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Changes the team a given player is associated with in the session.
 `public virtual void `[`SwapPlayerTeams`](#classURH__OnlineSession_1a84fe6960f643869d2e96966c8f7386c3)`(const FGuid & PlayerUuidA,const FGuid & PlayerUuidB,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Swaps the teams of a specified pair of players.
 `public virtual void `[`UpdatePlayerCustomData`](#classURH__OnlineSession_1a8f35a3597ef47c2570e9489e62ac6d23)`(const FGuid & PlayerUuid,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Changes the session player's custom data.
-`public virtual void `[`Leave`](#classURH__OnlineSession_1abb7f5b8c9eaadd30166337a5dccebbbe)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
+`public virtual void `[`Leave`](#classURH__OnlineSession_1a58592bde912fd2c21de8906f5b88dcce)`(bool bFromOSSSession,const FString & LeaveReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Leaves the session.
 `public virtual void `[`RequestInstance`](#classURH__OnlineSession_1aae906a67108cba268d73786229e8aa94)`(const `[`FRHAPI_InstanceRequest`](RHAPI_InstanceRequest.md#structFRHAPI__InstanceRequest)` & InstanceRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Attempt to create a new instance for the session.
 `public virtual void `[`EndInstance`](#classURH__OnlineSession_1a38a05f415495a019c3f02fcae76317ec)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
 `public virtual void `[`GenerateVoipLoginToken`](#classURH__OnlineSession_1aada1d23777b026c76b7e7b5bb2669b95)`(const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP login token.
@@ -1293,7 +1293,7 @@ Changes the session player's custom data.
 
 * `Delegate` Callback delegate for the session being updated by the player update
 
-#### `public virtual void `[`Leave`](#classURH__OnlineSession_1abb7f5b8c9eaadd30166337a5dccebbbe)`(bool bFromOSSSession,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1abb7f5b8c9eaadd30166337a5dccebbbe"></a>
+#### `public virtual void `[`Leave`](#classURH__OnlineSession_1a58592bde912fd2c21de8906f5b88dcce)`(bool bFromOSSSession,const FString & LeaveReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a58592bde912fd2c21de8906f5b88dcce"></a>
 
 Leaves the session.
 

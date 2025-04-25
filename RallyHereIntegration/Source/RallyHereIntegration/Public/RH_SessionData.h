@@ -601,14 +601,14 @@ public:
 	 * @brief Declines to join the session.
 	 * @param [in] Delegate The callback delegate for the session being updated by the leave.
 	 */
-	virtual void Leave(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	virtual void Leave(const FString& LeaveReason = FString(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
 	/**
 	 * @private
 	 * @brief Blueprint compatible version of Leave
 	 * @param [in] Delegate The callback delegate for the session being updated by the leave.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Leave", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_Leave(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { return Leave(Delegate); }
+	void BLUEPRINT_Leave(const FString& LeaveReason, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { return Leave(LeaveReason, Delegate); }
 
 	/**
 	 * @brief Determines if the Inviter of this session is blocked by the player on their current platform
@@ -887,7 +887,7 @@ public:
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leave.
 	 */
-	virtual void Leave(bool bFromOSSSession, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::Leave, ); }
+	virtual void Leave(bool bFromOSSSession, const FString& LeaveReason = FString(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::Leave, ); }
 	/**
 	 * @private
 	 * @brief Blueprint compatible version of Leave
@@ -895,7 +895,7 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the leave.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Leave", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_Leave(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { Leave(false, Delegate); }
+	void BLUEPRINT_Leave(const FString& LeaveReason, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { Leave(false, LeaveReason, Delegate); }
 	/**
 	 * @brief Attempt to create a new instance for the session.
 	 * @param [in] InstanceRequest Details for the instance being requested.
@@ -1191,7 +1191,7 @@ public:
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leave.
 	 */
-	virtual void Leave(bool bFromOSSSession, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void Leave(bool bFromOSSSession, const FString& LeaveReason = FString(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Attempt to create a new instance for the session.
 	 * @param [in] InstanceRequest Details for the instance being requested.
@@ -1484,7 +1484,7 @@ public:
 	 * @param [in] bFromOSSSession If true, then leave the OSS Session. Otherwise, just leave the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the leave.
 	 */
-	virtual void Leave(bool bFromOSSSession, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void Leave(bool bFromOSSSession, const FString& LeaveReason = FString(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Attempt to create a new instance for the session.
 	 * @param [in] InstanceRequest Details for the instance being requested.
