@@ -35,7 +35,9 @@ A session resource.
 `public bool `[`Backfill_IsSet`](#structFRHAPI__Session_1a7d8bfe390d73575b4e826316bf6e6594) | true if Backfill_Optional has been set to a value
 `public `[`FRHAPI_BrowserInfo`](RHAPI_BrowserInfo.md#structFRHAPI__BrowserInfo)` `[`Browser_Optional`](#structFRHAPI__Session_1a7595f83d2fded5187f30268f207bfc54) | Info about the browser state of the session.
 `public bool `[`Browser_IsSet`](#structFRHAPI__Session_1aa1ace01879821c9c9b2b978cf2d3bcb4) | true if Browser_Optional has been set to a value
-`public bool `[`Joinable`](#structFRHAPI__Session_1a9a4a29da2db810fc7b40b6e955839907) | Is this session freely joinable by players without an invite?
+`public bool `[`Joinable`](#structFRHAPI__Session_1a9a4a29da2db810fc7b40b6e955839907) | DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?
+`public `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` `[`Joinability_Optional`](#structFRHAPI__Session_1a1ec8d2dcede7023322ae35acae15d5ee) | Flags regarding the joinability of this session.
+`public bool `[`Joinability_IsSet`](#structFRHAPI__Session_1a3460072e3c449b202600835032b17250) | true if Joinability_Optional has been set to a value
 `public TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > `[`Teams`](#structFRHAPI__Session_1a3489eec79e810de928f11a6d36b6d16e) | List of teams of players currently in the session.
 `public bool `[`TeamsSuppressed_Optional`](#structFRHAPI__Session_1a1004833c638e8fa8792fd43d346080f1) | Flag showing if the list of players has been automatically suppressed due to its size.
 `public bool `[`TeamsSuppressed_IsSet`](#structFRHAPI__Session_1a10f57fbd85b3cab5ad92ea7534e44432) | true if TeamsSuppressed_Optional has been set to a value
@@ -126,6 +128,16 @@ A session resource.
 `public inline void `[`SetJoinable`](#structFRHAPI__Session_1a35182afcd9b38c0e95b7cc1006ccbfe3)`(bool && NewValue)` | Sets the value of Joinable using move semantics.
 `public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__Session_1ab2c839e89e7ef8c8d3517f4dea32e913)`() const` | Returns true if Joinable matches the default value.
 `public inline void `[`SetJoinableToDefault`](#structFRHAPI__Session_1ad32ed242c030d95e88564f3f0bd98711)`()` | Sets the value of Joinable to its default
+`public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__Session_1a33b7de38d1c83a31fde04aa99a5dfa79)`()` | Gets the value of Joinability_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__Session_1a1e84333728e9c3328bee5cf5cd1722ec)`() const` | Gets the value of Joinability_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__Session_1a2adfa5b1c190fd5fb1f430cb9d37a794)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & DefaultValue) const` | Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetJoinability`](#structFRHAPI__Session_1a6107d4d7ca39a1f00cfba84d7f43812d)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & OutValue) const` | Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__Session_1a15ac972647b9e57d2b5ef2f8b30d03dd)`()` | Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__Session_1ae8aa9f9dcdeaa9f36ec0fc31cf089b88)`() const` | Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetJoinability`](#structFRHAPI__Session_1aa8d404ed7d8007e03edcad6f9571fa14)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & NewValue)` | Sets the value of Joinability_Optional and also sets Joinability_IsSet to true.
+`public inline void `[`SetJoinability`](#structFRHAPI__Session_1acacfc032135c0735a5c1307e15e3a2c3)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` && NewValue)` | Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics.
+`public inline void `[`ClearJoinability`](#structFRHAPI__Session_1aff87c76d2f5047604451dbd22a68aa6b)`()` | Clears the value of Joinability_Optional and sets Joinability_IsSet to false.
+`public inline bool `[`IsJoinabilitySet`](#structFRHAPI__Session_1a5b312ab0d16c49f62c32dcbdfcaa4496)`() const` | Checks whether Joinability_Optional has been set.
 `public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__Session_1af96e217465111de6975e9e2d81f0fc59)`()` | Gets the value of Teams.
 `public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__Session_1aa523ab545157774bd7dfad8800f62b39)`() const` | Gets the value of Teams.
 `public inline void `[`SetTeams`](#structFRHAPI__Session_1a8cd13fe6b5b0a94a42b93d5183adc3c2)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` | Sets the value of Teams.
@@ -259,7 +271,15 @@ true if Browser_Optional has been set to a value
 
 #### `public bool `[`Joinable`](#structFRHAPI__Session_1a9a4a29da2db810fc7b40b6e955839907) <a id="structFRHAPI__Session_1a9a4a29da2db810fc7b40b6e955839907"></a>
 
-Is this session freely joinable by players without an invite?
+DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?
+
+#### `public `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` `[`Joinability_Optional`](#structFRHAPI__Session_1a1ec8d2dcede7023322ae35acae15d5ee) <a id="structFRHAPI__Session_1a1ec8d2dcede7023322ae35acae15d5ee"></a>
+
+Flags regarding the joinability of this session.
+
+#### `public bool `[`Joinability_IsSet`](#structFRHAPI__Session_1a3460072e3c449b202600835032b17250) <a id="structFRHAPI__Session_1a3460072e3c449b202600835032b17250"></a>
+
+true if Joinability_Optional has been set to a value
 
 #### `public TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > `[`Teams`](#structFRHAPI__Session_1a3489eec79e810de928f11a6d36b6d16e) <a id="structFRHAPI__Session_1a3489eec79e810de928f11a6d36b6d16e"></a>
 
@@ -629,6 +649,46 @@ Returns true if Joinable matches the default value.
 #### `public inline void `[`SetJoinableToDefault`](#structFRHAPI__Session_1ad32ed242c030d95e88564f3f0bd98711)`()` <a id="structFRHAPI__Session_1ad32ed242c030d95e88564f3f0bd98711"></a>
 
 Sets the value of Joinable to its default
+
+#### `public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__Session_1a33b7de38d1c83a31fde04aa99a5dfa79)`()` <a id="structFRHAPI__Session_1a33b7de38d1c83a31fde04aa99a5dfa79"></a>
+
+Gets the value of Joinability_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__Session_1a1e84333728e9c3328bee5cf5cd1722ec)`() const` <a id="structFRHAPI__Session_1a1e84333728e9c3328bee5cf5cd1722ec"></a>
+
+Gets the value of Joinability_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__Session_1a2adfa5b1c190fd5fb1f430cb9d37a794)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & DefaultValue) const` <a id="structFRHAPI__Session_1a2adfa5b1c190fd5fb1f430cb9d37a794"></a>
+
+Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetJoinability`](#structFRHAPI__Session_1a6107d4d7ca39a1f00cfba84d7f43812d)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & OutValue) const` <a id="structFRHAPI__Session_1a6107d4d7ca39a1f00cfba84d7f43812d"></a>
+
+Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__Session_1a15ac972647b9e57d2b5ef2f8b30d03dd)`()` <a id="structFRHAPI__Session_1a15ac972647b9e57d2b5ef2f8b30d03dd"></a>
+
+Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__Session_1ae8aa9f9dcdeaa9f36ec0fc31cf089b88)`() const` <a id="structFRHAPI__Session_1ae8aa9f9dcdeaa9f36ec0fc31cf089b88"></a>
+
+Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetJoinability`](#structFRHAPI__Session_1aa8d404ed7d8007e03edcad6f9571fa14)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & NewValue)` <a id="structFRHAPI__Session_1aa8d404ed7d8007e03edcad6f9571fa14"></a>
+
+Sets the value of Joinability_Optional and also sets Joinability_IsSet to true.
+
+#### `public inline void `[`SetJoinability`](#structFRHAPI__Session_1acacfc032135c0735a5c1307e15e3a2c3)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` && NewValue)` <a id="structFRHAPI__Session_1acacfc032135c0735a5c1307e15e3a2c3"></a>
+
+Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearJoinability`](#structFRHAPI__Session_1aff87c76d2f5047604451dbd22a68aa6b)`()` <a id="structFRHAPI__Session_1aff87c76d2f5047604451dbd22a68aa6b"></a>
+
+Clears the value of Joinability_Optional and sets Joinability_IsSet to false.
+
+#### `public inline bool `[`IsJoinabilitySet`](#structFRHAPI__Session_1a5b312ab0d16c49f62c32dcbdfcaa4496)`() const` <a id="structFRHAPI__Session_1a5b312ab0d16c49f62c32dcbdfcaa4496"></a>
+
+Checks whether Joinability_Optional has been set.
 
 #### `public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__Session_1af96e217465111de6975e9e2d81f0fc59)`()` <a id="structFRHAPI__Session_1af96e217465111de6975e9e2d81f0fc59"></a>
 

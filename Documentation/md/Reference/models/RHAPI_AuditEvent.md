@@ -31,6 +31,8 @@ struct FRHAPI_AuditEvent
 `public bool `[`RegionId_IsSet`](#structFRHAPI__AuditEvent_1a893d0bec95f55de1e7940e6ddc9e00db) | true if RegionId_Optional has been set to a value
 `public bool `[`Joinable_Optional`](#structFRHAPI__AuditEvent_1a1256853740991d081ebf0b20b3dfd1d3) | Whether or not the session is publicly joinable.
 `public bool `[`Joinable_IsSet`](#structFRHAPI__AuditEvent_1a012943831fcce2063015ebcaf99528ee) | true if Joinable_Optional has been set to a value
+`public `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` `[`Joinability_Optional`](#structFRHAPI__AuditEvent_1a99138d0c3ecf5bb9afb306f8ece85e53) | Joinability flags about the session.
+`public bool `[`Joinability_IsSet`](#structFRHAPI__AuditEvent_1a705a57dd95f3272b3abefc365762b0d4) | true if Joinability_Optional has been set to a value
 `public TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > `[`UpdatedTeams_Optional`](#structFRHAPI__AuditEvent_1a110622e0fcf6ce7cc039092cf7d850f4) | Updated team numbers and sizes.
 `public bool `[`UpdatedTeams_IsSet`](#structFRHAPI__AuditEvent_1a37fafea2ba386d1de011fb7376788931) | true if UpdatedTeams_Optional has been set to a value
 `public ERHAPI_InviteSource `[`Source_Optional`](#structFRHAPI__AuditEvent_1ab46da29e9df35e19749e8734b59ef20c) | The source of an invite.
@@ -87,6 +89,10 @@ struct FRHAPI_AuditEvent
 `public bool `[`QueuedSessionId_IsSet`](#structFRHAPI__AuditEvent_1a5a5f65ee89fdfb66ef22a55a163baf57) | true if QueuedSessionId_Optional has been set to a value
 `public FString `[`MatchId_Optional`](#structFRHAPI__AuditEvent_1ae7b833650a917745d46a07e479f80666) | ID of a match that was associated with this session.
 `public bool `[`MatchId_IsSet`](#structFRHAPI__AuditEvent_1a332d101db5ba1b3e56e508f0a39bc954) | true if MatchId_Optional has been set to a value
+`public int32 `[`TicketWaitSeconds_Optional`](#structFRHAPI__AuditEvent_1a412d9228a781030cbb71d7957e4b39df) | The total time in seconds that the ticket waited before being assigned to a match.
+`public bool `[`TicketWaitSeconds_IsSet`](#structFRHAPI__AuditEvent_1a6def889fe45294b755f47847353b9d97) | true if TicketWaitSeconds_Optional has been set to a value
+`public FString `[`MatchMakingProfileId_Optional`](#structFRHAPI__AuditEvent_1adf818df32527ae3d08ee6c2b9dca6aae) | ID of the MatchMakingProfile used to create this session.
+`public bool `[`MatchMakingProfileId_IsSet`](#structFRHAPI__AuditEvent_1a4cb9a0e235175385d99767546e0427de) | true if MatchMakingProfileId_Optional has been set to a value
 `public FGuid `[`RequestingUserUuid_Optional`](#structFRHAPI__AuditEvent_1af0252ad8092c0b033ddf45a8eef3698e) | 
 `public bool `[`RequestingUserUuid_IsSet`](#structFRHAPI__AuditEvent_1aa1eaf461666b39f72b48f3a24ba21f85) | true if RequestingUserUuid_Optional has been set to a value
 `public FDateTime `[`EventDatetime`](#structFRHAPI__AuditEvent_1abaade7e25cc8bbb04e5efe8ccb7f9800) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
@@ -152,6 +158,16 @@ struct FRHAPI_AuditEvent
 `public inline bool `[`IsJoinableSet`](#structFRHAPI__AuditEvent_1a43ba077bd0755667d6e877f8ae744f32)`() const` | Checks whether Joinable_Optional has been set.
 `public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__AuditEvent_1a062943023a7051996bb465b133bc5958)`() const` | Returns true if Joinable_Optional is set and matches the default value.
 `public inline void `[`SetJoinableToDefault`](#structFRHAPI__AuditEvent_1a39e7075fd253eeae1b073585358cf895)`()` | Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
+`public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1ab29776594ae5adf35c05690666bd0225)`()` | Gets the value of Joinability_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a2278ee347cba2c0b621e7a38e0408b69)`() const` | Gets the value of Joinability_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a4a4ccaa445fab0b6c72affa0e8fa3df9)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & DefaultValue) const` | Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetJoinability`](#structFRHAPI__AuditEvent_1a37a8a67aac1a5743a8e9cc3571736701)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & OutValue) const` | Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1a535a2b68f8e2f3d51d5ca45dbffa64e2)`()` | Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1ae377f809f334ec9bcb2517d71d3ba941)`() const` | Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetJoinability`](#structFRHAPI__AuditEvent_1aa154d67561e52ffdccfebc0dd1740917)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & NewValue)` | Sets the value of Joinability_Optional and also sets Joinability_IsSet to true.
+`public inline void `[`SetJoinability`](#structFRHAPI__AuditEvent_1ac97de6acc90b3f4810086324e726f31a)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` && NewValue)` | Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics.
+`public inline void `[`ClearJoinability`](#structFRHAPI__AuditEvent_1a08826e9cd16abcb3f0e813fa32468e53)`()` | Clears the value of Joinability_Optional and sets Joinability_IsSet to false.
+`public inline bool `[`IsJoinabilitySet`](#structFRHAPI__AuditEvent_1a4da0d72a9169610e8e21d2b017ad2573)`() const` | Checks whether Joinability_Optional has been set.
 `public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ac700dbebcf2968bb67ff9cf0fc0823ed)`()` | Gets the value of UpdatedTeams_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a5c824ad3dd4a49348a82de17356c7ce2)`() const` | Gets the value of UpdatedTeams_Optional, regardless of it having been set.
 `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ab7571d1e4c48f53f904abe2b15f09a37)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & DefaultValue) const` | Gets the value of UpdatedTeams_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -434,6 +450,28 @@ struct FRHAPI_AuditEvent
 `public inline void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a1391a972d06c5729368c556d4071d865)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchId`](#structFRHAPI__AuditEvent_1abd7aede0da0d4e281062c95871342c64)`()` | Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 `public inline bool `[`IsMatchIdSet`](#structFRHAPI__AuditEvent_1acf38bcadf9e3d05e939c9477bbfb9473)`() const` | Checks whether MatchId_Optional has been set.
+`public inline int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ad3d33b518432acdf4b99bff7df4978e4)`()` | Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a486e5e758d34b39767a58ead73c31438)`() const` | Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1abf560aec3fee3de593e17b623fcb92b5)`(const int32 & DefaultValue) const` | Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a54d18a2c205dd02d1d9c122c31f06ba0)`(int32 & OutValue) const` | Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false.
+`public inline int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a4bc693f393a509b00819116e304e4ff5)`()` | Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a0061f53a2454f57ed062e6deb4e6794a)`() const` | Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1aa02be7d3ae4c882aa7656d31c19eff8c)`(const int32 & NewValue)` | Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true.
+`public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ab63f8680973b2905c3218cfbe66c1367)`(int32 && NewValue)` | Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics.
+`public inline void `[`ClearTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a3af20dcc3e27f27208426a7fea762903)`()` | Clears the value of TicketWaitSeconds_Optional and sets TicketWaitSeconds_IsSet to false.
+`public inline bool `[`IsTicketWaitSecondsSet`](#structFRHAPI__AuditEvent_1a02ab5fa4ddae185a3d6cf7dfa11a1820)`() const` | Checks whether TicketWaitSeconds_Optional has been set.
+`public inline bool `[`IsTicketWaitSecondsDefaultValue`](#structFRHAPI__AuditEvent_1addf11ae30eb6bef1716cf792b7cab53c)`() const` | Returns true if TicketWaitSeconds_Optional is set and matches the default value.
+`public inline void `[`SetTicketWaitSecondsToDefault`](#structFRHAPI__AuditEvent_1a9b771ccbad80ad6561e55a1c7a9face2)`()` | Sets the value of TicketWaitSeconds_Optional to its default and also sets TicketWaitSeconds_IsSet to true.
+`public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aafeacede13da3a0fae86b9499c2fbdd1)`()` | Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a8f1d7eccc2692b594fe27740dedf2472)`() const` | Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+`public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a2450dea9d9aaa0f54dc9731216da6956)`(const FString & DefaultValue) const` | Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a8d64d14b8a49cd3d54569edc92df2904)`(FString & OutValue) const` | Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1aaf9a207f7df898003360655b24f4cf99)`()` | Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1af8f68c0b847ed31f9ac3f106d117f775)`() const` | Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1ad8db2f347cb96ee609b4dd572f10f9ee)`(const FString & NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
+`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a240b6ed82f00ff4e8bec365140ee9905)`(FString && NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true using move semantics.
+`public inline void `[`ClearMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aa7bfe9b037f73477af70134787142759)`()` | Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
+`public inline bool `[`IsMatchMakingProfileIdSet`](#structFRHAPI__AuditEvent_1a72f0bbaa28dacd3ef71ed18ddfd951f4)`() const` | Checks whether MatchMakingProfileId_Optional has been set.
 `public inline FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a609df074a0871796fe29aef9dbcbe1fa)`()` | Gets the value of RequestingUserUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a969bfc23d39269e7c1dc7c5fe59d458e)`() const` | Gets the value of RequestingUserUuid_Optional, regardless of it having been set.
 `public inline const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a1af550c49bda3db684b4fdbe88865058)`(const FGuid & DefaultValue) const` | Gets the value of RequestingUserUuid_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -498,6 +536,14 @@ Whether or not the session is publicly joinable.
 #### `public bool `[`Joinable_IsSet`](#structFRHAPI__AuditEvent_1a012943831fcce2063015ebcaf99528ee) <a id="structFRHAPI__AuditEvent_1a012943831fcce2063015ebcaf99528ee"></a>
 
 true if Joinable_Optional has been set to a value
+
+#### `public `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` `[`Joinability_Optional`](#structFRHAPI__AuditEvent_1a99138d0c3ecf5bb9afb306f8ece85e53) <a id="structFRHAPI__AuditEvent_1a99138d0c3ecf5bb9afb306f8ece85e53"></a>
+
+Joinability flags about the session.
+
+#### `public bool `[`Joinability_IsSet`](#structFRHAPI__AuditEvent_1a705a57dd95f3272b3abefc365762b0d4) <a id="structFRHAPI__AuditEvent_1a705a57dd95f3272b3abefc365762b0d4"></a>
+
+true if Joinability_Optional has been set to a value
 
 #### `public TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > `[`UpdatedTeams_Optional`](#structFRHAPI__AuditEvent_1a110622e0fcf6ce7cc039092cf7d850f4) <a id="structFRHAPI__AuditEvent_1a110622e0fcf6ce7cc039092cf7d850f4"></a>
 
@@ -722,6 +768,22 @@ ID of a match that was associated with this session.
 #### `public bool `[`MatchId_IsSet`](#structFRHAPI__AuditEvent_1a332d101db5ba1b3e56e508f0a39bc954) <a id="structFRHAPI__AuditEvent_1a332d101db5ba1b3e56e508f0a39bc954"></a>
 
 true if MatchId_Optional has been set to a value
+
+#### `public int32 `[`TicketWaitSeconds_Optional`](#structFRHAPI__AuditEvent_1a412d9228a781030cbb71d7957e4b39df) <a id="structFRHAPI__AuditEvent_1a412d9228a781030cbb71d7957e4b39df"></a>
+
+The total time in seconds that the ticket waited before being assigned to a match.
+
+#### `public bool `[`TicketWaitSeconds_IsSet`](#structFRHAPI__AuditEvent_1a6def889fe45294b755f47847353b9d97) <a id="structFRHAPI__AuditEvent_1a6def889fe45294b755f47847353b9d97"></a>
+
+true if TicketWaitSeconds_Optional has been set to a value
+
+#### `public FString `[`MatchMakingProfileId_Optional`](#structFRHAPI__AuditEvent_1adf818df32527ae3d08ee6c2b9dca6aae) <a id="structFRHAPI__AuditEvent_1adf818df32527ae3d08ee6c2b9dca6aae"></a>
+
+ID of the MatchMakingProfile used to create this session.
+
+#### `public bool `[`MatchMakingProfileId_IsSet`](#structFRHAPI__AuditEvent_1a4cb9a0e235175385d99767546e0427de) <a id="structFRHAPI__AuditEvent_1a4cb9a0e235175385d99767546e0427de"></a>
+
+true if MatchMakingProfileId_Optional has been set to a value
 
 #### `public FGuid `[`RequestingUserUuid_Optional`](#structFRHAPI__AuditEvent_1af0252ad8092c0b033ddf45a8eef3698e) <a id="structFRHAPI__AuditEvent_1af0252ad8092c0b033ddf45a8eef3698e"></a>
 
@@ -989,6 +1051,46 @@ Returns true if Joinable_Optional is set and matches the default value.
 #### `public inline void `[`SetJoinableToDefault`](#structFRHAPI__AuditEvent_1a39e7075fd253eeae1b073585358cf895)`()` <a id="structFRHAPI__AuditEvent_1a39e7075fd253eeae1b073585358cf895"></a>
 
 Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
+
+#### `public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1ab29776594ae5adf35c05690666bd0225)`()` <a id="structFRHAPI__AuditEvent_1ab29776594ae5adf35c05690666bd0225"></a>
+
+Gets the value of Joinability_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a2278ee347cba2c0b621e7a38e0408b69)`() const` <a id="structFRHAPI__AuditEvent_1a2278ee347cba2c0b621e7a38e0408b69"></a>
+
+Gets the value of Joinability_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a4a4ccaa445fab0b6c72affa0e8fa3df9)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a4a4ccaa445fab0b6c72affa0e8fa3df9"></a>
+
+Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetJoinability`](#structFRHAPI__AuditEvent_1a37a8a67aac1a5743a8e9cc3571736701)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1a37a8a67aac1a5743a8e9cc3571736701"></a>
+
+Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1a535a2b68f8e2f3d51d5ca45dbffa64e2)`()` <a id="structFRHAPI__AuditEvent_1a535a2b68f8e2f3d51d5ca45dbffa64e2"></a>
+
+Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1ae377f809f334ec9bcb2517d71d3ba941)`() const` <a id="structFRHAPI__AuditEvent_1ae377f809f334ec9bcb2517d71d3ba941"></a>
+
+Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetJoinability`](#structFRHAPI__AuditEvent_1aa154d67561e52ffdccfebc0dd1740917)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & NewValue)` <a id="structFRHAPI__AuditEvent_1aa154d67561e52ffdccfebc0dd1740917"></a>
+
+Sets the value of Joinability_Optional and also sets Joinability_IsSet to true.
+
+#### `public inline void `[`SetJoinability`](#structFRHAPI__AuditEvent_1ac97de6acc90b3f4810086324e726f31a)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` && NewValue)` <a id="structFRHAPI__AuditEvent_1ac97de6acc90b3f4810086324e726f31a"></a>
+
+Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearJoinability`](#structFRHAPI__AuditEvent_1a08826e9cd16abcb3f0e813fa32468e53)`()` <a id="structFRHAPI__AuditEvent_1a08826e9cd16abcb3f0e813fa32468e53"></a>
+
+Clears the value of Joinability_Optional and sets Joinability_IsSet to false.
+
+#### `public inline bool `[`IsJoinabilitySet`](#structFRHAPI__AuditEvent_1a4da0d72a9169610e8e21d2b017ad2573)`() const` <a id="structFRHAPI__AuditEvent_1a4da0d72a9169610e8e21d2b017ad2573"></a>
+
+Checks whether Joinability_Optional has been set.
 
 #### `public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ac700dbebcf2968bb67ff9cf0fc0823ed)`()` <a id="structFRHAPI__AuditEvent_1ac700dbebcf2968bb67ff9cf0fc0823ed"></a>
 
@@ -2117,6 +2219,94 @@ Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 #### `public inline bool `[`IsMatchIdSet`](#structFRHAPI__AuditEvent_1acf38bcadf9e3d05e939c9477bbfb9473)`() const` <a id="structFRHAPI__AuditEvent_1acf38bcadf9e3d05e939c9477bbfb9473"></a>
 
 Checks whether MatchId_Optional has been set.
+
+#### `public inline int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ad3d33b518432acdf4b99bff7df4978e4)`()` <a id="structFRHAPI__AuditEvent_1ad3d33b518432acdf4b99bff7df4978e4"></a>
+
+Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a486e5e758d34b39767a58ead73c31438)`() const` <a id="structFRHAPI__AuditEvent_1a486e5e758d34b39767a58ead73c31438"></a>
+
+Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1abf560aec3fee3de593e17b623fcb92b5)`(const int32 & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1abf560aec3fee3de593e17b623fcb92b5"></a>
+
+Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a54d18a2c205dd02d1d9c122c31f06ba0)`(int32 & OutValue) const` <a id="structFRHAPI__AuditEvent_1a54d18a2c205dd02d1d9c122c31f06ba0"></a>
+
+Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a4bc693f393a509b00819116e304e4ff5)`()` <a id="structFRHAPI__AuditEvent_1a4bc693f393a509b00819116e304e4ff5"></a>
+
+Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a0061f53a2454f57ed062e6deb4e6794a)`() const` <a id="structFRHAPI__AuditEvent_1a0061f53a2454f57ed062e6deb4e6794a"></a>
+
+Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1aa02be7d3ae4c882aa7656d31c19eff8c)`(const int32 & NewValue)` <a id="structFRHAPI__AuditEvent_1aa02be7d3ae4c882aa7656d31c19eff8c"></a>
+
+Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true.
+
+#### `public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ab63f8680973b2905c3218cfbe66c1367)`(int32 && NewValue)` <a id="structFRHAPI__AuditEvent_1ab63f8680973b2905c3218cfbe66c1367"></a>
+
+Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a3af20dcc3e27f27208426a7fea762903)`()` <a id="structFRHAPI__AuditEvent_1a3af20dcc3e27f27208426a7fea762903"></a>
+
+Clears the value of TicketWaitSeconds_Optional and sets TicketWaitSeconds_IsSet to false.
+
+#### `public inline bool `[`IsTicketWaitSecondsSet`](#structFRHAPI__AuditEvent_1a02ab5fa4ddae185a3d6cf7dfa11a1820)`() const` <a id="structFRHAPI__AuditEvent_1a02ab5fa4ddae185a3d6cf7dfa11a1820"></a>
+
+Checks whether TicketWaitSeconds_Optional has been set.
+
+#### `public inline bool `[`IsTicketWaitSecondsDefaultValue`](#structFRHAPI__AuditEvent_1addf11ae30eb6bef1716cf792b7cab53c)`() const` <a id="structFRHAPI__AuditEvent_1addf11ae30eb6bef1716cf792b7cab53c"></a>
+
+Returns true if TicketWaitSeconds_Optional is set and matches the default value.
+
+#### `public inline void `[`SetTicketWaitSecondsToDefault`](#structFRHAPI__AuditEvent_1a9b771ccbad80ad6561e55a1c7a9face2)`()` <a id="structFRHAPI__AuditEvent_1a9b771ccbad80ad6561e55a1c7a9face2"></a>
+
+Sets the value of TicketWaitSeconds_Optional to its default and also sets TicketWaitSeconds_IsSet to true.
+
+#### `public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aafeacede13da3a0fae86b9499c2fbdd1)`()` <a id="structFRHAPI__AuditEvent_1aafeacede13da3a0fae86b9499c2fbdd1"></a>
+
+Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a8f1d7eccc2692b594fe27740dedf2472)`() const` <a id="structFRHAPI__AuditEvent_1a8f1d7eccc2692b594fe27740dedf2472"></a>
+
+Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a2450dea9d9aaa0f54dc9731216da6956)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a2450dea9d9aaa0f54dc9731216da6956"></a>
+
+Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a8d64d14b8a49cd3d54569edc92df2904)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a8d64d14b8a49cd3d54569edc92df2904"></a>
+
+Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1aaf9a207f7df898003360655b24f4cf99)`()` <a id="structFRHAPI__AuditEvent_1aaf9a207f7df898003360655b24f4cf99"></a>
+
+Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1af8f68c0b847ed31f9ac3f106d117f775)`() const` <a id="structFRHAPI__AuditEvent_1af8f68c0b847ed31f9ac3f106d117f775"></a>
+
+Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1ad8db2f347cb96ee609b4dd572f10f9ee)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1ad8db2f347cb96ee609b4dd572f10f9ee"></a>
+
+Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
+
+#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a240b6ed82f00ff4e8bec365140ee9905)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a240b6ed82f00ff4e8bec365140ee9905"></a>
+
+Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aa7bfe9b037f73477af70134787142759)`()` <a id="structFRHAPI__AuditEvent_1aa7bfe9b037f73477af70134787142759"></a>
+
+Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
+
+#### `public inline bool `[`IsMatchMakingProfileIdSet`](#structFRHAPI__AuditEvent_1a72f0bbaa28dacd3ef71ed18ddfd951f4)`() const` <a id="structFRHAPI__AuditEvent_1a72f0bbaa28dacd3ef71ed18ddfd951f4"></a>
+
+Checks whether MatchMakingProfileId_Optional has been set.
 
 #### `public inline FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a609df074a0871796fe29aef9dbcbe1fa)`()` <a id="structFRHAPI__AuditEvent_1a609df074a0871796fe29aef9dbcbe1fa"></a>
 

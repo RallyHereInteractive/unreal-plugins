@@ -32,7 +32,7 @@ struct FRHAPI_EntitlementEventRequest
 `public int32 `[`Quantity_Optional`](#structFRHAPI__EntitlementEventRequest_1a427988aae863278137d510b0d02c6d51) | The quantity for the event.
 `public bool `[`Quantity_IsSet`](#structFRHAPI__EntitlementEventRequest_1aaa8e6337d345e8257aaa555393c1f949) | true if Quantity_Optional has been set to a value
 `public FString `[`PlatformTransactionId`](#structFRHAPI__EntitlementEventRequest_1a6d6b511b12d274e9984896e564e399c8) | The external transaction ID for the event.
-`public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`PlatformData_Optional`](#structFRHAPI__EntitlementEventRequest_1a3d80b9f3869cceb4771c137413cd7d30) | 
+`public TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > `[`PlatformData_Optional`](#structFRHAPI__EntitlementEventRequest_1acb7ef633e8bbc66fb39e431d447025b9) | 
 `public bool `[`PlatformData_IsSet`](#structFRHAPI__EntitlementEventRequest_1a68e89c8d276068e108bb5055544533e2) | true if PlatformData_Optional has been set to a value
 `public bool `[`PlatformData_IsNull`](#structFRHAPI__EntitlementEventRequest_1a5b8464098bb80588fcefd07846d94775) | true if PlatformData_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__EntitlementEventRequest_1a4309e72a57783240427ec034fa3e0f88)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
@@ -93,14 +93,14 @@ struct FRHAPI_EntitlementEventRequest
 `public inline const FString & `[`GetPlatformTransactionId`](#structFRHAPI__EntitlementEventRequest_1aa174dac4dbfe825101c9ff20d21d61b1)`() const` | Gets the value of PlatformTransactionId.
 `public inline void `[`SetPlatformTransactionId`](#structFRHAPI__EntitlementEventRequest_1ad9599ee8b29356b39511d934f7699504)`(const FString & NewValue)` | Sets the value of PlatformTransactionId.
 `public inline void `[`SetPlatformTransactionId`](#structFRHAPI__EntitlementEventRequest_1a06c9810b3e1a776e1045ac5163e70c4c)`(FString && NewValue)` | Sets the value of PlatformTransactionId using move semantics.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ac71802057c53cfde9953128ab59f91f1)`()` | Gets the value of PlatformData_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a29c58ee187528a11765b0245dde82693)`() const` | Gets the value of PlatformData_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a098b91ed6810a63789794689d8a83f46)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` | Gets the value of PlatformData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ab71d9699e0fa6e6a498393c5c839df70)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` | Fills OutValue with the value of PlatformData_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEventRequest_1a7d22953606000b53c9b4aa79dbcc1da4)`()` | Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEventRequest_1a7824f35f9436684e3964dbe409fe1dbf)`() const` | Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a8ac5f400eec82df73bfc0d75f8feca8c)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` | Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true.
-`public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a5b3b1b5e13e86776bd69e3cf158c2bf7)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` | Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics.
+`public inline TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ab564fe0bfc21e767309c85e808e744c3)`()` | Gets the value of PlatformData_Optional, regardless of it having been set.
+`public inline const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1af684c9d42bd6f850f1757a39b93939aa)`() const` | Gets the value of PlatformData_Optional, regardless of it having been set.
+`public inline const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ac6abaec84c8b5e98bcf7ecb9dc9d3284)`(const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & DefaultValue) const` | Gets the value of PlatformData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a8ccb17f5fdf3d08e387e05b7187ff145)`(TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & OutValue) const` | Fills OutValue with the value of PlatformData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEventRequest_1ad6744df1f0b2e017911a19d2d355814d)`()` | Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEventRequest_1a819cf11cb6a6a4ddcc99c4d8c063f239)`() const` | Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ad6bcd30b6774fc6df7ee33b307bc4416)`(const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & NewValue)` | Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true.
+`public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a83f6d12c6665f08c19814812bdcdea1b)`(TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > && NewValue)` | Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformData`](#structFRHAPI__EntitlementEventRequest_1a2c87d43e88c16674be4f11149059b822)`()` | Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false.
 `public inline bool `[`IsPlatformDataSet`](#structFRHAPI__EntitlementEventRequest_1ab6494854717dbfc942ec101d182283c5)`() const` | Checks whether PlatformData_Optional has been set.
 `public inline void `[`SetPlatformDataToNull`](#structFRHAPI__EntitlementEventRequest_1aeefa7937893501ad8850b52865ab44b5)`()` | Sets the value explicitly to be treated as null.
@@ -152,7 +152,7 @@ true if Quantity_Optional has been set to a value
 
 The external transaction ID for the event.
 
-#### `public `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` `[`PlatformData_Optional`](#structFRHAPI__EntitlementEventRequest_1a3d80b9f3869cceb4771c137413cd7d30) <a id="structFRHAPI__EntitlementEventRequest_1a3d80b9f3869cceb4771c137413cd7d30"></a>
+#### `public TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > `[`PlatformData_Optional`](#structFRHAPI__EntitlementEventRequest_1acb7ef633e8bbc66fb39e431d447025b9) <a id="structFRHAPI__EntitlementEventRequest_1acb7ef633e8bbc66fb39e431d447025b9"></a>
 
 #### `public bool `[`PlatformData_IsSet`](#structFRHAPI__EntitlementEventRequest_1a68e89c8d276068e108bb5055544533e2) <a id="structFRHAPI__EntitlementEventRequest_1a68e89c8d276068e108bb5055544533e2"></a>
 
@@ -403,35 +403,35 @@ Sets the value of PlatformTransactionId.
 
 Sets the value of PlatformTransactionId using move semantics.
 
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ac71802057c53cfde9953128ab59f91f1)`()` <a id="structFRHAPI__EntitlementEventRequest_1ac71802057c53cfde9953128ab59f91f1"></a>
+#### `public inline TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ab564fe0bfc21e767309c85e808e744c3)`()` <a id="structFRHAPI__EntitlementEventRequest_1ab564fe0bfc21e767309c85e808e744c3"></a>
 
 Gets the value of PlatformData_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a29c58ee187528a11765b0245dde82693)`() const` <a id="structFRHAPI__EntitlementEventRequest_1a29c58ee187528a11765b0245dde82693"></a>
+#### `public inline const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1af684c9d42bd6f850f1757a39b93939aa)`() const` <a id="structFRHAPI__EntitlementEventRequest_1af684c9d42bd6f850f1757a39b93939aa"></a>
 
 Gets the value of PlatformData_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a098b91ed6810a63789794689d8a83f46)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` <a id="structFRHAPI__EntitlementEventRequest_1a098b91ed6810a63789794689d8a83f46"></a>
+#### `public inline const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ac6abaec84c8b5e98bcf7ecb9dc9d3284)`(const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & DefaultValue) const` <a id="structFRHAPI__EntitlementEventRequest_1ac6abaec84c8b5e98bcf7ecb9dc9d3284"></a>
 
 Gets the value of PlatformData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ab71d9699e0fa6e6a498393c5c839df70)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` <a id="structFRHAPI__EntitlementEventRequest_1ab71d9699e0fa6e6a498393c5c839df70"></a>
+#### `public inline bool `[`GetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a8ccb17f5fdf3d08e387e05b7187ff145)`(TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & OutValue) const` <a id="structFRHAPI__EntitlementEventRequest_1a8ccb17f5fdf3d08e387e05b7187ff145"></a>
 
 Fills OutValue with the value of PlatformData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEventRequest_1a7d22953606000b53c9b4aa79dbcc1da4)`()` <a id="structFRHAPI__EntitlementEventRequest_1a7d22953606000b53c9b4aa79dbcc1da4"></a>
+#### `public inline TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEventRequest_1ad6744df1f0b2e017911a19d2d355814d)`()` <a id="structFRHAPI__EntitlementEventRequest_1ad6744df1f0b2e017911a19d2d355814d"></a>
 
 Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEventRequest_1a7824f35f9436684e3964dbe409fe1dbf)`() const` <a id="structFRHAPI__EntitlementEventRequest_1a7824f35f9436684e3964dbe409fe1dbf"></a>
+#### `public inline const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > * `[`GetPlatformDataOrNull`](#structFRHAPI__EntitlementEventRequest_1a819cf11cb6a6a4ddcc99c4d8c063f239)`() const` <a id="structFRHAPI__EntitlementEventRequest_1a819cf11cb6a6a4ddcc99c4d8c063f239"></a>
 
 Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a8ac5f400eec82df73bfc0d75f8feca8c)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` <a id="structFRHAPI__EntitlementEventRequest_1a8ac5f400eec82df73bfc0d75f8feca8c"></a>
+#### `public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1ad6bcd30b6774fc6df7ee33b307bc4416)`(const TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > & NewValue)` <a id="structFRHAPI__EntitlementEventRequest_1ad6bcd30b6774fc6df7ee33b307bc4416"></a>
 
 Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true.
 
-#### `public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a5b3b1b5e13e86776bd69e3cf158c2bf7)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` <a id="structFRHAPI__EntitlementEventRequest_1a5b3b1b5e13e86776bd69e3cf158c2bf7"></a>
+#### `public inline void `[`SetPlatformData`](#structFRHAPI__EntitlementEventRequest_1a83f6d12c6665f08c19814812bdcdea1b)`(TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > && NewValue)` <a id="structFRHAPI__EntitlementEventRequest_1a83f6d12c6665f08c19814812bdcdea1b"></a>
 
 Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics.
 
