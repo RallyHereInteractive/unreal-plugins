@@ -342,6 +342,33 @@ struct RALLYHEREAPI_API FRHAPI_MatchMakingSessionRequest : public FRHAPI_Model
 	void SetMatchMakingProfileId(const FString& NewValue) { MatchMakingProfileId = NewValue;   }
 	/** @brief Sets the value of MatchMakingProfileId using move semantics */
 	void SetMatchMakingProfileId(FString&& NewValue) { MatchMakingProfileId = NewValue;   }
+
+	/** @brief Map of ticket_id to unix time that each ticket was added to the match */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, float> TicketAddedUnixTime_Optional{  };
+	/** @brief true if TicketAddedUnixTime_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TicketAddedUnixTime_IsSet{ false };
+	/** @brief Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set */
+	TMap<FString, float>& GetTicketAddedUnixTime() { return TicketAddedUnixTime_Optional; }
+	/** @brief Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set */
+	const TMap<FString, float>& GetTicketAddedUnixTime() const { return TicketAddedUnixTime_Optional; }
+	/** @brief Gets the value of TicketAddedUnixTime_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, float>& GetTicketAddedUnixTime(const TMap<FString, float>& DefaultValue) const { if (TicketAddedUnixTime_IsSet) return TicketAddedUnixTime_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TicketAddedUnixTime_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTicketAddedUnixTime(TMap<FString, float>& OutValue) const { if (TicketAddedUnixTime_IsSet) OutValue = TicketAddedUnixTime_Optional; return TicketAddedUnixTime_IsSet; }
+	/** @brief Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, float>* GetTicketAddedUnixTimeOrNull() { if (TicketAddedUnixTime_IsSet) return (&TicketAddedUnixTime_Optional); return nullptr; }
+	/** @brief Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, float>* GetTicketAddedUnixTimeOrNull() const { if (TicketAddedUnixTime_IsSet) return (&TicketAddedUnixTime_Optional); return nullptr; }
+	/** @brief Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true */
+	void SetTicketAddedUnixTime(const TMap<FString, float>& NewValue) { TicketAddedUnixTime_Optional = NewValue; TicketAddedUnixTime_IsSet = true;  }
+	/** @brief Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true using move semantics */
+	void SetTicketAddedUnixTime(TMap<FString, float>&& NewValue) { TicketAddedUnixTime_Optional = NewValue; TicketAddedUnixTime_IsSet = true;  }
+	/** @brief Clears the value of TicketAddedUnixTime_Optional and sets TicketAddedUnixTime_IsSet to false */
+	void ClearTicketAddedUnixTime() { TicketAddedUnixTime_IsSet = false;  }
+	/** @brief Checks whether TicketAddedUnixTime_Optional has been set */
+	bool IsTicketAddedUnixTimeSet() const { return TicketAddedUnixTime_IsSet; }
 };
 
 /** @} */

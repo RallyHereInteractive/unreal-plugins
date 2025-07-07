@@ -203,6 +203,33 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingResults : public FRHAPI_Model
 	void ClearProfile() { Profile_IsSet = false;  }
 	/** @brief Checks whether Profile_Optional has been set */
 	bool IsProfileSet() const { return Profile_IsSet; }
+
+	/** @brief The total time in seconds that each ticket waited before being assigned to a match */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, int32> TicketWaitSeconds_Optional{  };
+	/** @brief true if TicketWaitSeconds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TicketWaitSeconds_IsSet{ false };
+	/** @brief Gets the value of TicketWaitSeconds_Optional, regardless of it having been set */
+	TMap<FString, int32>& GetTicketWaitSeconds() { return TicketWaitSeconds_Optional; }
+	/** @brief Gets the value of TicketWaitSeconds_Optional, regardless of it having been set */
+	const TMap<FString, int32>& GetTicketWaitSeconds() const { return TicketWaitSeconds_Optional; }
+	/** @brief Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue */
+	const TMap<FString, int32>& GetTicketWaitSeconds(const TMap<FString, int32>& DefaultValue) const { if (TicketWaitSeconds_IsSet) return TicketWaitSeconds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTicketWaitSeconds(TMap<FString, int32>& OutValue) const { if (TicketWaitSeconds_IsSet) OutValue = TicketWaitSeconds_Optional; return TicketWaitSeconds_IsSet; }
+	/** @brief Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr */
+	TMap<FString, int32>* GetTicketWaitSecondsOrNull() { if (TicketWaitSeconds_IsSet) return (&TicketWaitSeconds_Optional); return nullptr; }
+	/** @brief Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr */
+	const TMap<FString, int32>* GetTicketWaitSecondsOrNull() const { if (TicketWaitSeconds_IsSet) return (&TicketWaitSeconds_Optional); return nullptr; }
+	/** @brief Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true */
+	void SetTicketWaitSeconds(const TMap<FString, int32>& NewValue) { TicketWaitSeconds_Optional = NewValue; TicketWaitSeconds_IsSet = true;  }
+	/** @brief Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics */
+	void SetTicketWaitSeconds(TMap<FString, int32>&& NewValue) { TicketWaitSeconds_Optional = NewValue; TicketWaitSeconds_IsSet = true;  }
+	/** @brief Clears the value of TicketWaitSeconds_Optional and sets TicketWaitSeconds_IsSet to false */
+	void ClearTicketWaitSeconds() { TicketWaitSeconds_IsSet = false;  }
+	/** @brief Checks whether TicketWaitSeconds_Optional has been set */
+	bool IsTicketWaitSecondsSet() const { return TicketWaitSeconds_IsSet; }
 };
 
 /** @} */

@@ -10,10 +10,13 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "InventoryBucket.h"
+#include "InventoryOperation.h"
+#include "InventorySelector.h"
 #include "PlayerOrderDetail.h"
 #include "PlayerOrderEntryResult.h"
 #include "PlayerOrderEntryType.h"
 #include "PurchasePrice.h"
+#include "XpQuantityTransform.h"
 #include "PlayerOrderEntry.generated.h"
 
 /** @defgroup RHAPI_PlayerOrderEntry RallyHere API Model PlayerOrderEntry
@@ -520,6 +523,195 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderEntry : public FRHAPI_Model
 	void SetExpiresToNull() { Expires_IsSet = true; Expires_IsNull = true; }
 	/** @brief Checks whether Expires_Optional is set to null */
 	bool IsExpiresNull() const { return Expires_IsSet && Expires_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_XpQuantityTransform XpQuantityTransformType_Optional{  };
+	/** @brief true if XpQuantityTransformType_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool XpQuantityTransformType_IsSet{ false };
+	/** @brief Gets the value of XpQuantityTransformType_Optional, regardless of it having been set */
+	ERHAPI_XpQuantityTransform& GetXpQuantityTransformType() { return XpQuantityTransformType_Optional; }
+	/** @brief Gets the value of XpQuantityTransformType_Optional, regardless of it having been set */
+	const ERHAPI_XpQuantityTransform& GetXpQuantityTransformType() const { return XpQuantityTransformType_Optional; }
+	/** @brief Gets the value of XpQuantityTransformType_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_XpQuantityTransform& GetXpQuantityTransformType(const ERHAPI_XpQuantityTransform& DefaultValue) const { if (XpQuantityTransformType_IsSet) return XpQuantityTransformType_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of XpQuantityTransformType_Optional and returns true if it has been set, otherwise returns false */
+	bool GetXpQuantityTransformType(ERHAPI_XpQuantityTransform& OutValue) const { if (XpQuantityTransformType_IsSet) OutValue = XpQuantityTransformType_Optional; return XpQuantityTransformType_IsSet; }
+	/** @brief Returns a pointer to XpQuantityTransformType_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_XpQuantityTransform* GetXpQuantityTransformTypeOrNull() { if (XpQuantityTransformType_IsSet) return (&XpQuantityTransformType_Optional); return nullptr; }
+	/** @brief Returns a pointer to XpQuantityTransformType_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_XpQuantityTransform* GetXpQuantityTransformTypeOrNull() const { if (XpQuantityTransformType_IsSet) return (&XpQuantityTransformType_Optional); return nullptr; }
+	/** @brief Sets the value of XpQuantityTransformType_Optional and also sets XpQuantityTransformType_IsSet to true */
+	void SetXpQuantityTransformType(const ERHAPI_XpQuantityTransform& NewValue) { XpQuantityTransformType_Optional = NewValue; XpQuantityTransformType_IsSet = true;  }
+	/** @brief Sets the value of XpQuantityTransformType_Optional and also sets XpQuantityTransformType_IsSet to true using move semantics */
+	void SetXpQuantityTransformType(ERHAPI_XpQuantityTransform&& NewValue) { XpQuantityTransformType_Optional = NewValue; XpQuantityTransformType_IsSet = true;  }
+	/** @brief Clears the value of XpQuantityTransformType_Optional and sets XpQuantityTransformType_IsSet to false */
+	void ClearXpQuantityTransformType() { XpQuantityTransformType_IsSet = false;  }
+	/** @brief Checks whether XpQuantityTransformType_Optional has been set */
+	bool IsXpQuantityTransformTypeSet() const { return XpQuantityTransformType_IsSet; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 HardQuantityMaximum_Optional{ 0 };
+	/** @brief true if HardQuantityMaximum_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool HardQuantityMaximum_IsSet{ false };
+	/** @brief true if HardQuantityMaximum_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool HardQuantityMaximum_IsNull{ false };
+	/** @brief Gets the value of HardQuantityMaximum_Optional, regardless of it having been set */
+	int32& GetHardQuantityMaximum() { return HardQuantityMaximum_Optional; }
+	/** @brief Gets the value of HardQuantityMaximum_Optional, regardless of it having been set */
+	const int32& GetHardQuantityMaximum() const { return HardQuantityMaximum_Optional; }
+	/** @brief Gets the value of HardQuantityMaximum_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetHardQuantityMaximum(const int32& DefaultValue) const { if (HardQuantityMaximum_IsSet) return HardQuantityMaximum_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of HardQuantityMaximum_Optional and returns true if it has been set, otherwise returns false */
+	bool GetHardQuantityMaximum(int32& OutValue) const { if (HardQuantityMaximum_IsSet && !HardQuantityMaximum_IsNull) OutValue = HardQuantityMaximum_Optional; return HardQuantityMaximum_IsSet; }
+	/** @brief Returns a pointer to HardQuantityMaximum_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetHardQuantityMaximumOrNull() { if (HardQuantityMaximum_IsSet) return (HardQuantityMaximum_IsNull ? nullptr : &HardQuantityMaximum_Optional); return nullptr; }
+	/** @brief Returns a pointer to HardQuantityMaximum_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetHardQuantityMaximumOrNull() const { if (HardQuantityMaximum_IsSet) return (HardQuantityMaximum_IsNull ? nullptr : &HardQuantityMaximum_Optional); return nullptr; }
+	/** @brief Sets the value of HardQuantityMaximum_Optional and also sets HardQuantityMaximum_IsSet to true */
+	void SetHardQuantityMaximum(const int32& NewValue) { HardQuantityMaximum_Optional = NewValue; HardQuantityMaximum_IsSet = true; HardQuantityMaximum_IsNull = false; }
+	/** @brief Sets the value of HardQuantityMaximum_Optional and also sets HardQuantityMaximum_IsSet to true using move semantics */
+	void SetHardQuantityMaximum(int32&& NewValue) { HardQuantityMaximum_Optional = NewValue; HardQuantityMaximum_IsSet = true; HardQuantityMaximum_IsNull = false; }
+	/** @brief Clears the value of HardQuantityMaximum_Optional and sets HardQuantityMaximum_IsSet to false */
+	void ClearHardQuantityMaximum() { HardQuantityMaximum_Optional = 0; HardQuantityMaximum_IsSet = false; HardQuantityMaximum_IsNull = false; }
+	/** @brief Checks whether HardQuantityMaximum_Optional has been set */
+	bool IsHardQuantityMaximumSet() const { return HardQuantityMaximum_IsSet; }
+	/** @brief Returns true if HardQuantityMaximum_Optional is set and matches the default value */
+	bool IsHardQuantityMaximumDefaultValue() const { return HardQuantityMaximum_IsSet && HardQuantityMaximum_Optional == 0; }
+	/** @brief Sets the value of HardQuantityMaximum_Optional to its default and also sets HardQuantityMaximum_IsSet to true */
+	void SetHardQuantityMaximumToDefault() { SetHardQuantityMaximum(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetHardQuantityMaximumToNull() { HardQuantityMaximum_IsSet = true; HardQuantityMaximum_IsNull = true; }
+	/** @brief Checks whether HardQuantityMaximum_Optional is set to null */
+	bool IsHardQuantityMaximumNull() const { return HardQuantityMaximum_IsSet && HardQuantityMaximum_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_InventoryOperation InventoryOperation_Optional{  };
+	/** @brief true if InventoryOperation_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InventoryOperation_IsSet{ false };
+	/** @brief Gets the value of InventoryOperation_Optional, regardless of it having been set */
+	ERHAPI_InventoryOperation& GetInventoryOperation() { return InventoryOperation_Optional; }
+	/** @brief Gets the value of InventoryOperation_Optional, regardless of it having been set */
+	const ERHAPI_InventoryOperation& GetInventoryOperation() const { return InventoryOperation_Optional; }
+	/** @brief Gets the value of InventoryOperation_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_InventoryOperation& GetInventoryOperation(const ERHAPI_InventoryOperation& DefaultValue) const { if (InventoryOperation_IsSet) return InventoryOperation_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of InventoryOperation_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInventoryOperation(ERHAPI_InventoryOperation& OutValue) const { if (InventoryOperation_IsSet) OutValue = InventoryOperation_Optional; return InventoryOperation_IsSet; }
+	/** @brief Returns a pointer to InventoryOperation_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_InventoryOperation* GetInventoryOperationOrNull() { if (InventoryOperation_IsSet) return (&InventoryOperation_Optional); return nullptr; }
+	/** @brief Returns a pointer to InventoryOperation_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_InventoryOperation* GetInventoryOperationOrNull() const { if (InventoryOperation_IsSet) return (&InventoryOperation_Optional); return nullptr; }
+	/** @brief Sets the value of InventoryOperation_Optional and also sets InventoryOperation_IsSet to true */
+	void SetInventoryOperation(const ERHAPI_InventoryOperation& NewValue) { InventoryOperation_Optional = NewValue; InventoryOperation_IsSet = true;  }
+	/** @brief Sets the value of InventoryOperation_Optional and also sets InventoryOperation_IsSet to true using move semantics */
+	void SetInventoryOperation(ERHAPI_InventoryOperation&& NewValue) { InventoryOperation_Optional = NewValue; InventoryOperation_IsSet = true;  }
+	/** @brief Clears the value of InventoryOperation_Optional and sets InventoryOperation_IsSet to false */
+	void ClearInventoryOperation() { InventoryOperation_IsSet = false;  }
+	/** @brief Checks whether InventoryOperation_Optional has been set */
+	bool IsInventoryOperationSet() const { return InventoryOperation_IsSet; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_InventorySelector InventorySelectorType_Optional{  };
+	/** @brief true if InventorySelectorType_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool InventorySelectorType_IsSet{ false };
+	/** @brief Gets the value of InventorySelectorType_Optional, regardless of it having been set */
+	ERHAPI_InventorySelector& GetInventorySelectorType() { return InventorySelectorType_Optional; }
+	/** @brief Gets the value of InventorySelectorType_Optional, regardless of it having been set */
+	const ERHAPI_InventorySelector& GetInventorySelectorType() const { return InventorySelectorType_Optional; }
+	/** @brief Gets the value of InventorySelectorType_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_InventorySelector& GetInventorySelectorType(const ERHAPI_InventorySelector& DefaultValue) const { if (InventorySelectorType_IsSet) return InventorySelectorType_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of InventorySelectorType_Optional and returns true if it has been set, otherwise returns false */
+	bool GetInventorySelectorType(ERHAPI_InventorySelector& OutValue) const { if (InventorySelectorType_IsSet) OutValue = InventorySelectorType_Optional; return InventorySelectorType_IsSet; }
+	/** @brief Returns a pointer to InventorySelectorType_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_InventorySelector* GetInventorySelectorTypeOrNull() { if (InventorySelectorType_IsSet) return (&InventorySelectorType_Optional); return nullptr; }
+	/** @brief Returns a pointer to InventorySelectorType_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_InventorySelector* GetInventorySelectorTypeOrNull() const { if (InventorySelectorType_IsSet) return (&InventorySelectorType_Optional); return nullptr; }
+	/** @brief Sets the value of InventorySelectorType_Optional and also sets InventorySelectorType_IsSet to true */
+	void SetInventorySelectorType(const ERHAPI_InventorySelector& NewValue) { InventorySelectorType_Optional = NewValue; InventorySelectorType_IsSet = true;  }
+	/** @brief Sets the value of InventorySelectorType_Optional and also sets InventorySelectorType_IsSet to true using move semantics */
+	void SetInventorySelectorType(ERHAPI_InventorySelector&& NewValue) { InventorySelectorType_Optional = NewValue; InventorySelectorType_IsSet = true;  }
+	/** @brief Clears the value of InventorySelectorType_Optional and sets InventorySelectorType_IsSet to false */
+	void ClearInventorySelectorType() { InventorySelectorType_IsSet = false;  }
+	/** @brief Checks whether InventorySelectorType_Optional has been set */
+	bool IsInventorySelectorTypeSet() const { return InventorySelectorType_IsSet; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 QuantityMultInventoryItemId_Optional{ 0 };
+	/** @brief true if QuantityMultInventoryItemId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool QuantityMultInventoryItemId_IsSet{ false };
+	/** @brief true if QuantityMultInventoryItemId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool QuantityMultInventoryItemId_IsNull{ false };
+	/** @brief Gets the value of QuantityMultInventoryItemId_Optional, regardless of it having been set */
+	int32& GetQuantityMultInventoryItemId() { return QuantityMultInventoryItemId_Optional; }
+	/** @brief Gets the value of QuantityMultInventoryItemId_Optional, regardless of it having been set */
+	const int32& GetQuantityMultInventoryItemId() const { return QuantityMultInventoryItemId_Optional; }
+	/** @brief Gets the value of QuantityMultInventoryItemId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetQuantityMultInventoryItemId(const int32& DefaultValue) const { if (QuantityMultInventoryItemId_IsSet) return QuantityMultInventoryItemId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of QuantityMultInventoryItemId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetQuantityMultInventoryItemId(int32& OutValue) const { if (QuantityMultInventoryItemId_IsSet && !QuantityMultInventoryItemId_IsNull) OutValue = QuantityMultInventoryItemId_Optional; return QuantityMultInventoryItemId_IsSet; }
+	/** @brief Returns a pointer to QuantityMultInventoryItemId_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetQuantityMultInventoryItemIdOrNull() { if (QuantityMultInventoryItemId_IsSet) return (QuantityMultInventoryItemId_IsNull ? nullptr : &QuantityMultInventoryItemId_Optional); return nullptr; }
+	/** @brief Returns a pointer to QuantityMultInventoryItemId_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetQuantityMultInventoryItemIdOrNull() const { if (QuantityMultInventoryItemId_IsSet) return (QuantityMultInventoryItemId_IsNull ? nullptr : &QuantityMultInventoryItemId_Optional); return nullptr; }
+	/** @brief Sets the value of QuantityMultInventoryItemId_Optional and also sets QuantityMultInventoryItemId_IsSet to true */
+	void SetQuantityMultInventoryItemId(const int32& NewValue) { QuantityMultInventoryItemId_Optional = NewValue; QuantityMultInventoryItemId_IsSet = true; QuantityMultInventoryItemId_IsNull = false; }
+	/** @brief Sets the value of QuantityMultInventoryItemId_Optional and also sets QuantityMultInventoryItemId_IsSet to true using move semantics */
+	void SetQuantityMultInventoryItemId(int32&& NewValue) { QuantityMultInventoryItemId_Optional = NewValue; QuantityMultInventoryItemId_IsSet = true; QuantityMultInventoryItemId_IsNull = false; }
+	/** @brief Clears the value of QuantityMultInventoryItemId_Optional and sets QuantityMultInventoryItemId_IsSet to false */
+	void ClearQuantityMultInventoryItemId() { QuantityMultInventoryItemId_Optional = 0; QuantityMultInventoryItemId_IsSet = false; QuantityMultInventoryItemId_IsNull = false; }
+	/** @brief Checks whether QuantityMultInventoryItemId_Optional has been set */
+	bool IsQuantityMultInventoryItemIdSet() const { return QuantityMultInventoryItemId_IsSet; }
+	/** @brief Returns true if QuantityMultInventoryItemId_Optional is set and matches the default value */
+	bool IsQuantityMultInventoryItemIdDefaultValue() const { return QuantityMultInventoryItemId_IsSet && QuantityMultInventoryItemId_Optional == 0; }
+	/** @brief Sets the value of QuantityMultInventoryItemId_Optional to its default and also sets QuantityMultInventoryItemId_IsSet to true */
+	void SetQuantityMultInventoryItemIdToDefault() { SetQuantityMultInventoryItemId(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetQuantityMultInventoryItemIdToNull() { QuantityMultInventoryItemId_IsSet = true; QuantityMultInventoryItemId_IsNull = true; }
+	/** @brief Checks whether QuantityMultInventoryItemId_Optional is set to null */
+	bool IsQuantityMultInventoryItemIdNull() const { return QuantityMultInventoryItemId_IsSet && QuantityMultInventoryItemId_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 TimeFrameId_Optional{ 0 };
+	/** @brief true if TimeFrameId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TimeFrameId_IsSet{ false };
+	/** @brief true if TimeFrameId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TimeFrameId_IsNull{ false };
+	/** @brief Gets the value of TimeFrameId_Optional, regardless of it having been set */
+	int32& GetTimeFrameId() { return TimeFrameId_Optional; }
+	/** @brief Gets the value of TimeFrameId_Optional, regardless of it having been set */
+	const int32& GetTimeFrameId() const { return TimeFrameId_Optional; }
+	/** @brief Gets the value of TimeFrameId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetTimeFrameId(const int32& DefaultValue) const { if (TimeFrameId_IsSet) return TimeFrameId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TimeFrameId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTimeFrameId(int32& OutValue) const { if (TimeFrameId_IsSet && !TimeFrameId_IsNull) OutValue = TimeFrameId_Optional; return TimeFrameId_IsSet; }
+	/** @brief Returns a pointer to TimeFrameId_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetTimeFrameIdOrNull() { if (TimeFrameId_IsSet) return (TimeFrameId_IsNull ? nullptr : &TimeFrameId_Optional); return nullptr; }
+	/** @brief Returns a pointer to TimeFrameId_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetTimeFrameIdOrNull() const { if (TimeFrameId_IsSet) return (TimeFrameId_IsNull ? nullptr : &TimeFrameId_Optional); return nullptr; }
+	/** @brief Sets the value of TimeFrameId_Optional and also sets TimeFrameId_IsSet to true */
+	void SetTimeFrameId(const int32& NewValue) { TimeFrameId_Optional = NewValue; TimeFrameId_IsSet = true; TimeFrameId_IsNull = false; }
+	/** @brief Sets the value of TimeFrameId_Optional and also sets TimeFrameId_IsSet to true using move semantics */
+	void SetTimeFrameId(int32&& NewValue) { TimeFrameId_Optional = NewValue; TimeFrameId_IsSet = true; TimeFrameId_IsNull = false; }
+	/** @brief Clears the value of TimeFrameId_Optional and sets TimeFrameId_IsSet to false */
+	void ClearTimeFrameId() { TimeFrameId_Optional = 0; TimeFrameId_IsSet = false; TimeFrameId_IsNull = false; }
+	/** @brief Checks whether TimeFrameId_Optional has been set */
+	bool IsTimeFrameIdSet() const { return TimeFrameId_IsSet; }
+	/** @brief Returns true if TimeFrameId_Optional is set and matches the default value */
+	bool IsTimeFrameIdDefaultValue() const { return TimeFrameId_IsSet && TimeFrameId_Optional == 0; }
+	/** @brief Sets the value of TimeFrameId_Optional to its default and also sets TimeFrameId_IsSet to true */
+	void SetTimeFrameIdToDefault() { SetTimeFrameId(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetTimeFrameIdToNull() { TimeFrameId_IsSet = true; TimeFrameId_IsNull = true; }
+	/** @brief Checks whether TimeFrameId_Optional is set to null */
+	bool IsTimeFrameIdNull() const { return TimeFrameId_IsSet && TimeFrameId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FString> CustomData_Optional{  };

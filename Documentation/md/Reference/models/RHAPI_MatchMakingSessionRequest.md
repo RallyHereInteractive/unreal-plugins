@@ -44,6 +44,8 @@ A request body for a new matchmade session to be created.
 `public float `[`RankQuality_Optional`](#structFRHAPI__MatchMakingSessionRequest_1a4771b58565265f14aab39e00066dcf1b) | The calculated rank quality of the match. Often matches the evaluation score.
 `public bool `[`RankQuality_IsSet`](#structFRHAPI__MatchMakingSessionRequest_1a65a85b662c8ec2be40b7f6404fc8a1ff) | true if RankQuality_Optional has been set to a value
 `public FString `[`MatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1aabf8d934d50af8d4c8fbf2254592feba) | The MatchMakingProfileID that was ultimately used to create this match.
+`public TMap< FString, float > `[`TicketAddedUnixTime_Optional`](#structFRHAPI__MatchMakingSessionRequest_1a38c0f1edf19636c081cd087ae705d68e) | Map of ticket_id to unix time that each ticket was added to the match.
+`public bool `[`TicketAddedUnixTime_IsSet`](#structFRHAPI__MatchMakingSessionRequest_1ae198a78eaf51d23f5e001f4d190783ee) | true if TicketAddedUnixTime_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingSessionRequest_1a1c4d78c2ff5a8def1bd8d5978ac1ec3c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingSessionRequest_1a89ce9dfc3016a35170d0ea6a769120b7)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1a49bf0f7601abe0c89244095e781fd029)`()` | Gets the value of Teams.
@@ -156,6 +158,16 @@ A request body for a new matchmade session to be created.
 `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1ae542a9ff2d789192876b24e41b6ff3c4)`() const` | Gets the value of MatchMakingProfileId.
 `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1ae14c7b08a3da9bf8c40739e31f24a5df)`(const FString & NewValue)` | Sets the value of MatchMakingProfileId.
 `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1a551ce0590b83a1340b21fe80356967e3)`(FString && NewValue)` | Sets the value of MatchMakingProfileId using move semantics.
+`public inline TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a068d46b6ab8cf6734ec5d4e9175720dc)`()` | Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
+`public inline const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a2db2992542d630ee3cee2bdee7b33018)`() const` | Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
+`public inline const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a625f413766aabc438a536ea1ef32677c)`(const TMap< FString, float > & DefaultValue) const` | Gets the value of TicketAddedUnixTime_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1abed8e3874b239baae2adf51aedcbd85b)`(TMap< FString, float > & OutValue) const` | Fills OutValue with the value of TicketAddedUnixTime_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a615d253b2b16ee8bb561d47e3afadf68)`()` | Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1af6df7b611a31a4fafb250b91d734a921)`() const` | Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a80674bc91f8b34edc8731197a8e61ca5)`(const TMap< FString, float > & NewValue)` | Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true.
+`public inline void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a3d6bc6d6263acf29e1dc7052810c0fc6)`(TMap< FString, float > && NewValue)` | Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true using move semantics.
+`public inline void `[`ClearTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a152d74c039fc4b34035d8a96a463e503)`()` | Clears the value of TicketAddedUnixTime_Optional and sets TicketAddedUnixTime_IsSet to false.
+`public inline bool `[`IsTicketAddedUnixTimeSet`](#structFRHAPI__MatchMakingSessionRequest_1a9201153680848714a455773b2b4f2551)`() const` | Checks whether TicketAddedUnixTime_Optional has been set.
 
 ### Members
 
@@ -250,6 +262,14 @@ true if RankQuality_Optional has been set to a value
 #### `public FString `[`MatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1aabf8d934d50af8d4c8fbf2254592feba) <a id="structFRHAPI__MatchMakingSessionRequest_1aabf8d934d50af8d4c8fbf2254592feba"></a>
 
 The MatchMakingProfileID that was ultimately used to create this match.
+
+#### `public TMap< FString, float > `[`TicketAddedUnixTime_Optional`](#structFRHAPI__MatchMakingSessionRequest_1a38c0f1edf19636c081cd087ae705d68e) <a id="structFRHAPI__MatchMakingSessionRequest_1a38c0f1edf19636c081cd087ae705d68e"></a>
+
+Map of ticket_id to unix time that each ticket was added to the match.
+
+#### `public bool `[`TicketAddedUnixTime_IsSet`](#structFRHAPI__MatchMakingSessionRequest_1ae198a78eaf51d23f5e001f4d190783ee) <a id="structFRHAPI__MatchMakingSessionRequest_1ae198a78eaf51d23f5e001f4d190783ee"></a>
+
+true if TicketAddedUnixTime_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingSessionRequest_1a1c4d78c2ff5a8def1bd8d5978ac1ec3c)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a1c4d78c2ff5a8def1bd8d5978ac1ec3c"></a>
 
@@ -707,4 +727,44 @@ Sets the value of MatchMakingProfileId.
 #### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1a551ce0590b83a1340b21fe80356967e3)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a551ce0590b83a1340b21fe80356967e3"></a>
 
 Sets the value of MatchMakingProfileId using move semantics.
+
+#### `public inline TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a068d46b6ab8cf6734ec5d4e9175720dc)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a068d46b6ab8cf6734ec5d4e9175720dc"></a>
+
+Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a2db2992542d630ee3cee2bdee7b33018)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a2db2992542d630ee3cee2bdee7b33018"></a>
+
+Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a625f413766aabc438a536ea1ef32677c)`(const TMap< FString, float > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a625f413766aabc438a536ea1ef32677c"></a>
+
+Gets the value of TicketAddedUnixTime_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1abed8e3874b239baae2adf51aedcbd85b)`(TMap< FString, float > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1abed8e3874b239baae2adf51aedcbd85b"></a>
+
+Fills OutValue with the value of TicketAddedUnixTime_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a615d253b2b16ee8bb561d47e3afadf68)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a615d253b2b16ee8bb561d47e3afadf68"></a>
+
+Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1af6df7b611a31a4fafb250b91d734a921)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1af6df7b611a31a4fafb250b91d734a921"></a>
+
+Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a80674bc91f8b34edc8731197a8e61ca5)`(const TMap< FString, float > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a80674bc91f8b34edc8731197a8e61ca5"></a>
+
+Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true.
+
+#### `public inline void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a3d6bc6d6263acf29e1dc7052810c0fc6)`(TMap< FString, float > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a3d6bc6d6263acf29e1dc7052810c0fc6"></a>
+
+Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a152d74c039fc4b34035d8a96a463e503)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a152d74c039fc4b34035d8a96a463e503"></a>
+
+Clears the value of TicketAddedUnixTime_Optional and sets TicketAddedUnixTime_IsSet to false.
+
+#### `public inline bool `[`IsTicketAddedUnixTimeSet`](#structFRHAPI__MatchMakingSessionRequest_1a9201153680848714a455773b2b4f2551)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a9201153680848714a455773b2b4f2551"></a>
+
+Checks whether TicketAddedUnixTime_Optional has been set.
 

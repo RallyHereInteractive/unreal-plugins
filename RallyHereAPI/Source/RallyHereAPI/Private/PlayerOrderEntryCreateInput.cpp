@@ -130,6 +130,45 @@ void FRHAPI_PlayerOrderEntryCreateInput::WriteJson(TSharedRef<TJsonWriter<>>& Wr
 		else
 		RallyHereAPI::WriteJsonValue(Writer, Expires_Optional);
 	}
+	if (XpQuantityTransformType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("xp_quantity_transform_type"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(XpQuantityTransformType_Optional));
+	}
+	if (HardQuantityMaximum_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("hard_quantity_maximum"));
+		if (HardQuantityMaximum_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, HardQuantityMaximum_Optional);
+	}
+	if (InventoryOperation_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("inventory_operation"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(InventoryOperation_Optional));
+	}
+	if (InventorySelectorType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("inventory_selector_type"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(InventorySelectorType_Optional));
+	}
+	if (QuantityMultInventoryItemId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("quantity_mult_inventory_item_id"));
+		if (QuantityMultInventoryItemId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, QuantityMultInventoryItemId_Optional);
+	}
+	if (TimeFrameId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("time_frame_id"));
+		if (TimeFrameId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, TimeFrameId_Optional);
+	}
 	if (CustomData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
@@ -253,6 +292,45 @@ bool FRHAPI_PlayerOrderEntryCreateInput::FromJson(const TSharedPtr<FJsonValue>& 
 		Expires_IsNull = JsonExpiresField->IsNull();
 		Expires_IsSet = Expires_IsNull || TryGetJsonValue(JsonExpiresField, Expires_Optional);
 		ParseSuccess &= Expires_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonXpQuantityTransformTypeField = (*Object)->TryGetField(TEXT("xp_quantity_transform_type"));
+	if (JsonXpQuantityTransformTypeField.IsValid())
+	{
+		XpQuantityTransformType_IsSet = TryGetJsonValue(JsonXpQuantityTransformTypeField, XpQuantityTransformType_Optional);
+		ParseSuccess &= XpQuantityTransformType_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonHardQuantityMaximumField = (*Object)->TryGetField(TEXT("hard_quantity_maximum"));
+	if (JsonHardQuantityMaximumField.IsValid())
+	{
+		HardQuantityMaximum_IsNull = JsonHardQuantityMaximumField->IsNull();
+		HardQuantityMaximum_IsSet = HardQuantityMaximum_IsNull || TryGetJsonValue(JsonHardQuantityMaximumField, HardQuantityMaximum_Optional);
+		ParseSuccess &= HardQuantityMaximum_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInventoryOperationField = (*Object)->TryGetField(TEXT("inventory_operation"));
+	if (JsonInventoryOperationField.IsValid())
+	{
+		InventoryOperation_IsSet = TryGetJsonValue(JsonInventoryOperationField, InventoryOperation_Optional);
+		ParseSuccess &= InventoryOperation_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonInventorySelectorTypeField = (*Object)->TryGetField(TEXT("inventory_selector_type"));
+	if (JsonInventorySelectorTypeField.IsValid())
+	{
+		InventorySelectorType_IsSet = TryGetJsonValue(JsonInventorySelectorTypeField, InventorySelectorType_Optional);
+		ParseSuccess &= InventorySelectorType_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonQuantityMultInventoryItemIdField = (*Object)->TryGetField(TEXT("quantity_mult_inventory_item_id"));
+	if (JsonQuantityMultInventoryItemIdField.IsValid())
+	{
+		QuantityMultInventoryItemId_IsNull = JsonQuantityMultInventoryItemIdField->IsNull();
+		QuantityMultInventoryItemId_IsSet = QuantityMultInventoryItemId_IsNull || TryGetJsonValue(JsonQuantityMultInventoryItemIdField, QuantityMultInventoryItemId_Optional);
+		ParseSuccess &= QuantityMultInventoryItemId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTimeFrameIdField = (*Object)->TryGetField(TEXT("time_frame_id"));
+	if (JsonTimeFrameIdField.IsValid())
+	{
+		TimeFrameId_IsNull = JsonTimeFrameIdField->IsNull();
+		TimeFrameId_IsSet = TimeFrameId_IsNull || TryGetJsonValue(JsonTimeFrameIdField, TimeFrameId_Optional);
+		ParseSuccess &= TimeFrameId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())

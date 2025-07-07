@@ -51,6 +51,11 @@ void FRHAPI_MatchmakingResults::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		Writer->WriteIdentifierPrefix(TEXT("profile"));
 		RallyHereAPI::WriteJsonValue(Writer, Profile_Optional);
 	}
+	if (TicketWaitSeconds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("ticket_wait_seconds"));
+		RallyHereAPI::WriteJsonValue(Writer, TicketWaitSeconds_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -97,6 +102,12 @@ bool FRHAPI_MatchmakingResults::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	{
 		Profile_IsSet = TryGetJsonValue(JsonProfileField, Profile_Optional);
 		ParseSuccess &= Profile_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTicketWaitSecondsField = (*Object)->TryGetField(TEXT("ticket_wait_seconds"));
+	if (JsonTicketWaitSecondsField.IsValid())
+	{
+		TicketWaitSeconds_IsSet = TryGetJsonValue(JsonTicketWaitSecondsField, TicketWaitSeconds_Optional);
+		ParseSuccess &= TicketWaitSeconds_IsSet;
 	}
 
 	return ParseSuccess;

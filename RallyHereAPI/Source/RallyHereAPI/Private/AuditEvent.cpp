@@ -51,6 +51,11 @@ void FRHAPI_AuditEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("joinable"));
 		RallyHereAPI::WriteJsonValue(Writer, Joinable_Optional);
 	}
+	if (Joinability_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("joinability"));
+		RallyHereAPI::WriteJsonValue(Writer, Joinability_Optional);
+	}
 	if (UpdatedTeams_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("updated_teams"));
@@ -191,6 +196,16 @@ void FRHAPI_AuditEvent::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("match_id"));
 		RallyHereAPI::WriteJsonValue(Writer, MatchId_Optional);
 	}
+	if (TicketWaitSeconds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("ticket_wait_seconds"));
+		RallyHereAPI::WriteJsonValue(Writer, TicketWaitSeconds_Optional);
+	}
+	if (MatchMakingProfileId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("match_making_profile_id"));
+		RallyHereAPI::WriteJsonValue(Writer, MatchMakingProfileId_Optional);
+	}
 	if (RequestingUserUuid_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("requesting_user_uuid"));
@@ -244,6 +259,12 @@ bool FRHAPI_AuditEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		Joinable_IsSet = TryGetJsonValue(JsonJoinableField, Joinable_Optional);
 		ParseSuccess &= Joinable_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonJoinabilityField = (*Object)->TryGetField(TEXT("joinability"));
+	if (JsonJoinabilityField.IsValid())
+	{
+		Joinability_IsSet = TryGetJsonValue(JsonJoinabilityField, Joinability_Optional);
+		ParseSuccess &= Joinability_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonUpdatedTeamsField = (*Object)->TryGetField(TEXT("updated_teams"));
 	if (JsonUpdatedTeamsField.IsValid())
@@ -412,6 +433,18 @@ bool FRHAPI_AuditEvent::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		MatchId_IsSet = TryGetJsonValue(JsonMatchIdField, MatchId_Optional);
 		ParseSuccess &= MatchId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTicketWaitSecondsField = (*Object)->TryGetField(TEXT("ticket_wait_seconds"));
+	if (JsonTicketWaitSecondsField.IsValid())
+	{
+		TicketWaitSeconds_IsSet = TryGetJsonValue(JsonTicketWaitSecondsField, TicketWaitSeconds_Optional);
+		ParseSuccess &= TicketWaitSeconds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
+	if (JsonMatchMakingProfileIdField.IsValid())
+	{
+		MatchMakingProfileId_IsSet = TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId_Optional);
+		ParseSuccess &= MatchMakingProfileId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRequestingUserUuidField = (*Object)->TryGetField(TEXT("requesting_user_uuid"));
 	if (JsonRequestingUserUuidField.IsValid())

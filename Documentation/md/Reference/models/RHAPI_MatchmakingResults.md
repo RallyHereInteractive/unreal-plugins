@@ -31,6 +31,8 @@ struct FRHAPI_MatchmakingResults
 `public bool `[`TicketsAssigned_IsSet`](#structFRHAPI__MatchmakingResults_1ab4f3027f46dce15e66c0768271866b4d) | true if TicketsAssigned_Optional has been set to a value
 `public `[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` `[`Profile_Optional`](#structFRHAPI__MatchmakingResults_1adbc0997e7831f29ac0822a7b23236308) | The profile used to create this match.
 `public bool `[`Profile_IsSet`](#structFRHAPI__MatchmakingResults_1ad08c04e9a461a5845f7539dfb5a397c5) | true if Profile_Optional has been set to a value
+`public TMap< FString, int32 > `[`TicketWaitSeconds_Optional`](#structFRHAPI__MatchmakingResults_1a37b4c4b78a7624db8052fa9b40e2e730) | The total time in seconds that each ticket waited before being assigned to a match.
+`public bool `[`TicketWaitSeconds_IsSet`](#structFRHAPI__MatchmakingResults_1a1fed36ab09bdfb36a3e554e69b280f1b) | true if TicketWaitSeconds_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchmakingResults_1a1f262f640b6bcda9463dffbed3400c7f)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetMatchMakingId`](#structFRHAPI__MatchmakingResults_1afb1e1d79064aa470abf3050e32b2a0d3)`()` | Gets the value of MatchMakingId.
@@ -93,6 +95,16 @@ struct FRHAPI_MatchmakingResults
 `public inline void `[`SetProfile`](#structFRHAPI__MatchmakingResults_1ae30f1e8fe77b206f49983f550de6124b)`(`[`FRHAPI_MatchMakingProfileV2`](RHAPI_MatchMakingProfileV2.md#structFRHAPI__MatchMakingProfileV2)` && NewValue)` | Sets the value of Profile_Optional and also sets Profile_IsSet to true using move semantics.
 `public inline void `[`ClearProfile`](#structFRHAPI__MatchmakingResults_1ad5e14ca03c0e29c1c7d402ff5acd13ec)`()` | Clears the value of Profile_Optional and sets Profile_IsSet to false.
 `public inline bool `[`IsProfileSet`](#structFRHAPI__MatchmakingResults_1a0a0a25ecb4e5e4382f15a3810d9f7d41)`() const` | Checks whether Profile_Optional has been set.
+`public inline TMap< FString, int32 > & `[`GetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1aa2ff7e1d6d2054092ec8c6a3b8ef3832)`()` | Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+`public inline const TMap< FString, int32 > & `[`GetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a6359961272afd273e1fba53c0f582bfe)`() const` | Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+`public inline const TMap< FString, int32 > & `[`GetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a2bc0204f425631eb04c7f771e350d6da)`(const TMap< FString, int32 > & DefaultValue) const` | Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a4af88d3756e0a145eff8e36f1f69b3b4)`(TMap< FString, int32 > & OutValue) const` | Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, int32 > * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__MatchmakingResults_1acf7a6891428f3816f1202a3a39e6b1d1)`()` | Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, int32 > * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__MatchmakingResults_1a11085c8ba7a5fada6a590f3a837b1099)`() const` | Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a0a6db7ebedaf86f5853d377bace2c8d9)`(const TMap< FString, int32 > & NewValue)` | Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true.
+`public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a9c7b74089221148b8965c56622e6130e)`(TMap< FString, int32 > && NewValue)` | Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics.
+`public inline void `[`ClearTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a93ffe9e5b884fdaf4676b6a87e8d0d6c)`()` | Clears the value of TicketWaitSeconds_Optional and sets TicketWaitSeconds_IsSet to false.
+`public inline bool `[`IsTicketWaitSecondsSet`](#structFRHAPI__MatchmakingResults_1aef4aa6b494453e28442103d90dd07cb7)`() const` | Checks whether TicketWaitSeconds_Optional has been set.
 
 ### Members
 
@@ -143,6 +155,14 @@ The profile used to create this match.
 #### `public bool `[`Profile_IsSet`](#structFRHAPI__MatchmakingResults_1ad08c04e9a461a5845f7539dfb5a397c5) <a id="structFRHAPI__MatchmakingResults_1ad08c04e9a461a5845f7539dfb5a397c5"></a>
 
 true if Profile_Optional has been set to a value
+
+#### `public TMap< FString, int32 > `[`TicketWaitSeconds_Optional`](#structFRHAPI__MatchmakingResults_1a37b4c4b78a7624db8052fa9b40e2e730) <a id="structFRHAPI__MatchmakingResults_1a37b4c4b78a7624db8052fa9b40e2e730"></a>
+
+The total time in seconds that each ticket waited before being assigned to a match.
+
+#### `public bool `[`TicketWaitSeconds_IsSet`](#structFRHAPI__MatchmakingResults_1a1fed36ab09bdfb36a3e554e69b280f1b) <a id="structFRHAPI__MatchmakingResults_1a1fed36ab09bdfb36a3e554e69b280f1b"></a>
+
+true if TicketWaitSeconds_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__MatchmakingResults_1a26df787de6a29043c515a062e2aba6e3"></a>
 
@@ -400,4 +420,44 @@ Clears the value of Profile_Optional and sets Profile_IsSet to false.
 #### `public inline bool `[`IsProfileSet`](#structFRHAPI__MatchmakingResults_1a0a0a25ecb4e5e4382f15a3810d9f7d41)`() const` <a id="structFRHAPI__MatchmakingResults_1a0a0a25ecb4e5e4382f15a3810d9f7d41"></a>
 
 Checks whether Profile_Optional has been set.
+
+#### `public inline TMap< FString, int32 > & `[`GetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1aa2ff7e1d6d2054092ec8c6a3b8ef3832)`()` <a id="structFRHAPI__MatchmakingResults_1aa2ff7e1d6d2054092ec8c6a3b8ef3832"></a>
+
+Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, int32 > & `[`GetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a6359961272afd273e1fba53c0f582bfe)`() const` <a id="structFRHAPI__MatchmakingResults_1a6359961272afd273e1fba53c0f582bfe"></a>
+
+Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+
+#### `public inline const TMap< FString, int32 > & `[`GetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a2bc0204f425631eb04c7f771e350d6da)`(const TMap< FString, int32 > & DefaultValue) const` <a id="structFRHAPI__MatchmakingResults_1a2bc0204f425631eb04c7f771e350d6da"></a>
+
+Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a4af88d3756e0a145eff8e36f1f69b3b4)`(TMap< FString, int32 > & OutValue) const` <a id="structFRHAPI__MatchmakingResults_1a4af88d3756e0a145eff8e36f1f69b3b4"></a>
+
+Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline TMap< FString, int32 > * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__MatchmakingResults_1acf7a6891428f3816f1202a3a39e6b1d1)`()` <a id="structFRHAPI__MatchmakingResults_1acf7a6891428f3816f1202a3a39e6b1d1"></a>
+
+Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const TMap< FString, int32 > * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__MatchmakingResults_1a11085c8ba7a5fada6a590f3a837b1099)`() const` <a id="structFRHAPI__MatchmakingResults_1a11085c8ba7a5fada6a590f3a837b1099"></a>
+
+Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a0a6db7ebedaf86f5853d377bace2c8d9)`(const TMap< FString, int32 > & NewValue)` <a id="structFRHAPI__MatchmakingResults_1a0a6db7ebedaf86f5853d377bace2c8d9"></a>
+
+Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true.
+
+#### `public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a9c7b74089221148b8965c56622e6130e)`(TMap< FString, int32 > && NewValue)` <a id="structFRHAPI__MatchmakingResults_1a9c7b74089221148b8965c56622e6130e"></a>
+
+Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearTicketWaitSeconds`](#structFRHAPI__MatchmakingResults_1a93ffe9e5b884fdaf4676b6a87e8d0d6c)`()` <a id="structFRHAPI__MatchmakingResults_1a93ffe9e5b884fdaf4676b6a87e8d0d6c"></a>
+
+Clears the value of TicketWaitSeconds_Optional and sets TicketWaitSeconds_IsSet to false.
+
+#### `public inline bool `[`IsTicketWaitSecondsSet`](#structFRHAPI__MatchmakingResults_1aef4aa6b494453e28442103d90dd07cb7)`() const` <a id="structFRHAPI__MatchmakingResults_1aef4aa6b494453e28442103d90dd07cb7"></a>
+
+Checks whether TicketWaitSeconds_Optional has been set.
 

@@ -28,6 +28,14 @@ void FRHAPI_PriceBreakPointCurrency::WriteJson(TSharedRef<TJsonWriter<>>& Writer
 	RallyHereAPI::WriteJsonValue(Writer, PriceItemId);
 	Writer->WriteIdentifierPrefix(TEXT("price"));
 	RallyHereAPI::WriteJsonValue(Writer, Price);
+	if (MinReducedPrice_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("min_reduced_price"));
+		if (MinReducedPrice_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, MinReducedPrice_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -48,6 +56,13 @@ bool FRHAPI_PriceBreakPointCurrency::FromJson(const TSharedPtr<FJsonValue>& Json
 	const TSharedPtr<FJsonValue> JsonPriceField = (*Object)->TryGetField(TEXT("price"));
 	const bool Price_IsValid = JsonPriceField.IsValid() && (!JsonPriceField->IsNull() && TryGetJsonValue(JsonPriceField, Price));
 	ParseSuccess &= Price_IsValid; 
+	const TSharedPtr<FJsonValue> JsonMinReducedPriceField = (*Object)->TryGetField(TEXT("min_reduced_price"));
+	if (JsonMinReducedPriceField.IsValid())
+	{
+		MinReducedPrice_IsNull = JsonMinReducedPriceField->IsNull();
+		MinReducedPrice_IsSet = MinReducedPrice_IsNull || TryGetJsonValue(JsonMinReducedPriceField, MinReducedPrice_Optional);
+		ParseSuccess &= MinReducedPrice_IsSet;
+	}
 
 	return ParseSuccess;
 }

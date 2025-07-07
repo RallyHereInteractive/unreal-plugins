@@ -58,6 +58,11 @@ void FRHAPI_Session::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	}
 	Writer->WriteIdentifierPrefix(TEXT("joinable"));
 	RallyHereAPI::WriteJsonValue(Writer, Joinable);
+	if (Joinability_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("joinability"));
+		RallyHereAPI::WriteJsonValue(Writer, Joinability_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("teams"));
 	RallyHereAPI::WriteJsonValue(Writer, Teams);
 	if (TeamsSuppressed_IsSet)
@@ -148,6 +153,12 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonJoinableField = (*Object)->TryGetField(TEXT("joinable"));
 	const bool Joinable_IsValid = JsonJoinableField.IsValid() && (!JsonJoinableField->IsNull() && TryGetJsonValue(JsonJoinableField, Joinable));
 	ParseSuccess &= Joinable_IsValid; 
+	const TSharedPtr<FJsonValue> JsonJoinabilityField = (*Object)->TryGetField(TEXT("joinability"));
+	if (JsonJoinabilityField.IsValid())
+	{
+		Joinability_IsSet = TryGetJsonValue(JsonJoinabilityField, Joinability_Optional);
+		ParseSuccess &= Joinability_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonTeamsField = (*Object)->TryGetField(TEXT("teams"));
 	const bool Teams_IsValid = JsonTeamsField.IsValid() && (!JsonTeamsField->IsNull() && TryGetJsonValue(JsonTeamsField, Teams));
 	ParseSuccess &= Teams_IsValid; 

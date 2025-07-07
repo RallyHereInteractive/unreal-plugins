@@ -30,6 +30,10 @@
       "description": "User Endpoints to query user information, search for users, purge users (for GDPR or other delete reasons), and update linking/cross-progresion status for users."
     },
     {
+      "name": "Support",
+      "description": "Support endpoints to manage and retrieve support logs for users."
+    },
+    {
       "name": "Settings",
       "description": "\nEndpoints to get setting configuration and player settings\n\nPlayer Settings are meant to be used as a document storage for players settings.\n\nSettings are organized around Setting Types.  Each Setting Type can contain one or more Setting Versions.  Each Type+Version pair includes a jsonschema that is used to validate any update that apply to the setting.  This does NOT validate data for the get endpoints.  If the data is invalid, the get endpoint will return the data as it was stored.\n"
     },
@@ -3643,6 +3647,201 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RestrictionHistory"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/users/v1/support/log": {
+      "get": {
+        "tags": [
+          "Support"
+        ],
+        "summary": "Get Support Logs",
+        "description": "Get a page of support logs for a player by UUID or person ID.\n    \nRequired Permissions:\n\n- For any user (including themselves) any of: `support:log:read`, `user:*`",
+        "operationId": "get_support_logs",
+        "parameters": [
+          {
+            "description": "The player UUID to get support logs for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Player Uuid",
+              "description": "The player UUID to get support logs for"
+            },
+            "name": "player_uuid",
+            "in": "query"
+          },
+          {
+            "description": "The person ID to get support logs for",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Person Id",
+              "description": "The person ID to get support logs for"
+            },
+            "name": "person_id",
+            "in": "query"
+          },
+          {
+            "description": "The page number to retrieve",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "title": "Page",
+              "description": "The page number to retrieve",
+              "default": 1
+            },
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "description": "The number of logs per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "exclusiveMinimum": false,
+              "title": "Page Size",
+              "description": "The number of logs per page",
+              "default": 10
+            },
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportLogPageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Support"
+        ],
+        "summary": "Create Support Log",
+        "description": "Create a new support log entry for a player.\n    \nRequired Permissions:\n\n- For any user (including themselves) any of: `support:log:write`, `user:*`",
+        "operationId": "create_support_log",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSupportLogRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SupportLogEntry"
                 }
               }
             }
@@ -13416,6 +13615,53 @@
         }
       }
     },
+    "/inventory/v1/order": {
+      "post": {
+        "tags": [
+          "Inventory"
+        ],
+        "summary": "Create Many Player Order",
+        "description": "Create many number of orders across multiple players",
+        "operationId": "create_many_player_order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManyPlayerOrderCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManyPlayerOrderResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/inventory/v2/player/me/entitlement": {
       "post": {
         "tags": [
@@ -21341,9 +21587,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Login Token",
+        "summary": "Get Vivox Login Token",
         "description": "Generate a token to login with vivox\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:login`",
-        "operationId": "get_voip_login_token",
+        "operationId": "get_vivox_login_token",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -21378,9 +21624,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Action Token Me",
+        "summary": "Get Vivox Action Token Me",
         "description": "Generate a token for one of the specific vivox actions except logging in\n\n`JOIN` Required Permissions:\n\n- For the player themselves : `session:vivox:join`\n\n`JOIN_MUTED` Required Permissions:\n\n- For the player themselves : `session:vivox:join_muted`\n\n`KICK` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:kick:all`\n\n- For the player themselves : `session:vivox:kick:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`MUTE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:mute:all`\n\n- For the player themselves : `session:vivox:mute:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`TRANSCRIBE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:transcribe:any`\n\n- For the player themselves : `session:vivox:transcribe:as-member`",
-        "operationId": "get_voip_action_token_me",
+        "operationId": "get_vivox_action_token_me",
         "parameters": [
           {
             "required": true,
@@ -21464,9 +21710,9 @@
         "tags": [
           "Sessions"
         ],
-        "summary": "Get Voip Action Token",
+        "summary": "Get Vivox Action Token",
         "description": "Generate a token for one of the specific vivox actions except logging in\n\n`JOIN` Required Permissions:\n\n- For the player themselves : `session:vivox:join`\n\n`JOIN_MUTED` Required Permissions:\n\n- For the player themselves : `session:vivox:join_muted`\n\n`KICK` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:kick:all`\n\n- For the player themselves : `session:vivox:kick:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:kick:as-leader`\n\n\n\n`MUTE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:mute:all`\n\n- For the player themselves : `session:vivox:mute:self`\n\nor be leader of session and have Required Permissions:\n\n- For any player (including themselves) : `session:vivox:mute:as-leader`\n\n\n\n`TRANSCRIBE` Required Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:vivox:transcribe:any`\n\n- For the player themselves : `session:vivox:transcribe:as-member`",
-        "operationId": "get_voip_action_token",
+        "operationId": "get_vivox_action_token",
         "parameters": [
           {
             "required": true,
@@ -21523,6 +21769,108 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/VoipTokenResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/session/v1/session/{session_id}/player/me/voip/epic:join": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Get Epic Voice Join Token Me",
+        "description": "Generate Epic voice room credentials for the current player\n\nRequired Permissions:\n\n- For the player themselves : `session:voip:epic:join`",
+        "operationId": "get_epic_voice_join_token_me",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1,
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/VoipSessionType"
+            },
+            "name": "voip_session_type",
+            "in": "query"
+          },
+          {
+            "description": "If true, join the muted room",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Join Muted",
+              "description": "If true, join the muted room",
+              "default": false
+            },
+            "name": "join_muted",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          },
+          {
+            "description": "IP Address hint",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 32,
+              "title": "X-Rh-Client-Addr",
+              "description": "IP Address hint"
+            },
+            "name": "x-rh-client-addr",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EpicVoipCredentialsResponse"
                 }
               }
             }
@@ -29198,7 +29546,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:report:create:any`, `sanction:*`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -34224,6 +34572,63 @@
         "title": "CreatePlatformUserRequest",
         "description": "Request parameters to create a user exists"
       },
+      "CreateSupportLogRequest": {
+        "properties": {
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id",
+            "description": "Person ID to associate with the log entry"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player UUID to associate with the log entry"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Platform to associate with the log entry"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "Platform user ID to associate with the log entry"
+          },
+          "event_name": {
+            "type": "string",
+            "title": "Event Name",
+            "description": "Name of the support event"
+          },
+          "event_description": {
+            "type": "string",
+            "title": "Event Description",
+            "description": "Detailed description of the support action"
+          },
+          "support_username": {
+            "type": "string",
+            "title": "Support Username",
+            "description": "Username of the support agent"
+          },
+          "ip": {
+            "type": "string",
+            "title": "Ip",
+            "description": "IP address where the action was performed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_name",
+          "event_description"
+        ],
+        "title": "CreateSupportLogRequest",
+        "description": "Request to create a new support log entry"
+      },
       "DeviceType": {
         "type": "string",
         "enum": [
@@ -34234,17 +34639,17 @@
         ],
         "title": "DeviceType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "pc",
-          "xbox_series",
-          "xbox_one",
-          "web"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "pc",
+          "xbox_series",
+          "xbox_one",
+          "web"
         ]
       },
       "GrantType": {
@@ -35052,24 +35457,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
         "x-enum-descriptions": [
           "",
           "",
@@ -35087,6 +35474,24 @@
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -36007,6 +36412,112 @@
           "LIMITED",
           "LOCKED"
         ]
+      },
+      "SupportLogEntry": {
+        "properties": {
+          "support_action_log_id": {
+            "type": "string",
+            "title": "Support Action Log Id",
+            "description": "Unique ID of the support action log entry"
+          },
+          "person_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Person Id",
+            "description": "Person ID the log entry is for"
+          },
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Player ID the log entry is for (legacy)"
+          },
+          "platform": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Platform"
+              }
+            ],
+            "description": "Portal ID (legacy)"
+          },
+          "platform_user_id": {
+            "type": "string",
+            "maxLength": 2048,
+            "title": "Platform User Id",
+            "description": "Portal user ID (legacy)"
+          },
+          "event_name": {
+            "type": "string",
+            "title": "Event Name",
+            "description": "Name of the support event"
+          },
+          "event_description": {
+            "type": "string",
+            "title": "Event Description",
+            "description": "Detailed description of the support action"
+          },
+          "ip": {
+            "type": "string",
+            "title": "Ip",
+            "description": "IP address where the action was performed"
+          },
+          "support_username": {
+            "type": "string",
+            "title": "Support Username",
+            "description": "Username of the support agent"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "support_action_log_id",
+          "event_name",
+          "event_description",
+          "created"
+        ],
+        "title": "SupportLogEntry",
+        "description": "Support log entry details"
+      },
+      "SupportLogPageResponse": {
+        "properties": {
+          "logs": {
+            "items": {
+              "$ref": "#/components/schemas/SupportLogEntry"
+            },
+            "type": "array",
+            "title": "Logs",
+            "description": "List of support log entries"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page",
+            "description": "Current page number"
+          },
+          "total_pages": {
+            "type": "integer",
+            "title": "Total Pages",
+            "description": "Total number of pages available"
+          },
+          "total_entries": {
+            "type": "integer",
+            "title": "Total Entries",
+            "description": "Total number of log entries available"
+          }
+        },
+        "type": "object",
+        "required": [
+          "logs",
+          "page",
+          "total_pages",
+          "total_entries"
+        ],
+        "title": "SupportLogPageResponse",
+        "description": "Response containing a page of support log entries"
       },
       "TokenRequest": {
         "properties": {
@@ -37157,6 +37668,7 @@
           "platform_data": {
             "anyOf": [
               {
+                "additionalProperties": true,
                 "type": "object"
               },
               {
@@ -37323,6 +37835,7 @@
           "platform_data": {
             "anyOf": [
               {
+                "additionalProperties": true,
                 "type": "object"
               },
               {
@@ -38284,7 +38797,7 @@
               }
             ],
             "title": "External Key Type",
-            "description": "This can be used to allow the player to claim different types based on their preferrence. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign."
+            "description": "This can be used to allow the player to claim different types based on their preference. While we don't have requirement for what should contain, it must match a key type assigned to the external campaign."
           },
           "created_on": {
             "anyOf": [
@@ -38846,6 +39359,18 @@
             ],
             "title": "Original Price",
             "description": "The amount of the item needed before the sale began"
+          },
+          "min_reduced_price": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Reduced Price",
+            "description": "The lowest amount the current price can be reduced to with other discounts"
           }
         },
         "type": "object",
@@ -38880,6 +39405,39 @@
         "type": "object",
         "title": "Loots",
         "description": "A collection of Loot by Loot ID."
+      },
+      "ManyPlayerOrderCreate": {
+        "properties": {
+          "orders": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerOrderCreateSingle"
+            },
+            "type": "array",
+            "title": "Orders",
+            "description": "List of Player Order Entries for the Player Order."
+          }
+        },
+        "type": "object",
+        "required": [
+          "orders"
+        ],
+        "title": "ManyPlayerOrderCreate"
+      },
+      "ManyPlayerOrderResponse": {
+        "properties": {
+          "order_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Order Ids",
+            "description": "Order IDs submitted in the request.",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "ManyPlayerOrderResponse",
+        "description": "Response listing order IDs for a bulk order request."
       },
       "MarketingCampaign": {
         "properties": {
@@ -39187,6 +39745,7 @@
             "title": "Platform Label"
           },
           "platform_metadata": {
+            "additionalProperties": true,
             "type": "object",
             "title": "Platform Metadata",
             "description": "Platform-specific metadata about this entitlement",
@@ -39855,6 +40414,132 @@
         "title": "PlayerOrderCreate",
         "description": "Create a new Player Order.\n\n<b>Note: `use_inventory_bucket` will be ignored on the PlayerOrderEntryCreate if the `source` equals `CLIENT`.</b>"
       },
+      "PlayerOrderCreateSingle": {
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/Source",
+            "description": "The source of the Player Order.",
+            "default": "CLIENT"
+          },
+          "client_order_ref_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Order Ref Id",
+            "description": "Arbitrary UUID clients can use to track Orders between request to response."
+          },
+          "portal_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Portal"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Portal of the Portal User the Player Order belongs to.",
+            "deprecated": true
+          },
+          "portal_user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Portal User Id",
+            "description": "Portal User Id for the Player this Player Order belongs to."
+          },
+          "instance_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instance Id",
+            "description": "Instance Id for the Instance who submits the Player Order."
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "Match Id for the Match that generated the Player Order."
+          },
+          "is_transaction": {
+            "type": "boolean",
+            "title": "Is Transaction",
+            "description": "If an order is a transaction, any failed entries will roll back changes from all other entries.",
+            "default": false
+          },
+          "player_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Id",
+            "description": "Player Id of the Player this Player Order belongs to."
+          },
+          "player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Uuid",
+            "description": "Player UUID of the Player this Player Order belongs to."
+          },
+          "order_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Order Id",
+            "description": "Unique Identifier for the Order."
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerOrderEntryCreate-Input"
+            },
+            "type": "array",
+            "title": "Entries",
+            "description": "List of Player Order Entries for the Player Order."
+          }
+        },
+        "type": "object",
+        "required": [
+          "entries"
+        ],
+        "title": "PlayerOrderCreateSingle"
+      },
       "PlayerOrderDetail": {
         "properties": {
           "type": {
@@ -40110,6 +40795,57 @@
             "title": "Expires",
             "description": "Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]"
           },
+          "xp_quantity_transform_type": {
+            "$ref": "#/components/schemas/XpQuantityTransform",
+            "description": "Allows treating quantity as additional levels to grant to the Player. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "none"
+          },
+          "hard_quantity_maximum": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hard Quantity Maximum",
+            "description": "Maximum final quantity of this loot that can be fulfilled after all other calculations. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "inventory_operation": {
+            "$ref": "#/components/schemas/InventoryOperation",
+            "description": "The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "inventory_selector_type": {
+            "$ref": "#/components/schemas/InventorySelector",
+            "description": "The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "quantity_mult_inventory_item_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quantity Mult Inventory Item Id",
+            "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "time_frame_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Frame Id",
+            "description": "The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled. This is only used when type equals [CUSTOM_LOOT]"
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -40331,6 +41067,57 @@
             "title": "Expires",
             "description": "Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]"
           },
+          "xp_quantity_transform_type": {
+            "$ref": "#/components/schemas/XpQuantityTransform",
+            "description": "Allows treating quantity as additional levels to grant to the Player. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "none"
+          },
+          "hard_quantity_maximum": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hard Quantity Maximum",
+            "description": "Maximum final quantity of this loot that can be fulfilled after all other calculations. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "inventory_operation": {
+            "$ref": "#/components/schemas/InventoryOperation",
+            "description": "The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "inventory_selector_type": {
+            "$ref": "#/components/schemas/InventorySelector",
+            "description": "The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "quantity_mult_inventory_item_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quantity Mult Inventory Item Id",
+            "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "time_frame_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Frame Id",
+            "description": "The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled. This is only used when type equals [CUSTOM_LOOT]"
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -40545,6 +41332,57 @@
             "title": "Expires",
             "description": "Expiration time for the Inventory. This is only used when type equals [CREATE_NEW_PERSISTENT_INVENTORY, UPDATE_EXISTING_PERSISTENT_INVENTORY, CREATE_NEW_TRANSIENT_INVENTORY, UPDATE_EXISTING_TRANSIENT_INVENTORY, UPDATE_INVENTORY]"
           },
+          "xp_quantity_transform_type": {
+            "$ref": "#/components/schemas/XpQuantityTransform",
+            "description": "Allows treating quantity as additional levels to grant to the Player. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "none"
+          },
+          "hard_quantity_maximum": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hard Quantity Maximum",
+            "description": "Maximum final quantity of this loot that can be fulfilled after all other calculations. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "inventory_operation": {
+            "$ref": "#/components/schemas/InventoryOperation",
+            "description": "The Inventory Operation. Determine how the Loot quantity is modified based on the context it is fulfilled in. This also determines the order Loot will be fulfilled in when sort_order is the same. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "inventory_selector_type": {
+            "$ref": "#/components/schemas/InventorySelector",
+            "description": "The Inventory Selector Type. Determine how the Inventory is selected and quantity is modified. This is only used when type equals [CUSTOM_LOOT]",
+            "default": "invalid"
+          },
+          "quantity_mult_inventory_item_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quantity Mult Inventory Item Id",
+            "description": "When fulfilling Loot if this is set the quantity will be multiplied by the quantity of this Item in the Player's Inventory. This is only used when type equals [CUSTOM_LOOT]"
+          },
+          "time_frame_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Frame Id",
+            "description": "The Time Frame ID. Optional Time Frame ID that will be used the expiration of Loot when it is fulfilled. This is only used when type equals [CUSTOM_LOOT]"
+          },
           "custom_data": {
             "anyOf": [
               {
@@ -40755,7 +41593,8 @@
           "update_existing_persistent_inventory",
           "create_new_transient_inventory",
           "update_existing_transient_inventory",
-          "update_inventory"
+          "update_inventory",
+          "custom_loot"
         ],
         "title": "PlayerOrderEntryType",
         "description": "Player Order Entry Type.",
@@ -40770,7 +41609,8 @@
           "Deprecated. Use update_inventory instead.",
           "Create transient Inventory.",
           "Deprecated. Use update_inventory instead.",
-          "Update existing Inventory."
+          "Update existing Inventory.",
+          "Provide parameters of a custom loot object and grant to the player"
         ],
         "x-enum-varnames": [
           "FILL_LOOT",
@@ -40783,7 +41623,8 @@
           "UPDATE_EXISTING_PERSISTENT_INVENTORY",
           "CREATE_NEW_TRANSIENT_INVENTORY",
           "UPDATE_EXISTING_TRANSIENT_INVENTORY",
-          "UPDATE_INVENTORY"
+          "UPDATE_INVENTORY",
+          "CUSTOM_LOOT"
         ]
       },
       "PlayerOrdersResponse": {
@@ -41018,6 +41859,18 @@
             "type": "integer",
             "title": "Price",
             "description": "The price of the Item."
+          },
+          "min_reduced_price": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Reduced Price",
+            "description": "The minimum price this currency can be reduced to for purchase."
           }
         },
         "type": "object",
@@ -42168,6 +43021,15 @@
             "title": "Joinable",
             "description": "Whether or not the session is publicly joinable"
           },
+          "joinability": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionJoinability"
+              }
+            ],
+            "title": "Joinability",
+            "description": "Joinability flags about the session"
+          },
           "updated_teams": {
             "items": {
               "$ref": "#/components/schemas/TeamUpdate"
@@ -42369,6 +43231,18 @@
             "title": "Match Id",
             "description": "ID of a match that was associated with this session"
           },
+          "ticket_wait_seconds": {
+            "type": "integer",
+            "title": "Ticket Wait Seconds",
+            "description": "The total time in seconds that the ticket waited before being assigned to a match"
+          },
+          "match_making_profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Match Making Profile Id",
+            "description": "ID of the MatchMakingProfile used to create this session"
+          },
           "requesting_user_uuid": {
             "type": "string",
             "format": "uuid",
@@ -42453,13 +43327,13 @@
         ],
         "title": "BackfillStyle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "TEAM_REQUEST",
-          "COMPOSITION"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "TEAM_REQUEST",
+          "COMPOSITION"
         ]
       },
       "BackfillTeam": {
@@ -42702,6 +43576,15 @@
             "title": "Joinable",
             "description": "Whether or not the session is publicly joinable"
           },
+          "joinability": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionJoinability"
+              }
+            ],
+            "title": "Joinability",
+            "description": "Joinability flags about the session"
+          },
           "updated_teams": {
             "items": {
               "$ref": "#/components/schemas/TeamUpdate"
@@ -42903,6 +43786,18 @@
             "title": "Match Id",
             "description": "ID of a match that was associated with this session"
           },
+          "ticket_wait_seconds": {
+            "type": "integer",
+            "title": "Ticket Wait Seconds",
+            "description": "The total time in seconds that the ticket waited before being assigned to a match"
+          },
+          "match_making_profile_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Match Making Profile Id",
+            "description": "ID of the MatchMakingProfile used to create this session"
+          },
           "players": {
             "items": {
               "type": "string",
@@ -42993,17 +43888,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "No crossplay input preferences. Can play with players using any input",
           "Can only play with players using a keyboard and mouse",
           "Can only player with players using a gamepad/controller",
           "Can only player with players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "CrossplayPlatform": {
@@ -43015,15 +43910,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-varnames": [
-          "ANY",
-          "XBOX",
-          "PLAYSTATION"
-        ],
         "x-enum-descriptions": [
           "No crossplay platform preferences. Can play with players any platforms",
           "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
           "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
+        ],
+        "x-enum-varnames": [
+          "ANY",
+          "XBOX",
+          "PLAYSTATION"
         ]
       },
       "CrossplayPreferences": {
@@ -43064,19 +43959,19 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "assigned",
-          "backfilled",
-          "left_queue",
-          "timeout",
-          "party_changed"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "assigned",
+          "backfilled",
+          "left_queue",
+          "timeout",
+          "party_changed"
         ]
       },
       "DeserterConfig": {
@@ -43165,18 +44060,50 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-varnames": [
-          "ALL",
-          "ANY",
-          "ONE",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "All rules must be satisfied",
           "At least one rule must be satisfied",
           "Exactly one rule must be satisfied",
           "All rules must not be satisfied"
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "ANY",
+          "ONE",
+          "NONE"
         ]
+      },
+      "EpicVoipCredentialsResponse": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "title": "Room Id",
+            "description": "Epic voice room identifier"
+          },
+          "participant_token": {
+            "type": "string",
+            "title": "Participant Token",
+            "description": "Token for the participant to join the Epic voice room"
+          },
+          "client_base_url": {
+            "type": "string",
+            "title": "Client Base Url",
+            "description": "Base URL for Epic voice client connections"
+          },
+          "product_user_id": {
+            "type": "string",
+            "title": "Product User Id",
+            "description": "Epic ProductUserId for the authenticated user"
+          }
+        },
+        "type": "object",
+        "required": [
+          "room_id",
+          "participant_token",
+          "client_base_url",
+          "product_user_id"
+        ],
+        "title": "EpicVoipCredentialsResponse"
       },
       "HostType": {
         "type": "string",
@@ -43187,15 +44114,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-varnames": [
-          "dedicated",
-          "player",
-          "preallocated"
-        ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
           "A preallocated instance that isn't player owned"
+        ],
+        "x-enum-varnames": [
+          "dedicated",
+          "player",
+          "preallocated"
         ]
       },
       "Input": {
@@ -43207,15 +44134,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-varnames": [
-          "KBM",
-          "GAMEPAD",
-          "TOUCH"
-        ],
         "x-enum-descriptions": [
           "Input for players using a keyboard and mouse",
           "Input for players using a gamepad/controller",
           "Input for players using a touch screen"
+        ],
+        "x-enum-varnames": [
+          "KBM",
+          "GAMEPAD",
+          "TOUCH"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -43260,17 +44187,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "HEALTHY",
-          "UNHEALTHY",
-          "DEGRADED",
-          "UNKNOWN"
-        ],
         "x-enum-descriptions": [
           "Instance is in a healthy state",
           "Instance is in an unhealthy state and cannot handle connections",
           "Instance performance is degraded, and may be unable to handle new or existing connections",
           "Instance health checks have stopped, and instance status is unknown"
+        ],
+        "x-enum-varnames": [
+          "HEALTHY",
+          "UNHEALTHY",
+          "DEGRADED",
+          "UNKNOWN"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -43509,14 +44436,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-varnames": [
-          "requested",
-          "allocated",
-          "pending",
-          "joinable",
-          "unjoinable",
-          "closed"
-        ],
         "x-enum-descriptions": [
           "Searching for a host",
           "Host has been found, and is loading its session information",
@@ -43524,6 +44443,14 @@
           "Host is ready to accept players",
           "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
           "Host has left, been timed out, or could not be found"
+        ],
+        "x-enum-varnames": [
+          "requested",
+          "allocated",
+          "pending",
+          "joinable",
+          "unjoinable",
+          "closed"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -43719,15 +44646,15 @@
         ],
         "title": "IntraSessionPermissions",
         "description": "Subset of leader permissions that can be individual assigned to specific players within a session",
-        "x-enum-varnames": [
-          "invite",
-          "kick",
-          "move"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "invite",
+          "kick",
+          "move"
         ]
       },
       "InviteSource": {
@@ -43739,15 +44666,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "BACKFILL",
-          "MATCHMAKING",
-          "PLAYER"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "BACKFILL",
+          "MATCHMAKING",
+          "PLAYER"
         ]
       },
       "JoinParams": {
@@ -43792,17 +44719,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-varnames": [
-          "WORST",
-          "BEST",
-          "AVERAGE_BY_VARIANCE",
-          "AVERAGE"
-        ],
         "x-enum-descriptions": [
           "Use the lowest MMR of any player in the linking",
           "Use the highest MMR of any player in the linking",
           "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
           "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
+        ],
+        "x-enum-varnames": [
+          "WORST",
+          "BEST",
+          "AVERAGE_BY_VARIANCE",
+          "AVERAGE"
         ]
       },
       "MapConfig": {
@@ -44279,6 +45206,15 @@
             "minLength": 1,
             "title": "Match Making Profile Id",
             "description": "The MatchMakingProfileID that was ultimately used to create this match"
+          },
+          "ticket_added_unix_time": {
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0
+            },
+            "type": "object",
+            "title": "Ticket Added Unix Time",
+            "description": "Map of ticket_id to unix time that each ticket was added to the match"
           }
         },
         "type": "object",
@@ -44547,6 +45483,15 @@
             ],
             "title": "Profile",
             "description": "The profile used to create this match"
+          },
+          "ticket_wait_seconds": {
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "type": "object",
+            "title": "Ticket Wait Seconds",
+            "description": "The total time in seconds that each ticket waited before being assigned to a match"
           }
         },
         "type": "object",
@@ -44570,16 +45515,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-varnames": [
-          "EQUAL",
-          "NOT_EQUAL",
-          "LESS_THAN",
-          "LESS_THAN_EQUAL",
-          "GREATER_THAN",
-          "GREATER_THAN_EQUAL",
-          "INCLUDED_IN_SET",
-          "EXCLUDED_FROM_SET"
-        ],
         "x-enum-descriptions": [
           "The two values must be equal",
           "The two values must not be equal",
@@ -44589,6 +45524,16 @@
           "Value A must be greater than or equal to value B",
           "Value A must be in the set of values B",
           "Value A must not be in the set of values B"
+        ],
+        "x-enum-varnames": [
+          "EQUAL",
+          "NOT_EQUAL",
+          "LESS_THAN",
+          "LESS_THAN_EQUAL",
+          "GREATER_THAN",
+          "GREATER_THAN_EQUAL",
+          "INCLUDED_IN_SET",
+          "EXCLUDED_FROM_SET"
         ]
       },
       "PagedPlayersResponse": {
@@ -44633,20 +45578,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-varnames": [
-          "ANON",
-          "AMAZON",
-          "STEAM",
-          "PSN",
-          "XBOX_LIVE",
-          "BASIC",
-          "GOOGLE",
-          "TWITCH",
-          "NINTENDO_SWITCH",
-          "APPLE",
-          "NINTENDO",
-          "EPIC"
-        ],
         "x-enum-descriptions": [
           "DEPRECATED. Use platform instead. ID for the platform Anon",
           "DEPRECATED. Use platform instead. ID for the platform Amazon",
@@ -44660,6 +45591,20 @@
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
           "DEPRECATED. Use platform instead. ID for the platform Epic"
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "AMAZON",
+          "STEAM",
+          "PSN",
+          "XBOX_LIVE",
+          "BASIC",
+          "GOOGLE",
+          "TWITCH",
+          "NINTENDO_SWITCH",
+          "APPLE",
+          "NINTENDO",
+          "EPIC"
         ]
       },
       "PlatformScout": {
@@ -45060,17 +46005,17 @@
         ],
         "title": "PlayerVisibility",
         "description": "What subset of players any given player will have information about",
-        "x-enum-varnames": [
-          "ALL",
-          "TEAM",
-          "SELF",
-          "NONE"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "ALL",
+          "TEAM",
+          "SELF",
+          "NONE"
         ]
       },
       "PlayersToValidate": {
@@ -45082,15 +46027,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-varnames": [
-          "LEADER",
-          "ALL_MEMBERS",
-          "ANY_MEMBER"
-        ],
         "x-enum-descriptions": [
           "Only the leader must be validated",
           "All members of a session must be validated",
           "Any single member must be validated"
+        ],
+        "x-enum-varnames": [
+          "LEADER",
+          "ALL_MEMBERS",
+          "ANY_MEMBER"
         ]
       },
       "ProfileJoinMode": {
@@ -45102,15 +46047,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-varnames": [
-          "NORMAL",
-          "BACKFILL",
-          "CREATED_BEFORE"
-        ],
         "x-enum-descriptions": [
           "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
           "Ticket will be used to fulfill backfill requests",
           "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
+        ],
+        "x-enum-varnames": [
+          "NORMAL",
+          "BACKFILL",
+          "CREATED_BEFORE"
         ]
       },
       "QueueConfig": {
@@ -45450,17 +46395,17 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-varnames": [
-          "INVENTORY",
-          "INVENTORY_LEVEL",
-          "JOINING_SESSION_SIZE",
-          "REGION_LIST"
-        ],
         "x-enum-descriptions": [
           "Comparing the count of a specific item that a player owns",
           "Comparing the level of a specific item that a player owns",
           "Comparing the number of session members to be queued",
           "Comparing the region of the session to a list of regions"
+        ],
+        "x-enum-varnames": [
+          "INVENTORY",
+          "INVENTORY_LEVEL",
+          "JOINING_SESSION_SIZE",
+          "REGION_LIST"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -45520,6 +46465,12 @@
             "minLength": 1,
             "title": "Password",
             "description": "Password to join a password protected session that you are not invited to"
+          },
+          "friend_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Friend Uuid",
+            "description": "UUID of the friend whose session you are joining"
           }
         },
         "type": "object",
@@ -45603,7 +46554,17 @@
           "joinable": {
             "type": "boolean",
             "title": "Joinable",
-            "description": "Is this session freely joinable by players without an invite?"
+            "description": "DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite?",
+            "deprecated": true
+          },
+          "joinability": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionJoinability"
+              }
+            ],
+            "title": "Joinability",
+            "description": "Flags regarding the joinability of this session"
           },
           "teams": {
             "items": {
@@ -45712,6 +46673,30 @@
         ],
         "title": "SessionJoinResponse",
         "description": "Response when a player successfully joins a session"
+      },
+      "SessionJoinability": {
+        "properties": {
+          "open": {
+            "type": "boolean",
+            "title": "Open",
+            "description": "All players can join without an invite. If enabled, it overwrites other permissions",
+            "default": false
+          },
+          "friends": {
+            "type": "boolean",
+            "title": "Friends",
+            "description": "Friends can join this session without an invite",
+            "default": false
+          },
+          "platform": {
+            "type": "boolean",
+            "title": "Platform",
+            "description": "Players can join through platform sessions",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "SessionJoinability"
       },
       "SessionPermissions": {
         "properties": {
@@ -45847,17 +46832,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-varnames": [
-          "leader",
-          "member",
-          "invited",
-          "reserved"
-        ],
         "x-enum-descriptions": [
           "Player is the leader of the session. Is allowed to perform admin actions on the session",
           "Player is an active member of the session. Is allowed basic actions on the session",
           "Player has been invited to the session, but has not accepted or declined",
           "Player's spot has been reserved on the session, but the player has not yet been notified"
+        ],
+        "x-enum-varnames": [
+          "leader",
+          "member",
+          "invited",
+          "reserved"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -46238,7 +47223,16 @@
           "joinable": {
             "type": "boolean",
             "title": "Joinable",
-            "description": "Flag for if players can freely join this session without an invite"
+            "description": "DEPRECATED. Use joinability object instead. Flag for if players can freely join this session without an invite"
+          },
+          "joinability": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SessionJoinability"
+              }
+            ],
+            "title": "Joinability",
+            "description": "Flags regarding the joinability of this session"
           },
           "teams": {
             "items": {
@@ -46272,19 +47266,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-varnames": [
-          "fail",
-          "allow_overflow",
-          "partial_with_overflow",
-          "partial_without_overflow",
-          "overfill"
-        ],
         "x-enum-descriptions": [
           "Raise an error when too many players are invited to the same team",
           "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
           "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
           "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
           "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
+        ],
+        "x-enum-varnames": [
+          "fail",
+          "allow_overflow",
+          "partial_with_overflow",
+          "partial_without_overflow",
+          "overfill"
         ]
       },
       "TeamUpdate": {
@@ -46440,19 +47434,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "JOIN",
-          "JOIN_MUTED",
-          "KICK",
-          "MUTE",
-          "TRANSCRIBE"
-        ],
         "x-enum-descriptions": [
           "",
           "",
           "",
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "JOIN",
+          "JOIN_MUTED",
+          "KICK",
+          "MUTE",
+          "TRANSCRIBE"
         ]
       },
       "VoipSessionType": {
@@ -46463,13 +47457,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "SESSION",
-          "TEAM"
-        ],
         "x-enum-descriptions": [
           "",
           ""
+        ],
+        "x-enum-varnames": [
+          "SESSION",
+          "TEAM"
         ]
       },
       "VoipTokenResponse": {
@@ -53232,17 +54226,17 @@
         ],
         "title": "OnlineStatus",
         "description": "An enumeration.",
-        "x-enum-varnames": [
-          "online",
-          "away",
-          "invisible",
-          "offline"
-        ],
         "x-enum-descriptions": [
           "Player is current online",
           "Player is current online, but away.  Functionally identical to online",
           "Player will appear offline to other players",
           "Player is offline"
+        ],
+        "x-enum-varnames": [
+          "online",
+          "away",
+          "invisible",
+          "offline"
         ]
       },
       "PlatformIndividualCCUs": {

@@ -77,6 +77,11 @@ void FRHAPI_MatchMakingSessionRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writ
 	}
 	Writer->WriteIdentifierPrefix(TEXT("match_making_profile_id"));
 	RallyHereAPI::WriteJsonValue(Writer, MatchMakingProfileId);
+	if (TicketAddedUnixTime_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("ticket_added_unix_time"));
+		RallyHereAPI::WriteJsonValue(Writer, TicketAddedUnixTime_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -157,6 +162,12 @@ bool FRHAPI_MatchMakingSessionRequest::FromJson(const TSharedPtr<FJsonValue>& Js
 	const TSharedPtr<FJsonValue> JsonMatchMakingProfileIdField = (*Object)->TryGetField(TEXT("match_making_profile_id"));
 	const bool MatchMakingProfileId_IsValid = JsonMatchMakingProfileIdField.IsValid() && (!JsonMatchMakingProfileIdField->IsNull() && TryGetJsonValue(JsonMatchMakingProfileIdField, MatchMakingProfileId));
 	ParseSuccess &= MatchMakingProfileId_IsValid; 
+	const TSharedPtr<FJsonValue> JsonTicketAddedUnixTimeField = (*Object)->TryGetField(TEXT("ticket_added_unix_time"));
+	if (JsonTicketAddedUnixTimeField.IsValid())
+	{
+		TicketAddedUnixTime_IsSet = TryGetJsonValue(JsonTicketAddedUnixTimeField, TicketAddedUnixTime_Optional);
+		ParseSuccess &= TicketAddedUnixTime_IsSet;
+	}
 
 	return ParseSuccess;
 }

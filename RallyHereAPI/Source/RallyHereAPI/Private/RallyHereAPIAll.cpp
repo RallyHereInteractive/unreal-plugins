@@ -29,6 +29,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	, Reports(MakeShareable(new FReportsAPI()))
 	, Sessions(MakeShareable(new FSessionsAPI()))
 	, Settings(MakeShareable(new FSettingsAPI()))
+	, Support(MakeShareable(new FSupportAPI()))
 	, Users(MakeShareable(new FUsersAPI()))
 
 {
@@ -56,6 +57,7 @@ FRallyHereAPIAll::FRallyHereAPIAll()
 	AllAPIs.Add(Reports);
 	AllAPIs.Add(Sessions);
 	AllAPIs.Add(Settings);
+	AllAPIs.Add(Support);
 	AllAPIs.Add(Users);
 }
 
@@ -302,6 +304,16 @@ TSharedRef<FSettingsAPI> FRallyHereAPIAll::GetSettings()
 const TSharedRef<FSettingsAPI> FRallyHereAPIAll::GetSettings() const
 {
 	return Settings;
+}
+
+TSharedRef<FSupportAPI> FRallyHereAPIAll::GetSupport()
+{
+	return Support;
+}
+
+const TSharedRef<FSupportAPI> FRallyHereAPIAll::GetSupport() const
+{
+	return Support;
 }
 
 TSharedRef<FUsersAPI> FRallyHereAPIAll::GetUsers()

@@ -18,6 +18,7 @@
 #include "InviteSource.h"
 #include "JoinParams.h"
 #include "Platform.h"
+#include "SessionJoinability.h"
 #include "SessionPlayerStatus.h"
 #include "TeamUpdate.h"
 #include "CreateAuditRequest.generated.h"
@@ -212,6 +213,33 @@ struct RALLYHEREAPI_API FRHAPI_CreateAuditRequest : public FRHAPI_Model
 	bool IsJoinableDefaultValue() const { return Joinable_IsSet && Joinable_Optional == false; }
 	/** @brief Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true */
 	void SetJoinableToDefault() { SetJoinable(false); }
+
+	/** @brief Joinability flags about the session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_SessionJoinability Joinability_Optional{  };
+	/** @brief true if Joinability_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Joinability_IsSet{ false };
+	/** @brief Gets the value of Joinability_Optional, regardless of it having been set */
+	FRHAPI_SessionJoinability& GetJoinability() { return Joinability_Optional; }
+	/** @brief Gets the value of Joinability_Optional, regardless of it having been set */
+	const FRHAPI_SessionJoinability& GetJoinability() const { return Joinability_Optional; }
+	/** @brief Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_SessionJoinability& GetJoinability(const FRHAPI_SessionJoinability& DefaultValue) const { if (Joinability_IsSet) return Joinability_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false */
+	bool GetJoinability(FRHAPI_SessionJoinability& OutValue) const { if (Joinability_IsSet) OutValue = Joinability_Optional; return Joinability_IsSet; }
+	/** @brief Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_SessionJoinability* GetJoinabilityOrNull() { if (Joinability_IsSet) return (&Joinability_Optional); return nullptr; }
+	/** @brief Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_SessionJoinability* GetJoinabilityOrNull() const { if (Joinability_IsSet) return (&Joinability_Optional); return nullptr; }
+	/** @brief Sets the value of Joinability_Optional and also sets Joinability_IsSet to true */
+	void SetJoinability(const FRHAPI_SessionJoinability& NewValue) { Joinability_Optional = NewValue; Joinability_IsSet = true;  }
+	/** @brief Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics */
+	void SetJoinability(FRHAPI_SessionJoinability&& NewValue) { Joinability_Optional = NewValue; Joinability_IsSet = true;  }
+	/** @brief Clears the value of Joinability_Optional and sets Joinability_IsSet to false */
+	void ClearJoinability() { Joinability_IsSet = false;  }
+	/** @brief Checks whether Joinability_Optional has been set */
+	bool IsJoinabilitySet() const { return Joinability_IsSet; }
 
 	/** @brief Updated team numbers and sizes */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -972,6 +1000,64 @@ struct RALLYHEREAPI_API FRHAPI_CreateAuditRequest : public FRHAPI_Model
 	void ClearMatchId() { MatchId_IsSet = false;  }
 	/** @brief Checks whether MatchId_Optional has been set */
 	bool IsMatchIdSet() const { return MatchId_IsSet; }
+
+	/** @brief The total time in seconds that the ticket waited before being assigned to a match */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 TicketWaitSeconds_Optional{ 0 };
+	/** @brief true if TicketWaitSeconds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TicketWaitSeconds_IsSet{ false };
+	/** @brief Gets the value of TicketWaitSeconds_Optional, regardless of it having been set */
+	int32& GetTicketWaitSeconds() { return TicketWaitSeconds_Optional; }
+	/** @brief Gets the value of TicketWaitSeconds_Optional, regardless of it having been set */
+	const int32& GetTicketWaitSeconds() const { return TicketWaitSeconds_Optional; }
+	/** @brief Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetTicketWaitSeconds(const int32& DefaultValue) const { if (TicketWaitSeconds_IsSet) return TicketWaitSeconds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTicketWaitSeconds(int32& OutValue) const { if (TicketWaitSeconds_IsSet) OutValue = TicketWaitSeconds_Optional; return TicketWaitSeconds_IsSet; }
+	/** @brief Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetTicketWaitSecondsOrNull() { if (TicketWaitSeconds_IsSet) return (&TicketWaitSeconds_Optional); return nullptr; }
+	/** @brief Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetTicketWaitSecondsOrNull() const { if (TicketWaitSeconds_IsSet) return (&TicketWaitSeconds_Optional); return nullptr; }
+	/** @brief Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true */
+	void SetTicketWaitSeconds(const int32& NewValue) { TicketWaitSeconds_Optional = NewValue; TicketWaitSeconds_IsSet = true;  }
+	/** @brief Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics */
+	void SetTicketWaitSeconds(int32&& NewValue) { TicketWaitSeconds_Optional = NewValue; TicketWaitSeconds_IsSet = true;  }
+	/** @brief Clears the value of TicketWaitSeconds_Optional and sets TicketWaitSeconds_IsSet to false */
+	void ClearTicketWaitSeconds() { TicketWaitSeconds_Optional = 0; TicketWaitSeconds_IsSet = false;  }
+	/** @brief Checks whether TicketWaitSeconds_Optional has been set */
+	bool IsTicketWaitSecondsSet() const { return TicketWaitSeconds_IsSet; }
+	/** @brief Returns true if TicketWaitSeconds_Optional is set and matches the default value */
+	bool IsTicketWaitSecondsDefaultValue() const { return TicketWaitSeconds_IsSet && TicketWaitSeconds_Optional == 0; }
+	/** @brief Sets the value of TicketWaitSeconds_Optional to its default and also sets TicketWaitSeconds_IsSet to true */
+	void SetTicketWaitSecondsToDefault() { SetTicketWaitSeconds(0); }
+
+	/** @brief ID of the MatchMakingProfile used to create this session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString MatchMakingProfileId_Optional{  };
+	/** @brief true if MatchMakingProfileId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MatchMakingProfileId_IsSet{ false };
+	/** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
+	FString& GetMatchMakingProfileId() { return MatchMakingProfileId_Optional; }
+	/** @brief Gets the value of MatchMakingProfileId_Optional, regardless of it having been set */
+	const FString& GetMatchMakingProfileId() const { return MatchMakingProfileId_Optional; }
+	/** @brief Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetMatchMakingProfileId(const FString& DefaultValue) const { if (MatchMakingProfileId_IsSet) return MatchMakingProfileId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetMatchMakingProfileId(FString& OutValue) const { if (MatchMakingProfileId_IsSet) OutValue = MatchMakingProfileId_Optional; return MatchMakingProfileId_IsSet; }
+	/** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetMatchMakingProfileIdOrNull() { if (MatchMakingProfileId_IsSet) return (&MatchMakingProfileId_Optional); return nullptr; }
+	/** @brief Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetMatchMakingProfileIdOrNull() const { if (MatchMakingProfileId_IsSet) return (&MatchMakingProfileId_Optional); return nullptr; }
+	/** @brief Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true */
+	void SetMatchMakingProfileId(const FString& NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true;  }
+	/** @brief Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true using move semantics */
+	void SetMatchMakingProfileId(FString&& NewValue) { MatchMakingProfileId_Optional = NewValue; MatchMakingProfileId_IsSet = true;  }
+	/** @brief Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false */
+	void ClearMatchMakingProfileId() { MatchMakingProfileId_IsSet = false;  }
+	/** @brief Checks whether MatchMakingProfileId_Optional has been set */
+	bool IsMatchMakingProfileIdSet() const { return MatchMakingProfileId_IsSet; }
 
 	/** @brief List of players uuids that were effected in this event. Each player will get a unique event */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

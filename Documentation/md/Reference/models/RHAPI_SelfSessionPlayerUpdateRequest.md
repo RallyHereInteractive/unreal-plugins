@@ -32,6 +32,8 @@ A request body for a player updating information about themselves.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8217d194f5c6d231a970922b72505333) | true if CustomData_Optional has been set to a value
 `public FString `[`Password_Optional`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aeaffaeeb75bbf81be1c6c71f55741ea3) | Password to join a password protected session that you are not invited to.
 `public bool `[`Password_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af920855dec5e06f3ba9e62f99c22aeca) | true if Password_Optional has been set to a value
+`public FGuid `[`FriendUuid_Optional`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae6a1a424b552a8a25282000e4d1303ac) | UUID of the friend whose session you are joining.
+`public bool `[`FriendUuid_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1abbc521201d45f81b9282912a56a95d81) | true if FriendUuid_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1acc77d6986116b5e4f8a94b6dec665079)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_SessionPlayerStatus & `[`GetStatus`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ad1c4283d346348c48a0399c7bbc72bda)`()` | Gets the value of Status_Optional, regardless of it having been set.
@@ -88,6 +90,16 @@ A request body for a player updating information about themselves.
 `public inline void `[`SetPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a87e2bd4ccd25a598e1176b7c23948b31)`(FString && NewValue)` | Sets the value of Password_Optional and also sets Password_IsSet to true using move semantics.
 `public inline void `[`ClearPassword`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a6858175ae0bfebce9a67971e0cc3ca33)`()` | Clears the value of Password_Optional and sets Password_IsSet to false.
 `public inline bool `[`IsPasswordSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8855f2950fb13c365cd9a2ab6ba77ca)`() const` | Checks whether Password_Optional has been set.
+`public inline FGuid & `[`GetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a5b6885c087b4eddc438942cbea161b1d)`()` | Gets the value of FriendUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ab8c57fbf9d7e0548352d1305c0ed0ef1)`() const` | Gets the value of FriendUuid_Optional, regardless of it having been set.
+`public inline const FGuid & `[`GetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae2a90dce9cf626599cfb9820a260d31a)`(const FGuid & DefaultValue) const` | Gets the value of FriendUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a955057c7078bc50c871e9fcbe51876b5)`(FGuid & OutValue) const` | Fills OutValue with the value of FriendUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FGuid * `[`GetFriendUuidOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1adc2ae0500be1d04108fac4e8ac57f3bc)`()` | Returns a pointer to FriendUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FGuid * `[`GetFriendUuidOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8e99fe53c43c2a2a159c67b15bee1b18)`() const` | Returns a pointer to FriendUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a6045469950d62e6b62b84d738669c5f1)`(const FGuid & NewValue)` | Sets the value of FriendUuid_Optional and also sets FriendUuid_IsSet to true.
+`public inline void `[`SetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a1baaace7533af60470a583c971350915)`(FGuid && NewValue)` | Sets the value of FriendUuid_Optional and also sets FriendUuid_IsSet to true using move semantics.
+`public inline void `[`ClearFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af34072b80bbe34146e951f23c69cff95)`()` | Clears the value of FriendUuid_Optional and sets FriendUuid_IsSet to false.
+`public inline bool `[`IsFriendUuidSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aede967b112fa0a4263cb0275dde03ffd)`() const` | Checks whether FriendUuid_Optional has been set.
 
 ### Members
 
@@ -134,6 +146,14 @@ Password to join a password protected session that you are not invited to.
 #### `public bool `[`Password_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af920855dec5e06f3ba9e62f99c22aeca) <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1af920855dec5e06f3ba9e62f99c22aeca"></a>
 
 true if Password_Optional has been set to a value
+
+#### `public FGuid `[`FriendUuid_Optional`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae6a1a424b552a8a25282000e4d1303ac) <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ae6a1a424b552a8a25282000e4d1303ac"></a>
+
+UUID of the friend whose session you are joining.
+
+#### `public bool `[`FriendUuid_IsSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1abbc521201d45f81b9282912a56a95d81) <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1abbc521201d45f81b9282912a56a95d81"></a>
+
+true if FriendUuid_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a689b45738def0c35f8b23d5062395aa1"></a>
 
@@ -367,4 +387,44 @@ Clears the value of Password_Optional and sets Password_IsSet to false.
 #### `public inline bool `[`IsPasswordSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8855f2950fb13c365cd9a2ab6ba77ca)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1aa8855f2950fb13c365cd9a2ab6ba77ca"></a>
 
 Checks whether Password_Optional has been set.
+
+#### `public inline FGuid & `[`GetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a5b6885c087b4eddc438942cbea161b1d)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a5b6885c087b4eddc438942cbea161b1d"></a>
+
+Gets the value of FriendUuid_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ab8c57fbf9d7e0548352d1305c0ed0ef1)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ab8c57fbf9d7e0548352d1305c0ed0ef1"></a>
+
+Gets the value of FriendUuid_Optional, regardless of it having been set.
+
+#### `public inline const FGuid & `[`GetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1ae2a90dce9cf626599cfb9820a260d31a)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1ae2a90dce9cf626599cfb9820a260d31a"></a>
+
+Gets the value of FriendUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a955057c7078bc50c871e9fcbe51876b5)`(FGuid & OutValue) const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a955057c7078bc50c871e9fcbe51876b5"></a>
+
+Fills OutValue with the value of FriendUuid_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FGuid * `[`GetFriendUuidOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1adc2ae0500be1d04108fac4e8ac57f3bc)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1adc2ae0500be1d04108fac4e8ac57f3bc"></a>
+
+Returns a pointer to FriendUuid_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FGuid * `[`GetFriendUuidOrNull`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a8e99fe53c43c2a2a159c67b15bee1b18)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a8e99fe53c43c2a2a159c67b15bee1b18"></a>
+
+Returns a pointer to FriendUuid_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a6045469950d62e6b62b84d738669c5f1)`(const FGuid & NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a6045469950d62e6b62b84d738669c5f1"></a>
+
+Sets the value of FriendUuid_Optional and also sets FriendUuid_IsSet to true.
+
+#### `public inline void `[`SetFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1a1baaace7533af60470a583c971350915)`(FGuid && NewValue)` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1a1baaace7533af60470a583c971350915"></a>
+
+Sets the value of FriendUuid_Optional and also sets FriendUuid_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearFriendUuid`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1af34072b80bbe34146e951f23c69cff95)`()` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1af34072b80bbe34146e951f23c69cff95"></a>
+
+Clears the value of FriendUuid_Optional and sets FriendUuid_IsSet to false.
+
+#### `public inline bool `[`IsFriendUuidSet`](#structFRHAPI__SelfSessionPlayerUpdateRequest_1aede967b112fa0a4263cb0275dde03ffd)`() const` <a id="structFRHAPI__SelfSessionPlayerUpdateRequest_1aede967b112fa0a4263cb0275dde03ffd"></a>
+
+Checks whether FriendUuid_Optional has been set.
 

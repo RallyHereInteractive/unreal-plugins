@@ -198,7 +198,7 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	void SetPlatformTransactionId(FString&& NewValue) { PlatformTransactionId = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FRHAPI_JsonObject PlatformData_Optional{  };
+	TMap<FString, FRHAPI_JsonValue> PlatformData_Optional{  };
 	/** @brief true if PlatformData_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformData_IsSet{ false };
@@ -206,21 +206,21 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformData_IsNull{ false };
 	/** @brief Gets the value of PlatformData_Optional, regardless of it having been set */
-	FRHAPI_JsonObject& GetPlatformData() { return PlatformData_Optional; }
+	TMap<FString, FRHAPI_JsonValue>& GetPlatformData() { return PlatformData_Optional; }
 	/** @brief Gets the value of PlatformData_Optional, regardless of it having been set */
-	const FRHAPI_JsonObject& GetPlatformData() const { return PlatformData_Optional; }
+	const TMap<FString, FRHAPI_JsonValue>& GetPlatformData() const { return PlatformData_Optional; }
 	/** @brief Gets the value of PlatformData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_JsonObject& GetPlatformData(const FRHAPI_JsonObject& DefaultValue) const { if (PlatformData_IsSet) return PlatformData_Optional; return DefaultValue; }
+	const TMap<FString, FRHAPI_JsonValue>& GetPlatformData(const TMap<FString, FRHAPI_JsonValue>& DefaultValue) const { if (PlatformData_IsSet) return PlatformData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformData(FRHAPI_JsonObject& OutValue) const { if (PlatformData_IsSet && !PlatformData_IsNull) OutValue = PlatformData_Optional; return PlatformData_IsSet; }
+	bool GetPlatformData(TMap<FString, FRHAPI_JsonValue>& OutValue) const { if (PlatformData_IsSet && !PlatformData_IsNull) OutValue = PlatformData_Optional; return PlatformData_IsSet; }
 	/** @brief Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_JsonObject* GetPlatformDataOrNull() { if (PlatformData_IsSet) return (PlatformData_IsNull ? nullptr : &PlatformData_Optional); return nullptr; }
+	TMap<FString, FRHAPI_JsonValue>* GetPlatformDataOrNull() { if (PlatformData_IsSet) return (PlatformData_IsNull ? nullptr : &PlatformData_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformData_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_JsonObject* GetPlatformDataOrNull() const { if (PlatformData_IsSet) return (PlatformData_IsNull ? nullptr : &PlatformData_Optional); return nullptr; }
+	const TMap<FString, FRHAPI_JsonValue>* GetPlatformDataOrNull() const { if (PlatformData_IsSet) return (PlatformData_IsNull ? nullptr : &PlatformData_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true */
-	void SetPlatformData(const FRHAPI_JsonObject& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true; PlatformData_IsNull = false; }
+	void SetPlatformData(const TMap<FString, FRHAPI_JsonValue>& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true; PlatformData_IsNull = false; }
 	/** @brief Sets the value of PlatformData_Optional and also sets PlatformData_IsSet to true using move semantics */
-	void SetPlatformData(FRHAPI_JsonObject&& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true; PlatformData_IsNull = false; }
+	void SetPlatformData(TMap<FString, FRHAPI_JsonValue>&& NewValue) { PlatformData_Optional = NewValue; PlatformData_IsSet = true; PlatformData_IsNull = false; }
 	/** @brief Clears the value of PlatformData_Optional and sets PlatformData_IsSet to false */
 	void ClearPlatformData() { PlatformData_IsSet = false; PlatformData_IsNull = false; }
 	/** @brief Checks whether PlatformData_Optional has been set */
