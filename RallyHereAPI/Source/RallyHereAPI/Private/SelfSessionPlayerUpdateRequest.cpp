@@ -48,6 +48,11 @@ void FRHAPI_SelfSessionPlayerUpdateRequest::WriteJson(TSharedRef<TJsonWriter<>>&
 		Writer->WriteIdentifierPrefix(TEXT("password"));
 		RallyHereAPI::WriteJsonValue(Writer, Password_Optional);
 	}
+	if (FriendUuid_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("friend_uuid"));
+		RallyHereAPI::WriteJsonValue(Writer, FriendUuid_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -91,6 +96,12 @@ bool FRHAPI_SelfSessionPlayerUpdateRequest::FromJson(const TSharedPtr<FJsonValue
 	{
 		Password_IsSet = TryGetJsonValue(JsonPasswordField, Password_Optional);
 		ParseSuccess &= Password_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFriendUuidField = (*Object)->TryGetField(TEXT("friend_uuid"));
+	if (JsonFriendUuidField.IsValid())
+	{
+		FriendUuid_IsSet = TryGetJsonValue(JsonFriendUuidField, FriendUuid_Optional);
+		ParseSuccess &= FriendUuid_IsSet;
 	}
 
 	return ParseSuccess;

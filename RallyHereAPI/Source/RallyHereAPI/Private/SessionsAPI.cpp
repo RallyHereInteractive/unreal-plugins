@@ -5452,6 +5452,297 @@ FHttpRequestPtr Traits_GetConnectionInfoSelf::DoCall(TSharedRef<API> InAPI, cons
 	return InAPI->GetConnectionInfoSelf(InRequest, InDelegate, InPriority);
 }
 
+FHttpRequestPtr FSessionsAPI::GetEpicVoiceJoinTokenMe(const FRequest_GetEpicVoiceJoinTokenMe& Request, const FDelegate_GetEpicVoiceJoinTokenMe& Delegate /*= FDelegate_GetEpicVoiceJoinTokenMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+{
+	if (!IsValid())
+		return nullptr;
+
+	// create the http request and tracking structure
+	TSharedPtr<FRallyHereAPIHttpRequestData> RequestData = MakeShared<FRallyHereAPIHttpRequestData>(CreateHttpRequest(Request), AsShared(), Priority);
+	RequestData->HttpRequest->SetURL(*(Url + Request.ComputePath()));
+
+	// add headers to tracker
+	for(const auto& It : AdditionalHeaderParams)
+	{
+		RequestData->HttpRequest->SetHeader(It.Key, It.Value);
+	}
+
+	// setup http request from custom request object
+	if (!Request.SetupHttpRequest(RequestData->HttpRequest))
+	{
+		return nullptr;
+	}
+	
+	// allow a delegate to modify the http request (such as binding custom handling delegates)
+	Request.OnModifyRequest().Broadcast(Request, RequestData->HttpRequest);
+	
+	// update request metadata flags just before we store it in the tracking object
+	FRequestMetadata Metadata = Request.GetRequestMetadata();
+	Request.SetMetadataFlags(Metadata);
+
+	// store metadata in tracking object (last place used by request)
+	RequestData->SetMetadata(Metadata);
+
+	// bind response handler
+	FHttpRequestCompleteDelegate ResponseDelegate;
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetEpicVoiceJoinTokenMeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	RequestData->SetDelegate(ResponseDelegate);
+
+	// submit request to http system
+	auto* HttpRequester = FRallyHereAPIHttpRequester::Get();
+	if (HttpRequester)
+	{
+		HttpRequester->EnqueueHttpRequest(RequestData);
+	}
+	return RequestData->HttpRequest;
+}
+
+void FSessionsAPI::OnGetEpicVoiceJoinTokenMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEpicVoiceJoinTokenMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+{
+	FHttpRequestCompleteDelegate ResponseDelegate;
+
+	if (AuthContextForRetry)
+	{
+		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
+		// So, we set the callback to use a null context for the retry
+		ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetEpicVoiceJoinTokenMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+	}
+
+	TSharedRef<FResponse_GetEpicVoiceJoinTokenMe> Response = MakeShared<FResponse_GetEpicVoiceJoinTokenMe>(RequestMetadata);
+	
+	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
+	{
+		SCOPED_NAMED_EVENT(RallyHere_ExecuteDelegate, FColor::Purple);
+		Delegate.ExecuteIfBound(Response.Get());
+	});
+	
+	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
+}
+
+FRequest_GetEpicVoiceJoinTokenMe::FRequest_GetEpicVoiceJoinTokenMe()
+	: FRequest()
+{
+	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
+	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
+}
+
+FName FRequest_GetEpicVoiceJoinTokenMe::GetSimplifiedPath() const
+{
+	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/me/voip/epic:join"));
+	return Path;
+}
+
+FName FRequest_GetEpicVoiceJoinTokenMe::GetSimplifiedPathWithVerb() const
+{
+	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
+	return PathWithVerb;
+}
+
+FString FRequest_GetEpicVoiceJoinTokenMe::ComputePath() const
+{
+	TMap<FString, FStringFormatArg> PathParams = { 
+		{ TEXT("session_id"), ToStringFormatArg(SessionId) }
+	};
+
+	FString Path = FString::Format(TEXT("/session/v1/session/{session_id}/player/me/voip/epic:join"), PathParams);
+
+	TArray<FString> QueryParams;
+	QueryParams.Add(FString(TEXT("voip_session_type=")) + ToUrlString(VoipSessionType));
+	if(JoinMuted.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("join_muted=")) + ToUrlString(JoinMuted.GetValue()));
+	}
+	if(RefreshTtl.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
+	return Path;
+}
+
+bool FRequest_GetEpicVoiceJoinTokenMe::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+{
+	static const TArray<FString> Consumes = {  };
+	//static const TArray<FString> Produces = { TEXT("application/json") };
+
+	HttpRequest->SetVerb(TEXT("GET"));
+
+	// Header parameters
+	if (XRhClientAddr.IsSet())
+	{
+		HttpRequest->SetHeader(TEXT("x-rh-client-addr"), XRhClientAddr.GetValue());
+	}
+
+	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
+	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetEpicVoiceJoinTokenMe - missing auth context"));
+		return false;
+	}
+	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetEpicVoiceJoinTokenMe - failed to add bearer token"));
+		return false;
+	}
+
+	if (Consumes.Num() == 0 || Consumes.Contains(TEXT("application/json"))) // Default to Json Body request
+	{
+	}
+	else if (Consumes.Contains(TEXT("multipart/form-data")))
+	{
+	}
+	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
+	{
+	}
+	else
+	{
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetEpicVoiceJoinTokenMe - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		return false;
+	}
+
+	return true;
+}
+
+FString FResponse_GetEpicVoiceJoinTokenMe::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+{
+	switch ((int)InHttpResponseCode)
+	{
+	case 200:
+		return TEXT("Successful Response");
+	case 403:
+		return TEXT("Forbidden");
+	case 422:
+		return TEXT("Validation Error");
+	}
+	
+	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
+}
+
+bool FResponse_GetEpicVoiceJoinTokenMe::ParseHeaders()
+{
+	if (!Super::ParseHeaders())
+	{
+		return false;
+	}
+
+
+	// determine if all required headers were parsed
+	bool bParsedAllRequiredHeaders = true;
+	switch ((int)GetHttpResponseCode())
+	{
+	case 200:
+		break;
+	case 403:
+		break;
+	case 422:
+		break;
+	default:
+		break;
+	}
+	
+	return bParsedAllRequiredHeaders;
+}
+
+bool FResponse_GetEpicVoiceJoinTokenMe::TryGetContentFor200(FRHAPI_EpicVoipCredentialsResponse& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 200)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetEpicVoiceJoinTokenMe::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetEpicVoiceJoinTokenMe::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 422)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_GetEpicVoiceJoinTokenMe::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+{
+	bool bParsed = false;
+	// for non default responses, parse into a temporary object to validate the response can be parsed properly
+	switch ((int)GetHttpResponseCode())
+	{  
+		case 200:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_EpicVoipCredentialsResponse Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_EpicVoipCredentialsResponse>(Object);
+				break;
+			} 
+		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 422:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HTTPValidationError Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				break;
+			}
+		default:
+			break;
+	}
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	// if using legacy content object, attempt to parse any response into the main content object.  For some legacy reasons around multiple success variants, this needs to ignore the intended type and always parse into the default type
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS;
+	TryGetJsonValue(JsonValue, Content);
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS;
+#endif
+
+	return bParsed;
+}
+
+FResponse_GetEpicVoiceJoinTokenMe::FResponse_GetEpicVoiceJoinTokenMe(FRequestMetadata InRequestMetadata)
+	: Super(MoveTemp(InRequestMetadata))
+{
+}
+
+FString Traits_GetEpicVoiceJoinTokenMe::Name = TEXT("GetEpicVoiceJoinTokenMe");
+
+FHttpRequestPtr Traits_GetEpicVoiceJoinTokenMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+{
+	return InAPI->GetEpicVoiceJoinTokenMe(InRequest, InDelegate, InPriority);
+}
+
 FHttpRequestPtr FSessionsAPI::GetInstanceRequestTemplate(const FRequest_GetInstanceRequestTemplate& Request, const FDelegate_GetInstanceRequestTemplate& Delegate /*= FDelegate_GetInstanceRequestTemplate()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
@@ -10621,7 +10912,7 @@ FHttpRequestPtr Traits_GetSessionTemplateByType::DoCall(TSharedRef<API> InAPI, c
 	return InAPI->GetSessionTemplateByType(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FSessionsAPI::GetVoipActionToken(const FRequest_GetVoipActionToken& Request, const FDelegate_GetVoipActionToken& Delegate /*= FDelegate_GetVoipActionToken()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FSessionsAPI::GetVivoxActionToken(const FRequest_GetVivoxActionToken& Request, const FDelegate_GetVivoxActionToken& Delegate /*= FDelegate_GetVivoxActionToken()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -10654,7 +10945,7 @@ FHttpRequestPtr FSessionsAPI::GetVoipActionToken(const FRequest_GetVoipActionTok
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVoipActionTokenResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVivoxActionTokenResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -10666,7 +10957,7 @@ FHttpRequestPtr FSessionsAPI::GetVoipActionToken(const FRequest_GetVoipActionTok
 	return RequestData->HttpRequest;
 }
 
-void FSessionsAPI::OnGetVoipActionTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipActionToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FSessionsAPI::OnGetVivoxActionTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVivoxActionToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -10674,10 +10965,10 @@ void FSessionsAPI::OnGetVoipActionTokenResponse(FHttpRequestPtr HttpRequest, FHt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVoipActionTokenResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVivoxActionTokenResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	TSharedRef<FResponse_GetVoipActionToken> Response = MakeShared<FResponse_GetVoipActionToken>(RequestMetadata);
+	TSharedRef<FResponse_GetVivoxActionToken> Response = MakeShared<FResponse_GetVivoxActionToken>(RequestMetadata);
 	
 	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
@@ -10688,26 +10979,26 @@ void FSessionsAPI::OnGetVoipActionTokenResponse(FHttpRequestPtr HttpRequest, FHt
 	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
-FRequest_GetVoipActionToken::FRequest_GetVoipActionToken()
+FRequest_GetVivoxActionToken::FRequest_GetVivoxActionToken()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_GetVoipActionToken::GetSimplifiedPath() const
+FName FRequest_GetVivoxActionToken::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/{player_uuid}/voip/vivox:{vivox_action}"));
 	return Path;
 }
 
-FName FRequest_GetVoipActionToken::GetSimplifiedPathWithVerb() const
+FName FRequest_GetVivoxActionToken::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_GetVoipActionToken::ComputePath() const
+FString FRequest_GetVivoxActionToken::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
 		{ TEXT("player_uuid"), ToStringFormatArg(PlayerUuid) },
@@ -10729,7 +11020,7 @@ FString FRequest_GetVoipActionToken::ComputePath() const
 	return Path;
 }
 
-bool FRequest_GetVoipActionToken::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_GetVivoxActionToken::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -10739,12 +11030,12 @@ bool FRequest_GetVoipActionToken::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipActionToken - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxActionToken - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipActionToken - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxActionToken - failed to add bearer token"));
 		return false;
 	}
 
@@ -10759,14 +11050,14 @@ bool FRequest_GetVoipActionToken::SetupHttpRequest(const FHttpRequestRef& HttpRe
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipActionToken - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxActionToken - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_GetVoipActionToken::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_GetVivoxActionToken::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -10781,7 +11072,7 @@ FString FResponse_GetVoipActionToken::GetHttpResponseCodeDescription(EHttpRespon
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_GetVoipActionToken::ParseHeaders()
+bool FResponse_GetVivoxActionToken::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -10806,7 +11097,7 @@ bool FResponse_GetVoipActionToken::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_GetVoipActionToken::TryGetContentFor200(FRHAPI_VoipTokenResponse& OutContent) const
+bool FResponse_GetVivoxActionToken::TryGetContentFor200(FRHAPI_VoipTokenResponse& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -10818,7 +11109,7 @@ bool FResponse_GetVoipActionToken::TryGetContentFor200(FRHAPI_VoipTokenResponse&
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetVoipActionToken::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_GetVivoxActionToken::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -10830,7 +11121,7 @@ bool FResponse_GetVoipActionToken::TryGetContentFor403(FRHAPI_HzApiErrorModel& O
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetVoipActionToken::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetVivoxActionToken::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -10842,7 +11133,7 @@ bool FResponse_GetVoipActionToken::TryGetContentFor422(FRHAPI_HTTPValidationErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetVoipActionToken::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_GetVivoxActionToken::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -10892,19 +11183,19 @@ bool FResponse_GetVoipActionToken::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 	return bParsed;
 }
 
-FResponse_GetVoipActionToken::FResponse_GetVoipActionToken(FRequestMetadata InRequestMetadata)
+FResponse_GetVivoxActionToken::FResponse_GetVivoxActionToken(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_GetVoipActionToken::Name = TEXT("GetVoipActionToken");
+FString Traits_GetVivoxActionToken::Name = TEXT("GetVivoxActionToken");
 
-FHttpRequestPtr Traits_GetVoipActionToken::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_GetVivoxActionToken::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->GetVoipActionToken(InRequest, InDelegate, InPriority);
+	return InAPI->GetVivoxActionToken(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FSessionsAPI::GetVoipActionTokenMe(const FRequest_GetVoipActionTokenMe& Request, const FDelegate_GetVoipActionTokenMe& Delegate /*= FDelegate_GetVoipActionTokenMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FSessionsAPI::GetVivoxActionTokenMe(const FRequest_GetVivoxActionTokenMe& Request, const FDelegate_GetVivoxActionTokenMe& Delegate /*= FDelegate_GetVivoxActionTokenMe()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -10937,7 +11228,7 @@ FHttpRequestPtr FSessionsAPI::GetVoipActionTokenMe(const FRequest_GetVoipActionT
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVoipActionTokenMeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVivoxActionTokenMeResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -10949,7 +11240,7 @@ FHttpRequestPtr FSessionsAPI::GetVoipActionTokenMe(const FRequest_GetVoipActionT
 	return RequestData->HttpRequest;
 }
 
-void FSessionsAPI::OnGetVoipActionTokenMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipActionTokenMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FSessionsAPI::OnGetVivoxActionTokenMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVivoxActionTokenMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -10957,10 +11248,10 @@ void FSessionsAPI::OnGetVoipActionTokenMeResponse(FHttpRequestPtr HttpRequest, F
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVoipActionTokenMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVivoxActionTokenMeResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	TSharedRef<FResponse_GetVoipActionTokenMe> Response = MakeShared<FResponse_GetVoipActionTokenMe>(RequestMetadata);
+	TSharedRef<FResponse_GetVivoxActionTokenMe> Response = MakeShared<FResponse_GetVivoxActionTokenMe>(RequestMetadata);
 	
 	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
@@ -10971,26 +11262,26 @@ void FSessionsAPI::OnGetVoipActionTokenMeResponse(FHttpRequestPtr HttpRequest, F
 	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
-FRequest_GetVoipActionTokenMe::FRequest_GetVoipActionTokenMe()
+FRequest_GetVivoxActionTokenMe::FRequest_GetVivoxActionTokenMe()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_GetVoipActionTokenMe::GetSimplifiedPath() const
+FName FRequest_GetVivoxActionTokenMe::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/session/{session_id}/player/me/voip/vivox:{vivox_action}"));
 	return Path;
 }
 
-FName FRequest_GetVoipActionTokenMe::GetSimplifiedPathWithVerb() const
+FName FRequest_GetVivoxActionTokenMe::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_GetVoipActionTokenMe::ComputePath() const
+FString FRequest_GetVivoxActionTokenMe::ComputePath() const
 {
 	TMap<FString, FStringFormatArg> PathParams = { 
 		{ TEXT("vivox_action"), ToStringFormatArg(VivoxAction) },
@@ -11011,7 +11302,7 @@ FString FRequest_GetVoipActionTokenMe::ComputePath() const
 	return Path;
 }
 
-bool FRequest_GetVoipActionTokenMe::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_GetVivoxActionTokenMe::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -11021,12 +11312,12 @@ bool FRequest_GetVoipActionTokenMe::SetupHttpRequest(const FHttpRequestRef& Http
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipActionTokenMe - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxActionTokenMe - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipActionTokenMe - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxActionTokenMe - failed to add bearer token"));
 		return false;
 	}
 
@@ -11041,14 +11332,14 @@ bool FRequest_GetVoipActionTokenMe::SetupHttpRequest(const FHttpRequestRef& Http
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipActionTokenMe - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxActionTokenMe - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_GetVoipActionTokenMe::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_GetVivoxActionTokenMe::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -11063,7 +11354,7 @@ FString FResponse_GetVoipActionTokenMe::GetHttpResponseCodeDescription(EHttpResp
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_GetVoipActionTokenMe::ParseHeaders()
+bool FResponse_GetVivoxActionTokenMe::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -11088,7 +11379,7 @@ bool FResponse_GetVoipActionTokenMe::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_GetVoipActionTokenMe::TryGetContentFor200(FRHAPI_VoipTokenResponse& OutContent) const
+bool FResponse_GetVivoxActionTokenMe::TryGetContentFor200(FRHAPI_VoipTokenResponse& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -11100,7 +11391,7 @@ bool FResponse_GetVoipActionTokenMe::TryGetContentFor200(FRHAPI_VoipTokenRespons
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetVoipActionTokenMe::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_GetVivoxActionTokenMe::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -11112,7 +11403,7 @@ bool FResponse_GetVoipActionTokenMe::TryGetContentFor403(FRHAPI_HzApiErrorModel&
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetVoipActionTokenMe::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetVivoxActionTokenMe::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -11124,7 +11415,7 @@ bool FResponse_GetVoipActionTokenMe::TryGetContentFor422(FRHAPI_HTTPValidationEr
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetVoipActionTokenMe::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_GetVivoxActionTokenMe::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -11174,19 +11465,19 @@ bool FResponse_GetVoipActionTokenMe::FromJson(const TSharedPtr<FJsonValue>& Json
 	return bParsed;
 }
 
-FResponse_GetVoipActionTokenMe::FResponse_GetVoipActionTokenMe(FRequestMetadata InRequestMetadata)
+FResponse_GetVivoxActionTokenMe::FResponse_GetVivoxActionTokenMe(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_GetVoipActionTokenMe::Name = TEXT("GetVoipActionTokenMe");
+FString Traits_GetVivoxActionTokenMe::Name = TEXT("GetVivoxActionTokenMe");
 
-FHttpRequestPtr Traits_GetVoipActionTokenMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_GetVivoxActionTokenMe::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->GetVoipActionTokenMe(InRequest, InDelegate, InPriority);
+	return InAPI->GetVivoxActionTokenMe(InRequest, InDelegate, InPriority);
 }
 
-FHttpRequestPtr FSessionsAPI::GetVoipLoginToken(const FRequest_GetVoipLoginToken& Request, const FDelegate_GetVoipLoginToken& Delegate /*= FDelegate_GetVoipLoginToken()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
+FHttpRequestPtr FSessionsAPI::GetVivoxLoginToken(const FRequest_GetVivoxLoginToken& Request, const FDelegate_GetVivoxLoginToken& Delegate /*= FDelegate_GetVivoxLoginToken()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)
 {
 	if (!IsValid())
 		return nullptr;
@@ -11219,7 +11510,7 @@ FHttpRequestPtr FSessionsAPI::GetVoipLoginToken(const FRequest_GetVoipLoginToken
 
 	// bind response handler
 	FHttpRequestCompleteDelegate ResponseDelegate;
-	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVoipLoginTokenResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
+	ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVivoxLoginTokenResponse, Delegate, RequestData->Metadata, Request.GetAuthContext(), Priority);
 	RequestData->SetDelegate(ResponseDelegate);
 
 	// submit request to http system
@@ -11231,7 +11522,7 @@ FHttpRequestPtr FSessionsAPI::GetVoipLoginToken(const FRequest_GetVoipLoginToken
 	return RequestData->HttpRequest;
 }
 
-void FSessionsAPI::OnGetVoipLoginTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipLoginToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
+void FSessionsAPI::OnGetVivoxLoginTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVivoxLoginToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority)
 {
 	FHttpRequestCompleteDelegate ResponseDelegate;
 
@@ -11239,10 +11530,10 @@ void FSessionsAPI::OnGetVoipLoginTokenResponse(FHttpRequestPtr HttpRequest, FHtt
 	{
 		// An included auth context indicates we should auth-retry this request, we only want to do that at most once per call.
 		// So, we set the callback to use a null context for the retry
-		ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVoipLoginTokenResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
+		ResponseDelegate.BindSP(this, &FSessionsAPI::OnGetVivoxLoginTokenResponse, Delegate, RequestMetadata, TSharedPtr<FAuthContext>(), Priority);
 	}
 
-	TSharedRef<FResponse_GetVoipLoginToken> Response = MakeShared<FResponse_GetVoipLoginToken>(RequestMetadata);
+	TSharedRef<FResponse_GetVivoxLoginToken> Response = MakeShared<FResponse_GetVivoxLoginToken>(RequestMetadata);
 	
 	auto CompletionDelegate = FSimpleDelegate::CreateLambda([Delegate, Response]()
 	{
@@ -11253,32 +11544,32 @@ void FSessionsAPI::OnGetVoipLoginTokenResponse(FHttpRequestPtr HttpRequest, FHtt
 	HandleResponse(HttpRequest, HttpResponse, bSucceeded, AuthContextForRetry, Response, ResponseDelegate, CompletionDelegate, RequestMetadata, Priority);
 }
 
-FRequest_GetVoipLoginToken::FRequest_GetVoipLoginToken()
+FRequest_GetVivoxLoginToken::FRequest_GetVivoxLoginToken()
 	: FRequest()
 {
 	RequestMetadata.SimplifiedPath = GetSimplifiedPath();
 	RequestMetadata.SimplifiedPathWithVerb = GetSimplifiedPathWithVerb();
 }
 
-FName FRequest_GetVoipLoginToken::GetSimplifiedPath() const
+FName FRequest_GetVivoxLoginToken::GetSimplifiedPath() const
 {
 	static FName Path = FName(TEXT("/session/v1/voip/vivox:login"));
 	return Path;
 }
 
-FName FRequest_GetVoipLoginToken::GetSimplifiedPathWithVerb() const
+FName FRequest_GetVivoxLoginToken::GetSimplifiedPathWithVerb() const
 {
 	static FName PathWithVerb = FName(*FString::Printf(TEXT("GET %s"), *GetSimplifiedPath().ToString()));
 	return PathWithVerb;
 }
 
-FString FRequest_GetVoipLoginToken::ComputePath() const
+FString FRequest_GetVivoxLoginToken::ComputePath() const
 {
 	FString Path = GetSimplifiedPath().ToString();
 	return Path;
 }
 
-bool FRequest_GetVoipLoginToken::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
+bool FRequest_GetVivoxLoginToken::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
 	//static const TArray<FString> Produces = { TEXT("application/json") };
@@ -11288,12 +11579,12 @@ bool FRequest_GetVoipLoginToken::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	// check the pending flags, as the metadata has not been updated with it yet (it is updated after the http request is fully created)
 	if (!AuthContext && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipLoginToken - missing auth context"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxLoginToken - missing auth context"));
 		return false;
 	}
 	if (AuthContext && !AuthContext->AddBearerToken(HttpRequest) && !PendingMetadataFlags.bDisableAuthRequirement)
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipLoginToken - failed to add bearer token"));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxLoginToken - failed to add bearer token"));
 		return false;
 	}
 
@@ -11308,14 +11599,14 @@ bool FRequest_GetVoipLoginToken::SetupHttpRequest(const FHttpRequestRef& HttpReq
 	}
 	else
 	{
-		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVoipLoginToken - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
+		UE_LOG(LogRallyHereAPI, Error, TEXT("FRequest_GetVivoxLoginToken - Request ContentType not supported (%s)"), *FString::Join(Consumes, TEXT(",")));
 		return false;
 	}
 
 	return true;
 }
 
-FString FResponse_GetVoipLoginToken::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
+FString FResponse_GetVivoxLoginToken::GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const
 {
 	switch ((int)InHttpResponseCode)
 	{
@@ -11328,7 +11619,7 @@ FString FResponse_GetVoipLoginToken::GetHttpResponseCodeDescription(EHttpRespons
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
 }
 
-bool FResponse_GetVoipLoginToken::ParseHeaders()
+bool FResponse_GetVivoxLoginToken::ParseHeaders()
 {
 	if (!Super::ParseHeaders())
 	{
@@ -11351,7 +11642,7 @@ bool FResponse_GetVoipLoginToken::ParseHeaders()
 	return bParsedAllRequiredHeaders;
 }
 
-bool FResponse_GetVoipLoginToken::TryGetContentFor200(FRHAPI_VoipTokenResponse& OutContent) const
+bool FResponse_GetVivoxLoginToken::TryGetContentFor200(FRHAPI_VoipTokenResponse& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 200)
@@ -11363,7 +11654,7 @@ bool FResponse_GetVoipLoginToken::TryGetContentFor200(FRHAPI_VoipTokenResponse& 
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetVoipLoginToken::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
+bool FResponse_GetVivoxLoginToken::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
@@ -11375,7 +11666,7 @@ bool FResponse_GetVoipLoginToken::TryGetContentFor403(FRHAPI_HzApiErrorModel& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetVoipLoginToken::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FResponse_GetVivoxLoginToken::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	bool bParsed = false;
 	// for non default responses, parse into a temporary object to validate the response can be parsed properly
@@ -11415,16 +11706,16 @@ bool FResponse_GetVoipLoginToken::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	return bParsed;
 }
 
-FResponse_GetVoipLoginToken::FResponse_GetVoipLoginToken(FRequestMetadata InRequestMetadata)
+FResponse_GetVivoxLoginToken::FResponse_GetVivoxLoginToken(FRequestMetadata InRequestMetadata)
 	: Super(MoveTemp(InRequestMetadata))
 {
 }
 
-FString Traits_GetVoipLoginToken::Name = TEXT("GetVoipLoginToken");
+FString Traits_GetVivoxLoginToken::Name = TEXT("GetVivoxLoginToken");
 
-FHttpRequestPtr Traits_GetVoipLoginToken::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
+FHttpRequestPtr Traits_GetVivoxLoginToken::DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate, int32 InPriority)
 {
-	return InAPI->GetVoipLoginToken(InRequest, InDelegate, InPriority);
+	return InAPI->GetVivoxLoginToken(InRequest, InDelegate, InPriority);
 }
 
 FHttpRequestPtr FSessionsAPI::GivePlayerPermissionByUuid(const FRequest_GivePlayerPermissionByUuid& Request, const FDelegate_GivePlayerPermissionByUuid& Delegate /*= FDelegate_GivePlayerPermissionByUuid()*/, int32 Priority /*= DefaultRallyHereAPIPriority*/)

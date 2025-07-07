@@ -41,6 +41,7 @@ Private/CreateInventoryRequests.cpp
 Private/CreateInventoryType.cpp
 Private/CreateOrJoinRequest.cpp
 Private/CreatePlatformUserRequest.cpp
+Private/CreateSupportLogRequest.cpp
 Private/CrossplayInput.cpp
 Private/CrossplayPlatform.cpp
 Private/CrossplayPreferences.cpp
@@ -64,6 +65,7 @@ Private/EntitlementsAPI.cpp
 Private/EntityGuideEngagement.cpp
 Private/EntityType.cpp
 Private/EnvironmentConfig.cpp
+Private/EpicVoipCredentialsResponse.cpp
 Private/EventList.cpp
 Private/EventParamsSchemaResponse.cpp
 Private/EventsAPI.cpp
@@ -163,6 +165,8 @@ Private/Loots.cpp
 Private/MMRGroupingMethod.cpp
 Private/ManyEntityGuideEngagement.cpp
 Private/ManyEntityGuideEngagementRequest.cpp
+Private/ManyPlayerOrderCreate.cpp
+Private/ManyPlayerOrderResponse.cpp
 Private/MapConfig.cpp
 Private/MapConfigV2.cpp
 Private/MapSelectionList.cpp
@@ -272,6 +276,7 @@ Private/PlayerMoveRequest.cpp
 Private/PlayerOrder.cpp
 Private/PlayerOrderCreateInput.cpp
 Private/PlayerOrderCreateOutput.cpp
+Private/PlayerOrderCreateSingle.cpp
 Private/PlayerOrderDetail.cpp
 Private/PlayerOrderDetailType.cpp
 Private/PlayerOrderEntry.cpp
@@ -378,6 +383,7 @@ Private/SelfSessionPlayerUpdateRequest.cpp
 Private/Session.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
+Private/SessionJoinability.cpp
 Private/SessionPermissions.cpp
 Private/SessionPlayer.cpp
 Private/SessionPlayerStatus.cpp
@@ -398,6 +404,9 @@ Private/SortDirection.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
 Private/StorageInformation.cpp
+Private/SupportAPI.cpp
+Private/SupportLogEntry.cpp
+Private/SupportLogPageResponse.cpp
 Private/TeamOverflowAction.cpp
 Private/TeamUpdate.cpp
 Private/TicketData.cpp
@@ -467,6 +476,7 @@ Public/CreateInventoryRequests.h
 Public/CreateInventoryType.h
 Public/CreateOrJoinRequest.h
 Public/CreatePlatformUserRequest.h
+Public/CreateSupportLogRequest.h
 Public/CrossplayInput.h
 Public/CrossplayPlatform.h
 Public/CrossplayPreferences.h
@@ -490,6 +500,7 @@ Public/EntitlementsAPI.h
 Public/EntityGuideEngagement.h
 Public/EntityType.h
 Public/EnvironmentConfig.h
+Public/EpicVoipCredentialsResponse.h
 Public/EventList.h
 Public/EventParamsSchemaResponse.h
 Public/EventsAPI.h
@@ -589,6 +600,8 @@ Public/Loots.h
 Public/MMRGroupingMethod.h
 Public/ManyEntityGuideEngagement.h
 Public/ManyEntityGuideEngagementRequest.h
+Public/ManyPlayerOrderCreate.h
+Public/ManyPlayerOrderResponse.h
 Public/MapConfig.h
 Public/MapConfigV2.h
 Public/MapSelectionList.h
@@ -698,6 +711,7 @@ Public/PlayerMoveRequest.h
 Public/PlayerOrder.h
 Public/PlayerOrderCreateInput.h
 Public/PlayerOrderCreateOutput.h
+Public/PlayerOrderCreateSingle.h
 Public/PlayerOrderDetail.h
 Public/PlayerOrderDetailType.h
 Public/PlayerOrderEntry.h
@@ -804,6 +818,7 @@ Public/SelfSessionPlayerUpdateRequest.h
 Public/Session.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
+Public/SessionJoinability.h
 Public/SessionPermissions.h
 Public/SessionPlayer.h
 Public/SessionPlayerStatus.h
@@ -824,6 +839,9 @@ Public/SortDirection.h
 Public/SortOrder.h
 Public/Source.h
 Public/StorageInformation.h
+Public/SupportAPI.h
+Public/SupportLogEntry.h
+Public/SupportLogPageResponse.h
 Public/TeamOverflowAction.h
 Public/TeamUpdate.h
 Public/TicketData.h

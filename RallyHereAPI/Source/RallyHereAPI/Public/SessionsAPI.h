@@ -25,6 +25,7 @@
 #include "ConnectionInfo.h"
 #include "CreateAuditRequest.h"
 #include "CreateOrJoinRequest.h"
+#include "EpicVoipCredentialsResponse.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "InstanceHealthSettingsResponse.h"
@@ -2307,6 +2308,118 @@ struct RALLYHEREAPI_API Traits_GetConnectionInfoSelf
 };
 
 /**
+ * @brief Get Epic Voice Join Token Me
+ * Generate Epic voice room credentials for the current player
+ * 
+ * Required Permissions:
+ * 
+ * - For the player themselves : `session:voip:epic:join`
+*/
+struct RALLYHEREAPI_API FRequest_GetEpicVoiceJoinTokenMe : public FRequest
+{
+	FRequest_GetEpicVoiceJoinTokenMe();
+	virtual ~FRequest_GetEpicVoiceJoinTokenMe() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString SessionId;
+	ERHAPI_VoipSessionType VoipSessionType;
+	/* If true, join the muted room */
+	TOptional<bool> JoinMuted;
+	TOptional<bool> RefreshTtl;
+	/* IP Address hint */
+	TOptional<FString> XRhClientAddr;
+};
+
+/** The response type for FRequest_GetEpicVoiceJoinTokenMe */
+struct RALLYHEREAPI_API FResponse_GetEpicVoiceJoinTokenMe : public FResponseAccessorTemplate<FRHAPI_EpicVoipCredentialsResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_EpicVoipCredentialsResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_GetEpicVoiceJoinTokenMe(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetEpicVoiceJoinTokenMe() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_EpicVoipCredentialsResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_EpicVoipCredentialsResponse& OutContent) const { return TryGetContent<FRHAPI_EpicVoipCredentialsResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_EpicVoipCredentialsResponse>& OutContent) const { return TryGetContent<FRHAPI_EpicVoipCredentialsResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_EpicVoipCredentialsResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_EpicVoipCredentialsResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_EpicVoipCredentialsResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_EpicVoipCredentialsResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_EpicVoipCredentialsResponse& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_GetEpicVoiceJoinTokenMe */
+DECLARE_DELEGATE_OneParam(FDelegate_GetEpicVoiceJoinTokenMe, const FResponse_GetEpicVoiceJoinTokenMe&);
+
+/** @brief A helper metadata object for GetEpicVoiceJoinTokenMe that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetEpicVoiceJoinTokenMe
+{
+	/** The request type */
+	typedef FRequest_GetEpicVoiceJoinTokenMe Request;
+	/** The response type */
+	typedef FResponse_GetEpicVoiceJoinTokenMe Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_GetEpicVoiceJoinTokenMe Delegate;
+	/** The API object that supports this API call */
+	typedef FSessionsAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Get Instance Request Template
  * Get the config used to request an instance by the InstanceRequestTemplate ID. This ID can be found in
  * MatchMakingProfiles that are return by the `/v1/match-making-templates/` endpoint
@@ -4497,7 +4610,7 @@ struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
 };
 
 /**
- * @brief Get Voip Action Token
+ * @brief Get Vivox Action Token
  * Generate a token for one of the specific vivox actions except logging in
  * 
  * `JOIN` Required Permissions:
@@ -4538,10 +4651,10 @@ struct RALLYHEREAPI_API Traits_GetSessionTemplateByType
  * 
  * - For the player themselves : `session:vivox:transcribe:as-member`
 */
-struct RALLYHEREAPI_API FRequest_GetVoipActionToken : public FRequest
+struct RALLYHEREAPI_API FRequest_GetVivoxActionToken : public FRequest
 {
-	FRequest_GetVoipActionToken();
-	virtual ~FRequest_GetVoipActionToken() = default;
+	FRequest_GetVivoxActionToken();
+	virtual ~FRequest_GetVivoxActionToken() = default;
 	
 	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
@@ -4563,13 +4676,13 @@ struct RALLYHEREAPI_API FRequest_GetVoipActionToken : public FRequest
 	TOptional<bool> RefreshTtl;
 };
 
-/** The response type for FRequest_GetVoipActionToken */
-struct RALLYHEREAPI_API FResponse_GetVoipActionToken : public FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+/** The response type for FRequest_GetVivoxActionToken */
+struct RALLYHEREAPI_API FResponse_GetVivoxActionToken : public FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
 	typedef FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
-	FResponse_GetVoipActionToken(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetVoipActionToken() = default;
+	FResponse_GetVivoxActionToken(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetVivoxActionToken() = default;
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
@@ -4612,18 +4725,18 @@ struct RALLYHEREAPI_API FResponse_GetVoipActionToken : public FResponseAccessorT
 
 };
 
-/** The delegate class for FRequest_GetVoipActionToken */
-DECLARE_DELEGATE_OneParam(FDelegate_GetVoipActionToken, const FResponse_GetVoipActionToken&);
+/** The delegate class for FRequest_GetVivoxActionToken */
+DECLARE_DELEGATE_OneParam(FDelegate_GetVivoxActionToken, const FResponse_GetVivoxActionToken&);
 
-/** @brief A helper metadata object for GetVoipActionToken that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetVoipActionToken
+/** @brief A helper metadata object for GetVivoxActionToken that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetVivoxActionToken
 {
 	/** The request type */
-	typedef FRequest_GetVoipActionToken Request;
+	typedef FRequest_GetVivoxActionToken Request;
 	/** The response type */
-	typedef FResponse_GetVoipActionToken Response;
+	typedef FResponse_GetVivoxActionToken Response;
 	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetVoipActionToken Delegate;
+	typedef FDelegate_GetVivoxActionToken Delegate;
 	/** The API object that supports this API call */
 	typedef FSessionsAPI API;
 	/** A human readable name for this API call */
@@ -4641,7 +4754,7 @@ struct RALLYHEREAPI_API Traits_GetVoipActionToken
 };
 
 /**
- * @brief Get Voip Action Token Me
+ * @brief Get Vivox Action Token Me
  * Generate a token for one of the specific vivox actions except logging in
  * 
  * `JOIN` Required Permissions:
@@ -4682,10 +4795,10 @@ struct RALLYHEREAPI_API Traits_GetVoipActionToken
  * 
  * - For the player themselves : `session:vivox:transcribe:as-member`
 */
-struct RALLYHEREAPI_API FRequest_GetVoipActionTokenMe : public FRequest
+struct RALLYHEREAPI_API FRequest_GetVivoxActionTokenMe : public FRequest
 {
-	FRequest_GetVoipActionTokenMe();
-	virtual ~FRequest_GetVoipActionTokenMe() = default;
+	FRequest_GetVivoxActionTokenMe();
+	virtual ~FRequest_GetVivoxActionTokenMe() = default;
 	
 	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
@@ -4706,13 +4819,13 @@ struct RALLYHEREAPI_API FRequest_GetVoipActionTokenMe : public FRequest
 	TOptional<bool> RefreshTtl;
 };
 
-/** The response type for FRequest_GetVoipActionTokenMe */
-struct RALLYHEREAPI_API FResponse_GetVoipActionTokenMe : public FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+/** The response type for FRequest_GetVivoxActionTokenMe */
+struct RALLYHEREAPI_API FResponse_GetVivoxActionTokenMe : public FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
 {
 	typedef FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
 
-	FResponse_GetVoipActionTokenMe(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetVoipActionTokenMe() = default;
+	FResponse_GetVivoxActionTokenMe(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetVivoxActionTokenMe() = default;
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
@@ -4755,18 +4868,18 @@ struct RALLYHEREAPI_API FResponse_GetVoipActionTokenMe : public FResponseAccesso
 
 };
 
-/** The delegate class for FRequest_GetVoipActionTokenMe */
-DECLARE_DELEGATE_OneParam(FDelegate_GetVoipActionTokenMe, const FResponse_GetVoipActionTokenMe&);
+/** The delegate class for FRequest_GetVivoxActionTokenMe */
+DECLARE_DELEGATE_OneParam(FDelegate_GetVivoxActionTokenMe, const FResponse_GetVivoxActionTokenMe&);
 
-/** @brief A helper metadata object for GetVoipActionTokenMe that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetVoipActionTokenMe
+/** @brief A helper metadata object for GetVivoxActionTokenMe that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetVivoxActionTokenMe
 {
 	/** The request type */
-	typedef FRequest_GetVoipActionTokenMe Request;
+	typedef FRequest_GetVivoxActionTokenMe Request;
 	/** The response type */
-	typedef FResponse_GetVoipActionTokenMe Response;
+	typedef FResponse_GetVivoxActionTokenMe Response;
 	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetVoipActionTokenMe Delegate;
+	typedef FDelegate_GetVivoxActionTokenMe Delegate;
 	/** The API object that supports this API call */
 	typedef FSessionsAPI API;
 	/** A human readable name for this API call */
@@ -4784,17 +4897,17 @@ struct RALLYHEREAPI_API Traits_GetVoipActionTokenMe
 };
 
 /**
- * @brief Get Voip Login Token
+ * @brief Get Vivox Login Token
  * Generate a token to login with vivox
  * 
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `session:*`, `session:vivox:login`
 */
-struct RALLYHEREAPI_API FRequest_GetVoipLoginToken : public FRequest
+struct RALLYHEREAPI_API FRequest_GetVivoxLoginToken : public FRequest
 {
-	FRequest_GetVoipLoginToken();
-	virtual ~FRequest_GetVoipLoginToken() = default;
+	FRequest_GetVivoxLoginToken();
+	virtual ~FRequest_GetVivoxLoginToken() = default;
 	
 	/** @brief Given a http request, apply data and settings from this request object to it */
 	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
@@ -4811,13 +4924,13 @@ struct RALLYHEREAPI_API FRequest_GetVoipLoginToken : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 };
 
-/** The response type for FRequest_GetVoipLoginToken */
-struct RALLYHEREAPI_API FResponse_GetVoipLoginToken : public FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel>
+/** The response type for FRequest_GetVivoxLoginToken */
+struct RALLYHEREAPI_API FResponse_GetVivoxLoginToken : public FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel>
 {
 	typedef FResponseAccessorTemplate<FRHAPI_VoipTokenResponse, FRHAPI_HzApiErrorModel> Super;
 
-	FResponse_GetVoipLoginToken(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetVoipLoginToken() = default;
+	FResponse_GetVivoxLoginToken(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_GetVivoxLoginToken() = default;
 	
 	/** @brief Parse out response content into local storage from a given JsonValue */
 	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
@@ -4855,18 +4968,18 @@ struct RALLYHEREAPI_API FResponse_GetVoipLoginToken : public FResponseAccessorTe
 
 };
 
-/** The delegate class for FRequest_GetVoipLoginToken */
-DECLARE_DELEGATE_OneParam(FDelegate_GetVoipLoginToken, const FResponse_GetVoipLoginToken&);
+/** The delegate class for FRequest_GetVivoxLoginToken */
+DECLARE_DELEGATE_OneParam(FDelegate_GetVivoxLoginToken, const FResponse_GetVivoxLoginToken&);
 
-/** @brief A helper metadata object for GetVoipLoginToken that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetVoipLoginToken
+/** @brief A helper metadata object for GetVivoxLoginToken that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_GetVivoxLoginToken
 {
 	/** The request type */
-	typedef FRequest_GetVoipLoginToken Request;
+	typedef FRequest_GetVivoxLoginToken Request;
 	/** The response type */
-	typedef FResponse_GetVoipLoginToken Response;
+	typedef FResponse_GetVivoxLoginToken Response;
 	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetVoipLoginToken Delegate;
+	typedef FDelegate_GetVivoxLoginToken Delegate;
 	/** The API object that supports this API call */
 	typedef FSessionsAPI API;
 	/** A human readable name for this API call */
@@ -8763,6 +8876,8 @@ public:
 	void OnGetBrowserSessionsByTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetBrowserSessionsByType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetConnectionInfoSelf(const FRequest_GetConnectionInfoSelf& Request, const FDelegate_GetConnectionInfoSelf& Delegate = FDelegate_GetConnectionInfoSelf(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetConnectionInfoSelfResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetConnectionInfoSelf Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetEpicVoiceJoinTokenMe(const FRequest_GetEpicVoiceJoinTokenMe& Request, const FDelegate_GetEpicVoiceJoinTokenMe& Delegate = FDelegate_GetEpicVoiceJoinTokenMe(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetEpicVoiceJoinTokenMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEpicVoiceJoinTokenMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetInstanceRequestTemplate(const FRequest_GetInstanceRequestTemplate& Request, const FDelegate_GetInstanceRequestTemplate& Delegate = FDelegate_GetInstanceRequestTemplate(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetInstanceRequestTemplateResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetInstanceRequestTemplate Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetMatchMakingProfile(const FRequest_GetMatchMakingProfile& Request, const FDelegate_GetMatchMakingProfile& Delegate = FDelegate_GetMatchMakingProfile(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -8797,12 +8912,12 @@ public:
 	void OnGetSessionByIdResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionById Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetSessionTemplateByType(const FRequest_GetSessionTemplateByType& Request, const FDelegate_GetSessionTemplateByType& Delegate = FDelegate_GetSessionTemplateByType(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetSessionTemplateByTypeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetSessionTemplateByType Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetVoipActionToken(const FRequest_GetVoipActionToken& Request, const FDelegate_GetVoipActionToken& Delegate = FDelegate_GetVoipActionToken(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetVoipActionTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipActionToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetVoipActionTokenMe(const FRequest_GetVoipActionTokenMe& Request, const FDelegate_GetVoipActionTokenMe& Delegate = FDelegate_GetVoipActionTokenMe(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetVoipActionTokenMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipActionTokenMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetVoipLoginToken(const FRequest_GetVoipLoginToken& Request, const FDelegate_GetVoipLoginToken& Delegate = FDelegate_GetVoipLoginToken(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetVoipLoginTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVoipLoginToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetVivoxActionToken(const FRequest_GetVivoxActionToken& Request, const FDelegate_GetVivoxActionToken& Delegate = FDelegate_GetVivoxActionToken(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetVivoxActionTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVivoxActionToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetVivoxActionTokenMe(const FRequest_GetVivoxActionTokenMe& Request, const FDelegate_GetVivoxActionTokenMe& Delegate = FDelegate_GetVivoxActionTokenMe(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetVivoxActionTokenMeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVivoxActionTokenMe Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr GetVivoxLoginToken(const FRequest_GetVivoxLoginToken& Request, const FDelegate_GetVivoxLoginToken& Delegate = FDelegate_GetVivoxLoginToken(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnGetVivoxLoginTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetVivoxLoginToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GivePlayerPermissionByUuid(const FRequest_GivePlayerPermissionByUuid& Request, const FDelegate_GivePlayerPermissionByUuid& Delegate = FDelegate_GivePlayerPermissionByUuid(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGivePlayerPermissionByUuidResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GivePlayerPermissionByUuid Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr InstanceHealthCheck(const FRequest_InstanceHealthCheck& Request, const FDelegate_InstanceHealthCheck& Delegate = FDelegate_InstanceHealthCheck(), int32 Priority = DefaultRallyHereAPIPriority);

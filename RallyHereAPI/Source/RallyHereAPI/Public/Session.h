@@ -17,6 +17,7 @@
 #include "MatchmakingResults.h"
 #include "PlatformScout.h"
 #include "PlatformSession.h"
+#include "SessionJoinability.h"
 #include "SessionTeam.h"
 #include "Session.generated.h"
 
@@ -234,7 +235,7 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	/** @brief Checks whether Browser_Optional has been set */
 	bool IsBrowserSet() const { return Browser_IsSet; }
 
-	/** @brief Is this session freely joinable by players without an invite? */
+	/** @brief DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Joinable{ false };
 	/** @brief Gets the value of Joinable */
@@ -249,6 +250,33 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	bool IsJoinableDefaultValue() const { return Joinable == false; }
 	/** @brief Sets the value of Joinable to its default  */
 	void SetJoinableToDefault() { SetJoinable(false); }
+
+	/** @brief Flags regarding the joinability of this session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_SessionJoinability Joinability_Optional{  };
+	/** @brief true if Joinability_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Joinability_IsSet{ false };
+	/** @brief Gets the value of Joinability_Optional, regardless of it having been set */
+	FRHAPI_SessionJoinability& GetJoinability() { return Joinability_Optional; }
+	/** @brief Gets the value of Joinability_Optional, regardless of it having been set */
+	const FRHAPI_SessionJoinability& GetJoinability() const { return Joinability_Optional; }
+	/** @brief Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_SessionJoinability& GetJoinability(const FRHAPI_SessionJoinability& DefaultValue) const { if (Joinability_IsSet) return Joinability_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false */
+	bool GetJoinability(FRHAPI_SessionJoinability& OutValue) const { if (Joinability_IsSet) OutValue = Joinability_Optional; return Joinability_IsSet; }
+	/** @brief Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_SessionJoinability* GetJoinabilityOrNull() { if (Joinability_IsSet) return (&Joinability_Optional); return nullptr; }
+	/** @brief Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_SessionJoinability* GetJoinabilityOrNull() const { if (Joinability_IsSet) return (&Joinability_Optional); return nullptr; }
+	/** @brief Sets the value of Joinability_Optional and also sets Joinability_IsSet to true */
+	void SetJoinability(const FRHAPI_SessionJoinability& NewValue) { Joinability_Optional = NewValue; Joinability_IsSet = true;  }
+	/** @brief Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics */
+	void SetJoinability(FRHAPI_SessionJoinability&& NewValue) { Joinability_Optional = NewValue; Joinability_IsSet = true;  }
+	/** @brief Clears the value of Joinability_Optional and sets Joinability_IsSet to false */
+	void ClearJoinability() { Joinability_IsSet = false;  }
+	/** @brief Checks whether Joinability_Optional has been set */
+	bool IsJoinabilitySet() const { return Joinability_IsSet; }
 
 	/** @brief List of teams of players currently in the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

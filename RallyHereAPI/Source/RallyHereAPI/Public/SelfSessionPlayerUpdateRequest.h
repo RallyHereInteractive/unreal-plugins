@@ -189,6 +189,33 @@ struct RALLYHEREAPI_API FRHAPI_SelfSessionPlayerUpdateRequest : public FRHAPI_Mo
 	void ClearPassword() { Password_IsSet = false;  }
 	/** @brief Checks whether Password_Optional has been set */
 	bool IsPasswordSet() const { return Password_IsSet; }
+
+	/** @brief UUID of the friend whose session you are joining */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FGuid FriendUuid_Optional{  };
+	/** @brief true if FriendUuid_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool FriendUuid_IsSet{ false };
+	/** @brief Gets the value of FriendUuid_Optional, regardless of it having been set */
+	FGuid& GetFriendUuid() { return FriendUuid_Optional; }
+	/** @brief Gets the value of FriendUuid_Optional, regardless of it having been set */
+	const FGuid& GetFriendUuid() const { return FriendUuid_Optional; }
+	/** @brief Gets the value of FriendUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FGuid& GetFriendUuid(const FGuid& DefaultValue) const { if (FriendUuid_IsSet) return FriendUuid_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of FriendUuid_Optional and returns true if it has been set, otherwise returns false */
+	bool GetFriendUuid(FGuid& OutValue) const { if (FriendUuid_IsSet) OutValue = FriendUuid_Optional; return FriendUuid_IsSet; }
+	/** @brief Returns a pointer to FriendUuid_Optional, if it has been set, otherwise returns nullptr */
+	FGuid* GetFriendUuidOrNull() { if (FriendUuid_IsSet) return (&FriendUuid_Optional); return nullptr; }
+	/** @brief Returns a pointer to FriendUuid_Optional, if it has been set, otherwise returns nullptr */
+	const FGuid* GetFriendUuidOrNull() const { if (FriendUuid_IsSet) return (&FriendUuid_Optional); return nullptr; }
+	/** @brief Sets the value of FriendUuid_Optional and also sets FriendUuid_IsSet to true */
+	void SetFriendUuid(const FGuid& NewValue) { FriendUuid_Optional = NewValue; FriendUuid_IsSet = true;  }
+	/** @brief Sets the value of FriendUuid_Optional and also sets FriendUuid_IsSet to true using move semantics */
+	void SetFriendUuid(FGuid&& NewValue) { FriendUuid_Optional = NewValue; FriendUuid_IsSet = true;  }
+	/** @brief Clears the value of FriendUuid_Optional and sets FriendUuid_IsSet to false */
+	void ClearFriendUuid() { FriendUuid_IsSet = false;  }
+	/** @brief Checks whether FriendUuid_Optional has been set */
+	bool IsFriendUuidSet() const { return FriendUuid_IsSet; }
 };
 
 /** @} */

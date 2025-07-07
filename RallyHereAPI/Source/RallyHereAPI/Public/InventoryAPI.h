@@ -19,6 +19,8 @@
 #include "InventorySession.h"
 #include "InventorySessionCreateRequest.h"
 #include "InventorySessionCreateResponse.h"
+#include "ManyPlayerOrderCreate.h"
+#include "ManyPlayerOrderResponse.h"
 #include "PlayerOrder.h"
 #include "PlayerOrderCreateInput.h"
 #include "PlayerOrderCreateOutput.h"
@@ -34,6 +36,103 @@ using RallyHereAPI::TryGetJsonValue;
 
 // forward declaration
 class FInventoryAPI;
+
+/**
+ * @brief Create Many Player Order
+ * Create many number of orders across multiple players
+*/
+struct RALLYHEREAPI_API FRequest_CreateManyPlayerOrder : public FRequest
+{
+	FRequest_CreateManyPlayerOrder();
+	virtual ~FRequest_CreateManyPlayerOrder() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FRHAPI_ManyPlayerOrderCreate ManyPlayerOrderCreate;
+};
+
+/** The response type for FRequest_CreateManyPlayerOrder */
+struct RALLYHEREAPI_API FResponse_CreateManyPlayerOrder : public FResponseAccessorTemplate<FRHAPI_ManyPlayerOrderResponse, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_ManyPlayerOrderResponse, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_CreateManyPlayerOrder(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_CreateManyPlayerOrder() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_ManyPlayerOrderResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_ManyPlayerOrderResponse& OutContent) const { return TryGetContent<FRHAPI_ManyPlayerOrderResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_ManyPlayerOrderResponse>& OutContent) const { return TryGetContent<FRHAPI_ManyPlayerOrderResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_ManyPlayerOrderResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_ManyPlayerOrderResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_ManyPlayerOrderResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_ManyPlayerOrderResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_ManyPlayerOrderResponse& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_CreateManyPlayerOrder */
+DECLARE_DELEGATE_OneParam(FDelegate_CreateManyPlayerOrder, const FResponse_CreateManyPlayerOrder&);
+
+/** @brief A helper metadata object for CreateManyPlayerOrder that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_CreateManyPlayerOrder
+{
+	/** The request type */
+	typedef FRequest_CreateManyPlayerOrder Request;
+	/** The response type */
+	typedef FResponse_CreateManyPlayerOrder Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_CreateManyPlayerOrder Delegate;
+	/** The API object that supports this API call */
+	typedef FInventoryAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
 
 /**
  * @brief Create New Inventory Session
@@ -4369,6 +4468,8 @@ public:
 	FInventoryAPI();
 	virtual ~FInventoryAPI();
 
+	FHttpRequestPtr CreateManyPlayerOrder(const FRequest_CreateManyPlayerOrder& Request, const FDelegate_CreateManyPlayerOrder& Delegate = FDelegate_CreateManyPlayerOrder(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnCreateManyPlayerOrderResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateManyPlayerOrder Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr CreateNewInventorySession(const FRequest_CreateNewInventorySession& Request, const FDelegate_CreateNewInventorySession& Delegate = FDelegate_CreateNewInventorySession(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnCreateNewInventorySessionResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateNewInventorySession Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr CreateNewInventorySessionByPlayerUuid(const FRequest_CreateNewInventorySessionByPlayerUuid& Request, const FDelegate_CreateNewInventorySessionByPlayerUuid& Delegate = FDelegate_CreateNewInventorySessionByPlayerUuid(), int32 Priority = DefaultRallyHereAPIPriority);

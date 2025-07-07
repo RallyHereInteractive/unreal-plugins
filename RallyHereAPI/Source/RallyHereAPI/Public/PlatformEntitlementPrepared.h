@@ -184,26 +184,26 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementPrepared : public FRHAPI_Model
 
 	/** @brief Platform-specific metadata about this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FRHAPI_JsonObject PlatformMetadata_Optional{  };
+	TMap<FString, FRHAPI_JsonValue> PlatformMetadata_Optional{  };
 	/** @brief true if PlatformMetadata_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformMetadata_IsSet{ false };
 	/** @brief Gets the value of PlatformMetadata_Optional, regardless of it having been set */
-	FRHAPI_JsonObject& GetPlatformMetadata() { return PlatformMetadata_Optional; }
+	TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata() { return PlatformMetadata_Optional; }
 	/** @brief Gets the value of PlatformMetadata_Optional, regardless of it having been set */
-	const FRHAPI_JsonObject& GetPlatformMetadata() const { return PlatformMetadata_Optional; }
+	const TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata() const { return PlatformMetadata_Optional; }
 	/** @brief Gets the value of PlatformMetadata_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_JsonObject& GetPlatformMetadata(const FRHAPI_JsonObject& DefaultValue) const { if (PlatformMetadata_IsSet) return PlatformMetadata_Optional; return DefaultValue; }
+	const TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata(const TMap<FString, FRHAPI_JsonValue>& DefaultValue) const { if (PlatformMetadata_IsSet) return PlatformMetadata_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformMetadata_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformMetadata(FRHAPI_JsonObject& OutValue) const { if (PlatformMetadata_IsSet) OutValue = PlatformMetadata_Optional; return PlatformMetadata_IsSet; }
+	bool GetPlatformMetadata(TMap<FString, FRHAPI_JsonValue>& OutValue) const { if (PlatformMetadata_IsSet) OutValue = PlatformMetadata_Optional; return PlatformMetadata_IsSet; }
 	/** @brief Returns a pointer to PlatformMetadata_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_JsonObject* GetPlatformMetadataOrNull() { if (PlatformMetadata_IsSet) return (&PlatformMetadata_Optional); return nullptr; }
+	TMap<FString, FRHAPI_JsonValue>* GetPlatformMetadataOrNull() { if (PlatformMetadata_IsSet) return (&PlatformMetadata_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformMetadata_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_JsonObject* GetPlatformMetadataOrNull() const { if (PlatformMetadata_IsSet) return (&PlatformMetadata_Optional); return nullptr; }
+	const TMap<FString, FRHAPI_JsonValue>* GetPlatformMetadataOrNull() const { if (PlatformMetadata_IsSet) return (&PlatformMetadata_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformMetadata_Optional and also sets PlatformMetadata_IsSet to true */
-	void SetPlatformMetadata(const FRHAPI_JsonObject& NewValue) { PlatformMetadata_Optional = NewValue; PlatformMetadata_IsSet = true;  }
+	void SetPlatformMetadata(const TMap<FString, FRHAPI_JsonValue>& NewValue) { PlatformMetadata_Optional = NewValue; PlatformMetadata_IsSet = true;  }
 	/** @brief Sets the value of PlatformMetadata_Optional and also sets PlatformMetadata_IsSet to true using move semantics */
-	void SetPlatformMetadata(FRHAPI_JsonObject&& NewValue) { PlatformMetadata_Optional = NewValue; PlatformMetadata_IsSet = true;  }
+	void SetPlatformMetadata(TMap<FString, FRHAPI_JsonValue>&& NewValue) { PlatformMetadata_Optional = NewValue; PlatformMetadata_IsSet = true;  }
 	/** @brief Clears the value of PlatformMetadata_Optional and sets PlatformMetadata_IsSet to false */
 	void ClearPlatformMetadata() { PlatformMetadata_IsSet = false;  }
 	/** @brief Checks whether PlatformMetadata_Optional has been set */

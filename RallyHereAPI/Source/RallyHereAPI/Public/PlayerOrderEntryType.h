@@ -29,6 +29,7 @@ enum class ERHAPI_PlayerOrderEntryType : uint8
 	CreateNewTransientInventory UMETA(ToolTip="Create transient Inventory."),
 	UpdateExistingTransientInventory UMETA(ToolTip="Deprecated. Use update_inventory instead."),
 	UpdateInventory UMETA(ToolTip="Update existing Inventory."),
+	CustomLoot UMETA(ToolTip="Provide parameters of a custom loot object and grant to the player"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PlayerOrderEntryType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryType& EnumValue);

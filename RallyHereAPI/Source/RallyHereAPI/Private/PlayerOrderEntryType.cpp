@@ -44,6 +44,8 @@ FString EnumToString(const ERHAPI_PlayerOrderEntryType& Value)
 		return TEXT("update_existing_transient_inventory");
 	case ERHAPI_PlayerOrderEntryType::UpdateInventory:
 		return TEXT("update_inventory");
+	case ERHAPI_PlayerOrderEntryType::CustomLoot:
+		return TEXT("custom_loot");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_PlayerOrderEntryType::Values Value (%d)"), (int)Value);
@@ -63,7 +65,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryType& Va
 		{ TEXT("update_existing_persistent_inventory"), ERHAPI_PlayerOrderEntryType::UpdateExistingPersistentInventory },
 		{ TEXT("create_new_transient_inventory"), ERHAPI_PlayerOrderEntryType::CreateNewTransientInventory },
 		{ TEXT("update_existing_transient_inventory"), ERHAPI_PlayerOrderEntryType::UpdateExistingTransientInventory },
-		{ TEXT("update_inventory"), ERHAPI_PlayerOrderEntryType::UpdateInventory },	};
+		{ TEXT("update_inventory"), ERHAPI_PlayerOrderEntryType::UpdateInventory },
+		{ TEXT("custom_loot"), ERHAPI_PlayerOrderEntryType::CustomLoot },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

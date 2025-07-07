@@ -33,6 +33,7 @@
 #include "ReportsAPI.h"
 #include "SessionsAPI.h"
 #include "SettingsAPI.h"
+#include "SupportAPI.h"
 #include "UsersAPI.h"
 
 namespace RallyHereAPI
@@ -120,6 +121,9 @@ public:
 	TSharedRef<FSettingsAPI> GetSettings();
 	const TSharedRef<FSettingsAPI> GetSettings() const;
 
+	TSharedRef<FSupportAPI> GetSupport();
+	const TSharedRef<FSupportAPI> GetSupport() const;
+
 	TSharedRef<FUsersAPI> GetUsers();
 	const TSharedRef<FUsersAPI> GetUsers() const;
 
@@ -149,6 +153,7 @@ private:
 	TSharedRef<FReportsAPI> Reports;
 	TSharedRef<FSessionsAPI> Sessions;
 	TSharedRef<FSettingsAPI> Settings;
+	TSharedRef<FSupportAPI> Support;
 	TSharedRef<FUsersAPI> Users;
 };
 }
