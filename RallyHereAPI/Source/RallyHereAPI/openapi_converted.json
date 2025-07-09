@@ -16106,9 +16106,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -16193,9 +16202,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -16254,9 +16272,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -16330,6 +16357,105 @@
         ]
       }
     },
+    "/session/v1/session/{session_id}:generate-short-code": {
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Generate Session Short Code",
+        "description": "Create a short code for a session that can be used in place of the full session id. Generation may fail and return an\nerror if too many unusable codes are generated.\n\nFor all sessions:\n\n* Required auth permissions are any of: `session:*`, `session:shortcode:any`\n\n* Required session permissions are None\n\nFor sessions you are actively in:\n\n* Required auth permissions are : `session:shortcode:active`\n\n* Required session permissions are `SessionPermissions.active_in_session`",
+        "operationId": "generate_session_short_code",
+        "parameters": [
+          {
+            "required": true,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
+              "title": "Session Id"
+            },
+            "name": "session_id",
+            "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Refresh Ttl",
+              "default": true
+            },
+            "name": "refresh_ttl",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionShortCodeResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/session/v1/session/{session_id}/team/{team_id}": {
       "patch": {
         "tags": [
@@ -16352,9 +16478,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -16519,9 +16654,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -16597,9 +16741,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -16658,9 +16811,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -16797,9 +16959,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -16875,9 +17046,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -17026,9 +17206,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -17104,9 +17293,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -17173,9 +17371,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -17253,9 +17460,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -17389,9 +17605,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -17512,9 +17737,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18132,9 +18366,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18218,9 +18461,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18315,9 +18567,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18417,9 +18678,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18518,9 +18788,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18614,9 +18893,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18698,9 +18986,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18804,9 +19101,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -18904,9 +19210,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -19012,9 +19327,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -19120,9 +19444,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -19218,9 +19551,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -19326,9 +19668,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -19434,9 +19785,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -19531,9 +19891,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -19643,9 +20012,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -19732,9 +20110,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -20110,9 +20497,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -20235,9 +20631,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -20323,9 +20728,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -20404,9 +20818,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -21611,9 +22034,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -21707,9 +22139,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -21785,9 +22226,18 @@
           {
             "required": true,
             "schema": {
-              "type": "string",
-              "maxLength": 128,
-              "minLength": 1,
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128,
+                  "minLength": 1
+                },
+                {
+                  "type": "string",
+                  "maxLength": 12,
+                  "minLength": 5
+                }
+              ],
               "title": "Session Id"
             },
             "name": "session_id",
@@ -34611,17 +35061,17 @@
         ],
         "title": "DeviceType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "pc",
           "xbox_series",
           "xbox_one",
           "web"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "GrantType": {
@@ -35429,24 +35879,6 @@
         ],
         "title": "Platform",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "ANON",
           "BASIC",
@@ -35464,6 +35896,24 @@
           "TWITCH",
           "RALLYHERE",
           "LEGACYNAME"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -43287,13 +43737,13 @@
         ],
         "title": "BackfillStyle",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "TEAM_REQUEST",
           "COMPOSITION"
+        ],
+        "x-enum-descriptions": [
+          "",
+          ""
         ]
       },
       "BackfillTeam": {
@@ -43848,17 +44298,17 @@
         ],
         "title": "CrossplayInput",
         "description": "Crossplay input preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay input preferences. Can play with players using any input",
-          "Can only play with players using a keyboard and mouse",
-          "Can only player with players using a gamepad/controller",
-          "Can only player with players using a touch screen"
-        ],
         "x-enum-varnames": [
           "ANY",
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay input preferences. Can play with players using any input",
+          "Can only play with players using a keyboard and mouse",
+          "Can only player with players using a gamepad/controller",
+          "Can only player with players using a touch screen"
         ]
       },
       "CrossplayPlatform": {
@@ -43870,15 +44320,15 @@
         ],
         "title": "CrossplayPlatform",
         "description": "Crossplay platform preferences. Used to determine whether players can queue together, and the pools of players that are used to generate matches",
-        "x-enum-descriptions": [
-          "No crossplay platform preferences. Can play with players any platforms",
-          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
-          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
-        ],
         "x-enum-varnames": [
           "ANY",
           "XBOX",
           "PLAYSTATION"
+        ],
+        "x-enum-descriptions": [
+          "No crossplay platform preferences. Can play with players any platforms",
+          "Can only play with players on xbox-like platforms (xbox-one, xsx etc.)",
+          "Can only play with players on playstation-like platform (ps4, ps5 etc.)"
         ]
       },
       "CrossplayPreferences": {
@@ -43919,19 +44369,19 @@
         ],
         "title": "DeleteTicketReason",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "assigned",
           "backfilled",
           "left_queue",
           "timeout",
           "party_changed"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "DeserterConfig": {
@@ -44020,17 +44470,17 @@
         ],
         "title": "Determiner",
         "description": "Determiner for how many rules must be satisfied in order to satisfy the ruleset",
-        "x-enum-descriptions": [
-          "All rules must be satisfied",
-          "At least one rule must be satisfied",
-          "Exactly one rule must be satisfied",
-          "All rules must not be satisfied"
-        ],
         "x-enum-varnames": [
           "ALL",
           "ANY",
           "ONE",
           "NONE"
+        ],
+        "x-enum-descriptions": [
+          "All rules must be satisfied",
+          "At least one rule must be satisfied",
+          "Exactly one rule must be satisfied",
+          "All rules must not be satisfied"
         ]
       },
       "EpicVoipCredentialsResponse": {
@@ -44074,15 +44524,15 @@
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
-        "x-enum-descriptions": [
-          "A dedicated, standalone instance",
-          "A player hosted instance",
-          "A preallocated instance that isn't player owned"
-        ],
         "x-enum-varnames": [
           "dedicated",
           "player",
           "preallocated"
+        ],
+        "x-enum-descriptions": [
+          "A dedicated, standalone instance",
+          "A player hosted instance",
+          "A preallocated instance that isn't player owned"
         ]
       },
       "Input": {
@@ -44094,15 +44544,15 @@
         ],
         "title": "Input",
         "description": "The different input types that players can use",
-        "x-enum-descriptions": [
-          "Input for players using a keyboard and mouse",
-          "Input for players using a gamepad/controller",
-          "Input for players using a touch screen"
-        ],
         "x-enum-varnames": [
           "KBM",
           "GAMEPAD",
           "TOUCH"
+        ],
+        "x-enum-descriptions": [
+          "Input for players using a keyboard and mouse",
+          "Input for players using a gamepad/controller",
+          "Input for players using a touch screen"
         ]
       },
       "InstanceHealthSettingsResponse": {
@@ -44147,17 +44597,17 @@
         ],
         "title": "InstanceHealthStatus",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Instance is in a healthy state",
-          "Instance is in an unhealthy state and cannot handle connections",
-          "Instance performance is degraded, and may be unable to handle new or existing connections",
-          "Instance health checks have stopped, and instance status is unknown"
-        ],
         "x-enum-varnames": [
           "HEALTHY",
           "UNHEALTHY",
           "DEGRADED",
           "UNKNOWN"
+        ],
+        "x-enum-descriptions": [
+          "Instance is in a healthy state",
+          "Instance is in an unhealthy state and cannot handle connections",
+          "Instance performance is degraded, and may be unable to handle new or existing connections",
+          "Instance health checks have stopped, and instance status is unknown"
         ]
       },
       "InstanceHealthStatusResponse": {
@@ -44396,14 +44846,6 @@
         ],
         "title": "InstanceJoinableStatus",
         "description": "What state the instance is currently in",
-        "x-enum-descriptions": [
-          "Searching for a host",
-          "Host has been found, and is loading its session information",
-          "Host has arrived and is loading",
-          "Host is ready to accept players",
-          "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
-          "Host has left, been timed out, or could not be found"
-        ],
         "x-enum-varnames": [
           "requested",
           "allocated",
@@ -44411,6 +44853,14 @@
           "joinable",
           "unjoinable",
           "closed"
+        ],
+        "x-enum-descriptions": [
+          "Searching for a host",
+          "Host has been found, and is loading its session information",
+          "Host has arrived and is loading",
+          "Host is ready to accept players",
+          "Host has marked itself as no longer ready to accept players, but may transition back to joinable",
+          "Host has left, been timed out, or could not be found"
         ]
       },
       "InstanceLaunchTemplate": {
@@ -44606,15 +45056,15 @@
         ],
         "title": "IntraSessionPermissions",
         "description": "Subset of leader permissions that can be individual assigned to specific players within a session",
-        "x-enum-descriptions": [
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "invite",
           "kick",
           "move"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          ""
         ]
       },
       "InviteSource": {
@@ -44626,15 +45076,15 @@
         ],
         "title": "InviteSource",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "BACKFILL",
           "MATCHMAKING",
           "PLAYER"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          ""
         ]
       },
       "JoinParams": {
@@ -44679,17 +45129,17 @@
         ],
         "title": "MMRGroupingMethod",
         "description": "What method should be used to determine a linking's group MMR based on the individuals",
-        "x-enum-descriptions": [
-          "Use the lowest MMR of any player in the linking",
-          "Use the highest MMR of any player in the linking",
-          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
-          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
-        ],
         "x-enum-varnames": [
           "WORST",
           "BEST",
           "AVERAGE_BY_VARIANCE",
           "AVERAGE"
+        ],
+        "x-enum-descriptions": [
+          "Use the lowest MMR of any player in the linking",
+          "Use the highest MMR of any player in the linking",
+          "Use the arithmetic mean of the players' skill multiplied by their variance. This is the sum of each player's skill times variance divided by the number of players",
+          "Use the arithmetic mean of the players' skill. This is the sum of each player's skill divided by the number of players"
         ]
       },
       "MapConfig": {
@@ -45475,16 +45925,6 @@
         ],
         "title": "Operation",
         "description": "What comparison operation should be used when evaluating a rule",
-        "x-enum-descriptions": [
-          "The two values must be equal",
-          "The two values must not be equal",
-          "Value A must be less than value B",
-          "Value A must be less than or equal to value B",
-          "Value A must be greater than value B",
-          "Value A must be greater than or equal to value B",
-          "Value A must be in the set of values B",
-          "Value A must not be in the set of values B"
-        ],
         "x-enum-varnames": [
           "EQUAL",
           "NOT_EQUAL",
@@ -45494,6 +45934,16 @@
           "GREATER_THAN_EQUAL",
           "INCLUDED_IN_SET",
           "EXCLUDED_FROM_SET"
+        ],
+        "x-enum-descriptions": [
+          "The two values must be equal",
+          "The two values must not be equal",
+          "Value A must be less than value B",
+          "Value A must be less than or equal to value B",
+          "Value A must be greater than value B",
+          "Value A must be greater than or equal to value B",
+          "Value A must be in the set of values B",
+          "Value A must not be in the set of values B"
         ]
       },
       "PagedPlayersResponse": {
@@ -45538,20 +45988,6 @@
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
-        "x-enum-descriptions": [
-          "DEPRECATED. Use platform instead. ID for the platform Anon",
-          "DEPRECATED. Use platform instead. ID for the platform Amazon",
-          "DEPRECATED. Use platform instead. ID for the platform Steam",
-          "DEPRECATED. Use platform instead. ID for the platform PSN",
-          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
-          "DEPRECATED. Use platform instead. ID for the platform Basic",
-          "DEPRECATED. Use platform instead. ID for the platform Google",
-          "DEPRECATED. Use platform instead. ID for the platform Twitch",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
-          "DEPRECATED. Use platform instead. ID for the platform Apple",
-          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
-          "DEPRECATED. Use platform instead. ID for the platform Epic"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -45565,6 +46001,20 @@
           "APPLE",
           "NINTENDO",
           "EPIC"
+        ],
+        "x-enum-descriptions": [
+          "DEPRECATED. Use platform instead. ID for the platform Anon",
+          "DEPRECATED. Use platform instead. ID for the platform Amazon",
+          "DEPRECATED. Use platform instead. ID for the platform Steam",
+          "DEPRECATED. Use platform instead. ID for the platform PSN",
+          "DEPRECATED. Use platform instead. ID for the platform XboxLive",
+          "DEPRECATED. Use platform instead. ID for the platform Basic",
+          "DEPRECATED. Use platform instead. ID for the platform Google",
+          "DEPRECATED. Use platform instead. ID for the platform Twitch",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
+          "DEPRECATED. Use platform instead. ID for the platform Apple",
+          "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
+          "DEPRECATED. Use platform instead. ID for the platform Epic"
         ]
       },
       "PlatformScout": {
@@ -45965,17 +46415,17 @@
         ],
         "title": "PlayerVisibility",
         "description": "What subset of players any given player will have information about",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "ALL",
           "TEAM",
           "SELF",
           "NONE"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "PlayersToValidate": {
@@ -45987,15 +46437,15 @@
         ],
         "title": "PlayersToValidate",
         "description": "Which subset of players in a session need to satisfy a ruleset for it to be considered valid",
-        "x-enum-descriptions": [
-          "Only the leader must be validated",
-          "All members of a session must be validated",
-          "Any single member must be validated"
-        ],
         "x-enum-varnames": [
           "LEADER",
           "ALL_MEMBERS",
           "ANY_MEMBER"
+        ],
+        "x-enum-descriptions": [
+          "Only the leader must be validated",
+          "All members of a session must be validated",
+          "Any single member must be validated"
         ]
       },
       "ProfileJoinMode": {
@@ -46007,15 +46457,15 @@
         ],
         "title": "ProfileJoinMode",
         "description": "Mode that determines what types of match requests the ticket will appear in",
-        "x-enum-descriptions": [
-          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
-          "Ticket will be used to fulfill backfill requests",
-          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
-        ],
         "x-enum-varnames": [
           "NORMAL",
           "BACKFILL",
           "CREATED_BEFORE"
+        ],
+        "x-enum-descriptions": [
+          "Ticket will be used to fulfill normal requests (players joining queue regularly to find games)",
+          "Ticket will be used to fulfill backfill requests",
+          "Ticket will be used in normal requests only after a specified amount of time. This makes tickets wait before having their linkings considered"
         ]
       },
       "QueueConfig": {
@@ -46355,17 +46805,17 @@
         ],
         "title": "RuleType",
         "description": "What type of rule is being evaluated",
-        "x-enum-descriptions": [
-          "Comparing the count of a specific item that a player owns",
-          "Comparing the level of a specific item that a player owns",
-          "Comparing the number of session members to be queued",
-          "Comparing the region of the session to a list of regions"
-        ],
         "x-enum-varnames": [
           "INVENTORY",
           "INVENTORY_LEVEL",
           "JOINING_SESSION_SIZE",
           "REGION_LIST"
+        ],
+        "x-enum-descriptions": [
+          "Comparing the count of a specific item that a player owns",
+          "Comparing the level of a specific item that a player owns",
+          "Comparing the number of session members to be queued",
+          "Comparing the region of the session to a list of regions"
         ]
       },
       "SelfSessionPlayerUpdateRequest": {
@@ -46586,6 +47036,13 @@
             "title": "Created By Matchmaking",
             "description": "Flag of whether or not this session was created by matchmaking or not",
             "default": false
+          },
+          "short_code": {
+            "type": "string",
+            "maxLength": 12,
+            "minLength": 5,
+            "title": "Short Code",
+            "description": "Shortened join code associated with this session"
           }
         },
         "type": "object",
@@ -46792,17 +47249,17 @@
         ],
         "title": "SessionPlayerStatus",
         "description": "What membership state players have in a session",
-        "x-enum-descriptions": [
-          "Player is the leader of the session. Is allowed to perform admin actions on the session",
-          "Player is an active member of the session. Is allowed basic actions on the session",
-          "Player has been invited to the session, but has not accepted or declined",
-          "Player's spot has been reserved on the session, but the player has not yet been notified"
-        ],
         "x-enum-varnames": [
           "leader",
           "member",
           "invited",
           "reserved"
+        ],
+        "x-enum-descriptions": [
+          "Player is the leader of the session. Is allowed to perform admin actions on the session",
+          "Player is an active member of the session. Is allowed basic actions on the session",
+          "Player has been invited to the session, but has not accepted or declined",
+          "Player's spot has been reserved on the session, but the player has not yet been notified"
         ]
       },
       "SessionPlayerUpdateRequest": {
@@ -46905,6 +47362,22 @@
           "players"
         ],
         "title": "SessionPlayersUpdateResponse"
+      },
+      "SessionShortCodeResponse": {
+        "properties": {
+          "short_code": {
+            "type": "string",
+            "maxLength": 12,
+            "minLength": 5,
+            "title": "Short Code",
+            "description": "Generated short code for session"
+          }
+        },
+        "type": "object",
+        "required": [
+          "short_code"
+        ],
+        "title": "SessionShortCodeResponse"
       },
       "SessionTeam": {
         "properties": {
@@ -47226,19 +47699,19 @@
         ],
         "title": "TeamOverflowAction",
         "description": "How too many players being invited to a single team should be handled",
-        "x-enum-descriptions": [
-          "Raise an error when too many players are invited to the same team",
-          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
-          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
-          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
-          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
-        ],
         "x-enum-varnames": [
           "fail",
           "allow_overflow",
           "partial_with_overflow",
           "partial_without_overflow",
           "overfill"
+        ],
+        "x-enum-descriptions": [
+          "Raise an error when too many players are invited to the same team",
+          "Attempt to fill other teams when too many players are invited to one team. Will return an error if there is not enough room for all players",
+          "Invite as many players as possible, and allow them to overflow onto other teams if necessary. Some players may not get invited. Will return an error if no players are invited",
+          "Invite as many players as possible to the chosen team, and do not allow them to overflow. Some players may not get invited. Will return an error if no players are invited",
+          "Overfill the specific team (ex. allow 6 players on a team that normally only allows 5)"
         ]
       },
       "TeamUpdate": {
@@ -47394,19 +47867,19 @@
         ],
         "title": "VivoxSessionActionSingle",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "JOIN",
           "JOIN_MUTED",
           "KICK",
           "MUTE",
           "TRANSCRIBE"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "VoipSessionType": {
@@ -47417,13 +47890,13 @@
         ],
         "title": "VoipSessionType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "SESSION",
           "TEAM"
+        ],
+        "x-enum-descriptions": [
+          "",
+          ""
         ]
       },
       "VoipTokenResponse": {
