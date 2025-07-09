@@ -55,7 +55,6 @@
 #include "RegionsResponse.h"
 #include "SelfSessionPlayerUpdateRequest.h"
 #include "Session.h"
-#include "SessionId.h"
 #include "SessionInviteResponse.h"
 #include "SessionJoinResponse.h"
 #include "SessionPermissions.h"
@@ -103,7 +102,7 @@ struct RALLYHEREAPI_API FRequest_AcknowledgeBackfillRequest : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_AcknowledgeBackfillRequest AcknowledgeBackfillRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -222,7 +221,7 @@ struct RALLYHEREAPI_API FRequest_AddPlatformSessionToRallyHereSession : public F
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_Platform Platform;
 	FString PlatformSessionIdBase64;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -461,7 +460,7 @@ struct RALLYHEREAPI_API FRequest_CreateInstanceRequest : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_InstanceRequest InstanceRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -934,7 +933,7 @@ struct RALLYHEREAPI_API FRequest_DeleteBackfillRequest : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_BaseBackfillRequest BaseBackfillRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -1039,7 +1038,7 @@ struct RALLYHEREAPI_API FRequest_DeleteBrowserInfo : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -1140,7 +1139,7 @@ struct RALLYHEREAPI_API FRequest_DeletePlatformSessionFromRallyHereSession : pub
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_Platform Platform;
 	FString PlatformSessionIdBase64;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -1259,7 +1258,7 @@ struct RALLYHEREAPI_API FRequest_DeleteSession : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -1358,7 +1357,7 @@ struct RALLYHEREAPI_API FRequest_EndInstance : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -1478,7 +1477,7 @@ struct RALLYHEREAPI_API FRequest_GenerateSessionShortCode : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -2461,7 +2460,7 @@ struct RALLYHEREAPI_API FRequest_GetEpicVoiceJoinTokenMe : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	ERHAPI_VoipSessionType VoipSessionType;
 	/* If true, join the muted room */
 	TOptional<bool> JoinMuted;
@@ -3358,7 +3357,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInSession : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -3493,7 +3492,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayerPermissionByUuid : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FGuid PlayerUuid;
 	TOptional<bool> RefreshTtl;
 };
@@ -4118,7 +4117,7 @@ struct RALLYHEREAPI_API FRequest_GetPlayersInSession : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<int32> Cursor;
 	TOptional<int32> PageSize;
 	TOptional<bool> RefreshTtl;
@@ -4510,7 +4509,7 @@ struct RALLYHEREAPI_API FRequest_GetSessionById : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
 	TOptional<FString> IfNoneMatch;
@@ -4799,7 +4798,7 @@ struct RALLYHEREAPI_API FRequest_GetVivoxActionToken : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	ERHAPI_VivoxSessionActionSingle VivoxAction;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	ERHAPI_VoipSessionType VoipSessionType;
 	TOptional<bool> RefreshTtl;
 };
@@ -4942,7 +4941,7 @@ struct RALLYHEREAPI_API FRequest_GetVivoxActionTokenMe : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_VivoxSessionActionSingle VivoxAction;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	ERHAPI_VoipSessionType VoipSessionType;
 	TOptional<bool> RefreshTtl;
 };
@@ -5163,7 +5162,7 @@ struct RALLYHEREAPI_API FRequest_GivePlayerPermissionByUuid : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_IntraSessionPermissions Permission;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FGuid PlayerUuid;
 	TOptional<bool> RefreshTtl;
 };
@@ -5296,7 +5295,7 @@ struct RALLYHEREAPI_API FRequest_InstanceHealthCheck : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_InstanceHealthStatusUpdate InstanceHealthStatusUpdate;
 	TOptional<bool> RefreshTtl;
 };
@@ -5509,7 +5508,7 @@ struct RALLYHEREAPI_API FRequest_InvitePlayerByUuidV2 : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_PlayerInviteRequest PlayerInviteRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -5781,7 +5780,7 @@ struct RALLYHEREAPI_API FRequest_JoinQueue : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_QueueJoinRequest QueueJoinRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -5893,7 +5892,7 @@ struct RALLYHEREAPI_API FRequest_JoinSessionByIdSelf : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -6309,7 +6308,7 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionById : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	int32 PlayerId = 0;
 	TOptional<FString> Reason;
 	TOptional<bool> RefreshTtl;
@@ -6416,7 +6415,7 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuid : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FGuid PlayerUuid;
 	TOptional<FString> Reason;
 	TOptional<bool> RefreshTtl;
@@ -6539,7 +6538,7 @@ struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuidV2 : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FGuid PlayerUuid;
 	TOptional<FString> Reason;
 	TOptional<bool> RefreshTtl;
@@ -6771,7 +6770,7 @@ struct RALLYHEREAPI_API FRequest_LeaveQueue : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<ERHAPI_DeleteTicketReason> Reason;
 	TOptional<bool> RefreshTtl;
 };
@@ -6876,7 +6875,7 @@ struct RALLYHEREAPI_API FRequest_LeaveSessionByIdSelf : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<FString> Reason;
 	TOptional<bool> RefreshTtl;
 };
@@ -7205,7 +7204,7 @@ struct RALLYHEREAPI_API FRequest_MovePlayerByUuidV2 : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_PlayerMoveRequest PlayerMoveRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -7338,7 +7337,7 @@ struct RALLYHEREAPI_API FRequest_PostBrowserInfo : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_BrowserInfo BrowserInfo;
 	TOptional<bool> RefreshTtl;
 };
@@ -7451,7 +7450,7 @@ struct RALLYHEREAPI_API FRequest_PromotePlayerByUuidV2 : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	TOptional<bool> RefreshTtl;
 };
 
@@ -7592,7 +7591,7 @@ struct RALLYHEREAPI_API FRequest_RemovePlayerPermissionByUuid : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_IntraSessionPermissions Permission;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FGuid PlayerUuid;
 	TOptional<bool> RefreshTtl;
 };
@@ -7721,7 +7720,7 @@ struct RALLYHEREAPI_API FRequest_SwapPlayersInSession : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_PlayerSwapRequest PlayerSwapRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -7841,7 +7840,7 @@ struct RALLYHEREAPI_API FRequest_UpdateBackfillRequest : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_UpdateBackfillRequest UpdateBackfillRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -7946,7 +7945,7 @@ struct RALLYHEREAPI_API FRequest_UpdateBrowserInfo : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_BrowserInfo BrowserInfo;
 	TOptional<bool> RefreshTtl;
 };
@@ -8059,7 +8058,7 @@ struct RALLYHEREAPI_API FRequest_UpdateInstanceInfo : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_InstanceInfoUpdate InstanceInfoUpdate;
 	TOptional<bool> RefreshTtl;
 };
@@ -8172,7 +8171,7 @@ struct RALLYHEREAPI_API FRequest_UpdatePlayerByUuidV2 : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_PlayerUpdateRequest PlayerUpdateRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -8309,7 +8308,7 @@ struct RALLYHEREAPI_API FRequest_UpdateSessionById : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_SessionUpdate SessionUpdate;
 	TOptional<bool> RefreshTtl;
 };
@@ -8441,7 +8440,7 @@ struct RALLYHEREAPI_API FRequest_UpdateSessionPlayerById : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	int32 PlayerId = 0;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -8585,7 +8584,7 @@ struct RALLYHEREAPI_API FRequest_UpdateSessionPlayerByUuid : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -8722,7 +8721,7 @@ struct RALLYHEREAPI_API FRequest_UpdateSessionPlayerByUuidV2 : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_SessionPlayerUpdateRequest SessionPlayerUpdateRequest;
 	TOptional<bool> RefreshTtl;
 };
@@ -8860,7 +8859,7 @@ struct RALLYHEREAPI_API FRequest_UpdateTeamById : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	int32 TeamId = 0;
-	FRHAPI_SessionId SessionId;
+	FString SessionId;
 	FRHAPI_TeamUpdate TeamUpdate;
 	TOptional<bool> RefreshTtl;
 };
