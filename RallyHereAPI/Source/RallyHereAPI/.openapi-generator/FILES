@@ -381,6 +381,7 @@ Private/SearchGuideResponse.cpp
 Private/SearchGuideSort.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/Session.cpp
+Private/SessionId.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
 Private/SessionJoinability.cpp
@@ -390,6 +391,7 @@ Private/SessionPlayerStatus.cpp
 Private/SessionPlayerUpdateRequest.cpp
 Private/SessionPlayerUpdateResponse.cpp
 Private/SessionPlayersUpdateResponse.cpp
+Private/SessionShortCodeResponse.cpp
 Private/SessionTeam.cpp
 Private/SessionTemplate.cpp
 Private/SessionTemplates.cpp
@@ -816,6 +818,7 @@ Public/SearchGuideResponse.h
 Public/SearchGuideSort.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/Session.h
+Public/SessionId.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
 Public/SessionJoinability.h
@@ -825,6 +828,7 @@ Public/SessionPlayerStatus.h
 Public/SessionPlayerUpdateRequest.h
 Public/SessionPlayerUpdateResponse.h
 Public/SessionPlayersUpdateResponse.h
+Public/SessionShortCodeResponse.h
 Public/SessionTeam.h
 Public/SessionTemplate.h
 Public/SessionTemplates.h

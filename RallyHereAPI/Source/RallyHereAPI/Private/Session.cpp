@@ -97,6 +97,11 @@ void FRHAPI_Session::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("created_by_matchmaking"));
 		RallyHereAPI::WriteJsonValue(Writer, CreatedByMatchmaking_Optional);
 	}
+	if (ShortCode_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("short_code"));
+		RallyHereAPI::WriteJsonValue(Writer, ShortCode_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -200,6 +205,12 @@ bool FRHAPI_Session::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		CreatedByMatchmaking_IsSet = TryGetJsonValue(JsonCreatedByMatchmakingField, CreatedByMatchmaking_Optional);
 		ParseSuccess &= CreatedByMatchmaking_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonShortCodeField = (*Object)->TryGetField(TEXT("short_code"));
+	if (JsonShortCodeField.IsValid())
+	{
+		ShortCode_IsSet = TryGetJsonValue(JsonShortCodeField, ShortCode_Optional);
+		ParseSuccess &= ShortCode_IsSet;
 	}
 
 	return ParseSuccess;

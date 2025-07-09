@@ -471,6 +471,33 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	bool IsCreatedByMatchmakingDefaultValue() const { return CreatedByMatchmaking_IsSet && CreatedByMatchmaking_Optional == false; }
 	/** @brief Sets the value of CreatedByMatchmaking_Optional to its default and also sets CreatedByMatchmaking_IsSet to true */
 	void SetCreatedByMatchmakingToDefault() { SetCreatedByMatchmaking(false); }
+
+	/** @brief Shortened join code associated with this session */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString ShortCode_Optional{  };
+	/** @brief true if ShortCode_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ShortCode_IsSet{ false };
+	/** @brief Gets the value of ShortCode_Optional, regardless of it having been set */
+	FString& GetShortCode() { return ShortCode_Optional; }
+	/** @brief Gets the value of ShortCode_Optional, regardless of it having been set */
+	const FString& GetShortCode() const { return ShortCode_Optional; }
+	/** @brief Gets the value of ShortCode_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetShortCode(const FString& DefaultValue) const { if (ShortCode_IsSet) return ShortCode_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ShortCode_Optional and returns true if it has been set, otherwise returns false */
+	bool GetShortCode(FString& OutValue) const { if (ShortCode_IsSet) OutValue = ShortCode_Optional; return ShortCode_IsSet; }
+	/** @brief Returns a pointer to ShortCode_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetShortCodeOrNull() { if (ShortCode_IsSet) return (&ShortCode_Optional); return nullptr; }
+	/** @brief Returns a pointer to ShortCode_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetShortCodeOrNull() const { if (ShortCode_IsSet) return (&ShortCode_Optional); return nullptr; }
+	/** @brief Sets the value of ShortCode_Optional and also sets ShortCode_IsSet to true */
+	void SetShortCode(const FString& NewValue) { ShortCode_Optional = NewValue; ShortCode_IsSet = true;  }
+	/** @brief Sets the value of ShortCode_Optional and also sets ShortCode_IsSet to true using move semantics */
+	void SetShortCode(FString&& NewValue) { ShortCode_Optional = NewValue; ShortCode_IsSet = true;  }
+	/** @brief Clears the value of ShortCode_Optional and sets ShortCode_IsSet to false */
+	void ClearShortCode() { ShortCode_IsSet = false;  }
+	/** @brief Checks whether ShortCode_Optional has been set */
+	bool IsShortCodeSet() const { return ShortCode_IsSet; }
 };
 
 /** @} */
