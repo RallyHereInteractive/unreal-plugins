@@ -43,6 +43,16 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 echo "Using spec file from $OPENAPI_SPEC_LOCATION"
 
+if [[ $OPENAPI_SPEC_LOCATION == "" ]]; then
+    echo "Missing --openapi-spec argument. Quitting"
+    exit
+fi
+if [[ $OUTPUT_DIR == "" ]]; then
+    echo "Missing --output argument. Quitting"
+    exit
+fi
+
+
 ########################################
 # Download openapi-generator-cli
 curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.10.0/openapi-generator-cli-7.10.0.jar --create-dirs -o bin/openapi-generator-cli.jar
