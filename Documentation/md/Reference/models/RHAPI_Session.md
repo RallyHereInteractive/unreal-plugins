@@ -52,6 +52,8 @@ A session resource.
 `public bool `[`RegionId_IsSet`](#structFRHAPI__Session_1abae73173741ad3d3897e92421d1dfd92) | true if RegionId_Optional has been set to a value
 `public bool `[`CreatedByMatchmaking_Optional`](#structFRHAPI__Session_1affa742fa5462aa1c981d0a9612205d24) | Flag of whether or not this session was created by matchmaking or not.
 `public bool `[`CreatedByMatchmaking_IsSet`](#structFRHAPI__Session_1ab568dee593d8d974177ac40172c87413) | true if CreatedByMatchmaking_Optional has been set to a value
+`public FString `[`ShortCode_Optional`](#structFRHAPI__Session_1a34eb749337a01204d65e77300a11498b) | Shortened join code associated with this session.
+`public bool `[`ShortCode_IsSet`](#structFRHAPI__Session_1a52cdc74cdf299484f61b804612ce8f15) | true if ShortCode_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Session_1ac70165ee2f4adca87cb4357e3ac50aee)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Session_1a928bf5b0c2e9be5c80ddabec370faa40)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline FString & `[`GetType`](#structFRHAPI__Session_1aca4e09825a912e57c67edac1127e8f0d)`()` | Gets the value of Type.
@@ -210,6 +212,16 @@ A session resource.
 `public inline bool `[`IsCreatedByMatchmakingSet`](#structFRHAPI__Session_1a02edb04a141e8b229b2880b812506a40)`() const` | Checks whether CreatedByMatchmaking_Optional has been set.
 `public inline bool `[`IsCreatedByMatchmakingDefaultValue`](#structFRHAPI__Session_1a4497fa87bd0e35ecdf5b09b0714d36ad)`() const` | Returns true if CreatedByMatchmaking_Optional is set and matches the default value.
 `public inline void `[`SetCreatedByMatchmakingToDefault`](#structFRHAPI__Session_1ac89a96065989ec35f4c1e11ca9bc81c6)`()` | Sets the value of CreatedByMatchmaking_Optional to its default and also sets CreatedByMatchmaking_IsSet to true.
+`public inline FString & `[`GetShortCode`](#structFRHAPI__Session_1a761db2701140bf2eada9dd5007a276e2)`()` | Gets the value of ShortCode_Optional, regardless of it having been set.
+`public inline const FString & `[`GetShortCode`](#structFRHAPI__Session_1aa51cdf31ad589bb19f1e8cae397c9336)`() const` | Gets the value of ShortCode_Optional, regardless of it having been set.
+`public inline const FString & `[`GetShortCode`](#structFRHAPI__Session_1ab94fa9f4d790ceed825ec9f17370e94f)`(const FString & DefaultValue) const` | Gets the value of ShortCode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetShortCode`](#structFRHAPI__Session_1aec715214cf5c339d269f50c15f98b9ea)`(FString & OutValue) const` | Fills OutValue with the value of ShortCode_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetShortCodeOrNull`](#structFRHAPI__Session_1a39bfc019ba87b950e8443645a075cbf7)`()` | Returns a pointer to ShortCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetShortCodeOrNull`](#structFRHAPI__Session_1a9aefa35bd3448d285b6d819cb436afa4)`() const` | Returns a pointer to ShortCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetShortCode`](#structFRHAPI__Session_1a019376742030b283209dd8fe974eace4)`(const FString & NewValue)` | Sets the value of ShortCode_Optional and also sets ShortCode_IsSet to true.
+`public inline void `[`SetShortCode`](#structFRHAPI__Session_1a7394e642537987b6d636879eeb0e1c2e)`(FString && NewValue)` | Sets the value of ShortCode_Optional and also sets ShortCode_IsSet to true using move semantics.
+`public inline void `[`ClearShortCode`](#structFRHAPI__Session_1a8d7a1880ccfe41c9ca10356179cc93af)`()` | Clears the value of ShortCode_Optional and sets ShortCode_IsSet to false.
+`public inline bool `[`IsShortCodeSet`](#structFRHAPI__Session_1afd76f07bada8ef6cdd29635453ed595a)`() const` | Checks whether ShortCode_Optional has been set.
 
 ### Members
 
@@ -336,6 +348,14 @@ Flag of whether or not this session was created by matchmaking or not.
 #### `public bool `[`CreatedByMatchmaking_IsSet`](#structFRHAPI__Session_1ab568dee593d8d974177ac40172c87413) <a id="structFRHAPI__Session_1ab568dee593d8d974177ac40172c87413"></a>
 
 true if CreatedByMatchmaking_Optional has been set to a value
+
+#### `public FString `[`ShortCode_Optional`](#structFRHAPI__Session_1a34eb749337a01204d65e77300a11498b) <a id="structFRHAPI__Session_1a34eb749337a01204d65e77300a11498b"></a>
+
+Shortened join code associated with this session.
+
+#### `public bool `[`ShortCode_IsSet`](#structFRHAPI__Session_1a52cdc74cdf299484f61b804612ce8f15) <a id="structFRHAPI__Session_1a52cdc74cdf299484f61b804612ce8f15"></a>
+
+true if ShortCode_Optional has been set to a value
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__Session_1ac70165ee2f4adca87cb4357e3ac50aee)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__Session_1ac70165ee2f4adca87cb4357e3ac50aee"></a>
 
@@ -977,4 +997,44 @@ Returns true if CreatedByMatchmaking_Optional is set and matches the default val
 #### `public inline void `[`SetCreatedByMatchmakingToDefault`](#structFRHAPI__Session_1ac89a96065989ec35f4c1e11ca9bc81c6)`()` <a id="structFRHAPI__Session_1ac89a96065989ec35f4c1e11ca9bc81c6"></a>
 
 Sets the value of CreatedByMatchmaking_Optional to its default and also sets CreatedByMatchmaking_IsSet to true.
+
+#### `public inline FString & `[`GetShortCode`](#structFRHAPI__Session_1a761db2701140bf2eada9dd5007a276e2)`()` <a id="structFRHAPI__Session_1a761db2701140bf2eada9dd5007a276e2"></a>
+
+Gets the value of ShortCode_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetShortCode`](#structFRHAPI__Session_1aa51cdf31ad589bb19f1e8cae397c9336)`() const` <a id="structFRHAPI__Session_1aa51cdf31ad589bb19f1e8cae397c9336"></a>
+
+Gets the value of ShortCode_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetShortCode`](#structFRHAPI__Session_1ab94fa9f4d790ceed825ec9f17370e94f)`(const FString & DefaultValue) const` <a id="structFRHAPI__Session_1ab94fa9f4d790ceed825ec9f17370e94f"></a>
+
+Gets the value of ShortCode_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetShortCode`](#structFRHAPI__Session_1aec715214cf5c339d269f50c15f98b9ea)`(FString & OutValue) const` <a id="structFRHAPI__Session_1aec715214cf5c339d269f50c15f98b9ea"></a>
+
+Fills OutValue with the value of ShortCode_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetShortCodeOrNull`](#structFRHAPI__Session_1a39bfc019ba87b950e8443645a075cbf7)`()` <a id="structFRHAPI__Session_1a39bfc019ba87b950e8443645a075cbf7"></a>
+
+Returns a pointer to ShortCode_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetShortCodeOrNull`](#structFRHAPI__Session_1a9aefa35bd3448d285b6d819cb436afa4)`() const` <a id="structFRHAPI__Session_1a9aefa35bd3448d285b6d819cb436afa4"></a>
+
+Returns a pointer to ShortCode_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetShortCode`](#structFRHAPI__Session_1a019376742030b283209dd8fe974eace4)`(const FString & NewValue)` <a id="structFRHAPI__Session_1a019376742030b283209dd8fe974eace4"></a>
+
+Sets the value of ShortCode_Optional and also sets ShortCode_IsSet to true.
+
+#### `public inline void `[`SetShortCode`](#structFRHAPI__Session_1a7394e642537987b6d636879eeb0e1c2e)`(FString && NewValue)` <a id="structFRHAPI__Session_1a7394e642537987b6d636879eeb0e1c2e"></a>
+
+Sets the value of ShortCode_Optional and also sets ShortCode_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearShortCode`](#structFRHAPI__Session_1a8d7a1880ccfe41c9ca10356179cc93af)`()` <a id="structFRHAPI__Session_1a8d7a1880ccfe41c9ca10356179cc93af"></a>
+
+Clears the value of ShortCode_Optional and sets ShortCode_IsSet to false.
+
+#### `public inline bool `[`IsShortCodeSet`](#structFRHAPI__Session_1afd76f07bada8ef6cdd29635453ed595a)`() const` <a id="structFRHAPI__Session_1afd76f07bada8ef6cdd29635453ed595a"></a>
+
+Checks whether ShortCode_Optional has been set.
 
