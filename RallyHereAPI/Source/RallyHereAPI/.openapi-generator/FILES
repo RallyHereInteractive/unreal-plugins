@@ -381,7 +381,6 @@ Private/SearchGuideResponse.cpp
 Private/SearchGuideSort.cpp
 Private/SelfSessionPlayerUpdateRequest.cpp
 Private/Session.cpp
-Private/SessionId.cpp
 Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
 Private/SessionJoinability.cpp
@@ -818,7 +817,6 @@ Public/SearchGuideResponse.h
 Public/SearchGuideSort.h
 Public/SelfSessionPlayerUpdateRequest.h
 Public/Session.h
-Public/SessionId.h
 Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
 Public/SessionJoinability.h
