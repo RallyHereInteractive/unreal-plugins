@@ -40,8 +40,6 @@ FString EnumToString(const ERHAPI_GrantType& Value)
 		return TEXT("ps4_v3");
 	case ERHAPI_GrantType::PS5V3:
 		return TEXT("ps5_v3");
-	case ERHAPI_GrantType::Nintendo:
-		return TEXT("nintendo");
 	case ERHAPI_GrantType::NintendoSwitch:
 		return TEXT("nintendo_switch");
 	case ERHAPI_GrantType::Steam:
@@ -70,7 +68,6 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& Value)
 		{ TEXT("ps4_v1"), ERHAPI_GrantType::PS4V1 },
 		{ TEXT("ps4_v3"), ERHAPI_GrantType::PS4V3 },
 		{ TEXT("ps5_v3"), ERHAPI_GrantType::PS5V3 },
-		{ TEXT("nintendo"), ERHAPI_GrantType::Nintendo },
 		{ TEXT("nintendo_switch"), ERHAPI_GrantType::NintendoSwitch },
 		{ TEXT("steam"), ERHAPI_GrantType::Steam },
 		{ TEXT("basic"), ERHAPI_GrantType::Basic },

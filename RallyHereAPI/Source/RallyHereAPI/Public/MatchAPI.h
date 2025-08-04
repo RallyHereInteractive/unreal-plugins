@@ -16,6 +16,7 @@
 #include "MatchPlayerRequest.h"
 #include "MatchPlayerWithMatch.h"
 #include "MatchRequest.h"
+#include "MatchRewardsBody.h"
 #include "MatchSegmentPatchRequest.h"
 #include "MatchSegmentRequest.h"
 #include "MatchSegmentWithPlayers.h"
@@ -241,6 +242,125 @@ struct RALLYHEREAPI_API Traits_CreateMatchPlayer
 	typedef FResponse_CreateMatchPlayer Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_CreateMatchPlayer Delegate;
+	/** The API object that supports this API call */
+	typedef FMatchAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
+ * @brief Create Match Rewards
+ * Give loot rewards to players in a match. Returns a 4XX error if any rewards fail to be given, but will grant as many as possible.
+ * 
+ * Required Permissions:
+ * 
+ * - For any match any of: `match:*`, `match:reward:any`
+ * 
+ * - For match if the player is the host any of: `match:*`, `match:reward:any`, `match:reward:authority`
+*/
+struct RALLYHEREAPI_API FRequest_CreateMatchRewards : public FRequest
+{
+	FRequest_CreateMatchRewards();
+	virtual ~FRequest_CreateMatchRewards() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+	FString MatchId;
+	FRHAPI_MatchRewardsBody MatchRewardsBody;
+};
+
+/** The response type for FRequest_CreateMatchRewards */
+struct RALLYHEREAPI_API FResponse_CreateMatchRewards : public FResponseAccessorTemplate<FRHAPI_JsonObject, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_JsonObject, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+
+	FResponse_CreateMatchRewards(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_CreateMatchRewards() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_JsonObject Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_JsonObject& OutContent) const { return TryGetContent<FRHAPI_JsonObject>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_JsonObject>& OutContent) const { return TryGetContent<FRHAPI_JsonObject>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_JsonObject* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_JsonObject>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_JsonObject> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_JsonObject>(); }
+
+	// Individual Response Helpers	
+	/* Response 201
+	Successful Response
+	*/
+	bool TryGetContentFor201(FRHAPI_JsonObject& OutContent) const;
+
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 404
+	Not Found
+	*/
+	bool TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 422
+	Validation Error
+	*/
+	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_CreateMatchRewards */
+DECLARE_DELEGATE_OneParam(FDelegate_CreateMatchRewards, const FResponse_CreateMatchRewards&);
+
+/** @brief A helper metadata object for CreateMatchRewards that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_CreateMatchRewards
+{
+	/** The request type */
+	typedef FRequest_CreateMatchRewards Request;
+	/** The response type */
+	typedef FResponse_CreateMatchRewards Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_CreateMatchRewards Delegate;
 	/** The API object that supports this API call */
 	typedef FMatchAPI API;
 	/** A human readable name for this API call */
@@ -1255,9 +1375,11 @@ struct RALLYHEREAPI_API FRequest_GetMatches : public FRequest
 	TOptional<FString> InstanceId;
 	TOptional<FString> AllocationId;
 	TOptional<FString> SessionId;
+	TOptional<FString> MatchmakingProfileId;
 	TOptional<FString> HostPlayerUuid;
 	TOptional<FString> RegionId;
 	TOptional<FString> PlayerUuid;
+	TOptional<int32> MinDurationSeconds;
 	TOptional<FString> Type;
 	TOptional<ERHAPI_MatchState> State;
 	TOptional<bool> IncludeSegments;
@@ -2536,6 +2658,8 @@ public:
 	void OnCreateMatchResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatch Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr CreateMatchPlayer(const FRequest_CreateMatchPlayer& Request, const FDelegate_CreateMatchPlayer& Delegate = FDelegate_CreateMatchPlayer(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnCreateMatchPlayerResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchPlayer Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr CreateMatchRewards(const FRequest_CreateMatchRewards& Request, const FDelegate_CreateMatchRewards& Delegate = FDelegate_CreateMatchRewards(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnCreateMatchRewardsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchRewards Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr CreateMatchSegment(const FRequest_CreateMatchSegment& Request, const FDelegate_CreateMatchSegment& Delegate = FDelegate_CreateMatchSegment(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnCreateMatchSegmentResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_CreateMatchSegment Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr CreateMatchTimeline(const FRequest_CreateMatchTimeline& Request, const FDelegate_CreateMatchTimeline& Delegate = FDelegate_CreateMatchTimeline(), int32 Priority = DefaultRallyHereAPIPriority);

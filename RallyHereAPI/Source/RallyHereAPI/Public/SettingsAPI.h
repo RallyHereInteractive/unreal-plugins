@@ -30,11 +30,19 @@ class FSettingsAPI;
  * @brief Delete All Player Id Settings For Setting Type
  * **DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : public FRequest
 {
@@ -55,6 +63,7 @@ struct RALLYHEREAPI_API FRequest_DeleteAllPlayerIdSettingsForSettingType : publi
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	int32 PlayerId = 0;
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
 	TOptional<FString> IfMatch;
@@ -159,11 +168,19 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerIdSettingsForSettingType
  * @brief Delete All Player Uuid Settings For Setting Type
  * Delete all player setting documents for a specific type
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : public FRequest
 {
@@ -185,7 +202,7 @@ struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingType : pub
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Player to delete setting for */
 	FGuid PlayerUuid;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
 	TOptional<FString> IfMatch;
@@ -290,11 +307,19 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingType
  * @brief Delete All Player Uuid Settings For Setting Type Self
  * Delete all player setting documents for a specific type
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
 {
@@ -314,7 +339,7 @@ struct RALLYHEREAPI_API FRequest_DeleteAllPlayerUuidSettingsForSettingTypeSelf :
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Precondition check if the resource's current ETag matches the provided values.  * can be used to match any existing value.  See https://www.rfc-editor.org/rfc/rfc9110#name-if-match for more information */
 	TOptional<FString> IfMatch;
@@ -419,11 +444,19 @@ struct RALLYHEREAPI_API Traits_DeleteAllPlayerUuidSettingsForSettingTypeSelf
  * @brief Delete Single Player Id Setting
  * **DEPRECATED** - Use v2 instead. Delete a single player setting document
  *     
+ * For a standard setting    
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
 {
@@ -445,7 +478,7 @@ struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerIdSetting : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Player to delete setting for */
 	int32 PlayerId = 0;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to delete setting for */
 	FString Key;
@@ -552,11 +585,19 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerIdSetting
  * @brief Delete Single Player Uuid Setting
  * Delete a single player setting document
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
 {
@@ -578,7 +619,7 @@ struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSetting : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Player to delete setting for */
 	FGuid PlayerUuid;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to delete setting for */
 	FString Key;
@@ -685,11 +726,19 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSetting
  * @brief Delete Single Player Uuid Setting Self
  * Delete a single player setting document
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
 */
 struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FRequest
 {
@@ -709,7 +758,7 @@ struct RALLYHEREAPI_API FRequest_DeleteSinglePlayerUuidSettingSelf : public FReq
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to delete settings for.  Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to delete setting for */
 	FString Key;
@@ -816,11 +865,19 @@ struct RALLYHEREAPI_API Traits_DeleteSinglePlayerUuidSettingSelf
  * @brief Get All Player Id Settings For Setting Type
  * **DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
  * 
  * - For the player themselves : `setting:read:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`
+ * 
+ * - For the player themselves : `setting:internal:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public FRequest
 {
@@ -842,7 +899,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerIdSettingsForSettingType : public F
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Player to get settings for */
 	int32 PlayerId = 0;
-	/* Setting Type to get settings for. Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
 	TOptional<TArray<FString>> Key;
@@ -988,11 +1045,19 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerIdSettingsForSettingType
  * @brief Get All Player Uuid Settings For Setting Type
  * Get a list of all player setting documents for a specific Setting Type
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
  * 
  * - For the player themselves : `setting:read:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`
+ * 
+ * - For the player themselves : `setting:internal:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public FRequest
 {
@@ -1014,7 +1079,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingType : public
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Player to get settings for */
 	FGuid PlayerUuid;
-	/* Setting Type to get settings for. Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
 	TOptional<TArray<FString>> Key;
@@ -1160,11 +1225,19 @@ struct RALLYHEREAPI_API Traits_GetAllPlayerUuidSettingsForSettingType
  * @brief Get All Player Uuid Settings For Setting Type Self
  * Get a list of all player setting documents for a specific Setting Type
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
  * 
  * - For the player themselves : `setting:read:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`
+ * 
+ * - For the player themselves : `setting:internal:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : public FRequest
 {
@@ -1184,7 +1257,7 @@ struct RALLYHEREAPI_API FRequest_GetAllPlayerUuidSettingsForSettingTypeSelf : pu
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to get settings for. Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to get settings for. If not specified, all settings for the setting type will be returned */
 	TOptional<TArray<FString>> Key;
@@ -1805,11 +1878,19 @@ struct RALLYHEREAPI_API Traits_GetConfigForSingleSettingTypeAndVersion
  * @brief Get Single Player Id Setting
  * **DEPRECATED** - Use v2 instead.  Get a single player setting document
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
  * 
  * - For the player themselves : `setting:read:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`
+ * 
+ * - For the player themselves : `setting:internal:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
 {
@@ -1831,7 +1912,7 @@ struct RALLYHEREAPI_API FRequest_GetSinglePlayerIdSetting : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Player to get settings for */
 	int32 PlayerId = 0;
-	/* Setting Type to get settings for. Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to get settings for */
 	FString Key;
@@ -1977,11 +2058,19 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerIdSetting
  * @brief Get Single Player Uuid Setting
  * Get a single player setting document
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
  * 
  * - For the player themselves : `setting:read:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`
+ * 
+ * - For the player themselves : `setting:internal:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
 {
@@ -2003,7 +2092,7 @@ struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSetting : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	/* Player to get settings for */
 	FGuid PlayerUuid;
-	/* Setting Type to get settings for. Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to get settings for */
 	FString Key;
@@ -2149,11 +2238,19 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSetting
  * @brief Get Single Player Uuid Setting Self
  * Get a single player setting document
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:read`
  * 
  * - For the player themselves : `setting:read:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`
+ * 
+ * - For the player themselves : `setting:internal:read:self`
 */
 struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FRequest
 {
@@ -2173,7 +2270,7 @@ struct RALLYHEREAPI_API FRequest_GetSinglePlayerUuidSettingSelf : public FReques
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	/* Setting Type to get settings for. Must be one of the known setting types */
+	/* Setting Type to update settings for. Must be one of the known setting types */
 	FString SettingTypeId;
 	/* Setting Key to get settings for */
 	FString Key;
@@ -2319,11 +2416,19 @@ struct RALLYHEREAPI_API Traits_GetSinglePlayerUuidSettingSelf
  * @brief Set Single Player Id Setting
  * **DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.  Update the value of a single player setting document.
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
  * 
  * 
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
@@ -2487,11 +2592,19 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerIdSetting
  * @brief Set Single Player Uuid Setting
  * Update the value of a single player setting document.
  * 
+ * For a standard setting
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
  * 
  * 
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:
@@ -2654,12 +2767,20 @@ struct RALLYHEREAPI_API Traits_SetSinglePlayerUuidSetting
 /**
  * @brief Set Single Player Uuid Setting Self
  * Update the value of a single player setting document.
- *     
+ * 
+ * For a standard setting    
  * Required Permissions:
  * 
  * - For any player (including themselves) any of: `setting:*:*`, `setting:write`
  * 
  * - For the player themselves : `setting:write:self`
+ * 
+ * For an 'internal' setting
+ * Required Permissions:
+ * 
+ * - For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`
+ * 
+ * - For the player themselves : `setting:internal:write:self`
  * 
  * 
  * If Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:

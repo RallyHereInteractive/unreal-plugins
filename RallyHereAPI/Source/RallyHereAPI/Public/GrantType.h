@@ -27,7 +27,6 @@ enum class ERHAPI_GrantType : uint8
 	PS4V1 UMETA(ToolTip="Playstation Network v1 authentication using the configured PS4 credentials"),
 	PS4V3 UMETA(ToolTip="Playstation Network v3 authentication using the configured PS5 credentials"),
 	PS5V3 UMETA(ToolTip="Playstation Network v3 authentication using the configured PS5 credentials"),
-	Nintendo UMETA(ToolTip="Nintendo Account authentication"),
 	NintendoSwitch UMETA(ToolTip="Nintendo Service Account (for Nintendo Switch) authentication"),
 	Steam UMETA(ToolTip="Steam authentication"),
 	Basic UMETA(ToolTip="Basic Username/Password authentication"),

@@ -119,6 +119,37 @@ struct RALLYHEREAPI_API FRHAPI_GuideFull : public FRHAPI_Model
 	/** @brief Checks whether ShortDesc_Optional is set to null */
 	bool IsShortDescNull() const { return ShortDesc_IsSet && ShortDesc_IsNull; }
 
+	/** @brief Game-specific guide version.  Meant to allow the layout/format of the guides to change over time. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 V_Optional{ 1 };
+	/** @brief true if V_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool V_IsSet{ false };
+	/** @brief Gets the value of V_Optional, regardless of it having been set */
+	int32& GetV() { return V_Optional; }
+	/** @brief Gets the value of V_Optional, regardless of it having been set */
+	const int32& GetV() const { return V_Optional; }
+	/** @brief Gets the value of V_Optional, if it has been set, otherwise it returns DefaultValue */
+	const int32& GetV(const int32& DefaultValue) const { if (V_IsSet) return V_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of V_Optional and returns true if it has been set, otherwise returns false */
+	bool GetV(int32& OutValue) const { if (V_IsSet) OutValue = V_Optional; return V_IsSet; }
+	/** @brief Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr */
+	int32* GetVOrNull() { if (V_IsSet) return (&V_Optional); return nullptr; }
+	/** @brief Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr */
+	const int32* GetVOrNull() const { if (V_IsSet) return (&V_Optional); return nullptr; }
+	/** @brief Sets the value of V_Optional and also sets V_IsSet to true */
+	void SetV(const int32& NewValue) { V_Optional = NewValue; V_IsSet = true;  }
+	/** @brief Sets the value of V_Optional and also sets V_IsSet to true using move semantics */
+	void SetV(int32&& NewValue) { V_Optional = NewValue; V_IsSet = true;  }
+	/** @brief Clears the value of V_Optional and sets V_IsSet to false */
+	void ClearV() { V_Optional = 1; V_IsSet = false;  }
+	/** @brief Checks whether V_Optional has been set */
+	bool IsVSet() const { return V_IsSet; }
+	/** @brief Returns true if V_Optional is set and matches the default value */
+	bool IsVDefaultValue() const { return V_IsSet && V_Optional == 1; }
+	/** @brief Sets the value of V_Optional to its default and also sets V_IsSet to true */
+	void SetVToDefault() { SetV(1); }
+
 	/** @brief Promotion priority of this guide in searches */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PromotionPriority_Optional{ 0 };

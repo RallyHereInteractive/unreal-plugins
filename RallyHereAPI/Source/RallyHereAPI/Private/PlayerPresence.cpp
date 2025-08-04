@@ -44,6 +44,9 @@ void FRHAPI_PlayerPresence::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (PlayerId_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("player_id"));
+		if (PlayerId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, PlayerId_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
@@ -51,11 +54,17 @@ void FRHAPI_PlayerPresence::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	if (DoNotDisturb_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("do_not_disturb"));
+		if (DoNotDisturb_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DoNotDisturb_Optional);
 	}
 	if (LastSeen_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("last_seen"));
+		if (LastSeen_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, LastSeen_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -96,7 +105,8 @@ bool FRHAPI_PlayerPresence::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPlayerIdField = (*Object)->TryGetField(TEXT("player_id"));
 	if (JsonPlayerIdField.IsValid())
 	{
-		PlayerId_IsSet = TryGetJsonValue(JsonPlayerIdField, PlayerId_Optional);
+		PlayerId_IsNull = JsonPlayerIdField->IsNull();
+		PlayerId_IsSet = PlayerId_IsNull || TryGetJsonValue(JsonPlayerIdField, PlayerId_Optional);
 		ParseSuccess &= PlayerId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
@@ -105,13 +115,15 @@ bool FRHAPI_PlayerPresence::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonDoNotDisturbField = (*Object)->TryGetField(TEXT("do_not_disturb"));
 	if (JsonDoNotDisturbField.IsValid())
 	{
-		DoNotDisturb_IsSet = TryGetJsonValue(JsonDoNotDisturbField, DoNotDisturb_Optional);
+		DoNotDisturb_IsNull = JsonDoNotDisturbField->IsNull();
+		DoNotDisturb_IsSet = DoNotDisturb_IsNull || TryGetJsonValue(JsonDoNotDisturbField, DoNotDisturb_Optional);
 		ParseSuccess &= DoNotDisturb_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonLastSeenField = (*Object)->TryGetField(TEXT("last_seen"));
 	if (JsonLastSeenField.IsValid())
 	{
-		LastSeen_IsSet = TryGetJsonValue(JsonLastSeenField, LastSeen_Optional);
+		LastSeen_IsNull = JsonLastSeenField->IsNull();
+		LastSeen_IsSet = LastSeen_IsNull || TryGetJsonValue(JsonLastSeenField, LastSeen_Optional);
 		ParseSuccess &= LastSeen_IsSet;
 	}
 

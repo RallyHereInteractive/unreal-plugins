@@ -44,15 +44,34 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 
 	/** @brief unique id for this transaction on the platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString TransactionId{  };
-	/** @brief Gets the value of TransactionId */
-	FString& GetTransactionId() { return TransactionId; }
-	/** @brief Gets the value of TransactionId */
-	const FString& GetTransactionId() const { return TransactionId; }
-	/** @brief Sets the value of TransactionId */
-	void SetTransactionId(const FString& NewValue) { TransactionId = NewValue;   }
-	/** @brief Sets the value of TransactionId using move semantics */
-	void SetTransactionId(FString&& NewValue) { TransactionId = NewValue;   }
+	FString TransactionId_Optional{ TEXT("") };
+	/** @brief true if TransactionId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TransactionId_IsSet{ false };
+	/** @brief Gets the value of TransactionId_Optional, regardless of it having been set */
+	FString& GetTransactionId() { return TransactionId_Optional; }
+	/** @brief Gets the value of TransactionId_Optional, regardless of it having been set */
+	const FString& GetTransactionId() const { return TransactionId_Optional; }
+	/** @brief Gets the value of TransactionId_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetTransactionId(const FString& DefaultValue) const { if (TransactionId_IsSet) return TransactionId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TransactionId_Optional and returns true if it has been set, otherwise returns false */
+	bool GetTransactionId(FString& OutValue) const { if (TransactionId_IsSet) OutValue = TransactionId_Optional; return TransactionId_IsSet; }
+	/** @brief Returns a pointer to TransactionId_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetTransactionIdOrNull() { if (TransactionId_IsSet) return (&TransactionId_Optional); return nullptr; }
+	/** @brief Returns a pointer to TransactionId_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetTransactionIdOrNull() const { if (TransactionId_IsSet) return (&TransactionId_Optional); return nullptr; }
+	/** @brief Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to true */
+	void SetTransactionId(const FString& NewValue) { TransactionId_Optional = NewValue; TransactionId_IsSet = true;  }
+	/** @brief Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to true using move semantics */
+	void SetTransactionId(FString&& NewValue) { TransactionId_Optional = NewValue; TransactionId_IsSet = true;  }
+	/** @brief Clears the value of TransactionId_Optional and sets TransactionId_IsSet to false */
+	void ClearTransactionId() { TransactionId_Optional = TEXT(""); TransactionId_IsSet = false;  }
+	/** @brief Checks whether TransactionId_Optional has been set */
+	bool IsTransactionIdSet() const { return TransactionId_IsSet; }
+	/** @brief Returns true if TransactionId_Optional is set and matches the default value */
+	bool IsTransactionIdDefaultValue() const { return TransactionId_IsSet && TransactionId_Optional == TEXT(""); }
+	/** @brief Sets the value of TransactionId_Optional to its default and also sets TransactionId_IsSet to true */
+	void SetTransactionIdToDefault() { SetTransactionId(TEXT("")); }
 
 	/** @brief Platform token that can be used to verify the identity of the user */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -112,26 +131,56 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementProcessRequest : public FRHAPI
 	bool IsPlatformEnvironmentNull() const { return PlatformEnvironment_IsSet && PlatformEnvironment_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_PlatformRegion PlatformRegion{  };
-	/** @brief Gets the value of PlatformRegion */
-	ERHAPI_PlatformRegion& GetPlatformRegion() { return PlatformRegion; }
-	/** @brief Gets the value of PlatformRegion */
-	const ERHAPI_PlatformRegion& GetPlatformRegion() const { return PlatformRegion; }
-	/** @brief Sets the value of PlatformRegion */
-	void SetPlatformRegion(const ERHAPI_PlatformRegion& NewValue) { PlatformRegion = NewValue;   }
-	/** @brief Sets the value of PlatformRegion using move semantics */
-	void SetPlatformRegion(ERHAPI_PlatformRegion&& NewValue) { PlatformRegion = NewValue;   }
+	ERHAPI_PlatformRegion PlatformRegion_Optional{  };
+	/** @brief true if PlatformRegion_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlatformRegion_IsSet{ false };
+	/** @brief Gets the value of PlatformRegion_Optional, regardless of it having been set */
+	ERHAPI_PlatformRegion& GetPlatformRegion() { return PlatformRegion_Optional; }
+	/** @brief Gets the value of PlatformRegion_Optional, regardless of it having been set */
+	const ERHAPI_PlatformRegion& GetPlatformRegion() const { return PlatformRegion_Optional; }
+	/** @brief Gets the value of PlatformRegion_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_PlatformRegion& GetPlatformRegion(const ERHAPI_PlatformRegion& DefaultValue) const { if (PlatformRegion_IsSet) return PlatformRegion_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlatformRegion_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlatformRegion(ERHAPI_PlatformRegion& OutValue) const { if (PlatformRegion_IsSet) OutValue = PlatformRegion_Optional; return PlatformRegion_IsSet; }
+	/** @brief Returns a pointer to PlatformRegion_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_PlatformRegion* GetPlatformRegionOrNull() { if (PlatformRegion_IsSet) return (&PlatformRegion_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlatformRegion_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_PlatformRegion* GetPlatformRegionOrNull() const { if (PlatformRegion_IsSet) return (&PlatformRegion_Optional); return nullptr; }
+	/** @brief Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to true */
+	void SetPlatformRegion(const ERHAPI_PlatformRegion& NewValue) { PlatformRegion_Optional = NewValue; PlatformRegion_IsSet = true;  }
+	/** @brief Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to true using move semantics */
+	void SetPlatformRegion(ERHAPI_PlatformRegion&& NewValue) { PlatformRegion_Optional = NewValue; PlatformRegion_IsSet = true;  }
+	/** @brief Clears the value of PlatformRegion_Optional and sets PlatformRegion_IsSet to false */
+	void ClearPlatformRegion() { PlatformRegion_IsSet = false;  }
+	/** @brief Checks whether PlatformRegion_Optional has been set */
+	bool IsPlatformRegionSet() const { return PlatformRegion_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_ClientType ClientType{  };
-	/** @brief Gets the value of ClientType */
-	ERHAPI_ClientType& GetClientType() { return ClientType; }
-	/** @brief Gets the value of ClientType */
-	const ERHAPI_ClientType& GetClientType() const { return ClientType; }
-	/** @brief Sets the value of ClientType */
-	void SetClientType(const ERHAPI_ClientType& NewValue) { ClientType = NewValue;   }
-	/** @brief Sets the value of ClientType using move semantics */
-	void SetClientType(ERHAPI_ClientType&& NewValue) { ClientType = NewValue;   }
+	ERHAPI_ClientType ClientType_Optional{  };
+	/** @brief true if ClientType_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ClientType_IsSet{ false };
+	/** @brief Gets the value of ClientType_Optional, regardless of it having been set */
+	ERHAPI_ClientType& GetClientType() { return ClientType_Optional; }
+	/** @brief Gets the value of ClientType_Optional, regardless of it having been set */
+	const ERHAPI_ClientType& GetClientType() const { return ClientType_Optional; }
+	/** @brief Gets the value of ClientType_Optional, if it has been set, otherwise it returns DefaultValue */
+	const ERHAPI_ClientType& GetClientType(const ERHAPI_ClientType& DefaultValue) const { if (ClientType_IsSet) return ClientType_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ClientType_Optional and returns true if it has been set, otherwise returns false */
+	bool GetClientType(ERHAPI_ClientType& OutValue) const { if (ClientType_IsSet) OutValue = ClientType_Optional; return ClientType_IsSet; }
+	/** @brief Returns a pointer to ClientType_Optional, if it has been set, otherwise returns nullptr */
+	ERHAPI_ClientType* GetClientTypeOrNull() { if (ClientType_IsSet) return (&ClientType_Optional); return nullptr; }
+	/** @brief Returns a pointer to ClientType_Optional, if it has been set, otherwise returns nullptr */
+	const ERHAPI_ClientType* GetClientTypeOrNull() const { if (ClientType_IsSet) return (&ClientType_Optional); return nullptr; }
+	/** @brief Sets the value of ClientType_Optional and also sets ClientType_IsSet to true */
+	void SetClientType(const ERHAPI_ClientType& NewValue) { ClientType_Optional = NewValue; ClientType_IsSet = true;  }
+	/** @brief Sets the value of ClientType_Optional and also sets ClientType_IsSet to true using move semantics */
+	void SetClientType(ERHAPI_ClientType&& NewValue) { ClientType_Optional = NewValue; ClientType_IsSet = true;  }
+	/** @brief Clears the value of ClientType_Optional and sets ClientType_IsSet to false */
+	void ClearClientType() { ClientType_IsSet = false;  }
+	/** @brief Checks whether ClientType_Optional has been set */
+	bool IsClientTypeSet() const { return ClientType_IsSet; }
 
 	/** @brief Platform entitlements to process */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

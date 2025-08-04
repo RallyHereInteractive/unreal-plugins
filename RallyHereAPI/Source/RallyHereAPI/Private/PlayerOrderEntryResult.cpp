@@ -122,6 +122,8 @@ FString EnumToString(const ERHAPI_PlayerOrderEntryResult& Value)
 		return TEXT("rollback");
 	case ERHAPI_PlayerOrderEntryResult::NotStarted:
 		return TEXT("not_started");
+	case ERHAPI_PlayerOrderEntryResult::EntitledLootNotFound:
+		return TEXT("entitled_loot_not_found");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_PlayerOrderEntryResult::Values Value (%d)"), (int)Value);
@@ -180,7 +182,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryResult& 
 		{ TEXT("always_owned_inventory_cannot_be_modified"), ERHAPI_PlayerOrderEntryResult::AlwaysOwnedInventoryCannotBeModified },
 		{ TEXT("available_until_is_in_past"), ERHAPI_PlayerOrderEntryResult::AvailableUntilIsInPast },
 		{ TEXT("rollback"), ERHAPI_PlayerOrderEntryResult::Rollback },
-		{ TEXT("not_started"), ERHAPI_PlayerOrderEntryResult::NotStarted },	};
+		{ TEXT("not_started"), ERHAPI_PlayerOrderEntryResult::NotStarted },
+		{ TEXT("entitled_loot_not_found"), ERHAPI_PlayerOrderEntryResult::EntitledLootNotFound },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

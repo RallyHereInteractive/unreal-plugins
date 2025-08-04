@@ -5884,6 +5884,10 @@ FString FRequest_GetEpicVoiceJoinTokenMe::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("join_muted=")) + ToUrlString(JoinMuted.GetValue()));
 	}
+	if(ConnectIdToken.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("connect_id_token=")) + ToUrlString(ConnectIdToken.GetValue()));
+	}
 	if(RefreshTtl.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("refresh_ttl=")) + ToUrlString(RefreshTtl.GetValue()));

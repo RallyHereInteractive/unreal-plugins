@@ -27,11 +27,17 @@ void FRHAPI_PlayerLastSeenUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) c
 	if (Platform_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("platform"));
+		if (Platform_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, Platform_Optional);
 	}
 	if (DisplayName_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("display_name"));
+		if (DisplayName_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, DisplayName_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -51,13 +57,15 @@ bool FRHAPI_PlayerLastSeenUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 	const TSharedPtr<FJsonValue> JsonPlatformField = (*Object)->TryGetField(TEXT("platform"));
 	if (JsonPlatformField.IsValid())
 	{
-		Platform_IsSet = TryGetJsonValue(JsonPlatformField, Platform_Optional);
+		Platform_IsNull = JsonPlatformField->IsNull();
+		Platform_IsSet = Platform_IsNull || TryGetJsonValue(JsonPlatformField, Platform_Optional);
 		ParseSuccess &= Platform_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
 	if (JsonDisplayNameField.IsValid())
 	{
-		DisplayName_IsSet = TryGetJsonValue(JsonDisplayNameField, DisplayName_Optional);
+		DisplayName_IsNull = JsonDisplayNameField->IsNull();
+		DisplayName_IsSet = DisplayName_IsNull || TryGetJsonValue(JsonDisplayNameField, DisplayName_Optional);
 		ParseSuccess &= DisplayName_IsSet;
 	}
 

@@ -68,6 +68,7 @@ enum class ERHAPI_PlayerOrderEntryResult : uint8
 	AvailableUntilIsInPast UMETA(ToolTip="Available until is in the past."),
 	Rollback UMETA(ToolTip="Order Entry was successfully fulfilled, but was rolled back."),
 	NotStarted UMETA(ToolTip="Order Entry fulfillment has not started."),
+	EntitledLootNotFound UMETA(ToolTip="Entitled Loot was not found"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PlayerOrderEntryResult& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PlayerOrderEntryResult& EnumValue);

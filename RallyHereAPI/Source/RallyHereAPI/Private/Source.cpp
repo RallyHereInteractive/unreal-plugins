@@ -146,6 +146,8 @@ FString EnumToString(const ERHAPI_Source& Value)
 		return TEXT("SIMULMEDIA");
 	case ERHAPI_Source::Luna:
 		return TEXT("LUNA");
+	case ERHAPI_Source::MatchApi:
+		return TEXT("MATCH_API");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_Source::Values Value (%d)"), (int)Value);
@@ -216,7 +218,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_Source& Value)
 		{ TEXT("ENTITLEMENTS"), ERHAPI_Source::Entitlements },
 		{ TEXT("AMAZON"), ERHAPI_Source::Amazon },
 		{ TEXT("SIMULMEDIA"), ERHAPI_Source::Simulmedia },
-		{ TEXT("LUNA"), ERHAPI_Source::Luna },	};
+		{ TEXT("LUNA"), ERHAPI_Source::Luna },
+		{ TEXT("MATCH_API"), ERHAPI_Source::MatchApi },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

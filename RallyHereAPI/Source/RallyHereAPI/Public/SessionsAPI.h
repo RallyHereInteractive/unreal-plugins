@@ -2464,6 +2464,8 @@ struct RALLYHEREAPI_API FRequest_GetEpicVoiceJoinTokenMe : public FRequest
 	ERHAPI_VoipSessionType VoipSessionType;
 	/* If true, join the muted room */
 	TOptional<bool> JoinMuted;
+	/* Epic Connect ID Token to use to identify the user's ProductUserId.  If not set, their identity will be queried based on the identity provided to RallyHere. */
+	TOptional<FString> ConnectIdToken;
 	TOptional<bool> RefreshTtl;
 	/* IP Address hint */
 	TOptional<FString> XRhClientAddr;

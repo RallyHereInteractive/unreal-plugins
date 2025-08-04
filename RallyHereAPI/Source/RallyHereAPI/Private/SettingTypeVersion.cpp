@@ -27,6 +27,14 @@ void FRHAPI_SettingTypeVersion::WriteJson(TSharedRef<TJsonWriter<>>& Writer) con
 		Writer->WriteIdentifierPrefix(TEXT("allow_update"));
 		RallyHereAPI::WriteJsonValue(Writer, AllowUpdate_Optional);
 	}
+	if (IsInternal_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("is_internal"));
+		if (IsInternal_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, IsInternal_Optional);
+	}
 	if (KeyRegex_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("key_regex"));
@@ -55,6 +63,13 @@ bool FRHAPI_SettingTypeVersion::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 	{
 		AllowUpdate_IsSet = TryGetJsonValue(JsonAllowUpdateField, AllowUpdate_Optional);
 		ParseSuccess &= AllowUpdate_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonIsInternalField = (*Object)->TryGetField(TEXT("is_internal"));
+	if (JsonIsInternalField.IsValid())
+	{
+		IsInternal_IsNull = JsonIsInternalField->IsNull();
+		IsInternal_IsSet = IsInternal_IsNull || TryGetJsonValue(JsonIsInternalField, IsInternal_Optional);
+		ParseSuccess &= IsInternal_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonKeyRegexField = (*Object)->TryGetField(TEXT("key_regex"));
 	if (JsonKeyRegexField.IsValid())

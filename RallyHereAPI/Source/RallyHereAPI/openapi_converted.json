@@ -180,7 +180,7 @@
             }
           },
           "403": {
-            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
+            "description": "User authentication failed.  See error code and description for further details.\n\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n- `create_new_user_not_allowed` - Cannot create the requested new user from this context.  This usually indicates that the user needs to login to the game before attempting an OAuth login\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -259,7 +259,7 @@
             }
           },
           "403": {
-            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
+            "description": "\nError Codes:\n- `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n- `no_redirects_configured` - No redirect urls setup for oauth.\n- `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n- `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n- `failed_to_verify_state` - Failed to verify the state associated with the request.\n- `failed_to_save_state` - Error occurred saving the state.\n- `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n- `too_many_users` - Account has too many users associated with it.  Contact an administrator\n- `user_auth_restricted` - Authentication for this user has been restricted\n- `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n- `error_retrieving_player_results` - Error retrieving player results\n- `failed_to_retrieve_roles` - Failed to retrieve roles\n- `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n- `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n- `authentication_locked` - Authentication is currently locked.  Please try again later\n- `invalid_grant_type` - Grant Type {grant_type} is not supported\n- `user_auth_disabled` - User authentication is not permitted for this policy\n- `client_auth_disabled` - Client authentication is not permitted for this policy\n- `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n- `create_new_user_not_allowed` - Cannot create the requested new user from this context.  This usually indicates that the user needs to login to the game before attempting an OAuth login\n- `amazon_disabled` - Amazon authentication is currently disabled\n- `amazon_token_empty` - Amazon access token is empty\n- `amazon_invalid_access_token` - Amazon access token is invalid\n- `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n- `anon_disabled` - Anon authentication is currently disabled\n- `anon_token_empty` - Anon access token is empty\n- `apple_disabled` - Apple authentication is currently disabled\n- `apple_token_empty` - Apple access token is empty\n- `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n- `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n- `apple_token_key_not_valid` - public key not found\n- `apple_token_not_valid` - Apple access token is not valid\n- `authorization_code_not_found` - Authorization code not found or expired\n- `basic_disabled` - Basic authentication is currently disabled\n- `basic_token_empty` - Basic access token is empty\n- `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n- `basic_auth_credentials_not_found` - Basic auth credentials not found\n- `developer_api_disabled` - Developer API authentication is currently disabled\n- `developer_api_token_empty` - Developer API access token is empty\n- `developer_api_token_invalid` - Developer API access token is invalid or expired\n- `epic_disabled` - Epic authentication is currently disabled\n- `epic_token_empty` - Epic access token is empty\n- `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n- `epic_v1_token_invalid` - Epic v1 token is invalid\n- `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n- `epic_v2_token_invalid` - Epic v2 token is invalid\n- `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n- `google_disabled` - Google authentication is currently disabled\n- `google_token_empty` - Google access token is empty\n- `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n- `google_token_not_valid` - Google access token is not valid\n- `google_token_exchange_failed` - Problem exchanging code for token with Google\n- `nintendo_disabled` - Nintendo authentication is currently disabled\n- `nintendo_token_empty` - Nintendo access token is empty\n- `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n- `nintendo_access_token_not_valid` - Nintendo access token is not valid\n- `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n- `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n- `nintendo_ppid_conversion_failed` - error during PPID conversion\n- `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n- `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n- `nintendo_ppid_missing` - PPID is missing for user\n- `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n- `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n- `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n- `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n- `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n- `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n- `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n- `ps4_v1_token_empty` - PS4 v1 access token is empty\n- `ps4_v1_token_expired` - PS4 v1 access token is expired\n- `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n- `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n- `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n- `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n- `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n- `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n- `ps4_v3_token_empty` - PS4 v3 access token is empty\n- `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n- `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n- `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n- `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n- `ps5_v3_token_empty` - PS5 v3 access token is empty\n- `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n- `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n- `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n- `refresh_disabled` - Refresh authentication is currently disabled\n- `refresh_token_empty` - Refresh token is empty\n- `refresh_token_not_found` - Refresh token was not found or has expired\n- `refresh_token_invalid_user` - Refresh token refrences invalid user\n- `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n- `steam_disabled` - Steam authentication is currently disabled\n- `steam_token_empty` - Steam code (Ticket) is empty\n- `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n- `steam_user_vacbanned` - User is VAC banned\n- `steam_user_publisherbanned` - User is publisher banned\n- `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n- `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n- `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n- `twitch_disabled` - Twitch authentication is currently disabled\n- `twitch_token_empty` - Twitch access token is empty\n- `twitch_token_invalid` - Twitch access token is not valid\n- `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n- `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n- `xbox_disabled` - Xbox authentication is currently disabled\n- `xbox_xsts_token_empty` - Xbox XSTS token is empty\n- `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n- `xbox_xtoken_invalid` - Xbox XToken is not valid\n- `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n- `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n- `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -2754,7 +2754,7 @@
             "description": "Redirect to next step in OAuth flow",
             "headers": {
               "location": {
-                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n    - `create_new_user_not_allowed` - Cannot create the requested new user from this context.  This usually indicates that the user needs to login to the game before attempting an OAuth login\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
                 "schema": {
                   "type": "string"
                 }
@@ -2848,7 +2848,7 @@
             "description": "Redirect to next step in OAuth flow",
             "headers": {
               "location": {
-                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
+                "description": "\nURL that the user should be redirected to complete the next step of the OAuth flow.\n\nRedirects to the `redirect_uri` and may include the following query parameters:\n- `code`: The authorization_code that can be exchanged for an access token for the user.\n- `state`: The state value that was provided in the original request.\n- `error_code_v2`: The error code for the error that occurred during the OAuth flow.  May (but is not guaranteed to) contain one of the following:\n    - `internal_error` - An internal error occurred.  The request may succeed if retried.  If not, contact an administrator.\n    - `no_redirects_configured` - No redirect urls setup for oauth.\n    - `redirect_uri_does_not_match` - Redirect URI does not match a configured value.\n    - `error_occurred_during_exchange` - An error occurred while exchanging a code for token.\n    - `failed_to_verify_state` - Failed to verify the state associated with the request.\n    - `failed_to_save_state` - Error occurred saving the state.\n    - `failed_to_save_tokens` - Problem saving tokens.  Contact an administrator\n    - `too_many_users` - Account has too many users associated with it.  Contact an administrator\n    - `user_auth_restricted` - Authentication for this user has been restricted\n    - `user_needs_agreements` - User has not accepted all required agreements.  See response for list of agreements required\n    - `error_retrieving_player_results` - Error retrieving player results\n    - `failed_to_retrieve_roles` - Failed to retrieve roles\n    - `client_credentials_invalid` - Client Credentials provided to authentication attempt were invalid\n    - `authentication_limited` - Authentication is currently limited to accounts that are already logged in.  Please try again later\n    - `authentication_locked` - Authentication is currently locked.  Please try again later\n    - `invalid_grant_type` - Grant Type {grant_type} is not supported\n    - `user_auth_disabled` - User authentication is not permitted for this policy\n    - `client_auth_disabled` - Client authentication is not permitted for this policy\n    - `does_not_meet_ownership_reqs` - User does not meet ownership requirements for this product\n    - `create_new_user_not_allowed` - Cannot create the requested new user from this context.  This usually indicates that the user needs to login to the game before attempting an OAuth login\n    - `amazon_disabled` - Amazon authentication is currently disabled\n    - `amazon_token_empty` - Amazon access token is empty\n    - `amazon_invalid_access_token` - Amazon access token is invalid\n    - `amazon_token_exchange_failed` - Problem exchanging code for token with Amazon\n    - `anon_disabled` - Anon authentication is currently disabled\n    - `anon_token_empty` - Anon access token is empty\n    - `apple_disabled` - Apple authentication is currently disabled\n    - `apple_token_empty` - Apple access token is empty\n    - `apple_failed_key_lookup` - Failed to retrieve keys from Apple\n    - `apple_token_exchange_failed` - Problem exchanging code for token with Apple\n    - `apple_token_key_not_valid` - public key not found\n    - `apple_token_not_valid` - Apple access token is not valid\n    - `authorization_code_not_found` - Authorization code not found or expired\n    - `basic_disabled` - Basic authentication is currently disabled\n    - `basic_token_empty` - Basic access token is empty\n    - `basic_auth_incorrect_format` - Basic auth should be formatted like `USERNAME:PASSWORD`\n    - `basic_auth_credentials_not_found` - Basic auth credentials not found\n    - `developer_api_disabled` - Developer API authentication is currently disabled\n    - `developer_api_token_empty` - Developer API access token is empty\n    - `developer_api_token_invalid` - Developer API access token is invalid or expired\n    - `epic_disabled` - Epic authentication is currently disabled\n    - `epic_token_empty` - Epic access token is empty\n    - `epic_v1_token_key_id_invalid` - Epic v1 token contains an invalid key id\n    - `epic_v1_token_invalid` - Epic v1 token is invalid\n    - `epic_v2_keys_not_available` - Epic v2 keys are not available.  Please contact an administrator\n    - `epic_v2_token_invalid` - Epic v2 token is invalid\n    - `epic_oauth_token_exchange_failed` - Problem exchanging code for token with Epic\n    - `google_disabled` - Google authentication is currently disabled\n    - `google_token_empty` - Google access token is empty\n    - `google_keys_not_available` - Google keys are not available.  Please contact an administrator\n    - `google_token_not_valid` - Google access token is not valid\n    - `google_token_exchange_failed` - Problem exchanging code for token with Google\n    - `nintendo_disabled` - Nintendo authentication is currently disabled\n    - `nintendo_token_empty` - Nintendo access token is empty\n    - `nintendo_env_credentials_not_found` - Nintendo environment credentials not found\n    - `nintendo_access_token_not_valid` - Nintendo access token is not valid\n    - `nintendo_no_environment_matches_env_id` - Nintendo environment not found for given environment ID\n    - `nintendo_retrieve_client_credentials_failed` - Problem retrieving client credentials from Nintendo.  This commonly occurs while converting between NAID and PPID.\n    - `nintendo_ppid_conversion_failed` - error during PPID conversion\n    - `nintendo_ppid_conversion_too_many_accounts_found` - too many accounts found during PPID conversion\n    - `nintendo_ppid_conversion_no_accounts_found` - no accounts found during PPID conversion\n    - `nintendo_ppid_missing` - PPID is missing for user\n    - `nintendo_ppid_key_not_valid` - Nintendo access token key is not valid\n    - `nintendo_service_key_url_not_found` - Nintendo service key url not found.  This usually indicates that the corresponding Nintendo environment has a mismatch between Nintendo account URL and Nintendo Service Account URL.\n    - `nintendo_service_access_token_not_valid` - Nintendo service access token is not valid\n    - `nintendo_service_access_token_for_wrong_app` - Nintendo service access token is for the wrong app\n    - `nintendo_oauth_env_not_found` - Nintendo oauth environment not found.  Check that the environment is configured correctly.\n    - `nintendo_token_exchange_failed` - Problem exchanging code for token with Nintendo\n    - `ps4_v1_disabled` - PS4 v1 authentication is currently disabled\n    - `ps4_v1_token_empty` - PS4 v1 access token is empty\n    - `ps4_v1_token_expired` - PS4 v1 access token is expired\n    - `ps4_v1_token_exchange_failed` - Problem exchanging code for token with PS4\n    - `ps4_v1_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v1_id_token_not_valid` - PS4 v1 id token is not valid\n    - `ps4_v1_token_details_disabled` - PS4 v1 token details are disabled\n    - `ps4_v1_token_details_request_failed` - Problem requesting token details from PS4\n    - `ps4_v3_disabled` - PS4 v3 authentication is currently disabled\n    - `ps4_v3_token_details_disabled` - PS4 v3 token details are disabled\n    - `ps4_v3_token_empty` - PS4 v3 access token is empty\n    - `ps4_v3_id_token_request_failed` - Problem requesting id token from PS4\n    - `ps4_v3_id_token_not_valid` - PS4 v3 id token is not valid\n    - `ps5_v3_disabled` - PS5 v3 authentication is currently disabled\n    - `ps5_v3_token_details_disabled` - PS5 v3 token details are disabled\n    - `ps5_v3_token_empty` - PS5 v3 access token is empty\n    - `ps5_v3_id_token_request_failed` - Problem requesting id token from PS5\n    - `ps5_v3_id_token_not_valid` - PS5 v3 id token is not valid\n    - `psn_environment_permission_denied` - PSN Environment permission was denied.  This usually means that the Client ID/Secret do not match.  This error can also occur for `sp-int` or `prod-qa` if the environment is not whitelisted to access the PSN environment.\n    - `refresh_disabled` - Refresh authentication is currently disabled\n    - `refresh_token_empty` - Refresh token is empty\n    - `refresh_token_not_found` - Refresh token was not found or has expired\n    - `refresh_token_invalid_user` - Refresh token refrences invalid user\n    - `refresh_token_client_id_mismatch` - Client ID for new token request did not match original token\n    - `steam_disabled` - Steam authentication is currently disabled\n    - `steam_token_empty` - Steam code (Ticket) is empty\n    - `steam_token_exchange_failed` - Problem exchanging code (ticket) for token with Steam\n    - `steam_user_vacbanned` - User is VAC banned\n    - `steam_user_publisherbanned` - User is publisher banned\n    - `steam_user_offline` - User is reporting offline to Steam, causing all Steam tickets to invalidate\n    - `steam_token_invalid` - Steam code (Ticket) was reported as invalid by Steam\n    - `steam_token_for_wrong_app` - Steam code (Ticket) is for a different Steam Application\n    - `twitch_disabled` - Twitch authentication is currently disabled\n    - `twitch_token_empty` - Twitch access token is empty\n    - `twitch_token_invalid` - Twitch access token is not valid\n    - `twitch_keys_not_available` - Twitch keys are not available.  Please contact an administrator\n    - `twitch_token_exchange_failed` - Problem exchanging code for token with Twitch\n    - `xbox_disabled` - Xbox authentication is currently disabled\n    - `xbox_xsts_token_empty` - Xbox XSTS token is empty\n    - `xbox_xsts_token_invalid` - Xbox XSTS token is not valid\n    - `xbox_xtoken_invalid` - Xbox XToken is not valid\n    - `xbox_access_token_request_failed` - Problem requesting access token from Xbox\n    - `xbox_xsts_token_exchange_failed` - Problem exchanging access token for XSTS token with Xbox\n    - `xbox_xtoken_exchange_failed` - Problem exchanging XSTS token for XToken with Xbox\n\n- `error_description`: The description for the error that occurred during the OAuth flow.\n- `error_code`: ***DEPRECATED*** - Use `error_code_v2` instead.  May (but is not guaranteed to) contain one of the following:\n    - `NO_CODE_IN_REQUEST` - No code in request.\n    - `NO_REDIRECTS_CONFIGURED` - No redirect urls setup for oauth.\n    - `REDIRECT_URI_DOES_NOT_MATCH` - Redirect URI does not match a configured value.\n    - `FAILED_TO_VERIFY_STATE` - Failed to verify the state associated with the request.\n    - `FAILED_TO_SAVE_STATE` - Error occurred saving the state.\n    - `FAILED_TO_SAVE_TOKENS` - Failed to save tokens.\n    - `PORTAL_PROVIDER_DISABLED` - OAuth provider is disabled.\n    - `ERROR_OCCURRED_DURING_EXCHANGE` - An error occurred while exchanging a code for token.\n\n",
                 "schema": {
                   "type": "string"
                 }
@@ -3751,7 +3751,7 @@
             "schema": {
               "type": "integer",
               "maximum": 100,
-              "exclusiveMinimum": false,
+              "exclusiveMinimum": 0,
               "title": "Page Size",
               "description": "The number of logs per page",
               "default": 10
@@ -4426,7 +4426,7 @@
           "Settings"
         ],
         "summary": "Get All Player Uuid Settings For Setting Type Self",
-        "description": "Get a list of all player setting documents for a specific Setting Type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "Get a list of all player setting documents for a specific Setting Type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_all_player_uuid_settings_for_setting_type_self",
         "security": [
           {
@@ -4440,10 +4440,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -4632,7 +4632,7 @@
           "Settings"
         ],
         "summary": "Delete All Player Uuid Settings For Setting Type Self",
-        "description": "Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "Delete all player setting documents for a specific type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_all_player_uuid_settings_for_setting_type_self",
         "security": [
           {
@@ -4646,10 +4646,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "if-match",
@@ -4767,7 +4767,7 @@
           "Settings"
         ],
         "summary": "Get All Player Uuid Settings For Setting Type",
-        "description": "Get a list of all player setting documents for a specific Setting Type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "Get a list of all player setting documents for a specific Setting Type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_all_player_uuid_settings_for_setting_type",
         "security": [
           {
@@ -4793,10 +4793,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -4985,7 +4985,7 @@
           "Settings"
         ],
         "summary": "Delete All Player Uuid Settings For Setting Type",
-        "description": "Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "Delete all player setting documents for a specific type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_all_player_uuid_settings_for_setting_type",
         "security": [
           {
@@ -5011,10 +5011,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "if-match",
@@ -5132,7 +5132,7 @@
           "Settings"
         ],
         "summary": "Get Single Player Uuid Setting Self",
-        "description": "Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "Get a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_single_player_uuid_setting_self",
         "security": [
           {
@@ -5146,10 +5146,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -5329,7 +5329,7 @@
           "Settings"
         ],
         "summary": "Set Single Player Uuid Setting Self",
-        "description": "Update the value of a single player setting document.\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
+        "description": "Update the value of a single player setting document.\n\nFor a standard setting    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
         "operationId": "set_single_player_uuid_setting_self",
         "security": [
           {
@@ -5502,7 +5502,7 @@
           "Settings"
         ],
         "summary": "Delete Single Player Uuid Setting Self",
-        "description": "Delete a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "Delete a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_single_player_uuid_setting_self",
         "security": [
           {
@@ -5516,10 +5516,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -5648,7 +5648,7 @@
           "Settings"
         ],
         "summary": "Get Single Player Uuid Setting",
-        "description": "Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "Get a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_single_player_uuid_setting",
         "security": [
           {
@@ -5674,10 +5674,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -5857,7 +5857,7 @@
           "Settings"
         ],
         "summary": "Set Single Player Uuid Setting",
-        "description": "Update the value of a single player setting document.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
+        "description": "Update the value of a single player setting document.\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
         "operationId": "set_single_player_uuid_setting",
         "security": [
           {
@@ -6042,7 +6042,7 @@
           "Settings"
         ],
         "summary": "Delete Single Player Uuid Setting",
-        "description": "Delete a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "Delete a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_single_player_uuid_setting",
         "security": [
           {
@@ -6068,10 +6068,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -6200,7 +6200,7 @@
           "Settings"
         ],
         "summary": "Get Single Player Id Setting",
-        "description": "**DEPRECATED** - Use v2 instead.  Get a single player setting document\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "**DEPRECATED** - Use v2 instead.  Get a single player setting document\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_single_player_id_setting",
         "deprecated": true,
         "security": [
@@ -6226,10 +6226,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -6409,7 +6409,7 @@
           "Settings"
         ],
         "summary": "Set Single Player Id Setting",
-        "description": "**DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.  Update the value of a single player setting document.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
+        "description": "**DEPRECATED** - Use the v2 endpoint instead.  This endpoint will be removed in a future release.  Update the value of a single player setting document.\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`\n\n\nIf Legacy types are enabled, to maintain compatibility with legacy applications, the following settings have special-case handling:\n* Setting Type `case` - Version `1` - key `create` - creates a new case set and returns the new key and document in the response. \n* Setting Type `case` - Version `1` - key is integer - Modify an existing case set.  If it does not exist, a 404 response with the `does_not_exist` error code. \n* Setting Type `loadout` - Version `1` - key `create` - creates a new loadout and returns the new key and document in the response.  All items keys will be given a new key \n* Setting Type `loadout` - Version `1` - key is integer - Modify an existing loadout.  If it does not exist, a 404 response with the `does_not_exist` error code.  When modifying loadout items, item keys that convert into integers/longs are treated as updates (and will error the update if they are not valid), all others are treated as creates and will be given a new key.",
         "operationId": "set_single_player_id_setting",
         "deprecated": true,
         "security": [
@@ -6594,7 +6594,7 @@
           "Settings"
         ],
         "summary": "Delete Single Player Id Setting",
-        "description": "**DEPRECATED** - Use v2 instead. Delete a single player setting document\n    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "**DEPRECATED** - Use v2 instead. Delete a single player setting document\n    \nFor a standard setting    \nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_single_player_id_setting",
         "deprecated": true,
         "security": [
@@ -6620,10 +6620,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to delete settings for.  Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to delete settings for.  Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -6752,7 +6752,7 @@
           "Settings"
         ],
         "summary": "Get All Player Id Settings For Setting Type",
-        "description": "**DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`",
+        "description": "**DEPRECATED** - Use v2 instead.  Get a list of all player setting documents for a specific Setting Type.\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:read`\n\n- For the player themselves : `setting:read:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:read`\n\n- For the player themselves : `setting:internal:read:self`",
         "operationId": "get_all_player_id_settings_for_setting_type",
         "deprecated": true,
         "security": [
@@ -6778,10 +6778,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "Setting Type to get settings for. Must be one of the known setting types",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
             },
-            "description": "Setting Type to get settings for. Must be one of the known setting types"
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "key",
@@ -6970,7 +6970,7 @@
           "Settings"
         ],
         "summary": "Delete All Player Id Settings For Setting Type",
-        "description": "**DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`",
+        "description": "**DEPRECATED** - Use v2 instead. Delete all player setting documents for a specific type\n\nFor a standard setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:write`\n\n- For the player themselves : `setting:write:self`\n\nFor an 'internal' setting\nRequired Permissions:\n\n- For any player (including themselves) any of: `setting:*:*`, `setting:internal:write`\n\n- For the player themselves : `setting:internal:write:self`",
         "operationId": "delete_all_player_id_settings_for_setting_type",
         "deprecated": true,
         "security": [
@@ -6994,8 +6994,10 @@
             "required": true,
             "schema": {
               "type": "string",
+              "description": "Setting Type to update settings for. Must be one of the known setting types",
               "title": "Setting Type Id"
-            }
+            },
+            "description": "Setting Type to update settings for. Must be one of the known setting types"
           },
           {
             "name": "if-match",
@@ -21904,6 +21906,17 @@
             "in": "query"
           },
           {
+            "description": "Epic Connect ID Token to use to identify the user's ProductUserId.  If not set, their identity will be queried based on the identity provided to RallyHere.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Connect Id Token",
+              "description": "Epic Connect ID Token to use to identify the user's ProductUserId.  If not set, their identity will be queried based on the identity provided to RallyHere."
+            },
+            "name": "connect_id_token",
+            "in": "query"
+          },
+          {
             "required": false,
             "schema": {
               "type": "boolean",
@@ -23622,6 +23635,22 @@
             }
           },
           {
+            "name": "matchmaking_profile_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Matchmaking Profile Id"
+            }
+          },
+          {
             "name": "host_player_uuid",
             "in": "query",
             "required": false,
@@ -23667,6 +23696,22 @@
                 }
               ],
               "title": "Player Uuid"
+            }
+          },
+          {
+            "name": "min_duration_seconds",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Duration Seconds"
             }
           },
           {
@@ -24229,6 +24274,94 @@
         "responses": {
           "201": {
             "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/match/v1/match/{match_id}/reward": {
+      "post": {
+        "tags": [
+          "Match"
+        ],
+        "summary": "Create Match Rewards",
+        "description": "Give loot rewards to players in a match. Returns a 4XX error if any rewards fail to be given, but will grant as many as possible.\n\nRequired Permissions:\n\n- For any match any of: `match:*`, `match:reward:any`\n\n- For match if the player is the host any of: `match:*`, `match:reward:any`, `match:reward:authority`",
+        "operationId": "create_match_rewards",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "match_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Match Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchRewardsBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchRewardsResponse"
+                }
+              }
+            }
           },
           "400": {
             "content": {
@@ -27748,34 +27881,53 @@
         "summary": "Get Player Presence Public By Uuid",
         "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
         "operationId": "get_player_presence_public_by_uuid",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
-            "description": "A valid UUID identifying a player. Rejects integer player identification.",
+            "name": "player_uuid",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "title": "Player Uuid",
-              "description": "A valid UUID identifying a player. Rejects integer player identification."
+              "description": "A valid UUID identifying a player. Rejects integer player identification.",
+              "title": "Player Uuid"
             },
-            "name": "player_uuid",
-            "in": "path"
+            "description": "A valid UUID identifying a player. Rejects integer player identification."
           },
           {
-            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "name": "if-none-match",
+            "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "title": "If-None-Match",
-              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+              "title": "If-None-Match"
             },
-            "name": "if-none-match",
-            "in": "header"
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
+            },
             "headers": {
               "ETag": {
                 "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
@@ -27783,34 +27935,27 @@
                   "type": "string"
                 }
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayerPresence"
-                }
-              }
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -27822,12 +27967,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/player/id/{player_id}/presence": {
@@ -27838,33 +27978,52 @@
         "summary": "Get Player Presence Public By Id",
         "description": "Get the player's presence information. The status will be modified based on the following rules:\n- A status of invisible will be reported as offline\n- The status will become offline if older than the configured age",
         "operationId": "get_player_presence_public_by_id",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
-            "description": "A valid integer identifying a player. Rejects UUID player identification.",
+            "name": "player_id",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
-              "title": "Player Id",
-              "description": "A valid integer identifying a player. Rejects UUID player identification."
+              "description": "A valid integer identifying a player. Rejects UUID player identification.",
+              "title": "Player Id"
             },
-            "name": "player_id",
-            "in": "path"
+            "description": "A valid integer identifying a player. Rejects UUID player identification."
           },
           {
-            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+            "name": "if-none-match",
+            "in": "header",
             "required": false,
             "schema": {
-              "type": "string",
-              "title": "If-None-Match",
-              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed.",
+              "title": "If-None-Match"
             },
-            "name": "if-none-match",
-            "in": "header"
+            "description": "If you provide the ETag that matches the current ETag for this resource, a 304 response will be return - indicating that the resource has not changed."
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerPresence"
+                }
+              }
+            },
             "headers": {
               "ETag": {
                 "description": "Used to identify this version of the content.  Provide with a get request to avoid downloading the same data multiple times.",
@@ -27872,34 +28031,27 @@
                   "type": "string"
                 }
               }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayerPresence"
-                }
-              }
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -27911,12 +28063,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/settings": {
@@ -27949,29 +28096,34 @@
         "summary": "Admin Update Player Last Seen",
         "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
         "operationId": "admin_update_player_last_seen",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
-            "description": "A valid UUID identifying a player. Rejects integer player identification.",
+            "name": "player_uuid",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "title": "Player Uuid",
-              "description": "A valid UUID identifying a player. Rejects integer player identification."
+              "description": "A valid UUID identifying a player. Rejects integer player identification.",
+              "title": "Player Uuid"
             },
-            "name": "player_uuid",
-            "in": "path"
+            "description": "A valid UUID identifying a player. Rejects integer player identification."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PlayerLastSeenUpdate"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -27986,14 +28138,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28006,21 +28158,16 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/player/id/{player_id}/last_seen": {
@@ -28031,28 +28178,33 @@
         "summary": "Admin Update Player Last Seen Id",
         "description": "Forcibly update the player's last_seen with the specified values. This enables an admin to set the last_seen time\nto something specific for testing.",
         "operationId": "admin_update_player_last_seen_id",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
-            "description": "A valid integer identifying a player. Rejects UUID player identification.",
+            "name": "player_id",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
-              "title": "Player Id",
-              "description": "A valid integer identifying a player. Rejects UUID player identification."
+              "description": "A valid integer identifying a player. Rejects UUID player identification.",
+              "title": "Player Id"
             },
-            "name": "player_id",
-            "in": "path"
+            "description": "A valid integer identifying a player. Rejects UUID player identification."
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PlayerLastSeenUpdate"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -28067,14 +28219,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28087,21 +28239,16 @@
             }
           },
           "500": {
-            "description": "Internal Server Error",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Internal Server Error"
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/player/uuid/{player_uuid}/presence": {
@@ -28112,18 +28259,23 @@
         "summary": "Admin Get Player Presence",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
         "operationId": "admin_get_player_presence",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
-            "description": "A valid UUID identifying a player. Rejects integer player identification.",
+            "name": "player_uuid",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "title": "Player Uuid",
-              "description": "A valid UUID identifying a player. Rejects integer player identification."
+              "description": "A valid UUID identifying a player. Rejects integer player identification.",
+              "title": "Player Uuid"
             },
-            "name": "player_uuid",
-            "in": "path"
+            "description": "A valid UUID identifying a player. Rejects integer player identification."
           }
         ],
         "responses": {
@@ -28138,24 +28290,24 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -28167,12 +28319,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/player/id/{player_id}/presence": {
@@ -28183,17 +28330,22 @@
         "summary": "Admin Get Player Presence Id",
         "description": "Get the player's presence information. The status reflects the true value and is not modified before it\nis returned.",
         "operationId": "admin_get_player_presence_id",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
-            "description": "A valid integer identifying a player. Rejects UUID player identification.",
+            "name": "player_id",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
-              "title": "Player Id",
-              "description": "A valid integer identifying a player. Rejects UUID player identification."
+              "description": "A valid integer identifying a player. Rejects UUID player identification.",
+              "title": "Player Id"
             },
-            "name": "player_id",
-            "in": "path"
+            "description": "A valid integer identifying a player. Rejects UUID player identification."
           }
         ],
         "responses": {
@@ -28208,24 +28360,24 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Not Found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Not Found"
           },
           "422": {
             "description": "Validation Error",
@@ -28237,12 +28389,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/total/combined": {
@@ -28253,28 +28400,35 @@
         "summary": "Admin Get Total Ccu",
         "description": "Get the combined CCU over the requested time period. This call results in one number which should exclude most duplicates across the given time\nperiod. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
         "operationId": "admin_get_total_ccu",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28289,14 +28443,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28308,12 +28462,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/total/individual": {
@@ -28324,28 +28473,35 @@
         "summary": "Admin Get Total Ccu Individual",
         "description": "Get the individual CCU counts over the requested time period. This call results in a count per time period within the requested range. These\nvalues should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to combine\nthe values within a time range without counting the same player multiple times.",
         "operationId": "admin_get_total_ccu_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28360,14 +28516,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28379,12 +28535,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/requesting/combined": {
@@ -28395,28 +28546,35 @@
         "summary": "Admin Get Requesting Ccu",
         "description": "Get the combined CCU for requesters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
         "operationId": "admin_get_requesting_ccu",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28431,14 +28589,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28450,12 +28608,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/requesting/individual": {
@@ -28466,28 +28619,35 @@
         "summary": "Admin Get Requesting Ccu Individual",
         "description": "Get the individual CCU counts for requesters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
         "operationId": "admin_get_requesting_ccu_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28502,14 +28662,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28521,12 +28681,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/updating/combined": {
@@ -28537,28 +28692,35 @@
         "summary": "Admin Get Updating Ccu",
         "description": "Get the combined CCU for updaters over the requested time period. This call results in one number which should exclude most duplicates across\nthe given time period. This stands in contrast to the individual request endpoint.\n\nFor example, if you request the CCU over an hour you'll receive one number in which players that were around over that time period will only be\ncounted once.",
         "operationId": "admin_get_updating_ccu",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28573,14 +28735,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28592,12 +28754,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/updating/individual": {
@@ -28608,28 +28765,35 @@
         "summary": "Admin Get Updating Ccu Individual",
         "description": "Get the individual CCU counts for updaters over the requested time period. This call results in a count per time period within the requested\nrange. These values should not be combined directly unless you've accounted for duplicates in some other way. The combined endpoint allows you to\ncombine the values within a time range without counting the same player multiple times.",
         "operationId": "admin_get_updating_ccu_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28644,14 +28808,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28663,12 +28827,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/platforms": {
@@ -28715,28 +28874,35 @@
         ],
         "summary": "Admin Get Total Ccu All Platform Individual",
         "operationId": "admin_get_total_ccu_all_platform_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28751,14 +28917,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28770,12 +28936,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/total/allplatforms/combined": {
@@ -28785,28 +28946,35 @@
         ],
         "summary": "Admin Get Total Ccu All Platform Combined",
         "operationId": "admin_get_total_ccu_all_platform_combined",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28821,14 +28989,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28840,12 +29008,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/requesting/allplatforms/individual": {
@@ -28855,28 +29018,35 @@
         ],
         "summary": "Admin Get Requesting Ccu All Platform Individual",
         "operationId": "admin_get_requesting_ccu_all_platform_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28891,14 +29061,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28910,12 +29080,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/requesting/allplatforms/combined": {
@@ -28925,28 +29090,35 @@
         ],
         "summary": "Admin Get Requesting Ccu All Platform Combined",
         "operationId": "admin_get_requesting_ccu_all_platform_combined",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -28961,14 +29133,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -28980,12 +29152,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/updating/allplatforms/individual": {
@@ -28995,28 +29162,35 @@
         ],
         "summary": "Admin Get Updating Ccu All Platform Individual",
         "operationId": "admin_get_updating_ccu_all_platform_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -29031,14 +29205,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -29050,12 +29224,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/updating/allplatforms/combined": {
@@ -29065,28 +29234,35 @@
         ],
         "summary": "Admin Get Updating Ccu All Platform Combined",
         "operationId": "admin_get_updating_ccu_all_platform_combined",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "begin",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "begin",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           },
           {
+            "name": "end",
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
-            "name": "end",
-            "in": "query"
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -29101,14 +29277,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -29120,12 +29296,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/total/platform/{platform}/individual": {
@@ -29135,37 +29306,44 @@
         ],
         "summary": "Admin Get Total Ccu Platform Individual",
         "operationId": "admin_get_total_ccu_platform_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "platform",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            },
-            "name": "platform",
-            "in": "path"
+            }
           },
           {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
             "name": "begin",
-            "in": "query"
-          },
-          {
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
+          },
+          {
             "name": "end",
-            "in": "query"
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+              "type": "string",
+              "format": "date-time",
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -29180,14 +29358,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -29199,12 +29377,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/total/platform/{platform}/combined": {
@@ -29214,37 +29387,44 @@
         ],
         "summary": "Admin Get Total Ccu Platform Combined",
         "operationId": "admin_get_total_ccu_platform_combined",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "platform",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            },
-            "name": "platform",
-            "in": "path"
+            }
           },
           {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
             "name": "begin",
-            "in": "query"
-          },
-          {
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
+          },
+          {
             "name": "end",
-            "in": "query"
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+              "type": "string",
+              "format": "date-time",
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -29259,14 +29439,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -29278,12 +29458,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/requesting/platform/{platform}/individual": {
@@ -29293,37 +29468,44 @@
         ],
         "summary": "Admin Get Requesting Ccu Platform Individual",
         "operationId": "admin_get_requesting_ccu_platform_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "platform",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            },
-            "name": "platform",
-            "in": "path"
+            }
           },
           {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
             "name": "begin",
-            "in": "query"
-          },
-          {
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
+          },
+          {
             "name": "end",
-            "in": "query"
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+              "type": "string",
+              "format": "date-time",
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -29338,14 +29520,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -29357,12 +29539,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/requesting/platform/{platform}/combined": {
@@ -29372,37 +29549,44 @@
         ],
         "summary": "Admin Get Requesting Ccu Platform Combined",
         "operationId": "admin_get_requesting_ccu_platform_combined",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "platform",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            },
-            "name": "platform",
-            "in": "path"
+            }
           },
           {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
             "name": "begin",
-            "in": "query"
-          },
-          {
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
+          },
+          {
             "name": "end",
-            "in": "query"
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+              "type": "string",
+              "format": "date-time",
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -29417,14 +29601,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -29436,12 +29620,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/updating/platform/{platform}/individual": {
@@ -29451,37 +29630,44 @@
         ],
         "summary": "Admin Get Updating Ccu Platform Individual",
         "operationId": "admin_get_updating_ccu_platform_individual",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "platform",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            },
-            "name": "platform",
-            "in": "path"
+            }
           },
           {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
             "name": "begin",
-            "in": "query"
-          },
-          {
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
+          },
+          {
             "name": "end",
-            "in": "query"
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+              "type": "string",
+              "format": "date-time",
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -29496,14 +29682,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -29515,12 +29701,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/presence/v1/admin/ccu/updating/platform/{platform}/combined": {
@@ -29530,37 +29711,44 @@
         ],
         "summary": "Admin Get Updating Ccu Platform Combined",
         "operationId": "admin_get_updating_ccu_platform_combined",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
         "parameters": [
           {
+            "name": "platform",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string",
               "title": "Platform"
-            },
-            "name": "platform",
-            "in": "path"
+            }
           },
           {
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
             "name": "begin",
-            "in": "query"
-          },
-          {
+            "in": "query",
             "required": true,
             "schema": {
+              "title": "Begin",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
               "type": "string",
               "format": "date-time",
-              "title": "TZAware",
-              "description": "A date-time with timezone data."
-            },
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
+          },
+          {
             "name": "end",
-            "in": "query"
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "End",
+              "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+              "type": "string",
+              "format": "date-time",
+              "example": "2023-01-23T21:07:02.000000+00:00"
+            }
           }
         ],
         "responses": {
@@ -29575,14 +29763,14 @@
             }
           },
           "403": {
-            "description": "Forbidden",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HzApiErrorModel"
                 }
               }
-            }
+            },
+            "description": "Forbidden"
           },
           "422": {
             "description": "Validation Error",
@@ -29594,12 +29782,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "HTTPBearerHeadersOrCookie": []
-          }
-        ]
+        }
       }
     },
     "/sanctions/v2/player/{player_uuid}/reports": {
@@ -29608,7 +29791,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:*`, `sanction:report:create:any`, `sanction:report:create:self`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -34726,7 +34909,6 @@
           "ps4_v1",
           "ps4_v3",
           "ps5_v3",
-          "nintendo",
           "nintendo_switch",
           "steam",
           "basic",
@@ -34745,7 +34927,6 @@
           "Playstation Network v1 authentication using the configured PS4 credentials",
           "Playstation Network v3 authentication using the configured PS5 credentials",
           "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Nintendo Account authentication",
           "Nintendo Service Account (for Nintendo Switch) authentication",
           "Steam authentication",
           "Basic Username/Password authentication",
@@ -34762,7 +34943,6 @@
           "PS4_V1",
           "PS4_V3",
           "PS5_V3",
-          "NINTENDO",
           "NINTENDO_SWITCH",
           "STEAM",
           "BASIC",
@@ -35103,6 +35283,11 @@
             "type": "string",
             "title": "Portal User Id",
             "description": "Portal user ID"
+          },
+          "platform_environment": {
+            "type": "string",
+            "title": "Platform Environment",
+            "description": "Which of the platform's environments was this user info from?  For Xbox, this is sandbox.  For PSN, this is sp-int/prod-qa/np.  For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1."
           },
           "display_name": {
             "type": "string",
@@ -35914,6 +36099,11 @@
             ],
             "description": "Portal ID. *DEPRECATED* use `platform` instead",
             "deprecated": true
+          },
+          "platform_environment": {
+            "type": "string",
+            "title": "Platform Environment",
+            "description": "Which of the platform's environments was this user info from?  For Xbox, this is sandbox.  For PSN, this is sp-int/prod-qa/np.  For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1."
           },
           "portal_user_id": {
             "type": "string",
@@ -37028,6 +37218,19 @@
             "title": "Allow Update",
             "description": "Are players allowed to set/update keys to this version of the setting type?  Does not affect getting or deleting existing settings.",
             "default": true
+          },
+          "is_internal": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Internal",
+            "description": "Whether this setting type is internal, requiring special permissions to view or edit.",
+            "default": false
           },
           "key_regex": {
             "type": "string",
@@ -39820,7 +40023,8 @@
           "transaction_id": {
             "type": "string",
             "title": "Transaction Id",
-            "description": "unique id for this transaction on the platform"
+            "description": "unique id for this transaction on the platform",
+            "default": ""
           },
           "platform_token": {
             "type": "string",
@@ -39846,11 +40050,13 @@
           },
           "platform_region": {
             "$ref": "#/components/schemas/PlatformRegion",
-            "description": "region this purchase was made in"
+            "description": "region this purchase was made in",
+            "default": "Unknown"
           },
           "client_type": {
             "$ref": "#/components/schemas/ClientType",
-            "description": "client type this purchase was made on"
+            "description": "client type this purchase was made on",
+            "default": "UNKNOWN"
           },
           "entitlements": {
             "items": {
@@ -39876,11 +40082,8 @@
         },
         "type": "object",
         "required": [
-          "transaction_id",
           "platform_token",
-          "platform_id",
-          "platform_region",
-          "client_type"
+          "platform_id"
         ],
         "title": "PlatformEntitlementProcessRequest",
         "description": "Request to process a platform entitlement"
@@ -41527,7 +41730,8 @@
           "always_owned_inventory_cannot_be_modified",
           "available_until_is_in_past",
           "rollback",
-          "not_started"
+          "not_started",
+          "entitled_loot_not_found"
         ],
         "title": "PlayerOrderEntryResult",
         "description": "Result of a Player Order Entry.",
@@ -41581,7 +41785,8 @@
           "Always owned inventory cannot be modified.",
           "Available until is in the past.",
           "Order Entry was successfully fulfilled, but was rolled back.",
-          "Order Entry fulfillment has not started."
+          "Order Entry fulfillment has not started.",
+          "Entitled Loot was not found"
         ],
         "x-enum-varnames": [
           "SUCCESS",
@@ -41633,7 +41838,8 @@
           "ALWAYS_OWNED_INVENTORY_CANNOT_BE_MODIFIED",
           "AVAILABLE_UNTIL_IS_IN_PAST",
           "ROLLBACK",
-          "NOT_STARTED"
+          "NOT_STARTED",
+          "ENTITLED_LOOT_NOT_FOUND"
         ]
       },
       "PlayerOrderEntryType": {
@@ -42278,7 +42484,8 @@
           "ENTITLEMENTS",
           "AMAZON",
           "SIMULMEDIA",
-          "LUNA"
+          "LUNA",
+          "MATCH_API"
         ],
         "title": "Source",
         "description": "The source of Player Orders.",
@@ -42344,7 +42551,8 @@
           "Order granted by entitlements.",
           "Order granted by Amazon.",
           "Order granted by Simulmedia.",
-          "Order granted by Luna."
+          "Order granted by Luna.",
+          ""
         ],
         "x-enum-varnames": [
           "UNKNOWN",
@@ -42408,7 +42616,8 @@
           "ENTITLEMENTS",
           "AMAZON",
           "SIMULMEDIA",
-          "LUNA"
+          "LUNA",
+          "MATCH_API"
         ]
       },
       "TimeFrame": {
@@ -48035,6 +48244,12 @@
             "title": "Custom Data",
             "description": "Custom key-value player rank data",
             "default": {}
+          },
+          "last_updated_datetime": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone"
           }
         },
         "type": "object",
@@ -48838,6 +49053,48 @@
         },
         "type": "object",
         "title": "MatchRequest"
+      },
+      "MatchReward": {
+        "properties": {
+          "loot_id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Loot Id",
+            "description": "Which loot to grant to the player"
+          },
+          "quantity": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Quantity",
+            "description": "How many times to grant the loot to the player"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loot_id",
+          "quantity"
+        ],
+        "title": "MatchReward"
+      },
+      "MatchRewardsBody": {
+        "properties": {
+          "player_rewards": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerMatchReward"
+            },
+            "type": "array",
+            "title": "Player Rewards",
+            "description": "List of rewards for specific players for the match",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "MatchRewardsBody"
+      },
+      "MatchRewardsResponse": {
+        "properties": {},
+        "type": "object",
+        "title": "MatchRewardsResponse"
       },
       "MatchSegmentPatchRequest": {
         "properties": {
@@ -54101,6 +54358,30 @@
           "LEGACYNAME"
         ]
       },
+      "PlayerMatchReward": {
+        "properties": {
+          "player_uuid": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Player Uuid",
+            "description": "Unique idenfitifer for player who is receiving rewards"
+          },
+          "rewards": {
+            "items": {
+              "$ref": "#/components/schemas/MatchReward"
+            },
+            "type": "array",
+            "title": "Rewards",
+            "description": "List of specific rewards for this player"
+          }
+        },
+        "type": "object",
+        "required": [
+          "player_uuid",
+          "rewards"
+        ],
+        "title": "PlayerMatchReward"
+      },
       "PlayerStatsResponse": {
         "properties": {
           "total_matches_played": {
@@ -54298,7 +54579,6 @@
           "offline"
         ],
         "title": "OnlineStatus",
-        "description": "An enumeration.",
         "x-enum-descriptions": [
           "Player is current online",
           "Player is current online, but away.  Functionally identical to online",
@@ -54310,6 +54590,64 @@
           "away",
           "invisible",
           "offline"
+        ]
+      },
+      "PresencePlatform": {
+        "type": "string",
+        "enum": [
+          "Anon",
+          "Basic",
+          "XboxLive",
+          "PSN",
+          "NintendoNAID",
+          "NintendoSwitch",
+          "NintendoPPID",
+          "Google",
+          "GooglePlay",
+          "Apple",
+          "Epic",
+          "Steam",
+          "Amazon",
+          "Twitch",
+          "RallyHere",
+          "LegacyName"
+        ],
+        "title": "Platform",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "ANON",
+          "BASIC",
+          "XBOX_LIVE",
+          "PSN",
+          "NINTENDO_NAID",
+          "NINTENDO_SWITCH",
+          "NINTENDO_PPID",
+          "GOOGLE",
+          "GOOGLE_PLAY",
+          "APPLE",
+          "EPIC",
+          "STEAM",
+          "AMAZON",
+          "TWITCH",
+          "RALLYHERE",
+          "LEGACYNAME"
         ]
       },
       "PlatformIndividualCCUs": {
@@ -54369,12 +54707,26 @@
             "description": "Last time this player reported their online status"
           },
           "platform": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Platform",
             "description": "Platform the user was online in"
           },
           "display_name": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Display Name",
             "description": "Player Display Name"
           }
@@ -54388,11 +54740,7 @@
       "PlayerPresence": {
         "properties": {
           "status": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/OnlineStatus"
-              }
-            ],
+            "$ref": "#/components/schemas/OnlineStatus",
             "description": "Is the player currently online?",
             "default": "offline"
           },
@@ -54425,7 +54773,14 @@
             "default": {}
           },
           "player_id": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Player Id",
             "description": "Player ID for the player if it was provided as part of the request"
           },
@@ -54436,13 +54791,27 @@
             "description": "UUID of the player whose presence this represents"
           },
           "do_not_disturb": {
-            "type": "boolean",
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Do Not Disturb",
             "description": "Disables notifications and invites. Only set for self or admin."
           },
           "last_seen": {
-            "type": "string",
-            "format": "date-time",
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Last Seen",
             "description": "Info about the player the last time they reported their status. Only set for self or admin"
           }
@@ -54458,31 +54827,62 @@
       "PlayerPresenceUpdateSelf": {
         "properties": {
           "status": {
-            "allOf": [
+            "anyOf": [
               {
                 "$ref": "#/components/schemas/OnlineStatus"
+              },
+              {
+                "type": "null"
               }
             ],
             "description": "Is the player currently online?"
           },
           "message": {
-            "type": "string",
-            "maxLength": 256,
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Message",
             "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value."
           },
           "do_not_disturb": {
-            "type": "boolean",
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Do Not Disturb",
             "description": "Disables notifications and invites. Leaving this unset will not change the value."
           },
           "custom_data": {
-            "additionalProperties": {
-              "type": "string",
-              "maxLength": 4096,
-              "minLength": 1
-            },
-            "type": "object",
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 4096,
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Custom Data",
             "description": "custom fields for the player to update about their presence. Custom data with a null value will be removed"
           }
@@ -55130,6 +55530,13 @@
             ],
             "title": "Short Desc"
           },
+          "v": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "V",
+            "description": "Game-specific guide version.  Meant to allow the layout/format of the guides to change over time.",
+            "default": 1
+          },
           "promotion_priority": {
             "type": "integer",
             "title": "Promotion Priority",
@@ -55611,6 +56018,13 @@
               }
             ],
             "title": "Short Desc"
+          },
+          "v": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "V",
+            "description": "Game-specific guide version.  Meant to allow the layout/format of the guides to change over time.",
+            "default": 1
           },
           "promotion_priority": {
             "type": "integer",
@@ -56146,6 +56560,13 @@
               }
             ],
             "title": "Short Desc"
+          },
+          "v": {
+            "type": "integer",
+            "minimum": 1,
+            "title": "V",
+            "description": "Game-specific guide version.  Meant to allow the layout/format of the guides to change over time.",
+            "default": 1
           },
           "promotion_priority": {
             "type": "integer",

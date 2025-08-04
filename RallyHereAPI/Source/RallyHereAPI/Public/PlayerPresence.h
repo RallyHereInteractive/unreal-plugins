@@ -40,7 +40,6 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Is the player currently online? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_OnlineStatus Status_Optional{  };
 	/** @brief true if Status_Optional has been set to a value */
@@ -149,12 +148,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	/** @brief Checks whether CustomData_Optional has been set */
 	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
-	/** @brief Player ID for the player if it was provided as part of the request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PlayerId_Optional{ 0 };
 	/** @brief true if PlayerId_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerId_IsSet{ false };
+	/** @brief true if PlayerId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayerId_IsNull{ false };
 	/** @brief Gets the value of PlayerId_Optional, regardless of it having been set */
 	int32& GetPlayerId() { return PlayerId_Optional; }
 	/** @brief Gets the value of PlayerId_Optional, regardless of it having been set */
@@ -162,23 +163,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	/** @brief Gets the value of PlayerId_Optional, if it has been set, otherwise it returns DefaultValue */
 	const int32& GetPlayerId(const int32& DefaultValue) const { if (PlayerId_IsSet) return PlayerId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlayerId(int32& OutValue) const { if (PlayerId_IsSet) OutValue = PlayerId_Optional; return PlayerId_IsSet; }
+	bool GetPlayerId(int32& OutValue) const { if (PlayerId_IsSet && !PlayerId_IsNull) OutValue = PlayerId_Optional; return PlayerId_IsSet; }
 	/** @brief Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPlayerIdOrNull() { if (PlayerId_IsSet) return (&PlayerId_Optional); return nullptr; }
+	int32* GetPlayerIdOrNull() { if (PlayerId_IsSet) return (PlayerId_IsNull ? nullptr : &PlayerId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPlayerIdOrNull() const { if (PlayerId_IsSet) return (&PlayerId_Optional); return nullptr; }
+	const int32* GetPlayerIdOrNull() const { if (PlayerId_IsSet) return (PlayerId_IsNull ? nullptr : &PlayerId_Optional); return nullptr; }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true */
-	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
+	void SetPlayerId(const int32& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; PlayerId_IsNull = false; }
 	/** @brief Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics */
-	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true;  }
+	void SetPlayerId(int32&& NewValue) { PlayerId_Optional = NewValue; PlayerId_IsSet = true; PlayerId_IsNull = false; }
 	/** @brief Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false */
-	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false;  }
+	void ClearPlayerId() { PlayerId_Optional = 0; PlayerId_IsSet = false; PlayerId_IsNull = false; }
 	/** @brief Checks whether PlayerId_Optional has been set */
 	bool IsPlayerIdSet() const { return PlayerId_IsSet; }
 	/** @brief Returns true if PlayerId_Optional is set and matches the default value */
 	bool IsPlayerIdDefaultValue() const { return PlayerId_IsSet && PlayerId_Optional == 0; }
 	/** @brief Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true */
 	void SetPlayerIdToDefault() { SetPlayerId(0); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetPlayerIdToNull() { PlayerId_IsSet = true; PlayerId_IsNull = true; }
+	/** @brief Checks whether PlayerId_Optional is set to null */
+	bool IsPlayerIdNull() const { return PlayerId_IsSet && PlayerId_IsNull; }
 
 	/** @brief UUID of the player whose presence this represents */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -192,12 +197,14 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	/** @brief Sets the value of PlayerUuid using move semantics */
 	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
-	/** @brief Disables notifications and invites. Only set for self or admin. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DoNotDisturb_Optional{ false };
 	/** @brief true if DoNotDisturb_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DoNotDisturb_IsSet{ false };
+	/** @brief true if DoNotDisturb_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool DoNotDisturb_IsNull{ false };
 	/** @brief Gets the value of DoNotDisturb_Optional, regardless of it having been set */
 	bool& GetDoNotDisturb() { return DoNotDisturb_Optional; }
 	/** @brief Gets the value of DoNotDisturb_Optional, regardless of it having been set */
@@ -205,30 +212,36 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	/** @brief Gets the value of DoNotDisturb_Optional, if it has been set, otherwise it returns DefaultValue */
 	const bool& GetDoNotDisturb(const bool& DefaultValue) const { if (DoNotDisturb_IsSet) return DoNotDisturb_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DoNotDisturb_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDoNotDisturb(bool& OutValue) const { if (DoNotDisturb_IsSet) OutValue = DoNotDisturb_Optional; return DoNotDisturb_IsSet; }
+	bool GetDoNotDisturb(bool& OutValue) const { if (DoNotDisturb_IsSet && !DoNotDisturb_IsNull) OutValue = DoNotDisturb_Optional; return DoNotDisturb_IsSet; }
 	/** @brief Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetDoNotDisturbOrNull() { if (DoNotDisturb_IsSet) return (&DoNotDisturb_Optional); return nullptr; }
+	bool* GetDoNotDisturbOrNull() { if (DoNotDisturb_IsSet) return (DoNotDisturb_IsNull ? nullptr : &DoNotDisturb_Optional); return nullptr; }
 	/** @brief Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetDoNotDisturbOrNull() const { if (DoNotDisturb_IsSet) return (&DoNotDisturb_Optional); return nullptr; }
+	const bool* GetDoNotDisturbOrNull() const { if (DoNotDisturb_IsSet) return (DoNotDisturb_IsNull ? nullptr : &DoNotDisturb_Optional); return nullptr; }
 	/** @brief Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true */
-	void SetDoNotDisturb(const bool& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true;  }
+	void SetDoNotDisturb(const bool& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = false; }
 	/** @brief Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true using move semantics */
-	void SetDoNotDisturb(bool&& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true;  }
+	void SetDoNotDisturb(bool&& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = false; }
 	/** @brief Clears the value of DoNotDisturb_Optional and sets DoNotDisturb_IsSet to false */
-	void ClearDoNotDisturb() { DoNotDisturb_Optional = false; DoNotDisturb_IsSet = false;  }
+	void ClearDoNotDisturb() { DoNotDisturb_Optional = false; DoNotDisturb_IsSet = false; DoNotDisturb_IsNull = false; }
 	/** @brief Checks whether DoNotDisturb_Optional has been set */
 	bool IsDoNotDisturbSet() const { return DoNotDisturb_IsSet; }
 	/** @brief Returns true if DoNotDisturb_Optional is set and matches the default value */
 	bool IsDoNotDisturbDefaultValue() const { return DoNotDisturb_IsSet && DoNotDisturb_Optional == false; }
 	/** @brief Sets the value of DoNotDisturb_Optional to its default and also sets DoNotDisturb_IsSet to true */
 	void SetDoNotDisturbToDefault() { SetDoNotDisturb(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetDoNotDisturbToNull() { DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = true; }
+	/** @brief Checks whether DoNotDisturb_Optional is set to null */
+	bool IsDoNotDisturbNull() const { return DoNotDisturb_IsSet && DoNotDisturb_IsNull; }
 
-	/** @brief Info about the player the last time they reported their status. Only set for self or admin */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastSeen_Optional{  };
 	/** @brief true if LastSeen_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LastSeen_IsSet{ false };
+	/** @brief true if LastSeen_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LastSeen_IsNull{ false };
 	/** @brief Gets the value of LastSeen_Optional, regardless of it having been set */
 	FDateTime& GetLastSeen() { return LastSeen_Optional; }
 	/** @brief Gets the value of LastSeen_Optional, regardless of it having been set */
@@ -236,19 +249,23 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresence : public FRHAPI_Model
 	/** @brief Gets the value of LastSeen_Optional, if it has been set, otherwise it returns DefaultValue */
 	const FDateTime& GetLastSeen(const FDateTime& DefaultValue) const { if (LastSeen_IsSet) return LastSeen_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of LastSeen_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLastSeen(FDateTime& OutValue) const { if (LastSeen_IsSet) OutValue = LastSeen_Optional; return LastSeen_IsSet; }
+	bool GetLastSeen(FDateTime& OutValue) const { if (LastSeen_IsSet && !LastSeen_IsNull) OutValue = LastSeen_Optional; return LastSeen_IsSet; }
 	/** @brief Returns a pointer to LastSeen_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetLastSeenOrNull() { if (LastSeen_IsSet) return (&LastSeen_Optional); return nullptr; }
+	FDateTime* GetLastSeenOrNull() { if (LastSeen_IsSet) return (LastSeen_IsNull ? nullptr : &LastSeen_Optional); return nullptr; }
 	/** @brief Returns a pointer to LastSeen_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetLastSeenOrNull() const { if (LastSeen_IsSet) return (&LastSeen_Optional); return nullptr; }
+	const FDateTime* GetLastSeenOrNull() const { if (LastSeen_IsSet) return (LastSeen_IsNull ? nullptr : &LastSeen_Optional); return nullptr; }
 	/** @brief Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true */
-	void SetLastSeen(const FDateTime& NewValue) { LastSeen_Optional = NewValue; LastSeen_IsSet = true;  }
+	void SetLastSeen(const FDateTime& NewValue) { LastSeen_Optional = NewValue; LastSeen_IsSet = true; LastSeen_IsNull = false; }
 	/** @brief Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true using move semantics */
-	void SetLastSeen(FDateTime&& NewValue) { LastSeen_Optional = NewValue; LastSeen_IsSet = true;  }
+	void SetLastSeen(FDateTime&& NewValue) { LastSeen_Optional = NewValue; LastSeen_IsSet = true; LastSeen_IsNull = false; }
 	/** @brief Clears the value of LastSeen_Optional and sets LastSeen_IsSet to false */
-	void ClearLastSeen() { LastSeen_IsSet = false;  }
+	void ClearLastSeen() { LastSeen_IsSet = false; LastSeen_IsNull = false; }
 	/** @brief Checks whether LastSeen_Optional has been set */
 	bool IsLastSeenSet() const { return LastSeen_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetLastSeenToNull() { LastSeen_IsSet = true; LastSeen_IsNull = true; }
+	/** @brief Checks whether LastSeen_Optional is set to null */
+	bool IsLastSeenNull() const { return LastSeen_IsSet && LastSeen_IsNull; }
 };
 
 /** @} */

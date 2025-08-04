@@ -22,8 +22,11 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_PlatformEntitlementProcessRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("transaction_id"));
-	RallyHereAPI::WriteJsonValue(Writer, TransactionId);
+	if (TransactionId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("transaction_id"));
+		RallyHereAPI::WriteJsonValue(Writer, TransactionId_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("platform_token"));
 	RallyHereAPI::WriteJsonValue(Writer, PlatformToken);
 	Writer->WriteIdentifierPrefix(TEXT("platform_id"));
@@ -36,10 +39,16 @@ void FRHAPI_PlatformEntitlementProcessRequest::WriteJson(TSharedRef<TJsonWriter<
 		else
 		RallyHereAPI::WriteJsonValue(Writer, PlatformEnvironment_Optional);
 	}
-	Writer->WriteIdentifierPrefix(TEXT("platform_region"));
-	RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformRegion));
-	Writer->WriteIdentifierPrefix(TEXT("client_type"));
-	RallyHereAPI::WriteJsonValue(Writer, EnumToString(ClientType));
+	if (PlatformRegion_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("platform_region"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(PlatformRegion_Optional));
+	}
+	if (ClientType_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("client_type"));
+		RallyHereAPI::WriteJsonValue(Writer, EnumToString(ClientType_Optional));
+	}
 	if (Entitlements_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("entitlements"));
@@ -67,8 +76,11 @@ bool FRHAPI_PlatformEntitlementProcessRequest::FromJson(const TSharedPtr<FJsonVa
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonTransactionIdField = (*Object)->TryGetField(TEXT("transaction_id"));
-	const bool TransactionId_IsValid = JsonTransactionIdField.IsValid() && (!JsonTransactionIdField->IsNull() && TryGetJsonValue(JsonTransactionIdField, TransactionId));
-	ParseSuccess &= TransactionId_IsValid; 
+	if (JsonTransactionIdField.IsValid())
+	{
+		TransactionId_IsSet = TryGetJsonValue(JsonTransactionIdField, TransactionId_Optional);
+		ParseSuccess &= TransactionId_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonPlatformTokenField = (*Object)->TryGetField(TEXT("platform_token"));
 	const bool PlatformToken_IsValid = JsonPlatformTokenField.IsValid() && (!JsonPlatformTokenField->IsNull() && TryGetJsonValue(JsonPlatformTokenField, PlatformToken));
 	ParseSuccess &= PlatformToken_IsValid; 
@@ -83,11 +95,17 @@ bool FRHAPI_PlatformEntitlementProcessRequest::FromJson(const TSharedPtr<FJsonVa
 		ParseSuccess &= PlatformEnvironment_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonPlatformRegionField = (*Object)->TryGetField(TEXT("platform_region"));
-	const bool PlatformRegion_IsValid = JsonPlatformRegionField.IsValid() && (!JsonPlatformRegionField->IsNull() && TryGetJsonValue(JsonPlatformRegionField, PlatformRegion));
-	ParseSuccess &= PlatformRegion_IsValid; 
+	if (JsonPlatformRegionField.IsValid())
+	{
+		PlatformRegion_IsSet = TryGetJsonValue(JsonPlatformRegionField, PlatformRegion_Optional);
+		ParseSuccess &= PlatformRegion_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonClientTypeField = (*Object)->TryGetField(TEXT("client_type"));
-	const bool ClientType_IsValid = JsonClientTypeField.IsValid() && (!JsonClientTypeField->IsNull() && TryGetJsonValue(JsonClientTypeField, ClientType));
-	ParseSuccess &= ClientType_IsValid; 
+	if (JsonClientTypeField.IsValid())
+	{
+		ClientType_IsSet = TryGetJsonValue(JsonClientTypeField, ClientType_Optional);
+		ParseSuccess &= ClientType_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonEntitlementsField = (*Object)->TryGetField(TEXT("entitlements"));
 	if (JsonEntitlementsField.IsValid())
 	{
