@@ -44409,6 +44409,7 @@
         "enum": [
           "dedicated",
           "player",
+          "standalone",
           "preallocated"
         ],
         "title": "HostType",
@@ -44416,11 +44417,13 @@
         "x-enum-varnames": [
           "dedicated",
           "player",
+          "standalone",
           "preallocated"
         ],
         "x-enum-descriptions": [
           "A dedicated, standalone instance",
           "A player hosted instance",
+          "A standalone instance that only the host can connect to",
           "A preallocated instance that isn't player owned"
         ]
       },

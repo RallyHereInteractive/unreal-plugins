@@ -20,6 +20,7 @@ enum class ERHAPI_HostType : uint8
 {
 	Dedicated UMETA(ToolTip="A dedicated, standalone instance"),
 	Player UMETA(ToolTip="A player hosted instance"),
+	Standalone UMETA(ToolTip="A standalone instance that only the host can connect to"),
 	Preallocated UMETA(ToolTip="A preallocated instance that isn&#39;t player owned"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_HostType& EnumValue);
