@@ -28,9 +28,8 @@ struct FRHAPI_PlayerPresenceUpdateSelf
 `public bool `[`DoNotDisturb_Optional`](#structFRHAPI__PlayerPresenceUpdateSelf_1a90a743fc134a078e6598d988182ba714) | 
 `public bool `[`DoNotDisturb_IsSet`](#structFRHAPI__PlayerPresenceUpdateSelf_1a0eb359ff47b2965a35bc83bb9fa9a95e) | true if DoNotDisturb_Optional has been set to a value
 `public bool `[`DoNotDisturb_IsNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1aa90513182491e85e901d8fef85ac2d57) | true if DoNotDisturb_Optional has been explicitly set to null
-`public TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > `[`CustomData_Optional`](#structFRHAPI__PlayerPresenceUpdateSelf_1aa563d3f00616392eb0241ccc743dab28) | 
+`public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlayerPresenceUpdateSelf_1a6a6459645ffbea2924e505c104502775) | custom fields for the player to update about their presence. Custom data with a null value will be removed
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlayerPresenceUpdateSelf_1a4515026d48610b1eabc547ef3103d9d6) | true if CustomData_Optional has been set to a value
-`public bool `[`CustomData_IsNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a18395fb65141cbdf03ea29bdd54ab5e2) | true if CustomData_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerPresenceUpdateSelf_1aa8de4c0cbd864da4ec19e7aa581260ba)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerPresenceUpdateSelf_1ad4750535d7ae47a38c4e8acb20bbb5dd)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
 `public inline ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresenceUpdateSelf_1a1afc40325914c9fc5a019f6189c275c8)`()` | Gets the value of Status_Optional, regardless of it having been set.
@@ -71,18 +70,16 @@ struct FRHAPI_PlayerPresenceUpdateSelf
 `public inline void `[`SetDoNotDisturbToDefault`](#structFRHAPI__PlayerPresenceUpdateSelf_1a85bd5cb5d6cba731b70aa62a1f74e5e0)`()` | Sets the value of DoNotDisturb_Optional to its default and also sets DoNotDisturb_IsSet to true.
 `public inline void `[`SetDoNotDisturbToNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a227bf75b3f87271dc655bc49fcfeb81a)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsDoNotDisturbNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1af7963ccf3713221765c026d04d28c0f5)`() const` | Checks whether DoNotDisturb_Optional is set to null.
-`public inline TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1acd8df9996669ff803796ef42bd9906b3)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1af8d96b4b1cd800aa1cb42f5d4af1f017)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a253ef0e3b380f0873b00b736add82735)`(const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1adbdf76616ae6e2750e5db735844d8ac7)`(TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a408c658f1de7211e96c676c7a151b8b4)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1ad9429cf9ce400a380e5e5ff1d9747d97)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a5dfa0132857b886f47b73dd803ba6a76)`(const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1ad97aaf6c05c5ff7272aee287dd61aa6d)`(TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a31bf193c81f6b7be79352d69d06aa890)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a5bf5656924718fc38841f3b3bfc559f2)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a6d5ff45648112b2d2483946dcb1d13b5)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a37a20d1ce84afabc41ebabf109361d34)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1ad435849bb11fcdbc232f16d4158364d4)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1af9ac38f65471396392753ecacc53d4a9)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a139fca0ec86a138bbf6c84a6ab6dbea4)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a569067c4644b3a01973c998d0555d4f4)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1ae1e307673be664cb960223d05a50a70e)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerPresenceUpdateSelf_1a2b14f36f08502b3859cc7a6c7fa619a9)`() const` | Checks whether CustomData_Optional has been set.
-`public inline void `[`SetCustomDataToNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a03daacb3fdbea017d9c790a9a5a86e7b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCustomDataNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a9ccc96cf4d51dbc9ada9466e47208829)`() const` | Checks whether CustomData_Optional is set to null.
 
 ### Members
 
@@ -116,15 +113,13 @@ true if DoNotDisturb_Optional has been set to a value
 
 true if DoNotDisturb_Optional has been explicitly set to null
 
-#### `public TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > `[`CustomData_Optional`](#structFRHAPI__PlayerPresenceUpdateSelf_1aa563d3f00616392eb0241ccc743dab28) <a id="structFRHAPI__PlayerPresenceUpdateSelf_1aa563d3f00616392eb0241ccc743dab28"></a>
+#### `public TMap< FString, FString > `[`CustomData_Optional`](#structFRHAPI__PlayerPresenceUpdateSelf_1a6a6459645ffbea2924e505c104502775) <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a6a6459645ffbea2924e505c104502775"></a>
+
+custom fields for the player to update about their presence. Custom data with a null value will be removed
 
 #### `public bool `[`CustomData_IsSet`](#structFRHAPI__PlayerPresenceUpdateSelf_1a4515026d48610b1eabc547ef3103d9d6) <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a4515026d48610b1eabc547ef3103d9d6"></a>
 
 true if CustomData_Optional has been set to a value
-
-#### `public bool `[`CustomData_IsNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a18395fb65141cbdf03ea29bdd54ab5e2) <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a18395fb65141cbdf03ea29bdd54ab5e2"></a>
-
-true if CustomData_Optional has been explicitly set to null
 
 #### `public virtual bool `[`FromJson`](#structFRHAPI__PlayerPresenceUpdateSelf_1aa8de4c0cbd864da4ec19e7aa581260ba)`(const TSharedPtr< FJsonValue > & JsonValue)` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1aa8de4c0cbd864da4ec19e7aa581260ba"></a>
 
@@ -295,35 +290,35 @@ Sets the value explicitly to be treated as null.
 
 Checks whether DoNotDisturb_Optional is set to null.
 
-#### `public inline TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1acd8df9996669ff803796ef42bd9906b3)`()` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1acd8df9996669ff803796ef42bd9906b3"></a>
+#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a31bf193c81f6b7be79352d69d06aa890)`()` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a31bf193c81f6b7be79352d69d06aa890"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1af8d96b4b1cd800aa1cb42f5d4af1f017)`() const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1af8d96b4b1cd800aa1cb42f5d4af1f017"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a5bf5656924718fc38841f3b3bfc559f2)`() const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a5bf5656924718fc38841f3b3bfc559f2"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a253ef0e3b380f0873b00b736add82735)`(const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & DefaultValue) const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a253ef0e3b380f0873b00b736add82735"></a>
+#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a6d5ff45648112b2d2483946dcb1d13b5)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a6d5ff45648112b2d2483946dcb1d13b5"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1adbdf76616ae6e2750e5db735844d8ac7)`(TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & OutValue) const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1adbdf76616ae6e2750e5db735844d8ac7"></a>
+#### `public inline bool `[`GetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a37a20d1ce84afabc41ebabf109361d34)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a37a20d1ce84afabc41ebabf109361d34"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a408c658f1de7211e96c676c7a151b8b4)`()` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a408c658f1de7211e96c676c7a151b8b4"></a>
+#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1ad435849bb11fcdbc232f16d4158364d4)`()` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1ad435849bb11fcdbc232f16d4158364d4"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1ad9429cf9ce400a380e5e5ff1d9747d97)`() const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1ad9429cf9ce400a380e5e5ff1d9747d97"></a>
+#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1af9ac38f65471396392753ecacc53d4a9)`() const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1af9ac38f65471396392753ecacc53d4a9"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a5dfa0132857b886f47b73dd803ba6a76)`(const TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > & NewValue)` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a5dfa0132857b886f47b73dd803ba6a76"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a139fca0ec86a138bbf6c84a6ab6dbea4)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a139fca0ec86a138bbf6c84a6ab6dbea4"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1ad97aaf6c05c5ff7272aee287dd61aa6d)`(TMap< FString, `[`FRHAPI_PlayerPresenceUpdateSelfCustomDataValue`](RHAPI_PlayerPresenceUpdateSelfCustomDataValue.md#structFRHAPI__PlayerPresenceUpdateSelfCustomDataValue)` > && NewValue)` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1ad97aaf6c05c5ff7272aee287dd61aa6d"></a>
+#### `public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresenceUpdateSelf_1a569067c4644b3a01973c998d0555d4f4)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a569067c4644b3a01973c998d0555d4f4"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -334,12 +329,4 @@ Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 #### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerPresenceUpdateSelf_1a2b14f36f08502b3859cc7a6c7fa619a9)`() const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a2b14f36f08502b3859cc7a6c7fa619a9"></a>
 
 Checks whether CustomData_Optional has been set.
-
-#### `public inline void `[`SetCustomDataToNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a03daacb3fdbea017d9c790a9a5a86e7b)`()` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a03daacb3fdbea017d9c790a9a5a86e7b"></a>
-
-Sets the value explicitly to be treated as null.
-
-#### `public inline bool `[`IsCustomDataNull`](#structFRHAPI__PlayerPresenceUpdateSelf_1a9ccc96cf4d51dbc9ada9466e47208829)`() const` <a id="structFRHAPI__PlayerPresenceUpdateSelf_1a9ccc96cf4d51dbc9ada9466e47208829"></a>
-
-Checks whether CustomData_Optional is set to null.
 
