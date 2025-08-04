@@ -26,6 +26,8 @@ struct FRHAPI_GuideFull
 `public FString `[`ShortDesc_Optional`](#structFRHAPI__GuideFull_1a4a390b7594132cac82a39976e6e23803) | 
 `public bool `[`ShortDesc_IsSet`](#structFRHAPI__GuideFull_1a572a21fe1e96a8e54a154dc6dfbc6d12) | true if ShortDesc_Optional has been set to a value
 `public bool `[`ShortDesc_IsNull`](#structFRHAPI__GuideFull_1a51c353ec9a843bc86b0084c8faf580e8) | true if ShortDesc_Optional has been explicitly set to null
+`public int32 `[`V_Optional`](#structFRHAPI__GuideFull_1a9ce7612fe23a42cbdc8e3b988a2c2403) | Game-specific guide version. Meant to allow the layout/format of the guides to change over time.
+`public bool `[`V_IsSet`](#structFRHAPI__GuideFull_1a20f4795e45330593f34fc1e534a5e333) | true if V_Optional has been set to a value
 `public int32 `[`PromotionPriority_Optional`](#structFRHAPI__GuideFull_1a8a8a49fa23513958de415f971257d926) | Promotion priority of this guide in searches.
 `public bool `[`PromotionPriority_IsSet`](#structFRHAPI__GuideFull_1a351f0d27ba98a435dddc94790ad92448) | true if PromotionPriority_Optional has been set to a value
 `public FString `[`Ref1_Optional`](#structFRHAPI__GuideFull_1a02aad4219eb4cc89413656e00a80d4e3) | 
@@ -171,6 +173,18 @@ struct FRHAPI_GuideFull
 `public inline bool `[`IsShortDescSet`](#structFRHAPI__GuideFull_1a58a9a2fb444b2d2f0e8a6d45560a12f3)`() const` | Checks whether ShortDesc_Optional has been set.
 `public inline void `[`SetShortDescToNull`](#structFRHAPI__GuideFull_1a80ee061c85bbecf047d4aacfa672ecba)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsShortDescNull`](#structFRHAPI__GuideFull_1acb80f3aeb6318c6656903f4687c02b2d)`() const` | Checks whether ShortDesc_Optional is set to null.
+`public inline int32 & `[`GetV`](#structFRHAPI__GuideFull_1a5f585638d3399c3fb14d6a8ae3489079)`()` | Gets the value of V_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetV`](#structFRHAPI__GuideFull_1a034ad759c549b8ba5c786da8a7575263)`() const` | Gets the value of V_Optional, regardless of it having been set.
+`public inline const int32 & `[`GetV`](#structFRHAPI__GuideFull_1a96e184eebb1ac2994ab83ea2416fb0af)`(const int32 & DefaultValue) const` | Gets the value of V_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetV`](#structFRHAPI__GuideFull_1ac53c57e25b9c2a699e33860bf4ceee00)`(int32 & OutValue) const` | Fills OutValue with the value of V_Optional and returns true if it has been set, otherwise returns false.
+`public inline int32 * `[`GetVOrNull`](#structFRHAPI__GuideFull_1a899fae564816c89de7d34f7c0ae9f99b)`()` | Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
+`public inline const int32 * `[`GetVOrNull`](#structFRHAPI__GuideFull_1ab385cc0c4d74a9159b4262fcbaddea71)`() const` | Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetV`](#structFRHAPI__GuideFull_1afc4f4a4cf287c6edf9aeee4646d7e3e8)`(const int32 & NewValue)` | Sets the value of V_Optional and also sets V_IsSet to true.
+`public inline void `[`SetV`](#structFRHAPI__GuideFull_1a1995955e19786cc1c6523523895753dd)`(int32 && NewValue)` | Sets the value of V_Optional and also sets V_IsSet to true using move semantics.
+`public inline void `[`ClearV`](#structFRHAPI__GuideFull_1af5336d78755b2097673b95221b2080e0)`()` | Clears the value of V_Optional and sets V_IsSet to false.
+`public inline bool `[`IsVSet`](#structFRHAPI__GuideFull_1a6a8c93bd45fe13e190c779573652a3c4)`() const` | Checks whether V_Optional has been set.
+`public inline bool `[`IsVDefaultValue`](#structFRHAPI__GuideFull_1a30b790cf132ddfa357987a9acae908d3)`() const` | Returns true if V_Optional is set and matches the default value.
+`public inline void `[`SetVToDefault`](#structFRHAPI__GuideFull_1a539dbcffe9403881b15f4c01d25c2c89)`()` | Sets the value of V_Optional to its default and also sets V_IsSet to true.
 `public inline int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1ac15ed2f6d5de33fd5473d2d387fe0fca)`()` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1a45f7bad30fba82a842674b5005069b4c)`() const` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
 `public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1a83afc96e277fe210bda8864b04c65d81)`(const int32 & DefaultValue) const` | Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -671,6 +685,14 @@ true if ShortDesc_Optional has been set to a value
 #### `public bool `[`ShortDesc_IsNull`](#structFRHAPI__GuideFull_1a51c353ec9a843bc86b0084c8faf580e8) <a id="structFRHAPI__GuideFull_1a51c353ec9a843bc86b0084c8faf580e8"></a>
 
 true if ShortDesc_Optional has been explicitly set to null
+
+#### `public int32 `[`V_Optional`](#structFRHAPI__GuideFull_1a9ce7612fe23a42cbdc8e3b988a2c2403) <a id="structFRHAPI__GuideFull_1a9ce7612fe23a42cbdc8e3b988a2c2403"></a>
+
+Game-specific guide version. Meant to allow the layout/format of the guides to change over time.
+
+#### `public bool `[`V_IsSet`](#structFRHAPI__GuideFull_1a20f4795e45330593f34fc1e534a5e333) <a id="structFRHAPI__GuideFull_1a20f4795e45330593f34fc1e534a5e333"></a>
+
+true if V_Optional has been set to a value
 
 #### `public int32 `[`PromotionPriority_Optional`](#structFRHAPI__GuideFull_1a8a8a49fa23513958de415f971257d926) <a id="structFRHAPI__GuideFull_1a8a8a49fa23513958de415f971257d926"></a>
 
@@ -1186,6 +1208,54 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsShortDescNull`](#structFRHAPI__GuideFull_1acb80f3aeb6318c6656903f4687c02b2d)`() const` <a id="structFRHAPI__GuideFull_1acb80f3aeb6318c6656903f4687c02b2d"></a>
 
 Checks whether ShortDesc_Optional is set to null.
+
+#### `public inline int32 & `[`GetV`](#structFRHAPI__GuideFull_1a5f585638d3399c3fb14d6a8ae3489079)`()` <a id="structFRHAPI__GuideFull_1a5f585638d3399c3fb14d6a8ae3489079"></a>
+
+Gets the value of V_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetV`](#structFRHAPI__GuideFull_1a034ad759c549b8ba5c786da8a7575263)`() const` <a id="structFRHAPI__GuideFull_1a034ad759c549b8ba5c786da8a7575263"></a>
+
+Gets the value of V_Optional, regardless of it having been set.
+
+#### `public inline const int32 & `[`GetV`](#structFRHAPI__GuideFull_1a96e184eebb1ac2994ab83ea2416fb0af)`(const int32 & DefaultValue) const` <a id="structFRHAPI__GuideFull_1a96e184eebb1ac2994ab83ea2416fb0af"></a>
+
+Gets the value of V_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetV`](#structFRHAPI__GuideFull_1ac53c57e25b9c2a699e33860bf4ceee00)`(int32 & OutValue) const` <a id="structFRHAPI__GuideFull_1ac53c57e25b9c2a699e33860bf4ceee00"></a>
+
+Fills OutValue with the value of V_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline int32 * `[`GetVOrNull`](#structFRHAPI__GuideFull_1a899fae564816c89de7d34f7c0ae9f99b)`()` <a id="structFRHAPI__GuideFull_1a899fae564816c89de7d34f7c0ae9f99b"></a>
+
+Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const int32 * `[`GetVOrNull`](#structFRHAPI__GuideFull_1ab385cc0c4d74a9159b4262fcbaddea71)`() const` <a id="structFRHAPI__GuideFull_1ab385cc0c4d74a9159b4262fcbaddea71"></a>
+
+Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetV`](#structFRHAPI__GuideFull_1afc4f4a4cf287c6edf9aeee4646d7e3e8)`(const int32 & NewValue)` <a id="structFRHAPI__GuideFull_1afc4f4a4cf287c6edf9aeee4646d7e3e8"></a>
+
+Sets the value of V_Optional and also sets V_IsSet to true.
+
+#### `public inline void `[`SetV`](#structFRHAPI__GuideFull_1a1995955e19786cc1c6523523895753dd)`(int32 && NewValue)` <a id="structFRHAPI__GuideFull_1a1995955e19786cc1c6523523895753dd"></a>
+
+Sets the value of V_Optional and also sets V_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearV`](#structFRHAPI__GuideFull_1af5336d78755b2097673b95221b2080e0)`()` <a id="structFRHAPI__GuideFull_1af5336d78755b2097673b95221b2080e0"></a>
+
+Clears the value of V_Optional and sets V_IsSet to false.
+
+#### `public inline bool `[`IsVSet`](#structFRHAPI__GuideFull_1a6a8c93bd45fe13e190c779573652a3c4)`() const` <a id="structFRHAPI__GuideFull_1a6a8c93bd45fe13e190c779573652a3c4"></a>
+
+Checks whether V_Optional has been set.
+
+#### `public inline bool `[`IsVDefaultValue`](#structFRHAPI__GuideFull_1a30b790cf132ddfa357987a9acae908d3)`() const` <a id="structFRHAPI__GuideFull_1a30b790cf132ddfa357987a9acae908d3"></a>
+
+Returns true if V_Optional is set and matches the default value.
+
+#### `public inline void `[`SetVToDefault`](#structFRHAPI__GuideFull_1a539dbcffe9403881b15f4c01d25c2c89)`()` <a id="structFRHAPI__GuideFull_1a539dbcffe9403881b15f4c01d25c2c89"></a>
+
+Sets the value of V_Optional to its default and also sets V_IsSet to true.
 
 #### `public inline int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideFull_1ac15ed2f6d5de33fd5473d2d387fe0fca)`()` <a id="structFRHAPI__GuideFull_1ac15ed2f6d5de33fd5473d2d387fe0fca"></a>
 
