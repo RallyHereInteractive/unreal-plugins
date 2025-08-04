@@ -23,6 +23,8 @@ Portal user info.
 --------------------------------|---------------------------------------------
 `public ERHAPI_Platform `[`Platform`](#structFRHAPI__PortalUserInfo_1aa73e914e330ab525ca2662631fe1cc06) | Platform for the user.
 `public ERHAPI_DependenciesSchemasPortal `[`PortalId`](#structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286) | Portal ID. *DEPRECATED* use `platform` instead.
+`public FString `[`PlatformEnvironment_Optional`](#structFRHAPI__PortalUserInfo_1a20d9613e04d25b1cd6178923b9f7dcff) | Which of the platform's environments was this user info from? For Xbox, this is sandbox. For PSN, this is sp-int/prod-qa/np. For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1.
+`public bool `[`PlatformEnvironment_IsSet`](#structFRHAPI__PortalUserInfo_1a7c250bd9295d1405049d9138397e4621) | true if PlatformEnvironment_Optional has been set to a value
 `public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) | Platform User ID.
 `public FString `[`DisplayName`](#structFRHAPI__PortalUserInfo_1a0ba620f7ad0e76fa03651b52221672d0) | Display name.
 `public ERHAPI_DeviceType `[`DeviceType_Optional`](#structFRHAPI__PortalUserInfo_1aa45110e5fcd50bfaf310fcec1caa6a77) | Platform-verified device type of the login.
@@ -37,6 +39,16 @@ Portal user info.
 `public inline const ERHAPI_DependenciesSchemasPortal & `[`GetPortalId`](#structFRHAPI__PortalUserInfo_1a1aad331e6dc529ef57e8c35ca3107265)`() const` | Gets the value of PortalId.
 `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1a4a5ff208210acd2fb87fa780480ab9c9)`(const ERHAPI_DependenciesSchemasPortal & NewValue)` | Sets the value of PortalId.
 `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1a5c46064ea43abd217be0f9dd7a08083a)`(ERHAPI_DependenciesSchemasPortal && NewValue)` | Sets the value of PortalId using move semantics.
+`public inline FString & `[`GetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a1d955f73bc71a6b9a900182a8e3a8924)`()` | Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a30d75f77643fbc277098171bdf2ed03d)`() const` | Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a74a1a597fd7ea6b440c9f61e8bc84212)`(const FString & DefaultValue) const` | Gets the value of PlatformEnvironment_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a39d0b910d9e3aea55b77521ae8c35d68)`(FString & OutValue) const` | Fills OutValue with the value of PlatformEnvironment_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PortalUserInfo_1a2fc438884f608e144eb5b02aa63c0e27)`()` | Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PortalUserInfo_1a0ec5243c88437514e46a1af4a6559203)`() const` | Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a1c8128229812eae1961b2a591dd91166)`(const FString & NewValue)` | Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true.
+`public inline void `[`SetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a587e46838fee64d5f5fef9e81f4430cc)`(FString && NewValue)` | Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true using move semantics.
+`public inline void `[`ClearPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a6bddf477ffa68753c4e289d8ce4f7c4e)`()` | Clears the value of PlatformEnvironment_Optional and sets PlatformEnvironment_IsSet to false.
+`public inline bool `[`IsPlatformEnvironmentSet`](#structFRHAPI__PortalUserInfo_1ab0a7a8fcd3be4a719fee738b87031478)`() const` | Checks whether PlatformEnvironment_Optional has been set.
 `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1aea9f4496fa8a28c2e41153222905c356)`()` | Gets the value of PortalUserId.
 `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1aee355d8df70f1c64af4feeeb3f083ee1)`() const` | Gets the value of PortalUserId.
 `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserInfo_1a78a2bd60a18f0ad956e631568194185b)`(const FString & NewValue)` | Sets the value of PortalUserId.
@@ -65,6 +77,14 @@ Platform for the user.
 #### `public ERHAPI_DependenciesSchemasPortal `[`PortalId`](#structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286) <a id="structFRHAPI__PortalUserInfo_1af0233dbd7f509062dcf36313611ea286"></a>
 
 Portal ID. *DEPRECATED* use `platform` instead.
+
+#### `public FString `[`PlatformEnvironment_Optional`](#structFRHAPI__PortalUserInfo_1a20d9613e04d25b1cd6178923b9f7dcff) <a id="structFRHAPI__PortalUserInfo_1a20d9613e04d25b1cd6178923b9f7dcff"></a>
+
+Which of the platform's environments was this user info from? For Xbox, this is sandbox. For PSN, this is sp-int/prod-qa/np. For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1.
+
+#### `public bool `[`PlatformEnvironment_IsSet`](#structFRHAPI__PortalUserInfo_1a7c250bd9295d1405049d9138397e4621) <a id="structFRHAPI__PortalUserInfo_1a7c250bd9295d1405049d9138397e4621"></a>
+
+true if PlatformEnvironment_Optional has been set to a value
 
 #### `public FString `[`PortalUserId`](#structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab) <a id="structFRHAPI__PortalUserInfo_1a6733dd0ddc41200cf750f32de0b83dab"></a>
 
@@ -130,6 +150,46 @@ Sets the value of PortalId.
 #### `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserInfo_1a5c46064ea43abd217be0f9dd7a08083a)`(ERHAPI_DependenciesSchemasPortal && NewValue)` <a id="structFRHAPI__PortalUserInfo_1a5c46064ea43abd217be0f9dd7a08083a"></a>
 
 Sets the value of PortalId using move semantics.
+
+#### `public inline FString & `[`GetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a1d955f73bc71a6b9a900182a8e3a8924)`()` <a id="structFRHAPI__PortalUserInfo_1a1d955f73bc71a6b9a900182a8e3a8924"></a>
+
+Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a30d75f77643fbc277098171bdf2ed03d)`() const` <a id="structFRHAPI__PortalUserInfo_1a30d75f77643fbc277098171bdf2ed03d"></a>
+
+Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a74a1a597fd7ea6b440c9f61e8bc84212)`(const FString & DefaultValue) const` <a id="structFRHAPI__PortalUserInfo_1a74a1a597fd7ea6b440c9f61e8bc84212"></a>
+
+Gets the value of PlatformEnvironment_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a39d0b910d9e3aea55b77521ae8c35d68)`(FString & OutValue) const` <a id="structFRHAPI__PortalUserInfo_1a39d0b910d9e3aea55b77521ae8c35d68"></a>
+
+Fills OutValue with the value of PlatformEnvironment_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PortalUserInfo_1a2fc438884f608e144eb5b02aa63c0e27)`()` <a id="structFRHAPI__PortalUserInfo_1a2fc438884f608e144eb5b02aa63c0e27"></a>
+
+Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PortalUserInfo_1a0ec5243c88437514e46a1af4a6559203)`() const` <a id="structFRHAPI__PortalUserInfo_1a0ec5243c88437514e46a1af4a6559203"></a>
+
+Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a1c8128229812eae1961b2a591dd91166)`(const FString & NewValue)` <a id="structFRHAPI__PortalUserInfo_1a1c8128229812eae1961b2a591dd91166"></a>
+
+Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true.
+
+#### `public inline void `[`SetPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a587e46838fee64d5f5fef9e81f4430cc)`(FString && NewValue)` <a id="structFRHAPI__PortalUserInfo_1a587e46838fee64d5f5fef9e81f4430cc"></a>
+
+Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPlatformEnvironment`](#structFRHAPI__PortalUserInfo_1a6bddf477ffa68753c4e289d8ce4f7c4e)`()` <a id="structFRHAPI__PortalUserInfo_1a6bddf477ffa68753c4e289d8ce4f7c4e"></a>
+
+Clears the value of PlatformEnvironment_Optional and sets PlatformEnvironment_IsSet to false.
+
+#### `public inline bool `[`IsPlatformEnvironmentSet`](#structFRHAPI__PortalUserInfo_1ab0a7a8fcd3be4a719fee738b87031478)`() const` <a id="structFRHAPI__PortalUserInfo_1ab0a7a8fcd3be4a719fee738b87031478"></a>
+
+Checks whether PlatformEnvironment_Optional has been set.
 
 #### `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserInfo_1aea9f4496fa8a28c2e41153222905c356)`()` <a id="structFRHAPI__PortalUserInfo_1aea9f4496fa8a28c2e41153222905c356"></a>
 

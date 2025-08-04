@@ -31,6 +31,11 @@ void FRHAPI_RankRankData::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
 		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
 	}
+	if (LastUpdatedDatetime_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("last_updated_datetime"));
+		RallyHereAPI::WriteJsonValue(Writer, LastUpdatedDatetime_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -53,6 +58,12 @@ bool FRHAPI_RankRankData::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonLastUpdatedDatetimeField = (*Object)->TryGetField(TEXT("last_updated_datetime"));
+	if (JsonLastUpdatedDatetimeField.IsValid())
+	{
+		LastUpdatedDatetime_IsSet = TryGetJsonValue(JsonLastUpdatedDatetimeField, LastUpdatedDatetime_Optional);
+		ParseSuccess &= LastUpdatedDatetime_IsSet;
 	}
 
 	return ParseSuccess;

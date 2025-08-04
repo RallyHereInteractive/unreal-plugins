@@ -191,6 +191,8 @@ Private/MatchPlayerRequest.cpp
 Private/MatchPlayerResponse.cpp
 Private/MatchPlayerWithMatch.cpp
 Private/MatchRequest.cpp
+Private/MatchReward.cpp
+Private/MatchRewardsBody.cpp
 Private/MatchSegmentPatchRequest.cpp
 Private/MatchSegmentRequest.cpp
 Private/MatchSegmentWithPlayers.cpp
@@ -272,6 +274,7 @@ Private/PlayerIterateResponse.cpp
 Private/PlayerLastSeenUpdate.cpp
 Private/PlayerLinkedPortalsResponse.cpp
 Private/PlayerListType.cpp
+Private/PlayerMatchReward.cpp
 Private/PlayerMoveRequest.cpp
 Private/PlayerOrder.cpp
 Private/PlayerOrderCreateInput.cpp
@@ -288,6 +291,7 @@ Private/PlayerOrdersResponse.cpp
 Private/PlayerPersonResponse.cpp
 Private/PlayerPresence.cpp
 Private/PlayerPresenceUpdateSelf.cpp
+Private/PlayerPresenceUpdateSelfCustomDataValue.cpp
 Private/PlayerRank.cpp
 Private/PlayerRankRequestResponse.cpp
 Private/PlayerRankRequestResponseV2.cpp
@@ -322,6 +326,7 @@ Private/PortalUserResponse.cpp
 Private/PostGameEventsResponse.cpp
 Private/PresenceAPI.cpp
 Private/PresenceAdminAPI.cpp
+Private/PresencePlatform.cpp
 Private/PriceBreakPointCurrency.cpp
 Private/PriceBreakpoint.cpp
 Private/PricePoint.cpp
@@ -627,6 +632,8 @@ Public/MatchPlayerRequest.h
 Public/MatchPlayerResponse.h
 Public/MatchPlayerWithMatch.h
 Public/MatchRequest.h
+Public/MatchReward.h
+Public/MatchRewardsBody.h
 Public/MatchSegmentPatchRequest.h
 Public/MatchSegmentRequest.h
 Public/MatchSegmentWithPlayers.h
@@ -708,6 +715,7 @@ Public/PlayerIterateResponse.h
 Public/PlayerLastSeenUpdate.h
 Public/PlayerLinkedPortalsResponse.h
 Public/PlayerListType.h
+Public/PlayerMatchReward.h
 Public/PlayerMoveRequest.h
 Public/PlayerOrder.h
 Public/PlayerOrderCreateInput.h
@@ -724,6 +732,7 @@ Public/PlayerOrdersResponse.h
 Public/PlayerPersonResponse.h
 Public/PlayerPresence.h
 Public/PlayerPresenceUpdateSelf.h
+Public/PlayerPresenceUpdateSelfCustomDataValue.h
 Public/PlayerRank.h
 Public/PlayerRankRequestResponse.h
 Public/PlayerRankRequestResponseV2.h
@@ -758,6 +767,7 @@ Public/PortalUserResponse.h
 Public/PostGameEventsResponse.h
 Public/PresenceAPI.h
 Public/PresenceAdminAPI.h
+Public/PresencePlatform.h
 Public/PriceBreakPointCurrency.h
 Public/PriceBreakpoint.h
 Public/PricePoint.h

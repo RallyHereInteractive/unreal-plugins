@@ -26,6 +26,11 @@ void FRHAPI_PortalUserInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Platform));
 	Writer->WriteIdentifierPrefix(TEXT("portal_id"));
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(PortalId));
+	if (PlatformEnvironment_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("platform_environment"));
+		RallyHereAPI::WriteJsonValue(Writer, PlatformEnvironment_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("portal_user_id"));
 	RallyHereAPI::WriteJsonValue(Writer, PortalUserId);
 	Writer->WriteIdentifierPrefix(TEXT("display_name"));
@@ -52,6 +57,12 @@ bool FRHAPI_PortalUserInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const TSharedPtr<FJsonValue> JsonPortalIdField = (*Object)->TryGetField(TEXT("portal_id"));
 	const bool PortalId_IsValid = JsonPortalIdField.IsValid() && (!JsonPortalIdField->IsNull() && TryGetJsonValue(JsonPortalIdField, PortalId));
 	ParseSuccess &= PortalId_IsValid; 
+	const TSharedPtr<FJsonValue> JsonPlatformEnvironmentField = (*Object)->TryGetField(TEXT("platform_environment"));
+	if (JsonPlatformEnvironmentField.IsValid())
+	{
+		PlatformEnvironment_IsSet = TryGetJsonValue(JsonPlatformEnvironmentField, PlatformEnvironment_Optional);
+		ParseSuccess &= PlatformEnvironment_IsSet;
+	}
 	const TSharedPtr<FJsonValue> JsonPortalUserIdField = (*Object)->TryGetField(TEXT("portal_user_id"));
 	const bool PortalUserId_IsValid = JsonPortalUserIdField.IsValid() && (!JsonPortalUserIdField->IsNull() && TryGetJsonValue(JsonPortalUserIdField, PortalUserId));
 	ParseSuccess &= PortalUserId_IsValid; 

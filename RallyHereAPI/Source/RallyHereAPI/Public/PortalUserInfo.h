@@ -66,6 +66,33 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserInfo : public FRHAPI_Model
 	/** @brief Sets the value of PortalId using move semantics */
 	void SetPortalId(ERHAPI_DependenciesSchemasPortal&& NewValue) { PortalId = NewValue;   }
 
+	/** @brief Which of the platform's environments was this user info from?  For Xbox, this is sandbox.  For PSN, this is sp-int/prod-qa/np.  For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString PlatformEnvironment_Optional{  };
+	/** @brief true if PlatformEnvironment_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlatformEnvironment_IsSet{ false };
+	/** @brief Gets the value of PlatformEnvironment_Optional, regardless of it having been set */
+	FString& GetPlatformEnvironment() { return PlatformEnvironment_Optional; }
+	/** @brief Gets the value of PlatformEnvironment_Optional, regardless of it having been set */
+	const FString& GetPlatformEnvironment() const { return PlatformEnvironment_Optional; }
+	/** @brief Gets the value of PlatformEnvironment_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FString& GetPlatformEnvironment(const FString& DefaultValue) const { if (PlatformEnvironment_IsSet) return PlatformEnvironment_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlatformEnvironment_Optional and returns true if it has been set, otherwise returns false */
+	bool GetPlatformEnvironment(FString& OutValue) const { if (PlatformEnvironment_IsSet) OutValue = PlatformEnvironment_Optional; return PlatformEnvironment_IsSet; }
+	/** @brief Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr */
+	FString* GetPlatformEnvironmentOrNull() { if (PlatformEnvironment_IsSet) return (&PlatformEnvironment_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr */
+	const FString* GetPlatformEnvironmentOrNull() const { if (PlatformEnvironment_IsSet) return (&PlatformEnvironment_Optional); return nullptr; }
+	/** @brief Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true */
+	void SetPlatformEnvironment(const FString& NewValue) { PlatformEnvironment_Optional = NewValue; PlatformEnvironment_IsSet = true;  }
+	/** @brief Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true using move semantics */
+	void SetPlatformEnvironment(FString&& NewValue) { PlatformEnvironment_Optional = NewValue; PlatformEnvironment_IsSet = true;  }
+	/** @brief Clears the value of PlatformEnvironment_Optional and sets PlatformEnvironment_IsSet to false */
+	void ClearPlatformEnvironment() { PlatformEnvironment_IsSet = false;  }
+	/** @brief Checks whether PlatformEnvironment_Optional has been set */
+	bool IsPlatformEnvironmentSet() const { return PlatformEnvironment_IsSet; }
+
 	/** @brief Platform User ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString PortalUserId{  };

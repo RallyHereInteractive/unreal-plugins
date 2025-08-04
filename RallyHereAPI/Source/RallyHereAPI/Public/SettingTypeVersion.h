@@ -70,6 +70,43 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	/** @brief Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true */
 	void SetAllowUpdateToDefault() { SetAllowUpdate(true); }
 
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool IsInternal_Optional{ false };
+	/** @brief true if IsInternal_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool IsInternal_IsSet{ false };
+	/** @brief true if IsInternal_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool IsInternal_IsNull{ false };
+	/** @brief Gets the value of IsInternal_Optional, regardless of it having been set */
+	bool& GetIsInternal() { return IsInternal_Optional; }
+	/** @brief Gets the value of IsInternal_Optional, regardless of it having been set */
+	const bool& GetIsInternal() const { return IsInternal_Optional; }
+	/** @brief Gets the value of IsInternal_Optional, if it has been set, otherwise it returns DefaultValue */
+	const bool& GetIsInternal(const bool& DefaultValue) const { if (IsInternal_IsSet) return IsInternal_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of IsInternal_Optional and returns true if it has been set, otherwise returns false */
+	bool GetIsInternal(bool& OutValue) const { if (IsInternal_IsSet && !IsInternal_IsNull) OutValue = IsInternal_Optional; return IsInternal_IsSet; }
+	/** @brief Returns a pointer to IsInternal_Optional, if it has been set, otherwise returns nullptr */
+	bool* GetIsInternalOrNull() { if (IsInternal_IsSet) return (IsInternal_IsNull ? nullptr : &IsInternal_Optional); return nullptr; }
+	/** @brief Returns a pointer to IsInternal_Optional, if it has been set, otherwise returns nullptr */
+	const bool* GetIsInternalOrNull() const { if (IsInternal_IsSet) return (IsInternal_IsNull ? nullptr : &IsInternal_Optional); return nullptr; }
+	/** @brief Sets the value of IsInternal_Optional and also sets IsInternal_IsSet to true */
+	void SetIsInternal(const bool& NewValue) { IsInternal_Optional = NewValue; IsInternal_IsSet = true; IsInternal_IsNull = false; }
+	/** @brief Sets the value of IsInternal_Optional and also sets IsInternal_IsSet to true using move semantics */
+	void SetIsInternal(bool&& NewValue) { IsInternal_Optional = NewValue; IsInternal_IsSet = true; IsInternal_IsNull = false; }
+	/** @brief Clears the value of IsInternal_Optional and sets IsInternal_IsSet to false */
+	void ClearIsInternal() { IsInternal_Optional = false; IsInternal_IsSet = false; IsInternal_IsNull = false; }
+	/** @brief Checks whether IsInternal_Optional has been set */
+	bool IsIsInternalSet() const { return IsInternal_IsSet; }
+	/** @brief Returns true if IsInternal_Optional is set and matches the default value */
+	bool IsIsInternalDefaultValue() const { return IsInternal_IsSet && IsInternal_Optional == false; }
+	/** @brief Sets the value of IsInternal_Optional to its default and also sets IsInternal_IsSet to true */
+	void SetIsInternalToDefault() { SetIsInternal(false); }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetIsInternalToNull() { IsInternal_IsSet = true; IsInternal_IsNull = true; }
+	/** @brief Checks whether IsInternal_Optional is set to null */
+	bool IsIsInternalNull() const { return IsInternal_IsSet && IsInternal_IsNull; }
+
 	/** @brief Regex that is used to verify keys at assignment time */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString KeyRegex_Optional{ TEXT("^.+$") };

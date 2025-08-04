@@ -21,6 +21,9 @@ struct FRHAPI_SettingTypeVersion
 --------------------------------|---------------------------------------------
 `public bool `[`AllowUpdate_Optional`](#structFRHAPI__SettingTypeVersion_1a7cde63d5e798189074a83f5e9b24a3e8) | Are players allowed to set/update keys to this version of the setting type? Does not affect getting or deleting existing settings.
 `public bool `[`AllowUpdate_IsSet`](#structFRHAPI__SettingTypeVersion_1aee033cacb8048accef460ffe06293b98) | true if AllowUpdate_Optional has been set to a value
+`public bool `[`IsInternal_Optional`](#structFRHAPI__SettingTypeVersion_1a22b2ddbc08e1c7379b5bcbda96d80bcd) | 
+`public bool `[`IsInternal_IsSet`](#structFRHAPI__SettingTypeVersion_1a3f88f168366b12dd1fba3cf260d91faf) | true if IsInternal_Optional has been set to a value
+`public bool `[`IsInternal_IsNull`](#structFRHAPI__SettingTypeVersion_1a6c85871e595a7d70aab0ab8ee9cc9118) | true if IsInternal_Optional has been explicitly set to null
 `public FString `[`KeyRegex_Optional`](#structFRHAPI__SettingTypeVersion_1a560ade93145afb89f7492f48cd498b22) | Regex that is used to verify keys at assignment time.
 `public bool `[`KeyRegex_IsSet`](#structFRHAPI__SettingTypeVersion_1a06f3feaf49700c1a9892c62a9c33cf5f) | true if KeyRegex_Optional has been set to a value
 `public TMap< FString, `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` > `[`ValueJsonschema`](#structFRHAPI__SettingTypeVersion_1ae71ccc0448ef3a3d199a78c12f27a4c0) | [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time
@@ -40,6 +43,20 @@ struct FRHAPI_SettingTypeVersion
 `public inline bool `[`IsAllowUpdateSet`](#structFRHAPI__SettingTypeVersion_1a81013f385f660bb26a466bf7cfa93d9b)`() const` | Checks whether AllowUpdate_Optional has been set.
 `public inline bool `[`IsAllowUpdateDefaultValue`](#structFRHAPI__SettingTypeVersion_1ac836a8cfed8cd7dae4a460fab86ab2e3)`() const` | Returns true if AllowUpdate_Optional is set and matches the default value.
 `public inline void `[`SetAllowUpdateToDefault`](#structFRHAPI__SettingTypeVersion_1a391bf3452ed0068b495d2a3754156586)`()` | Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true.
+`public inline bool & `[`GetIsInternal`](#structFRHAPI__SettingTypeVersion_1a44cf992549a6ad3b23cdc92dc0ea025c)`()` | Gets the value of IsInternal_Optional, regardless of it having been set.
+`public inline const bool & `[`GetIsInternal`](#structFRHAPI__SettingTypeVersion_1aaceabd4046abefc90f71d133aec5b118)`() const` | Gets the value of IsInternal_Optional, regardless of it having been set.
+`public inline const bool & `[`GetIsInternal`](#structFRHAPI__SettingTypeVersion_1af1d09645f8be3c7f169703f4d3bf6d6a)`(const bool & DefaultValue) const` | Gets the value of IsInternal_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetIsInternal`](#structFRHAPI__SettingTypeVersion_1af9273b5cb2ec64f115a8e6e2a8bed3b9)`(bool & OutValue) const` | Fills OutValue with the value of IsInternal_Optional and returns true if it has been set, otherwise returns false.
+`public inline bool * `[`GetIsInternalOrNull`](#structFRHAPI__SettingTypeVersion_1a2161e77ef73d11a11b12eee9b57df847)`()` | Returns a pointer to IsInternal_Optional, if it has been set, otherwise returns nullptr.
+`public inline const bool * `[`GetIsInternalOrNull`](#structFRHAPI__SettingTypeVersion_1a61e158747fd85fda550935713b8ca9af)`() const` | Returns a pointer to IsInternal_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetIsInternal`](#structFRHAPI__SettingTypeVersion_1a6c6e1516fa5a73e764022cba346bae73)`(const bool & NewValue)` | Sets the value of IsInternal_Optional and also sets IsInternal_IsSet to true.
+`public inline void `[`SetIsInternal`](#structFRHAPI__SettingTypeVersion_1a982dfedcceeb2c0fc4636013d8b726db)`(bool && NewValue)` | Sets the value of IsInternal_Optional and also sets IsInternal_IsSet to true using move semantics.
+`public inline void `[`ClearIsInternal`](#structFRHAPI__SettingTypeVersion_1a2afb68686fccca3099dfded581101413)`()` | Clears the value of IsInternal_Optional and sets IsInternal_IsSet to false.
+`public inline bool `[`IsIsInternalSet`](#structFRHAPI__SettingTypeVersion_1a790aa75ac5d0c518e5d49cf0ea713ac7)`() const` | Checks whether IsInternal_Optional has been set.
+`public inline bool `[`IsIsInternalDefaultValue`](#structFRHAPI__SettingTypeVersion_1aafeaa774bf82ca1986575825b734a6a0)`() const` | Returns true if IsInternal_Optional is set and matches the default value.
+`public inline void `[`SetIsInternalToDefault`](#structFRHAPI__SettingTypeVersion_1a50aedf812048223876b0c6fec228969e)`()` | Sets the value of IsInternal_Optional to its default and also sets IsInternal_IsSet to true.
+`public inline void `[`SetIsInternalToNull`](#structFRHAPI__SettingTypeVersion_1ad281df36d4ebf74b137c4545dc36e87d)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsIsInternalNull`](#structFRHAPI__SettingTypeVersion_1a8dbeb81e1e9ae1d1cdab41e5b7a2c93a)`() const` | Checks whether IsInternal_Optional is set to null.
 `public inline FString & `[`GetKeyRegex`](#structFRHAPI__SettingTypeVersion_1a002d75ca7a9a42b71a9a5715e3b0712f)`()` | Gets the value of KeyRegex_Optional, regardless of it having been set.
 `public inline const FString & `[`GetKeyRegex`](#structFRHAPI__SettingTypeVersion_1a5a8af741d53501dcecbab3e2e7e34ea1)`() const` | Gets the value of KeyRegex_Optional, regardless of it having been set.
 `public inline const FString & `[`GetKeyRegex`](#structFRHAPI__SettingTypeVersion_1ac5982a29fade1ef492abe0dd9081e630)`(const FString & DefaultValue) const` | Gets the value of KeyRegex_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -76,6 +93,16 @@ Are players allowed to set/update keys to this version of the setting type? Does
 #### `public bool `[`AllowUpdate_IsSet`](#structFRHAPI__SettingTypeVersion_1aee033cacb8048accef460ffe06293b98) <a id="structFRHAPI__SettingTypeVersion_1aee033cacb8048accef460ffe06293b98"></a>
 
 true if AllowUpdate_Optional has been set to a value
+
+#### `public bool `[`IsInternal_Optional`](#structFRHAPI__SettingTypeVersion_1a22b2ddbc08e1c7379b5bcbda96d80bcd) <a id="structFRHAPI__SettingTypeVersion_1a22b2ddbc08e1c7379b5bcbda96d80bcd"></a>
+
+#### `public bool `[`IsInternal_IsSet`](#structFRHAPI__SettingTypeVersion_1a3f88f168366b12dd1fba3cf260d91faf) <a id="structFRHAPI__SettingTypeVersion_1a3f88f168366b12dd1fba3cf260d91faf"></a>
+
+true if IsInternal_Optional has been set to a value
+
+#### `public bool `[`IsInternal_IsNull`](#structFRHAPI__SettingTypeVersion_1a6c85871e595a7d70aab0ab8ee9cc9118) <a id="structFRHAPI__SettingTypeVersion_1a6c85871e595a7d70aab0ab8ee9cc9118"></a>
+
+true if IsInternal_Optional has been explicitly set to null
 
 #### `public FString `[`KeyRegex_Optional`](#structFRHAPI__SettingTypeVersion_1a560ade93145afb89f7492f48cd498b22) <a id="structFRHAPI__SettingTypeVersion_1a560ade93145afb89f7492f48cd498b22"></a>
 
@@ -161,6 +188,62 @@ Returns true if AllowUpdate_Optional is set and matches the default value.
 #### `public inline void `[`SetAllowUpdateToDefault`](#structFRHAPI__SettingTypeVersion_1a391bf3452ed0068b495d2a3754156586)`()` <a id="structFRHAPI__SettingTypeVersion_1a391bf3452ed0068b495d2a3754156586"></a>
 
 Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true.
+
+#### `public inline bool & `[`GetIsInternal`](#structFRHAPI__SettingTypeVersion_1a44cf992549a6ad3b23cdc92dc0ea025c)`()` <a id="structFRHAPI__SettingTypeVersion_1a44cf992549a6ad3b23cdc92dc0ea025c"></a>
+
+Gets the value of IsInternal_Optional, regardless of it having been set.
+
+#### `public inline const bool & `[`GetIsInternal`](#structFRHAPI__SettingTypeVersion_1aaceabd4046abefc90f71d133aec5b118)`() const` <a id="structFRHAPI__SettingTypeVersion_1aaceabd4046abefc90f71d133aec5b118"></a>
+
+Gets the value of IsInternal_Optional, regardless of it having been set.
+
+#### `public inline const bool & `[`GetIsInternal`](#structFRHAPI__SettingTypeVersion_1af1d09645f8be3c7f169703f4d3bf6d6a)`(const bool & DefaultValue) const` <a id="structFRHAPI__SettingTypeVersion_1af1d09645f8be3c7f169703f4d3bf6d6a"></a>
+
+Gets the value of IsInternal_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetIsInternal`](#structFRHAPI__SettingTypeVersion_1af9273b5cb2ec64f115a8e6e2a8bed3b9)`(bool & OutValue) const` <a id="structFRHAPI__SettingTypeVersion_1af9273b5cb2ec64f115a8e6e2a8bed3b9"></a>
+
+Fills OutValue with the value of IsInternal_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline bool * `[`GetIsInternalOrNull`](#structFRHAPI__SettingTypeVersion_1a2161e77ef73d11a11b12eee9b57df847)`()` <a id="structFRHAPI__SettingTypeVersion_1a2161e77ef73d11a11b12eee9b57df847"></a>
+
+Returns a pointer to IsInternal_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const bool * `[`GetIsInternalOrNull`](#structFRHAPI__SettingTypeVersion_1a61e158747fd85fda550935713b8ca9af)`() const` <a id="structFRHAPI__SettingTypeVersion_1a61e158747fd85fda550935713b8ca9af"></a>
+
+Returns a pointer to IsInternal_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetIsInternal`](#structFRHAPI__SettingTypeVersion_1a6c6e1516fa5a73e764022cba346bae73)`(const bool & NewValue)` <a id="structFRHAPI__SettingTypeVersion_1a6c6e1516fa5a73e764022cba346bae73"></a>
+
+Sets the value of IsInternal_Optional and also sets IsInternal_IsSet to true.
+
+#### `public inline void `[`SetIsInternal`](#structFRHAPI__SettingTypeVersion_1a982dfedcceeb2c0fc4636013d8b726db)`(bool && NewValue)` <a id="structFRHAPI__SettingTypeVersion_1a982dfedcceeb2c0fc4636013d8b726db"></a>
+
+Sets the value of IsInternal_Optional and also sets IsInternal_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearIsInternal`](#structFRHAPI__SettingTypeVersion_1a2afb68686fccca3099dfded581101413)`()` <a id="structFRHAPI__SettingTypeVersion_1a2afb68686fccca3099dfded581101413"></a>
+
+Clears the value of IsInternal_Optional and sets IsInternal_IsSet to false.
+
+#### `public inline bool `[`IsIsInternalSet`](#structFRHAPI__SettingTypeVersion_1a790aa75ac5d0c518e5d49cf0ea713ac7)`() const` <a id="structFRHAPI__SettingTypeVersion_1a790aa75ac5d0c518e5d49cf0ea713ac7"></a>
+
+Checks whether IsInternal_Optional has been set.
+
+#### `public inline bool `[`IsIsInternalDefaultValue`](#structFRHAPI__SettingTypeVersion_1aafeaa774bf82ca1986575825b734a6a0)`() const` <a id="structFRHAPI__SettingTypeVersion_1aafeaa774bf82ca1986575825b734a6a0"></a>
+
+Returns true if IsInternal_Optional is set and matches the default value.
+
+#### `public inline void `[`SetIsInternalToDefault`](#structFRHAPI__SettingTypeVersion_1a50aedf812048223876b0c6fec228969e)`()` <a id="structFRHAPI__SettingTypeVersion_1a50aedf812048223876b0c6fec228969e"></a>
+
+Sets the value of IsInternal_Optional to its default and also sets IsInternal_IsSet to true.
+
+#### `public inline void `[`SetIsInternalToNull`](#structFRHAPI__SettingTypeVersion_1ad281df36d4ebf74b137c4545dc36e87d)`()` <a id="structFRHAPI__SettingTypeVersion_1ad281df36d4ebf74b137c4545dc36e87d"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsIsInternalNull`](#structFRHAPI__SettingTypeVersion_1a8dbeb81e1e9ae1d1cdab41e5b7a2c93a)`() const` <a id="structFRHAPI__SettingTypeVersion_1a8dbeb81e1e9ae1d1cdab41e5b7a2c93a"></a>
+
+Checks whether IsInternal_Optional is set to null.
 
 #### `public inline FString & `[`GetKeyRegex`](#structFRHAPI__SettingTypeVersion_1a002d75ca7a9a42b71a9a5715e3b0712f)`()` <a id="structFRHAPI__SettingTypeVersion_1a002d75ca7a9a42b71a9a5715e3b0712f"></a>
 

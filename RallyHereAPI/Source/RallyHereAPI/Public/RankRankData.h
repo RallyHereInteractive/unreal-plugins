@@ -89,6 +89,33 @@ struct RALLYHEREAPI_API FRHAPI_RankRankData : public FRHAPI_Model
 	void ClearCustomData() { CustomData_IsSet = false;  }
 	/** @brief Checks whether CustomData_Optional has been set */
 	bool IsCustomDataSet() const { return CustomData_IsSet; }
+
+	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FDateTime LastUpdatedDatetime_Optional{  };
+	/** @brief true if LastUpdatedDatetime_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LastUpdatedDatetime_IsSet{ false };
+	/** @brief Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set */
+	FDateTime& GetLastUpdatedDatetime() { return LastUpdatedDatetime_Optional; }
+	/** @brief Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set */
+	const FDateTime& GetLastUpdatedDatetime() const { return LastUpdatedDatetime_Optional; }
+	/** @brief Gets the value of LastUpdatedDatetime_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FDateTime& GetLastUpdatedDatetime(const FDateTime& DefaultValue) const { if (LastUpdatedDatetime_IsSet) return LastUpdatedDatetime_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LastUpdatedDatetime_Optional and returns true if it has been set, otherwise returns false */
+	bool GetLastUpdatedDatetime(FDateTime& OutValue) const { if (LastUpdatedDatetime_IsSet) OutValue = LastUpdatedDatetime_Optional; return LastUpdatedDatetime_IsSet; }
+	/** @brief Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr */
+	FDateTime* GetLastUpdatedDatetimeOrNull() { if (LastUpdatedDatetime_IsSet) return (&LastUpdatedDatetime_Optional); return nullptr; }
+	/** @brief Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr */
+	const FDateTime* GetLastUpdatedDatetimeOrNull() const { if (LastUpdatedDatetime_IsSet) return (&LastUpdatedDatetime_Optional); return nullptr; }
+	/** @brief Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true */
+	void SetLastUpdatedDatetime(const FDateTime& NewValue) { LastUpdatedDatetime_Optional = NewValue; LastUpdatedDatetime_IsSet = true;  }
+	/** @brief Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true using move semantics */
+	void SetLastUpdatedDatetime(FDateTime&& NewValue) { LastUpdatedDatetime_Optional = NewValue; LastUpdatedDatetime_IsSet = true;  }
+	/** @brief Clears the value of LastUpdatedDatetime_Optional and sets LastUpdatedDatetime_IsSet to false */
+	void ClearLastUpdatedDatetime() { LastUpdatedDatetime_IsSet = false;  }
+	/** @brief Checks whether LastUpdatedDatetime_Optional has been set */
+	bool IsLastUpdatedDatetimeSet() const { return LastUpdatedDatetime_IsSet; }
 };
 
 /** @} */

@@ -62,6 +62,11 @@ void FRHAPI_LoginResult::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("portal_user_id"));
 		RallyHereAPI::WriteJsonValue(Writer, PortalUserId_Optional);
 	}
+	if (PlatformEnvironment_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("platform_environment"));
+		RallyHereAPI::WriteJsonValue(Writer, PlatformEnvironment_Optional);
+	}
 	if (DisplayName_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("display_name"));
@@ -162,6 +167,12 @@ bool FRHAPI_LoginResult::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		PortalUserId_IsSet = TryGetJsonValue(JsonPortalUserIdField, PortalUserId_Optional);
 		ParseSuccess &= PortalUserId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPlatformEnvironmentField = (*Object)->TryGetField(TEXT("platform_environment"));
+	if (JsonPlatformEnvironmentField.IsValid())
+	{
+		PlatformEnvironment_IsSet = TryGetJsonValue(JsonPlatformEnvironmentField, PlatformEnvironment_Optional);
+		ParseSuccess &= PlatformEnvironment_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonDisplayNameField = (*Object)->TryGetField(TEXT("display_name"));
 	if (JsonDisplayNameField.IsValid())

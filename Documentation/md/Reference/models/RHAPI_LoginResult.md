@@ -37,6 +37,8 @@ Login result.
 `public bool `[`PortalId_IsSet`](#structFRHAPI__LoginResult_1a2d86cb45ba94ba52ff96d96888c2abda) | true if PortalId_Optional has been set to a value
 `public FString `[`PortalUserId_Optional`](#structFRHAPI__LoginResult_1ad5f66896b60689fc1414d092f0daa968) | Portal user ID.
 `public bool `[`PortalUserId_IsSet`](#structFRHAPI__LoginResult_1aeefd030bad04f66c45751ce2adbadf86) | true if PortalUserId_Optional has been set to a value
+`public FString `[`PlatformEnvironment_Optional`](#structFRHAPI__LoginResult_1a841198710987a73e506322921009a61b) | Which of the platform's environments was this user info from? For Xbox, this is sandbox. For PSN, this is sp-int/prod-qa/np. For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1.
+`public bool `[`PlatformEnvironment_IsSet`](#structFRHAPI__LoginResult_1a7577905d5d0f7576ae1f3a0f1b41e057) | true if PlatformEnvironment_Optional has been set to a value
 `public FString `[`DisplayName_Optional`](#structFRHAPI__LoginResult_1a8cdc905ef995721032212eac2a6472fe) | Display name.
 `public bool `[`DisplayName_IsSet`](#structFRHAPI__LoginResult_1a490d90d8c0d72ce6e3bee3ee328f1e70) | true if DisplayName_Optional has been set to a value
 `public int32 `[`RoleId_Optional`](#structFRHAPI__LoginResult_1afebeb425c411703bca06d59456ba9d0d) | Role ID.
@@ -141,6 +143,16 @@ Login result.
 `public inline void `[`SetPortalUserId`](#structFRHAPI__LoginResult_1a03b96bddb9841327dce473288ae493b7)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalUserId`](#structFRHAPI__LoginResult_1a1a87647cf0a6cdeafe147e2696e9d94a)`()` | Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
 `public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__LoginResult_1a11e99240bfc0f80cd55f182f5acee8ec)`() const` | Checks whether PortalUserId_Optional has been set.
+`public inline FString & `[`GetPlatformEnvironment`](#structFRHAPI__LoginResult_1a264827cd0b7337b7ee73d8e4bdd042a9)`()` | Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__LoginResult_1a18fe8e426fbc664a9453ff1051a0f738)`() const` | Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+`public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__LoginResult_1afdbb2c6a3e18afd46c970843d0647087)`(const FString & DefaultValue) const` | Gets the value of PlatformEnvironment_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetPlatformEnvironment`](#structFRHAPI__LoginResult_1ad6b563f9d82a895af657741da35f1aca)`(FString & OutValue) const` | Fills OutValue with the value of PlatformEnvironment_Optional and returns true if it has been set, otherwise returns false.
+`public inline FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__LoginResult_1a1fbffe440632b07be2d9f0c8aea51d9e)`()` | Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+`public inline const FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__LoginResult_1af05fc51e0c70b4fad3cbb8571c1fef02)`() const` | Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetPlatformEnvironment`](#structFRHAPI__LoginResult_1a1fab31411efb20628d1934efb88a9c4e)`(const FString & NewValue)` | Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true.
+`public inline void `[`SetPlatformEnvironment`](#structFRHAPI__LoginResult_1a6fcc4e58ca1f3ab55fa852d150b86a6c)`(FString && NewValue)` | Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true using move semantics.
+`public inline void `[`ClearPlatformEnvironment`](#structFRHAPI__LoginResult_1a6a35c4e31f094790a6989eff35069645)`()` | Clears the value of PlatformEnvironment_Optional and sets PlatformEnvironment_IsSet to false.
+`public inline bool `[`IsPlatformEnvironmentSet`](#structFRHAPI__LoginResult_1afcf0d0b0c527433d21fe84682aedecf9)`() const` | Checks whether PlatformEnvironment_Optional has been set.
 `public inline FString & `[`GetDisplayName`](#structFRHAPI__LoginResult_1a0477529d53f56ef257a6912470ca08c5)`()` | Gets the value of DisplayName_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDisplayName`](#structFRHAPI__LoginResult_1a262fb3732ba5716b9a1c87845c84d221)`() const` | Gets the value of DisplayName_Optional, regardless of it having been set.
 `public inline const FString & `[`GetDisplayName`](#structFRHAPI__LoginResult_1a5c3d1eca7b68af68b869122cb4006713)`(const FString & DefaultValue) const` | Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -297,6 +309,14 @@ Portal user ID.
 #### `public bool `[`PortalUserId_IsSet`](#structFRHAPI__LoginResult_1aeefd030bad04f66c45751ce2adbadf86) <a id="structFRHAPI__LoginResult_1aeefd030bad04f66c45751ce2adbadf86"></a>
 
 true if PortalUserId_Optional has been set to a value
+
+#### `public FString `[`PlatformEnvironment_Optional`](#structFRHAPI__LoginResult_1a841198710987a73e506322921009a61b) <a id="structFRHAPI__LoginResult_1a841198710987a73e506322921009a61b"></a>
+
+Which of the platform's environments was this user info from? For Xbox, this is sandbox. For PSN, this is sp-int/prod-qa/np. For Nintendo, this is jd1/dd1/dp1/sd1/sp1/lp1.
+
+#### `public bool `[`PlatformEnvironment_IsSet`](#structFRHAPI__LoginResult_1a7577905d5d0f7576ae1f3a0f1b41e057) <a id="structFRHAPI__LoginResult_1a7577905d5d0f7576ae1f3a0f1b41e057"></a>
+
+true if PlatformEnvironment_Optional has been set to a value
 
 #### `public FString `[`DisplayName_Optional`](#structFRHAPI__LoginResult_1a8cdc905ef995721032212eac2a6472fe) <a id="structFRHAPI__LoginResult_1a8cdc905ef995721032212eac2a6472fe"></a>
 
@@ -722,6 +742,46 @@ Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
 #### `public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__LoginResult_1a11e99240bfc0f80cd55f182f5acee8ec)`() const` <a id="structFRHAPI__LoginResult_1a11e99240bfc0f80cd55f182f5acee8ec"></a>
 
 Checks whether PortalUserId_Optional has been set.
+
+#### `public inline FString & `[`GetPlatformEnvironment`](#structFRHAPI__LoginResult_1a264827cd0b7337b7ee73d8e4bdd042a9)`()` <a id="structFRHAPI__LoginResult_1a264827cd0b7337b7ee73d8e4bdd042a9"></a>
+
+Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__LoginResult_1a18fe8e426fbc664a9453ff1051a0f738)`() const` <a id="structFRHAPI__LoginResult_1a18fe8e426fbc664a9453ff1051a0f738"></a>
+
+Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+
+#### `public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__LoginResult_1afdbb2c6a3e18afd46c970843d0647087)`(const FString & DefaultValue) const` <a id="structFRHAPI__LoginResult_1afdbb2c6a3e18afd46c970843d0647087"></a>
+
+Gets the value of PlatformEnvironment_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetPlatformEnvironment`](#structFRHAPI__LoginResult_1ad6b563f9d82a895af657741da35f1aca)`(FString & OutValue) const` <a id="structFRHAPI__LoginResult_1ad6b563f9d82a895af657741da35f1aca"></a>
+
+Fills OutValue with the value of PlatformEnvironment_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__LoginResult_1a1fbffe440632b07be2d9f0c8aea51d9e)`()` <a id="structFRHAPI__LoginResult_1a1fbffe440632b07be2d9f0c8aea51d9e"></a>
+
+Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__LoginResult_1af05fc51e0c70b4fad3cbb8571c1fef02)`() const` <a id="structFRHAPI__LoginResult_1af05fc51e0c70b4fad3cbb8571c1fef02"></a>
+
+Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetPlatformEnvironment`](#structFRHAPI__LoginResult_1a1fab31411efb20628d1934efb88a9c4e)`(const FString & NewValue)` <a id="structFRHAPI__LoginResult_1a1fab31411efb20628d1934efb88a9c4e"></a>
+
+Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true.
+
+#### `public inline void `[`SetPlatformEnvironment`](#structFRHAPI__LoginResult_1a6fcc4e58ca1f3ab55fa852d150b86a6c)`(FString && NewValue)` <a id="structFRHAPI__LoginResult_1a6fcc4e58ca1f3ab55fa852d150b86a6c"></a>
+
+Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearPlatformEnvironment`](#structFRHAPI__LoginResult_1a6a35c4e31f094790a6989eff35069645)`()` <a id="structFRHAPI__LoginResult_1a6a35c4e31f094790a6989eff35069645"></a>
+
+Clears the value of PlatformEnvironment_Optional and sets PlatformEnvironment_IsSet to false.
+
+#### `public inline bool `[`IsPlatformEnvironmentSet`](#structFRHAPI__LoginResult_1afcf0d0b0c527433d21fe84682aedecf9)`() const` <a id="structFRHAPI__LoginResult_1afcf0d0b0c527433d21fe84682aedecf9"></a>
+
+Checks whether PlatformEnvironment_Optional has been set.
 
 #### `public inline FString & `[`GetDisplayName`](#structFRHAPI__LoginResult_1a0477529d53f56ef257a6912470ca08c5)`()` <a id="structFRHAPI__LoginResult_1a0477529d53f56ef257a6912470ca08c5"></a>
 
