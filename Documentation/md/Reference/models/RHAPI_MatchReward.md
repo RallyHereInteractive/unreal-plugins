@@ -19,16 +19,14 @@ struct FRHAPI_MatchReward
 
  Members                        | Descriptions                                
 --------------------------------|---------------------------------------------
-`public int32 `[`LootId`](#structFRHAPI__MatchReward_1aa730b2c3bef9076679f4196811c77aa4) | Which loot to grant to the player.
+`public FGuid `[`LootId`](#structFRHAPI__MatchReward_1a5dee5442ffa0d546c4f75f562b17972b) | Which loot to grant to the player.
 `public int32 `[`Quantity`](#structFRHAPI__MatchReward_1a29c92b98ab0f134e2e478fc0ac479bf0) | How many times to grant the loot to the player.
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchReward_1af3cd68bbd709a37180e2cb0927541dd4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchReward_1a99ae1b8115561be22c9f837545bf5f11)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetLootId`](#structFRHAPI__MatchReward_1ab31690085ccfe4d5759d9c39813920b1)`()` | Gets the value of LootId.
-`public inline const int32 & `[`GetLootId`](#structFRHAPI__MatchReward_1a5c50195551de760ce4e3e55074e336e8)`() const` | Gets the value of LootId.
-`public inline void `[`SetLootId`](#structFRHAPI__MatchReward_1a3d8ee3a661dc1ee944b7ce811b1b38db)`(const int32 & NewValue)` | Sets the value of LootId.
-`public inline void `[`SetLootId`](#structFRHAPI__MatchReward_1af10eaaa8bbdc1a2e5097d3099f2625d8)`(int32 && NewValue)` | Sets the value of LootId using move semantics.
-`public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__MatchReward_1a822b444b0a0960df830361201bb1f149)`() const` | Returns true if LootId matches the default value.
-`public inline void `[`SetLootIdToDefault`](#structFRHAPI__MatchReward_1a1b0693a0221603662eadd4434c5c3c1a)`()` | Sets the value of LootId to its default
+`public inline FGuid & `[`GetLootId`](#structFRHAPI__MatchReward_1a759f981b65d63ed447fcf8bb1fd447de)`()` | Gets the value of LootId.
+`public inline const FGuid & `[`GetLootId`](#structFRHAPI__MatchReward_1aacbc4ff6d1792a0255687f477be638a2)`() const` | Gets the value of LootId.
+`public inline void `[`SetLootId`](#structFRHAPI__MatchReward_1ad9fbcaf55cf5353fa611744b26b7e475)`(const FGuid & NewValue)` | Sets the value of LootId.
+`public inline void `[`SetLootId`](#structFRHAPI__MatchReward_1abcef6553f71545a7c30ee54125301502)`(FGuid && NewValue)` | Sets the value of LootId using move semantics.
 `public inline int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a0df531d1285963c8c7d6be2f1fefd979)`()` | Gets the value of Quantity.
 `public inline const int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a21d13a6abd295eae55c815f8a495487f)`() const` | Gets the value of Quantity.
 `public inline void `[`SetQuantity`](#structFRHAPI__MatchReward_1afd4de34e83b386737898572b7da7f145)`(const int32 & NewValue)` | Sets the value of Quantity.
@@ -38,7 +36,7 @@ struct FRHAPI_MatchReward
 
 ### Members
 
-#### `public int32 `[`LootId`](#structFRHAPI__MatchReward_1aa730b2c3bef9076679f4196811c77aa4) <a id="structFRHAPI__MatchReward_1aa730b2c3bef9076679f4196811c77aa4"></a>
+#### `public FGuid `[`LootId`](#structFRHAPI__MatchReward_1a5dee5442ffa0d546c4f75f562b17972b) <a id="structFRHAPI__MatchReward_1a5dee5442ffa0d546c4f75f562b17972b"></a>
 
 Which loot to grant to the player.
 
@@ -63,29 +61,21 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetLootId`](#structFRHAPI__MatchReward_1ab31690085ccfe4d5759d9c39813920b1)`()` <a id="structFRHAPI__MatchReward_1ab31690085ccfe4d5759d9c39813920b1"></a>
+#### `public inline FGuid & `[`GetLootId`](#structFRHAPI__MatchReward_1a759f981b65d63ed447fcf8bb1fd447de)`()` <a id="structFRHAPI__MatchReward_1a759f981b65d63ed447fcf8bb1fd447de"></a>
 
 Gets the value of LootId.
 
-#### `public inline const int32 & `[`GetLootId`](#structFRHAPI__MatchReward_1a5c50195551de760ce4e3e55074e336e8)`() const` <a id="structFRHAPI__MatchReward_1a5c50195551de760ce4e3e55074e336e8"></a>
+#### `public inline const FGuid & `[`GetLootId`](#structFRHAPI__MatchReward_1aacbc4ff6d1792a0255687f477be638a2)`() const` <a id="structFRHAPI__MatchReward_1aacbc4ff6d1792a0255687f477be638a2"></a>
 
 Gets the value of LootId.
 
-#### `public inline void `[`SetLootId`](#structFRHAPI__MatchReward_1a3d8ee3a661dc1ee944b7ce811b1b38db)`(const int32 & NewValue)` <a id="structFRHAPI__MatchReward_1a3d8ee3a661dc1ee944b7ce811b1b38db"></a>
+#### `public inline void `[`SetLootId`](#structFRHAPI__MatchReward_1ad9fbcaf55cf5353fa611744b26b7e475)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchReward_1ad9fbcaf55cf5353fa611744b26b7e475"></a>
 
 Sets the value of LootId.
 
-#### `public inline void `[`SetLootId`](#structFRHAPI__MatchReward_1af10eaaa8bbdc1a2e5097d3099f2625d8)`(int32 && NewValue)` <a id="structFRHAPI__MatchReward_1af10eaaa8bbdc1a2e5097d3099f2625d8"></a>
+#### `public inline void `[`SetLootId`](#structFRHAPI__MatchReward_1abcef6553f71545a7c30ee54125301502)`(FGuid && NewValue)` <a id="structFRHAPI__MatchReward_1abcef6553f71545a7c30ee54125301502"></a>
 
 Sets the value of LootId using move semantics.
-
-#### `public inline bool `[`IsLootIdDefaultValue`](#structFRHAPI__MatchReward_1a822b444b0a0960df830361201bb1f149)`() const` <a id="structFRHAPI__MatchReward_1a822b444b0a0960df830361201bb1f149"></a>
-
-Returns true if LootId matches the default value.
-
-#### `public inline void `[`SetLootIdToDefault`](#structFRHAPI__MatchReward_1a1b0693a0221603662eadd4434c5c3c1a)`()` <a id="structFRHAPI__MatchReward_1a1b0693a0221603662eadd4434c5c3c1a"></a>
-
-Sets the value of LootId to its default
 
 #### `public inline int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a0df531d1285963c8c7d6be2f1fefd979)`()` <a id="structFRHAPI__MatchReward_1a0df531d1285963c8c7d6be2f1fefd979"></a>
 

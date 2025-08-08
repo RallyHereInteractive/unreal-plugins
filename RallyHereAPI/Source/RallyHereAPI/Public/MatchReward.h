@@ -41,19 +41,15 @@ struct RALLYHEREAPI_API FRHAPI_MatchReward : public FRHAPI_Model
 
 	/** @brief Which loot to grant to the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	int32 LootId{ 0 };
+	FGuid LootId{  };
 	/** @brief Gets the value of LootId */
-	int32& GetLootId() { return LootId; }
+	FGuid& GetLootId() { return LootId; }
 	/** @brief Gets the value of LootId */
-	const int32& GetLootId() const { return LootId; }
+	const FGuid& GetLootId() const { return LootId; }
 	/** @brief Sets the value of LootId */
-	void SetLootId(const int32& NewValue) { LootId = NewValue;   }
+	void SetLootId(const FGuid& NewValue) { LootId = NewValue;   }
 	/** @brief Sets the value of LootId using move semantics */
-	void SetLootId(int32&& NewValue) { LootId = NewValue;   }
-	/** @brief Returns true if LootId matches the default value */
-	bool IsLootIdDefaultValue() const { return LootId == 0; }
-	/** @brief Sets the value of LootId to its default  */
-	void SetLootIdToDefault() { SetLootId(0); }
+	void SetLootId(FGuid&& NewValue) { LootId = NewValue;   }
 
 	/** @brief How many times to grant the loot to the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

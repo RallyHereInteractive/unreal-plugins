@@ -49100,8 +49100,8 @@
       "MatchReward": {
         "properties": {
           "loot_id": {
-            "type": "integer",
-            "exclusiveMinimum": 0,
+            "type": "string",
+            "format": "uuid",
             "title": "Loot Id",
             "description": "Which loot to grant to the player"
           },
