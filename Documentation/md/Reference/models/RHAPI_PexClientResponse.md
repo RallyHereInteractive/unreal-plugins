@@ -87,6 +87,12 @@ struct FRHAPI_PexClientResponse
 `public `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` `[`GpuTime_Optional`](#structFRHAPI__PexClientResponse_1a2c9fa7ac5b6d6e5b23c819996243da67) | 
 `public bool `[`GpuTime_IsSet`](#structFRHAPI__PexClientResponse_1a9988951d036cdda542da57b05a81458c) | true if GpuTime_Optional has been set to a value
 `public bool `[`GpuTime_IsNull`](#structFRHAPI__PexClientResponse_1a3e9b39b87390135ffd6a116c0101f98c) | true if GpuTime_Optional has been explicitly set to null
+`public `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` `[`VramUsed_Optional`](#structFRHAPI__PexClientResponse_1a32f0a3f48cb7a4dd0eedf54dbb5cf6dd) | 
+`public bool `[`VramUsed_IsSet`](#structFRHAPI__PexClientResponse_1af30934a7dda583ecbeccdeea1ed21f59) | true if VramUsed_Optional has been set to a value
+`public bool `[`VramUsed_IsNull`](#structFRHAPI__PexClientResponse_1a6bdf50410700d976d21fc6a95337b00c) | true if VramUsed_Optional has been explicitly set to null
+`public `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` `[`VramUsedPct_Optional`](#structFRHAPI__PexClientResponse_1ae6a7fd48a63055285b8cb1e821f8abc5) | 
+`public bool `[`VramUsedPct_IsSet`](#structFRHAPI__PexClientResponse_1ab0c8f6ef4f4ef9d05b837eaa55d23d69) | true if VramUsedPct_Optional has been set to a value
+`public bool `[`VramUsedPct_IsNull`](#structFRHAPI__PexClientResponse_1a320d84f40684b0abf0fe2da43684fa84) | true if VramUsedPct_Optional has been explicitly set to null
 `public `[`FRHAPI_PexClientScores`](RHAPI_PexClientScores.md#structFRHAPI__PexClientScores)` `[`Scores_Optional`](#structFRHAPI__PexClientResponse_1ac42f9677d1c60d6eb46b77c32edb3864) | 
 `public bool `[`Scores_IsSet`](#structFRHAPI__PexClientResponse_1aab8a87abde9e3859a3edb49785bff8b0) | true if Scores_Optional has been set to a value
 `public bool `[`Scores_IsNull`](#structFRHAPI__PexClientResponse_1ab258a65d991ece3f21c7672d23c1f76f) | true if Scores_Optional has been explicitly set to null
@@ -419,6 +425,30 @@ struct FRHAPI_PexClientResponse
 `public inline bool `[`IsGpuTimeSet`](#structFRHAPI__PexClientResponse_1a02159cd2cb3301f3b4fde591661a4c10)`() const` | Checks whether GpuTime_Optional has been set.
 `public inline void `[`SetGpuTimeToNull`](#structFRHAPI__PexClientResponse_1acf2833eca534209ac8fcdf16be3a25f2)`()` | Sets the value explicitly to be treated as null.
 `public inline bool `[`IsGpuTimeNull`](#structFRHAPI__PexClientResponse_1a4c534a20063459cb493c25640b29627c)`() const` | Checks whether GpuTime_Optional is set to null.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsed`](#structFRHAPI__PexClientResponse_1a88d5d54cbc39381c0434811e2c0baf14)`()` | Gets the value of VramUsed_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsed`](#structFRHAPI__PexClientResponse_1a84afb376e3b6204f44f5c1451799019c)`() const` | Gets the value of VramUsed_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsed`](#structFRHAPI__PexClientResponse_1ada2e91f57bcf1fe415f79180c249036a)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of VramUsed_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetVramUsed`](#structFRHAPI__PexClientResponse_1ac7ad597400e814a49ae1ba22bb38eb60)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of VramUsed_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetVramUsedOrNull`](#structFRHAPI__PexClientResponse_1a3e3ddb31158c4c8e2d3271eaabfc5073)`()` | Returns a pointer to VramUsed_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetVramUsedOrNull`](#structFRHAPI__PexClientResponse_1ad41bf72291b923ce7891d9d7dc1f6e6b)`() const` | Returns a pointer to VramUsed_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetVramUsed`](#structFRHAPI__PexClientResponse_1a13e53db8f82c68b516e68457fb25c914)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of VramUsed_Optional and also sets VramUsed_IsSet to true.
+`public inline void `[`SetVramUsed`](#structFRHAPI__PexClientResponse_1a3c475555c1ef09d0de19c55fd50bc523)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of VramUsed_Optional and also sets VramUsed_IsSet to true using move semantics.
+`public inline void `[`ClearVramUsed`](#structFRHAPI__PexClientResponse_1a570700abb49e412499c85d254b71cc88)`()` | Clears the value of VramUsed_Optional and sets VramUsed_IsSet to false.
+`public inline bool `[`IsVramUsedSet`](#structFRHAPI__PexClientResponse_1ae93296c4ba67f1d51cf8f19b4ad6116a)`() const` | Checks whether VramUsed_Optional has been set.
+`public inline void `[`SetVramUsedToNull`](#structFRHAPI__PexClientResponse_1a37b97e0ce80d24f983c272532cab60cd)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsVramUsedNull`](#structFRHAPI__PexClientResponse_1a317ec745a2823723502e2ae047d47f23)`() const` | Checks whether VramUsed_Optional is set to null.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsedPct`](#structFRHAPI__PexClientResponse_1a8849262e0eb04bd722f39e6cb285d161)`()` | Gets the value of VramUsedPct_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsedPct`](#structFRHAPI__PexClientResponse_1ae119edffdaebfaf8fb904aadf70476a6)`() const` | Gets the value of VramUsedPct_Optional, regardless of it having been set.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsedPct`](#structFRHAPI__PexClientResponse_1adddaa30ed5f7329bddd6ff74e5678833)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` | Gets the value of VramUsedPct_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline bool `[`GetVramUsedPct`](#structFRHAPI__PexClientResponse_1a8221d8f69c591c1563ee2282b75717cb)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` | Fills OutValue with the value of VramUsedPct_Optional and returns true if it has been set, otherwise returns false.
+`public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetVramUsedPctOrNull`](#structFRHAPI__PexClientResponse_1a7698dcb63b12ff6513de1feb065620f5)`()` | Returns a pointer to VramUsedPct_Optional, if it has been set, otherwise returns nullptr.
+`public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetVramUsedPctOrNull`](#structFRHAPI__PexClientResponse_1a13fb7ecae0cbdbd6024e621cea08ef05)`() const` | Returns a pointer to VramUsedPct_Optional, if it has been set, otherwise returns nullptr.
+`public inline void `[`SetVramUsedPct`](#structFRHAPI__PexClientResponse_1aea7cc6d4eef8c18ea1d445786ccdffc1)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` | Sets the value of VramUsedPct_Optional and also sets VramUsedPct_IsSet to true.
+`public inline void `[`SetVramUsedPct`](#structFRHAPI__PexClientResponse_1a23edef001a9effd754eaf7e50ac9832b)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` | Sets the value of VramUsedPct_Optional and also sets VramUsedPct_IsSet to true using move semantics.
+`public inline void `[`ClearVramUsedPct`](#structFRHAPI__PexClientResponse_1a5ed6ef137dba371e7d0a272073485506)`()` | Clears the value of VramUsedPct_Optional and sets VramUsedPct_IsSet to false.
+`public inline bool `[`IsVramUsedPctSet`](#structFRHAPI__PexClientResponse_1a64edc263a5ba60cbecd7eeb0b258fe1e)`() const` | Checks whether VramUsedPct_Optional has been set.
+`public inline void `[`SetVramUsedPctToNull`](#structFRHAPI__PexClientResponse_1ab0b4fbf9226461786e3cf7d911c0b900)`()` | Sets the value explicitly to be treated as null.
+`public inline bool `[`IsVramUsedPctNull`](#structFRHAPI__PexClientResponse_1aa517140222c004c0d40836f29b2d2628)`() const` | Checks whether VramUsedPct_Optional is set to null.
 `public inline `[`FRHAPI_PexClientScores`](RHAPI_PexClientScores.md#structFRHAPI__PexClientScores)` & `[`GetScores`](#structFRHAPI__PexClientResponse_1ae131e6154b39e9dd4d5a427ffa142166)`()` | Gets the value of Scores_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PexClientScores`](RHAPI_PexClientScores.md#structFRHAPI__PexClientScores)` & `[`GetScores`](#structFRHAPI__PexClientResponse_1a6af43441c16dbeec18cf64656d40d993)`() const` | Gets the value of Scores_Optional, regardless of it having been set.
 `public inline const `[`FRHAPI_PexClientScores`](RHAPI_PexClientScores.md#structFRHAPI__PexClientScores)` & `[`GetScores`](#structFRHAPI__PexClientResponse_1a74620edbc0630ef0488717e3de69b95a)`(const `[`FRHAPI_PexClientScores`](RHAPI_PexClientScores.md#structFRHAPI__PexClientScores)` & DefaultValue) const` | Gets the value of Scores_Optional, if it has been set, otherwise it returns DefaultValue.
@@ -877,6 +907,26 @@ true if GpuTime_Optional has been set to a value
 #### `public bool `[`GpuTime_IsNull`](#structFRHAPI__PexClientResponse_1a3e9b39b87390135ffd6a116c0101f98c) <a id="structFRHAPI__PexClientResponse_1a3e9b39b87390135ffd6a116c0101f98c"></a>
 
 true if GpuTime_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` `[`VramUsed_Optional`](#structFRHAPI__PexClientResponse_1a32f0a3f48cb7a4dd0eedf54dbb5cf6dd) <a id="structFRHAPI__PexClientResponse_1a32f0a3f48cb7a4dd0eedf54dbb5cf6dd"></a>
+
+#### `public bool `[`VramUsed_IsSet`](#structFRHAPI__PexClientResponse_1af30934a7dda583ecbeccdeea1ed21f59) <a id="structFRHAPI__PexClientResponse_1af30934a7dda583ecbeccdeea1ed21f59"></a>
+
+true if VramUsed_Optional has been set to a value
+
+#### `public bool `[`VramUsed_IsNull`](#structFRHAPI__PexClientResponse_1a6bdf50410700d976d21fc6a95337b00c) <a id="structFRHAPI__PexClientResponse_1a6bdf50410700d976d21fc6a95337b00c"></a>
+
+true if VramUsed_Optional has been explicitly set to null
+
+#### `public `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` `[`VramUsedPct_Optional`](#structFRHAPI__PexClientResponse_1ae6a7fd48a63055285b8cb1e821f8abc5) <a id="structFRHAPI__PexClientResponse_1ae6a7fd48a63055285b8cb1e821f8abc5"></a>
+
+#### `public bool `[`VramUsedPct_IsSet`](#structFRHAPI__PexClientResponse_1ab0c8f6ef4f4ef9d05b837eaa55d23d69) <a id="structFRHAPI__PexClientResponse_1ab0c8f6ef4f4ef9d05b837eaa55d23d69"></a>
+
+true if VramUsedPct_Optional has been set to a value
+
+#### `public bool `[`VramUsedPct_IsNull`](#structFRHAPI__PexClientResponse_1a320d84f40684b0abf0fe2da43684fa84) <a id="structFRHAPI__PexClientResponse_1a320d84f40684b0abf0fe2da43684fa84"></a>
+
+true if VramUsedPct_Optional has been explicitly set to null
 
 #### `public `[`FRHAPI_PexClientScores`](RHAPI_PexClientScores.md#structFRHAPI__PexClientScores)` `[`Scores_Optional`](#structFRHAPI__PexClientResponse_1ac42f9677d1c60d6eb46b77c32edb3864) <a id="structFRHAPI__PexClientResponse_1ac42f9677d1c60d6eb46b77c32edb3864"></a>
 
@@ -2178,6 +2228,102 @@ Sets the value explicitly to be treated as null.
 #### `public inline bool `[`IsGpuTimeNull`](#structFRHAPI__PexClientResponse_1a4c534a20063459cb493c25640b29627c)`() const` <a id="structFRHAPI__PexClientResponse_1a4c534a20063459cb493c25640b29627c"></a>
 
 Checks whether GpuTime_Optional is set to null.
+
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsed`](#structFRHAPI__PexClientResponse_1a88d5d54cbc39381c0434811e2c0baf14)`()` <a id="structFRHAPI__PexClientResponse_1a88d5d54cbc39381c0434811e2c0baf14"></a>
+
+Gets the value of VramUsed_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsed`](#structFRHAPI__PexClientResponse_1a84afb376e3b6204f44f5c1451799019c)`() const` <a id="structFRHAPI__PexClientResponse_1a84afb376e3b6204f44f5c1451799019c"></a>
+
+Gets the value of VramUsed_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsed`](#structFRHAPI__PexClientResponse_1ada2e91f57bcf1fe415f79180c249036a)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientResponse_1ada2e91f57bcf1fe415f79180c249036a"></a>
+
+Gets the value of VramUsed_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetVramUsed`](#structFRHAPI__PexClientResponse_1ac7ad597400e814a49ae1ba22bb38eb60)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` <a id="structFRHAPI__PexClientResponse_1ac7ad597400e814a49ae1ba22bb38eb60"></a>
+
+Fills OutValue with the value of VramUsed_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetVramUsedOrNull`](#structFRHAPI__PexClientResponse_1a3e3ddb31158c4c8e2d3271eaabfc5073)`()` <a id="structFRHAPI__PexClientResponse_1a3e3ddb31158c4c8e2d3271eaabfc5073"></a>
+
+Returns a pointer to VramUsed_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetVramUsedOrNull`](#structFRHAPI__PexClientResponse_1ad41bf72291b923ce7891d9d7dc1f6e6b)`() const` <a id="structFRHAPI__PexClientResponse_1ad41bf72291b923ce7891d9d7dc1f6e6b"></a>
+
+Returns a pointer to VramUsed_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetVramUsed`](#structFRHAPI__PexClientResponse_1a13e53db8f82c68b516e68457fb25c914)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` <a id="structFRHAPI__PexClientResponse_1a13e53db8f82c68b516e68457fb25c914"></a>
+
+Sets the value of VramUsed_Optional and also sets VramUsed_IsSet to true.
+
+#### `public inline void `[`SetVramUsed`](#structFRHAPI__PexClientResponse_1a3c475555c1ef09d0de19c55fd50bc523)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` <a id="structFRHAPI__PexClientResponse_1a3c475555c1ef09d0de19c55fd50bc523"></a>
+
+Sets the value of VramUsed_Optional and also sets VramUsed_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearVramUsed`](#structFRHAPI__PexClientResponse_1a570700abb49e412499c85d254b71cc88)`()` <a id="structFRHAPI__PexClientResponse_1a570700abb49e412499c85d254b71cc88"></a>
+
+Clears the value of VramUsed_Optional and sets VramUsed_IsSet to false.
+
+#### `public inline bool `[`IsVramUsedSet`](#structFRHAPI__PexClientResponse_1ae93296c4ba67f1d51cf8f19b4ad6116a)`() const` <a id="structFRHAPI__PexClientResponse_1ae93296c4ba67f1d51cf8f19b4ad6116a"></a>
+
+Checks whether VramUsed_Optional has been set.
+
+#### `public inline void `[`SetVramUsedToNull`](#structFRHAPI__PexClientResponse_1a37b97e0ce80d24f983c272532cab60cd)`()` <a id="structFRHAPI__PexClientResponse_1a37b97e0ce80d24f983c272532cab60cd"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsVramUsedNull`](#structFRHAPI__PexClientResponse_1a317ec745a2823723502e2ae047d47f23)`() const` <a id="structFRHAPI__PexClientResponse_1a317ec745a2823723502e2ae047d47f23"></a>
+
+Checks whether VramUsed_Optional is set to null.
+
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsedPct`](#structFRHAPI__PexClientResponse_1a8849262e0eb04bd722f39e6cb285d161)`()` <a id="structFRHAPI__PexClientResponse_1a8849262e0eb04bd722f39e6cb285d161"></a>
+
+Gets the value of VramUsedPct_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsedPct`](#structFRHAPI__PexClientResponse_1ae119edffdaebfaf8fb904aadf70476a6)`() const` <a id="structFRHAPI__PexClientResponse_1ae119edffdaebfaf8fb904aadf70476a6"></a>
+
+Gets the value of VramUsedPct_Optional, regardless of it having been set.
+
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & `[`GetVramUsedPct`](#structFRHAPI__PexClientResponse_1adddaa30ed5f7329bddd6ff74e5678833)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & DefaultValue) const` <a id="structFRHAPI__PexClientResponse_1adddaa30ed5f7329bddd6ff74e5678833"></a>
+
+Gets the value of VramUsedPct_Optional, if it has been set, otherwise it returns DefaultValue.
+
+#### `public inline bool `[`GetVramUsedPct`](#structFRHAPI__PexClientResponse_1a8221d8f69c591c1563ee2282b75717cb)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & OutValue) const` <a id="structFRHAPI__PexClientResponse_1a8221d8f69c591c1563ee2282b75717cb"></a>
+
+Fills OutValue with the value of VramUsedPct_Optional and returns true if it has been set, otherwise returns false.
+
+#### `public inline `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetVramUsedPctOrNull`](#structFRHAPI__PexClientResponse_1a7698dcb63b12ff6513de1feb065620f5)`()` <a id="structFRHAPI__PexClientResponse_1a7698dcb63b12ff6513de1feb065620f5"></a>
+
+Returns a pointer to VramUsedPct_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` * `[`GetVramUsedPctOrNull`](#structFRHAPI__PexClientResponse_1a13fb7ecae0cbdbd6024e621cea08ef05)`() const` <a id="structFRHAPI__PexClientResponse_1a13fb7ecae0cbdbd6024e621cea08ef05"></a>
+
+Returns a pointer to VramUsedPct_Optional, if it has been set, otherwise returns nullptr.
+
+#### `public inline void `[`SetVramUsedPct`](#structFRHAPI__PexClientResponse_1aea7cc6d4eef8c18ea1d445786ccdffc1)`(const `[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` & NewValue)` <a id="structFRHAPI__PexClientResponse_1aea7cc6d4eef8c18ea1d445786ccdffc1"></a>
+
+Sets the value of VramUsedPct_Optional and also sets VramUsedPct_IsSet to true.
+
+#### `public inline void `[`SetVramUsedPct`](#structFRHAPI__PexClientResponse_1a23edef001a9effd754eaf7e50ac9832b)`(`[`FRHAPI_PexStat`](RHAPI_PexStat.md#structFRHAPI__PexStat)` && NewValue)` <a id="structFRHAPI__PexClientResponse_1a23edef001a9effd754eaf7e50ac9832b"></a>
+
+Sets the value of VramUsedPct_Optional and also sets VramUsedPct_IsSet to true using move semantics.
+
+#### `public inline void `[`ClearVramUsedPct`](#structFRHAPI__PexClientResponse_1a5ed6ef137dba371e7d0a272073485506)`()` <a id="structFRHAPI__PexClientResponse_1a5ed6ef137dba371e7d0a272073485506"></a>
+
+Clears the value of VramUsedPct_Optional and sets VramUsedPct_IsSet to false.
+
+#### `public inline bool `[`IsVramUsedPctSet`](#structFRHAPI__PexClientResponse_1a64edc263a5ba60cbecd7eeb0b258fe1e)`() const` <a id="structFRHAPI__PexClientResponse_1a64edc263a5ba60cbecd7eeb0b258fe1e"></a>
+
+Checks whether VramUsedPct_Optional has been set.
+
+#### `public inline void `[`SetVramUsedPctToNull`](#structFRHAPI__PexClientResponse_1ab0b4fbf9226461786e3cf7d911c0b900)`()` <a id="structFRHAPI__PexClientResponse_1ab0b4fbf9226461786e3cf7d911c0b900"></a>
+
+Sets the value explicitly to be treated as null.
+
+#### `public inline bool `[`IsVramUsedPctNull`](#structFRHAPI__PexClientResponse_1aa517140222c004c0d40836f29b2d2628)`() const` <a id="structFRHAPI__PexClientResponse_1aa517140222c004c0d40836f29b2d2628"></a>
+
+Checks whether VramUsedPct_Optional is set to null.
 
 #### `public inline `[`FRHAPI_PexClientScores`](RHAPI_PexClientScores.md#structFRHAPI__PexClientScores)` & `[`GetScores`](#structFRHAPI__PexClientResponse_1ae131e6154b39e9dd4d5a427ffa142166)`()` <a id="structFRHAPI__PexClientResponse_1ae131e6154b39e9dd4d5a427ffa142166"></a>
 
