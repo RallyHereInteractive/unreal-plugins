@@ -26,6 +26,8 @@ FString EnumToString(const ERHAPI_MatchHostType& Value)
 		return TEXT("dedicated");
 	case ERHAPI_MatchHostType::Player:
 		return TEXT("player");
+	case ERHAPI_MatchHostType::Standalone:
+		return TEXT("standalone");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_MatchHostType::Values Value (%d)"), (int)Value);
@@ -36,7 +38,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_MatchHostType& Value)
 {
 	static TMap<FString, ERHAPI_MatchHostType> StringToEnum = { 
 		{ TEXT("dedicated"), ERHAPI_MatchHostType::Dedicated },
-		{ TEXT("player"), ERHAPI_MatchHostType::Player },	};
+		{ TEXT("player"), ERHAPI_MatchHostType::Player },
+		{ TEXT("standalone"), ERHAPI_MatchHostType::Standalone },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

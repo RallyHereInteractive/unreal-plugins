@@ -797,6 +797,72 @@ struct RALLYHEREAPI_API FRHAPI_PexClientResponse : public FRHAPI_Model
 	bool IsGpuTimeNull() const { return GpuTime_IsSet && GpuTime_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_PexStat VramUsed_Optional{  };
+	/** @brief true if VramUsed_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool VramUsed_IsSet{ false };
+	/** @brief true if VramUsed_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool VramUsed_IsNull{ false };
+	/** @brief Gets the value of VramUsed_Optional, regardless of it having been set */
+	FRHAPI_PexStat& GetVramUsed() { return VramUsed_Optional; }
+	/** @brief Gets the value of VramUsed_Optional, regardless of it having been set */
+	const FRHAPI_PexStat& GetVramUsed() const { return VramUsed_Optional; }
+	/** @brief Gets the value of VramUsed_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_PexStat& GetVramUsed(const FRHAPI_PexStat& DefaultValue) const { if (VramUsed_IsSet) return VramUsed_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of VramUsed_Optional and returns true if it has been set, otherwise returns false */
+	bool GetVramUsed(FRHAPI_PexStat& OutValue) const { if (VramUsed_IsSet && !VramUsed_IsNull) OutValue = VramUsed_Optional; return VramUsed_IsSet; }
+	/** @brief Returns a pointer to VramUsed_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_PexStat* GetVramUsedOrNull() { if (VramUsed_IsSet) return (VramUsed_IsNull ? nullptr : &VramUsed_Optional); return nullptr; }
+	/** @brief Returns a pointer to VramUsed_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_PexStat* GetVramUsedOrNull() const { if (VramUsed_IsSet) return (VramUsed_IsNull ? nullptr : &VramUsed_Optional); return nullptr; }
+	/** @brief Sets the value of VramUsed_Optional and also sets VramUsed_IsSet to true */
+	void SetVramUsed(const FRHAPI_PexStat& NewValue) { VramUsed_Optional = NewValue; VramUsed_IsSet = true; VramUsed_IsNull = false; }
+	/** @brief Sets the value of VramUsed_Optional and also sets VramUsed_IsSet to true using move semantics */
+	void SetVramUsed(FRHAPI_PexStat&& NewValue) { VramUsed_Optional = NewValue; VramUsed_IsSet = true; VramUsed_IsNull = false; }
+	/** @brief Clears the value of VramUsed_Optional and sets VramUsed_IsSet to false */
+	void ClearVramUsed() { VramUsed_IsSet = false; VramUsed_IsNull = false; }
+	/** @brief Checks whether VramUsed_Optional has been set */
+	bool IsVramUsedSet() const { return VramUsed_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetVramUsedToNull() { VramUsed_IsSet = true; VramUsed_IsNull = true; }
+	/** @brief Checks whether VramUsed_Optional is set to null */
+	bool IsVramUsedNull() const { return VramUsed_IsSet && VramUsed_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_PexStat VramUsedPct_Optional{  };
+	/** @brief true if VramUsedPct_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool VramUsedPct_IsSet{ false };
+	/** @brief true if VramUsedPct_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool VramUsedPct_IsNull{ false };
+	/** @brief Gets the value of VramUsedPct_Optional, regardless of it having been set */
+	FRHAPI_PexStat& GetVramUsedPct() { return VramUsedPct_Optional; }
+	/** @brief Gets the value of VramUsedPct_Optional, regardless of it having been set */
+	const FRHAPI_PexStat& GetVramUsedPct() const { return VramUsedPct_Optional; }
+	/** @brief Gets the value of VramUsedPct_Optional, if it has been set, otherwise it returns DefaultValue */
+	const FRHAPI_PexStat& GetVramUsedPct(const FRHAPI_PexStat& DefaultValue) const { if (VramUsedPct_IsSet) return VramUsedPct_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of VramUsedPct_Optional and returns true if it has been set, otherwise returns false */
+	bool GetVramUsedPct(FRHAPI_PexStat& OutValue) const { if (VramUsedPct_IsSet && !VramUsedPct_IsNull) OutValue = VramUsedPct_Optional; return VramUsedPct_IsSet; }
+	/** @brief Returns a pointer to VramUsedPct_Optional, if it has been set, otherwise returns nullptr */
+	FRHAPI_PexStat* GetVramUsedPctOrNull() { if (VramUsedPct_IsSet) return (VramUsedPct_IsNull ? nullptr : &VramUsedPct_Optional); return nullptr; }
+	/** @brief Returns a pointer to VramUsedPct_Optional, if it has been set, otherwise returns nullptr */
+	const FRHAPI_PexStat* GetVramUsedPctOrNull() const { if (VramUsedPct_IsSet) return (VramUsedPct_IsNull ? nullptr : &VramUsedPct_Optional); return nullptr; }
+	/** @brief Sets the value of VramUsedPct_Optional and also sets VramUsedPct_IsSet to true */
+	void SetVramUsedPct(const FRHAPI_PexStat& NewValue) { VramUsedPct_Optional = NewValue; VramUsedPct_IsSet = true; VramUsedPct_IsNull = false; }
+	/** @brief Sets the value of VramUsedPct_Optional and also sets VramUsedPct_IsSet to true using move semantics */
+	void SetVramUsedPct(FRHAPI_PexStat&& NewValue) { VramUsedPct_Optional = NewValue; VramUsedPct_IsSet = true; VramUsedPct_IsNull = false; }
+	/** @brief Clears the value of VramUsedPct_Optional and sets VramUsedPct_IsSet to false */
+	void ClearVramUsedPct() { VramUsedPct_IsSet = false; VramUsedPct_IsNull = false; }
+	/** @brief Checks whether VramUsedPct_Optional has been set */
+	bool IsVramUsedPctSet() const { return VramUsedPct_IsSet; }
+	/** @brief Sets the value explicitly to be treated as null */
+	void SetVramUsedPctToNull() { VramUsedPct_IsSet = true; VramUsedPct_IsNull = true; }
+	/** @brief Checks whether VramUsedPct_Optional is set to null */
+	bool IsVramUsedPctNull() const { return VramUsedPct_IsSet && VramUsedPct_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexClientScores Scores_Optional{  };
 	/** @brief true if Scores_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

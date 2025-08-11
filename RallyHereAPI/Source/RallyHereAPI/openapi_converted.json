@@ -48370,17 +48370,20 @@
         "type": "string",
         "enum": [
           "dedicated",
-          "player"
+          "player",
+          "standalone"
         ],
         "title": "HostType",
         "description": "Whether the host is another player, or a dedicated instance",
         "x-enum-descriptions": [
           "",
+          "",
           ""
         ],
         "x-enum-varnames": [
           "dedicated",
-          "player"
+          "player",
+          "standalone"
         ]
       },
       "MatchAllocation": {
@@ -51888,6 +51891,28 @@
             ],
             "description": "GPU time"
           },
+          "vram_used": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "VRAM Used"
+          },
+          "vram_used_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "VRAM Used Percentage"
+          },
           "match_id": {
             "type": "string",
             "title": "Match Id",
@@ -52365,6 +52390,28 @@
               }
             ],
             "description": "GPU time"
+          },
+          "vram_used": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "VRAM Used"
+          },
+          "vram_used_pct": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PexStat"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "VRAM Used Percentage"
           },
           "scores": {
             "anyOf": [
@@ -54866,12 +54913,26 @@
             "description": "Disables notifications and invites. Leaving this unset will not change the value."
           },
           "custom_data": {
-            "additionalProperties": {
-              "type": "string",
-              "maxLength": 4096,
-              "minLength": 1
-            },
-            "type": "object",
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 4096,
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Custom Data",
             "description": "custom fields for the player to update about their presence. Custom data with a null value will be removed"
           }

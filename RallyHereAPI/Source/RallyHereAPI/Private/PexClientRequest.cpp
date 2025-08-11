@@ -198,6 +198,22 @@ void FRHAPI_PexClientRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		else
 		RallyHereAPI::WriteJsonValue(Writer, GpuTime_Optional);
 	}
+	if (VramUsed_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("vram_used"));
+		if (VramUsed_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, VramUsed_Optional);
+	}
+	if (VramUsedPct_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("vram_used_pct"));
+		if (VramUsedPct_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, VramUsedPct_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("match_id"));
 	RallyHereAPI::WriteJsonValue(Writer, MatchId);
 	if (RegionId_IsSet)
@@ -502,6 +518,20 @@ bool FRHAPI_PexClientRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		GpuTime_IsNull = JsonGpuTimeField->IsNull();
 		GpuTime_IsSet = GpuTime_IsNull || TryGetJsonValue(JsonGpuTimeField, GpuTime_Optional);
 		ParseSuccess &= GpuTime_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonVramUsedField = (*Object)->TryGetField(TEXT("vram_used"));
+	if (JsonVramUsedField.IsValid())
+	{
+		VramUsed_IsNull = JsonVramUsedField->IsNull();
+		VramUsed_IsSet = VramUsed_IsNull || TryGetJsonValue(JsonVramUsedField, VramUsed_Optional);
+		ParseSuccess &= VramUsed_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonVramUsedPctField = (*Object)->TryGetField(TEXT("vram_used_pct"));
+	if (JsonVramUsedPctField.IsValid())
+	{
+		VramUsedPct_IsNull = JsonVramUsedPctField->IsNull();
+		VramUsedPct_IsSet = VramUsedPct_IsNull || TryGetJsonValue(JsonVramUsedPctField, VramUsedPct_Optional);
+		ParseSuccess &= VramUsedPct_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonMatchIdField = (*Object)->TryGetField(TEXT("match_id"));
 	const bool MatchId_IsValid = JsonMatchIdField.IsValid() && (!JsonMatchIdField->IsNull() && TryGetJsonValue(JsonMatchIdField, MatchId));
