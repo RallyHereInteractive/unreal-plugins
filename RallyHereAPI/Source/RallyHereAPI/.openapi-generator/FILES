@@ -291,6 +291,7 @@ Private/PlayerOrdersResponse.cpp
 Private/PlayerPersonResponse.cpp
 Private/PlayerPresence.cpp
 Private/PlayerPresenceUpdateSelf.cpp
+Private/PlayerPresenceUpdateSelfCustomDataValue.cpp
 Private/PlayerRank.cpp
 Private/PlayerRankRequestResponse.cpp
 Private/PlayerRankRequestResponseV2.cpp
@@ -731,6 +732,7 @@ Public/PlayerOrdersResponse.h
 Public/PlayerPersonResponse.h
 Public/PlayerPresence.h
 Public/PlayerPresenceUpdateSelf.h
+Public/PlayerPresenceUpdateSelfCustomDataValue.h
 Public/PlayerRank.h
 Public/PlayerRankRequestResponse.h
 Public/PlayerRankRequestResponseV2.h

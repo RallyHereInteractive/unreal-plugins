@@ -49062,10 +49062,10 @@
       },
       "MatchReward": {
         "properties": {
-          "loot_id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Loot Id",
+          "legacy_loot_id": {
+            "type": "integer",
+            "exclusiveMinimum": 0,
+            "title": "Legacy Loot Id",
             "description": "Which loot to grant to the player"
           },
           "quantity": {
@@ -49077,7 +49077,7 @@
         },
         "type": "object",
         "required": [
-          "loot_id",
+          "legacy_loot_id",
           "quantity"
         ],
         "title": "MatchReward"
