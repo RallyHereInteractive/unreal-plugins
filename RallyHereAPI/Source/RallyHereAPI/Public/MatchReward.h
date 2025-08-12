@@ -41,15 +41,19 @@ struct RALLYHEREAPI_API FRHAPI_MatchReward : public FRHAPI_Model
 
 	/** @brief Which loot to grant to the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FGuid LootId{  };
-	/** @brief Gets the value of LootId */
-	FGuid& GetLootId() { return LootId; }
-	/** @brief Gets the value of LootId */
-	const FGuid& GetLootId() const { return LootId; }
-	/** @brief Sets the value of LootId */
-	void SetLootId(const FGuid& NewValue) { LootId = NewValue;   }
-	/** @brief Sets the value of LootId using move semantics */
-	void SetLootId(FGuid&& NewValue) { LootId = NewValue;   }
+	int32 LegacyLootId{ 0 };
+	/** @brief Gets the value of LegacyLootId */
+	int32& GetLegacyLootId() { return LegacyLootId; }
+	/** @brief Gets the value of LegacyLootId */
+	const int32& GetLegacyLootId() const { return LegacyLootId; }
+	/** @brief Sets the value of LegacyLootId */
+	void SetLegacyLootId(const int32& NewValue) { LegacyLootId = NewValue;   }
+	/** @brief Sets the value of LegacyLootId using move semantics */
+	void SetLegacyLootId(int32&& NewValue) { LegacyLootId = NewValue;   }
+	/** @brief Returns true if LegacyLootId matches the default value */
+	bool IsLegacyLootIdDefaultValue() const { return LegacyLootId == 0; }
+	/** @brief Sets the value of LegacyLootId to its default  */
+	void SetLegacyLootIdToDefault() { SetLegacyLootId(0); }
 
 	/** @brief How many times to grant the loot to the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

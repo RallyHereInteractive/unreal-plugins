@@ -22,8 +22,8 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_MatchReward::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("loot_id"));
-	RallyHereAPI::WriteJsonValue(Writer, LootId);
+	Writer->WriteIdentifierPrefix(TEXT("legacy_loot_id"));
+	RallyHereAPI::WriteJsonValue(Writer, LegacyLootId);
 	Writer->WriteIdentifierPrefix(TEXT("quantity"));
 	RallyHereAPI::WriteJsonValue(Writer, Quantity);
 	Writer->WriteObjectEnd();
@@ -37,9 +37,9 @@ bool FRHAPI_MatchReward::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
-	const TSharedPtr<FJsonValue> JsonLootIdField = (*Object)->TryGetField(TEXT("loot_id"));
-	const bool LootId_IsValid = JsonLootIdField.IsValid() && (!JsonLootIdField->IsNull() && TryGetJsonValue(JsonLootIdField, LootId));
-	ParseSuccess &= LootId_IsValid; 
+	const TSharedPtr<FJsonValue> JsonLegacyLootIdField = (*Object)->TryGetField(TEXT("legacy_loot_id"));
+	const bool LegacyLootId_IsValid = JsonLegacyLootIdField.IsValid() && (!JsonLegacyLootIdField->IsNull() && TryGetJsonValue(JsonLegacyLootIdField, LegacyLootId));
+	ParseSuccess &= LegacyLootId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonQuantityField = (*Object)->TryGetField(TEXT("quantity"));
 	const bool Quantity_IsValid = JsonQuantityField.IsValid() && (!JsonQuantityField->IsNull() && TryGetJsonValue(JsonQuantityField, Quantity));
 	ParseSuccess &= Quantity_IsValid; 
