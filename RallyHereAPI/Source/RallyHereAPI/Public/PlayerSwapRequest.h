@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSwapRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FGuid> Players{  };
 	/** @brief Gets the value of Players */
-	TArray<FGuid>& GetPlayers() { return Players; }
+	FORCEINLINE TArray<FGuid>& GetPlayers() { return Players; }
 	/** @brief Gets the value of Players */
-	const TArray<FGuid>& GetPlayers() const { return Players; }
+	FORCEINLINE const TArray<FGuid>& GetPlayers() const { return Players; }
 	/** @brief Sets the value of Players */
-	void SetPlayers(const TArray<FGuid>& NewValue) { Players = NewValue;   }
+	FORCEINLINE void SetPlayers(const TArray<FGuid>& NewValue) { Players = NewValue;   }
 	/** @brief Sets the value of Players using move semantics */
-	void SetPlayers(TArray<FGuid>&& NewValue) { Players = NewValue;   }
+	FORCEINLINE void SetPlayers(TArray<FGuid>&& NewValue) { Players = NewValue;   }
 };
 
 /** @} */

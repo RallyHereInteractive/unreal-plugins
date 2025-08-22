@@ -42,46 +42,46 @@ struct RALLYHEREAPI_API FRHAPI_EnvironmentConfig : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid OrgId{  };
 	/** @brief Gets the value of OrgId */
-	FGuid& GetOrgId() { return OrgId; }
+	FORCEINLINE FGuid& GetOrgId() { return OrgId; }
 	/** @brief Gets the value of OrgId */
-	const FGuid& GetOrgId() const { return OrgId; }
+	FORCEINLINE const FGuid& GetOrgId() const { return OrgId; }
 	/** @brief Sets the value of OrgId */
-	void SetOrgId(const FGuid& NewValue) { OrgId = NewValue;   }
+	FORCEINLINE void SetOrgId(const FGuid& NewValue) { OrgId = NewValue;   }
 	/** @brief Sets the value of OrgId using move semantics */
-	void SetOrgId(FGuid&& NewValue) { OrgId = NewValue;   }
+	FORCEINLINE void SetOrgId(FGuid&& NewValue) { OrgId = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid ProductId{  };
 	/** @brief Gets the value of ProductId */
-	FGuid& GetProductId() { return ProductId; }
+	FORCEINLINE FGuid& GetProductId() { return ProductId; }
 	/** @brief Gets the value of ProductId */
-	const FGuid& GetProductId() const { return ProductId; }
+	FORCEINLINE const FGuid& GetProductId() const { return ProductId; }
 	/** @brief Sets the value of ProductId */
-	void SetProductId(const FGuid& NewValue) { ProductId = NewValue;   }
+	FORCEINLINE void SetProductId(const FGuid& NewValue) { ProductId = NewValue;   }
 	/** @brief Sets the value of ProductId using move semantics */
-	void SetProductId(FGuid&& NewValue) { ProductId = NewValue;   }
+	FORCEINLINE void SetProductId(FGuid&& NewValue) { ProductId = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid EnvironmentId{  };
 	/** @brief Gets the value of EnvironmentId */
-	FGuid& GetEnvironmentId() { return EnvironmentId; }
+	FORCEINLINE FGuid& GetEnvironmentId() { return EnvironmentId; }
 	/** @brief Gets the value of EnvironmentId */
-	const FGuid& GetEnvironmentId() const { return EnvironmentId; }
+	FORCEINLINE const FGuid& GetEnvironmentId() const { return EnvironmentId; }
 	/** @brief Sets the value of EnvironmentId */
-	void SetEnvironmentId(const FGuid& NewValue) { EnvironmentId = NewValue;   }
+	FORCEINLINE void SetEnvironmentId(const FGuid& NewValue) { EnvironmentId = NewValue;   }
 	/** @brief Sets the value of EnvironmentId using move semantics */
-	void SetEnvironmentId(FGuid&& NewValue) { EnvironmentId = NewValue;   }
+	FORCEINLINE void SetEnvironmentId(FGuid&& NewValue) { EnvironmentId = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid SandboxId{  };
 	/** @brief Gets the value of SandboxId */
-	FGuid& GetSandboxId() { return SandboxId; }
+	FORCEINLINE FGuid& GetSandboxId() { return SandboxId; }
 	/** @brief Gets the value of SandboxId */
-	const FGuid& GetSandboxId() const { return SandboxId; }
+	FORCEINLINE const FGuid& GetSandboxId() const { return SandboxId; }
 	/** @brief Sets the value of SandboxId */
-	void SetSandboxId(const FGuid& NewValue) { SandboxId = NewValue;   }
+	FORCEINLINE void SetSandboxId(const FGuid& NewValue) { SandboxId = NewValue;   }
 	/** @brief Sets the value of SandboxId using move semantics */
-	void SetSandboxId(FGuid&& NewValue) { SandboxId = NewValue;   }
+	FORCEINLINE void SetSandboxId(FGuid&& NewValue) { SandboxId = NewValue;   }
 };
 
 /** @} */

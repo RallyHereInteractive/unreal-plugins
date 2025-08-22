@@ -733,7 +733,7 @@ void FRHDTW_Catalog::DoShowPricePoints(URH_CatalogSubsystem* catalog)
 
 	for (const auto& pricePointPair : pricePoints)
 	{
-		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*pricePointPair.Key.ToString(EGuidFormats::DigitsWithHyphens)), RH_DefaultTreeFlags))
+		if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*pricePointPair.Key.ToString(EGuidFormats::DigitsWithHyphensLower)), RH_DefaultTreeFlags))
 		{
 			ImGuiDisplayCopyableValue(pricePointPair.Key.ToString(), pricePointPair.Key, ECopyMode::Value, true);
 			ImGuiDisplayModelData<FRHAPI_PricePoint>(pricePointPair.Value);

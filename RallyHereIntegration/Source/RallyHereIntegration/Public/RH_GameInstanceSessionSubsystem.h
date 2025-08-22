@@ -211,7 +211,7 @@ public:
 	/**
 	* @brief Gets the session that is currently active.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
+	UFUNCTION(BlueprintPure, Category = "Session|Instance")
 	FORCEINLINE URH_JoinedSession* GetActiveSession() const { return ActiveSessionState.Session; }
 	/**
 	* @brief Gets the fallback security token
@@ -368,6 +368,13 @@ protected:
 	
 	/** @brief Poller for the host's health check. */
 	FRH_AutoPollerPtr BackfillPoller;
+
+	/**
+	 * @brief Sends the Match Played gamesight event
+	 * @param [in] Unreal Game Instance
+	 * @param [in] Rally Here instance
+	 */
+	virtual void SendGamesightMatchPlayed(UGameInstance* pGameInstance, const FRHAPI_InstanceInfo& RHInstance);
 
 	/**
 	 * @brief Sets the current active session

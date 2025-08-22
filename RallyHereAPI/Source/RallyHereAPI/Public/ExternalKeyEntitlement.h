@@ -43,29 +43,27 @@ struct RALLYHEREAPI_API FRHAPI_ExternalKeyEntitlement : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid ExternalKeyCampaignId{  };
 	/** @brief Gets the value of ExternalKeyCampaignId */
-	FGuid& GetExternalKeyCampaignId() { return ExternalKeyCampaignId; }
+	FORCEINLINE FGuid& GetExternalKeyCampaignId() { return ExternalKeyCampaignId; }
 	/** @brief Gets the value of ExternalKeyCampaignId */
-	const FGuid& GetExternalKeyCampaignId() const { return ExternalKeyCampaignId; }
+	FORCEINLINE const FGuid& GetExternalKeyCampaignId() const { return ExternalKeyCampaignId; }
 	/** @brief Sets the value of ExternalKeyCampaignId */
-	void SetExternalKeyCampaignId(const FGuid& NewValue) { ExternalKeyCampaignId = NewValue;   }
+	FORCEINLINE void SetExternalKeyCampaignId(const FGuid& NewValue) { ExternalKeyCampaignId = NewValue;   }
 	/** @brief Sets the value of ExternalKeyCampaignId using move semantics */
-	void SetExternalKeyCampaignId(FGuid&& NewValue) { ExternalKeyCampaignId = NewValue;   }
+	FORCEINLINE void SetExternalKeyCampaignId(FGuid&& NewValue) { ExternalKeyCampaignId = NewValue;   }
 
 	/** @brief The quantity of the External Key Entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Quantity{ 0 };
 	/** @brief Gets the value of Quantity */
-	int32& GetQuantity() { return Quantity; }
+	FORCEINLINE int32& GetQuantity() { return Quantity; }
 	/** @brief Gets the value of Quantity */
-	const int32& GetQuantity() const { return Quantity; }
+	FORCEINLINE const int32& GetQuantity() const { return Quantity; }
 	/** @brief Sets the value of Quantity */
-	void SetQuantity(const int32& NewValue) { Quantity = NewValue;   }
+	FORCEINLINE void SetQuantity(const int32& NewValue) { Quantity = NewValue;   }
 	/** @brief Sets the value of Quantity using move semantics */
-	void SetQuantity(int32&& NewValue) { Quantity = NewValue;   }
-	/** @brief Returns true if Quantity matches the default value */
-	bool IsQuantityDefaultValue() const { return Quantity == 0; }
-	/** @brief Sets the value of Quantity to its default  */
-	void SetQuantityToDefault() { SetQuantity(0); }
+	FORCEINLINE void SetQuantity(int32&& NewValue) { Quantity = NewValue;   }
+	/** @brief Returns the default value of Quantity */
+	FORCEINLINE int32 GetDefaultValue_Quantity() { return 0; }
 };
 
 /** @} */

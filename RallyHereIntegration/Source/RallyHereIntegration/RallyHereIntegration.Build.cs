@@ -41,5 +41,12 @@ public class RallyHereIntegration : ModuleRules
 				"RHI",
 			}
 		);
+
+		if ((Target.IsInPlatformGroup(UnrealPlatformGroup.Windows)))
+		{
+			// Uses DXGI to query GPU hardware
+			// This is what will allow us to get GPU usage statistics at runtime
+			PublicSystemLibraries.Add("DXGI.lib");
+		}
     }
 }

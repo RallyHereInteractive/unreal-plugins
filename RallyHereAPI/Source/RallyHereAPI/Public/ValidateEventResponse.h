@@ -43,17 +43,15 @@ struct RALLYHEREAPI_API FRHAPI_ValidateEventResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Success{ false };
 	/** @brief Gets the value of Success */
-	bool& GetSuccess() { return Success; }
+	FORCEINLINE bool& GetSuccess() { return Success; }
 	/** @brief Gets the value of Success */
-	const bool& GetSuccess() const { return Success; }
+	FORCEINLINE const bool& GetSuccess() const { return Success; }
 	/** @brief Sets the value of Success */
-	void SetSuccess(const bool& NewValue) { Success = NewValue;   }
+	FORCEINLINE void SetSuccess(const bool& NewValue) { Success = NewValue;   }
 	/** @brief Sets the value of Success using move semantics */
-	void SetSuccess(bool&& NewValue) { Success = NewValue;   }
-	/** @brief Returns true if Success matches the default value */
-	bool IsSuccessDefaultValue() const { return Success == false; }
-	/** @brief Sets the value of Success to its default  */
-	void SetSuccessToDefault() { SetSuccess(false); }
+	FORCEINLINE void SetSuccess(bool&& NewValue) { Success = NewValue;   }
+	/** @brief Returns the default value of Success */
+	FORCEINLINE bool GetDefaultValue_Success() { return false; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ErrorCode_Optional{  };
@@ -64,29 +62,27 @@ struct RALLYHEREAPI_API FRHAPI_ValidateEventResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ErrorCode_IsNull{ false };
 	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
-	FString& GetErrorCode() { return ErrorCode_Optional; }
+	FORCEINLINE FString& GetErrorCode() { return ErrorCode_Optional; }
 	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
-	const FString& GetErrorCode() const { return ErrorCode_Optional; }
+	FORCEINLINE const FString& GetErrorCode() const { return ErrorCode_Optional; }
 	/** @brief Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetErrorCode(const FString& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetErrorCode(const FString& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false */
-	bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet && !ErrorCode_IsNull) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
+	FORCEINLINE bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet && !ErrorCode_IsNull) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
+	FORCEINLINE FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
+	FORCEINLINE const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
-	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
+	FORCEINLINE void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
-	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
+	FORCEINLINE void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
 	/** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
 	void ClearErrorCode() { ErrorCode_IsSet = false; ErrorCode_IsNull = false; }
-	/** @brief Checks whether ErrorCode_Optional has been set */
-	bool IsErrorCodeSet() const { return ErrorCode_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetErrorCodeToNull() { ErrorCode_IsSet = true; ErrorCode_IsNull = true; }
+	FORCEINLINE void SetErrorCodeToNull() { ErrorCode_IsSet = true; ErrorCode_IsNull = true; }
 	/** @brief Checks whether ErrorCode_Optional is set to null */
-	bool IsErrorCodeNull() const { return ErrorCode_IsSet && ErrorCode_IsNull; }
+	FORCEINLINE bool IsErrorCodeNull() const { return ErrorCode_IsSet && ErrorCode_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Context_Optional{  };
@@ -97,29 +93,27 @@ struct RALLYHEREAPI_API FRHAPI_ValidateEventResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Context_IsNull{ false };
 	/** @brief Gets the value of Context_Optional, regardless of it having been set */
-	FString& GetContext() { return Context_Optional; }
+	FORCEINLINE FString& GetContext() { return Context_Optional; }
 	/** @brief Gets the value of Context_Optional, regardless of it having been set */
-	const FString& GetContext() const { return Context_Optional; }
+	FORCEINLINE const FString& GetContext() const { return Context_Optional; }
 	/** @brief Gets the value of Context_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetContext(const FString& DefaultValue) const { if (Context_IsSet) return Context_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetContext(const FString& DefaultValue) const { if (Context_IsSet) return Context_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Context_Optional and returns true if it has been set, otherwise returns false */
-	bool GetContext(FString& OutValue) const { if (Context_IsSet && !Context_IsNull) OutValue = Context_Optional; return Context_IsSet; }
+	FORCEINLINE bool GetContext(FString& OutValue) const { if (Context_IsSet && !Context_IsNull) OutValue = Context_Optional; return Context_IsSet; }
 	/** @brief Returns a pointer to Context_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetContextOrNull() { if (Context_IsSet) return (Context_IsNull ? nullptr : &Context_Optional); return nullptr; }
+	FORCEINLINE FString* GetContextOrNull() { if (Context_IsSet) return (Context_IsNull ? nullptr : &Context_Optional); return nullptr; }
 	/** @brief Returns a pointer to Context_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetContextOrNull() const { if (Context_IsSet) return (Context_IsNull ? nullptr : &Context_Optional); return nullptr; }
+	FORCEINLINE const FString* GetContextOrNull() const { if (Context_IsSet) return (Context_IsNull ? nullptr : &Context_Optional); return nullptr; }
 	/** @brief Sets the value of Context_Optional and also sets Context_IsSet to true */
-	void SetContext(const FString& NewValue) { Context_Optional = NewValue; Context_IsSet = true; Context_IsNull = false; }
+	FORCEINLINE void SetContext(const FString& NewValue) { Context_Optional = NewValue; Context_IsSet = true; Context_IsNull = false; }
 	/** @brief Sets the value of Context_Optional and also sets Context_IsSet to true using move semantics */
-	void SetContext(FString&& NewValue) { Context_Optional = NewValue; Context_IsSet = true; Context_IsNull = false; }
+	FORCEINLINE void SetContext(FString&& NewValue) { Context_Optional = NewValue; Context_IsSet = true; Context_IsNull = false; }
 	/** @brief Clears the value of Context_Optional and sets Context_IsSet to false */
 	void ClearContext() { Context_IsSet = false; Context_IsNull = false; }
-	/** @brief Checks whether Context_Optional has been set */
-	bool IsContextSet() const { return Context_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetContextToNull() { Context_IsSet = true; Context_IsNull = true; }
+	FORCEINLINE void SetContextToNull() { Context_IsSet = true; Context_IsNull = true; }
 	/** @brief Checks whether Context_Optional is set to null */
-	bool IsContextNull() const { return Context_IsSet && Context_IsNull; }
+	FORCEINLINE bool IsContextNull() const { return Context_IsSet && Context_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString OutputEvent_Optional{  };
@@ -130,29 +124,27 @@ struct RALLYHEREAPI_API FRHAPI_ValidateEventResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OutputEvent_IsNull{ false };
 	/** @brief Gets the value of OutputEvent_Optional, regardless of it having been set */
-	FString& GetOutputEvent() { return OutputEvent_Optional; }
+	FORCEINLINE FString& GetOutputEvent() { return OutputEvent_Optional; }
 	/** @brief Gets the value of OutputEvent_Optional, regardless of it having been set */
-	const FString& GetOutputEvent() const { return OutputEvent_Optional; }
+	FORCEINLINE const FString& GetOutputEvent() const { return OutputEvent_Optional; }
 	/** @brief Gets the value of OutputEvent_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetOutputEvent(const FString& DefaultValue) const { if (OutputEvent_IsSet) return OutputEvent_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetOutputEvent(const FString& DefaultValue) const { if (OutputEvent_IsSet) return OutputEvent_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OutputEvent_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOutputEvent(FString& OutValue) const { if (OutputEvent_IsSet && !OutputEvent_IsNull) OutValue = OutputEvent_Optional; return OutputEvent_IsSet; }
+	FORCEINLINE bool GetOutputEvent(FString& OutValue) const { if (OutputEvent_IsSet && !OutputEvent_IsNull) OutValue = OutputEvent_Optional; return OutputEvent_IsSet; }
 	/** @brief Returns a pointer to OutputEvent_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetOutputEventOrNull() { if (OutputEvent_IsSet) return (OutputEvent_IsNull ? nullptr : &OutputEvent_Optional); return nullptr; }
+	FORCEINLINE FString* GetOutputEventOrNull() { if (OutputEvent_IsSet) return (OutputEvent_IsNull ? nullptr : &OutputEvent_Optional); return nullptr; }
 	/** @brief Returns a pointer to OutputEvent_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetOutputEventOrNull() const { if (OutputEvent_IsSet) return (OutputEvent_IsNull ? nullptr : &OutputEvent_Optional); return nullptr; }
+	FORCEINLINE const FString* GetOutputEventOrNull() const { if (OutputEvent_IsSet) return (OutputEvent_IsNull ? nullptr : &OutputEvent_Optional); return nullptr; }
 	/** @brief Sets the value of OutputEvent_Optional and also sets OutputEvent_IsSet to true */
-	void SetOutputEvent(const FString& NewValue) { OutputEvent_Optional = NewValue; OutputEvent_IsSet = true; OutputEvent_IsNull = false; }
+	FORCEINLINE void SetOutputEvent(const FString& NewValue) { OutputEvent_Optional = NewValue; OutputEvent_IsSet = true; OutputEvent_IsNull = false; }
 	/** @brief Sets the value of OutputEvent_Optional and also sets OutputEvent_IsSet to true using move semantics */
-	void SetOutputEvent(FString&& NewValue) { OutputEvent_Optional = NewValue; OutputEvent_IsSet = true; OutputEvent_IsNull = false; }
+	FORCEINLINE void SetOutputEvent(FString&& NewValue) { OutputEvent_Optional = NewValue; OutputEvent_IsSet = true; OutputEvent_IsNull = false; }
 	/** @brief Clears the value of OutputEvent_Optional and sets OutputEvent_IsSet to false */
 	void ClearOutputEvent() { OutputEvent_IsSet = false; OutputEvent_IsNull = false; }
-	/** @brief Checks whether OutputEvent_Optional has been set */
-	bool IsOutputEventSet() const { return OutputEvent_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetOutputEventToNull() { OutputEvent_IsSet = true; OutputEvent_IsNull = true; }
+	FORCEINLINE void SetOutputEventToNull() { OutputEvent_IsSet = true; OutputEvent_IsNull = true; }
 	/** @brief Checks whether OutputEvent_Optional is set to null */
-	bool IsOutputEventNull() const { return OutputEvent_IsSet && OutputEvent_IsNull; }
+	FORCEINLINE bool IsOutputEventNull() const { return OutputEvent_IsSet && OutputEvent_IsNull; }
 };
 
 /** @} */

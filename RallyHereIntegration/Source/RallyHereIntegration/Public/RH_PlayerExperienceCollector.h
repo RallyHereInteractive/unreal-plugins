@@ -9,6 +9,13 @@
 #include "UObject/WeakInterfacePtr.h"
 #include "RH_Common.h"
 #include "PlayerExperienceAPI.h"
+#if PLATFORM_WINDOWS
+#include "Windows/WindowsHWrapper.h"
+
+#include "Windows/AllowWindowsPlatformTypes.h"
+#include "dxgi1_6.h"
+#include "Windows/HideWindowsPlatformTypes.h"
+#endif
 
 #include "RH_PlayerExperienceCollector.generated.h"
 
@@ -1069,7 +1076,14 @@ public:
 
 	/** @brief Retrieves the summary data in Json format */
 	TSharedRef<FJsonObject> GetSummaryJson() const;
-	
+
+	UFUNCTION()
+	void MarkPEXForUpload()
+	{
+		ResetSummary();
+		bWantsToUploadStats = true;
+	}
+
 protected:
 	/** Cached owner of the collector */
     TWeakInterfacePtr<IRH_PEXOwnerInterface> Owner;
@@ -1127,6 +1141,9 @@ protected:
 	/** Cached file path for summary file */
 	UPROPERTY(BlueprintReadOnly, Transient, Category="PlayerExperience")
 	FString SummaryFilePath;
+
+	UPROPERTY(Transient)
+	bool bWantsToUploadStats = false;
 };
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -1153,6 +1170,7 @@ public:
 		MemoryVB,
 		CPUProcess,
 		CPUMachine,
+		MemoryVRAM,
 
 		Max
 	};

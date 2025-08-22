@@ -376,7 +376,7 @@ void FRHDTW_WebRequests::DoViewMetadata(const FRH_WebRequest* WebRequest)
 		ImGui::TableNextColumn();
 		ImGuiDisplayCopyableValue("Identifier", Metadata.Identifier, ECopyMode::Key);
 		ImGui::TableNextColumn();
-		ImGui::Text("%s", TCHAR_TO_UTF8(*Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens)));
+		ImGui::Text("%s", TCHAR_TO_UTF8(*Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphensLower)));
 
 		ImGui::TableNextRow();
 		ImGui::TableNextColumn();

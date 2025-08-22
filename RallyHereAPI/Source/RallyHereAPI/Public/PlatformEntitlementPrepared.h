@@ -49,41 +49,39 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementPrepared : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformEntitlementId_IsNull{ false };
 	/** @brief Gets the value of PlatformEntitlementId_Optional, regardless of it having been set */
-	FString& GetPlatformEntitlementId() { return PlatformEntitlementId_Optional; }
+	FORCEINLINE FString& GetPlatformEntitlementId() { return PlatformEntitlementId_Optional; }
 	/** @brief Gets the value of PlatformEntitlementId_Optional, regardless of it having been set */
-	const FString& GetPlatformEntitlementId() const { return PlatformEntitlementId_Optional; }
+	FORCEINLINE const FString& GetPlatformEntitlementId() const { return PlatformEntitlementId_Optional; }
 	/** @brief Gets the value of PlatformEntitlementId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPlatformEntitlementId(const FString& DefaultValue) const { if (PlatformEntitlementId_IsSet) return PlatformEntitlementId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPlatformEntitlementId(const FString& DefaultValue) const { if (PlatformEntitlementId_IsSet) return PlatformEntitlementId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformEntitlementId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformEntitlementId(FString& OutValue) const { if (PlatformEntitlementId_IsSet && !PlatformEntitlementId_IsNull) OutValue = PlatformEntitlementId_Optional; return PlatformEntitlementId_IsSet; }
+	FORCEINLINE bool GetPlatformEntitlementId(FString& OutValue) const { if (PlatformEntitlementId_IsSet && !PlatformEntitlementId_IsNull) OutValue = PlatformEntitlementId_Optional; return PlatformEntitlementId_IsSet; }
 	/** @brief Returns a pointer to PlatformEntitlementId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPlatformEntitlementIdOrNull() { if (PlatformEntitlementId_IsSet) return (PlatformEntitlementId_IsNull ? nullptr : &PlatformEntitlementId_Optional); return nullptr; }
+	FORCEINLINE FString* GetPlatformEntitlementIdOrNull() { if (PlatformEntitlementId_IsSet) return (PlatformEntitlementId_IsNull ? nullptr : &PlatformEntitlementId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformEntitlementId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPlatformEntitlementIdOrNull() const { if (PlatformEntitlementId_IsSet) return (PlatformEntitlementId_IsNull ? nullptr : &PlatformEntitlementId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPlatformEntitlementIdOrNull() const { if (PlatformEntitlementId_IsSet) return (PlatformEntitlementId_IsNull ? nullptr : &PlatformEntitlementId_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformEntitlementId_Optional and also sets PlatformEntitlementId_IsSet to true */
-	void SetPlatformEntitlementId(const FString& NewValue) { PlatformEntitlementId_Optional = NewValue; PlatformEntitlementId_IsSet = true; PlatformEntitlementId_IsNull = false; }
+	FORCEINLINE void SetPlatformEntitlementId(const FString& NewValue) { PlatformEntitlementId_Optional = NewValue; PlatformEntitlementId_IsSet = true; PlatformEntitlementId_IsNull = false; }
 	/** @brief Sets the value of PlatformEntitlementId_Optional and also sets PlatformEntitlementId_IsSet to true using move semantics */
-	void SetPlatformEntitlementId(FString&& NewValue) { PlatformEntitlementId_Optional = NewValue; PlatformEntitlementId_IsSet = true; PlatformEntitlementId_IsNull = false; }
+	FORCEINLINE void SetPlatformEntitlementId(FString&& NewValue) { PlatformEntitlementId_Optional = NewValue; PlatformEntitlementId_IsSet = true; PlatformEntitlementId_IsNull = false; }
 	/** @brief Clears the value of PlatformEntitlementId_Optional and sets PlatformEntitlementId_IsSet to false */
 	void ClearPlatformEntitlementId() { PlatformEntitlementId_IsSet = false; PlatformEntitlementId_IsNull = false; }
-	/** @brief Checks whether PlatformEntitlementId_Optional has been set */
-	bool IsPlatformEntitlementIdSet() const { return PlatformEntitlementId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPlatformEntitlementIdToNull() { PlatformEntitlementId_IsSet = true; PlatformEntitlementId_IsNull = true; }
+	FORCEINLINE void SetPlatformEntitlementIdToNull() { PlatformEntitlementId_IsSet = true; PlatformEntitlementId_IsNull = true; }
 	/** @brief Checks whether PlatformEntitlementId_Optional is set to null */
-	bool IsPlatformEntitlementIdNull() const { return PlatformEntitlementId_IsSet && PlatformEntitlementId_IsNull; }
+	FORCEINLINE bool IsPlatformEntitlementIdNull() const { return PlatformEntitlementId_IsSet && PlatformEntitlementId_IsNull; }
 
 	/** @brief Unique SKU from the platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Sku{  };
 	/** @brief Gets the value of Sku */
-	FString& GetSku() { return Sku; }
+	FORCEINLINE FString& GetSku() { return Sku; }
 	/** @brief Gets the value of Sku */
-	const FString& GetSku() const { return Sku; }
+	FORCEINLINE const FString& GetSku() const { return Sku; }
 	/** @brief Sets the value of Sku */
-	void SetSku(const FString& NewValue) { Sku = NewValue;   }
+	FORCEINLINE void SetSku(const FString& NewValue) { Sku = NewValue;   }
 	/** @brief Sets the value of Sku using move semantics */
-	void SetSku(FString&& NewValue) { Sku = NewValue;   }
+	FORCEINLINE void SetSku(FString&& NewValue) { Sku = NewValue;   }
 
 	/** @brief Quantity available to be used from the platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -92,29 +90,25 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementPrepared : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Quantity_IsSet{ false };
 	/** @brief Gets the value of Quantity_Optional, regardless of it having been set */
-	int32& GetQuantity() { return Quantity_Optional; }
+	FORCEINLINE int32& GetQuantity() { return Quantity_Optional; }
 	/** @brief Gets the value of Quantity_Optional, regardless of it having been set */
-	const int32& GetQuantity() const { return Quantity_Optional; }
+	FORCEINLINE const int32& GetQuantity() const { return Quantity_Optional; }
 	/** @brief Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetQuantity(const int32& DefaultValue) const { if (Quantity_IsSet) return Quantity_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetQuantity(const int32& DefaultValue) const { if (Quantity_IsSet) return Quantity_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false */
-	bool GetQuantity(int32& OutValue) const { if (Quantity_IsSet) OutValue = Quantity_Optional; return Quantity_IsSet; }
+	FORCEINLINE bool GetQuantity(int32& OutValue) const { if (Quantity_IsSet) OutValue = Quantity_Optional; return Quantity_IsSet; }
 	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetQuantityOrNull() { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
+	FORCEINLINE int32* GetQuantityOrNull() { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
 	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
+	FORCEINLINE const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true */
-	void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
+	FORCEINLINE void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics */
-	void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
+	FORCEINLINE void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
 	/** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
 	void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false;  }
-	/** @brief Checks whether Quantity_Optional has been set */
-	bool IsQuantitySet() const { return Quantity_IsSet; }
-	/** @brief Returns true if Quantity_Optional is set and matches the default value */
-	bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 1; }
-	/** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
-	void SetQuantityToDefault() { SetQuantity(1); }
+	/** @brief Returns the default value of Quantity */
+	FORCEINLINE int32 GetDefaultValue_Quantity() { return 1; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_EntitlementType ReceivedType_Optional{  };
@@ -125,29 +119,27 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementPrepared : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ReceivedType_IsNull{ false };
 	/** @brief Gets the value of ReceivedType_Optional, regardless of it having been set */
-	ERHAPI_EntitlementType& GetReceivedType() { return ReceivedType_Optional; }
+	FORCEINLINE ERHAPI_EntitlementType& GetReceivedType() { return ReceivedType_Optional; }
 	/** @brief Gets the value of ReceivedType_Optional, regardless of it having been set */
-	const ERHAPI_EntitlementType& GetReceivedType() const { return ReceivedType_Optional; }
+	FORCEINLINE const ERHAPI_EntitlementType& GetReceivedType() const { return ReceivedType_Optional; }
 	/** @brief Gets the value of ReceivedType_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_EntitlementType& GetReceivedType(const ERHAPI_EntitlementType& DefaultValue) const { if (ReceivedType_IsSet) return ReceivedType_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_EntitlementType& GetReceivedType(const ERHAPI_EntitlementType& DefaultValue) const { if (ReceivedType_IsSet) return ReceivedType_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ReceivedType_Optional and returns true if it has been set, otherwise returns false */
-	bool GetReceivedType(ERHAPI_EntitlementType& OutValue) const { if (ReceivedType_IsSet && !ReceivedType_IsNull) OutValue = ReceivedType_Optional; return ReceivedType_IsSet; }
+	FORCEINLINE bool GetReceivedType(ERHAPI_EntitlementType& OutValue) const { if (ReceivedType_IsSet && !ReceivedType_IsNull) OutValue = ReceivedType_Optional; return ReceivedType_IsSet; }
 	/** @brief Returns a pointer to ReceivedType_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_EntitlementType* GetReceivedTypeOrNull() { if (ReceivedType_IsSet) return (ReceivedType_IsNull ? nullptr : &ReceivedType_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_EntitlementType* GetReceivedTypeOrNull() { if (ReceivedType_IsSet) return (ReceivedType_IsNull ? nullptr : &ReceivedType_Optional); return nullptr; }
 	/** @brief Returns a pointer to ReceivedType_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_EntitlementType* GetReceivedTypeOrNull() const { if (ReceivedType_IsSet) return (ReceivedType_IsNull ? nullptr : &ReceivedType_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_EntitlementType* GetReceivedTypeOrNull() const { if (ReceivedType_IsSet) return (ReceivedType_IsNull ? nullptr : &ReceivedType_Optional); return nullptr; }
 	/** @brief Sets the value of ReceivedType_Optional and also sets ReceivedType_IsSet to true */
-	void SetReceivedType(const ERHAPI_EntitlementType& NewValue) { ReceivedType_Optional = NewValue; ReceivedType_IsSet = true; ReceivedType_IsNull = false; }
+	FORCEINLINE void SetReceivedType(const ERHAPI_EntitlementType& NewValue) { ReceivedType_Optional = NewValue; ReceivedType_IsSet = true; ReceivedType_IsNull = false; }
 	/** @brief Sets the value of ReceivedType_Optional and also sets ReceivedType_IsSet to true using move semantics */
-	void SetReceivedType(ERHAPI_EntitlementType&& NewValue) { ReceivedType_Optional = NewValue; ReceivedType_IsSet = true; ReceivedType_IsNull = false; }
+	FORCEINLINE void SetReceivedType(ERHAPI_EntitlementType&& NewValue) { ReceivedType_Optional = NewValue; ReceivedType_IsSet = true; ReceivedType_IsNull = false; }
 	/** @brief Clears the value of ReceivedType_Optional and sets ReceivedType_IsSet to false */
 	void ClearReceivedType() { ReceivedType_IsSet = false; ReceivedType_IsNull = false; }
-	/** @brief Checks whether ReceivedType_Optional has been set */
-	bool IsReceivedTypeSet() const { return ReceivedType_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetReceivedTypeToNull() { ReceivedType_IsSet = true; ReceivedType_IsNull = true; }
+	FORCEINLINE void SetReceivedTypeToNull() { ReceivedType_IsSet = true; ReceivedType_IsNull = true; }
 	/** @brief Checks whether ReceivedType_Optional is set to null */
-	bool IsReceivedTypeNull() const { return ReceivedType_IsSet && ReceivedType_IsNull; }
+	FORCEINLINE bool IsReceivedTypeNull() const { return ReceivedType_IsSet && ReceivedType_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString PlatformLabel_Optional{  };
@@ -158,29 +150,27 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementPrepared : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformLabel_IsNull{ false };
 	/** @brief Gets the value of PlatformLabel_Optional, regardless of it having been set */
-	FString& GetPlatformLabel() { return PlatformLabel_Optional; }
+	FORCEINLINE FString& GetPlatformLabel() { return PlatformLabel_Optional; }
 	/** @brief Gets the value of PlatformLabel_Optional, regardless of it having been set */
-	const FString& GetPlatformLabel() const { return PlatformLabel_Optional; }
+	FORCEINLINE const FString& GetPlatformLabel() const { return PlatformLabel_Optional; }
 	/** @brief Gets the value of PlatformLabel_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPlatformLabel(const FString& DefaultValue) const { if (PlatformLabel_IsSet) return PlatformLabel_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPlatformLabel(const FString& DefaultValue) const { if (PlatformLabel_IsSet) return PlatformLabel_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformLabel_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformLabel(FString& OutValue) const { if (PlatformLabel_IsSet && !PlatformLabel_IsNull) OutValue = PlatformLabel_Optional; return PlatformLabel_IsSet; }
+	FORCEINLINE bool GetPlatformLabel(FString& OutValue) const { if (PlatformLabel_IsSet && !PlatformLabel_IsNull) OutValue = PlatformLabel_Optional; return PlatformLabel_IsSet; }
 	/** @brief Returns a pointer to PlatformLabel_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPlatformLabelOrNull() { if (PlatformLabel_IsSet) return (PlatformLabel_IsNull ? nullptr : &PlatformLabel_Optional); return nullptr; }
+	FORCEINLINE FString* GetPlatformLabelOrNull() { if (PlatformLabel_IsSet) return (PlatformLabel_IsNull ? nullptr : &PlatformLabel_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformLabel_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPlatformLabelOrNull() const { if (PlatformLabel_IsSet) return (PlatformLabel_IsNull ? nullptr : &PlatformLabel_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPlatformLabelOrNull() const { if (PlatformLabel_IsSet) return (PlatformLabel_IsNull ? nullptr : &PlatformLabel_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformLabel_Optional and also sets PlatformLabel_IsSet to true */
-	void SetPlatformLabel(const FString& NewValue) { PlatformLabel_Optional = NewValue; PlatformLabel_IsSet = true; PlatformLabel_IsNull = false; }
+	FORCEINLINE void SetPlatformLabel(const FString& NewValue) { PlatformLabel_Optional = NewValue; PlatformLabel_IsSet = true; PlatformLabel_IsNull = false; }
 	/** @brief Sets the value of PlatformLabel_Optional and also sets PlatformLabel_IsSet to true using move semantics */
-	void SetPlatformLabel(FString&& NewValue) { PlatformLabel_Optional = NewValue; PlatformLabel_IsSet = true; PlatformLabel_IsNull = false; }
+	FORCEINLINE void SetPlatformLabel(FString&& NewValue) { PlatformLabel_Optional = NewValue; PlatformLabel_IsSet = true; PlatformLabel_IsNull = false; }
 	/** @brief Clears the value of PlatformLabel_Optional and sets PlatformLabel_IsSet to false */
 	void ClearPlatformLabel() { PlatformLabel_IsSet = false; PlatformLabel_IsNull = false; }
-	/** @brief Checks whether PlatformLabel_Optional has been set */
-	bool IsPlatformLabelSet() const { return PlatformLabel_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPlatformLabelToNull() { PlatformLabel_IsSet = true; PlatformLabel_IsNull = true; }
+	FORCEINLINE void SetPlatformLabelToNull() { PlatformLabel_IsSet = true; PlatformLabel_IsNull = true; }
 	/** @brief Checks whether PlatformLabel_Optional is set to null */
-	bool IsPlatformLabelNull() const { return PlatformLabel_IsSet && PlatformLabel_IsNull; }
+	FORCEINLINE bool IsPlatformLabelNull() const { return PlatformLabel_IsSet && PlatformLabel_IsNull; }
 
 	/** @brief Platform-specific metadata about this entitlement */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -189,25 +179,23 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementPrepared : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformMetadata_IsSet{ false };
 	/** @brief Gets the value of PlatformMetadata_Optional, regardless of it having been set */
-	TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata() { return PlatformMetadata_Optional; }
+	FORCEINLINE TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata() { return PlatformMetadata_Optional; }
 	/** @brief Gets the value of PlatformMetadata_Optional, regardless of it having been set */
-	const TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata() const { return PlatformMetadata_Optional; }
+	FORCEINLINE const TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata() const { return PlatformMetadata_Optional; }
 	/** @brief Gets the value of PlatformMetadata_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata(const TMap<FString, FRHAPI_JsonValue>& DefaultValue) const { if (PlatformMetadata_IsSet) return PlatformMetadata_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FRHAPI_JsonValue>& GetPlatformMetadata(const TMap<FString, FRHAPI_JsonValue>& DefaultValue) const { if (PlatformMetadata_IsSet) return PlatformMetadata_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformMetadata_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformMetadata(TMap<FString, FRHAPI_JsonValue>& OutValue) const { if (PlatformMetadata_IsSet) OutValue = PlatformMetadata_Optional; return PlatformMetadata_IsSet; }
+	FORCEINLINE bool GetPlatformMetadata(TMap<FString, FRHAPI_JsonValue>& OutValue) const { if (PlatformMetadata_IsSet) OutValue = PlatformMetadata_Optional; return PlatformMetadata_IsSet; }
 	/** @brief Returns a pointer to PlatformMetadata_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FRHAPI_JsonValue>* GetPlatformMetadataOrNull() { if (PlatformMetadata_IsSet) return (&PlatformMetadata_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FRHAPI_JsonValue>* GetPlatformMetadataOrNull() { if (PlatformMetadata_IsSet) return (&PlatformMetadata_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformMetadata_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FRHAPI_JsonValue>* GetPlatformMetadataOrNull() const { if (PlatformMetadata_IsSet) return (&PlatformMetadata_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FRHAPI_JsonValue>* GetPlatformMetadataOrNull() const { if (PlatformMetadata_IsSet) return (&PlatformMetadata_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformMetadata_Optional and also sets PlatformMetadata_IsSet to true */
-	void SetPlatformMetadata(const TMap<FString, FRHAPI_JsonValue>& NewValue) { PlatformMetadata_Optional = NewValue; PlatformMetadata_IsSet = true;  }
+	FORCEINLINE void SetPlatformMetadata(const TMap<FString, FRHAPI_JsonValue>& NewValue) { PlatformMetadata_Optional = NewValue; PlatformMetadata_IsSet = true;  }
 	/** @brief Sets the value of PlatformMetadata_Optional and also sets PlatformMetadata_IsSet to true using move semantics */
-	void SetPlatformMetadata(TMap<FString, FRHAPI_JsonValue>&& NewValue) { PlatformMetadata_Optional = NewValue; PlatformMetadata_IsSet = true;  }
+	FORCEINLINE void SetPlatformMetadata(TMap<FString, FRHAPI_JsonValue>&& NewValue) { PlatformMetadata_Optional = NewValue; PlatformMetadata_IsSet = true;  }
 	/** @brief Clears the value of PlatformMetadata_Optional and sets PlatformMetadata_IsSet to false */
 	void ClearPlatformMetadata() { PlatformMetadata_IsSet = false;  }
-	/** @brief Checks whether PlatformMetadata_Optional has been set */
-	bool IsPlatformMetadataSet() const { return PlatformMetadata_IsSet; }
 };
 
 /** @} */

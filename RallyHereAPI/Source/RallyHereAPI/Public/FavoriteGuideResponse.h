@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_FavoriteGuideResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid GuideId{  };
 	/** @brief Gets the value of GuideId */
-	FGuid& GetGuideId() { return GuideId; }
+	FORCEINLINE FGuid& GetGuideId() { return GuideId; }
 	/** @brief Gets the value of GuideId */
-	const FGuid& GetGuideId() const { return GuideId; }
+	FORCEINLINE const FGuid& GetGuideId() const { return GuideId; }
 	/** @brief Sets the value of GuideId */
-	void SetGuideId(const FGuid& NewValue) { GuideId = NewValue;   }
+	FORCEINLINE void SetGuideId(const FGuid& NewValue) { GuideId = NewValue;   }
 	/** @brief Sets the value of GuideId using move semantics */
-	void SetGuideId(FGuid&& NewValue) { GuideId = NewValue;   }
+	FORCEINLINE void SetGuideId(FGuid&& NewValue) { GuideId = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,29 +60,27 @@ struct RALLYHEREAPI_API FRHAPI_FavoriteGuideResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool FavoritedAt_IsNull{ false };
 	/** @brief Gets the value of FavoritedAt_Optional, regardless of it having been set */
-	FDateTime& GetFavoritedAt() { return FavoritedAt_Optional; }
+	FORCEINLINE FDateTime& GetFavoritedAt() { return FavoritedAt_Optional; }
 	/** @brief Gets the value of FavoritedAt_Optional, regardless of it having been set */
-	const FDateTime& GetFavoritedAt() const { return FavoritedAt_Optional; }
+	FORCEINLINE const FDateTime& GetFavoritedAt() const { return FavoritedAt_Optional; }
 	/** @brief Gets the value of FavoritedAt_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetFavoritedAt(const FDateTime& DefaultValue) const { if (FavoritedAt_IsSet) return FavoritedAt_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetFavoritedAt(const FDateTime& DefaultValue) const { if (FavoritedAt_IsSet) return FavoritedAt_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of FavoritedAt_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFavoritedAt(FDateTime& OutValue) const { if (FavoritedAt_IsSet && !FavoritedAt_IsNull) OutValue = FavoritedAt_Optional; return FavoritedAt_IsSet; }
+	FORCEINLINE bool GetFavoritedAt(FDateTime& OutValue) const { if (FavoritedAt_IsSet && !FavoritedAt_IsNull) OutValue = FavoritedAt_Optional; return FavoritedAt_IsSet; }
 	/** @brief Returns a pointer to FavoritedAt_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetFavoritedAtOrNull() { if (FavoritedAt_IsSet) return (FavoritedAt_IsNull ? nullptr : &FavoritedAt_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetFavoritedAtOrNull() { if (FavoritedAt_IsSet) return (FavoritedAt_IsNull ? nullptr : &FavoritedAt_Optional); return nullptr; }
 	/** @brief Returns a pointer to FavoritedAt_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetFavoritedAtOrNull() const { if (FavoritedAt_IsSet) return (FavoritedAt_IsNull ? nullptr : &FavoritedAt_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetFavoritedAtOrNull() const { if (FavoritedAt_IsSet) return (FavoritedAt_IsNull ? nullptr : &FavoritedAt_Optional); return nullptr; }
 	/** @brief Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true */
-	void SetFavoritedAt(const FDateTime& NewValue) { FavoritedAt_Optional = NewValue; FavoritedAt_IsSet = true; FavoritedAt_IsNull = false; }
+	FORCEINLINE void SetFavoritedAt(const FDateTime& NewValue) { FavoritedAt_Optional = NewValue; FavoritedAt_IsSet = true; FavoritedAt_IsNull = false; }
 	/** @brief Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true using move semantics */
-	void SetFavoritedAt(FDateTime&& NewValue) { FavoritedAt_Optional = NewValue; FavoritedAt_IsSet = true; FavoritedAt_IsNull = false; }
+	FORCEINLINE void SetFavoritedAt(FDateTime&& NewValue) { FavoritedAt_Optional = NewValue; FavoritedAt_IsSet = true; FavoritedAt_IsNull = false; }
 	/** @brief Clears the value of FavoritedAt_Optional and sets FavoritedAt_IsSet to false */
 	void ClearFavoritedAt() { FavoritedAt_IsSet = false; FavoritedAt_IsNull = false; }
-	/** @brief Checks whether FavoritedAt_Optional has been set */
-	bool IsFavoritedAtSet() const { return FavoritedAt_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFavoritedAtToNull() { FavoritedAt_IsSet = true; FavoritedAt_IsNull = true; }
+	FORCEINLINE void SetFavoritedAtToNull() { FavoritedAt_IsSet = true; FavoritedAt_IsNull = true; }
 	/** @brief Checks whether FavoritedAt_Optional is set to null */
-	bool IsFavoritedAtNull() const { return FavoritedAt_IsSet && FavoritedAt_IsNull; }
+	FORCEINLINE bool IsFavoritedAtNull() const { return FavoritedAt_IsSet && FavoritedAt_IsNull; }
 };
 
 /** @} */

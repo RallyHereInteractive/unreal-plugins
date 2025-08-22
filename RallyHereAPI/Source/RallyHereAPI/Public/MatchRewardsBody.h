@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_MatchRewardsBody : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerRewards_IsSet{ false };
 	/** @brief Gets the value of PlayerRewards_Optional, regardless of it having been set */
-	TArray<FRHAPI_PlayerMatchReward>& GetPlayerRewards() { return PlayerRewards_Optional; }
+	FORCEINLINE TArray<FRHAPI_PlayerMatchReward>& GetPlayerRewards() { return PlayerRewards_Optional; }
 	/** @brief Gets the value of PlayerRewards_Optional, regardless of it having been set */
-	const TArray<FRHAPI_PlayerMatchReward>& GetPlayerRewards() const { return PlayerRewards_Optional; }
+	FORCEINLINE const TArray<FRHAPI_PlayerMatchReward>& GetPlayerRewards() const { return PlayerRewards_Optional; }
 	/** @brief Gets the value of PlayerRewards_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_PlayerMatchReward>& GetPlayerRewards(const TArray<FRHAPI_PlayerMatchReward>& DefaultValue) const { if (PlayerRewards_IsSet) return PlayerRewards_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_PlayerMatchReward>& GetPlayerRewards(const TArray<FRHAPI_PlayerMatchReward>& DefaultValue) const { if (PlayerRewards_IsSet) return PlayerRewards_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlayerRewards_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlayerRewards(TArray<FRHAPI_PlayerMatchReward>& OutValue) const { if (PlayerRewards_IsSet) OutValue = PlayerRewards_Optional; return PlayerRewards_IsSet; }
+	FORCEINLINE bool GetPlayerRewards(TArray<FRHAPI_PlayerMatchReward>& OutValue) const { if (PlayerRewards_IsSet) OutValue = PlayerRewards_Optional; return PlayerRewards_IsSet; }
 	/** @brief Returns a pointer to PlayerRewards_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlayerMatchReward>* GetPlayerRewardsOrNull() { if (PlayerRewards_IsSet) return (&PlayerRewards_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_PlayerMatchReward>* GetPlayerRewardsOrNull() { if (PlayerRewards_IsSet) return (&PlayerRewards_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlayerRewards_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlayerMatchReward>* GetPlayerRewardsOrNull() const { if (PlayerRewards_IsSet) return (&PlayerRewards_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_PlayerMatchReward>* GetPlayerRewardsOrNull() const { if (PlayerRewards_IsSet) return (&PlayerRewards_Optional); return nullptr; }
 	/** @brief Sets the value of PlayerRewards_Optional and also sets PlayerRewards_IsSet to true */
-	void SetPlayerRewards(const TArray<FRHAPI_PlayerMatchReward>& NewValue) { PlayerRewards_Optional = NewValue; PlayerRewards_IsSet = true;  }
+	FORCEINLINE void SetPlayerRewards(const TArray<FRHAPI_PlayerMatchReward>& NewValue) { PlayerRewards_Optional = NewValue; PlayerRewards_IsSet = true;  }
 	/** @brief Sets the value of PlayerRewards_Optional and also sets PlayerRewards_IsSet to true using move semantics */
-	void SetPlayerRewards(TArray<FRHAPI_PlayerMatchReward>&& NewValue) { PlayerRewards_Optional = NewValue; PlayerRewards_IsSet = true;  }
+	FORCEINLINE void SetPlayerRewards(TArray<FRHAPI_PlayerMatchReward>&& NewValue) { PlayerRewards_Optional = NewValue; PlayerRewards_IsSet = true;  }
 	/** @brief Clears the value of PlayerRewards_Optional and sets PlayerRewards_IsSet to false */
 	void ClearPlayerRewards() { PlayerRewards_IsSet = false;  }
-	/** @brief Checks whether PlayerRewards_Optional has been set */
-	bool IsPlayerRewardsSet() const { return PlayerRewards_IsSet; }
 };
 
 /** @} */

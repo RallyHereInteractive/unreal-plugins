@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreates : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_NotificationCreate> Notifications{  };
 	/** @brief Gets the value of Notifications */
-	TArray<FRHAPI_NotificationCreate>& GetNotifications() { return Notifications; }
+	FORCEINLINE TArray<FRHAPI_NotificationCreate>& GetNotifications() { return Notifications; }
 	/** @brief Gets the value of Notifications */
-	const TArray<FRHAPI_NotificationCreate>& GetNotifications() const { return Notifications; }
+	FORCEINLINE const TArray<FRHAPI_NotificationCreate>& GetNotifications() const { return Notifications; }
 	/** @brief Sets the value of Notifications */
-	void SetNotifications(const TArray<FRHAPI_NotificationCreate>& NewValue) { Notifications = NewValue;   }
+	FORCEINLINE void SetNotifications(const TArray<FRHAPI_NotificationCreate>& NewValue) { Notifications = NewValue;   }
 	/** @brief Sets the value of Notifications using move semantics */
-	void SetNotifications(TArray<FRHAPI_NotificationCreate>&& NewValue) { Notifications = NewValue;   }
+	FORCEINLINE void SetNotifications(TArray<FRHAPI_NotificationCreate>&& NewValue) { Notifications = NewValue;   }
 };
 
 /** @} */

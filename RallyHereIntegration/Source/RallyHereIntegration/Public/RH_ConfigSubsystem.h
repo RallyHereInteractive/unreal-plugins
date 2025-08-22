@@ -1,4 +1,4 @@
-// Copyright 2022-2023 RallyHere Interactive
+﻿// Copyright 2022-2023 RallyHere Interactive
 // SPDX-License-Identifier: Apache-2.0
 #pragma once
 
@@ -201,6 +201,18 @@ public:
 			return true;
 		}
 		return false;
+	}
+	/**
+	 */
+	UFUNCTION(BlueprintPure, Category = "Config")
+	bool GetKVBool(const FString& Key, bool defaultValue = false) const
+	{
+		const auto KVValue = KVs.Find(Key);
+		if (KVValue != nullptr)
+		{
+			return KVValue->ToBool();
+		}
+		return defaultValue;
 	}
 	/**
 	* @brief Gets the value of a specific KV (wrapper for if multiple KV sources are present).

@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_SessionShortCodeResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ShortCode{  };
 	/** @brief Gets the value of ShortCode */
-	FString& GetShortCode() { return ShortCode; }
+	FORCEINLINE FString& GetShortCode() { return ShortCode; }
 	/** @brief Gets the value of ShortCode */
-	const FString& GetShortCode() const { return ShortCode; }
+	FORCEINLINE const FString& GetShortCode() const { return ShortCode; }
 	/** @brief Sets the value of ShortCode */
-	void SetShortCode(const FString& NewValue) { ShortCode = NewValue;   }
+	FORCEINLINE void SetShortCode(const FString& NewValue) { ShortCode = NewValue;   }
 	/** @brief Sets the value of ShortCode using move semantics */
-	void SetShortCode(FString&& NewValue) { ShortCode = NewValue;   }
+	FORCEINLINE void SetShortCode(FString&& NewValue) { ShortCode = NewValue;   }
 };
 
 /** @} */

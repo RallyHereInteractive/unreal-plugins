@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_MarketingCampaigns : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_MarketingCampaign> Campaigns{  };
 	/** @brief Gets the value of Campaigns */
-	TArray<FRHAPI_MarketingCampaign>& GetCampaigns() { return Campaigns; }
+	FORCEINLINE TArray<FRHAPI_MarketingCampaign>& GetCampaigns() { return Campaigns; }
 	/** @brief Gets the value of Campaigns */
-	const TArray<FRHAPI_MarketingCampaign>& GetCampaigns() const { return Campaigns; }
+	FORCEINLINE const TArray<FRHAPI_MarketingCampaign>& GetCampaigns() const { return Campaigns; }
 	/** @brief Sets the value of Campaigns */
-	void SetCampaigns(const TArray<FRHAPI_MarketingCampaign>& NewValue) { Campaigns = NewValue;   }
+	FORCEINLINE void SetCampaigns(const TArray<FRHAPI_MarketingCampaign>& NewValue) { Campaigns = NewValue;   }
 	/** @brief Sets the value of Campaigns using move semantics */
-	void SetCampaigns(TArray<FRHAPI_MarketingCampaign>&& NewValue) { Campaigns = NewValue;   }
+	FORCEINLINE void SetCampaigns(TArray<FRHAPI_MarketingCampaign>&& NewValue) { Campaigns = NewValue;   }
 };
 
 /** @} */

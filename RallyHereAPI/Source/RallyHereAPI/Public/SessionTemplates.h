@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_SessionTemplates : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Templates_IsSet{ false };
 	/** @brief Gets the value of Templates_Optional, regardless of it having been set */
-	TMap<FString, FRHAPI_SessionTemplate>& GetTemplates() { return Templates_Optional; }
+	FORCEINLINE TMap<FString, FRHAPI_SessionTemplate>& GetTemplates() { return Templates_Optional; }
 	/** @brief Gets the value of Templates_Optional, regardless of it having been set */
-	const TMap<FString, FRHAPI_SessionTemplate>& GetTemplates() const { return Templates_Optional; }
+	FORCEINLINE const TMap<FString, FRHAPI_SessionTemplate>& GetTemplates() const { return Templates_Optional; }
 	/** @brief Gets the value of Templates_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FRHAPI_SessionTemplate>& GetTemplates(const TMap<FString, FRHAPI_SessionTemplate>& DefaultValue) const { if (Templates_IsSet) return Templates_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FRHAPI_SessionTemplate>& GetTemplates(const TMap<FString, FRHAPI_SessionTemplate>& DefaultValue) const { if (Templates_IsSet) return Templates_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Templates_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTemplates(TMap<FString, FRHAPI_SessionTemplate>& OutValue) const { if (Templates_IsSet) OutValue = Templates_Optional; return Templates_IsSet; }
+	FORCEINLINE bool GetTemplates(TMap<FString, FRHAPI_SessionTemplate>& OutValue) const { if (Templates_IsSet) OutValue = Templates_Optional; return Templates_IsSet; }
 	/** @brief Returns a pointer to Templates_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FRHAPI_SessionTemplate>* GetTemplatesOrNull() { if (Templates_IsSet) return (&Templates_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FRHAPI_SessionTemplate>* GetTemplatesOrNull() { if (Templates_IsSet) return (&Templates_Optional); return nullptr; }
 	/** @brief Returns a pointer to Templates_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FRHAPI_SessionTemplate>* GetTemplatesOrNull() const { if (Templates_IsSet) return (&Templates_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FRHAPI_SessionTemplate>* GetTemplatesOrNull() const { if (Templates_IsSet) return (&Templates_Optional); return nullptr; }
 	/** @brief Sets the value of Templates_Optional and also sets Templates_IsSet to true */
-	void SetTemplates(const TMap<FString, FRHAPI_SessionTemplate>& NewValue) { Templates_Optional = NewValue; Templates_IsSet = true;  }
+	FORCEINLINE void SetTemplates(const TMap<FString, FRHAPI_SessionTemplate>& NewValue) { Templates_Optional = NewValue; Templates_IsSet = true;  }
 	/** @brief Sets the value of Templates_Optional and also sets Templates_IsSet to true using move semantics */
-	void SetTemplates(TMap<FString, FRHAPI_SessionTemplate>&& NewValue) { Templates_Optional = NewValue; Templates_IsSet = true;  }
+	FORCEINLINE void SetTemplates(TMap<FString, FRHAPI_SessionTemplate>&& NewValue) { Templates_Optional = NewValue; Templates_IsSet = true;  }
 	/** @brief Clears the value of Templates_Optional and sets Templates_IsSet to false */
 	void ClearTemplates() { Templates_IsSet = false;  }
-	/** @brief Checks whether Templates_Optional has been set */
-	bool IsTemplatesSet() const { return Templates_IsSet; }
 };
 
 /** @} */

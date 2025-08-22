@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_SettingType : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FRHAPI_SettingTypeVersion> Versions{  };
 	/** @brief Gets the value of Versions */
-	TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() { return Versions; }
+	FORCEINLINE TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() { return Versions; }
 	/** @brief Gets the value of Versions */
-	const TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() const { return Versions; }
+	FORCEINLINE const TMap<FString, FRHAPI_SettingTypeVersion>& GetVersions() const { return Versions; }
 	/** @brief Sets the value of Versions */
-	void SetVersions(const TMap<FString, FRHAPI_SettingTypeVersion>& NewValue) { Versions = NewValue;   }
+	FORCEINLINE void SetVersions(const TMap<FString, FRHAPI_SettingTypeVersion>& NewValue) { Versions = NewValue;   }
 	/** @brief Sets the value of Versions using move semantics */
-	void SetVersions(TMap<FString, FRHAPI_SettingTypeVersion>&& NewValue) { Versions = NewValue;   }
+	FORCEINLINE void SetVersions(TMap<FString, FRHAPI_SettingTypeVersion>&& NewValue) { Versions = NewValue;   }
 };
 
 /** @} */

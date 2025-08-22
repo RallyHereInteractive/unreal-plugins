@@ -45,25 +45,25 @@ struct RALLYHEREAPI_API FRHAPI_CrossplayPreferences : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_CrossplayPlatform PermittedPlatform{  };
 	/** @brief Gets the value of PermittedPlatform */
-	ERHAPI_CrossplayPlatform& GetPermittedPlatform() { return PermittedPlatform; }
+	FORCEINLINE ERHAPI_CrossplayPlatform& GetPermittedPlatform() { return PermittedPlatform; }
 	/** @brief Gets the value of PermittedPlatform */
-	const ERHAPI_CrossplayPlatform& GetPermittedPlatform() const { return PermittedPlatform; }
+	FORCEINLINE const ERHAPI_CrossplayPlatform& GetPermittedPlatform() const { return PermittedPlatform; }
 	/** @brief Sets the value of PermittedPlatform */
-	void SetPermittedPlatform(const ERHAPI_CrossplayPlatform& NewValue) { PermittedPlatform = NewValue;   }
+	FORCEINLINE void SetPermittedPlatform(const ERHAPI_CrossplayPlatform& NewValue) { PermittedPlatform = NewValue;   }
 	/** @brief Sets the value of PermittedPlatform using move semantics */
-	void SetPermittedPlatform(ERHAPI_CrossplayPlatform&& NewValue) { PermittedPlatform = NewValue;   }
+	FORCEINLINE void SetPermittedPlatform(ERHAPI_CrossplayPlatform&& NewValue) { PermittedPlatform = NewValue;   }
 
 	/** @brief The input type that the client is allowed to play with (keyboard and mouse, gamepad, touch input etc.) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_CrossplayInput PermittedInput{  };
 	/** @brief Gets the value of PermittedInput */
-	ERHAPI_CrossplayInput& GetPermittedInput() { return PermittedInput; }
+	FORCEINLINE ERHAPI_CrossplayInput& GetPermittedInput() { return PermittedInput; }
 	/** @brief Gets the value of PermittedInput */
-	const ERHAPI_CrossplayInput& GetPermittedInput() const { return PermittedInput; }
+	FORCEINLINE const ERHAPI_CrossplayInput& GetPermittedInput() const { return PermittedInput; }
 	/** @brief Sets the value of PermittedInput */
-	void SetPermittedInput(const ERHAPI_CrossplayInput& NewValue) { PermittedInput = NewValue;   }
+	FORCEINLINE void SetPermittedInput(const ERHAPI_CrossplayInput& NewValue) { PermittedInput = NewValue;   }
 	/** @brief Sets the value of PermittedInput using move semantics */
-	void SetPermittedInput(ERHAPI_CrossplayInput&& NewValue) { PermittedInput = NewValue;   }
+	FORCEINLINE void SetPermittedInput(ERHAPI_CrossplayInput&& NewValue) { PermittedInput = NewValue;   }
 };
 
 /** @} */

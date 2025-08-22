@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_IndividualCCUs : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, int32> Ccus{  };
 	/** @brief Gets the value of Ccus */
-	TMap<FString, int32>& GetCcus() { return Ccus; }
+	FORCEINLINE TMap<FString, int32>& GetCcus() { return Ccus; }
 	/** @brief Gets the value of Ccus */
-	const TMap<FString, int32>& GetCcus() const { return Ccus; }
+	FORCEINLINE const TMap<FString, int32>& GetCcus() const { return Ccus; }
 	/** @brief Sets the value of Ccus */
-	void SetCcus(const TMap<FString, int32>& NewValue) { Ccus = NewValue;   }
+	FORCEINLINE void SetCcus(const TMap<FString, int32>& NewValue) { Ccus = NewValue;   }
 	/** @brief Sets the value of Ccus using move semantics */
-	void SetCcus(TMap<FString, int32>&& NewValue) { Ccus = NewValue;   }
+	FORCEINLINE void SetCcus(TMap<FString, int32>&& NewValue) { Ccus = NewValue;   }
 };
 
 /** @} */

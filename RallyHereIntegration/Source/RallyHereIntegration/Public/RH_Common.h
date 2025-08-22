@@ -76,6 +76,7 @@ bool RALLYHEREINTEGRATION_API RH_UseRecentPlayersFromOSSName(FName OSSName);
 bool RALLYHEREINTEGRATION_API RH_SkipEntitlementFinalization(FName OSSName);
 bool RALLYHEREINTEGRATION_API RH_UsesSonyEntitlementTokens(FName OSSName);
 bool RALLYHEREINTEGRATION_API RH_PlatformSupportsViewProfile(FName OSSName);
+bool RALLYHEREINTEGRATION_API RH_PlatformSupportsSendMessage(FName OSSName);
 FString RALLYHEREINTEGRATION_API RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform);
 
 ERHAPI_InventoryBucket RALLYHEREINTEGRATION_API RH_GetInventoryBucketFromPlatform(ERHAPI_Platform PlatformType);
@@ -127,6 +128,8 @@ public:
 		: UserId(InUserId)
 		, PlatformType(InPlatformType)
 	{}
+
+	static FRH_PlayerPlatformId Invalid;
 };
 
 /**

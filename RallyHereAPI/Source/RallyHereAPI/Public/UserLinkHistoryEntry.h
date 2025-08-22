@@ -48,25 +48,23 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistoryEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool EntryId_IsSet{ false };
 	/** @brief Gets the value of EntryId_Optional, regardless of it having been set */
-	FString& GetEntryId() { return EntryId_Optional; }
+	FORCEINLINE FString& GetEntryId() { return EntryId_Optional; }
 	/** @brief Gets the value of EntryId_Optional, regardless of it having been set */
-	const FString& GetEntryId() const { return EntryId_Optional; }
+	FORCEINLINE const FString& GetEntryId() const { return EntryId_Optional; }
 	/** @brief Gets the value of EntryId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetEntryId(const FString& DefaultValue) const { if (EntryId_IsSet) return EntryId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetEntryId(const FString& DefaultValue) const { if (EntryId_IsSet) return EntryId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of EntryId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetEntryId(FString& OutValue) const { if (EntryId_IsSet) OutValue = EntryId_Optional; return EntryId_IsSet; }
+	FORCEINLINE bool GetEntryId(FString& OutValue) const { if (EntryId_IsSet) OutValue = EntryId_Optional; return EntryId_IsSet; }
 	/** @brief Returns a pointer to EntryId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetEntryIdOrNull() { if (EntryId_IsSet) return (&EntryId_Optional); return nullptr; }
+	FORCEINLINE FString* GetEntryIdOrNull() { if (EntryId_IsSet) return (&EntryId_Optional); return nullptr; }
 	/** @brief Returns a pointer to EntryId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetEntryIdOrNull() const { if (EntryId_IsSet) return (&EntryId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetEntryIdOrNull() const { if (EntryId_IsSet) return (&EntryId_Optional); return nullptr; }
 	/** @brief Sets the value of EntryId_Optional and also sets EntryId_IsSet to true */
-	void SetEntryId(const FString& NewValue) { EntryId_Optional = NewValue; EntryId_IsSet = true;  }
+	FORCEINLINE void SetEntryId(const FString& NewValue) { EntryId_Optional = NewValue; EntryId_IsSet = true;  }
 	/** @brief Sets the value of EntryId_Optional and also sets EntryId_IsSet to true using move semantics */
-	void SetEntryId(FString&& NewValue) { EntryId_Optional = NewValue; EntryId_IsSet = true;  }
+	FORCEINLINE void SetEntryId(FString&& NewValue) { EntryId_Optional = NewValue; EntryId_IsSet = true;  }
 	/** @brief Clears the value of EntryId_Optional and sets EntryId_IsSet to false */
 	void ClearEntryId() { EntryId_IsSet = false;  }
-	/** @brief Checks whether EntryId_Optional has been set */
-	bool IsEntryIdSet() const { return EntryId_IsSet; }
 
 	/** @brief player UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -75,25 +73,23 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistoryEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerUuid_IsSet{ false };
 	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
-	FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
 	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid_Optional; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid_Optional; }
 	/** @brief Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetPlayerUuid(const FGuid& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetPlayerUuid(const FGuid& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
+	FORCEINLINE bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
 	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
 	void ClearPlayerUuid() { PlayerUuid_IsSet = false;  }
-	/** @brief Checks whether PlayerUuid_Optional has been set */
-	bool IsPlayerUuidSet() const { return PlayerUuid_IsSet; }
 
 	/** @brief platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -102,25 +98,23 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistoryEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Platform_IsSet{ false };
 	/** @brief Gets the value of Platform_Optional, regardless of it having been set */
-	ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
+	FORCEINLINE ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
 	/** @brief Gets the value of Platform_Optional, regardless of it having been set */
-	const ERHAPI_Platform& GetPlatform() const { return Platform_Optional; }
+	FORCEINLINE const ERHAPI_Platform& GetPlatform() const { return Platform_Optional; }
 	/** @brief Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_Platform& GetPlatform(const ERHAPI_Platform& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_Platform& GetPlatform(const ERHAPI_Platform& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatform(ERHAPI_Platform& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
+	FORCEINLINE bool GetPlatform(ERHAPI_Platform& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Platform* GetPlatformOrNull() { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_Platform* GetPlatformOrNull() { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
-	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
+	FORCEINLINE void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
-	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
+	FORCEINLINE void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false;  }
-	/** @brief Checks whether Platform_Optional has been set */
-	bool IsPlatformSet() const { return Platform_IsSet; }
 
 	/** @brief platform user ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -129,25 +123,23 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistoryEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformUserId_IsSet{ false };
 	/** @brief Gets the value of PlatformUserId_Optional, regardless of it having been set */
-	FString& GetPlatformUserId() { return PlatformUserId_Optional; }
+	FORCEINLINE FString& GetPlatformUserId() { return PlatformUserId_Optional; }
 	/** @brief Gets the value of PlatformUserId_Optional, regardless of it having been set */
-	const FString& GetPlatformUserId() const { return PlatformUserId_Optional; }
+	FORCEINLINE const FString& GetPlatformUserId() const { return PlatformUserId_Optional; }
 	/** @brief Gets the value of PlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPlatformUserId(const FString& DefaultValue) const { if (PlatformUserId_IsSet) return PlatformUserId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPlatformUserId(const FString& DefaultValue) const { if (PlatformUserId_IsSet) return PlatformUserId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformUserId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformUserId(FString& OutValue) const { if (PlatformUserId_IsSet) OutValue = PlatformUserId_Optional; return PlatformUserId_IsSet; }
+	FORCEINLINE bool GetPlatformUserId(FString& OutValue) const { if (PlatformUserId_IsSet) OutValue = PlatformUserId_Optional; return PlatformUserId_IsSet; }
 	/** @brief Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPlatformUserIdOrNull() { if (PlatformUserId_IsSet) return (&PlatformUserId_Optional); return nullptr; }
+	FORCEINLINE FString* GetPlatformUserIdOrNull() { if (PlatformUserId_IsSet) return (&PlatformUserId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPlatformUserIdOrNull() const { if (PlatformUserId_IsSet) return (&PlatformUserId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPlatformUserIdOrNull() const { if (PlatformUserId_IsSet) return (&PlatformUserId_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true */
-	void SetPlatformUserId(const FString& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true;  }
+	FORCEINLINE void SetPlatformUserId(const FString& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true;  }
 	/** @brief Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true using move semantics */
-	void SetPlatformUserId(FString&& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true;  }
+	FORCEINLINE void SetPlatformUserId(FString&& NewValue) { PlatformUserId_Optional = NewValue; PlatformUserId_IsSet = true;  }
 	/** @brief Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false */
 	void ClearPlatformUserId() { PlatformUserId_IsSet = false;  }
-	/** @brief Checks whether PlatformUserId_Optional has been set */
-	bool IsPlatformUserIdSet() const { return PlatformUserId_IsSet; }
 
 	/** @brief person ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -156,25 +148,23 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistoryEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PersonId_IsSet{ false };
 	/** @brief Gets the value of PersonId_Optional, regardless of it having been set */
-	FGuid& GetPersonId() { return PersonId_Optional; }
+	FORCEINLINE FGuid& GetPersonId() { return PersonId_Optional; }
 	/** @brief Gets the value of PersonId_Optional, regardless of it having been set */
-	const FGuid& GetPersonId() const { return PersonId_Optional; }
+	FORCEINLINE const FGuid& GetPersonId() const { return PersonId_Optional; }
 	/** @brief Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetPersonId(const FGuid& DefaultValue) const { if (PersonId_IsSet) return PersonId_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetPersonId(const FGuid& DefaultValue) const { if (PersonId_IsSet) return PersonId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPersonId(FGuid& OutValue) const { if (PersonId_IsSet) OutValue = PersonId_Optional; return PersonId_IsSet; }
+	FORCEINLINE bool GetPersonId(FGuid& OutValue) const { if (PersonId_IsSet) OutValue = PersonId_Optional; return PersonId_IsSet; }
 	/** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetPersonIdOrNull() { if (PersonId_IsSet) return (&PersonId_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetPersonIdOrNull() { if (PersonId_IsSet) return (&PersonId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return (&PersonId_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetPersonIdOrNull() const { if (PersonId_IsSet) return (&PersonId_Optional); return nullptr; }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true */
-	void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
+	FORCEINLINE void SetPersonId(const FGuid& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
 	/** @brief Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics */
-	void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
+	FORCEINLINE void SetPersonId(FGuid&& NewValue) { PersonId_Optional = NewValue; PersonId_IsSet = true;  }
 	/** @brief Clears the value of PersonId_Optional and sets PersonId_IsSet to false */
 	void ClearPersonId() { PersonId_IsSet = false;  }
-	/** @brief Checks whether PersonId_Optional has been set */
-	bool IsPersonIdSet() const { return PersonId_IsSet; }
 
 	/** @brief active player UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -183,37 +173,35 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistoryEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ActivePlayerUuid_IsSet{ false };
 	/** @brief Gets the value of ActivePlayerUuid_Optional, regardless of it having been set */
-	FGuid& GetActivePlayerUuid() { return ActivePlayerUuid_Optional; }
+	FORCEINLINE FGuid& GetActivePlayerUuid() { return ActivePlayerUuid_Optional; }
 	/** @brief Gets the value of ActivePlayerUuid_Optional, regardless of it having been set */
-	const FGuid& GetActivePlayerUuid() const { return ActivePlayerUuid_Optional; }
+	FORCEINLINE const FGuid& GetActivePlayerUuid() const { return ActivePlayerUuid_Optional; }
 	/** @brief Gets the value of ActivePlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetActivePlayerUuid(const FGuid& DefaultValue) const { if (ActivePlayerUuid_IsSet) return ActivePlayerUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetActivePlayerUuid(const FGuid& DefaultValue) const { if (ActivePlayerUuid_IsSet) return ActivePlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ActivePlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetActivePlayerUuid(FGuid& OutValue) const { if (ActivePlayerUuid_IsSet) OutValue = ActivePlayerUuid_Optional; return ActivePlayerUuid_IsSet; }
+	FORCEINLINE bool GetActivePlayerUuid(FGuid& OutValue) const { if (ActivePlayerUuid_IsSet) OutValue = ActivePlayerUuid_Optional; return ActivePlayerUuid_IsSet; }
 	/** @brief Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetActivePlayerUuidOrNull() { if (ActivePlayerUuid_IsSet) return (&ActivePlayerUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetActivePlayerUuidOrNull() { if (ActivePlayerUuid_IsSet) return (&ActivePlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to ActivePlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetActivePlayerUuidOrNull() const { if (ActivePlayerUuid_IsSet) return (&ActivePlayerUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetActivePlayerUuidOrNull() const { if (ActivePlayerUuid_IsSet) return (&ActivePlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true */
-	void SetActivePlayerUuid(const FGuid& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetActivePlayerUuid(const FGuid& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of ActivePlayerUuid_Optional and also sets ActivePlayerUuid_IsSet to true using move semantics */
-	void SetActivePlayerUuid(FGuid&& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetActivePlayerUuid(FGuid&& NewValue) { ActivePlayerUuid_Optional = NewValue; ActivePlayerUuid_IsSet = true;  }
 	/** @brief Clears the value of ActivePlayerUuid_Optional and sets ActivePlayerUuid_IsSet to false */
 	void ClearActivePlayerUuid() { ActivePlayerUuid_IsSet = false;  }
-	/** @brief Checks whether ActivePlayerUuid_Optional has been set */
-	bool IsActivePlayerUuidSet() const { return ActivePlayerUuid_IsSet; }
 
 	/** @brief action */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_LinkAction Action{  };
 	/** @brief Gets the value of Action */
-	ERHAPI_LinkAction& GetAction() { return Action; }
+	FORCEINLINE ERHAPI_LinkAction& GetAction() { return Action; }
 	/** @brief Gets the value of Action */
-	const ERHAPI_LinkAction& GetAction() const { return Action; }
+	FORCEINLINE const ERHAPI_LinkAction& GetAction() const { return Action; }
 	/** @brief Sets the value of Action */
-	void SetAction(const ERHAPI_LinkAction& NewValue) { Action = NewValue;   }
+	FORCEINLINE void SetAction(const ERHAPI_LinkAction& NewValue) { Action = NewValue;   }
 	/** @brief Sets the value of Action using move semantics */
-	void SetAction(ERHAPI_LinkAction&& NewValue) { Action = NewValue;   }
+	FORCEINLINE void SetAction(ERHAPI_LinkAction&& NewValue) { Action = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -222,25 +210,23 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistoryEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Timestamp_IsSet{ false };
 	/** @brief Gets the value of Timestamp_Optional, regardless of it having been set */
-	FDateTime& GetTimestamp() { return Timestamp_Optional; }
+	FORCEINLINE FDateTime& GetTimestamp() { return Timestamp_Optional; }
 	/** @brief Gets the value of Timestamp_Optional, regardless of it having been set */
-	const FDateTime& GetTimestamp() const { return Timestamp_Optional; }
+	FORCEINLINE const FDateTime& GetTimestamp() const { return Timestamp_Optional; }
 	/** @brief Gets the value of Timestamp_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetTimestamp(const FDateTime& DefaultValue) const { if (Timestamp_IsSet) return Timestamp_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetTimestamp(const FDateTime& DefaultValue) const { if (Timestamp_IsSet) return Timestamp_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Timestamp_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTimestamp(FDateTime& OutValue) const { if (Timestamp_IsSet) OutValue = Timestamp_Optional; return Timestamp_IsSet; }
+	FORCEINLINE bool GetTimestamp(FDateTime& OutValue) const { if (Timestamp_IsSet) OutValue = Timestamp_Optional; return Timestamp_IsSet; }
 	/** @brief Returns a pointer to Timestamp_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetTimestampOrNull() { if (Timestamp_IsSet) return (&Timestamp_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetTimestampOrNull() { if (Timestamp_IsSet) return (&Timestamp_Optional); return nullptr; }
 	/** @brief Returns a pointer to Timestamp_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetTimestampOrNull() const { if (Timestamp_IsSet) return (&Timestamp_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetTimestampOrNull() const { if (Timestamp_IsSet) return (&Timestamp_Optional); return nullptr; }
 	/** @brief Sets the value of Timestamp_Optional and also sets Timestamp_IsSet to true */
-	void SetTimestamp(const FDateTime& NewValue) { Timestamp_Optional = NewValue; Timestamp_IsSet = true;  }
+	FORCEINLINE void SetTimestamp(const FDateTime& NewValue) { Timestamp_Optional = NewValue; Timestamp_IsSet = true;  }
 	/** @brief Sets the value of Timestamp_Optional and also sets Timestamp_IsSet to true using move semantics */
-	void SetTimestamp(FDateTime&& NewValue) { Timestamp_Optional = NewValue; Timestamp_IsSet = true;  }
+	FORCEINLINE void SetTimestamp(FDateTime&& NewValue) { Timestamp_Optional = NewValue; Timestamp_IsSet = true;  }
 	/** @brief Clears the value of Timestamp_Optional and sets Timestamp_IsSet to false */
 	void ClearTimestamp() { Timestamp_IsSet = false;  }
-	/** @brief Checks whether Timestamp_Optional has been set */
-	bool IsTimestampSet() const { return Timestamp_IsSet; }
 };
 
 /** @} */

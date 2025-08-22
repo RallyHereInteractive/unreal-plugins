@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardConfigList : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_LeaderboardConfig> LeaderboardConfigs{  };
 	/** @brief Gets the value of LeaderboardConfigs */
-	TArray<FRHAPI_LeaderboardConfig>& GetLeaderboardConfigs() { return LeaderboardConfigs; }
+	FORCEINLINE TArray<FRHAPI_LeaderboardConfig>& GetLeaderboardConfigs() { return LeaderboardConfigs; }
 	/** @brief Gets the value of LeaderboardConfigs */
-	const TArray<FRHAPI_LeaderboardConfig>& GetLeaderboardConfigs() const { return LeaderboardConfigs; }
+	FORCEINLINE const TArray<FRHAPI_LeaderboardConfig>& GetLeaderboardConfigs() const { return LeaderboardConfigs; }
 	/** @brief Sets the value of LeaderboardConfigs */
-	void SetLeaderboardConfigs(const TArray<FRHAPI_LeaderboardConfig>& NewValue) { LeaderboardConfigs = NewValue;   }
+	FORCEINLINE void SetLeaderboardConfigs(const TArray<FRHAPI_LeaderboardConfig>& NewValue) { LeaderboardConfigs = NewValue;   }
 	/** @brief Sets the value of LeaderboardConfigs using move semantics */
-	void SetLeaderboardConfigs(TArray<FRHAPI_LeaderboardConfig>&& NewValue) { LeaderboardConfigs = NewValue;   }
+	FORCEINLINE void SetLeaderboardConfigs(TArray<FRHAPI_LeaderboardConfig>&& NewValue) { LeaderboardConfigs = NewValue;   }
 };
 
 /** @} */

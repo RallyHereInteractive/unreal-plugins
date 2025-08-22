@@ -45,25 +45,23 @@ struct RALLYHEREAPI_API FRHAPI_ManyEntityGuideEngagementRequest : public FRHAPI_
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Guides_IsSet{ false };
 	/** @brief Gets the value of Guides_Optional, regardless of it having been set */
-	TArray<FGuid>& GetGuides() { return Guides_Optional; }
+	FORCEINLINE TArray<FGuid>& GetGuides() { return Guides_Optional; }
 	/** @brief Gets the value of Guides_Optional, regardless of it having been set */
-	const TArray<FGuid>& GetGuides() const { return Guides_Optional; }
+	FORCEINLINE const TArray<FGuid>& GetGuides() const { return Guides_Optional; }
 	/** @brief Gets the value of Guides_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FGuid>& GetGuides(const TArray<FGuid>& DefaultValue) const { if (Guides_IsSet) return Guides_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FGuid>& GetGuides(const TArray<FGuid>& DefaultValue) const { if (Guides_IsSet) return Guides_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Guides_Optional and returns true if it has been set, otherwise returns false */
-	bool GetGuides(TArray<FGuid>& OutValue) const { if (Guides_IsSet) OutValue = Guides_Optional; return Guides_IsSet; }
+	FORCEINLINE bool GetGuides(TArray<FGuid>& OutValue) const { if (Guides_IsSet) OutValue = Guides_Optional; return Guides_IsSet; }
 	/** @brief Returns a pointer to Guides_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FGuid>* GetGuidesOrNull() { if (Guides_IsSet) return (&Guides_Optional); return nullptr; }
+	FORCEINLINE TArray<FGuid>* GetGuidesOrNull() { if (Guides_IsSet) return (&Guides_Optional); return nullptr; }
 	/** @brief Returns a pointer to Guides_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FGuid>* GetGuidesOrNull() const { if (Guides_IsSet) return (&Guides_Optional); return nullptr; }
+	FORCEINLINE const TArray<FGuid>* GetGuidesOrNull() const { if (Guides_IsSet) return (&Guides_Optional); return nullptr; }
 	/** @brief Sets the value of Guides_Optional and also sets Guides_IsSet to true */
-	void SetGuides(const TArray<FGuid>& NewValue) { Guides_Optional = NewValue; Guides_IsSet = true;  }
+	FORCEINLINE void SetGuides(const TArray<FGuid>& NewValue) { Guides_Optional = NewValue; Guides_IsSet = true;  }
 	/** @brief Sets the value of Guides_Optional and also sets Guides_IsSet to true using move semantics */
-	void SetGuides(TArray<FGuid>&& NewValue) { Guides_Optional = NewValue; Guides_IsSet = true;  }
+	FORCEINLINE void SetGuides(TArray<FGuid>&& NewValue) { Guides_Optional = NewValue; Guides_IsSet = true;  }
 	/** @brief Clears the value of Guides_Optional and sets Guides_IsSet to false */
 	void ClearGuides() { Guides_IsSet = false;  }
-	/** @brief Checks whether Guides_Optional has been set */
-	bool IsGuidesSet() const { return Guides_IsSet; }
 };
 
 /** @} */

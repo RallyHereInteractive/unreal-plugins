@@ -438,6 +438,12 @@ bool URH_LocalPlayerSessionSubsystem::PreprocessAPISessionImport(const FRHAPI_Se
 	// if the player is not in this session, make sure we are not tracking them
 	if (!LocalPlayerStatusFromSession(Session, Status))
 	{
+		if (PlatformSyncers.Contains(Session.SessionId) && PlatformSyncers[Session.SessionId]->GetCurrentSyncActionState() == ESyncActionState::JoinPlatformSession)
+		{
+			DeferredSessionUpdates.Add(Session.SessionId, Session);
+			return false;
+		}
+
 		// clean up the session if we are in it
 		RemoveSessionById(Session.SessionId);
 		return false;
@@ -511,7 +517,7 @@ void URH_LocalPlayerSessionSubsystem::ReconcileAPISessions(const TArray<FString>
 	// remove any templates as needed
 	for (const auto& Pair : Sessions)
 	{
-		if (!Pair.Value->IsOffline() && !SessionIds.Contains(Pair.Key))
+		if (!Pair.Value->IsOffline() && !SessionIds.Contains(Pair.Key) && LastSessionIdsPolled.Contains(Pair.Key)) //$$ DLF - Fixed leaving a session that was joined in the middle of a Poll All Sessions call
 		{
 			SessionIdsToRemove.Add(Pair.Key);
 		}
@@ -778,10 +784,10 @@ URH_PlatformSessionSyncer* URH_LocalPlayerSessionSubsystem::GetPlatformSyncerByP
 URH_PlatformSessionSyncer* URH_LocalPlayerSessionSubsystem::CreatePlatformSyncer(URH_JoinedSession* JoinedSession)
 {
 	// this function is conditional - it tries to early out when it can to not created extraneous objects
-	auto SessionId = JoinedSession->GetSessionId();
+	auto SessionId = JoinedSession != nullptr ? JoinedSession->GetSessionId() : TEXT("");
 	auto PlatformSyncer = GetPlatformSyncerByRHSessionId(SessionId);
 
-	if (PlatformSyncer == nullptr)
+	if (PlatformSyncer == nullptr && !SessionId.IsEmpty())
 	{
 		// try to load the class from the config
 		UClass* SyncerClass = URH_PlatformSessionSyncer::StaticClass();

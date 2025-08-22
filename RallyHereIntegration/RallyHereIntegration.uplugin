@@ -22,6 +22,14 @@
 			"AdditionalDependencies" : [
 				"RallyHereGameHostProvider"
 			]
+		},
+		{
+			"Name": "RallyHereEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"RallyHereIntegration"
+			]
 		}
 	],
 
@@ -47,9 +55,14 @@
 			"Enabled" : true
 		},
 		{
-			"Name" : "WebBrowserWidget",
-			"Enabled" : true,
-			"TargetAllowList" : [ "Editor" ]
+			"Name": "WebBrowserWidget",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
+			"Name": "RallyHereDeveloperAPI",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
 		}
 	]
 }

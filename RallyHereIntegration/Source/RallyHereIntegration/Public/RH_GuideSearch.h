@@ -254,7 +254,7 @@ public:
 	bool GetRequestInProgress() const { return bRequestInProgress; }
 
 protected:
-	virtual FString* GetNextPageCursor() const;
+	virtual const FString* GetNextPageCursor() const;
 	
 	/** @brief Paged search results */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Guide|Search")

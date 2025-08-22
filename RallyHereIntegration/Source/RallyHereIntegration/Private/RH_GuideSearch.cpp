@@ -12,8 +12,14 @@ void URH_GuideSearch::Initialize(const FRH_GuideSearchRequest& InRequest, TShare
 	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	TSearchGuides::Request Request;
 	Request.AuthContext = InAuthContext;
-	Request.SortBy = InRequest.SortBy;
-	Request.Sort = InRequest.Sort;
+	if (!InRequest.SortBy.IsEmpty())
+	{
+		Request.SortBy = InRequest.SortBy;
+	}
+	if (!InRequest.Sort.IsEmpty())
+	{
+		Request.Sort = InRequest.Sort;
+	}
 	if (InRequest.PageSize > 0)
 	{
 		Request.PageSize = InRequest.PageSize;
@@ -178,9 +184,14 @@ bool URH_GuideSearch::HasMorePages() const
 	return GetNextPageCursor() != nullptr;
 }
 
-FString* URH_GuideSearch::GetNextPageCursor() const
+const FString* URH_GuideSearch::GetNextPageCursor() const
 {
-	auto LastPage = ResultPages.Last();
+	if (ResultPages.IsEmpty())
+	{
+		return nullptr;
+	}
+	
+	auto& LastPage = ResultPages.Last();
 	auto NextPageCursor = LastPage.GetCursorOrNull();
 	if (!NextPageCursor)
 	{

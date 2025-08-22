@@ -42,47 +42,41 @@ struct RALLYHEREAPI_API FRHAPI_PageMeta : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Page{ 0 };
 	/** @brief Gets the value of Page */
-	int32& GetPage() { return Page; }
+	FORCEINLINE int32& GetPage() { return Page; }
 	/** @brief Gets the value of Page */
-	const int32& GetPage() const { return Page; }
+	FORCEINLINE const int32& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(const int32& NewValue) { Page = NewValue;   }
+	FORCEINLINE void SetPage(const int32& NewValue) { Page = NewValue;   }
 	/** @brief Sets the value of Page using move semantics */
-	void SetPage(int32&& NewValue) { Page = NewValue;   }
-	/** @brief Returns true if Page matches the default value */
-	bool IsPageDefaultValue() const { return Page == 0; }
-	/** @brief Sets the value of Page to its default  */
-	void SetPageToDefault() { SetPage(0); }
+	FORCEINLINE void SetPage(int32&& NewValue) { Page = NewValue;   }
+	/** @brief Returns the default value of Page */
+	FORCEINLINE int32 GetDefaultValue_Page() { return 0; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Limit{ 0 };
 	/** @brief Gets the value of Limit */
-	int32& GetLimit() { return Limit; }
+	FORCEINLINE int32& GetLimit() { return Limit; }
 	/** @brief Gets the value of Limit */
-	const int32& GetLimit() const { return Limit; }
+	FORCEINLINE const int32& GetLimit() const { return Limit; }
 	/** @brief Sets the value of Limit */
-	void SetLimit(const int32& NewValue) { Limit = NewValue;   }
+	FORCEINLINE void SetLimit(const int32& NewValue) { Limit = NewValue;   }
 	/** @brief Sets the value of Limit using move semantics */
-	void SetLimit(int32&& NewValue) { Limit = NewValue;   }
-	/** @brief Returns true if Limit matches the default value */
-	bool IsLimitDefaultValue() const { return Limit == 0; }
-	/** @brief Sets the value of Limit to its default  */
-	void SetLimitToDefault() { SetLimit(0); }
+	FORCEINLINE void SetLimit(int32&& NewValue) { Limit = NewValue;   }
+	/** @brief Returns the default value of Limit */
+	FORCEINLINE int32 GetDefaultValue_Limit() { return 0; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Total{ 0 };
 	/** @brief Gets the value of Total */
-	int32& GetTotal() { return Total; }
+	FORCEINLINE int32& GetTotal() { return Total; }
 	/** @brief Gets the value of Total */
-	const int32& GetTotal() const { return Total; }
+	FORCEINLINE const int32& GetTotal() const { return Total; }
 	/** @brief Sets the value of Total */
-	void SetTotal(const int32& NewValue) { Total = NewValue;   }
+	FORCEINLINE void SetTotal(const int32& NewValue) { Total = NewValue;   }
 	/** @brief Sets the value of Total using move semantics */
-	void SetTotal(int32&& NewValue) { Total = NewValue;   }
-	/** @brief Returns true if Total matches the default value */
-	bool IsTotalDefaultValue() const { return Total == 0; }
-	/** @brief Sets the value of Total to its default  */
-	void SetTotalToDefault() { SetTotal(0); }
+	FORCEINLINE void SetTotal(int32&& NewValue) { Total = NewValue;   }
+	/** @brief Returns the default value of Total */
+	FORCEINLINE int32 GetDefaultValue_Total() { return 0; }
 };
 
 /** @} */

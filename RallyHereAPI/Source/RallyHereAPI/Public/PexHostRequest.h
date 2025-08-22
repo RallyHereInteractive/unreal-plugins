@@ -51,29 +51,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool FrameTime_IsNull{ false };
 	/** @brief Gets the value of FrameTime_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetFrameTime() { return FrameTime_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetFrameTime() { return FrameTime_Optional; }
 	/** @brief Gets the value of FrameTime_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetFrameTime() const { return FrameTime_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetFrameTime() const { return FrameTime_Optional; }
 	/** @brief Gets the value of FrameTime_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetFrameTime(const FRHAPI_PexStat& DefaultValue) const { if (FrameTime_IsSet) return FrameTime_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetFrameTime(const FRHAPI_PexStat& DefaultValue) const { if (FrameTime_IsSet) return FrameTime_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of FrameTime_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFrameTime(FRHAPI_PexStat& OutValue) const { if (FrameTime_IsSet && !FrameTime_IsNull) OutValue = FrameTime_Optional; return FrameTime_IsSet; }
+	FORCEINLINE bool GetFrameTime(FRHAPI_PexStat& OutValue) const { if (FrameTime_IsSet && !FrameTime_IsNull) OutValue = FrameTime_Optional; return FrameTime_IsSet; }
 	/** @brief Returns a pointer to FrameTime_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetFrameTimeOrNull() { if (FrameTime_IsSet) return (FrameTime_IsNull ? nullptr : &FrameTime_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetFrameTimeOrNull() { if (FrameTime_IsSet) return (FrameTime_IsNull ? nullptr : &FrameTime_Optional); return nullptr; }
 	/** @brief Returns a pointer to FrameTime_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetFrameTimeOrNull() const { if (FrameTime_IsSet) return (FrameTime_IsNull ? nullptr : &FrameTime_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetFrameTimeOrNull() const { if (FrameTime_IsSet) return (FrameTime_IsNull ? nullptr : &FrameTime_Optional); return nullptr; }
 	/** @brief Sets the value of FrameTime_Optional and also sets FrameTime_IsSet to true */
-	void SetFrameTime(const FRHAPI_PexStat& NewValue) { FrameTime_Optional = NewValue; FrameTime_IsSet = true; FrameTime_IsNull = false; }
+	FORCEINLINE void SetFrameTime(const FRHAPI_PexStat& NewValue) { FrameTime_Optional = NewValue; FrameTime_IsSet = true; FrameTime_IsNull = false; }
 	/** @brief Sets the value of FrameTime_Optional and also sets FrameTime_IsSet to true using move semantics */
-	void SetFrameTime(FRHAPI_PexStat&& NewValue) { FrameTime_Optional = NewValue; FrameTime_IsSet = true; FrameTime_IsNull = false; }
+	FORCEINLINE void SetFrameTime(FRHAPI_PexStat&& NewValue) { FrameTime_Optional = NewValue; FrameTime_IsSet = true; FrameTime_IsNull = false; }
 	/** @brief Clears the value of FrameTime_Optional and sets FrameTime_IsSet to false */
 	void ClearFrameTime() { FrameTime_IsSet = false; FrameTime_IsNull = false; }
-	/** @brief Checks whether FrameTime_Optional has been set */
-	bool IsFrameTimeSet() const { return FrameTime_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFrameTimeToNull() { FrameTime_IsSet = true; FrameTime_IsNull = true; }
+	FORCEINLINE void SetFrameTimeToNull() { FrameTime_IsSet = true; FrameTime_IsNull = true; }
 	/** @brief Checks whether FrameTime_Optional is set to null */
-	bool IsFrameTimeNull() const { return FrameTime_IsSet && FrameTime_IsNull; }
+	FORCEINLINE bool IsFrameTimeNull() const { return FrameTime_IsSet && FrameTime_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat DeltaTime_Optional{  };
@@ -84,29 +82,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeltaTime_IsNull{ false };
 	/** @brief Gets the value of DeltaTime_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetDeltaTime() { return DeltaTime_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetDeltaTime() { return DeltaTime_Optional; }
 	/** @brief Gets the value of DeltaTime_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetDeltaTime() const { return DeltaTime_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetDeltaTime() const { return DeltaTime_Optional; }
 	/** @brief Gets the value of DeltaTime_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetDeltaTime(const FRHAPI_PexStat& DefaultValue) const { if (DeltaTime_IsSet) return DeltaTime_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetDeltaTime(const FRHAPI_PexStat& DefaultValue) const { if (DeltaTime_IsSet) return DeltaTime_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DeltaTime_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDeltaTime(FRHAPI_PexStat& OutValue) const { if (DeltaTime_IsSet && !DeltaTime_IsNull) OutValue = DeltaTime_Optional; return DeltaTime_IsSet; }
+	FORCEINLINE bool GetDeltaTime(FRHAPI_PexStat& OutValue) const { if (DeltaTime_IsSet && !DeltaTime_IsNull) OutValue = DeltaTime_Optional; return DeltaTime_IsSet; }
 	/** @brief Returns a pointer to DeltaTime_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetDeltaTimeOrNull() { if (DeltaTime_IsSet) return (DeltaTime_IsNull ? nullptr : &DeltaTime_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetDeltaTimeOrNull() { if (DeltaTime_IsSet) return (DeltaTime_IsNull ? nullptr : &DeltaTime_Optional); return nullptr; }
 	/** @brief Returns a pointer to DeltaTime_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetDeltaTimeOrNull() const { if (DeltaTime_IsSet) return (DeltaTime_IsNull ? nullptr : &DeltaTime_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetDeltaTimeOrNull() const { if (DeltaTime_IsSet) return (DeltaTime_IsNull ? nullptr : &DeltaTime_Optional); return nullptr; }
 	/** @brief Sets the value of DeltaTime_Optional and also sets DeltaTime_IsSet to true */
-	void SetDeltaTime(const FRHAPI_PexStat& NewValue) { DeltaTime_Optional = NewValue; DeltaTime_IsSet = true; DeltaTime_IsNull = false; }
+	FORCEINLINE void SetDeltaTime(const FRHAPI_PexStat& NewValue) { DeltaTime_Optional = NewValue; DeltaTime_IsSet = true; DeltaTime_IsNull = false; }
 	/** @brief Sets the value of DeltaTime_Optional and also sets DeltaTime_IsSet to true using move semantics */
-	void SetDeltaTime(FRHAPI_PexStat&& NewValue) { DeltaTime_Optional = NewValue; DeltaTime_IsSet = true; DeltaTime_IsNull = false; }
+	FORCEINLINE void SetDeltaTime(FRHAPI_PexStat&& NewValue) { DeltaTime_Optional = NewValue; DeltaTime_IsSet = true; DeltaTime_IsNull = false; }
 	/** @brief Clears the value of DeltaTime_Optional and sets DeltaTime_IsSet to false */
 	void ClearDeltaTime() { DeltaTime_IsSet = false; DeltaTime_IsNull = false; }
-	/** @brief Checks whether DeltaTime_Optional has been set */
-	bool IsDeltaTimeSet() const { return DeltaTime_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetDeltaTimeToNull() { DeltaTime_IsSet = true; DeltaTime_IsNull = true; }
+	FORCEINLINE void SetDeltaTimeToNull() { DeltaTime_IsSet = true; DeltaTime_IsNull = true; }
 	/** @brief Checks whether DeltaTime_Optional is set to null */
-	bool IsDeltaTimeNull() const { return DeltaTime_IsSet && DeltaTime_IsNull; }
+	FORCEINLINE bool IsDeltaTimeNull() const { return DeltaTime_IsSet && DeltaTime_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat TickCount_Optional{  };
@@ -117,29 +113,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TickCount_IsNull{ false };
 	/** @brief Gets the value of TickCount_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetTickCount() { return TickCount_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetTickCount() { return TickCount_Optional; }
 	/** @brief Gets the value of TickCount_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetTickCount() const { return TickCount_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetTickCount() const { return TickCount_Optional; }
 	/** @brief Gets the value of TickCount_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetTickCount(const FRHAPI_PexStat& DefaultValue) const { if (TickCount_IsSet) return TickCount_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetTickCount(const FRHAPI_PexStat& DefaultValue) const { if (TickCount_IsSet) return TickCount_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TickCount_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTickCount(FRHAPI_PexStat& OutValue) const { if (TickCount_IsSet && !TickCount_IsNull) OutValue = TickCount_Optional; return TickCount_IsSet; }
+	FORCEINLINE bool GetTickCount(FRHAPI_PexStat& OutValue) const { if (TickCount_IsSet && !TickCount_IsNull) OutValue = TickCount_Optional; return TickCount_IsSet; }
 	/** @brief Returns a pointer to TickCount_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetTickCountOrNull() { if (TickCount_IsSet) return (TickCount_IsNull ? nullptr : &TickCount_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetTickCountOrNull() { if (TickCount_IsSet) return (TickCount_IsNull ? nullptr : &TickCount_Optional); return nullptr; }
 	/** @brief Returns a pointer to TickCount_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetTickCountOrNull() const { if (TickCount_IsSet) return (TickCount_IsNull ? nullptr : &TickCount_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetTickCountOrNull() const { if (TickCount_IsSet) return (TickCount_IsNull ? nullptr : &TickCount_Optional); return nullptr; }
 	/** @brief Sets the value of TickCount_Optional and also sets TickCount_IsSet to true */
-	void SetTickCount(const FRHAPI_PexStat& NewValue) { TickCount_Optional = NewValue; TickCount_IsSet = true; TickCount_IsNull = false; }
+	FORCEINLINE void SetTickCount(const FRHAPI_PexStat& NewValue) { TickCount_Optional = NewValue; TickCount_IsSet = true; TickCount_IsNull = false; }
 	/** @brief Sets the value of TickCount_Optional and also sets TickCount_IsSet to true using move semantics */
-	void SetTickCount(FRHAPI_PexStat&& NewValue) { TickCount_Optional = NewValue; TickCount_IsSet = true; TickCount_IsNull = false; }
+	FORCEINLINE void SetTickCount(FRHAPI_PexStat&& NewValue) { TickCount_Optional = NewValue; TickCount_IsSet = true; TickCount_IsNull = false; }
 	/** @brief Clears the value of TickCount_Optional and sets TickCount_IsSet to false */
 	void ClearTickCount() { TickCount_IsSet = false; TickCount_IsNull = false; }
-	/** @brief Checks whether TickCount_Optional has been set */
-	bool IsTickCountSet() const { return TickCount_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetTickCountToNull() { TickCount_IsSet = true; TickCount_IsNull = true; }
+	FORCEINLINE void SetTickCountToNull() { TickCount_IsSet = true; TickCount_IsNull = true; }
 	/** @brief Checks whether TickCount_Optional is set to null */
-	bool IsTickCountNull() const { return TickCount_IsSet && TickCount_IsNull; }
+	FORCEINLINE bool IsTickCountNull() const { return TickCount_IsSet && TickCount_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat DelayedTickCount_Optional{  };
@@ -150,29 +144,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DelayedTickCount_IsNull{ false };
 	/** @brief Gets the value of DelayedTickCount_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetDelayedTickCount() { return DelayedTickCount_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetDelayedTickCount() { return DelayedTickCount_Optional; }
 	/** @brief Gets the value of DelayedTickCount_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetDelayedTickCount() const { return DelayedTickCount_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetDelayedTickCount() const { return DelayedTickCount_Optional; }
 	/** @brief Gets the value of DelayedTickCount_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetDelayedTickCount(const FRHAPI_PexStat& DefaultValue) const { if (DelayedTickCount_IsSet) return DelayedTickCount_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetDelayedTickCount(const FRHAPI_PexStat& DefaultValue) const { if (DelayedTickCount_IsSet) return DelayedTickCount_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DelayedTickCount_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDelayedTickCount(FRHAPI_PexStat& OutValue) const { if (DelayedTickCount_IsSet && !DelayedTickCount_IsNull) OutValue = DelayedTickCount_Optional; return DelayedTickCount_IsSet; }
+	FORCEINLINE bool GetDelayedTickCount(FRHAPI_PexStat& OutValue) const { if (DelayedTickCount_IsSet && !DelayedTickCount_IsNull) OutValue = DelayedTickCount_Optional; return DelayedTickCount_IsSet; }
 	/** @brief Returns a pointer to DelayedTickCount_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetDelayedTickCountOrNull() { if (DelayedTickCount_IsSet) return (DelayedTickCount_IsNull ? nullptr : &DelayedTickCount_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetDelayedTickCountOrNull() { if (DelayedTickCount_IsSet) return (DelayedTickCount_IsNull ? nullptr : &DelayedTickCount_Optional); return nullptr; }
 	/** @brief Returns a pointer to DelayedTickCount_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetDelayedTickCountOrNull() const { if (DelayedTickCount_IsSet) return (DelayedTickCount_IsNull ? nullptr : &DelayedTickCount_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetDelayedTickCountOrNull() const { if (DelayedTickCount_IsSet) return (DelayedTickCount_IsNull ? nullptr : &DelayedTickCount_Optional); return nullptr; }
 	/** @brief Sets the value of DelayedTickCount_Optional and also sets DelayedTickCount_IsSet to true */
-	void SetDelayedTickCount(const FRHAPI_PexStat& NewValue) { DelayedTickCount_Optional = NewValue; DelayedTickCount_IsSet = true; DelayedTickCount_IsNull = false; }
+	FORCEINLINE void SetDelayedTickCount(const FRHAPI_PexStat& NewValue) { DelayedTickCount_Optional = NewValue; DelayedTickCount_IsSet = true; DelayedTickCount_IsNull = false; }
 	/** @brief Sets the value of DelayedTickCount_Optional and also sets DelayedTickCount_IsSet to true using move semantics */
-	void SetDelayedTickCount(FRHAPI_PexStat&& NewValue) { DelayedTickCount_Optional = NewValue; DelayedTickCount_IsSet = true; DelayedTickCount_IsNull = false; }
+	FORCEINLINE void SetDelayedTickCount(FRHAPI_PexStat&& NewValue) { DelayedTickCount_Optional = NewValue; DelayedTickCount_IsSet = true; DelayedTickCount_IsNull = false; }
 	/** @brief Clears the value of DelayedTickCount_Optional and sets DelayedTickCount_IsSet to false */
 	void ClearDelayedTickCount() { DelayedTickCount_IsSet = false; DelayedTickCount_IsNull = false; }
-	/** @brief Checks whether DelayedTickCount_Optional has been set */
-	bool IsDelayedTickCountSet() const { return DelayedTickCount_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetDelayedTickCountToNull() { DelayedTickCount_IsSet = true; DelayedTickCount_IsNull = true; }
+	FORCEINLINE void SetDelayedTickCountToNull() { DelayedTickCount_IsSet = true; DelayedTickCount_IsNull = true; }
 	/** @brief Checks whether DelayedTickCount_Optional is set to null */
-	bool IsDelayedTickCountNull() const { return DelayedTickCount_IsSet && DelayedTickCount_IsNull; }
+	FORCEINLINE bool IsDelayedTickCountNull() const { return DelayedTickCount_IsSet && DelayedTickCount_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat MemoryWs_Optional{  };
@@ -183,29 +175,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MemoryWs_IsNull{ false };
 	/** @brief Gets the value of MemoryWs_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetMemoryWs() { return MemoryWs_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetMemoryWs() { return MemoryWs_Optional; }
 	/** @brief Gets the value of MemoryWs_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetMemoryWs() const { return MemoryWs_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetMemoryWs() const { return MemoryWs_Optional; }
 	/** @brief Gets the value of MemoryWs_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetMemoryWs(const FRHAPI_PexStat& DefaultValue) const { if (MemoryWs_IsSet) return MemoryWs_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetMemoryWs(const FRHAPI_PexStat& DefaultValue) const { if (MemoryWs_IsSet) return MemoryWs_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MemoryWs_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMemoryWs(FRHAPI_PexStat& OutValue) const { if (MemoryWs_IsSet && !MemoryWs_IsNull) OutValue = MemoryWs_Optional; return MemoryWs_IsSet; }
+	FORCEINLINE bool GetMemoryWs(FRHAPI_PexStat& OutValue) const { if (MemoryWs_IsSet && !MemoryWs_IsNull) OutValue = MemoryWs_Optional; return MemoryWs_IsSet; }
 	/** @brief Returns a pointer to MemoryWs_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetMemoryWsOrNull() { if (MemoryWs_IsSet) return (MemoryWs_IsNull ? nullptr : &MemoryWs_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetMemoryWsOrNull() { if (MemoryWs_IsSet) return (MemoryWs_IsNull ? nullptr : &MemoryWs_Optional); return nullptr; }
 	/** @brief Returns a pointer to MemoryWs_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetMemoryWsOrNull() const { if (MemoryWs_IsSet) return (MemoryWs_IsNull ? nullptr : &MemoryWs_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetMemoryWsOrNull() const { if (MemoryWs_IsSet) return (MemoryWs_IsNull ? nullptr : &MemoryWs_Optional); return nullptr; }
 	/** @brief Sets the value of MemoryWs_Optional and also sets MemoryWs_IsSet to true */
-	void SetMemoryWs(const FRHAPI_PexStat& NewValue) { MemoryWs_Optional = NewValue; MemoryWs_IsSet = true; MemoryWs_IsNull = false; }
+	FORCEINLINE void SetMemoryWs(const FRHAPI_PexStat& NewValue) { MemoryWs_Optional = NewValue; MemoryWs_IsSet = true; MemoryWs_IsNull = false; }
 	/** @brief Sets the value of MemoryWs_Optional and also sets MemoryWs_IsSet to true using move semantics */
-	void SetMemoryWs(FRHAPI_PexStat&& NewValue) { MemoryWs_Optional = NewValue; MemoryWs_IsSet = true; MemoryWs_IsNull = false; }
+	FORCEINLINE void SetMemoryWs(FRHAPI_PexStat&& NewValue) { MemoryWs_Optional = NewValue; MemoryWs_IsSet = true; MemoryWs_IsNull = false; }
 	/** @brief Clears the value of MemoryWs_Optional and sets MemoryWs_IsSet to false */
 	void ClearMemoryWs() { MemoryWs_IsSet = false; MemoryWs_IsNull = false; }
-	/** @brief Checks whether MemoryWs_Optional has been set */
-	bool IsMemoryWsSet() const { return MemoryWs_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMemoryWsToNull() { MemoryWs_IsSet = true; MemoryWs_IsNull = true; }
+	FORCEINLINE void SetMemoryWsToNull() { MemoryWs_IsSet = true; MemoryWs_IsNull = true; }
 	/** @brief Checks whether MemoryWs_Optional is set to null */
-	bool IsMemoryWsNull() const { return MemoryWs_IsSet && MemoryWs_IsNull; }
+	FORCEINLINE bool IsMemoryWsNull() const { return MemoryWs_IsSet && MemoryWs_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat MemoryVb_Optional{  };
@@ -216,29 +206,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MemoryVb_IsNull{ false };
 	/** @brief Gets the value of MemoryVb_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetMemoryVb() { return MemoryVb_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetMemoryVb() { return MemoryVb_Optional; }
 	/** @brief Gets the value of MemoryVb_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetMemoryVb() const { return MemoryVb_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetMemoryVb() const { return MemoryVb_Optional; }
 	/** @brief Gets the value of MemoryVb_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetMemoryVb(const FRHAPI_PexStat& DefaultValue) const { if (MemoryVb_IsSet) return MemoryVb_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetMemoryVb(const FRHAPI_PexStat& DefaultValue) const { if (MemoryVb_IsSet) return MemoryVb_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MemoryVb_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMemoryVb(FRHAPI_PexStat& OutValue) const { if (MemoryVb_IsSet && !MemoryVb_IsNull) OutValue = MemoryVb_Optional; return MemoryVb_IsSet; }
+	FORCEINLINE bool GetMemoryVb(FRHAPI_PexStat& OutValue) const { if (MemoryVb_IsSet && !MemoryVb_IsNull) OutValue = MemoryVb_Optional; return MemoryVb_IsSet; }
 	/** @brief Returns a pointer to MemoryVb_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetMemoryVbOrNull() { if (MemoryVb_IsSet) return (MemoryVb_IsNull ? nullptr : &MemoryVb_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetMemoryVbOrNull() { if (MemoryVb_IsSet) return (MemoryVb_IsNull ? nullptr : &MemoryVb_Optional); return nullptr; }
 	/** @brief Returns a pointer to MemoryVb_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetMemoryVbOrNull() const { if (MemoryVb_IsSet) return (MemoryVb_IsNull ? nullptr : &MemoryVb_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetMemoryVbOrNull() const { if (MemoryVb_IsSet) return (MemoryVb_IsNull ? nullptr : &MemoryVb_Optional); return nullptr; }
 	/** @brief Sets the value of MemoryVb_Optional and also sets MemoryVb_IsSet to true */
-	void SetMemoryVb(const FRHAPI_PexStat& NewValue) { MemoryVb_Optional = NewValue; MemoryVb_IsSet = true; MemoryVb_IsNull = false; }
+	FORCEINLINE void SetMemoryVb(const FRHAPI_PexStat& NewValue) { MemoryVb_Optional = NewValue; MemoryVb_IsSet = true; MemoryVb_IsNull = false; }
 	/** @brief Sets the value of MemoryVb_Optional and also sets MemoryVb_IsSet to true using move semantics */
-	void SetMemoryVb(FRHAPI_PexStat&& NewValue) { MemoryVb_Optional = NewValue; MemoryVb_IsSet = true; MemoryVb_IsNull = false; }
+	FORCEINLINE void SetMemoryVb(FRHAPI_PexStat&& NewValue) { MemoryVb_Optional = NewValue; MemoryVb_IsSet = true; MemoryVb_IsNull = false; }
 	/** @brief Clears the value of MemoryVb_Optional and sets MemoryVb_IsSet to false */
 	void ClearMemoryVb() { MemoryVb_IsSet = false; MemoryVb_IsNull = false; }
-	/** @brief Checks whether MemoryVb_Optional has been set */
-	bool IsMemoryVbSet() const { return MemoryVb_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMemoryVbToNull() { MemoryVb_IsSet = true; MemoryVb_IsNull = true; }
+	FORCEINLINE void SetMemoryVbToNull() { MemoryVb_IsSet = true; MemoryVb_IsNull = true; }
 	/** @brief Checks whether MemoryVb_Optional is set to null */
-	bool IsMemoryVbNull() const { return MemoryVb_IsSet && MemoryVb_IsNull; }
+	FORCEINLINE bool IsMemoryVbNull() const { return MemoryVb_IsSet && MemoryVb_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat CpuProcess_Optional{  };
@@ -249,29 +237,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CpuProcess_IsNull{ false };
 	/** @brief Gets the value of CpuProcess_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetCpuProcess() { return CpuProcess_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetCpuProcess() { return CpuProcess_Optional; }
 	/** @brief Gets the value of CpuProcess_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetCpuProcess() const { return CpuProcess_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetCpuProcess() const { return CpuProcess_Optional; }
 	/** @brief Gets the value of CpuProcess_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetCpuProcess(const FRHAPI_PexStat& DefaultValue) const { if (CpuProcess_IsSet) return CpuProcess_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetCpuProcess(const FRHAPI_PexStat& DefaultValue) const { if (CpuProcess_IsSet) return CpuProcess_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CpuProcess_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCpuProcess(FRHAPI_PexStat& OutValue) const { if (CpuProcess_IsSet && !CpuProcess_IsNull) OutValue = CpuProcess_Optional; return CpuProcess_IsSet; }
+	FORCEINLINE bool GetCpuProcess(FRHAPI_PexStat& OutValue) const { if (CpuProcess_IsSet && !CpuProcess_IsNull) OutValue = CpuProcess_Optional; return CpuProcess_IsSet; }
 	/** @brief Returns a pointer to CpuProcess_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetCpuProcessOrNull() { if (CpuProcess_IsSet) return (CpuProcess_IsNull ? nullptr : &CpuProcess_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetCpuProcessOrNull() { if (CpuProcess_IsSet) return (CpuProcess_IsNull ? nullptr : &CpuProcess_Optional); return nullptr; }
 	/** @brief Returns a pointer to CpuProcess_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetCpuProcessOrNull() const { if (CpuProcess_IsSet) return (CpuProcess_IsNull ? nullptr : &CpuProcess_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetCpuProcessOrNull() const { if (CpuProcess_IsSet) return (CpuProcess_IsNull ? nullptr : &CpuProcess_Optional); return nullptr; }
 	/** @brief Sets the value of CpuProcess_Optional and also sets CpuProcess_IsSet to true */
-	void SetCpuProcess(const FRHAPI_PexStat& NewValue) { CpuProcess_Optional = NewValue; CpuProcess_IsSet = true; CpuProcess_IsNull = false; }
+	FORCEINLINE void SetCpuProcess(const FRHAPI_PexStat& NewValue) { CpuProcess_Optional = NewValue; CpuProcess_IsSet = true; CpuProcess_IsNull = false; }
 	/** @brief Sets the value of CpuProcess_Optional and also sets CpuProcess_IsSet to true using move semantics */
-	void SetCpuProcess(FRHAPI_PexStat&& NewValue) { CpuProcess_Optional = NewValue; CpuProcess_IsSet = true; CpuProcess_IsNull = false; }
+	FORCEINLINE void SetCpuProcess(FRHAPI_PexStat&& NewValue) { CpuProcess_Optional = NewValue; CpuProcess_IsSet = true; CpuProcess_IsNull = false; }
 	/** @brief Clears the value of CpuProcess_Optional and sets CpuProcess_IsSet to false */
 	void ClearCpuProcess() { CpuProcess_IsSet = false; CpuProcess_IsNull = false; }
-	/** @brief Checks whether CpuProcess_Optional has been set */
-	bool IsCpuProcessSet() const { return CpuProcess_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCpuProcessToNull() { CpuProcess_IsSet = true; CpuProcess_IsNull = true; }
+	FORCEINLINE void SetCpuProcessToNull() { CpuProcess_IsSet = true; CpuProcess_IsNull = true; }
 	/** @brief Checks whether CpuProcess_Optional is set to null */
-	bool IsCpuProcessNull() const { return CpuProcess_IsSet && CpuProcess_IsNull; }
+	FORCEINLINE bool IsCpuProcessNull() const { return CpuProcess_IsSet && CpuProcess_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat Ping_Optional{  };
@@ -282,29 +268,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ping_IsNull{ false };
 	/** @brief Gets the value of Ping_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetPing() { return Ping_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetPing() { return Ping_Optional; }
 	/** @brief Gets the value of Ping_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetPing() const { return Ping_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetPing() const { return Ping_Optional; }
 	/** @brief Gets the value of Ping_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetPing(const FRHAPI_PexStat& DefaultValue) const { if (Ping_IsSet) return Ping_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetPing(const FRHAPI_PexStat& DefaultValue) const { if (Ping_IsSet) return Ping_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ping_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPing(FRHAPI_PexStat& OutValue) const { if (Ping_IsSet && !Ping_IsNull) OutValue = Ping_Optional; return Ping_IsSet; }
+	FORCEINLINE bool GetPing(FRHAPI_PexStat& OutValue) const { if (Ping_IsSet && !Ping_IsNull) OutValue = Ping_Optional; return Ping_IsSet; }
 	/** @brief Returns a pointer to Ping_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetPingOrNull() { if (Ping_IsSet) return (Ping_IsNull ? nullptr : &Ping_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetPingOrNull() { if (Ping_IsSet) return (Ping_IsNull ? nullptr : &Ping_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ping_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetPingOrNull() const { if (Ping_IsSet) return (Ping_IsNull ? nullptr : &Ping_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetPingOrNull() const { if (Ping_IsSet) return (Ping_IsNull ? nullptr : &Ping_Optional); return nullptr; }
 	/** @brief Sets the value of Ping_Optional and also sets Ping_IsSet to true */
-	void SetPing(const FRHAPI_PexStat& NewValue) { Ping_Optional = NewValue; Ping_IsSet = true; Ping_IsNull = false; }
+	FORCEINLINE void SetPing(const FRHAPI_PexStat& NewValue) { Ping_Optional = NewValue; Ping_IsSet = true; Ping_IsNull = false; }
 	/** @brief Sets the value of Ping_Optional and also sets Ping_IsSet to true using move semantics */
-	void SetPing(FRHAPI_PexStat&& NewValue) { Ping_Optional = NewValue; Ping_IsSet = true; Ping_IsNull = false; }
+	FORCEINLINE void SetPing(FRHAPI_PexStat&& NewValue) { Ping_Optional = NewValue; Ping_IsSet = true; Ping_IsNull = false; }
 	/** @brief Clears the value of Ping_Optional and sets Ping_IsSet to false */
 	void ClearPing() { Ping_IsSet = false; Ping_IsNull = false; }
-	/** @brief Checks whether Ping_Optional has been set */
-	bool IsPingSet() const { return Ping_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPingToNull() { Ping_IsSet = true; Ping_IsNull = true; }
+	FORCEINLINE void SetPingToNull() { Ping_IsSet = true; Ping_IsNull = true; }
 	/** @brief Checks whether Ping_Optional is set to null */
-	bool IsPingNull() const { return Ping_IsSet && Ping_IsNull; }
+	FORCEINLINE bool IsPingNull() const { return Ping_IsSet && Ping_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat InPackets_Optional{  };
@@ -315,29 +299,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InPackets_IsNull{ false };
 	/** @brief Gets the value of InPackets_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetInPackets() { return InPackets_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetInPackets() { return InPackets_Optional; }
 	/** @brief Gets the value of InPackets_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetInPackets() const { return InPackets_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetInPackets() const { return InPackets_Optional; }
 	/** @brief Gets the value of InPackets_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetInPackets(const FRHAPI_PexStat& DefaultValue) const { if (InPackets_IsSet) return InPackets_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetInPackets(const FRHAPI_PexStat& DefaultValue) const { if (InPackets_IsSet) return InPackets_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of InPackets_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInPackets(FRHAPI_PexStat& OutValue) const { if (InPackets_IsSet && !InPackets_IsNull) OutValue = InPackets_Optional; return InPackets_IsSet; }
+	FORCEINLINE bool GetInPackets(FRHAPI_PexStat& OutValue) const { if (InPackets_IsSet && !InPackets_IsNull) OutValue = InPackets_Optional; return InPackets_IsSet; }
 	/** @brief Returns a pointer to InPackets_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetInPacketsOrNull() { if (InPackets_IsSet) return (InPackets_IsNull ? nullptr : &InPackets_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetInPacketsOrNull() { if (InPackets_IsSet) return (InPackets_IsNull ? nullptr : &InPackets_Optional); return nullptr; }
 	/** @brief Returns a pointer to InPackets_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetInPacketsOrNull() const { if (InPackets_IsSet) return (InPackets_IsNull ? nullptr : &InPackets_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetInPacketsOrNull() const { if (InPackets_IsSet) return (InPackets_IsNull ? nullptr : &InPackets_Optional); return nullptr; }
 	/** @brief Sets the value of InPackets_Optional and also sets InPackets_IsSet to true */
-	void SetInPackets(const FRHAPI_PexStat& NewValue) { InPackets_Optional = NewValue; InPackets_IsSet = true; InPackets_IsNull = false; }
+	FORCEINLINE void SetInPackets(const FRHAPI_PexStat& NewValue) { InPackets_Optional = NewValue; InPackets_IsSet = true; InPackets_IsNull = false; }
 	/** @brief Sets the value of InPackets_Optional and also sets InPackets_IsSet to true using move semantics */
-	void SetInPackets(FRHAPI_PexStat&& NewValue) { InPackets_Optional = NewValue; InPackets_IsSet = true; InPackets_IsNull = false; }
+	FORCEINLINE void SetInPackets(FRHAPI_PexStat&& NewValue) { InPackets_Optional = NewValue; InPackets_IsSet = true; InPackets_IsNull = false; }
 	/** @brief Clears the value of InPackets_Optional and sets InPackets_IsSet to false */
 	void ClearInPackets() { InPackets_IsSet = false; InPackets_IsNull = false; }
-	/** @brief Checks whether InPackets_Optional has been set */
-	bool IsInPacketsSet() const { return InPackets_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInPacketsToNull() { InPackets_IsSet = true; InPackets_IsNull = true; }
+	FORCEINLINE void SetInPacketsToNull() { InPackets_IsSet = true; InPackets_IsNull = true; }
 	/** @brief Checks whether InPackets_Optional is set to null */
-	bool IsInPacketsNull() const { return InPackets_IsSet && InPackets_IsNull; }
+	FORCEINLINE bool IsInPacketsNull() const { return InPackets_IsSet && InPackets_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat OutPackets_Optional{  };
@@ -348,29 +330,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OutPackets_IsNull{ false };
 	/** @brief Gets the value of OutPackets_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetOutPackets() { return OutPackets_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetOutPackets() { return OutPackets_Optional; }
 	/** @brief Gets the value of OutPackets_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetOutPackets() const { return OutPackets_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetOutPackets() const { return OutPackets_Optional; }
 	/** @brief Gets the value of OutPackets_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetOutPackets(const FRHAPI_PexStat& DefaultValue) const { if (OutPackets_IsSet) return OutPackets_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetOutPackets(const FRHAPI_PexStat& DefaultValue) const { if (OutPackets_IsSet) return OutPackets_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OutPackets_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOutPackets(FRHAPI_PexStat& OutValue) const { if (OutPackets_IsSet && !OutPackets_IsNull) OutValue = OutPackets_Optional; return OutPackets_IsSet; }
+	FORCEINLINE bool GetOutPackets(FRHAPI_PexStat& OutValue) const { if (OutPackets_IsSet && !OutPackets_IsNull) OutValue = OutPackets_Optional; return OutPackets_IsSet; }
 	/** @brief Returns a pointer to OutPackets_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetOutPacketsOrNull() { if (OutPackets_IsSet) return (OutPackets_IsNull ? nullptr : &OutPackets_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetOutPacketsOrNull() { if (OutPackets_IsSet) return (OutPackets_IsNull ? nullptr : &OutPackets_Optional); return nullptr; }
 	/** @brief Returns a pointer to OutPackets_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetOutPacketsOrNull() const { if (OutPackets_IsSet) return (OutPackets_IsNull ? nullptr : &OutPackets_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetOutPacketsOrNull() const { if (OutPackets_IsSet) return (OutPackets_IsNull ? nullptr : &OutPackets_Optional); return nullptr; }
 	/** @brief Sets the value of OutPackets_Optional and also sets OutPackets_IsSet to true */
-	void SetOutPackets(const FRHAPI_PexStat& NewValue) { OutPackets_Optional = NewValue; OutPackets_IsSet = true; OutPackets_IsNull = false; }
+	FORCEINLINE void SetOutPackets(const FRHAPI_PexStat& NewValue) { OutPackets_Optional = NewValue; OutPackets_IsSet = true; OutPackets_IsNull = false; }
 	/** @brief Sets the value of OutPackets_Optional and also sets OutPackets_IsSet to true using move semantics */
-	void SetOutPackets(FRHAPI_PexStat&& NewValue) { OutPackets_Optional = NewValue; OutPackets_IsSet = true; OutPackets_IsNull = false; }
+	FORCEINLINE void SetOutPackets(FRHAPI_PexStat&& NewValue) { OutPackets_Optional = NewValue; OutPackets_IsSet = true; OutPackets_IsNull = false; }
 	/** @brief Clears the value of OutPackets_Optional and sets OutPackets_IsSet to false */
 	void ClearOutPackets() { OutPackets_IsSet = false; OutPackets_IsNull = false; }
-	/** @brief Checks whether OutPackets_Optional has been set */
-	bool IsOutPacketsSet() const { return OutPackets_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetOutPacketsToNull() { OutPackets_IsSet = true; OutPackets_IsNull = true; }
+	FORCEINLINE void SetOutPacketsToNull() { OutPackets_IsSet = true; OutPackets_IsNull = true; }
 	/** @brief Checks whether OutPackets_Optional is set to null */
-	bool IsOutPacketsNull() const { return OutPackets_IsSet && OutPackets_IsNull; }
+	FORCEINLINE bool IsOutPacketsNull() const { return OutPackets_IsSet && OutPackets_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat TotalPackets_Optional{  };
@@ -381,29 +361,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalPackets_IsNull{ false };
 	/** @brief Gets the value of TotalPackets_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetTotalPackets() { return TotalPackets_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetTotalPackets() { return TotalPackets_Optional; }
 	/** @brief Gets the value of TotalPackets_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetTotalPackets() const { return TotalPackets_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetTotalPackets() const { return TotalPackets_Optional; }
 	/** @brief Gets the value of TotalPackets_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetTotalPackets(const FRHAPI_PexStat& DefaultValue) const { if (TotalPackets_IsSet) return TotalPackets_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetTotalPackets(const FRHAPI_PexStat& DefaultValue) const { if (TotalPackets_IsSet) return TotalPackets_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TotalPackets_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTotalPackets(FRHAPI_PexStat& OutValue) const { if (TotalPackets_IsSet && !TotalPackets_IsNull) OutValue = TotalPackets_Optional; return TotalPackets_IsSet; }
+	FORCEINLINE bool GetTotalPackets(FRHAPI_PexStat& OutValue) const { if (TotalPackets_IsSet && !TotalPackets_IsNull) OutValue = TotalPackets_Optional; return TotalPackets_IsSet; }
 	/** @brief Returns a pointer to TotalPackets_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetTotalPacketsOrNull() { if (TotalPackets_IsSet) return (TotalPackets_IsNull ? nullptr : &TotalPackets_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetTotalPacketsOrNull() { if (TotalPackets_IsSet) return (TotalPackets_IsNull ? nullptr : &TotalPackets_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalPackets_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetTotalPacketsOrNull() const { if (TotalPackets_IsSet) return (TotalPackets_IsNull ? nullptr : &TotalPackets_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetTotalPacketsOrNull() const { if (TotalPackets_IsSet) return (TotalPackets_IsNull ? nullptr : &TotalPackets_Optional); return nullptr; }
 	/** @brief Sets the value of TotalPackets_Optional and also sets TotalPackets_IsSet to true */
-	void SetTotalPackets(const FRHAPI_PexStat& NewValue) { TotalPackets_Optional = NewValue; TotalPackets_IsSet = true; TotalPackets_IsNull = false; }
+	FORCEINLINE void SetTotalPackets(const FRHAPI_PexStat& NewValue) { TotalPackets_Optional = NewValue; TotalPackets_IsSet = true; TotalPackets_IsNull = false; }
 	/** @brief Sets the value of TotalPackets_Optional and also sets TotalPackets_IsSet to true using move semantics */
-	void SetTotalPackets(FRHAPI_PexStat&& NewValue) { TotalPackets_Optional = NewValue; TotalPackets_IsSet = true; TotalPackets_IsNull = false; }
+	FORCEINLINE void SetTotalPackets(FRHAPI_PexStat&& NewValue) { TotalPackets_Optional = NewValue; TotalPackets_IsSet = true; TotalPackets_IsNull = false; }
 	/** @brief Clears the value of TotalPackets_Optional and sets TotalPackets_IsSet to false */
 	void ClearTotalPackets() { TotalPackets_IsSet = false; TotalPackets_IsNull = false; }
-	/** @brief Checks whether TotalPackets_Optional has been set */
-	bool IsTotalPacketsSet() const { return TotalPackets_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetTotalPacketsToNull() { TotalPackets_IsSet = true; TotalPackets_IsNull = true; }
+	FORCEINLINE void SetTotalPacketsToNull() { TotalPackets_IsSet = true; TotalPackets_IsNull = true; }
 	/** @brief Checks whether TotalPackets_Optional is set to null */
-	bool IsTotalPacketsNull() const { return TotalPackets_IsSet && TotalPackets_IsNull; }
+	FORCEINLINE bool IsTotalPacketsNull() const { return TotalPackets_IsSet && TotalPackets_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat InPacketLoss_Optional{  };
@@ -414,29 +392,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InPacketLoss_IsNull{ false };
 	/** @brief Gets the value of InPacketLoss_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetInPacketLoss() { return InPacketLoss_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetInPacketLoss() { return InPacketLoss_Optional; }
 	/** @brief Gets the value of InPacketLoss_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetInPacketLoss() const { return InPacketLoss_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetInPacketLoss() const { return InPacketLoss_Optional; }
 	/** @brief Gets the value of InPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetInPacketLoss(const FRHAPI_PexStat& DefaultValue) const { if (InPacketLoss_IsSet) return InPacketLoss_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetInPacketLoss(const FRHAPI_PexStat& DefaultValue) const { if (InPacketLoss_IsSet) return InPacketLoss_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of InPacketLoss_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInPacketLoss(FRHAPI_PexStat& OutValue) const { if (InPacketLoss_IsSet && !InPacketLoss_IsNull) OutValue = InPacketLoss_Optional; return InPacketLoss_IsSet; }
+	FORCEINLINE bool GetInPacketLoss(FRHAPI_PexStat& OutValue) const { if (InPacketLoss_IsSet && !InPacketLoss_IsNull) OutValue = InPacketLoss_Optional; return InPacketLoss_IsSet; }
 	/** @brief Returns a pointer to InPacketLoss_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetInPacketLossOrNull() { if (InPacketLoss_IsSet) return (InPacketLoss_IsNull ? nullptr : &InPacketLoss_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetInPacketLossOrNull() { if (InPacketLoss_IsSet) return (InPacketLoss_IsNull ? nullptr : &InPacketLoss_Optional); return nullptr; }
 	/** @brief Returns a pointer to InPacketLoss_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetInPacketLossOrNull() const { if (InPacketLoss_IsSet) return (InPacketLoss_IsNull ? nullptr : &InPacketLoss_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetInPacketLossOrNull() const { if (InPacketLoss_IsSet) return (InPacketLoss_IsNull ? nullptr : &InPacketLoss_Optional); return nullptr; }
 	/** @brief Sets the value of InPacketLoss_Optional and also sets InPacketLoss_IsSet to true */
-	void SetInPacketLoss(const FRHAPI_PexStat& NewValue) { InPacketLoss_Optional = NewValue; InPacketLoss_IsSet = true; InPacketLoss_IsNull = false; }
+	FORCEINLINE void SetInPacketLoss(const FRHAPI_PexStat& NewValue) { InPacketLoss_Optional = NewValue; InPacketLoss_IsSet = true; InPacketLoss_IsNull = false; }
 	/** @brief Sets the value of InPacketLoss_Optional and also sets InPacketLoss_IsSet to true using move semantics */
-	void SetInPacketLoss(FRHAPI_PexStat&& NewValue) { InPacketLoss_Optional = NewValue; InPacketLoss_IsSet = true; InPacketLoss_IsNull = false; }
+	FORCEINLINE void SetInPacketLoss(FRHAPI_PexStat&& NewValue) { InPacketLoss_Optional = NewValue; InPacketLoss_IsSet = true; InPacketLoss_IsNull = false; }
 	/** @brief Clears the value of InPacketLoss_Optional and sets InPacketLoss_IsSet to false */
 	void ClearInPacketLoss() { InPacketLoss_IsSet = false; InPacketLoss_IsNull = false; }
-	/** @brief Checks whether InPacketLoss_Optional has been set */
-	bool IsInPacketLossSet() const { return InPacketLoss_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInPacketLossToNull() { InPacketLoss_IsSet = true; InPacketLoss_IsNull = true; }
+	FORCEINLINE void SetInPacketLossToNull() { InPacketLoss_IsSet = true; InPacketLoss_IsNull = true; }
 	/** @brief Checks whether InPacketLoss_Optional is set to null */
-	bool IsInPacketLossNull() const { return InPacketLoss_IsSet && InPacketLoss_IsNull; }
+	FORCEINLINE bool IsInPacketLossNull() const { return InPacketLoss_IsSet && InPacketLoss_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat OutPacketLoss_Optional{  };
@@ -447,29 +423,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OutPacketLoss_IsNull{ false };
 	/** @brief Gets the value of OutPacketLoss_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetOutPacketLoss() { return OutPacketLoss_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetOutPacketLoss() { return OutPacketLoss_Optional; }
 	/** @brief Gets the value of OutPacketLoss_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetOutPacketLoss() const { return OutPacketLoss_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetOutPacketLoss() const { return OutPacketLoss_Optional; }
 	/** @brief Gets the value of OutPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetOutPacketLoss(const FRHAPI_PexStat& DefaultValue) const { if (OutPacketLoss_IsSet) return OutPacketLoss_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetOutPacketLoss(const FRHAPI_PexStat& DefaultValue) const { if (OutPacketLoss_IsSet) return OutPacketLoss_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OutPacketLoss_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOutPacketLoss(FRHAPI_PexStat& OutValue) const { if (OutPacketLoss_IsSet && !OutPacketLoss_IsNull) OutValue = OutPacketLoss_Optional; return OutPacketLoss_IsSet; }
+	FORCEINLINE bool GetOutPacketLoss(FRHAPI_PexStat& OutValue) const { if (OutPacketLoss_IsSet && !OutPacketLoss_IsNull) OutValue = OutPacketLoss_Optional; return OutPacketLoss_IsSet; }
 	/** @brief Returns a pointer to OutPacketLoss_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetOutPacketLossOrNull() { if (OutPacketLoss_IsSet) return (OutPacketLoss_IsNull ? nullptr : &OutPacketLoss_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetOutPacketLossOrNull() { if (OutPacketLoss_IsSet) return (OutPacketLoss_IsNull ? nullptr : &OutPacketLoss_Optional); return nullptr; }
 	/** @brief Returns a pointer to OutPacketLoss_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetOutPacketLossOrNull() const { if (OutPacketLoss_IsSet) return (OutPacketLoss_IsNull ? nullptr : &OutPacketLoss_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetOutPacketLossOrNull() const { if (OutPacketLoss_IsSet) return (OutPacketLoss_IsNull ? nullptr : &OutPacketLoss_Optional); return nullptr; }
 	/** @brief Sets the value of OutPacketLoss_Optional and also sets OutPacketLoss_IsSet to true */
-	void SetOutPacketLoss(const FRHAPI_PexStat& NewValue) { OutPacketLoss_Optional = NewValue; OutPacketLoss_IsSet = true; OutPacketLoss_IsNull = false; }
+	FORCEINLINE void SetOutPacketLoss(const FRHAPI_PexStat& NewValue) { OutPacketLoss_Optional = NewValue; OutPacketLoss_IsSet = true; OutPacketLoss_IsNull = false; }
 	/** @brief Sets the value of OutPacketLoss_Optional and also sets OutPacketLoss_IsSet to true using move semantics */
-	void SetOutPacketLoss(FRHAPI_PexStat&& NewValue) { OutPacketLoss_Optional = NewValue; OutPacketLoss_IsSet = true; OutPacketLoss_IsNull = false; }
+	FORCEINLINE void SetOutPacketLoss(FRHAPI_PexStat&& NewValue) { OutPacketLoss_Optional = NewValue; OutPacketLoss_IsSet = true; OutPacketLoss_IsNull = false; }
 	/** @brief Clears the value of OutPacketLoss_Optional and sets OutPacketLoss_IsSet to false */
 	void ClearOutPacketLoss() { OutPacketLoss_IsSet = false; OutPacketLoss_IsNull = false; }
-	/** @brief Checks whether OutPacketLoss_Optional has been set */
-	bool IsOutPacketLossSet() const { return OutPacketLoss_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetOutPacketLossToNull() { OutPacketLoss_IsSet = true; OutPacketLoss_IsNull = true; }
+	FORCEINLINE void SetOutPacketLossToNull() { OutPacketLoss_IsSet = true; OutPacketLoss_IsNull = true; }
 	/** @brief Checks whether OutPacketLoss_Optional is set to null */
-	bool IsOutPacketLossNull() const { return OutPacketLoss_IsSet && OutPacketLoss_IsNull; }
+	FORCEINLINE bool IsOutPacketLossNull() const { return OutPacketLoss_IsSet && OutPacketLoss_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat TotalPacketLoss_Optional{  };
@@ -480,29 +454,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalPacketLoss_IsNull{ false };
 	/** @brief Gets the value of TotalPacketLoss_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetTotalPacketLoss() { return TotalPacketLoss_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetTotalPacketLoss() { return TotalPacketLoss_Optional; }
 	/** @brief Gets the value of TotalPacketLoss_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetTotalPacketLoss() const { return TotalPacketLoss_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetTotalPacketLoss() const { return TotalPacketLoss_Optional; }
 	/** @brief Gets the value of TotalPacketLoss_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetTotalPacketLoss(const FRHAPI_PexStat& DefaultValue) const { if (TotalPacketLoss_IsSet) return TotalPacketLoss_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetTotalPacketLoss(const FRHAPI_PexStat& DefaultValue) const { if (TotalPacketLoss_IsSet) return TotalPacketLoss_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TotalPacketLoss_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTotalPacketLoss(FRHAPI_PexStat& OutValue) const { if (TotalPacketLoss_IsSet && !TotalPacketLoss_IsNull) OutValue = TotalPacketLoss_Optional; return TotalPacketLoss_IsSet; }
+	FORCEINLINE bool GetTotalPacketLoss(FRHAPI_PexStat& OutValue) const { if (TotalPacketLoss_IsSet && !TotalPacketLoss_IsNull) OutValue = TotalPacketLoss_Optional; return TotalPacketLoss_IsSet; }
 	/** @brief Returns a pointer to TotalPacketLoss_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetTotalPacketLossOrNull() { if (TotalPacketLoss_IsSet) return (TotalPacketLoss_IsNull ? nullptr : &TotalPacketLoss_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetTotalPacketLossOrNull() { if (TotalPacketLoss_IsSet) return (TotalPacketLoss_IsNull ? nullptr : &TotalPacketLoss_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalPacketLoss_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetTotalPacketLossOrNull() const { if (TotalPacketLoss_IsSet) return (TotalPacketLoss_IsNull ? nullptr : &TotalPacketLoss_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetTotalPacketLossOrNull() const { if (TotalPacketLoss_IsSet) return (TotalPacketLoss_IsNull ? nullptr : &TotalPacketLoss_Optional); return nullptr; }
 	/** @brief Sets the value of TotalPacketLoss_Optional and also sets TotalPacketLoss_IsSet to true */
-	void SetTotalPacketLoss(const FRHAPI_PexStat& NewValue) { TotalPacketLoss_Optional = NewValue; TotalPacketLoss_IsSet = true; TotalPacketLoss_IsNull = false; }
+	FORCEINLINE void SetTotalPacketLoss(const FRHAPI_PexStat& NewValue) { TotalPacketLoss_Optional = NewValue; TotalPacketLoss_IsSet = true; TotalPacketLoss_IsNull = false; }
 	/** @brief Sets the value of TotalPacketLoss_Optional and also sets TotalPacketLoss_IsSet to true using move semantics */
-	void SetTotalPacketLoss(FRHAPI_PexStat&& NewValue) { TotalPacketLoss_Optional = NewValue; TotalPacketLoss_IsSet = true; TotalPacketLoss_IsNull = false; }
+	FORCEINLINE void SetTotalPacketLoss(FRHAPI_PexStat&& NewValue) { TotalPacketLoss_Optional = NewValue; TotalPacketLoss_IsSet = true; TotalPacketLoss_IsNull = false; }
 	/** @brief Clears the value of TotalPacketLoss_Optional and sets TotalPacketLoss_IsSet to false */
 	void ClearTotalPacketLoss() { TotalPacketLoss_IsSet = false; TotalPacketLoss_IsNull = false; }
-	/** @brief Checks whether TotalPacketLoss_Optional has been set */
-	bool IsTotalPacketLossSet() const { return TotalPacketLoss_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetTotalPacketLossToNull() { TotalPacketLoss_IsSet = true; TotalPacketLoss_IsNull = true; }
+	FORCEINLINE void SetTotalPacketLossToNull() { TotalPacketLoss_IsSet = true; TotalPacketLoss_IsNull = true; }
 	/** @brief Checks whether TotalPacketLoss_Optional is set to null */
-	bool IsTotalPacketLossNull() const { return TotalPacketLoss_IsSet && TotalPacketLoss_IsNull; }
+	FORCEINLINE bool IsTotalPacketLossNull() const { return TotalPacketLoss_IsSet && TotalPacketLoss_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat InPacketLossPct_Optional{  };
@@ -513,29 +485,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InPacketLossPct_IsNull{ false };
 	/** @brief Gets the value of InPacketLossPct_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetInPacketLossPct() { return InPacketLossPct_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetInPacketLossPct() { return InPacketLossPct_Optional; }
 	/** @brief Gets the value of InPacketLossPct_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetInPacketLossPct() const { return InPacketLossPct_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetInPacketLossPct() const { return InPacketLossPct_Optional; }
 	/** @brief Gets the value of InPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetInPacketLossPct(const FRHAPI_PexStat& DefaultValue) const { if (InPacketLossPct_IsSet) return InPacketLossPct_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetInPacketLossPct(const FRHAPI_PexStat& DefaultValue) const { if (InPacketLossPct_IsSet) return InPacketLossPct_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of InPacketLossPct_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInPacketLossPct(FRHAPI_PexStat& OutValue) const { if (InPacketLossPct_IsSet && !InPacketLossPct_IsNull) OutValue = InPacketLossPct_Optional; return InPacketLossPct_IsSet; }
+	FORCEINLINE bool GetInPacketLossPct(FRHAPI_PexStat& OutValue) const { if (InPacketLossPct_IsSet && !InPacketLossPct_IsNull) OutValue = InPacketLossPct_Optional; return InPacketLossPct_IsSet; }
 	/** @brief Returns a pointer to InPacketLossPct_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetInPacketLossPctOrNull() { if (InPacketLossPct_IsSet) return (InPacketLossPct_IsNull ? nullptr : &InPacketLossPct_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetInPacketLossPctOrNull() { if (InPacketLossPct_IsSet) return (InPacketLossPct_IsNull ? nullptr : &InPacketLossPct_Optional); return nullptr; }
 	/** @brief Returns a pointer to InPacketLossPct_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetInPacketLossPctOrNull() const { if (InPacketLossPct_IsSet) return (InPacketLossPct_IsNull ? nullptr : &InPacketLossPct_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetInPacketLossPctOrNull() const { if (InPacketLossPct_IsSet) return (InPacketLossPct_IsNull ? nullptr : &InPacketLossPct_Optional); return nullptr; }
 	/** @brief Sets the value of InPacketLossPct_Optional and also sets InPacketLossPct_IsSet to true */
-	void SetInPacketLossPct(const FRHAPI_PexStat& NewValue) { InPacketLossPct_Optional = NewValue; InPacketLossPct_IsSet = true; InPacketLossPct_IsNull = false; }
+	FORCEINLINE void SetInPacketLossPct(const FRHAPI_PexStat& NewValue) { InPacketLossPct_Optional = NewValue; InPacketLossPct_IsSet = true; InPacketLossPct_IsNull = false; }
 	/** @brief Sets the value of InPacketLossPct_Optional and also sets InPacketLossPct_IsSet to true using move semantics */
-	void SetInPacketLossPct(FRHAPI_PexStat&& NewValue) { InPacketLossPct_Optional = NewValue; InPacketLossPct_IsSet = true; InPacketLossPct_IsNull = false; }
+	FORCEINLINE void SetInPacketLossPct(FRHAPI_PexStat&& NewValue) { InPacketLossPct_Optional = NewValue; InPacketLossPct_IsSet = true; InPacketLossPct_IsNull = false; }
 	/** @brief Clears the value of InPacketLossPct_Optional and sets InPacketLossPct_IsSet to false */
 	void ClearInPacketLossPct() { InPacketLossPct_IsSet = false; InPacketLossPct_IsNull = false; }
-	/** @brief Checks whether InPacketLossPct_Optional has been set */
-	bool IsInPacketLossPctSet() const { return InPacketLossPct_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInPacketLossPctToNull() { InPacketLossPct_IsSet = true; InPacketLossPct_IsNull = true; }
+	FORCEINLINE void SetInPacketLossPctToNull() { InPacketLossPct_IsSet = true; InPacketLossPct_IsNull = true; }
 	/** @brief Checks whether InPacketLossPct_Optional is set to null */
-	bool IsInPacketLossPctNull() const { return InPacketLossPct_IsSet && InPacketLossPct_IsNull; }
+	FORCEINLINE bool IsInPacketLossPctNull() const { return InPacketLossPct_IsSet && InPacketLossPct_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat OutPacketLossPct_Optional{  };
@@ -546,29 +516,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OutPacketLossPct_IsNull{ false };
 	/** @brief Gets the value of OutPacketLossPct_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetOutPacketLossPct() { return OutPacketLossPct_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetOutPacketLossPct() { return OutPacketLossPct_Optional; }
 	/** @brief Gets the value of OutPacketLossPct_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetOutPacketLossPct() const { return OutPacketLossPct_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetOutPacketLossPct() const { return OutPacketLossPct_Optional; }
 	/** @brief Gets the value of OutPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetOutPacketLossPct(const FRHAPI_PexStat& DefaultValue) const { if (OutPacketLossPct_IsSet) return OutPacketLossPct_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetOutPacketLossPct(const FRHAPI_PexStat& DefaultValue) const { if (OutPacketLossPct_IsSet) return OutPacketLossPct_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OutPacketLossPct_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOutPacketLossPct(FRHAPI_PexStat& OutValue) const { if (OutPacketLossPct_IsSet && !OutPacketLossPct_IsNull) OutValue = OutPacketLossPct_Optional; return OutPacketLossPct_IsSet; }
+	FORCEINLINE bool GetOutPacketLossPct(FRHAPI_PexStat& OutValue) const { if (OutPacketLossPct_IsSet && !OutPacketLossPct_IsNull) OutValue = OutPacketLossPct_Optional; return OutPacketLossPct_IsSet; }
 	/** @brief Returns a pointer to OutPacketLossPct_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetOutPacketLossPctOrNull() { if (OutPacketLossPct_IsSet) return (OutPacketLossPct_IsNull ? nullptr : &OutPacketLossPct_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetOutPacketLossPctOrNull() { if (OutPacketLossPct_IsSet) return (OutPacketLossPct_IsNull ? nullptr : &OutPacketLossPct_Optional); return nullptr; }
 	/** @brief Returns a pointer to OutPacketLossPct_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetOutPacketLossPctOrNull() const { if (OutPacketLossPct_IsSet) return (OutPacketLossPct_IsNull ? nullptr : &OutPacketLossPct_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetOutPacketLossPctOrNull() const { if (OutPacketLossPct_IsSet) return (OutPacketLossPct_IsNull ? nullptr : &OutPacketLossPct_Optional); return nullptr; }
 	/** @brief Sets the value of OutPacketLossPct_Optional and also sets OutPacketLossPct_IsSet to true */
-	void SetOutPacketLossPct(const FRHAPI_PexStat& NewValue) { OutPacketLossPct_Optional = NewValue; OutPacketLossPct_IsSet = true; OutPacketLossPct_IsNull = false; }
+	FORCEINLINE void SetOutPacketLossPct(const FRHAPI_PexStat& NewValue) { OutPacketLossPct_Optional = NewValue; OutPacketLossPct_IsSet = true; OutPacketLossPct_IsNull = false; }
 	/** @brief Sets the value of OutPacketLossPct_Optional and also sets OutPacketLossPct_IsSet to true using move semantics */
-	void SetOutPacketLossPct(FRHAPI_PexStat&& NewValue) { OutPacketLossPct_Optional = NewValue; OutPacketLossPct_IsSet = true; OutPacketLossPct_IsNull = false; }
+	FORCEINLINE void SetOutPacketLossPct(FRHAPI_PexStat&& NewValue) { OutPacketLossPct_Optional = NewValue; OutPacketLossPct_IsSet = true; OutPacketLossPct_IsNull = false; }
 	/** @brief Clears the value of OutPacketLossPct_Optional and sets OutPacketLossPct_IsSet to false */
 	void ClearOutPacketLossPct() { OutPacketLossPct_IsSet = false; OutPacketLossPct_IsNull = false; }
-	/** @brief Checks whether OutPacketLossPct_Optional has been set */
-	bool IsOutPacketLossPctSet() const { return OutPacketLossPct_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetOutPacketLossPctToNull() { OutPacketLossPct_IsSet = true; OutPacketLossPct_IsNull = true; }
+	FORCEINLINE void SetOutPacketLossPctToNull() { OutPacketLossPct_IsSet = true; OutPacketLossPct_IsNull = true; }
 	/** @brief Checks whether OutPacketLossPct_Optional is set to null */
-	bool IsOutPacketLossPctNull() const { return OutPacketLossPct_IsSet && OutPacketLossPct_IsNull; }
+	FORCEINLINE bool IsOutPacketLossPctNull() const { return OutPacketLossPct_IsSet && OutPacketLossPct_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat TotalPacketLossPct_Optional{  };
@@ -579,29 +547,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalPacketLossPct_IsNull{ false };
 	/** @brief Gets the value of TotalPacketLossPct_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetTotalPacketLossPct() { return TotalPacketLossPct_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetTotalPacketLossPct() { return TotalPacketLossPct_Optional; }
 	/** @brief Gets the value of TotalPacketLossPct_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetTotalPacketLossPct() const { return TotalPacketLossPct_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetTotalPacketLossPct() const { return TotalPacketLossPct_Optional; }
 	/** @brief Gets the value of TotalPacketLossPct_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetTotalPacketLossPct(const FRHAPI_PexStat& DefaultValue) const { if (TotalPacketLossPct_IsSet) return TotalPacketLossPct_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetTotalPacketLossPct(const FRHAPI_PexStat& DefaultValue) const { if (TotalPacketLossPct_IsSet) return TotalPacketLossPct_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TotalPacketLossPct_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTotalPacketLossPct(FRHAPI_PexStat& OutValue) const { if (TotalPacketLossPct_IsSet && !TotalPacketLossPct_IsNull) OutValue = TotalPacketLossPct_Optional; return TotalPacketLossPct_IsSet; }
+	FORCEINLINE bool GetTotalPacketLossPct(FRHAPI_PexStat& OutValue) const { if (TotalPacketLossPct_IsSet && !TotalPacketLossPct_IsNull) OutValue = TotalPacketLossPct_Optional; return TotalPacketLossPct_IsSet; }
 	/** @brief Returns a pointer to TotalPacketLossPct_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetTotalPacketLossPctOrNull() { if (TotalPacketLossPct_IsSet) return (TotalPacketLossPct_IsNull ? nullptr : &TotalPacketLossPct_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetTotalPacketLossPctOrNull() { if (TotalPacketLossPct_IsSet) return (TotalPacketLossPct_IsNull ? nullptr : &TotalPacketLossPct_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalPacketLossPct_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetTotalPacketLossPctOrNull() const { if (TotalPacketLossPct_IsSet) return (TotalPacketLossPct_IsNull ? nullptr : &TotalPacketLossPct_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetTotalPacketLossPctOrNull() const { if (TotalPacketLossPct_IsSet) return (TotalPacketLossPct_IsNull ? nullptr : &TotalPacketLossPct_Optional); return nullptr; }
 	/** @brief Sets the value of TotalPacketLossPct_Optional and also sets TotalPacketLossPct_IsSet to true */
-	void SetTotalPacketLossPct(const FRHAPI_PexStat& NewValue) { TotalPacketLossPct_Optional = NewValue; TotalPacketLossPct_IsSet = true; TotalPacketLossPct_IsNull = false; }
+	FORCEINLINE void SetTotalPacketLossPct(const FRHAPI_PexStat& NewValue) { TotalPacketLossPct_Optional = NewValue; TotalPacketLossPct_IsSet = true; TotalPacketLossPct_IsNull = false; }
 	/** @brief Sets the value of TotalPacketLossPct_Optional and also sets TotalPacketLossPct_IsSet to true using move semantics */
-	void SetTotalPacketLossPct(FRHAPI_PexStat&& NewValue) { TotalPacketLossPct_Optional = NewValue; TotalPacketLossPct_IsSet = true; TotalPacketLossPct_IsNull = false; }
+	FORCEINLINE void SetTotalPacketLossPct(FRHAPI_PexStat&& NewValue) { TotalPacketLossPct_Optional = NewValue; TotalPacketLossPct_IsSet = true; TotalPacketLossPct_IsNull = false; }
 	/** @brief Clears the value of TotalPacketLossPct_Optional and sets TotalPacketLossPct_IsSet to false */
 	void ClearTotalPacketLossPct() { TotalPacketLossPct_IsSet = false; TotalPacketLossPct_IsNull = false; }
-	/** @brief Checks whether TotalPacketLossPct_Optional has been set */
-	bool IsTotalPacketLossPctSet() const { return TotalPacketLossPct_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetTotalPacketLossPctToNull() { TotalPacketLossPct_IsSet = true; TotalPacketLossPct_IsNull = true; }
+	FORCEINLINE void SetTotalPacketLossPctToNull() { TotalPacketLossPct_IsSet = true; TotalPacketLossPct_IsNull = true; }
 	/** @brief Checks whether TotalPacketLossPct_Optional is set to null */
-	bool IsTotalPacketLossPctNull() const { return TotalPacketLossPct_IsSet && TotalPacketLossPct_IsNull; }
+	FORCEINLINE bool IsTotalPacketLossPctNull() const { return TotalPacketLossPct_IsSet && TotalPacketLossPct_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexCount TotalDisconnects_Optional{  };
@@ -612,29 +578,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalDisconnects_IsNull{ false };
 	/** @brief Gets the value of TotalDisconnects_Optional, regardless of it having been set */
-	FRHAPI_PexCount& GetTotalDisconnects() { return TotalDisconnects_Optional; }
+	FORCEINLINE FRHAPI_PexCount& GetTotalDisconnects() { return TotalDisconnects_Optional; }
 	/** @brief Gets the value of TotalDisconnects_Optional, regardless of it having been set */
-	const FRHAPI_PexCount& GetTotalDisconnects() const { return TotalDisconnects_Optional; }
+	FORCEINLINE const FRHAPI_PexCount& GetTotalDisconnects() const { return TotalDisconnects_Optional; }
 	/** @brief Gets the value of TotalDisconnects_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexCount& GetTotalDisconnects(const FRHAPI_PexCount& DefaultValue) const { if (TotalDisconnects_IsSet) return TotalDisconnects_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexCount& GetTotalDisconnects(const FRHAPI_PexCount& DefaultValue) const { if (TotalDisconnects_IsSet) return TotalDisconnects_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TotalDisconnects_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTotalDisconnects(FRHAPI_PexCount& OutValue) const { if (TotalDisconnects_IsSet && !TotalDisconnects_IsNull) OutValue = TotalDisconnects_Optional; return TotalDisconnects_IsSet; }
+	FORCEINLINE bool GetTotalDisconnects(FRHAPI_PexCount& OutValue) const { if (TotalDisconnects_IsSet && !TotalDisconnects_IsNull) OutValue = TotalDisconnects_Optional; return TotalDisconnects_IsSet; }
 	/** @brief Returns a pointer to TotalDisconnects_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexCount* GetTotalDisconnectsOrNull() { if (TotalDisconnects_IsSet) return (TotalDisconnects_IsNull ? nullptr : &TotalDisconnects_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexCount* GetTotalDisconnectsOrNull() { if (TotalDisconnects_IsSet) return (TotalDisconnects_IsNull ? nullptr : &TotalDisconnects_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalDisconnects_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexCount* GetTotalDisconnectsOrNull() const { if (TotalDisconnects_IsSet) return (TotalDisconnects_IsNull ? nullptr : &TotalDisconnects_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexCount* GetTotalDisconnectsOrNull() const { if (TotalDisconnects_IsSet) return (TotalDisconnects_IsNull ? nullptr : &TotalDisconnects_Optional); return nullptr; }
 	/** @brief Sets the value of TotalDisconnects_Optional and also sets TotalDisconnects_IsSet to true */
-	void SetTotalDisconnects(const FRHAPI_PexCount& NewValue) { TotalDisconnects_Optional = NewValue; TotalDisconnects_IsSet = true; TotalDisconnects_IsNull = false; }
+	FORCEINLINE void SetTotalDisconnects(const FRHAPI_PexCount& NewValue) { TotalDisconnects_Optional = NewValue; TotalDisconnects_IsSet = true; TotalDisconnects_IsNull = false; }
 	/** @brief Sets the value of TotalDisconnects_Optional and also sets TotalDisconnects_IsSet to true using move semantics */
-	void SetTotalDisconnects(FRHAPI_PexCount&& NewValue) { TotalDisconnects_Optional = NewValue; TotalDisconnects_IsSet = true; TotalDisconnects_IsNull = false; }
+	FORCEINLINE void SetTotalDisconnects(FRHAPI_PexCount&& NewValue) { TotalDisconnects_Optional = NewValue; TotalDisconnects_IsSet = true; TotalDisconnects_IsNull = false; }
 	/** @brief Clears the value of TotalDisconnects_Optional and sets TotalDisconnects_IsSet to false */
 	void ClearTotalDisconnects() { TotalDisconnects_IsSet = false; TotalDisconnects_IsNull = false; }
-	/** @brief Checks whether TotalDisconnects_Optional has been set */
-	bool IsTotalDisconnectsSet() const { return TotalDisconnects_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetTotalDisconnectsToNull() { TotalDisconnects_IsSet = true; TotalDisconnects_IsNull = true; }
+	FORCEINLINE void SetTotalDisconnectsToNull() { TotalDisconnects_IsSet = true; TotalDisconnects_IsNull = true; }
 	/** @brief Checks whether TotalDisconnects_Optional is set to null */
-	bool IsTotalDisconnectsNull() const { return TotalDisconnects_IsSet && TotalDisconnects_IsNull; }
+	FORCEINLINE bool IsTotalDisconnectsNull() const { return TotalDisconnects_IsSet && TotalDisconnects_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexCount MatchDuration_Optional{  };
@@ -645,29 +609,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MatchDuration_IsNull{ false };
 	/** @brief Gets the value of MatchDuration_Optional, regardless of it having been set */
-	FRHAPI_PexCount& GetMatchDuration() { return MatchDuration_Optional; }
+	FORCEINLINE FRHAPI_PexCount& GetMatchDuration() { return MatchDuration_Optional; }
 	/** @brief Gets the value of MatchDuration_Optional, regardless of it having been set */
-	const FRHAPI_PexCount& GetMatchDuration() const { return MatchDuration_Optional; }
+	FORCEINLINE const FRHAPI_PexCount& GetMatchDuration() const { return MatchDuration_Optional; }
 	/** @brief Gets the value of MatchDuration_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexCount& GetMatchDuration(const FRHAPI_PexCount& DefaultValue) const { if (MatchDuration_IsSet) return MatchDuration_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexCount& GetMatchDuration(const FRHAPI_PexCount& DefaultValue) const { if (MatchDuration_IsSet) return MatchDuration_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MatchDuration_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMatchDuration(FRHAPI_PexCount& OutValue) const { if (MatchDuration_IsSet && !MatchDuration_IsNull) OutValue = MatchDuration_Optional; return MatchDuration_IsSet; }
+	FORCEINLINE bool GetMatchDuration(FRHAPI_PexCount& OutValue) const { if (MatchDuration_IsSet && !MatchDuration_IsNull) OutValue = MatchDuration_Optional; return MatchDuration_IsSet; }
 	/** @brief Returns a pointer to MatchDuration_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexCount* GetMatchDurationOrNull() { if (MatchDuration_IsSet) return (MatchDuration_IsNull ? nullptr : &MatchDuration_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexCount* GetMatchDurationOrNull() { if (MatchDuration_IsSet) return (MatchDuration_IsNull ? nullptr : &MatchDuration_Optional); return nullptr; }
 	/** @brief Returns a pointer to MatchDuration_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexCount* GetMatchDurationOrNull() const { if (MatchDuration_IsSet) return (MatchDuration_IsNull ? nullptr : &MatchDuration_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexCount* GetMatchDurationOrNull() const { if (MatchDuration_IsSet) return (MatchDuration_IsNull ? nullptr : &MatchDuration_Optional); return nullptr; }
 	/** @brief Sets the value of MatchDuration_Optional and also sets MatchDuration_IsSet to true */
-	void SetMatchDuration(const FRHAPI_PexCount& NewValue) { MatchDuration_Optional = NewValue; MatchDuration_IsSet = true; MatchDuration_IsNull = false; }
+	FORCEINLINE void SetMatchDuration(const FRHAPI_PexCount& NewValue) { MatchDuration_Optional = NewValue; MatchDuration_IsSet = true; MatchDuration_IsNull = false; }
 	/** @brief Sets the value of MatchDuration_Optional and also sets MatchDuration_IsSet to true using move semantics */
-	void SetMatchDuration(FRHAPI_PexCount&& NewValue) { MatchDuration_Optional = NewValue; MatchDuration_IsSet = true; MatchDuration_IsNull = false; }
+	FORCEINLINE void SetMatchDuration(FRHAPI_PexCount&& NewValue) { MatchDuration_Optional = NewValue; MatchDuration_IsSet = true; MatchDuration_IsNull = false; }
 	/** @brief Clears the value of MatchDuration_Optional and sets MatchDuration_IsSet to false */
 	void ClearMatchDuration() { MatchDuration_IsSet = false; MatchDuration_IsNull = false; }
-	/** @brief Checks whether MatchDuration_Optional has been set */
-	bool IsMatchDurationSet() const { return MatchDuration_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMatchDurationToNull() { MatchDuration_IsSet = true; MatchDuration_IsNull = true; }
+	FORCEINLINE void SetMatchDurationToNull() { MatchDuration_IsSet = true; MatchDuration_IsNull = true; }
 	/** @brief Checks whether MatchDuration_Optional is set to null */
-	bool IsMatchDurationNull() const { return MatchDuration_IsSet && MatchDuration_IsNull; }
+	FORCEINLINE bool IsMatchDurationNull() const { return MatchDuration_IsSet && MatchDuration_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexStat ConnectionCount_Optional{  };
@@ -678,29 +640,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ConnectionCount_IsNull{ false };
 	/** @brief Gets the value of ConnectionCount_Optional, regardless of it having been set */
-	FRHAPI_PexStat& GetConnectionCount() { return ConnectionCount_Optional; }
+	FORCEINLINE FRHAPI_PexStat& GetConnectionCount() { return ConnectionCount_Optional; }
 	/** @brief Gets the value of ConnectionCount_Optional, regardless of it having been set */
-	const FRHAPI_PexStat& GetConnectionCount() const { return ConnectionCount_Optional; }
+	FORCEINLINE const FRHAPI_PexStat& GetConnectionCount() const { return ConnectionCount_Optional; }
 	/** @brief Gets the value of ConnectionCount_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexStat& GetConnectionCount(const FRHAPI_PexStat& DefaultValue) const { if (ConnectionCount_IsSet) return ConnectionCount_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexStat& GetConnectionCount(const FRHAPI_PexStat& DefaultValue) const { if (ConnectionCount_IsSet) return ConnectionCount_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ConnectionCount_Optional and returns true if it has been set, otherwise returns false */
-	bool GetConnectionCount(FRHAPI_PexStat& OutValue) const { if (ConnectionCount_IsSet && !ConnectionCount_IsNull) OutValue = ConnectionCount_Optional; return ConnectionCount_IsSet; }
+	FORCEINLINE bool GetConnectionCount(FRHAPI_PexStat& OutValue) const { if (ConnectionCount_IsSet && !ConnectionCount_IsNull) OutValue = ConnectionCount_Optional; return ConnectionCount_IsSet; }
 	/** @brief Returns a pointer to ConnectionCount_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexStat* GetConnectionCountOrNull() { if (ConnectionCount_IsSet) return (ConnectionCount_IsNull ? nullptr : &ConnectionCount_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexStat* GetConnectionCountOrNull() { if (ConnectionCount_IsSet) return (ConnectionCount_IsNull ? nullptr : &ConnectionCount_Optional); return nullptr; }
 	/** @brief Returns a pointer to ConnectionCount_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexStat* GetConnectionCountOrNull() const { if (ConnectionCount_IsSet) return (ConnectionCount_IsNull ? nullptr : &ConnectionCount_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexStat* GetConnectionCountOrNull() const { if (ConnectionCount_IsSet) return (ConnectionCount_IsNull ? nullptr : &ConnectionCount_Optional); return nullptr; }
 	/** @brief Sets the value of ConnectionCount_Optional and also sets ConnectionCount_IsSet to true */
-	void SetConnectionCount(const FRHAPI_PexStat& NewValue) { ConnectionCount_Optional = NewValue; ConnectionCount_IsSet = true; ConnectionCount_IsNull = false; }
+	FORCEINLINE void SetConnectionCount(const FRHAPI_PexStat& NewValue) { ConnectionCount_Optional = NewValue; ConnectionCount_IsSet = true; ConnectionCount_IsNull = false; }
 	/** @brief Sets the value of ConnectionCount_Optional and also sets ConnectionCount_IsSet to true using move semantics */
-	void SetConnectionCount(FRHAPI_PexStat&& NewValue) { ConnectionCount_Optional = NewValue; ConnectionCount_IsSet = true; ConnectionCount_IsNull = false; }
+	FORCEINLINE void SetConnectionCount(FRHAPI_PexStat&& NewValue) { ConnectionCount_Optional = NewValue; ConnectionCount_IsSet = true; ConnectionCount_IsNull = false; }
 	/** @brief Clears the value of ConnectionCount_Optional and sets ConnectionCount_IsSet to false */
 	void ClearConnectionCount() { ConnectionCount_IsSet = false; ConnectionCount_IsNull = false; }
-	/** @brief Checks whether ConnectionCount_Optional has been set */
-	bool IsConnectionCountSet() const { return ConnectionCount_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetConnectionCountToNull() { ConnectionCount_IsSet = true; ConnectionCount_IsNull = true; }
+	FORCEINLINE void SetConnectionCountToNull() { ConnectionCount_IsSet = true; ConnectionCount_IsNull = true; }
 	/** @brief Checks whether ConnectionCount_Optional is set to null */
-	bool IsConnectionCountNull() const { return ConnectionCount_IsSet && ConnectionCount_IsNull; }
+	FORCEINLINE bool IsConnectionCountNull() const { return ConnectionCount_IsSet && ConnectionCount_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexCount TotalUniquePlayers_Optional{  };
@@ -711,41 +671,39 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalUniquePlayers_IsNull{ false };
 	/** @brief Gets the value of TotalUniquePlayers_Optional, regardless of it having been set */
-	FRHAPI_PexCount& GetTotalUniquePlayers() { return TotalUniquePlayers_Optional; }
+	FORCEINLINE FRHAPI_PexCount& GetTotalUniquePlayers() { return TotalUniquePlayers_Optional; }
 	/** @brief Gets the value of TotalUniquePlayers_Optional, regardless of it having been set */
-	const FRHAPI_PexCount& GetTotalUniquePlayers() const { return TotalUniquePlayers_Optional; }
+	FORCEINLINE const FRHAPI_PexCount& GetTotalUniquePlayers() const { return TotalUniquePlayers_Optional; }
 	/** @brief Gets the value of TotalUniquePlayers_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexCount& GetTotalUniquePlayers(const FRHAPI_PexCount& DefaultValue) const { if (TotalUniquePlayers_IsSet) return TotalUniquePlayers_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexCount& GetTotalUniquePlayers(const FRHAPI_PexCount& DefaultValue) const { if (TotalUniquePlayers_IsSet) return TotalUniquePlayers_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TotalUniquePlayers_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTotalUniquePlayers(FRHAPI_PexCount& OutValue) const { if (TotalUniquePlayers_IsSet && !TotalUniquePlayers_IsNull) OutValue = TotalUniquePlayers_Optional; return TotalUniquePlayers_IsSet; }
+	FORCEINLINE bool GetTotalUniquePlayers(FRHAPI_PexCount& OutValue) const { if (TotalUniquePlayers_IsSet && !TotalUniquePlayers_IsNull) OutValue = TotalUniquePlayers_Optional; return TotalUniquePlayers_IsSet; }
 	/** @brief Returns a pointer to TotalUniquePlayers_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexCount* GetTotalUniquePlayersOrNull() { if (TotalUniquePlayers_IsSet) return (TotalUniquePlayers_IsNull ? nullptr : &TotalUniquePlayers_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexCount* GetTotalUniquePlayersOrNull() { if (TotalUniquePlayers_IsSet) return (TotalUniquePlayers_IsNull ? nullptr : &TotalUniquePlayers_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalUniquePlayers_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexCount* GetTotalUniquePlayersOrNull() const { if (TotalUniquePlayers_IsSet) return (TotalUniquePlayers_IsNull ? nullptr : &TotalUniquePlayers_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexCount* GetTotalUniquePlayersOrNull() const { if (TotalUniquePlayers_IsSet) return (TotalUniquePlayers_IsNull ? nullptr : &TotalUniquePlayers_Optional); return nullptr; }
 	/** @brief Sets the value of TotalUniquePlayers_Optional and also sets TotalUniquePlayers_IsSet to true */
-	void SetTotalUniquePlayers(const FRHAPI_PexCount& NewValue) { TotalUniquePlayers_Optional = NewValue; TotalUniquePlayers_IsSet = true; TotalUniquePlayers_IsNull = false; }
+	FORCEINLINE void SetTotalUniquePlayers(const FRHAPI_PexCount& NewValue) { TotalUniquePlayers_Optional = NewValue; TotalUniquePlayers_IsSet = true; TotalUniquePlayers_IsNull = false; }
 	/** @brief Sets the value of TotalUniquePlayers_Optional and also sets TotalUniquePlayers_IsSet to true using move semantics */
-	void SetTotalUniquePlayers(FRHAPI_PexCount&& NewValue) { TotalUniquePlayers_Optional = NewValue; TotalUniquePlayers_IsSet = true; TotalUniquePlayers_IsNull = false; }
+	FORCEINLINE void SetTotalUniquePlayers(FRHAPI_PexCount&& NewValue) { TotalUniquePlayers_Optional = NewValue; TotalUniquePlayers_IsSet = true; TotalUniquePlayers_IsNull = false; }
 	/** @brief Clears the value of TotalUniquePlayers_Optional and sets TotalUniquePlayers_IsSet to false */
 	void ClearTotalUniquePlayers() { TotalUniquePlayers_IsSet = false; TotalUniquePlayers_IsNull = false; }
-	/** @brief Checks whether TotalUniquePlayers_Optional has been set */
-	bool IsTotalUniquePlayersSet() const { return TotalUniquePlayers_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetTotalUniquePlayersToNull() { TotalUniquePlayers_IsSet = true; TotalUniquePlayers_IsNull = true; }
+	FORCEINLINE void SetTotalUniquePlayersToNull() { TotalUniquePlayers_IsSet = true; TotalUniquePlayers_IsNull = true; }
 	/** @brief Checks whether TotalUniquePlayers_Optional is set to null */
-	bool IsTotalUniquePlayersNull() const { return TotalUniquePlayers_IsSet && TotalUniquePlayers_IsNull; }
+	FORCEINLINE bool IsTotalUniquePlayersNull() const { return TotalUniquePlayers_IsSet && TotalUniquePlayers_IsNull; }
 
 	/** @brief Match ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MatchId{  };
 	/** @brief Gets the value of MatchId */
-	FString& GetMatchId() { return MatchId; }
+	FORCEINLINE FString& GetMatchId() { return MatchId; }
 	/** @brief Gets the value of MatchId */
-	const FString& GetMatchId() const { return MatchId; }
+	FORCEINLINE const FString& GetMatchId() const { return MatchId; }
 	/** @brief Sets the value of MatchId */
-	void SetMatchId(const FString& NewValue) { MatchId = NewValue;   }
+	FORCEINLINE void SetMatchId(const FString& NewValue) { MatchId = NewValue;   }
 	/** @brief Sets the value of MatchId using move semantics */
-	void SetMatchId(FString&& NewValue) { MatchId = NewValue;   }
+	FORCEINLINE void SetMatchId(FString&& NewValue) { MatchId = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString RegionId_Optional{  };
@@ -756,29 +714,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RegionId_IsNull{ false };
 	/** @brief Gets the value of RegionId_Optional, regardless of it having been set */
-	FString& GetRegionId() { return RegionId_Optional; }
+	FORCEINLINE FString& GetRegionId() { return RegionId_Optional; }
 	/** @brief Gets the value of RegionId_Optional, regardless of it having been set */
-	const FString& GetRegionId() const { return RegionId_Optional; }
+	FORCEINLINE const FString& GetRegionId() const { return RegionId_Optional; }
 	/** @brief Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRegionId(const FString& DefaultValue) const { if (RegionId_IsSet) return RegionId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRegionId(const FString& DefaultValue) const { if (RegionId_IsSet) return RegionId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRegionId(FString& OutValue) const { if (RegionId_IsSet && !RegionId_IsNull) OutValue = RegionId_Optional; return RegionId_IsSet; }
+	FORCEINLINE bool GetRegionId(FString& OutValue) const { if (RegionId_IsSet && !RegionId_IsNull) OutValue = RegionId_Optional; return RegionId_IsSet; }
 	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRegionIdOrNull() { if (RegionId_IsSet) return (RegionId_IsNull ? nullptr : &RegionId_Optional); return nullptr; }
+	FORCEINLINE FString* GetRegionIdOrNull() { if (RegionId_IsSet) return (RegionId_IsNull ? nullptr : &RegionId_Optional); return nullptr; }
 	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return (RegionId_IsNull ? nullptr : &RegionId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return (RegionId_IsNull ? nullptr : &RegionId_Optional); return nullptr; }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
-	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; RegionId_IsNull = false; }
+	FORCEINLINE void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; RegionId_IsNull = false; }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
-	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; RegionId_IsNull = false; }
+	FORCEINLINE void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true; RegionId_IsNull = false; }
 	/** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false; RegionId_IsNull = false; }
-	/** @brief Checks whether RegionId_Optional has been set */
-	bool IsRegionIdSet() const { return RegionId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRegionIdToNull() { RegionId_IsSet = true; RegionId_IsNull = true; }
+	FORCEINLINE void SetRegionIdToNull() { RegionId_IsSet = true; RegionId_IsNull = true; }
 	/** @brief Checks whether RegionId_Optional is set to null */
-	bool IsRegionIdNull() const { return RegionId_IsSet && RegionId_IsNull; }
+	FORCEINLINE bool IsRegionIdNull() const { return RegionId_IsSet && RegionId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ServerId_Optional{  };
@@ -789,29 +745,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ServerId_IsNull{ false };
 	/** @brief Gets the value of ServerId_Optional, regardless of it having been set */
-	FString& GetServerId() { return ServerId_Optional; }
+	FORCEINLINE FString& GetServerId() { return ServerId_Optional; }
 	/** @brief Gets the value of ServerId_Optional, regardless of it having been set */
-	const FString& GetServerId() const { return ServerId_Optional; }
+	FORCEINLINE const FString& GetServerId() const { return ServerId_Optional; }
 	/** @brief Gets the value of ServerId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetServerId(const FString& DefaultValue) const { if (ServerId_IsSet) return ServerId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetServerId(const FString& DefaultValue) const { if (ServerId_IsSet) return ServerId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ServerId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetServerId(FString& OutValue) const { if (ServerId_IsSet && !ServerId_IsNull) OutValue = ServerId_Optional; return ServerId_IsSet; }
+	FORCEINLINE bool GetServerId(FString& OutValue) const { if (ServerId_IsSet && !ServerId_IsNull) OutValue = ServerId_Optional; return ServerId_IsSet; }
 	/** @brief Returns a pointer to ServerId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetServerIdOrNull() { if (ServerId_IsSet) return (ServerId_IsNull ? nullptr : &ServerId_Optional); return nullptr; }
+	FORCEINLINE FString* GetServerIdOrNull() { if (ServerId_IsSet) return (ServerId_IsNull ? nullptr : &ServerId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ServerId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetServerIdOrNull() const { if (ServerId_IsSet) return (ServerId_IsNull ? nullptr : &ServerId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetServerIdOrNull() const { if (ServerId_IsSet) return (ServerId_IsNull ? nullptr : &ServerId_Optional); return nullptr; }
 	/** @brief Sets the value of ServerId_Optional and also sets ServerId_IsSet to true */
-	void SetServerId(const FString& NewValue) { ServerId_Optional = NewValue; ServerId_IsSet = true; ServerId_IsNull = false; }
+	FORCEINLINE void SetServerId(const FString& NewValue) { ServerId_Optional = NewValue; ServerId_IsSet = true; ServerId_IsNull = false; }
 	/** @brief Sets the value of ServerId_Optional and also sets ServerId_IsSet to true using move semantics */
-	void SetServerId(FString&& NewValue) { ServerId_Optional = NewValue; ServerId_IsSet = true; ServerId_IsNull = false; }
+	FORCEINLINE void SetServerId(FString&& NewValue) { ServerId_Optional = NewValue; ServerId_IsSet = true; ServerId_IsNull = false; }
 	/** @brief Clears the value of ServerId_Optional and sets ServerId_IsSet to false */
 	void ClearServerId() { ServerId_IsSet = false; ServerId_IsNull = false; }
-	/** @brief Checks whether ServerId_Optional has been set */
-	bool IsServerIdSet() const { return ServerId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetServerIdToNull() { ServerId_IsSet = true; ServerId_IsNull = true; }
+	FORCEINLINE void SetServerIdToNull() { ServerId_IsSet = true; ServerId_IsNull = true; }
 	/** @brief Checks whether ServerId_Optional is set to null */
-	bool IsServerIdNull() const { return ServerId_IsSet && ServerId_IsNull; }
+	FORCEINLINE bool IsServerIdNull() const { return ServerId_IsSet && ServerId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString AllocationId_Optional{  };
@@ -822,29 +776,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AllocationId_IsNull{ false };
 	/** @brief Gets the value of AllocationId_Optional, regardless of it having been set */
-	FString& GetAllocationId() { return AllocationId_Optional; }
+	FORCEINLINE FString& GetAllocationId() { return AllocationId_Optional; }
 	/** @brief Gets the value of AllocationId_Optional, regardless of it having been set */
-	const FString& GetAllocationId() const { return AllocationId_Optional; }
+	FORCEINLINE const FString& GetAllocationId() const { return AllocationId_Optional; }
 	/** @brief Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetAllocationId(const FString& DefaultValue) const { if (AllocationId_IsSet) return AllocationId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetAllocationId(const FString& DefaultValue) const { if (AllocationId_IsSet) return AllocationId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAllocationId(FString& OutValue) const { if (AllocationId_IsSet && !AllocationId_IsNull) OutValue = AllocationId_Optional; return AllocationId_IsSet; }
+	FORCEINLINE bool GetAllocationId(FString& OutValue) const { if (AllocationId_IsSet && !AllocationId_IsNull) OutValue = AllocationId_Optional; return AllocationId_IsSet; }
 	/** @brief Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetAllocationIdOrNull() { if (AllocationId_IsSet) return (AllocationId_IsNull ? nullptr : &AllocationId_Optional); return nullptr; }
+	FORCEINLINE FString* GetAllocationIdOrNull() { if (AllocationId_IsSet) return (AllocationId_IsNull ? nullptr : &AllocationId_Optional); return nullptr; }
 	/** @brief Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetAllocationIdOrNull() const { if (AllocationId_IsSet) return (AllocationId_IsNull ? nullptr : &AllocationId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetAllocationIdOrNull() const { if (AllocationId_IsSet) return (AllocationId_IsNull ? nullptr : &AllocationId_Optional); return nullptr; }
 	/** @brief Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true */
-	void SetAllocationId(const FString& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; AllocationId_IsNull = false; }
+	FORCEINLINE void SetAllocationId(const FString& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; AllocationId_IsNull = false; }
 	/** @brief Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics */
-	void SetAllocationId(FString&& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; AllocationId_IsNull = false; }
+	FORCEINLINE void SetAllocationId(FString&& NewValue) { AllocationId_Optional = NewValue; AllocationId_IsSet = true; AllocationId_IsNull = false; }
 	/** @brief Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false */
 	void ClearAllocationId() { AllocationId_IsSet = false; AllocationId_IsNull = false; }
-	/** @brief Checks whether AllocationId_Optional has been set */
-	bool IsAllocationIdSet() const { return AllocationId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetAllocationIdToNull() { AllocationId_IsSet = true; AllocationId_IsNull = true; }
+	FORCEINLINE void SetAllocationIdToNull() { AllocationId_IsSet = true; AllocationId_IsNull = true; }
 	/** @brief Checks whether AllocationId_Optional is set to null */
-	bool IsAllocationIdNull() const { return AllocationId_IsSet && AllocationId_IsNull; }
+	FORCEINLINE bool IsAllocationIdNull() const { return AllocationId_IsSet && AllocationId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString DatacenterProvider_Optional{  };
@@ -855,29 +807,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DatacenterProvider_IsNull{ false };
 	/** @brief Gets the value of DatacenterProvider_Optional, regardless of it having been set */
-	FString& GetDatacenterProvider() { return DatacenterProvider_Optional; }
+	FORCEINLINE FString& GetDatacenterProvider() { return DatacenterProvider_Optional; }
 	/** @brief Gets the value of DatacenterProvider_Optional, regardless of it having been set */
-	const FString& GetDatacenterProvider() const { return DatacenterProvider_Optional; }
+	FORCEINLINE const FString& GetDatacenterProvider() const { return DatacenterProvider_Optional; }
 	/** @brief Gets the value of DatacenterProvider_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetDatacenterProvider(const FString& DefaultValue) const { if (DatacenterProvider_IsSet) return DatacenterProvider_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetDatacenterProvider(const FString& DefaultValue) const { if (DatacenterProvider_IsSet) return DatacenterProvider_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DatacenterProvider_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDatacenterProvider(FString& OutValue) const { if (DatacenterProvider_IsSet && !DatacenterProvider_IsNull) OutValue = DatacenterProvider_Optional; return DatacenterProvider_IsSet; }
+	FORCEINLINE bool GetDatacenterProvider(FString& OutValue) const { if (DatacenterProvider_IsSet && !DatacenterProvider_IsNull) OutValue = DatacenterProvider_Optional; return DatacenterProvider_IsSet; }
 	/** @brief Returns a pointer to DatacenterProvider_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDatacenterProviderOrNull() { if (DatacenterProvider_IsSet) return (DatacenterProvider_IsNull ? nullptr : &DatacenterProvider_Optional); return nullptr; }
+	FORCEINLINE FString* GetDatacenterProviderOrNull() { if (DatacenterProvider_IsSet) return (DatacenterProvider_IsNull ? nullptr : &DatacenterProvider_Optional); return nullptr; }
 	/** @brief Returns a pointer to DatacenterProvider_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDatacenterProviderOrNull() const { if (DatacenterProvider_IsSet) return (DatacenterProvider_IsNull ? nullptr : &DatacenterProvider_Optional); return nullptr; }
+	FORCEINLINE const FString* GetDatacenterProviderOrNull() const { if (DatacenterProvider_IsSet) return (DatacenterProvider_IsNull ? nullptr : &DatacenterProvider_Optional); return nullptr; }
 	/** @brief Sets the value of DatacenterProvider_Optional and also sets DatacenterProvider_IsSet to true */
-	void SetDatacenterProvider(const FString& NewValue) { DatacenterProvider_Optional = NewValue; DatacenterProvider_IsSet = true; DatacenterProvider_IsNull = false; }
+	FORCEINLINE void SetDatacenterProvider(const FString& NewValue) { DatacenterProvider_Optional = NewValue; DatacenterProvider_IsSet = true; DatacenterProvider_IsNull = false; }
 	/** @brief Sets the value of DatacenterProvider_Optional and also sets DatacenterProvider_IsSet to true using move semantics */
-	void SetDatacenterProvider(FString&& NewValue) { DatacenterProvider_Optional = NewValue; DatacenterProvider_IsSet = true; DatacenterProvider_IsNull = false; }
+	FORCEINLINE void SetDatacenterProvider(FString&& NewValue) { DatacenterProvider_Optional = NewValue; DatacenterProvider_IsSet = true; DatacenterProvider_IsNull = false; }
 	/** @brief Clears the value of DatacenterProvider_Optional and sets DatacenterProvider_IsSet to false */
 	void ClearDatacenterProvider() { DatacenterProvider_IsSet = false; DatacenterProvider_IsNull = false; }
-	/** @brief Checks whether DatacenterProvider_Optional has been set */
-	bool IsDatacenterProviderSet() const { return DatacenterProvider_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetDatacenterProviderToNull() { DatacenterProvider_IsSet = true; DatacenterProvider_IsNull = true; }
+	FORCEINLINE void SetDatacenterProviderToNull() { DatacenterProvider_IsSet = true; DatacenterProvider_IsNull = true; }
 	/** @brief Checks whether DatacenterProvider_Optional is set to null */
-	bool IsDatacenterProviderNull() const { return DatacenterProvider_IsSet && DatacenterProvider_IsNull; }
+	FORCEINLINE bool IsDatacenterProviderNull() const { return DatacenterProvider_IsSet && DatacenterProvider_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString DatacenterLocation_Optional{  };
@@ -888,29 +838,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DatacenterLocation_IsNull{ false };
 	/** @brief Gets the value of DatacenterLocation_Optional, regardless of it having been set */
-	FString& GetDatacenterLocation() { return DatacenterLocation_Optional; }
+	FORCEINLINE FString& GetDatacenterLocation() { return DatacenterLocation_Optional; }
 	/** @brief Gets the value of DatacenterLocation_Optional, regardless of it having been set */
-	const FString& GetDatacenterLocation() const { return DatacenterLocation_Optional; }
+	FORCEINLINE const FString& GetDatacenterLocation() const { return DatacenterLocation_Optional; }
 	/** @brief Gets the value of DatacenterLocation_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetDatacenterLocation(const FString& DefaultValue) const { if (DatacenterLocation_IsSet) return DatacenterLocation_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetDatacenterLocation(const FString& DefaultValue) const { if (DatacenterLocation_IsSet) return DatacenterLocation_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DatacenterLocation_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDatacenterLocation(FString& OutValue) const { if (DatacenterLocation_IsSet && !DatacenterLocation_IsNull) OutValue = DatacenterLocation_Optional; return DatacenterLocation_IsSet; }
+	FORCEINLINE bool GetDatacenterLocation(FString& OutValue) const { if (DatacenterLocation_IsSet && !DatacenterLocation_IsNull) OutValue = DatacenterLocation_Optional; return DatacenterLocation_IsSet; }
 	/** @brief Returns a pointer to DatacenterLocation_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDatacenterLocationOrNull() { if (DatacenterLocation_IsSet) return (DatacenterLocation_IsNull ? nullptr : &DatacenterLocation_Optional); return nullptr; }
+	FORCEINLINE FString* GetDatacenterLocationOrNull() { if (DatacenterLocation_IsSet) return (DatacenterLocation_IsNull ? nullptr : &DatacenterLocation_Optional); return nullptr; }
 	/** @brief Returns a pointer to DatacenterLocation_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDatacenterLocationOrNull() const { if (DatacenterLocation_IsSet) return (DatacenterLocation_IsNull ? nullptr : &DatacenterLocation_Optional); return nullptr; }
+	FORCEINLINE const FString* GetDatacenterLocationOrNull() const { if (DatacenterLocation_IsSet) return (DatacenterLocation_IsNull ? nullptr : &DatacenterLocation_Optional); return nullptr; }
 	/** @brief Sets the value of DatacenterLocation_Optional and also sets DatacenterLocation_IsSet to true */
-	void SetDatacenterLocation(const FString& NewValue) { DatacenterLocation_Optional = NewValue; DatacenterLocation_IsSet = true; DatacenterLocation_IsNull = false; }
+	FORCEINLINE void SetDatacenterLocation(const FString& NewValue) { DatacenterLocation_Optional = NewValue; DatacenterLocation_IsSet = true; DatacenterLocation_IsNull = false; }
 	/** @brief Sets the value of DatacenterLocation_Optional and also sets DatacenterLocation_IsSet to true using move semantics */
-	void SetDatacenterLocation(FString&& NewValue) { DatacenterLocation_Optional = NewValue; DatacenterLocation_IsSet = true; DatacenterLocation_IsNull = false; }
+	FORCEINLINE void SetDatacenterLocation(FString&& NewValue) { DatacenterLocation_Optional = NewValue; DatacenterLocation_IsSet = true; DatacenterLocation_IsNull = false; }
 	/** @brief Clears the value of DatacenterLocation_Optional and sets DatacenterLocation_IsSet to false */
 	void ClearDatacenterLocation() { DatacenterLocation_IsSet = false; DatacenterLocation_IsNull = false; }
-	/** @brief Checks whether DatacenterLocation_Optional has been set */
-	bool IsDatacenterLocationSet() const { return DatacenterLocation_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetDatacenterLocationToNull() { DatacenterLocation_IsSet = true; DatacenterLocation_IsNull = true; }
+	FORCEINLINE void SetDatacenterLocationToNull() { DatacenterLocation_IsSet = true; DatacenterLocation_IsNull = true; }
 	/** @brief Checks whether DatacenterLocation_Optional is set to null */
-	bool IsDatacenterLocationNull() const { return DatacenterLocation_IsSet && DatacenterLocation_IsNull; }
+	FORCEINLINE bool IsDatacenterLocationNull() const { return DatacenterLocation_IsSet && DatacenterLocation_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString AddressIp_Optional{  };
@@ -921,29 +869,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AddressIp_IsNull{ false };
 	/** @brief Gets the value of AddressIp_Optional, regardless of it having been set */
-	FString& GetAddressIp() { return AddressIp_Optional; }
+	FORCEINLINE FString& GetAddressIp() { return AddressIp_Optional; }
 	/** @brief Gets the value of AddressIp_Optional, regardless of it having been set */
-	const FString& GetAddressIp() const { return AddressIp_Optional; }
+	FORCEINLINE const FString& GetAddressIp() const { return AddressIp_Optional; }
 	/** @brief Gets the value of AddressIp_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetAddressIp(const FString& DefaultValue) const { if (AddressIp_IsSet) return AddressIp_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetAddressIp(const FString& DefaultValue) const { if (AddressIp_IsSet) return AddressIp_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AddressIp_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAddressIp(FString& OutValue) const { if (AddressIp_IsSet && !AddressIp_IsNull) OutValue = AddressIp_Optional; return AddressIp_IsSet; }
+	FORCEINLINE bool GetAddressIp(FString& OutValue) const { if (AddressIp_IsSet && !AddressIp_IsNull) OutValue = AddressIp_Optional; return AddressIp_IsSet; }
 	/** @brief Returns a pointer to AddressIp_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetAddressIpOrNull() { if (AddressIp_IsSet) return (AddressIp_IsNull ? nullptr : &AddressIp_Optional); return nullptr; }
+	FORCEINLINE FString* GetAddressIpOrNull() { if (AddressIp_IsSet) return (AddressIp_IsNull ? nullptr : &AddressIp_Optional); return nullptr; }
 	/** @brief Returns a pointer to AddressIp_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetAddressIpOrNull() const { if (AddressIp_IsSet) return (AddressIp_IsNull ? nullptr : &AddressIp_Optional); return nullptr; }
+	FORCEINLINE const FString* GetAddressIpOrNull() const { if (AddressIp_IsSet) return (AddressIp_IsNull ? nullptr : &AddressIp_Optional); return nullptr; }
 	/** @brief Sets the value of AddressIp_Optional and also sets AddressIp_IsSet to true */
-	void SetAddressIp(const FString& NewValue) { AddressIp_Optional = NewValue; AddressIp_IsSet = true; AddressIp_IsNull = false; }
+	FORCEINLINE void SetAddressIp(const FString& NewValue) { AddressIp_Optional = NewValue; AddressIp_IsSet = true; AddressIp_IsNull = false; }
 	/** @brief Sets the value of AddressIp_Optional and also sets AddressIp_IsSet to true using move semantics */
-	void SetAddressIp(FString&& NewValue) { AddressIp_Optional = NewValue; AddressIp_IsSet = true; AddressIp_IsNull = false; }
+	FORCEINLINE void SetAddressIp(FString&& NewValue) { AddressIp_Optional = NewValue; AddressIp_IsSet = true; AddressIp_IsNull = false; }
 	/** @brief Clears the value of AddressIp_Optional and sets AddressIp_IsSet to false */
 	void ClearAddressIp() { AddressIp_IsSet = false; AddressIp_IsNull = false; }
-	/** @brief Checks whether AddressIp_Optional has been set */
-	bool IsAddressIpSet() const { return AddressIp_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetAddressIpToNull() { AddressIp_IsSet = true; AddressIp_IsNull = true; }
+	FORCEINLINE void SetAddressIpToNull() { AddressIp_IsSet = true; AddressIp_IsNull = true; }
 	/** @brief Checks whether AddressIp_Optional is set to null */
-	bool IsAddressIpNull() const { return AddressIp_IsSet && AddressIp_IsNull; }
+	FORCEINLINE bool IsAddressIpNull() const { return AddressIp_IsSet && AddressIp_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MapName_Optional{  };
@@ -954,29 +900,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MapName_IsNull{ false };
 	/** @brief Gets the value of MapName_Optional, regardless of it having been set */
-	FString& GetMapName() { return MapName_Optional; }
+	FORCEINLINE FString& GetMapName() { return MapName_Optional; }
 	/** @brief Gets the value of MapName_Optional, regardless of it having been set */
-	const FString& GetMapName() const { return MapName_Optional; }
+	FORCEINLINE const FString& GetMapName() const { return MapName_Optional; }
 	/** @brief Gets the value of MapName_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetMapName(const FString& DefaultValue) const { if (MapName_IsSet) return MapName_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetMapName(const FString& DefaultValue) const { if (MapName_IsSet) return MapName_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MapName_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMapName(FString& OutValue) const { if (MapName_IsSet && !MapName_IsNull) OutValue = MapName_Optional; return MapName_IsSet; }
+	FORCEINLINE bool GetMapName(FString& OutValue) const { if (MapName_IsSet && !MapName_IsNull) OutValue = MapName_Optional; return MapName_IsSet; }
 	/** @brief Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetMapNameOrNull() { if (MapName_IsSet) return (MapName_IsNull ? nullptr : &MapName_Optional); return nullptr; }
+	FORCEINLINE FString* GetMapNameOrNull() { if (MapName_IsSet) return (MapName_IsNull ? nullptr : &MapName_Optional); return nullptr; }
 	/** @brief Returns a pointer to MapName_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetMapNameOrNull() const { if (MapName_IsSet) return (MapName_IsNull ? nullptr : &MapName_Optional); return nullptr; }
+	FORCEINLINE const FString* GetMapNameOrNull() const { if (MapName_IsSet) return (MapName_IsNull ? nullptr : &MapName_Optional); return nullptr; }
 	/** @brief Sets the value of MapName_Optional and also sets MapName_IsSet to true */
-	void SetMapName(const FString& NewValue) { MapName_Optional = NewValue; MapName_IsSet = true; MapName_IsNull = false; }
+	FORCEINLINE void SetMapName(const FString& NewValue) { MapName_Optional = NewValue; MapName_IsSet = true; MapName_IsNull = false; }
 	/** @brief Sets the value of MapName_Optional and also sets MapName_IsSet to true using move semantics */
-	void SetMapName(FString&& NewValue) { MapName_Optional = NewValue; MapName_IsSet = true; MapName_IsNull = false; }
+	FORCEINLINE void SetMapName(FString&& NewValue) { MapName_Optional = NewValue; MapName_IsSet = true; MapName_IsNull = false; }
 	/** @brief Clears the value of MapName_Optional and sets MapName_IsSet to false */
 	void ClearMapName() { MapName_IsSet = false; MapName_IsNull = false; }
-	/** @brief Checks whether MapName_Optional has been set */
-	bool IsMapNameSet() const { return MapName_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMapNameToNull() { MapName_IsSet = true; MapName_IsNull = true; }
+	FORCEINLINE void SetMapNameToNull() { MapName_IsSet = true; MapName_IsNull = true; }
 	/** @brief Checks whether MapName_Optional is set to null */
-	bool IsMapNameNull() const { return MapName_IsSet && MapName_IsNull; }
+	FORCEINLINE bool IsMapNameNull() const { return MapName_IsSet && MapName_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString GameMode_Optional{  };
@@ -987,29 +931,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool GameMode_IsNull{ false };
 	/** @brief Gets the value of GameMode_Optional, regardless of it having been set */
-	FString& GetGameMode() { return GameMode_Optional; }
+	FORCEINLINE FString& GetGameMode() { return GameMode_Optional; }
 	/** @brief Gets the value of GameMode_Optional, regardless of it having been set */
-	const FString& GetGameMode() const { return GameMode_Optional; }
+	FORCEINLINE const FString& GetGameMode() const { return GameMode_Optional; }
 	/** @brief Gets the value of GameMode_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetGameMode(const FString& DefaultValue) const { if (GameMode_IsSet) return GameMode_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetGameMode(const FString& DefaultValue) const { if (GameMode_IsSet) return GameMode_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of GameMode_Optional and returns true if it has been set, otherwise returns false */
-	bool GetGameMode(FString& OutValue) const { if (GameMode_IsSet && !GameMode_IsNull) OutValue = GameMode_Optional; return GameMode_IsSet; }
+	FORCEINLINE bool GetGameMode(FString& OutValue) const { if (GameMode_IsSet && !GameMode_IsNull) OutValue = GameMode_Optional; return GameMode_IsSet; }
 	/** @brief Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetGameModeOrNull() { if (GameMode_IsSet) return (GameMode_IsNull ? nullptr : &GameMode_Optional); return nullptr; }
+	FORCEINLINE FString* GetGameModeOrNull() { if (GameMode_IsSet) return (GameMode_IsNull ? nullptr : &GameMode_Optional); return nullptr; }
 	/** @brief Returns a pointer to GameMode_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetGameModeOrNull() const { if (GameMode_IsSet) return (GameMode_IsNull ? nullptr : &GameMode_Optional); return nullptr; }
+	FORCEINLINE const FString* GetGameModeOrNull() const { if (GameMode_IsSet) return (GameMode_IsNull ? nullptr : &GameMode_Optional); return nullptr; }
 	/** @brief Sets the value of GameMode_Optional and also sets GameMode_IsSet to true */
-	void SetGameMode(const FString& NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; GameMode_IsNull = false; }
+	FORCEINLINE void SetGameMode(const FString& NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; GameMode_IsNull = false; }
 	/** @brief Sets the value of GameMode_Optional and also sets GameMode_IsSet to true using move semantics */
-	void SetGameMode(FString&& NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; GameMode_IsNull = false; }
+	FORCEINLINE void SetGameMode(FString&& NewValue) { GameMode_Optional = NewValue; GameMode_IsSet = true; GameMode_IsNull = false; }
 	/** @brief Clears the value of GameMode_Optional and sets GameMode_IsSet to false */
 	void ClearGameMode() { GameMode_IsSet = false; GameMode_IsNull = false; }
-	/** @brief Checks whether GameMode_Optional has been set */
-	bool IsGameModeSet() const { return GameMode_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetGameModeToNull() { GameMode_IsSet = true; GameMode_IsNull = true; }
+	FORCEINLINE void SetGameModeToNull() { GameMode_IsSet = true; GameMode_IsNull = true; }
 	/** @brief Checks whether GameMode_Optional is set to null */
-	bool IsGameModeNull() const { return GameMode_IsSet && GameMode_IsNull; }
+	FORCEINLINE bool IsGameModeNull() const { return GameMode_IsSet && GameMode_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MatchmakingProfileId_Optional{  };
@@ -1020,29 +962,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MatchmakingProfileId_IsNull{ false };
 	/** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
-	FString& GetMatchmakingProfileId() { return MatchmakingProfileId_Optional; }
+	FORCEINLINE FString& GetMatchmakingProfileId() { return MatchmakingProfileId_Optional; }
 	/** @brief Gets the value of MatchmakingProfileId_Optional, regardless of it having been set */
-	const FString& GetMatchmakingProfileId() const { return MatchmakingProfileId_Optional; }
+	FORCEINLINE const FString& GetMatchmakingProfileId() const { return MatchmakingProfileId_Optional; }
 	/** @brief Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetMatchmakingProfileId(const FString& DefaultValue) const { if (MatchmakingProfileId_IsSet) return MatchmakingProfileId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetMatchmakingProfileId(const FString& DefaultValue) const { if (MatchmakingProfileId_IsSet) return MatchmakingProfileId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMatchmakingProfileId(FString& OutValue) const { if (MatchmakingProfileId_IsSet && !MatchmakingProfileId_IsNull) OutValue = MatchmakingProfileId_Optional; return MatchmakingProfileId_IsSet; }
+	FORCEINLINE bool GetMatchmakingProfileId(FString& OutValue) const { if (MatchmakingProfileId_IsSet && !MatchmakingProfileId_IsNull) OutValue = MatchmakingProfileId_Optional; return MatchmakingProfileId_IsSet; }
 	/** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetMatchmakingProfileIdOrNull() { if (MatchmakingProfileId_IsSet) return (MatchmakingProfileId_IsNull ? nullptr : &MatchmakingProfileId_Optional); return nullptr; }
+	FORCEINLINE FString* GetMatchmakingProfileIdOrNull() { if (MatchmakingProfileId_IsSet) return (MatchmakingProfileId_IsNull ? nullptr : &MatchmakingProfileId_Optional); return nullptr; }
 	/** @brief Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetMatchmakingProfileIdOrNull() const { if (MatchmakingProfileId_IsSet) return (MatchmakingProfileId_IsNull ? nullptr : &MatchmakingProfileId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetMatchmakingProfileIdOrNull() const { if (MatchmakingProfileId_IsSet) return (MatchmakingProfileId_IsNull ? nullptr : &MatchmakingProfileId_Optional); return nullptr; }
 	/** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true */
-	void SetMatchmakingProfileId(const FString& NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = false; }
+	FORCEINLINE void SetMatchmakingProfileId(const FString& NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = false; }
 	/** @brief Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true using move semantics */
-	void SetMatchmakingProfileId(FString&& NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = false; }
+	FORCEINLINE void SetMatchmakingProfileId(FString&& NewValue) { MatchmakingProfileId_Optional = NewValue; MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = false; }
 	/** @brief Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false */
 	void ClearMatchmakingProfileId() { MatchmakingProfileId_IsSet = false; MatchmakingProfileId_IsNull = false; }
-	/** @brief Checks whether MatchmakingProfileId_Optional has been set */
-	bool IsMatchmakingProfileIdSet() const { return MatchmakingProfileId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMatchmakingProfileIdToNull() { MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = true; }
+	FORCEINLINE void SetMatchmakingProfileIdToNull() { MatchmakingProfileId_IsSet = true; MatchmakingProfileId_IsNull = true; }
 	/** @brief Checks whether MatchmakingProfileId_Optional is set to null */
-	bool IsMatchmakingProfileIdNull() const { return MatchmakingProfileId_IsSet && MatchmakingProfileId_IsNull; }
+	FORCEINLINE bool IsMatchmakingProfileIdNull() const { return MatchmakingProfileId_IsSet && MatchmakingProfileId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ExpectedTeamSize_Optional{ 0 };
@@ -1053,33 +993,29 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExpectedTeamSize_IsNull{ false };
 	/** @brief Gets the value of ExpectedTeamSize_Optional, regardless of it having been set */
-	int32& GetExpectedTeamSize() { return ExpectedTeamSize_Optional; }
+	FORCEINLINE int32& GetExpectedTeamSize() { return ExpectedTeamSize_Optional; }
 	/** @brief Gets the value of ExpectedTeamSize_Optional, regardless of it having been set */
-	const int32& GetExpectedTeamSize() const { return ExpectedTeamSize_Optional; }
+	FORCEINLINE const int32& GetExpectedTeamSize() const { return ExpectedTeamSize_Optional; }
 	/** @brief Gets the value of ExpectedTeamSize_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetExpectedTeamSize(const int32& DefaultValue) const { if (ExpectedTeamSize_IsSet) return ExpectedTeamSize_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetExpectedTeamSize(const int32& DefaultValue) const { if (ExpectedTeamSize_IsSet) return ExpectedTeamSize_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ExpectedTeamSize_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExpectedTeamSize(int32& OutValue) const { if (ExpectedTeamSize_IsSet && !ExpectedTeamSize_IsNull) OutValue = ExpectedTeamSize_Optional; return ExpectedTeamSize_IsSet; }
+	FORCEINLINE bool GetExpectedTeamSize(int32& OutValue) const { if (ExpectedTeamSize_IsSet && !ExpectedTeamSize_IsNull) OutValue = ExpectedTeamSize_Optional; return ExpectedTeamSize_IsSet; }
 	/** @brief Returns a pointer to ExpectedTeamSize_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetExpectedTeamSizeOrNull() { if (ExpectedTeamSize_IsSet) return (ExpectedTeamSize_IsNull ? nullptr : &ExpectedTeamSize_Optional); return nullptr; }
+	FORCEINLINE int32* GetExpectedTeamSizeOrNull() { if (ExpectedTeamSize_IsSet) return (ExpectedTeamSize_IsNull ? nullptr : &ExpectedTeamSize_Optional); return nullptr; }
 	/** @brief Returns a pointer to ExpectedTeamSize_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetExpectedTeamSizeOrNull() const { if (ExpectedTeamSize_IsSet) return (ExpectedTeamSize_IsNull ? nullptr : &ExpectedTeamSize_Optional); return nullptr; }
+	FORCEINLINE const int32* GetExpectedTeamSizeOrNull() const { if (ExpectedTeamSize_IsSet) return (ExpectedTeamSize_IsNull ? nullptr : &ExpectedTeamSize_Optional); return nullptr; }
 	/** @brief Sets the value of ExpectedTeamSize_Optional and also sets ExpectedTeamSize_IsSet to true */
-	void SetExpectedTeamSize(const int32& NewValue) { ExpectedTeamSize_Optional = NewValue; ExpectedTeamSize_IsSet = true; ExpectedTeamSize_IsNull = false; }
+	FORCEINLINE void SetExpectedTeamSize(const int32& NewValue) { ExpectedTeamSize_Optional = NewValue; ExpectedTeamSize_IsSet = true; ExpectedTeamSize_IsNull = false; }
 	/** @brief Sets the value of ExpectedTeamSize_Optional and also sets ExpectedTeamSize_IsSet to true using move semantics */
-	void SetExpectedTeamSize(int32&& NewValue) { ExpectedTeamSize_Optional = NewValue; ExpectedTeamSize_IsSet = true; ExpectedTeamSize_IsNull = false; }
+	FORCEINLINE void SetExpectedTeamSize(int32&& NewValue) { ExpectedTeamSize_Optional = NewValue; ExpectedTeamSize_IsSet = true; ExpectedTeamSize_IsNull = false; }
 	/** @brief Clears the value of ExpectedTeamSize_Optional and sets ExpectedTeamSize_IsSet to false */
 	void ClearExpectedTeamSize() { ExpectedTeamSize_Optional = 0; ExpectedTeamSize_IsSet = false; ExpectedTeamSize_IsNull = false; }
-	/** @brief Checks whether ExpectedTeamSize_Optional has been set */
-	bool IsExpectedTeamSizeSet() const { return ExpectedTeamSize_IsSet; }
-	/** @brief Returns true if ExpectedTeamSize_Optional is set and matches the default value */
-	bool IsExpectedTeamSizeDefaultValue() const { return ExpectedTeamSize_IsSet && ExpectedTeamSize_Optional == 0; }
-	/** @brief Sets the value of ExpectedTeamSize_Optional to its default and also sets ExpectedTeamSize_IsSet to true */
-	void SetExpectedTeamSizeToDefault() { SetExpectedTeamSize(0); }
+	/** @brief Returns the default value of ExpectedTeamSize */
+	FORCEINLINE int32 GetDefaultValue_ExpectedTeamSize() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetExpectedTeamSizeToNull() { ExpectedTeamSize_IsSet = true; ExpectedTeamSize_IsNull = true; }
+	FORCEINLINE void SetExpectedTeamSizeToNull() { ExpectedTeamSize_IsSet = true; ExpectedTeamSize_IsNull = true; }
 	/** @brief Checks whether ExpectedTeamSize_Optional is set to null */
-	bool IsExpectedTeamSizeNull() const { return ExpectedTeamSize_IsSet && ExpectedTeamSize_IsNull; }
+	FORCEINLINE bool IsExpectedTeamSizeNull() const { return ExpectedTeamSize_IsSet && ExpectedTeamSize_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ExpectedPlayerCount_Optional{ 0 };
@@ -1090,33 +1026,29 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExpectedPlayerCount_IsNull{ false };
 	/** @brief Gets the value of ExpectedPlayerCount_Optional, regardless of it having been set */
-	int32& GetExpectedPlayerCount() { return ExpectedPlayerCount_Optional; }
+	FORCEINLINE int32& GetExpectedPlayerCount() { return ExpectedPlayerCount_Optional; }
 	/** @brief Gets the value of ExpectedPlayerCount_Optional, regardless of it having been set */
-	const int32& GetExpectedPlayerCount() const { return ExpectedPlayerCount_Optional; }
+	FORCEINLINE const int32& GetExpectedPlayerCount() const { return ExpectedPlayerCount_Optional; }
 	/** @brief Gets the value of ExpectedPlayerCount_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetExpectedPlayerCount(const int32& DefaultValue) const { if (ExpectedPlayerCount_IsSet) return ExpectedPlayerCount_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetExpectedPlayerCount(const int32& DefaultValue) const { if (ExpectedPlayerCount_IsSet) return ExpectedPlayerCount_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ExpectedPlayerCount_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExpectedPlayerCount(int32& OutValue) const { if (ExpectedPlayerCount_IsSet && !ExpectedPlayerCount_IsNull) OutValue = ExpectedPlayerCount_Optional; return ExpectedPlayerCount_IsSet; }
+	FORCEINLINE bool GetExpectedPlayerCount(int32& OutValue) const { if (ExpectedPlayerCount_IsSet && !ExpectedPlayerCount_IsNull) OutValue = ExpectedPlayerCount_Optional; return ExpectedPlayerCount_IsSet; }
 	/** @brief Returns a pointer to ExpectedPlayerCount_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetExpectedPlayerCountOrNull() { if (ExpectedPlayerCount_IsSet) return (ExpectedPlayerCount_IsNull ? nullptr : &ExpectedPlayerCount_Optional); return nullptr; }
+	FORCEINLINE int32* GetExpectedPlayerCountOrNull() { if (ExpectedPlayerCount_IsSet) return (ExpectedPlayerCount_IsNull ? nullptr : &ExpectedPlayerCount_Optional); return nullptr; }
 	/** @brief Returns a pointer to ExpectedPlayerCount_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetExpectedPlayerCountOrNull() const { if (ExpectedPlayerCount_IsSet) return (ExpectedPlayerCount_IsNull ? nullptr : &ExpectedPlayerCount_Optional); return nullptr; }
+	FORCEINLINE const int32* GetExpectedPlayerCountOrNull() const { if (ExpectedPlayerCount_IsSet) return (ExpectedPlayerCount_IsNull ? nullptr : &ExpectedPlayerCount_Optional); return nullptr; }
 	/** @brief Sets the value of ExpectedPlayerCount_Optional and also sets ExpectedPlayerCount_IsSet to true */
-	void SetExpectedPlayerCount(const int32& NewValue) { ExpectedPlayerCount_Optional = NewValue; ExpectedPlayerCount_IsSet = true; ExpectedPlayerCount_IsNull = false; }
+	FORCEINLINE void SetExpectedPlayerCount(const int32& NewValue) { ExpectedPlayerCount_Optional = NewValue; ExpectedPlayerCount_IsSet = true; ExpectedPlayerCount_IsNull = false; }
 	/** @brief Sets the value of ExpectedPlayerCount_Optional and also sets ExpectedPlayerCount_IsSet to true using move semantics */
-	void SetExpectedPlayerCount(int32&& NewValue) { ExpectedPlayerCount_Optional = NewValue; ExpectedPlayerCount_IsSet = true; ExpectedPlayerCount_IsNull = false; }
+	FORCEINLINE void SetExpectedPlayerCount(int32&& NewValue) { ExpectedPlayerCount_Optional = NewValue; ExpectedPlayerCount_IsSet = true; ExpectedPlayerCount_IsNull = false; }
 	/** @brief Clears the value of ExpectedPlayerCount_Optional and sets ExpectedPlayerCount_IsSet to false */
 	void ClearExpectedPlayerCount() { ExpectedPlayerCount_Optional = 0; ExpectedPlayerCount_IsSet = false; ExpectedPlayerCount_IsNull = false; }
-	/** @brief Checks whether ExpectedPlayerCount_Optional has been set */
-	bool IsExpectedPlayerCountSet() const { return ExpectedPlayerCount_IsSet; }
-	/** @brief Returns true if ExpectedPlayerCount_Optional is set and matches the default value */
-	bool IsExpectedPlayerCountDefaultValue() const { return ExpectedPlayerCount_IsSet && ExpectedPlayerCount_Optional == 0; }
-	/** @brief Sets the value of ExpectedPlayerCount_Optional to its default and also sets ExpectedPlayerCount_IsSet to true */
-	void SetExpectedPlayerCountToDefault() { SetExpectedPlayerCount(0); }
+	/** @brief Returns the default value of ExpectedPlayerCount */
+	FORCEINLINE int32 GetDefaultValue_ExpectedPlayerCount() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetExpectedPlayerCountToNull() { ExpectedPlayerCount_IsSet = true; ExpectedPlayerCount_IsNull = true; }
+	FORCEINLINE void SetExpectedPlayerCountToNull() { ExpectedPlayerCount_IsSet = true; ExpectedPlayerCount_IsNull = true; }
 	/** @brief Checks whether ExpectedPlayerCount_Optional is set to null */
-	bool IsExpectedPlayerCountNull() const { return ExpectedPlayerCount_IsSet && ExpectedPlayerCount_IsNull; }
+	FORCEINLINE bool IsExpectedPlayerCountNull() const { return ExpectedPlayerCount_IsSet && ExpectedPlayerCount_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid HostPlayerUuid_Optional{  };
@@ -1127,29 +1059,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool HostPlayerUuid_IsNull{ false };
 	/** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
-	FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
+	FORCEINLINE FGuid& GetHostPlayerUuid() { return HostPlayerUuid_Optional; }
 	/** @brief Gets the value of HostPlayerUuid_Optional, regardless of it having been set */
-	const FGuid& GetHostPlayerUuid() const { return HostPlayerUuid_Optional; }
+	FORCEINLINE const FGuid& GetHostPlayerUuid() const { return HostPlayerUuid_Optional; }
 	/** @brief Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetHostPlayerUuid(const FGuid& DefaultValue) const { if (HostPlayerUuid_IsSet) return HostPlayerUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetHostPlayerUuid(const FGuid& DefaultValue) const { if (HostPlayerUuid_IsSet) return HostPlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetHostPlayerUuid(FGuid& OutValue) const { if (HostPlayerUuid_IsSet && !HostPlayerUuid_IsNull) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
+	FORCEINLINE bool GetHostPlayerUuid(FGuid& OutValue) const { if (HostPlayerUuid_IsSet && !HostPlayerUuid_IsNull) OutValue = HostPlayerUuid_Optional; return HostPlayerUuid_IsSet; }
 	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return (HostPlayerUuid_IsNull ? nullptr : &HostPlayerUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetHostPlayerUuidOrNull() { if (HostPlayerUuid_IsSet) return (HostPlayerUuid_IsNull ? nullptr : &HostPlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return (HostPlayerUuid_IsNull ? nullptr : &HostPlayerUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetHostPlayerUuidOrNull() const { if (HostPlayerUuid_IsSet) return (HostPlayerUuid_IsNull ? nullptr : &HostPlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true */
-	void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = false; }
+	FORCEINLINE void SetHostPlayerUuid(const FGuid& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = false; }
 	/** @brief Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics */
-	void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = false; }
+	FORCEINLINE void SetHostPlayerUuid(FGuid&& NewValue) { HostPlayerUuid_Optional = NewValue; HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = false; }
 	/** @brief Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false */
 	void ClearHostPlayerUuid() { HostPlayerUuid_IsSet = false; HostPlayerUuid_IsNull = false; }
-	/** @brief Checks whether HostPlayerUuid_Optional has been set */
-	bool IsHostPlayerUuidSet() const { return HostPlayerUuid_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetHostPlayerUuidToNull() { HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = true; }
+	FORCEINLINE void SetHostPlayerUuidToNull() { HostPlayerUuid_IsSet = true; HostPlayerUuid_IsNull = true; }
 	/** @brief Checks whether HostPlayerUuid_Optional is set to null */
-	bool IsHostPlayerUuidNull() const { return HostPlayerUuid_IsSet && HostPlayerUuid_IsNull; }
+	FORCEINLINE bool IsHostPlayerUuidNull() const { return HostPlayerUuid_IsSet && HostPlayerUuid_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid OwningPlayerUuid_Optional{  };
@@ -1160,29 +1090,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OwningPlayerUuid_IsNull{ false };
 	/** @brief Gets the value of OwningPlayerUuid_Optional, regardless of it having been set */
-	FGuid& GetOwningPlayerUuid() { return OwningPlayerUuid_Optional; }
+	FORCEINLINE FGuid& GetOwningPlayerUuid() { return OwningPlayerUuid_Optional; }
 	/** @brief Gets the value of OwningPlayerUuid_Optional, regardless of it having been set */
-	const FGuid& GetOwningPlayerUuid() const { return OwningPlayerUuid_Optional; }
+	FORCEINLINE const FGuid& GetOwningPlayerUuid() const { return OwningPlayerUuid_Optional; }
 	/** @brief Gets the value of OwningPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetOwningPlayerUuid(const FGuid& DefaultValue) const { if (OwningPlayerUuid_IsSet) return OwningPlayerUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetOwningPlayerUuid(const FGuid& DefaultValue) const { if (OwningPlayerUuid_IsSet) return OwningPlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OwningPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOwningPlayerUuid(FGuid& OutValue) const { if (OwningPlayerUuid_IsSet && !OwningPlayerUuid_IsNull) OutValue = OwningPlayerUuid_Optional; return OwningPlayerUuid_IsSet; }
+	FORCEINLINE bool GetOwningPlayerUuid(FGuid& OutValue) const { if (OwningPlayerUuid_IsSet && !OwningPlayerUuid_IsNull) OutValue = OwningPlayerUuid_Optional; return OwningPlayerUuid_IsSet; }
 	/** @brief Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetOwningPlayerUuidOrNull() { if (OwningPlayerUuid_IsSet) return (OwningPlayerUuid_IsNull ? nullptr : &OwningPlayerUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetOwningPlayerUuidOrNull() { if (OwningPlayerUuid_IsSet) return (OwningPlayerUuid_IsNull ? nullptr : &OwningPlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to OwningPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetOwningPlayerUuidOrNull() const { if (OwningPlayerUuid_IsSet) return (OwningPlayerUuid_IsNull ? nullptr : &OwningPlayerUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetOwningPlayerUuidOrNull() const { if (OwningPlayerUuid_IsSet) return (OwningPlayerUuid_IsNull ? nullptr : &OwningPlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true */
-	void SetOwningPlayerUuid(const FGuid& NewValue) { OwningPlayerUuid_Optional = NewValue; OwningPlayerUuid_IsSet = true; OwningPlayerUuid_IsNull = false; }
+	FORCEINLINE void SetOwningPlayerUuid(const FGuid& NewValue) { OwningPlayerUuid_Optional = NewValue; OwningPlayerUuid_IsSet = true; OwningPlayerUuid_IsNull = false; }
 	/** @brief Sets the value of OwningPlayerUuid_Optional and also sets OwningPlayerUuid_IsSet to true using move semantics */
-	void SetOwningPlayerUuid(FGuid&& NewValue) { OwningPlayerUuid_Optional = NewValue; OwningPlayerUuid_IsSet = true; OwningPlayerUuid_IsNull = false; }
+	FORCEINLINE void SetOwningPlayerUuid(FGuid&& NewValue) { OwningPlayerUuid_Optional = NewValue; OwningPlayerUuid_IsSet = true; OwningPlayerUuid_IsNull = false; }
 	/** @brief Clears the value of OwningPlayerUuid_Optional and sets OwningPlayerUuid_IsSet to false */
 	void ClearOwningPlayerUuid() { OwningPlayerUuid_IsSet = false; OwningPlayerUuid_IsNull = false; }
-	/** @brief Checks whether OwningPlayerUuid_Optional has been set */
-	bool IsOwningPlayerUuidSet() const { return OwningPlayerUuid_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetOwningPlayerUuidToNull() { OwningPlayerUuid_IsSet = true; OwningPlayerUuid_IsNull = true; }
+	FORCEINLINE void SetOwningPlayerUuidToNull() { OwningPlayerUuid_IsSet = true; OwningPlayerUuid_IsNull = true; }
 	/** @brief Checks whether OwningPlayerUuid_Optional is set to null */
-	bool IsOwningPlayerUuidNull() const { return OwningPlayerUuid_IsSet && OwningPlayerUuid_IsNull; }
+	FORCEINLINE bool IsOwningPlayerUuidNull() const { return OwningPlayerUuid_IsSet && OwningPlayerUuid_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Version_Optional{  };
@@ -1193,29 +1121,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Version_IsNull{ false };
 	/** @brief Gets the value of Version_Optional, regardless of it having been set */
-	FString& GetVersion() { return Version_Optional; }
+	FORCEINLINE FString& GetVersion() { return Version_Optional; }
 	/** @brief Gets the value of Version_Optional, regardless of it having been set */
-	const FString& GetVersion() const { return Version_Optional; }
+	FORCEINLINE const FString& GetVersion() const { return Version_Optional; }
 	/** @brief Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetVersion(const FString& DefaultValue) const { if (Version_IsSet) return Version_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetVersion(const FString& DefaultValue) const { if (Version_IsSet) return Version_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false */
-	bool GetVersion(FString& OutValue) const { if (Version_IsSet && !Version_IsNull) OutValue = Version_Optional; return Version_IsSet; }
+	FORCEINLINE bool GetVersion(FString& OutValue) const { if (Version_IsSet && !Version_IsNull) OutValue = Version_Optional; return Version_IsSet; }
 	/** @brief Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetVersionOrNull() { if (Version_IsSet) return (Version_IsNull ? nullptr : &Version_Optional); return nullptr; }
+	FORCEINLINE FString* GetVersionOrNull() { if (Version_IsSet) return (Version_IsNull ? nullptr : &Version_Optional); return nullptr; }
 	/** @brief Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetVersionOrNull() const { if (Version_IsSet) return (Version_IsNull ? nullptr : &Version_Optional); return nullptr; }
+	FORCEINLINE const FString* GetVersionOrNull() const { if (Version_IsSet) return (Version_IsNull ? nullptr : &Version_Optional); return nullptr; }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true */
-	void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true; Version_IsNull = false; }
+	FORCEINLINE void SetVersion(const FString& NewValue) { Version_Optional = NewValue; Version_IsSet = true; Version_IsNull = false; }
 	/** @brief Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics */
-	void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true; Version_IsNull = false; }
+	FORCEINLINE void SetVersion(FString&& NewValue) { Version_Optional = NewValue; Version_IsSet = true; Version_IsNull = false; }
 	/** @brief Clears the value of Version_Optional and sets Version_IsSet to false */
 	void ClearVersion() { Version_IsSet = false; Version_IsNull = false; }
-	/** @brief Checks whether Version_Optional has been set */
-	bool IsVersionSet() const { return Version_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetVersionToNull() { Version_IsSet = true; Version_IsNull = true; }
+	FORCEINLINE void SetVersionToNull() { Version_IsSet = true; Version_IsNull = true; }
 	/** @brief Checks whether Version_Optional is set to null */
-	bool IsVersionNull() const { return Version_IsSet && Version_IsNull; }
+	FORCEINLINE bool IsVersionNull() const { return Version_IsSet && Version_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString DeviceInfo_Optional{  };
@@ -1226,29 +1152,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeviceInfo_IsNull{ false };
 	/** @brief Gets the value of DeviceInfo_Optional, regardless of it having been set */
-	FString& GetDeviceInfo() { return DeviceInfo_Optional; }
+	FORCEINLINE FString& GetDeviceInfo() { return DeviceInfo_Optional; }
 	/** @brief Gets the value of DeviceInfo_Optional, regardless of it having been set */
-	const FString& GetDeviceInfo() const { return DeviceInfo_Optional; }
+	FORCEINLINE const FString& GetDeviceInfo() const { return DeviceInfo_Optional; }
 	/** @brief Gets the value of DeviceInfo_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetDeviceInfo(const FString& DefaultValue) const { if (DeviceInfo_IsSet) return DeviceInfo_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetDeviceInfo(const FString& DefaultValue) const { if (DeviceInfo_IsSet) return DeviceInfo_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DeviceInfo_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDeviceInfo(FString& OutValue) const { if (DeviceInfo_IsSet && !DeviceInfo_IsNull) OutValue = DeviceInfo_Optional; return DeviceInfo_IsSet; }
+	FORCEINLINE bool GetDeviceInfo(FString& OutValue) const { if (DeviceInfo_IsSet && !DeviceInfo_IsNull) OutValue = DeviceInfo_Optional; return DeviceInfo_IsSet; }
 	/** @brief Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDeviceInfoOrNull() { if (DeviceInfo_IsSet) return (DeviceInfo_IsNull ? nullptr : &DeviceInfo_Optional); return nullptr; }
+	FORCEINLINE FString* GetDeviceInfoOrNull() { if (DeviceInfo_IsSet) return (DeviceInfo_IsNull ? nullptr : &DeviceInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to DeviceInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDeviceInfoOrNull() const { if (DeviceInfo_IsSet) return (DeviceInfo_IsNull ? nullptr : &DeviceInfo_Optional); return nullptr; }
+	FORCEINLINE const FString* GetDeviceInfoOrNull() const { if (DeviceInfo_IsSet) return (DeviceInfo_IsNull ? nullptr : &DeviceInfo_Optional); return nullptr; }
 	/** @brief Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true */
-	void SetDeviceInfo(const FString& NewValue) { DeviceInfo_Optional = NewValue; DeviceInfo_IsSet = true; DeviceInfo_IsNull = false; }
+	FORCEINLINE void SetDeviceInfo(const FString& NewValue) { DeviceInfo_Optional = NewValue; DeviceInfo_IsSet = true; DeviceInfo_IsNull = false; }
 	/** @brief Sets the value of DeviceInfo_Optional and also sets DeviceInfo_IsSet to true using move semantics */
-	void SetDeviceInfo(FString&& NewValue) { DeviceInfo_Optional = NewValue; DeviceInfo_IsSet = true; DeviceInfo_IsNull = false; }
+	FORCEINLINE void SetDeviceInfo(FString&& NewValue) { DeviceInfo_Optional = NewValue; DeviceInfo_IsSet = true; DeviceInfo_IsNull = false; }
 	/** @brief Clears the value of DeviceInfo_Optional and sets DeviceInfo_IsSet to false */
 	void ClearDeviceInfo() { DeviceInfo_IsSet = false; DeviceInfo_IsNull = false; }
-	/** @brief Checks whether DeviceInfo_Optional has been set */
-	bool IsDeviceInfoSet() const { return DeviceInfo_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetDeviceInfoToNull() { DeviceInfo_IsSet = true; DeviceInfo_IsNull = true; }
+	FORCEINLINE void SetDeviceInfoToNull() { DeviceInfo_IsSet = true; DeviceInfo_IsNull = true; }
 	/** @brief Checks whether DeviceInfo_Optional is set to null */
-	bool IsDeviceInfoNull() const { return DeviceInfo_IsSet && DeviceInfo_IsNull; }
+	FORCEINLINE bool IsDeviceInfoNull() const { return DeviceInfo_IsSet && DeviceInfo_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_MatchPlatform PlatformId_Optional{  };
@@ -1259,29 +1183,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformId_IsNull{ false };
 	/** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
-	ERHAPI_MatchPlatform& GetPlatformId() { return PlatformId_Optional; }
+	FORCEINLINE ERHAPI_MatchPlatform& GetPlatformId() { return PlatformId_Optional; }
 	/** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
-	const ERHAPI_MatchPlatform& GetPlatformId() const { return PlatformId_Optional; }
+	FORCEINLINE const ERHAPI_MatchPlatform& GetPlatformId() const { return PlatformId_Optional; }
 	/** @brief Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_MatchPlatform& GetPlatformId(const ERHAPI_MatchPlatform& DefaultValue) const { if (PlatformId_IsSet) return PlatformId_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_MatchPlatform& GetPlatformId(const ERHAPI_MatchPlatform& DefaultValue) const { if (PlatformId_IsSet) return PlatformId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformId(ERHAPI_MatchPlatform& OutValue) const { if (PlatformId_IsSet && !PlatformId_IsNull) OutValue = PlatformId_Optional; return PlatformId_IsSet; }
+	FORCEINLINE bool GetPlatformId(ERHAPI_MatchPlatform& OutValue) const { if (PlatformId_IsSet && !PlatformId_IsNull) OutValue = PlatformId_Optional; return PlatformId_IsSet; }
 	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_MatchPlatform* GetPlatformIdOrNull() { if (PlatformId_IsSet) return (PlatformId_IsNull ? nullptr : &PlatformId_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_MatchPlatform* GetPlatformIdOrNull() { if (PlatformId_IsSet) return (PlatformId_IsNull ? nullptr : &PlatformId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_MatchPlatform* GetPlatformIdOrNull() const { if (PlatformId_IsSet) return (PlatformId_IsNull ? nullptr : &PlatformId_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_MatchPlatform* GetPlatformIdOrNull() const { if (PlatformId_IsSet) return (PlatformId_IsNull ? nullptr : &PlatformId_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true */
-	void SetPlatformId(const ERHAPI_MatchPlatform& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; PlatformId_IsNull = false; }
+	FORCEINLINE void SetPlatformId(const ERHAPI_MatchPlatform& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; PlatformId_IsNull = false; }
 	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics */
-	void SetPlatformId(ERHAPI_MatchPlatform&& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; PlatformId_IsNull = false; }
+	FORCEINLINE void SetPlatformId(ERHAPI_MatchPlatform&& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true; PlatformId_IsNull = false; }
 	/** @brief Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false */
 	void ClearPlatformId() { PlatformId_IsSet = false; PlatformId_IsNull = false; }
-	/** @brief Checks whether PlatformId_Optional has been set */
-	bool IsPlatformIdSet() const { return PlatformId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPlatformIdToNull() { PlatformId_IsSet = true; PlatformId_IsNull = true; }
+	FORCEINLINE void SetPlatformIdToNull() { PlatformId_IsSet = true; PlatformId_IsNull = true; }
 	/** @brief Checks whether PlatformId_Optional is set to null */
-	bool IsPlatformIdNull() const { return PlatformId_IsSet && PlatformId_IsNull; }
+	FORCEINLINE bool IsPlatformIdNull() const { return PlatformId_IsSet && PlatformId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FString> CustomData_Optional{  };
@@ -1292,29 +1214,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsNull{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet && !CustomData_IsNull) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet && !CustomData_IsNull) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; CustomData_IsNull = false; }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCustomDataToNull() { CustomData_IsSet = true; CustomData_IsNull = true; }
+	FORCEINLINE void SetCustomDataToNull() { CustomData_IsSet = true; CustomData_IsNull = true; }
 	/** @brief Checks whether CustomData_Optional is set to null */
-	bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
+	FORCEINLINE bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MachineClass_Optional{  };
@@ -1325,29 +1245,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MachineClass_IsNull{ false };
 	/** @brief Gets the value of MachineClass_Optional, regardless of it having been set */
-	FString& GetMachineClass() { return MachineClass_Optional; }
+	FORCEINLINE FString& GetMachineClass() { return MachineClass_Optional; }
 	/** @brief Gets the value of MachineClass_Optional, regardless of it having been set */
-	const FString& GetMachineClass() const { return MachineClass_Optional; }
+	FORCEINLINE const FString& GetMachineClass() const { return MachineClass_Optional; }
 	/** @brief Gets the value of MachineClass_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetMachineClass(const FString& DefaultValue) const { if (MachineClass_IsSet) return MachineClass_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetMachineClass(const FString& DefaultValue) const { if (MachineClass_IsSet) return MachineClass_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MachineClass_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMachineClass(FString& OutValue) const { if (MachineClass_IsSet && !MachineClass_IsNull) OutValue = MachineClass_Optional; return MachineClass_IsSet; }
+	FORCEINLINE bool GetMachineClass(FString& OutValue) const { if (MachineClass_IsSet && !MachineClass_IsNull) OutValue = MachineClass_Optional; return MachineClass_IsSet; }
 	/** @brief Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetMachineClassOrNull() { if (MachineClass_IsSet) return (MachineClass_IsNull ? nullptr : &MachineClass_Optional); return nullptr; }
+	FORCEINLINE FString* GetMachineClassOrNull() { if (MachineClass_IsSet) return (MachineClass_IsNull ? nullptr : &MachineClass_Optional); return nullptr; }
 	/** @brief Returns a pointer to MachineClass_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetMachineClassOrNull() const { if (MachineClass_IsSet) return (MachineClass_IsNull ? nullptr : &MachineClass_Optional); return nullptr; }
+	FORCEINLINE const FString* GetMachineClassOrNull() const { if (MachineClass_IsSet) return (MachineClass_IsNull ? nullptr : &MachineClass_Optional); return nullptr; }
 	/** @brief Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true */
-	void SetMachineClass(const FString& NewValue) { MachineClass_Optional = NewValue; MachineClass_IsSet = true; MachineClass_IsNull = false; }
+	FORCEINLINE void SetMachineClass(const FString& NewValue) { MachineClass_Optional = NewValue; MachineClass_IsSet = true; MachineClass_IsNull = false; }
 	/** @brief Sets the value of MachineClass_Optional and also sets MachineClass_IsSet to true using move semantics */
-	void SetMachineClass(FString&& NewValue) { MachineClass_Optional = NewValue; MachineClass_IsSet = true; MachineClass_IsNull = false; }
+	FORCEINLINE void SetMachineClass(FString&& NewValue) { MachineClass_Optional = NewValue; MachineClass_IsSet = true; MachineClass_IsNull = false; }
 	/** @brief Clears the value of MachineClass_Optional and sets MachineClass_IsSet to false */
 	void ClearMachineClass() { MachineClass_IsSet = false; MachineClass_IsNull = false; }
-	/** @brief Checks whether MachineClass_Optional has been set */
-	bool IsMachineClassSet() const { return MachineClass_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMachineClassToNull() { MachineClass_IsSet = true; MachineClass_IsNull = true; }
+	FORCEINLINE void SetMachineClassToNull() { MachineClass_IsSet = true; MachineClass_IsNull = true; }
 	/** @brief Checks whether MachineClass_Optional is set to null */
-	bool IsMachineClassNull() const { return MachineClass_IsSet && MachineClass_IsNull; }
+	FORCEINLINE bool IsMachineClassNull() const { return MachineClass_IsSet && MachineClass_IsNull; }
 };
 
 /** @} */

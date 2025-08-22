@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString TicketId{  };
 	/** @brief Gets the value of TicketId */
-	FString& GetTicketId() { return TicketId; }
+	FORCEINLINE FString& GetTicketId() { return TicketId; }
 	/** @brief Gets the value of TicketId */
-	const FString& GetTicketId() const { return TicketId; }
+	FORCEINLINE const FString& GetTicketId() const { return TicketId; }
 	/** @brief Sets the value of TicketId */
-	void SetTicketId(const FString& NewValue) { TicketId = NewValue;   }
+	FORCEINLINE void SetTicketId(const FString& NewValue) { TicketId = NewValue;   }
 	/** @brief Sets the value of TicketId using move semantics */
-	void SetTicketId(FString&& NewValue) { TicketId = NewValue;   }
+	FORCEINLINE void SetTicketId(FString&& NewValue) { TicketId = NewValue;   }
 };
 
 /** @} */

@@ -48,33 +48,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int1_IsNull{ false };
 	/** @brief Gets the value of Int1_Optional, regardless of it having been set */
-	int32& GetInt1() { return Int1_Optional; }
+	FORCEINLINE int32& GetInt1() { return Int1_Optional; }
 	/** @brief Gets the value of Int1_Optional, regardless of it having been set */
-	const int32& GetInt1() const { return Int1_Optional; }
+	FORCEINLINE const int32& GetInt1() const { return Int1_Optional; }
 	/** @brief Gets the value of Int1_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt1(const int32& DefaultValue) const { if (Int1_IsSet) return Int1_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt1(const int32& DefaultValue) const { if (Int1_IsSet) return Int1_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int1_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt1(int32& OutValue) const { if (Int1_IsSet && !Int1_IsNull) OutValue = Int1_Optional; return Int1_IsSet; }
+	FORCEINLINE bool GetInt1(int32& OutValue) const { if (Int1_IsSet && !Int1_IsNull) OutValue = Int1_Optional; return Int1_IsSet; }
 	/** @brief Returns a pointer to Int1_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt1OrNull() { if (Int1_IsSet) return (Int1_IsNull ? nullptr : &Int1_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt1OrNull() { if (Int1_IsSet) return (Int1_IsNull ? nullptr : &Int1_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int1_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt1OrNull() const { if (Int1_IsSet) return (Int1_IsNull ? nullptr : &Int1_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt1OrNull() const { if (Int1_IsSet) return (Int1_IsNull ? nullptr : &Int1_Optional); return nullptr; }
 	/** @brief Sets the value of Int1_Optional and also sets Int1_IsSet to true */
-	void SetInt1(const int32& NewValue) { Int1_Optional = NewValue; Int1_IsSet = true; Int1_IsNull = false; }
+	FORCEINLINE void SetInt1(const int32& NewValue) { Int1_Optional = NewValue; Int1_IsSet = true; Int1_IsNull = false; }
 	/** @brief Sets the value of Int1_Optional and also sets Int1_IsSet to true using move semantics */
-	void SetInt1(int32&& NewValue) { Int1_Optional = NewValue; Int1_IsSet = true; Int1_IsNull = false; }
+	FORCEINLINE void SetInt1(int32&& NewValue) { Int1_Optional = NewValue; Int1_IsSet = true; Int1_IsNull = false; }
 	/** @brief Clears the value of Int1_Optional and sets Int1_IsSet to false */
 	void ClearInt1() { Int1_Optional = 0; Int1_IsSet = false; Int1_IsNull = false; }
-	/** @brief Checks whether Int1_Optional has been set */
-	bool IsInt1Set() const { return Int1_IsSet; }
-	/** @brief Returns true if Int1_Optional is set and matches the default value */
-	bool IsInt1DefaultValue() const { return Int1_IsSet && Int1_Optional == 0; }
-	/** @brief Sets the value of Int1_Optional to its default and also sets Int1_IsSet to true */
-	void SetInt1ToDefault() { SetInt1(0); }
+	/** @brief Returns the default value of Int1 */
+	FORCEINLINE int32 GetDefaultValue_Int1() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt1ToNull() { Int1_IsSet = true; Int1_IsNull = true; }
+	FORCEINLINE void SetInt1ToNull() { Int1_IsSet = true; Int1_IsNull = true; }
 	/** @brief Checks whether Int1_Optional is set to null */
-	bool IsInt1Null() const { return Int1_IsSet && Int1_IsNull; }
+	FORCEINLINE bool IsInt1Null() const { return Int1_IsSet && Int1_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int2_Optional{ 0 };
@@ -85,33 +81,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int2_IsNull{ false };
 	/** @brief Gets the value of Int2_Optional, regardless of it having been set */
-	int32& GetInt2() { return Int2_Optional; }
+	FORCEINLINE int32& GetInt2() { return Int2_Optional; }
 	/** @brief Gets the value of Int2_Optional, regardless of it having been set */
-	const int32& GetInt2() const { return Int2_Optional; }
+	FORCEINLINE const int32& GetInt2() const { return Int2_Optional; }
 	/** @brief Gets the value of Int2_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt2(const int32& DefaultValue) const { if (Int2_IsSet) return Int2_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt2(const int32& DefaultValue) const { if (Int2_IsSet) return Int2_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int2_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt2(int32& OutValue) const { if (Int2_IsSet && !Int2_IsNull) OutValue = Int2_Optional; return Int2_IsSet; }
+	FORCEINLINE bool GetInt2(int32& OutValue) const { if (Int2_IsSet && !Int2_IsNull) OutValue = Int2_Optional; return Int2_IsSet; }
 	/** @brief Returns a pointer to Int2_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt2OrNull() { if (Int2_IsSet) return (Int2_IsNull ? nullptr : &Int2_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt2OrNull() { if (Int2_IsSet) return (Int2_IsNull ? nullptr : &Int2_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int2_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt2OrNull() const { if (Int2_IsSet) return (Int2_IsNull ? nullptr : &Int2_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt2OrNull() const { if (Int2_IsSet) return (Int2_IsNull ? nullptr : &Int2_Optional); return nullptr; }
 	/** @brief Sets the value of Int2_Optional and also sets Int2_IsSet to true */
-	void SetInt2(const int32& NewValue) { Int2_Optional = NewValue; Int2_IsSet = true; Int2_IsNull = false; }
+	FORCEINLINE void SetInt2(const int32& NewValue) { Int2_Optional = NewValue; Int2_IsSet = true; Int2_IsNull = false; }
 	/** @brief Sets the value of Int2_Optional and also sets Int2_IsSet to true using move semantics */
-	void SetInt2(int32&& NewValue) { Int2_Optional = NewValue; Int2_IsSet = true; Int2_IsNull = false; }
+	FORCEINLINE void SetInt2(int32&& NewValue) { Int2_Optional = NewValue; Int2_IsSet = true; Int2_IsNull = false; }
 	/** @brief Clears the value of Int2_Optional and sets Int2_IsSet to false */
 	void ClearInt2() { Int2_Optional = 0; Int2_IsSet = false; Int2_IsNull = false; }
-	/** @brief Checks whether Int2_Optional has been set */
-	bool IsInt2Set() const { return Int2_IsSet; }
-	/** @brief Returns true if Int2_Optional is set and matches the default value */
-	bool IsInt2DefaultValue() const { return Int2_IsSet && Int2_Optional == 0; }
-	/** @brief Sets the value of Int2_Optional to its default and also sets Int2_IsSet to true */
-	void SetInt2ToDefault() { SetInt2(0); }
+	/** @brief Returns the default value of Int2 */
+	FORCEINLINE int32 GetDefaultValue_Int2() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt2ToNull() { Int2_IsSet = true; Int2_IsNull = true; }
+	FORCEINLINE void SetInt2ToNull() { Int2_IsSet = true; Int2_IsNull = true; }
 	/** @brief Checks whether Int2_Optional is set to null */
-	bool IsInt2Null() const { return Int2_IsSet && Int2_IsNull; }
+	FORCEINLINE bool IsInt2Null() const { return Int2_IsSet && Int2_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int3_Optional{ 0 };
@@ -122,33 +114,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int3_IsNull{ false };
 	/** @brief Gets the value of Int3_Optional, regardless of it having been set */
-	int32& GetInt3() { return Int3_Optional; }
+	FORCEINLINE int32& GetInt3() { return Int3_Optional; }
 	/** @brief Gets the value of Int3_Optional, regardless of it having been set */
-	const int32& GetInt3() const { return Int3_Optional; }
+	FORCEINLINE const int32& GetInt3() const { return Int3_Optional; }
 	/** @brief Gets the value of Int3_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt3(const int32& DefaultValue) const { if (Int3_IsSet) return Int3_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt3(const int32& DefaultValue) const { if (Int3_IsSet) return Int3_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int3_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt3(int32& OutValue) const { if (Int3_IsSet && !Int3_IsNull) OutValue = Int3_Optional; return Int3_IsSet; }
+	FORCEINLINE bool GetInt3(int32& OutValue) const { if (Int3_IsSet && !Int3_IsNull) OutValue = Int3_Optional; return Int3_IsSet; }
 	/** @brief Returns a pointer to Int3_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt3OrNull() { if (Int3_IsSet) return (Int3_IsNull ? nullptr : &Int3_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt3OrNull() { if (Int3_IsSet) return (Int3_IsNull ? nullptr : &Int3_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int3_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt3OrNull() const { if (Int3_IsSet) return (Int3_IsNull ? nullptr : &Int3_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt3OrNull() const { if (Int3_IsSet) return (Int3_IsNull ? nullptr : &Int3_Optional); return nullptr; }
 	/** @brief Sets the value of Int3_Optional and also sets Int3_IsSet to true */
-	void SetInt3(const int32& NewValue) { Int3_Optional = NewValue; Int3_IsSet = true; Int3_IsNull = false; }
+	FORCEINLINE void SetInt3(const int32& NewValue) { Int3_Optional = NewValue; Int3_IsSet = true; Int3_IsNull = false; }
 	/** @brief Sets the value of Int3_Optional and also sets Int3_IsSet to true using move semantics */
-	void SetInt3(int32&& NewValue) { Int3_Optional = NewValue; Int3_IsSet = true; Int3_IsNull = false; }
+	FORCEINLINE void SetInt3(int32&& NewValue) { Int3_Optional = NewValue; Int3_IsSet = true; Int3_IsNull = false; }
 	/** @brief Clears the value of Int3_Optional and sets Int3_IsSet to false */
 	void ClearInt3() { Int3_Optional = 0; Int3_IsSet = false; Int3_IsNull = false; }
-	/** @brief Checks whether Int3_Optional has been set */
-	bool IsInt3Set() const { return Int3_IsSet; }
-	/** @brief Returns true if Int3_Optional is set and matches the default value */
-	bool IsInt3DefaultValue() const { return Int3_IsSet && Int3_Optional == 0; }
-	/** @brief Sets the value of Int3_Optional to its default and also sets Int3_IsSet to true */
-	void SetInt3ToDefault() { SetInt3(0); }
+	/** @brief Returns the default value of Int3 */
+	FORCEINLINE int32 GetDefaultValue_Int3() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt3ToNull() { Int3_IsSet = true; Int3_IsNull = true; }
+	FORCEINLINE void SetInt3ToNull() { Int3_IsSet = true; Int3_IsNull = true; }
 	/** @brief Checks whether Int3_Optional is set to null */
-	bool IsInt3Null() const { return Int3_IsSet && Int3_IsNull; }
+	FORCEINLINE bool IsInt3Null() const { return Int3_IsSet && Int3_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int4_Optional{ 0 };
@@ -159,33 +147,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int4_IsNull{ false };
 	/** @brief Gets the value of Int4_Optional, regardless of it having been set */
-	int32& GetInt4() { return Int4_Optional; }
+	FORCEINLINE int32& GetInt4() { return Int4_Optional; }
 	/** @brief Gets the value of Int4_Optional, regardless of it having been set */
-	const int32& GetInt4() const { return Int4_Optional; }
+	FORCEINLINE const int32& GetInt4() const { return Int4_Optional; }
 	/** @brief Gets the value of Int4_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt4(const int32& DefaultValue) const { if (Int4_IsSet) return Int4_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt4(const int32& DefaultValue) const { if (Int4_IsSet) return Int4_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int4_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt4(int32& OutValue) const { if (Int4_IsSet && !Int4_IsNull) OutValue = Int4_Optional; return Int4_IsSet; }
+	FORCEINLINE bool GetInt4(int32& OutValue) const { if (Int4_IsSet && !Int4_IsNull) OutValue = Int4_Optional; return Int4_IsSet; }
 	/** @brief Returns a pointer to Int4_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt4OrNull() { if (Int4_IsSet) return (Int4_IsNull ? nullptr : &Int4_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt4OrNull() { if (Int4_IsSet) return (Int4_IsNull ? nullptr : &Int4_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int4_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt4OrNull() const { if (Int4_IsSet) return (Int4_IsNull ? nullptr : &Int4_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt4OrNull() const { if (Int4_IsSet) return (Int4_IsNull ? nullptr : &Int4_Optional); return nullptr; }
 	/** @brief Sets the value of Int4_Optional and also sets Int4_IsSet to true */
-	void SetInt4(const int32& NewValue) { Int4_Optional = NewValue; Int4_IsSet = true; Int4_IsNull = false; }
+	FORCEINLINE void SetInt4(const int32& NewValue) { Int4_Optional = NewValue; Int4_IsSet = true; Int4_IsNull = false; }
 	/** @brief Sets the value of Int4_Optional and also sets Int4_IsSet to true using move semantics */
-	void SetInt4(int32&& NewValue) { Int4_Optional = NewValue; Int4_IsSet = true; Int4_IsNull = false; }
+	FORCEINLINE void SetInt4(int32&& NewValue) { Int4_Optional = NewValue; Int4_IsSet = true; Int4_IsNull = false; }
 	/** @brief Clears the value of Int4_Optional and sets Int4_IsSet to false */
 	void ClearInt4() { Int4_Optional = 0; Int4_IsSet = false; Int4_IsNull = false; }
-	/** @brief Checks whether Int4_Optional has been set */
-	bool IsInt4Set() const { return Int4_IsSet; }
-	/** @brief Returns true if Int4_Optional is set and matches the default value */
-	bool IsInt4DefaultValue() const { return Int4_IsSet && Int4_Optional == 0; }
-	/** @brief Sets the value of Int4_Optional to its default and also sets Int4_IsSet to true */
-	void SetInt4ToDefault() { SetInt4(0); }
+	/** @brief Returns the default value of Int4 */
+	FORCEINLINE int32 GetDefaultValue_Int4() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt4ToNull() { Int4_IsSet = true; Int4_IsNull = true; }
+	FORCEINLINE void SetInt4ToNull() { Int4_IsSet = true; Int4_IsNull = true; }
 	/** @brief Checks whether Int4_Optional is set to null */
-	bool IsInt4Null() const { return Int4_IsSet && Int4_IsNull; }
+	FORCEINLINE bool IsInt4Null() const { return Int4_IsSet && Int4_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int5_Optional{ 0 };
@@ -196,33 +180,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int5_IsNull{ false };
 	/** @brief Gets the value of Int5_Optional, regardless of it having been set */
-	int32& GetInt5() { return Int5_Optional; }
+	FORCEINLINE int32& GetInt5() { return Int5_Optional; }
 	/** @brief Gets the value of Int5_Optional, regardless of it having been set */
-	const int32& GetInt5() const { return Int5_Optional; }
+	FORCEINLINE const int32& GetInt5() const { return Int5_Optional; }
 	/** @brief Gets the value of Int5_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt5(const int32& DefaultValue) const { if (Int5_IsSet) return Int5_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt5(const int32& DefaultValue) const { if (Int5_IsSet) return Int5_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int5_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt5(int32& OutValue) const { if (Int5_IsSet && !Int5_IsNull) OutValue = Int5_Optional; return Int5_IsSet; }
+	FORCEINLINE bool GetInt5(int32& OutValue) const { if (Int5_IsSet && !Int5_IsNull) OutValue = Int5_Optional; return Int5_IsSet; }
 	/** @brief Returns a pointer to Int5_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt5OrNull() { if (Int5_IsSet) return (Int5_IsNull ? nullptr : &Int5_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt5OrNull() { if (Int5_IsSet) return (Int5_IsNull ? nullptr : &Int5_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int5_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt5OrNull() const { if (Int5_IsSet) return (Int5_IsNull ? nullptr : &Int5_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt5OrNull() const { if (Int5_IsSet) return (Int5_IsNull ? nullptr : &Int5_Optional); return nullptr; }
 	/** @brief Sets the value of Int5_Optional and also sets Int5_IsSet to true */
-	void SetInt5(const int32& NewValue) { Int5_Optional = NewValue; Int5_IsSet = true; Int5_IsNull = false; }
+	FORCEINLINE void SetInt5(const int32& NewValue) { Int5_Optional = NewValue; Int5_IsSet = true; Int5_IsNull = false; }
 	/** @brief Sets the value of Int5_Optional and also sets Int5_IsSet to true using move semantics */
-	void SetInt5(int32&& NewValue) { Int5_Optional = NewValue; Int5_IsSet = true; Int5_IsNull = false; }
+	FORCEINLINE void SetInt5(int32&& NewValue) { Int5_Optional = NewValue; Int5_IsSet = true; Int5_IsNull = false; }
 	/** @brief Clears the value of Int5_Optional and sets Int5_IsSet to false */
 	void ClearInt5() { Int5_Optional = 0; Int5_IsSet = false; Int5_IsNull = false; }
-	/** @brief Checks whether Int5_Optional has been set */
-	bool IsInt5Set() const { return Int5_IsSet; }
-	/** @brief Returns true if Int5_Optional is set and matches the default value */
-	bool IsInt5DefaultValue() const { return Int5_IsSet && Int5_Optional == 0; }
-	/** @brief Sets the value of Int5_Optional to its default and also sets Int5_IsSet to true */
-	void SetInt5ToDefault() { SetInt5(0); }
+	/** @brief Returns the default value of Int5 */
+	FORCEINLINE int32 GetDefaultValue_Int5() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt5ToNull() { Int5_IsSet = true; Int5_IsNull = true; }
+	FORCEINLINE void SetInt5ToNull() { Int5_IsSet = true; Int5_IsNull = true; }
 	/** @brief Checks whether Int5_Optional is set to null */
-	bool IsInt5Null() const { return Int5_IsSet && Int5_IsNull; }
+	FORCEINLINE bool IsInt5Null() const { return Int5_IsSet && Int5_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int6_Optional{ 0 };
@@ -233,33 +213,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int6_IsNull{ false };
 	/** @brief Gets the value of Int6_Optional, regardless of it having been set */
-	int32& GetInt6() { return Int6_Optional; }
+	FORCEINLINE int32& GetInt6() { return Int6_Optional; }
 	/** @brief Gets the value of Int6_Optional, regardless of it having been set */
-	const int32& GetInt6() const { return Int6_Optional; }
+	FORCEINLINE const int32& GetInt6() const { return Int6_Optional; }
 	/** @brief Gets the value of Int6_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt6(const int32& DefaultValue) const { if (Int6_IsSet) return Int6_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt6(const int32& DefaultValue) const { if (Int6_IsSet) return Int6_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int6_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt6(int32& OutValue) const { if (Int6_IsSet && !Int6_IsNull) OutValue = Int6_Optional; return Int6_IsSet; }
+	FORCEINLINE bool GetInt6(int32& OutValue) const { if (Int6_IsSet && !Int6_IsNull) OutValue = Int6_Optional; return Int6_IsSet; }
 	/** @brief Returns a pointer to Int6_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt6OrNull() { if (Int6_IsSet) return (Int6_IsNull ? nullptr : &Int6_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt6OrNull() { if (Int6_IsSet) return (Int6_IsNull ? nullptr : &Int6_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int6_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt6OrNull() const { if (Int6_IsSet) return (Int6_IsNull ? nullptr : &Int6_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt6OrNull() const { if (Int6_IsSet) return (Int6_IsNull ? nullptr : &Int6_Optional); return nullptr; }
 	/** @brief Sets the value of Int6_Optional and also sets Int6_IsSet to true */
-	void SetInt6(const int32& NewValue) { Int6_Optional = NewValue; Int6_IsSet = true; Int6_IsNull = false; }
+	FORCEINLINE void SetInt6(const int32& NewValue) { Int6_Optional = NewValue; Int6_IsSet = true; Int6_IsNull = false; }
 	/** @brief Sets the value of Int6_Optional and also sets Int6_IsSet to true using move semantics */
-	void SetInt6(int32&& NewValue) { Int6_Optional = NewValue; Int6_IsSet = true; Int6_IsNull = false; }
+	FORCEINLINE void SetInt6(int32&& NewValue) { Int6_Optional = NewValue; Int6_IsSet = true; Int6_IsNull = false; }
 	/** @brief Clears the value of Int6_Optional and sets Int6_IsSet to false */
 	void ClearInt6() { Int6_Optional = 0; Int6_IsSet = false; Int6_IsNull = false; }
-	/** @brief Checks whether Int6_Optional has been set */
-	bool IsInt6Set() const { return Int6_IsSet; }
-	/** @brief Returns true if Int6_Optional is set and matches the default value */
-	bool IsInt6DefaultValue() const { return Int6_IsSet && Int6_Optional == 0; }
-	/** @brief Sets the value of Int6_Optional to its default and also sets Int6_IsSet to true */
-	void SetInt6ToDefault() { SetInt6(0); }
+	/** @brief Returns the default value of Int6 */
+	FORCEINLINE int32 GetDefaultValue_Int6() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt6ToNull() { Int6_IsSet = true; Int6_IsNull = true; }
+	FORCEINLINE void SetInt6ToNull() { Int6_IsSet = true; Int6_IsNull = true; }
 	/** @brief Checks whether Int6_Optional is set to null */
-	bool IsInt6Null() const { return Int6_IsSet && Int6_IsNull; }
+	FORCEINLINE bool IsInt6Null() const { return Int6_IsSet && Int6_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int7_Optional{ 0 };
@@ -270,33 +246,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int7_IsNull{ false };
 	/** @brief Gets the value of Int7_Optional, regardless of it having been set */
-	int32& GetInt7() { return Int7_Optional; }
+	FORCEINLINE int32& GetInt7() { return Int7_Optional; }
 	/** @brief Gets the value of Int7_Optional, regardless of it having been set */
-	const int32& GetInt7() const { return Int7_Optional; }
+	FORCEINLINE const int32& GetInt7() const { return Int7_Optional; }
 	/** @brief Gets the value of Int7_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt7(const int32& DefaultValue) const { if (Int7_IsSet) return Int7_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt7(const int32& DefaultValue) const { if (Int7_IsSet) return Int7_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int7_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt7(int32& OutValue) const { if (Int7_IsSet && !Int7_IsNull) OutValue = Int7_Optional; return Int7_IsSet; }
+	FORCEINLINE bool GetInt7(int32& OutValue) const { if (Int7_IsSet && !Int7_IsNull) OutValue = Int7_Optional; return Int7_IsSet; }
 	/** @brief Returns a pointer to Int7_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt7OrNull() { if (Int7_IsSet) return (Int7_IsNull ? nullptr : &Int7_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt7OrNull() { if (Int7_IsSet) return (Int7_IsNull ? nullptr : &Int7_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int7_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt7OrNull() const { if (Int7_IsSet) return (Int7_IsNull ? nullptr : &Int7_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt7OrNull() const { if (Int7_IsSet) return (Int7_IsNull ? nullptr : &Int7_Optional); return nullptr; }
 	/** @brief Sets the value of Int7_Optional and also sets Int7_IsSet to true */
-	void SetInt7(const int32& NewValue) { Int7_Optional = NewValue; Int7_IsSet = true; Int7_IsNull = false; }
+	FORCEINLINE void SetInt7(const int32& NewValue) { Int7_Optional = NewValue; Int7_IsSet = true; Int7_IsNull = false; }
 	/** @brief Sets the value of Int7_Optional and also sets Int7_IsSet to true using move semantics */
-	void SetInt7(int32&& NewValue) { Int7_Optional = NewValue; Int7_IsSet = true; Int7_IsNull = false; }
+	FORCEINLINE void SetInt7(int32&& NewValue) { Int7_Optional = NewValue; Int7_IsSet = true; Int7_IsNull = false; }
 	/** @brief Clears the value of Int7_Optional and sets Int7_IsSet to false */
 	void ClearInt7() { Int7_Optional = 0; Int7_IsSet = false; Int7_IsNull = false; }
-	/** @brief Checks whether Int7_Optional has been set */
-	bool IsInt7Set() const { return Int7_IsSet; }
-	/** @brief Returns true if Int7_Optional is set and matches the default value */
-	bool IsInt7DefaultValue() const { return Int7_IsSet && Int7_Optional == 0; }
-	/** @brief Sets the value of Int7_Optional to its default and also sets Int7_IsSet to true */
-	void SetInt7ToDefault() { SetInt7(0); }
+	/** @brief Returns the default value of Int7 */
+	FORCEINLINE int32 GetDefaultValue_Int7() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt7ToNull() { Int7_IsSet = true; Int7_IsNull = true; }
+	FORCEINLINE void SetInt7ToNull() { Int7_IsSet = true; Int7_IsNull = true; }
 	/** @brief Checks whether Int7_Optional is set to null */
-	bool IsInt7Null() const { return Int7_IsSet && Int7_IsNull; }
+	FORCEINLINE bool IsInt7Null() const { return Int7_IsSet && Int7_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int8_Optional{ 0 };
@@ -307,33 +279,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int8_IsNull{ false };
 	/** @brief Gets the value of Int8_Optional, regardless of it having been set */
-	int32& GetInt8() { return Int8_Optional; }
+	FORCEINLINE int32& GetInt8() { return Int8_Optional; }
 	/** @brief Gets the value of Int8_Optional, regardless of it having been set */
-	const int32& GetInt8() const { return Int8_Optional; }
+	FORCEINLINE const int32& GetInt8() const { return Int8_Optional; }
 	/** @brief Gets the value of Int8_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt8(const int32& DefaultValue) const { if (Int8_IsSet) return Int8_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt8(const int32& DefaultValue) const { if (Int8_IsSet) return Int8_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int8_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt8(int32& OutValue) const { if (Int8_IsSet && !Int8_IsNull) OutValue = Int8_Optional; return Int8_IsSet; }
+	FORCEINLINE bool GetInt8(int32& OutValue) const { if (Int8_IsSet && !Int8_IsNull) OutValue = Int8_Optional; return Int8_IsSet; }
 	/** @brief Returns a pointer to Int8_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt8OrNull() { if (Int8_IsSet) return (Int8_IsNull ? nullptr : &Int8_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt8OrNull() { if (Int8_IsSet) return (Int8_IsNull ? nullptr : &Int8_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int8_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt8OrNull() const { if (Int8_IsSet) return (Int8_IsNull ? nullptr : &Int8_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt8OrNull() const { if (Int8_IsSet) return (Int8_IsNull ? nullptr : &Int8_Optional); return nullptr; }
 	/** @brief Sets the value of Int8_Optional and also sets Int8_IsSet to true */
-	void SetInt8(const int32& NewValue) { Int8_Optional = NewValue; Int8_IsSet = true; Int8_IsNull = false; }
+	FORCEINLINE void SetInt8(const int32& NewValue) { Int8_Optional = NewValue; Int8_IsSet = true; Int8_IsNull = false; }
 	/** @brief Sets the value of Int8_Optional and also sets Int8_IsSet to true using move semantics */
-	void SetInt8(int32&& NewValue) { Int8_Optional = NewValue; Int8_IsSet = true; Int8_IsNull = false; }
+	FORCEINLINE void SetInt8(int32&& NewValue) { Int8_Optional = NewValue; Int8_IsSet = true; Int8_IsNull = false; }
 	/** @brief Clears the value of Int8_Optional and sets Int8_IsSet to false */
 	void ClearInt8() { Int8_Optional = 0; Int8_IsSet = false; Int8_IsNull = false; }
-	/** @brief Checks whether Int8_Optional has been set */
-	bool IsInt8Set() const { return Int8_IsSet; }
-	/** @brief Returns true if Int8_Optional is set and matches the default value */
-	bool IsInt8DefaultValue() const { return Int8_IsSet && Int8_Optional == 0; }
-	/** @brief Sets the value of Int8_Optional to its default and also sets Int8_IsSet to true */
-	void SetInt8ToDefault() { SetInt8(0); }
+	/** @brief Returns the default value of Int8 */
+	FORCEINLINE int32 GetDefaultValue_Int8() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt8ToNull() { Int8_IsSet = true; Int8_IsNull = true; }
+	FORCEINLINE void SetInt8ToNull() { Int8_IsSet = true; Int8_IsNull = true; }
 	/** @brief Checks whether Int8_Optional is set to null */
-	bool IsInt8Null() const { return Int8_IsSet && Int8_IsNull; }
+	FORCEINLINE bool IsInt8Null() const { return Int8_IsSet && Int8_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int9_Optional{ 0 };
@@ -344,33 +312,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int9_IsNull{ false };
 	/** @brief Gets the value of Int9_Optional, regardless of it having been set */
-	int32& GetInt9() { return Int9_Optional; }
+	FORCEINLINE int32& GetInt9() { return Int9_Optional; }
 	/** @brief Gets the value of Int9_Optional, regardless of it having been set */
-	const int32& GetInt9() const { return Int9_Optional; }
+	FORCEINLINE const int32& GetInt9() const { return Int9_Optional; }
 	/** @brief Gets the value of Int9_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt9(const int32& DefaultValue) const { if (Int9_IsSet) return Int9_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt9(const int32& DefaultValue) const { if (Int9_IsSet) return Int9_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int9_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt9(int32& OutValue) const { if (Int9_IsSet && !Int9_IsNull) OutValue = Int9_Optional; return Int9_IsSet; }
+	FORCEINLINE bool GetInt9(int32& OutValue) const { if (Int9_IsSet && !Int9_IsNull) OutValue = Int9_Optional; return Int9_IsSet; }
 	/** @brief Returns a pointer to Int9_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt9OrNull() { if (Int9_IsSet) return (Int9_IsNull ? nullptr : &Int9_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt9OrNull() { if (Int9_IsSet) return (Int9_IsNull ? nullptr : &Int9_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int9_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt9OrNull() const { if (Int9_IsSet) return (Int9_IsNull ? nullptr : &Int9_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt9OrNull() const { if (Int9_IsSet) return (Int9_IsNull ? nullptr : &Int9_Optional); return nullptr; }
 	/** @brief Sets the value of Int9_Optional and also sets Int9_IsSet to true */
-	void SetInt9(const int32& NewValue) { Int9_Optional = NewValue; Int9_IsSet = true; Int9_IsNull = false; }
+	FORCEINLINE void SetInt9(const int32& NewValue) { Int9_Optional = NewValue; Int9_IsSet = true; Int9_IsNull = false; }
 	/** @brief Sets the value of Int9_Optional and also sets Int9_IsSet to true using move semantics */
-	void SetInt9(int32&& NewValue) { Int9_Optional = NewValue; Int9_IsSet = true; Int9_IsNull = false; }
+	FORCEINLINE void SetInt9(int32&& NewValue) { Int9_Optional = NewValue; Int9_IsSet = true; Int9_IsNull = false; }
 	/** @brief Clears the value of Int9_Optional and sets Int9_IsSet to false */
 	void ClearInt9() { Int9_Optional = 0; Int9_IsSet = false; Int9_IsNull = false; }
-	/** @brief Checks whether Int9_Optional has been set */
-	bool IsInt9Set() const { return Int9_IsSet; }
-	/** @brief Returns true if Int9_Optional is set and matches the default value */
-	bool IsInt9DefaultValue() const { return Int9_IsSet && Int9_Optional == 0; }
-	/** @brief Sets the value of Int9_Optional to its default and also sets Int9_IsSet to true */
-	void SetInt9ToDefault() { SetInt9(0); }
+	/** @brief Returns the default value of Int9 */
+	FORCEINLINE int32 GetDefaultValue_Int9() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt9ToNull() { Int9_IsSet = true; Int9_IsNull = true; }
+	FORCEINLINE void SetInt9ToNull() { Int9_IsSet = true; Int9_IsNull = true; }
 	/** @brief Checks whether Int9_Optional is set to null */
-	bool IsInt9Null() const { return Int9_IsSet && Int9_IsNull; }
+	FORCEINLINE bool IsInt9Null() const { return Int9_IsSet && Int9_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int10_Optional{ 0 };
@@ -381,33 +345,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int10_IsNull{ false };
 	/** @brief Gets the value of Int10_Optional, regardless of it having been set */
-	int32& GetInt10() { return Int10_Optional; }
+	FORCEINLINE int32& GetInt10() { return Int10_Optional; }
 	/** @brief Gets the value of Int10_Optional, regardless of it having been set */
-	const int32& GetInt10() const { return Int10_Optional; }
+	FORCEINLINE const int32& GetInt10() const { return Int10_Optional; }
 	/** @brief Gets the value of Int10_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt10(const int32& DefaultValue) const { if (Int10_IsSet) return Int10_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt10(const int32& DefaultValue) const { if (Int10_IsSet) return Int10_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int10_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt10(int32& OutValue) const { if (Int10_IsSet && !Int10_IsNull) OutValue = Int10_Optional; return Int10_IsSet; }
+	FORCEINLINE bool GetInt10(int32& OutValue) const { if (Int10_IsSet && !Int10_IsNull) OutValue = Int10_Optional; return Int10_IsSet; }
 	/** @brief Returns a pointer to Int10_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt10OrNull() { if (Int10_IsSet) return (Int10_IsNull ? nullptr : &Int10_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt10OrNull() { if (Int10_IsSet) return (Int10_IsNull ? nullptr : &Int10_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int10_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt10OrNull() const { if (Int10_IsSet) return (Int10_IsNull ? nullptr : &Int10_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt10OrNull() const { if (Int10_IsSet) return (Int10_IsNull ? nullptr : &Int10_Optional); return nullptr; }
 	/** @brief Sets the value of Int10_Optional and also sets Int10_IsSet to true */
-	void SetInt10(const int32& NewValue) { Int10_Optional = NewValue; Int10_IsSet = true; Int10_IsNull = false; }
+	FORCEINLINE void SetInt10(const int32& NewValue) { Int10_Optional = NewValue; Int10_IsSet = true; Int10_IsNull = false; }
 	/** @brief Sets the value of Int10_Optional and also sets Int10_IsSet to true using move semantics */
-	void SetInt10(int32&& NewValue) { Int10_Optional = NewValue; Int10_IsSet = true; Int10_IsNull = false; }
+	FORCEINLINE void SetInt10(int32&& NewValue) { Int10_Optional = NewValue; Int10_IsSet = true; Int10_IsNull = false; }
 	/** @brief Clears the value of Int10_Optional and sets Int10_IsSet to false */
 	void ClearInt10() { Int10_Optional = 0; Int10_IsSet = false; Int10_IsNull = false; }
-	/** @brief Checks whether Int10_Optional has been set */
-	bool IsInt10Set() const { return Int10_IsSet; }
-	/** @brief Returns true if Int10_Optional is set and matches the default value */
-	bool IsInt10DefaultValue() const { return Int10_IsSet && Int10_Optional == 0; }
-	/** @brief Sets the value of Int10_Optional to its default and also sets Int10_IsSet to true */
-	void SetInt10ToDefault() { SetInt10(0); }
+	/** @brief Returns the default value of Int10 */
+	FORCEINLINE int32 GetDefaultValue_Int10() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt10ToNull() { Int10_IsSet = true; Int10_IsNull = true; }
+	FORCEINLINE void SetInt10ToNull() { Int10_IsSet = true; Int10_IsNull = true; }
 	/** @brief Checks whether Int10_Optional is set to null */
-	bool IsInt10Null() const { return Int10_IsSet && Int10_IsNull; }
+	FORCEINLINE bool IsInt10Null() const { return Int10_IsSet && Int10_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int11_Optional{ 0 };
@@ -418,33 +378,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int11_IsNull{ false };
 	/** @brief Gets the value of Int11_Optional, regardless of it having been set */
-	int32& GetInt11() { return Int11_Optional; }
+	FORCEINLINE int32& GetInt11() { return Int11_Optional; }
 	/** @brief Gets the value of Int11_Optional, regardless of it having been set */
-	const int32& GetInt11() const { return Int11_Optional; }
+	FORCEINLINE const int32& GetInt11() const { return Int11_Optional; }
 	/** @brief Gets the value of Int11_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt11(const int32& DefaultValue) const { if (Int11_IsSet) return Int11_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt11(const int32& DefaultValue) const { if (Int11_IsSet) return Int11_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int11_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt11(int32& OutValue) const { if (Int11_IsSet && !Int11_IsNull) OutValue = Int11_Optional; return Int11_IsSet; }
+	FORCEINLINE bool GetInt11(int32& OutValue) const { if (Int11_IsSet && !Int11_IsNull) OutValue = Int11_Optional; return Int11_IsSet; }
 	/** @brief Returns a pointer to Int11_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt11OrNull() { if (Int11_IsSet) return (Int11_IsNull ? nullptr : &Int11_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt11OrNull() { if (Int11_IsSet) return (Int11_IsNull ? nullptr : &Int11_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int11_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt11OrNull() const { if (Int11_IsSet) return (Int11_IsNull ? nullptr : &Int11_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt11OrNull() const { if (Int11_IsSet) return (Int11_IsNull ? nullptr : &Int11_Optional); return nullptr; }
 	/** @brief Sets the value of Int11_Optional and also sets Int11_IsSet to true */
-	void SetInt11(const int32& NewValue) { Int11_Optional = NewValue; Int11_IsSet = true; Int11_IsNull = false; }
+	FORCEINLINE void SetInt11(const int32& NewValue) { Int11_Optional = NewValue; Int11_IsSet = true; Int11_IsNull = false; }
 	/** @brief Sets the value of Int11_Optional and also sets Int11_IsSet to true using move semantics */
-	void SetInt11(int32&& NewValue) { Int11_Optional = NewValue; Int11_IsSet = true; Int11_IsNull = false; }
+	FORCEINLINE void SetInt11(int32&& NewValue) { Int11_Optional = NewValue; Int11_IsSet = true; Int11_IsNull = false; }
 	/** @brief Clears the value of Int11_Optional and sets Int11_IsSet to false */
 	void ClearInt11() { Int11_Optional = 0; Int11_IsSet = false; Int11_IsNull = false; }
-	/** @brief Checks whether Int11_Optional has been set */
-	bool IsInt11Set() const { return Int11_IsSet; }
-	/** @brief Returns true if Int11_Optional is set and matches the default value */
-	bool IsInt11DefaultValue() const { return Int11_IsSet && Int11_Optional == 0; }
-	/** @brief Sets the value of Int11_Optional to its default and also sets Int11_IsSet to true */
-	void SetInt11ToDefault() { SetInt11(0); }
+	/** @brief Returns the default value of Int11 */
+	FORCEINLINE int32 GetDefaultValue_Int11() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt11ToNull() { Int11_IsSet = true; Int11_IsNull = true; }
+	FORCEINLINE void SetInt11ToNull() { Int11_IsSet = true; Int11_IsNull = true; }
 	/** @brief Checks whether Int11_Optional is set to null */
-	bool IsInt11Null() const { return Int11_IsSet && Int11_IsNull; }
+	FORCEINLINE bool IsInt11Null() const { return Int11_IsSet && Int11_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int12_Optional{ 0 };
@@ -455,33 +411,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int12_IsNull{ false };
 	/** @brief Gets the value of Int12_Optional, regardless of it having been set */
-	int32& GetInt12() { return Int12_Optional; }
+	FORCEINLINE int32& GetInt12() { return Int12_Optional; }
 	/** @brief Gets the value of Int12_Optional, regardless of it having been set */
-	const int32& GetInt12() const { return Int12_Optional; }
+	FORCEINLINE const int32& GetInt12() const { return Int12_Optional; }
 	/** @brief Gets the value of Int12_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt12(const int32& DefaultValue) const { if (Int12_IsSet) return Int12_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt12(const int32& DefaultValue) const { if (Int12_IsSet) return Int12_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int12_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt12(int32& OutValue) const { if (Int12_IsSet && !Int12_IsNull) OutValue = Int12_Optional; return Int12_IsSet; }
+	FORCEINLINE bool GetInt12(int32& OutValue) const { if (Int12_IsSet && !Int12_IsNull) OutValue = Int12_Optional; return Int12_IsSet; }
 	/** @brief Returns a pointer to Int12_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt12OrNull() { if (Int12_IsSet) return (Int12_IsNull ? nullptr : &Int12_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt12OrNull() { if (Int12_IsSet) return (Int12_IsNull ? nullptr : &Int12_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int12_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt12OrNull() const { if (Int12_IsSet) return (Int12_IsNull ? nullptr : &Int12_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt12OrNull() const { if (Int12_IsSet) return (Int12_IsNull ? nullptr : &Int12_Optional); return nullptr; }
 	/** @brief Sets the value of Int12_Optional and also sets Int12_IsSet to true */
-	void SetInt12(const int32& NewValue) { Int12_Optional = NewValue; Int12_IsSet = true; Int12_IsNull = false; }
+	FORCEINLINE void SetInt12(const int32& NewValue) { Int12_Optional = NewValue; Int12_IsSet = true; Int12_IsNull = false; }
 	/** @brief Sets the value of Int12_Optional and also sets Int12_IsSet to true using move semantics */
-	void SetInt12(int32&& NewValue) { Int12_Optional = NewValue; Int12_IsSet = true; Int12_IsNull = false; }
+	FORCEINLINE void SetInt12(int32&& NewValue) { Int12_Optional = NewValue; Int12_IsSet = true; Int12_IsNull = false; }
 	/** @brief Clears the value of Int12_Optional and sets Int12_IsSet to false */
 	void ClearInt12() { Int12_Optional = 0; Int12_IsSet = false; Int12_IsNull = false; }
-	/** @brief Checks whether Int12_Optional has been set */
-	bool IsInt12Set() const { return Int12_IsSet; }
-	/** @brief Returns true if Int12_Optional is set and matches the default value */
-	bool IsInt12DefaultValue() const { return Int12_IsSet && Int12_Optional == 0; }
-	/** @brief Sets the value of Int12_Optional to its default and also sets Int12_IsSet to true */
-	void SetInt12ToDefault() { SetInt12(0); }
+	/** @brief Returns the default value of Int12 */
+	FORCEINLINE int32 GetDefaultValue_Int12() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt12ToNull() { Int12_IsSet = true; Int12_IsNull = true; }
+	FORCEINLINE void SetInt12ToNull() { Int12_IsSet = true; Int12_IsNull = true; }
 	/** @brief Checks whether Int12_Optional is set to null */
-	bool IsInt12Null() const { return Int12_IsSet && Int12_IsNull; }
+	FORCEINLINE bool IsInt12Null() const { return Int12_IsSet && Int12_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int13_Optional{ 0 };
@@ -492,33 +444,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int13_IsNull{ false };
 	/** @brief Gets the value of Int13_Optional, regardless of it having been set */
-	int32& GetInt13() { return Int13_Optional; }
+	FORCEINLINE int32& GetInt13() { return Int13_Optional; }
 	/** @brief Gets the value of Int13_Optional, regardless of it having been set */
-	const int32& GetInt13() const { return Int13_Optional; }
+	FORCEINLINE const int32& GetInt13() const { return Int13_Optional; }
 	/** @brief Gets the value of Int13_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt13(const int32& DefaultValue) const { if (Int13_IsSet) return Int13_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt13(const int32& DefaultValue) const { if (Int13_IsSet) return Int13_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int13_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt13(int32& OutValue) const { if (Int13_IsSet && !Int13_IsNull) OutValue = Int13_Optional; return Int13_IsSet; }
+	FORCEINLINE bool GetInt13(int32& OutValue) const { if (Int13_IsSet && !Int13_IsNull) OutValue = Int13_Optional; return Int13_IsSet; }
 	/** @brief Returns a pointer to Int13_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt13OrNull() { if (Int13_IsSet) return (Int13_IsNull ? nullptr : &Int13_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt13OrNull() { if (Int13_IsSet) return (Int13_IsNull ? nullptr : &Int13_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int13_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt13OrNull() const { if (Int13_IsSet) return (Int13_IsNull ? nullptr : &Int13_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt13OrNull() const { if (Int13_IsSet) return (Int13_IsNull ? nullptr : &Int13_Optional); return nullptr; }
 	/** @brief Sets the value of Int13_Optional and also sets Int13_IsSet to true */
-	void SetInt13(const int32& NewValue) { Int13_Optional = NewValue; Int13_IsSet = true; Int13_IsNull = false; }
+	FORCEINLINE void SetInt13(const int32& NewValue) { Int13_Optional = NewValue; Int13_IsSet = true; Int13_IsNull = false; }
 	/** @brief Sets the value of Int13_Optional and also sets Int13_IsSet to true using move semantics */
-	void SetInt13(int32&& NewValue) { Int13_Optional = NewValue; Int13_IsSet = true; Int13_IsNull = false; }
+	FORCEINLINE void SetInt13(int32&& NewValue) { Int13_Optional = NewValue; Int13_IsSet = true; Int13_IsNull = false; }
 	/** @brief Clears the value of Int13_Optional and sets Int13_IsSet to false */
 	void ClearInt13() { Int13_Optional = 0; Int13_IsSet = false; Int13_IsNull = false; }
-	/** @brief Checks whether Int13_Optional has been set */
-	bool IsInt13Set() const { return Int13_IsSet; }
-	/** @brief Returns true if Int13_Optional is set and matches the default value */
-	bool IsInt13DefaultValue() const { return Int13_IsSet && Int13_Optional == 0; }
-	/** @brief Sets the value of Int13_Optional to its default and also sets Int13_IsSet to true */
-	void SetInt13ToDefault() { SetInt13(0); }
+	/** @brief Returns the default value of Int13 */
+	FORCEINLINE int32 GetDefaultValue_Int13() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt13ToNull() { Int13_IsSet = true; Int13_IsNull = true; }
+	FORCEINLINE void SetInt13ToNull() { Int13_IsSet = true; Int13_IsNull = true; }
 	/** @brief Checks whether Int13_Optional is set to null */
-	bool IsInt13Null() const { return Int13_IsSet && Int13_IsNull; }
+	FORCEINLINE bool IsInt13Null() const { return Int13_IsSet && Int13_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int14_Optional{ 0 };
@@ -529,33 +477,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int14_IsNull{ false };
 	/** @brief Gets the value of Int14_Optional, regardless of it having been set */
-	int32& GetInt14() { return Int14_Optional; }
+	FORCEINLINE int32& GetInt14() { return Int14_Optional; }
 	/** @brief Gets the value of Int14_Optional, regardless of it having been set */
-	const int32& GetInt14() const { return Int14_Optional; }
+	FORCEINLINE const int32& GetInt14() const { return Int14_Optional; }
 	/** @brief Gets the value of Int14_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt14(const int32& DefaultValue) const { if (Int14_IsSet) return Int14_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt14(const int32& DefaultValue) const { if (Int14_IsSet) return Int14_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int14_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt14(int32& OutValue) const { if (Int14_IsSet && !Int14_IsNull) OutValue = Int14_Optional; return Int14_IsSet; }
+	FORCEINLINE bool GetInt14(int32& OutValue) const { if (Int14_IsSet && !Int14_IsNull) OutValue = Int14_Optional; return Int14_IsSet; }
 	/** @brief Returns a pointer to Int14_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt14OrNull() { if (Int14_IsSet) return (Int14_IsNull ? nullptr : &Int14_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt14OrNull() { if (Int14_IsSet) return (Int14_IsNull ? nullptr : &Int14_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int14_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt14OrNull() const { if (Int14_IsSet) return (Int14_IsNull ? nullptr : &Int14_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt14OrNull() const { if (Int14_IsSet) return (Int14_IsNull ? nullptr : &Int14_Optional); return nullptr; }
 	/** @brief Sets the value of Int14_Optional and also sets Int14_IsSet to true */
-	void SetInt14(const int32& NewValue) { Int14_Optional = NewValue; Int14_IsSet = true; Int14_IsNull = false; }
+	FORCEINLINE void SetInt14(const int32& NewValue) { Int14_Optional = NewValue; Int14_IsSet = true; Int14_IsNull = false; }
 	/** @brief Sets the value of Int14_Optional and also sets Int14_IsSet to true using move semantics */
-	void SetInt14(int32&& NewValue) { Int14_Optional = NewValue; Int14_IsSet = true; Int14_IsNull = false; }
+	FORCEINLINE void SetInt14(int32&& NewValue) { Int14_Optional = NewValue; Int14_IsSet = true; Int14_IsNull = false; }
 	/** @brief Clears the value of Int14_Optional and sets Int14_IsSet to false */
 	void ClearInt14() { Int14_Optional = 0; Int14_IsSet = false; Int14_IsNull = false; }
-	/** @brief Checks whether Int14_Optional has been set */
-	bool IsInt14Set() const { return Int14_IsSet; }
-	/** @brief Returns true if Int14_Optional is set and matches the default value */
-	bool IsInt14DefaultValue() const { return Int14_IsSet && Int14_Optional == 0; }
-	/** @brief Sets the value of Int14_Optional to its default and also sets Int14_IsSet to true */
-	void SetInt14ToDefault() { SetInt14(0); }
+	/** @brief Returns the default value of Int14 */
+	FORCEINLINE int32 GetDefaultValue_Int14() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt14ToNull() { Int14_IsSet = true; Int14_IsNull = true; }
+	FORCEINLINE void SetInt14ToNull() { Int14_IsSet = true; Int14_IsNull = true; }
 	/** @brief Checks whether Int14_Optional is set to null */
-	bool IsInt14Null() const { return Int14_IsSet && Int14_IsNull; }
+	FORCEINLINE bool IsInt14Null() const { return Int14_IsSet && Int14_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int15_Optional{ 0 };
@@ -566,33 +510,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int15_IsNull{ false };
 	/** @brief Gets the value of Int15_Optional, regardless of it having been set */
-	int32& GetInt15() { return Int15_Optional; }
+	FORCEINLINE int32& GetInt15() { return Int15_Optional; }
 	/** @brief Gets the value of Int15_Optional, regardless of it having been set */
-	const int32& GetInt15() const { return Int15_Optional; }
+	FORCEINLINE const int32& GetInt15() const { return Int15_Optional; }
 	/** @brief Gets the value of Int15_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt15(const int32& DefaultValue) const { if (Int15_IsSet) return Int15_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt15(const int32& DefaultValue) const { if (Int15_IsSet) return Int15_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int15_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt15(int32& OutValue) const { if (Int15_IsSet && !Int15_IsNull) OutValue = Int15_Optional; return Int15_IsSet; }
+	FORCEINLINE bool GetInt15(int32& OutValue) const { if (Int15_IsSet && !Int15_IsNull) OutValue = Int15_Optional; return Int15_IsSet; }
 	/** @brief Returns a pointer to Int15_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt15OrNull() { if (Int15_IsSet) return (Int15_IsNull ? nullptr : &Int15_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt15OrNull() { if (Int15_IsSet) return (Int15_IsNull ? nullptr : &Int15_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int15_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt15OrNull() const { if (Int15_IsSet) return (Int15_IsNull ? nullptr : &Int15_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt15OrNull() const { if (Int15_IsSet) return (Int15_IsNull ? nullptr : &Int15_Optional); return nullptr; }
 	/** @brief Sets the value of Int15_Optional and also sets Int15_IsSet to true */
-	void SetInt15(const int32& NewValue) { Int15_Optional = NewValue; Int15_IsSet = true; Int15_IsNull = false; }
+	FORCEINLINE void SetInt15(const int32& NewValue) { Int15_Optional = NewValue; Int15_IsSet = true; Int15_IsNull = false; }
 	/** @brief Sets the value of Int15_Optional and also sets Int15_IsSet to true using move semantics */
-	void SetInt15(int32&& NewValue) { Int15_Optional = NewValue; Int15_IsSet = true; Int15_IsNull = false; }
+	FORCEINLINE void SetInt15(int32&& NewValue) { Int15_Optional = NewValue; Int15_IsSet = true; Int15_IsNull = false; }
 	/** @brief Clears the value of Int15_Optional and sets Int15_IsSet to false */
 	void ClearInt15() { Int15_Optional = 0; Int15_IsSet = false; Int15_IsNull = false; }
-	/** @brief Checks whether Int15_Optional has been set */
-	bool IsInt15Set() const { return Int15_IsSet; }
-	/** @brief Returns true if Int15_Optional is set and matches the default value */
-	bool IsInt15DefaultValue() const { return Int15_IsSet && Int15_Optional == 0; }
-	/** @brief Sets the value of Int15_Optional to its default and also sets Int15_IsSet to true */
-	void SetInt15ToDefault() { SetInt15(0); }
+	/** @brief Returns the default value of Int15 */
+	FORCEINLINE int32 GetDefaultValue_Int15() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt15ToNull() { Int15_IsSet = true; Int15_IsNull = true; }
+	FORCEINLINE void SetInt15ToNull() { Int15_IsSet = true; Int15_IsNull = true; }
 	/** @brief Checks whether Int15_Optional is set to null */
-	bool IsInt15Null() const { return Int15_IsSet && Int15_IsNull; }
+	FORCEINLINE bool IsInt15Null() const { return Int15_IsSet && Int15_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int16_Optional{ 0 };
@@ -603,33 +543,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int16_IsNull{ false };
 	/** @brief Gets the value of Int16_Optional, regardless of it having been set */
-	int32& GetInt16() { return Int16_Optional; }
+	FORCEINLINE int32& GetInt16() { return Int16_Optional; }
 	/** @brief Gets the value of Int16_Optional, regardless of it having been set */
-	const int32& GetInt16() const { return Int16_Optional; }
+	FORCEINLINE const int32& GetInt16() const { return Int16_Optional; }
 	/** @brief Gets the value of Int16_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt16(const int32& DefaultValue) const { if (Int16_IsSet) return Int16_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt16(const int32& DefaultValue) const { if (Int16_IsSet) return Int16_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int16_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt16(int32& OutValue) const { if (Int16_IsSet && !Int16_IsNull) OutValue = Int16_Optional; return Int16_IsSet; }
+	FORCEINLINE bool GetInt16(int32& OutValue) const { if (Int16_IsSet && !Int16_IsNull) OutValue = Int16_Optional; return Int16_IsSet; }
 	/** @brief Returns a pointer to Int16_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt16OrNull() { if (Int16_IsSet) return (Int16_IsNull ? nullptr : &Int16_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt16OrNull() { if (Int16_IsSet) return (Int16_IsNull ? nullptr : &Int16_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int16_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt16OrNull() const { if (Int16_IsSet) return (Int16_IsNull ? nullptr : &Int16_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt16OrNull() const { if (Int16_IsSet) return (Int16_IsNull ? nullptr : &Int16_Optional); return nullptr; }
 	/** @brief Sets the value of Int16_Optional and also sets Int16_IsSet to true */
-	void SetInt16(const int32& NewValue) { Int16_Optional = NewValue; Int16_IsSet = true; Int16_IsNull = false; }
+	FORCEINLINE void SetInt16(const int32& NewValue) { Int16_Optional = NewValue; Int16_IsSet = true; Int16_IsNull = false; }
 	/** @brief Sets the value of Int16_Optional and also sets Int16_IsSet to true using move semantics */
-	void SetInt16(int32&& NewValue) { Int16_Optional = NewValue; Int16_IsSet = true; Int16_IsNull = false; }
+	FORCEINLINE void SetInt16(int32&& NewValue) { Int16_Optional = NewValue; Int16_IsSet = true; Int16_IsNull = false; }
 	/** @brief Clears the value of Int16_Optional and sets Int16_IsSet to false */
 	void ClearInt16() { Int16_Optional = 0; Int16_IsSet = false; Int16_IsNull = false; }
-	/** @brief Checks whether Int16_Optional has been set */
-	bool IsInt16Set() const { return Int16_IsSet; }
-	/** @brief Returns true if Int16_Optional is set and matches the default value */
-	bool IsInt16DefaultValue() const { return Int16_IsSet && Int16_Optional == 0; }
-	/** @brief Sets the value of Int16_Optional to its default and also sets Int16_IsSet to true */
-	void SetInt16ToDefault() { SetInt16(0); }
+	/** @brief Returns the default value of Int16 */
+	FORCEINLINE int32 GetDefaultValue_Int16() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt16ToNull() { Int16_IsSet = true; Int16_IsNull = true; }
+	FORCEINLINE void SetInt16ToNull() { Int16_IsSet = true; Int16_IsNull = true; }
 	/** @brief Checks whether Int16_Optional is set to null */
-	bool IsInt16Null() const { return Int16_IsSet && Int16_IsNull; }
+	FORCEINLINE bool IsInt16Null() const { return Int16_IsSet && Int16_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int17_Optional{ 0 };
@@ -640,33 +576,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int17_IsNull{ false };
 	/** @brief Gets the value of Int17_Optional, regardless of it having been set */
-	int32& GetInt17() { return Int17_Optional; }
+	FORCEINLINE int32& GetInt17() { return Int17_Optional; }
 	/** @brief Gets the value of Int17_Optional, regardless of it having been set */
-	const int32& GetInt17() const { return Int17_Optional; }
+	FORCEINLINE const int32& GetInt17() const { return Int17_Optional; }
 	/** @brief Gets the value of Int17_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt17(const int32& DefaultValue) const { if (Int17_IsSet) return Int17_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt17(const int32& DefaultValue) const { if (Int17_IsSet) return Int17_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int17_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt17(int32& OutValue) const { if (Int17_IsSet && !Int17_IsNull) OutValue = Int17_Optional; return Int17_IsSet; }
+	FORCEINLINE bool GetInt17(int32& OutValue) const { if (Int17_IsSet && !Int17_IsNull) OutValue = Int17_Optional; return Int17_IsSet; }
 	/** @brief Returns a pointer to Int17_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt17OrNull() { if (Int17_IsSet) return (Int17_IsNull ? nullptr : &Int17_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt17OrNull() { if (Int17_IsSet) return (Int17_IsNull ? nullptr : &Int17_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int17_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt17OrNull() const { if (Int17_IsSet) return (Int17_IsNull ? nullptr : &Int17_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt17OrNull() const { if (Int17_IsSet) return (Int17_IsNull ? nullptr : &Int17_Optional); return nullptr; }
 	/** @brief Sets the value of Int17_Optional and also sets Int17_IsSet to true */
-	void SetInt17(const int32& NewValue) { Int17_Optional = NewValue; Int17_IsSet = true; Int17_IsNull = false; }
+	FORCEINLINE void SetInt17(const int32& NewValue) { Int17_Optional = NewValue; Int17_IsSet = true; Int17_IsNull = false; }
 	/** @brief Sets the value of Int17_Optional and also sets Int17_IsSet to true using move semantics */
-	void SetInt17(int32&& NewValue) { Int17_Optional = NewValue; Int17_IsSet = true; Int17_IsNull = false; }
+	FORCEINLINE void SetInt17(int32&& NewValue) { Int17_Optional = NewValue; Int17_IsSet = true; Int17_IsNull = false; }
 	/** @brief Clears the value of Int17_Optional and sets Int17_IsSet to false */
 	void ClearInt17() { Int17_Optional = 0; Int17_IsSet = false; Int17_IsNull = false; }
-	/** @brief Checks whether Int17_Optional has been set */
-	bool IsInt17Set() const { return Int17_IsSet; }
-	/** @brief Returns true if Int17_Optional is set and matches the default value */
-	bool IsInt17DefaultValue() const { return Int17_IsSet && Int17_Optional == 0; }
-	/** @brief Sets the value of Int17_Optional to its default and also sets Int17_IsSet to true */
-	void SetInt17ToDefault() { SetInt17(0); }
+	/** @brief Returns the default value of Int17 */
+	FORCEINLINE int32 GetDefaultValue_Int17() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt17ToNull() { Int17_IsSet = true; Int17_IsNull = true; }
+	FORCEINLINE void SetInt17ToNull() { Int17_IsSet = true; Int17_IsNull = true; }
 	/** @brief Checks whether Int17_Optional is set to null */
-	bool IsInt17Null() const { return Int17_IsSet && Int17_IsNull; }
+	FORCEINLINE bool IsInt17Null() const { return Int17_IsSet && Int17_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int18_Optional{ 0 };
@@ -677,33 +609,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int18_IsNull{ false };
 	/** @brief Gets the value of Int18_Optional, regardless of it having been set */
-	int32& GetInt18() { return Int18_Optional; }
+	FORCEINLINE int32& GetInt18() { return Int18_Optional; }
 	/** @brief Gets the value of Int18_Optional, regardless of it having been set */
-	const int32& GetInt18() const { return Int18_Optional; }
+	FORCEINLINE const int32& GetInt18() const { return Int18_Optional; }
 	/** @brief Gets the value of Int18_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt18(const int32& DefaultValue) const { if (Int18_IsSet) return Int18_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt18(const int32& DefaultValue) const { if (Int18_IsSet) return Int18_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int18_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt18(int32& OutValue) const { if (Int18_IsSet && !Int18_IsNull) OutValue = Int18_Optional; return Int18_IsSet; }
+	FORCEINLINE bool GetInt18(int32& OutValue) const { if (Int18_IsSet && !Int18_IsNull) OutValue = Int18_Optional; return Int18_IsSet; }
 	/** @brief Returns a pointer to Int18_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt18OrNull() { if (Int18_IsSet) return (Int18_IsNull ? nullptr : &Int18_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt18OrNull() { if (Int18_IsSet) return (Int18_IsNull ? nullptr : &Int18_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int18_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt18OrNull() const { if (Int18_IsSet) return (Int18_IsNull ? nullptr : &Int18_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt18OrNull() const { if (Int18_IsSet) return (Int18_IsNull ? nullptr : &Int18_Optional); return nullptr; }
 	/** @brief Sets the value of Int18_Optional and also sets Int18_IsSet to true */
-	void SetInt18(const int32& NewValue) { Int18_Optional = NewValue; Int18_IsSet = true; Int18_IsNull = false; }
+	FORCEINLINE void SetInt18(const int32& NewValue) { Int18_Optional = NewValue; Int18_IsSet = true; Int18_IsNull = false; }
 	/** @brief Sets the value of Int18_Optional and also sets Int18_IsSet to true using move semantics */
-	void SetInt18(int32&& NewValue) { Int18_Optional = NewValue; Int18_IsSet = true; Int18_IsNull = false; }
+	FORCEINLINE void SetInt18(int32&& NewValue) { Int18_Optional = NewValue; Int18_IsSet = true; Int18_IsNull = false; }
 	/** @brief Clears the value of Int18_Optional and sets Int18_IsSet to false */
 	void ClearInt18() { Int18_Optional = 0; Int18_IsSet = false; Int18_IsNull = false; }
-	/** @brief Checks whether Int18_Optional has been set */
-	bool IsInt18Set() const { return Int18_IsSet; }
-	/** @brief Returns true if Int18_Optional is set and matches the default value */
-	bool IsInt18DefaultValue() const { return Int18_IsSet && Int18_Optional == 0; }
-	/** @brief Sets the value of Int18_Optional to its default and also sets Int18_IsSet to true */
-	void SetInt18ToDefault() { SetInt18(0); }
+	/** @brief Returns the default value of Int18 */
+	FORCEINLINE int32 GetDefaultValue_Int18() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt18ToNull() { Int18_IsSet = true; Int18_IsNull = true; }
+	FORCEINLINE void SetInt18ToNull() { Int18_IsSet = true; Int18_IsNull = true; }
 	/** @brief Checks whether Int18_Optional is set to null */
-	bool IsInt18Null() const { return Int18_IsSet && Int18_IsNull; }
+	FORCEINLINE bool IsInt18Null() const { return Int18_IsSet && Int18_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int19_Optional{ 0 };
@@ -714,33 +642,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int19_IsNull{ false };
 	/** @brief Gets the value of Int19_Optional, regardless of it having been set */
-	int32& GetInt19() { return Int19_Optional; }
+	FORCEINLINE int32& GetInt19() { return Int19_Optional; }
 	/** @brief Gets the value of Int19_Optional, regardless of it having been set */
-	const int32& GetInt19() const { return Int19_Optional; }
+	FORCEINLINE const int32& GetInt19() const { return Int19_Optional; }
 	/** @brief Gets the value of Int19_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt19(const int32& DefaultValue) const { if (Int19_IsSet) return Int19_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt19(const int32& DefaultValue) const { if (Int19_IsSet) return Int19_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int19_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt19(int32& OutValue) const { if (Int19_IsSet && !Int19_IsNull) OutValue = Int19_Optional; return Int19_IsSet; }
+	FORCEINLINE bool GetInt19(int32& OutValue) const { if (Int19_IsSet && !Int19_IsNull) OutValue = Int19_Optional; return Int19_IsSet; }
 	/** @brief Returns a pointer to Int19_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt19OrNull() { if (Int19_IsSet) return (Int19_IsNull ? nullptr : &Int19_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt19OrNull() { if (Int19_IsSet) return (Int19_IsNull ? nullptr : &Int19_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int19_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt19OrNull() const { if (Int19_IsSet) return (Int19_IsNull ? nullptr : &Int19_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt19OrNull() const { if (Int19_IsSet) return (Int19_IsNull ? nullptr : &Int19_Optional); return nullptr; }
 	/** @brief Sets the value of Int19_Optional and also sets Int19_IsSet to true */
-	void SetInt19(const int32& NewValue) { Int19_Optional = NewValue; Int19_IsSet = true; Int19_IsNull = false; }
+	FORCEINLINE void SetInt19(const int32& NewValue) { Int19_Optional = NewValue; Int19_IsSet = true; Int19_IsNull = false; }
 	/** @brief Sets the value of Int19_Optional and also sets Int19_IsSet to true using move semantics */
-	void SetInt19(int32&& NewValue) { Int19_Optional = NewValue; Int19_IsSet = true; Int19_IsNull = false; }
+	FORCEINLINE void SetInt19(int32&& NewValue) { Int19_Optional = NewValue; Int19_IsSet = true; Int19_IsNull = false; }
 	/** @brief Clears the value of Int19_Optional and sets Int19_IsSet to false */
 	void ClearInt19() { Int19_Optional = 0; Int19_IsSet = false; Int19_IsNull = false; }
-	/** @brief Checks whether Int19_Optional has been set */
-	bool IsInt19Set() const { return Int19_IsSet; }
-	/** @brief Returns true if Int19_Optional is set and matches the default value */
-	bool IsInt19DefaultValue() const { return Int19_IsSet && Int19_Optional == 0; }
-	/** @brief Sets the value of Int19_Optional to its default and also sets Int19_IsSet to true */
-	void SetInt19ToDefault() { SetInt19(0); }
+	/** @brief Returns the default value of Int19 */
+	FORCEINLINE int32 GetDefaultValue_Int19() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt19ToNull() { Int19_IsSet = true; Int19_IsNull = true; }
+	FORCEINLINE void SetInt19ToNull() { Int19_IsSet = true; Int19_IsNull = true; }
 	/** @brief Checks whether Int19_Optional is set to null */
-	bool IsInt19Null() const { return Int19_IsSet && Int19_IsNull; }
+	FORCEINLINE bool IsInt19Null() const { return Int19_IsSet && Int19_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int20_Optional{ 0 };
@@ -751,33 +675,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int20_IsNull{ false };
 	/** @brief Gets the value of Int20_Optional, regardless of it having been set */
-	int32& GetInt20() { return Int20_Optional; }
+	FORCEINLINE int32& GetInt20() { return Int20_Optional; }
 	/** @brief Gets the value of Int20_Optional, regardless of it having been set */
-	const int32& GetInt20() const { return Int20_Optional; }
+	FORCEINLINE const int32& GetInt20() const { return Int20_Optional; }
 	/** @brief Gets the value of Int20_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt20(const int32& DefaultValue) const { if (Int20_IsSet) return Int20_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt20(const int32& DefaultValue) const { if (Int20_IsSet) return Int20_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int20_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt20(int32& OutValue) const { if (Int20_IsSet && !Int20_IsNull) OutValue = Int20_Optional; return Int20_IsSet; }
+	FORCEINLINE bool GetInt20(int32& OutValue) const { if (Int20_IsSet && !Int20_IsNull) OutValue = Int20_Optional; return Int20_IsSet; }
 	/** @brief Returns a pointer to Int20_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt20OrNull() { if (Int20_IsSet) return (Int20_IsNull ? nullptr : &Int20_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt20OrNull() { if (Int20_IsSet) return (Int20_IsNull ? nullptr : &Int20_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int20_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt20OrNull() const { if (Int20_IsSet) return (Int20_IsNull ? nullptr : &Int20_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt20OrNull() const { if (Int20_IsSet) return (Int20_IsNull ? nullptr : &Int20_Optional); return nullptr; }
 	/** @brief Sets the value of Int20_Optional and also sets Int20_IsSet to true */
-	void SetInt20(const int32& NewValue) { Int20_Optional = NewValue; Int20_IsSet = true; Int20_IsNull = false; }
+	FORCEINLINE void SetInt20(const int32& NewValue) { Int20_Optional = NewValue; Int20_IsSet = true; Int20_IsNull = false; }
 	/** @brief Sets the value of Int20_Optional and also sets Int20_IsSet to true using move semantics */
-	void SetInt20(int32&& NewValue) { Int20_Optional = NewValue; Int20_IsSet = true; Int20_IsNull = false; }
+	FORCEINLINE void SetInt20(int32&& NewValue) { Int20_Optional = NewValue; Int20_IsSet = true; Int20_IsNull = false; }
 	/** @brief Clears the value of Int20_Optional and sets Int20_IsSet to false */
 	void ClearInt20() { Int20_Optional = 0; Int20_IsSet = false; Int20_IsNull = false; }
-	/** @brief Checks whether Int20_Optional has been set */
-	bool IsInt20Set() const { return Int20_IsSet; }
-	/** @brief Returns true if Int20_Optional is set and matches the default value */
-	bool IsInt20DefaultValue() const { return Int20_IsSet && Int20_Optional == 0; }
-	/** @brief Sets the value of Int20_Optional to its default and also sets Int20_IsSet to true */
-	void SetInt20ToDefault() { SetInt20(0); }
+	/** @brief Returns the default value of Int20 */
+	FORCEINLINE int32 GetDefaultValue_Int20() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt20ToNull() { Int20_IsSet = true; Int20_IsNull = true; }
+	FORCEINLINE void SetInt20ToNull() { Int20_IsSet = true; Int20_IsNull = true; }
 	/** @brief Checks whether Int20_Optional is set to null */
-	bool IsInt20Null() const { return Int20_IsSet && Int20_IsNull; }
+	FORCEINLINE bool IsInt20Null() const { return Int20_IsSet && Int20_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int21_Optional{ 0 };
@@ -788,33 +708,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int21_IsNull{ false };
 	/** @brief Gets the value of Int21_Optional, regardless of it having been set */
-	int32& GetInt21() { return Int21_Optional; }
+	FORCEINLINE int32& GetInt21() { return Int21_Optional; }
 	/** @brief Gets the value of Int21_Optional, regardless of it having been set */
-	const int32& GetInt21() const { return Int21_Optional; }
+	FORCEINLINE const int32& GetInt21() const { return Int21_Optional; }
 	/** @brief Gets the value of Int21_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt21(const int32& DefaultValue) const { if (Int21_IsSet) return Int21_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt21(const int32& DefaultValue) const { if (Int21_IsSet) return Int21_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int21_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt21(int32& OutValue) const { if (Int21_IsSet && !Int21_IsNull) OutValue = Int21_Optional; return Int21_IsSet; }
+	FORCEINLINE bool GetInt21(int32& OutValue) const { if (Int21_IsSet && !Int21_IsNull) OutValue = Int21_Optional; return Int21_IsSet; }
 	/** @brief Returns a pointer to Int21_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt21OrNull() { if (Int21_IsSet) return (Int21_IsNull ? nullptr : &Int21_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt21OrNull() { if (Int21_IsSet) return (Int21_IsNull ? nullptr : &Int21_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int21_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt21OrNull() const { if (Int21_IsSet) return (Int21_IsNull ? nullptr : &Int21_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt21OrNull() const { if (Int21_IsSet) return (Int21_IsNull ? nullptr : &Int21_Optional); return nullptr; }
 	/** @brief Sets the value of Int21_Optional and also sets Int21_IsSet to true */
-	void SetInt21(const int32& NewValue) { Int21_Optional = NewValue; Int21_IsSet = true; Int21_IsNull = false; }
+	FORCEINLINE void SetInt21(const int32& NewValue) { Int21_Optional = NewValue; Int21_IsSet = true; Int21_IsNull = false; }
 	/** @brief Sets the value of Int21_Optional and also sets Int21_IsSet to true using move semantics */
-	void SetInt21(int32&& NewValue) { Int21_Optional = NewValue; Int21_IsSet = true; Int21_IsNull = false; }
+	FORCEINLINE void SetInt21(int32&& NewValue) { Int21_Optional = NewValue; Int21_IsSet = true; Int21_IsNull = false; }
 	/** @brief Clears the value of Int21_Optional and sets Int21_IsSet to false */
 	void ClearInt21() { Int21_Optional = 0; Int21_IsSet = false; Int21_IsNull = false; }
-	/** @brief Checks whether Int21_Optional has been set */
-	bool IsInt21Set() const { return Int21_IsSet; }
-	/** @brief Returns true if Int21_Optional is set and matches the default value */
-	bool IsInt21DefaultValue() const { return Int21_IsSet && Int21_Optional == 0; }
-	/** @brief Sets the value of Int21_Optional to its default and also sets Int21_IsSet to true */
-	void SetInt21ToDefault() { SetInt21(0); }
+	/** @brief Returns the default value of Int21 */
+	FORCEINLINE int32 GetDefaultValue_Int21() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt21ToNull() { Int21_IsSet = true; Int21_IsNull = true; }
+	FORCEINLINE void SetInt21ToNull() { Int21_IsSet = true; Int21_IsNull = true; }
 	/** @brief Checks whether Int21_Optional is set to null */
-	bool IsInt21Null() const { return Int21_IsSet && Int21_IsNull; }
+	FORCEINLINE bool IsInt21Null() const { return Int21_IsSet && Int21_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int22_Optional{ 0 };
@@ -825,33 +741,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int22_IsNull{ false };
 	/** @brief Gets the value of Int22_Optional, regardless of it having been set */
-	int32& GetInt22() { return Int22_Optional; }
+	FORCEINLINE int32& GetInt22() { return Int22_Optional; }
 	/** @brief Gets the value of Int22_Optional, regardless of it having been set */
-	const int32& GetInt22() const { return Int22_Optional; }
+	FORCEINLINE const int32& GetInt22() const { return Int22_Optional; }
 	/** @brief Gets the value of Int22_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt22(const int32& DefaultValue) const { if (Int22_IsSet) return Int22_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt22(const int32& DefaultValue) const { if (Int22_IsSet) return Int22_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int22_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt22(int32& OutValue) const { if (Int22_IsSet && !Int22_IsNull) OutValue = Int22_Optional; return Int22_IsSet; }
+	FORCEINLINE bool GetInt22(int32& OutValue) const { if (Int22_IsSet && !Int22_IsNull) OutValue = Int22_Optional; return Int22_IsSet; }
 	/** @brief Returns a pointer to Int22_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt22OrNull() { if (Int22_IsSet) return (Int22_IsNull ? nullptr : &Int22_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt22OrNull() { if (Int22_IsSet) return (Int22_IsNull ? nullptr : &Int22_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int22_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt22OrNull() const { if (Int22_IsSet) return (Int22_IsNull ? nullptr : &Int22_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt22OrNull() const { if (Int22_IsSet) return (Int22_IsNull ? nullptr : &Int22_Optional); return nullptr; }
 	/** @brief Sets the value of Int22_Optional and also sets Int22_IsSet to true */
-	void SetInt22(const int32& NewValue) { Int22_Optional = NewValue; Int22_IsSet = true; Int22_IsNull = false; }
+	FORCEINLINE void SetInt22(const int32& NewValue) { Int22_Optional = NewValue; Int22_IsSet = true; Int22_IsNull = false; }
 	/** @brief Sets the value of Int22_Optional and also sets Int22_IsSet to true using move semantics */
-	void SetInt22(int32&& NewValue) { Int22_Optional = NewValue; Int22_IsSet = true; Int22_IsNull = false; }
+	FORCEINLINE void SetInt22(int32&& NewValue) { Int22_Optional = NewValue; Int22_IsSet = true; Int22_IsNull = false; }
 	/** @brief Clears the value of Int22_Optional and sets Int22_IsSet to false */
 	void ClearInt22() { Int22_Optional = 0; Int22_IsSet = false; Int22_IsNull = false; }
-	/** @brief Checks whether Int22_Optional has been set */
-	bool IsInt22Set() const { return Int22_IsSet; }
-	/** @brief Returns true if Int22_Optional is set and matches the default value */
-	bool IsInt22DefaultValue() const { return Int22_IsSet && Int22_Optional == 0; }
-	/** @brief Sets the value of Int22_Optional to its default and also sets Int22_IsSet to true */
-	void SetInt22ToDefault() { SetInt22(0); }
+	/** @brief Returns the default value of Int22 */
+	FORCEINLINE int32 GetDefaultValue_Int22() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt22ToNull() { Int22_IsSet = true; Int22_IsNull = true; }
+	FORCEINLINE void SetInt22ToNull() { Int22_IsSet = true; Int22_IsNull = true; }
 	/** @brief Checks whether Int22_Optional is set to null */
-	bool IsInt22Null() const { return Int22_IsSet && Int22_IsNull; }
+	FORCEINLINE bool IsInt22Null() const { return Int22_IsSet && Int22_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int23_Optional{ 0 };
@@ -862,33 +774,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int23_IsNull{ false };
 	/** @brief Gets the value of Int23_Optional, regardless of it having been set */
-	int32& GetInt23() { return Int23_Optional; }
+	FORCEINLINE int32& GetInt23() { return Int23_Optional; }
 	/** @brief Gets the value of Int23_Optional, regardless of it having been set */
-	const int32& GetInt23() const { return Int23_Optional; }
+	FORCEINLINE const int32& GetInt23() const { return Int23_Optional; }
 	/** @brief Gets the value of Int23_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt23(const int32& DefaultValue) const { if (Int23_IsSet) return Int23_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt23(const int32& DefaultValue) const { if (Int23_IsSet) return Int23_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int23_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt23(int32& OutValue) const { if (Int23_IsSet && !Int23_IsNull) OutValue = Int23_Optional; return Int23_IsSet; }
+	FORCEINLINE bool GetInt23(int32& OutValue) const { if (Int23_IsSet && !Int23_IsNull) OutValue = Int23_Optional; return Int23_IsSet; }
 	/** @brief Returns a pointer to Int23_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt23OrNull() { if (Int23_IsSet) return (Int23_IsNull ? nullptr : &Int23_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt23OrNull() { if (Int23_IsSet) return (Int23_IsNull ? nullptr : &Int23_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int23_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt23OrNull() const { if (Int23_IsSet) return (Int23_IsNull ? nullptr : &Int23_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt23OrNull() const { if (Int23_IsSet) return (Int23_IsNull ? nullptr : &Int23_Optional); return nullptr; }
 	/** @brief Sets the value of Int23_Optional and also sets Int23_IsSet to true */
-	void SetInt23(const int32& NewValue) { Int23_Optional = NewValue; Int23_IsSet = true; Int23_IsNull = false; }
+	FORCEINLINE void SetInt23(const int32& NewValue) { Int23_Optional = NewValue; Int23_IsSet = true; Int23_IsNull = false; }
 	/** @brief Sets the value of Int23_Optional and also sets Int23_IsSet to true using move semantics */
-	void SetInt23(int32&& NewValue) { Int23_Optional = NewValue; Int23_IsSet = true; Int23_IsNull = false; }
+	FORCEINLINE void SetInt23(int32&& NewValue) { Int23_Optional = NewValue; Int23_IsSet = true; Int23_IsNull = false; }
 	/** @brief Clears the value of Int23_Optional and sets Int23_IsSet to false */
 	void ClearInt23() { Int23_Optional = 0; Int23_IsSet = false; Int23_IsNull = false; }
-	/** @brief Checks whether Int23_Optional has been set */
-	bool IsInt23Set() const { return Int23_IsSet; }
-	/** @brief Returns true if Int23_Optional is set and matches the default value */
-	bool IsInt23DefaultValue() const { return Int23_IsSet && Int23_Optional == 0; }
-	/** @brief Sets the value of Int23_Optional to its default and also sets Int23_IsSet to true */
-	void SetInt23ToDefault() { SetInt23(0); }
+	/** @brief Returns the default value of Int23 */
+	FORCEINLINE int32 GetDefaultValue_Int23() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt23ToNull() { Int23_IsSet = true; Int23_IsNull = true; }
+	FORCEINLINE void SetInt23ToNull() { Int23_IsSet = true; Int23_IsNull = true; }
 	/** @brief Checks whether Int23_Optional is set to null */
-	bool IsInt23Null() const { return Int23_IsSet && Int23_IsNull; }
+	FORCEINLINE bool IsInt23Null() const { return Int23_IsSet && Int23_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int24_Optional{ 0 };
@@ -899,33 +807,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int24_IsNull{ false };
 	/** @brief Gets the value of Int24_Optional, regardless of it having been set */
-	int32& GetInt24() { return Int24_Optional; }
+	FORCEINLINE int32& GetInt24() { return Int24_Optional; }
 	/** @brief Gets the value of Int24_Optional, regardless of it having been set */
-	const int32& GetInt24() const { return Int24_Optional; }
+	FORCEINLINE const int32& GetInt24() const { return Int24_Optional; }
 	/** @brief Gets the value of Int24_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt24(const int32& DefaultValue) const { if (Int24_IsSet) return Int24_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt24(const int32& DefaultValue) const { if (Int24_IsSet) return Int24_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int24_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt24(int32& OutValue) const { if (Int24_IsSet && !Int24_IsNull) OutValue = Int24_Optional; return Int24_IsSet; }
+	FORCEINLINE bool GetInt24(int32& OutValue) const { if (Int24_IsSet && !Int24_IsNull) OutValue = Int24_Optional; return Int24_IsSet; }
 	/** @brief Returns a pointer to Int24_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt24OrNull() { if (Int24_IsSet) return (Int24_IsNull ? nullptr : &Int24_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt24OrNull() { if (Int24_IsSet) return (Int24_IsNull ? nullptr : &Int24_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int24_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt24OrNull() const { if (Int24_IsSet) return (Int24_IsNull ? nullptr : &Int24_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt24OrNull() const { if (Int24_IsSet) return (Int24_IsNull ? nullptr : &Int24_Optional); return nullptr; }
 	/** @brief Sets the value of Int24_Optional and also sets Int24_IsSet to true */
-	void SetInt24(const int32& NewValue) { Int24_Optional = NewValue; Int24_IsSet = true; Int24_IsNull = false; }
+	FORCEINLINE void SetInt24(const int32& NewValue) { Int24_Optional = NewValue; Int24_IsSet = true; Int24_IsNull = false; }
 	/** @brief Sets the value of Int24_Optional and also sets Int24_IsSet to true using move semantics */
-	void SetInt24(int32&& NewValue) { Int24_Optional = NewValue; Int24_IsSet = true; Int24_IsNull = false; }
+	FORCEINLINE void SetInt24(int32&& NewValue) { Int24_Optional = NewValue; Int24_IsSet = true; Int24_IsNull = false; }
 	/** @brief Clears the value of Int24_Optional and sets Int24_IsSet to false */
 	void ClearInt24() { Int24_Optional = 0; Int24_IsSet = false; Int24_IsNull = false; }
-	/** @brief Checks whether Int24_Optional has been set */
-	bool IsInt24Set() const { return Int24_IsSet; }
-	/** @brief Returns true if Int24_Optional is set and matches the default value */
-	bool IsInt24DefaultValue() const { return Int24_IsSet && Int24_Optional == 0; }
-	/** @brief Sets the value of Int24_Optional to its default and also sets Int24_IsSet to true */
-	void SetInt24ToDefault() { SetInt24(0); }
+	/** @brief Returns the default value of Int24 */
+	FORCEINLINE int32 GetDefaultValue_Int24() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt24ToNull() { Int24_IsSet = true; Int24_IsNull = true; }
+	FORCEINLINE void SetInt24ToNull() { Int24_IsSet = true; Int24_IsNull = true; }
 	/** @brief Checks whether Int24_Optional is set to null */
-	bool IsInt24Null() const { return Int24_IsSet && Int24_IsNull; }
+	FORCEINLINE bool IsInt24Null() const { return Int24_IsSet && Int24_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int25_Optional{ 0 };
@@ -936,33 +840,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int25_IsNull{ false };
 	/** @brief Gets the value of Int25_Optional, regardless of it having been set */
-	int32& GetInt25() { return Int25_Optional; }
+	FORCEINLINE int32& GetInt25() { return Int25_Optional; }
 	/** @brief Gets the value of Int25_Optional, regardless of it having been set */
-	const int32& GetInt25() const { return Int25_Optional; }
+	FORCEINLINE const int32& GetInt25() const { return Int25_Optional; }
 	/** @brief Gets the value of Int25_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt25(const int32& DefaultValue) const { if (Int25_IsSet) return Int25_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt25(const int32& DefaultValue) const { if (Int25_IsSet) return Int25_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int25_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt25(int32& OutValue) const { if (Int25_IsSet && !Int25_IsNull) OutValue = Int25_Optional; return Int25_IsSet; }
+	FORCEINLINE bool GetInt25(int32& OutValue) const { if (Int25_IsSet && !Int25_IsNull) OutValue = Int25_Optional; return Int25_IsSet; }
 	/** @brief Returns a pointer to Int25_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt25OrNull() { if (Int25_IsSet) return (Int25_IsNull ? nullptr : &Int25_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt25OrNull() { if (Int25_IsSet) return (Int25_IsNull ? nullptr : &Int25_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int25_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt25OrNull() const { if (Int25_IsSet) return (Int25_IsNull ? nullptr : &Int25_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt25OrNull() const { if (Int25_IsSet) return (Int25_IsNull ? nullptr : &Int25_Optional); return nullptr; }
 	/** @brief Sets the value of Int25_Optional and also sets Int25_IsSet to true */
-	void SetInt25(const int32& NewValue) { Int25_Optional = NewValue; Int25_IsSet = true; Int25_IsNull = false; }
+	FORCEINLINE void SetInt25(const int32& NewValue) { Int25_Optional = NewValue; Int25_IsSet = true; Int25_IsNull = false; }
 	/** @brief Sets the value of Int25_Optional and also sets Int25_IsSet to true using move semantics */
-	void SetInt25(int32&& NewValue) { Int25_Optional = NewValue; Int25_IsSet = true; Int25_IsNull = false; }
+	FORCEINLINE void SetInt25(int32&& NewValue) { Int25_Optional = NewValue; Int25_IsSet = true; Int25_IsNull = false; }
 	/** @brief Clears the value of Int25_Optional and sets Int25_IsSet to false */
 	void ClearInt25() { Int25_Optional = 0; Int25_IsSet = false; Int25_IsNull = false; }
-	/** @brief Checks whether Int25_Optional has been set */
-	bool IsInt25Set() const { return Int25_IsSet; }
-	/** @brief Returns true if Int25_Optional is set and matches the default value */
-	bool IsInt25DefaultValue() const { return Int25_IsSet && Int25_Optional == 0; }
-	/** @brief Sets the value of Int25_Optional to its default and also sets Int25_IsSet to true */
-	void SetInt25ToDefault() { SetInt25(0); }
+	/** @brief Returns the default value of Int25 */
+	FORCEINLINE int32 GetDefaultValue_Int25() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt25ToNull() { Int25_IsSet = true; Int25_IsNull = true; }
+	FORCEINLINE void SetInt25ToNull() { Int25_IsSet = true; Int25_IsNull = true; }
 	/** @brief Checks whether Int25_Optional is set to null */
-	bool IsInt25Null() const { return Int25_IsSet && Int25_IsNull; }
+	FORCEINLINE bool IsInt25Null() const { return Int25_IsSet && Int25_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int26_Optional{ 0 };
@@ -973,33 +873,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int26_IsNull{ false };
 	/** @brief Gets the value of Int26_Optional, regardless of it having been set */
-	int32& GetInt26() { return Int26_Optional; }
+	FORCEINLINE int32& GetInt26() { return Int26_Optional; }
 	/** @brief Gets the value of Int26_Optional, regardless of it having been set */
-	const int32& GetInt26() const { return Int26_Optional; }
+	FORCEINLINE const int32& GetInt26() const { return Int26_Optional; }
 	/** @brief Gets the value of Int26_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt26(const int32& DefaultValue) const { if (Int26_IsSet) return Int26_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt26(const int32& DefaultValue) const { if (Int26_IsSet) return Int26_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int26_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt26(int32& OutValue) const { if (Int26_IsSet && !Int26_IsNull) OutValue = Int26_Optional; return Int26_IsSet; }
+	FORCEINLINE bool GetInt26(int32& OutValue) const { if (Int26_IsSet && !Int26_IsNull) OutValue = Int26_Optional; return Int26_IsSet; }
 	/** @brief Returns a pointer to Int26_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt26OrNull() { if (Int26_IsSet) return (Int26_IsNull ? nullptr : &Int26_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt26OrNull() { if (Int26_IsSet) return (Int26_IsNull ? nullptr : &Int26_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int26_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt26OrNull() const { if (Int26_IsSet) return (Int26_IsNull ? nullptr : &Int26_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt26OrNull() const { if (Int26_IsSet) return (Int26_IsNull ? nullptr : &Int26_Optional); return nullptr; }
 	/** @brief Sets the value of Int26_Optional and also sets Int26_IsSet to true */
-	void SetInt26(const int32& NewValue) { Int26_Optional = NewValue; Int26_IsSet = true; Int26_IsNull = false; }
+	FORCEINLINE void SetInt26(const int32& NewValue) { Int26_Optional = NewValue; Int26_IsSet = true; Int26_IsNull = false; }
 	/** @brief Sets the value of Int26_Optional and also sets Int26_IsSet to true using move semantics */
-	void SetInt26(int32&& NewValue) { Int26_Optional = NewValue; Int26_IsSet = true; Int26_IsNull = false; }
+	FORCEINLINE void SetInt26(int32&& NewValue) { Int26_Optional = NewValue; Int26_IsSet = true; Int26_IsNull = false; }
 	/** @brief Clears the value of Int26_Optional and sets Int26_IsSet to false */
 	void ClearInt26() { Int26_Optional = 0; Int26_IsSet = false; Int26_IsNull = false; }
-	/** @brief Checks whether Int26_Optional has been set */
-	bool IsInt26Set() const { return Int26_IsSet; }
-	/** @brief Returns true if Int26_Optional is set and matches the default value */
-	bool IsInt26DefaultValue() const { return Int26_IsSet && Int26_Optional == 0; }
-	/** @brief Sets the value of Int26_Optional to its default and also sets Int26_IsSet to true */
-	void SetInt26ToDefault() { SetInt26(0); }
+	/** @brief Returns the default value of Int26 */
+	FORCEINLINE int32 GetDefaultValue_Int26() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt26ToNull() { Int26_IsSet = true; Int26_IsNull = true; }
+	FORCEINLINE void SetInt26ToNull() { Int26_IsSet = true; Int26_IsNull = true; }
 	/** @brief Checks whether Int26_Optional is set to null */
-	bool IsInt26Null() const { return Int26_IsSet && Int26_IsNull; }
+	FORCEINLINE bool IsInt26Null() const { return Int26_IsSet && Int26_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int27_Optional{ 0 };
@@ -1010,33 +906,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int27_IsNull{ false };
 	/** @brief Gets the value of Int27_Optional, regardless of it having been set */
-	int32& GetInt27() { return Int27_Optional; }
+	FORCEINLINE int32& GetInt27() { return Int27_Optional; }
 	/** @brief Gets the value of Int27_Optional, regardless of it having been set */
-	const int32& GetInt27() const { return Int27_Optional; }
+	FORCEINLINE const int32& GetInt27() const { return Int27_Optional; }
 	/** @brief Gets the value of Int27_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt27(const int32& DefaultValue) const { if (Int27_IsSet) return Int27_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt27(const int32& DefaultValue) const { if (Int27_IsSet) return Int27_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int27_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt27(int32& OutValue) const { if (Int27_IsSet && !Int27_IsNull) OutValue = Int27_Optional; return Int27_IsSet; }
+	FORCEINLINE bool GetInt27(int32& OutValue) const { if (Int27_IsSet && !Int27_IsNull) OutValue = Int27_Optional; return Int27_IsSet; }
 	/** @brief Returns a pointer to Int27_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt27OrNull() { if (Int27_IsSet) return (Int27_IsNull ? nullptr : &Int27_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt27OrNull() { if (Int27_IsSet) return (Int27_IsNull ? nullptr : &Int27_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int27_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt27OrNull() const { if (Int27_IsSet) return (Int27_IsNull ? nullptr : &Int27_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt27OrNull() const { if (Int27_IsSet) return (Int27_IsNull ? nullptr : &Int27_Optional); return nullptr; }
 	/** @brief Sets the value of Int27_Optional and also sets Int27_IsSet to true */
-	void SetInt27(const int32& NewValue) { Int27_Optional = NewValue; Int27_IsSet = true; Int27_IsNull = false; }
+	FORCEINLINE void SetInt27(const int32& NewValue) { Int27_Optional = NewValue; Int27_IsSet = true; Int27_IsNull = false; }
 	/** @brief Sets the value of Int27_Optional and also sets Int27_IsSet to true using move semantics */
-	void SetInt27(int32&& NewValue) { Int27_Optional = NewValue; Int27_IsSet = true; Int27_IsNull = false; }
+	FORCEINLINE void SetInt27(int32&& NewValue) { Int27_Optional = NewValue; Int27_IsSet = true; Int27_IsNull = false; }
 	/** @brief Clears the value of Int27_Optional and sets Int27_IsSet to false */
 	void ClearInt27() { Int27_Optional = 0; Int27_IsSet = false; Int27_IsNull = false; }
-	/** @brief Checks whether Int27_Optional has been set */
-	bool IsInt27Set() const { return Int27_IsSet; }
-	/** @brief Returns true if Int27_Optional is set and matches the default value */
-	bool IsInt27DefaultValue() const { return Int27_IsSet && Int27_Optional == 0; }
-	/** @brief Sets the value of Int27_Optional to its default and also sets Int27_IsSet to true */
-	void SetInt27ToDefault() { SetInt27(0); }
+	/** @brief Returns the default value of Int27 */
+	FORCEINLINE int32 GetDefaultValue_Int27() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt27ToNull() { Int27_IsSet = true; Int27_IsNull = true; }
+	FORCEINLINE void SetInt27ToNull() { Int27_IsSet = true; Int27_IsNull = true; }
 	/** @brief Checks whether Int27_Optional is set to null */
-	bool IsInt27Null() const { return Int27_IsSet && Int27_IsNull; }
+	FORCEINLINE bool IsInt27Null() const { return Int27_IsSet && Int27_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int28_Optional{ 0 };
@@ -1047,33 +939,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int28_IsNull{ false };
 	/** @brief Gets the value of Int28_Optional, regardless of it having been set */
-	int32& GetInt28() { return Int28_Optional; }
+	FORCEINLINE int32& GetInt28() { return Int28_Optional; }
 	/** @brief Gets the value of Int28_Optional, regardless of it having been set */
-	const int32& GetInt28() const { return Int28_Optional; }
+	FORCEINLINE const int32& GetInt28() const { return Int28_Optional; }
 	/** @brief Gets the value of Int28_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt28(const int32& DefaultValue) const { if (Int28_IsSet) return Int28_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt28(const int32& DefaultValue) const { if (Int28_IsSet) return Int28_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int28_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt28(int32& OutValue) const { if (Int28_IsSet && !Int28_IsNull) OutValue = Int28_Optional; return Int28_IsSet; }
+	FORCEINLINE bool GetInt28(int32& OutValue) const { if (Int28_IsSet && !Int28_IsNull) OutValue = Int28_Optional; return Int28_IsSet; }
 	/** @brief Returns a pointer to Int28_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt28OrNull() { if (Int28_IsSet) return (Int28_IsNull ? nullptr : &Int28_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt28OrNull() { if (Int28_IsSet) return (Int28_IsNull ? nullptr : &Int28_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int28_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt28OrNull() const { if (Int28_IsSet) return (Int28_IsNull ? nullptr : &Int28_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt28OrNull() const { if (Int28_IsSet) return (Int28_IsNull ? nullptr : &Int28_Optional); return nullptr; }
 	/** @brief Sets the value of Int28_Optional and also sets Int28_IsSet to true */
-	void SetInt28(const int32& NewValue) { Int28_Optional = NewValue; Int28_IsSet = true; Int28_IsNull = false; }
+	FORCEINLINE void SetInt28(const int32& NewValue) { Int28_Optional = NewValue; Int28_IsSet = true; Int28_IsNull = false; }
 	/** @brief Sets the value of Int28_Optional and also sets Int28_IsSet to true using move semantics */
-	void SetInt28(int32&& NewValue) { Int28_Optional = NewValue; Int28_IsSet = true; Int28_IsNull = false; }
+	FORCEINLINE void SetInt28(int32&& NewValue) { Int28_Optional = NewValue; Int28_IsSet = true; Int28_IsNull = false; }
 	/** @brief Clears the value of Int28_Optional and sets Int28_IsSet to false */
 	void ClearInt28() { Int28_Optional = 0; Int28_IsSet = false; Int28_IsNull = false; }
-	/** @brief Checks whether Int28_Optional has been set */
-	bool IsInt28Set() const { return Int28_IsSet; }
-	/** @brief Returns true if Int28_Optional is set and matches the default value */
-	bool IsInt28DefaultValue() const { return Int28_IsSet && Int28_Optional == 0; }
-	/** @brief Sets the value of Int28_Optional to its default and also sets Int28_IsSet to true */
-	void SetInt28ToDefault() { SetInt28(0); }
+	/** @brief Returns the default value of Int28 */
+	FORCEINLINE int32 GetDefaultValue_Int28() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt28ToNull() { Int28_IsSet = true; Int28_IsNull = true; }
+	FORCEINLINE void SetInt28ToNull() { Int28_IsSet = true; Int28_IsNull = true; }
 	/** @brief Checks whether Int28_Optional is set to null */
-	bool IsInt28Null() const { return Int28_IsSet && Int28_IsNull; }
+	FORCEINLINE bool IsInt28Null() const { return Int28_IsSet && Int28_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int29_Optional{ 0 };
@@ -1084,33 +972,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int29_IsNull{ false };
 	/** @brief Gets the value of Int29_Optional, regardless of it having been set */
-	int32& GetInt29() { return Int29_Optional; }
+	FORCEINLINE int32& GetInt29() { return Int29_Optional; }
 	/** @brief Gets the value of Int29_Optional, regardless of it having been set */
-	const int32& GetInt29() const { return Int29_Optional; }
+	FORCEINLINE const int32& GetInt29() const { return Int29_Optional; }
 	/** @brief Gets the value of Int29_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt29(const int32& DefaultValue) const { if (Int29_IsSet) return Int29_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt29(const int32& DefaultValue) const { if (Int29_IsSet) return Int29_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int29_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt29(int32& OutValue) const { if (Int29_IsSet && !Int29_IsNull) OutValue = Int29_Optional; return Int29_IsSet; }
+	FORCEINLINE bool GetInt29(int32& OutValue) const { if (Int29_IsSet && !Int29_IsNull) OutValue = Int29_Optional; return Int29_IsSet; }
 	/** @brief Returns a pointer to Int29_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt29OrNull() { if (Int29_IsSet) return (Int29_IsNull ? nullptr : &Int29_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt29OrNull() { if (Int29_IsSet) return (Int29_IsNull ? nullptr : &Int29_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int29_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt29OrNull() const { if (Int29_IsSet) return (Int29_IsNull ? nullptr : &Int29_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt29OrNull() const { if (Int29_IsSet) return (Int29_IsNull ? nullptr : &Int29_Optional); return nullptr; }
 	/** @brief Sets the value of Int29_Optional and also sets Int29_IsSet to true */
-	void SetInt29(const int32& NewValue) { Int29_Optional = NewValue; Int29_IsSet = true; Int29_IsNull = false; }
+	FORCEINLINE void SetInt29(const int32& NewValue) { Int29_Optional = NewValue; Int29_IsSet = true; Int29_IsNull = false; }
 	/** @brief Sets the value of Int29_Optional and also sets Int29_IsSet to true using move semantics */
-	void SetInt29(int32&& NewValue) { Int29_Optional = NewValue; Int29_IsSet = true; Int29_IsNull = false; }
+	FORCEINLINE void SetInt29(int32&& NewValue) { Int29_Optional = NewValue; Int29_IsSet = true; Int29_IsNull = false; }
 	/** @brief Clears the value of Int29_Optional and sets Int29_IsSet to false */
 	void ClearInt29() { Int29_Optional = 0; Int29_IsSet = false; Int29_IsNull = false; }
-	/** @brief Checks whether Int29_Optional has been set */
-	bool IsInt29Set() const { return Int29_IsSet; }
-	/** @brief Returns true if Int29_Optional is set and matches the default value */
-	bool IsInt29DefaultValue() const { return Int29_IsSet && Int29_Optional == 0; }
-	/** @brief Sets the value of Int29_Optional to its default and also sets Int29_IsSet to true */
-	void SetInt29ToDefault() { SetInt29(0); }
+	/** @brief Returns the default value of Int29 */
+	FORCEINLINE int32 GetDefaultValue_Int29() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt29ToNull() { Int29_IsSet = true; Int29_IsNull = true; }
+	FORCEINLINE void SetInt29ToNull() { Int29_IsSet = true; Int29_IsNull = true; }
 	/** @brief Checks whether Int29_Optional is set to null */
-	bool IsInt29Null() const { return Int29_IsSet && Int29_IsNull; }
+	FORCEINLINE bool IsInt29Null() const { return Int29_IsSet && Int29_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int30_Optional{ 0 };
@@ -1121,33 +1005,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int30_IsNull{ false };
 	/** @brief Gets the value of Int30_Optional, regardless of it having been set */
-	int32& GetInt30() { return Int30_Optional; }
+	FORCEINLINE int32& GetInt30() { return Int30_Optional; }
 	/** @brief Gets the value of Int30_Optional, regardless of it having been set */
-	const int32& GetInt30() const { return Int30_Optional; }
+	FORCEINLINE const int32& GetInt30() const { return Int30_Optional; }
 	/** @brief Gets the value of Int30_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt30(const int32& DefaultValue) const { if (Int30_IsSet) return Int30_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt30(const int32& DefaultValue) const { if (Int30_IsSet) return Int30_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int30_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt30(int32& OutValue) const { if (Int30_IsSet && !Int30_IsNull) OutValue = Int30_Optional; return Int30_IsSet; }
+	FORCEINLINE bool GetInt30(int32& OutValue) const { if (Int30_IsSet && !Int30_IsNull) OutValue = Int30_Optional; return Int30_IsSet; }
 	/** @brief Returns a pointer to Int30_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt30OrNull() { if (Int30_IsSet) return (Int30_IsNull ? nullptr : &Int30_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt30OrNull() { if (Int30_IsSet) return (Int30_IsNull ? nullptr : &Int30_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int30_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt30OrNull() const { if (Int30_IsSet) return (Int30_IsNull ? nullptr : &Int30_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt30OrNull() const { if (Int30_IsSet) return (Int30_IsNull ? nullptr : &Int30_Optional); return nullptr; }
 	/** @brief Sets the value of Int30_Optional and also sets Int30_IsSet to true */
-	void SetInt30(const int32& NewValue) { Int30_Optional = NewValue; Int30_IsSet = true; Int30_IsNull = false; }
+	FORCEINLINE void SetInt30(const int32& NewValue) { Int30_Optional = NewValue; Int30_IsSet = true; Int30_IsNull = false; }
 	/** @brief Sets the value of Int30_Optional and also sets Int30_IsSet to true using move semantics */
-	void SetInt30(int32&& NewValue) { Int30_Optional = NewValue; Int30_IsSet = true; Int30_IsNull = false; }
+	FORCEINLINE void SetInt30(int32&& NewValue) { Int30_Optional = NewValue; Int30_IsSet = true; Int30_IsNull = false; }
 	/** @brief Clears the value of Int30_Optional and sets Int30_IsSet to false */
 	void ClearInt30() { Int30_Optional = 0; Int30_IsSet = false; Int30_IsNull = false; }
-	/** @brief Checks whether Int30_Optional has been set */
-	bool IsInt30Set() const { return Int30_IsSet; }
-	/** @brief Returns true if Int30_Optional is set and matches the default value */
-	bool IsInt30DefaultValue() const { return Int30_IsSet && Int30_Optional == 0; }
-	/** @brief Sets the value of Int30_Optional to its default and also sets Int30_IsSet to true */
-	void SetInt30ToDefault() { SetInt30(0); }
+	/** @brief Returns the default value of Int30 */
+	FORCEINLINE int32 GetDefaultValue_Int30() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt30ToNull() { Int30_IsSet = true; Int30_IsNull = true; }
+	FORCEINLINE void SetInt30ToNull() { Int30_IsSet = true; Int30_IsNull = true; }
 	/** @brief Checks whether Int30_Optional is set to null */
-	bool IsInt30Null() const { return Int30_IsSet && Int30_IsNull; }
+	FORCEINLINE bool IsInt30Null() const { return Int30_IsSet && Int30_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int31_Optional{ 0 };
@@ -1158,33 +1038,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int31_IsNull{ false };
 	/** @brief Gets the value of Int31_Optional, regardless of it having been set */
-	int32& GetInt31() { return Int31_Optional; }
+	FORCEINLINE int32& GetInt31() { return Int31_Optional; }
 	/** @brief Gets the value of Int31_Optional, regardless of it having been set */
-	const int32& GetInt31() const { return Int31_Optional; }
+	FORCEINLINE const int32& GetInt31() const { return Int31_Optional; }
 	/** @brief Gets the value of Int31_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt31(const int32& DefaultValue) const { if (Int31_IsSet) return Int31_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt31(const int32& DefaultValue) const { if (Int31_IsSet) return Int31_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int31_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt31(int32& OutValue) const { if (Int31_IsSet && !Int31_IsNull) OutValue = Int31_Optional; return Int31_IsSet; }
+	FORCEINLINE bool GetInt31(int32& OutValue) const { if (Int31_IsSet && !Int31_IsNull) OutValue = Int31_Optional; return Int31_IsSet; }
 	/** @brief Returns a pointer to Int31_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt31OrNull() { if (Int31_IsSet) return (Int31_IsNull ? nullptr : &Int31_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt31OrNull() { if (Int31_IsSet) return (Int31_IsNull ? nullptr : &Int31_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int31_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt31OrNull() const { if (Int31_IsSet) return (Int31_IsNull ? nullptr : &Int31_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt31OrNull() const { if (Int31_IsSet) return (Int31_IsNull ? nullptr : &Int31_Optional); return nullptr; }
 	/** @brief Sets the value of Int31_Optional and also sets Int31_IsSet to true */
-	void SetInt31(const int32& NewValue) { Int31_Optional = NewValue; Int31_IsSet = true; Int31_IsNull = false; }
+	FORCEINLINE void SetInt31(const int32& NewValue) { Int31_Optional = NewValue; Int31_IsSet = true; Int31_IsNull = false; }
 	/** @brief Sets the value of Int31_Optional and also sets Int31_IsSet to true using move semantics */
-	void SetInt31(int32&& NewValue) { Int31_Optional = NewValue; Int31_IsSet = true; Int31_IsNull = false; }
+	FORCEINLINE void SetInt31(int32&& NewValue) { Int31_Optional = NewValue; Int31_IsSet = true; Int31_IsNull = false; }
 	/** @brief Clears the value of Int31_Optional and sets Int31_IsSet to false */
 	void ClearInt31() { Int31_Optional = 0; Int31_IsSet = false; Int31_IsNull = false; }
-	/** @brief Checks whether Int31_Optional has been set */
-	bool IsInt31Set() const { return Int31_IsSet; }
-	/** @brief Returns true if Int31_Optional is set and matches the default value */
-	bool IsInt31DefaultValue() const { return Int31_IsSet && Int31_Optional == 0; }
-	/** @brief Sets the value of Int31_Optional to its default and also sets Int31_IsSet to true */
-	void SetInt31ToDefault() { SetInt31(0); }
+	/** @brief Returns the default value of Int31 */
+	FORCEINLINE int32 GetDefaultValue_Int31() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt31ToNull() { Int31_IsSet = true; Int31_IsNull = true; }
+	FORCEINLINE void SetInt31ToNull() { Int31_IsSet = true; Int31_IsNull = true; }
 	/** @brief Checks whether Int31_Optional is set to null */
-	bool IsInt31Null() const { return Int31_IsSet && Int31_IsNull; }
+	FORCEINLINE bool IsInt31Null() const { return Int31_IsSet && Int31_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Int32_Optional{ 0 };
@@ -1195,33 +1071,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Int32_IsNull{ false };
 	/** @brief Gets the value of Int32_Optional, regardless of it having been set */
-	int32& GetInt32() { return Int32_Optional; }
+	FORCEINLINE int32& GetInt32() { return Int32_Optional; }
 	/** @brief Gets the value of Int32_Optional, regardless of it having been set */
-	const int32& GetInt32() const { return Int32_Optional; }
+	FORCEINLINE const int32& GetInt32() const { return Int32_Optional; }
 	/** @brief Gets the value of Int32_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetInt32(const int32& DefaultValue) const { if (Int32_IsSet) return Int32_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetInt32(const int32& DefaultValue) const { if (Int32_IsSet) return Int32_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Int32_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInt32(int32& OutValue) const { if (Int32_IsSet && !Int32_IsNull) OutValue = Int32_Optional; return Int32_IsSet; }
+	FORCEINLINE bool GetInt32(int32& OutValue) const { if (Int32_IsSet && !Int32_IsNull) OutValue = Int32_Optional; return Int32_IsSet; }
 	/** @brief Returns a pointer to Int32_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetInt32OrNull() { if (Int32_IsSet) return (Int32_IsNull ? nullptr : &Int32_Optional); return nullptr; }
+	FORCEINLINE int32* GetInt32OrNull() { if (Int32_IsSet) return (Int32_IsNull ? nullptr : &Int32_Optional); return nullptr; }
 	/** @brief Returns a pointer to Int32_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetInt32OrNull() const { if (Int32_IsSet) return (Int32_IsNull ? nullptr : &Int32_Optional); return nullptr; }
+	FORCEINLINE const int32* GetInt32OrNull() const { if (Int32_IsSet) return (Int32_IsNull ? nullptr : &Int32_Optional); return nullptr; }
 	/** @brief Sets the value of Int32_Optional and also sets Int32_IsSet to true */
-	void SetInt32(const int32& NewValue) { Int32_Optional = NewValue; Int32_IsSet = true; Int32_IsNull = false; }
+	FORCEINLINE void SetInt32(const int32& NewValue) { Int32_Optional = NewValue; Int32_IsSet = true; Int32_IsNull = false; }
 	/** @brief Sets the value of Int32_Optional and also sets Int32_IsSet to true using move semantics */
-	void SetInt32(int32&& NewValue) { Int32_Optional = NewValue; Int32_IsSet = true; Int32_IsNull = false; }
+	FORCEINLINE void SetInt32(int32&& NewValue) { Int32_Optional = NewValue; Int32_IsSet = true; Int32_IsNull = false; }
 	/** @brief Clears the value of Int32_Optional and sets Int32_IsSet to false */
 	void ClearInt32() { Int32_Optional = 0; Int32_IsSet = false; Int32_IsNull = false; }
-	/** @brief Checks whether Int32_Optional has been set */
-	bool IsInt32Set() const { return Int32_IsSet; }
-	/** @brief Returns true if Int32_Optional is set and matches the default value */
-	bool IsInt32DefaultValue() const { return Int32_IsSet && Int32_Optional == 0; }
-	/** @brief Sets the value of Int32_Optional to its default and also sets Int32_IsSet to true */
-	void SetInt32ToDefault() { SetInt32(0); }
+	/** @brief Returns the default value of Int32 */
+	FORCEINLINE int32 GetDefaultValue_Int32() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInt32ToNull() { Int32_IsSet = true; Int32_IsNull = true; }
+	FORCEINLINE void SetInt32ToNull() { Int32_IsSet = true; Int32_IsNull = true; }
 	/** @brief Checks whether Int32_Optional is set to null */
-	bool IsInt32Null() const { return Int32_IsSet && Int32_IsNull; }
+	FORCEINLINE bool IsInt32Null() const { return Int32_IsSet && Int32_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str1_Optional{  };
@@ -1232,29 +1104,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str1_IsNull{ false };
 	/** @brief Gets the value of Str1_Optional, regardless of it having been set */
-	FString& GetStr1() { return Str1_Optional; }
+	FORCEINLINE FString& GetStr1() { return Str1_Optional; }
 	/** @brief Gets the value of Str1_Optional, regardless of it having been set */
-	const FString& GetStr1() const { return Str1_Optional; }
+	FORCEINLINE const FString& GetStr1() const { return Str1_Optional; }
 	/** @brief Gets the value of Str1_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr1(const FString& DefaultValue) const { if (Str1_IsSet) return Str1_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr1(const FString& DefaultValue) const { if (Str1_IsSet) return Str1_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str1_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr1(FString& OutValue) const { if (Str1_IsSet && !Str1_IsNull) OutValue = Str1_Optional; return Str1_IsSet; }
+	FORCEINLINE bool GetStr1(FString& OutValue) const { if (Str1_IsSet && !Str1_IsNull) OutValue = Str1_Optional; return Str1_IsSet; }
 	/** @brief Returns a pointer to Str1_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr1OrNull() { if (Str1_IsSet) return (Str1_IsNull ? nullptr : &Str1_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr1OrNull() { if (Str1_IsSet) return (Str1_IsNull ? nullptr : &Str1_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str1_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr1OrNull() const { if (Str1_IsSet) return (Str1_IsNull ? nullptr : &Str1_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr1OrNull() const { if (Str1_IsSet) return (Str1_IsNull ? nullptr : &Str1_Optional); return nullptr; }
 	/** @brief Sets the value of Str1_Optional and also sets Str1_IsSet to true */
-	void SetStr1(const FString& NewValue) { Str1_Optional = NewValue; Str1_IsSet = true; Str1_IsNull = false; }
+	FORCEINLINE void SetStr1(const FString& NewValue) { Str1_Optional = NewValue; Str1_IsSet = true; Str1_IsNull = false; }
 	/** @brief Sets the value of Str1_Optional and also sets Str1_IsSet to true using move semantics */
-	void SetStr1(FString&& NewValue) { Str1_Optional = NewValue; Str1_IsSet = true; Str1_IsNull = false; }
+	FORCEINLINE void SetStr1(FString&& NewValue) { Str1_Optional = NewValue; Str1_IsSet = true; Str1_IsNull = false; }
 	/** @brief Clears the value of Str1_Optional and sets Str1_IsSet to false */
 	void ClearStr1() { Str1_IsSet = false; Str1_IsNull = false; }
-	/** @brief Checks whether Str1_Optional has been set */
-	bool IsStr1Set() const { return Str1_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr1ToNull() { Str1_IsSet = true; Str1_IsNull = true; }
+	FORCEINLINE void SetStr1ToNull() { Str1_IsSet = true; Str1_IsNull = true; }
 	/** @brief Checks whether Str1_Optional is set to null */
-	bool IsStr1Null() const { return Str1_IsSet && Str1_IsNull; }
+	FORCEINLINE bool IsStr1Null() const { return Str1_IsSet && Str1_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str2_Optional{  };
@@ -1265,29 +1135,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str2_IsNull{ false };
 	/** @brief Gets the value of Str2_Optional, regardless of it having been set */
-	FString& GetStr2() { return Str2_Optional; }
+	FORCEINLINE FString& GetStr2() { return Str2_Optional; }
 	/** @brief Gets the value of Str2_Optional, regardless of it having been set */
-	const FString& GetStr2() const { return Str2_Optional; }
+	FORCEINLINE const FString& GetStr2() const { return Str2_Optional; }
 	/** @brief Gets the value of Str2_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr2(const FString& DefaultValue) const { if (Str2_IsSet) return Str2_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr2(const FString& DefaultValue) const { if (Str2_IsSet) return Str2_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str2_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr2(FString& OutValue) const { if (Str2_IsSet && !Str2_IsNull) OutValue = Str2_Optional; return Str2_IsSet; }
+	FORCEINLINE bool GetStr2(FString& OutValue) const { if (Str2_IsSet && !Str2_IsNull) OutValue = Str2_Optional; return Str2_IsSet; }
 	/** @brief Returns a pointer to Str2_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr2OrNull() { if (Str2_IsSet) return (Str2_IsNull ? nullptr : &Str2_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr2OrNull() { if (Str2_IsSet) return (Str2_IsNull ? nullptr : &Str2_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str2_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr2OrNull() const { if (Str2_IsSet) return (Str2_IsNull ? nullptr : &Str2_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr2OrNull() const { if (Str2_IsSet) return (Str2_IsNull ? nullptr : &Str2_Optional); return nullptr; }
 	/** @brief Sets the value of Str2_Optional and also sets Str2_IsSet to true */
-	void SetStr2(const FString& NewValue) { Str2_Optional = NewValue; Str2_IsSet = true; Str2_IsNull = false; }
+	FORCEINLINE void SetStr2(const FString& NewValue) { Str2_Optional = NewValue; Str2_IsSet = true; Str2_IsNull = false; }
 	/** @brief Sets the value of Str2_Optional and also sets Str2_IsSet to true using move semantics */
-	void SetStr2(FString&& NewValue) { Str2_Optional = NewValue; Str2_IsSet = true; Str2_IsNull = false; }
+	FORCEINLINE void SetStr2(FString&& NewValue) { Str2_Optional = NewValue; Str2_IsSet = true; Str2_IsNull = false; }
 	/** @brief Clears the value of Str2_Optional and sets Str2_IsSet to false */
 	void ClearStr2() { Str2_IsSet = false; Str2_IsNull = false; }
-	/** @brief Checks whether Str2_Optional has been set */
-	bool IsStr2Set() const { return Str2_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr2ToNull() { Str2_IsSet = true; Str2_IsNull = true; }
+	FORCEINLINE void SetStr2ToNull() { Str2_IsSet = true; Str2_IsNull = true; }
 	/** @brief Checks whether Str2_Optional is set to null */
-	bool IsStr2Null() const { return Str2_IsSet && Str2_IsNull; }
+	FORCEINLINE bool IsStr2Null() const { return Str2_IsSet && Str2_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str3_Optional{  };
@@ -1298,29 +1166,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str3_IsNull{ false };
 	/** @brief Gets the value of Str3_Optional, regardless of it having been set */
-	FString& GetStr3() { return Str3_Optional; }
+	FORCEINLINE FString& GetStr3() { return Str3_Optional; }
 	/** @brief Gets the value of Str3_Optional, regardless of it having been set */
-	const FString& GetStr3() const { return Str3_Optional; }
+	FORCEINLINE const FString& GetStr3() const { return Str3_Optional; }
 	/** @brief Gets the value of Str3_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr3(const FString& DefaultValue) const { if (Str3_IsSet) return Str3_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr3(const FString& DefaultValue) const { if (Str3_IsSet) return Str3_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str3_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr3(FString& OutValue) const { if (Str3_IsSet && !Str3_IsNull) OutValue = Str3_Optional; return Str3_IsSet; }
+	FORCEINLINE bool GetStr3(FString& OutValue) const { if (Str3_IsSet && !Str3_IsNull) OutValue = Str3_Optional; return Str3_IsSet; }
 	/** @brief Returns a pointer to Str3_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr3OrNull() { if (Str3_IsSet) return (Str3_IsNull ? nullptr : &Str3_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr3OrNull() { if (Str3_IsSet) return (Str3_IsNull ? nullptr : &Str3_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str3_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr3OrNull() const { if (Str3_IsSet) return (Str3_IsNull ? nullptr : &Str3_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr3OrNull() const { if (Str3_IsSet) return (Str3_IsNull ? nullptr : &Str3_Optional); return nullptr; }
 	/** @brief Sets the value of Str3_Optional and also sets Str3_IsSet to true */
-	void SetStr3(const FString& NewValue) { Str3_Optional = NewValue; Str3_IsSet = true; Str3_IsNull = false; }
+	FORCEINLINE void SetStr3(const FString& NewValue) { Str3_Optional = NewValue; Str3_IsSet = true; Str3_IsNull = false; }
 	/** @brief Sets the value of Str3_Optional and also sets Str3_IsSet to true using move semantics */
-	void SetStr3(FString&& NewValue) { Str3_Optional = NewValue; Str3_IsSet = true; Str3_IsNull = false; }
+	FORCEINLINE void SetStr3(FString&& NewValue) { Str3_Optional = NewValue; Str3_IsSet = true; Str3_IsNull = false; }
 	/** @brief Clears the value of Str3_Optional and sets Str3_IsSet to false */
 	void ClearStr3() { Str3_IsSet = false; Str3_IsNull = false; }
-	/** @brief Checks whether Str3_Optional has been set */
-	bool IsStr3Set() const { return Str3_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr3ToNull() { Str3_IsSet = true; Str3_IsNull = true; }
+	FORCEINLINE void SetStr3ToNull() { Str3_IsSet = true; Str3_IsNull = true; }
 	/** @brief Checks whether Str3_Optional is set to null */
-	bool IsStr3Null() const { return Str3_IsSet && Str3_IsNull; }
+	FORCEINLINE bool IsStr3Null() const { return Str3_IsSet && Str3_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str4_Optional{  };
@@ -1331,29 +1197,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str4_IsNull{ false };
 	/** @brief Gets the value of Str4_Optional, regardless of it having been set */
-	FString& GetStr4() { return Str4_Optional; }
+	FORCEINLINE FString& GetStr4() { return Str4_Optional; }
 	/** @brief Gets the value of Str4_Optional, regardless of it having been set */
-	const FString& GetStr4() const { return Str4_Optional; }
+	FORCEINLINE const FString& GetStr4() const { return Str4_Optional; }
 	/** @brief Gets the value of Str4_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr4(const FString& DefaultValue) const { if (Str4_IsSet) return Str4_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr4(const FString& DefaultValue) const { if (Str4_IsSet) return Str4_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str4_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr4(FString& OutValue) const { if (Str4_IsSet && !Str4_IsNull) OutValue = Str4_Optional; return Str4_IsSet; }
+	FORCEINLINE bool GetStr4(FString& OutValue) const { if (Str4_IsSet && !Str4_IsNull) OutValue = Str4_Optional; return Str4_IsSet; }
 	/** @brief Returns a pointer to Str4_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr4OrNull() { if (Str4_IsSet) return (Str4_IsNull ? nullptr : &Str4_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr4OrNull() { if (Str4_IsSet) return (Str4_IsNull ? nullptr : &Str4_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str4_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr4OrNull() const { if (Str4_IsSet) return (Str4_IsNull ? nullptr : &Str4_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr4OrNull() const { if (Str4_IsSet) return (Str4_IsNull ? nullptr : &Str4_Optional); return nullptr; }
 	/** @brief Sets the value of Str4_Optional and also sets Str4_IsSet to true */
-	void SetStr4(const FString& NewValue) { Str4_Optional = NewValue; Str4_IsSet = true; Str4_IsNull = false; }
+	FORCEINLINE void SetStr4(const FString& NewValue) { Str4_Optional = NewValue; Str4_IsSet = true; Str4_IsNull = false; }
 	/** @brief Sets the value of Str4_Optional and also sets Str4_IsSet to true using move semantics */
-	void SetStr4(FString&& NewValue) { Str4_Optional = NewValue; Str4_IsSet = true; Str4_IsNull = false; }
+	FORCEINLINE void SetStr4(FString&& NewValue) { Str4_Optional = NewValue; Str4_IsSet = true; Str4_IsNull = false; }
 	/** @brief Clears the value of Str4_Optional and sets Str4_IsSet to false */
 	void ClearStr4() { Str4_IsSet = false; Str4_IsNull = false; }
-	/** @brief Checks whether Str4_Optional has been set */
-	bool IsStr4Set() const { return Str4_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr4ToNull() { Str4_IsSet = true; Str4_IsNull = true; }
+	FORCEINLINE void SetStr4ToNull() { Str4_IsSet = true; Str4_IsNull = true; }
 	/** @brief Checks whether Str4_Optional is set to null */
-	bool IsStr4Null() const { return Str4_IsSet && Str4_IsNull; }
+	FORCEINLINE bool IsStr4Null() const { return Str4_IsSet && Str4_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str5_Optional{  };
@@ -1364,29 +1228,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str5_IsNull{ false };
 	/** @brief Gets the value of Str5_Optional, regardless of it having been set */
-	FString& GetStr5() { return Str5_Optional; }
+	FORCEINLINE FString& GetStr5() { return Str5_Optional; }
 	/** @brief Gets the value of Str5_Optional, regardless of it having been set */
-	const FString& GetStr5() const { return Str5_Optional; }
+	FORCEINLINE const FString& GetStr5() const { return Str5_Optional; }
 	/** @brief Gets the value of Str5_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr5(const FString& DefaultValue) const { if (Str5_IsSet) return Str5_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr5(const FString& DefaultValue) const { if (Str5_IsSet) return Str5_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str5_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr5(FString& OutValue) const { if (Str5_IsSet && !Str5_IsNull) OutValue = Str5_Optional; return Str5_IsSet; }
+	FORCEINLINE bool GetStr5(FString& OutValue) const { if (Str5_IsSet && !Str5_IsNull) OutValue = Str5_Optional; return Str5_IsSet; }
 	/** @brief Returns a pointer to Str5_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr5OrNull() { if (Str5_IsSet) return (Str5_IsNull ? nullptr : &Str5_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr5OrNull() { if (Str5_IsSet) return (Str5_IsNull ? nullptr : &Str5_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str5_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr5OrNull() const { if (Str5_IsSet) return (Str5_IsNull ? nullptr : &Str5_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr5OrNull() const { if (Str5_IsSet) return (Str5_IsNull ? nullptr : &Str5_Optional); return nullptr; }
 	/** @brief Sets the value of Str5_Optional and also sets Str5_IsSet to true */
-	void SetStr5(const FString& NewValue) { Str5_Optional = NewValue; Str5_IsSet = true; Str5_IsNull = false; }
+	FORCEINLINE void SetStr5(const FString& NewValue) { Str5_Optional = NewValue; Str5_IsSet = true; Str5_IsNull = false; }
 	/** @brief Sets the value of Str5_Optional and also sets Str5_IsSet to true using move semantics */
-	void SetStr5(FString&& NewValue) { Str5_Optional = NewValue; Str5_IsSet = true; Str5_IsNull = false; }
+	FORCEINLINE void SetStr5(FString&& NewValue) { Str5_Optional = NewValue; Str5_IsSet = true; Str5_IsNull = false; }
 	/** @brief Clears the value of Str5_Optional and sets Str5_IsSet to false */
 	void ClearStr5() { Str5_IsSet = false; Str5_IsNull = false; }
-	/** @brief Checks whether Str5_Optional has been set */
-	bool IsStr5Set() const { return Str5_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr5ToNull() { Str5_IsSet = true; Str5_IsNull = true; }
+	FORCEINLINE void SetStr5ToNull() { Str5_IsSet = true; Str5_IsNull = true; }
 	/** @brief Checks whether Str5_Optional is set to null */
-	bool IsStr5Null() const { return Str5_IsSet && Str5_IsNull; }
+	FORCEINLINE bool IsStr5Null() const { return Str5_IsSet && Str5_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str6_Optional{  };
@@ -1397,29 +1259,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str6_IsNull{ false };
 	/** @brief Gets the value of Str6_Optional, regardless of it having been set */
-	FString& GetStr6() { return Str6_Optional; }
+	FORCEINLINE FString& GetStr6() { return Str6_Optional; }
 	/** @brief Gets the value of Str6_Optional, regardless of it having been set */
-	const FString& GetStr6() const { return Str6_Optional; }
+	FORCEINLINE const FString& GetStr6() const { return Str6_Optional; }
 	/** @brief Gets the value of Str6_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr6(const FString& DefaultValue) const { if (Str6_IsSet) return Str6_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr6(const FString& DefaultValue) const { if (Str6_IsSet) return Str6_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str6_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr6(FString& OutValue) const { if (Str6_IsSet && !Str6_IsNull) OutValue = Str6_Optional; return Str6_IsSet; }
+	FORCEINLINE bool GetStr6(FString& OutValue) const { if (Str6_IsSet && !Str6_IsNull) OutValue = Str6_Optional; return Str6_IsSet; }
 	/** @brief Returns a pointer to Str6_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr6OrNull() { if (Str6_IsSet) return (Str6_IsNull ? nullptr : &Str6_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr6OrNull() { if (Str6_IsSet) return (Str6_IsNull ? nullptr : &Str6_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str6_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr6OrNull() const { if (Str6_IsSet) return (Str6_IsNull ? nullptr : &Str6_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr6OrNull() const { if (Str6_IsSet) return (Str6_IsNull ? nullptr : &Str6_Optional); return nullptr; }
 	/** @brief Sets the value of Str6_Optional and also sets Str6_IsSet to true */
-	void SetStr6(const FString& NewValue) { Str6_Optional = NewValue; Str6_IsSet = true; Str6_IsNull = false; }
+	FORCEINLINE void SetStr6(const FString& NewValue) { Str6_Optional = NewValue; Str6_IsSet = true; Str6_IsNull = false; }
 	/** @brief Sets the value of Str6_Optional and also sets Str6_IsSet to true using move semantics */
-	void SetStr6(FString&& NewValue) { Str6_Optional = NewValue; Str6_IsSet = true; Str6_IsNull = false; }
+	FORCEINLINE void SetStr6(FString&& NewValue) { Str6_Optional = NewValue; Str6_IsSet = true; Str6_IsNull = false; }
 	/** @brief Clears the value of Str6_Optional and sets Str6_IsSet to false */
 	void ClearStr6() { Str6_IsSet = false; Str6_IsNull = false; }
-	/** @brief Checks whether Str6_Optional has been set */
-	bool IsStr6Set() const { return Str6_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr6ToNull() { Str6_IsSet = true; Str6_IsNull = true; }
+	FORCEINLINE void SetStr6ToNull() { Str6_IsSet = true; Str6_IsNull = true; }
 	/** @brief Checks whether Str6_Optional is set to null */
-	bool IsStr6Null() const { return Str6_IsSet && Str6_IsNull; }
+	FORCEINLINE bool IsStr6Null() const { return Str6_IsSet && Str6_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str7_Optional{  };
@@ -1430,29 +1290,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str7_IsNull{ false };
 	/** @brief Gets the value of Str7_Optional, regardless of it having been set */
-	FString& GetStr7() { return Str7_Optional; }
+	FORCEINLINE FString& GetStr7() { return Str7_Optional; }
 	/** @brief Gets the value of Str7_Optional, regardless of it having been set */
-	const FString& GetStr7() const { return Str7_Optional; }
+	FORCEINLINE const FString& GetStr7() const { return Str7_Optional; }
 	/** @brief Gets the value of Str7_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr7(const FString& DefaultValue) const { if (Str7_IsSet) return Str7_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr7(const FString& DefaultValue) const { if (Str7_IsSet) return Str7_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str7_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr7(FString& OutValue) const { if (Str7_IsSet && !Str7_IsNull) OutValue = Str7_Optional; return Str7_IsSet; }
+	FORCEINLINE bool GetStr7(FString& OutValue) const { if (Str7_IsSet && !Str7_IsNull) OutValue = Str7_Optional; return Str7_IsSet; }
 	/** @brief Returns a pointer to Str7_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr7OrNull() { if (Str7_IsSet) return (Str7_IsNull ? nullptr : &Str7_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr7OrNull() { if (Str7_IsSet) return (Str7_IsNull ? nullptr : &Str7_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str7_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr7OrNull() const { if (Str7_IsSet) return (Str7_IsNull ? nullptr : &Str7_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr7OrNull() const { if (Str7_IsSet) return (Str7_IsNull ? nullptr : &Str7_Optional); return nullptr; }
 	/** @brief Sets the value of Str7_Optional and also sets Str7_IsSet to true */
-	void SetStr7(const FString& NewValue) { Str7_Optional = NewValue; Str7_IsSet = true; Str7_IsNull = false; }
+	FORCEINLINE void SetStr7(const FString& NewValue) { Str7_Optional = NewValue; Str7_IsSet = true; Str7_IsNull = false; }
 	/** @brief Sets the value of Str7_Optional and also sets Str7_IsSet to true using move semantics */
-	void SetStr7(FString&& NewValue) { Str7_Optional = NewValue; Str7_IsSet = true; Str7_IsNull = false; }
+	FORCEINLINE void SetStr7(FString&& NewValue) { Str7_Optional = NewValue; Str7_IsSet = true; Str7_IsNull = false; }
 	/** @brief Clears the value of Str7_Optional and sets Str7_IsSet to false */
 	void ClearStr7() { Str7_IsSet = false; Str7_IsNull = false; }
-	/** @brief Checks whether Str7_Optional has been set */
-	bool IsStr7Set() const { return Str7_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr7ToNull() { Str7_IsSet = true; Str7_IsNull = true; }
+	FORCEINLINE void SetStr7ToNull() { Str7_IsSet = true; Str7_IsNull = true; }
 	/** @brief Checks whether Str7_Optional is set to null */
-	bool IsStr7Null() const { return Str7_IsSet && Str7_IsNull; }
+	FORCEINLINE bool IsStr7Null() const { return Str7_IsSet && Str7_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str8_Optional{  };
@@ -1463,29 +1321,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str8_IsNull{ false };
 	/** @brief Gets the value of Str8_Optional, regardless of it having been set */
-	FString& GetStr8() { return Str8_Optional; }
+	FORCEINLINE FString& GetStr8() { return Str8_Optional; }
 	/** @brief Gets the value of Str8_Optional, regardless of it having been set */
-	const FString& GetStr8() const { return Str8_Optional; }
+	FORCEINLINE const FString& GetStr8() const { return Str8_Optional; }
 	/** @brief Gets the value of Str8_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr8(const FString& DefaultValue) const { if (Str8_IsSet) return Str8_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr8(const FString& DefaultValue) const { if (Str8_IsSet) return Str8_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str8_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr8(FString& OutValue) const { if (Str8_IsSet && !Str8_IsNull) OutValue = Str8_Optional; return Str8_IsSet; }
+	FORCEINLINE bool GetStr8(FString& OutValue) const { if (Str8_IsSet && !Str8_IsNull) OutValue = Str8_Optional; return Str8_IsSet; }
 	/** @brief Returns a pointer to Str8_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr8OrNull() { if (Str8_IsSet) return (Str8_IsNull ? nullptr : &Str8_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr8OrNull() { if (Str8_IsSet) return (Str8_IsNull ? nullptr : &Str8_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str8_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr8OrNull() const { if (Str8_IsSet) return (Str8_IsNull ? nullptr : &Str8_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr8OrNull() const { if (Str8_IsSet) return (Str8_IsNull ? nullptr : &Str8_Optional); return nullptr; }
 	/** @brief Sets the value of Str8_Optional and also sets Str8_IsSet to true */
-	void SetStr8(const FString& NewValue) { Str8_Optional = NewValue; Str8_IsSet = true; Str8_IsNull = false; }
+	FORCEINLINE void SetStr8(const FString& NewValue) { Str8_Optional = NewValue; Str8_IsSet = true; Str8_IsNull = false; }
 	/** @brief Sets the value of Str8_Optional and also sets Str8_IsSet to true using move semantics */
-	void SetStr8(FString&& NewValue) { Str8_Optional = NewValue; Str8_IsSet = true; Str8_IsNull = false; }
+	FORCEINLINE void SetStr8(FString&& NewValue) { Str8_Optional = NewValue; Str8_IsSet = true; Str8_IsNull = false; }
 	/** @brief Clears the value of Str8_Optional and sets Str8_IsSet to false */
 	void ClearStr8() { Str8_IsSet = false; Str8_IsNull = false; }
-	/** @brief Checks whether Str8_Optional has been set */
-	bool IsStr8Set() const { return Str8_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr8ToNull() { Str8_IsSet = true; Str8_IsNull = true; }
+	FORCEINLINE void SetStr8ToNull() { Str8_IsSet = true; Str8_IsNull = true; }
 	/** @brief Checks whether Str8_Optional is set to null */
-	bool IsStr8Null() const { return Str8_IsSet && Str8_IsNull; }
+	FORCEINLINE bool IsStr8Null() const { return Str8_IsSet && Str8_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str9_Optional{  };
@@ -1496,29 +1352,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str9_IsNull{ false };
 	/** @brief Gets the value of Str9_Optional, regardless of it having been set */
-	FString& GetStr9() { return Str9_Optional; }
+	FORCEINLINE FString& GetStr9() { return Str9_Optional; }
 	/** @brief Gets the value of Str9_Optional, regardless of it having been set */
-	const FString& GetStr9() const { return Str9_Optional; }
+	FORCEINLINE const FString& GetStr9() const { return Str9_Optional; }
 	/** @brief Gets the value of Str9_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr9(const FString& DefaultValue) const { if (Str9_IsSet) return Str9_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr9(const FString& DefaultValue) const { if (Str9_IsSet) return Str9_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str9_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr9(FString& OutValue) const { if (Str9_IsSet && !Str9_IsNull) OutValue = Str9_Optional; return Str9_IsSet; }
+	FORCEINLINE bool GetStr9(FString& OutValue) const { if (Str9_IsSet && !Str9_IsNull) OutValue = Str9_Optional; return Str9_IsSet; }
 	/** @brief Returns a pointer to Str9_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr9OrNull() { if (Str9_IsSet) return (Str9_IsNull ? nullptr : &Str9_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr9OrNull() { if (Str9_IsSet) return (Str9_IsNull ? nullptr : &Str9_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str9_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr9OrNull() const { if (Str9_IsSet) return (Str9_IsNull ? nullptr : &Str9_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr9OrNull() const { if (Str9_IsSet) return (Str9_IsNull ? nullptr : &Str9_Optional); return nullptr; }
 	/** @brief Sets the value of Str9_Optional and also sets Str9_IsSet to true */
-	void SetStr9(const FString& NewValue) { Str9_Optional = NewValue; Str9_IsSet = true; Str9_IsNull = false; }
+	FORCEINLINE void SetStr9(const FString& NewValue) { Str9_Optional = NewValue; Str9_IsSet = true; Str9_IsNull = false; }
 	/** @brief Sets the value of Str9_Optional and also sets Str9_IsSet to true using move semantics */
-	void SetStr9(FString&& NewValue) { Str9_Optional = NewValue; Str9_IsSet = true; Str9_IsNull = false; }
+	FORCEINLINE void SetStr9(FString&& NewValue) { Str9_Optional = NewValue; Str9_IsSet = true; Str9_IsNull = false; }
 	/** @brief Clears the value of Str9_Optional and sets Str9_IsSet to false */
 	void ClearStr9() { Str9_IsSet = false; Str9_IsNull = false; }
-	/** @brief Checks whether Str9_Optional has been set */
-	bool IsStr9Set() const { return Str9_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr9ToNull() { Str9_IsSet = true; Str9_IsNull = true; }
+	FORCEINLINE void SetStr9ToNull() { Str9_IsSet = true; Str9_IsNull = true; }
 	/** @brief Checks whether Str9_Optional is set to null */
-	bool IsStr9Null() const { return Str9_IsSet && Str9_IsNull; }
+	FORCEINLINE bool IsStr9Null() const { return Str9_IsSet && Str9_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str10_Optional{  };
@@ -1529,29 +1383,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str10_IsNull{ false };
 	/** @brief Gets the value of Str10_Optional, regardless of it having been set */
-	FString& GetStr10() { return Str10_Optional; }
+	FORCEINLINE FString& GetStr10() { return Str10_Optional; }
 	/** @brief Gets the value of Str10_Optional, regardless of it having been set */
-	const FString& GetStr10() const { return Str10_Optional; }
+	FORCEINLINE const FString& GetStr10() const { return Str10_Optional; }
 	/** @brief Gets the value of Str10_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr10(const FString& DefaultValue) const { if (Str10_IsSet) return Str10_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr10(const FString& DefaultValue) const { if (Str10_IsSet) return Str10_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str10_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr10(FString& OutValue) const { if (Str10_IsSet && !Str10_IsNull) OutValue = Str10_Optional; return Str10_IsSet; }
+	FORCEINLINE bool GetStr10(FString& OutValue) const { if (Str10_IsSet && !Str10_IsNull) OutValue = Str10_Optional; return Str10_IsSet; }
 	/** @brief Returns a pointer to Str10_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr10OrNull() { if (Str10_IsSet) return (Str10_IsNull ? nullptr : &Str10_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr10OrNull() { if (Str10_IsSet) return (Str10_IsNull ? nullptr : &Str10_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str10_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr10OrNull() const { if (Str10_IsSet) return (Str10_IsNull ? nullptr : &Str10_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr10OrNull() const { if (Str10_IsSet) return (Str10_IsNull ? nullptr : &Str10_Optional); return nullptr; }
 	/** @brief Sets the value of Str10_Optional and also sets Str10_IsSet to true */
-	void SetStr10(const FString& NewValue) { Str10_Optional = NewValue; Str10_IsSet = true; Str10_IsNull = false; }
+	FORCEINLINE void SetStr10(const FString& NewValue) { Str10_Optional = NewValue; Str10_IsSet = true; Str10_IsNull = false; }
 	/** @brief Sets the value of Str10_Optional and also sets Str10_IsSet to true using move semantics */
-	void SetStr10(FString&& NewValue) { Str10_Optional = NewValue; Str10_IsSet = true; Str10_IsNull = false; }
+	FORCEINLINE void SetStr10(FString&& NewValue) { Str10_Optional = NewValue; Str10_IsSet = true; Str10_IsNull = false; }
 	/** @brief Clears the value of Str10_Optional and sets Str10_IsSet to false */
 	void ClearStr10() { Str10_IsSet = false; Str10_IsNull = false; }
-	/** @brief Checks whether Str10_Optional has been set */
-	bool IsStr10Set() const { return Str10_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr10ToNull() { Str10_IsSet = true; Str10_IsNull = true; }
+	FORCEINLINE void SetStr10ToNull() { Str10_IsSet = true; Str10_IsNull = true; }
 	/** @brief Checks whether Str10_Optional is set to null */
-	bool IsStr10Null() const { return Str10_IsSet && Str10_IsNull; }
+	FORCEINLINE bool IsStr10Null() const { return Str10_IsSet && Str10_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str11_Optional{  };
@@ -1562,29 +1414,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str11_IsNull{ false };
 	/** @brief Gets the value of Str11_Optional, regardless of it having been set */
-	FString& GetStr11() { return Str11_Optional; }
+	FORCEINLINE FString& GetStr11() { return Str11_Optional; }
 	/** @brief Gets the value of Str11_Optional, regardless of it having been set */
-	const FString& GetStr11() const { return Str11_Optional; }
+	FORCEINLINE const FString& GetStr11() const { return Str11_Optional; }
 	/** @brief Gets the value of Str11_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr11(const FString& DefaultValue) const { if (Str11_IsSet) return Str11_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr11(const FString& DefaultValue) const { if (Str11_IsSet) return Str11_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str11_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr11(FString& OutValue) const { if (Str11_IsSet && !Str11_IsNull) OutValue = Str11_Optional; return Str11_IsSet; }
+	FORCEINLINE bool GetStr11(FString& OutValue) const { if (Str11_IsSet && !Str11_IsNull) OutValue = Str11_Optional; return Str11_IsSet; }
 	/** @brief Returns a pointer to Str11_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr11OrNull() { if (Str11_IsSet) return (Str11_IsNull ? nullptr : &Str11_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr11OrNull() { if (Str11_IsSet) return (Str11_IsNull ? nullptr : &Str11_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str11_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr11OrNull() const { if (Str11_IsSet) return (Str11_IsNull ? nullptr : &Str11_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr11OrNull() const { if (Str11_IsSet) return (Str11_IsNull ? nullptr : &Str11_Optional); return nullptr; }
 	/** @brief Sets the value of Str11_Optional and also sets Str11_IsSet to true */
-	void SetStr11(const FString& NewValue) { Str11_Optional = NewValue; Str11_IsSet = true; Str11_IsNull = false; }
+	FORCEINLINE void SetStr11(const FString& NewValue) { Str11_Optional = NewValue; Str11_IsSet = true; Str11_IsNull = false; }
 	/** @brief Sets the value of Str11_Optional and also sets Str11_IsSet to true using move semantics */
-	void SetStr11(FString&& NewValue) { Str11_Optional = NewValue; Str11_IsSet = true; Str11_IsNull = false; }
+	FORCEINLINE void SetStr11(FString&& NewValue) { Str11_Optional = NewValue; Str11_IsSet = true; Str11_IsNull = false; }
 	/** @brief Clears the value of Str11_Optional and sets Str11_IsSet to false */
 	void ClearStr11() { Str11_IsSet = false; Str11_IsNull = false; }
-	/** @brief Checks whether Str11_Optional has been set */
-	bool IsStr11Set() const { return Str11_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr11ToNull() { Str11_IsSet = true; Str11_IsNull = true; }
+	FORCEINLINE void SetStr11ToNull() { Str11_IsSet = true; Str11_IsNull = true; }
 	/** @brief Checks whether Str11_Optional is set to null */
-	bool IsStr11Null() const { return Str11_IsSet && Str11_IsNull; }
+	FORCEINLINE bool IsStr11Null() const { return Str11_IsSet && Str11_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str12_Optional{  };
@@ -1595,29 +1445,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str12_IsNull{ false };
 	/** @brief Gets the value of Str12_Optional, regardless of it having been set */
-	FString& GetStr12() { return Str12_Optional; }
+	FORCEINLINE FString& GetStr12() { return Str12_Optional; }
 	/** @brief Gets the value of Str12_Optional, regardless of it having been set */
-	const FString& GetStr12() const { return Str12_Optional; }
+	FORCEINLINE const FString& GetStr12() const { return Str12_Optional; }
 	/** @brief Gets the value of Str12_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr12(const FString& DefaultValue) const { if (Str12_IsSet) return Str12_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr12(const FString& DefaultValue) const { if (Str12_IsSet) return Str12_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str12_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr12(FString& OutValue) const { if (Str12_IsSet && !Str12_IsNull) OutValue = Str12_Optional; return Str12_IsSet; }
+	FORCEINLINE bool GetStr12(FString& OutValue) const { if (Str12_IsSet && !Str12_IsNull) OutValue = Str12_Optional; return Str12_IsSet; }
 	/** @brief Returns a pointer to Str12_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr12OrNull() { if (Str12_IsSet) return (Str12_IsNull ? nullptr : &Str12_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr12OrNull() { if (Str12_IsSet) return (Str12_IsNull ? nullptr : &Str12_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str12_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr12OrNull() const { if (Str12_IsSet) return (Str12_IsNull ? nullptr : &Str12_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr12OrNull() const { if (Str12_IsSet) return (Str12_IsNull ? nullptr : &Str12_Optional); return nullptr; }
 	/** @brief Sets the value of Str12_Optional and also sets Str12_IsSet to true */
-	void SetStr12(const FString& NewValue) { Str12_Optional = NewValue; Str12_IsSet = true; Str12_IsNull = false; }
+	FORCEINLINE void SetStr12(const FString& NewValue) { Str12_Optional = NewValue; Str12_IsSet = true; Str12_IsNull = false; }
 	/** @brief Sets the value of Str12_Optional and also sets Str12_IsSet to true using move semantics */
-	void SetStr12(FString&& NewValue) { Str12_Optional = NewValue; Str12_IsSet = true; Str12_IsNull = false; }
+	FORCEINLINE void SetStr12(FString&& NewValue) { Str12_Optional = NewValue; Str12_IsSet = true; Str12_IsNull = false; }
 	/** @brief Clears the value of Str12_Optional and sets Str12_IsSet to false */
 	void ClearStr12() { Str12_IsSet = false; Str12_IsNull = false; }
-	/** @brief Checks whether Str12_Optional has been set */
-	bool IsStr12Set() const { return Str12_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr12ToNull() { Str12_IsSet = true; Str12_IsNull = true; }
+	FORCEINLINE void SetStr12ToNull() { Str12_IsSet = true; Str12_IsNull = true; }
 	/** @brief Checks whether Str12_Optional is set to null */
-	bool IsStr12Null() const { return Str12_IsSet && Str12_IsNull; }
+	FORCEINLINE bool IsStr12Null() const { return Str12_IsSet && Str12_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str13_Optional{  };
@@ -1628,29 +1476,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str13_IsNull{ false };
 	/** @brief Gets the value of Str13_Optional, regardless of it having been set */
-	FString& GetStr13() { return Str13_Optional; }
+	FORCEINLINE FString& GetStr13() { return Str13_Optional; }
 	/** @brief Gets the value of Str13_Optional, regardless of it having been set */
-	const FString& GetStr13() const { return Str13_Optional; }
+	FORCEINLINE const FString& GetStr13() const { return Str13_Optional; }
 	/** @brief Gets the value of Str13_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr13(const FString& DefaultValue) const { if (Str13_IsSet) return Str13_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr13(const FString& DefaultValue) const { if (Str13_IsSet) return Str13_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str13_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr13(FString& OutValue) const { if (Str13_IsSet && !Str13_IsNull) OutValue = Str13_Optional; return Str13_IsSet; }
+	FORCEINLINE bool GetStr13(FString& OutValue) const { if (Str13_IsSet && !Str13_IsNull) OutValue = Str13_Optional; return Str13_IsSet; }
 	/** @brief Returns a pointer to Str13_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr13OrNull() { if (Str13_IsSet) return (Str13_IsNull ? nullptr : &Str13_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr13OrNull() { if (Str13_IsSet) return (Str13_IsNull ? nullptr : &Str13_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str13_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr13OrNull() const { if (Str13_IsSet) return (Str13_IsNull ? nullptr : &Str13_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr13OrNull() const { if (Str13_IsSet) return (Str13_IsNull ? nullptr : &Str13_Optional); return nullptr; }
 	/** @brief Sets the value of Str13_Optional and also sets Str13_IsSet to true */
-	void SetStr13(const FString& NewValue) { Str13_Optional = NewValue; Str13_IsSet = true; Str13_IsNull = false; }
+	FORCEINLINE void SetStr13(const FString& NewValue) { Str13_Optional = NewValue; Str13_IsSet = true; Str13_IsNull = false; }
 	/** @brief Sets the value of Str13_Optional and also sets Str13_IsSet to true using move semantics */
-	void SetStr13(FString&& NewValue) { Str13_Optional = NewValue; Str13_IsSet = true; Str13_IsNull = false; }
+	FORCEINLINE void SetStr13(FString&& NewValue) { Str13_Optional = NewValue; Str13_IsSet = true; Str13_IsNull = false; }
 	/** @brief Clears the value of Str13_Optional and sets Str13_IsSet to false */
 	void ClearStr13() { Str13_IsSet = false; Str13_IsNull = false; }
-	/** @brief Checks whether Str13_Optional has been set */
-	bool IsStr13Set() const { return Str13_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr13ToNull() { Str13_IsSet = true; Str13_IsNull = true; }
+	FORCEINLINE void SetStr13ToNull() { Str13_IsSet = true; Str13_IsNull = true; }
 	/** @brief Checks whether Str13_Optional is set to null */
-	bool IsStr13Null() const { return Str13_IsSet && Str13_IsNull; }
+	FORCEINLINE bool IsStr13Null() const { return Str13_IsSet && Str13_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str14_Optional{  };
@@ -1661,29 +1507,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str14_IsNull{ false };
 	/** @brief Gets the value of Str14_Optional, regardless of it having been set */
-	FString& GetStr14() { return Str14_Optional; }
+	FORCEINLINE FString& GetStr14() { return Str14_Optional; }
 	/** @brief Gets the value of Str14_Optional, regardless of it having been set */
-	const FString& GetStr14() const { return Str14_Optional; }
+	FORCEINLINE const FString& GetStr14() const { return Str14_Optional; }
 	/** @brief Gets the value of Str14_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr14(const FString& DefaultValue) const { if (Str14_IsSet) return Str14_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr14(const FString& DefaultValue) const { if (Str14_IsSet) return Str14_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str14_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr14(FString& OutValue) const { if (Str14_IsSet && !Str14_IsNull) OutValue = Str14_Optional; return Str14_IsSet; }
+	FORCEINLINE bool GetStr14(FString& OutValue) const { if (Str14_IsSet && !Str14_IsNull) OutValue = Str14_Optional; return Str14_IsSet; }
 	/** @brief Returns a pointer to Str14_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr14OrNull() { if (Str14_IsSet) return (Str14_IsNull ? nullptr : &Str14_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr14OrNull() { if (Str14_IsSet) return (Str14_IsNull ? nullptr : &Str14_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str14_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr14OrNull() const { if (Str14_IsSet) return (Str14_IsNull ? nullptr : &Str14_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr14OrNull() const { if (Str14_IsSet) return (Str14_IsNull ? nullptr : &Str14_Optional); return nullptr; }
 	/** @brief Sets the value of Str14_Optional and also sets Str14_IsSet to true */
-	void SetStr14(const FString& NewValue) { Str14_Optional = NewValue; Str14_IsSet = true; Str14_IsNull = false; }
+	FORCEINLINE void SetStr14(const FString& NewValue) { Str14_Optional = NewValue; Str14_IsSet = true; Str14_IsNull = false; }
 	/** @brief Sets the value of Str14_Optional and also sets Str14_IsSet to true using move semantics */
-	void SetStr14(FString&& NewValue) { Str14_Optional = NewValue; Str14_IsSet = true; Str14_IsNull = false; }
+	FORCEINLINE void SetStr14(FString&& NewValue) { Str14_Optional = NewValue; Str14_IsSet = true; Str14_IsNull = false; }
 	/** @brief Clears the value of Str14_Optional and sets Str14_IsSet to false */
 	void ClearStr14() { Str14_IsSet = false; Str14_IsNull = false; }
-	/** @brief Checks whether Str14_Optional has been set */
-	bool IsStr14Set() const { return Str14_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr14ToNull() { Str14_IsSet = true; Str14_IsNull = true; }
+	FORCEINLINE void SetStr14ToNull() { Str14_IsSet = true; Str14_IsNull = true; }
 	/** @brief Checks whether Str14_Optional is set to null */
-	bool IsStr14Null() const { return Str14_IsSet && Str14_IsNull; }
+	FORCEINLINE bool IsStr14Null() const { return Str14_IsSet && Str14_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str15_Optional{  };
@@ -1694,29 +1538,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str15_IsNull{ false };
 	/** @brief Gets the value of Str15_Optional, regardless of it having been set */
-	FString& GetStr15() { return Str15_Optional; }
+	FORCEINLINE FString& GetStr15() { return Str15_Optional; }
 	/** @brief Gets the value of Str15_Optional, regardless of it having been set */
-	const FString& GetStr15() const { return Str15_Optional; }
+	FORCEINLINE const FString& GetStr15() const { return Str15_Optional; }
 	/** @brief Gets the value of Str15_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr15(const FString& DefaultValue) const { if (Str15_IsSet) return Str15_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr15(const FString& DefaultValue) const { if (Str15_IsSet) return Str15_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str15_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr15(FString& OutValue) const { if (Str15_IsSet && !Str15_IsNull) OutValue = Str15_Optional; return Str15_IsSet; }
+	FORCEINLINE bool GetStr15(FString& OutValue) const { if (Str15_IsSet && !Str15_IsNull) OutValue = Str15_Optional; return Str15_IsSet; }
 	/** @brief Returns a pointer to Str15_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr15OrNull() { if (Str15_IsSet) return (Str15_IsNull ? nullptr : &Str15_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr15OrNull() { if (Str15_IsSet) return (Str15_IsNull ? nullptr : &Str15_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str15_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr15OrNull() const { if (Str15_IsSet) return (Str15_IsNull ? nullptr : &Str15_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr15OrNull() const { if (Str15_IsSet) return (Str15_IsNull ? nullptr : &Str15_Optional); return nullptr; }
 	/** @brief Sets the value of Str15_Optional and also sets Str15_IsSet to true */
-	void SetStr15(const FString& NewValue) { Str15_Optional = NewValue; Str15_IsSet = true; Str15_IsNull = false; }
+	FORCEINLINE void SetStr15(const FString& NewValue) { Str15_Optional = NewValue; Str15_IsSet = true; Str15_IsNull = false; }
 	/** @brief Sets the value of Str15_Optional and also sets Str15_IsSet to true using move semantics */
-	void SetStr15(FString&& NewValue) { Str15_Optional = NewValue; Str15_IsSet = true; Str15_IsNull = false; }
+	FORCEINLINE void SetStr15(FString&& NewValue) { Str15_Optional = NewValue; Str15_IsSet = true; Str15_IsNull = false; }
 	/** @brief Clears the value of Str15_Optional and sets Str15_IsSet to false */
 	void ClearStr15() { Str15_IsSet = false; Str15_IsNull = false; }
-	/** @brief Checks whether Str15_Optional has been set */
-	bool IsStr15Set() const { return Str15_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr15ToNull() { Str15_IsSet = true; Str15_IsNull = true; }
+	FORCEINLINE void SetStr15ToNull() { Str15_IsSet = true; Str15_IsNull = true; }
 	/** @brief Checks whether Str15_Optional is set to null */
-	bool IsStr15Null() const { return Str15_IsSet && Str15_IsNull; }
+	FORCEINLINE bool IsStr15Null() const { return Str15_IsSet && Str15_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str16_Optional{  };
@@ -1727,29 +1569,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str16_IsNull{ false };
 	/** @brief Gets the value of Str16_Optional, regardless of it having been set */
-	FString& GetStr16() { return Str16_Optional; }
+	FORCEINLINE FString& GetStr16() { return Str16_Optional; }
 	/** @brief Gets the value of Str16_Optional, regardless of it having been set */
-	const FString& GetStr16() const { return Str16_Optional; }
+	FORCEINLINE const FString& GetStr16() const { return Str16_Optional; }
 	/** @brief Gets the value of Str16_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr16(const FString& DefaultValue) const { if (Str16_IsSet) return Str16_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr16(const FString& DefaultValue) const { if (Str16_IsSet) return Str16_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str16_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr16(FString& OutValue) const { if (Str16_IsSet && !Str16_IsNull) OutValue = Str16_Optional; return Str16_IsSet; }
+	FORCEINLINE bool GetStr16(FString& OutValue) const { if (Str16_IsSet && !Str16_IsNull) OutValue = Str16_Optional; return Str16_IsSet; }
 	/** @brief Returns a pointer to Str16_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr16OrNull() { if (Str16_IsSet) return (Str16_IsNull ? nullptr : &Str16_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr16OrNull() { if (Str16_IsSet) return (Str16_IsNull ? nullptr : &Str16_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str16_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr16OrNull() const { if (Str16_IsSet) return (Str16_IsNull ? nullptr : &Str16_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr16OrNull() const { if (Str16_IsSet) return (Str16_IsNull ? nullptr : &Str16_Optional); return nullptr; }
 	/** @brief Sets the value of Str16_Optional and also sets Str16_IsSet to true */
-	void SetStr16(const FString& NewValue) { Str16_Optional = NewValue; Str16_IsSet = true; Str16_IsNull = false; }
+	FORCEINLINE void SetStr16(const FString& NewValue) { Str16_Optional = NewValue; Str16_IsSet = true; Str16_IsNull = false; }
 	/** @brief Sets the value of Str16_Optional and also sets Str16_IsSet to true using move semantics */
-	void SetStr16(FString&& NewValue) { Str16_Optional = NewValue; Str16_IsSet = true; Str16_IsNull = false; }
+	FORCEINLINE void SetStr16(FString&& NewValue) { Str16_Optional = NewValue; Str16_IsSet = true; Str16_IsNull = false; }
 	/** @brief Clears the value of Str16_Optional and sets Str16_IsSet to false */
 	void ClearStr16() { Str16_IsSet = false; Str16_IsNull = false; }
-	/** @brief Checks whether Str16_Optional has been set */
-	bool IsStr16Set() const { return Str16_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr16ToNull() { Str16_IsSet = true; Str16_IsNull = true; }
+	FORCEINLINE void SetStr16ToNull() { Str16_IsSet = true; Str16_IsNull = true; }
 	/** @brief Checks whether Str16_Optional is set to null */
-	bool IsStr16Null() const { return Str16_IsSet && Str16_IsNull; }
+	FORCEINLINE bool IsStr16Null() const { return Str16_IsSet && Str16_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str17_Optional{  };
@@ -1760,29 +1600,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str17_IsNull{ false };
 	/** @brief Gets the value of Str17_Optional, regardless of it having been set */
-	FString& GetStr17() { return Str17_Optional; }
+	FORCEINLINE FString& GetStr17() { return Str17_Optional; }
 	/** @brief Gets the value of Str17_Optional, regardless of it having been set */
-	const FString& GetStr17() const { return Str17_Optional; }
+	FORCEINLINE const FString& GetStr17() const { return Str17_Optional; }
 	/** @brief Gets the value of Str17_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr17(const FString& DefaultValue) const { if (Str17_IsSet) return Str17_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr17(const FString& DefaultValue) const { if (Str17_IsSet) return Str17_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str17_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr17(FString& OutValue) const { if (Str17_IsSet && !Str17_IsNull) OutValue = Str17_Optional; return Str17_IsSet; }
+	FORCEINLINE bool GetStr17(FString& OutValue) const { if (Str17_IsSet && !Str17_IsNull) OutValue = Str17_Optional; return Str17_IsSet; }
 	/** @brief Returns a pointer to Str17_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr17OrNull() { if (Str17_IsSet) return (Str17_IsNull ? nullptr : &Str17_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr17OrNull() { if (Str17_IsSet) return (Str17_IsNull ? nullptr : &Str17_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str17_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr17OrNull() const { if (Str17_IsSet) return (Str17_IsNull ? nullptr : &Str17_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr17OrNull() const { if (Str17_IsSet) return (Str17_IsNull ? nullptr : &Str17_Optional); return nullptr; }
 	/** @brief Sets the value of Str17_Optional and also sets Str17_IsSet to true */
-	void SetStr17(const FString& NewValue) { Str17_Optional = NewValue; Str17_IsSet = true; Str17_IsNull = false; }
+	FORCEINLINE void SetStr17(const FString& NewValue) { Str17_Optional = NewValue; Str17_IsSet = true; Str17_IsNull = false; }
 	/** @brief Sets the value of Str17_Optional and also sets Str17_IsSet to true using move semantics */
-	void SetStr17(FString&& NewValue) { Str17_Optional = NewValue; Str17_IsSet = true; Str17_IsNull = false; }
+	FORCEINLINE void SetStr17(FString&& NewValue) { Str17_Optional = NewValue; Str17_IsSet = true; Str17_IsNull = false; }
 	/** @brief Clears the value of Str17_Optional and sets Str17_IsSet to false */
 	void ClearStr17() { Str17_IsSet = false; Str17_IsNull = false; }
-	/** @brief Checks whether Str17_Optional has been set */
-	bool IsStr17Set() const { return Str17_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr17ToNull() { Str17_IsSet = true; Str17_IsNull = true; }
+	FORCEINLINE void SetStr17ToNull() { Str17_IsSet = true; Str17_IsNull = true; }
 	/** @brief Checks whether Str17_Optional is set to null */
-	bool IsStr17Null() const { return Str17_IsSet && Str17_IsNull; }
+	FORCEINLINE bool IsStr17Null() const { return Str17_IsSet && Str17_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str18_Optional{  };
@@ -1793,29 +1631,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str18_IsNull{ false };
 	/** @brief Gets the value of Str18_Optional, regardless of it having been set */
-	FString& GetStr18() { return Str18_Optional; }
+	FORCEINLINE FString& GetStr18() { return Str18_Optional; }
 	/** @brief Gets the value of Str18_Optional, regardless of it having been set */
-	const FString& GetStr18() const { return Str18_Optional; }
+	FORCEINLINE const FString& GetStr18() const { return Str18_Optional; }
 	/** @brief Gets the value of Str18_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr18(const FString& DefaultValue) const { if (Str18_IsSet) return Str18_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr18(const FString& DefaultValue) const { if (Str18_IsSet) return Str18_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str18_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr18(FString& OutValue) const { if (Str18_IsSet && !Str18_IsNull) OutValue = Str18_Optional; return Str18_IsSet; }
+	FORCEINLINE bool GetStr18(FString& OutValue) const { if (Str18_IsSet && !Str18_IsNull) OutValue = Str18_Optional; return Str18_IsSet; }
 	/** @brief Returns a pointer to Str18_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr18OrNull() { if (Str18_IsSet) return (Str18_IsNull ? nullptr : &Str18_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr18OrNull() { if (Str18_IsSet) return (Str18_IsNull ? nullptr : &Str18_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str18_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr18OrNull() const { if (Str18_IsSet) return (Str18_IsNull ? nullptr : &Str18_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr18OrNull() const { if (Str18_IsSet) return (Str18_IsNull ? nullptr : &Str18_Optional); return nullptr; }
 	/** @brief Sets the value of Str18_Optional and also sets Str18_IsSet to true */
-	void SetStr18(const FString& NewValue) { Str18_Optional = NewValue; Str18_IsSet = true; Str18_IsNull = false; }
+	FORCEINLINE void SetStr18(const FString& NewValue) { Str18_Optional = NewValue; Str18_IsSet = true; Str18_IsNull = false; }
 	/** @brief Sets the value of Str18_Optional and also sets Str18_IsSet to true using move semantics */
-	void SetStr18(FString&& NewValue) { Str18_Optional = NewValue; Str18_IsSet = true; Str18_IsNull = false; }
+	FORCEINLINE void SetStr18(FString&& NewValue) { Str18_Optional = NewValue; Str18_IsSet = true; Str18_IsNull = false; }
 	/** @brief Clears the value of Str18_Optional and sets Str18_IsSet to false */
 	void ClearStr18() { Str18_IsSet = false; Str18_IsNull = false; }
-	/** @brief Checks whether Str18_Optional has been set */
-	bool IsStr18Set() const { return Str18_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr18ToNull() { Str18_IsSet = true; Str18_IsNull = true; }
+	FORCEINLINE void SetStr18ToNull() { Str18_IsSet = true; Str18_IsNull = true; }
 	/** @brief Checks whether Str18_Optional is set to null */
-	bool IsStr18Null() const { return Str18_IsSet && Str18_IsNull; }
+	FORCEINLINE bool IsStr18Null() const { return Str18_IsSet && Str18_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str19_Optional{  };
@@ -1826,29 +1662,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str19_IsNull{ false };
 	/** @brief Gets the value of Str19_Optional, regardless of it having been set */
-	FString& GetStr19() { return Str19_Optional; }
+	FORCEINLINE FString& GetStr19() { return Str19_Optional; }
 	/** @brief Gets the value of Str19_Optional, regardless of it having been set */
-	const FString& GetStr19() const { return Str19_Optional; }
+	FORCEINLINE const FString& GetStr19() const { return Str19_Optional; }
 	/** @brief Gets the value of Str19_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr19(const FString& DefaultValue) const { if (Str19_IsSet) return Str19_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr19(const FString& DefaultValue) const { if (Str19_IsSet) return Str19_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str19_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr19(FString& OutValue) const { if (Str19_IsSet && !Str19_IsNull) OutValue = Str19_Optional; return Str19_IsSet; }
+	FORCEINLINE bool GetStr19(FString& OutValue) const { if (Str19_IsSet && !Str19_IsNull) OutValue = Str19_Optional; return Str19_IsSet; }
 	/** @brief Returns a pointer to Str19_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr19OrNull() { if (Str19_IsSet) return (Str19_IsNull ? nullptr : &Str19_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr19OrNull() { if (Str19_IsSet) return (Str19_IsNull ? nullptr : &Str19_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str19_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr19OrNull() const { if (Str19_IsSet) return (Str19_IsNull ? nullptr : &Str19_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr19OrNull() const { if (Str19_IsSet) return (Str19_IsNull ? nullptr : &Str19_Optional); return nullptr; }
 	/** @brief Sets the value of Str19_Optional and also sets Str19_IsSet to true */
-	void SetStr19(const FString& NewValue) { Str19_Optional = NewValue; Str19_IsSet = true; Str19_IsNull = false; }
+	FORCEINLINE void SetStr19(const FString& NewValue) { Str19_Optional = NewValue; Str19_IsSet = true; Str19_IsNull = false; }
 	/** @brief Sets the value of Str19_Optional and also sets Str19_IsSet to true using move semantics */
-	void SetStr19(FString&& NewValue) { Str19_Optional = NewValue; Str19_IsSet = true; Str19_IsNull = false; }
+	FORCEINLINE void SetStr19(FString&& NewValue) { Str19_Optional = NewValue; Str19_IsSet = true; Str19_IsNull = false; }
 	/** @brief Clears the value of Str19_Optional and sets Str19_IsSet to false */
 	void ClearStr19() { Str19_IsSet = false; Str19_IsNull = false; }
-	/** @brief Checks whether Str19_Optional has been set */
-	bool IsStr19Set() const { return Str19_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr19ToNull() { Str19_IsSet = true; Str19_IsNull = true; }
+	FORCEINLINE void SetStr19ToNull() { Str19_IsSet = true; Str19_IsNull = true; }
 	/** @brief Checks whether Str19_Optional is set to null */
-	bool IsStr19Null() const { return Str19_IsSet && Str19_IsNull; }
+	FORCEINLINE bool IsStr19Null() const { return Str19_IsSet && Str19_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str20_Optional{  };
@@ -1859,29 +1693,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str20_IsNull{ false };
 	/** @brief Gets the value of Str20_Optional, regardless of it having been set */
-	FString& GetStr20() { return Str20_Optional; }
+	FORCEINLINE FString& GetStr20() { return Str20_Optional; }
 	/** @brief Gets the value of Str20_Optional, regardless of it having been set */
-	const FString& GetStr20() const { return Str20_Optional; }
+	FORCEINLINE const FString& GetStr20() const { return Str20_Optional; }
 	/** @brief Gets the value of Str20_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr20(const FString& DefaultValue) const { if (Str20_IsSet) return Str20_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr20(const FString& DefaultValue) const { if (Str20_IsSet) return Str20_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str20_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr20(FString& OutValue) const { if (Str20_IsSet && !Str20_IsNull) OutValue = Str20_Optional; return Str20_IsSet; }
+	FORCEINLINE bool GetStr20(FString& OutValue) const { if (Str20_IsSet && !Str20_IsNull) OutValue = Str20_Optional; return Str20_IsSet; }
 	/** @brief Returns a pointer to Str20_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr20OrNull() { if (Str20_IsSet) return (Str20_IsNull ? nullptr : &Str20_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr20OrNull() { if (Str20_IsSet) return (Str20_IsNull ? nullptr : &Str20_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str20_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr20OrNull() const { if (Str20_IsSet) return (Str20_IsNull ? nullptr : &Str20_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr20OrNull() const { if (Str20_IsSet) return (Str20_IsNull ? nullptr : &Str20_Optional); return nullptr; }
 	/** @brief Sets the value of Str20_Optional and also sets Str20_IsSet to true */
-	void SetStr20(const FString& NewValue) { Str20_Optional = NewValue; Str20_IsSet = true; Str20_IsNull = false; }
+	FORCEINLINE void SetStr20(const FString& NewValue) { Str20_Optional = NewValue; Str20_IsSet = true; Str20_IsNull = false; }
 	/** @brief Sets the value of Str20_Optional and also sets Str20_IsSet to true using move semantics */
-	void SetStr20(FString&& NewValue) { Str20_Optional = NewValue; Str20_IsSet = true; Str20_IsNull = false; }
+	FORCEINLINE void SetStr20(FString&& NewValue) { Str20_Optional = NewValue; Str20_IsSet = true; Str20_IsNull = false; }
 	/** @brief Clears the value of Str20_Optional and sets Str20_IsSet to false */
 	void ClearStr20() { Str20_IsSet = false; Str20_IsNull = false; }
-	/** @brief Checks whether Str20_Optional has been set */
-	bool IsStr20Set() const { return Str20_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr20ToNull() { Str20_IsSet = true; Str20_IsNull = true; }
+	FORCEINLINE void SetStr20ToNull() { Str20_IsSet = true; Str20_IsNull = true; }
 	/** @brief Checks whether Str20_Optional is set to null */
-	bool IsStr20Null() const { return Str20_IsSet && Str20_IsNull; }
+	FORCEINLINE bool IsStr20Null() const { return Str20_IsSet && Str20_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str21_Optional{  };
@@ -1892,29 +1724,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str21_IsNull{ false };
 	/** @brief Gets the value of Str21_Optional, regardless of it having been set */
-	FString& GetStr21() { return Str21_Optional; }
+	FORCEINLINE FString& GetStr21() { return Str21_Optional; }
 	/** @brief Gets the value of Str21_Optional, regardless of it having been set */
-	const FString& GetStr21() const { return Str21_Optional; }
+	FORCEINLINE const FString& GetStr21() const { return Str21_Optional; }
 	/** @brief Gets the value of Str21_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr21(const FString& DefaultValue) const { if (Str21_IsSet) return Str21_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr21(const FString& DefaultValue) const { if (Str21_IsSet) return Str21_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str21_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr21(FString& OutValue) const { if (Str21_IsSet && !Str21_IsNull) OutValue = Str21_Optional; return Str21_IsSet; }
+	FORCEINLINE bool GetStr21(FString& OutValue) const { if (Str21_IsSet && !Str21_IsNull) OutValue = Str21_Optional; return Str21_IsSet; }
 	/** @brief Returns a pointer to Str21_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr21OrNull() { if (Str21_IsSet) return (Str21_IsNull ? nullptr : &Str21_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr21OrNull() { if (Str21_IsSet) return (Str21_IsNull ? nullptr : &Str21_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str21_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr21OrNull() const { if (Str21_IsSet) return (Str21_IsNull ? nullptr : &Str21_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr21OrNull() const { if (Str21_IsSet) return (Str21_IsNull ? nullptr : &Str21_Optional); return nullptr; }
 	/** @brief Sets the value of Str21_Optional and also sets Str21_IsSet to true */
-	void SetStr21(const FString& NewValue) { Str21_Optional = NewValue; Str21_IsSet = true; Str21_IsNull = false; }
+	FORCEINLINE void SetStr21(const FString& NewValue) { Str21_Optional = NewValue; Str21_IsSet = true; Str21_IsNull = false; }
 	/** @brief Sets the value of Str21_Optional and also sets Str21_IsSet to true using move semantics */
-	void SetStr21(FString&& NewValue) { Str21_Optional = NewValue; Str21_IsSet = true; Str21_IsNull = false; }
+	FORCEINLINE void SetStr21(FString&& NewValue) { Str21_Optional = NewValue; Str21_IsSet = true; Str21_IsNull = false; }
 	/** @brief Clears the value of Str21_Optional and sets Str21_IsSet to false */
 	void ClearStr21() { Str21_IsSet = false; Str21_IsNull = false; }
-	/** @brief Checks whether Str21_Optional has been set */
-	bool IsStr21Set() const { return Str21_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr21ToNull() { Str21_IsSet = true; Str21_IsNull = true; }
+	FORCEINLINE void SetStr21ToNull() { Str21_IsSet = true; Str21_IsNull = true; }
 	/** @brief Checks whether Str21_Optional is set to null */
-	bool IsStr21Null() const { return Str21_IsSet && Str21_IsNull; }
+	FORCEINLINE bool IsStr21Null() const { return Str21_IsSet && Str21_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str22_Optional{  };
@@ -1925,29 +1755,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str22_IsNull{ false };
 	/** @brief Gets the value of Str22_Optional, regardless of it having been set */
-	FString& GetStr22() { return Str22_Optional; }
+	FORCEINLINE FString& GetStr22() { return Str22_Optional; }
 	/** @brief Gets the value of Str22_Optional, regardless of it having been set */
-	const FString& GetStr22() const { return Str22_Optional; }
+	FORCEINLINE const FString& GetStr22() const { return Str22_Optional; }
 	/** @brief Gets the value of Str22_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr22(const FString& DefaultValue) const { if (Str22_IsSet) return Str22_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr22(const FString& DefaultValue) const { if (Str22_IsSet) return Str22_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str22_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr22(FString& OutValue) const { if (Str22_IsSet && !Str22_IsNull) OutValue = Str22_Optional; return Str22_IsSet; }
+	FORCEINLINE bool GetStr22(FString& OutValue) const { if (Str22_IsSet && !Str22_IsNull) OutValue = Str22_Optional; return Str22_IsSet; }
 	/** @brief Returns a pointer to Str22_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr22OrNull() { if (Str22_IsSet) return (Str22_IsNull ? nullptr : &Str22_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr22OrNull() { if (Str22_IsSet) return (Str22_IsNull ? nullptr : &Str22_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str22_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr22OrNull() const { if (Str22_IsSet) return (Str22_IsNull ? nullptr : &Str22_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr22OrNull() const { if (Str22_IsSet) return (Str22_IsNull ? nullptr : &Str22_Optional); return nullptr; }
 	/** @brief Sets the value of Str22_Optional and also sets Str22_IsSet to true */
-	void SetStr22(const FString& NewValue) { Str22_Optional = NewValue; Str22_IsSet = true; Str22_IsNull = false; }
+	FORCEINLINE void SetStr22(const FString& NewValue) { Str22_Optional = NewValue; Str22_IsSet = true; Str22_IsNull = false; }
 	/** @brief Sets the value of Str22_Optional and also sets Str22_IsSet to true using move semantics */
-	void SetStr22(FString&& NewValue) { Str22_Optional = NewValue; Str22_IsSet = true; Str22_IsNull = false; }
+	FORCEINLINE void SetStr22(FString&& NewValue) { Str22_Optional = NewValue; Str22_IsSet = true; Str22_IsNull = false; }
 	/** @brief Clears the value of Str22_Optional and sets Str22_IsSet to false */
 	void ClearStr22() { Str22_IsSet = false; Str22_IsNull = false; }
-	/** @brief Checks whether Str22_Optional has been set */
-	bool IsStr22Set() const { return Str22_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr22ToNull() { Str22_IsSet = true; Str22_IsNull = true; }
+	FORCEINLINE void SetStr22ToNull() { Str22_IsSet = true; Str22_IsNull = true; }
 	/** @brief Checks whether Str22_Optional is set to null */
-	bool IsStr22Null() const { return Str22_IsSet && Str22_IsNull; }
+	FORCEINLINE bool IsStr22Null() const { return Str22_IsSet && Str22_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str23_Optional{  };
@@ -1958,29 +1786,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str23_IsNull{ false };
 	/** @brief Gets the value of Str23_Optional, regardless of it having been set */
-	FString& GetStr23() { return Str23_Optional; }
+	FORCEINLINE FString& GetStr23() { return Str23_Optional; }
 	/** @brief Gets the value of Str23_Optional, regardless of it having been set */
-	const FString& GetStr23() const { return Str23_Optional; }
+	FORCEINLINE const FString& GetStr23() const { return Str23_Optional; }
 	/** @brief Gets the value of Str23_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr23(const FString& DefaultValue) const { if (Str23_IsSet) return Str23_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr23(const FString& DefaultValue) const { if (Str23_IsSet) return Str23_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str23_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr23(FString& OutValue) const { if (Str23_IsSet && !Str23_IsNull) OutValue = Str23_Optional; return Str23_IsSet; }
+	FORCEINLINE bool GetStr23(FString& OutValue) const { if (Str23_IsSet && !Str23_IsNull) OutValue = Str23_Optional; return Str23_IsSet; }
 	/** @brief Returns a pointer to Str23_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr23OrNull() { if (Str23_IsSet) return (Str23_IsNull ? nullptr : &Str23_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr23OrNull() { if (Str23_IsSet) return (Str23_IsNull ? nullptr : &Str23_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str23_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr23OrNull() const { if (Str23_IsSet) return (Str23_IsNull ? nullptr : &Str23_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr23OrNull() const { if (Str23_IsSet) return (Str23_IsNull ? nullptr : &Str23_Optional); return nullptr; }
 	/** @brief Sets the value of Str23_Optional and also sets Str23_IsSet to true */
-	void SetStr23(const FString& NewValue) { Str23_Optional = NewValue; Str23_IsSet = true; Str23_IsNull = false; }
+	FORCEINLINE void SetStr23(const FString& NewValue) { Str23_Optional = NewValue; Str23_IsSet = true; Str23_IsNull = false; }
 	/** @brief Sets the value of Str23_Optional and also sets Str23_IsSet to true using move semantics */
-	void SetStr23(FString&& NewValue) { Str23_Optional = NewValue; Str23_IsSet = true; Str23_IsNull = false; }
+	FORCEINLINE void SetStr23(FString&& NewValue) { Str23_Optional = NewValue; Str23_IsSet = true; Str23_IsNull = false; }
 	/** @brief Clears the value of Str23_Optional and sets Str23_IsSet to false */
 	void ClearStr23() { Str23_IsSet = false; Str23_IsNull = false; }
-	/** @brief Checks whether Str23_Optional has been set */
-	bool IsStr23Set() const { return Str23_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr23ToNull() { Str23_IsSet = true; Str23_IsNull = true; }
+	FORCEINLINE void SetStr23ToNull() { Str23_IsSet = true; Str23_IsNull = true; }
 	/** @brief Checks whether Str23_Optional is set to null */
-	bool IsStr23Null() const { return Str23_IsSet && Str23_IsNull; }
+	FORCEINLINE bool IsStr23Null() const { return Str23_IsSet && Str23_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str24_Optional{  };
@@ -1991,29 +1817,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str24_IsNull{ false };
 	/** @brief Gets the value of Str24_Optional, regardless of it having been set */
-	FString& GetStr24() { return Str24_Optional; }
+	FORCEINLINE FString& GetStr24() { return Str24_Optional; }
 	/** @brief Gets the value of Str24_Optional, regardless of it having been set */
-	const FString& GetStr24() const { return Str24_Optional; }
+	FORCEINLINE const FString& GetStr24() const { return Str24_Optional; }
 	/** @brief Gets the value of Str24_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr24(const FString& DefaultValue) const { if (Str24_IsSet) return Str24_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr24(const FString& DefaultValue) const { if (Str24_IsSet) return Str24_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str24_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr24(FString& OutValue) const { if (Str24_IsSet && !Str24_IsNull) OutValue = Str24_Optional; return Str24_IsSet; }
+	FORCEINLINE bool GetStr24(FString& OutValue) const { if (Str24_IsSet && !Str24_IsNull) OutValue = Str24_Optional; return Str24_IsSet; }
 	/** @brief Returns a pointer to Str24_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr24OrNull() { if (Str24_IsSet) return (Str24_IsNull ? nullptr : &Str24_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr24OrNull() { if (Str24_IsSet) return (Str24_IsNull ? nullptr : &Str24_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str24_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr24OrNull() const { if (Str24_IsSet) return (Str24_IsNull ? nullptr : &Str24_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr24OrNull() const { if (Str24_IsSet) return (Str24_IsNull ? nullptr : &Str24_Optional); return nullptr; }
 	/** @brief Sets the value of Str24_Optional and also sets Str24_IsSet to true */
-	void SetStr24(const FString& NewValue) { Str24_Optional = NewValue; Str24_IsSet = true; Str24_IsNull = false; }
+	FORCEINLINE void SetStr24(const FString& NewValue) { Str24_Optional = NewValue; Str24_IsSet = true; Str24_IsNull = false; }
 	/** @brief Sets the value of Str24_Optional and also sets Str24_IsSet to true using move semantics */
-	void SetStr24(FString&& NewValue) { Str24_Optional = NewValue; Str24_IsSet = true; Str24_IsNull = false; }
+	FORCEINLINE void SetStr24(FString&& NewValue) { Str24_Optional = NewValue; Str24_IsSet = true; Str24_IsNull = false; }
 	/** @brief Clears the value of Str24_Optional and sets Str24_IsSet to false */
 	void ClearStr24() { Str24_IsSet = false; Str24_IsNull = false; }
-	/** @brief Checks whether Str24_Optional has been set */
-	bool IsStr24Set() const { return Str24_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr24ToNull() { Str24_IsSet = true; Str24_IsNull = true; }
+	FORCEINLINE void SetStr24ToNull() { Str24_IsSet = true; Str24_IsNull = true; }
 	/** @brief Checks whether Str24_Optional is set to null */
-	bool IsStr24Null() const { return Str24_IsSet && Str24_IsNull; }
+	FORCEINLINE bool IsStr24Null() const { return Str24_IsSet && Str24_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str25_Optional{  };
@@ -2024,29 +1848,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str25_IsNull{ false };
 	/** @brief Gets the value of Str25_Optional, regardless of it having been set */
-	FString& GetStr25() { return Str25_Optional; }
+	FORCEINLINE FString& GetStr25() { return Str25_Optional; }
 	/** @brief Gets the value of Str25_Optional, regardless of it having been set */
-	const FString& GetStr25() const { return Str25_Optional; }
+	FORCEINLINE const FString& GetStr25() const { return Str25_Optional; }
 	/** @brief Gets the value of Str25_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr25(const FString& DefaultValue) const { if (Str25_IsSet) return Str25_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr25(const FString& DefaultValue) const { if (Str25_IsSet) return Str25_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str25_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr25(FString& OutValue) const { if (Str25_IsSet && !Str25_IsNull) OutValue = Str25_Optional; return Str25_IsSet; }
+	FORCEINLINE bool GetStr25(FString& OutValue) const { if (Str25_IsSet && !Str25_IsNull) OutValue = Str25_Optional; return Str25_IsSet; }
 	/** @brief Returns a pointer to Str25_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr25OrNull() { if (Str25_IsSet) return (Str25_IsNull ? nullptr : &Str25_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr25OrNull() { if (Str25_IsSet) return (Str25_IsNull ? nullptr : &Str25_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str25_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr25OrNull() const { if (Str25_IsSet) return (Str25_IsNull ? nullptr : &Str25_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr25OrNull() const { if (Str25_IsSet) return (Str25_IsNull ? nullptr : &Str25_Optional); return nullptr; }
 	/** @brief Sets the value of Str25_Optional and also sets Str25_IsSet to true */
-	void SetStr25(const FString& NewValue) { Str25_Optional = NewValue; Str25_IsSet = true; Str25_IsNull = false; }
+	FORCEINLINE void SetStr25(const FString& NewValue) { Str25_Optional = NewValue; Str25_IsSet = true; Str25_IsNull = false; }
 	/** @brief Sets the value of Str25_Optional and also sets Str25_IsSet to true using move semantics */
-	void SetStr25(FString&& NewValue) { Str25_Optional = NewValue; Str25_IsSet = true; Str25_IsNull = false; }
+	FORCEINLINE void SetStr25(FString&& NewValue) { Str25_Optional = NewValue; Str25_IsSet = true; Str25_IsNull = false; }
 	/** @brief Clears the value of Str25_Optional and sets Str25_IsSet to false */
 	void ClearStr25() { Str25_IsSet = false; Str25_IsNull = false; }
-	/** @brief Checks whether Str25_Optional has been set */
-	bool IsStr25Set() const { return Str25_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr25ToNull() { Str25_IsSet = true; Str25_IsNull = true; }
+	FORCEINLINE void SetStr25ToNull() { Str25_IsSet = true; Str25_IsNull = true; }
 	/** @brief Checks whether Str25_Optional is set to null */
-	bool IsStr25Null() const { return Str25_IsSet && Str25_IsNull; }
+	FORCEINLINE bool IsStr25Null() const { return Str25_IsSet && Str25_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str26_Optional{  };
@@ -2057,29 +1879,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str26_IsNull{ false };
 	/** @brief Gets the value of Str26_Optional, regardless of it having been set */
-	FString& GetStr26() { return Str26_Optional; }
+	FORCEINLINE FString& GetStr26() { return Str26_Optional; }
 	/** @brief Gets the value of Str26_Optional, regardless of it having been set */
-	const FString& GetStr26() const { return Str26_Optional; }
+	FORCEINLINE const FString& GetStr26() const { return Str26_Optional; }
 	/** @brief Gets the value of Str26_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr26(const FString& DefaultValue) const { if (Str26_IsSet) return Str26_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr26(const FString& DefaultValue) const { if (Str26_IsSet) return Str26_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str26_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr26(FString& OutValue) const { if (Str26_IsSet && !Str26_IsNull) OutValue = Str26_Optional; return Str26_IsSet; }
+	FORCEINLINE bool GetStr26(FString& OutValue) const { if (Str26_IsSet && !Str26_IsNull) OutValue = Str26_Optional; return Str26_IsSet; }
 	/** @brief Returns a pointer to Str26_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr26OrNull() { if (Str26_IsSet) return (Str26_IsNull ? nullptr : &Str26_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr26OrNull() { if (Str26_IsSet) return (Str26_IsNull ? nullptr : &Str26_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str26_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr26OrNull() const { if (Str26_IsSet) return (Str26_IsNull ? nullptr : &Str26_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr26OrNull() const { if (Str26_IsSet) return (Str26_IsNull ? nullptr : &Str26_Optional); return nullptr; }
 	/** @brief Sets the value of Str26_Optional and also sets Str26_IsSet to true */
-	void SetStr26(const FString& NewValue) { Str26_Optional = NewValue; Str26_IsSet = true; Str26_IsNull = false; }
+	FORCEINLINE void SetStr26(const FString& NewValue) { Str26_Optional = NewValue; Str26_IsSet = true; Str26_IsNull = false; }
 	/** @brief Sets the value of Str26_Optional and also sets Str26_IsSet to true using move semantics */
-	void SetStr26(FString&& NewValue) { Str26_Optional = NewValue; Str26_IsSet = true; Str26_IsNull = false; }
+	FORCEINLINE void SetStr26(FString&& NewValue) { Str26_Optional = NewValue; Str26_IsSet = true; Str26_IsNull = false; }
 	/** @brief Clears the value of Str26_Optional and sets Str26_IsSet to false */
 	void ClearStr26() { Str26_IsSet = false; Str26_IsNull = false; }
-	/** @brief Checks whether Str26_Optional has been set */
-	bool IsStr26Set() const { return Str26_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr26ToNull() { Str26_IsSet = true; Str26_IsNull = true; }
+	FORCEINLINE void SetStr26ToNull() { Str26_IsSet = true; Str26_IsNull = true; }
 	/** @brief Checks whether Str26_Optional is set to null */
-	bool IsStr26Null() const { return Str26_IsSet && Str26_IsNull; }
+	FORCEINLINE bool IsStr26Null() const { return Str26_IsSet && Str26_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str27_Optional{  };
@@ -2090,29 +1910,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str27_IsNull{ false };
 	/** @brief Gets the value of Str27_Optional, regardless of it having been set */
-	FString& GetStr27() { return Str27_Optional; }
+	FORCEINLINE FString& GetStr27() { return Str27_Optional; }
 	/** @brief Gets the value of Str27_Optional, regardless of it having been set */
-	const FString& GetStr27() const { return Str27_Optional; }
+	FORCEINLINE const FString& GetStr27() const { return Str27_Optional; }
 	/** @brief Gets the value of Str27_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr27(const FString& DefaultValue) const { if (Str27_IsSet) return Str27_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr27(const FString& DefaultValue) const { if (Str27_IsSet) return Str27_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str27_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr27(FString& OutValue) const { if (Str27_IsSet && !Str27_IsNull) OutValue = Str27_Optional; return Str27_IsSet; }
+	FORCEINLINE bool GetStr27(FString& OutValue) const { if (Str27_IsSet && !Str27_IsNull) OutValue = Str27_Optional; return Str27_IsSet; }
 	/** @brief Returns a pointer to Str27_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr27OrNull() { if (Str27_IsSet) return (Str27_IsNull ? nullptr : &Str27_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr27OrNull() { if (Str27_IsSet) return (Str27_IsNull ? nullptr : &Str27_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str27_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr27OrNull() const { if (Str27_IsSet) return (Str27_IsNull ? nullptr : &Str27_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr27OrNull() const { if (Str27_IsSet) return (Str27_IsNull ? nullptr : &Str27_Optional); return nullptr; }
 	/** @brief Sets the value of Str27_Optional and also sets Str27_IsSet to true */
-	void SetStr27(const FString& NewValue) { Str27_Optional = NewValue; Str27_IsSet = true; Str27_IsNull = false; }
+	FORCEINLINE void SetStr27(const FString& NewValue) { Str27_Optional = NewValue; Str27_IsSet = true; Str27_IsNull = false; }
 	/** @brief Sets the value of Str27_Optional and also sets Str27_IsSet to true using move semantics */
-	void SetStr27(FString&& NewValue) { Str27_Optional = NewValue; Str27_IsSet = true; Str27_IsNull = false; }
+	FORCEINLINE void SetStr27(FString&& NewValue) { Str27_Optional = NewValue; Str27_IsSet = true; Str27_IsNull = false; }
 	/** @brief Clears the value of Str27_Optional and sets Str27_IsSet to false */
 	void ClearStr27() { Str27_IsSet = false; Str27_IsNull = false; }
-	/** @brief Checks whether Str27_Optional has been set */
-	bool IsStr27Set() const { return Str27_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr27ToNull() { Str27_IsSet = true; Str27_IsNull = true; }
+	FORCEINLINE void SetStr27ToNull() { Str27_IsSet = true; Str27_IsNull = true; }
 	/** @brief Checks whether Str27_Optional is set to null */
-	bool IsStr27Null() const { return Str27_IsSet && Str27_IsNull; }
+	FORCEINLINE bool IsStr27Null() const { return Str27_IsSet && Str27_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str28_Optional{  };
@@ -2123,29 +1941,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str28_IsNull{ false };
 	/** @brief Gets the value of Str28_Optional, regardless of it having been set */
-	FString& GetStr28() { return Str28_Optional; }
+	FORCEINLINE FString& GetStr28() { return Str28_Optional; }
 	/** @brief Gets the value of Str28_Optional, regardless of it having been set */
-	const FString& GetStr28() const { return Str28_Optional; }
+	FORCEINLINE const FString& GetStr28() const { return Str28_Optional; }
 	/** @brief Gets the value of Str28_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr28(const FString& DefaultValue) const { if (Str28_IsSet) return Str28_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr28(const FString& DefaultValue) const { if (Str28_IsSet) return Str28_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str28_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr28(FString& OutValue) const { if (Str28_IsSet && !Str28_IsNull) OutValue = Str28_Optional; return Str28_IsSet; }
+	FORCEINLINE bool GetStr28(FString& OutValue) const { if (Str28_IsSet && !Str28_IsNull) OutValue = Str28_Optional; return Str28_IsSet; }
 	/** @brief Returns a pointer to Str28_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr28OrNull() { if (Str28_IsSet) return (Str28_IsNull ? nullptr : &Str28_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr28OrNull() { if (Str28_IsSet) return (Str28_IsNull ? nullptr : &Str28_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str28_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr28OrNull() const { if (Str28_IsSet) return (Str28_IsNull ? nullptr : &Str28_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr28OrNull() const { if (Str28_IsSet) return (Str28_IsNull ? nullptr : &Str28_Optional); return nullptr; }
 	/** @brief Sets the value of Str28_Optional and also sets Str28_IsSet to true */
-	void SetStr28(const FString& NewValue) { Str28_Optional = NewValue; Str28_IsSet = true; Str28_IsNull = false; }
+	FORCEINLINE void SetStr28(const FString& NewValue) { Str28_Optional = NewValue; Str28_IsSet = true; Str28_IsNull = false; }
 	/** @brief Sets the value of Str28_Optional and also sets Str28_IsSet to true using move semantics */
-	void SetStr28(FString&& NewValue) { Str28_Optional = NewValue; Str28_IsSet = true; Str28_IsNull = false; }
+	FORCEINLINE void SetStr28(FString&& NewValue) { Str28_Optional = NewValue; Str28_IsSet = true; Str28_IsNull = false; }
 	/** @brief Clears the value of Str28_Optional and sets Str28_IsSet to false */
 	void ClearStr28() { Str28_IsSet = false; Str28_IsNull = false; }
-	/** @brief Checks whether Str28_Optional has been set */
-	bool IsStr28Set() const { return Str28_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr28ToNull() { Str28_IsSet = true; Str28_IsNull = true; }
+	FORCEINLINE void SetStr28ToNull() { Str28_IsSet = true; Str28_IsNull = true; }
 	/** @brief Checks whether Str28_Optional is set to null */
-	bool IsStr28Null() const { return Str28_IsSet && Str28_IsNull; }
+	FORCEINLINE bool IsStr28Null() const { return Str28_IsSet && Str28_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str29_Optional{  };
@@ -2156,29 +1972,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str29_IsNull{ false };
 	/** @brief Gets the value of Str29_Optional, regardless of it having been set */
-	FString& GetStr29() { return Str29_Optional; }
+	FORCEINLINE FString& GetStr29() { return Str29_Optional; }
 	/** @brief Gets the value of Str29_Optional, regardless of it having been set */
-	const FString& GetStr29() const { return Str29_Optional; }
+	FORCEINLINE const FString& GetStr29() const { return Str29_Optional; }
 	/** @brief Gets the value of Str29_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr29(const FString& DefaultValue) const { if (Str29_IsSet) return Str29_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr29(const FString& DefaultValue) const { if (Str29_IsSet) return Str29_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str29_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr29(FString& OutValue) const { if (Str29_IsSet && !Str29_IsNull) OutValue = Str29_Optional; return Str29_IsSet; }
+	FORCEINLINE bool GetStr29(FString& OutValue) const { if (Str29_IsSet && !Str29_IsNull) OutValue = Str29_Optional; return Str29_IsSet; }
 	/** @brief Returns a pointer to Str29_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr29OrNull() { if (Str29_IsSet) return (Str29_IsNull ? nullptr : &Str29_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr29OrNull() { if (Str29_IsSet) return (Str29_IsNull ? nullptr : &Str29_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str29_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr29OrNull() const { if (Str29_IsSet) return (Str29_IsNull ? nullptr : &Str29_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr29OrNull() const { if (Str29_IsSet) return (Str29_IsNull ? nullptr : &Str29_Optional); return nullptr; }
 	/** @brief Sets the value of Str29_Optional and also sets Str29_IsSet to true */
-	void SetStr29(const FString& NewValue) { Str29_Optional = NewValue; Str29_IsSet = true; Str29_IsNull = false; }
+	FORCEINLINE void SetStr29(const FString& NewValue) { Str29_Optional = NewValue; Str29_IsSet = true; Str29_IsNull = false; }
 	/** @brief Sets the value of Str29_Optional and also sets Str29_IsSet to true using move semantics */
-	void SetStr29(FString&& NewValue) { Str29_Optional = NewValue; Str29_IsSet = true; Str29_IsNull = false; }
+	FORCEINLINE void SetStr29(FString&& NewValue) { Str29_Optional = NewValue; Str29_IsSet = true; Str29_IsNull = false; }
 	/** @brief Clears the value of Str29_Optional and sets Str29_IsSet to false */
 	void ClearStr29() { Str29_IsSet = false; Str29_IsNull = false; }
-	/** @brief Checks whether Str29_Optional has been set */
-	bool IsStr29Set() const { return Str29_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr29ToNull() { Str29_IsSet = true; Str29_IsNull = true; }
+	FORCEINLINE void SetStr29ToNull() { Str29_IsSet = true; Str29_IsNull = true; }
 	/** @brief Checks whether Str29_Optional is set to null */
-	bool IsStr29Null() const { return Str29_IsSet && Str29_IsNull; }
+	FORCEINLINE bool IsStr29Null() const { return Str29_IsSet && Str29_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str30_Optional{  };
@@ -2189,29 +2003,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str30_IsNull{ false };
 	/** @brief Gets the value of Str30_Optional, regardless of it having been set */
-	FString& GetStr30() { return Str30_Optional; }
+	FORCEINLINE FString& GetStr30() { return Str30_Optional; }
 	/** @brief Gets the value of Str30_Optional, regardless of it having been set */
-	const FString& GetStr30() const { return Str30_Optional; }
+	FORCEINLINE const FString& GetStr30() const { return Str30_Optional; }
 	/** @brief Gets the value of Str30_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr30(const FString& DefaultValue) const { if (Str30_IsSet) return Str30_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr30(const FString& DefaultValue) const { if (Str30_IsSet) return Str30_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str30_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr30(FString& OutValue) const { if (Str30_IsSet && !Str30_IsNull) OutValue = Str30_Optional; return Str30_IsSet; }
+	FORCEINLINE bool GetStr30(FString& OutValue) const { if (Str30_IsSet && !Str30_IsNull) OutValue = Str30_Optional; return Str30_IsSet; }
 	/** @brief Returns a pointer to Str30_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr30OrNull() { if (Str30_IsSet) return (Str30_IsNull ? nullptr : &Str30_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr30OrNull() { if (Str30_IsSet) return (Str30_IsNull ? nullptr : &Str30_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str30_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr30OrNull() const { if (Str30_IsSet) return (Str30_IsNull ? nullptr : &Str30_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr30OrNull() const { if (Str30_IsSet) return (Str30_IsNull ? nullptr : &Str30_Optional); return nullptr; }
 	/** @brief Sets the value of Str30_Optional and also sets Str30_IsSet to true */
-	void SetStr30(const FString& NewValue) { Str30_Optional = NewValue; Str30_IsSet = true; Str30_IsNull = false; }
+	FORCEINLINE void SetStr30(const FString& NewValue) { Str30_Optional = NewValue; Str30_IsSet = true; Str30_IsNull = false; }
 	/** @brief Sets the value of Str30_Optional and also sets Str30_IsSet to true using move semantics */
-	void SetStr30(FString&& NewValue) { Str30_Optional = NewValue; Str30_IsSet = true; Str30_IsNull = false; }
+	FORCEINLINE void SetStr30(FString&& NewValue) { Str30_Optional = NewValue; Str30_IsSet = true; Str30_IsNull = false; }
 	/** @brief Clears the value of Str30_Optional and sets Str30_IsSet to false */
 	void ClearStr30() { Str30_IsSet = false; Str30_IsNull = false; }
-	/** @brief Checks whether Str30_Optional has been set */
-	bool IsStr30Set() const { return Str30_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr30ToNull() { Str30_IsSet = true; Str30_IsNull = true; }
+	FORCEINLINE void SetStr30ToNull() { Str30_IsSet = true; Str30_IsNull = true; }
 	/** @brief Checks whether Str30_Optional is set to null */
-	bool IsStr30Null() const { return Str30_IsSet && Str30_IsNull; }
+	FORCEINLINE bool IsStr30Null() const { return Str30_IsSet && Str30_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str31_Optional{  };
@@ -2222,29 +2034,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str31_IsNull{ false };
 	/** @brief Gets the value of Str31_Optional, regardless of it having been set */
-	FString& GetStr31() { return Str31_Optional; }
+	FORCEINLINE FString& GetStr31() { return Str31_Optional; }
 	/** @brief Gets the value of Str31_Optional, regardless of it having been set */
-	const FString& GetStr31() const { return Str31_Optional; }
+	FORCEINLINE const FString& GetStr31() const { return Str31_Optional; }
 	/** @brief Gets the value of Str31_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr31(const FString& DefaultValue) const { if (Str31_IsSet) return Str31_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr31(const FString& DefaultValue) const { if (Str31_IsSet) return Str31_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str31_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr31(FString& OutValue) const { if (Str31_IsSet && !Str31_IsNull) OutValue = Str31_Optional; return Str31_IsSet; }
+	FORCEINLINE bool GetStr31(FString& OutValue) const { if (Str31_IsSet && !Str31_IsNull) OutValue = Str31_Optional; return Str31_IsSet; }
 	/** @brief Returns a pointer to Str31_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr31OrNull() { if (Str31_IsSet) return (Str31_IsNull ? nullptr : &Str31_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr31OrNull() { if (Str31_IsSet) return (Str31_IsNull ? nullptr : &Str31_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str31_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr31OrNull() const { if (Str31_IsSet) return (Str31_IsNull ? nullptr : &Str31_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr31OrNull() const { if (Str31_IsSet) return (Str31_IsNull ? nullptr : &Str31_Optional); return nullptr; }
 	/** @brief Sets the value of Str31_Optional and also sets Str31_IsSet to true */
-	void SetStr31(const FString& NewValue) { Str31_Optional = NewValue; Str31_IsSet = true; Str31_IsNull = false; }
+	FORCEINLINE void SetStr31(const FString& NewValue) { Str31_Optional = NewValue; Str31_IsSet = true; Str31_IsNull = false; }
 	/** @brief Sets the value of Str31_Optional and also sets Str31_IsSet to true using move semantics */
-	void SetStr31(FString&& NewValue) { Str31_Optional = NewValue; Str31_IsSet = true; Str31_IsNull = false; }
+	FORCEINLINE void SetStr31(FString&& NewValue) { Str31_Optional = NewValue; Str31_IsSet = true; Str31_IsNull = false; }
 	/** @brief Clears the value of Str31_Optional and sets Str31_IsSet to false */
 	void ClearStr31() { Str31_IsSet = false; Str31_IsNull = false; }
-	/** @brief Checks whether Str31_Optional has been set */
-	bool IsStr31Set() const { return Str31_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr31ToNull() { Str31_IsSet = true; Str31_IsNull = true; }
+	FORCEINLINE void SetStr31ToNull() { Str31_IsSet = true; Str31_IsNull = true; }
 	/** @brief Checks whether Str31_Optional is set to null */
-	bool IsStr31Null() const { return Str31_IsSet && Str31_IsNull; }
+	FORCEINLINE bool IsStr31Null() const { return Str31_IsSet && Str31_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Str32_Optional{  };
@@ -2255,29 +2065,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Str32_IsNull{ false };
 	/** @brief Gets the value of Str32_Optional, regardless of it having been set */
-	FString& GetStr32() { return Str32_Optional; }
+	FORCEINLINE FString& GetStr32() { return Str32_Optional; }
 	/** @brief Gets the value of Str32_Optional, regardless of it having been set */
-	const FString& GetStr32() const { return Str32_Optional; }
+	FORCEINLINE const FString& GetStr32() const { return Str32_Optional; }
 	/** @brief Gets the value of Str32_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetStr32(const FString& DefaultValue) const { if (Str32_IsSet) return Str32_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetStr32(const FString& DefaultValue) const { if (Str32_IsSet) return Str32_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Str32_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStr32(FString& OutValue) const { if (Str32_IsSet && !Str32_IsNull) OutValue = Str32_Optional; return Str32_IsSet; }
+	FORCEINLINE bool GetStr32(FString& OutValue) const { if (Str32_IsSet && !Str32_IsNull) OutValue = Str32_Optional; return Str32_IsSet; }
 	/** @brief Returns a pointer to Str32_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetStr32OrNull() { if (Str32_IsSet) return (Str32_IsNull ? nullptr : &Str32_Optional); return nullptr; }
+	FORCEINLINE FString* GetStr32OrNull() { if (Str32_IsSet) return (Str32_IsNull ? nullptr : &Str32_Optional); return nullptr; }
 	/** @brief Returns a pointer to Str32_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetStr32OrNull() const { if (Str32_IsSet) return (Str32_IsNull ? nullptr : &Str32_Optional); return nullptr; }
+	FORCEINLINE const FString* GetStr32OrNull() const { if (Str32_IsSet) return (Str32_IsNull ? nullptr : &Str32_Optional); return nullptr; }
 	/** @brief Sets the value of Str32_Optional and also sets Str32_IsSet to true */
-	void SetStr32(const FString& NewValue) { Str32_Optional = NewValue; Str32_IsSet = true; Str32_IsNull = false; }
+	FORCEINLINE void SetStr32(const FString& NewValue) { Str32_Optional = NewValue; Str32_IsSet = true; Str32_IsNull = false; }
 	/** @brief Sets the value of Str32_Optional and also sets Str32_IsSet to true using move semantics */
-	void SetStr32(FString&& NewValue) { Str32_Optional = NewValue; Str32_IsSet = true; Str32_IsNull = false; }
+	FORCEINLINE void SetStr32(FString&& NewValue) { Str32_Optional = NewValue; Str32_IsSet = true; Str32_IsNull = false; }
 	/** @brief Clears the value of Str32_Optional and sets Str32_IsSet to false */
 	void ClearStr32() { Str32_IsSet = false; Str32_IsNull = false; }
-	/** @brief Checks whether Str32_Optional has been set */
-	bool IsStr32Set() const { return Str32_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStr32ToNull() { Str32_IsSet = true; Str32_IsNull = true; }
+	FORCEINLINE void SetStr32ToNull() { Str32_IsSet = true; Str32_IsNull = true; }
 	/** @brief Checks whether Str32_Optional is set to null */
-	bool IsStr32Null() const { return Str32_IsSet && Str32_IsNull; }
+	FORCEINLINE bool IsStr32Null() const { return Str32_IsSet && Str32_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float1_Optional{  };
@@ -2288,29 +2096,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float1_IsNull{ false };
 	/** @brief Gets the value of Float1_Optional, regardless of it having been set */
-	float& GetFloat1() { return Float1_Optional; }
+	FORCEINLINE float& GetFloat1() { return Float1_Optional; }
 	/** @brief Gets the value of Float1_Optional, regardless of it having been set */
-	const float& GetFloat1() const { return Float1_Optional; }
+	FORCEINLINE const float& GetFloat1() const { return Float1_Optional; }
 	/** @brief Gets the value of Float1_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat1(const float& DefaultValue) const { if (Float1_IsSet) return Float1_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat1(const float& DefaultValue) const { if (Float1_IsSet) return Float1_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float1_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat1(float& OutValue) const { if (Float1_IsSet && !Float1_IsNull) OutValue = Float1_Optional; return Float1_IsSet; }
+	FORCEINLINE bool GetFloat1(float& OutValue) const { if (Float1_IsSet && !Float1_IsNull) OutValue = Float1_Optional; return Float1_IsSet; }
 	/** @brief Returns a pointer to Float1_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat1OrNull() { if (Float1_IsSet) return (Float1_IsNull ? nullptr : &Float1_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat1OrNull() { if (Float1_IsSet) return (Float1_IsNull ? nullptr : &Float1_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float1_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat1OrNull() const { if (Float1_IsSet) return (Float1_IsNull ? nullptr : &Float1_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat1OrNull() const { if (Float1_IsSet) return (Float1_IsNull ? nullptr : &Float1_Optional); return nullptr; }
 	/** @brief Sets the value of Float1_Optional and also sets Float1_IsSet to true */
-	void SetFloat1(const float& NewValue) { Float1_Optional = NewValue; Float1_IsSet = true; Float1_IsNull = false; }
+	FORCEINLINE void SetFloat1(const float& NewValue) { Float1_Optional = NewValue; Float1_IsSet = true; Float1_IsNull = false; }
 	/** @brief Sets the value of Float1_Optional and also sets Float1_IsSet to true using move semantics */
-	void SetFloat1(float&& NewValue) { Float1_Optional = NewValue; Float1_IsSet = true; Float1_IsNull = false; }
+	FORCEINLINE void SetFloat1(float&& NewValue) { Float1_Optional = NewValue; Float1_IsSet = true; Float1_IsNull = false; }
 	/** @brief Clears the value of Float1_Optional and sets Float1_IsSet to false */
 	void ClearFloat1() { Float1_IsSet = false; Float1_IsNull = false; }
-	/** @brief Checks whether Float1_Optional has been set */
-	bool IsFloat1Set() const { return Float1_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat1ToNull() { Float1_IsSet = true; Float1_IsNull = true; }
+	FORCEINLINE void SetFloat1ToNull() { Float1_IsSet = true; Float1_IsNull = true; }
 	/** @brief Checks whether Float1_Optional is set to null */
-	bool IsFloat1Null() const { return Float1_IsSet && Float1_IsNull; }
+	FORCEINLINE bool IsFloat1Null() const { return Float1_IsSet && Float1_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float2_Optional{  };
@@ -2321,29 +2127,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float2_IsNull{ false };
 	/** @brief Gets the value of Float2_Optional, regardless of it having been set */
-	float& GetFloat2() { return Float2_Optional; }
+	FORCEINLINE float& GetFloat2() { return Float2_Optional; }
 	/** @brief Gets the value of Float2_Optional, regardless of it having been set */
-	const float& GetFloat2() const { return Float2_Optional; }
+	FORCEINLINE const float& GetFloat2() const { return Float2_Optional; }
 	/** @brief Gets the value of Float2_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat2(const float& DefaultValue) const { if (Float2_IsSet) return Float2_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat2(const float& DefaultValue) const { if (Float2_IsSet) return Float2_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float2_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat2(float& OutValue) const { if (Float2_IsSet && !Float2_IsNull) OutValue = Float2_Optional; return Float2_IsSet; }
+	FORCEINLINE bool GetFloat2(float& OutValue) const { if (Float2_IsSet && !Float2_IsNull) OutValue = Float2_Optional; return Float2_IsSet; }
 	/** @brief Returns a pointer to Float2_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat2OrNull() { if (Float2_IsSet) return (Float2_IsNull ? nullptr : &Float2_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat2OrNull() { if (Float2_IsSet) return (Float2_IsNull ? nullptr : &Float2_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float2_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat2OrNull() const { if (Float2_IsSet) return (Float2_IsNull ? nullptr : &Float2_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat2OrNull() const { if (Float2_IsSet) return (Float2_IsNull ? nullptr : &Float2_Optional); return nullptr; }
 	/** @brief Sets the value of Float2_Optional and also sets Float2_IsSet to true */
-	void SetFloat2(const float& NewValue) { Float2_Optional = NewValue; Float2_IsSet = true; Float2_IsNull = false; }
+	FORCEINLINE void SetFloat2(const float& NewValue) { Float2_Optional = NewValue; Float2_IsSet = true; Float2_IsNull = false; }
 	/** @brief Sets the value of Float2_Optional and also sets Float2_IsSet to true using move semantics */
-	void SetFloat2(float&& NewValue) { Float2_Optional = NewValue; Float2_IsSet = true; Float2_IsNull = false; }
+	FORCEINLINE void SetFloat2(float&& NewValue) { Float2_Optional = NewValue; Float2_IsSet = true; Float2_IsNull = false; }
 	/** @brief Clears the value of Float2_Optional and sets Float2_IsSet to false */
 	void ClearFloat2() { Float2_IsSet = false; Float2_IsNull = false; }
-	/** @brief Checks whether Float2_Optional has been set */
-	bool IsFloat2Set() const { return Float2_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat2ToNull() { Float2_IsSet = true; Float2_IsNull = true; }
+	FORCEINLINE void SetFloat2ToNull() { Float2_IsSet = true; Float2_IsNull = true; }
 	/** @brief Checks whether Float2_Optional is set to null */
-	bool IsFloat2Null() const { return Float2_IsSet && Float2_IsNull; }
+	FORCEINLINE bool IsFloat2Null() const { return Float2_IsSet && Float2_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float3_Optional{  };
@@ -2354,29 +2158,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float3_IsNull{ false };
 	/** @brief Gets the value of Float3_Optional, regardless of it having been set */
-	float& GetFloat3() { return Float3_Optional; }
+	FORCEINLINE float& GetFloat3() { return Float3_Optional; }
 	/** @brief Gets the value of Float3_Optional, regardless of it having been set */
-	const float& GetFloat3() const { return Float3_Optional; }
+	FORCEINLINE const float& GetFloat3() const { return Float3_Optional; }
 	/** @brief Gets the value of Float3_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat3(const float& DefaultValue) const { if (Float3_IsSet) return Float3_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat3(const float& DefaultValue) const { if (Float3_IsSet) return Float3_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float3_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat3(float& OutValue) const { if (Float3_IsSet && !Float3_IsNull) OutValue = Float3_Optional; return Float3_IsSet; }
+	FORCEINLINE bool GetFloat3(float& OutValue) const { if (Float3_IsSet && !Float3_IsNull) OutValue = Float3_Optional; return Float3_IsSet; }
 	/** @brief Returns a pointer to Float3_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat3OrNull() { if (Float3_IsSet) return (Float3_IsNull ? nullptr : &Float3_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat3OrNull() { if (Float3_IsSet) return (Float3_IsNull ? nullptr : &Float3_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float3_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat3OrNull() const { if (Float3_IsSet) return (Float3_IsNull ? nullptr : &Float3_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat3OrNull() const { if (Float3_IsSet) return (Float3_IsNull ? nullptr : &Float3_Optional); return nullptr; }
 	/** @brief Sets the value of Float3_Optional and also sets Float3_IsSet to true */
-	void SetFloat3(const float& NewValue) { Float3_Optional = NewValue; Float3_IsSet = true; Float3_IsNull = false; }
+	FORCEINLINE void SetFloat3(const float& NewValue) { Float3_Optional = NewValue; Float3_IsSet = true; Float3_IsNull = false; }
 	/** @brief Sets the value of Float3_Optional and also sets Float3_IsSet to true using move semantics */
-	void SetFloat3(float&& NewValue) { Float3_Optional = NewValue; Float3_IsSet = true; Float3_IsNull = false; }
+	FORCEINLINE void SetFloat3(float&& NewValue) { Float3_Optional = NewValue; Float3_IsSet = true; Float3_IsNull = false; }
 	/** @brief Clears the value of Float3_Optional and sets Float3_IsSet to false */
 	void ClearFloat3() { Float3_IsSet = false; Float3_IsNull = false; }
-	/** @brief Checks whether Float3_Optional has been set */
-	bool IsFloat3Set() const { return Float3_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat3ToNull() { Float3_IsSet = true; Float3_IsNull = true; }
+	FORCEINLINE void SetFloat3ToNull() { Float3_IsSet = true; Float3_IsNull = true; }
 	/** @brief Checks whether Float3_Optional is set to null */
-	bool IsFloat3Null() const { return Float3_IsSet && Float3_IsNull; }
+	FORCEINLINE bool IsFloat3Null() const { return Float3_IsSet && Float3_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float4_Optional{  };
@@ -2387,29 +2189,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float4_IsNull{ false };
 	/** @brief Gets the value of Float4_Optional, regardless of it having been set */
-	float& GetFloat4() { return Float4_Optional; }
+	FORCEINLINE float& GetFloat4() { return Float4_Optional; }
 	/** @brief Gets the value of Float4_Optional, regardless of it having been set */
-	const float& GetFloat4() const { return Float4_Optional; }
+	FORCEINLINE const float& GetFloat4() const { return Float4_Optional; }
 	/** @brief Gets the value of Float4_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat4(const float& DefaultValue) const { if (Float4_IsSet) return Float4_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat4(const float& DefaultValue) const { if (Float4_IsSet) return Float4_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float4_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat4(float& OutValue) const { if (Float4_IsSet && !Float4_IsNull) OutValue = Float4_Optional; return Float4_IsSet; }
+	FORCEINLINE bool GetFloat4(float& OutValue) const { if (Float4_IsSet && !Float4_IsNull) OutValue = Float4_Optional; return Float4_IsSet; }
 	/** @brief Returns a pointer to Float4_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat4OrNull() { if (Float4_IsSet) return (Float4_IsNull ? nullptr : &Float4_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat4OrNull() { if (Float4_IsSet) return (Float4_IsNull ? nullptr : &Float4_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float4_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat4OrNull() const { if (Float4_IsSet) return (Float4_IsNull ? nullptr : &Float4_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat4OrNull() const { if (Float4_IsSet) return (Float4_IsNull ? nullptr : &Float4_Optional); return nullptr; }
 	/** @brief Sets the value of Float4_Optional and also sets Float4_IsSet to true */
-	void SetFloat4(const float& NewValue) { Float4_Optional = NewValue; Float4_IsSet = true; Float4_IsNull = false; }
+	FORCEINLINE void SetFloat4(const float& NewValue) { Float4_Optional = NewValue; Float4_IsSet = true; Float4_IsNull = false; }
 	/** @brief Sets the value of Float4_Optional and also sets Float4_IsSet to true using move semantics */
-	void SetFloat4(float&& NewValue) { Float4_Optional = NewValue; Float4_IsSet = true; Float4_IsNull = false; }
+	FORCEINLINE void SetFloat4(float&& NewValue) { Float4_Optional = NewValue; Float4_IsSet = true; Float4_IsNull = false; }
 	/** @brief Clears the value of Float4_Optional and sets Float4_IsSet to false */
 	void ClearFloat4() { Float4_IsSet = false; Float4_IsNull = false; }
-	/** @brief Checks whether Float4_Optional has been set */
-	bool IsFloat4Set() const { return Float4_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat4ToNull() { Float4_IsSet = true; Float4_IsNull = true; }
+	FORCEINLINE void SetFloat4ToNull() { Float4_IsSet = true; Float4_IsNull = true; }
 	/** @brief Checks whether Float4_Optional is set to null */
-	bool IsFloat4Null() const { return Float4_IsSet && Float4_IsNull; }
+	FORCEINLINE bool IsFloat4Null() const { return Float4_IsSet && Float4_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float5_Optional{  };
@@ -2420,29 +2220,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float5_IsNull{ false };
 	/** @brief Gets the value of Float5_Optional, regardless of it having been set */
-	float& GetFloat5() { return Float5_Optional; }
+	FORCEINLINE float& GetFloat5() { return Float5_Optional; }
 	/** @brief Gets the value of Float5_Optional, regardless of it having been set */
-	const float& GetFloat5() const { return Float5_Optional; }
+	FORCEINLINE const float& GetFloat5() const { return Float5_Optional; }
 	/** @brief Gets the value of Float5_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat5(const float& DefaultValue) const { if (Float5_IsSet) return Float5_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat5(const float& DefaultValue) const { if (Float5_IsSet) return Float5_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float5_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat5(float& OutValue) const { if (Float5_IsSet && !Float5_IsNull) OutValue = Float5_Optional; return Float5_IsSet; }
+	FORCEINLINE bool GetFloat5(float& OutValue) const { if (Float5_IsSet && !Float5_IsNull) OutValue = Float5_Optional; return Float5_IsSet; }
 	/** @brief Returns a pointer to Float5_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat5OrNull() { if (Float5_IsSet) return (Float5_IsNull ? nullptr : &Float5_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat5OrNull() { if (Float5_IsSet) return (Float5_IsNull ? nullptr : &Float5_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float5_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat5OrNull() const { if (Float5_IsSet) return (Float5_IsNull ? nullptr : &Float5_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat5OrNull() const { if (Float5_IsSet) return (Float5_IsNull ? nullptr : &Float5_Optional); return nullptr; }
 	/** @brief Sets the value of Float5_Optional and also sets Float5_IsSet to true */
-	void SetFloat5(const float& NewValue) { Float5_Optional = NewValue; Float5_IsSet = true; Float5_IsNull = false; }
+	FORCEINLINE void SetFloat5(const float& NewValue) { Float5_Optional = NewValue; Float5_IsSet = true; Float5_IsNull = false; }
 	/** @brief Sets the value of Float5_Optional and also sets Float5_IsSet to true using move semantics */
-	void SetFloat5(float&& NewValue) { Float5_Optional = NewValue; Float5_IsSet = true; Float5_IsNull = false; }
+	FORCEINLINE void SetFloat5(float&& NewValue) { Float5_Optional = NewValue; Float5_IsSet = true; Float5_IsNull = false; }
 	/** @brief Clears the value of Float5_Optional and sets Float5_IsSet to false */
 	void ClearFloat5() { Float5_IsSet = false; Float5_IsNull = false; }
-	/** @brief Checks whether Float5_Optional has been set */
-	bool IsFloat5Set() const { return Float5_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat5ToNull() { Float5_IsSet = true; Float5_IsNull = true; }
+	FORCEINLINE void SetFloat5ToNull() { Float5_IsSet = true; Float5_IsNull = true; }
 	/** @brief Checks whether Float5_Optional is set to null */
-	bool IsFloat5Null() const { return Float5_IsSet && Float5_IsNull; }
+	FORCEINLINE bool IsFloat5Null() const { return Float5_IsSet && Float5_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float6_Optional{  };
@@ -2453,29 +2251,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float6_IsNull{ false };
 	/** @brief Gets the value of Float6_Optional, regardless of it having been set */
-	float& GetFloat6() { return Float6_Optional; }
+	FORCEINLINE float& GetFloat6() { return Float6_Optional; }
 	/** @brief Gets the value of Float6_Optional, regardless of it having been set */
-	const float& GetFloat6() const { return Float6_Optional; }
+	FORCEINLINE const float& GetFloat6() const { return Float6_Optional; }
 	/** @brief Gets the value of Float6_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat6(const float& DefaultValue) const { if (Float6_IsSet) return Float6_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat6(const float& DefaultValue) const { if (Float6_IsSet) return Float6_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float6_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat6(float& OutValue) const { if (Float6_IsSet && !Float6_IsNull) OutValue = Float6_Optional; return Float6_IsSet; }
+	FORCEINLINE bool GetFloat6(float& OutValue) const { if (Float6_IsSet && !Float6_IsNull) OutValue = Float6_Optional; return Float6_IsSet; }
 	/** @brief Returns a pointer to Float6_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat6OrNull() { if (Float6_IsSet) return (Float6_IsNull ? nullptr : &Float6_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat6OrNull() { if (Float6_IsSet) return (Float6_IsNull ? nullptr : &Float6_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float6_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat6OrNull() const { if (Float6_IsSet) return (Float6_IsNull ? nullptr : &Float6_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat6OrNull() const { if (Float6_IsSet) return (Float6_IsNull ? nullptr : &Float6_Optional); return nullptr; }
 	/** @brief Sets the value of Float6_Optional and also sets Float6_IsSet to true */
-	void SetFloat6(const float& NewValue) { Float6_Optional = NewValue; Float6_IsSet = true; Float6_IsNull = false; }
+	FORCEINLINE void SetFloat6(const float& NewValue) { Float6_Optional = NewValue; Float6_IsSet = true; Float6_IsNull = false; }
 	/** @brief Sets the value of Float6_Optional and also sets Float6_IsSet to true using move semantics */
-	void SetFloat6(float&& NewValue) { Float6_Optional = NewValue; Float6_IsSet = true; Float6_IsNull = false; }
+	FORCEINLINE void SetFloat6(float&& NewValue) { Float6_Optional = NewValue; Float6_IsSet = true; Float6_IsNull = false; }
 	/** @brief Clears the value of Float6_Optional and sets Float6_IsSet to false */
 	void ClearFloat6() { Float6_IsSet = false; Float6_IsNull = false; }
-	/** @brief Checks whether Float6_Optional has been set */
-	bool IsFloat6Set() const { return Float6_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat6ToNull() { Float6_IsSet = true; Float6_IsNull = true; }
+	FORCEINLINE void SetFloat6ToNull() { Float6_IsSet = true; Float6_IsNull = true; }
 	/** @brief Checks whether Float6_Optional is set to null */
-	bool IsFloat6Null() const { return Float6_IsSet && Float6_IsNull; }
+	FORCEINLINE bool IsFloat6Null() const { return Float6_IsSet && Float6_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float7_Optional{  };
@@ -2486,29 +2282,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float7_IsNull{ false };
 	/** @brief Gets the value of Float7_Optional, regardless of it having been set */
-	float& GetFloat7() { return Float7_Optional; }
+	FORCEINLINE float& GetFloat7() { return Float7_Optional; }
 	/** @brief Gets the value of Float7_Optional, regardless of it having been set */
-	const float& GetFloat7() const { return Float7_Optional; }
+	FORCEINLINE const float& GetFloat7() const { return Float7_Optional; }
 	/** @brief Gets the value of Float7_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat7(const float& DefaultValue) const { if (Float7_IsSet) return Float7_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat7(const float& DefaultValue) const { if (Float7_IsSet) return Float7_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float7_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat7(float& OutValue) const { if (Float7_IsSet && !Float7_IsNull) OutValue = Float7_Optional; return Float7_IsSet; }
+	FORCEINLINE bool GetFloat7(float& OutValue) const { if (Float7_IsSet && !Float7_IsNull) OutValue = Float7_Optional; return Float7_IsSet; }
 	/** @brief Returns a pointer to Float7_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat7OrNull() { if (Float7_IsSet) return (Float7_IsNull ? nullptr : &Float7_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat7OrNull() { if (Float7_IsSet) return (Float7_IsNull ? nullptr : &Float7_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float7_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat7OrNull() const { if (Float7_IsSet) return (Float7_IsNull ? nullptr : &Float7_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat7OrNull() const { if (Float7_IsSet) return (Float7_IsNull ? nullptr : &Float7_Optional); return nullptr; }
 	/** @brief Sets the value of Float7_Optional and also sets Float7_IsSet to true */
-	void SetFloat7(const float& NewValue) { Float7_Optional = NewValue; Float7_IsSet = true; Float7_IsNull = false; }
+	FORCEINLINE void SetFloat7(const float& NewValue) { Float7_Optional = NewValue; Float7_IsSet = true; Float7_IsNull = false; }
 	/** @brief Sets the value of Float7_Optional and also sets Float7_IsSet to true using move semantics */
-	void SetFloat7(float&& NewValue) { Float7_Optional = NewValue; Float7_IsSet = true; Float7_IsNull = false; }
+	FORCEINLINE void SetFloat7(float&& NewValue) { Float7_Optional = NewValue; Float7_IsSet = true; Float7_IsNull = false; }
 	/** @brief Clears the value of Float7_Optional and sets Float7_IsSet to false */
 	void ClearFloat7() { Float7_IsSet = false; Float7_IsNull = false; }
-	/** @brief Checks whether Float7_Optional has been set */
-	bool IsFloat7Set() const { return Float7_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat7ToNull() { Float7_IsSet = true; Float7_IsNull = true; }
+	FORCEINLINE void SetFloat7ToNull() { Float7_IsSet = true; Float7_IsNull = true; }
 	/** @brief Checks whether Float7_Optional is set to null */
-	bool IsFloat7Null() const { return Float7_IsSet && Float7_IsNull; }
+	FORCEINLINE bool IsFloat7Null() const { return Float7_IsSet && Float7_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float8_Optional{  };
@@ -2519,29 +2313,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float8_IsNull{ false };
 	/** @brief Gets the value of Float8_Optional, regardless of it having been set */
-	float& GetFloat8() { return Float8_Optional; }
+	FORCEINLINE float& GetFloat8() { return Float8_Optional; }
 	/** @brief Gets the value of Float8_Optional, regardless of it having been set */
-	const float& GetFloat8() const { return Float8_Optional; }
+	FORCEINLINE const float& GetFloat8() const { return Float8_Optional; }
 	/** @brief Gets the value of Float8_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat8(const float& DefaultValue) const { if (Float8_IsSet) return Float8_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat8(const float& DefaultValue) const { if (Float8_IsSet) return Float8_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float8_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat8(float& OutValue) const { if (Float8_IsSet && !Float8_IsNull) OutValue = Float8_Optional; return Float8_IsSet; }
+	FORCEINLINE bool GetFloat8(float& OutValue) const { if (Float8_IsSet && !Float8_IsNull) OutValue = Float8_Optional; return Float8_IsSet; }
 	/** @brief Returns a pointer to Float8_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat8OrNull() { if (Float8_IsSet) return (Float8_IsNull ? nullptr : &Float8_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat8OrNull() { if (Float8_IsSet) return (Float8_IsNull ? nullptr : &Float8_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float8_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat8OrNull() const { if (Float8_IsSet) return (Float8_IsNull ? nullptr : &Float8_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat8OrNull() const { if (Float8_IsSet) return (Float8_IsNull ? nullptr : &Float8_Optional); return nullptr; }
 	/** @brief Sets the value of Float8_Optional and also sets Float8_IsSet to true */
-	void SetFloat8(const float& NewValue) { Float8_Optional = NewValue; Float8_IsSet = true; Float8_IsNull = false; }
+	FORCEINLINE void SetFloat8(const float& NewValue) { Float8_Optional = NewValue; Float8_IsSet = true; Float8_IsNull = false; }
 	/** @brief Sets the value of Float8_Optional and also sets Float8_IsSet to true using move semantics */
-	void SetFloat8(float&& NewValue) { Float8_Optional = NewValue; Float8_IsSet = true; Float8_IsNull = false; }
+	FORCEINLINE void SetFloat8(float&& NewValue) { Float8_Optional = NewValue; Float8_IsSet = true; Float8_IsNull = false; }
 	/** @brief Clears the value of Float8_Optional and sets Float8_IsSet to false */
 	void ClearFloat8() { Float8_IsSet = false; Float8_IsNull = false; }
-	/** @brief Checks whether Float8_Optional has been set */
-	bool IsFloat8Set() const { return Float8_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat8ToNull() { Float8_IsSet = true; Float8_IsNull = true; }
+	FORCEINLINE void SetFloat8ToNull() { Float8_IsSet = true; Float8_IsNull = true; }
 	/** @brief Checks whether Float8_Optional is set to null */
-	bool IsFloat8Null() const { return Float8_IsSet && Float8_IsNull; }
+	FORCEINLINE bool IsFloat8Null() const { return Float8_IsSet && Float8_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float9_Optional{  };
@@ -2552,29 +2344,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float9_IsNull{ false };
 	/** @brief Gets the value of Float9_Optional, regardless of it having been set */
-	float& GetFloat9() { return Float9_Optional; }
+	FORCEINLINE float& GetFloat9() { return Float9_Optional; }
 	/** @brief Gets the value of Float9_Optional, regardless of it having been set */
-	const float& GetFloat9() const { return Float9_Optional; }
+	FORCEINLINE const float& GetFloat9() const { return Float9_Optional; }
 	/** @brief Gets the value of Float9_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat9(const float& DefaultValue) const { if (Float9_IsSet) return Float9_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat9(const float& DefaultValue) const { if (Float9_IsSet) return Float9_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float9_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat9(float& OutValue) const { if (Float9_IsSet && !Float9_IsNull) OutValue = Float9_Optional; return Float9_IsSet; }
+	FORCEINLINE bool GetFloat9(float& OutValue) const { if (Float9_IsSet && !Float9_IsNull) OutValue = Float9_Optional; return Float9_IsSet; }
 	/** @brief Returns a pointer to Float9_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat9OrNull() { if (Float9_IsSet) return (Float9_IsNull ? nullptr : &Float9_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat9OrNull() { if (Float9_IsSet) return (Float9_IsNull ? nullptr : &Float9_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float9_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat9OrNull() const { if (Float9_IsSet) return (Float9_IsNull ? nullptr : &Float9_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat9OrNull() const { if (Float9_IsSet) return (Float9_IsNull ? nullptr : &Float9_Optional); return nullptr; }
 	/** @brief Sets the value of Float9_Optional and also sets Float9_IsSet to true */
-	void SetFloat9(const float& NewValue) { Float9_Optional = NewValue; Float9_IsSet = true; Float9_IsNull = false; }
+	FORCEINLINE void SetFloat9(const float& NewValue) { Float9_Optional = NewValue; Float9_IsSet = true; Float9_IsNull = false; }
 	/** @brief Sets the value of Float9_Optional and also sets Float9_IsSet to true using move semantics */
-	void SetFloat9(float&& NewValue) { Float9_Optional = NewValue; Float9_IsSet = true; Float9_IsNull = false; }
+	FORCEINLINE void SetFloat9(float&& NewValue) { Float9_Optional = NewValue; Float9_IsSet = true; Float9_IsNull = false; }
 	/** @brief Clears the value of Float9_Optional and sets Float9_IsSet to false */
 	void ClearFloat9() { Float9_IsSet = false; Float9_IsNull = false; }
-	/** @brief Checks whether Float9_Optional has been set */
-	bool IsFloat9Set() const { return Float9_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat9ToNull() { Float9_IsSet = true; Float9_IsNull = true; }
+	FORCEINLINE void SetFloat9ToNull() { Float9_IsSet = true; Float9_IsNull = true; }
 	/** @brief Checks whether Float9_Optional is set to null */
-	bool IsFloat9Null() const { return Float9_IsSet && Float9_IsNull; }
+	FORCEINLINE bool IsFloat9Null() const { return Float9_IsSet && Float9_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float10_Optional{  };
@@ -2585,29 +2375,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float10_IsNull{ false };
 	/** @brief Gets the value of Float10_Optional, regardless of it having been set */
-	float& GetFloat10() { return Float10_Optional; }
+	FORCEINLINE float& GetFloat10() { return Float10_Optional; }
 	/** @brief Gets the value of Float10_Optional, regardless of it having been set */
-	const float& GetFloat10() const { return Float10_Optional; }
+	FORCEINLINE const float& GetFloat10() const { return Float10_Optional; }
 	/** @brief Gets the value of Float10_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat10(const float& DefaultValue) const { if (Float10_IsSet) return Float10_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat10(const float& DefaultValue) const { if (Float10_IsSet) return Float10_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float10_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat10(float& OutValue) const { if (Float10_IsSet && !Float10_IsNull) OutValue = Float10_Optional; return Float10_IsSet; }
+	FORCEINLINE bool GetFloat10(float& OutValue) const { if (Float10_IsSet && !Float10_IsNull) OutValue = Float10_Optional; return Float10_IsSet; }
 	/** @brief Returns a pointer to Float10_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat10OrNull() { if (Float10_IsSet) return (Float10_IsNull ? nullptr : &Float10_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat10OrNull() { if (Float10_IsSet) return (Float10_IsNull ? nullptr : &Float10_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float10_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat10OrNull() const { if (Float10_IsSet) return (Float10_IsNull ? nullptr : &Float10_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat10OrNull() const { if (Float10_IsSet) return (Float10_IsNull ? nullptr : &Float10_Optional); return nullptr; }
 	/** @brief Sets the value of Float10_Optional and also sets Float10_IsSet to true */
-	void SetFloat10(const float& NewValue) { Float10_Optional = NewValue; Float10_IsSet = true; Float10_IsNull = false; }
+	FORCEINLINE void SetFloat10(const float& NewValue) { Float10_Optional = NewValue; Float10_IsSet = true; Float10_IsNull = false; }
 	/** @brief Sets the value of Float10_Optional and also sets Float10_IsSet to true using move semantics */
-	void SetFloat10(float&& NewValue) { Float10_Optional = NewValue; Float10_IsSet = true; Float10_IsNull = false; }
+	FORCEINLINE void SetFloat10(float&& NewValue) { Float10_Optional = NewValue; Float10_IsSet = true; Float10_IsNull = false; }
 	/** @brief Clears the value of Float10_Optional and sets Float10_IsSet to false */
 	void ClearFloat10() { Float10_IsSet = false; Float10_IsNull = false; }
-	/** @brief Checks whether Float10_Optional has been set */
-	bool IsFloat10Set() const { return Float10_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat10ToNull() { Float10_IsSet = true; Float10_IsNull = true; }
+	FORCEINLINE void SetFloat10ToNull() { Float10_IsSet = true; Float10_IsNull = true; }
 	/** @brief Checks whether Float10_Optional is set to null */
-	bool IsFloat10Null() const { return Float10_IsSet && Float10_IsNull; }
+	FORCEINLINE bool IsFloat10Null() const { return Float10_IsSet && Float10_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float11_Optional{  };
@@ -2618,29 +2406,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float11_IsNull{ false };
 	/** @brief Gets the value of Float11_Optional, regardless of it having been set */
-	float& GetFloat11() { return Float11_Optional; }
+	FORCEINLINE float& GetFloat11() { return Float11_Optional; }
 	/** @brief Gets the value of Float11_Optional, regardless of it having been set */
-	const float& GetFloat11() const { return Float11_Optional; }
+	FORCEINLINE const float& GetFloat11() const { return Float11_Optional; }
 	/** @brief Gets the value of Float11_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat11(const float& DefaultValue) const { if (Float11_IsSet) return Float11_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat11(const float& DefaultValue) const { if (Float11_IsSet) return Float11_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float11_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat11(float& OutValue) const { if (Float11_IsSet && !Float11_IsNull) OutValue = Float11_Optional; return Float11_IsSet; }
+	FORCEINLINE bool GetFloat11(float& OutValue) const { if (Float11_IsSet && !Float11_IsNull) OutValue = Float11_Optional; return Float11_IsSet; }
 	/** @brief Returns a pointer to Float11_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat11OrNull() { if (Float11_IsSet) return (Float11_IsNull ? nullptr : &Float11_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat11OrNull() { if (Float11_IsSet) return (Float11_IsNull ? nullptr : &Float11_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float11_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat11OrNull() const { if (Float11_IsSet) return (Float11_IsNull ? nullptr : &Float11_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat11OrNull() const { if (Float11_IsSet) return (Float11_IsNull ? nullptr : &Float11_Optional); return nullptr; }
 	/** @brief Sets the value of Float11_Optional and also sets Float11_IsSet to true */
-	void SetFloat11(const float& NewValue) { Float11_Optional = NewValue; Float11_IsSet = true; Float11_IsNull = false; }
+	FORCEINLINE void SetFloat11(const float& NewValue) { Float11_Optional = NewValue; Float11_IsSet = true; Float11_IsNull = false; }
 	/** @brief Sets the value of Float11_Optional and also sets Float11_IsSet to true using move semantics */
-	void SetFloat11(float&& NewValue) { Float11_Optional = NewValue; Float11_IsSet = true; Float11_IsNull = false; }
+	FORCEINLINE void SetFloat11(float&& NewValue) { Float11_Optional = NewValue; Float11_IsSet = true; Float11_IsNull = false; }
 	/** @brief Clears the value of Float11_Optional and sets Float11_IsSet to false */
 	void ClearFloat11() { Float11_IsSet = false; Float11_IsNull = false; }
-	/** @brief Checks whether Float11_Optional has been set */
-	bool IsFloat11Set() const { return Float11_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat11ToNull() { Float11_IsSet = true; Float11_IsNull = true; }
+	FORCEINLINE void SetFloat11ToNull() { Float11_IsSet = true; Float11_IsNull = true; }
 	/** @brief Checks whether Float11_Optional is set to null */
-	bool IsFloat11Null() const { return Float11_IsSet && Float11_IsNull; }
+	FORCEINLINE bool IsFloat11Null() const { return Float11_IsSet && Float11_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float12_Optional{  };
@@ -2651,29 +2437,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float12_IsNull{ false };
 	/** @brief Gets the value of Float12_Optional, regardless of it having been set */
-	float& GetFloat12() { return Float12_Optional; }
+	FORCEINLINE float& GetFloat12() { return Float12_Optional; }
 	/** @brief Gets the value of Float12_Optional, regardless of it having been set */
-	const float& GetFloat12() const { return Float12_Optional; }
+	FORCEINLINE const float& GetFloat12() const { return Float12_Optional; }
 	/** @brief Gets the value of Float12_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat12(const float& DefaultValue) const { if (Float12_IsSet) return Float12_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat12(const float& DefaultValue) const { if (Float12_IsSet) return Float12_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float12_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat12(float& OutValue) const { if (Float12_IsSet && !Float12_IsNull) OutValue = Float12_Optional; return Float12_IsSet; }
+	FORCEINLINE bool GetFloat12(float& OutValue) const { if (Float12_IsSet && !Float12_IsNull) OutValue = Float12_Optional; return Float12_IsSet; }
 	/** @brief Returns a pointer to Float12_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat12OrNull() { if (Float12_IsSet) return (Float12_IsNull ? nullptr : &Float12_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat12OrNull() { if (Float12_IsSet) return (Float12_IsNull ? nullptr : &Float12_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float12_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat12OrNull() const { if (Float12_IsSet) return (Float12_IsNull ? nullptr : &Float12_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat12OrNull() const { if (Float12_IsSet) return (Float12_IsNull ? nullptr : &Float12_Optional); return nullptr; }
 	/** @brief Sets the value of Float12_Optional and also sets Float12_IsSet to true */
-	void SetFloat12(const float& NewValue) { Float12_Optional = NewValue; Float12_IsSet = true; Float12_IsNull = false; }
+	FORCEINLINE void SetFloat12(const float& NewValue) { Float12_Optional = NewValue; Float12_IsSet = true; Float12_IsNull = false; }
 	/** @brief Sets the value of Float12_Optional and also sets Float12_IsSet to true using move semantics */
-	void SetFloat12(float&& NewValue) { Float12_Optional = NewValue; Float12_IsSet = true; Float12_IsNull = false; }
+	FORCEINLINE void SetFloat12(float&& NewValue) { Float12_Optional = NewValue; Float12_IsSet = true; Float12_IsNull = false; }
 	/** @brief Clears the value of Float12_Optional and sets Float12_IsSet to false */
 	void ClearFloat12() { Float12_IsSet = false; Float12_IsNull = false; }
-	/** @brief Checks whether Float12_Optional has been set */
-	bool IsFloat12Set() const { return Float12_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat12ToNull() { Float12_IsSet = true; Float12_IsNull = true; }
+	FORCEINLINE void SetFloat12ToNull() { Float12_IsSet = true; Float12_IsNull = true; }
 	/** @brief Checks whether Float12_Optional is set to null */
-	bool IsFloat12Null() const { return Float12_IsSet && Float12_IsNull; }
+	FORCEINLINE bool IsFloat12Null() const { return Float12_IsSet && Float12_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float13_Optional{  };
@@ -2684,29 +2468,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float13_IsNull{ false };
 	/** @brief Gets the value of Float13_Optional, regardless of it having been set */
-	float& GetFloat13() { return Float13_Optional; }
+	FORCEINLINE float& GetFloat13() { return Float13_Optional; }
 	/** @brief Gets the value of Float13_Optional, regardless of it having been set */
-	const float& GetFloat13() const { return Float13_Optional; }
+	FORCEINLINE const float& GetFloat13() const { return Float13_Optional; }
 	/** @brief Gets the value of Float13_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat13(const float& DefaultValue) const { if (Float13_IsSet) return Float13_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat13(const float& DefaultValue) const { if (Float13_IsSet) return Float13_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float13_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat13(float& OutValue) const { if (Float13_IsSet && !Float13_IsNull) OutValue = Float13_Optional; return Float13_IsSet; }
+	FORCEINLINE bool GetFloat13(float& OutValue) const { if (Float13_IsSet && !Float13_IsNull) OutValue = Float13_Optional; return Float13_IsSet; }
 	/** @brief Returns a pointer to Float13_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat13OrNull() { if (Float13_IsSet) return (Float13_IsNull ? nullptr : &Float13_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat13OrNull() { if (Float13_IsSet) return (Float13_IsNull ? nullptr : &Float13_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float13_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat13OrNull() const { if (Float13_IsSet) return (Float13_IsNull ? nullptr : &Float13_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat13OrNull() const { if (Float13_IsSet) return (Float13_IsNull ? nullptr : &Float13_Optional); return nullptr; }
 	/** @brief Sets the value of Float13_Optional and also sets Float13_IsSet to true */
-	void SetFloat13(const float& NewValue) { Float13_Optional = NewValue; Float13_IsSet = true; Float13_IsNull = false; }
+	FORCEINLINE void SetFloat13(const float& NewValue) { Float13_Optional = NewValue; Float13_IsSet = true; Float13_IsNull = false; }
 	/** @brief Sets the value of Float13_Optional and also sets Float13_IsSet to true using move semantics */
-	void SetFloat13(float&& NewValue) { Float13_Optional = NewValue; Float13_IsSet = true; Float13_IsNull = false; }
+	FORCEINLINE void SetFloat13(float&& NewValue) { Float13_Optional = NewValue; Float13_IsSet = true; Float13_IsNull = false; }
 	/** @brief Clears the value of Float13_Optional and sets Float13_IsSet to false */
 	void ClearFloat13() { Float13_IsSet = false; Float13_IsNull = false; }
-	/** @brief Checks whether Float13_Optional has been set */
-	bool IsFloat13Set() const { return Float13_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat13ToNull() { Float13_IsSet = true; Float13_IsNull = true; }
+	FORCEINLINE void SetFloat13ToNull() { Float13_IsSet = true; Float13_IsNull = true; }
 	/** @brief Checks whether Float13_Optional is set to null */
-	bool IsFloat13Null() const { return Float13_IsSet && Float13_IsNull; }
+	FORCEINLINE bool IsFloat13Null() const { return Float13_IsSet && Float13_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float14_Optional{  };
@@ -2717,29 +2499,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float14_IsNull{ false };
 	/** @brief Gets the value of Float14_Optional, regardless of it having been set */
-	float& GetFloat14() { return Float14_Optional; }
+	FORCEINLINE float& GetFloat14() { return Float14_Optional; }
 	/** @brief Gets the value of Float14_Optional, regardless of it having been set */
-	const float& GetFloat14() const { return Float14_Optional; }
+	FORCEINLINE const float& GetFloat14() const { return Float14_Optional; }
 	/** @brief Gets the value of Float14_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat14(const float& DefaultValue) const { if (Float14_IsSet) return Float14_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat14(const float& DefaultValue) const { if (Float14_IsSet) return Float14_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float14_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat14(float& OutValue) const { if (Float14_IsSet && !Float14_IsNull) OutValue = Float14_Optional; return Float14_IsSet; }
+	FORCEINLINE bool GetFloat14(float& OutValue) const { if (Float14_IsSet && !Float14_IsNull) OutValue = Float14_Optional; return Float14_IsSet; }
 	/** @brief Returns a pointer to Float14_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat14OrNull() { if (Float14_IsSet) return (Float14_IsNull ? nullptr : &Float14_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat14OrNull() { if (Float14_IsSet) return (Float14_IsNull ? nullptr : &Float14_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float14_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat14OrNull() const { if (Float14_IsSet) return (Float14_IsNull ? nullptr : &Float14_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat14OrNull() const { if (Float14_IsSet) return (Float14_IsNull ? nullptr : &Float14_Optional); return nullptr; }
 	/** @brief Sets the value of Float14_Optional and also sets Float14_IsSet to true */
-	void SetFloat14(const float& NewValue) { Float14_Optional = NewValue; Float14_IsSet = true; Float14_IsNull = false; }
+	FORCEINLINE void SetFloat14(const float& NewValue) { Float14_Optional = NewValue; Float14_IsSet = true; Float14_IsNull = false; }
 	/** @brief Sets the value of Float14_Optional and also sets Float14_IsSet to true using move semantics */
-	void SetFloat14(float&& NewValue) { Float14_Optional = NewValue; Float14_IsSet = true; Float14_IsNull = false; }
+	FORCEINLINE void SetFloat14(float&& NewValue) { Float14_Optional = NewValue; Float14_IsSet = true; Float14_IsNull = false; }
 	/** @brief Clears the value of Float14_Optional and sets Float14_IsSet to false */
 	void ClearFloat14() { Float14_IsSet = false; Float14_IsNull = false; }
-	/** @brief Checks whether Float14_Optional has been set */
-	bool IsFloat14Set() const { return Float14_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat14ToNull() { Float14_IsSet = true; Float14_IsNull = true; }
+	FORCEINLINE void SetFloat14ToNull() { Float14_IsSet = true; Float14_IsNull = true; }
 	/** @brief Checks whether Float14_Optional is set to null */
-	bool IsFloat14Null() const { return Float14_IsSet && Float14_IsNull; }
+	FORCEINLINE bool IsFloat14Null() const { return Float14_IsSet && Float14_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float15_Optional{  };
@@ -2750,29 +2530,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float15_IsNull{ false };
 	/** @brief Gets the value of Float15_Optional, regardless of it having been set */
-	float& GetFloat15() { return Float15_Optional; }
+	FORCEINLINE float& GetFloat15() { return Float15_Optional; }
 	/** @brief Gets the value of Float15_Optional, regardless of it having been set */
-	const float& GetFloat15() const { return Float15_Optional; }
+	FORCEINLINE const float& GetFloat15() const { return Float15_Optional; }
 	/** @brief Gets the value of Float15_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat15(const float& DefaultValue) const { if (Float15_IsSet) return Float15_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat15(const float& DefaultValue) const { if (Float15_IsSet) return Float15_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float15_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat15(float& OutValue) const { if (Float15_IsSet && !Float15_IsNull) OutValue = Float15_Optional; return Float15_IsSet; }
+	FORCEINLINE bool GetFloat15(float& OutValue) const { if (Float15_IsSet && !Float15_IsNull) OutValue = Float15_Optional; return Float15_IsSet; }
 	/** @brief Returns a pointer to Float15_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat15OrNull() { if (Float15_IsSet) return (Float15_IsNull ? nullptr : &Float15_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat15OrNull() { if (Float15_IsSet) return (Float15_IsNull ? nullptr : &Float15_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float15_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat15OrNull() const { if (Float15_IsSet) return (Float15_IsNull ? nullptr : &Float15_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat15OrNull() const { if (Float15_IsSet) return (Float15_IsNull ? nullptr : &Float15_Optional); return nullptr; }
 	/** @brief Sets the value of Float15_Optional and also sets Float15_IsSet to true */
-	void SetFloat15(const float& NewValue) { Float15_Optional = NewValue; Float15_IsSet = true; Float15_IsNull = false; }
+	FORCEINLINE void SetFloat15(const float& NewValue) { Float15_Optional = NewValue; Float15_IsSet = true; Float15_IsNull = false; }
 	/** @brief Sets the value of Float15_Optional and also sets Float15_IsSet to true using move semantics */
-	void SetFloat15(float&& NewValue) { Float15_Optional = NewValue; Float15_IsSet = true; Float15_IsNull = false; }
+	FORCEINLINE void SetFloat15(float&& NewValue) { Float15_Optional = NewValue; Float15_IsSet = true; Float15_IsNull = false; }
 	/** @brief Clears the value of Float15_Optional and sets Float15_IsSet to false */
 	void ClearFloat15() { Float15_IsSet = false; Float15_IsNull = false; }
-	/** @brief Checks whether Float15_Optional has been set */
-	bool IsFloat15Set() const { return Float15_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat15ToNull() { Float15_IsSet = true; Float15_IsNull = true; }
+	FORCEINLINE void SetFloat15ToNull() { Float15_IsSet = true; Float15_IsNull = true; }
 	/** @brief Checks whether Float15_Optional is set to null */
-	bool IsFloat15Null() const { return Float15_IsSet && Float15_IsNull; }
+	FORCEINLINE bool IsFloat15Null() const { return Float15_IsSet && Float15_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float16_Optional{  };
@@ -2783,29 +2561,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float16_IsNull{ false };
 	/** @brief Gets the value of Float16_Optional, regardless of it having been set */
-	float& GetFloat16() { return Float16_Optional; }
+	FORCEINLINE float& GetFloat16() { return Float16_Optional; }
 	/** @brief Gets the value of Float16_Optional, regardless of it having been set */
-	const float& GetFloat16() const { return Float16_Optional; }
+	FORCEINLINE const float& GetFloat16() const { return Float16_Optional; }
 	/** @brief Gets the value of Float16_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat16(const float& DefaultValue) const { if (Float16_IsSet) return Float16_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat16(const float& DefaultValue) const { if (Float16_IsSet) return Float16_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float16_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat16(float& OutValue) const { if (Float16_IsSet && !Float16_IsNull) OutValue = Float16_Optional; return Float16_IsSet; }
+	FORCEINLINE bool GetFloat16(float& OutValue) const { if (Float16_IsSet && !Float16_IsNull) OutValue = Float16_Optional; return Float16_IsSet; }
 	/** @brief Returns a pointer to Float16_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat16OrNull() { if (Float16_IsSet) return (Float16_IsNull ? nullptr : &Float16_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat16OrNull() { if (Float16_IsSet) return (Float16_IsNull ? nullptr : &Float16_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float16_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat16OrNull() const { if (Float16_IsSet) return (Float16_IsNull ? nullptr : &Float16_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat16OrNull() const { if (Float16_IsSet) return (Float16_IsNull ? nullptr : &Float16_Optional); return nullptr; }
 	/** @brief Sets the value of Float16_Optional and also sets Float16_IsSet to true */
-	void SetFloat16(const float& NewValue) { Float16_Optional = NewValue; Float16_IsSet = true; Float16_IsNull = false; }
+	FORCEINLINE void SetFloat16(const float& NewValue) { Float16_Optional = NewValue; Float16_IsSet = true; Float16_IsNull = false; }
 	/** @brief Sets the value of Float16_Optional and also sets Float16_IsSet to true using move semantics */
-	void SetFloat16(float&& NewValue) { Float16_Optional = NewValue; Float16_IsSet = true; Float16_IsNull = false; }
+	FORCEINLINE void SetFloat16(float&& NewValue) { Float16_Optional = NewValue; Float16_IsSet = true; Float16_IsNull = false; }
 	/** @brief Clears the value of Float16_Optional and sets Float16_IsSet to false */
 	void ClearFloat16() { Float16_IsSet = false; Float16_IsNull = false; }
-	/** @brief Checks whether Float16_Optional has been set */
-	bool IsFloat16Set() const { return Float16_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat16ToNull() { Float16_IsSet = true; Float16_IsNull = true; }
+	FORCEINLINE void SetFloat16ToNull() { Float16_IsSet = true; Float16_IsNull = true; }
 	/** @brief Checks whether Float16_Optional is set to null */
-	bool IsFloat16Null() const { return Float16_IsSet && Float16_IsNull; }
+	FORCEINLINE bool IsFloat16Null() const { return Float16_IsSet && Float16_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float17_Optional{  };
@@ -2816,29 +2592,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float17_IsNull{ false };
 	/** @brief Gets the value of Float17_Optional, regardless of it having been set */
-	float& GetFloat17() { return Float17_Optional; }
+	FORCEINLINE float& GetFloat17() { return Float17_Optional; }
 	/** @brief Gets the value of Float17_Optional, regardless of it having been set */
-	const float& GetFloat17() const { return Float17_Optional; }
+	FORCEINLINE const float& GetFloat17() const { return Float17_Optional; }
 	/** @brief Gets the value of Float17_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat17(const float& DefaultValue) const { if (Float17_IsSet) return Float17_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat17(const float& DefaultValue) const { if (Float17_IsSet) return Float17_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float17_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat17(float& OutValue) const { if (Float17_IsSet && !Float17_IsNull) OutValue = Float17_Optional; return Float17_IsSet; }
+	FORCEINLINE bool GetFloat17(float& OutValue) const { if (Float17_IsSet && !Float17_IsNull) OutValue = Float17_Optional; return Float17_IsSet; }
 	/** @brief Returns a pointer to Float17_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat17OrNull() { if (Float17_IsSet) return (Float17_IsNull ? nullptr : &Float17_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat17OrNull() { if (Float17_IsSet) return (Float17_IsNull ? nullptr : &Float17_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float17_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat17OrNull() const { if (Float17_IsSet) return (Float17_IsNull ? nullptr : &Float17_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat17OrNull() const { if (Float17_IsSet) return (Float17_IsNull ? nullptr : &Float17_Optional); return nullptr; }
 	/** @brief Sets the value of Float17_Optional and also sets Float17_IsSet to true */
-	void SetFloat17(const float& NewValue) { Float17_Optional = NewValue; Float17_IsSet = true; Float17_IsNull = false; }
+	FORCEINLINE void SetFloat17(const float& NewValue) { Float17_Optional = NewValue; Float17_IsSet = true; Float17_IsNull = false; }
 	/** @brief Sets the value of Float17_Optional and also sets Float17_IsSet to true using move semantics */
-	void SetFloat17(float&& NewValue) { Float17_Optional = NewValue; Float17_IsSet = true; Float17_IsNull = false; }
+	FORCEINLINE void SetFloat17(float&& NewValue) { Float17_Optional = NewValue; Float17_IsSet = true; Float17_IsNull = false; }
 	/** @brief Clears the value of Float17_Optional and sets Float17_IsSet to false */
 	void ClearFloat17() { Float17_IsSet = false; Float17_IsNull = false; }
-	/** @brief Checks whether Float17_Optional has been set */
-	bool IsFloat17Set() const { return Float17_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat17ToNull() { Float17_IsSet = true; Float17_IsNull = true; }
+	FORCEINLINE void SetFloat17ToNull() { Float17_IsSet = true; Float17_IsNull = true; }
 	/** @brief Checks whether Float17_Optional is set to null */
-	bool IsFloat17Null() const { return Float17_IsSet && Float17_IsNull; }
+	FORCEINLINE bool IsFloat17Null() const { return Float17_IsSet && Float17_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float18_Optional{  };
@@ -2849,29 +2623,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float18_IsNull{ false };
 	/** @brief Gets the value of Float18_Optional, regardless of it having been set */
-	float& GetFloat18() { return Float18_Optional; }
+	FORCEINLINE float& GetFloat18() { return Float18_Optional; }
 	/** @brief Gets the value of Float18_Optional, regardless of it having been set */
-	const float& GetFloat18() const { return Float18_Optional; }
+	FORCEINLINE const float& GetFloat18() const { return Float18_Optional; }
 	/** @brief Gets the value of Float18_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat18(const float& DefaultValue) const { if (Float18_IsSet) return Float18_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat18(const float& DefaultValue) const { if (Float18_IsSet) return Float18_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float18_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat18(float& OutValue) const { if (Float18_IsSet && !Float18_IsNull) OutValue = Float18_Optional; return Float18_IsSet; }
+	FORCEINLINE bool GetFloat18(float& OutValue) const { if (Float18_IsSet && !Float18_IsNull) OutValue = Float18_Optional; return Float18_IsSet; }
 	/** @brief Returns a pointer to Float18_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat18OrNull() { if (Float18_IsSet) return (Float18_IsNull ? nullptr : &Float18_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat18OrNull() { if (Float18_IsSet) return (Float18_IsNull ? nullptr : &Float18_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float18_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat18OrNull() const { if (Float18_IsSet) return (Float18_IsNull ? nullptr : &Float18_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat18OrNull() const { if (Float18_IsSet) return (Float18_IsNull ? nullptr : &Float18_Optional); return nullptr; }
 	/** @brief Sets the value of Float18_Optional and also sets Float18_IsSet to true */
-	void SetFloat18(const float& NewValue) { Float18_Optional = NewValue; Float18_IsSet = true; Float18_IsNull = false; }
+	FORCEINLINE void SetFloat18(const float& NewValue) { Float18_Optional = NewValue; Float18_IsSet = true; Float18_IsNull = false; }
 	/** @brief Sets the value of Float18_Optional and also sets Float18_IsSet to true using move semantics */
-	void SetFloat18(float&& NewValue) { Float18_Optional = NewValue; Float18_IsSet = true; Float18_IsNull = false; }
+	FORCEINLINE void SetFloat18(float&& NewValue) { Float18_Optional = NewValue; Float18_IsSet = true; Float18_IsNull = false; }
 	/** @brief Clears the value of Float18_Optional and sets Float18_IsSet to false */
 	void ClearFloat18() { Float18_IsSet = false; Float18_IsNull = false; }
-	/** @brief Checks whether Float18_Optional has been set */
-	bool IsFloat18Set() const { return Float18_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat18ToNull() { Float18_IsSet = true; Float18_IsNull = true; }
+	FORCEINLINE void SetFloat18ToNull() { Float18_IsSet = true; Float18_IsNull = true; }
 	/** @brief Checks whether Float18_Optional is set to null */
-	bool IsFloat18Null() const { return Float18_IsSet && Float18_IsNull; }
+	FORCEINLINE bool IsFloat18Null() const { return Float18_IsSet && Float18_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float19_Optional{  };
@@ -2882,29 +2654,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float19_IsNull{ false };
 	/** @brief Gets the value of Float19_Optional, regardless of it having been set */
-	float& GetFloat19() { return Float19_Optional; }
+	FORCEINLINE float& GetFloat19() { return Float19_Optional; }
 	/** @brief Gets the value of Float19_Optional, regardless of it having been set */
-	const float& GetFloat19() const { return Float19_Optional; }
+	FORCEINLINE const float& GetFloat19() const { return Float19_Optional; }
 	/** @brief Gets the value of Float19_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat19(const float& DefaultValue) const { if (Float19_IsSet) return Float19_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat19(const float& DefaultValue) const { if (Float19_IsSet) return Float19_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float19_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat19(float& OutValue) const { if (Float19_IsSet && !Float19_IsNull) OutValue = Float19_Optional; return Float19_IsSet; }
+	FORCEINLINE bool GetFloat19(float& OutValue) const { if (Float19_IsSet && !Float19_IsNull) OutValue = Float19_Optional; return Float19_IsSet; }
 	/** @brief Returns a pointer to Float19_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat19OrNull() { if (Float19_IsSet) return (Float19_IsNull ? nullptr : &Float19_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat19OrNull() { if (Float19_IsSet) return (Float19_IsNull ? nullptr : &Float19_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float19_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat19OrNull() const { if (Float19_IsSet) return (Float19_IsNull ? nullptr : &Float19_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat19OrNull() const { if (Float19_IsSet) return (Float19_IsNull ? nullptr : &Float19_Optional); return nullptr; }
 	/** @brief Sets the value of Float19_Optional and also sets Float19_IsSet to true */
-	void SetFloat19(const float& NewValue) { Float19_Optional = NewValue; Float19_IsSet = true; Float19_IsNull = false; }
+	FORCEINLINE void SetFloat19(const float& NewValue) { Float19_Optional = NewValue; Float19_IsSet = true; Float19_IsNull = false; }
 	/** @brief Sets the value of Float19_Optional and also sets Float19_IsSet to true using move semantics */
-	void SetFloat19(float&& NewValue) { Float19_Optional = NewValue; Float19_IsSet = true; Float19_IsNull = false; }
+	FORCEINLINE void SetFloat19(float&& NewValue) { Float19_Optional = NewValue; Float19_IsSet = true; Float19_IsNull = false; }
 	/** @brief Clears the value of Float19_Optional and sets Float19_IsSet to false */
 	void ClearFloat19() { Float19_IsSet = false; Float19_IsNull = false; }
-	/** @brief Checks whether Float19_Optional has been set */
-	bool IsFloat19Set() const { return Float19_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat19ToNull() { Float19_IsSet = true; Float19_IsNull = true; }
+	FORCEINLINE void SetFloat19ToNull() { Float19_IsSet = true; Float19_IsNull = true; }
 	/** @brief Checks whether Float19_Optional is set to null */
-	bool IsFloat19Null() const { return Float19_IsSet && Float19_IsNull; }
+	FORCEINLINE bool IsFloat19Null() const { return Float19_IsSet && Float19_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float20_Optional{  };
@@ -2915,29 +2685,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float20_IsNull{ false };
 	/** @brief Gets the value of Float20_Optional, regardless of it having been set */
-	float& GetFloat20() { return Float20_Optional; }
+	FORCEINLINE float& GetFloat20() { return Float20_Optional; }
 	/** @brief Gets the value of Float20_Optional, regardless of it having been set */
-	const float& GetFloat20() const { return Float20_Optional; }
+	FORCEINLINE const float& GetFloat20() const { return Float20_Optional; }
 	/** @brief Gets the value of Float20_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat20(const float& DefaultValue) const { if (Float20_IsSet) return Float20_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat20(const float& DefaultValue) const { if (Float20_IsSet) return Float20_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float20_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat20(float& OutValue) const { if (Float20_IsSet && !Float20_IsNull) OutValue = Float20_Optional; return Float20_IsSet; }
+	FORCEINLINE bool GetFloat20(float& OutValue) const { if (Float20_IsSet && !Float20_IsNull) OutValue = Float20_Optional; return Float20_IsSet; }
 	/** @brief Returns a pointer to Float20_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat20OrNull() { if (Float20_IsSet) return (Float20_IsNull ? nullptr : &Float20_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat20OrNull() { if (Float20_IsSet) return (Float20_IsNull ? nullptr : &Float20_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float20_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat20OrNull() const { if (Float20_IsSet) return (Float20_IsNull ? nullptr : &Float20_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat20OrNull() const { if (Float20_IsSet) return (Float20_IsNull ? nullptr : &Float20_Optional); return nullptr; }
 	/** @brief Sets the value of Float20_Optional and also sets Float20_IsSet to true */
-	void SetFloat20(const float& NewValue) { Float20_Optional = NewValue; Float20_IsSet = true; Float20_IsNull = false; }
+	FORCEINLINE void SetFloat20(const float& NewValue) { Float20_Optional = NewValue; Float20_IsSet = true; Float20_IsNull = false; }
 	/** @brief Sets the value of Float20_Optional and also sets Float20_IsSet to true using move semantics */
-	void SetFloat20(float&& NewValue) { Float20_Optional = NewValue; Float20_IsSet = true; Float20_IsNull = false; }
+	FORCEINLINE void SetFloat20(float&& NewValue) { Float20_Optional = NewValue; Float20_IsSet = true; Float20_IsNull = false; }
 	/** @brief Clears the value of Float20_Optional and sets Float20_IsSet to false */
 	void ClearFloat20() { Float20_IsSet = false; Float20_IsNull = false; }
-	/** @brief Checks whether Float20_Optional has been set */
-	bool IsFloat20Set() const { return Float20_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat20ToNull() { Float20_IsSet = true; Float20_IsNull = true; }
+	FORCEINLINE void SetFloat20ToNull() { Float20_IsSet = true; Float20_IsNull = true; }
 	/** @brief Checks whether Float20_Optional is set to null */
-	bool IsFloat20Null() const { return Float20_IsSet && Float20_IsNull; }
+	FORCEINLINE bool IsFloat20Null() const { return Float20_IsSet && Float20_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float21_Optional{  };
@@ -2948,29 +2716,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float21_IsNull{ false };
 	/** @brief Gets the value of Float21_Optional, regardless of it having been set */
-	float& GetFloat21() { return Float21_Optional; }
+	FORCEINLINE float& GetFloat21() { return Float21_Optional; }
 	/** @brief Gets the value of Float21_Optional, regardless of it having been set */
-	const float& GetFloat21() const { return Float21_Optional; }
+	FORCEINLINE const float& GetFloat21() const { return Float21_Optional; }
 	/** @brief Gets the value of Float21_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat21(const float& DefaultValue) const { if (Float21_IsSet) return Float21_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat21(const float& DefaultValue) const { if (Float21_IsSet) return Float21_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float21_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat21(float& OutValue) const { if (Float21_IsSet && !Float21_IsNull) OutValue = Float21_Optional; return Float21_IsSet; }
+	FORCEINLINE bool GetFloat21(float& OutValue) const { if (Float21_IsSet && !Float21_IsNull) OutValue = Float21_Optional; return Float21_IsSet; }
 	/** @brief Returns a pointer to Float21_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat21OrNull() { if (Float21_IsSet) return (Float21_IsNull ? nullptr : &Float21_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat21OrNull() { if (Float21_IsSet) return (Float21_IsNull ? nullptr : &Float21_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float21_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat21OrNull() const { if (Float21_IsSet) return (Float21_IsNull ? nullptr : &Float21_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat21OrNull() const { if (Float21_IsSet) return (Float21_IsNull ? nullptr : &Float21_Optional); return nullptr; }
 	/** @brief Sets the value of Float21_Optional and also sets Float21_IsSet to true */
-	void SetFloat21(const float& NewValue) { Float21_Optional = NewValue; Float21_IsSet = true; Float21_IsNull = false; }
+	FORCEINLINE void SetFloat21(const float& NewValue) { Float21_Optional = NewValue; Float21_IsSet = true; Float21_IsNull = false; }
 	/** @brief Sets the value of Float21_Optional and also sets Float21_IsSet to true using move semantics */
-	void SetFloat21(float&& NewValue) { Float21_Optional = NewValue; Float21_IsSet = true; Float21_IsNull = false; }
+	FORCEINLINE void SetFloat21(float&& NewValue) { Float21_Optional = NewValue; Float21_IsSet = true; Float21_IsNull = false; }
 	/** @brief Clears the value of Float21_Optional and sets Float21_IsSet to false */
 	void ClearFloat21() { Float21_IsSet = false; Float21_IsNull = false; }
-	/** @brief Checks whether Float21_Optional has been set */
-	bool IsFloat21Set() const { return Float21_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat21ToNull() { Float21_IsSet = true; Float21_IsNull = true; }
+	FORCEINLINE void SetFloat21ToNull() { Float21_IsSet = true; Float21_IsNull = true; }
 	/** @brief Checks whether Float21_Optional is set to null */
-	bool IsFloat21Null() const { return Float21_IsSet && Float21_IsNull; }
+	FORCEINLINE bool IsFloat21Null() const { return Float21_IsSet && Float21_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float22_Optional{  };
@@ -2981,29 +2747,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float22_IsNull{ false };
 	/** @brief Gets the value of Float22_Optional, regardless of it having been set */
-	float& GetFloat22() { return Float22_Optional; }
+	FORCEINLINE float& GetFloat22() { return Float22_Optional; }
 	/** @brief Gets the value of Float22_Optional, regardless of it having been set */
-	const float& GetFloat22() const { return Float22_Optional; }
+	FORCEINLINE const float& GetFloat22() const { return Float22_Optional; }
 	/** @brief Gets the value of Float22_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat22(const float& DefaultValue) const { if (Float22_IsSet) return Float22_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat22(const float& DefaultValue) const { if (Float22_IsSet) return Float22_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float22_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat22(float& OutValue) const { if (Float22_IsSet && !Float22_IsNull) OutValue = Float22_Optional; return Float22_IsSet; }
+	FORCEINLINE bool GetFloat22(float& OutValue) const { if (Float22_IsSet && !Float22_IsNull) OutValue = Float22_Optional; return Float22_IsSet; }
 	/** @brief Returns a pointer to Float22_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat22OrNull() { if (Float22_IsSet) return (Float22_IsNull ? nullptr : &Float22_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat22OrNull() { if (Float22_IsSet) return (Float22_IsNull ? nullptr : &Float22_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float22_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat22OrNull() const { if (Float22_IsSet) return (Float22_IsNull ? nullptr : &Float22_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat22OrNull() const { if (Float22_IsSet) return (Float22_IsNull ? nullptr : &Float22_Optional); return nullptr; }
 	/** @brief Sets the value of Float22_Optional and also sets Float22_IsSet to true */
-	void SetFloat22(const float& NewValue) { Float22_Optional = NewValue; Float22_IsSet = true; Float22_IsNull = false; }
+	FORCEINLINE void SetFloat22(const float& NewValue) { Float22_Optional = NewValue; Float22_IsSet = true; Float22_IsNull = false; }
 	/** @brief Sets the value of Float22_Optional and also sets Float22_IsSet to true using move semantics */
-	void SetFloat22(float&& NewValue) { Float22_Optional = NewValue; Float22_IsSet = true; Float22_IsNull = false; }
+	FORCEINLINE void SetFloat22(float&& NewValue) { Float22_Optional = NewValue; Float22_IsSet = true; Float22_IsNull = false; }
 	/** @brief Clears the value of Float22_Optional and sets Float22_IsSet to false */
 	void ClearFloat22() { Float22_IsSet = false; Float22_IsNull = false; }
-	/** @brief Checks whether Float22_Optional has been set */
-	bool IsFloat22Set() const { return Float22_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat22ToNull() { Float22_IsSet = true; Float22_IsNull = true; }
+	FORCEINLINE void SetFloat22ToNull() { Float22_IsSet = true; Float22_IsNull = true; }
 	/** @brief Checks whether Float22_Optional is set to null */
-	bool IsFloat22Null() const { return Float22_IsSet && Float22_IsNull; }
+	FORCEINLINE bool IsFloat22Null() const { return Float22_IsSet && Float22_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float23_Optional{  };
@@ -3014,29 +2778,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float23_IsNull{ false };
 	/** @brief Gets the value of Float23_Optional, regardless of it having been set */
-	float& GetFloat23() { return Float23_Optional; }
+	FORCEINLINE float& GetFloat23() { return Float23_Optional; }
 	/** @brief Gets the value of Float23_Optional, regardless of it having been set */
-	const float& GetFloat23() const { return Float23_Optional; }
+	FORCEINLINE const float& GetFloat23() const { return Float23_Optional; }
 	/** @brief Gets the value of Float23_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat23(const float& DefaultValue) const { if (Float23_IsSet) return Float23_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat23(const float& DefaultValue) const { if (Float23_IsSet) return Float23_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float23_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat23(float& OutValue) const { if (Float23_IsSet && !Float23_IsNull) OutValue = Float23_Optional; return Float23_IsSet; }
+	FORCEINLINE bool GetFloat23(float& OutValue) const { if (Float23_IsSet && !Float23_IsNull) OutValue = Float23_Optional; return Float23_IsSet; }
 	/** @brief Returns a pointer to Float23_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat23OrNull() { if (Float23_IsSet) return (Float23_IsNull ? nullptr : &Float23_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat23OrNull() { if (Float23_IsSet) return (Float23_IsNull ? nullptr : &Float23_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float23_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat23OrNull() const { if (Float23_IsSet) return (Float23_IsNull ? nullptr : &Float23_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat23OrNull() const { if (Float23_IsSet) return (Float23_IsNull ? nullptr : &Float23_Optional); return nullptr; }
 	/** @brief Sets the value of Float23_Optional and also sets Float23_IsSet to true */
-	void SetFloat23(const float& NewValue) { Float23_Optional = NewValue; Float23_IsSet = true; Float23_IsNull = false; }
+	FORCEINLINE void SetFloat23(const float& NewValue) { Float23_Optional = NewValue; Float23_IsSet = true; Float23_IsNull = false; }
 	/** @brief Sets the value of Float23_Optional and also sets Float23_IsSet to true using move semantics */
-	void SetFloat23(float&& NewValue) { Float23_Optional = NewValue; Float23_IsSet = true; Float23_IsNull = false; }
+	FORCEINLINE void SetFloat23(float&& NewValue) { Float23_Optional = NewValue; Float23_IsSet = true; Float23_IsNull = false; }
 	/** @brief Clears the value of Float23_Optional and sets Float23_IsSet to false */
 	void ClearFloat23() { Float23_IsSet = false; Float23_IsNull = false; }
-	/** @brief Checks whether Float23_Optional has been set */
-	bool IsFloat23Set() const { return Float23_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat23ToNull() { Float23_IsSet = true; Float23_IsNull = true; }
+	FORCEINLINE void SetFloat23ToNull() { Float23_IsSet = true; Float23_IsNull = true; }
 	/** @brief Checks whether Float23_Optional is set to null */
-	bool IsFloat23Null() const { return Float23_IsSet && Float23_IsNull; }
+	FORCEINLINE bool IsFloat23Null() const { return Float23_IsSet && Float23_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float24_Optional{  };
@@ -3047,29 +2809,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float24_IsNull{ false };
 	/** @brief Gets the value of Float24_Optional, regardless of it having been set */
-	float& GetFloat24() { return Float24_Optional; }
+	FORCEINLINE float& GetFloat24() { return Float24_Optional; }
 	/** @brief Gets the value of Float24_Optional, regardless of it having been set */
-	const float& GetFloat24() const { return Float24_Optional; }
+	FORCEINLINE const float& GetFloat24() const { return Float24_Optional; }
 	/** @brief Gets the value of Float24_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat24(const float& DefaultValue) const { if (Float24_IsSet) return Float24_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat24(const float& DefaultValue) const { if (Float24_IsSet) return Float24_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float24_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat24(float& OutValue) const { if (Float24_IsSet && !Float24_IsNull) OutValue = Float24_Optional; return Float24_IsSet; }
+	FORCEINLINE bool GetFloat24(float& OutValue) const { if (Float24_IsSet && !Float24_IsNull) OutValue = Float24_Optional; return Float24_IsSet; }
 	/** @brief Returns a pointer to Float24_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat24OrNull() { if (Float24_IsSet) return (Float24_IsNull ? nullptr : &Float24_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat24OrNull() { if (Float24_IsSet) return (Float24_IsNull ? nullptr : &Float24_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float24_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat24OrNull() const { if (Float24_IsSet) return (Float24_IsNull ? nullptr : &Float24_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat24OrNull() const { if (Float24_IsSet) return (Float24_IsNull ? nullptr : &Float24_Optional); return nullptr; }
 	/** @brief Sets the value of Float24_Optional and also sets Float24_IsSet to true */
-	void SetFloat24(const float& NewValue) { Float24_Optional = NewValue; Float24_IsSet = true; Float24_IsNull = false; }
+	FORCEINLINE void SetFloat24(const float& NewValue) { Float24_Optional = NewValue; Float24_IsSet = true; Float24_IsNull = false; }
 	/** @brief Sets the value of Float24_Optional and also sets Float24_IsSet to true using move semantics */
-	void SetFloat24(float&& NewValue) { Float24_Optional = NewValue; Float24_IsSet = true; Float24_IsNull = false; }
+	FORCEINLINE void SetFloat24(float&& NewValue) { Float24_Optional = NewValue; Float24_IsSet = true; Float24_IsNull = false; }
 	/** @brief Clears the value of Float24_Optional and sets Float24_IsSet to false */
 	void ClearFloat24() { Float24_IsSet = false; Float24_IsNull = false; }
-	/** @brief Checks whether Float24_Optional has been set */
-	bool IsFloat24Set() const { return Float24_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat24ToNull() { Float24_IsSet = true; Float24_IsNull = true; }
+	FORCEINLINE void SetFloat24ToNull() { Float24_IsSet = true; Float24_IsNull = true; }
 	/** @brief Checks whether Float24_Optional is set to null */
-	bool IsFloat24Null() const { return Float24_IsSet && Float24_IsNull; }
+	FORCEINLINE bool IsFloat24Null() const { return Float24_IsSet && Float24_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float25_Optional{  };
@@ -3080,29 +2840,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float25_IsNull{ false };
 	/** @brief Gets the value of Float25_Optional, regardless of it having been set */
-	float& GetFloat25() { return Float25_Optional; }
+	FORCEINLINE float& GetFloat25() { return Float25_Optional; }
 	/** @brief Gets the value of Float25_Optional, regardless of it having been set */
-	const float& GetFloat25() const { return Float25_Optional; }
+	FORCEINLINE const float& GetFloat25() const { return Float25_Optional; }
 	/** @brief Gets the value of Float25_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat25(const float& DefaultValue) const { if (Float25_IsSet) return Float25_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat25(const float& DefaultValue) const { if (Float25_IsSet) return Float25_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float25_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat25(float& OutValue) const { if (Float25_IsSet && !Float25_IsNull) OutValue = Float25_Optional; return Float25_IsSet; }
+	FORCEINLINE bool GetFloat25(float& OutValue) const { if (Float25_IsSet && !Float25_IsNull) OutValue = Float25_Optional; return Float25_IsSet; }
 	/** @brief Returns a pointer to Float25_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat25OrNull() { if (Float25_IsSet) return (Float25_IsNull ? nullptr : &Float25_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat25OrNull() { if (Float25_IsSet) return (Float25_IsNull ? nullptr : &Float25_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float25_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat25OrNull() const { if (Float25_IsSet) return (Float25_IsNull ? nullptr : &Float25_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat25OrNull() const { if (Float25_IsSet) return (Float25_IsNull ? nullptr : &Float25_Optional); return nullptr; }
 	/** @brief Sets the value of Float25_Optional and also sets Float25_IsSet to true */
-	void SetFloat25(const float& NewValue) { Float25_Optional = NewValue; Float25_IsSet = true; Float25_IsNull = false; }
+	FORCEINLINE void SetFloat25(const float& NewValue) { Float25_Optional = NewValue; Float25_IsSet = true; Float25_IsNull = false; }
 	/** @brief Sets the value of Float25_Optional and also sets Float25_IsSet to true using move semantics */
-	void SetFloat25(float&& NewValue) { Float25_Optional = NewValue; Float25_IsSet = true; Float25_IsNull = false; }
+	FORCEINLINE void SetFloat25(float&& NewValue) { Float25_Optional = NewValue; Float25_IsSet = true; Float25_IsNull = false; }
 	/** @brief Clears the value of Float25_Optional and sets Float25_IsSet to false */
 	void ClearFloat25() { Float25_IsSet = false; Float25_IsNull = false; }
-	/** @brief Checks whether Float25_Optional has been set */
-	bool IsFloat25Set() const { return Float25_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat25ToNull() { Float25_IsSet = true; Float25_IsNull = true; }
+	FORCEINLINE void SetFloat25ToNull() { Float25_IsSet = true; Float25_IsNull = true; }
 	/** @brief Checks whether Float25_Optional is set to null */
-	bool IsFloat25Null() const { return Float25_IsSet && Float25_IsNull; }
+	FORCEINLINE bool IsFloat25Null() const { return Float25_IsSet && Float25_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float26_Optional{  };
@@ -3113,29 +2871,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float26_IsNull{ false };
 	/** @brief Gets the value of Float26_Optional, regardless of it having been set */
-	float& GetFloat26() { return Float26_Optional; }
+	FORCEINLINE float& GetFloat26() { return Float26_Optional; }
 	/** @brief Gets the value of Float26_Optional, regardless of it having been set */
-	const float& GetFloat26() const { return Float26_Optional; }
+	FORCEINLINE const float& GetFloat26() const { return Float26_Optional; }
 	/** @brief Gets the value of Float26_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat26(const float& DefaultValue) const { if (Float26_IsSet) return Float26_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat26(const float& DefaultValue) const { if (Float26_IsSet) return Float26_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float26_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat26(float& OutValue) const { if (Float26_IsSet && !Float26_IsNull) OutValue = Float26_Optional; return Float26_IsSet; }
+	FORCEINLINE bool GetFloat26(float& OutValue) const { if (Float26_IsSet && !Float26_IsNull) OutValue = Float26_Optional; return Float26_IsSet; }
 	/** @brief Returns a pointer to Float26_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat26OrNull() { if (Float26_IsSet) return (Float26_IsNull ? nullptr : &Float26_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat26OrNull() { if (Float26_IsSet) return (Float26_IsNull ? nullptr : &Float26_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float26_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat26OrNull() const { if (Float26_IsSet) return (Float26_IsNull ? nullptr : &Float26_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat26OrNull() const { if (Float26_IsSet) return (Float26_IsNull ? nullptr : &Float26_Optional); return nullptr; }
 	/** @brief Sets the value of Float26_Optional and also sets Float26_IsSet to true */
-	void SetFloat26(const float& NewValue) { Float26_Optional = NewValue; Float26_IsSet = true; Float26_IsNull = false; }
+	FORCEINLINE void SetFloat26(const float& NewValue) { Float26_Optional = NewValue; Float26_IsSet = true; Float26_IsNull = false; }
 	/** @brief Sets the value of Float26_Optional and also sets Float26_IsSet to true using move semantics */
-	void SetFloat26(float&& NewValue) { Float26_Optional = NewValue; Float26_IsSet = true; Float26_IsNull = false; }
+	FORCEINLINE void SetFloat26(float&& NewValue) { Float26_Optional = NewValue; Float26_IsSet = true; Float26_IsNull = false; }
 	/** @brief Clears the value of Float26_Optional and sets Float26_IsSet to false */
 	void ClearFloat26() { Float26_IsSet = false; Float26_IsNull = false; }
-	/** @brief Checks whether Float26_Optional has been set */
-	bool IsFloat26Set() const { return Float26_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat26ToNull() { Float26_IsSet = true; Float26_IsNull = true; }
+	FORCEINLINE void SetFloat26ToNull() { Float26_IsSet = true; Float26_IsNull = true; }
 	/** @brief Checks whether Float26_Optional is set to null */
-	bool IsFloat26Null() const { return Float26_IsSet && Float26_IsNull; }
+	FORCEINLINE bool IsFloat26Null() const { return Float26_IsSet && Float26_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float27_Optional{  };
@@ -3146,29 +2902,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float27_IsNull{ false };
 	/** @brief Gets the value of Float27_Optional, regardless of it having been set */
-	float& GetFloat27() { return Float27_Optional; }
+	FORCEINLINE float& GetFloat27() { return Float27_Optional; }
 	/** @brief Gets the value of Float27_Optional, regardless of it having been set */
-	const float& GetFloat27() const { return Float27_Optional; }
+	FORCEINLINE const float& GetFloat27() const { return Float27_Optional; }
 	/** @brief Gets the value of Float27_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat27(const float& DefaultValue) const { if (Float27_IsSet) return Float27_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat27(const float& DefaultValue) const { if (Float27_IsSet) return Float27_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float27_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat27(float& OutValue) const { if (Float27_IsSet && !Float27_IsNull) OutValue = Float27_Optional; return Float27_IsSet; }
+	FORCEINLINE bool GetFloat27(float& OutValue) const { if (Float27_IsSet && !Float27_IsNull) OutValue = Float27_Optional; return Float27_IsSet; }
 	/** @brief Returns a pointer to Float27_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat27OrNull() { if (Float27_IsSet) return (Float27_IsNull ? nullptr : &Float27_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat27OrNull() { if (Float27_IsSet) return (Float27_IsNull ? nullptr : &Float27_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float27_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat27OrNull() const { if (Float27_IsSet) return (Float27_IsNull ? nullptr : &Float27_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat27OrNull() const { if (Float27_IsSet) return (Float27_IsNull ? nullptr : &Float27_Optional); return nullptr; }
 	/** @brief Sets the value of Float27_Optional and also sets Float27_IsSet to true */
-	void SetFloat27(const float& NewValue) { Float27_Optional = NewValue; Float27_IsSet = true; Float27_IsNull = false; }
+	FORCEINLINE void SetFloat27(const float& NewValue) { Float27_Optional = NewValue; Float27_IsSet = true; Float27_IsNull = false; }
 	/** @brief Sets the value of Float27_Optional and also sets Float27_IsSet to true using move semantics */
-	void SetFloat27(float&& NewValue) { Float27_Optional = NewValue; Float27_IsSet = true; Float27_IsNull = false; }
+	FORCEINLINE void SetFloat27(float&& NewValue) { Float27_Optional = NewValue; Float27_IsSet = true; Float27_IsNull = false; }
 	/** @brief Clears the value of Float27_Optional and sets Float27_IsSet to false */
 	void ClearFloat27() { Float27_IsSet = false; Float27_IsNull = false; }
-	/** @brief Checks whether Float27_Optional has been set */
-	bool IsFloat27Set() const { return Float27_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat27ToNull() { Float27_IsSet = true; Float27_IsNull = true; }
+	FORCEINLINE void SetFloat27ToNull() { Float27_IsSet = true; Float27_IsNull = true; }
 	/** @brief Checks whether Float27_Optional is set to null */
-	bool IsFloat27Null() const { return Float27_IsSet && Float27_IsNull; }
+	FORCEINLINE bool IsFloat27Null() const { return Float27_IsSet && Float27_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float28_Optional{  };
@@ -3179,29 +2933,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float28_IsNull{ false };
 	/** @brief Gets the value of Float28_Optional, regardless of it having been set */
-	float& GetFloat28() { return Float28_Optional; }
+	FORCEINLINE float& GetFloat28() { return Float28_Optional; }
 	/** @brief Gets the value of Float28_Optional, regardless of it having been set */
-	const float& GetFloat28() const { return Float28_Optional; }
+	FORCEINLINE const float& GetFloat28() const { return Float28_Optional; }
 	/** @brief Gets the value of Float28_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat28(const float& DefaultValue) const { if (Float28_IsSet) return Float28_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat28(const float& DefaultValue) const { if (Float28_IsSet) return Float28_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float28_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat28(float& OutValue) const { if (Float28_IsSet && !Float28_IsNull) OutValue = Float28_Optional; return Float28_IsSet; }
+	FORCEINLINE bool GetFloat28(float& OutValue) const { if (Float28_IsSet && !Float28_IsNull) OutValue = Float28_Optional; return Float28_IsSet; }
 	/** @brief Returns a pointer to Float28_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat28OrNull() { if (Float28_IsSet) return (Float28_IsNull ? nullptr : &Float28_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat28OrNull() { if (Float28_IsSet) return (Float28_IsNull ? nullptr : &Float28_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float28_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat28OrNull() const { if (Float28_IsSet) return (Float28_IsNull ? nullptr : &Float28_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat28OrNull() const { if (Float28_IsSet) return (Float28_IsNull ? nullptr : &Float28_Optional); return nullptr; }
 	/** @brief Sets the value of Float28_Optional and also sets Float28_IsSet to true */
-	void SetFloat28(const float& NewValue) { Float28_Optional = NewValue; Float28_IsSet = true; Float28_IsNull = false; }
+	FORCEINLINE void SetFloat28(const float& NewValue) { Float28_Optional = NewValue; Float28_IsSet = true; Float28_IsNull = false; }
 	/** @brief Sets the value of Float28_Optional and also sets Float28_IsSet to true using move semantics */
-	void SetFloat28(float&& NewValue) { Float28_Optional = NewValue; Float28_IsSet = true; Float28_IsNull = false; }
+	FORCEINLINE void SetFloat28(float&& NewValue) { Float28_Optional = NewValue; Float28_IsSet = true; Float28_IsNull = false; }
 	/** @brief Clears the value of Float28_Optional and sets Float28_IsSet to false */
 	void ClearFloat28() { Float28_IsSet = false; Float28_IsNull = false; }
-	/** @brief Checks whether Float28_Optional has been set */
-	bool IsFloat28Set() const { return Float28_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat28ToNull() { Float28_IsSet = true; Float28_IsNull = true; }
+	FORCEINLINE void SetFloat28ToNull() { Float28_IsSet = true; Float28_IsNull = true; }
 	/** @brief Checks whether Float28_Optional is set to null */
-	bool IsFloat28Null() const { return Float28_IsSet && Float28_IsNull; }
+	FORCEINLINE bool IsFloat28Null() const { return Float28_IsSet && Float28_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float29_Optional{  };
@@ -3212,29 +2964,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float29_IsNull{ false };
 	/** @brief Gets the value of Float29_Optional, regardless of it having been set */
-	float& GetFloat29() { return Float29_Optional; }
+	FORCEINLINE float& GetFloat29() { return Float29_Optional; }
 	/** @brief Gets the value of Float29_Optional, regardless of it having been set */
-	const float& GetFloat29() const { return Float29_Optional; }
+	FORCEINLINE const float& GetFloat29() const { return Float29_Optional; }
 	/** @brief Gets the value of Float29_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat29(const float& DefaultValue) const { if (Float29_IsSet) return Float29_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat29(const float& DefaultValue) const { if (Float29_IsSet) return Float29_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float29_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat29(float& OutValue) const { if (Float29_IsSet && !Float29_IsNull) OutValue = Float29_Optional; return Float29_IsSet; }
+	FORCEINLINE bool GetFloat29(float& OutValue) const { if (Float29_IsSet && !Float29_IsNull) OutValue = Float29_Optional; return Float29_IsSet; }
 	/** @brief Returns a pointer to Float29_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat29OrNull() { if (Float29_IsSet) return (Float29_IsNull ? nullptr : &Float29_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat29OrNull() { if (Float29_IsSet) return (Float29_IsNull ? nullptr : &Float29_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float29_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat29OrNull() const { if (Float29_IsSet) return (Float29_IsNull ? nullptr : &Float29_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat29OrNull() const { if (Float29_IsSet) return (Float29_IsNull ? nullptr : &Float29_Optional); return nullptr; }
 	/** @brief Sets the value of Float29_Optional and also sets Float29_IsSet to true */
-	void SetFloat29(const float& NewValue) { Float29_Optional = NewValue; Float29_IsSet = true; Float29_IsNull = false; }
+	FORCEINLINE void SetFloat29(const float& NewValue) { Float29_Optional = NewValue; Float29_IsSet = true; Float29_IsNull = false; }
 	/** @brief Sets the value of Float29_Optional and also sets Float29_IsSet to true using move semantics */
-	void SetFloat29(float&& NewValue) { Float29_Optional = NewValue; Float29_IsSet = true; Float29_IsNull = false; }
+	FORCEINLINE void SetFloat29(float&& NewValue) { Float29_Optional = NewValue; Float29_IsSet = true; Float29_IsNull = false; }
 	/** @brief Clears the value of Float29_Optional and sets Float29_IsSet to false */
 	void ClearFloat29() { Float29_IsSet = false; Float29_IsNull = false; }
-	/** @brief Checks whether Float29_Optional has been set */
-	bool IsFloat29Set() const { return Float29_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat29ToNull() { Float29_IsSet = true; Float29_IsNull = true; }
+	FORCEINLINE void SetFloat29ToNull() { Float29_IsSet = true; Float29_IsNull = true; }
 	/** @brief Checks whether Float29_Optional is set to null */
-	bool IsFloat29Null() const { return Float29_IsSet && Float29_IsNull; }
+	FORCEINLINE bool IsFloat29Null() const { return Float29_IsSet && Float29_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float30_Optional{  };
@@ -3245,29 +2995,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float30_IsNull{ false };
 	/** @brief Gets the value of Float30_Optional, regardless of it having been set */
-	float& GetFloat30() { return Float30_Optional; }
+	FORCEINLINE float& GetFloat30() { return Float30_Optional; }
 	/** @brief Gets the value of Float30_Optional, regardless of it having been set */
-	const float& GetFloat30() const { return Float30_Optional; }
+	FORCEINLINE const float& GetFloat30() const { return Float30_Optional; }
 	/** @brief Gets the value of Float30_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat30(const float& DefaultValue) const { if (Float30_IsSet) return Float30_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat30(const float& DefaultValue) const { if (Float30_IsSet) return Float30_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float30_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat30(float& OutValue) const { if (Float30_IsSet && !Float30_IsNull) OutValue = Float30_Optional; return Float30_IsSet; }
+	FORCEINLINE bool GetFloat30(float& OutValue) const { if (Float30_IsSet && !Float30_IsNull) OutValue = Float30_Optional; return Float30_IsSet; }
 	/** @brief Returns a pointer to Float30_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat30OrNull() { if (Float30_IsSet) return (Float30_IsNull ? nullptr : &Float30_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat30OrNull() { if (Float30_IsSet) return (Float30_IsNull ? nullptr : &Float30_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float30_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat30OrNull() const { if (Float30_IsSet) return (Float30_IsNull ? nullptr : &Float30_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat30OrNull() const { if (Float30_IsSet) return (Float30_IsNull ? nullptr : &Float30_Optional); return nullptr; }
 	/** @brief Sets the value of Float30_Optional and also sets Float30_IsSet to true */
-	void SetFloat30(const float& NewValue) { Float30_Optional = NewValue; Float30_IsSet = true; Float30_IsNull = false; }
+	FORCEINLINE void SetFloat30(const float& NewValue) { Float30_Optional = NewValue; Float30_IsSet = true; Float30_IsNull = false; }
 	/** @brief Sets the value of Float30_Optional and also sets Float30_IsSet to true using move semantics */
-	void SetFloat30(float&& NewValue) { Float30_Optional = NewValue; Float30_IsSet = true; Float30_IsNull = false; }
+	FORCEINLINE void SetFloat30(float&& NewValue) { Float30_Optional = NewValue; Float30_IsSet = true; Float30_IsNull = false; }
 	/** @brief Clears the value of Float30_Optional and sets Float30_IsSet to false */
 	void ClearFloat30() { Float30_IsSet = false; Float30_IsNull = false; }
-	/** @brief Checks whether Float30_Optional has been set */
-	bool IsFloat30Set() const { return Float30_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat30ToNull() { Float30_IsSet = true; Float30_IsNull = true; }
+	FORCEINLINE void SetFloat30ToNull() { Float30_IsSet = true; Float30_IsNull = true; }
 	/** @brief Checks whether Float30_Optional is set to null */
-	bool IsFloat30Null() const { return Float30_IsSet && Float30_IsNull; }
+	FORCEINLINE bool IsFloat30Null() const { return Float30_IsSet && Float30_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float31_Optional{  };
@@ -3278,29 +3026,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float31_IsNull{ false };
 	/** @brief Gets the value of Float31_Optional, regardless of it having been set */
-	float& GetFloat31() { return Float31_Optional; }
+	FORCEINLINE float& GetFloat31() { return Float31_Optional; }
 	/** @brief Gets the value of Float31_Optional, regardless of it having been set */
-	const float& GetFloat31() const { return Float31_Optional; }
+	FORCEINLINE const float& GetFloat31() const { return Float31_Optional; }
 	/** @brief Gets the value of Float31_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat31(const float& DefaultValue) const { if (Float31_IsSet) return Float31_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat31(const float& DefaultValue) const { if (Float31_IsSet) return Float31_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float31_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat31(float& OutValue) const { if (Float31_IsSet && !Float31_IsNull) OutValue = Float31_Optional; return Float31_IsSet; }
+	FORCEINLINE bool GetFloat31(float& OutValue) const { if (Float31_IsSet && !Float31_IsNull) OutValue = Float31_Optional; return Float31_IsSet; }
 	/** @brief Returns a pointer to Float31_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat31OrNull() { if (Float31_IsSet) return (Float31_IsNull ? nullptr : &Float31_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat31OrNull() { if (Float31_IsSet) return (Float31_IsNull ? nullptr : &Float31_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float31_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat31OrNull() const { if (Float31_IsSet) return (Float31_IsNull ? nullptr : &Float31_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat31OrNull() const { if (Float31_IsSet) return (Float31_IsNull ? nullptr : &Float31_Optional); return nullptr; }
 	/** @brief Sets the value of Float31_Optional and also sets Float31_IsSet to true */
-	void SetFloat31(const float& NewValue) { Float31_Optional = NewValue; Float31_IsSet = true; Float31_IsNull = false; }
+	FORCEINLINE void SetFloat31(const float& NewValue) { Float31_Optional = NewValue; Float31_IsSet = true; Float31_IsNull = false; }
 	/** @brief Sets the value of Float31_Optional and also sets Float31_IsSet to true using move semantics */
-	void SetFloat31(float&& NewValue) { Float31_Optional = NewValue; Float31_IsSet = true; Float31_IsNull = false; }
+	FORCEINLINE void SetFloat31(float&& NewValue) { Float31_Optional = NewValue; Float31_IsSet = true; Float31_IsNull = false; }
 	/** @brief Clears the value of Float31_Optional and sets Float31_IsSet to false */
 	void ClearFloat31() { Float31_IsSet = false; Float31_IsNull = false; }
-	/** @brief Checks whether Float31_Optional has been set */
-	bool IsFloat31Set() const { return Float31_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat31ToNull() { Float31_IsSet = true; Float31_IsNull = true; }
+	FORCEINLINE void SetFloat31ToNull() { Float31_IsSet = true; Float31_IsNull = true; }
 	/** @brief Checks whether Float31_Optional is set to null */
-	bool IsFloat31Null() const { return Float31_IsSet && Float31_IsNull; }
+	FORCEINLINE bool IsFloat31Null() const { return Float31_IsSet && Float31_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Float32_Optional{  };
@@ -3311,29 +3057,27 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimelineProperties : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Float32_IsNull{ false };
 	/** @brief Gets the value of Float32_Optional, regardless of it having been set */
-	float& GetFloat32() { return Float32_Optional; }
+	FORCEINLINE float& GetFloat32() { return Float32_Optional; }
 	/** @brief Gets the value of Float32_Optional, regardless of it having been set */
-	const float& GetFloat32() const { return Float32_Optional; }
+	FORCEINLINE const float& GetFloat32() const { return Float32_Optional; }
 	/** @brief Gets the value of Float32_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetFloat32(const float& DefaultValue) const { if (Float32_IsSet) return Float32_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetFloat32(const float& DefaultValue) const { if (Float32_IsSet) return Float32_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Float32_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFloat32(float& OutValue) const { if (Float32_IsSet && !Float32_IsNull) OutValue = Float32_Optional; return Float32_IsSet; }
+	FORCEINLINE bool GetFloat32(float& OutValue) const { if (Float32_IsSet && !Float32_IsNull) OutValue = Float32_Optional; return Float32_IsSet; }
 	/** @brief Returns a pointer to Float32_Optional, if it has been set, otherwise returns nullptr */
-	float* GetFloat32OrNull() { if (Float32_IsSet) return (Float32_IsNull ? nullptr : &Float32_Optional); return nullptr; }
+	FORCEINLINE float* GetFloat32OrNull() { if (Float32_IsSet) return (Float32_IsNull ? nullptr : &Float32_Optional); return nullptr; }
 	/** @brief Returns a pointer to Float32_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetFloat32OrNull() const { if (Float32_IsSet) return (Float32_IsNull ? nullptr : &Float32_Optional); return nullptr; }
+	FORCEINLINE const float* GetFloat32OrNull() const { if (Float32_IsSet) return (Float32_IsNull ? nullptr : &Float32_Optional); return nullptr; }
 	/** @brief Sets the value of Float32_Optional and also sets Float32_IsSet to true */
-	void SetFloat32(const float& NewValue) { Float32_Optional = NewValue; Float32_IsSet = true; Float32_IsNull = false; }
+	FORCEINLINE void SetFloat32(const float& NewValue) { Float32_Optional = NewValue; Float32_IsSet = true; Float32_IsNull = false; }
 	/** @brief Sets the value of Float32_Optional and also sets Float32_IsSet to true using move semantics */
-	void SetFloat32(float&& NewValue) { Float32_Optional = NewValue; Float32_IsSet = true; Float32_IsNull = false; }
+	FORCEINLINE void SetFloat32(float&& NewValue) { Float32_Optional = NewValue; Float32_IsSet = true; Float32_IsNull = false; }
 	/** @brief Clears the value of Float32_Optional and sets Float32_IsSet to false */
 	void ClearFloat32() { Float32_IsSet = false; Float32_IsNull = false; }
-	/** @brief Checks whether Float32_Optional has been set */
-	bool IsFloat32Set() const { return Float32_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetFloat32ToNull() { Float32_IsSet = true; Float32_IsNull = true; }
+	FORCEINLINE void SetFloat32ToNull() { Float32_IsSet = true; Float32_IsNull = true; }
 	/** @brief Checks whether Float32_Optional is set to null */
-	bool IsFloat32Null() const { return Float32_IsSet && Float32_IsNull; }
+	FORCEINLINE bool IsFloat32Null() const { return Float32_IsSet && Float32_IsNull; }
 };
 
 /** @} */

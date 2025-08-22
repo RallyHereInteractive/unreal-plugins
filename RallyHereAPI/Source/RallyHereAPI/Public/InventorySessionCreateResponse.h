@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString SessionId{  };
 	/** @brief Gets the value of SessionId */
-	FString& GetSessionId() { return SessionId; }
+	FORCEINLINE FString& GetSessionId() { return SessionId; }
 	/** @brief Gets the value of SessionId */
-	const FString& GetSessionId() const { return SessionId; }
+	FORCEINLINE const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
+	FORCEINLINE void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
 	/** @brief Sets the value of SessionId using move semantics */
-	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
+	FORCEINLINE void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_InventoryPlatform SessionPlatform_Optional{  };
@@ -61,29 +61,27 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SessionPlatform_IsNull{ false };
 	/** @brief Gets the value of SessionPlatform_Optional, regardless of it having been set */
-	ERHAPI_InventoryPlatform& GetSessionPlatform() { return SessionPlatform_Optional; }
+	FORCEINLINE ERHAPI_InventoryPlatform& GetSessionPlatform() { return SessionPlatform_Optional; }
 	/** @brief Gets the value of SessionPlatform_Optional, regardless of it having been set */
-	const ERHAPI_InventoryPlatform& GetSessionPlatform() const { return SessionPlatform_Optional; }
+	FORCEINLINE const ERHAPI_InventoryPlatform& GetSessionPlatform() const { return SessionPlatform_Optional; }
 	/** @brief Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_InventoryPlatform& GetSessionPlatform(const ERHAPI_InventoryPlatform& DefaultValue) const { if (SessionPlatform_IsSet) return SessionPlatform_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_InventoryPlatform& GetSessionPlatform(const ERHAPI_InventoryPlatform& DefaultValue) const { if (SessionPlatform_IsSet) return SessionPlatform_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false */
-	bool GetSessionPlatform(ERHAPI_InventoryPlatform& OutValue) const { if (SessionPlatform_IsSet && !SessionPlatform_IsNull) OutValue = SessionPlatform_Optional; return SessionPlatform_IsSet; }
+	FORCEINLINE bool GetSessionPlatform(ERHAPI_InventoryPlatform& OutValue) const { if (SessionPlatform_IsSet && !SessionPlatform_IsNull) OutValue = SessionPlatform_Optional; return SessionPlatform_IsSet; }
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_InventoryPlatform* GetSessionPlatformOrNull() { if (SessionPlatform_IsSet) return (SessionPlatform_IsNull ? nullptr : &SessionPlatform_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_InventoryPlatform* GetSessionPlatformOrNull() { if (SessionPlatform_IsSet) return (SessionPlatform_IsNull ? nullptr : &SessionPlatform_Optional); return nullptr; }
 	/** @brief Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_InventoryPlatform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return (SessionPlatform_IsNull ? nullptr : &SessionPlatform_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_InventoryPlatform* GetSessionPlatformOrNull() const { if (SessionPlatform_IsSet) return (SessionPlatform_IsNull ? nullptr : &SessionPlatform_Optional); return nullptr; }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true */
-	void SetSessionPlatform(const ERHAPI_InventoryPlatform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; SessionPlatform_IsNull = false; }
+	FORCEINLINE void SetSessionPlatform(const ERHAPI_InventoryPlatform& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; SessionPlatform_IsNull = false; }
 	/** @brief Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics */
-	void SetSessionPlatform(ERHAPI_InventoryPlatform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; SessionPlatform_IsNull = false; }
+	FORCEINLINE void SetSessionPlatform(ERHAPI_InventoryPlatform&& NewValue) { SessionPlatform_Optional = NewValue; SessionPlatform_IsSet = true; SessionPlatform_IsNull = false; }
 	/** @brief Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false */
 	void ClearSessionPlatform() { SessionPlatform_IsSet = false; SessionPlatform_IsNull = false; }
-	/** @brief Checks whether SessionPlatform_Optional has been set */
-	bool IsSessionPlatformSet() const { return SessionPlatform_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetSessionPlatformToNull() { SessionPlatform_IsSet = true; SessionPlatform_IsNull = true; }
+	FORCEINLINE void SetSessionPlatformToNull() { SessionPlatform_IsSet = true; SessionPlatform_IsNull = true; }
 	/** @brief Checks whether SessionPlatform_Optional is set to null */
-	bool IsSessionPlatformNull() const { return SessionPlatform_IsSet && SessionPlatform_IsNull; }
+	FORCEINLINE bool IsSessionPlatformNull() const { return SessionPlatform_IsSet && SessionPlatform_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString OrderId_Optional{  };
@@ -94,29 +92,27 @@ struct RALLYHEREAPI_API FRHAPI_InventorySessionCreateResponse : public FRHAPI_Mo
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OrderId_IsNull{ false };
 	/** @brief Gets the value of OrderId_Optional, regardless of it having been set */
-	FString& GetOrderId() { return OrderId_Optional; }
+	FORCEINLINE FString& GetOrderId() { return OrderId_Optional; }
 	/** @brief Gets the value of OrderId_Optional, regardless of it having been set */
-	const FString& GetOrderId() const { return OrderId_Optional; }
+	FORCEINLINE const FString& GetOrderId() const { return OrderId_Optional; }
 	/** @brief Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetOrderId(const FString& DefaultValue) const { if (OrderId_IsSet) return OrderId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetOrderId(const FString& DefaultValue) const { if (OrderId_IsSet) return OrderId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOrderId(FString& OutValue) const { if (OrderId_IsSet && !OrderId_IsNull) OutValue = OrderId_Optional; return OrderId_IsSet; }
+	FORCEINLINE bool GetOrderId(FString& OutValue) const { if (OrderId_IsSet && !OrderId_IsNull) OutValue = OrderId_Optional; return OrderId_IsSet; }
 	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetOrderIdOrNull() { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
+	FORCEINLINE FString* GetOrderIdOrNull() { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
 	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true */
-	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
+	FORCEINLINE void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
-	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
+	FORCEINLINE void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
 	/** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
 	void ClearOrderId() { OrderId_IsSet = false; OrderId_IsNull = false; }
-	/** @brief Checks whether OrderId_Optional has been set */
-	bool IsOrderIdSet() const { return OrderId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetOrderIdToNull() { OrderId_IsSet = true; OrderId_IsNull = true; }
+	FORCEINLINE void SetOrderIdToNull() { OrderId_IsSet = true; OrderId_IsNull = true; }
 	/** @brief Checks whether OrderId_Optional is set to null */
-	bool IsOrderIdNull() const { return OrderId_IsSet && OrderId_IsNull; }
+	FORCEINLINE bool IsOrderIdNull() const { return OrderId_IsSet && OrderId_IsNull; }
 };
 
 /** @} */

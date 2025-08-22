@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool BackfilledPlayers_IsSet{ false };
 	/** @brief Gets the value of BackfilledPlayers_Optional, regardless of it having been set */
-	TArray<FRHAPI_SessionPlayer>& GetBackfilledPlayers() { return BackfilledPlayers_Optional; }
+	FORCEINLINE TArray<FRHAPI_SessionPlayer>& GetBackfilledPlayers() { return BackfilledPlayers_Optional; }
 	/** @brief Gets the value of BackfilledPlayers_Optional, regardless of it having been set */
-	const TArray<FRHAPI_SessionPlayer>& GetBackfilledPlayers() const { return BackfilledPlayers_Optional; }
+	FORCEINLINE const TArray<FRHAPI_SessionPlayer>& GetBackfilledPlayers() const { return BackfilledPlayers_Optional; }
 	/** @brief Gets the value of BackfilledPlayers_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_SessionPlayer>& GetBackfilledPlayers(const TArray<FRHAPI_SessionPlayer>& DefaultValue) const { if (BackfilledPlayers_IsSet) return BackfilledPlayers_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_SessionPlayer>& GetBackfilledPlayers(const TArray<FRHAPI_SessionPlayer>& DefaultValue) const { if (BackfilledPlayers_IsSet) return BackfilledPlayers_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of BackfilledPlayers_Optional and returns true if it has been set, otherwise returns false */
-	bool GetBackfilledPlayers(TArray<FRHAPI_SessionPlayer>& OutValue) const { if (BackfilledPlayers_IsSet) OutValue = BackfilledPlayers_Optional; return BackfilledPlayers_IsSet; }
+	FORCEINLINE bool GetBackfilledPlayers(TArray<FRHAPI_SessionPlayer>& OutValue) const { if (BackfilledPlayers_IsSet) OutValue = BackfilledPlayers_Optional; return BackfilledPlayers_IsSet; }
 	/** @brief Returns a pointer to BackfilledPlayers_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_SessionPlayer>* GetBackfilledPlayersOrNull() { if (BackfilledPlayers_IsSet) return (&BackfilledPlayers_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_SessionPlayer>* GetBackfilledPlayersOrNull() { if (BackfilledPlayers_IsSet) return (&BackfilledPlayers_Optional); return nullptr; }
 	/** @brief Returns a pointer to BackfilledPlayers_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_SessionPlayer>* GetBackfilledPlayersOrNull() const { if (BackfilledPlayers_IsSet) return (&BackfilledPlayers_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_SessionPlayer>* GetBackfilledPlayersOrNull() const { if (BackfilledPlayers_IsSet) return (&BackfilledPlayers_Optional); return nullptr; }
 	/** @brief Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true */
-	void SetBackfilledPlayers(const TArray<FRHAPI_SessionPlayer>& NewValue) { BackfilledPlayers_Optional = NewValue; BackfilledPlayers_IsSet = true;  }
+	FORCEINLINE void SetBackfilledPlayers(const TArray<FRHAPI_SessionPlayer>& NewValue) { BackfilledPlayers_Optional = NewValue; BackfilledPlayers_IsSet = true;  }
 	/** @brief Sets the value of BackfilledPlayers_Optional and also sets BackfilledPlayers_IsSet to true using move semantics */
-	void SetBackfilledPlayers(TArray<FRHAPI_SessionPlayer>&& NewValue) { BackfilledPlayers_Optional = NewValue; BackfilledPlayers_IsSet = true;  }
+	FORCEINLINE void SetBackfilledPlayers(TArray<FRHAPI_SessionPlayer>&& NewValue) { BackfilledPlayers_Optional = NewValue; BackfilledPlayers_IsSet = true;  }
 	/** @brief Clears the value of BackfilledPlayers_Optional and sets BackfilledPlayers_IsSet to false */
 	void ClearBackfilledPlayers() { BackfilledPlayers_IsSet = false;  }
-	/** @brief Checks whether BackfilledPlayers_Optional has been set */
-	bool IsBackfilledPlayersSet() const { return BackfilledPlayers_IsSet; }
 };
 
 /** @} */

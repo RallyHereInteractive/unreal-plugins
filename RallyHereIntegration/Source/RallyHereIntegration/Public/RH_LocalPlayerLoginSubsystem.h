@@ -59,10 +59,13 @@ enum class ERHAPI_LoginResult : uint8
     /** OSS User was not found, even after OSS Login completed.  This usually means that there is no connection to Xbox Live/PSN/etc */
     Fail_OSSUserNotFound,
 
-    /** OSS User does not meet age requirements for online play */
-    Fail_OSSAgeRestriction,
+	/** OSS User does not meet age requirements for online play */
+	Fail_OSSAgeRestriction,
 
-    /** OSS User does not meet requirements for online play.  See FRH_LoginResult::PrivilegeResults and IOnlineIdentity::EPrivilegeResults */
+	/** OSS User does not have online play */
+	Fail_OSSOnlinePlayRestriction,
+
+	/** OSS User does not meet requirements for online play.  See FRH_LoginResult::PrivilegeResults and IOnlineIdentity::EPrivilegeResults */
     Fail_OSSPrivilegeCheck,
 
 	/** OSS AuthToken could not be retrieved for a user that was logged into the OSS.  This can be caused by a few reasons, such as the OSS account not being able to talk to the OSS network but being able to log into the account locally to the client machine */
@@ -156,14 +159,18 @@ public:
     /** @brief If true, the user needs to accept the PP. */
     UPROPERTY()
     bool bMustAcceptPP;
+    /** @brief Restrictions that prevented the user from successfully completing a login */
+	UPROPERTY()
+	TArray<FRHAPI_Restriction> Restrictions;
     /** @brief Default constructor. */
     FRH_LoginResult() :
          Result(ERHAPI_LoginResult::Fail_RHUnknown),
          OSSType(ERHAPI_LocalPlayerLoginOSS::None),
-         PrivilegeResults(0),
-         bMustAcceptEULA(false),
-         bMustAcceptTOS(false),
-         bMustAcceptPP(false)
+         PrivilegeResults{},
+         bMustAcceptEULA{},
+         bMustAcceptTOS{},
+         bMustAcceptPP{},
+         Restrictions()
     {
     }
 };
@@ -262,6 +269,28 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Login")
 	FRH_GeneralSettingChangedDynamicMulticast BLUEPRINT_OnCrossplaySettingChanged;
 
+	/**
+	 * @brief Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
+	 */
+	FRH_GeneralSettingChangedMulticast OnCommunicationSettingChanged;
+
+	/**
+	 * @brief Multicast delegate that gets broadcasted when a player's crossplay setting is changed.
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Login")
+	FRH_GeneralSettingChangedDynamicMulticast BLUEPRINT_OnCommunicationSettingChanged;
+
+	/**
+	 * @brief Multicast delegate that gets broadcasted when a player's user generated content setting is changed.
+	 */
+	FRH_GeneralSettingChangedMulticast OnUserGeneratedContentSettingChanged;
+
+	/**
+	 * @brief Multicast delegate that gets broadcasted when a player's user generated content setting is changed.
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Login")
+	FRH_GeneralSettingChangedDynamicMulticast BLUEPRINT_OnUserGeneratedContentSettingChanged;
+
     /**
      * @brief Requests a logout on the server clearing the players auth credentials.
      */
@@ -357,8 +386,12 @@ public:
 
     /** @brief Gets if crossplay is enabled */
     virtual bool IsCrossplayEnabled() const { return bCrossplayEnabled; }
-    /** @brief Gets if cvommunication is enabled */
+    /** @brief Gets if communication is enabled */
     virtual bool IsCommunicationEnabled() const { return bCommunicationEnabled; }
+    /** @brief Gets if user generated content is enabled */
+    virtual bool IsUserGeneratedContentEnabled() const { return bUserGeneratedContentEnabled; }
+    /** @brief Gets if player is explicitly blocked from using user generated content */
+    virtual bool HasSpecificUGCRestriction() const { return bHasSpecificUGCRestriction; }
 
 protected:
     /**
@@ -602,6 +635,22 @@ protected:
 	 * @param PrivilegeResults Privilege check results.
 	 */
 	virtual void HandleCheckCommunicationPrivilegeComplete(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, uint32 PrivilegeResults);
+	/** @brief Stores if user generated content is enabled for this player. */
+	bool bUserGeneratedContentEnabled = false;
+	/** @brief Stores if user generated content was explicitly disallowed for this player. */
+	bool bHasSpecificUGCRestriction = false;
+	/**
+	 * @brief Checks the users OSS privileges for user generated content.
+	 * @param [in] UniqueId Unique Net Id of the player being checked in.
+	 */
+	virtual void CheckUserGeneratedContentPrivilege(const FUniqueNetId& UniqueId);
+	/**
+	 * @brief Handles the response of the OSS user generated content privilege check.
+	 * @param UserId Unique Net Id of the player being checked in.
+	 * @param Privilege Privilege being checked.
+	 * @param PrivilegeResults Privilege check results.
+	 */
+	virtual void HandleCheckUserGeneratedContentPrivilegeComplete(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, uint32 PrivilegeResults);
 	/**
 	 * @brief Handles the app being restored from being suspended.
 	 */

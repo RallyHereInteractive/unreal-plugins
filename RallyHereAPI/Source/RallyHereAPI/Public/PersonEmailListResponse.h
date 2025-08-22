@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_PersonEmailListResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<int32> EmailListIds{  };
 	/** @brief Gets the value of EmailListIds */
-	TArray<int32>& GetEmailListIds() { return EmailListIds; }
+	FORCEINLINE TArray<int32>& GetEmailListIds() { return EmailListIds; }
 	/** @brief Gets the value of EmailListIds */
-	const TArray<int32>& GetEmailListIds() const { return EmailListIds; }
+	FORCEINLINE const TArray<int32>& GetEmailListIds() const { return EmailListIds; }
 	/** @brief Sets the value of EmailListIds */
-	void SetEmailListIds(const TArray<int32>& NewValue) { EmailListIds = NewValue;   }
+	FORCEINLINE void SetEmailListIds(const TArray<int32>& NewValue) { EmailListIds = NewValue;   }
 	/** @brief Sets the value of EmailListIds using move semantics */
-	void SetEmailListIds(TArray<int32>&& NewValue) { EmailListIds = NewValue;   }
+	FORCEINLINE void SetEmailListIds(TArray<int32>&& NewValue) { EmailListIds = NewValue;   }
 };
 
 /** @} */

@@ -49,6 +49,9 @@ void FRHAPI_PlayerPresenceUpdateSelf::WriteJson(TSharedRef<TJsonWriter<>>& Write
 	if (CustomData_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("custom_data"));
+		if (CustomData_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
 		RallyHereAPI::WriteJsonValue(Writer, CustomData_Optional);
 	}
 	Writer->WriteObjectEnd();
@@ -86,7 +89,8 @@ bool FRHAPI_PlayerPresenceUpdateSelf::FromJson(const TSharedPtr<FJsonValue>& Jso
 	const TSharedPtr<FJsonValue> JsonCustomDataField = (*Object)->TryGetField(TEXT("custom_data"));
 	if (JsonCustomDataField.IsValid())
 	{
-		CustomData_IsSet = TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
+		CustomData_IsNull = JsonCustomDataField->IsNull();
+		CustomData_IsSet = CustomData_IsNull || TryGetJsonValue(JsonCustomDataField, CustomData_Optional);
 		ParseSuccess &= CustomData_IsSet;
 	}
 

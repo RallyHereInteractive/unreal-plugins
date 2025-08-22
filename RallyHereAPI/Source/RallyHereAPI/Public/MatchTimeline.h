@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchTimeline : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_MatchTimelineEvent> Events{  };
 	/** @brief Gets the value of Events */
-	TArray<FRHAPI_MatchTimelineEvent>& GetEvents() { return Events; }
+	FORCEINLINE TArray<FRHAPI_MatchTimelineEvent>& GetEvents() { return Events; }
 	/** @brief Gets the value of Events */
-	const TArray<FRHAPI_MatchTimelineEvent>& GetEvents() const { return Events; }
+	FORCEINLINE const TArray<FRHAPI_MatchTimelineEvent>& GetEvents() const { return Events; }
 	/** @brief Sets the value of Events */
-	void SetEvents(const TArray<FRHAPI_MatchTimelineEvent>& NewValue) { Events = NewValue;   }
+	FORCEINLINE void SetEvents(const TArray<FRHAPI_MatchTimelineEvent>& NewValue) { Events = NewValue;   }
 	/** @brief Sets the value of Events using move semantics */
-	void SetEvents(TArray<FRHAPI_MatchTimelineEvent>&& NewValue) { Events = NewValue;   }
+	FORCEINLINE void SetEvents(TArray<FRHAPI_MatchTimelineEvent>&& NewValue) { Events = NewValue;   }
 };
 
 /** @} */

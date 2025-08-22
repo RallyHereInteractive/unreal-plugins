@@ -49,33 +49,29 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool BeforeItemId_IsNull{ false };
 	/** @brief Gets the value of BeforeItemId_Optional, regardless of it having been set */
-	int32& GetBeforeItemId() { return BeforeItemId_Optional; }
+	FORCEINLINE int32& GetBeforeItemId() { return BeforeItemId_Optional; }
 	/** @brief Gets the value of BeforeItemId_Optional, regardless of it having been set */
-	const int32& GetBeforeItemId() const { return BeforeItemId_Optional; }
+	FORCEINLINE const int32& GetBeforeItemId() const { return BeforeItemId_Optional; }
 	/** @brief Gets the value of BeforeItemId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetBeforeItemId(const int32& DefaultValue) const { if (BeforeItemId_IsSet) return BeforeItemId_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetBeforeItemId(const int32& DefaultValue) const { if (BeforeItemId_IsSet) return BeforeItemId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of BeforeItemId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetBeforeItemId(int32& OutValue) const { if (BeforeItemId_IsSet && !BeforeItemId_IsNull) OutValue = BeforeItemId_Optional; return BeforeItemId_IsSet; }
+	FORCEINLINE bool GetBeforeItemId(int32& OutValue) const { if (BeforeItemId_IsSet && !BeforeItemId_IsNull) OutValue = BeforeItemId_Optional; return BeforeItemId_IsSet; }
 	/** @brief Returns a pointer to BeforeItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetBeforeItemIdOrNull() { if (BeforeItemId_IsSet) return (BeforeItemId_IsNull ? nullptr : &BeforeItemId_Optional); return nullptr; }
+	FORCEINLINE int32* GetBeforeItemIdOrNull() { if (BeforeItemId_IsSet) return (BeforeItemId_IsNull ? nullptr : &BeforeItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to BeforeItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetBeforeItemIdOrNull() const { if (BeforeItemId_IsSet) return (BeforeItemId_IsNull ? nullptr : &BeforeItemId_Optional); return nullptr; }
+	FORCEINLINE const int32* GetBeforeItemIdOrNull() const { if (BeforeItemId_IsSet) return (BeforeItemId_IsNull ? nullptr : &BeforeItemId_Optional); return nullptr; }
 	/** @brief Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true */
-	void SetBeforeItemId(const int32& NewValue) { BeforeItemId_Optional = NewValue; BeforeItemId_IsSet = true; BeforeItemId_IsNull = false; }
+	FORCEINLINE void SetBeforeItemId(const int32& NewValue) { BeforeItemId_Optional = NewValue; BeforeItemId_IsSet = true; BeforeItemId_IsNull = false; }
 	/** @brief Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true using move semantics */
-	void SetBeforeItemId(int32&& NewValue) { BeforeItemId_Optional = NewValue; BeforeItemId_IsSet = true; BeforeItemId_IsNull = false; }
+	FORCEINLINE void SetBeforeItemId(int32&& NewValue) { BeforeItemId_Optional = NewValue; BeforeItemId_IsSet = true; BeforeItemId_IsNull = false; }
 	/** @brief Clears the value of BeforeItemId_Optional and sets BeforeItemId_IsSet to false */
 	void ClearBeforeItemId() { BeforeItemId_Optional = 0; BeforeItemId_IsSet = false; BeforeItemId_IsNull = false; }
-	/** @brief Checks whether BeforeItemId_Optional has been set */
-	bool IsBeforeItemIdSet() const { return BeforeItemId_IsSet; }
-	/** @brief Returns true if BeforeItemId_Optional is set and matches the default value */
-	bool IsBeforeItemIdDefaultValue() const { return BeforeItemId_IsSet && BeforeItemId_Optional == 0; }
-	/** @brief Sets the value of BeforeItemId_Optional to its default and also sets BeforeItemId_IsSet to true */
-	void SetBeforeItemIdToDefault() { SetBeforeItemId(0); }
+	/** @brief Returns the default value of BeforeItemId */
+	FORCEINLINE int32 GetDefaultValue_BeforeItemId() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetBeforeItemIdToNull() { BeforeItemId_IsSet = true; BeforeItemId_IsNull = true; }
+	FORCEINLINE void SetBeforeItemIdToNull() { BeforeItemId_IsSet = true; BeforeItemId_IsNull = true; }
 	/** @brief Checks whether BeforeItemId_Optional is set to null */
-	bool IsBeforeItemIdNull() const { return BeforeItemId_IsSet && BeforeItemId_IsNull; }
+	FORCEINLINE bool IsBeforeItemIdNull() const { return BeforeItemId_IsSet && BeforeItemId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 AfterItemId_Optional{ 0 };
@@ -86,33 +82,29 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AfterItemId_IsNull{ false };
 	/** @brief Gets the value of AfterItemId_Optional, regardless of it having been set */
-	int32& GetAfterItemId() { return AfterItemId_Optional; }
+	FORCEINLINE int32& GetAfterItemId() { return AfterItemId_Optional; }
 	/** @brief Gets the value of AfterItemId_Optional, regardless of it having been set */
-	const int32& GetAfterItemId() const { return AfterItemId_Optional; }
+	FORCEINLINE const int32& GetAfterItemId() const { return AfterItemId_Optional; }
 	/** @brief Gets the value of AfterItemId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetAfterItemId(const int32& DefaultValue) const { if (AfterItemId_IsSet) return AfterItemId_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetAfterItemId(const int32& DefaultValue) const { if (AfterItemId_IsSet) return AfterItemId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AfterItemId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAfterItemId(int32& OutValue) const { if (AfterItemId_IsSet && !AfterItemId_IsNull) OutValue = AfterItemId_Optional; return AfterItemId_IsSet; }
+	FORCEINLINE bool GetAfterItemId(int32& OutValue) const { if (AfterItemId_IsSet && !AfterItemId_IsNull) OutValue = AfterItemId_Optional; return AfterItemId_IsSet; }
 	/** @brief Returns a pointer to AfterItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetAfterItemIdOrNull() { if (AfterItemId_IsSet) return (AfterItemId_IsNull ? nullptr : &AfterItemId_Optional); return nullptr; }
+	FORCEINLINE int32* GetAfterItemIdOrNull() { if (AfterItemId_IsSet) return (AfterItemId_IsNull ? nullptr : &AfterItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to AfterItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetAfterItemIdOrNull() const { if (AfterItemId_IsSet) return (AfterItemId_IsNull ? nullptr : &AfterItemId_Optional); return nullptr; }
+	FORCEINLINE const int32* GetAfterItemIdOrNull() const { if (AfterItemId_IsSet) return (AfterItemId_IsNull ? nullptr : &AfterItemId_Optional); return nullptr; }
 	/** @brief Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true */
-	void SetAfterItemId(const int32& NewValue) { AfterItemId_Optional = NewValue; AfterItemId_IsSet = true; AfterItemId_IsNull = false; }
+	FORCEINLINE void SetAfterItemId(const int32& NewValue) { AfterItemId_Optional = NewValue; AfterItemId_IsSet = true; AfterItemId_IsNull = false; }
 	/** @brief Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true using move semantics */
-	void SetAfterItemId(int32&& NewValue) { AfterItemId_Optional = NewValue; AfterItemId_IsSet = true; AfterItemId_IsNull = false; }
+	FORCEINLINE void SetAfterItemId(int32&& NewValue) { AfterItemId_Optional = NewValue; AfterItemId_IsSet = true; AfterItemId_IsNull = false; }
 	/** @brief Clears the value of AfterItemId_Optional and sets AfterItemId_IsSet to false */
 	void ClearAfterItemId() { AfterItemId_Optional = 0; AfterItemId_IsSet = false; AfterItemId_IsNull = false; }
-	/** @brief Checks whether AfterItemId_Optional has been set */
-	bool IsAfterItemIdSet() const { return AfterItemId_IsSet; }
-	/** @brief Returns true if AfterItemId_Optional is set and matches the default value */
-	bool IsAfterItemIdDefaultValue() const { return AfterItemId_IsSet && AfterItemId_Optional == 0; }
-	/** @brief Sets the value of AfterItemId_Optional to its default and also sets AfterItemId_IsSet to true */
-	void SetAfterItemIdToDefault() { SetAfterItemId(0); }
+	/** @brief Returns the default value of AfterItemId */
+	FORCEINLINE int32 GetDefaultValue_AfterItemId() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetAfterItemIdToNull() { AfterItemId_IsSet = true; AfterItemId_IsNull = true; }
+	FORCEINLINE void SetAfterItemIdToNull() { AfterItemId_IsSet = true; AfterItemId_IsNull = true; }
 	/** @brief Checks whether AfterItemId_Optional is set to null */
-	bool IsAfterItemIdNull() const { return AfterItemId_IsSet && AfterItemId_IsNull; }
+	FORCEINLINE bool IsAfterItemIdNull() const { return AfterItemId_IsSet && AfterItemId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_InventoryRecord Before_Optional{  };
@@ -123,29 +115,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Before_IsNull{ false };
 	/** @brief Gets the value of Before_Optional, regardless of it having been set */
-	FRHAPI_InventoryRecord& GetBefore() { return Before_Optional; }
+	FORCEINLINE FRHAPI_InventoryRecord& GetBefore() { return Before_Optional; }
 	/** @brief Gets the value of Before_Optional, regardless of it having been set */
-	const FRHAPI_InventoryRecord& GetBefore() const { return Before_Optional; }
+	FORCEINLINE const FRHAPI_InventoryRecord& GetBefore() const { return Before_Optional; }
 	/** @brief Gets the value of Before_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_InventoryRecord& GetBefore(const FRHAPI_InventoryRecord& DefaultValue) const { if (Before_IsSet) return Before_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_InventoryRecord& GetBefore(const FRHAPI_InventoryRecord& DefaultValue) const { if (Before_IsSet) return Before_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Before_Optional and returns true if it has been set, otherwise returns false */
-	bool GetBefore(FRHAPI_InventoryRecord& OutValue) const { if (Before_IsSet && !Before_IsNull) OutValue = Before_Optional; return Before_IsSet; }
+	FORCEINLINE bool GetBefore(FRHAPI_InventoryRecord& OutValue) const { if (Before_IsSet && !Before_IsNull) OutValue = Before_Optional; return Before_IsSet; }
 	/** @brief Returns a pointer to Before_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_InventoryRecord* GetBeforeOrNull() { if (Before_IsSet) return (Before_IsNull ? nullptr : &Before_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_InventoryRecord* GetBeforeOrNull() { if (Before_IsSet) return (Before_IsNull ? nullptr : &Before_Optional); return nullptr; }
 	/** @brief Returns a pointer to Before_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_InventoryRecord* GetBeforeOrNull() const { if (Before_IsSet) return (Before_IsNull ? nullptr : &Before_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_InventoryRecord* GetBeforeOrNull() const { if (Before_IsSet) return (Before_IsNull ? nullptr : &Before_Optional); return nullptr; }
 	/** @brief Sets the value of Before_Optional and also sets Before_IsSet to true */
-	void SetBefore(const FRHAPI_InventoryRecord& NewValue) { Before_Optional = NewValue; Before_IsSet = true; Before_IsNull = false; }
+	FORCEINLINE void SetBefore(const FRHAPI_InventoryRecord& NewValue) { Before_Optional = NewValue; Before_IsSet = true; Before_IsNull = false; }
 	/** @brief Sets the value of Before_Optional and also sets Before_IsSet to true using move semantics */
-	void SetBefore(FRHAPI_InventoryRecord&& NewValue) { Before_Optional = NewValue; Before_IsSet = true; Before_IsNull = false; }
+	FORCEINLINE void SetBefore(FRHAPI_InventoryRecord&& NewValue) { Before_Optional = NewValue; Before_IsSet = true; Before_IsNull = false; }
 	/** @brief Clears the value of Before_Optional and sets Before_IsSet to false */
 	void ClearBefore() { Before_IsSet = false; Before_IsNull = false; }
-	/** @brief Checks whether Before_Optional has been set */
-	bool IsBeforeSet() const { return Before_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetBeforeToNull() { Before_IsSet = true; Before_IsNull = true; }
+	FORCEINLINE void SetBeforeToNull() { Before_IsSet = true; Before_IsNull = true; }
 	/** @brief Checks whether Before_Optional is set to null */
-	bool IsBeforeNull() const { return Before_IsSet && Before_IsNull; }
+	FORCEINLINE bool IsBeforeNull() const { return Before_IsSet && Before_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_InventoryRecord After_Optional{  };
@@ -156,29 +146,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerInventoryChange : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool After_IsNull{ false };
 	/** @brief Gets the value of After_Optional, regardless of it having been set */
-	FRHAPI_InventoryRecord& GetAfter() { return After_Optional; }
+	FORCEINLINE FRHAPI_InventoryRecord& GetAfter() { return After_Optional; }
 	/** @brief Gets the value of After_Optional, regardless of it having been set */
-	const FRHAPI_InventoryRecord& GetAfter() const { return After_Optional; }
+	FORCEINLINE const FRHAPI_InventoryRecord& GetAfter() const { return After_Optional; }
 	/** @brief Gets the value of After_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_InventoryRecord& GetAfter(const FRHAPI_InventoryRecord& DefaultValue) const { if (After_IsSet) return After_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_InventoryRecord& GetAfter(const FRHAPI_InventoryRecord& DefaultValue) const { if (After_IsSet) return After_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of After_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAfter(FRHAPI_InventoryRecord& OutValue) const { if (After_IsSet && !After_IsNull) OutValue = After_Optional; return After_IsSet; }
+	FORCEINLINE bool GetAfter(FRHAPI_InventoryRecord& OutValue) const { if (After_IsSet && !After_IsNull) OutValue = After_Optional; return After_IsSet; }
 	/** @brief Returns a pointer to After_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_InventoryRecord* GetAfterOrNull() { if (After_IsSet) return (After_IsNull ? nullptr : &After_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_InventoryRecord* GetAfterOrNull() { if (After_IsSet) return (After_IsNull ? nullptr : &After_Optional); return nullptr; }
 	/** @brief Returns a pointer to After_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_InventoryRecord* GetAfterOrNull() const { if (After_IsSet) return (After_IsNull ? nullptr : &After_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_InventoryRecord* GetAfterOrNull() const { if (After_IsSet) return (After_IsNull ? nullptr : &After_Optional); return nullptr; }
 	/** @brief Sets the value of After_Optional and also sets After_IsSet to true */
-	void SetAfter(const FRHAPI_InventoryRecord& NewValue) { After_Optional = NewValue; After_IsSet = true; After_IsNull = false; }
+	FORCEINLINE void SetAfter(const FRHAPI_InventoryRecord& NewValue) { After_Optional = NewValue; After_IsSet = true; After_IsNull = false; }
 	/** @brief Sets the value of After_Optional and also sets After_IsSet to true using move semantics */
-	void SetAfter(FRHAPI_InventoryRecord&& NewValue) { After_Optional = NewValue; After_IsSet = true; After_IsNull = false; }
+	FORCEINLINE void SetAfter(FRHAPI_InventoryRecord&& NewValue) { After_Optional = NewValue; After_IsSet = true; After_IsNull = false; }
 	/** @brief Clears the value of After_Optional and sets After_IsSet to false */
 	void ClearAfter() { After_IsSet = false; After_IsNull = false; }
-	/** @brief Checks whether After_Optional has been set */
-	bool IsAfterSet() const { return After_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetAfterToNull() { After_IsSet = true; After_IsNull = true; }
+	FORCEINLINE void SetAfterToNull() { After_IsSet = true; After_IsNull = true; }
 	/** @brief Checks whether After_Optional is set to null */
-	bool IsAfterNull() const { return After_IsSet && After_IsNull; }
+	FORCEINLINE bool IsAfterNull() const { return After_IsSet && After_IsNull; }
 };
 
 /** @} */

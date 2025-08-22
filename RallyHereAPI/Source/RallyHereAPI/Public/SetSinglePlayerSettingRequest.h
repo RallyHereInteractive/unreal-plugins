@@ -43,17 +43,15 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 V{ 0 };
 	/** @brief Gets the value of V */
-	int32& GetV() { return V; }
+	FORCEINLINE int32& GetV() { return V; }
 	/** @brief Gets the value of V */
-	const int32& GetV() const { return V; }
+	FORCEINLINE const int32& GetV() const { return V; }
 	/** @brief Sets the value of V */
-	void SetV(const int32& NewValue) { V = NewValue;   }
+	FORCEINLINE void SetV(const int32& NewValue) { V = NewValue;   }
 	/** @brief Sets the value of V using move semantics */
-	void SetV(int32&& NewValue) { V = NewValue;   }
-	/** @brief Returns true if V matches the default value */
-	bool IsVDefaultValue() const { return V == 0; }
-	/** @brief Sets the value of V to its default  */
-	void SetVToDefault() { SetV(0); }
+	FORCEINLINE void SetV(int32&& NewValue) { V = NewValue;   }
+	/** @brief Returns the default value of V */
+	FORCEINLINE int32 GetDefaultValue_V() { return 0; }
 
 	/** @brief New value document for the setting.  Must conform to the jsonschema defined for the setting type+version */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -62,17 +60,17 @@ struct RALLYHEREAPI_API FRHAPI_SetSinglePlayerSettingRequest : public FRHAPI_Mod
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Value_IsNull{ false };
 	/** @brief Gets the value of Value */
-	FRHAPI_JsonValue& GetValue() { return Value; }
+	FORCEINLINE FRHAPI_JsonValue& GetValue() { return Value; }
 	/** @brief Gets the value of Value */
-	const FRHAPI_JsonValue& GetValue() const { return Value; }
+	FORCEINLINE const FRHAPI_JsonValue& GetValue() const { return Value; }
 	/** @brief Sets the value of Value */
-	void SetValue(const FRHAPI_JsonValue& NewValue) { Value = NewValue;  Value_IsNull = false; }
+	FORCEINLINE void SetValue(const FRHAPI_JsonValue& NewValue) { Value = NewValue;  Value_IsNull = false; }
 	/** @brief Sets the value of Value using move semantics */
-	void SetValue(FRHAPI_JsonValue&& NewValue) { Value = NewValue;  Value_IsNull = false; }
+	FORCEINLINE void SetValue(FRHAPI_JsonValue&& NewValue) { Value = NewValue;  Value_IsNull = false; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetValueToNull() { Value_IsNull = true; }
+	FORCEINLINE void SetValueToNull() { Value_IsNull = true; }
 	/** @brief Checks whether Value is set to null */
-	bool IsValueNull() const { return  Value_IsNull; }
+	FORCEINLINE bool IsValueNull() const { return  Value_IsNull; }
 };
 
 /** @} */

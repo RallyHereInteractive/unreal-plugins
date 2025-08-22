@@ -7,6 +7,7 @@
 #include "OnlineSubsystem.h"
 #include "Interfaces/OnlineSessionInterface.h"
 #include "OnlineSessionSettings.h"
+#include "RH_PlatformSessionSyncer.h"
 #include "Engine/EngineBaseTypes.h"
 #include "Misc/Guid.h"
 #include "Templates/SharedPointer.h"
@@ -155,6 +156,10 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Session")
 	FORCEINLINE bool IsInSession(const FString& SessionId) { return Sessions.Contains(SessionId); }
 
+	/**
+	 * @brief Utility function to look up the local player subsystem (IRH_SessionOwnerInterface override)
+	 */
+	virtual URH_LocalPlayerSubsystem* GetLocalPlayerSubsystem() const override { return URH_LocalPlayerSubsystemPlugin::GetLocalPlayerSubsystem(); }
 	/**
 	* @brief Utility function to look up the player info subsystem (IRH_SessionOwnerInterface requirement)
 	*/
@@ -327,8 +332,11 @@ public:
 	/**
 	* @brief Looks up all sessions to process when polling if ETags match (IRH_SessionOwnerInterface requirement)
 	*/
-	virtual TArray<URH_SessionView*> GetAllSessionsForPolling() const override
+	virtual TArray<URH_SessionView*> GetAllSessionsForPolling()override
 	{
+		LastSessionIdsPolled.Empty();
+		LastSessionIdsPolled.Reserve(Sessions.Num());
+		
 		TArray<URH_SessionView*> Result;
 		Result.Reserve(Sessions.Num());
 		for (auto& Pair : Sessions)
@@ -336,6 +344,7 @@ public:
 			if (Pair.Value->IsOnline())
 			{
 				Result.Add(Pair.Value);
+				LastSessionIdsPolled.Add(Pair.Key);
 			}
 		}
 		return Result;
@@ -390,6 +399,12 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Session")
 	virtual bool HasInitialSessionData() const { return AllSessionsETag.IsSet(); }
 	
+	/**
+	* @brief Determines if we're actively attempting to join a platform session
+	*/
+	UFUNCTION(BlueprintPure, Category = "Session")
+	bool IsJoiningPlatformSession() const { return URH_PlatformSessionSyncer::IsJoiningSession(); }
+
 	/**
 	* @private
 	* @brief Multicast delegate triggered when a session managed by this subsystem is updated
@@ -618,6 +633,8 @@ protected:
 	/** @brief Map of Session Ids to Sessions we are in. */
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session")
 	TMap<FString, URH_SessionView*> Sessions;
+	/** @brief List of session ids that were part of our most recent PollAllSessions */
+	TArray<FString> LastSessionIdsPolled; //$$ DLF - Fixed leaving a sesssion that was joined in the middle of a Poll All Sessions call
 	/** @brief Map of Session Ids to Sessions objects that may be in the process of cleaning themselves up. */
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session")
 	TMap<FString, URH_SessionView*> ExpiringSessions;

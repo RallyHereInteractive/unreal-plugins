@@ -570,6 +570,7 @@ TSharedPtr<FJsonObject> FRH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 	TSharedPtr<FJsonObject> Request = MakeShareable(new FJsonObject);
 	Request->SetStringField(TEXT("Verb"), request.Verb);
 	Request->SetStringField(TEXT("URL"), request.URL);
+	Request->SetStringField(TEXT("API-Name"), request.APIName.ToString());
 	Request->SetNumberField(TEXT("RetryCount"), request.Metadata.RetryCount);
 	Request->SetStringField(TEXT("Send-Time"), request.Timestamp.ToIso8601());
 
@@ -595,7 +596,7 @@ TSharedPtr<FJsonObject> FRH_WebRequests::CreateJsonObjectFromWebRequest(const FR
 
 	// Metadata
 	TSharedPtr<FJsonObject> Metadata = MakeShareable(new FJsonObject);
-	Metadata->SetStringField(TEXT("Identifier"), request.Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphens));
+	Metadata->SetStringField(TEXT("Identifier"), request.Metadata.Identifier.ToString(EGuidFormats::DigitsWithHyphensLower));
 	Metadata->SetStringField(TEXT("Simplified Path"), request.Metadata.SimplifiedPath.ToString());
 	Metadata->SetNumberField(TEXT("Retry Count"), request.Metadata.RetryCount);
 	Metadata->SetStringField(TEXT("Create-Time"), request.Metadata.CreateTimestamp.ToIso8601());

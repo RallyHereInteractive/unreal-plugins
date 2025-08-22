@@ -1812,6 +1812,17 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 				Log->Flush();
 			}
 
+			//$$ JKENKEL - log file named on match ID, if possible
+			if (URH_GameInstanceSessionSubsystem* SessionSubsystem = GISS->GetSessionSubsystem())
+			{
+				const auto MatchId = SessionSubsystem->GetActiveMatchId();
+				if (!MatchId.IsEmpty())
+				{
+					LogFilename = FString::Format(TEXT("Unreal_{0}.log"), {MatchId});
+				}
+			}
+			//$$ JKENKEL - log file named on match ID, if possible
+
 			return GISS->GetRemoteFileSubsystem()->UploadFromFile(Directory, LogFilename, LogSrcAbsolute, true);
 		}
 	}
@@ -1866,7 +1877,7 @@ URH_OfflineSession* URH_GameInstanceClientBootstrapper::CreateOfflineSession(con
 	/* template type */
 	SessionInfo.Type = SessionType; // todo
 	/* unique ID for this session within its type */
-	SessionInfo.SessionId = SessionId.IsEmpty() ? SessionId : FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower);
+	SessionInfo.SessionId = !SessionId.IsEmpty() ? SessionId : FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower);
 	/* Info about the current active instance for the session */
 	// SessionInfo.Instance
 	// SessionInfo.Match

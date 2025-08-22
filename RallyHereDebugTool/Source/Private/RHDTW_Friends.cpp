@@ -58,7 +58,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 							{
 								if (!pFriendSubsystem->AddFriend(TargetedPlayer->GetRHPlayerUuid(), FRH_AddFriendDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleAddFriend, pLocalPlayerSubsystem->GetPlayerUuid(), TargetedPlayer->GetRHPlayerUuid())))
 								{
-									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Add Friend request to ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Add Friend request to ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 								}
 							}
 						}));
@@ -79,7 +79,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 							{
 								if (!pFriendSubsystem->RemoveFriend(TargetedPlayer->GetRHPlayerUuid(), FRH_GenericFriendWithUuidDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleRemoveFriend, pLocalPlayerSubsystem->GetPlayerUuid(), TargetedPlayer->GetRHPlayerUuid())))
 								{
-									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Remove Friend request to ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Remove Friend request to ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 								}
 							}
 						}));
@@ -100,7 +100,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 							{
 								if (!pFriendSubsystem->FetchFriend(TargetedPlayer->GetRHPlayerUuid(), FRH_GenericFriendWithUuidDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleFetchFriend, pLocalPlayerSubsystem->GetPlayerUuid(), TargetedPlayer->GetRHPlayerUuid())))
 								{
-									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Refresh Friend request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Refresh Friend request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 								}
 							}
 						}));
@@ -123,7 +123,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 							{
 								if (!pFriendSubsystem->AddNotes(TargetedPlayer->GetRHPlayerUuid(), NotesInput[0] != '\0' ? FString(NotesInput.c_str()) : FString(), FRH_AddNotesDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleAddNote, pLocalPlayerSubsystem->GetPlayerUuid(), TargetedPlayer->GetRHPlayerUuid())))
 								{
-									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Add Notes request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Add Notes request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 								}
 							}
 						}));
@@ -144,7 +144,7 @@ void FRHDTW_Friends::DoRHFriendTab(URH_FriendSubsystem* pRH_FriendSubsystem)
 							{
 								if (!pFriendSubsystem->DeleteNotes(TargetedPlayer->GetRHPlayerUuid(), FRH_GenericFriendWithUuidDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleDeleteNote, pLocalPlayerSubsystem->GetPlayerUuid(), TargetedPlayer->GetRHPlayerUuid())))
 								{
-									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Delete Notes request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+									FriendActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Delete Notes request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 								}
 							}
 						}));
@@ -315,7 +315,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 						{
 							if (!pFriendSubsystem->BlockPlayer(TargetedPlayer->GetRHPlayerUuid(), FRH_GenericFriendWithUuidDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleBlockPlayer, pLocalPlayerSubsystem->GetPlayerUuid(), TargetedPlayer->GetRHPlayerUuid())))
 							{
-								BlockActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Block Player request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+								BlockActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Block Player request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 							}
 						}
 					}));
@@ -337,7 +337,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 						{
 							if (!pFriendSubsystem->UnblockPlayer(TargetedPlayer->GetRHPlayerUuid(), FRH_GenericFriendWithUuidDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleUnblockPlayer, pLocalPlayerSubsystem->GetPlayerUuid(), TargetedPlayer->GetRHPlayerUuid())))
 							{
-								BlockActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Unblock Player request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+								BlockActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Unblock Player request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 							}
 						}
 					}));
@@ -359,7 +359,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 						{
 							if (!pFriendSubsystem->FetchBlockedPlayer(TargetedPlayer->GetRHPlayerUuid(), FRH_GenericFriendWithUuidDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleFetchBlockedPlayer, pLocalPlayerSubsystem->GetPlayerUuid(), TargetedPlayer->GetRHPlayerUuid())))
 							{
-								BlockActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Refresh Blocked Player request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+								BlockActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Refresh Blocked Player request for ") + TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 							}
 						}
 					}));
@@ -376,7 +376,7 @@ void FRHDTW_Friends::DoBlockedPlayersTab(URH_FriendSubsystem* pRH_FriendSubsyste
 				{
 					if (!pFriendSubsystem->FetchBlockedList(FRH_GenericFriendDelegate::CreateSP(SharedThis(this), &FRHDTW_Friends::HandleFetchBlockedPlayers, pLocalPlayerSubsystem->GetPlayerUuid())))
 					{
-						BlockActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Fetch Blocked List Request for ") + pLocalPlayerSubsystem->GetPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + TEXT(".") LINE_TERMINATOR;
+						BlockActionResult += TEXT("[") + GetShortUuid(pLocalPlayerSubsystem->GetPlayerUuid()) + TEXT("] Failed to send Fetch Blocked List Request for ") + pLocalPlayerSubsystem->GetPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + TEXT(".") LINE_TERMINATOR;
 					}
 				}
 			}));
@@ -470,12 +470,10 @@ void FRHDTW_Friends::DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsyste
 
 	URH_PlayerInfoSubsystem* pRH_PlayerInfoSubsystem = LPSubsystem ? LPSubsystem->GetPlayerInfoSubsystem() : nullptr;
 
-
 	ImGui::SetNextItemWidth(300.f);
 	ImGui::InputText("Platform User ID look up", PlatformUserIdString.GetData(), PlatformUserIdString.Num());
 	const FString LookupString = UTF8_TO_TCHAR(PlatformUserIdString.GetData());
 
-	int32 idCounter = 1;
 	for (auto fr : pRH_FriendSubsystem->GetFriends())
 	{
 		auto portalFriends = fr->GetPlatformFriends();
@@ -504,13 +502,11 @@ void FRHDTW_Friends::DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsyste
 
 		auto PlatformName = RH_GETENUMSTRING("/Script/RallyHereAPI", "ERHAPI_Platform", portalFriends[0]->GetPlatform());
 		auto DisplayName = portalFriends[0]->GetClientDisplayName();
+		ImGui::PushID(fr);
 
-		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*(fr->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens) + " - " + DisplayName + " - " + PlatformName))))
+		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*(fr->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower) + " - " + DisplayName + " - " + PlatformName))))
 		{
 			ImGui::Indent(10.0f);
-
-			ImGui::PushID(idCounter);
-			idCounter++;
 
 			if (fr->AreRHFriends())
 			{
@@ -577,11 +573,12 @@ void FRHDTW_Friends::DoPlatformFriendTab(URH_FriendSubsystem* pRH_FriendSubsyste
 				ImGuiDisplayCopyableValue("Presence Info", portalFriend->GetRichPresenceInfo());
 				ImGui::Separator();
 
-				ImGui::PopID();
 			}
 
 			ImGui::Unindent(10.0f);
 		}
+
+		ImGui::PopID();
 	}
 }
 
@@ -730,11 +727,11 @@ void FRHDTW_Friends::HandleAddFriend(bool bSuccessful, const FGuid& FriendsPlaye
 	if (bSuccessful)
 	{
 		const auto NewStatus = UEnum::GetDisplayValueAsText(FriendsStatus).ToString();
-		FriendActionResult += FString::Printf(TEXT("[%s] Add Friend %s succeeded. New status is %s"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens), *NewStatus);
+		FriendActionResult += FString::Printf(TEXT("[%s] Add Friend %s succeeded. New status is %s"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower), *NewStatus);
 	}
 	else
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Add Friend %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		FriendActionResult += FString::Printf(TEXT("[%s] Add Friend %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	FriendActionResult += LINE_TERMINATOR;
 }
@@ -743,11 +740,11 @@ void FRHDTW_Friends::HandleAddNote(bool bSuccessful, const FGuid& FriendsPlayerU
 {
 	if (bSuccessful)
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Update Notes to Friend %s succeeded. New note %s"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens), *NewNote);
+		FriendActionResult += FString::Printf(TEXT("[%s] Update Notes to Friend %s succeeded. New note %s"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower), *NewNote);
 	}
 	else
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Update Notes failed for %s."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		FriendActionResult += FString::Printf(TEXT("[%s] Update Notes failed for %s."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	FriendActionResult += LINE_TERMINATOR;
 }
@@ -756,11 +753,11 @@ void FRHDTW_Friends::HandleDeleteNote(bool bSuccessful, const FGuid& FriendsPlay
 {
 	if (bSuccessful)
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Delete Notes to Friend %s succeeded."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		FriendActionResult += FString::Printf(TEXT("[%s] Delete Notes to Friend %s succeeded."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	else
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Delete Notes failed for %s."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		FriendActionResult += FString::Printf(TEXT("[%s] Delete Notes failed for %s."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	FriendActionResult += LINE_TERMINATOR;
 }
@@ -769,11 +766,11 @@ void FRHDTW_Friends::HandleFetchFriend(bool bSuccessful, const FGuid& FriendsPla
 {
 	if (bSuccessful)
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Get Friend %s succeeded"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		FriendActionResult += FString::Printf(TEXT("[%s] Get Friend %s succeeded"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	else
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Get Friend failed for %s."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		FriendActionResult += FString::Printf(TEXT("[%s] Get Friend failed for %s."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	FriendActionResult += LINE_TERMINATOR;
 }
@@ -782,11 +779,11 @@ void FRHDTW_Friends::HandleRemoveFriend(bool bSuccessful, const FGuid& FriendsPl
 {
 	if (bSuccessful)
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Remove Friend %s succeeded"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		FriendActionResult += FString::Printf(TEXT("[%s] Remove Friend %s succeeded"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	else
 	{
-		FriendActionResult += FString::Printf(TEXT("[%s] Remove Friend %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		FriendActionResult += FString::Printf(TEXT("[%s] Remove Friend %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	FriendActionResult += LINE_TERMINATOR;
 }
@@ -808,11 +805,11 @@ void FRHDTW_Friends::HandleFetchBlockedPlayer(bool bSuccessful, const FGuid& Pla
 {
 	if (bSuccessful)
 	{
-		BlockActionResult += FString::Printf(TEXT("Refresh Blocked Player %s succeeded."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		BlockActionResult += FString::Printf(TEXT("Refresh Blocked Player %s succeeded."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	else
 	{
-		BlockActionResult += FString::Printf(TEXT("Refresh Blocked Player %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		BlockActionResult += FString::Printf(TEXT("Refresh Blocked Player %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	BlockActionResult += LINE_TERMINATOR;
 }
@@ -821,11 +818,11 @@ void FRHDTW_Friends::HandleBlockPlayer(bool bSuccessful, const FGuid& PlayerUuid
 {
 	if (bSuccessful)
 	{
-		BlockActionResult += FString::Printf(TEXT("[%s] Block Player %s succeeded."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		BlockActionResult += FString::Printf(TEXT("[%s] Block Player %s succeeded."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	else
 	{
-		BlockActionResult = FString::Printf(TEXT("[%s] Block Player %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		BlockActionResult = FString::Printf(TEXT("[%s] Block Player %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	BlockActionResult += LINE_TERMINATOR;
 }
@@ -834,11 +831,11 @@ void FRHDTW_Friends::HandleUnblockPlayer(bool bSuccessful, const FGuid& PlayerUu
 {
 	if (bSuccessful)
 	{
-		BlockActionResult += FString::Printf(TEXT("[%s] Unblock Player %s succeeded"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		BlockActionResult += FString::Printf(TEXT("[%s] Unblock Player %s succeeded"), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	else
 	{
-		BlockActionResult += FString::Printf(TEXT("[%s] Unblock Player %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphens));
+		BlockActionResult += FString::Printf(TEXT("[%s] Unblock Player %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	BlockActionResult += LINE_TERMINATOR;
 }

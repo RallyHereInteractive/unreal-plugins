@@ -45,13 +45,13 @@ struct RALLYHEREAPI_API FRHAPI_SessionPermissions : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	/** @brief List of intra session permissions for a specific player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,25 +60,23 @@ struct RALLYHEREAPI_API FRHAPI_SessionPermissions : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Permissions_IsSet{ false };
 	/** @brief Gets the value of Permissions_Optional, regardless of it having been set */
-	TSet<ERHAPI_IntraSessionPermissions>& GetPermissions() { return Permissions_Optional; }
+	FORCEINLINE TSet<ERHAPI_IntraSessionPermissions>& GetPermissions() { return Permissions_Optional; }
 	/** @brief Gets the value of Permissions_Optional, regardless of it having been set */
-	const TSet<ERHAPI_IntraSessionPermissions>& GetPermissions() const { return Permissions_Optional; }
+	FORCEINLINE const TSet<ERHAPI_IntraSessionPermissions>& GetPermissions() const { return Permissions_Optional; }
 	/** @brief Gets the value of Permissions_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TSet<ERHAPI_IntraSessionPermissions>& GetPermissions(const TSet<ERHAPI_IntraSessionPermissions>& DefaultValue) const { if (Permissions_IsSet) return Permissions_Optional; return DefaultValue; }
+	FORCEINLINE const TSet<ERHAPI_IntraSessionPermissions>& GetPermissions(const TSet<ERHAPI_IntraSessionPermissions>& DefaultValue) const { if (Permissions_IsSet) return Permissions_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Permissions_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPermissions(TSet<ERHAPI_IntraSessionPermissions>& OutValue) const { if (Permissions_IsSet) OutValue = Permissions_Optional; return Permissions_IsSet; }
+	FORCEINLINE bool GetPermissions(TSet<ERHAPI_IntraSessionPermissions>& OutValue) const { if (Permissions_IsSet) OutValue = Permissions_Optional; return Permissions_IsSet; }
 	/** @brief Returns a pointer to Permissions_Optional, if it has been set, otherwise returns nullptr */
-	TSet<ERHAPI_IntraSessionPermissions>* GetPermissionsOrNull() { if (Permissions_IsSet) return (&Permissions_Optional); return nullptr; }
+	FORCEINLINE TSet<ERHAPI_IntraSessionPermissions>* GetPermissionsOrNull() { if (Permissions_IsSet) return (&Permissions_Optional); return nullptr; }
 	/** @brief Returns a pointer to Permissions_Optional, if it has been set, otherwise returns nullptr */
-	const TSet<ERHAPI_IntraSessionPermissions>* GetPermissionsOrNull() const { if (Permissions_IsSet) return (&Permissions_Optional); return nullptr; }
+	FORCEINLINE const TSet<ERHAPI_IntraSessionPermissions>* GetPermissionsOrNull() const { if (Permissions_IsSet) return (&Permissions_Optional); return nullptr; }
 	/** @brief Sets the value of Permissions_Optional and also sets Permissions_IsSet to true */
-	void SetPermissions(const TSet<ERHAPI_IntraSessionPermissions>& NewValue) { Permissions_Optional = NewValue; Permissions_IsSet = true;  }
+	FORCEINLINE void SetPermissions(const TSet<ERHAPI_IntraSessionPermissions>& NewValue) { Permissions_Optional = NewValue; Permissions_IsSet = true;  }
 	/** @brief Sets the value of Permissions_Optional and also sets Permissions_IsSet to true using move semantics */
-	void SetPermissions(TSet<ERHAPI_IntraSessionPermissions>&& NewValue) { Permissions_Optional = NewValue; Permissions_IsSet = true;  }
+	FORCEINLINE void SetPermissions(TSet<ERHAPI_IntraSessionPermissions>&& NewValue) { Permissions_Optional = NewValue; Permissions_IsSet = true;  }
 	/** @brief Clears the value of Permissions_Optional and sets Permissions_IsSet to false */
 	void ClearPermissions() { Permissions_IsSet = false;  }
-	/** @brief Checks whether Permissions_Optional has been set */
-	bool IsPermissionsSet() const { return Permissions_IsSet; }
 };
 
 /** @} */

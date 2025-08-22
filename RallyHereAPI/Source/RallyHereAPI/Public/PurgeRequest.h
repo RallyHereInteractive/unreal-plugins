@@ -46,25 +46,23 @@ struct RALLYHEREAPI_API FRHAPI_PurgeRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SuggestedPurgeTime_IsSet{ false };
 	/** @brief Gets the value of SuggestedPurgeTime_Optional, regardless of it having been set */
-	FDateTime& GetSuggestedPurgeTime() { return SuggestedPurgeTime_Optional; }
+	FORCEINLINE FDateTime& GetSuggestedPurgeTime() { return SuggestedPurgeTime_Optional; }
 	/** @brief Gets the value of SuggestedPurgeTime_Optional, regardless of it having been set */
-	const FDateTime& GetSuggestedPurgeTime() const { return SuggestedPurgeTime_Optional; }
+	FORCEINLINE const FDateTime& GetSuggestedPurgeTime() const { return SuggestedPurgeTime_Optional; }
 	/** @brief Gets the value of SuggestedPurgeTime_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetSuggestedPurgeTime(const FDateTime& DefaultValue) const { if (SuggestedPurgeTime_IsSet) return SuggestedPurgeTime_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetSuggestedPurgeTime(const FDateTime& DefaultValue) const { if (SuggestedPurgeTime_IsSet) return SuggestedPurgeTime_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of SuggestedPurgeTime_Optional and returns true if it has been set, otherwise returns false */
-	bool GetSuggestedPurgeTime(FDateTime& OutValue) const { if (SuggestedPurgeTime_IsSet) OutValue = SuggestedPurgeTime_Optional; return SuggestedPurgeTime_IsSet; }
+	FORCEINLINE bool GetSuggestedPurgeTime(FDateTime& OutValue) const { if (SuggestedPurgeTime_IsSet) OutValue = SuggestedPurgeTime_Optional; return SuggestedPurgeTime_IsSet; }
 	/** @brief Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetSuggestedPurgeTimeOrNull() { if (SuggestedPurgeTime_IsSet) return (&SuggestedPurgeTime_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetSuggestedPurgeTimeOrNull() { if (SuggestedPurgeTime_IsSet) return (&SuggestedPurgeTime_Optional); return nullptr; }
 	/** @brief Returns a pointer to SuggestedPurgeTime_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetSuggestedPurgeTimeOrNull() const { if (SuggestedPurgeTime_IsSet) return (&SuggestedPurgeTime_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetSuggestedPurgeTimeOrNull() const { if (SuggestedPurgeTime_IsSet) return (&SuggestedPurgeTime_Optional); return nullptr; }
 	/** @brief Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true */
-	void SetSuggestedPurgeTime(const FDateTime& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true;  }
+	FORCEINLINE void SetSuggestedPurgeTime(const FDateTime& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true;  }
 	/** @brief Sets the value of SuggestedPurgeTime_Optional and also sets SuggestedPurgeTime_IsSet to true using move semantics */
-	void SetSuggestedPurgeTime(FDateTime&& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true;  }
+	FORCEINLINE void SetSuggestedPurgeTime(FDateTime&& NewValue) { SuggestedPurgeTime_Optional = NewValue; SuggestedPurgeTime_IsSet = true;  }
 	/** @brief Clears the value of SuggestedPurgeTime_Optional and sets SuggestedPurgeTime_IsSet to false */
 	void ClearSuggestedPurgeTime() { SuggestedPurgeTime_IsSet = false;  }
-	/** @brief Checks whether SuggestedPurgeTime_Optional has been set */
-	bool IsSuggestedPurgeTimeSet() const { return SuggestedPurgeTime_IsSet; }
 };
 
 /** @} */

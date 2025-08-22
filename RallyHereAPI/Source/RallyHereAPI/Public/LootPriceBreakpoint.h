@@ -47,29 +47,25 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceBreakpoint : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Quantity_IsSet{ false };
 	/** @brief Gets the value of Quantity_Optional, regardless of it having been set */
-	int32& GetQuantity() { return Quantity_Optional; }
+	FORCEINLINE int32& GetQuantity() { return Quantity_Optional; }
 	/** @brief Gets the value of Quantity_Optional, regardless of it having been set */
-	const int32& GetQuantity() const { return Quantity_Optional; }
+	FORCEINLINE const int32& GetQuantity() const { return Quantity_Optional; }
 	/** @brief Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetQuantity(const int32& DefaultValue) const { if (Quantity_IsSet) return Quantity_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetQuantity(const int32& DefaultValue) const { if (Quantity_IsSet) return Quantity_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false */
-	bool GetQuantity(int32& OutValue) const { if (Quantity_IsSet) OutValue = Quantity_Optional; return Quantity_IsSet; }
+	FORCEINLINE bool GetQuantity(int32& OutValue) const { if (Quantity_IsSet) OutValue = Quantity_Optional; return Quantity_IsSet; }
 	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetQuantityOrNull() { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
+	FORCEINLINE int32* GetQuantityOrNull() { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
 	/** @brief Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
+	FORCEINLINE const int32* GetQuantityOrNull() const { if (Quantity_IsSet) return (&Quantity_Optional); return nullptr; }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true */
-	void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
+	FORCEINLINE void SetQuantity(const int32& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
 	/** @brief Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics */
-	void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
+	FORCEINLINE void SetQuantity(int32&& NewValue) { Quantity_Optional = NewValue; Quantity_IsSet = true;  }
 	/** @brief Clears the value of Quantity_Optional and sets Quantity_IsSet to false */
 	void ClearQuantity() { Quantity_Optional = 1; Quantity_IsSet = false;  }
-	/** @brief Checks whether Quantity_Optional has been set */
-	bool IsQuantitySet() const { return Quantity_IsSet; }
-	/** @brief Returns true if Quantity_Optional is set and matches the default value */
-	bool IsQuantityDefaultValue() const { return Quantity_IsSet && Quantity_Optional == 1; }
-	/** @brief Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true */
-	void SetQuantityToDefault() { SetQuantity(1); }
+	/** @brief Returns the default value of Quantity */
+	FORCEINLINE int32 GetDefaultValue_Quantity() { return 1; }
 
 	/** @brief List of all possible prices that this breakpoint can be purchased with. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -78,25 +74,23 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceBreakpoint : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Prices_IsSet{ false };
 	/** @brief Gets the value of Prices_Optional, regardless of it having been set */
-	TArray<FRHAPI_LootPriceCurrencies>& GetPrices() { return Prices_Optional; }
+	FORCEINLINE TArray<FRHAPI_LootPriceCurrencies>& GetPrices() { return Prices_Optional; }
 	/** @brief Gets the value of Prices_Optional, regardless of it having been set */
-	const TArray<FRHAPI_LootPriceCurrencies>& GetPrices() const { return Prices_Optional; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceCurrencies>& GetPrices() const { return Prices_Optional; }
 	/** @brief Gets the value of Prices_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_LootPriceCurrencies>& GetPrices(const TArray<FRHAPI_LootPriceCurrencies>& DefaultValue) const { if (Prices_IsSet) return Prices_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceCurrencies>& GetPrices(const TArray<FRHAPI_LootPriceCurrencies>& DefaultValue) const { if (Prices_IsSet) return Prices_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Prices_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPrices(TArray<FRHAPI_LootPriceCurrencies>& OutValue) const { if (Prices_IsSet) OutValue = Prices_Optional; return Prices_IsSet; }
+	FORCEINLINE bool GetPrices(TArray<FRHAPI_LootPriceCurrencies>& OutValue) const { if (Prices_IsSet) OutValue = Prices_Optional; return Prices_IsSet; }
 	/** @brief Returns a pointer to Prices_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_LootPriceCurrencies>* GetPricesOrNull() { if (Prices_IsSet) return (&Prices_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_LootPriceCurrencies>* GetPricesOrNull() { if (Prices_IsSet) return (&Prices_Optional); return nullptr; }
 	/** @brief Returns a pointer to Prices_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_LootPriceCurrencies>* GetPricesOrNull() const { if (Prices_IsSet) return (&Prices_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceCurrencies>* GetPricesOrNull() const { if (Prices_IsSet) return (&Prices_Optional); return nullptr; }
 	/** @brief Sets the value of Prices_Optional and also sets Prices_IsSet to true */
-	void SetPrices(const TArray<FRHAPI_LootPriceCurrencies>& NewValue) { Prices_Optional = NewValue; Prices_IsSet = true;  }
+	FORCEINLINE void SetPrices(const TArray<FRHAPI_LootPriceCurrencies>& NewValue) { Prices_Optional = NewValue; Prices_IsSet = true;  }
 	/** @brief Sets the value of Prices_Optional and also sets Prices_IsSet to true using move semantics */
-	void SetPrices(TArray<FRHAPI_LootPriceCurrencies>&& NewValue) { Prices_Optional = NewValue; Prices_IsSet = true;  }
+	FORCEINLINE void SetPrices(TArray<FRHAPI_LootPriceCurrencies>&& NewValue) { Prices_Optional = NewValue; Prices_IsSet = true;  }
 	/** @brief Clears the value of Prices_Optional and sets Prices_IsSet to false */
 	void ClearPrices() { Prices_IsSet = false;  }
-	/** @brief Checks whether Prices_Optional has been set */
-	bool IsPricesSet() const { return Prices_IsSet; }
 };
 
 /** @} */

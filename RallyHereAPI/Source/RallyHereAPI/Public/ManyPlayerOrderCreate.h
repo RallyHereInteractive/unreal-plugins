@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_ManyPlayerOrderCreate : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PlayerOrderCreateSingle> Orders{  };
 	/** @brief Gets the value of Orders */
-	TArray<FRHAPI_PlayerOrderCreateSingle>& GetOrders() { return Orders; }
+	FORCEINLINE TArray<FRHAPI_PlayerOrderCreateSingle>& GetOrders() { return Orders; }
 	/** @brief Gets the value of Orders */
-	const TArray<FRHAPI_PlayerOrderCreateSingle>& GetOrders() const { return Orders; }
+	FORCEINLINE const TArray<FRHAPI_PlayerOrderCreateSingle>& GetOrders() const { return Orders; }
 	/** @brief Sets the value of Orders */
-	void SetOrders(const TArray<FRHAPI_PlayerOrderCreateSingle>& NewValue) { Orders = NewValue;   }
+	FORCEINLINE void SetOrders(const TArray<FRHAPI_PlayerOrderCreateSingle>& NewValue) { Orders = NewValue;   }
 	/** @brief Sets the value of Orders using move semantics */
-	void SetOrders(TArray<FRHAPI_PlayerOrderCreateSingle>&& NewValue) { Orders = NewValue;   }
+	FORCEINLINE void SetOrders(TArray<FRHAPI_PlayerOrderCreateSingle>&& NewValue) { Orders = NewValue;   }
 };
 
 /** @} */

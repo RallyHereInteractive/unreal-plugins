@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_PublicKeyList : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PublicKey> Keys{  };
 	/** @brief Gets the value of Keys */
-	TArray<FRHAPI_PublicKey>& GetKeys() { return Keys; }
+	FORCEINLINE TArray<FRHAPI_PublicKey>& GetKeys() { return Keys; }
 	/** @brief Gets the value of Keys */
-	const TArray<FRHAPI_PublicKey>& GetKeys() const { return Keys; }
+	FORCEINLINE const TArray<FRHAPI_PublicKey>& GetKeys() const { return Keys; }
 	/** @brief Sets the value of Keys */
-	void SetKeys(const TArray<FRHAPI_PublicKey>& NewValue) { Keys = NewValue;   }
+	FORCEINLINE void SetKeys(const TArray<FRHAPI_PublicKey>& NewValue) { Keys = NewValue;   }
 	/** @brief Sets the value of Keys using move semantics */
-	void SetKeys(TArray<FRHAPI_PublicKey>&& NewValue) { Keys = NewValue;   }
+	FORCEINLINE void SetKeys(TArray<FRHAPI_PublicKey>&& NewValue) { Keys = NewValue;   }
 };
 
 /** @} */

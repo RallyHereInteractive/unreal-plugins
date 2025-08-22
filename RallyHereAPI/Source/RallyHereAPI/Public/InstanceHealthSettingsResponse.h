@@ -43,45 +43,41 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthSettingsResponse : public FRHAPI_Mo
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 CadenceSeconds{ 0 };
 	/** @brief Gets the value of CadenceSeconds */
-	int32& GetCadenceSeconds() { return CadenceSeconds; }
+	FORCEINLINE int32& GetCadenceSeconds() { return CadenceSeconds; }
 	/** @brief Gets the value of CadenceSeconds */
-	const int32& GetCadenceSeconds() const { return CadenceSeconds; }
+	FORCEINLINE const int32& GetCadenceSeconds() const { return CadenceSeconds; }
 	/** @brief Sets the value of CadenceSeconds */
-	void SetCadenceSeconds(const int32& NewValue) { CadenceSeconds = NewValue;   }
+	FORCEINLINE void SetCadenceSeconds(const int32& NewValue) { CadenceSeconds = NewValue;   }
 	/** @brief Sets the value of CadenceSeconds using move semantics */
-	void SetCadenceSeconds(int32&& NewValue) { CadenceSeconds = NewValue;   }
-	/** @brief Returns true if CadenceSeconds matches the default value */
-	bool IsCadenceSecondsDefaultValue() const { return CadenceSeconds == 0; }
-	/** @brief Sets the value of CadenceSeconds to its default  */
-	void SetCadenceSecondsToDefault() { SetCadenceSeconds(0); }
+	FORCEINLINE void SetCadenceSeconds(int32&& NewValue) { CadenceSeconds = NewValue;   }
+	/** @brief Returns the default value of CadenceSeconds */
+	FORCEINLINE int32 GetDefaultValue_CadenceSeconds() { return 0; }
 
 	/** @brief What percentage of health checks must be missing before an instance's status becomes unhealthy */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float UnhealthyHealthCheckPercentage{  };
 	/** @brief Gets the value of UnhealthyHealthCheckPercentage */
-	float& GetUnhealthyHealthCheckPercentage() { return UnhealthyHealthCheckPercentage; }
+	FORCEINLINE float& GetUnhealthyHealthCheckPercentage() { return UnhealthyHealthCheckPercentage; }
 	/** @brief Gets the value of UnhealthyHealthCheckPercentage */
-	const float& GetUnhealthyHealthCheckPercentage() const { return UnhealthyHealthCheckPercentage; }
+	FORCEINLINE const float& GetUnhealthyHealthCheckPercentage() const { return UnhealthyHealthCheckPercentage; }
 	/** @brief Sets the value of UnhealthyHealthCheckPercentage */
-	void SetUnhealthyHealthCheckPercentage(const float& NewValue) { UnhealthyHealthCheckPercentage = NewValue;   }
+	FORCEINLINE void SetUnhealthyHealthCheckPercentage(const float& NewValue) { UnhealthyHealthCheckPercentage = NewValue;   }
 	/** @brief Sets the value of UnhealthyHealthCheckPercentage using move semantics */
-	void SetUnhealthyHealthCheckPercentage(float&& NewValue) { UnhealthyHealthCheckPercentage = NewValue;   }
+	FORCEINLINE void SetUnhealthyHealthCheckPercentage(float&& NewValue) { UnhealthyHealthCheckPercentage = NewValue;   }
 
 	/** @brief How many health checks we must miss in a row before an instance's status becomes unknown */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 MissedChecksBeforeUnknown{ 0 };
 	/** @brief Gets the value of MissedChecksBeforeUnknown */
-	int32& GetMissedChecksBeforeUnknown() { return MissedChecksBeforeUnknown; }
+	FORCEINLINE int32& GetMissedChecksBeforeUnknown() { return MissedChecksBeforeUnknown; }
 	/** @brief Gets the value of MissedChecksBeforeUnknown */
-	const int32& GetMissedChecksBeforeUnknown() const { return MissedChecksBeforeUnknown; }
+	FORCEINLINE const int32& GetMissedChecksBeforeUnknown() const { return MissedChecksBeforeUnknown; }
 	/** @brief Sets the value of MissedChecksBeforeUnknown */
-	void SetMissedChecksBeforeUnknown(const int32& NewValue) { MissedChecksBeforeUnknown = NewValue;   }
+	FORCEINLINE void SetMissedChecksBeforeUnknown(const int32& NewValue) { MissedChecksBeforeUnknown = NewValue;   }
 	/** @brief Sets the value of MissedChecksBeforeUnknown using move semantics */
-	void SetMissedChecksBeforeUnknown(int32&& NewValue) { MissedChecksBeforeUnknown = NewValue;   }
-	/** @brief Returns true if MissedChecksBeforeUnknown matches the default value */
-	bool IsMissedChecksBeforeUnknownDefaultValue() const { return MissedChecksBeforeUnknown == 0; }
-	/** @brief Sets the value of MissedChecksBeforeUnknown to its default  */
-	void SetMissedChecksBeforeUnknownToDefault() { SetMissedChecksBeforeUnknown(0); }
+	FORCEINLINE void SetMissedChecksBeforeUnknown(int32&& NewValue) { MissedChecksBeforeUnknown = NewValue;   }
+	/** @brief Returns the default value of MissedChecksBeforeUnknown */
+	FORCEINLINE int32 GetDefaultValue_MissedChecksBeforeUnknown() { return 0; }
 };
 
 /** @} */

@@ -24,6 +24,9 @@ class URH_PlayerNotifications;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_AutoInventoryCompleteDelegate, bool);
 
+DECLARE_MULTICAST_DELEGATE(FRH_LoginOrTokenRefreshFailedMulticast);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FRH_LoginOrTokenRefreshFailedDynamicMulticast);
+
 /** @defgroup LocalPlayer RallyHere Local Player
  *  @{
  */
@@ -184,6 +187,17 @@ public:
 
 	/** @brief Broadcast delegate for when intial platform entitlements are processed, if using auto processing. */
 	FRH_AutoInventoryCompleteDelegate OnAutoEntitlementsProcessed;
+
+	/**
+	 * @brief Multicast delegate that gets broadcasted when a player's user generated content setting is changed.
+	 */
+	FRH_LoginOrTokenRefreshFailedMulticast OnLoginOrTokenRefreshFailed;
+
+	/**
+	 * @brief Multicast delegate that gets broadcasted when a player's user generated content setting is changed.
+	 */
+	UPROPERTY(BlueprintAssignable, Category = "Login")
+	FRH_LoginOrTokenRefreshFailedDynamicMulticast BLUEPRINT_OnLoginOrTokenRefreshFailed;
 
 protected:
 	/** @brief Array of plugins for the Local Player Subsystem. */

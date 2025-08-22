@@ -410,7 +410,7 @@ void FRH_Integration::ResolveBaseURL()
 		const auto* Environment = Settings->GetEnvironmentConfiguration(EnvironmentId);
 		if (Environment != nullptr && !Environment->BaseUrl.IsEmpty())
 		{
-			SetBaseURL(Environment->BaseUrl, TEXT("Environment:") + EnvironmentId);
+			SetBaseURL(Environment->BaseUrl, TEXT("Environment:") + Environment->EnvironmentId);
 			return;
 		}
 
@@ -570,7 +570,7 @@ void FRH_Integration::ResolveClientId()
 		const auto* Environment = Settings->GetEnvironmentConfiguration(EnvironmentId);
 		if (Environment != nullptr && !Environment->ClientId.IsEmpty())
 		{
-			SetClientId(Environment->ClientId, TEXT("Environment:") + EnvironmentId);
+			SetClientId(Environment->ClientId, TEXT("Environment:") + Environment->EnvironmentId);
 			return;
 		}
 
@@ -639,7 +639,7 @@ void FRH_Integration::ResolveClientSecret()
 		const auto* Environment = Settings->GetEnvironmentConfiguration(EnvironmentId);
 		if (Environment != nullptr && !Environment->ClientSecret.IsEmpty())
 		{
-			SetClientSecret(Environment->ClientSecret, TEXT("Environment:") + EnvironmentId);
+			SetClientSecret(Environment->ClientSecret, TEXT("Environment:") + Environment->EnvironmentId);
 			return;
 		}
 

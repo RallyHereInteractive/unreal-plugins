@@ -105,7 +105,7 @@ void URH_MatchmakingBrowserCache::SearchMatchmakingTemplateGroup(const FGuid& Te
 
 void URH_MatchmakingBrowserCache::ImportAPIMatchmakingTemplateGroup(const FRHAPI_MatchMakingTemplateGroupV2& APITemplate, const FString& ETag)
 {
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.GetMatchMakingTemplateGroupId().ToString(EGuidFormats::DigitsWithHyphens));
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.GetMatchMakingTemplateGroupId().ToString(EGuidFormats::DigitsWithHyphensLower));
 
 	auto existingPtr = MatchmakingTemplateGroupCache.Find(APITemplate.GetMatchMakingTemplateGroupId());
 	auto* Wrapper = existingPtr ? *existingPtr : nullptr;
@@ -220,7 +220,7 @@ void URH_MatchmakingBrowserCache::SearchInstanceRequestTemplate(const FGuid& Tem
 
 void URH_MatchmakingBrowserCache::ImportAPIInstanceRequestTemplate(const FRHAPI_InstanceRequestTemplate& APITemplate, const FString& ETag)
 {
-	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.InstanceRequestTemplateId.ToString(EGuidFormats::DigitsWithHyphens));
+	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] : %s"), ANSI_TO_TCHAR(__FUNCTION__), *APITemplate.InstanceRequestTemplateId.ToString(EGuidFormats::DigitsWithHyphensLower));
 
 	auto existingPtr = InstanceRequestTemplateCache.Find(APITemplate.InstanceRequestTemplateId);
 	URH_InstanceRequestTemplate* TemplateWrapper = existingPtr ? *existingPtr : nullptr;

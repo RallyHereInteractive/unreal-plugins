@@ -42,51 +42,49 @@ struct RALLYHEREAPI_API FRHAPI_FileResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Name{  };
 	/** @brief Gets the value of Name */
-	FString& GetName() { return Name; }
+	FORCEINLINE FString& GetName() { return Name; }
 	/** @brief Gets the value of Name */
-	const FString& GetName() const { return Name; }
+	FORCEINLINE const FString& GetName() const { return Name; }
 	/** @brief Sets the value of Name */
-	void SetName(const FString& NewValue) { Name = NewValue;   }
+	FORCEINLINE void SetName(const FString& NewValue) { Name = NewValue;   }
 	/** @brief Sets the value of Name using move semantics */
-	void SetName(FString&& NewValue) { Name = NewValue;   }
+	FORCEINLINE void SetName(FString&& NewValue) { Name = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Size{ 0 };
 	/** @brief Gets the value of Size */
-	int32& GetSize() { return Size; }
+	FORCEINLINE int32& GetSize() { return Size; }
 	/** @brief Gets the value of Size */
-	const int32& GetSize() const { return Size; }
+	FORCEINLINE const int32& GetSize() const { return Size; }
 	/** @brief Sets the value of Size */
-	void SetSize(const int32& NewValue) { Size = NewValue;   }
+	FORCEINLINE void SetSize(const int32& NewValue) { Size = NewValue;   }
 	/** @brief Sets the value of Size using move semantics */
-	void SetSize(int32&& NewValue) { Size = NewValue;   }
-	/** @brief Returns true if Size matches the default value */
-	bool IsSizeDefaultValue() const { return Size == 0; }
-	/** @brief Sets the value of Size to its default  */
-	void SetSizeToDefault() { SetSize(0); }
+	FORCEINLINE void SetSize(int32&& NewValue) { Size = NewValue;   }
+	/** @brief Returns the default value of Size */
+	FORCEINLINE int32 GetDefaultValue_Size() { return 0; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ContentType{  };
 	/** @brief Gets the value of ContentType */
-	FString& GetContentType() { return ContentType; }
+	FORCEINLINE FString& GetContentType() { return ContentType; }
 	/** @brief Gets the value of ContentType */
-	const FString& GetContentType() const { return ContentType; }
+	FORCEINLINE const FString& GetContentType() const { return ContentType; }
 	/** @brief Sets the value of ContentType */
-	void SetContentType(const FString& NewValue) { ContentType = NewValue;   }
+	FORCEINLINE void SetContentType(const FString& NewValue) { ContentType = NewValue;   }
 	/** @brief Sets the value of ContentType using move semantics */
-	void SetContentType(FString&& NewValue) { ContentType = NewValue;   }
+	FORCEINLINE void SetContentType(FString&& NewValue) { ContentType = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime CreatedTimestamp{  };
 	/** @brief Gets the value of CreatedTimestamp */
-	FDateTime& GetCreatedTimestamp() { return CreatedTimestamp; }
+	FORCEINLINE FDateTime& GetCreatedTimestamp() { return CreatedTimestamp; }
 	/** @brief Gets the value of CreatedTimestamp */
-	const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp; }
+	FORCEINLINE const FDateTime& GetCreatedTimestamp() const { return CreatedTimestamp; }
 	/** @brief Sets the value of CreatedTimestamp */
-	void SetCreatedTimestamp(const FDateTime& NewValue) { CreatedTimestamp = NewValue;   }
+	FORCEINLINE void SetCreatedTimestamp(const FDateTime& NewValue) { CreatedTimestamp = NewValue;   }
 	/** @brief Sets the value of CreatedTimestamp using move semantics */
-	void SetCreatedTimestamp(FDateTime&& NewValue) { CreatedTimestamp = NewValue;   }
+	FORCEINLINE void SetCreatedTimestamp(FDateTime&& NewValue) { CreatedTimestamp = NewValue;   }
 };
 
 /** @} */

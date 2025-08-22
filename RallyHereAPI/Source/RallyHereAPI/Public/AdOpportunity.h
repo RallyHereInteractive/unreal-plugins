@@ -43,41 +43,39 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunity : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString AdUrl{  };
 	/** @brief Gets the value of AdUrl */
-	FString& GetAdUrl() { return AdUrl; }
+	FORCEINLINE FString& GetAdUrl() { return AdUrl; }
 	/** @brief Gets the value of AdUrl */
-	const FString& GetAdUrl() const { return AdUrl; }
+	FORCEINLINE const FString& GetAdUrl() const { return AdUrl; }
 	/** @brief Sets the value of AdUrl */
-	void SetAdUrl(const FString& NewValue) { AdUrl = NewValue;   }
+	FORCEINLINE void SetAdUrl(const FString& NewValue) { AdUrl = NewValue;   }
 	/** @brief Sets the value of AdUrl using move semantics */
-	void SetAdUrl(FString&& NewValue) { AdUrl = NewValue;   }
+	FORCEINLINE void SetAdUrl(FString&& NewValue) { AdUrl = NewValue;   }
 
 	/** @brief The number of seconds the ad is */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Seconds{ 0 };
 	/** @brief Gets the value of Seconds */
-	int32& GetSeconds() { return Seconds; }
+	FORCEINLINE int32& GetSeconds() { return Seconds; }
 	/** @brief Gets the value of Seconds */
-	const int32& GetSeconds() const { return Seconds; }
+	FORCEINLINE const int32& GetSeconds() const { return Seconds; }
 	/** @brief Sets the value of Seconds */
-	void SetSeconds(const int32& NewValue) { Seconds = NewValue;   }
+	FORCEINLINE void SetSeconds(const int32& NewValue) { Seconds = NewValue;   }
 	/** @brief Sets the value of Seconds using move semantics */
-	void SetSeconds(int32&& NewValue) { Seconds = NewValue;   }
-	/** @brief Returns true if Seconds matches the default value */
-	bool IsSecondsDefaultValue() const { return Seconds == 0; }
-	/** @brief Sets the value of Seconds to its default  */
-	void SetSecondsToDefault() { SetSeconds(0); }
+	FORCEINLINE void SetSeconds(int32&& NewValue) { Seconds = NewValue;   }
+	/** @brief Returns the default value of Seconds */
+	FORCEINLINE int32 GetDefaultValue_Seconds() { return 0; }
 
 	/** @brief The ID of the ad opportunity */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString OpportunityId{  };
 	/** @brief Gets the value of OpportunityId */
-	FString& GetOpportunityId() { return OpportunityId; }
+	FORCEINLINE FString& GetOpportunityId() { return OpportunityId; }
 	/** @brief Gets the value of OpportunityId */
-	const FString& GetOpportunityId() const { return OpportunityId; }
+	FORCEINLINE const FString& GetOpportunityId() const { return OpportunityId; }
 	/** @brief Sets the value of OpportunityId */
-	void SetOpportunityId(const FString& NewValue) { OpportunityId = NewValue;   }
+	FORCEINLINE void SetOpportunityId(const FString& NewValue) { OpportunityId = NewValue;   }
 	/** @brief Sets the value of OpportunityId using move semantics */
-	void SetOpportunityId(FString&& NewValue) { OpportunityId = NewValue;   }
+	FORCEINLINE void SetOpportunityId(FString&& NewValue) { OpportunityId = NewValue;   }
 };
 
 /** @} */

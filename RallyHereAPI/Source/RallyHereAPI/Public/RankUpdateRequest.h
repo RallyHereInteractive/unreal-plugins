@@ -47,69 +47,63 @@ struct RALLYHEREAPI_API FRHAPI_RankUpdateRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InstanceId_IsSet{ false };
 	/** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
-	FString& GetInstanceId() { return InstanceId_Optional; }
+	FORCEINLINE FString& GetInstanceId() { return InstanceId_Optional; }
 	/** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
-	const FString& GetInstanceId() const { return InstanceId_Optional; }
+	FORCEINLINE const FString& GetInstanceId() const { return InstanceId_Optional; }
 	/** @brief Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetInstanceId(const FString& DefaultValue) const { if (InstanceId_IsSet) return InstanceId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetInstanceId(const FString& DefaultValue) const { if (InstanceId_IsSet) return InstanceId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInstanceId(FString& OutValue) const { if (InstanceId_IsSet) OutValue = InstanceId_Optional; return InstanceId_IsSet; }
+	FORCEINLINE bool GetInstanceId(FString& OutValue) const { if (InstanceId_IsSet) OutValue = InstanceId_Optional; return InstanceId_IsSet; }
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return (&InstanceId_Optional); return nullptr; }
+	FORCEINLINE FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return (&InstanceId_Optional); return nullptr; }
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return (&InstanceId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return (&InstanceId_Optional); return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
+	FORCEINLINE void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
-	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
+	FORCEINLINE void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true;  }
 	/** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false;  }
-	/** @brief Checks whether InstanceId_Optional has been set */
-	bool IsInstanceIdSet() const { return InstanceId_IsSet; }
 
 	/** @brief ID for the rank type used in this match */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 RankId{ 0 };
 	/** @brief Gets the value of RankId */
-	int32& GetRankId() { return RankId; }
+	FORCEINLINE int32& GetRankId() { return RankId; }
 	/** @brief Gets the value of RankId */
-	const int32& GetRankId() const { return RankId; }
+	FORCEINLINE const int32& GetRankId() const { return RankId; }
 	/** @brief Sets the value of RankId */
-	void SetRankId(const int32& NewValue) { RankId = NewValue;   }
+	FORCEINLINE void SetRankId(const int32& NewValue) { RankId = NewValue;   }
 	/** @brief Sets the value of RankId using move semantics */
-	void SetRankId(int32&& NewValue) { RankId = NewValue;   }
-	/** @brief Returns true if RankId matches the default value */
-	bool IsRankIdDefaultValue() const { return RankId == 0; }
-	/** @brief Sets the value of RankId to its default  */
-	void SetRankIdToDefault() { SetRankId(0); }
+	FORCEINLINE void SetRankId(int32&& NewValue) { RankId = NewValue;   }
+	/** @brief Returns the default value of RankId */
+	FORCEINLINE int32 GetDefaultValue_RankId() { return 0; }
 
 	/** @brief How many seconds the match lasted */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 MatchLengthSeconds{ 0 };
 	/** @brief Gets the value of MatchLengthSeconds */
-	int32& GetMatchLengthSeconds() { return MatchLengthSeconds; }
+	FORCEINLINE int32& GetMatchLengthSeconds() { return MatchLengthSeconds; }
 	/** @brief Gets the value of MatchLengthSeconds */
-	const int32& GetMatchLengthSeconds() const { return MatchLengthSeconds; }
+	FORCEINLINE const int32& GetMatchLengthSeconds() const { return MatchLengthSeconds; }
 	/** @brief Sets the value of MatchLengthSeconds */
-	void SetMatchLengthSeconds(const int32& NewValue) { MatchLengthSeconds = NewValue;   }
+	FORCEINLINE void SetMatchLengthSeconds(const int32& NewValue) { MatchLengthSeconds = NewValue;   }
 	/** @brief Sets the value of MatchLengthSeconds using move semantics */
-	void SetMatchLengthSeconds(int32&& NewValue) { MatchLengthSeconds = NewValue;   }
-	/** @brief Returns true if MatchLengthSeconds matches the default value */
-	bool IsMatchLengthSecondsDefaultValue() const { return MatchLengthSeconds == 0; }
-	/** @brief Sets the value of MatchLengthSeconds to its default  */
-	void SetMatchLengthSecondsToDefault() { SetMatchLengthSeconds(0); }
+	FORCEINLINE void SetMatchLengthSeconds(int32&& NewValue) { MatchLengthSeconds = NewValue;   }
+	/** @brief Returns the default value of MatchLengthSeconds */
+	FORCEINLINE int32 GetDefaultValue_MatchLengthSeconds() { return 0; }
 
 	/** @brief List of teams that participated in this match */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_RankedTeam> Teams{  };
 	/** @brief Gets the value of Teams */
-	TArray<FRHAPI_RankedTeam>& GetTeams() { return Teams; }
+	FORCEINLINE TArray<FRHAPI_RankedTeam>& GetTeams() { return Teams; }
 	/** @brief Gets the value of Teams */
-	const TArray<FRHAPI_RankedTeam>& GetTeams() const { return Teams; }
+	FORCEINLINE const TArray<FRHAPI_RankedTeam>& GetTeams() const { return Teams; }
 	/** @brief Sets the value of Teams */
-	void SetTeams(const TArray<FRHAPI_RankedTeam>& NewValue) { Teams = NewValue;   }
+	FORCEINLINE void SetTeams(const TArray<FRHAPI_RankedTeam>& NewValue) { Teams = NewValue;   }
 	/** @brief Sets the value of Teams using move semantics */
-	void SetTeams(TArray<FRHAPI_RankedTeam>&& NewValue) { Teams = NewValue;   }
+	FORCEINLINE void SetTeams(TArray<FRHAPI_RankedTeam>&& NewValue) { Teams = NewValue;   }
 };
 
 /** @} */

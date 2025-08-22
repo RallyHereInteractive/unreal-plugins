@@ -49,29 +49,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Status_IsNull{ false };
 	/** @brief Gets the value of Status_Optional, regardless of it having been set */
-	ERHAPI_OnlineStatus& GetStatus() { return Status_Optional; }
+	FORCEINLINE ERHAPI_OnlineStatus& GetStatus() { return Status_Optional; }
 	/** @brief Gets the value of Status_Optional, regardless of it having been set */
-	const ERHAPI_OnlineStatus& GetStatus() const { return Status_Optional; }
+	FORCEINLINE const ERHAPI_OnlineStatus& GetStatus() const { return Status_Optional; }
 	/** @brief Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_OnlineStatus& GetStatus(const ERHAPI_OnlineStatus& DefaultValue) const { if (Status_IsSet) return Status_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_OnlineStatus& GetStatus(const ERHAPI_OnlineStatus& DefaultValue) const { if (Status_IsSet) return Status_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStatus(ERHAPI_OnlineStatus& OutValue) const { if (Status_IsSet && !Status_IsNull) OutValue = Status_Optional; return Status_IsSet; }
+	FORCEINLINE bool GetStatus(ERHAPI_OnlineStatus& OutValue) const { if (Status_IsSet && !Status_IsNull) OutValue = Status_Optional; return Status_IsSet; }
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_OnlineStatus* GetStatusOrNull() { if (Status_IsSet) return (Status_IsNull ? nullptr : &Status_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_OnlineStatus* GetStatusOrNull() { if (Status_IsSet) return (Status_IsNull ? nullptr : &Status_Optional); return nullptr; }
 	/** @brief Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_OnlineStatus* GetStatusOrNull() const { if (Status_IsSet) return (Status_IsNull ? nullptr : &Status_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_OnlineStatus* GetStatusOrNull() const { if (Status_IsSet) return (Status_IsNull ? nullptr : &Status_Optional); return nullptr; }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true */
-	void SetStatus(const ERHAPI_OnlineStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true; Status_IsNull = false; }
+	FORCEINLINE void SetStatus(const ERHAPI_OnlineStatus& NewValue) { Status_Optional = NewValue; Status_IsSet = true; Status_IsNull = false; }
 	/** @brief Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics */
-	void SetStatus(ERHAPI_OnlineStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true; Status_IsNull = false; }
+	FORCEINLINE void SetStatus(ERHAPI_OnlineStatus&& NewValue) { Status_Optional = NewValue; Status_IsSet = true; Status_IsNull = false; }
 	/** @brief Clears the value of Status_Optional and sets Status_IsSet to false */
 	void ClearStatus() { Status_IsSet = false; Status_IsNull = false; }
-	/** @brief Checks whether Status_Optional has been set */
-	bool IsStatusSet() const { return Status_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStatusToNull() { Status_IsSet = true; Status_IsNull = true; }
+	FORCEINLINE void SetStatusToNull() { Status_IsSet = true; Status_IsNull = true; }
 	/** @brief Checks whether Status_Optional is set to null */
-	bool IsStatusNull() const { return Status_IsSet && Status_IsNull; }
+	FORCEINLINE bool IsStatusNull() const { return Status_IsSet && Status_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Message_Optional{  };
@@ -82,29 +80,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Message_IsNull{ false };
 	/** @brief Gets the value of Message_Optional, regardless of it having been set */
-	FString& GetMessage() { return Message_Optional; }
+	FORCEINLINE FString& GetMessage() { return Message_Optional; }
 	/** @brief Gets the value of Message_Optional, regardless of it having been set */
-	const FString& GetMessage() const { return Message_Optional; }
+	FORCEINLINE const FString& GetMessage() const { return Message_Optional; }
 	/** @brief Gets the value of Message_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetMessage(const FString& DefaultValue) const { if (Message_IsSet) return Message_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetMessage(const FString& DefaultValue) const { if (Message_IsSet) return Message_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Message_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMessage(FString& OutValue) const { if (Message_IsSet && !Message_IsNull) OutValue = Message_Optional; return Message_IsSet; }
+	FORCEINLINE bool GetMessage(FString& OutValue) const { if (Message_IsSet && !Message_IsNull) OutValue = Message_Optional; return Message_IsSet; }
 	/** @brief Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetMessageOrNull() { if (Message_IsSet) return (Message_IsNull ? nullptr : &Message_Optional); return nullptr; }
+	FORCEINLINE FString* GetMessageOrNull() { if (Message_IsSet) return (Message_IsNull ? nullptr : &Message_Optional); return nullptr; }
 	/** @brief Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetMessageOrNull() const { if (Message_IsSet) return (Message_IsNull ? nullptr : &Message_Optional); return nullptr; }
+	FORCEINLINE const FString* GetMessageOrNull() const { if (Message_IsSet) return (Message_IsNull ? nullptr : &Message_Optional); return nullptr; }
 	/** @brief Sets the value of Message_Optional and also sets Message_IsSet to true */
-	void SetMessage(const FString& NewValue) { Message_Optional = NewValue; Message_IsSet = true; Message_IsNull = false; }
+	FORCEINLINE void SetMessage(const FString& NewValue) { Message_Optional = NewValue; Message_IsSet = true; Message_IsNull = false; }
 	/** @brief Sets the value of Message_Optional and also sets Message_IsSet to true using move semantics */
-	void SetMessage(FString&& NewValue) { Message_Optional = NewValue; Message_IsSet = true; Message_IsNull = false; }
+	FORCEINLINE void SetMessage(FString&& NewValue) { Message_Optional = NewValue; Message_IsSet = true; Message_IsNull = false; }
 	/** @brief Clears the value of Message_Optional and sets Message_IsSet to false */
 	void ClearMessage() { Message_IsSet = false; Message_IsNull = false; }
-	/** @brief Checks whether Message_Optional has been set */
-	bool IsMessageSet() const { return Message_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMessageToNull() { Message_IsSet = true; Message_IsNull = true; }
+	FORCEINLINE void SetMessageToNull() { Message_IsSet = true; Message_IsNull = true; }
 	/** @brief Checks whether Message_Optional is set to null */
-	bool IsMessageNull() const { return Message_IsSet && Message_IsNull; }
+	FORCEINLINE bool IsMessageNull() const { return Message_IsSet && Message_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DoNotDisturb_Optional{ false };
@@ -115,60 +111,60 @@ struct RALLYHEREAPI_API FRHAPI_PlayerPresenceUpdateSelf : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DoNotDisturb_IsNull{ false };
 	/** @brief Gets the value of DoNotDisturb_Optional, regardless of it having been set */
-	bool& GetDoNotDisturb() { return DoNotDisturb_Optional; }
+	FORCEINLINE bool& GetDoNotDisturb() { return DoNotDisturb_Optional; }
 	/** @brief Gets the value of DoNotDisturb_Optional, regardless of it having been set */
-	const bool& GetDoNotDisturb() const { return DoNotDisturb_Optional; }
+	FORCEINLINE const bool& GetDoNotDisturb() const { return DoNotDisturb_Optional; }
 	/** @brief Gets the value of DoNotDisturb_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetDoNotDisturb(const bool& DefaultValue) const { if (DoNotDisturb_IsSet) return DoNotDisturb_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetDoNotDisturb(const bool& DefaultValue) const { if (DoNotDisturb_IsSet) return DoNotDisturb_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DoNotDisturb_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDoNotDisturb(bool& OutValue) const { if (DoNotDisturb_IsSet && !DoNotDisturb_IsNull) OutValue = DoNotDisturb_Optional; return DoNotDisturb_IsSet; }
+	FORCEINLINE bool GetDoNotDisturb(bool& OutValue) const { if (DoNotDisturb_IsSet && !DoNotDisturb_IsNull) OutValue = DoNotDisturb_Optional; return DoNotDisturb_IsSet; }
 	/** @brief Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetDoNotDisturbOrNull() { if (DoNotDisturb_IsSet) return (DoNotDisturb_IsNull ? nullptr : &DoNotDisturb_Optional); return nullptr; }
+	FORCEINLINE bool* GetDoNotDisturbOrNull() { if (DoNotDisturb_IsSet) return (DoNotDisturb_IsNull ? nullptr : &DoNotDisturb_Optional); return nullptr; }
 	/** @brief Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetDoNotDisturbOrNull() const { if (DoNotDisturb_IsSet) return (DoNotDisturb_IsNull ? nullptr : &DoNotDisturb_Optional); return nullptr; }
+	FORCEINLINE const bool* GetDoNotDisturbOrNull() const { if (DoNotDisturb_IsSet) return (DoNotDisturb_IsNull ? nullptr : &DoNotDisturb_Optional); return nullptr; }
 	/** @brief Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true */
-	void SetDoNotDisturb(const bool& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = false; }
+	FORCEINLINE void SetDoNotDisturb(const bool& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = false; }
 	/** @brief Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true using move semantics */
-	void SetDoNotDisturb(bool&& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = false; }
+	FORCEINLINE void SetDoNotDisturb(bool&& NewValue) { DoNotDisturb_Optional = NewValue; DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = false; }
 	/** @brief Clears the value of DoNotDisturb_Optional and sets DoNotDisturb_IsSet to false */
 	void ClearDoNotDisturb() { DoNotDisturb_Optional = false; DoNotDisturb_IsSet = false; DoNotDisturb_IsNull = false; }
-	/** @brief Checks whether DoNotDisturb_Optional has been set */
-	bool IsDoNotDisturbSet() const { return DoNotDisturb_IsSet; }
-	/** @brief Returns true if DoNotDisturb_Optional is set and matches the default value */
-	bool IsDoNotDisturbDefaultValue() const { return DoNotDisturb_IsSet && DoNotDisturb_Optional == false; }
-	/** @brief Sets the value of DoNotDisturb_Optional to its default and also sets DoNotDisturb_IsSet to true */
-	void SetDoNotDisturbToDefault() { SetDoNotDisturb(false); }
+	/** @brief Returns the default value of DoNotDisturb */
+	FORCEINLINE bool GetDefaultValue_DoNotDisturb() { return false; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetDoNotDisturbToNull() { DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = true; }
+	FORCEINLINE void SetDoNotDisturbToNull() { DoNotDisturb_IsSet = true; DoNotDisturb_IsNull = true; }
 	/** @brief Checks whether DoNotDisturb_Optional is set to null */
-	bool IsDoNotDisturbNull() const { return DoNotDisturb_IsSet && DoNotDisturb_IsNull; }
+	FORCEINLINE bool IsDoNotDisturbNull() const { return DoNotDisturb_IsSet && DoNotDisturb_IsNull; }
 
-	/** @brief custom fields for the player to update about their presence. Custom data with a null value will be removed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FString> CustomData_Optional{  };
 	/** @brief true if CustomData_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
+	/** @brief true if CustomData_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool CustomData_IsNull{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet && !CustomData_IsNull) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
-	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
+	void ClearCustomData() { CustomData_IsSet = false; CustomData_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetCustomDataToNull() { CustomData_IsSet = true; CustomData_IsNull = true; }
+	/** @brief Checks whether CustomData_Optional is set to null */
+	FORCEINLINE bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
 };
 
 /** @} */

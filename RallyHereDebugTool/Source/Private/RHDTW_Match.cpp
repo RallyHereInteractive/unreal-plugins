@@ -407,7 +407,7 @@ void FRHDTW_Match::DoViewPlayerMatches()
 
 			check(TargetedPlayer != nullptr);
 
-			const FString PlayerId = TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens);
+			const FString PlayerId = TargetedPlayer->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower);
 
 			const FString PlayerHeader = FString::Printf(TEXT("Player [%s]"), *PlayerId);
 			if (ImGui::TreeNodeEx(TCHAR_TO_UTF8(*PlayerHeader), RH_DefaultTreeFlagsDefaultOpen))

@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_CacheInfo : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Etag{  };
 	/** @brief Gets the value of Etag */
-	FString& GetEtag() { return Etag; }
+	FORCEINLINE FString& GetEtag() { return Etag; }
 	/** @brief Gets the value of Etag */
-	const FString& GetEtag() const { return Etag; }
+	FORCEINLINE const FString& GetEtag() const { return Etag; }
 	/** @brief Sets the value of Etag */
-	void SetEtag(const FString& NewValue) { Etag = NewValue;   }
+	FORCEINLINE void SetEtag(const FString& NewValue) { Etag = NewValue;   }
 	/** @brief Sets the value of Etag using move semantics */
-	void SetEtag(FString&& NewValue) { Etag = NewValue;   }
+	FORCEINLINE void SetEtag(FString&& NewValue) { Etag = NewValue;   }
 };
 
 /** @} */

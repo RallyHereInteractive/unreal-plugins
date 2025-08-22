@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_LootPriceCurrencies : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Currencies_IsSet{ false };
 	/** @brief Gets the value of Currencies_Optional, regardless of it having been set */
-	TArray<FRHAPI_LootPriceCurrency>& GetCurrencies() { return Currencies_Optional; }
+	FORCEINLINE TArray<FRHAPI_LootPriceCurrency>& GetCurrencies() { return Currencies_Optional; }
 	/** @brief Gets the value of Currencies_Optional, regardless of it having been set */
-	const TArray<FRHAPI_LootPriceCurrency>& GetCurrencies() const { return Currencies_Optional; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceCurrency>& GetCurrencies() const { return Currencies_Optional; }
 	/** @brief Gets the value of Currencies_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_LootPriceCurrency>& GetCurrencies(const TArray<FRHAPI_LootPriceCurrency>& DefaultValue) const { if (Currencies_IsSet) return Currencies_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceCurrency>& GetCurrencies(const TArray<FRHAPI_LootPriceCurrency>& DefaultValue) const { if (Currencies_IsSet) return Currencies_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Currencies_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCurrencies(TArray<FRHAPI_LootPriceCurrency>& OutValue) const { if (Currencies_IsSet) OutValue = Currencies_Optional; return Currencies_IsSet; }
+	FORCEINLINE bool GetCurrencies(TArray<FRHAPI_LootPriceCurrency>& OutValue) const { if (Currencies_IsSet) OutValue = Currencies_Optional; return Currencies_IsSet; }
 	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_LootPriceCurrency>* GetCurrenciesOrNull() { if (Currencies_IsSet) return (&Currencies_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_LootPriceCurrency>* GetCurrenciesOrNull() { if (Currencies_IsSet) return (&Currencies_Optional); return nullptr; }
 	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_LootPriceCurrency>* GetCurrenciesOrNull() const { if (Currencies_IsSet) return (&Currencies_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceCurrency>* GetCurrenciesOrNull() const { if (Currencies_IsSet) return (&Currencies_Optional); return nullptr; }
 	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true */
-	void SetCurrencies(const TArray<FRHAPI_LootPriceCurrency>& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true;  }
+	FORCEINLINE void SetCurrencies(const TArray<FRHAPI_LootPriceCurrency>& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true;  }
 	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics */
-	void SetCurrencies(TArray<FRHAPI_LootPriceCurrency>&& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true;  }
+	FORCEINLINE void SetCurrencies(TArray<FRHAPI_LootPriceCurrency>&& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true;  }
 	/** @brief Clears the value of Currencies_Optional and sets Currencies_IsSet to false */
 	void ClearCurrencies() { Currencies_IsSet = false;  }
-	/** @brief Checks whether Currencies_Optional has been set */
-	bool IsCurrenciesSet() const { return Currencies_IsSet; }
 };
 
 /** @} */

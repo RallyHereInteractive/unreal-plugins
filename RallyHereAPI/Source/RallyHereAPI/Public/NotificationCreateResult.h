@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_NotificationCreateResult : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString NotificationId{  };
 	/** @brief Gets the value of NotificationId */
-	FString& GetNotificationId() { return NotificationId; }
+	FORCEINLINE FString& GetNotificationId() { return NotificationId; }
 	/** @brief Gets the value of NotificationId */
-	const FString& GetNotificationId() const { return NotificationId; }
+	FORCEINLINE const FString& GetNotificationId() const { return NotificationId; }
 	/** @brief Sets the value of NotificationId */
-	void SetNotificationId(const FString& NewValue) { NotificationId = NewValue;   }
+	FORCEINLINE void SetNotificationId(const FString& NewValue) { NotificationId = NewValue;   }
 	/** @brief Sets the value of NotificationId using move semantics */
-	void SetNotificationId(FString&& NewValue) { NotificationId = NewValue;   }
+	FORCEINLINE void SetNotificationId(FString&& NewValue) { NotificationId = NewValue;   }
 };
 
 /** @} */

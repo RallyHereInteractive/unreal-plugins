@@ -10,6 +10,8 @@
 #include "RH_LocalPlayerSubsystem.h"
 
 
+FRH_PlayerPlatformId FRH_PlayerPlatformId::Invalid;
+
 bool RH_GetPlayerIdFromLocalPlayer(const ULocalPlayer* pLocalPlayer, FGuid* outPlayerId)
 {
 	if (outPlayerId != nullptr) *outPlayerId = FGuid();
@@ -140,6 +142,11 @@ bool RH_UsesSonyEntitlementTokens(FName OSSName)
 bool RH_PlatformSupportsViewProfile(FName OSSName)
 {
 	return RH_LookupBoolOSSOverride(OSSName, TEXT("RH_PlatformSupportsViewProfileFromOSSName"), true);
+}
+
+bool RH_PlatformSupportsSendMessage(FName OSSName)
+{
+	return RH_LookupBoolOSSOverride(OSSName, TEXT("RH_PlatformSupportsSendMessageFromOSSName"));
 }
 
 FString RH_GetPlatformNameFromPlatformEnum(const ERHAPI_Platform Platform)

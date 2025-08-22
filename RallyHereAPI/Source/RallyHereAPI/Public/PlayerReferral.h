@@ -42,46 +42,46 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReferral : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid ReferreePlayerUuid{  };
 	/** @brief Gets the value of ReferreePlayerUuid */
-	FGuid& GetReferreePlayerUuid() { return ReferreePlayerUuid; }
+	FORCEINLINE FGuid& GetReferreePlayerUuid() { return ReferreePlayerUuid; }
 	/** @brief Gets the value of ReferreePlayerUuid */
-	const FGuid& GetReferreePlayerUuid() const { return ReferreePlayerUuid; }
+	FORCEINLINE const FGuid& GetReferreePlayerUuid() const { return ReferreePlayerUuid; }
 	/** @brief Sets the value of ReferreePlayerUuid */
-	void SetReferreePlayerUuid(const FGuid& NewValue) { ReferreePlayerUuid = NewValue;   }
+	FORCEINLINE void SetReferreePlayerUuid(const FGuid& NewValue) { ReferreePlayerUuid = NewValue;   }
 	/** @brief Sets the value of ReferreePlayerUuid using move semantics */
-	void SetReferreePlayerUuid(FGuid&& NewValue) { ReferreePlayerUuid = NewValue;   }
+	FORCEINLINE void SetReferreePlayerUuid(FGuid&& NewValue) { ReferreePlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid ReferrerPlayerUuid{  };
 	/** @brief Gets the value of ReferrerPlayerUuid */
-	FGuid& GetReferrerPlayerUuid() { return ReferrerPlayerUuid; }
+	FORCEINLINE FGuid& GetReferrerPlayerUuid() { return ReferrerPlayerUuid; }
 	/** @brief Gets the value of ReferrerPlayerUuid */
-	const FGuid& GetReferrerPlayerUuid() const { return ReferrerPlayerUuid; }
+	FORCEINLINE const FGuid& GetReferrerPlayerUuid() const { return ReferrerPlayerUuid; }
 	/** @brief Sets the value of ReferrerPlayerUuid */
-	void SetReferrerPlayerUuid(const FGuid& NewValue) { ReferrerPlayerUuid = NewValue;   }
+	FORCEINLINE void SetReferrerPlayerUuid(const FGuid& NewValue) { ReferrerPlayerUuid = NewValue;   }
 	/** @brief Sets the value of ReferrerPlayerUuid using move semantics */
-	void SetReferrerPlayerUuid(FGuid&& NewValue) { ReferrerPlayerUuid = NewValue;   }
+	FORCEINLINE void SetReferrerPlayerUuid(FGuid&& NewValue) { ReferrerPlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime CreatedDatetime{  };
 	/** @brief Gets the value of CreatedDatetime */
-	FDateTime& GetCreatedDatetime() { return CreatedDatetime; }
+	FORCEINLINE FDateTime& GetCreatedDatetime() { return CreatedDatetime; }
 	/** @brief Gets the value of CreatedDatetime */
-	const FDateTime& GetCreatedDatetime() const { return CreatedDatetime; }
+	FORCEINLINE const FDateTime& GetCreatedDatetime() const { return CreatedDatetime; }
 	/** @brief Sets the value of CreatedDatetime */
-	void SetCreatedDatetime(const FDateTime& NewValue) { CreatedDatetime = NewValue;   }
+	FORCEINLINE void SetCreatedDatetime(const FDateTime& NewValue) { CreatedDatetime = NewValue;   }
 	/** @brief Sets the value of CreatedDatetime using move semantics */
-	void SetCreatedDatetime(FDateTime&& NewValue) { CreatedDatetime = NewValue;   }
+	FORCEINLINE void SetCreatedDatetime(FDateTime&& NewValue) { CreatedDatetime = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedTimestamp{  };
 	/** @brief Gets the value of LastModifiedTimestamp */
-	FDateTime& GetLastModifiedTimestamp() { return LastModifiedTimestamp; }
+	FORCEINLINE FDateTime& GetLastModifiedTimestamp() { return LastModifiedTimestamp; }
 	/** @brief Gets the value of LastModifiedTimestamp */
-	const FDateTime& GetLastModifiedTimestamp() const { return LastModifiedTimestamp; }
+	FORCEINLINE const FDateTime& GetLastModifiedTimestamp() const { return LastModifiedTimestamp; }
 	/** @brief Sets the value of LastModifiedTimestamp */
-	void SetLastModifiedTimestamp(const FDateTime& NewValue) { LastModifiedTimestamp = NewValue;   }
+	FORCEINLINE void SetLastModifiedTimestamp(const FDateTime& NewValue) { LastModifiedTimestamp = NewValue;   }
 	/** @brief Sets the value of LastModifiedTimestamp using move semantics */
-	void SetLastModifiedTimestamp(FDateTime&& NewValue) { LastModifiedTimestamp = NewValue;   }
+	FORCEINLINE void SetLastModifiedTimestamp(FDateTime&& NewValue) { LastModifiedTimestamp = NewValue;   }
 };
 
 /** @} */

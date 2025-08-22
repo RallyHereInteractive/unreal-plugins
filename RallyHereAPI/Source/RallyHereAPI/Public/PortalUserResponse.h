@@ -47,53 +47,49 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalUserId_IsSet{ false };
 	/** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
-	FString& GetPortalUserId() { return PortalUserId_Optional; }
+	FORCEINLINE FString& GetPortalUserId() { return PortalUserId_Optional; }
 	/** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
-	const FString& GetPortalUserId() const { return PortalUserId_Optional; }
+	FORCEINLINE const FString& GetPortalUserId() const { return PortalUserId_Optional; }
 	/** @brief Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPortalUserId(const FString& DefaultValue) const { if (PortalUserId_IsSet) return PortalUserId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPortalUserId(const FString& DefaultValue) const { if (PortalUserId_IsSet) return PortalUserId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalUserId(FString& OutValue) const { if (PortalUserId_IsSet) OutValue = PortalUserId_Optional; return PortalUserId_IsSet; }
+	FORCEINLINE bool GetPortalUserId(FString& OutValue) const { if (PortalUserId_IsSet) OutValue = PortalUserId_Optional; return PortalUserId_IsSet; }
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return (&PortalUserId_Optional); return nullptr; }
+	FORCEINLINE FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return (&PortalUserId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return (&PortalUserId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return (&PortalUserId_Optional); return nullptr; }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true */
-	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
+	FORCEINLINE void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
-	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
+	FORCEINLINE void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true;  }
 	/** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false;  }
-	/** @brief Checks whether PortalUserId_Optional has been set */
-	bool IsPortalUserIdSet() const { return PortalUserId_IsSet; }
 
 	/** @brief Portal ID *DEPRECATED* use `platform` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PortalId{ 0 };
 	/** @brief Gets the value of PortalId */
-	int32& GetPortalId() { return PortalId; }
+	FORCEINLINE int32& GetPortalId() { return PortalId; }
 	/** @brief Gets the value of PortalId */
-	const int32& GetPortalId() const { return PortalId; }
+	FORCEINLINE const int32& GetPortalId() const { return PortalId; }
 	/** @brief Sets the value of PortalId */
-	void SetPortalId(const int32& NewValue) { PortalId = NewValue;   }
+	FORCEINLINE void SetPortalId(const int32& NewValue) { PortalId = NewValue;   }
 	/** @brief Sets the value of PortalId using move semantics */
-	void SetPortalId(int32&& NewValue) { PortalId = NewValue;   }
-	/** @brief Returns true if PortalId matches the default value */
-	bool IsPortalIdDefaultValue() const { return PortalId == 0; }
-	/** @brief Sets the value of PortalId to its default  */
-	void SetPortalIdToDefault() { SetPortalId(0); }
+	FORCEINLINE void SetPortalId(int32&& NewValue) { PortalId = NewValue;   }
+	/** @brief Returns the default value of PortalId */
+	FORCEINLINE int32 GetDefaultValue_PortalId() { return 0; }
 
 	/** @brief Platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_Platform Platform{  };
 	/** @brief Gets the value of Platform */
-	ERHAPI_Platform& GetPlatform() { return Platform; }
+	FORCEINLINE ERHAPI_Platform& GetPlatform() { return Platform; }
 	/** @brief Gets the value of Platform */
-	const ERHAPI_Platform& GetPlatform() const { return Platform; }
+	FORCEINLINE const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;   }
+	FORCEINLINE void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;   }
 	/** @brief Sets the value of Platform using move semantics */
-	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;   }
+	FORCEINLINE void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;   }
 
 	/** @brief Display name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -102,53 +98,49 @@ struct RALLYHEREAPI_API FRHAPI_PortalUserResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DisplayName_IsSet{ false };
 	/** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
-	FString& GetDisplayName() { return DisplayName_Optional; }
+	FORCEINLINE FString& GetDisplayName() { return DisplayName_Optional; }
 	/** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
-	const FString& GetDisplayName() const { return DisplayName_Optional; }
+	FORCEINLINE const FString& GetDisplayName() const { return DisplayName_Optional; }
 	/** @brief Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetDisplayName(const FString& DefaultValue) const { if (DisplayName_IsSet) return DisplayName_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetDisplayName(const FString& DefaultValue) const { if (DisplayName_IsSet) return DisplayName_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
+	FORCEINLINE bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return (&DisplayName_Optional); return nullptr; }
+	FORCEINLINE FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return (&DisplayName_Optional); return nullptr; }
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return (&DisplayName_Optional); return nullptr; }
+	FORCEINLINE const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return (&DisplayName_Optional); return nullptr; }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
-	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
+	FORCEINLINE void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
-	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
+	FORCEINLINE void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true;  }
 	/** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false;  }
-	/** @brief Checks whether DisplayName_Optional has been set */
-	bool IsDisplayNameSet() const { return DisplayName_IsSet; }
 
 	/** @brief Player ID *DEPRECATED* use `player_uuid` instead */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PlayerId{ 0 };
 	/** @brief Gets the value of PlayerId */
-	int32& GetPlayerId() { return PlayerId; }
+	FORCEINLINE int32& GetPlayerId() { return PlayerId; }
 	/** @brief Gets the value of PlayerId */
-	const int32& GetPlayerId() const { return PlayerId; }
+	FORCEINLINE const int32& GetPlayerId() const { return PlayerId; }
 	/** @brief Sets the value of PlayerId */
-	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;   }
+	FORCEINLINE void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;   }
 	/** @brief Sets the value of PlayerId using move semantics */
-	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;   }
-	/** @brief Returns true if PlayerId matches the default value */
-	bool IsPlayerIdDefaultValue() const { return PlayerId == 0; }
-	/** @brief Sets the value of PlayerId to its default  */
-	void SetPlayerIdToDefault() { SetPlayerId(0); }
+	FORCEINLINE void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;   }
+	/** @brief Returns the default value of PlayerId */
+	FORCEINLINE int32 GetDefaultValue_PlayerId() { return 0; }
 
 	/** @brief Player UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 };
 
 /** @} */

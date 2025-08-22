@@ -136,7 +136,7 @@ bool FRH_AnalyticsProvider::StartSession(FString InSessionID, const TArray<FAnal
 	// enforce guid formatting for session ids
 	if (InSessionID.IsEmpty())
 	{
-		InSessionID = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+		InSessionID = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower);
 		UE_LOG(LogAnalyticsRallyHere, Log, TEXT("AnalyticsRallyHere::StartSession - SessionID is empty, creating as %s"), *InSessionID);
 	}
 	else

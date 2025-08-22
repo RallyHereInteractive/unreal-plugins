@@ -48,29 +48,27 @@ struct RALLYHEREAPI_API FRHAPI_PexCount : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Count_IsNull{ false };
 	/** @brief Gets the value of Count_Optional, regardless of it having been set */
-	float& GetCount() { return Count_Optional; }
+	FORCEINLINE float& GetCount() { return Count_Optional; }
 	/** @brief Gets the value of Count_Optional, regardless of it having been set */
-	const float& GetCount() const { return Count_Optional; }
+	FORCEINLINE const float& GetCount() const { return Count_Optional; }
 	/** @brief Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetCount(const float& DefaultValue) const { if (Count_IsSet) return Count_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetCount(const float& DefaultValue) const { if (Count_IsSet) return Count_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCount(float& OutValue) const { if (Count_IsSet && !Count_IsNull) OutValue = Count_Optional; return Count_IsSet; }
+	FORCEINLINE bool GetCount(float& OutValue) const { if (Count_IsSet && !Count_IsNull) OutValue = Count_Optional; return Count_IsSet; }
 	/** @brief Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr */
-	float* GetCountOrNull() { if (Count_IsSet) return (Count_IsNull ? nullptr : &Count_Optional); return nullptr; }
+	FORCEINLINE float* GetCountOrNull() { if (Count_IsSet) return (Count_IsNull ? nullptr : &Count_Optional); return nullptr; }
 	/** @brief Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetCountOrNull() const { if (Count_IsSet) return (Count_IsNull ? nullptr : &Count_Optional); return nullptr; }
+	FORCEINLINE const float* GetCountOrNull() const { if (Count_IsSet) return (Count_IsNull ? nullptr : &Count_Optional); return nullptr; }
 	/** @brief Sets the value of Count_Optional and also sets Count_IsSet to true */
-	void SetCount(const float& NewValue) { Count_Optional = NewValue; Count_IsSet = true; Count_IsNull = false; }
+	FORCEINLINE void SetCount(const float& NewValue) { Count_Optional = NewValue; Count_IsSet = true; Count_IsNull = false; }
 	/** @brief Sets the value of Count_Optional and also sets Count_IsSet to true using move semantics */
-	void SetCount(float&& NewValue) { Count_Optional = NewValue; Count_IsSet = true; Count_IsNull = false; }
+	FORCEINLINE void SetCount(float&& NewValue) { Count_Optional = NewValue; Count_IsSet = true; Count_IsNull = false; }
 	/** @brief Clears the value of Count_Optional and sets Count_IsSet to false */
 	void ClearCount() { Count_IsSet = false; Count_IsNull = false; }
-	/** @brief Checks whether Count_Optional has been set */
-	bool IsCountSet() const { return Count_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCountToNull() { Count_IsSet = true; Count_IsNull = true; }
+	FORCEINLINE void SetCountToNull() { Count_IsSet = true; Count_IsNull = true; }
 	/** @brief Checks whether Count_Optional is set to null */
-	bool IsCountNull() const { return Count_IsSet && Count_IsNull; }
+	FORCEINLINE bool IsCountNull() const { return Count_IsSet && Count_IsNull; }
 };
 
 /** @} */

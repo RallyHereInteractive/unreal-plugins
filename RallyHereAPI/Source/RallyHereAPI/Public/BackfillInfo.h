@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_BackfillInfo : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString BackfillId{  };
 	/** @brief Gets the value of BackfillId */
-	FString& GetBackfillId() { return BackfillId; }
+	FORCEINLINE FString& GetBackfillId() { return BackfillId; }
 	/** @brief Gets the value of BackfillId */
-	const FString& GetBackfillId() const { return BackfillId; }
+	FORCEINLINE const FString& GetBackfillId() const { return BackfillId; }
 	/** @brief Sets the value of BackfillId */
-	void SetBackfillId(const FString& NewValue) { BackfillId = NewValue;   }
+	FORCEINLINE void SetBackfillId(const FString& NewValue) { BackfillId = NewValue;   }
 	/** @brief Sets the value of BackfillId using move semantics */
-	void SetBackfillId(FString&& NewValue) { BackfillId = NewValue;   }
+	FORCEINLINE void SetBackfillId(FString&& NewValue) { BackfillId = NewValue;   }
 
 	/** @brief Optional additional extensions used when acknowledging backfill requests */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,25 +58,23 @@ struct RALLYHEREAPI_API FRHAPI_BackfillInfo : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Extensions_IsSet{ false };
 	/** @brief Gets the value of Extensions_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }
 	/** @brief Gets the value of Extensions_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetExtensions() const { return Extensions_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetExtensions() const { return Extensions_Optional; }
 	/** @brief Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetExtensions(const TMap<FString, FString>& DefaultValue) const { if (Extensions_IsSet) return Extensions_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetExtensions(const TMap<FString, FString>& DefaultValue) const { if (Extensions_IsSet) return Extensions_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExtensions(TMap<FString, FString>& OutValue) const { if (Extensions_IsSet) OutValue = Extensions_Optional; return Extensions_IsSet; }
+	FORCEINLINE bool GetExtensions(TMap<FString, FString>& OutValue) const { if (Extensions_IsSet) OutValue = Extensions_Optional; return Extensions_IsSet; }
 	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetExtensionsOrNull() { if (Extensions_IsSet) return (&Extensions_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetExtensionsOrNull() { if (Extensions_IsSet) return (&Extensions_Optional); return nullptr; }
 	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return (&Extensions_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return (&Extensions_Optional); return nullptr; }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true */
-	void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
+	FORCEINLINE void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics */
-	void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
+	FORCEINLINE void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
 	/** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
 	void ClearExtensions() { Extensions_IsSet = false;  }
-	/** @brief Checks whether Extensions_Optional has been set */
-	bool IsExtensionsSet() const { return Extensions_IsSet; }
 };
 
 /** @} */

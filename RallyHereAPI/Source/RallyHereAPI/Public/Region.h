@@ -43,45 +43,41 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString RegionId{  };
 	/** @brief Gets the value of RegionId */
-	FString& GetRegionId() { return RegionId; }
+	FORCEINLINE FString& GetRegionId() { return RegionId; }
 	/** @brief Gets the value of RegionId */
-	const FString& GetRegionId() const { return RegionId; }
+	FORCEINLINE const FString& GetRegionId() const { return RegionId; }
 	/** @brief Sets the value of RegionId */
-	void SetRegionId(const FString& NewValue) { RegionId = NewValue;   }
+	FORCEINLINE void SetRegionId(const FString& NewValue) { RegionId = NewValue;   }
 	/** @brief Sets the value of RegionId using move semantics */
-	void SetRegionId(FString&& NewValue) { RegionId = NewValue;   }
+	FORCEINLINE void SetRegionId(FString&& NewValue) { RegionId = NewValue;   }
 
 	/** @brief The sorting priority order for this region */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 SortOrder{ 0 };
 	/** @brief Gets the value of SortOrder */
-	int32& GetSortOrder() { return SortOrder; }
+	FORCEINLINE int32& GetSortOrder() { return SortOrder; }
 	/** @brief Gets the value of SortOrder */
-	const int32& GetSortOrder() const { return SortOrder; }
+	FORCEINLINE const int32& GetSortOrder() const { return SortOrder; }
 	/** @brief Sets the value of SortOrder */
-	void SetSortOrder(const int32& NewValue) { SortOrder = NewValue;   }
+	FORCEINLINE void SetSortOrder(const int32& NewValue) { SortOrder = NewValue;   }
 	/** @brief Sets the value of SortOrder using move semantics */
-	void SetSortOrder(int32&& NewValue) { SortOrder = NewValue;   }
-	/** @brief Returns true if SortOrder matches the default value */
-	bool IsSortOrderDefaultValue() const { return SortOrder == 0; }
-	/** @brief Sets the value of SortOrder to its default  */
-	void SetSortOrderToDefault() { SetSortOrder(0); }
+	FORCEINLINE void SetSortOrder(int32&& NewValue) { SortOrder = NewValue;   }
+	/** @brief Returns the default value of SortOrder */
+	FORCEINLINE int32 GetDefaultValue_SortOrder() { return 0; }
 
 	/** @brief Indicates if the region is for custom games only */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomOnly{ false };
 	/** @brief Gets the value of CustomOnly */
-	bool& GetCustomOnly() { return CustomOnly; }
+	FORCEINLINE bool& GetCustomOnly() { return CustomOnly; }
 	/** @brief Gets the value of CustomOnly */
-	const bool& GetCustomOnly() const { return CustomOnly; }
+	FORCEINLINE const bool& GetCustomOnly() const { return CustomOnly; }
 	/** @brief Sets the value of CustomOnly */
-	void SetCustomOnly(const bool& NewValue) { CustomOnly = NewValue;   }
+	FORCEINLINE void SetCustomOnly(const bool& NewValue) { CustomOnly = NewValue;   }
 	/** @brief Sets the value of CustomOnly using move semantics */
-	void SetCustomOnly(bool&& NewValue) { CustomOnly = NewValue;   }
-	/** @brief Returns true if CustomOnly matches the default value */
-	bool IsCustomOnlyDefaultValue() const { return CustomOnly == false; }
-	/** @brief Sets the value of CustomOnly to its default  */
-	void SetCustomOnlyToDefault() { SetCustomOnly(false); }
+	FORCEINLINE void SetCustomOnly(bool&& NewValue) { CustomOnly = NewValue;   }
+	/** @brief Returns the default value of CustomOnly */
+	FORCEINLINE bool GetDefaultValue_CustomOnly() { return false; }
 
 	/** @brief Text description of the region */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -90,25 +86,23 @@ struct RALLYHEREAPI_API FRHAPI_Region : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Description_IsSet{ false };
 	/** @brief Gets the value of Description_Optional, regardless of it having been set */
-	FString& GetDescription() { return Description_Optional; }
+	FORCEINLINE FString& GetDescription() { return Description_Optional; }
 	/** @brief Gets the value of Description_Optional, regardless of it having been set */
-	const FString& GetDescription() const { return Description_Optional; }
+	FORCEINLINE const FString& GetDescription() const { return Description_Optional; }
 	/** @brief Gets the value of Description_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetDescription(const FString& DefaultValue) const { if (Description_IsSet) return Description_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetDescription(const FString& DefaultValue) const { if (Description_IsSet) return Description_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Description_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDescription(FString& OutValue) const { if (Description_IsSet) OutValue = Description_Optional; return Description_IsSet; }
+	FORCEINLINE bool GetDescription(FString& OutValue) const { if (Description_IsSet) OutValue = Description_Optional; return Description_IsSet; }
 	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDescriptionOrNull() { if (Description_IsSet) return (&Description_Optional); return nullptr; }
+	FORCEINLINE FString* GetDescriptionOrNull() { if (Description_IsSet) return (&Description_Optional); return nullptr; }
 	/** @brief Returns a pointer to Description_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDescriptionOrNull() const { if (Description_IsSet) return (&Description_Optional); return nullptr; }
+	FORCEINLINE const FString* GetDescriptionOrNull() const { if (Description_IsSet) return (&Description_Optional); return nullptr; }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true */
-	void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
+	FORCEINLINE void SetDescription(const FString& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
 	/** @brief Sets the value of Description_Optional and also sets Description_IsSet to true using move semantics */
-	void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
+	FORCEINLINE void SetDescription(FString&& NewValue) { Description_Optional = NewValue; Description_IsSet = true;  }
 	/** @brief Clears the value of Description_Optional and sets Description_IsSet to false */
 	void ClearDescription() { Description_IsSet = false;  }
-	/** @brief Checks whether Description_Optional has been set */
-	bool IsDescriptionSet() const { return Description_IsSet; }
 };
 
 /** @} */

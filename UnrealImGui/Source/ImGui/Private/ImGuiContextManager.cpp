@@ -139,6 +139,9 @@ void FImGuiContextManager::OnWorldPostActorTick(UWorld* World, ELevelTick TickTy
 	if (World && (World->WorldType == EWorldType::Game || World->WorldType == EWorldType::PIE
 		|| World->WorldType == EWorldType::Editor))
 	{
+//$$ JLB - I would like more information how much much time this is taking while running with the remote viewer
+		TRACE_CPUPROFILER_EVENT_SCOPE(ImGuiContext::PostTick::DrawDebug)
+//$$ JLB - end change
 		GetWorldContextProxy(*World).DrawDebug();
 	}
 }

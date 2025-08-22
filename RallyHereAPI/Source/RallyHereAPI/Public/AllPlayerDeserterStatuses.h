@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_AllPlayerDeserterStatuses : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PlayerDeserterStatus> DeserterStatuses{  };
 	/** @brief Gets the value of DeserterStatuses */
-	TArray<FRHAPI_PlayerDeserterStatus>& GetDeserterStatuses() { return DeserterStatuses; }
+	FORCEINLINE TArray<FRHAPI_PlayerDeserterStatus>& GetDeserterStatuses() { return DeserterStatuses; }
 	/** @brief Gets the value of DeserterStatuses */
-	const TArray<FRHAPI_PlayerDeserterStatus>& GetDeserterStatuses() const { return DeserterStatuses; }
+	FORCEINLINE const TArray<FRHAPI_PlayerDeserterStatus>& GetDeserterStatuses() const { return DeserterStatuses; }
 	/** @brief Sets the value of DeserterStatuses */
-	void SetDeserterStatuses(const TArray<FRHAPI_PlayerDeserterStatus>& NewValue) { DeserterStatuses = NewValue;   }
+	FORCEINLINE void SetDeserterStatuses(const TArray<FRHAPI_PlayerDeserterStatus>& NewValue) { DeserterStatuses = NewValue;   }
 	/** @brief Sets the value of DeserterStatuses using move semantics */
-	void SetDeserterStatuses(TArray<FRHAPI_PlayerDeserterStatus>&& NewValue) { DeserterStatuses = NewValue;   }
+	FORCEINLINE void SetDeserterStatuses(TArray<FRHAPI_PlayerDeserterStatus>&& NewValue) { DeserterStatuses = NewValue;   }
 };
 
 /** @} */

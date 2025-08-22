@@ -292,6 +292,12 @@ void URH_LocalPlayerSubsystem::OnUserLoggedIn(bool bSuccess)
 		}
 	}
 
+	if (!bSuccess)
+	{
+		OnLoginOrTokenRefreshFailed.Broadcast();
+		BLUEPRINT_OnLoginOrTokenRefreshFailed.Broadcast();
+	}
+
 }
 
 void URH_LocalPlayerSubsystem::OnUserLoggedOut(bool bRefreshTokenExpired)
@@ -332,7 +338,7 @@ void URH_LocalPlayerSubsystem::OnUserChanged()
 	if (AnalyticsProvider.IsValid())
 	{
 		auto PlayerUuid = GetPlayerUuid();
-		AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens) : TEXT(""));
+		AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphensLower) : TEXT(""));
 	}
 
 	PlayerInfoCache = GetLocalPlayerInfo();
@@ -521,7 +527,35 @@ URH_PlayerInfo* URH_LocalPlayerSubsystem::GetLocalPlayerInfo() const
 		return nullptr;
 	}
 
-	return pRH_PlayerInfoSubsystem->GetOrCreatePlayerInfo(GetPlayerUuid());
+	auto LocalPlayerInfo = pRH_PlayerInfoSubsystem->GetOrCreatePlayerInfo(GetPlayerUuid());
+
+#if PLATFORM_WINGDK || PLATFORM_XSX
+	if (LocalPlayerInfo != nullptr)
+	{
+		auto PlayerPlatformId = GetPlayerPlatformId();
+		if (PlayerPlatformId.IsValid())
+		{
+			if (URH_PlayerPlatformInfo* PlayerPlatformInfo = pRH_PlayerInfoSubsystem->GetOrCreatePlayerPlatformInfo(PlayerPlatformId))
+			{
+				if (const UWorld* World = GWorld)
+				{
+					const auto Identity = Online::GetIdentityInterface(World);
+					if (const ULocalPlayer* LocalPlayer = World->GetFirstLocalPlayerFromController())
+					{
+						const auto PlayerId = LocalPlayer->GetPreferredUniqueNetId();
+						if (Identity.IsValid() && PlayerId.IsValid())
+						{
+							PlayerPlatformInfo->DisplayName = Identity->GetPlayerNickname(*PlayerId);
+							LocalPlayerInfo->AddLinkedPlatformId(PlayerPlatformId);
+						}
+					}
+				}
+			}
+		}
+	}
+#endif
+	
+	return LocalPlayerInfo;
 }
 
 FRH_PlayerPlatformId URH_LocalPlayerSubsystem::GetPlayerPlatformId() const
@@ -542,32 +576,43 @@ FRH_PlayerPlatformId URH_LocalPlayerSubsystem::GetPlayerPlatformId() const
 
 IOnlineSubsystem* URH_LocalPlayerSubsystem::GetOSS(const FName& SubsystemName) const
 {
-    if (!SubsystemName.IsNone())
-    {
-        const FName Name = Online::GetUtils()->GetOnlineIdentifier(GetLocalPlayer()->GetWorld(), SubsystemName);
-        if (Name != NAME_None)
-        {
-            if (IOnlineSubsystem* FoundOSS = IOnlineSubsystem::Get(Name))
-            {
-                return FoundOSS;
-            }
-        }
-    }
+	ULocalPlayer* LocalPlayer = GetLocalPlayer();
+	UWorld* World = IsValid(LocalPlayer) ? LocalPlayer->GetWorld() : nullptr;
 
-    if (IOnlineSubsystem* DefaultOSS = IOnlineSubsystem::Get(NAME_None))
-    {
-    	// For PiE, we need to get at the specific instance of the subsystem for this particular player
-    	const FName Name = Online::GetUtils()->GetOnlineIdentifier(GetLocalPlayer()->GetWorld(), DefaultOSS->GetSubsystemName());
-    	if (Name != DefaultOSS->GetInstanceName())
-    	{
-            if (IOnlineSubsystem* FoundOSS = IOnlineSubsystem::Get(Name))
-            {
-                return FoundOSS;
-            }
-        }
+	if (IsValid(World))
+	{
+		const IOnlineSubsystemUtils* OnlineUtils = Online::GetUtils();
+		if (!SubsystemName.IsNone() && OnlineUtils)
+		{
+			const FName Name = OnlineUtils->GetOnlineIdentifier(World, SubsystemName);
+			if (Name != NAME_None)
+			{
+				if (IOnlineSubsystem* FoundOSS = IOnlineSubsystem::Get(Name))
+				{
+					return FoundOSS;
+				}
+			}
+		}
 
-        return DefaultOSS;
-    }
+		if (IOnlineSubsystem* DefaultOSS = IOnlineSubsystem::Get(NAME_None))
+		{
+			// For PiE, we need to get at the specific instance of the subsystem for this particular player
+
+			if (OnlineUtils)
+			{
+				const FName Name = OnlineUtils->GetOnlineIdentifier(World, DefaultOSS->GetSubsystemName());
+				if (Name != DefaultOSS->GetInstanceName())
+				{
+					if (IOnlineSubsystem* FoundOSS = IOnlineSubsystem::Get(Name))
+					{
+						return FoundOSS;
+					}
+				}
+			}
+
+			return DefaultOSS;
+		}
+	}
 
     return nullptr;
 }

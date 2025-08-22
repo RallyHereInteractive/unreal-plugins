@@ -5,12 +5,34 @@
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_LocalPlayerSubsystem.h"
 #include "OnlineSubsystem.h"
+#include "OnlineSubsystemUtils.h"
 #include "OnlineSubsystemTypes.h"
 #include "GenericPlatform/GenericPlatformChunkInstall.h"
 #include "RallyHereIntegrationModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Engine/World.h"
 #include "Interfaces/IMessageSanitizerInterface.h"
+
+bool IsBeyondStaleThreshold(const FDateTime& LastUpdated, const FTimespan& StaleThreshold)
+{
+	if (LastUpdated.GetTicks() == 0) // Data has never been updated, so we are always stale
+	{
+		return true;
+	}
+
+	if (StaleThreshold.IsZero()) // Threshold is zero, so we consider this never stale (and we should use the cached state)
+	{
+		return false;
+	}
+
+	const auto ExpirationTime = LastUpdated + StaleThreshold;
+	if (FDateTime::UtcNow() < ExpirationTime) // Are we within the expiration window?
+	{
+		return false;
+	}
+
+	return true;
+}
 
 void URH_PlayerInfoSubsystem::Initialize()
 {
@@ -332,6 +354,24 @@ URH_PlayerPlatformInfo* URH_PlayerInfo::GetPlayerPlatformInfo(const FRH_PlayerPl
 
 void URH_PlayerInfo::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock& Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
 {
+#if PLATFORM_WINGDK || PLATFORM_XSX
+	if (LocalPlayerSubsystem != nullptr && LocalPlayerSubsystem->GetLocalPlayerInfo() == this)
+	{
+		if (const UWorld* world = GWorld)
+		{
+			const auto identity = Online::GetIdentityInterface(world);
+			if (const ULocalPlayer* localPlayer = world->GetFirstLocalPlayerFromController())
+			{
+				const auto playerId = localPlayer->GetPreferredUniqueNetId();
+				if (identity.IsValid() && playerId.IsValid())
+				{
+					OnDisplayNameSanitized(true, identity->GetPlayerNickname(*playerId), ERHAPI_Platform::XboxLive, Delegate);
+				}
+			}
+		}
+	}
+#endif
+
 	// Get platform type from logged in portal if PreferredPlatformType is not provided
 	if (PreferredPlatformType == ERHAPI_Platform::Anon)
 	{
@@ -373,6 +413,24 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownDisplayNameResponse(b
 			{
 				if (const IOnlineSubsystem* OSS = IOnlineSubsystem::Get())
 				{
+#if PLATFORM_WINGDK || PLATFORM_XSX
+					if (PlatformInfo->GetPlatform() == ERHAPI_Platform::XboxLive && LocalPlayerSubsystem->GetLocalPlayerInfo() == this)
+					{
+						if (const UWorld* world = GWorld)
+						{
+							const auto identity = Online::GetIdentityInterface(world);
+							if (const ULocalPlayer* localPlayer = world->GetFirstLocalPlayerFromController())
+							{
+								const auto playerId = localPlayer->GetPreferredUniqueNetId();
+								if (identity.IsValid() && playerId.IsValid())
+								{
+									PlatformInfo->DisplayName = identity->GetPlayerNickname(*playerId);
+								}
+							}
+						}
+					}
+#endif
+
 					FString AuthTypeToExclude;
 					const auto MessageSanitizer = OSS->GetMessageSanitizer(LocalPlayerSubsystem->GetPlatformUserId(), AuthTypeToExclude);
 					if (MessageSanitizer)
@@ -415,17 +473,17 @@ void URH_PlayerInfo::OnDisplayNameSanitized(bool bSuccess, const FString& Saniti
 	Delegate.ExecuteIfBound(false, FString());
 }
 
+bool URH_PlayerInfo::IsLinkedPlatformInfoStale(const FTimespan& StaleThreshold) const
+{
+	return IsBeyondStaleThreshold(LastRequestPlatforms, StaleThreshold);
+}
+
 void URH_PlayerInfo::GetLinkedPlatformInfo(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlatformsBlock& Delegate /*= FRH_PlayerInfoGetPlatformsBlock()*/)
 {
-	if (LastRequestPlatforms.GetTicks() != 0 && !bForceRefresh)
+	if (!bForceRefresh && !IsLinkedPlatformInfoStale(StaleThreshold))
 	{
-		// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
-		FDateTime Now = FDateTime::UtcNow();
-		if (LastRequestPlatforms + StaleThreshold < Now || StaleThreshold.IsZero())
-		{
-			Delegate.ExecuteIfBound(true, GetPlayerPlatforms());
-			return;
-		}
+		Delegate.ExecuteIfBound(true, GetPlayerPlatforms());
+		return;
 	}
 
 	auto Request = GetPlatforms::Request();
@@ -631,22 +689,22 @@ URH_PlayerInfo* URH_PlayerInfoSubobject::GetPlayerInfo() const
 
 void URH_PlayerInfoSubobject::RequestUpdateIfStale(const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_OnRequestPlayerInfoSubobjectDelegateBlock& Delegate)
 {
-	if (bInitialized)
+	if (!bForceRefresh && !IsStale(StaleThreshold))
 	{
-		const FDateTime& Then = LastUpdated;
-		FDateTime Now = FDateTime::UtcNow();
-		if (Then.GetTicks() != 0 && !bForceRefresh)
-		{
-			// check if we are in the stale threshold, or if it is not set (in which case, always prefer the cache)
-			if ((Then + StaleThreshold) < Now || StaleThreshold.IsZero())
-			{
-				Delegate.ExecuteIfBound(true, this);
-				return;
-			}
-		}
+		Delegate.ExecuteIfBound(true, this);
+		return;
 	}
 
 	RequestUpdate(bForceRefresh, Delegate);
+}
+
+bool URH_PlayerInfoSubobject::IsStale(const FTimespan& StaleThreshold) const
+{
+	if (!bInitialized)
+	{
+		return true;
+	}
+	return IsBeyondStaleThreshold(LastUpdated, StaleThreshold);
 }
 
 void URH_PlayerInfoSubobject::CheckPollStatus(const bool bForceUpdate)
@@ -706,6 +764,7 @@ void URH_PlayerInfoSubobject::ExecuteUpdatedDelegates(bool bSuccess)
 URH_PlayerPresence::URH_PlayerPresence(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 	, Status(ERHAPI_OnlineStatus::Offline)
+	, Initialized(false)
 {
 	PollTimerName = FName(TEXT("PlayerPresence"));
 	PollPriority = GetDefault<URH_IntegrationSettings>()->PresenceGetOtherPriority;
@@ -797,7 +856,7 @@ void URH_PlayerSettings::GetPlayerSetting(const FString& SettingTypeId, const FS
 
 					if (FoundSettings->Content.Num() > 0)
 					{
-						Delegate.ExecuteIfBound(true, ReturnedSettings);
+						Delegate.ExecuteIfBound(true, ReturnedSettings, FRH_ErrorInfo());
 						return;
 					}
 				}
@@ -814,13 +873,16 @@ void URH_PlayerSettings::GetPlayerSetting(const FString& SettingTypeId, const FS
 	if (!GetSingleSettingType::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSingleSettingType::Delegate::CreateUObject(this, &URH_PlayerSettings::OnGetPlayerSettingResponse, Delegate, SettingTypeId, Key), GetDefault<URH_IntegrationSettings>()->SettingsGetPriority))
 	{
 		FRH_PlayerSettingsDataWrapper EmptyWrapper;
-		Delegate.ExecuteIfBound(false, EmptyWrapper);
+		Delegate.ExecuteIfBound(false, EmptyWrapper, FRH_ErrorInfo());
 	}
 }
 
 void URH_PlayerSettings::OnGetPlayerSettingResponse(const GetSingleSettingType::Response& Response, FRH_PlayerInfoGetPlayerSettingsBlock Delegate, const FString SettingTypeId, const FString Key)
 {
 	FRH_PlayerSettingsDataWrapper ResponseWrapper;
+
+	FRH_ErrorInfo ErrorInfo;
+	ErrorInfo.ImportErrorInfo(Response);
 
 	const auto Content = Response.TryGetDefaultContentAsPointer();
 	if (Response.IsSuccessful() && Content != nullptr)
@@ -832,7 +894,7 @@ void URH_PlayerSettings::OnGetPlayerSettingResponse(const GetSingleSettingType::
 		SettingWrapper.Content.Add(Key, *Content);
 	}
 
-	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper);
+	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper, ErrorInfo);
 }
 
 void URH_PlayerSettings::GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, const FRH_PlayerInfoGetPlayerSettingsBlock& Delegate /*= FRH_PlayerInfoGetPlayerSettingsBlock()*/)
@@ -873,13 +935,13 @@ void URH_PlayerSettings::GetPlayerSettingsForKeys(const FString& SettingTypeId, 
 						// if specific keys were requested, return just that subset
 						if (Keys.Num() > 0)
 						{
-							Delegate.ExecuteIfBound(true, ReturnedSettings);
+							Delegate.ExecuteIfBound(true, ReturnedSettings, FRH_ErrorInfo());
 							return;
 						}
 						// if no specific keys were requested, return the full set
 						else
 						{
-							Delegate.ExecuteIfBound(true, *FoundSettings);
+							Delegate.ExecuteIfBound(true, *FoundSettings, FRH_ErrorInfo());
 							return;
 						}
 					}
@@ -899,7 +961,7 @@ void URH_PlayerSettings::GetPlayerSettingsForKeys(const FString& SettingTypeId, 
 	if (!GetSettingsForKeysType::DoCall(RH_APIs::GetSettingsAPI(), Request, GetSettingsForKeysType::Delegate::CreateUObject(this, &URH_PlayerSettings::OnGetPlayerSettingsResponse, Delegate, SettingTypeId, Request.Key), GetDefault<URH_IntegrationSettings>()->SettingsGetPriority))
 	{
 		FRH_PlayerSettingsDataWrapper EmptyWrapper;
-		Delegate.ExecuteIfBound(false, EmptyWrapper);
+		Delegate.ExecuteIfBound(false, EmptyWrapper, FRH_ErrorInfo());
 	}
 }
 
@@ -908,6 +970,9 @@ void URH_PlayerSettings::OnGetPlayerSettingsResponse(const GetSettingsForKeysTyp
 	FRH_PlayerSettingsDataWrapper ResponseWrapper;
 	ResponseWrapper.LastMultiFetchTime = FDateTime::UtcNow();
 
+	FRH_ErrorInfo ErrorInfo;
+	ErrorInfo.ImportErrorInfo(Response);
+	
 	const auto Content = Response.TryGetDefaultContentAsPointer();
 	if (Response.IsSuccessful() && Content != nullptr)
 	{
@@ -946,7 +1011,7 @@ void URH_PlayerSettings::OnGetPlayerSettingsResponse(const GetSettingsForKeysTyp
 		}
 	}
 
-	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper);
+	Delegate.ExecuteIfBound(Response.IsSuccessful(), ResponseWrapper, ErrorInfo);
 }
 
 void URH_PlayerSettings::SetPlayerSetting(const FString& SettingTypeId, const FString& Key, const FRHAPI_SetSinglePlayerSettingRequest& SettingDocument, const FRH_PlayerInfoSetPlayerSettingBlock& Delegate /*= FRH_PlayerInfoSetPlayerSettingsBlock()*/, const FRH_ObjectVersionCheck& VersionCheck)
@@ -1485,6 +1550,12 @@ void URH_PlayerGuideEngagement::RateGuide(const FGuid& GuideID, int32 Rating, co
 
 void URH_PlayerGuideEngagement::GetGuideEngagementAsync(TArray<FGuid> GuideIDs, const FRH_PlayerInfoGetGuideEngagementBlock& Delegate)
 {
+	if (GuideIDs.IsEmpty())
+	{
+		Delegate.ExecuteIfBound(false, FRHAPI_ManyEntityGuideEngagement(), FRH_ErrorInfo());
+		return;
+	}
+	
 	typedef GetEntityGuideEngageementType BaseType;
 
 	auto Request = BaseType::Request();

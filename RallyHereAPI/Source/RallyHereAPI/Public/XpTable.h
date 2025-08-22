@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid XpUuid_Optional{  };
@@ -76,29 +74,27 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool XpUuid_IsNull{ false };
 	/** @brief Gets the value of XpUuid_Optional, regardless of it having been set */
-	FGuid& GetXpUuid() { return XpUuid_Optional; }
+	FORCEINLINE FGuid& GetXpUuid() { return XpUuid_Optional; }
 	/** @brief Gets the value of XpUuid_Optional, regardless of it having been set */
-	const FGuid& GetXpUuid() const { return XpUuid_Optional; }
+	FORCEINLINE const FGuid& GetXpUuid() const { return XpUuid_Optional; }
 	/** @brief Gets the value of XpUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetXpUuid(const FGuid& DefaultValue) const { if (XpUuid_IsSet) return XpUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetXpUuid(const FGuid& DefaultValue) const { if (XpUuid_IsSet) return XpUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of XpUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetXpUuid(FGuid& OutValue) const { if (XpUuid_IsSet && !XpUuid_IsNull) OutValue = XpUuid_Optional; return XpUuid_IsSet; }
+	FORCEINLINE bool GetXpUuid(FGuid& OutValue) const { if (XpUuid_IsSet && !XpUuid_IsNull) OutValue = XpUuid_Optional; return XpUuid_IsSet; }
 	/** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetXpUuidOrNull() { if (XpUuid_IsSet) return (XpUuid_IsNull ? nullptr : &XpUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetXpUuidOrNull() { if (XpUuid_IsSet) return (XpUuid_IsNull ? nullptr : &XpUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to XpUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetXpUuidOrNull() const { if (XpUuid_IsSet) return (XpUuid_IsNull ? nullptr : &XpUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetXpUuidOrNull() const { if (XpUuid_IsSet) return (XpUuid_IsNull ? nullptr : &XpUuid_Optional); return nullptr; }
 	/** @brief Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true */
-	void SetXpUuid(const FGuid& NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; XpUuid_IsNull = false; }
+	FORCEINLINE void SetXpUuid(const FGuid& NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; XpUuid_IsNull = false; }
 	/** @brief Sets the value of XpUuid_Optional and also sets XpUuid_IsSet to true using move semantics */
-	void SetXpUuid(FGuid&& NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; XpUuid_IsNull = false; }
+	FORCEINLINE void SetXpUuid(FGuid&& NewValue) { XpUuid_Optional = NewValue; XpUuid_IsSet = true; XpUuid_IsNull = false; }
 	/** @brief Clears the value of XpUuid_Optional and sets XpUuid_IsSet to false */
 	void ClearXpUuid() { XpUuid_IsSet = false; XpUuid_IsNull = false; }
-	/** @brief Checks whether XpUuid_Optional has been set */
-	bool IsXpUuidSet() const { return XpUuid_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetXpUuidToNull() { XpUuid_IsSet = true; XpUuid_IsNull = true; }
+	FORCEINLINE void SetXpUuidToNull() { XpUuid_IsSet = true; XpUuid_IsNull = true; }
 	/** @brief Checks whether XpUuid_Optional is set to null */
-	bool IsXpUuidNull() const { return XpUuid_IsSet && XpUuid_IsNull; }
+	FORCEINLINE bool IsXpUuidNull() const { return XpUuid_IsSet && XpUuid_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, int32> XpEntries_Optional{  };
@@ -106,25 +102,23 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool XpEntries_IsSet{ false };
 	/** @brief Gets the value of XpEntries_Optional, regardless of it having been set */
-	TMap<FString, int32>& GetXpEntries() { return XpEntries_Optional; }
+	FORCEINLINE TMap<FString, int32>& GetXpEntries() { return XpEntries_Optional; }
 	/** @brief Gets the value of XpEntries_Optional, regardless of it having been set */
-	const TMap<FString, int32>& GetXpEntries() const { return XpEntries_Optional; }
+	FORCEINLINE const TMap<FString, int32>& GetXpEntries() const { return XpEntries_Optional; }
 	/** @brief Gets the value of XpEntries_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, int32>& GetXpEntries(const TMap<FString, int32>& DefaultValue) const { if (XpEntries_IsSet) return XpEntries_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, int32>& GetXpEntries(const TMap<FString, int32>& DefaultValue) const { if (XpEntries_IsSet) return XpEntries_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of XpEntries_Optional and returns true if it has been set, otherwise returns false */
-	bool GetXpEntries(TMap<FString, int32>& OutValue) const { if (XpEntries_IsSet) OutValue = XpEntries_Optional; return XpEntries_IsSet; }
+	FORCEINLINE bool GetXpEntries(TMap<FString, int32>& OutValue) const { if (XpEntries_IsSet) OutValue = XpEntries_Optional; return XpEntries_IsSet; }
 	/** @brief Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, int32>* GetXpEntriesOrNull() { if (XpEntries_IsSet) return (&XpEntries_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, int32>* GetXpEntriesOrNull() { if (XpEntries_IsSet) return (&XpEntries_Optional); return nullptr; }
 	/** @brief Returns a pointer to XpEntries_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, int32>* GetXpEntriesOrNull() const { if (XpEntries_IsSet) return (&XpEntries_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, int32>* GetXpEntriesOrNull() const { if (XpEntries_IsSet) return (&XpEntries_Optional); return nullptr; }
 	/** @brief Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true */
-	void SetXpEntries(const TMap<FString, int32>& NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true;  }
+	FORCEINLINE void SetXpEntries(const TMap<FString, int32>& NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true;  }
 	/** @brief Sets the value of XpEntries_Optional and also sets XpEntries_IsSet to true using move semantics */
-	void SetXpEntries(TMap<FString, int32>&& NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true;  }
+	FORCEINLINE void SetXpEntries(TMap<FString, int32>&& NewValue) { XpEntries_Optional = NewValue; XpEntries_IsSet = true;  }
 	/** @brief Clears the value of XpEntries_Optional and sets XpEntries_IsSet to false */
 	void ClearXpEntries() { XpEntries_IsSet = false;  }
-	/** @brief Checks whether XpEntries_Optional has been set */
-	bool IsXpEntriesSet() const { return XpEntries_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -135,29 +129,27 @@ struct RALLYHEREAPI_API FRHAPI_XpTable : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CacheInfo_IsNull{ false };
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
+	FORCEINLINE FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-	const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
+	FORCEINLINE const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	FORCEINLINE bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
+	FORCEINLINE void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
+	FORCEINLINE void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; CacheInfo_IsNull = false; }
-	/** @brief Checks whether CacheInfo_Optional has been set */
-	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
+	FORCEINLINE void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
 	/** @brief Checks whether CacheInfo_Optional is set to null */
-	bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
+	FORCEINLINE bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
 };
 
 /** @} */

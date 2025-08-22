@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_KeyType : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Type{  };
 	/** @brief Gets the value of Type */
-	FString& GetType() { return Type; }
+	FORCEINLINE FString& GetType() { return Type; }
 	/** @brief Gets the value of Type */
-	const FString& GetType() const { return Type; }
+	FORCEINLINE const FString& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(const FString& NewValue) { Type = NewValue;   }
+	FORCEINLINE void SetType(const FString& NewValue) { Type = NewValue;   }
 	/** @brief Sets the value of Type using move semantics */
-	void SetType(FString&& NewValue) { Type = NewValue;   }
+	FORCEINLINE void SetType(FString&& NewValue) { Type = NewValue;   }
 };
 
 /** @} */

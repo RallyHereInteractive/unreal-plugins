@@ -42,24 +42,24 @@ struct RALLYHEREAPI_API FRHAPI_BlockedPlayer : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid BlockedPlayerUuid{  };
 	/** @brief Gets the value of BlockedPlayerUuid */
-	FGuid& GetBlockedPlayerUuid() { return BlockedPlayerUuid; }
+	FORCEINLINE FGuid& GetBlockedPlayerUuid() { return BlockedPlayerUuid; }
 	/** @brief Gets the value of BlockedPlayerUuid */
-	const FGuid& GetBlockedPlayerUuid() const { return BlockedPlayerUuid; }
+	FORCEINLINE const FGuid& GetBlockedPlayerUuid() const { return BlockedPlayerUuid; }
 	/** @brief Sets the value of BlockedPlayerUuid */
-	void SetBlockedPlayerUuid(const FGuid& NewValue) { BlockedPlayerUuid = NewValue;   }
+	FORCEINLINE void SetBlockedPlayerUuid(const FGuid& NewValue) { BlockedPlayerUuid = NewValue;   }
 	/** @brief Sets the value of BlockedPlayerUuid using move semantics */
-	void SetBlockedPlayerUuid(FGuid&& NewValue) { BlockedPlayerUuid = NewValue;   }
+	FORCEINLINE void SetBlockedPlayerUuid(FGuid&& NewValue) { BlockedPlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };
 	/** @brief Gets the value of LastModifiedOn */
-	FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
+	FORCEINLINE FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
 	/** @brief Gets the value of LastModifiedOn */
-	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
+	FORCEINLINE const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
+	FORCEINLINE void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
 	/** @brief Sets the value of LastModifiedOn using move semantics */
-	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
+	FORCEINLINE void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
 };
 
 /** @} */

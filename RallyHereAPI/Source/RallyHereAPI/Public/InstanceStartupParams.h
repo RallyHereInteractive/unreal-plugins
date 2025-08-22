@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Map{  };
 	/** @brief Gets the value of Map */
-	FString& GetMap() { return Map; }
+	FORCEINLINE FString& GetMap() { return Map; }
 	/** @brief Gets the value of Map */
-	const FString& GetMap() const { return Map; }
+	FORCEINLINE const FString& GetMap() const { return Map; }
 	/** @brief Sets the value of Map */
-	void SetMap(const FString& NewValue) { Map = NewValue;   }
+	FORCEINLINE void SetMap(const FString& NewValue) { Map = NewValue;   }
 	/** @brief Sets the value of Map using move semantics */
-	void SetMap(FString&& NewValue) { Map = NewValue;   }
+	FORCEINLINE void SetMap(FString&& NewValue) { Map = NewValue;   }
 
 	/** @brief Game mode for the instance to spawn in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,37 +58,35 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Mode_IsSet{ false };
 	/** @brief Gets the value of Mode_Optional, regardless of it having been set */
-	FString& GetMode() { return Mode_Optional; }
+	FORCEINLINE FString& GetMode() { return Mode_Optional; }
 	/** @brief Gets the value of Mode_Optional, regardless of it having been set */
-	const FString& GetMode() const { return Mode_Optional; }
+	FORCEINLINE const FString& GetMode() const { return Mode_Optional; }
 	/** @brief Gets the value of Mode_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetMode(const FString& DefaultValue) const { if (Mode_IsSet) return Mode_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetMode(const FString& DefaultValue) const { if (Mode_IsSet) return Mode_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Mode_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMode(FString& OutValue) const { if (Mode_IsSet) OutValue = Mode_Optional; return Mode_IsSet; }
+	FORCEINLINE bool GetMode(FString& OutValue) const { if (Mode_IsSet) OutValue = Mode_Optional; return Mode_IsSet; }
 	/** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetModeOrNull() { if (Mode_IsSet) return (&Mode_Optional); return nullptr; }
+	FORCEINLINE FString* GetModeOrNull() { if (Mode_IsSet) return (&Mode_Optional); return nullptr; }
 	/** @brief Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetModeOrNull() const { if (Mode_IsSet) return (&Mode_Optional); return nullptr; }
+	FORCEINLINE const FString* GetModeOrNull() const { if (Mode_IsSet) return (&Mode_Optional); return nullptr; }
 	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true */
-	void SetMode(const FString& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
+	FORCEINLINE void SetMode(const FString& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
 	/** @brief Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics */
-	void SetMode(FString&& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
+	FORCEINLINE void SetMode(FString&& NewValue) { Mode_Optional = NewValue; Mode_IsSet = true;  }
 	/** @brief Clears the value of Mode_Optional and sets Mode_IsSet to false */
 	void ClearMode() { Mode_IsSet = false;  }
-	/** @brief Checks whether Mode_Optional has been set */
-	bool IsModeSet() const { return Mode_IsSet; }
 
 	/** @brief Additional commandline parameters for the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MiscParams{  };
 	/** @brief Gets the value of MiscParams */
-	FString& GetMiscParams() { return MiscParams; }
+	FORCEINLINE FString& GetMiscParams() { return MiscParams; }
 	/** @brief Gets the value of MiscParams */
-	const FString& GetMiscParams() const { return MiscParams; }
+	FORCEINLINE const FString& GetMiscParams() const { return MiscParams; }
 	/** @brief Sets the value of MiscParams */
-	void SetMiscParams(const FString& NewValue) { MiscParams = NewValue;   }
+	FORCEINLINE void SetMiscParams(const FString& NewValue) { MiscParams = NewValue;   }
 	/** @brief Sets the value of MiscParams using move semantics */
-	void SetMiscParams(FString&& NewValue) { MiscParams = NewValue;   }
+	FORCEINLINE void SetMiscParams(FString&& NewValue) { MiscParams = NewValue;   }
 
 	/** @brief Custom data to pass through to the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -97,25 +95,23 @@ struct RALLYHEREAPI_API FRHAPI_InstanceStartupParams : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

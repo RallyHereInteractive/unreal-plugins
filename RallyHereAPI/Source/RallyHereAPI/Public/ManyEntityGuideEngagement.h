@@ -46,25 +46,23 @@ struct RALLYHEREAPI_API FRHAPI_ManyEntityGuideEngagement : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Results_IsSet{ false };
 	/** @brief Gets the value of Results_Optional, regardless of it having been set */
-	TArray<FRHAPI_EntityGuideEngagement>& GetResults() { return Results_Optional; }
+	FORCEINLINE TArray<FRHAPI_EntityGuideEngagement>& GetResults() { return Results_Optional; }
 	/** @brief Gets the value of Results_Optional, regardless of it having been set */
-	const TArray<FRHAPI_EntityGuideEngagement>& GetResults() const { return Results_Optional; }
+	FORCEINLINE const TArray<FRHAPI_EntityGuideEngagement>& GetResults() const { return Results_Optional; }
 	/** @brief Gets the value of Results_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_EntityGuideEngagement>& GetResults(const TArray<FRHAPI_EntityGuideEngagement>& DefaultValue) const { if (Results_IsSet) return Results_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_EntityGuideEngagement>& GetResults(const TArray<FRHAPI_EntityGuideEngagement>& DefaultValue) const { if (Results_IsSet) return Results_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Results_Optional and returns true if it has been set, otherwise returns false */
-	bool GetResults(TArray<FRHAPI_EntityGuideEngagement>& OutValue) const { if (Results_IsSet) OutValue = Results_Optional; return Results_IsSet; }
+	FORCEINLINE bool GetResults(TArray<FRHAPI_EntityGuideEngagement>& OutValue) const { if (Results_IsSet) OutValue = Results_Optional; return Results_IsSet; }
 	/** @brief Returns a pointer to Results_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_EntityGuideEngagement>* GetResultsOrNull() { if (Results_IsSet) return (&Results_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_EntityGuideEngagement>* GetResultsOrNull() { if (Results_IsSet) return (&Results_Optional); return nullptr; }
 	/** @brief Returns a pointer to Results_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_EntityGuideEngagement>* GetResultsOrNull() const { if (Results_IsSet) return (&Results_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_EntityGuideEngagement>* GetResultsOrNull() const { if (Results_IsSet) return (&Results_Optional); return nullptr; }
 	/** @brief Sets the value of Results_Optional and also sets Results_IsSet to true */
-	void SetResults(const TArray<FRHAPI_EntityGuideEngagement>& NewValue) { Results_Optional = NewValue; Results_IsSet = true;  }
+	FORCEINLINE void SetResults(const TArray<FRHAPI_EntityGuideEngagement>& NewValue) { Results_Optional = NewValue; Results_IsSet = true;  }
 	/** @brief Sets the value of Results_Optional and also sets Results_IsSet to true using move semantics */
-	void SetResults(TArray<FRHAPI_EntityGuideEngagement>&& NewValue) { Results_Optional = NewValue; Results_IsSet = true;  }
+	FORCEINLINE void SetResults(TArray<FRHAPI_EntityGuideEngagement>&& NewValue) { Results_Optional = NewValue; Results_IsSet = true;  }
 	/** @brief Clears the value of Results_Optional and sets Results_IsSet to false */
 	void ClearResults() { Results_IsSet = false;  }
-	/** @brief Checks whether Results_Optional has been set */
-	bool IsResultsSet() const { return Results_IsSet; }
 };
 
 /** @} */

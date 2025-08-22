@@ -46,25 +46,23 @@ struct RALLYHEREAPI_API FRHAPI_ManyPlayerOrderResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OrderIds_IsSet{ false };
 	/** @brief Gets the value of OrderIds_Optional, regardless of it having been set */
-	TArray<FString>& GetOrderIds() { return OrderIds_Optional; }
+	FORCEINLINE TArray<FString>& GetOrderIds() { return OrderIds_Optional; }
 	/** @brief Gets the value of OrderIds_Optional, regardless of it having been set */
-	const TArray<FString>& GetOrderIds() const { return OrderIds_Optional; }
+	FORCEINLINE const TArray<FString>& GetOrderIds() const { return OrderIds_Optional; }
 	/** @brief Gets the value of OrderIds_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FString>& GetOrderIds(const TArray<FString>& DefaultValue) const { if (OrderIds_IsSet) return OrderIds_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FString>& GetOrderIds(const TArray<FString>& DefaultValue) const { if (OrderIds_IsSet) return OrderIds_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OrderIds_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOrderIds(TArray<FString>& OutValue) const { if (OrderIds_IsSet) OutValue = OrderIds_Optional; return OrderIds_IsSet; }
+	FORCEINLINE bool GetOrderIds(TArray<FString>& OutValue) const { if (OrderIds_IsSet) OutValue = OrderIds_Optional; return OrderIds_IsSet; }
 	/** @brief Returns a pointer to OrderIds_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FString>* GetOrderIdsOrNull() { if (OrderIds_IsSet) return (&OrderIds_Optional); return nullptr; }
+	FORCEINLINE TArray<FString>* GetOrderIdsOrNull() { if (OrderIds_IsSet) return (&OrderIds_Optional); return nullptr; }
 	/** @brief Returns a pointer to OrderIds_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FString>* GetOrderIdsOrNull() const { if (OrderIds_IsSet) return (&OrderIds_Optional); return nullptr; }
+	FORCEINLINE const TArray<FString>* GetOrderIdsOrNull() const { if (OrderIds_IsSet) return (&OrderIds_Optional); return nullptr; }
 	/** @brief Sets the value of OrderIds_Optional and also sets OrderIds_IsSet to true */
-	void SetOrderIds(const TArray<FString>& NewValue) { OrderIds_Optional = NewValue; OrderIds_IsSet = true;  }
+	FORCEINLINE void SetOrderIds(const TArray<FString>& NewValue) { OrderIds_Optional = NewValue; OrderIds_IsSet = true;  }
 	/** @brief Sets the value of OrderIds_Optional and also sets OrderIds_IsSet to true using move semantics */
-	void SetOrderIds(TArray<FString>&& NewValue) { OrderIds_Optional = NewValue; OrderIds_IsSet = true;  }
+	FORCEINLINE void SetOrderIds(TArray<FString>&& NewValue) { OrderIds_Optional = NewValue; OrderIds_IsSet = true;  }
 	/** @brief Clears the value of OrderIds_Optional and sets OrderIds_IsSet to false */
 	void ClearOrderIds() { OrderIds_IsSet = false;  }
-	/** @brief Checks whether OrderIds_Optional has been set */
-	bool IsOrderIdsSet() const { return OrderIds_IsSet; }
 };
 
 /** @} */

@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_RecentlyPlayedWithResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Players_IsSet{ false };
 	/** @brief Gets the value of Players_Optional, regardless of it having been set */
-	TArray<FRHAPI_RecentlyPlayedPlayer>& GetPlayers() { return Players_Optional; }
+	FORCEINLINE TArray<FRHAPI_RecentlyPlayedPlayer>& GetPlayers() { return Players_Optional; }
 	/** @brief Gets the value of Players_Optional, regardless of it having been set */
-	const TArray<FRHAPI_RecentlyPlayedPlayer>& GetPlayers() const { return Players_Optional; }
+	FORCEINLINE const TArray<FRHAPI_RecentlyPlayedPlayer>& GetPlayers() const { return Players_Optional; }
 	/** @brief Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_RecentlyPlayedPlayer>& GetPlayers(const TArray<FRHAPI_RecentlyPlayedPlayer>& DefaultValue) const { if (Players_IsSet) return Players_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_RecentlyPlayedPlayer>& GetPlayers(const TArray<FRHAPI_RecentlyPlayedPlayer>& DefaultValue) const { if (Players_IsSet) return Players_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlayers(TArray<FRHAPI_RecentlyPlayedPlayer>& OutValue) const { if (Players_IsSet) OutValue = Players_Optional; return Players_IsSet; }
+	FORCEINLINE bool GetPlayers(TArray<FRHAPI_RecentlyPlayedPlayer>& OutValue) const { if (Players_IsSet) OutValue = Players_Optional; return Players_IsSet; }
 	/** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_RecentlyPlayedPlayer>* GetPlayersOrNull() { if (Players_IsSet) return (&Players_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_RecentlyPlayedPlayer>* GetPlayersOrNull() { if (Players_IsSet) return (&Players_Optional); return nullptr; }
 	/** @brief Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_RecentlyPlayedPlayer>* GetPlayersOrNull() const { if (Players_IsSet) return (&Players_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_RecentlyPlayedPlayer>* GetPlayersOrNull() const { if (Players_IsSet) return (&Players_Optional); return nullptr; }
 	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true */
-	void SetPlayers(const TArray<FRHAPI_RecentlyPlayedPlayer>& NewValue) { Players_Optional = NewValue; Players_IsSet = true;  }
+	FORCEINLINE void SetPlayers(const TArray<FRHAPI_RecentlyPlayedPlayer>& NewValue) { Players_Optional = NewValue; Players_IsSet = true;  }
 	/** @brief Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics */
-	void SetPlayers(TArray<FRHAPI_RecentlyPlayedPlayer>&& NewValue) { Players_Optional = NewValue; Players_IsSet = true;  }
+	FORCEINLINE void SetPlayers(TArray<FRHAPI_RecentlyPlayedPlayer>&& NewValue) { Players_Optional = NewValue; Players_IsSet = true;  }
 	/** @brief Clears the value of Players_Optional and sets Players_IsSet to false */
 	void ClearPlayers() { Players_IsSet = false;  }
-	/** @brief Checks whether Players_Optional has been set */
-	bool IsPlayersSet() const { return Players_IsSet; }
 };
 
 /** @} */

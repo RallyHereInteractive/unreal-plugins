@@ -43,49 +43,49 @@ struct RALLYHEREAPI_API FRHAPI_PublicKey : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Kid{  };
 	/** @brief Gets the value of Kid */
-	FString& GetKid() { return Kid; }
+	FORCEINLINE FString& GetKid() { return Kid; }
 	/** @brief Gets the value of Kid */
-	const FString& GetKid() const { return Kid; }
+	FORCEINLINE const FString& GetKid() const { return Kid; }
 	/** @brief Sets the value of Kid */
-	void SetKid(const FString& NewValue) { Kid = NewValue;   }
+	FORCEINLINE void SetKid(const FString& NewValue) { Kid = NewValue;   }
 	/** @brief Sets the value of Kid using move semantics */
-	void SetKid(FString&& NewValue) { Kid = NewValue;   }
+	FORCEINLINE void SetKid(FString&& NewValue) { Kid = NewValue;   }
 
 	/** @brief Key Type - see https://datatracker.ietf.org/doc/html/rfc7517#section-4.1 */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Kty{  };
 	/** @brief Gets the value of Kty */
-	FString& GetKty() { return Kty; }
+	FORCEINLINE FString& GetKty() { return Kty; }
 	/** @brief Gets the value of Kty */
-	const FString& GetKty() const { return Kty; }
+	FORCEINLINE const FString& GetKty() const { return Kty; }
 	/** @brief Sets the value of Kty */
-	void SetKty(const FString& NewValue) { Kty = NewValue;   }
+	FORCEINLINE void SetKty(const FString& NewValue) { Kty = NewValue;   }
 	/** @brief Sets the value of Kty using move semantics */
-	void SetKty(FString&& NewValue) { Kty = NewValue;   }
+	FORCEINLINE void SetKty(FString&& NewValue) { Kty = NewValue;   }
 
 	/** @brief Modulus - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1 */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString N{  };
 	/** @brief Gets the value of N */
-	FString& GetN() { return N; }
+	FORCEINLINE FString& GetN() { return N; }
 	/** @brief Gets the value of N */
-	const FString& GetN() const { return N; }
+	FORCEINLINE const FString& GetN() const { return N; }
 	/** @brief Sets the value of N */
-	void SetN(const FString& NewValue) { N = NewValue;   }
+	FORCEINLINE void SetN(const FString& NewValue) { N = NewValue;   }
 	/** @brief Sets the value of N using move semantics */
-	void SetN(FString&& NewValue) { N = NewValue;   }
+	FORCEINLINE void SetN(FString&& NewValue) { N = NewValue;   }
 
 	/** @brief Exponent - see https://www.rfc-editor.org/rfc/rfc7518.html#section-6.3.1 */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString E{  };
 	/** @brief Gets the value of E */
-	FString& GetE() { return E; }
+	FORCEINLINE FString& GetE() { return E; }
 	/** @brief Gets the value of E */
-	const FString& GetE() const { return E; }
+	FORCEINLINE const FString& GetE() const { return E; }
 	/** @brief Sets the value of E */
-	void SetE(const FString& NewValue) { E = NewValue;   }
+	FORCEINLINE void SetE(const FString& NewValue) { E = NewValue;   }
 	/** @brief Sets the value of E using move semantics */
-	void SetE(FString&& NewValue) { E = NewValue;   }
+	FORCEINLINE void SetE(FString&& NewValue) { E = NewValue;   }
 };
 
 /** @} */

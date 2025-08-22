@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventList : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_EntitlementEvent> Events{  };
 	/** @brief Gets the value of Events */
-	TArray<FRHAPI_EntitlementEvent>& GetEvents() { return Events; }
+	FORCEINLINE TArray<FRHAPI_EntitlementEvent>& GetEvents() { return Events; }
 	/** @brief Gets the value of Events */
-	const TArray<FRHAPI_EntitlementEvent>& GetEvents() const { return Events; }
+	FORCEINLINE const TArray<FRHAPI_EntitlementEvent>& GetEvents() const { return Events; }
 	/** @brief Sets the value of Events */
-	void SetEvents(const TArray<FRHAPI_EntitlementEvent>& NewValue) { Events = NewValue;   }
+	FORCEINLINE void SetEvents(const TArray<FRHAPI_EntitlementEvent>& NewValue) { Events = NewValue;   }
 	/** @brief Sets the value of Events using move semantics */
-	void SetEvents(TArray<FRHAPI_EntitlementEvent>&& NewValue) { Events = NewValue;   }
+	FORCEINLINE void SetEvents(TArray<FRHAPI_EntitlementEvent>&& NewValue) { Events = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Cursor_Optional{  };
@@ -61,29 +61,27 @@ struct RALLYHEREAPI_API FRHAPI_EntitlementEventList : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Cursor_IsNull{ false };
 	/** @brief Gets the value of Cursor_Optional, regardless of it having been set */
-	FString& GetCursor() { return Cursor_Optional; }
+	FORCEINLINE FString& GetCursor() { return Cursor_Optional; }
 	/** @brief Gets the value of Cursor_Optional, regardless of it having been set */
-	const FString& GetCursor() const { return Cursor_Optional; }
+	FORCEINLINE const FString& GetCursor() const { return Cursor_Optional; }
 	/** @brief Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetCursor(const FString& DefaultValue) const { if (Cursor_IsSet) return Cursor_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetCursor(const FString& DefaultValue) const { if (Cursor_IsSet) return Cursor_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCursor(FString& OutValue) const { if (Cursor_IsSet && !Cursor_IsNull) OutValue = Cursor_Optional; return Cursor_IsSet; }
+	FORCEINLINE bool GetCursor(FString& OutValue) const { if (Cursor_IsSet && !Cursor_IsNull) OutValue = Cursor_Optional; return Cursor_IsSet; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetCursorOrNull() { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
+	FORCEINLINE FString* GetCursorOrNull() { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
+	FORCEINLINE const FString* GetCursorOrNull() const { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
+	FORCEINLINE void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
-	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
+	FORCEINLINE void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
 	/** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_IsSet = false; Cursor_IsNull = false; }
-	/** @brief Checks whether Cursor_Optional has been set */
-	bool IsCursorSet() const { return Cursor_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCursorToNull() { Cursor_IsSet = true; Cursor_IsNull = true; }
+	FORCEINLINE void SetCursorToNull() { Cursor_IsSet = true; Cursor_IsNull = true; }
 	/** @brief Checks whether Cursor_Optional is set to null */
-	bool IsCursorNull() const { return Cursor_IsSet && Cursor_IsNull; }
+	FORCEINLINE bool IsCursorNull() const { return Cursor_IsSet && Cursor_IsNull; }
 };
 
 /** @} */

@@ -24,6 +24,9 @@
 #include "Async/TaskGraphInterfaces.h"
 #include "UObject/Package.h"
 #include "Interfaces/IAnalyticsProvider.h"
+#include "RallyHereAPIBaseModel.h"
+#include "RH_ConfigSubsystem.h"
+#include "RH_GameInstanceSubsystem.h"
 
 FString ToString(ERHAPI_LoginResult Val)
 {
@@ -210,35 +213,41 @@ void URH_LocalPlayerLoginSubsystem::PostResults(FRH_PendingLoginRequest& Req, co
 	{
 		auto AnalyticsProvider = LPSubsystem->GetAnalyticsProvider();
 
-		// use local player subsystem accessor for ease of use, rather than cracking auth context ourselves
-		FGuid PlayerUuid = LPSubsystem->GetPlayerUuid();
-		AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens) : TEXT(""));
-
-		RHStandardEvents::FLoginCompleteEvent Event;
-
-		// pull platform user id and platform id from local player subsystem
-		Event.PlatformId = EnumToString(LPSubsystem->GetPlayerPlatformId().PlatformType);
-		Event.PlatformUserId = LPSubsystem->GetPlayerPlatformId().UserId;
-		Event.Status = RH_GETENUMSTRING("/Script/RallyhereIntegration", "ERHAPI_LoginResult", Res.Result);
-		Event.Reason = Res.OSSErrorMessage.Len() > 0 ? Res.OSSErrorMessage : Res.RallyHereErrorCode;
-
-		// TODO: add timing
-
-		const auto AuthContext = LPSubsystem->GetAuthContext();
-		const auto RHLoginResult = AuthContext->GetLoginResult();
-		if (RHLoginResult.IsSet())
+		if (AnalyticsProvider)
 		{
-			if (RHLoginResult->GetDisplayNameOrNull() != nullptr)
-			{
-				Event.PlatformDisplayName = *RHLoginResult->GetDisplayNameOrNull();
-			}
-			if (RHLoginResult->GetPersonIdOrNull() != nullptr)
-			{
-				Event.PersonId = *RHLoginResult->GetPersonIdOrNull()->ToString(EGuidFormats::DigitsWithHyphens);
-			}
-		}
+			// use local player subsystem accessor for ease of use, rather than cracking auth context ourselves
+			FGuid PlayerUuid = LPSubsystem->GetPlayerUuid();
+			AnalyticsProvider->SetUserID(PlayerUuid.IsValid() ? PlayerUuid.ToString(EGuidFormats::DigitsWithHyphensLower) : TEXT(""));
 
-		Event.EmitTo(AnalyticsProvider);
+			RHStandardEvents::FLoginCompleteEvent Event;
+
+			// pull platform user id and platform id from local player subsystem
+			Event.PlatformId = EnumToString(LPSubsystem->GetPlayerPlatformId().PlatformType);
+			Event.PlatformUserId = LPSubsystem->GetPlayerPlatformId().UserId;
+			Event.Status = RH_GETENUMSTRING("/Script/RallyhereIntegration", "ERHAPI_LoginResult", Res.Result);
+			Event.Reason = Res.OSSErrorMessage.Len() > 0 ? Res.OSSErrorMessage : Res.RallyHereErrorCode;
+
+			// TODO: add timing
+
+			const auto AuthContext = LPSubsystem->GetAuthContext();
+			if (AuthContext)
+			{
+				const auto RHLoginResult = AuthContext->GetLoginResult();
+				if (RHLoginResult.IsSet())
+				{
+					if (RHLoginResult->GetDisplayNameOrNull() != nullptr)
+					{
+						Event.PlatformDisplayName = *RHLoginResult->GetDisplayNameOrNull();
+					}
+					if (RHLoginResult->GetPersonIdOrNull() != nullptr)
+					{
+						Event.PersonId = *RHLoginResult->GetPersonIdOrNull()->ToString(EGuidFormats::DigitsWithHyphensLower);
+					}
+				}
+			}
+
+			Event.EmitTo(AnalyticsProvider);
+		}
 	}
 
 	if (Res.Result == ERHAPI_LoginResult::Success)
@@ -911,8 +920,31 @@ void URH_LocalPlayerLoginSubsystem::DoRallyHereLoginWithIpAddress(FRH_PendingLog
 	AuthContext->SetClientSecret(FRallyHereIntegrationModule::Get().GetClientSecret());
 
     RallyHereAPI::FRequest_Login Request;
-    Request.SetShouldRetry();
-	Request.SetDisableLoginRetryOnAuthorizationFailure(true);
+    RallyHereAPI::FHttpRetryParams HttpRetryParams;
+    if (GWorld != nullptr)
+    {
+        if (const UGameInstance* pGameInstance = GWorld->GetGameInstance())
+        {
+            if (URH_GameInstanceSubsystem* pGISubsystem = pGameInstance->GetSubsystem<URH_GameInstanceSubsystem>())
+            {
+                if (URH_ConfigSubsystem* pRH_ConfigSubsystem = pGISubsystem->GetConfigSubsystem())
+                {
+                    FString Value;
+                    if (pRH_ConfigSubsystem->GetKV(TEXT("LoginRetries"), Value) && Value.IsNumeric())
+                    {
+                        HttpRetryParams.RetryLimitCountOverride = FCString::Atoi(*Value);
+                    }
+                    
+                    if (pRH_ConfigSubsystem->GetKV(TEXT("LoginTimeout"), Value) && Value.IsNumeric())
+                    {
+                        HttpRetryParams.RetryTimeoutRelativeSecondsOverride = FCString::Atoi(*Value);
+                    }
+                }
+            }
+        }
+    }
+    Request.SetShouldRetry(HttpRetryParams);
+    Request.SetDisableLoginRetryOnAuthorizationFailure(true);
     Request.AuthContext = AuthContext;
     Request.LoginRequestV1.SetIncludeRefresh(true);
     Request.LoginRequestV1.SetAcceptEula(Req.bAcceptEULA);
@@ -1015,6 +1047,7 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
     	PostResults(Req, Req.CreateResult(ERHAPI_LoginResult::Fail_InvalidAuthContext));
         return;
     }
+
 	if (!Req.OSSUniqueId.IsValid())
 	{
 		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] OSSUniqueId is invalid"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1043,6 +1076,7 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
 
 		CheckCrossplayPrivilege(*Req.OSSUniqueId);
 		CheckCommunicationPrivilege(*Req.OSSUniqueId);
+		CheckUserGeneratedContentPrivilege(*Req.OSSUniqueId); //$$ DLF - Added support for User Generated Content check (required by Sony Cert)
 		FCoreDelegates::ApplicationHasReactivatedDelegate.AddUObject(this, &URH_LocalPlayerLoginSubsystem::HandleAppReactivated);
 
         UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s] Success"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -1053,32 +1087,25 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
     {
 		FRHAPI_LoginCompleteMessage Msg;
 		Resp.TryGetContentFor403(Msg);
-		bool NeedsEula = false, NeedsTos = false, NeedsPrivacyPolicy = false;
-		if ((Msg.GetNeedsEula(NeedsEula) && NeedsEula) || (Msg.GetNeedsTos(NeedsTos) && NeedsTos) ||
-			(Msg.GetNeedsPrivacyPolicy(NeedsPrivacyPolicy) && NeedsPrivacyPolicy))
-		{
-			FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_MustAcceptAgreements);
-			Result.bMustAcceptEULA = NeedsEula;
-			Result.bMustAcceptTOS = NeedsTos;
-			Result.bMustAcceptPP = NeedsPrivacyPolicy;
-			Result.RallyHereErrorCode = Msg.GetErrorCode();
-			UE_LOG(LogRallyHereIntegration,
-				   Log,
-				   TEXT("[%s] User needs to accept eula=%s tos=%s pp=%s (%s: %s)"),
-				   ANSI_TO_TCHAR(__FUNCTION__),
-				   GetBoolStr(Result.bMustAcceptEULA),
-				   GetBoolStr(Result.bMustAcceptTOS),
-				   GetBoolStr(Result.bMustAcceptPP),
-				   *Msg.GetErrorCode(),
-				   *Msg.GetDesc());
-			PostResults(Req, Result);
-			return;
-		}
-
-        UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Denied for error code %s: %s"), ANSI_TO_TCHAR(__FUNCTION__),
-               *Msg.GetErrorCode(), *Msg.GetDesc());
-		FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_RHDenied);
+		const bool NeedsEula = Msg.GetNeedsEula();
+    	const bool NeedsTos = Msg.GetNeedsTos();
+    	const bool NeedsPrivacyPolicy = Msg.GetNeedsPrivacyPolicy();
+		FRH_LoginResult Result = Req.CreateResult((NeedsEula || NeedsTos || NeedsPrivacyPolicy) ? ERHAPI_LoginResult::Fail_MustAcceptAgreements : ERHAPI_LoginResult::Fail_RHDenied);
+		Result.bMustAcceptEULA = NeedsEula;
+		Result.bMustAcceptTOS = NeedsTos;
+		Result.bMustAcceptPP = NeedsPrivacyPolicy;
+		Result.Restrictions = Msg.GetRestrictions();
 		Result.RallyHereErrorCode = Msg.GetErrorCode();
+		UE_LOG(LogRallyHereIntegration,
+			   Log,
+			   TEXT("[%s] Denied Login - eula=%s tos=%s pp=%s restrictions=%d (%s: %s)"),
+			   ANSI_TO_TCHAR(__FUNCTION__),
+			   GetBoolStr(Result.bMustAcceptEULA),
+			   GetBoolStr(Result.bMustAcceptTOS),
+			   GetBoolStr(Result.bMustAcceptPP),
+			   Result.Restrictions.Num(),
+			   *Msg.GetErrorCode(),
+			   *Msg.GetDesc());
         PostResults(Req, Result);
     }
     else
@@ -1198,10 +1225,55 @@ void URH_LocalPlayerLoginSubsystem::HandleCheckCommunicationPrivilegeComplete(co
 				}
 				break;
 			}
+
+			SCOPED_NAMED_EVENT(RallyHere_BroadcastOnCommunicationSettingChanged, FColor::Purple);
+			OnCommunicationSettingChanged.Broadcast();
+			BLUEPRINT_OnCommunicationSettingChanged.Broadcast();
+		}
 		}
 	}
+
+void URH_LocalPlayerLoginSubsystem::CheckUserGeneratedContentPrivilege(const FUniqueNetId& UniqueId)
+{
+	auto Identity = GetLoginOSS() ? GetLoginOSS()->GetIdentityInterface() : nullptr;
+	if (!Identity.IsValid())
+	{
+		return;
+	}
+
+	Identity->GetUserPrivilege(UniqueId,
+		EUserPrivileges::CanUseUserGeneratedContent,
+		IOnlineIdentity::FOnGetUserPrivilegeCompleteDelegate::CreateUObject(this, &URH_LocalPlayerLoginSubsystem::HandleCheckUserGeneratedContentPrivilegeComplete));
 }
 
+void URH_LocalPlayerLoginSubsystem::HandleCheckUserGeneratedContentPrivilegeComplete(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, uint32 PrivilegeResults)
+{
+	if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
+	{
+		if (UserId == LPSS->GetOSSUniqueId())
+		{
+			switch ((IOnlineIdentity::EPrivilegeResults)PrivilegeResults)
+			{
+			case IOnlineIdentity::EPrivilegeResults::NoFailures:
+				{
+					bUserGeneratedContentEnabled = true;
+				}
+				break;
+			default:
+				{
+					bUserGeneratedContentEnabled = false;
+					const uint32 UGCRestrictionMask = (uint32)IOnlineIdentity::EPrivilegeResults::UGCRestriction | (uint32)IOnlineIdentity::EPrivilegeResults::AgeRestrictionFailure;
+					bHasSpecificUGCRestriction = (PrivilegeResults & UGCRestrictionMask) != 0;
+				}
+				break;
+			}
+		}
+	}
+
+	SCOPED_NAMED_EVENT(RallyHere_BroadcastOnUserGeneratedContentSettingChanged, FColor::Purple);
+	OnUserGeneratedContentSettingChanged.Broadcast();
+	BLUEPRINT_OnUserGeneratedContentSettingChanged.Broadcast();
+}
 
 void URH_LocalPlayerLoginSubsystem::HandleAppReactivated()
 {
@@ -1230,6 +1302,7 @@ void URH_LocalPlayerLoginSubsystem::HandleAppReactivatedGameThread()
 						{
 							CheckCrossplayPrivilege(*UniqueId);
 							CheckCommunicationPrivilege(*UniqueId);
+							CheckUserGeneratedContentPrivilege(*UniqueId);
 						}
 					}
 				}), 1.0f, false);

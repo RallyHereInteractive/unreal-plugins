@@ -204,7 +204,7 @@ public:
 	/** @brief Gets a description of the template, display its id for debugging. */
 	FString GetDescription() const
 	{
-		return FString::Printf(TEXT("Matchmaking Template Group: %s"), *GetTemplateGroupId().ToString(EGuidFormats::DigitsWithHyphens));
+		return FString::Printf(TEXT("Matchmaking Template Group: %s"), *GetTemplateGroupId().ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 };
 
@@ -287,7 +287,7 @@ public:
 	/** @brief Gets a description of the template, display its id for debugging. */
 	FString GetDescription() const
 	{
-		return FString::Printf(TEXT("Instance Launch Template: %s"), *GetInstanceRequestTemplateId().ToString(EGuidFormats::DigitsWithHyphens));
+		return FString::Printf(TEXT("Instance Launch Template: %s"), *GetInstanceRequestTemplateId().ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 };
 

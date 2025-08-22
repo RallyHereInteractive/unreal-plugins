@@ -367,6 +367,8 @@ public:
 	typedef RallyHereAPI::Traits_GetCatalogVendorsAll TGetCatalogVendorsAll;
 	/** @brief Type Define for Get Catalog Item calls. */
 	typedef RallyHereAPI::Traits_GetCatalogItem TGetCatalogItem;
+	/** @brief Type Define for Get Catalog Loot calls. */
+	typedef RallyHereAPI::Traits_GetCatalogLoot TGetCatalogLoot;
 
 	/**
 	 * @brief Initialize the subsystem.
@@ -401,6 +403,15 @@ public:
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Item", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetCatalogItem(int32 ItemId, const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogItem(ItemId, Delegate); }
+	/**
+	* @brief Gets a specific loot from the catalog.
+	* @param [in] ItemId The loot id of the item to get.
+	* @param [in] Delegate Callback when the API call is complete.
+	*/
+	void GetCatalogLoot(int32 LootId, const FRH_CatalogCallBlock& Delegate = FRH_CatalogCallBlock());
+	/** @private */
+	UFUNCTION(BlueprintCallable, Category = "Catalog Subsystem", meta = (DisplayName = "Get Catalog Loot", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GetCatalogLoot(int32 ItemId, const FRH_CatalogCallDynamicDelegate& Delegate) { GetCatalogLoot(ItemId, Delegate); }
 	/**
 	* @brief Gets all of the inventory bucket rulesets from the catalog.
 	* @param [in] Delegate Callback when the API call is complete.
@@ -450,12 +461,14 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	bool GetXpTable(int32 XpTableId, FRHAPI_XpTable& XpTable) const;
+	const FRHAPI_XpTable* GetXpTableById(int32 XpTableId) const { return XpTables.Find(XpTableId); }
 	/**
 	* @brief Gets a cached vendor item by its loot id.
 	* @param [in] LootId The Loot Id used to look up the vendor item.
 	* @param [out] LootItem The loot item to be returned.
 	* @return If true, the loot item was found.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	bool GetVendorItemByLootId(int32 LootId, FRHAPI_Loot& LootItem) const
 	{
 		if (auto const& findItem = CatalogLootItems.Find(LootId))
@@ -466,10 +479,29 @@ public:
 		return false;
 	}
 	/**
+	* @brief Gets a cached loot by its loot id.
+	* @param [in] LootId The Loot Id used to look up the vendor item.
+	* @return LootItem The loot item if found, else null
+	*/
+	FRHAPI_Loot* GetLootByLootId(int32 LootId)
+	{
+		return CatalogLootItems.Find(LootId);
+	}
+	/**
+	* @brief Gets a cached loot by its loot id.
+	* @param [in] LootId The Loot Id used to look up the vendor item.
+	* @return LootItem The loot item if found, else null
+	*/
+	const FRHAPI_Loot* GetLootByLootId(int32 LootId) const
+	{
+		return CatalogLootItems.Find(LootId);
+	}
+	/**
 	* @brief Gets a cached catalog item by its item id.
 	* @param [in] ItemId The Item Id used to look up the catalog item.
 	* @return The catalog item if found, otherwise nullptr.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	URH_CatalogItem* GetCatalogItemByItemId(int32 ItemId) const
 	{
 		if (auto const& findItem = CatalogItems.Find(ItemId))
@@ -484,6 +516,7 @@ public:
 	* @param [out] Vendor The vendor to be returned.
 	* @return If true, the vendor was found.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	bool GetVendorById(int32 VendorId, FRHAPI_Vendor& Vendor) const
 	{
 		if (auto const& findVendor = CatalogVendors.Find(VendorId))
@@ -499,6 +532,7 @@ public:
 	* @param [out] PricePoint The price point to be returned.
 	* @return If true, the price point was found.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	bool GetPricePointById(const FGuid& PricePointGuid, FRHAPI_PricePoint& PricePoint) const
 	{
 		if (PricePointGuid.IsValid())
@@ -517,7 +551,8 @@ public:
 	* @param [out] TimeFrame The time frame to be returned.
 	* @return If true, the time frame was found.
 	*/
-	bool GetPricePointById(int32 TimeFrameId, FRHAPI_TimeFrame& TimeFrame) const
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
+	bool GetTimeFrameById(int32 TimeFrameId, FRHAPI_TimeFrame& TimeFrame) const
 	{
 		if (auto const& findPricePoint = TimeFrames.Find(TimeFrameId))
 		{
@@ -533,30 +568,36 @@ public:
 	* @param [in] ItemInventoryBucket The bucket the item is in that is being evaluated.
 	* @return If true, the item can be used for the specified bucket.
 	*/
-	bool CanRulesetUsePlatformForBucket(const FString& InventoryBucketRulesetId, ERHAPI_InventoryBucket TargetBucket, ERHAPI_InventoryBucket ItemInventoryBucket) const;
+	bool CanRulesetUsePlatformForBucket(const FString& InventoryBucketRulesetId, ERHAPI_InventoryBucket TargetBucket, ERHAPI_InventoryBucket ItemInventoryBucket, bool* OutSuccess = nullptr) const;
 	/**
 	* @brief Gets the cached vendors.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	const TMap<int32, FRHAPI_Vendor>& GetVendors() const { return CatalogVendors; }
 	/**
 	* @brief Gets the cached catalog items
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	const TMap<int32, URH_CatalogItem*>& GetCatalogItems() const { return CatalogItems; }
 	/**
 	* @brief Gets the xp tables.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	const TMap<int32, FRHAPI_XpTable>& GetXpTables() const { return XpTables; }
 	/**
 	* @brief Gets the cached inventory bucket rule sets.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	const TMap<FString, FRHAPI_InventoryBucketUseRuleSet>& GetInventoryBucketUseRuleSets() const { return InventoryBucketUseRuleSets; }
 	/**
 	* @brief Gets the cached price points.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	const TMap<FGuid, FRHAPI_PricePoint>& GetPricePoints() const { return CatalogPricePoints; }
 	/**
 	* @brief Gets the cached time frames.
 	*/
+	UFUNCTION(BlueprintPure, Category = "Catalog Subsystem")
 	const TMap<int32, FRHAPI_TimeFrame>& GetTimeFrames() const { return TimeFrames; }
 	/**
 	 * @brief Delegate that fires whenever a catalog item is added to the cashed catalog items.
@@ -626,6 +667,12 @@ protected:
 	*/
 	virtual void OnGetCatalogItemResponse(const TGetCatalogItem::Response& Resp, int32 ItemId);
 	/**
+	* @brief Handles the response to a Get Catalog Loot call.
+	* @param [in] Resp Response given for the call.
+	* @param [in] LootId The Loot Id being requested.
+	*/
+	virtual void OnGetCatalogLootResponse(const TGetCatalogLoot::Response& Resp, int32 LootId);
+	/**
 	* @brief Handles the response to a Get Catalog Inventory Bucked Use Rule Sets All call.
 	* @param [in] Resp Response given for the call.
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
@@ -689,6 +736,14 @@ protected:
 	 */
 	TMap<int32, TArray<FRH_CatalogCallBlock>> SubmittedGetCatalogItemCalls;
 	/**
+	 * @brief Array of GetCatalogItemCalls yet to be sent to the API layer.
+	 */
+	TMap<int32, TArray<FRH_CatalogCallBlock>> PendingGetCatalogLootCalls;
+	/**
+	 * @brief Array of GetCatalogItemCalls yet being executed by the API layer at this time.
+	 */
+	TMap<int32, TArray<FRH_CatalogCallBlock>> SubmittedGetCatalogLootCalls;
+	/**
 	 * @brief Parses Xp Tables response into the Xp Table Map.
 	 * @param [in] Content Xp Tables to parse.
 	 */
@@ -712,7 +767,7 @@ protected:
 	/** @brief Kick off pending requests to the API layer. */
 	virtual void Tick(float DeltaTime);
 	/** @brief Determine if there are pending requests. */
-	virtual bool IsTickable() const { return PendingGetCatalogItemCalls.Num() > 0; }
+	virtual bool IsTickable() const { return !PendingGetCatalogItemCalls.IsEmpty() || !PendingGetCatalogLootCalls.IsEmpty(); }
 	/** Gets the catalog subsystem stat Id. */
 	virtual TStatId GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(URH_CatalogSubsystem, STATGROUP_TaskGraphTasks); }
 };

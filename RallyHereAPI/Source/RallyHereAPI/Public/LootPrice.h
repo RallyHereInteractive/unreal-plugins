@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_LootPrice : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Breakpoints_IsSet{ false };
 	/** @brief Gets the value of Breakpoints_Optional, regardless of it having been set */
-	TArray<FRHAPI_LootPriceBreakpoint>& GetBreakpoints() { return Breakpoints_Optional; }
+	FORCEINLINE TArray<FRHAPI_LootPriceBreakpoint>& GetBreakpoints() { return Breakpoints_Optional; }
 	/** @brief Gets the value of Breakpoints_Optional, regardless of it having been set */
-	const TArray<FRHAPI_LootPriceBreakpoint>& GetBreakpoints() const { return Breakpoints_Optional; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceBreakpoint>& GetBreakpoints() const { return Breakpoints_Optional; }
 	/** @brief Gets the value of Breakpoints_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_LootPriceBreakpoint>& GetBreakpoints(const TArray<FRHAPI_LootPriceBreakpoint>& DefaultValue) const { if (Breakpoints_IsSet) return Breakpoints_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceBreakpoint>& GetBreakpoints(const TArray<FRHAPI_LootPriceBreakpoint>& DefaultValue) const { if (Breakpoints_IsSet) return Breakpoints_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Breakpoints_Optional and returns true if it has been set, otherwise returns false */
-	bool GetBreakpoints(TArray<FRHAPI_LootPriceBreakpoint>& OutValue) const { if (Breakpoints_IsSet) OutValue = Breakpoints_Optional; return Breakpoints_IsSet; }
+	FORCEINLINE bool GetBreakpoints(TArray<FRHAPI_LootPriceBreakpoint>& OutValue) const { if (Breakpoints_IsSet) OutValue = Breakpoints_Optional; return Breakpoints_IsSet; }
 	/** @brief Returns a pointer to Breakpoints_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_LootPriceBreakpoint>* GetBreakpointsOrNull() { if (Breakpoints_IsSet) return (&Breakpoints_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_LootPriceBreakpoint>* GetBreakpointsOrNull() { if (Breakpoints_IsSet) return (&Breakpoints_Optional); return nullptr; }
 	/** @brief Returns a pointer to Breakpoints_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_LootPriceBreakpoint>* GetBreakpointsOrNull() const { if (Breakpoints_IsSet) return (&Breakpoints_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_LootPriceBreakpoint>* GetBreakpointsOrNull() const { if (Breakpoints_IsSet) return (&Breakpoints_Optional); return nullptr; }
 	/** @brief Sets the value of Breakpoints_Optional and also sets Breakpoints_IsSet to true */
-	void SetBreakpoints(const TArray<FRHAPI_LootPriceBreakpoint>& NewValue) { Breakpoints_Optional = NewValue; Breakpoints_IsSet = true;  }
+	FORCEINLINE void SetBreakpoints(const TArray<FRHAPI_LootPriceBreakpoint>& NewValue) { Breakpoints_Optional = NewValue; Breakpoints_IsSet = true;  }
 	/** @brief Sets the value of Breakpoints_Optional and also sets Breakpoints_IsSet to true using move semantics */
-	void SetBreakpoints(TArray<FRHAPI_LootPriceBreakpoint>&& NewValue) { Breakpoints_Optional = NewValue; Breakpoints_IsSet = true;  }
+	FORCEINLINE void SetBreakpoints(TArray<FRHAPI_LootPriceBreakpoint>&& NewValue) { Breakpoints_Optional = NewValue; Breakpoints_IsSet = true;  }
 	/** @brief Clears the value of Breakpoints_Optional and sets Breakpoints_IsSet to false */
 	void ClearBreakpoints() { Breakpoints_IsSet = false;  }
-	/** @brief Checks whether Breakpoints_Optional has been set */
-	bool IsBreakpointsSet() const { return Breakpoints_IsSet; }
 
 	/** @brief Does the number of units being purchased need to be an exact match to the quantity on a Price Breakpoint? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -74,29 +72,25 @@ struct RALLYHEREAPI_API FRHAPI_LootPrice : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool StrictFlag_IsSet{ false };
 	/** @brief Gets the value of StrictFlag_Optional, regardless of it having been set */
-	bool& GetStrictFlag() { return StrictFlag_Optional; }
+	FORCEINLINE bool& GetStrictFlag() { return StrictFlag_Optional; }
 	/** @brief Gets the value of StrictFlag_Optional, regardless of it having been set */
-	const bool& GetStrictFlag() const { return StrictFlag_Optional; }
+	FORCEINLINE const bool& GetStrictFlag() const { return StrictFlag_Optional; }
 	/** @brief Gets the value of StrictFlag_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetStrictFlag(const bool& DefaultValue) const { if (StrictFlag_IsSet) return StrictFlag_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetStrictFlag(const bool& DefaultValue) const { if (StrictFlag_IsSet) return StrictFlag_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of StrictFlag_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStrictFlag(bool& OutValue) const { if (StrictFlag_IsSet) OutValue = StrictFlag_Optional; return StrictFlag_IsSet; }
+	FORCEINLINE bool GetStrictFlag(bool& OutValue) const { if (StrictFlag_IsSet) OutValue = StrictFlag_Optional; return StrictFlag_IsSet; }
 	/** @brief Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetStrictFlagOrNull() { if (StrictFlag_IsSet) return (&StrictFlag_Optional); return nullptr; }
+	FORCEINLINE bool* GetStrictFlagOrNull() { if (StrictFlag_IsSet) return (&StrictFlag_Optional); return nullptr; }
 	/** @brief Returns a pointer to StrictFlag_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetStrictFlagOrNull() const { if (StrictFlag_IsSet) return (&StrictFlag_Optional); return nullptr; }
+	FORCEINLINE const bool* GetStrictFlagOrNull() const { if (StrictFlag_IsSet) return (&StrictFlag_Optional); return nullptr; }
 	/** @brief Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true */
-	void SetStrictFlag(const bool& NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true;  }
+	FORCEINLINE void SetStrictFlag(const bool& NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true;  }
 	/** @brief Sets the value of StrictFlag_Optional and also sets StrictFlag_IsSet to true using move semantics */
-	void SetStrictFlag(bool&& NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true;  }
+	FORCEINLINE void SetStrictFlag(bool&& NewValue) { StrictFlag_Optional = NewValue; StrictFlag_IsSet = true;  }
 	/** @brief Clears the value of StrictFlag_Optional and sets StrictFlag_IsSet to false */
 	void ClearStrictFlag() { StrictFlag_Optional = false; StrictFlag_IsSet = false;  }
-	/** @brief Checks whether StrictFlag_Optional has been set */
-	bool IsStrictFlagSet() const { return StrictFlag_IsSet; }
-	/** @brief Returns true if StrictFlag_Optional is set and matches the default value */
-	bool IsStrictFlagDefaultValue() const { return StrictFlag_IsSet && StrictFlag_Optional == false; }
-	/** @brief Sets the value of StrictFlag_Optional to its default and also sets StrictFlag_IsSet to true */
-	void SetStrictFlagToDefault() { SetStrictFlag(false); }
+	/** @brief Returns the default value of StrictFlag */
+	FORCEINLINE bool GetDefaultValue_StrictFlag() { return false; }
 
 	/** @brief Can the number of units being purchased be higher than the highest quantity on the Price Breakpoints? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -105,29 +99,25 @@ struct RALLYHEREAPI_API FRHAPI_LootPrice : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CapFlag_IsSet{ false };
 	/** @brief Gets the value of CapFlag_Optional, regardless of it having been set */
-	bool& GetCapFlag() { return CapFlag_Optional; }
+	FORCEINLINE bool& GetCapFlag() { return CapFlag_Optional; }
 	/** @brief Gets the value of CapFlag_Optional, regardless of it having been set */
-	const bool& GetCapFlag() const { return CapFlag_Optional; }
+	FORCEINLINE const bool& GetCapFlag() const { return CapFlag_Optional; }
 	/** @brief Gets the value of CapFlag_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetCapFlag(const bool& DefaultValue) const { if (CapFlag_IsSet) return CapFlag_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetCapFlag(const bool& DefaultValue) const { if (CapFlag_IsSet) return CapFlag_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CapFlag_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCapFlag(bool& OutValue) const { if (CapFlag_IsSet) OutValue = CapFlag_Optional; return CapFlag_IsSet; }
+	FORCEINLINE bool GetCapFlag(bool& OutValue) const { if (CapFlag_IsSet) OutValue = CapFlag_Optional; return CapFlag_IsSet; }
 	/** @brief Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetCapFlagOrNull() { if (CapFlag_IsSet) return (&CapFlag_Optional); return nullptr; }
+	FORCEINLINE bool* GetCapFlagOrNull() { if (CapFlag_IsSet) return (&CapFlag_Optional); return nullptr; }
 	/** @brief Returns a pointer to CapFlag_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetCapFlagOrNull() const { if (CapFlag_IsSet) return (&CapFlag_Optional); return nullptr; }
+	FORCEINLINE const bool* GetCapFlagOrNull() const { if (CapFlag_IsSet) return (&CapFlag_Optional); return nullptr; }
 	/** @brief Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true */
-	void SetCapFlag(const bool& NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true;  }
+	FORCEINLINE void SetCapFlag(const bool& NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true;  }
 	/** @brief Sets the value of CapFlag_Optional and also sets CapFlag_IsSet to true using move semantics */
-	void SetCapFlag(bool&& NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true;  }
+	FORCEINLINE void SetCapFlag(bool&& NewValue) { CapFlag_Optional = NewValue; CapFlag_IsSet = true;  }
 	/** @brief Clears the value of CapFlag_Optional and sets CapFlag_IsSet to false */
 	void ClearCapFlag() { CapFlag_Optional = false; CapFlag_IsSet = false;  }
-	/** @brief Checks whether CapFlag_Optional has been set */
-	bool IsCapFlagSet() const { return CapFlag_IsSet; }
-	/** @brief Returns true if CapFlag_Optional is set and matches the default value */
-	bool IsCapFlagDefaultValue() const { return CapFlag_IsSet && CapFlag_Optional == false; }
-	/** @brief Sets the value of CapFlag_Optional to its default and also sets CapFlag_IsSet to true */
-	void SetCapFlagToDefault() { SetCapFlag(false); }
+	/** @brief Returns the default value of CapFlag */
+	FORCEINLINE bool GetDefaultValue_CapFlag() { return false; }
 };
 
 /** @} */

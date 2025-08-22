@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_SessionJoinResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString SessionId{  };
 	/** @brief Gets the value of SessionId */
-	FString& GetSessionId() { return SessionId; }
+	FORCEINLINE FString& GetSessionId() { return SessionId; }
 	/** @brief Gets the value of SessionId */
-	const FString& GetSessionId() const { return SessionId; }
+	FORCEINLINE const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
+	FORCEINLINE void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
 	/** @brief Sets the value of SessionId using move semantics */
-	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
+	FORCEINLINE void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
 };
 
 /** @} */

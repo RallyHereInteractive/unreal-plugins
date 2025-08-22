@@ -43,17 +43,15 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 V{ 0 };
 	/** @brief Gets the value of V */
-	int32& GetV() { return V; }
+	FORCEINLINE int32& GetV() { return V; }
 	/** @brief Gets the value of V */
-	const int32& GetV() const { return V; }
+	FORCEINLINE const int32& GetV() const { return V; }
 	/** @brief Sets the value of V */
-	void SetV(const int32& NewValue) { V = NewValue;   }
+	FORCEINLINE void SetV(const int32& NewValue) { V = NewValue;   }
 	/** @brief Sets the value of V using move semantics */
-	void SetV(int32&& NewValue) { V = NewValue;   }
-	/** @brief Returns true if V matches the default value */
-	bool IsVDefaultValue() const { return V == 0; }
-	/** @brief Sets the value of V to its default  */
-	void SetVToDefault() { SetV(0); }
+	FORCEINLINE void SetV(int32&& NewValue) { V = NewValue;   }
+	/** @brief Returns the default value of V */
+	FORCEINLINE int32 GetDefaultValue_V() { return 0; }
 
 	/** @brief Setting Value document */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -62,17 +60,17 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Value_IsNull{ false };
 	/** @brief Gets the value of Value */
-	FRHAPI_JsonValue& GetValue() { return Value; }
+	FORCEINLINE FRHAPI_JsonValue& GetValue() { return Value; }
 	/** @brief Gets the value of Value */
-	const FRHAPI_JsonValue& GetValue() const { return Value; }
+	FORCEINLINE const FRHAPI_JsonValue& GetValue() const { return Value; }
 	/** @brief Sets the value of Value */
-	void SetValue(const FRHAPI_JsonValue& NewValue) { Value = NewValue;  Value_IsNull = false; }
+	FORCEINLINE void SetValue(const FRHAPI_JsonValue& NewValue) { Value = NewValue;  Value_IsNull = false; }
 	/** @brief Sets the value of Value using move semantics */
-	void SetValue(FRHAPI_JsonValue&& NewValue) { Value = NewValue;  Value_IsNull = false; }
+	FORCEINLINE void SetValue(FRHAPI_JsonValue&& NewValue) { Value = NewValue;  Value_IsNull = false; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetValueToNull() { Value_IsNull = true; }
+	FORCEINLINE void SetValueToNull() { Value_IsNull = true; }
 	/** @brief Checks whether Value is set to null */
-	bool IsValueNull() const { return  Value_IsNull; }
+	FORCEINLINE bool IsValueNull() const { return  Value_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Etag_Optional{  };
@@ -83,29 +81,27 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Etag_IsNull{ false };
 	/** @brief Gets the value of Etag_Optional, regardless of it having been set */
-	FString& GetEtag() { return Etag_Optional; }
+	FORCEINLINE FString& GetEtag() { return Etag_Optional; }
 	/** @brief Gets the value of Etag_Optional, regardless of it having been set */
-	const FString& GetEtag() const { return Etag_Optional; }
+	FORCEINLINE const FString& GetEtag() const { return Etag_Optional; }
 	/** @brief Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetEtag(const FString& DefaultValue) const { if (Etag_IsSet) return Etag_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetEtag(const FString& DefaultValue) const { if (Etag_IsSet) return Etag_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false */
-	bool GetEtag(FString& OutValue) const { if (Etag_IsSet && !Etag_IsNull) OutValue = Etag_Optional; return Etag_IsSet; }
+	FORCEINLINE bool GetEtag(FString& OutValue) const { if (Etag_IsSet && !Etag_IsNull) OutValue = Etag_Optional; return Etag_IsSet; }
 	/** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetEtagOrNull() { if (Etag_IsSet) return (Etag_IsNull ? nullptr : &Etag_Optional); return nullptr; }
+	FORCEINLINE FString* GetEtagOrNull() { if (Etag_IsSet) return (Etag_IsNull ? nullptr : &Etag_Optional); return nullptr; }
 	/** @brief Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetEtagOrNull() const { if (Etag_IsSet) return (Etag_IsNull ? nullptr : &Etag_Optional); return nullptr; }
+	FORCEINLINE const FString* GetEtagOrNull() const { if (Etag_IsSet) return (Etag_IsNull ? nullptr : &Etag_Optional); return nullptr; }
 	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true */
-	void SetEtag(const FString& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; Etag_IsNull = false; }
+	FORCEINLINE void SetEtag(const FString& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; Etag_IsNull = false; }
 	/** @brief Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics */
-	void SetEtag(FString&& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; Etag_IsNull = false; }
+	FORCEINLINE void SetEtag(FString&& NewValue) { Etag_Optional = NewValue; Etag_IsSet = true; Etag_IsNull = false; }
 	/** @brief Clears the value of Etag_Optional and sets Etag_IsSet to false */
 	void ClearEtag() { Etag_IsSet = false; Etag_IsNull = false; }
-	/** @brief Checks whether Etag_Optional has been set */
-	bool IsEtagSet() const { return Etag_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetEtagToNull() { Etag_IsSet = true; Etag_IsNull = true; }
+	FORCEINLINE void SetEtagToNull() { Etag_IsSet = true; Etag_IsNull = true; }
 	/** @brief Checks whether Etag_Optional is set to null */
-	bool IsEtagNull() const { return Etag_IsSet && Etag_IsNull; }
+	FORCEINLINE bool IsEtagNull() const { return Etag_IsSet && Etag_IsNull; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -117,29 +113,27 @@ struct RALLYHEREAPI_API FRHAPI_SettingData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LastModified_IsNull{ false };
 	/** @brief Gets the value of LastModified_Optional, regardless of it having been set */
-	FDateTime& GetLastModified() { return LastModified_Optional; }
+	FORCEINLINE FDateTime& GetLastModified() { return LastModified_Optional; }
 	/** @brief Gets the value of LastModified_Optional, regardless of it having been set */
-	const FDateTime& GetLastModified() const { return LastModified_Optional; }
+	FORCEINLINE const FDateTime& GetLastModified() const { return LastModified_Optional; }
 	/** @brief Gets the value of LastModified_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetLastModified(const FDateTime& DefaultValue) const { if (LastModified_IsSet) return LastModified_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetLastModified(const FDateTime& DefaultValue) const { if (LastModified_IsSet) return LastModified_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of LastModified_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLastModified(FDateTime& OutValue) const { if (LastModified_IsSet && !LastModified_IsNull) OutValue = LastModified_Optional; return LastModified_IsSet; }
+	FORCEINLINE bool GetLastModified(FDateTime& OutValue) const { if (LastModified_IsSet && !LastModified_IsNull) OutValue = LastModified_Optional; return LastModified_IsSet; }
 	/** @brief Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetLastModifiedOrNull() { if (LastModified_IsSet) return (LastModified_IsNull ? nullptr : &LastModified_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetLastModifiedOrNull() { if (LastModified_IsSet) return (LastModified_IsNull ? nullptr : &LastModified_Optional); return nullptr; }
 	/** @brief Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetLastModifiedOrNull() const { if (LastModified_IsSet) return (LastModified_IsNull ? nullptr : &LastModified_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetLastModifiedOrNull() const { if (LastModified_IsSet) return (LastModified_IsNull ? nullptr : &LastModified_Optional); return nullptr; }
 	/** @brief Sets the value of LastModified_Optional and also sets LastModified_IsSet to true */
-	void SetLastModified(const FDateTime& NewValue) { LastModified_Optional = NewValue; LastModified_IsSet = true; LastModified_IsNull = false; }
+	FORCEINLINE void SetLastModified(const FDateTime& NewValue) { LastModified_Optional = NewValue; LastModified_IsSet = true; LastModified_IsNull = false; }
 	/** @brief Sets the value of LastModified_Optional and also sets LastModified_IsSet to true using move semantics */
-	void SetLastModified(FDateTime&& NewValue) { LastModified_Optional = NewValue; LastModified_IsSet = true; LastModified_IsNull = false; }
+	FORCEINLINE void SetLastModified(FDateTime&& NewValue) { LastModified_Optional = NewValue; LastModified_IsSet = true; LastModified_IsNull = false; }
 	/** @brief Clears the value of LastModified_Optional and sets LastModified_IsSet to false */
 	void ClearLastModified() { LastModified_IsSet = false; LastModified_IsNull = false; }
-	/** @brief Checks whether LastModified_Optional has been set */
-	bool IsLastModifiedSet() const { return LastModified_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetLastModifiedToNull() { LastModified_IsSet = true; LastModified_IsNull = true; }
+	FORCEINLINE void SetLastModifiedToNull() { LastModified_IsSet = true; LastModified_IsNull = true; }
 	/** @brief Checks whether LastModified_Optional is set to null */
-	bool IsLastModifiedNull() const { return LastModified_IsSet && LastModified_IsNull; }
+	FORCEINLINE bool IsLastModifiedNull() const { return LastModified_IsSet && LastModified_IsNull; }
 };
 
 /** @} */

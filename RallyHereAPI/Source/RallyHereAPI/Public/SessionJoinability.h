@@ -46,29 +46,25 @@ struct RALLYHEREAPI_API FRHAPI_SessionJoinability : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Open_IsSet{ false };
 	/** @brief Gets the value of Open_Optional, regardless of it having been set */
-	bool& GetOpen() { return Open_Optional; }
+	FORCEINLINE bool& GetOpen() { return Open_Optional; }
 	/** @brief Gets the value of Open_Optional, regardless of it having been set */
-	const bool& GetOpen() const { return Open_Optional; }
+	FORCEINLINE const bool& GetOpen() const { return Open_Optional; }
 	/** @brief Gets the value of Open_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetOpen(const bool& DefaultValue) const { if (Open_IsSet) return Open_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetOpen(const bool& DefaultValue) const { if (Open_IsSet) return Open_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Open_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOpen(bool& OutValue) const { if (Open_IsSet) OutValue = Open_Optional; return Open_IsSet; }
+	FORCEINLINE bool GetOpen(bool& OutValue) const { if (Open_IsSet) OutValue = Open_Optional; return Open_IsSet; }
 	/** @brief Returns a pointer to Open_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetOpenOrNull() { if (Open_IsSet) return (&Open_Optional); return nullptr; }
+	FORCEINLINE bool* GetOpenOrNull() { if (Open_IsSet) return (&Open_Optional); return nullptr; }
 	/** @brief Returns a pointer to Open_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetOpenOrNull() const { if (Open_IsSet) return (&Open_Optional); return nullptr; }
+	FORCEINLINE const bool* GetOpenOrNull() const { if (Open_IsSet) return (&Open_Optional); return nullptr; }
 	/** @brief Sets the value of Open_Optional and also sets Open_IsSet to true */
-	void SetOpen(const bool& NewValue) { Open_Optional = NewValue; Open_IsSet = true;  }
+	FORCEINLINE void SetOpen(const bool& NewValue) { Open_Optional = NewValue; Open_IsSet = true;  }
 	/** @brief Sets the value of Open_Optional and also sets Open_IsSet to true using move semantics */
-	void SetOpen(bool&& NewValue) { Open_Optional = NewValue; Open_IsSet = true;  }
+	FORCEINLINE void SetOpen(bool&& NewValue) { Open_Optional = NewValue; Open_IsSet = true;  }
 	/** @brief Clears the value of Open_Optional and sets Open_IsSet to false */
 	void ClearOpen() { Open_Optional = false; Open_IsSet = false;  }
-	/** @brief Checks whether Open_Optional has been set */
-	bool IsOpenSet() const { return Open_IsSet; }
-	/** @brief Returns true if Open_Optional is set and matches the default value */
-	bool IsOpenDefaultValue() const { return Open_IsSet && Open_Optional == false; }
-	/** @brief Sets the value of Open_Optional to its default and also sets Open_IsSet to true */
-	void SetOpenToDefault() { SetOpen(false); }
+	/** @brief Returns the default value of Open */
+	FORCEINLINE bool GetDefaultValue_Open() { return false; }
 
 	/** @brief Friends can join this session without an invite */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -77,29 +73,25 @@ struct RALLYHEREAPI_API FRHAPI_SessionJoinability : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Friends_IsSet{ false };
 	/** @brief Gets the value of Friends_Optional, regardless of it having been set */
-	bool& GetFriends() { return Friends_Optional; }
+	FORCEINLINE bool& GetFriends() { return Friends_Optional; }
 	/** @brief Gets the value of Friends_Optional, regardless of it having been set */
-	const bool& GetFriends() const { return Friends_Optional; }
+	FORCEINLINE const bool& GetFriends() const { return Friends_Optional; }
 	/** @brief Gets the value of Friends_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetFriends(const bool& DefaultValue) const { if (Friends_IsSet) return Friends_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetFriends(const bool& DefaultValue) const { if (Friends_IsSet) return Friends_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Friends_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFriends(bool& OutValue) const { if (Friends_IsSet) OutValue = Friends_Optional; return Friends_IsSet; }
+	FORCEINLINE bool GetFriends(bool& OutValue) const { if (Friends_IsSet) OutValue = Friends_Optional; return Friends_IsSet; }
 	/** @brief Returns a pointer to Friends_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetFriendsOrNull() { if (Friends_IsSet) return (&Friends_Optional); return nullptr; }
+	FORCEINLINE bool* GetFriendsOrNull() { if (Friends_IsSet) return (&Friends_Optional); return nullptr; }
 	/** @brief Returns a pointer to Friends_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetFriendsOrNull() const { if (Friends_IsSet) return (&Friends_Optional); return nullptr; }
+	FORCEINLINE const bool* GetFriendsOrNull() const { if (Friends_IsSet) return (&Friends_Optional); return nullptr; }
 	/** @brief Sets the value of Friends_Optional and also sets Friends_IsSet to true */
-	void SetFriends(const bool& NewValue) { Friends_Optional = NewValue; Friends_IsSet = true;  }
+	FORCEINLINE void SetFriends(const bool& NewValue) { Friends_Optional = NewValue; Friends_IsSet = true;  }
 	/** @brief Sets the value of Friends_Optional and also sets Friends_IsSet to true using move semantics */
-	void SetFriends(bool&& NewValue) { Friends_Optional = NewValue; Friends_IsSet = true;  }
+	FORCEINLINE void SetFriends(bool&& NewValue) { Friends_Optional = NewValue; Friends_IsSet = true;  }
 	/** @brief Clears the value of Friends_Optional and sets Friends_IsSet to false */
 	void ClearFriends() { Friends_Optional = false; Friends_IsSet = false;  }
-	/** @brief Checks whether Friends_Optional has been set */
-	bool IsFriendsSet() const { return Friends_IsSet; }
-	/** @brief Returns true if Friends_Optional is set and matches the default value */
-	bool IsFriendsDefaultValue() const { return Friends_IsSet && Friends_Optional == false; }
-	/** @brief Sets the value of Friends_Optional to its default and also sets Friends_IsSet to true */
-	void SetFriendsToDefault() { SetFriends(false); }
+	/** @brief Returns the default value of Friends */
+	FORCEINLINE bool GetDefaultValue_Friends() { return false; }
 
 	/** @brief Players can join through platform sessions */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -108,29 +100,25 @@ struct RALLYHEREAPI_API FRHAPI_SessionJoinability : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Platform_IsSet{ false };
 	/** @brief Gets the value of Platform_Optional, regardless of it having been set */
-	bool& GetPlatform() { return Platform_Optional; }
+	FORCEINLINE bool& GetPlatform() { return Platform_Optional; }
 	/** @brief Gets the value of Platform_Optional, regardless of it having been set */
-	const bool& GetPlatform() const { return Platform_Optional; }
+	FORCEINLINE const bool& GetPlatform() const { return Platform_Optional; }
 	/** @brief Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetPlatform(const bool& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetPlatform(const bool& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatform(bool& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
+	FORCEINLINE bool GetPlatform(bool& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetPlatformOrNull() { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
+	FORCEINLINE bool* GetPlatformOrNull() { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetPlatformOrNull() const { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
+	FORCEINLINE const bool* GetPlatformOrNull() const { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
-	void SetPlatform(const bool& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
+	FORCEINLINE void SetPlatform(const bool& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
-	void SetPlatform(bool&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
+	FORCEINLINE void SetPlatform(bool&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_Optional = true; Platform_IsSet = false;  }
-	/** @brief Checks whether Platform_Optional has been set */
-	bool IsPlatformSet() const { return Platform_IsSet; }
-	/** @brief Returns true if Platform_Optional is set and matches the default value */
-	bool IsPlatformDefaultValue() const { return Platform_IsSet && Platform_Optional == true; }
-	/** @brief Sets the value of Platform_Optional to its default and also sets Platform_IsSet to true */
-	void SetPlatformToDefault() { SetPlatform(true); }
+	/** @brief Returns the default value of Platform */
+	FORCEINLINE bool GetDefaultValue_Platform() { return true; }
 };
 
 /** @} */

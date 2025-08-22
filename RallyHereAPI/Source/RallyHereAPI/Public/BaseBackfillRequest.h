@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_BaseBackfillRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString InstanceId{  };
 	/** @brief Gets the value of InstanceId */
-	FString& GetInstanceId() { return InstanceId; }
+	FORCEINLINE FString& GetInstanceId() { return InstanceId; }
 	/** @brief Gets the value of InstanceId */
-	const FString& GetInstanceId() const { return InstanceId; }
+	FORCEINLINE const FString& GetInstanceId() const { return InstanceId; }
 	/** @brief Sets the value of InstanceId */
-	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;   }
+	FORCEINLINE void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;   }
 	/** @brief Sets the value of InstanceId using move semantics */
-	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;   }
+	FORCEINLINE void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;   }
 };
 
 /** @} */

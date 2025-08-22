@@ -365,7 +365,7 @@ inline FStringFormatArg ToStringFormatArg(const FDateTime& Value)
 
 inline FStringFormatArg ToStringFormatArg(const FGuid& Value)
 {
-	return FStringFormatArg(Value.ToString(EGuidFormats::DigitsWithHyphens));
+	return FStringFormatArg(Value.ToString(EGuidFormats::DigitsWithHyphensLower));
 }
 
 inline FStringFormatArg ToStringFormatArg(const TArray<uint8>& Value)
@@ -584,7 +584,7 @@ inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const FDateTime& V
 
 inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const FGuid& Value)
 {
-	Writer->WriteValue(Value.ToString(EGuidFormats::DigitsWithHyphens));
+	Writer->WriteValue(Value.ToString(EGuidFormats::DigitsWithHyphensLower));
 }
 
 inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const FRHAPI_Model& Value)

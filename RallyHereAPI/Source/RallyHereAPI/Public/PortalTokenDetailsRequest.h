@@ -43,25 +43,25 @@ struct RALLYHEREAPI_API FRHAPI_PortalTokenDetailsRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_PortalTokenDetailsGrantType GrantType{  };
 	/** @brief Gets the value of GrantType */
-	ERHAPI_PortalTokenDetailsGrantType& GetGrantType() { return GrantType; }
+	FORCEINLINE ERHAPI_PortalTokenDetailsGrantType& GetGrantType() { return GrantType; }
 	/** @brief Gets the value of GrantType */
-	const ERHAPI_PortalTokenDetailsGrantType& GetGrantType() const { return GrantType; }
+	FORCEINLINE const ERHAPI_PortalTokenDetailsGrantType& GetGrantType() const { return GrantType; }
 	/** @brief Sets the value of GrantType */
-	void SetGrantType(const ERHAPI_PortalTokenDetailsGrantType& NewValue) { GrantType = NewValue;   }
+	FORCEINLINE void SetGrantType(const ERHAPI_PortalTokenDetailsGrantType& NewValue) { GrantType = NewValue;   }
 	/** @brief Sets the value of GrantType using move semantics */
-	void SetGrantType(ERHAPI_PortalTokenDetailsGrantType&& NewValue) { GrantType = NewValue;   }
+	FORCEINLINE void SetGrantType(ERHAPI_PortalTokenDetailsGrantType&& NewValue) { GrantType = NewValue;   }
 
 	/** @brief Token or secret used to authenticate the provided grant type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString PortalAccessToken{  };
 	/** @brief Gets the value of PortalAccessToken */
-	FString& GetPortalAccessToken() { return PortalAccessToken; }
+	FORCEINLINE FString& GetPortalAccessToken() { return PortalAccessToken; }
 	/** @brief Gets the value of PortalAccessToken */
-	const FString& GetPortalAccessToken() const { return PortalAccessToken; }
+	FORCEINLINE const FString& GetPortalAccessToken() const { return PortalAccessToken; }
 	/** @brief Sets the value of PortalAccessToken */
-	void SetPortalAccessToken(const FString& NewValue) { PortalAccessToken = NewValue;   }
+	FORCEINLINE void SetPortalAccessToken(const FString& NewValue) { PortalAccessToken = NewValue;   }
 	/** @brief Sets the value of PortalAccessToken using move semantics */
-	void SetPortalAccessToken(FString&& NewValue) { PortalAccessToken = NewValue;   }
+	FORCEINLINE void SetPortalAccessToken(FString&& NewValue) { PortalAccessToken = NewValue;   }
 };
 
 /** @} */

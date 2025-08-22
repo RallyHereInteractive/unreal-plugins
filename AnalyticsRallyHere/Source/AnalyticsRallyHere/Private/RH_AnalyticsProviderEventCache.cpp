@@ -414,7 +414,7 @@ void FRH_AnalyticsProviderEventCache::AddToCache(FString EventName, const TArray
 	// Add ,"event_uuid":"
 	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"event_uuid\":", 14);
 	// Add "<GUID>"
-	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens), false);
+	RHEventCacheStatic::AppendJsonString(CachedEventUTF8Stream, EscapedJsonBuffer, FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower), false);
 
 	// Add ,"event_timestamp:
 	RHEventCacheStatic::AppendString(CachedEventUTF8Stream, ",\"event_timestamp\":", 19);

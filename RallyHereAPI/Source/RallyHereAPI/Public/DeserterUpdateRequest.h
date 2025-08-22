@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_DeserterUpdateRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime DeserterExpiration{  };
 	/** @brief Gets the value of DeserterExpiration */
-	FDateTime& GetDeserterExpiration() { return DeserterExpiration; }
+	FORCEINLINE FDateTime& GetDeserterExpiration() { return DeserterExpiration; }
 	/** @brief Gets the value of DeserterExpiration */
-	const FDateTime& GetDeserterExpiration() const { return DeserterExpiration; }
+	FORCEINLINE const FDateTime& GetDeserterExpiration() const { return DeserterExpiration; }
 	/** @brief Sets the value of DeserterExpiration */
-	void SetDeserterExpiration(const FDateTime& NewValue) { DeserterExpiration = NewValue;   }
+	FORCEINLINE void SetDeserterExpiration(const FDateTime& NewValue) { DeserterExpiration = NewValue;   }
 	/** @brief Sets the value of DeserterExpiration using move semantics */
-	void SetDeserterExpiration(FDateTime&& NewValue) { DeserterExpiration = NewValue;   }
+	FORCEINLINE void SetDeserterExpiration(FDateTime&& NewValue) { DeserterExpiration = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,41 +58,37 @@ struct RALLYHEREAPI_API FRHAPI_DeserterUpdateRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeserterReset_IsSet{ false };
 	/** @brief Gets the value of DeserterReset_Optional, regardless of it having been set */
-	FDateTime& GetDeserterReset() { return DeserterReset_Optional; }
+	FORCEINLINE FDateTime& GetDeserterReset() { return DeserterReset_Optional; }
 	/** @brief Gets the value of DeserterReset_Optional, regardless of it having been set */
-	const FDateTime& GetDeserterReset() const { return DeserterReset_Optional; }
+	FORCEINLINE const FDateTime& GetDeserterReset() const { return DeserterReset_Optional; }
 	/** @brief Gets the value of DeserterReset_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetDeserterReset(const FDateTime& DefaultValue) const { if (DeserterReset_IsSet) return DeserterReset_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetDeserterReset(const FDateTime& DefaultValue) const { if (DeserterReset_IsSet) return DeserterReset_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DeserterReset_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDeserterReset(FDateTime& OutValue) const { if (DeserterReset_IsSet) OutValue = DeserterReset_Optional; return DeserterReset_IsSet; }
+	FORCEINLINE bool GetDeserterReset(FDateTime& OutValue) const { if (DeserterReset_IsSet) OutValue = DeserterReset_Optional; return DeserterReset_IsSet; }
 	/** @brief Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetDeserterResetOrNull() { if (DeserterReset_IsSet) return (&DeserterReset_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetDeserterResetOrNull() { if (DeserterReset_IsSet) return (&DeserterReset_Optional); return nullptr; }
 	/** @brief Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetDeserterResetOrNull() const { if (DeserterReset_IsSet) return (&DeserterReset_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetDeserterResetOrNull() const { if (DeserterReset_IsSet) return (&DeserterReset_Optional); return nullptr; }
 	/** @brief Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true */
-	void SetDeserterReset(const FDateTime& NewValue) { DeserterReset_Optional = NewValue; DeserterReset_IsSet = true;  }
+	FORCEINLINE void SetDeserterReset(const FDateTime& NewValue) { DeserterReset_Optional = NewValue; DeserterReset_IsSet = true;  }
 	/** @brief Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true using move semantics */
-	void SetDeserterReset(FDateTime&& NewValue) { DeserterReset_Optional = NewValue; DeserterReset_IsSet = true;  }
+	FORCEINLINE void SetDeserterReset(FDateTime&& NewValue) { DeserterReset_Optional = NewValue; DeserterReset_IsSet = true;  }
 	/** @brief Clears the value of DeserterReset_Optional and sets DeserterReset_IsSet to false */
 	void ClearDeserterReset() { DeserterReset_IsSet = false;  }
-	/** @brief Checks whether DeserterReset_Optional has been set */
-	bool IsDeserterResetSet() const { return DeserterReset_IsSet; }
 
 	/** @brief The number of times a player has deserted before the expiration */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 DeserterCount{ 0 };
 	/** @brief Gets the value of DeserterCount */
-	int32& GetDeserterCount() { return DeserterCount; }
+	FORCEINLINE int32& GetDeserterCount() { return DeserterCount; }
 	/** @brief Gets the value of DeserterCount */
-	const int32& GetDeserterCount() const { return DeserterCount; }
+	FORCEINLINE const int32& GetDeserterCount() const { return DeserterCount; }
 	/** @brief Sets the value of DeserterCount */
-	void SetDeserterCount(const int32& NewValue) { DeserterCount = NewValue;   }
+	FORCEINLINE void SetDeserterCount(const int32& NewValue) { DeserterCount = NewValue;   }
 	/** @brief Sets the value of DeserterCount using move semantics */
-	void SetDeserterCount(int32&& NewValue) { DeserterCount = NewValue;   }
-	/** @brief Returns true if DeserterCount matches the default value */
-	bool IsDeserterCountDefaultValue() const { return DeserterCount == 0; }
-	/** @brief Sets the value of DeserterCount to its default  */
-	void SetDeserterCountToDefault() { SetDeserterCount(0); }
+	FORCEINLINE void SetDeserterCount(int32&& NewValue) { DeserterCount = NewValue;   }
+	/** @brief Returns the default value of DeserterCount */
+	FORCEINLINE int32 GetDefaultValue_DeserterCount() { return 0; }
 
 	/** @brief Custom data about a players desertion status */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -101,25 +97,23 @@ struct RALLYHEREAPI_API FRHAPI_DeserterUpdateRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

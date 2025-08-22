@@ -40,6 +40,19 @@ void URH_CatalogSubsystem::Tick(float DeltaTime)
 	}
 
 	PendingGetCatalogItemCalls.Empty();
+	
+	for (const auto& PendingGetLootCallPair : PendingGetCatalogLootCalls)
+	{
+		SubmittedGetCatalogLootCalls.Add(PendingGetLootCallPair);
+
+		auto Request = TGetCatalogLoot::Request();
+		Request.AuthContext = GetAuthContext();
+		Request.LootId = PendingGetLootCallPair.Key;
+
+		TGetCatalogLoot::DoCall(RH_APIs::GetCatalogAPI(), Request, TGetCatalogLoot::Delegate::CreateUObject(this, &URH_CatalogSubsystem::OnGetCatalogLootResponse, PendingGetLootCallPair.Key), GetDefault<URH_IntegrationSettings>()->GetCatalogLootPriority);
+	}
+
+	PendingGetCatalogLootCalls.Empty();
 }
 
 bool URH_CatalogSubsystem::GetXpTable(int32 XpTableId, FRHAPI_XpTable& XpTable) const
@@ -265,6 +278,33 @@ void URH_CatalogSubsystem::GetCatalogItem(int32 ItemId, const FRH_CatalogCallBlo
 	}
 }
 
+void URH_CatalogSubsystem::GetCatalogLoot(int32 LootId, const FRH_CatalogCallBlock& Delegate)
+{
+	if (GetLootByLootId(LootId) != nullptr)
+	{
+		Delegate.ExecuteIfBound(true);
+		return;
+	}
+
+	// First check if there is a submitted call we can add our delegate to.
+	if (const auto& findSubmitted = SubmittedGetCatalogLootCalls.Find(LootId))
+	{
+		(*findSubmitted).Add(Delegate);
+		return;
+	}
+	// The check if there is a pending call we can add our delegate to.
+	else if (const auto& findPending = PendingGetCatalogLootCalls.Find(LootId))
+	{
+		(*findPending).Add(Delegate);
+		return;
+	}
+	// Finally just create a new pending call.
+	else
+	{
+		PendingGetCatalogLootCalls.Add(LootId, TArray<FRH_CatalogCallBlock>{Delegate});
+	}
+}
+
 void URH_CatalogSubsystem::OnGetCatalogItemResponse(const TGetCatalogItem::Response& Resp, int32 ItemId)
 {
 	const auto Content = Resp.TryGetDefaultContentAsPointer();
@@ -275,6 +315,32 @@ void URH_CatalogSubsystem::OnGetCatalogItemResponse(const TGetCatalogItem::Respo
 
 	TArray<FRH_CatalogCallBlock> CallbackList;
 	if (SubmittedGetCatalogItemCalls.RemoveAndCopyValue(ItemId, CallbackList))
+	{
+		for (const auto& Delegate : CallbackList)
+		{
+			Delegate.ExecuteIfBound(Resp.IsSuccessful());
+		}
+	}	
+}
+
+
+void URH_CatalogSubsystem::OnGetCatalogLootResponse(const TGetCatalogLoot::Response& Resp, int32 LootId)
+{
+	const auto Content = Resp.TryGetDefaultContentAsPointer();
+	if (Resp.IsSuccessful() && Content != nullptr)
+	{
+		if (const auto& FoundExisting = CatalogLootItems.Find(Content->GetLootId()))
+		{
+			*FoundExisting = *Content;
+		}
+		else
+		{
+			CatalogLootItems.Add(Content->GetLootId(), *Content);
+		}
+	}
+
+	TArray<FRH_CatalogCallBlock> CallbackList;
+	if (SubmittedGetCatalogLootCalls.RemoveAndCopyValue(LootId, CallbackList))
 	{
 		for (const auto& Delegate : CallbackList)
 		{
@@ -332,44 +398,54 @@ void URH_CatalogSubsystem::ParseAllInventoryBucketUseRuleSets(const FRHAPI_Inven
 	}
 }
 
-bool URH_CatalogSubsystem::CanRulesetUsePlatformForBucket(const FString& InventoryBucketRulesetId, ERHAPI_InventoryBucket TargetBucket, ERHAPI_InventoryBucket ItemInventoryBucket) const
+bool URH_CatalogSubsystem::CanRulesetUsePlatformForBucket(const FString& InventoryBucketRulesetId, ERHAPI_InventoryBucket TargetBucket, ERHAPI_InventoryBucket ItemInventoryBucket, bool* OutSuccess) const
 {
-	if (auto findRuleset = InventoryBucketUseRuleSets.Find(InventoryBucketRulesetId))
+	auto findRuleset = InventoryBucketUseRuleSets.Find(InventoryBucketRulesetId);
+	if (!findRuleset)
 	{
-		FRHAPI_InventoryBucketUseRuleSet ruleset = *findRuleset;
-
-		const FString& TargetBucketString = EnumToString(TargetBucket);
-		const FString& FallbackBucketString = EnumToString(ERHAPI_InventoryBucket::None);
-
-		TArray<ERHAPI_InventoryBucket> InventoryBucketUseOrder;
-		TArray<ERHAPI_InventoryBucket> FallbackInventoryBucketUseOrder;
-
-		if (const auto& rules = ruleset.GetRulesOrNull())
+		if (OutSuccess)
 		{
-			for (const auto& rule : *rules)
+			*OutSuccess = false;
+		}
+		return false;
+	}
+	
+	if (OutSuccess)
+	{
+		*OutSuccess = true;
+	}
+	
+	const FRHAPI_InventoryBucketUseRuleSet& ruleset = *findRuleset;
+	const FString& TargetBucketString = EnumToString(TargetBucket);
+	const FString& FallbackBucketString = EnumToString(ERHAPI_InventoryBucket::None);
+
+	TArray<ERHAPI_InventoryBucket> InventoryBucketUseOrder;
+	TArray<ERHAPI_InventoryBucket> FallbackInventoryBucketUseOrder;
+
+	if (const auto& rules = ruleset.GetRulesOrNull())
+	{
+		for (const auto& rule : *rules)
+		{
+			if (rule.Key == TargetBucketString)
 			{
-				if (rule.Key == TargetBucketString)
-				{
-					InventoryBucketUseOrder = rule.Value;
-					break;
-				}
-				else if (rule.Key == FallbackBucketString)
-				{
-					FallbackInventoryBucketUseOrder = rule.Value;
-				}
+				InventoryBucketUseOrder = rule.Value;
+				break;
 			}
-		}
-
-		if (InventoryBucketUseOrder.Num())
-		{
-			return InventoryBucketUseOrder.Contains(ItemInventoryBucket);
-		}
-		else if (FallbackInventoryBucketUseOrder.Num())
-		{
-			return FallbackInventoryBucketUseOrder.Contains(ItemInventoryBucket);
+			else if (rule.Key == FallbackBucketString)
+			{
+				FallbackInventoryBucketUseOrder = rule.Value;
+			}
 		}
 	}
 
+	if (InventoryBucketUseOrder.Num())
+	{
+		return InventoryBucketUseOrder.Contains(ItemInventoryBucket);
+	}
+	else if (FallbackInventoryBucketUseOrder.Num())
+	{
+		return FallbackInventoryBucketUseOrder.Contains(ItemInventoryBucket);
+	}
 	return false;
 }
 
@@ -521,7 +597,6 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponseComplete(bool bSuccess, con
 {
 	// remove from in flight list
 	InFlightVendorRequests.Remove(VendorId);
-
 	// forward on single vendor fetch delegate, as it is now complete
 	Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
 
@@ -543,7 +618,7 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponseComplete(bool bSuccess, con
 		{
 			// vendor failed to be retrieved, or was retrieved but did not make it into the cache, treat both as failures
 			TArray<FRH_CatalogCallBlock> CompletedRequestDelegates;
-			
+
 			// vendor could not be retrieved, fail any requests that were expecting this vendor
 			for (int32 i = VendorRequests.Num() - 1; i >= 0; i--)
 			{

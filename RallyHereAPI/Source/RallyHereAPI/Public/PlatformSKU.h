@@ -50,48 +50,46 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKU : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_InventoryPlatform Platform{  };
 	/** @brief Gets the value of Platform */
-	ERHAPI_InventoryPlatform& GetPlatform() { return Platform; }
+	FORCEINLINE ERHAPI_InventoryPlatform& GetPlatform() { return Platform; }
 	/** @brief Gets the value of Platform */
-	const ERHAPI_InventoryPlatform& GetPlatform() const { return Platform; }
+	FORCEINLINE const ERHAPI_InventoryPlatform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	void SetPlatform(const ERHAPI_InventoryPlatform& NewValue) { Platform = NewValue;   }
+	FORCEINLINE void SetPlatform(const ERHAPI_InventoryPlatform& NewValue) { Platform = NewValue;   }
 	/** @brief Sets the value of Platform using move semantics */
-	void SetPlatform(ERHAPI_InventoryPlatform&& NewValue) { Platform = NewValue;   }
+	FORCEINLINE void SetPlatform(ERHAPI_InventoryPlatform&& NewValue) { Platform = NewValue;   }
 
 	/** @brief The SKU of the platform */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Sku{  };
 	/** @brief Gets the value of Sku */
-	FString& GetSku() { return Sku; }
+	FORCEINLINE FString& GetSku() { return Sku; }
 	/** @brief Gets the value of Sku */
-	const FString& GetSku() const { return Sku; }
+	FORCEINLINE const FString& GetSku() const { return Sku; }
 	/** @brief Sets the value of Sku */
-	void SetSku(const FString& NewValue) { Sku = NewValue;   }
+	FORCEINLINE void SetSku(const FString& NewValue) { Sku = NewValue;   }
 	/** @brief Sets the value of Sku using move semantics */
-	void SetSku(FString&& NewValue) { Sku = NewValue;   }
+	FORCEINLINE void SetSku(FString&& NewValue) { Sku = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_LootEntitlement LootEntitlement_Optional{  };
@@ -102,29 +100,27 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKU : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LootEntitlement_IsNull{ false };
 	/** @brief Gets the value of LootEntitlement_Optional, regardless of it having been set */
-	FRHAPI_LootEntitlement& GetLootEntitlement() { return LootEntitlement_Optional; }
+	FORCEINLINE FRHAPI_LootEntitlement& GetLootEntitlement() { return LootEntitlement_Optional; }
 	/** @brief Gets the value of LootEntitlement_Optional, regardless of it having been set */
-	const FRHAPI_LootEntitlement& GetLootEntitlement() const { return LootEntitlement_Optional; }
+	FORCEINLINE const FRHAPI_LootEntitlement& GetLootEntitlement() const { return LootEntitlement_Optional; }
 	/** @brief Gets the value of LootEntitlement_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_LootEntitlement& GetLootEntitlement(const FRHAPI_LootEntitlement& DefaultValue) const { if (LootEntitlement_IsSet) return LootEntitlement_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_LootEntitlement& GetLootEntitlement(const FRHAPI_LootEntitlement& DefaultValue) const { if (LootEntitlement_IsSet) return LootEntitlement_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of LootEntitlement_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLootEntitlement(FRHAPI_LootEntitlement& OutValue) const { if (LootEntitlement_IsSet && !LootEntitlement_IsNull) OutValue = LootEntitlement_Optional; return LootEntitlement_IsSet; }
+	FORCEINLINE bool GetLootEntitlement(FRHAPI_LootEntitlement& OutValue) const { if (LootEntitlement_IsSet && !LootEntitlement_IsNull) OutValue = LootEntitlement_Optional; return LootEntitlement_IsSet; }
 	/** @brief Returns a pointer to LootEntitlement_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_LootEntitlement* GetLootEntitlementOrNull() { if (LootEntitlement_IsSet) return (LootEntitlement_IsNull ? nullptr : &LootEntitlement_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_LootEntitlement* GetLootEntitlementOrNull() { if (LootEntitlement_IsSet) return (LootEntitlement_IsNull ? nullptr : &LootEntitlement_Optional); return nullptr; }
 	/** @brief Returns a pointer to LootEntitlement_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_LootEntitlement* GetLootEntitlementOrNull() const { if (LootEntitlement_IsSet) return (LootEntitlement_IsNull ? nullptr : &LootEntitlement_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_LootEntitlement* GetLootEntitlementOrNull() const { if (LootEntitlement_IsSet) return (LootEntitlement_IsNull ? nullptr : &LootEntitlement_Optional); return nullptr; }
 	/** @brief Sets the value of LootEntitlement_Optional and also sets LootEntitlement_IsSet to true */
-	void SetLootEntitlement(const FRHAPI_LootEntitlement& NewValue) { LootEntitlement_Optional = NewValue; LootEntitlement_IsSet = true; LootEntitlement_IsNull = false; }
+	FORCEINLINE void SetLootEntitlement(const FRHAPI_LootEntitlement& NewValue) { LootEntitlement_Optional = NewValue; LootEntitlement_IsSet = true; LootEntitlement_IsNull = false; }
 	/** @brief Sets the value of LootEntitlement_Optional and also sets LootEntitlement_IsSet to true using move semantics */
-	void SetLootEntitlement(FRHAPI_LootEntitlement&& NewValue) { LootEntitlement_Optional = NewValue; LootEntitlement_IsSet = true; LootEntitlement_IsNull = false; }
+	FORCEINLINE void SetLootEntitlement(FRHAPI_LootEntitlement&& NewValue) { LootEntitlement_Optional = NewValue; LootEntitlement_IsSet = true; LootEntitlement_IsNull = false; }
 	/** @brief Clears the value of LootEntitlement_Optional and sets LootEntitlement_IsSet to false */
 	void ClearLootEntitlement() { LootEntitlement_IsSet = false; LootEntitlement_IsNull = false; }
-	/** @brief Checks whether LootEntitlement_Optional has been set */
-	bool IsLootEntitlementSet() const { return LootEntitlement_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetLootEntitlementToNull() { LootEntitlement_IsSet = true; LootEntitlement_IsNull = true; }
+	FORCEINLINE void SetLootEntitlementToNull() { LootEntitlement_IsSet = true; LootEntitlement_IsNull = true; }
 	/** @brief Checks whether LootEntitlement_Optional is set to null */
-	bool IsLootEntitlementNull() const { return LootEntitlement_IsSet && LootEntitlement_IsNull; }
+	FORCEINLINE bool IsLootEntitlementNull() const { return LootEntitlement_IsSet && LootEntitlement_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_ExternalKeyEntitlement ExternalKeyEntitlement_Optional{  };
@@ -135,29 +131,27 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKU : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExternalKeyEntitlement_IsNull{ false };
 	/** @brief Gets the value of ExternalKeyEntitlement_Optional, regardless of it having been set */
-	FRHAPI_ExternalKeyEntitlement& GetExternalKeyEntitlement() { return ExternalKeyEntitlement_Optional; }
+	FORCEINLINE FRHAPI_ExternalKeyEntitlement& GetExternalKeyEntitlement() { return ExternalKeyEntitlement_Optional; }
 	/** @brief Gets the value of ExternalKeyEntitlement_Optional, regardless of it having been set */
-	const FRHAPI_ExternalKeyEntitlement& GetExternalKeyEntitlement() const { return ExternalKeyEntitlement_Optional; }
+	FORCEINLINE const FRHAPI_ExternalKeyEntitlement& GetExternalKeyEntitlement() const { return ExternalKeyEntitlement_Optional; }
 	/** @brief Gets the value of ExternalKeyEntitlement_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_ExternalKeyEntitlement& GetExternalKeyEntitlement(const FRHAPI_ExternalKeyEntitlement& DefaultValue) const { if (ExternalKeyEntitlement_IsSet) return ExternalKeyEntitlement_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_ExternalKeyEntitlement& GetExternalKeyEntitlement(const FRHAPI_ExternalKeyEntitlement& DefaultValue) const { if (ExternalKeyEntitlement_IsSet) return ExternalKeyEntitlement_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ExternalKeyEntitlement_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExternalKeyEntitlement(FRHAPI_ExternalKeyEntitlement& OutValue) const { if (ExternalKeyEntitlement_IsSet && !ExternalKeyEntitlement_IsNull) OutValue = ExternalKeyEntitlement_Optional; return ExternalKeyEntitlement_IsSet; }
+	FORCEINLINE bool GetExternalKeyEntitlement(FRHAPI_ExternalKeyEntitlement& OutValue) const { if (ExternalKeyEntitlement_IsSet && !ExternalKeyEntitlement_IsNull) OutValue = ExternalKeyEntitlement_Optional; return ExternalKeyEntitlement_IsSet; }
 	/** @brief Returns a pointer to ExternalKeyEntitlement_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_ExternalKeyEntitlement* GetExternalKeyEntitlementOrNull() { if (ExternalKeyEntitlement_IsSet) return (ExternalKeyEntitlement_IsNull ? nullptr : &ExternalKeyEntitlement_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_ExternalKeyEntitlement* GetExternalKeyEntitlementOrNull() { if (ExternalKeyEntitlement_IsSet) return (ExternalKeyEntitlement_IsNull ? nullptr : &ExternalKeyEntitlement_Optional); return nullptr; }
 	/** @brief Returns a pointer to ExternalKeyEntitlement_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_ExternalKeyEntitlement* GetExternalKeyEntitlementOrNull() const { if (ExternalKeyEntitlement_IsSet) return (ExternalKeyEntitlement_IsNull ? nullptr : &ExternalKeyEntitlement_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_ExternalKeyEntitlement* GetExternalKeyEntitlementOrNull() const { if (ExternalKeyEntitlement_IsSet) return (ExternalKeyEntitlement_IsNull ? nullptr : &ExternalKeyEntitlement_Optional); return nullptr; }
 	/** @brief Sets the value of ExternalKeyEntitlement_Optional and also sets ExternalKeyEntitlement_IsSet to true */
-	void SetExternalKeyEntitlement(const FRHAPI_ExternalKeyEntitlement& NewValue) { ExternalKeyEntitlement_Optional = NewValue; ExternalKeyEntitlement_IsSet = true; ExternalKeyEntitlement_IsNull = false; }
+	FORCEINLINE void SetExternalKeyEntitlement(const FRHAPI_ExternalKeyEntitlement& NewValue) { ExternalKeyEntitlement_Optional = NewValue; ExternalKeyEntitlement_IsSet = true; ExternalKeyEntitlement_IsNull = false; }
 	/** @brief Sets the value of ExternalKeyEntitlement_Optional and also sets ExternalKeyEntitlement_IsSet to true using move semantics */
-	void SetExternalKeyEntitlement(FRHAPI_ExternalKeyEntitlement&& NewValue) { ExternalKeyEntitlement_Optional = NewValue; ExternalKeyEntitlement_IsSet = true; ExternalKeyEntitlement_IsNull = false; }
+	FORCEINLINE void SetExternalKeyEntitlement(FRHAPI_ExternalKeyEntitlement&& NewValue) { ExternalKeyEntitlement_Optional = NewValue; ExternalKeyEntitlement_IsSet = true; ExternalKeyEntitlement_IsNull = false; }
 	/** @brief Clears the value of ExternalKeyEntitlement_Optional and sets ExternalKeyEntitlement_IsSet to false */
 	void ClearExternalKeyEntitlement() { ExternalKeyEntitlement_IsSet = false; ExternalKeyEntitlement_IsNull = false; }
-	/** @brief Checks whether ExternalKeyEntitlement_Optional has been set */
-	bool IsExternalKeyEntitlementSet() const { return ExternalKeyEntitlement_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetExternalKeyEntitlementToNull() { ExternalKeyEntitlement_IsSet = true; ExternalKeyEntitlement_IsNull = true; }
+	FORCEINLINE void SetExternalKeyEntitlementToNull() { ExternalKeyEntitlement_IsSet = true; ExternalKeyEntitlement_IsNull = true; }
 	/** @brief Checks whether ExternalKeyEntitlement_Optional is set to null */
-	bool IsExternalKeyEntitlementNull() const { return ExternalKeyEntitlement_IsSet && ExternalKeyEntitlement_IsNull; }
+	FORCEINLINE bool IsExternalKeyEntitlementNull() const { return ExternalKeyEntitlement_IsSet && ExternalKeyEntitlement_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -168,29 +162,27 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSKU : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CacheInfo_IsNull{ false };
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
+	FORCEINLINE FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-	const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
+	FORCEINLINE const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	FORCEINLINE bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
+	FORCEINLINE void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
+	FORCEINLINE void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; CacheInfo_IsNull = false; }
-	/** @brief Checks whether CacheInfo_Optional has been set */
-	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
+	FORCEINLINE void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
 	/** @brief Checks whether CacheInfo_Optional is set to null */
-	bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
+	FORCEINLINE bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
 };
 
 /** @} */

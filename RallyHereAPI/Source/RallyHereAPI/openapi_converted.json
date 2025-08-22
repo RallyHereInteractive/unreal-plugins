@@ -34917,22 +34917,6 @@
         ],
         "title": "GrantType",
         "description": "Supported grant types for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Anonymous authentication",
-          "Google authentication",
-          "Apple authentication",
-          "Refresh Token authentication",
-          "Epic Online Services authentication",
-          "Xbox Live authentication",
-          "Playstation Network v1 authentication using the configured PS4 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Playstation Network v3 authentication using the configured PS5 credentials",
-          "Nintendo Service Account (for Nintendo Switch) authentication",
-          "Steam authentication",
-          "Basic Username/Password authentication",
-          "RallyHere Developer authentication",
-          "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
-        ],
         "x-enum-varnames": [
           "ANON",
           "GOOGLE",
@@ -34948,6 +34932,22 @@
           "BASIC",
           "RALLYHERE",
           "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "Anonymous authentication",
+          "Google authentication",
+          "Apple authentication",
+          "Refresh Token authentication",
+          "Epic Online Services authentication",
+          "Xbox Live authentication",
+          "Playstation Network v1 authentication using the configured PS4 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Playstation Network v3 authentication using the configured PS5 credentials",
+          "Nintendo Service Account (for Nintendo Switch) authentication",
+          "Steam authentication",
+          "Basic Username/Password authentication",
+          "RallyHere Developer authentication",
+          "Authentication that doesn't require user credentials, only a Client ID/Secret in the Authorization header."
         ]
       },
       "HTTPValidationError": {
@@ -34997,19 +34997,19 @@
         ],
         "title": "LinkAction",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Linked a player to an existing person",
-          "Unlinked a player from a person",
-          "Player was associated with a new person",
-          "Active player was set for person, enabling cross-progression for all of the person's players",
-          "Active player was cleared for person, disabling cross-progression for all of the person's players"
-        ],
         "x-enum-varnames": [
           "link",
           "unlink",
           "new_person",
           "xprog_enable",
           "xprog_disable"
+        ],
+        "x-enum-descriptions": [
+          "Linked a player to an existing person",
+          "Unlinked a player from a person",
+          "Player was associated with a new person",
+          "Active player was set for person, enabling cross-progression for all of the person's players",
+          "Active player was cleared for person, disabling cross-progression for all of the person's players"
         ]
       },
       "LoginCompleteMessage": {
@@ -35442,11 +35442,11 @@
         ],
         "title": "OAuthGrantType",
         "description": "Supported OAuth2 grant types",
-        "x-enum-descriptions": [
-          "The OAuth2 client credentials grant type"
-        ],
         "x-enum-varnames": [
           "CLIENT_CREDENTIALS"
+        ],
+        "x-enum-descriptions": [
+          "The OAuth2 client credentials grant type"
         ]
       },
       "OAuthPortal": {
@@ -35464,17 +35464,6 @@
         ],
         "title": "OAuthPortal",
         "description": "Supported OAuth portals for V1 Login Flow",
-        "x-enum-descriptions": [
-          "Google OAuth Portal",
-          "Apple OAuth Portal",
-          "Epic OAuth Portal",
-          "Xbox OAuth Portal",
-          "Playstation Network OAuth Portal",
-          "Nintendo OAuth Portal",
-          "Steam OAuth Portal",
-          "Amazon OAuth Portal",
-          "Twitch OAuth Portal"
-        ],
         "x-enum-varnames": [
           "GOOGLE",
           "APPLE",
@@ -35485,6 +35474,17 @@
           "STEAM",
           "AMAZON",
           "TWITCH"
+        ],
+        "x-enum-descriptions": [
+          "Google OAuth Portal",
+          "Apple OAuth Portal",
+          "Epic OAuth Portal",
+          "Xbox OAuth Portal",
+          "Playstation Network OAuth Portal",
+          "Nintendo OAuth Portal",
+          "Steam OAuth Portal",
+          "Amazon OAuth Portal",
+          "Twitch OAuth Portal"
         ]
       },
       "OAuthTokenEchangeGrantType": {
@@ -35494,11 +35494,11 @@
         ],
         "title": "OAuthTokenEchangeGrantType",
         "description": "Supported grant types for OAuth Token Exchange process",
-        "x-enum-descriptions": [
-          "Authorization code grant type for OAuth token exchange."
-        ],
         "x-enum-varnames": [
           "authorization_code"
+        ],
+        "x-enum-descriptions": [
+          "Authorization code grant type for OAuth token exchange."
         ]
       },
       "OAuthTokenExchange": {
@@ -36052,15 +36052,15 @@
         ],
         "title": "PortalTokenDetailsGrantType",
         "description": "The grant type used to authenticate the portal tokens",
-        "x-enum-descriptions": [
-          "Playstation Network v1 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS4 credentials",
-          "Playstation Network v3 auth token validated using the configured PS5 credentials"
-        ],
         "x-enum-varnames": [
           "PS4_V1",
           "PS4_V3",
           "PS5_V3"
+        ],
+        "x-enum-descriptions": [
+          "Playstation Network v1 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS4 credentials",
+          "Playstation Network v3 auth token validated using the configured PS5 credentials"
         ]
       },
       "PortalTokenDetailsRequest": {
@@ -36480,15 +36480,6 @@
         ],
         "title": "RestrictionIssuerType",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "Support staff",
-          "In-Game GM",
-          "System Administrator",
-          "Anti-cheat provider (see issuer for more specific information)",
-          "Automated Punishment system, based on user activity",
-          "User's parent/guardian",
-          "Automated Shop System, based on user activity"
-        ],
         "x-enum-varnames": [
           "SUPPORT",
           "GM",
@@ -36497,6 +36488,15 @@
           "PUNISH_SYSTEM",
           "GUARDIAN",
           "SHOP"
+        ],
+        "x-enum-descriptions": [
+          "Support staff",
+          "In-Game GM",
+          "System Administrator",
+          "Anti-cheat provider (see issuer for more specific information)",
+          "Automated Punishment system, based on user activity",
+          "User's parent/guardian",
+          "Automated Shop System, based on user activity"
         ]
       },
       "RestrictionReasonCode": {
@@ -36522,25 +36522,6 @@
         ],
         "title": "RestrictionReasonCode",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "CHEATING_AUTODETECTED",
           "SPEEDHACK_AUTODETECT",
@@ -36559,6 +36540,25 @@
           "USER_REQUEST",
           "MAINTENANCE",
           "PENDING_DELETION"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "RestrictionType": {
@@ -36571,17 +36571,17 @@
         ],
         "title": "RestrictionType",
         "description": "Restrictions that can be applied to a player. Resitrictions are applied to a player by an admin and often types indicates that the player is banned.",
-        "x-enum-descriptions": [
-          "Account is banned.  User is not allowed to login",
-          "Account is locked out.  User is not allowed to login",
-          "Account is pending deletion and will be deleted in the future.",
-          "Account has been banned from authentication.  User is not allowed to login"
-        ],
         "x-enum-varnames": [
           "ACCOUNT_BAN",
           "ACCOUNT_LOCKOUT",
           "ACCOUNT_PENDING_DELETION",
           "ACCOUNT_DENY_AUTH"
+        ],
+        "x-enum-descriptions": [
+          "Account is banned.  User is not allowed to login",
+          "Account is locked out.  User is not allowed to login",
+          "Account is pending deletion and will be deleted in the future.",
+          "Account has been banned from authentication.  User is not allowed to login"
         ]
       },
       "Restrictions": {
@@ -36654,15 +36654,15 @@
         ],
         "title": "RoleAuthBypass",
         "description": "Role auth bypass options",
-        "x-enum-descriptions": [
-          "Does not bypass any auth states",
-          "Allow bypass of the limited auth state",
-          "Auth bypass for the limited and locked auth states"
-        ],
         "x-enum-varnames": [
           "NONE",
           "LIMITED",
           "LOCKED"
+        ],
+        "x-enum-descriptions": [
+          "Does not bypass any auth states",
+          "Allow bypass of the limited auth state",
+          "Auth bypass for the limited and locked auth states"
         ]
       },
       "SupportLogEntry": {
@@ -36972,23 +36972,6 @@
         ],
         "title": "Portal",
         "description": "Portals a.k.a platforms that a player can be linked/authenticated with",
-        "x-enum-descriptions": [
-          "Anonymous portal used for testing. This is not intended to be used by real players.",
-          "Amazon portal",
-          "Steam portal",
-          "Playstation Network portal",
-          "Xbox Live portal",
-          "Basic portal",
-          "Google portal",
-          "RallyHere Developer portal",
-          "Twitch portal",
-          "Nintendo Switch portal",
-          "Apple portal",
-          "Nintendo portal",
-          "Legacy name portal",
-          "Epic portal",
-          "Nintendo PPID portal"
-        ],
         "x-enum-varnames": [
           "ANON",
           "AMAZON",
@@ -37005,6 +36988,23 @@
           "LEGACYNAME",
           "EPIC",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "Anonymous portal used for testing. This is not intended to be used by real players.",
+          "Amazon portal",
+          "Steam portal",
+          "Playstation Network portal",
+          "Xbox Live portal",
+          "Basic portal",
+          "Google portal",
+          "RallyHere Developer portal",
+          "Twitch portal",
+          "Nintendo Switch portal",
+          "Apple portal",
+          "Nintendo portal",
+          "Legacy name portal",
+          "Epic portal",
+          "Nintendo PPID portal"
         ]
       },
       "fastapicommon__platforms__Portal": {
@@ -37049,44 +37049,6 @@
         ],
         "title": "Portal",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "FREE",
           "SWEAT",
@@ -37124,6 +37086,44 @@
           "LUNA",
           "GOOGLE_PLAY",
           "NINTENDO_PPID"
+        ],
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       "SetSinglePlayerSettingRequest": {
@@ -54814,8 +54814,7 @@
           "custom_data": {
             "additionalProperties": {
               "type": "string",
-              "maxLength": 4096,
-              "minLength": 1
+              "maxLength": 4096
             },
             "type": "object",
             "title": "Custom Data",
@@ -54916,16 +54915,8 @@
             "anyOf": [
               {
                 "additionalProperties": {
-                  "anyOf": [
-                    {
-                      "type": "string",
-                      "maxLength": 4096,
-                      "minLength": 1
-                    },
-                    {
-                      "type": "null"
-                    }
-                  ]
+                  "type": "string",
+                  "maxLength": 4096
                 },
                 "type": "object"
               },
@@ -54934,7 +54925,7 @@
               }
             ],
             "title": "Custom Data",
-            "description": "custom fields for the player to update about their presence. Custom data with a null value will be removed"
+            "description": "custom fields for the player to update about their presence."
           }
         },
         "type": "object",

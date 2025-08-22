@@ -118,7 +118,7 @@ void FRHDTW_Presence::DoViewPresenceTab()
 
 	if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
 	{
-		ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+		ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower)));
 
 		if (auto pp = ActivePlayerInfo->GetPresence())
 		{
@@ -134,7 +134,7 @@ void FRHDTW_Presence::DoViewPresenceTab()
 				ImGui::TableNextColumn();
 				ImGui::Text("Uuid");
 				ImGui::TableNextColumn();
-				ImGui::Text("%s", TCHAR_TO_UTF8(*pp->PlayerUuid.ToString(EGuidFormats::DigitsWithHyphens)));
+				ImGui::Text("%s", TCHAR_TO_UTF8(*pp->PlayerUuid.ToString(EGuidFormats::DigitsWithHyphensLower)));
 
 				ImGui::TableNextRow();
 				ImGui::TableNextColumn();

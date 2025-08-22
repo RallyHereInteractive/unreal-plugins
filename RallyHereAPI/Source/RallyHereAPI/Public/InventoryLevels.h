@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_InventoryLevels : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Levels_IsSet{ false };
 	/** @brief Gets the value of Levels_Optional, regardless of it having been set */
-	TArray<FRHAPI_InventoryLevel>& GetLevels() { return Levels_Optional; }
+	FORCEINLINE TArray<FRHAPI_InventoryLevel>& GetLevels() { return Levels_Optional; }
 	/** @brief Gets the value of Levels_Optional, regardless of it having been set */
-	const TArray<FRHAPI_InventoryLevel>& GetLevels() const { return Levels_Optional; }
+	FORCEINLINE const TArray<FRHAPI_InventoryLevel>& GetLevels() const { return Levels_Optional; }
 	/** @brief Gets the value of Levels_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_InventoryLevel>& GetLevels(const TArray<FRHAPI_InventoryLevel>& DefaultValue) const { if (Levels_IsSet) return Levels_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_InventoryLevel>& GetLevels(const TArray<FRHAPI_InventoryLevel>& DefaultValue) const { if (Levels_IsSet) return Levels_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Levels_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLevels(TArray<FRHAPI_InventoryLevel>& OutValue) const { if (Levels_IsSet) OutValue = Levels_Optional; return Levels_IsSet; }
+	FORCEINLINE bool GetLevels(TArray<FRHAPI_InventoryLevel>& OutValue) const { if (Levels_IsSet) OutValue = Levels_Optional; return Levels_IsSet; }
 	/** @brief Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_InventoryLevel>* GetLevelsOrNull() { if (Levels_IsSet) return (&Levels_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_InventoryLevel>* GetLevelsOrNull() { if (Levels_IsSet) return (&Levels_Optional); return nullptr; }
 	/** @brief Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_InventoryLevel>* GetLevelsOrNull() const { if (Levels_IsSet) return (&Levels_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_InventoryLevel>* GetLevelsOrNull() const { if (Levels_IsSet) return (&Levels_Optional); return nullptr; }
 	/** @brief Sets the value of Levels_Optional and also sets Levels_IsSet to true */
-	void SetLevels(const TArray<FRHAPI_InventoryLevel>& NewValue) { Levels_Optional = NewValue; Levels_IsSet = true;  }
+	FORCEINLINE void SetLevels(const TArray<FRHAPI_InventoryLevel>& NewValue) { Levels_Optional = NewValue; Levels_IsSet = true;  }
 	/** @brief Sets the value of Levels_Optional and also sets Levels_IsSet to true using move semantics */
-	void SetLevels(TArray<FRHAPI_InventoryLevel>&& NewValue) { Levels_Optional = NewValue; Levels_IsSet = true;  }
+	FORCEINLINE void SetLevels(TArray<FRHAPI_InventoryLevel>&& NewValue) { Levels_Optional = NewValue; Levels_IsSet = true;  }
 	/** @brief Clears the value of Levels_Optional and sets Levels_IsSet to false */
 	void ClearLevels() { Levels_IsSet = false;  }
-	/** @brief Checks whether Levels_Optional has been set */
-	bool IsLevelsSet() const { return Levels_IsSet; }
 };
 
 /** @} */

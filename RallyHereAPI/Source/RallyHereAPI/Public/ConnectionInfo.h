@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_ConnectionInfo : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ip{  };
 	/** @brief Gets the value of Ip */
-	FString& GetIp() { return Ip; }
+	FORCEINLINE FString& GetIp() { return Ip; }
 	/** @brief Gets the value of Ip */
-	const FString& GetIp() const { return Ip; }
+	FORCEINLINE const FString& GetIp() const { return Ip; }
 	/** @brief Sets the value of Ip */
-	void SetIp(const FString& NewValue) { Ip = NewValue;   }
+	FORCEINLINE void SetIp(const FString& NewValue) { Ip = NewValue;   }
 	/** @brief Sets the value of Ip using move semantics */
-	void SetIp(FString&& NewValue) { Ip = NewValue;   }
+	FORCEINLINE void SetIp(FString&& NewValue) { Ip = NewValue;   }
 };
 
 /** @} */

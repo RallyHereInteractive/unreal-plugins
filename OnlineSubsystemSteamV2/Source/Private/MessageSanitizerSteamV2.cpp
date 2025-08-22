@@ -23,11 +23,11 @@ FString FMessageSanitizerSteamV2::GetSanitizedDisplayName(const FString& Display
 	ISteamUtils* SteamUtilsPtr = SteamUtils();
 	check(SteamUtilsPtr);
 
-	const uint32 SanitizedBufferSize = DisplayName.Len() + 1;
+	const uint32 SanitizedBufferSize = 4 * DisplayName.Len() + 1;
 	char* SanitizedMessage = new char[SanitizedBufferSize];
-	SteamUtilsPtr->FilterText(k_ETextFilteringContextName, CSteamID(), TCHAR_TO_ANSI(*DisplayName), SanitizedMessage, SanitizedBufferSize);
+	SteamUtilsPtr->FilterText(k_ETextFilteringContextName, CSteamID(), TCHAR_TO_UTF8(*DisplayName), SanitizedMessage, SanitizedBufferSize);
 
-	const FString SanitizedString = ANSI_TO_TCHAR(SanitizedMessage);
+	const FString SanitizedString = UTF8_TO_TCHAR(SanitizedMessage);
 	delete [] SanitizedMessage;
 
 	UE_LOG_ONLINE(VeryVerbose, TEXT("[%s(%s)] returning %s"), ANSI_TO_TCHAR(__FUNCTION__), *DisplayName, *SanitizedString);

@@ -231,7 +231,7 @@ bool URH_PEXCollector::InitWithConfig(IRH_PEXOwnerInterface* InOwner, const URH_
     	FString TimelineFileName = FString::Printf(TEXT("%s_%s.csv"), *Config->TimelineFilePrefix, *CachedMatchId);
     	if (CachedPlayerId.IsValid())
     	{
-    		TimelineFileName = FString::Printf(TEXT("%s_%s_%s.csv"), *Config->TimelineFilePrefix, *CachedMatchId, *CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphens));
+    		TimelineFileName = FString::Printf(TEXT("%s_%s_%s.csv"), *Config->TimelineFilePrefix, *CachedMatchId, *CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphensLower));
     	}
     	
 		TimelineFilePath = FPaths::ProjectLogDir() / TimelineFileName;
@@ -369,7 +369,7 @@ TSharedRef<FJsonObject> URH_PEXCollector::GetSummaryJson() const
 void URH_PEXCollector::WriteSummary()
 {
 	// if summary data is not configured, do not write it
-	if (!GetConfig()->WantsSummary())
+	if (!GetConfig()->WantsSummary() || !bWantsToUploadStats)
 	{
 		return;
 	}
@@ -386,7 +386,7 @@ void URH_PEXCollector::WriteSummary()
 		FString FileName = FString::Printf(TEXT("%s_%s.json"), *GetConfig()->SummaryFilePrefix, *CachedMatchId);
 		if (CachedPlayerId.IsValid())
 		{
-			FileName = FString::Printf(TEXT("%s_%s_%s.json"), *GetConfig()->SummaryFilePrefix, *CachedMatchId, *CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphens));
+			FileName = FString::Printf(TEXT("%s_%s_%s.json"), *GetConfig()->SummaryFilePrefix, *CachedMatchId, *CachedPlayerId.ToString(EGuidFormats::DigitsWithHyphensLower));
 		}
 		SummaryFilePath = FPaths::ProjectLogDir() / FileName;
 
@@ -439,6 +439,8 @@ void URH_PEXCollector::WriteSummary()
 			}
 		}
 	}
+
+    bWantsToUploadStats = false;
 }
 
 void URH_PEXCollector::UploadFile(const FString& FilePath, const FString& RemoteFileName) const
@@ -484,6 +486,7 @@ URH_PEXPrimaryStats::URH_PEXPrimaryStats()
 		GetCaptureStat(ECaptureStat::MemoryVB) = FRH_StatAccumulator(TEXT("MemoryVB"), ERH_PEXValueType::Max);
 		GetCaptureStat(ECaptureStat::CPUProcess) = FRH_StatAccumulator(TEXT("CPUProcess"), ERH_PEXValueType::Max);
 		GetCaptureStat(ECaptureStat::CPUMachine) = FRH_StatAccumulator(TEXT("CPUMachine"), ERH_PEXValueType::Max);
+		GetCaptureStat(ECaptureStat::MemoryVRAM) = FRH_StatAccumulator(TEXT("MemoryVRAM"), ERH_PEXValueType::Max);
 	}
 
 	{
@@ -578,6 +581,23 @@ void URH_PEXPrimaryStats::CapturePerIntervalStats(const TScriptInterface<IRH_PEX
 	GetCaptureStat(ECaptureStat::MemoryWS).CaptureValue(MemoryStats.UsedPhysical >> 20);
 	GetCaptureStat(ECaptureStat::MemoryVB).CaptureValue(MemoryStats.UsedVirtual >> 20);
 	GetCaptureStat(ECaptureStat::CPUProcess).CaptureValue(FPlatformTime::GetCPUTime().CPUTimePctRelative);
+#if PLATFORM_WINDOWS
+	IDXGIFactory4* pFactory;
+	CreateDXGIFactory1(__uuidof(IDXGIFactory4), (void**)&pFactory);
+
+	IDXGIAdapter3* adapter;
+	pFactory->EnumAdapters(0, reinterpret_cast<IDXGIAdapter**>(&adapter));
+
+	DXGI_QUERY_VIDEO_MEMORY_INFO videoMemoryInfo;
+	adapter->QueryVideoMemoryInfo(0, DXGI_MEMORY_SEGMENT_GROUP_LOCAL, &videoMemoryInfo);
+	GetCaptureStat(ECaptureStat::MemoryVRAM).CaptureValue(videoMemoryInfo.CurrentUsage >> 20);
+	/*FD3D12DynamicRHI* DynamicRHI = FD3D12DynamicRHI::GetD3DRHI();
+	if(DynamicRHI != nullptr)
+	{
+		const FD3DMemoryStats dx12MemStats = DynamicRHI->GetAdapter().CollectMemoryStats();
+		GetCaptureStat(ECaptureStat::MemoryVRAM).CaptureValue(dx12MemStats.UsedLocal >> 20);
+	}*/
+#endif
 }
 
 URH_PEXNetworkStats_Base::URH_PEXNetworkStats_Base()
@@ -770,7 +790,7 @@ void URH_PEXNetworkStats_Host::GetOrCreatePlayerNetworkStats(const UNetConnectio
 		{
 			OutPlayerNetworkStats = NewObject<URH_PEXNetworkStats_Connection>(this);
 			OutPlayerNetworkStats->bDynamic = true;
-			OutPlayerNetworkStats->GroupName = FName(FString::Printf(TEXT("Player_%s"), *RHIpConnection->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+			OutPlayerNetworkStats->GroupName = FName(FString::Printf(TEXT("Player_%s"), *RHIpConnection->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			PlayerNetworkStats.Add(RHIpConnection->GetRHPlayerUuid(), OutPlayerNetworkStats);
 			Children.Add(OutPlayerNetworkStats);
 		}

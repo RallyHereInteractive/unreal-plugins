@@ -43,24 +43,24 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationship : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid FriendsPlayerUuid{  };
 	/** @brief Gets the value of FriendsPlayerUuid */
-	FGuid& GetFriendsPlayerUuid() { return FriendsPlayerUuid; }
+	FORCEINLINE FGuid& GetFriendsPlayerUuid() { return FriendsPlayerUuid; }
 	/** @brief Gets the value of FriendsPlayerUuid */
-	const FGuid& GetFriendsPlayerUuid() const { return FriendsPlayerUuid; }
+	FORCEINLINE const FGuid& GetFriendsPlayerUuid() const { return FriendsPlayerUuid; }
 	/** @brief Sets the value of FriendsPlayerUuid */
-	void SetFriendsPlayerUuid(const FGuid& NewValue) { FriendsPlayerUuid = NewValue;   }
+	FORCEINLINE void SetFriendsPlayerUuid(const FGuid& NewValue) { FriendsPlayerUuid = NewValue;   }
 	/** @brief Sets the value of FriendsPlayerUuid using move semantics */
-	void SetFriendsPlayerUuid(FGuid&& NewValue) { FriendsPlayerUuid = NewValue;   }
+	FORCEINLINE void SetFriendsPlayerUuid(FGuid&& NewValue) { FriendsPlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_FriendshipStatus Status{  };
 	/** @brief Gets the value of Status */
-	ERHAPI_FriendshipStatus& GetStatus() { return Status; }
+	FORCEINLINE ERHAPI_FriendshipStatus& GetStatus() { return Status; }
 	/** @brief Gets the value of Status */
-	const ERHAPI_FriendshipStatus& GetStatus() const { return Status; }
+	FORCEINLINE const ERHAPI_FriendshipStatus& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(const ERHAPI_FriendshipStatus& NewValue) { Status = NewValue;   }
+	FORCEINLINE void SetStatus(const ERHAPI_FriendshipStatus& NewValue) { Status = NewValue;   }
 	/** @brief Sets the value of Status using move semantics */
-	void SetStatus(ERHAPI_FriendshipStatus&& NewValue) { Status = NewValue;   }
+	FORCEINLINE void SetStatus(ERHAPI_FriendshipStatus&& NewValue) { Status = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Notes_Optional{  };
@@ -68,36 +68,34 @@ struct RALLYHEREAPI_API FRHAPI_FriendRelationship : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Notes_IsSet{ false };
 	/** @brief Gets the value of Notes_Optional, regardless of it having been set */
-	FString& GetNotes() { return Notes_Optional; }
+	FORCEINLINE FString& GetNotes() { return Notes_Optional; }
 	/** @brief Gets the value of Notes_Optional, regardless of it having been set */
-	const FString& GetNotes() const { return Notes_Optional; }
+	FORCEINLINE const FString& GetNotes() const { return Notes_Optional; }
 	/** @brief Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetNotes(const FString& DefaultValue) const { if (Notes_IsSet) return Notes_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetNotes(const FString& DefaultValue) const { if (Notes_IsSet) return Notes_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false */
-	bool GetNotes(FString& OutValue) const { if (Notes_IsSet) OutValue = Notes_Optional; return Notes_IsSet; }
+	FORCEINLINE bool GetNotes(FString& OutValue) const { if (Notes_IsSet) OutValue = Notes_Optional; return Notes_IsSet; }
 	/** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetNotesOrNull() { if (Notes_IsSet) return (&Notes_Optional); return nullptr; }
+	FORCEINLINE FString* GetNotesOrNull() { if (Notes_IsSet) return (&Notes_Optional); return nullptr; }
 	/** @brief Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetNotesOrNull() const { if (Notes_IsSet) return (&Notes_Optional); return nullptr; }
+	FORCEINLINE const FString* GetNotesOrNull() const { if (Notes_IsSet) return (&Notes_Optional); return nullptr; }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true */
-	void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
+	FORCEINLINE void SetNotes(const FString& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
 	/** @brief Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics */
-	void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
+	FORCEINLINE void SetNotes(FString&& NewValue) { Notes_Optional = NewValue; Notes_IsSet = true;  }
 	/** @brief Clears the value of Notes_Optional and sets Notes_IsSet to false */
 	void ClearNotes() { Notes_IsSet = false;  }
-	/** @brief Checks whether Notes_Optional has been set */
-	bool IsNotesSet() const { return Notes_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };
 	/** @brief Gets the value of LastModifiedOn */
-	FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
+	FORCEINLINE FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
 	/** @brief Gets the value of LastModifiedOn */
-	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
+	FORCEINLINE const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
+	FORCEINLINE void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
 	/** @brief Sets the value of LastModifiedOn using move semantics */
-	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
+	FORCEINLINE void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
 };
 
 /** @} */

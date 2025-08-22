@@ -30,6 +30,7 @@ public:
 
 	int32 JoinByIdTeam;
 	TArray<ANSICHAR> JoinByIdString;
+	TArray<ANSICHAR> JoinByIdFriendIdString;
 	TArray<ANSICHAR> CreateByTypeSessionTypeString;
 	TArray<ANSICHAR> CreateByTypeRegionIdString;
 	bool CreateByTypeUsePlayerOptions;

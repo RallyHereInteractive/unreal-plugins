@@ -43,33 +43,29 @@ struct RALLYHEREAPI_API FRHAPI_PurchasePriceCurrency : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PriceItemId{ 0 };
 	/** @brief Gets the value of PriceItemId */
-	int32& GetPriceItemId() { return PriceItemId; }
+	FORCEINLINE int32& GetPriceItemId() { return PriceItemId; }
 	/** @brief Gets the value of PriceItemId */
-	const int32& GetPriceItemId() const { return PriceItemId; }
+	FORCEINLINE const int32& GetPriceItemId() const { return PriceItemId; }
 	/** @brief Sets the value of PriceItemId */
-	void SetPriceItemId(const int32& NewValue) { PriceItemId = NewValue;   }
+	FORCEINLINE void SetPriceItemId(const int32& NewValue) { PriceItemId = NewValue;   }
 	/** @brief Sets the value of PriceItemId using move semantics */
-	void SetPriceItemId(int32&& NewValue) { PriceItemId = NewValue;   }
-	/** @brief Returns true if PriceItemId matches the default value */
-	bool IsPriceItemIdDefaultValue() const { return PriceItemId == 0; }
-	/** @brief Sets the value of PriceItemId to its default  */
-	void SetPriceItemIdToDefault() { SetPriceItemId(0); }
+	FORCEINLINE void SetPriceItemId(int32&& NewValue) { PriceItemId = NewValue;   }
+	/** @brief Returns the default value of PriceItemId */
+	FORCEINLINE int32 GetDefaultValue_PriceItemId() { return 0; }
 
 	/** @brief The price of the Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Price{ 0 };
 	/** @brief Gets the value of Price */
-	int32& GetPrice() { return Price; }
+	FORCEINLINE int32& GetPrice() { return Price; }
 	/** @brief Gets the value of Price */
-	const int32& GetPrice() const { return Price; }
+	FORCEINLINE const int32& GetPrice() const { return Price; }
 	/** @brief Sets the value of Price */
-	void SetPrice(const int32& NewValue) { Price = NewValue;   }
+	FORCEINLINE void SetPrice(const int32& NewValue) { Price = NewValue;   }
 	/** @brief Sets the value of Price using move semantics */
-	void SetPrice(int32&& NewValue) { Price = NewValue;   }
-	/** @brief Returns true if Price matches the default value */
-	bool IsPriceDefaultValue() const { return Price == 0; }
-	/** @brief Sets the value of Price to its default  */
-	void SetPriceToDefault() { SetPrice(0); }
+	FORCEINLINE void SetPrice(int32&& NewValue) { Price = NewValue;   }
+	/** @brief Returns the default value of Price */
+	FORCEINLINE int32 GetDefaultValue_Price() { return 0; }
 };
 
 /** @} */

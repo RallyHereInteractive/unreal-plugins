@@ -43,33 +43,29 @@ struct RALLYHEREAPI_API FRHAPI_MatchReward : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 LegacyLootId{ 0 };
 	/** @brief Gets the value of LegacyLootId */
-	int32& GetLegacyLootId() { return LegacyLootId; }
+	FORCEINLINE int32& GetLegacyLootId() { return LegacyLootId; }
 	/** @brief Gets the value of LegacyLootId */
-	const int32& GetLegacyLootId() const { return LegacyLootId; }
+	FORCEINLINE const int32& GetLegacyLootId() const { return LegacyLootId; }
 	/** @brief Sets the value of LegacyLootId */
-	void SetLegacyLootId(const int32& NewValue) { LegacyLootId = NewValue;   }
+	FORCEINLINE void SetLegacyLootId(const int32& NewValue) { LegacyLootId = NewValue;   }
 	/** @brief Sets the value of LegacyLootId using move semantics */
-	void SetLegacyLootId(int32&& NewValue) { LegacyLootId = NewValue;   }
-	/** @brief Returns true if LegacyLootId matches the default value */
-	bool IsLegacyLootIdDefaultValue() const { return LegacyLootId == 0; }
-	/** @brief Sets the value of LegacyLootId to its default  */
-	void SetLegacyLootIdToDefault() { SetLegacyLootId(0); }
+	FORCEINLINE void SetLegacyLootId(int32&& NewValue) { LegacyLootId = NewValue;   }
+	/** @brief Returns the default value of LegacyLootId */
+	FORCEINLINE int32 GetDefaultValue_LegacyLootId() { return 0; }
 
 	/** @brief How many times to grant the loot to the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Quantity{ 0 };
 	/** @brief Gets the value of Quantity */
-	int32& GetQuantity() { return Quantity; }
+	FORCEINLINE int32& GetQuantity() { return Quantity; }
 	/** @brief Gets the value of Quantity */
-	const int32& GetQuantity() const { return Quantity; }
+	FORCEINLINE const int32& GetQuantity() const { return Quantity; }
 	/** @brief Sets the value of Quantity */
-	void SetQuantity(const int32& NewValue) { Quantity = NewValue;   }
+	FORCEINLINE void SetQuantity(const int32& NewValue) { Quantity = NewValue;   }
 	/** @brief Sets the value of Quantity using move semantics */
-	void SetQuantity(int32&& NewValue) { Quantity = NewValue;   }
-	/** @brief Returns true if Quantity matches the default value */
-	bool IsQuantityDefaultValue() const { return Quantity == 0; }
-	/** @brief Sets the value of Quantity to its default  */
-	void SetQuantityToDefault() { SetQuantity(0); }
+	FORCEINLINE void SetQuantity(int32&& NewValue) { Quantity = NewValue;   }
+	/** @brief Returns the default value of Quantity */
+	FORCEINLINE int32 GetDefaultValue_Quantity() { return 0; }
 };
 
 /** @} */

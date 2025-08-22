@@ -43,45 +43,41 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakPointCurrency : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PriceItemUuid{  };
 	/** @brief Gets the value of PriceItemUuid */
-	FGuid& GetPriceItemUuid() { return PriceItemUuid; }
+	FORCEINLINE FGuid& GetPriceItemUuid() { return PriceItemUuid; }
 	/** @brief Gets the value of PriceItemUuid */
-	const FGuid& GetPriceItemUuid() const { return PriceItemUuid; }
+	FORCEINLINE const FGuid& GetPriceItemUuid() const { return PriceItemUuid; }
 	/** @brief Sets the value of PriceItemUuid */
-	void SetPriceItemUuid(const FGuid& NewValue) { PriceItemUuid = NewValue;   }
+	FORCEINLINE void SetPriceItemUuid(const FGuid& NewValue) { PriceItemUuid = NewValue;   }
 	/** @brief Sets the value of PriceItemUuid using move semantics */
-	void SetPriceItemUuid(FGuid&& NewValue) { PriceItemUuid = NewValue;   }
+	FORCEINLINE void SetPriceItemUuid(FGuid&& NewValue) { PriceItemUuid = NewValue;   }
 
 	/** @brief The Item used as the currency for the purchase. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PriceItemId{ 0 };
 	/** @brief Gets the value of PriceItemId */
-	int32& GetPriceItemId() { return PriceItemId; }
+	FORCEINLINE int32& GetPriceItemId() { return PriceItemId; }
 	/** @brief Gets the value of PriceItemId */
-	const int32& GetPriceItemId() const { return PriceItemId; }
+	FORCEINLINE const int32& GetPriceItemId() const { return PriceItemId; }
 	/** @brief Sets the value of PriceItemId */
-	void SetPriceItemId(const int32& NewValue) { PriceItemId = NewValue;   }
+	FORCEINLINE void SetPriceItemId(const int32& NewValue) { PriceItemId = NewValue;   }
 	/** @brief Sets the value of PriceItemId using move semantics */
-	void SetPriceItemId(int32&& NewValue) { PriceItemId = NewValue;   }
-	/** @brief Returns true if PriceItemId matches the default value */
-	bool IsPriceItemIdDefaultValue() const { return PriceItemId == 0; }
-	/** @brief Sets the value of PriceItemId to its default  */
-	void SetPriceItemIdToDefault() { SetPriceItemId(0); }
+	FORCEINLINE void SetPriceItemId(int32&& NewValue) { PriceItemId = NewValue;   }
+	/** @brief Returns the default value of PriceItemId */
+	FORCEINLINE int32 GetDefaultValue_PriceItemId() { return 0; }
 
 	/** @brief The price of the Item. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Price{ 0 };
 	/** @brief Gets the value of Price */
-	int32& GetPrice() { return Price; }
+	FORCEINLINE int32& GetPrice() { return Price; }
 	/** @brief Gets the value of Price */
-	const int32& GetPrice() const { return Price; }
+	FORCEINLINE const int32& GetPrice() const { return Price; }
 	/** @brief Sets the value of Price */
-	void SetPrice(const int32& NewValue) { Price = NewValue;   }
+	FORCEINLINE void SetPrice(const int32& NewValue) { Price = NewValue;   }
 	/** @brief Sets the value of Price using move semantics */
-	void SetPrice(int32&& NewValue) { Price = NewValue;   }
-	/** @brief Returns true if Price matches the default value */
-	bool IsPriceDefaultValue() const { return Price == 0; }
-	/** @brief Sets the value of Price to its default  */
-	void SetPriceToDefault() { SetPrice(0); }
+	FORCEINLINE void SetPrice(int32&& NewValue) { Price = NewValue;   }
+	/** @brief Returns the default value of Price */
+	FORCEINLINE int32 GetDefaultValue_Price() { return 0; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 MinReducedPrice_Optional{ 0 };
@@ -92,33 +88,29 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakPointCurrency : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MinReducedPrice_IsNull{ false };
 	/** @brief Gets the value of MinReducedPrice_Optional, regardless of it having been set */
-	int32& GetMinReducedPrice() { return MinReducedPrice_Optional; }
+	FORCEINLINE int32& GetMinReducedPrice() { return MinReducedPrice_Optional; }
 	/** @brief Gets the value of MinReducedPrice_Optional, regardless of it having been set */
-	const int32& GetMinReducedPrice() const { return MinReducedPrice_Optional; }
+	FORCEINLINE const int32& GetMinReducedPrice() const { return MinReducedPrice_Optional; }
 	/** @brief Gets the value of MinReducedPrice_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetMinReducedPrice(const int32& DefaultValue) const { if (MinReducedPrice_IsSet) return MinReducedPrice_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetMinReducedPrice(const int32& DefaultValue) const { if (MinReducedPrice_IsSet) return MinReducedPrice_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MinReducedPrice_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMinReducedPrice(int32& OutValue) const { if (MinReducedPrice_IsSet && !MinReducedPrice_IsNull) OutValue = MinReducedPrice_Optional; return MinReducedPrice_IsSet; }
+	FORCEINLINE bool GetMinReducedPrice(int32& OutValue) const { if (MinReducedPrice_IsSet && !MinReducedPrice_IsNull) OutValue = MinReducedPrice_Optional; return MinReducedPrice_IsSet; }
 	/** @brief Returns a pointer to MinReducedPrice_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetMinReducedPriceOrNull() { if (MinReducedPrice_IsSet) return (MinReducedPrice_IsNull ? nullptr : &MinReducedPrice_Optional); return nullptr; }
+	FORCEINLINE int32* GetMinReducedPriceOrNull() { if (MinReducedPrice_IsSet) return (MinReducedPrice_IsNull ? nullptr : &MinReducedPrice_Optional); return nullptr; }
 	/** @brief Returns a pointer to MinReducedPrice_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetMinReducedPriceOrNull() const { if (MinReducedPrice_IsSet) return (MinReducedPrice_IsNull ? nullptr : &MinReducedPrice_Optional); return nullptr; }
+	FORCEINLINE const int32* GetMinReducedPriceOrNull() const { if (MinReducedPrice_IsSet) return (MinReducedPrice_IsNull ? nullptr : &MinReducedPrice_Optional); return nullptr; }
 	/** @brief Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet to true */
-	void SetMinReducedPrice(const int32& NewValue) { MinReducedPrice_Optional = NewValue; MinReducedPrice_IsSet = true; MinReducedPrice_IsNull = false; }
+	FORCEINLINE void SetMinReducedPrice(const int32& NewValue) { MinReducedPrice_Optional = NewValue; MinReducedPrice_IsSet = true; MinReducedPrice_IsNull = false; }
 	/** @brief Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet to true using move semantics */
-	void SetMinReducedPrice(int32&& NewValue) { MinReducedPrice_Optional = NewValue; MinReducedPrice_IsSet = true; MinReducedPrice_IsNull = false; }
+	FORCEINLINE void SetMinReducedPrice(int32&& NewValue) { MinReducedPrice_Optional = NewValue; MinReducedPrice_IsSet = true; MinReducedPrice_IsNull = false; }
 	/** @brief Clears the value of MinReducedPrice_Optional and sets MinReducedPrice_IsSet to false */
 	void ClearMinReducedPrice() { MinReducedPrice_Optional = 0; MinReducedPrice_IsSet = false; MinReducedPrice_IsNull = false; }
-	/** @brief Checks whether MinReducedPrice_Optional has been set */
-	bool IsMinReducedPriceSet() const { return MinReducedPrice_IsSet; }
-	/** @brief Returns true if MinReducedPrice_Optional is set and matches the default value */
-	bool IsMinReducedPriceDefaultValue() const { return MinReducedPrice_IsSet && MinReducedPrice_Optional == 0; }
-	/** @brief Sets the value of MinReducedPrice_Optional to its default and also sets MinReducedPrice_IsSet to true */
-	void SetMinReducedPriceToDefault() { SetMinReducedPrice(0); }
+	/** @brief Returns the default value of MinReducedPrice */
+	FORCEINLINE int32 GetDefaultValue_MinReducedPrice() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMinReducedPriceToNull() { MinReducedPrice_IsSet = true; MinReducedPrice_IsNull = true; }
+	FORCEINLINE void SetMinReducedPriceToNull() { MinReducedPrice_IsSet = true; MinReducedPrice_IsNull = true; }
 	/** @brief Checks whether MinReducedPrice_Optional is set to null */
-	bool IsMinReducedPriceNull() const { return MinReducedPrice_IsSet && MinReducedPrice_IsNull; }
+	FORCEINLINE bool IsMinReducedPriceNull() const { return MinReducedPrice_IsSet && MinReducedPrice_IsNull; }
 };
 
 /** @} */

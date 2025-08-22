@@ -43,29 +43,27 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_EntitlementType Type{  };
 	/** @brief Gets the value of Type */
-	ERHAPI_EntitlementType& GetType() { return Type; }
+	FORCEINLINE ERHAPI_EntitlementType& GetType() { return Type; }
 	/** @brief Gets the value of Type */
-	const ERHAPI_EntitlementType& GetType() const { return Type; }
+	FORCEINLINE const ERHAPI_EntitlementType& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(const ERHAPI_EntitlementType& NewValue) { Type = NewValue;   }
+	FORCEINLINE void SetType(const ERHAPI_EntitlementType& NewValue) { Type = NewValue;   }
 	/** @brief Sets the value of Type using move semantics */
-	void SetType(ERHAPI_EntitlementType&& NewValue) { Type = NewValue;   }
+	FORCEINLINE void SetType(ERHAPI_EntitlementType&& NewValue) { Type = NewValue;   }
 
 	/** @brief The Loot ID that will be granted to the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 LootId{ 0 };
 	/** @brief Gets the value of LootId */
-	int32& GetLootId() { return LootId; }
+	FORCEINLINE int32& GetLootId() { return LootId; }
 	/** @brief Gets the value of LootId */
-	const int32& GetLootId() const { return LootId; }
+	FORCEINLINE const int32& GetLootId() const { return LootId; }
 	/** @brief Sets the value of LootId */
-	void SetLootId(const int32& NewValue) { LootId = NewValue;   }
+	FORCEINLINE void SetLootId(const int32& NewValue) { LootId = NewValue;   }
 	/** @brief Sets the value of LootId using move semantics */
-	void SetLootId(int32&& NewValue) { LootId = NewValue;   }
-	/** @brief Returns true if LootId matches the default value */
-	bool IsLootIdDefaultValue() const { return LootId == 0; }
-	/** @brief Sets the value of LootId to its default  */
-	void SetLootIdToDefault() { SetLootId(0); }
+	FORCEINLINE void SetLootId(int32&& NewValue) { LootId = NewValue;   }
+	/** @brief Returns the default value of LootId */
+	FORCEINLINE int32 GetDefaultValue_LootId() { return 0; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 RefundLootId_Optional{ 0 };
@@ -76,33 +74,29 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RefundLootId_IsNull{ false };
 	/** @brief Gets the value of RefundLootId_Optional, regardless of it having been set */
-	int32& GetRefundLootId() { return RefundLootId_Optional; }
+	FORCEINLINE int32& GetRefundLootId() { return RefundLootId_Optional; }
 	/** @brief Gets the value of RefundLootId_Optional, regardless of it having been set */
-	const int32& GetRefundLootId() const { return RefundLootId_Optional; }
+	FORCEINLINE const int32& GetRefundLootId() const { return RefundLootId_Optional; }
 	/** @brief Gets the value of RefundLootId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetRefundLootId(const int32& DefaultValue) const { if (RefundLootId_IsSet) return RefundLootId_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetRefundLootId(const int32& DefaultValue) const { if (RefundLootId_IsSet) return RefundLootId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of RefundLootId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRefundLootId(int32& OutValue) const { if (RefundLootId_IsSet && !RefundLootId_IsNull) OutValue = RefundLootId_Optional; return RefundLootId_IsSet; }
+	FORCEINLINE bool GetRefundLootId(int32& OutValue) const { if (RefundLootId_IsSet && !RefundLootId_IsNull) OutValue = RefundLootId_Optional; return RefundLootId_IsSet; }
 	/** @brief Returns a pointer to RefundLootId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetRefundLootIdOrNull() { if (RefundLootId_IsSet) return (RefundLootId_IsNull ? nullptr : &RefundLootId_Optional); return nullptr; }
+	FORCEINLINE int32* GetRefundLootIdOrNull() { if (RefundLootId_IsSet) return (RefundLootId_IsNull ? nullptr : &RefundLootId_Optional); return nullptr; }
 	/** @brief Returns a pointer to RefundLootId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetRefundLootIdOrNull() const { if (RefundLootId_IsSet) return (RefundLootId_IsNull ? nullptr : &RefundLootId_Optional); return nullptr; }
+	FORCEINLINE const int32* GetRefundLootIdOrNull() const { if (RefundLootId_IsSet) return (RefundLootId_IsNull ? nullptr : &RefundLootId_Optional); return nullptr; }
 	/** @brief Sets the value of RefundLootId_Optional and also sets RefundLootId_IsSet to true */
-	void SetRefundLootId(const int32& NewValue) { RefundLootId_Optional = NewValue; RefundLootId_IsSet = true; RefundLootId_IsNull = false; }
+	FORCEINLINE void SetRefundLootId(const int32& NewValue) { RefundLootId_Optional = NewValue; RefundLootId_IsSet = true; RefundLootId_IsNull = false; }
 	/** @brief Sets the value of RefundLootId_Optional and also sets RefundLootId_IsSet to true using move semantics */
-	void SetRefundLootId(int32&& NewValue) { RefundLootId_Optional = NewValue; RefundLootId_IsSet = true; RefundLootId_IsNull = false; }
+	FORCEINLINE void SetRefundLootId(int32&& NewValue) { RefundLootId_Optional = NewValue; RefundLootId_IsSet = true; RefundLootId_IsNull = false; }
 	/** @brief Clears the value of RefundLootId_Optional and sets RefundLootId_IsSet to false */
 	void ClearRefundLootId() { RefundLootId_Optional = 0; RefundLootId_IsSet = false; RefundLootId_IsNull = false; }
-	/** @brief Checks whether RefundLootId_Optional has been set */
-	bool IsRefundLootIdSet() const { return RefundLootId_IsSet; }
-	/** @brief Returns true if RefundLootId_Optional is set and matches the default value */
-	bool IsRefundLootIdDefaultValue() const { return RefundLootId_IsSet && RefundLootId_Optional == 0; }
-	/** @brief Sets the value of RefundLootId_Optional to its default and also sets RefundLootId_IsSet to true */
-	void SetRefundLootIdToDefault() { SetRefundLootId(0); }
+	/** @brief Returns the default value of RefundLootId */
+	FORCEINLINE int32 GetDefaultValue_RefundLootId() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRefundLootIdToNull() { RefundLootId_IsSet = true; RefundLootId_IsNull = true; }
+	FORCEINLINE void SetRefundLootIdToNull() { RefundLootId_IsSet = true; RefundLootId_IsNull = true; }
 	/** @brief Checks whether RefundLootId_Optional is set to null */
-	bool IsRefundLootIdNull() const { return RefundLootId_IsSet && RefundLootId_IsNull; }
+	FORCEINLINE bool IsRefundLootIdNull() const { return RefundLootId_IsSet && RefundLootId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ChargebackLootId_Optional{ 0 };
@@ -113,33 +107,29 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ChargebackLootId_IsNull{ false };
 	/** @brief Gets the value of ChargebackLootId_Optional, regardless of it having been set */
-	int32& GetChargebackLootId() { return ChargebackLootId_Optional; }
+	FORCEINLINE int32& GetChargebackLootId() { return ChargebackLootId_Optional; }
 	/** @brief Gets the value of ChargebackLootId_Optional, regardless of it having been set */
-	const int32& GetChargebackLootId() const { return ChargebackLootId_Optional; }
+	FORCEINLINE const int32& GetChargebackLootId() const { return ChargebackLootId_Optional; }
 	/** @brief Gets the value of ChargebackLootId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetChargebackLootId(const int32& DefaultValue) const { if (ChargebackLootId_IsSet) return ChargebackLootId_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetChargebackLootId(const int32& DefaultValue) const { if (ChargebackLootId_IsSet) return ChargebackLootId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ChargebackLootId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetChargebackLootId(int32& OutValue) const { if (ChargebackLootId_IsSet && !ChargebackLootId_IsNull) OutValue = ChargebackLootId_Optional; return ChargebackLootId_IsSet; }
+	FORCEINLINE bool GetChargebackLootId(int32& OutValue) const { if (ChargebackLootId_IsSet && !ChargebackLootId_IsNull) OutValue = ChargebackLootId_Optional; return ChargebackLootId_IsSet; }
 	/** @brief Returns a pointer to ChargebackLootId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetChargebackLootIdOrNull() { if (ChargebackLootId_IsSet) return (ChargebackLootId_IsNull ? nullptr : &ChargebackLootId_Optional); return nullptr; }
+	FORCEINLINE int32* GetChargebackLootIdOrNull() { if (ChargebackLootId_IsSet) return (ChargebackLootId_IsNull ? nullptr : &ChargebackLootId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ChargebackLootId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetChargebackLootIdOrNull() const { if (ChargebackLootId_IsSet) return (ChargebackLootId_IsNull ? nullptr : &ChargebackLootId_Optional); return nullptr; }
+	FORCEINLINE const int32* GetChargebackLootIdOrNull() const { if (ChargebackLootId_IsSet) return (ChargebackLootId_IsNull ? nullptr : &ChargebackLootId_Optional); return nullptr; }
 	/** @brief Sets the value of ChargebackLootId_Optional and also sets ChargebackLootId_IsSet to true */
-	void SetChargebackLootId(const int32& NewValue) { ChargebackLootId_Optional = NewValue; ChargebackLootId_IsSet = true; ChargebackLootId_IsNull = false; }
+	FORCEINLINE void SetChargebackLootId(const int32& NewValue) { ChargebackLootId_Optional = NewValue; ChargebackLootId_IsSet = true; ChargebackLootId_IsNull = false; }
 	/** @brief Sets the value of ChargebackLootId_Optional and also sets ChargebackLootId_IsSet to true using move semantics */
-	void SetChargebackLootId(int32&& NewValue) { ChargebackLootId_Optional = NewValue; ChargebackLootId_IsSet = true; ChargebackLootId_IsNull = false; }
+	FORCEINLINE void SetChargebackLootId(int32&& NewValue) { ChargebackLootId_Optional = NewValue; ChargebackLootId_IsSet = true; ChargebackLootId_IsNull = false; }
 	/** @brief Clears the value of ChargebackLootId_Optional and sets ChargebackLootId_IsSet to false */
 	void ClearChargebackLootId() { ChargebackLootId_Optional = 0; ChargebackLootId_IsSet = false; ChargebackLootId_IsNull = false; }
-	/** @brief Checks whether ChargebackLootId_Optional has been set */
-	bool IsChargebackLootIdSet() const { return ChargebackLootId_IsSet; }
-	/** @brief Returns true if ChargebackLootId_Optional is set and matches the default value */
-	bool IsChargebackLootIdDefaultValue() const { return ChargebackLootId_IsSet && ChargebackLootId_Optional == 0; }
-	/** @brief Sets the value of ChargebackLootId_Optional to its default and also sets ChargebackLootId_IsSet to true */
-	void SetChargebackLootIdToDefault() { SetChargebackLootId(0); }
+	/** @brief Returns the default value of ChargebackLootId */
+	FORCEINLINE int32 GetDefaultValue_ChargebackLootId() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetChargebackLootIdToNull() { ChargebackLootId_IsSet = true; ChargebackLootId_IsNull = true; }
+	FORCEINLINE void SetChargebackLootIdToNull() { ChargebackLootId_IsSet = true; ChargebackLootId_IsNull = true; }
 	/** @brief Checks whether ChargebackLootId_Optional is set to null */
-	bool IsChargebackLootIdNull() const { return ChargebackLootId_IsSet && ChargebackLootId_IsNull; }
+	FORCEINLINE bool IsChargebackLootIdNull() const { return ChargebackLootId_IsSet && ChargebackLootId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 ChargebackReversalLootId_Optional{ 0 };
@@ -150,33 +140,29 @@ struct RALLYHEREAPI_API FRHAPI_LootEntitlement : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ChargebackReversalLootId_IsNull{ false };
 	/** @brief Gets the value of ChargebackReversalLootId_Optional, regardless of it having been set */
-	int32& GetChargebackReversalLootId() { return ChargebackReversalLootId_Optional; }
+	FORCEINLINE int32& GetChargebackReversalLootId() { return ChargebackReversalLootId_Optional; }
 	/** @brief Gets the value of ChargebackReversalLootId_Optional, regardless of it having been set */
-	const int32& GetChargebackReversalLootId() const { return ChargebackReversalLootId_Optional; }
+	FORCEINLINE const int32& GetChargebackReversalLootId() const { return ChargebackReversalLootId_Optional; }
 	/** @brief Gets the value of ChargebackReversalLootId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetChargebackReversalLootId(const int32& DefaultValue) const { if (ChargebackReversalLootId_IsSet) return ChargebackReversalLootId_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetChargebackReversalLootId(const int32& DefaultValue) const { if (ChargebackReversalLootId_IsSet) return ChargebackReversalLootId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ChargebackReversalLootId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetChargebackReversalLootId(int32& OutValue) const { if (ChargebackReversalLootId_IsSet && !ChargebackReversalLootId_IsNull) OutValue = ChargebackReversalLootId_Optional; return ChargebackReversalLootId_IsSet; }
+	FORCEINLINE bool GetChargebackReversalLootId(int32& OutValue) const { if (ChargebackReversalLootId_IsSet && !ChargebackReversalLootId_IsNull) OutValue = ChargebackReversalLootId_Optional; return ChargebackReversalLootId_IsSet; }
 	/** @brief Returns a pointer to ChargebackReversalLootId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetChargebackReversalLootIdOrNull() { if (ChargebackReversalLootId_IsSet) return (ChargebackReversalLootId_IsNull ? nullptr : &ChargebackReversalLootId_Optional); return nullptr; }
+	FORCEINLINE int32* GetChargebackReversalLootIdOrNull() { if (ChargebackReversalLootId_IsSet) return (ChargebackReversalLootId_IsNull ? nullptr : &ChargebackReversalLootId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ChargebackReversalLootId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetChargebackReversalLootIdOrNull() const { if (ChargebackReversalLootId_IsSet) return (ChargebackReversalLootId_IsNull ? nullptr : &ChargebackReversalLootId_Optional); return nullptr; }
+	FORCEINLINE const int32* GetChargebackReversalLootIdOrNull() const { if (ChargebackReversalLootId_IsSet) return (ChargebackReversalLootId_IsNull ? nullptr : &ChargebackReversalLootId_Optional); return nullptr; }
 	/** @brief Sets the value of ChargebackReversalLootId_Optional and also sets ChargebackReversalLootId_IsSet to true */
-	void SetChargebackReversalLootId(const int32& NewValue) { ChargebackReversalLootId_Optional = NewValue; ChargebackReversalLootId_IsSet = true; ChargebackReversalLootId_IsNull = false; }
+	FORCEINLINE void SetChargebackReversalLootId(const int32& NewValue) { ChargebackReversalLootId_Optional = NewValue; ChargebackReversalLootId_IsSet = true; ChargebackReversalLootId_IsNull = false; }
 	/** @brief Sets the value of ChargebackReversalLootId_Optional and also sets ChargebackReversalLootId_IsSet to true using move semantics */
-	void SetChargebackReversalLootId(int32&& NewValue) { ChargebackReversalLootId_Optional = NewValue; ChargebackReversalLootId_IsSet = true; ChargebackReversalLootId_IsNull = false; }
+	FORCEINLINE void SetChargebackReversalLootId(int32&& NewValue) { ChargebackReversalLootId_Optional = NewValue; ChargebackReversalLootId_IsSet = true; ChargebackReversalLootId_IsNull = false; }
 	/** @brief Clears the value of ChargebackReversalLootId_Optional and sets ChargebackReversalLootId_IsSet to false */
 	void ClearChargebackReversalLootId() { ChargebackReversalLootId_Optional = 0; ChargebackReversalLootId_IsSet = false; ChargebackReversalLootId_IsNull = false; }
-	/** @brief Checks whether ChargebackReversalLootId_Optional has been set */
-	bool IsChargebackReversalLootIdSet() const { return ChargebackReversalLootId_IsSet; }
-	/** @brief Returns true if ChargebackReversalLootId_Optional is set and matches the default value */
-	bool IsChargebackReversalLootIdDefaultValue() const { return ChargebackReversalLootId_IsSet && ChargebackReversalLootId_Optional == 0; }
-	/** @brief Sets the value of ChargebackReversalLootId_Optional to its default and also sets ChargebackReversalLootId_IsSet to true */
-	void SetChargebackReversalLootIdToDefault() { SetChargebackReversalLootId(0); }
+	/** @brief Returns the default value of ChargebackReversalLootId */
+	FORCEINLINE int32 GetDefaultValue_ChargebackReversalLootId() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetChargebackReversalLootIdToNull() { ChargebackReversalLootId_IsSet = true; ChargebackReversalLootId_IsNull = true; }
+	FORCEINLINE void SetChargebackReversalLootIdToNull() { ChargebackReversalLootId_IsSet = true; ChargebackReversalLootId_IsNull = true; }
 	/** @brief Checks whether ChargebackReversalLootId_Optional is set to null */
-	bool IsChargebackReversalLootIdNull() const { return ChargebackReversalLootId_IsSet && ChargebackReversalLootId_IsNull; }
+	FORCEINLINE bool IsChargebackReversalLootIdNull() const { return ChargebackReversalLootId_IsSet && ChargebackReversalLootId_IsNull; }
 };
 
 /** @} */

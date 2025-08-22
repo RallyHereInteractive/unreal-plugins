@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_AuditResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Events_IsSet{ false };
 	/** @brief Gets the value of Events_Optional, regardless of it having been set */
-	TArray<FRHAPI_AuditEvent>& GetEvents() { return Events_Optional; }
+	FORCEINLINE TArray<FRHAPI_AuditEvent>& GetEvents() { return Events_Optional; }
 	/** @brief Gets the value of Events_Optional, regardless of it having been set */
-	const TArray<FRHAPI_AuditEvent>& GetEvents() const { return Events_Optional; }
+	FORCEINLINE const TArray<FRHAPI_AuditEvent>& GetEvents() const { return Events_Optional; }
 	/** @brief Gets the value of Events_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_AuditEvent>& GetEvents(const TArray<FRHAPI_AuditEvent>& DefaultValue) const { if (Events_IsSet) return Events_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_AuditEvent>& GetEvents(const TArray<FRHAPI_AuditEvent>& DefaultValue) const { if (Events_IsSet) return Events_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Events_Optional and returns true if it has been set, otherwise returns false */
-	bool GetEvents(TArray<FRHAPI_AuditEvent>& OutValue) const { if (Events_IsSet) OutValue = Events_Optional; return Events_IsSet; }
+	FORCEINLINE bool GetEvents(TArray<FRHAPI_AuditEvent>& OutValue) const { if (Events_IsSet) OutValue = Events_Optional; return Events_IsSet; }
 	/** @brief Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_AuditEvent>* GetEventsOrNull() { if (Events_IsSet) return (&Events_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_AuditEvent>* GetEventsOrNull() { if (Events_IsSet) return (&Events_Optional); return nullptr; }
 	/** @brief Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_AuditEvent>* GetEventsOrNull() const { if (Events_IsSet) return (&Events_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_AuditEvent>* GetEventsOrNull() const { if (Events_IsSet) return (&Events_Optional); return nullptr; }
 	/** @brief Sets the value of Events_Optional and also sets Events_IsSet to true */
-	void SetEvents(const TArray<FRHAPI_AuditEvent>& NewValue) { Events_Optional = NewValue; Events_IsSet = true;  }
+	FORCEINLINE void SetEvents(const TArray<FRHAPI_AuditEvent>& NewValue) { Events_Optional = NewValue; Events_IsSet = true;  }
 	/** @brief Sets the value of Events_Optional and also sets Events_IsSet to true using move semantics */
-	void SetEvents(TArray<FRHAPI_AuditEvent>&& NewValue) { Events_Optional = NewValue; Events_IsSet = true;  }
+	FORCEINLINE void SetEvents(TArray<FRHAPI_AuditEvent>&& NewValue) { Events_Optional = NewValue; Events_IsSet = true;  }
 	/** @brief Clears the value of Events_Optional and sets Events_IsSet to false */
 	void ClearEvents() { Events_IsSet = false;  }
-	/** @brief Checks whether Events_Optional has been set */
-	bool IsEventsSet() const { return Events_IsSet; }
 };
 
 /** @} */

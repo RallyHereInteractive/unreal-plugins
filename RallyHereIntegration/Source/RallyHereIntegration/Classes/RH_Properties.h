@@ -78,6 +78,27 @@ struct RALLYHEREINTEGRATION_API FRH_LegacyIdToGuid
 		return TEXT("");
 	}
 
+	inline FString ToPackedString(const FString& Delimiter = "|") const
+	{
+		return FString::Printf(TEXT("%s%s%d"), *Id.ToString(), *Delimiter, LegacyId);
+	}
+
+	inline void FromPackedString(const FString& PackedString, const FString& Delimiter = "|")
+	{
+		FString guidString, legacyString;
+		if (PackedString.Split(Delimiter, &guidString, &legacyString))
+		{
+			Id = FGuid(guidString);
+			LegacyId = FCString::Atoi(*legacyString);
+		}
+		else
+		{
+			// If we failed to split, assume the whole string is a Guid
+			Id = FGuid(PackedString);
+		}
+		
+	}
+
 	/**
 	* @brief Legacy support for compatibility when replacing ints with FRH_LegacyIdToGuid
 	*/
