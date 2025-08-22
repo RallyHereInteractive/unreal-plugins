@@ -32,7 +32,7 @@ Container for a Search request and its results.
 `protected `[`FRH_GuideSearchRequest`](GuideSearch.md#structFRH__GuideSearchRequest)` `[`InputRequest`](#classURH__GuideSearch_1a048ed0a66c2a22d4235dae9bd8ad5312) | Input that was used to generate these results.
 `protected bool `[`bRequestInProgress`](#classURH__GuideSearch_1a3a734bfff92c0d0e1cab17e71c9928d3) | Is there a request in progress? If so, attempting to request a new page will fail.
 `protected TSearchGuides::Request `[`SearchRequest`](#classURH__GuideSearch_1ad47067809f6b88ffd24e2faf8734dec5) | Cached request object that will be used for API calls.
-`protected virtual FString * `[`GetNextPageCursor`](#classURH__GuideSearch_1a938fe3ed6cbc1ff9d1a88de47b786602)`() const` | 
+`protected virtual const FString * `[`GetNextPageCursor`](#classURH__GuideSearch_1a0157107219b8ab11bc09d326dd301ad5)`() const` | 
 `typedef `[`TSearchGuides`](#classURH__GuideSearch_1a5114a536c22669ff9cfdcabb7c8c745c) | 
 
 ### Members
@@ -93,7 +93,7 @@ Is there a request in progress? If so, attempting to request a new page will fai
 
 Cached request object that will be used for API calls.
 
-#### `protected virtual FString * `[`GetNextPageCursor`](#classURH__GuideSearch_1a938fe3ed6cbc1ff9d1a88de47b786602)`() const` <a id="classURH__GuideSearch_1a938fe3ed6cbc1ff9d1a88de47b786602"></a>
+#### `protected virtual const FString * `[`GetNextPageCursor`](#classURH__GuideSearch_1a0157107219b8ab11bc09d326dd301ad5)`() const` <a id="classURH__GuideSearch_1a0157107219b8ab11bc09d326dd301ad5"></a>
 
 #### `typedef `[`TSearchGuides`](#classURH__GuideSearch_1a5114a536c22669ff9cfdcabb7c8c745c) <a id="classURH__GuideSearch_1a5114a536c22669ff9cfdcabb7c8c745c"></a>
 

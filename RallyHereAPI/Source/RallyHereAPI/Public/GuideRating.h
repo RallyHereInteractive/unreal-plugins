@@ -42,28 +42,26 @@ struct RALLYHEREAPI_API FRHAPI_GuideRating : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid GuideId{  };
 	/** @brief Gets the value of GuideId */
-	FGuid& GetGuideId() { return GuideId; }
+	FORCEINLINE FGuid& GetGuideId() { return GuideId; }
 	/** @brief Gets the value of GuideId */
-	const FGuid& GetGuideId() const { return GuideId; }
+	FORCEINLINE const FGuid& GetGuideId() const { return GuideId; }
 	/** @brief Sets the value of GuideId */
-	void SetGuideId(const FGuid& NewValue) { GuideId = NewValue;   }
+	FORCEINLINE void SetGuideId(const FGuid& NewValue) { GuideId = NewValue;   }
 	/** @brief Sets the value of GuideId using move semantics */
-	void SetGuideId(FGuid&& NewValue) { GuideId = NewValue;   }
+	FORCEINLINE void SetGuideId(FGuid&& NewValue) { GuideId = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Rating{ 0 };
 	/** @brief Gets the value of Rating */
-	int32& GetRating() { return Rating; }
+	FORCEINLINE int32& GetRating() { return Rating; }
 	/** @brief Gets the value of Rating */
-	const int32& GetRating() const { return Rating; }
+	FORCEINLINE const int32& GetRating() const { return Rating; }
 	/** @brief Sets the value of Rating */
-	void SetRating(const int32& NewValue) { Rating = NewValue;   }
+	FORCEINLINE void SetRating(const int32& NewValue) { Rating = NewValue;   }
 	/** @brief Sets the value of Rating using move semantics */
-	void SetRating(int32&& NewValue) { Rating = NewValue;   }
-	/** @brief Returns true if Rating matches the default value */
-	bool IsRatingDefaultValue() const { return Rating == 0; }
-	/** @brief Sets the value of Rating to its default  */
-	void SetRatingToDefault() { SetRating(0); }
+	FORCEINLINE void SetRating(int32&& NewValue) { Rating = NewValue;   }
+	/** @brief Returns the default value of Rating */
+	FORCEINLINE int32 GetDefaultValue_Rating() { return 0; }
 };
 
 /** @} */

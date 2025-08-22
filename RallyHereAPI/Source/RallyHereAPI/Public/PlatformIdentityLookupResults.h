@@ -47,25 +47,23 @@ struct RALLYHEREAPI_API FRHAPI_PlatformIdentityLookupResults : public FRHAPI_Mod
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Identity_IsSet{ false };
 	/** @brief Gets the value of Identity_Optional, regardless of it having been set */
-	TMap<FString, FRHAPI_PlayerResponse>& GetIdentity() { return Identity_Optional; }
+	FORCEINLINE TMap<FString, FRHAPI_PlayerResponse>& GetIdentity() { return Identity_Optional; }
 	/** @brief Gets the value of Identity_Optional, regardless of it having been set */
-	const TMap<FString, FRHAPI_PlayerResponse>& GetIdentity() const { return Identity_Optional; }
+	FORCEINLINE const TMap<FString, FRHAPI_PlayerResponse>& GetIdentity() const { return Identity_Optional; }
 	/** @brief Gets the value of Identity_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FRHAPI_PlayerResponse>& GetIdentity(const TMap<FString, FRHAPI_PlayerResponse>& DefaultValue) const { if (Identity_IsSet) return Identity_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FRHAPI_PlayerResponse>& GetIdentity(const TMap<FString, FRHAPI_PlayerResponse>& DefaultValue) const { if (Identity_IsSet) return Identity_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Identity_Optional and returns true if it has been set, otherwise returns false */
-	bool GetIdentity(TMap<FString, FRHAPI_PlayerResponse>& OutValue) const { if (Identity_IsSet) OutValue = Identity_Optional; return Identity_IsSet; }
+	FORCEINLINE bool GetIdentity(TMap<FString, FRHAPI_PlayerResponse>& OutValue) const { if (Identity_IsSet) OutValue = Identity_Optional; return Identity_IsSet; }
 	/** @brief Returns a pointer to Identity_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FRHAPI_PlayerResponse>* GetIdentityOrNull() { if (Identity_IsSet) return (&Identity_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FRHAPI_PlayerResponse>* GetIdentityOrNull() { if (Identity_IsSet) return (&Identity_Optional); return nullptr; }
 	/** @brief Returns a pointer to Identity_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FRHAPI_PlayerResponse>* GetIdentityOrNull() const { if (Identity_IsSet) return (&Identity_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FRHAPI_PlayerResponse>* GetIdentityOrNull() const { if (Identity_IsSet) return (&Identity_Optional); return nullptr; }
 	/** @brief Sets the value of Identity_Optional and also sets Identity_IsSet to true */
-	void SetIdentity(const TMap<FString, FRHAPI_PlayerResponse>& NewValue) { Identity_Optional = NewValue; Identity_IsSet = true;  }
+	FORCEINLINE void SetIdentity(const TMap<FString, FRHAPI_PlayerResponse>& NewValue) { Identity_Optional = NewValue; Identity_IsSet = true;  }
 	/** @brief Sets the value of Identity_Optional and also sets Identity_IsSet to true using move semantics */
-	void SetIdentity(TMap<FString, FRHAPI_PlayerResponse>&& NewValue) { Identity_Optional = NewValue; Identity_IsSet = true;  }
+	FORCEINLINE void SetIdentity(TMap<FString, FRHAPI_PlayerResponse>&& NewValue) { Identity_Optional = NewValue; Identity_IsSet = true;  }
 	/** @brief Clears the value of Identity_Optional and sets Identity_IsSet to false */
 	void ClearIdentity() { Identity_IsSet = false;  }
-	/** @brief Checks whether Identity_Optional has been set */
-	bool IsIdentitySet() const { return Identity_IsSet; }
 };
 
 /** @} */

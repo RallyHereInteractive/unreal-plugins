@@ -48,25 +48,23 @@ struct RALLYHEREAPI_API FRHAPI_PexHostPagedResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Results_IsSet{ false };
 	/** @brief Gets the value of Results_Optional, regardless of it having been set */
-	TArray<FRHAPI_PexHostResponse>& GetResults() { return Results_Optional; }
+	FORCEINLINE TArray<FRHAPI_PexHostResponse>& GetResults() { return Results_Optional; }
 	/** @brief Gets the value of Results_Optional, regardless of it having been set */
-	const TArray<FRHAPI_PexHostResponse>& GetResults() const { return Results_Optional; }
+	FORCEINLINE const TArray<FRHAPI_PexHostResponse>& GetResults() const { return Results_Optional; }
 	/** @brief Gets the value of Results_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_PexHostResponse>& GetResults(const TArray<FRHAPI_PexHostResponse>& DefaultValue) const { if (Results_IsSet) return Results_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_PexHostResponse>& GetResults(const TArray<FRHAPI_PexHostResponse>& DefaultValue) const { if (Results_IsSet) return Results_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Results_Optional and returns true if it has been set, otherwise returns false */
-	bool GetResults(TArray<FRHAPI_PexHostResponse>& OutValue) const { if (Results_IsSet) OutValue = Results_Optional; return Results_IsSet; }
+	FORCEINLINE bool GetResults(TArray<FRHAPI_PexHostResponse>& OutValue) const { if (Results_IsSet) OutValue = Results_Optional; return Results_IsSet; }
 	/** @brief Returns a pointer to Results_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PexHostResponse>* GetResultsOrNull() { if (Results_IsSet) return (&Results_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_PexHostResponse>* GetResultsOrNull() { if (Results_IsSet) return (&Results_Optional); return nullptr; }
 	/** @brief Returns a pointer to Results_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PexHostResponse>* GetResultsOrNull() const { if (Results_IsSet) return (&Results_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_PexHostResponse>* GetResultsOrNull() const { if (Results_IsSet) return (&Results_Optional); return nullptr; }
 	/** @brief Sets the value of Results_Optional and also sets Results_IsSet to true */
-	void SetResults(const TArray<FRHAPI_PexHostResponse>& NewValue) { Results_Optional = NewValue; Results_IsSet = true;  }
+	FORCEINLINE void SetResults(const TArray<FRHAPI_PexHostResponse>& NewValue) { Results_Optional = NewValue; Results_IsSet = true;  }
 	/** @brief Sets the value of Results_Optional and also sets Results_IsSet to true using move semantics */
-	void SetResults(TArray<FRHAPI_PexHostResponse>&& NewValue) { Results_Optional = NewValue; Results_IsSet = true;  }
+	FORCEINLINE void SetResults(TArray<FRHAPI_PexHostResponse>&& NewValue) { Results_Optional = NewValue; Results_IsSet = true;  }
 	/** @brief Clears the value of Results_Optional and sets Results_IsSet to false */
 	void ClearResults() { Results_IsSet = false;  }
-	/** @brief Checks whether Results_Optional has been set */
-	bool IsResultsSet() const { return Results_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Cursor_Optional{  };
@@ -77,29 +75,27 @@ struct RALLYHEREAPI_API FRHAPI_PexHostPagedResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Cursor_IsNull{ false };
 	/** @brief Gets the value of Cursor_Optional, regardless of it having been set */
-	FString& GetCursor() { return Cursor_Optional; }
+	FORCEINLINE FString& GetCursor() { return Cursor_Optional; }
 	/** @brief Gets the value of Cursor_Optional, regardless of it having been set */
-	const FString& GetCursor() const { return Cursor_Optional; }
+	FORCEINLINE const FString& GetCursor() const { return Cursor_Optional; }
 	/** @brief Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetCursor(const FString& DefaultValue) const { if (Cursor_IsSet) return Cursor_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetCursor(const FString& DefaultValue) const { if (Cursor_IsSet) return Cursor_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCursor(FString& OutValue) const { if (Cursor_IsSet && !Cursor_IsNull) OutValue = Cursor_Optional; return Cursor_IsSet; }
+	FORCEINLINE bool GetCursor(FString& OutValue) const { if (Cursor_IsSet && !Cursor_IsNull) OutValue = Cursor_Optional; return Cursor_IsSet; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetCursorOrNull() { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
+	FORCEINLINE FString* GetCursorOrNull() { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
 	/** @brief Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetCursorOrNull() const { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
+	FORCEINLINE const FString* GetCursorOrNull() const { if (Cursor_IsSet) return (Cursor_IsNull ? nullptr : &Cursor_Optional); return nullptr; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true */
-	void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
+	FORCEINLINE void SetCursor(const FString& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
 	/** @brief Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics */
-	void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
+	FORCEINLINE void SetCursor(FString&& NewValue) { Cursor_Optional = NewValue; Cursor_IsSet = true; Cursor_IsNull = false; }
 	/** @brief Clears the value of Cursor_Optional and sets Cursor_IsSet to false */
 	void ClearCursor() { Cursor_IsSet = false; Cursor_IsNull = false; }
-	/** @brief Checks whether Cursor_Optional has been set */
-	bool IsCursorSet() const { return Cursor_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCursorToNull() { Cursor_IsSet = true; Cursor_IsNull = true; }
+	FORCEINLINE void SetCursorToNull() { Cursor_IsSet = true; Cursor_IsNull = true; }
 	/** @brief Checks whether Cursor_Optional is set to null */
-	bool IsCursorNull() const { return Cursor_IsSet && Cursor_IsNull; }
+	FORCEINLINE bool IsCursorNull() const { return Cursor_IsSet && Cursor_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PexHostQueryParams Filters_Optional{  };
@@ -107,25 +103,23 @@ struct RALLYHEREAPI_API FRHAPI_PexHostPagedResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Filters_IsSet{ false };
 	/** @brief Gets the value of Filters_Optional, regardless of it having been set */
-	FRHAPI_PexHostQueryParams& GetFilters() { return Filters_Optional; }
+	FORCEINLINE FRHAPI_PexHostQueryParams& GetFilters() { return Filters_Optional; }
 	/** @brief Gets the value of Filters_Optional, regardless of it having been set */
-	const FRHAPI_PexHostQueryParams& GetFilters() const { return Filters_Optional; }
+	FORCEINLINE const FRHAPI_PexHostQueryParams& GetFilters() const { return Filters_Optional; }
 	/** @brief Gets the value of Filters_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_PexHostQueryParams& GetFilters(const FRHAPI_PexHostQueryParams& DefaultValue) const { if (Filters_IsSet) return Filters_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_PexHostQueryParams& GetFilters(const FRHAPI_PexHostQueryParams& DefaultValue) const { if (Filters_IsSet) return Filters_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Filters_Optional and returns true if it has been set, otherwise returns false */
-	bool GetFilters(FRHAPI_PexHostQueryParams& OutValue) const { if (Filters_IsSet) OutValue = Filters_Optional; return Filters_IsSet; }
+	FORCEINLINE bool GetFilters(FRHAPI_PexHostQueryParams& OutValue) const { if (Filters_IsSet) OutValue = Filters_Optional; return Filters_IsSet; }
 	/** @brief Returns a pointer to Filters_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_PexHostQueryParams* GetFiltersOrNull() { if (Filters_IsSet) return (&Filters_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_PexHostQueryParams* GetFiltersOrNull() { if (Filters_IsSet) return (&Filters_Optional); return nullptr; }
 	/** @brief Returns a pointer to Filters_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_PexHostQueryParams* GetFiltersOrNull() const { if (Filters_IsSet) return (&Filters_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_PexHostQueryParams* GetFiltersOrNull() const { if (Filters_IsSet) return (&Filters_Optional); return nullptr; }
 	/** @brief Sets the value of Filters_Optional and also sets Filters_IsSet to true */
-	void SetFilters(const FRHAPI_PexHostQueryParams& NewValue) { Filters_Optional = NewValue; Filters_IsSet = true;  }
+	FORCEINLINE void SetFilters(const FRHAPI_PexHostQueryParams& NewValue) { Filters_Optional = NewValue; Filters_IsSet = true;  }
 	/** @brief Sets the value of Filters_Optional and also sets Filters_IsSet to true using move semantics */
-	void SetFilters(FRHAPI_PexHostQueryParams&& NewValue) { Filters_Optional = NewValue; Filters_IsSet = true;  }
+	FORCEINLINE void SetFilters(FRHAPI_PexHostQueryParams&& NewValue) { Filters_Optional = NewValue; Filters_IsSet = true;  }
 	/** @brief Clears the value of Filters_Optional and sets Filters_IsSet to false */
 	void ClearFilters() { Filters_IsSet = false;  }
-	/** @brief Checks whether Filters_Optional has been set */
-	bool IsFiltersSet() const { return Filters_IsSet; }
 };
 
 /** @} */

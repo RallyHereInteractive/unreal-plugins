@@ -95,6 +95,82 @@ protected:
 	TWeakObjectPtr<URH_SessionView> RHSession;
 };
 
+class FRH_SessionGenerateShortCodeHelper : public FRH_SessionPollHelper
+{
+public:
+	FRH_SessionGenerateShortCodeHelper(FRH_SessionOwnerPtr InSessionOwner, const FString& InSessionId = FString(), const FRH_OnSessionUpdatedDelegateBlock& InDelegate = FRH_OnSessionUpdatedDelegateBlock(), int32 InPriority = DefaultRallyHereAPIPriority)
+		: FRH_SessionPollHelper(InSessionOwner, InSessionId, InPriority)
+		, Delegate(InDelegate)
+	{
+	}
+
+	virtual void Start()
+	{
+		Started();
+		DoShortCodeGeneration();
+	}
+
+protected:
+	virtual void DoShortCodeGeneration()
+	{
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
+		RallyHereAPI::Traits_GenerateSessionShortCode::Request Request;
+		Request.AuthContext = GetAuthContext();
+		Request.SessionId = SessionId;
+
+		auto HttpRequest = RallyHereAPI::Traits_GenerateSessionShortCode::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_GenerateSessionShortCode::Delegate::CreateSP(this, &FRH_SessionGenerateShortCodeHelper::OnShortCodeResponse), TaskPriority);
+		if (!HttpRequest)
+		{
+			Failed(TEXT("Could not create http request to create a short code"));
+		}
+	}
+
+	virtual void OnShortCodeResponse(const RallyHereAPI::Traits_GenerateSessionShortCode::Response& Resp)
+	{
+		ErrorInfo = FRH_ErrorInfo(Resp);
+
+		if (!SessionOwner.IsValid())
+		{
+			Failed(TEXT("Session owner is invalid"));
+			return;
+		}
+
+		if (Resp.IsSuccessful())
+		{
+			DoSessionLookup();
+			Completed(RHSession.IsValid());	// add or update can fail in some edge cases, try to be graceful
+			return;
+		}
+		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Conflict)
+		{
+			Failed(TEXT("Session already contains short code"));
+		}
+		else
+		{
+			Failed(TEXT("Session code generation failed"));
+		}
+	}
+
+	virtual FString GetName() const override
+	{
+		static const FString Name(TEXT("FRH_SessionGenerateShortCodeHelper"));
+		return Name;
+	}
+
+	virtual void ExecuteCallback(bool bSuccess) const override
+	{
+		Delegate.ExecuteIfBound(bSuccess, RHSession.Get(), ErrorInfo);
+	}
+
+protected:
+	FRH_OnSessionUpdatedDelegateBlock Delegate;
+};
+
 // Boilerplate class that does a full lookup of session data from the API (no-deduplicaiton or throttling, but does not require a pre-existing RHSession)
 class FRH_SessionLookupHelper : public FRH_SessionHelper
 {
@@ -662,6 +738,8 @@ protected:
 		}
 		else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::NotFound)
 		{
+			SessionIds.Remove(LastSessionLookupId); //$$ DLF - Don't keep a session in the list that we're about to request to leave
+			
 			// Session association still exists, but session no longer exists, attempt to clean up the local state, do not track the call
 			RallyHereAPI::Traits_LeaveSessionByIdSelf::Request Request;
 			Request.AuthContext = GetAuthContext();

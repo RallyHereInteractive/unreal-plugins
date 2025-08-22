@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_FavoriteGuideRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid GuideId{  };
 	/** @brief Gets the value of GuideId */
-	FGuid& GetGuideId() { return GuideId; }
+	FORCEINLINE FGuid& GetGuideId() { return GuideId; }
 	/** @brief Gets the value of GuideId */
-	const FGuid& GetGuideId() const { return GuideId; }
+	FORCEINLINE const FGuid& GetGuideId() const { return GuideId; }
 	/** @brief Sets the value of GuideId */
-	void SetGuideId(const FGuid& NewValue) { GuideId = NewValue;   }
+	FORCEINLINE void SetGuideId(const FGuid& NewValue) { GuideId = NewValue;   }
 	/** @brief Sets the value of GuideId using move semantics */
-	void SetGuideId(FGuid&& NewValue) { GuideId = NewValue;   }
+	FORCEINLINE void SetGuideId(FGuid&& NewValue) { GuideId = NewValue;   }
 };
 
 /** @} */

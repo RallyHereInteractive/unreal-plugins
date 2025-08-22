@@ -26,28 +26,27 @@ struct FRHAPI_VoipTokenResponse
 `public bool `[`ChannelName_IsSet`](#structFRHAPI__VoipTokenResponse_1a4e401b7a77066ac81b68c59a2513749f) | true if ChannelName_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__VoipTokenResponse_1ac7f2dcaea02fdd1c6f1bbc8bd8e3b8f8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__VoipTokenResponse_1aeebd222bc19550e43a5b8e7d3f952c0a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetToken`](#structFRHAPI__VoipTokenResponse_1a88275e6e3a1e58299748e92095add751)`()` | Gets the value of Token.
-`public inline const FString & `[`GetToken`](#structFRHAPI__VoipTokenResponse_1ab070faf1c025600173d6291d9ebc2158)`() const` | Gets the value of Token.
-`public inline void `[`SetToken`](#structFRHAPI__VoipTokenResponse_1a663094ae6c0d41f5df38e053f0950a51)`(const FString & NewValue)` | Sets the value of Token.
-`public inline void `[`SetToken`](#structFRHAPI__VoipTokenResponse_1a9c50e4a03bb060cbbcb30a37edde1b21)`(FString && NewValue)` | Sets the value of Token using move semantics.
-`public inline FString & `[`GetIssuer`](#structFRHAPI__VoipTokenResponse_1a1aff458b618708aa86701e78893c0b76)`()` | Gets the value of Issuer.
-`public inline const FString & `[`GetIssuer`](#structFRHAPI__VoipTokenResponse_1a58aa65d0348f392dea74b0ce9693b58f)`() const` | Gets the value of Issuer.
-`public inline void `[`SetIssuer`](#structFRHAPI__VoipTokenResponse_1a4feb20ab6ece4b7a995361d5d278adfb)`(const FString & NewValue)` | Sets the value of Issuer.
-`public inline void `[`SetIssuer`](#structFRHAPI__VoipTokenResponse_1a4063ec91c4044dbacf49547dc136181e)`(FString && NewValue)` | Sets the value of Issuer using move semantics.
-`public inline FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1a22a1ebd49c7e82b9a3ac15a1cfa3b93b)`()` | Gets the value of Server.
-`public inline const FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1ab5a174d2b40e894ba78feaaca26ea48a)`() const` | Gets the value of Server.
-`public inline void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1a24519da94f1e862b226eb748c12584e6)`(const FString & NewValue)` | Sets the value of Server.
-`public inline void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1af05c2a509cb5b87e2ab476e51a41df49)`(FString && NewValue)` | Sets the value of Server using move semantics.
-`public inline FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1ac0b806045ec9cfacac94656b9135bf22)`()` | Gets the value of ChannelName_Optional, regardless of it having been set.
-`public inline const FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1ac7d6f20b5bff2781a8b24802dfa51a8a)`() const` | Gets the value of ChannelName_Optional, regardless of it having been set.
-`public inline const FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1a1d820ba62a528d271484d14df9c3f20a)`(const FString & DefaultValue) const` | Gets the value of ChannelName_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1a77478a14f4e9f31621726b784c9c7fac)`(FString & OutValue) const` | Fills OutValue with the value of ChannelName_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetChannelNameOrNull`](#structFRHAPI__VoipTokenResponse_1a5da30443ba2b389310017583abe36f4e)`()` | Returns a pointer to ChannelName_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetChannelNameOrNull`](#structFRHAPI__VoipTokenResponse_1ab04a4f288da696218c90c03304d22f38)`() const` | Returns a pointer to ChannelName_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetChannelName`](#structFRHAPI__VoipTokenResponse_1a81bcf39d2d3bf0f5da299351c9e359dd)`(const FString & NewValue)` | Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true.
-`public inline void `[`SetChannelName`](#structFRHAPI__VoipTokenResponse_1ab16c9bd130178c22c14c2595c4f34ceb)`(FString && NewValue)` | Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetToken`](#structFRHAPI__VoipTokenResponse_1aaf90157367b1b69231ca28c3c66ab365)`()` | Gets the value of Token.
+`public inline FORCEINLINE const FString & `[`GetToken`](#structFRHAPI__VoipTokenResponse_1a62e8393b4a967c02b5ea77f2956fc6ea)`() const` | Gets the value of Token.
+`public inline FORCEINLINE void `[`SetToken`](#structFRHAPI__VoipTokenResponse_1a768667864b2324471d1558c2738168a8)`(const FString & NewValue)` | Sets the value of Token.
+`public inline FORCEINLINE void `[`SetToken`](#structFRHAPI__VoipTokenResponse_1a5af16f8900e0407f976db02307082403)`(FString && NewValue)` | Sets the value of Token using move semantics.
+`public inline FORCEINLINE FString & `[`GetIssuer`](#structFRHAPI__VoipTokenResponse_1ac891c8129b85d3e2dd8426ec6ed443ac)`()` | Gets the value of Issuer.
+`public inline FORCEINLINE const FString & `[`GetIssuer`](#structFRHAPI__VoipTokenResponse_1a215b23edcce9e4de0e92f74435d699fe)`() const` | Gets the value of Issuer.
+`public inline FORCEINLINE void `[`SetIssuer`](#structFRHAPI__VoipTokenResponse_1acb10d8ef39f6b85d984e116d24bfc31e)`(const FString & NewValue)` | Sets the value of Issuer.
+`public inline FORCEINLINE void `[`SetIssuer`](#structFRHAPI__VoipTokenResponse_1a874c72f795e254cc41f8cec3258ab054)`(FString && NewValue)` | Sets the value of Issuer using move semantics.
+`public inline FORCEINLINE FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1a61b957aad2a45abb38740665f49bc497)`()` | Gets the value of Server.
+`public inline FORCEINLINE const FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1a57789a093ead3f4a8a81548b8845c440)`() const` | Gets the value of Server.
+`public inline FORCEINLINE void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1afe8371a163d3fb169c8180e21e065f90)`(const FString & NewValue)` | Sets the value of Server.
+`public inline FORCEINLINE void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1a24ba7518604827fab9f85787578fa4ce)`(FString && NewValue)` | Sets the value of Server using move semantics.
+`public inline FORCEINLINE FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1a78aa3a035abbdca0a891e5b94bbbfce1)`()` | Gets the value of ChannelName_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1aae8b143088445712262f460ed74f3fe0)`() const` | Gets the value of ChannelName_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1a322aa589fd9b6a3c1b849afb522e273e)`(const FString & DefaultValue) const` | Gets the value of ChannelName_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1aa653dc789430c7ddee445fc5e4d6733e)`(FString & OutValue) const` | Fills OutValue with the value of ChannelName_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetChannelNameOrNull`](#structFRHAPI__VoipTokenResponse_1aabfaa2b763a0933cc91e99aa7cd45c21)`()` | Returns a pointer to ChannelName_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetChannelNameOrNull`](#structFRHAPI__VoipTokenResponse_1a5e5cb61324a7f271d523ce326bcd625e)`() const` | Returns a pointer to ChannelName_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetChannelName`](#structFRHAPI__VoipTokenResponse_1a0ac0d99ea06412fffd5f92ec9ddd3f74)`(const FString & NewValue)` | Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true.
+`public inline FORCEINLINE void `[`SetChannelName`](#structFRHAPI__VoipTokenResponse_1a3d0415e05643dc9a470bd7ae195d1bad)`(FString && NewValue)` | Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true using move semantics.
 `public inline void `[`ClearChannelName`](#structFRHAPI__VoipTokenResponse_1ac7d22ae186e4828c29db4d3f36499df8)`()` | Clears the value of ChannelName_Optional and sets ChannelName_IsSet to false.
-`public inline bool `[`IsChannelNameSet`](#structFRHAPI__VoipTokenResponse_1a8ece730e6aaa84501855d48862cf22cc)`() const` | Checks whether ChannelName_Optional has been set.
 
 ### Members
 
@@ -88,91 +87,87 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetToken`](#structFRHAPI__VoipTokenResponse_1a88275e6e3a1e58299748e92095add751)`()` <a id="structFRHAPI__VoipTokenResponse_1a88275e6e3a1e58299748e92095add751"></a>
+#### `public inline FORCEINLINE FString & `[`GetToken`](#structFRHAPI__VoipTokenResponse_1aaf90157367b1b69231ca28c3c66ab365)`()` <a id="structFRHAPI__VoipTokenResponse_1aaf90157367b1b69231ca28c3c66ab365"></a>
 
 Gets the value of Token.
 
-#### `public inline const FString & `[`GetToken`](#structFRHAPI__VoipTokenResponse_1ab070faf1c025600173d6291d9ebc2158)`() const` <a id="structFRHAPI__VoipTokenResponse_1ab070faf1c025600173d6291d9ebc2158"></a>
+#### `public inline FORCEINLINE const FString & `[`GetToken`](#structFRHAPI__VoipTokenResponse_1a62e8393b4a967c02b5ea77f2956fc6ea)`() const` <a id="structFRHAPI__VoipTokenResponse_1a62e8393b4a967c02b5ea77f2956fc6ea"></a>
 
 Gets the value of Token.
 
-#### `public inline void `[`SetToken`](#structFRHAPI__VoipTokenResponse_1a663094ae6c0d41f5df38e053f0950a51)`(const FString & NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a663094ae6c0d41f5df38e053f0950a51"></a>
+#### `public inline FORCEINLINE void `[`SetToken`](#structFRHAPI__VoipTokenResponse_1a768667864b2324471d1558c2738168a8)`(const FString & NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a768667864b2324471d1558c2738168a8"></a>
 
 Sets the value of Token.
 
-#### `public inline void `[`SetToken`](#structFRHAPI__VoipTokenResponse_1a9c50e4a03bb060cbbcb30a37edde1b21)`(FString && NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a9c50e4a03bb060cbbcb30a37edde1b21"></a>
+#### `public inline FORCEINLINE void `[`SetToken`](#structFRHAPI__VoipTokenResponse_1a5af16f8900e0407f976db02307082403)`(FString && NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a5af16f8900e0407f976db02307082403"></a>
 
 Sets the value of Token using move semantics.
 
-#### `public inline FString & `[`GetIssuer`](#structFRHAPI__VoipTokenResponse_1a1aff458b618708aa86701e78893c0b76)`()` <a id="structFRHAPI__VoipTokenResponse_1a1aff458b618708aa86701e78893c0b76"></a>
+#### `public inline FORCEINLINE FString & `[`GetIssuer`](#structFRHAPI__VoipTokenResponse_1ac891c8129b85d3e2dd8426ec6ed443ac)`()` <a id="structFRHAPI__VoipTokenResponse_1ac891c8129b85d3e2dd8426ec6ed443ac"></a>
 
 Gets the value of Issuer.
 
-#### `public inline const FString & `[`GetIssuer`](#structFRHAPI__VoipTokenResponse_1a58aa65d0348f392dea74b0ce9693b58f)`() const` <a id="structFRHAPI__VoipTokenResponse_1a58aa65d0348f392dea74b0ce9693b58f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetIssuer`](#structFRHAPI__VoipTokenResponse_1a215b23edcce9e4de0e92f74435d699fe)`() const` <a id="structFRHAPI__VoipTokenResponse_1a215b23edcce9e4de0e92f74435d699fe"></a>
 
 Gets the value of Issuer.
 
-#### `public inline void `[`SetIssuer`](#structFRHAPI__VoipTokenResponse_1a4feb20ab6ece4b7a995361d5d278adfb)`(const FString & NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a4feb20ab6ece4b7a995361d5d278adfb"></a>
+#### `public inline FORCEINLINE void `[`SetIssuer`](#structFRHAPI__VoipTokenResponse_1acb10d8ef39f6b85d984e116d24bfc31e)`(const FString & NewValue)` <a id="structFRHAPI__VoipTokenResponse_1acb10d8ef39f6b85d984e116d24bfc31e"></a>
 
 Sets the value of Issuer.
 
-#### `public inline void `[`SetIssuer`](#structFRHAPI__VoipTokenResponse_1a4063ec91c4044dbacf49547dc136181e)`(FString && NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a4063ec91c4044dbacf49547dc136181e"></a>
+#### `public inline FORCEINLINE void `[`SetIssuer`](#structFRHAPI__VoipTokenResponse_1a874c72f795e254cc41f8cec3258ab054)`(FString && NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a874c72f795e254cc41f8cec3258ab054"></a>
 
 Sets the value of Issuer using move semantics.
 
-#### `public inline FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1a22a1ebd49c7e82b9a3ac15a1cfa3b93b)`()` <a id="structFRHAPI__VoipTokenResponse_1a22a1ebd49c7e82b9a3ac15a1cfa3b93b"></a>
+#### `public inline FORCEINLINE FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1a61b957aad2a45abb38740665f49bc497)`()` <a id="structFRHAPI__VoipTokenResponse_1a61b957aad2a45abb38740665f49bc497"></a>
 
 Gets the value of Server.
 
-#### `public inline const FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1ab5a174d2b40e894ba78feaaca26ea48a)`() const` <a id="structFRHAPI__VoipTokenResponse_1ab5a174d2b40e894ba78feaaca26ea48a"></a>
+#### `public inline FORCEINLINE const FString & `[`GetServer`](#structFRHAPI__VoipTokenResponse_1a57789a093ead3f4a8a81548b8845c440)`() const` <a id="structFRHAPI__VoipTokenResponse_1a57789a093ead3f4a8a81548b8845c440"></a>
 
 Gets the value of Server.
 
-#### `public inline void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1a24519da94f1e862b226eb748c12584e6)`(const FString & NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a24519da94f1e862b226eb748c12584e6"></a>
+#### `public inline FORCEINLINE void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1afe8371a163d3fb169c8180e21e065f90)`(const FString & NewValue)` <a id="structFRHAPI__VoipTokenResponse_1afe8371a163d3fb169c8180e21e065f90"></a>
 
 Sets the value of Server.
 
-#### `public inline void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1af05c2a509cb5b87e2ab476e51a41df49)`(FString && NewValue)` <a id="structFRHAPI__VoipTokenResponse_1af05c2a509cb5b87e2ab476e51a41df49"></a>
+#### `public inline FORCEINLINE void `[`SetServer`](#structFRHAPI__VoipTokenResponse_1a24ba7518604827fab9f85787578fa4ce)`(FString && NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a24ba7518604827fab9f85787578fa4ce"></a>
 
 Sets the value of Server using move semantics.
 
-#### `public inline FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1ac0b806045ec9cfacac94656b9135bf22)`()` <a id="structFRHAPI__VoipTokenResponse_1ac0b806045ec9cfacac94656b9135bf22"></a>
+#### `public inline FORCEINLINE FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1a78aa3a035abbdca0a891e5b94bbbfce1)`()` <a id="structFRHAPI__VoipTokenResponse_1a78aa3a035abbdca0a891e5b94bbbfce1"></a>
 
 Gets the value of ChannelName_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1ac7d6f20b5bff2781a8b24802dfa51a8a)`() const` <a id="structFRHAPI__VoipTokenResponse_1ac7d6f20b5bff2781a8b24802dfa51a8a"></a>
+#### `public inline FORCEINLINE const FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1aae8b143088445712262f460ed74f3fe0)`() const` <a id="structFRHAPI__VoipTokenResponse_1aae8b143088445712262f460ed74f3fe0"></a>
 
 Gets the value of ChannelName_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1a1d820ba62a528d271484d14df9c3f20a)`(const FString & DefaultValue) const` <a id="structFRHAPI__VoipTokenResponse_1a1d820ba62a528d271484d14df9c3f20a"></a>
+#### `public inline FORCEINLINE const FString & `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1a322aa589fd9b6a3c1b849afb522e273e)`(const FString & DefaultValue) const` <a id="structFRHAPI__VoipTokenResponse_1a322aa589fd9b6a3c1b849afb522e273e"></a>
 
 Gets the value of ChannelName_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1a77478a14f4e9f31621726b784c9c7fac)`(FString & OutValue) const` <a id="structFRHAPI__VoipTokenResponse_1a77478a14f4e9f31621726b784c9c7fac"></a>
+#### `public inline FORCEINLINE bool `[`GetChannelName`](#structFRHAPI__VoipTokenResponse_1aa653dc789430c7ddee445fc5e4d6733e)`(FString & OutValue) const` <a id="structFRHAPI__VoipTokenResponse_1aa653dc789430c7ddee445fc5e4d6733e"></a>
 
 Fills OutValue with the value of ChannelName_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetChannelNameOrNull`](#structFRHAPI__VoipTokenResponse_1a5da30443ba2b389310017583abe36f4e)`()` <a id="structFRHAPI__VoipTokenResponse_1a5da30443ba2b389310017583abe36f4e"></a>
+#### `public inline FORCEINLINE FString * `[`GetChannelNameOrNull`](#structFRHAPI__VoipTokenResponse_1aabfaa2b763a0933cc91e99aa7cd45c21)`()` <a id="structFRHAPI__VoipTokenResponse_1aabfaa2b763a0933cc91e99aa7cd45c21"></a>
 
 Returns a pointer to ChannelName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetChannelNameOrNull`](#structFRHAPI__VoipTokenResponse_1ab04a4f288da696218c90c03304d22f38)`() const` <a id="structFRHAPI__VoipTokenResponse_1ab04a4f288da696218c90c03304d22f38"></a>
+#### `public inline FORCEINLINE const FString * `[`GetChannelNameOrNull`](#structFRHAPI__VoipTokenResponse_1a5e5cb61324a7f271d523ce326bcd625e)`() const` <a id="structFRHAPI__VoipTokenResponse_1a5e5cb61324a7f271d523ce326bcd625e"></a>
 
 Returns a pointer to ChannelName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetChannelName`](#structFRHAPI__VoipTokenResponse_1a81bcf39d2d3bf0f5da299351c9e359dd)`(const FString & NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a81bcf39d2d3bf0f5da299351c9e359dd"></a>
+#### `public inline FORCEINLINE void `[`SetChannelName`](#structFRHAPI__VoipTokenResponse_1a0ac0d99ea06412fffd5f92ec9ddd3f74)`(const FString & NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a0ac0d99ea06412fffd5f92ec9ddd3f74"></a>
 
 Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true.
 
-#### `public inline void `[`SetChannelName`](#structFRHAPI__VoipTokenResponse_1ab16c9bd130178c22c14c2595c4f34ceb)`(FString && NewValue)` <a id="structFRHAPI__VoipTokenResponse_1ab16c9bd130178c22c14c2595c4f34ceb"></a>
+#### `public inline FORCEINLINE void `[`SetChannelName`](#structFRHAPI__VoipTokenResponse_1a3d0415e05643dc9a470bd7ae195d1bad)`(FString && NewValue)` <a id="structFRHAPI__VoipTokenResponse_1a3d0415e05643dc9a470bd7ae195d1bad"></a>
 
 Sets the value of ChannelName_Optional and also sets ChannelName_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearChannelName`](#structFRHAPI__VoipTokenResponse_1ac7d22ae186e4828c29db4d3f36499df8)`()` <a id="structFRHAPI__VoipTokenResponse_1ac7d22ae186e4828c29db4d3f36499df8"></a>
 
 Clears the value of ChannelName_Optional and sets ChannelName_IsSet to false.
-
-#### `public inline bool `[`IsChannelNameSet`](#structFRHAPI__VoipTokenResponse_1a8ece730e6aaa84501855d48862cf22cc)`() const` <a id="structFRHAPI__VoipTokenResponse_1a8ece730e6aaa84501855d48862cf22cc"></a>
-
-Checks whether ChannelName_Optional has been set.
 

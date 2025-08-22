@@ -23,16 +23,15 @@ struct FRHAPI_LeaderboardMetaData
 `public FDateTime `[`LastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1a63fd2db7cccd6e0912bba7d0a2131615) | When this leaderboard was last updated.
 `public virtual bool `[`FromJson`](#structFRHAPI__LeaderboardMetaData_1a36e67bb4d4e9b21ebf57cefca4648465)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LeaderboardMetaData_1adc342ffc7cca719c55ed085a3a4d416f)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetEntryCount`](#structFRHAPI__LeaderboardMetaData_1af0e5fb829a96ba902f037e75546bd2a8)`()` | Gets the value of EntryCount.
-`public inline const int32 & `[`GetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a24f96068b41303fb298e7040015332f0)`() const` | Gets the value of EntryCount.
-`public inline void `[`SetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a60e28c36bae7d80925047971629938ec)`(const int32 & NewValue)` | Sets the value of EntryCount.
-`public inline void `[`SetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a61a6693e33de78fef82c783440f651be)`(int32 && NewValue)` | Sets the value of EntryCount using move semantics.
-`public inline bool `[`IsEntryCountDefaultValue`](#structFRHAPI__LeaderboardMetaData_1a3e2730234cc200e37cf4c4fac2e9631b)`() const` | Returns true if EntryCount matches the default value.
-`public inline void `[`SetEntryCountToDefault`](#structFRHAPI__LeaderboardMetaData_1af760f7c0a8cae203a7d323a69518ffb4)`()` | Sets the value of EntryCount to its default
-`public inline FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1abd8708761ccc06c444ae9fc1801fc0ba)`()` | Gets the value of LastUpdatedDatetime.
-`public inline const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1a95b1bb88fd9bf62a7ee2ccf5439815e0)`() const` | Gets the value of LastUpdatedDatetime.
-`public inline void `[`SetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1aaa3bd9b2513041a4c90f19c130ceb4fb)`(const FDateTime & NewValue)` | Sets the value of LastUpdatedDatetime.
-`public inline void `[`SetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1adb1823d733c100dd27450b0b25ad0b78)`(FDateTime && NewValue)` | Sets the value of LastUpdatedDatetime using move semantics.
+`public inline FORCEINLINE int32 & `[`GetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a65378b0eb5d214cb2663e45800260b49)`()` | Gets the value of EntryCount.
+`public inline FORCEINLINE const int32 & `[`GetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a4cc0dccc90be8c30efd5f62520285bbe)`() const` | Gets the value of EntryCount.
+`public inline FORCEINLINE void `[`SetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a20d0ae884eabc6a86fea27cf03c7fc24)`(const int32 & NewValue)` | Sets the value of EntryCount.
+`public inline FORCEINLINE void `[`SetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a26250648c9824b1e02a5815317fd8b80)`(int32 && NewValue)` | Sets the value of EntryCount using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_EntryCount`](#structFRHAPI__LeaderboardMetaData_1a216dbf46372cb5b8a11b4f0f219871ea)`()` | Returns the default value of EntryCount.
+`public inline FORCEINLINE FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1a8e67cba38bbd77ad6e980d9132cda777)`()` | Gets the value of LastUpdatedDatetime.
+`public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1a02df71d9a5ba4528f29fbbfaa352133e)`() const` | Gets the value of LastUpdatedDatetime.
+`public inline FORCEINLINE void `[`SetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1abeb1b734e89547502fe78342b748581b)`(const FDateTime & NewValue)` | Sets the value of LastUpdatedDatetime.
+`public inline FORCEINLINE void `[`SetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1aa0f288623ab555e25bfc47c3fac5bc71)`(FDateTime && NewValue)` | Sets the value of LastUpdatedDatetime using move semantics.
 
 ### Members
 
@@ -61,43 +60,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetEntryCount`](#structFRHAPI__LeaderboardMetaData_1af0e5fb829a96ba902f037e75546bd2a8)`()` <a id="structFRHAPI__LeaderboardMetaData_1af0e5fb829a96ba902f037e75546bd2a8"></a>
+#### `public inline FORCEINLINE int32 & `[`GetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a65378b0eb5d214cb2663e45800260b49)`()` <a id="structFRHAPI__LeaderboardMetaData_1a65378b0eb5d214cb2663e45800260b49"></a>
 
 Gets the value of EntryCount.
 
-#### `public inline const int32 & `[`GetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a24f96068b41303fb298e7040015332f0)`() const` <a id="structFRHAPI__LeaderboardMetaData_1a24f96068b41303fb298e7040015332f0"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a4cc0dccc90be8c30efd5f62520285bbe)`() const` <a id="structFRHAPI__LeaderboardMetaData_1a4cc0dccc90be8c30efd5f62520285bbe"></a>
 
 Gets the value of EntryCount.
 
-#### `public inline void `[`SetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a60e28c36bae7d80925047971629938ec)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardMetaData_1a60e28c36bae7d80925047971629938ec"></a>
+#### `public inline FORCEINLINE void `[`SetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a20d0ae884eabc6a86fea27cf03c7fc24)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardMetaData_1a20d0ae884eabc6a86fea27cf03c7fc24"></a>
 
 Sets the value of EntryCount.
 
-#### `public inline void `[`SetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a61a6693e33de78fef82c783440f651be)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardMetaData_1a61a6693e33de78fef82c783440f651be"></a>
+#### `public inline FORCEINLINE void `[`SetEntryCount`](#structFRHAPI__LeaderboardMetaData_1a26250648c9824b1e02a5815317fd8b80)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardMetaData_1a26250648c9824b1e02a5815317fd8b80"></a>
 
 Sets the value of EntryCount using move semantics.
 
-#### `public inline bool `[`IsEntryCountDefaultValue`](#structFRHAPI__LeaderboardMetaData_1a3e2730234cc200e37cf4c4fac2e9631b)`() const` <a id="structFRHAPI__LeaderboardMetaData_1a3e2730234cc200e37cf4c4fac2e9631b"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_EntryCount`](#structFRHAPI__LeaderboardMetaData_1a216dbf46372cb5b8a11b4f0f219871ea)`()` <a id="structFRHAPI__LeaderboardMetaData_1a216dbf46372cb5b8a11b4f0f219871ea"></a>
 
-Returns true if EntryCount matches the default value.
+Returns the default value of EntryCount.
 
-#### `public inline void `[`SetEntryCountToDefault`](#structFRHAPI__LeaderboardMetaData_1af760f7c0a8cae203a7d323a69518ffb4)`()` <a id="structFRHAPI__LeaderboardMetaData_1af760f7c0a8cae203a7d323a69518ffb4"></a>
-
-Sets the value of EntryCount to its default
-
-#### `public inline FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1abd8708761ccc06c444ae9fc1801fc0ba)`()` <a id="structFRHAPI__LeaderboardMetaData_1abd8708761ccc06c444ae9fc1801fc0ba"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1a8e67cba38bbd77ad6e980d9132cda777)`()` <a id="structFRHAPI__LeaderboardMetaData_1a8e67cba38bbd77ad6e980d9132cda777"></a>
 
 Gets the value of LastUpdatedDatetime.
 
-#### `public inline const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1a95b1bb88fd9bf62a7ee2ccf5439815e0)`() const` <a id="structFRHAPI__LeaderboardMetaData_1a95b1bb88fd9bf62a7ee2ccf5439815e0"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1a02df71d9a5ba4528f29fbbfaa352133e)`() const` <a id="structFRHAPI__LeaderboardMetaData_1a02df71d9a5ba4528f29fbbfaa352133e"></a>
 
 Gets the value of LastUpdatedDatetime.
 
-#### `public inline void `[`SetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1aaa3bd9b2513041a4c90f19c130ceb4fb)`(const FDateTime & NewValue)` <a id="structFRHAPI__LeaderboardMetaData_1aaa3bd9b2513041a4c90f19c130ceb4fb"></a>
+#### `public inline FORCEINLINE void `[`SetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1abeb1b734e89547502fe78342b748581b)`(const FDateTime & NewValue)` <a id="structFRHAPI__LeaderboardMetaData_1abeb1b734e89547502fe78342b748581b"></a>
 
 Sets the value of LastUpdatedDatetime.
 
-#### `public inline void `[`SetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1adb1823d733c100dd27450b0b25ad0b78)`(FDateTime && NewValue)` <a id="structFRHAPI__LeaderboardMetaData_1adb1823d733c100dd27450b0b25ad0b78"></a>
+#### `public inline FORCEINLINE void `[`SetLastUpdatedDatetime`](#structFRHAPI__LeaderboardMetaData_1aa0f288623ab555e25bfc47c3fac5bc71)`(FDateTime && NewValue)` <a id="structFRHAPI__LeaderboardMetaData_1aa0f288623ab555e25bfc47c3fac5bc71"></a>
 
 Sets the value of LastUpdatedDatetime using move semantics.
 

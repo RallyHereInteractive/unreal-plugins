@@ -35,58 +35,52 @@ Represents the change that occurred to an entry in the Player&#39;s Inventory. T
 `public bool `[`After_IsNull`](#structFRHAPI__PlayerInventoryChange_1aa159ec599e02c670b149adbd34bc5ce4) | true if After_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerInventoryChange_1a7cb4c43508f2a9a43a5ccb3f8a855607)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerInventoryChange_1aa9af7366c88cf285fc713a6b2fede038)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1ac72b42fb5d11c3012606ceab03c8c297)`()` | Gets the value of BeforeItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1aae66b8b36cbf7e67099bcf6c6c0e695e)`() const` | Gets the value of BeforeItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a3f24c7f3f9a8e8d296f8678a010fdef7)`(const int32 & DefaultValue) const` | Gets the value of BeforeItemId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a2b9479d60377f667b28ea2d7bbeb3e82)`(int32 & OutValue) const` | Fills OutValue with the value of BeforeItemId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetBeforeItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a1c9ef37b3be36659b71f18a89da7bc46)`()` | Returns a pointer to BeforeItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetBeforeItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a1cd2e3d016dd79c02d920bf22572fe09)`() const` | Returns a pointer to BeforeItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a1f048991fc1cf1a9f2d1f6defdb10e81)`(const int32 & NewValue)` | Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true.
-`public inline void `[`SetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1ac9c033da53a88ddfff679e6c54e16fa7)`(int32 && NewValue)` | Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a13052ae9d6ab86892c8b9f3b69a1b99e)`()` | Gets the value of BeforeItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a294a471b807c9f2a29c6492c334bbd3c)`() const` | Gets the value of BeforeItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a290c4dce9f14574a80926d19af357932)`(const int32 & DefaultValue) const` | Gets the value of BeforeItemId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a369d3833320c31bccb1e38e1b0e6928d)`(int32 & OutValue) const` | Fills OutValue with the value of BeforeItemId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetBeforeItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a998ac168e5074bcb87a107f17ca98d11)`()` | Returns a pointer to BeforeItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetBeforeItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a9288e0feb151f94ea0befde72e14bd4d)`() const` | Returns a pointer to BeforeItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a21e26d70911ce679e0d7326396a3cdf3)`(const int32 & NewValue)` | Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true.
+`public inline FORCEINLINE void `[`SetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a4f24dfbb9df772444c66f86f5d75af39)`(int32 && NewValue)` | Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true using move semantics.
 `public inline void `[`ClearBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1ac3b7199cc55761932367cc9fccf61552)`()` | Clears the value of BeforeItemId_Optional and sets BeforeItemId_IsSet to false.
-`public inline bool `[`IsBeforeItemIdSet`](#structFRHAPI__PlayerInventoryChange_1a23df0890c6627f0e7e26efa6c476e6e4)`() const` | Checks whether BeforeItemId_Optional has been set.
-`public inline bool `[`IsBeforeItemIdDefaultValue`](#structFRHAPI__PlayerInventoryChange_1a0ac3ece749c88ebaf7992ee00751e42a)`() const` | Returns true if BeforeItemId_Optional is set and matches the default value.
-`public inline void `[`SetBeforeItemIdToDefault`](#structFRHAPI__PlayerInventoryChange_1a68ae955370302ad679ac531b4686ddf4)`()` | Sets the value of BeforeItemId_Optional to its default and also sets BeforeItemId_IsSet to true.
-`public inline void `[`SetBeforeItemIdToNull`](#structFRHAPI__PlayerInventoryChange_1a86f6626a2cc074b18eea1b73201f71fb)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsBeforeItemIdNull`](#structFRHAPI__PlayerInventoryChange_1af54a8ef88787b4e73c1d33cdc64e1d25)`() const` | Checks whether BeforeItemId_Optional is set to null.
-`public inline int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a3f85bcb3806b7533ab260c83976ad851)`()` | Gets the value of AfterItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1af46251b15129118ee465d19899a4abd8)`() const` | Gets the value of AfterItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1aa4e1f2f5d13860a382e7151829e10219)`(const int32 & DefaultValue) const` | Gets the value of AfterItemId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a3832b2c5b4fce9966922c9c90479445c)`(int32 & OutValue) const` | Fills OutValue with the value of AfterItemId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetAfterItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a0e48cedacc8ea10ffd8112b3140aedba)`()` | Returns a pointer to AfterItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetAfterItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a547f97ae81bbcee34bd2675d9261c13d)`() const` | Returns a pointer to AfterItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a9f7012f6eed18006836147ac8c4e64cb)`(const int32 & NewValue)` | Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true.
-`public inline void `[`SetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a0f0e51d5ddeb4c7069a96d3b19751c82)`(int32 && NewValue)` | Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_BeforeItemId`](#structFRHAPI__PlayerInventoryChange_1aaca02db48d733126961db1da8ec495a3)`()` | Returns the default value of BeforeItemId.
+`public inline FORCEINLINE void `[`SetBeforeItemIdToNull`](#structFRHAPI__PlayerInventoryChange_1a3ea56b91b6381b243980235f166f650a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsBeforeItemIdNull`](#structFRHAPI__PlayerInventoryChange_1aa34f632ed0435d803ed801f88376778f)`() const` | Checks whether BeforeItemId_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a40115660de00d4dbcbf9a8b8f344b42e)`()` | Gets the value of AfterItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a79c6d48c3349d99db7abb2130f839986)`() const` | Gets the value of AfterItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a7afd91b96b9975f9acc8c6d8b85dbaa3)`(const int32 & DefaultValue) const` | Gets the value of AfterItemId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a158b394311cbfd4a360e919992be4c5c)`(int32 & OutValue) const` | Fills OutValue with the value of AfterItemId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetAfterItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1acb69dd77b072aa5e48b8084f144e851e)`()` | Returns a pointer to AfterItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetAfterItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1aa3157287b3e7227c753bfab68ae212e0)`() const` | Returns a pointer to AfterItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a87b292ad8acfa9119e38d9ac95a7a10a)`(const int32 & NewValue)` | Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true.
+`public inline FORCEINLINE void `[`SetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a63417bcec1cda39adfcb64c1a16276ad)`(int32 && NewValue)` | Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true using move semantics.
 `public inline void `[`ClearAfterItemId`](#structFRHAPI__PlayerInventoryChange_1aa0492de19cc02a1231a0b234f0a13ec5)`()` | Clears the value of AfterItemId_Optional and sets AfterItemId_IsSet to false.
-`public inline bool `[`IsAfterItemIdSet`](#structFRHAPI__PlayerInventoryChange_1a1b25ab04e34f4d81333c1f7493ab3703)`() const` | Checks whether AfterItemId_Optional has been set.
-`public inline bool `[`IsAfterItemIdDefaultValue`](#structFRHAPI__PlayerInventoryChange_1a88b8df2a6762a533e5a34514e826b9e1)`() const` | Returns true if AfterItemId_Optional is set and matches the default value.
-`public inline void `[`SetAfterItemIdToDefault`](#structFRHAPI__PlayerInventoryChange_1ad083ab0241cd6f9893d69e0c7475484d)`()` | Sets the value of AfterItemId_Optional to its default and also sets AfterItemId_IsSet to true.
-`public inline void `[`SetAfterItemIdToNull`](#structFRHAPI__PlayerInventoryChange_1afde9453cd1dd7bdafb5d4c59bbd5deef)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsAfterItemIdNull`](#structFRHAPI__PlayerInventoryChange_1a7fa3567569ef900700520753cccd8b58)`() const` | Checks whether AfterItemId_Optional is set to null.
-`public inline `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1a9de9820af4e249af6a2fd9f202390346)`()` | Gets the value of Before_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1a3c70754963d044c5ee69ef1db2231327)`() const` | Gets the value of Before_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1ab8354d206ec0ee4accb0eccb744e2a2a)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & DefaultValue) const` | Gets the value of Before_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1a0964035ea169cdfa429f373692bf2c37)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & OutValue) const` | Fills OutValue with the value of Before_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetBeforeOrNull`](#structFRHAPI__PlayerInventoryChange_1af06f4def4b9d9231449ec3601ad2a08c)`()` | Returns a pointer to Before_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetBeforeOrNull`](#structFRHAPI__PlayerInventoryChange_1ac9282d0f6fb1dd212d2e88dda78a4e72)`() const` | Returns a pointer to Before_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetBefore`](#structFRHAPI__PlayerInventoryChange_1a19971ab78f8c4fb2fbf537cb8bbc4f2a)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & NewValue)` | Sets the value of Before_Optional and also sets Before_IsSet to true.
-`public inline void `[`SetBefore`](#structFRHAPI__PlayerInventoryChange_1aba6149b3079259eed6c1d3df47729ae9)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` && NewValue)` | Sets the value of Before_Optional and also sets Before_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_AfterItemId`](#structFRHAPI__PlayerInventoryChange_1abe1bfb5d449bc2d524820b09139e080f)`()` | Returns the default value of AfterItemId.
+`public inline FORCEINLINE void `[`SetAfterItemIdToNull`](#structFRHAPI__PlayerInventoryChange_1a951c9e05f23e1befb9834a3ff2c7cdd4)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsAfterItemIdNull`](#structFRHAPI__PlayerInventoryChange_1a0efd09c98284734208b60605f6c2b491)`() const` | Checks whether AfterItemId_Optional is set to null.
+`public inline FORCEINLINE `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1a608d1e3cefdf55791c667114ee99b34d)`()` | Gets the value of Before_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1ac3b07b86c352b497785bc7f03ec3cc08)`() const` | Gets the value of Before_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1aa5962ec4ff379eb0ca8488fb7a02491d)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & DefaultValue) const` | Gets the value of Before_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1ac5e5ec614717d783d9d5ac1c231d6450)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & OutValue) const` | Fills OutValue with the value of Before_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetBeforeOrNull`](#structFRHAPI__PlayerInventoryChange_1add7a3f9ddd08cb7c73e82ae6367a363a)`()` | Returns a pointer to Before_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetBeforeOrNull`](#structFRHAPI__PlayerInventoryChange_1af0f4b3b37a48455e30a324672477f9e8)`() const` | Returns a pointer to Before_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetBefore`](#structFRHAPI__PlayerInventoryChange_1adfcc1e1eff8c60e99b4e38690275914a)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & NewValue)` | Sets the value of Before_Optional and also sets Before_IsSet to true.
+`public inline FORCEINLINE void `[`SetBefore`](#structFRHAPI__PlayerInventoryChange_1a1fe504e307edd568ba1b03d461ba06a1)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` && NewValue)` | Sets the value of Before_Optional and also sets Before_IsSet to true using move semantics.
 `public inline void `[`ClearBefore`](#structFRHAPI__PlayerInventoryChange_1aa7af9df3dbacbe6f543e53eb39b60504)`()` | Clears the value of Before_Optional and sets Before_IsSet to false.
-`public inline bool `[`IsBeforeSet`](#structFRHAPI__PlayerInventoryChange_1ad202754fc150de6c58563656426004da)`() const` | Checks whether Before_Optional has been set.
-`public inline void `[`SetBeforeToNull`](#structFRHAPI__PlayerInventoryChange_1a6bc292813b73acc36da86bd9b27311a1)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsBeforeNull`](#structFRHAPI__PlayerInventoryChange_1a1427945c24fd096e1bc38bcca39a5c71)`() const` | Checks whether Before_Optional is set to null.
-`public inline `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1adae9433d9cb34ba78522057a81670788)`()` | Gets the value of After_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a4d5cc9ef2ba58436c948b58807d0d4e2)`() const` | Gets the value of After_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a36b665bacb94e555781f373dc195c5de)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & DefaultValue) const` | Gets the value of After_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a64d59bfaeb95685bfecd9b5e83f99732)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & OutValue) const` | Fills OutValue with the value of After_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetAfterOrNull`](#structFRHAPI__PlayerInventoryChange_1a86e079c067f42fbf764ea8acbcfad1e3)`()` | Returns a pointer to After_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetAfterOrNull`](#structFRHAPI__PlayerInventoryChange_1a711cc5fbb2c67e08fb26de22877493f0)`() const` | Returns a pointer to After_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1af15986dd0abcee4e96b085bc72986af1)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & NewValue)` | Sets the value of After_Optional and also sets After_IsSet to true.
-`public inline void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1a339ca083c78aee987de2bdc53afd92f0)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` && NewValue)` | Sets the value of After_Optional and also sets After_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetBeforeToNull`](#structFRHAPI__PlayerInventoryChange_1a5f0ee088c5acbbb25e639121842ccdf0)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsBeforeNull`](#structFRHAPI__PlayerInventoryChange_1a7a05b77eed5ecd5b5164aed125d3db4b)`() const` | Checks whether Before_Optional is set to null.
+`public inline FORCEINLINE `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a740d2f25300d8074bdf11a3ee158b551)`()` | Gets the value of After_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1ae02ccd84371fe5fdd4daf14d8ddda4b4)`() const` | Gets the value of After_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a01ce1aba251e395ed53ce2bde79bbd8e)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & DefaultValue) const` | Gets the value of After_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a228c3e38e4415be9726af0c178e568a8)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & OutValue) const` | Fills OutValue with the value of After_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetAfterOrNull`](#structFRHAPI__PlayerInventoryChange_1a3da2b907ea4152282a0c8e107b1ce950)`()` | Returns a pointer to After_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetAfterOrNull`](#structFRHAPI__PlayerInventoryChange_1afab9bed2942fc1c3bac213bd7b49d80c)`() const` | Returns a pointer to After_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1a7b2dfce611d890b93bd262c6e0cbd2bd)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & NewValue)` | Sets the value of After_Optional and also sets After_IsSet to true.
+`public inline FORCEINLINE void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1a1fc0a6a7a507a6ab33b62a22f4e525f5)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` && NewValue)` | Sets the value of After_Optional and also sets After_IsSet to true using move semantics.
 `public inline void `[`ClearAfter`](#structFRHAPI__PlayerInventoryChange_1a4ba64ef1e8e8cf43852f48e18ada18d3)`()` | Clears the value of After_Optional and sets After_IsSet to false.
-`public inline bool `[`IsAfterSet`](#structFRHAPI__PlayerInventoryChange_1acfc2bc8b6a21aa4c53aadfb29086a591)`() const` | Checks whether After_Optional has been set.
-`public inline void `[`SetAfterToNull`](#structFRHAPI__PlayerInventoryChange_1acba34814e2a357db37f6129d1c5fef7e)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsAfterNull`](#structFRHAPI__PlayerInventoryChange_1ad1c3e9dc39022591239fb469b95c00ed)`() const` | Checks whether After_Optional is set to null.
+`public inline FORCEINLINE void `[`SetAfterToNull`](#structFRHAPI__PlayerInventoryChange_1a790b12671c6143922c33e53fce58c9d4)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsAfterNull`](#structFRHAPI__PlayerInventoryChange_1a743b129c2959a89ab0ebf746fc83cfa4)`() const` | Checks whether After_Optional is set to null.
 
 ### Members
 
@@ -147,35 +141,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1ac72b42fb5d11c3012606ceab03c8c297)`()` <a id="structFRHAPI__PlayerInventoryChange_1ac72b42fb5d11c3012606ceab03c8c297"></a>
+#### `public inline FORCEINLINE int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a13052ae9d6ab86892c8b9f3b69a1b99e)`()` <a id="structFRHAPI__PlayerInventoryChange_1a13052ae9d6ab86892c8b9f3b69a1b99e"></a>
 
 Gets the value of BeforeItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1aae66b8b36cbf7e67099bcf6c6c0e695e)`() const` <a id="structFRHAPI__PlayerInventoryChange_1aae66b8b36cbf7e67099bcf6c6c0e695e"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a294a471b807c9f2a29c6492c334bbd3c)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a294a471b807c9f2a29c6492c334bbd3c"></a>
 
 Gets the value of BeforeItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a3f24c7f3f9a8e8d296f8678a010fdef7)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a3f24c7f3f9a8e8d296f8678a010fdef7"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a290c4dce9f14574a80926d19af357932)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a290c4dce9f14574a80926d19af357932"></a>
 
 Gets the value of BeforeItemId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a2b9479d60377f667b28ea2d7bbeb3e82)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a2b9479d60377f667b28ea2d7bbeb3e82"></a>
+#### `public inline FORCEINLINE bool `[`GetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a369d3833320c31bccb1e38e1b0e6928d)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a369d3833320c31bccb1e38e1b0e6928d"></a>
 
 Fills OutValue with the value of BeforeItemId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetBeforeItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a1c9ef37b3be36659b71f18a89da7bc46)`()` <a id="structFRHAPI__PlayerInventoryChange_1a1c9ef37b3be36659b71f18a89da7bc46"></a>
+#### `public inline FORCEINLINE int32 * `[`GetBeforeItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a998ac168e5074bcb87a107f17ca98d11)`()` <a id="structFRHAPI__PlayerInventoryChange_1a998ac168e5074bcb87a107f17ca98d11"></a>
 
 Returns a pointer to BeforeItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetBeforeItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a1cd2e3d016dd79c02d920bf22572fe09)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a1cd2e3d016dd79c02d920bf22572fe09"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetBeforeItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a9288e0feb151f94ea0befde72e14bd4d)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a9288e0feb151f94ea0befde72e14bd4d"></a>
 
 Returns a pointer to BeforeItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a1f048991fc1cf1a9f2d1f6defdb10e81)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a1f048991fc1cf1a9f2d1f6defdb10e81"></a>
+#### `public inline FORCEINLINE void `[`SetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a21e26d70911ce679e0d7326396a3cdf3)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a21e26d70911ce679e0d7326396a3cdf3"></a>
 
 Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true.
 
-#### `public inline void `[`SetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1ac9c033da53a88ddfff679e6c54e16fa7)`(int32 && NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1ac9c033da53a88ddfff679e6c54e16fa7"></a>
+#### `public inline FORCEINLINE void `[`SetBeforeItemId`](#structFRHAPI__PlayerInventoryChange_1a4f24dfbb9df772444c66f86f5d75af39)`(int32 && NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a4f24dfbb9df772444c66f86f5d75af39"></a>
 
 Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true using move semantics.
 
@@ -183,55 +177,47 @@ Sets the value of BeforeItemId_Optional and also sets BeforeItemId_IsSet to true
 
 Clears the value of BeforeItemId_Optional and sets BeforeItemId_IsSet to false.
 
-#### `public inline bool `[`IsBeforeItemIdSet`](#structFRHAPI__PlayerInventoryChange_1a23df0890c6627f0e7e26efa6c476e6e4)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a23df0890c6627f0e7e26efa6c476e6e4"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_BeforeItemId`](#structFRHAPI__PlayerInventoryChange_1aaca02db48d733126961db1da8ec495a3)`()` <a id="structFRHAPI__PlayerInventoryChange_1aaca02db48d733126961db1da8ec495a3"></a>
 
-Checks whether BeforeItemId_Optional has been set.
+Returns the default value of BeforeItemId.
 
-#### `public inline bool `[`IsBeforeItemIdDefaultValue`](#structFRHAPI__PlayerInventoryChange_1a0ac3ece749c88ebaf7992ee00751e42a)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a0ac3ece749c88ebaf7992ee00751e42a"></a>
-
-Returns true if BeforeItemId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetBeforeItemIdToDefault`](#structFRHAPI__PlayerInventoryChange_1a68ae955370302ad679ac531b4686ddf4)`()` <a id="structFRHAPI__PlayerInventoryChange_1a68ae955370302ad679ac531b4686ddf4"></a>
-
-Sets the value of BeforeItemId_Optional to its default and also sets BeforeItemId_IsSet to true.
-
-#### `public inline void `[`SetBeforeItemIdToNull`](#structFRHAPI__PlayerInventoryChange_1a86f6626a2cc074b18eea1b73201f71fb)`()` <a id="structFRHAPI__PlayerInventoryChange_1a86f6626a2cc074b18eea1b73201f71fb"></a>
+#### `public inline FORCEINLINE void `[`SetBeforeItemIdToNull`](#structFRHAPI__PlayerInventoryChange_1a3ea56b91b6381b243980235f166f650a)`()` <a id="structFRHAPI__PlayerInventoryChange_1a3ea56b91b6381b243980235f166f650a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsBeforeItemIdNull`](#structFRHAPI__PlayerInventoryChange_1af54a8ef88787b4e73c1d33cdc64e1d25)`() const` <a id="structFRHAPI__PlayerInventoryChange_1af54a8ef88787b4e73c1d33cdc64e1d25"></a>
+#### `public inline FORCEINLINE bool `[`IsBeforeItemIdNull`](#structFRHAPI__PlayerInventoryChange_1aa34f632ed0435d803ed801f88376778f)`() const` <a id="structFRHAPI__PlayerInventoryChange_1aa34f632ed0435d803ed801f88376778f"></a>
 
 Checks whether BeforeItemId_Optional is set to null.
 
-#### `public inline int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a3f85bcb3806b7533ab260c83976ad851)`()` <a id="structFRHAPI__PlayerInventoryChange_1a3f85bcb3806b7533ab260c83976ad851"></a>
+#### `public inline FORCEINLINE int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a40115660de00d4dbcbf9a8b8f344b42e)`()` <a id="structFRHAPI__PlayerInventoryChange_1a40115660de00d4dbcbf9a8b8f344b42e"></a>
 
 Gets the value of AfterItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1af46251b15129118ee465d19899a4abd8)`() const` <a id="structFRHAPI__PlayerInventoryChange_1af46251b15129118ee465d19899a4abd8"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a79c6d48c3349d99db7abb2130f839986)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a79c6d48c3349d99db7abb2130f839986"></a>
 
 Gets the value of AfterItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1aa4e1f2f5d13860a382e7151829e10219)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerInventoryChange_1aa4e1f2f5d13860a382e7151829e10219"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a7afd91b96b9975f9acc8c6d8b85dbaa3)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a7afd91b96b9975f9acc8c6d8b85dbaa3"></a>
 
 Gets the value of AfterItemId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a3832b2c5b4fce9966922c9c90479445c)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a3832b2c5b4fce9966922c9c90479445c"></a>
+#### `public inline FORCEINLINE bool `[`GetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a158b394311cbfd4a360e919992be4c5c)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a158b394311cbfd4a360e919992be4c5c"></a>
 
 Fills OutValue with the value of AfterItemId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetAfterItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a0e48cedacc8ea10ffd8112b3140aedba)`()` <a id="structFRHAPI__PlayerInventoryChange_1a0e48cedacc8ea10ffd8112b3140aedba"></a>
+#### `public inline FORCEINLINE int32 * `[`GetAfterItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1acb69dd77b072aa5e48b8084f144e851e)`()` <a id="structFRHAPI__PlayerInventoryChange_1acb69dd77b072aa5e48b8084f144e851e"></a>
 
 Returns a pointer to AfterItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetAfterItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1a547f97ae81bbcee34bd2675d9261c13d)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a547f97ae81bbcee34bd2675d9261c13d"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetAfterItemIdOrNull`](#structFRHAPI__PlayerInventoryChange_1aa3157287b3e7227c753bfab68ae212e0)`() const` <a id="structFRHAPI__PlayerInventoryChange_1aa3157287b3e7227c753bfab68ae212e0"></a>
 
 Returns a pointer to AfterItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a9f7012f6eed18006836147ac8c4e64cb)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a9f7012f6eed18006836147ac8c4e64cb"></a>
+#### `public inline FORCEINLINE void `[`SetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a87b292ad8acfa9119e38d9ac95a7a10a)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a87b292ad8acfa9119e38d9ac95a7a10a"></a>
 
 Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true.
 
-#### `public inline void `[`SetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a0f0e51d5ddeb4c7069a96d3b19751c82)`(int32 && NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a0f0e51d5ddeb4c7069a96d3b19751c82"></a>
+#### `public inline FORCEINLINE void `[`SetAfterItemId`](#structFRHAPI__PlayerInventoryChange_1a63417bcec1cda39adfcb64c1a16276ad)`(int32 && NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a63417bcec1cda39adfcb64c1a16276ad"></a>
 
 Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true using move semantics.
 
@@ -239,55 +225,47 @@ Sets the value of AfterItemId_Optional and also sets AfterItemId_IsSet to true u
 
 Clears the value of AfterItemId_Optional and sets AfterItemId_IsSet to false.
 
-#### `public inline bool `[`IsAfterItemIdSet`](#structFRHAPI__PlayerInventoryChange_1a1b25ab04e34f4d81333c1f7493ab3703)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a1b25ab04e34f4d81333c1f7493ab3703"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_AfterItemId`](#structFRHAPI__PlayerInventoryChange_1abe1bfb5d449bc2d524820b09139e080f)`()` <a id="structFRHAPI__PlayerInventoryChange_1abe1bfb5d449bc2d524820b09139e080f"></a>
 
-Checks whether AfterItemId_Optional has been set.
+Returns the default value of AfterItemId.
 
-#### `public inline bool `[`IsAfterItemIdDefaultValue`](#structFRHAPI__PlayerInventoryChange_1a88b8df2a6762a533e5a34514e826b9e1)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a88b8df2a6762a533e5a34514e826b9e1"></a>
-
-Returns true if AfterItemId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetAfterItemIdToDefault`](#structFRHAPI__PlayerInventoryChange_1ad083ab0241cd6f9893d69e0c7475484d)`()` <a id="structFRHAPI__PlayerInventoryChange_1ad083ab0241cd6f9893d69e0c7475484d"></a>
-
-Sets the value of AfterItemId_Optional to its default and also sets AfterItemId_IsSet to true.
-
-#### `public inline void `[`SetAfterItemIdToNull`](#structFRHAPI__PlayerInventoryChange_1afde9453cd1dd7bdafb5d4c59bbd5deef)`()` <a id="structFRHAPI__PlayerInventoryChange_1afde9453cd1dd7bdafb5d4c59bbd5deef"></a>
+#### `public inline FORCEINLINE void `[`SetAfterItemIdToNull`](#structFRHAPI__PlayerInventoryChange_1a951c9e05f23e1befb9834a3ff2c7cdd4)`()` <a id="structFRHAPI__PlayerInventoryChange_1a951c9e05f23e1befb9834a3ff2c7cdd4"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsAfterItemIdNull`](#structFRHAPI__PlayerInventoryChange_1a7fa3567569ef900700520753cccd8b58)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a7fa3567569ef900700520753cccd8b58"></a>
+#### `public inline FORCEINLINE bool `[`IsAfterItemIdNull`](#structFRHAPI__PlayerInventoryChange_1a0efd09c98284734208b60605f6c2b491)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a0efd09c98284734208b60605f6c2b491"></a>
 
 Checks whether AfterItemId_Optional is set to null.
 
-#### `public inline `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1a9de9820af4e249af6a2fd9f202390346)`()` <a id="structFRHAPI__PlayerInventoryChange_1a9de9820af4e249af6a2fd9f202390346"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1a608d1e3cefdf55791c667114ee99b34d)`()` <a id="structFRHAPI__PlayerInventoryChange_1a608d1e3cefdf55791c667114ee99b34d"></a>
 
 Gets the value of Before_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1a3c70754963d044c5ee69ef1db2231327)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a3c70754963d044c5ee69ef1db2231327"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1ac3b07b86c352b497785bc7f03ec3cc08)`() const` <a id="structFRHAPI__PlayerInventoryChange_1ac3b07b86c352b497785bc7f03ec3cc08"></a>
 
 Gets the value of Before_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1ab8354d206ec0ee4accb0eccb744e2a2a)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & DefaultValue) const` <a id="structFRHAPI__PlayerInventoryChange_1ab8354d206ec0ee4accb0eccb744e2a2a"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1aa5962ec4ff379eb0ca8488fb7a02491d)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & DefaultValue) const` <a id="structFRHAPI__PlayerInventoryChange_1aa5962ec4ff379eb0ca8488fb7a02491d"></a>
 
 Gets the value of Before_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1a0964035ea169cdfa429f373692bf2c37)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & OutValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a0964035ea169cdfa429f373692bf2c37"></a>
+#### `public inline FORCEINLINE bool `[`GetBefore`](#structFRHAPI__PlayerInventoryChange_1ac5e5ec614717d783d9d5ac1c231d6450)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & OutValue) const` <a id="structFRHAPI__PlayerInventoryChange_1ac5e5ec614717d783d9d5ac1c231d6450"></a>
 
 Fills OutValue with the value of Before_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetBeforeOrNull`](#structFRHAPI__PlayerInventoryChange_1af06f4def4b9d9231449ec3601ad2a08c)`()` <a id="structFRHAPI__PlayerInventoryChange_1af06f4def4b9d9231449ec3601ad2a08c"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetBeforeOrNull`](#structFRHAPI__PlayerInventoryChange_1add7a3f9ddd08cb7c73e82ae6367a363a)`()` <a id="structFRHAPI__PlayerInventoryChange_1add7a3f9ddd08cb7c73e82ae6367a363a"></a>
 
 Returns a pointer to Before_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetBeforeOrNull`](#structFRHAPI__PlayerInventoryChange_1ac9282d0f6fb1dd212d2e88dda78a4e72)`() const` <a id="structFRHAPI__PlayerInventoryChange_1ac9282d0f6fb1dd212d2e88dda78a4e72"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetBeforeOrNull`](#structFRHAPI__PlayerInventoryChange_1af0f4b3b37a48455e30a324672477f9e8)`() const` <a id="structFRHAPI__PlayerInventoryChange_1af0f4b3b37a48455e30a324672477f9e8"></a>
 
 Returns a pointer to Before_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetBefore`](#structFRHAPI__PlayerInventoryChange_1a19971ab78f8c4fb2fbf537cb8bbc4f2a)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a19971ab78f8c4fb2fbf537cb8bbc4f2a"></a>
+#### `public inline FORCEINLINE void `[`SetBefore`](#structFRHAPI__PlayerInventoryChange_1adfcc1e1eff8c60e99b4e38690275914a)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1adfcc1e1eff8c60e99b4e38690275914a"></a>
 
 Sets the value of Before_Optional and also sets Before_IsSet to true.
 
-#### `public inline void `[`SetBefore`](#structFRHAPI__PlayerInventoryChange_1aba6149b3079259eed6c1d3df47729ae9)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` && NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1aba6149b3079259eed6c1d3df47729ae9"></a>
+#### `public inline FORCEINLINE void `[`SetBefore`](#structFRHAPI__PlayerInventoryChange_1a1fe504e307edd568ba1b03d461ba06a1)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` && NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a1fe504e307edd568ba1b03d461ba06a1"></a>
 
 Sets the value of Before_Optional and also sets Before_IsSet to true using move semantics.
 
@@ -295,47 +273,43 @@ Sets the value of Before_Optional and also sets Before_IsSet to true using move 
 
 Clears the value of Before_Optional and sets Before_IsSet to false.
 
-#### `public inline bool `[`IsBeforeSet`](#structFRHAPI__PlayerInventoryChange_1ad202754fc150de6c58563656426004da)`() const` <a id="structFRHAPI__PlayerInventoryChange_1ad202754fc150de6c58563656426004da"></a>
-
-Checks whether Before_Optional has been set.
-
-#### `public inline void `[`SetBeforeToNull`](#structFRHAPI__PlayerInventoryChange_1a6bc292813b73acc36da86bd9b27311a1)`()` <a id="structFRHAPI__PlayerInventoryChange_1a6bc292813b73acc36da86bd9b27311a1"></a>
+#### `public inline FORCEINLINE void `[`SetBeforeToNull`](#structFRHAPI__PlayerInventoryChange_1a5f0ee088c5acbbb25e639121842ccdf0)`()` <a id="structFRHAPI__PlayerInventoryChange_1a5f0ee088c5acbbb25e639121842ccdf0"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsBeforeNull`](#structFRHAPI__PlayerInventoryChange_1a1427945c24fd096e1bc38bcca39a5c71)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a1427945c24fd096e1bc38bcca39a5c71"></a>
+#### `public inline FORCEINLINE bool `[`IsBeforeNull`](#structFRHAPI__PlayerInventoryChange_1a7a05b77eed5ecd5b5164aed125d3db4b)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a7a05b77eed5ecd5b5164aed125d3db4b"></a>
 
 Checks whether Before_Optional is set to null.
 
-#### `public inline `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1adae9433d9cb34ba78522057a81670788)`()` <a id="structFRHAPI__PlayerInventoryChange_1adae9433d9cb34ba78522057a81670788"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a740d2f25300d8074bdf11a3ee158b551)`()` <a id="structFRHAPI__PlayerInventoryChange_1a740d2f25300d8074bdf11a3ee158b551"></a>
 
 Gets the value of After_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a4d5cc9ef2ba58436c948b58807d0d4e2)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a4d5cc9ef2ba58436c948b58807d0d4e2"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1ae02ccd84371fe5fdd4daf14d8ddda4b4)`() const` <a id="structFRHAPI__PlayerInventoryChange_1ae02ccd84371fe5fdd4daf14d8ddda4b4"></a>
 
 Gets the value of After_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a36b665bacb94e555781f373dc195c5de)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & DefaultValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a36b665bacb94e555781f373dc195c5de"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a01ce1aba251e395ed53ce2bde79bbd8e)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & DefaultValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a01ce1aba251e395ed53ce2bde79bbd8e"></a>
 
 Gets the value of After_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a64d59bfaeb95685bfecd9b5e83f99732)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & OutValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a64d59bfaeb95685bfecd9b5e83f99732"></a>
+#### `public inline FORCEINLINE bool `[`GetAfter`](#structFRHAPI__PlayerInventoryChange_1a228c3e38e4415be9726af0c178e568a8)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & OutValue) const` <a id="structFRHAPI__PlayerInventoryChange_1a228c3e38e4415be9726af0c178e568a8"></a>
 
 Fills OutValue with the value of After_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetAfterOrNull`](#structFRHAPI__PlayerInventoryChange_1a86e079c067f42fbf764ea8acbcfad1e3)`()` <a id="structFRHAPI__PlayerInventoryChange_1a86e079c067f42fbf764ea8acbcfad1e3"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetAfterOrNull`](#structFRHAPI__PlayerInventoryChange_1a3da2b907ea4152282a0c8e107b1ce950)`()` <a id="structFRHAPI__PlayerInventoryChange_1a3da2b907ea4152282a0c8e107b1ce950"></a>
 
 Returns a pointer to After_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetAfterOrNull`](#structFRHAPI__PlayerInventoryChange_1a711cc5fbb2c67e08fb26de22877493f0)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a711cc5fbb2c67e08fb26de22877493f0"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` * `[`GetAfterOrNull`](#structFRHAPI__PlayerInventoryChange_1afab9bed2942fc1c3bac213bd7b49d80c)`() const` <a id="structFRHAPI__PlayerInventoryChange_1afab9bed2942fc1c3bac213bd7b49d80c"></a>
 
 Returns a pointer to After_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1af15986dd0abcee4e96b085bc72986af1)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1af15986dd0abcee4e96b085bc72986af1"></a>
+#### `public inline FORCEINLINE void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1a7b2dfce611d890b93bd262c6e0cbd2bd)`(const `[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` & NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a7b2dfce611d890b93bd262c6e0cbd2bd"></a>
 
 Sets the value of After_Optional and also sets After_IsSet to true.
 
-#### `public inline void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1a339ca083c78aee987de2bdc53afd92f0)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` && NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a339ca083c78aee987de2bdc53afd92f0"></a>
+#### `public inline FORCEINLINE void `[`SetAfter`](#structFRHAPI__PlayerInventoryChange_1a1fc0a6a7a507a6ab33b62a22f4e525f5)`(`[`FRHAPI_InventoryRecord`](RHAPI_InventoryRecord.md#structFRHAPI__InventoryRecord)` && NewValue)` <a id="structFRHAPI__PlayerInventoryChange_1a1fc0a6a7a507a6ab33b62a22f4e525f5"></a>
 
 Sets the value of After_Optional and also sets After_IsSet to true using move semantics.
 
@@ -343,15 +317,11 @@ Sets the value of After_Optional and also sets After_IsSet to true using move se
 
 Clears the value of After_Optional and sets After_IsSet to false.
 
-#### `public inline bool `[`IsAfterSet`](#structFRHAPI__PlayerInventoryChange_1acfc2bc8b6a21aa4c53aadfb29086a591)`() const` <a id="structFRHAPI__PlayerInventoryChange_1acfc2bc8b6a21aa4c53aadfb29086a591"></a>
-
-Checks whether After_Optional has been set.
-
-#### `public inline void `[`SetAfterToNull`](#structFRHAPI__PlayerInventoryChange_1acba34814e2a357db37f6129d1c5fef7e)`()` <a id="structFRHAPI__PlayerInventoryChange_1acba34814e2a357db37f6129d1c5fef7e"></a>
+#### `public inline FORCEINLINE void `[`SetAfterToNull`](#structFRHAPI__PlayerInventoryChange_1a790b12671c6143922c33e53fce58c9d4)`()` <a id="structFRHAPI__PlayerInventoryChange_1a790b12671c6143922c33e53fce58c9d4"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsAfterNull`](#structFRHAPI__PlayerInventoryChange_1ad1c3e9dc39022591239fb469b95c00ed)`() const` <a id="structFRHAPI__PlayerInventoryChange_1ad1c3e9dc39022591239fb469b95c00ed"></a>
+#### `public inline FORCEINLINE bool `[`IsAfterNull`](#structFRHAPI__PlayerInventoryChange_1a743b129c2959a89ab0ebf746fc83cfa4)`() const` <a id="structFRHAPI__PlayerInventoryChange_1a743b129c2959a89ab0ebf746fc83cfa4"></a>
 
 Checks whether After_Optional is set to null.
 

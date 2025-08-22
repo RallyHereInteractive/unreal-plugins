@@ -18,7 +18,9 @@ FRHDTW_PlayerInventory::FRHDTW_PlayerInventory()
 	SelectedSourceType{},
 	InputCount{},
 	SelectedCreateInventoryTypes{},
-	SelectedInventoryBucket{}
+	SelectedInventoryBucket{},
+	PromoCode{},
+	InputLootId{}
 {
 	DefaultPos = FVector2D(610, 20);
 	
@@ -119,6 +121,12 @@ void FRHDTW_PlayerInventory::Do()
 			ImGui::EndTabItem();
 		}
 
+		if (ImGui::BeginTabItem("Claim", nullptr, ImGuiTabItemFlags_None))
+		{
+			DoClaim();
+			ImGui::EndTabItem();
+		}
+
 		ImGui::EndTabBar();
 	}
 }
@@ -193,7 +201,7 @@ void FRHDTW_PlayerInventory::DoInventorySession()
 	{
 		if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
 		{
-			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			pURH_PlayerInventory = ActivePlayerInfo->GetPlayerInventory();
 		}
 	}
@@ -238,7 +246,7 @@ void FRHDTW_PlayerInventory::DoInventory()
 	{
 		if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
 		{
-			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			pURH_PlayerInventory = ActivePlayerInfo->GetPlayerInventory();
 		}
 	}
@@ -363,7 +371,7 @@ void FRHDTW_PlayerInventory::RefreshInventory(URH_PlayerInventory* pURH_PlayerIn
 	}
 
 	auto Delegate = FRH_OnInventoryUpdateDelegate::CreateSP(SharedThis(this), &FRHDTW_PlayerInventory::HandleGetInventory);
-	pURH_PlayerInventory->GetInventory(ItemIds, MoveTemp(Delegate));
+	pURH_PlayerInventory->GetInventory(FTimespan{}, true, ItemIds, MoveTemp(Delegate));
 }
 
 void FRHDTW_PlayerInventory::HandleGetInventory(bool success)
@@ -549,7 +557,7 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 	{
 		if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
 		{
-			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			pURH_PlayerInventory = ActivePlayerInfo->GetPlayerInventory();
 		}
 	}
@@ -625,6 +633,17 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 							ImGui::TableSetupColumn("Quantity");
 							ImGui::TableSetupColumn("Price");
 							ImGui::TableSetupColumn("Coupon Item Id");
+							ImGui::TableSetupColumn("External Tran ID");
+							ImGui::TableSetupColumn("External SKU");
+							ImGui::TableSetupColumn("Use Inventory Bucket");
+							ImGui::TableSetupColumn("Portal Event ID");
+							ImGui::TableSetupColumn("Expires");
+							ImGui::TableSetupColumn("Xp Quantity Transform Type");
+							ImGui::TableSetupColumn("Hard Quantity Maximum");
+							ImGui::TableSetupColumn("Inventory Selector");
+							ImGui::TableSetupColumn("Inventory Operation");
+							ImGui::TableSetupColumn("Quantity Mult Inv Item Id");
+							ImGui::TableSetupColumn("Time Frame ID");
 							ImGui::TableHeadersRow();
 
 							// Content
@@ -686,7 +705,37 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 								ImGui::TableNextColumn();
 								ImGui::Text(""); // coupoon
 							}
+							ImGui::TableNextColumn();
+							ImGui::Text("%s", TCHAR_TO_UTF8(*Entry.GetExternalTranId()));
+							ImGui::TableNextColumn();
+							ImGui::Text("%s", TCHAR_TO_UTF8(*Entry.GetExternalItemSku()));
+							ImGui::TableNextColumn();
+							ImGui::Text("%s", TCHAR_TO_UTF8(*UEnum::GetDisplayValueAsText(Entry.GetUseInventoryBucket()).ToString()));
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", Entry.GetPlayerPortalEventId());
+							ImGui::TableNextColumn();
+							if (const FDateTime* Expires = Entry.GetExpiresOrNull())
+							{
+								ImGui::Text("%s", TCHAR_TO_UTF8(*Expires->ToString()));
+							}
+							else
+							{
+								ImGui::Text("");
+							}
+							ImGui::TableNextColumn();
+							ImGui::Text("%s", TCHAR_TO_UTF8(*UEnum::GetDisplayValueAsText(Entry.GetXpQuantityTransformType()).ToString()));
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", Entry.GetHardQuantityMaximum());
+							ImGui::TableNextColumn();
+							ImGui::Text("%s", TCHAR_TO_UTF8(*UEnum::GetDisplayValueAsText(Entry.GetInventorySelectorType()).ToString()));
+							ImGui::TableNextColumn();
+							ImGui::Text("%s", TCHAR_TO_UTF8(*UEnum::GetDisplayValueAsText(Entry.GetInventoryOperation()).ToString()));
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", Entry.GetQuantityMultInventoryItemId());
+							ImGui::TableNextColumn();
+							ImGui::Text("%d", Entry.GetTimeFrameId());
 
+							
 							ImGui::EndTable();
 						}
 
@@ -763,5 +812,49 @@ void FRHDTW_PlayerInventory::DoOrderWatchTab()
 	else
 	{
 		ImGui::Text("Please select a player with a Player UUID in Player Repository.");
+	}
+}
+
+void FRHDTW_PlayerInventory::DoClaim()
+{
+	ImGui::Combo("Source", &SelectedSourceType, SourceChars.GetData(), SourceChars.Num());
+	
+	ImGui::Separator();
+	
+	ImGui::InputText("Promo Code", &PromoCode);
+	ImGui::SameLine();
+	if (ImGui::Button("Claim"))
+	{
+		URH_PlayerOrderEntry* NewPlayerOrderEntry = NewObject<URH_PlayerOrderEntry>();
+		NewPlayerOrderEntry->FillType = ERHAPI_PlayerOrderEntryType::PromotionCode;
+		NewPlayerOrderEntry->ExternalTransactionId = PromoCode;
+		TArray<URH_PlayerOrderEntry*> OrderEntries{ NewPlayerOrderEntry };
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, OrderEntries](URH_PlayerInfo* PlayerInfo)
+			{
+				if (URH_PlayerInventory* pURH_PlayerInventory = PlayerInfo->GetPlayerInventory())
+				{
+					pURH_PlayerInventory->CreateNewPlayerOrder(SourceTypes[SelectedSourceType], false, OrderEntries);
+				}
+			}));
+	}
+
+	ImGui::Separator();
+
+	ImGui::InputInt("Loot ID", &InputLootId);
+	ImGui::InputInt("Quantity", &InputCount);
+	if (ImGui::Button("Client Claim"))
+	{
+		URH_PlayerOrderEntry* NewPlayerOrderEntry = NewObject<URH_PlayerOrderEntry>();
+		NewPlayerOrderEntry->FillType = ERHAPI_PlayerOrderEntryType::FillLoot;
+		NewPlayerOrderEntry->LootId = InputLootId;
+		NewPlayerOrderEntry->Quantity = InputCount;
+		TArray<URH_PlayerOrderEntry*> OrderEntries{ NewPlayerOrderEntry };
+		ForEachSelectedRHPlayer(FRHDT_RHPAction::CreateLambda([this, OrderEntries](URH_PlayerInfo* PlayerInfo)
+			{
+				if (URH_PlayerInventory* pURH_PlayerInventory = PlayerInfo->GetPlayerInventory())
+				{
+					pURH_PlayerInventory->CreateNewPlayerOrder(SourceTypes[SelectedSourceType], false, OrderEntries);
+				}
+			}));
 	}
 }

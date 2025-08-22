@@ -43,49 +43,49 @@ struct RALLYHEREAPI_API FRHAPI_EpicVoipCredentialsResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString RoomId{  };
 	/** @brief Gets the value of RoomId */
-	FString& GetRoomId() { return RoomId; }
+	FORCEINLINE FString& GetRoomId() { return RoomId; }
 	/** @brief Gets the value of RoomId */
-	const FString& GetRoomId() const { return RoomId; }
+	FORCEINLINE const FString& GetRoomId() const { return RoomId; }
 	/** @brief Sets the value of RoomId */
-	void SetRoomId(const FString& NewValue) { RoomId = NewValue;   }
+	FORCEINLINE void SetRoomId(const FString& NewValue) { RoomId = NewValue;   }
 	/** @brief Sets the value of RoomId using move semantics */
-	void SetRoomId(FString&& NewValue) { RoomId = NewValue;   }
+	FORCEINLINE void SetRoomId(FString&& NewValue) { RoomId = NewValue;   }
 
 	/** @brief Token for the participant to join the Epic voice room */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ParticipantToken{  };
 	/** @brief Gets the value of ParticipantToken */
-	FString& GetParticipantToken() { return ParticipantToken; }
+	FORCEINLINE FString& GetParticipantToken() { return ParticipantToken; }
 	/** @brief Gets the value of ParticipantToken */
-	const FString& GetParticipantToken() const { return ParticipantToken; }
+	FORCEINLINE const FString& GetParticipantToken() const { return ParticipantToken; }
 	/** @brief Sets the value of ParticipantToken */
-	void SetParticipantToken(const FString& NewValue) { ParticipantToken = NewValue;   }
+	FORCEINLINE void SetParticipantToken(const FString& NewValue) { ParticipantToken = NewValue;   }
 	/** @brief Sets the value of ParticipantToken using move semantics */
-	void SetParticipantToken(FString&& NewValue) { ParticipantToken = NewValue;   }
+	FORCEINLINE void SetParticipantToken(FString&& NewValue) { ParticipantToken = NewValue;   }
 
 	/** @brief Base URL for Epic voice client connections */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ClientBaseUrl{  };
 	/** @brief Gets the value of ClientBaseUrl */
-	FString& GetClientBaseUrl() { return ClientBaseUrl; }
+	FORCEINLINE FString& GetClientBaseUrl() { return ClientBaseUrl; }
 	/** @brief Gets the value of ClientBaseUrl */
-	const FString& GetClientBaseUrl() const { return ClientBaseUrl; }
+	FORCEINLINE const FString& GetClientBaseUrl() const { return ClientBaseUrl; }
 	/** @brief Sets the value of ClientBaseUrl */
-	void SetClientBaseUrl(const FString& NewValue) { ClientBaseUrl = NewValue;   }
+	FORCEINLINE void SetClientBaseUrl(const FString& NewValue) { ClientBaseUrl = NewValue;   }
 	/** @brief Sets the value of ClientBaseUrl using move semantics */
-	void SetClientBaseUrl(FString&& NewValue) { ClientBaseUrl = NewValue;   }
+	FORCEINLINE void SetClientBaseUrl(FString&& NewValue) { ClientBaseUrl = NewValue;   }
 
 	/** @brief Epic ProductUserId for the authenticated user */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ProductUserId{  };
 	/** @brief Gets the value of ProductUserId */
-	FString& GetProductUserId() { return ProductUserId; }
+	FORCEINLINE FString& GetProductUserId() { return ProductUserId; }
 	/** @brief Gets the value of ProductUserId */
-	const FString& GetProductUserId() const { return ProductUserId; }
+	FORCEINLINE const FString& GetProductUserId() const { return ProductUserId; }
 	/** @brief Sets the value of ProductUserId */
-	void SetProductUserId(const FString& NewValue) { ProductUserId = NewValue;   }
+	FORCEINLINE void SetProductUserId(const FString& NewValue) { ProductUserId = NewValue;   }
 	/** @brief Sets the value of ProductUserId using move semantics */
-	void SetProductUserId(FString&& NewValue) { ProductUserId = NewValue;   }
+	FORCEINLINE void SetProductUserId(FString&& NewValue) { ProductUserId = NewValue;   }
 };
 
 /** @} */

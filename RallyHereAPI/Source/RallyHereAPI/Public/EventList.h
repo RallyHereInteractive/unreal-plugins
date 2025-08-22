@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_EventList : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_RallyHereEvent> EventList{  };
 	/** @brief Gets the value of EventList */
-	TArray<FRHAPI_RallyHereEvent>& GetEventList() { return EventList; }
+	FORCEINLINE TArray<FRHAPI_RallyHereEvent>& GetEventList() { return EventList; }
 	/** @brief Gets the value of EventList */
-	const TArray<FRHAPI_RallyHereEvent>& GetEventList() const { return EventList; }
+	FORCEINLINE const TArray<FRHAPI_RallyHereEvent>& GetEventList() const { return EventList; }
 	/** @brief Sets the value of EventList */
-	void SetEventList(const TArray<FRHAPI_RallyHereEvent>& NewValue) { EventList = NewValue;   }
+	FORCEINLINE void SetEventList(const TArray<FRHAPI_RallyHereEvent>& NewValue) { EventList = NewValue;   }
 	/** @brief Sets the value of EventList using move semantics */
-	void SetEventList(TArray<FRHAPI_RallyHereEvent>&& NewValue) { EventList = NewValue;   }
+	FORCEINLINE void SetEventList(TArray<FRHAPI_RallyHereEvent>&& NewValue) { EventList = NewValue;   }
 };
 
 /** @} */

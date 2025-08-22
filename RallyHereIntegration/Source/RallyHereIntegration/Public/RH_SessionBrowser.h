@@ -226,7 +226,7 @@ public:
 	/**
 	 * @brief Used to get all sessions, primarily for get all sessions polling where etag matches.
 	 */
-	virtual TArray<URH_SessionView*> GetAllSessionsForPolling() const override
+	virtual TArray<URH_SessionView*> GetAllSessionsForPolling() override
 	{
 		TArray<URH_SessionView*> Result;
 		return Result;

@@ -66,7 +66,7 @@ void FRHDTW_PlayerSettings::DoViewSettings()
 		ImGui::Text("Settings not available for selected Player.");
 		return;
 	}
-	ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+	ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower)));
 
 	ImGui::InputText("Settings Id", &FetchSettingsIdInput);
 	ImGui::InputText("Key", &FetchSettingsKeyInput);

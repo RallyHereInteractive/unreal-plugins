@@ -43,29 +43,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PlayerId{ 0 };
 	/** @brief Gets the value of PlayerId */
-	int32& GetPlayerId() { return PlayerId; }
+	FORCEINLINE int32& GetPlayerId() { return PlayerId; }
 	/** @brief Gets the value of PlayerId */
-	const int32& GetPlayerId() const { return PlayerId; }
+	FORCEINLINE const int32& GetPlayerId() const { return PlayerId; }
 	/** @brief Sets the value of PlayerId */
-	void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;   }
+	FORCEINLINE void SetPlayerId(const int32& NewValue) { PlayerId = NewValue;   }
 	/** @brief Sets the value of PlayerId using move semantics */
-	void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;   }
-	/** @brief Returns true if PlayerId matches the default value */
-	bool IsPlayerIdDefaultValue() const { return PlayerId == 0; }
-	/** @brief Sets the value of PlayerId to its default  */
-	void SetPlayerIdToDefault() { SetPlayerId(0); }
+	FORCEINLINE void SetPlayerId(int32&& NewValue) { PlayerId = NewValue;   }
+	/** @brief Returns the default value of PlayerId */
+	FORCEINLINE int32 GetDefaultValue_PlayerId() { return 0; }
 
 	/** @brief Player UUID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 };
 
 /** @} */

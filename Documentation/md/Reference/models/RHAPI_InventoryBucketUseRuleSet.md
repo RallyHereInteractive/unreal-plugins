@@ -30,38 +30,35 @@ A collection of Inventory Bucket Use Rules.
 `public bool `[`CacheInfo_IsNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a4501d5cab25fb14a1312499800db0bf0) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__InventoryBucketUseRuleSet_1a94866cd803b8072ea1f834fe63d0e82d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InventoryBucketUseRuleSet_1a15ef86b8274061ea40e4bed3acba51ae)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a67c594ebc75e0e38e1aeb8dcf022097f)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1ac12038afeabf911c4e4c9d535cd839f3)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1adc672b547cb370352dc1f6432f555521)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a9c8fe85adf370d1953ef9ceceaf27650)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a6ba7bc2173e92ac61337d72767f824d6)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad1b961fa0f031b617593c6bf4cda1d0e)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1aa419831ac82f6f0905677913ce559ce8)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1afbc8cd73f5b75adfaa98749cc806bd10)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1af7cfbc488847867c34c2a704a4fe3d9a)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a064219a2b1b518cc6f71da1c08431d73)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1ab7462d3312cbd917aba452d48d3eb80d)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1ab1294f2c6bf52eb24417327a34d9fc7d)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ab73d6c62a13811950dd176afbb6260fc)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a2b1920cf0acab35bf9c969ce6ddb9261)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a28f0162324a57c12954b64889b6f8a18)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a2551d1aa426585a7689c0568abc5dfa7)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1aa7d7014a319b6cdfa75c8ffbc29df9a8)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__InventoryBucketUseRuleSet_1a05bfd5fa5206f97df4465f97b3596665)`() const` | Checks whether CustomData_Optional has been set.
-`public inline TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a8037f9ddba65118526c33992784514f3)`()` | Gets the value of Rules_Optional, regardless of it having been set.
-`public inline const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a2a5765f95b4406384e5db3aa9799751f)`() const` | Gets the value of Rules_Optional, regardless of it having been set.
-`public inline const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1ac8e2f24997de2fb41f4af4648640d817)`(const TMap< FString, TArray< ERHAPI_InventoryBucket > > & DefaultValue) const` | Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a2716b75e46adc2275f42373746b127f6)`(TMap< FString, TArray< ERHAPI_InventoryBucket > > & OutValue) const` | Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, TArray< ERHAPI_InventoryBucket > > * `[`GetRulesOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a7de21be80f3a360d06309482b3f8a122)`()` | Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, TArray< ERHAPI_InventoryBucket > > * `[`GetRulesOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1aa6f495271ece6c98d8538fe12042124c)`() const` | Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a78b07c63b6dc3c68dd46edeecdf11fd1)`(const TMap< FString, TArray< ERHAPI_InventoryBucket > > & NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true.
-`public inline void `[`SetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1aef5f6655891dcbdd3a5292ae43ab9652)`(TMap< FString, TArray< ERHAPI_InventoryBucket > > && NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a0ef72e4e14b499f2391d10fb523e50a0)`()` | Gets the value of Rules_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a41a96c93194e86fafce1ac3f8260e0b8)`() const` | Gets the value of Rules_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a13fe3e7ce8c044110a9255b5be7492f2)`(const TMap< FString, TArray< ERHAPI_InventoryBucket > > & DefaultValue) const` | Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1ab4d6488e5559ed32651d8ad2b2b2b9f4)`(TMap< FString, TArray< ERHAPI_InventoryBucket > > & OutValue) const` | Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, TArray< ERHAPI_InventoryBucket > > * `[`GetRulesOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad7b6df075a263b886060f9162ecc1178)`()` | Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, TArray< ERHAPI_InventoryBucket > > * `[`GetRulesOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad941924ecf66f13461d06075dc271430)`() const` | Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a57c2d29ad6f6af5e8e515ed968e4e0c8)`(const TMap< FString, TArray< ERHAPI_InventoryBucket > > & NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true.
+`public inline FORCEINLINE void `[`SetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1ae67f38e423d15015640034faed960d93)`(TMap< FString, TArray< ERHAPI_InventoryBucket > > && NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics.
 `public inline void `[`ClearRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a2aeec262f695a6ff14d989c6d532dbab)`()` | Clears the value of Rules_Optional and sets Rules_IsSet to false.
-`public inline bool `[`IsRulesSet`](#structFRHAPI__InventoryBucketUseRuleSet_1aa150f3e69bbdbe879403e33c8b816c02)`() const` | Checks whether Rules_Optional has been set.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a105d3bc49837de2e67f1da30d86221af)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1ab021ceae2dd534f8ed8f84b823094551)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a1e883cb07eb735ce599fa9fb9a63d429)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a9a3c8b2abb791da4fbb64517e54b64d5)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad802e0220682f63f66260e3cdb66bfb9)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad2a27600ec84f21ef60ad4d3f4eac4b9)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1af1e98e5e69e8e0e4f19610d7a249192e)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1af31d3e5fea551af46835596b4ba51aae)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1ad13ce4b2bfb0e00b390120ffee2b5299)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a108cb5422fa6efad92fe2058dbbf234a)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1aa7bccf28271ffef053181dacabaf13e7)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a167345598974880050e18de9e15dcb9b)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a7abeb2bdf1c124dd46564b562c2a5fb3)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1acbe5914c4875eb40a29dda1e33f9b39c)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a3ad11edfee94ae6cfcafd954fb79d9a9)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a0a1b7c8540328e5eb3fc58f8e5c9dd06)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1ae67f10a6ce01ad498fd5ce97401c7c96)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
-`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__InventoryBucketUseRuleSet_1ac777862e467d1a00aaf7a3c64ff567a1)`() const` | Checks whether CacheInfo_Optional has been set.
-`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ac487c91f0fdb731299eb5741bbee311d)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a9f1a0cfb88f69e89a945bc62a9a8a950)`() const` | Checks whether CacheInfo_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCacheInfoToNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a8ce8f319dd23cbf67338338b01224f80)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCacheInfoNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ab3fe6bb58e91cdb187edcfea097c7d89)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -106,35 +103,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a67c594ebc75e0e38e1aeb8dcf022097f)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a67c594ebc75e0e38e1aeb8dcf022097f"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1af7cfbc488847867c34c2a704a4fe3d9a)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1af7cfbc488847867c34c2a704a4fe3d9a"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1ac12038afeabf911c4e4c9d535cd839f3)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ac12038afeabf911c4e4c9d535cd839f3"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a064219a2b1b518cc6f71da1c08431d73)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a064219a2b1b518cc6f71da1c08431d73"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1adc672b547cb370352dc1f6432f555521)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1adc672b547cb370352dc1f6432f555521"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1ab7462d3312cbd917aba452d48d3eb80d)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ab7462d3312cbd917aba452d48d3eb80d"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a9c8fe85adf370d1953ef9ceceaf27650)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a9c8fe85adf370d1953ef9ceceaf27650"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1ab1294f2c6bf52eb24417327a34d9fc7d)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ab1294f2c6bf52eb24417327a34d9fc7d"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a6ba7bc2173e92ac61337d72767f824d6)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a6ba7bc2173e92ac61337d72767f824d6"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ab73d6c62a13811950dd176afbb6260fc)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ab73d6c62a13811950dd176afbb6260fc"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad1b961fa0f031b617593c6bf4cda1d0e)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ad1b961fa0f031b617593c6bf4cda1d0e"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a2b1920cf0acab35bf9c969ce6ddb9261)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a2b1920cf0acab35bf9c969ce6ddb9261"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1aa419831ac82f6f0905677913ce559ce8)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1aa419831ac82f6f0905677913ce559ce8"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a28f0162324a57c12954b64889b6f8a18)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a28f0162324a57c12954b64889b6f8a18"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1afbc8cd73f5b75adfaa98749cc806bd10)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1afbc8cd73f5b75adfaa98749cc806bd10"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InventoryBucketUseRuleSet_1a2551d1aa426585a7689c0568abc5dfa7)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a2551d1aa426585a7689c0568abc5dfa7"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -142,39 +139,35 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__InventoryBucketUseRuleSet_1a05bfd5fa5206f97df4465f97b3596665)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a05bfd5fa5206f97df4465f97b3596665"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a8037f9ddba65118526c33992784514f3)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a8037f9ddba65118526c33992784514f3"></a>
+#### `public inline FORCEINLINE TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a0ef72e4e14b499f2391d10fb523e50a0)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a0ef72e4e14b499f2391d10fb523e50a0"></a>
 
 Gets the value of Rules_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a2a5765f95b4406384e5db3aa9799751f)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a2a5765f95b4406384e5db3aa9799751f"></a>
+#### `public inline FORCEINLINE const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a41a96c93194e86fafce1ac3f8260e0b8)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a41a96c93194e86fafce1ac3f8260e0b8"></a>
 
 Gets the value of Rules_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1ac8e2f24997de2fb41f4af4648640d817)`(const TMap< FString, TArray< ERHAPI_InventoryBucket > > & DefaultValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ac8e2f24997de2fb41f4af4648640d817"></a>
+#### `public inline FORCEINLINE const TMap< FString, TArray< ERHAPI_InventoryBucket > > & `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a13fe3e7ce8c044110a9255b5be7492f2)`(const TMap< FString, TArray< ERHAPI_InventoryBucket > > & DefaultValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a13fe3e7ce8c044110a9255b5be7492f2"></a>
 
 Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a2716b75e46adc2275f42373746b127f6)`(TMap< FString, TArray< ERHAPI_InventoryBucket > > & OutValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a2716b75e46adc2275f42373746b127f6"></a>
+#### `public inline FORCEINLINE bool `[`GetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1ab4d6488e5559ed32651d8ad2b2b2b9f4)`(TMap< FString, TArray< ERHAPI_InventoryBucket > > & OutValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ab4d6488e5559ed32651d8ad2b2b2b9f4"></a>
 
 Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, TArray< ERHAPI_InventoryBucket > > * `[`GetRulesOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a7de21be80f3a360d06309482b3f8a122)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a7de21be80f3a360d06309482b3f8a122"></a>
+#### `public inline FORCEINLINE TMap< FString, TArray< ERHAPI_InventoryBucket > > * `[`GetRulesOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad7b6df075a263b886060f9162ecc1178)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ad7b6df075a263b886060f9162ecc1178"></a>
 
 Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, TArray< ERHAPI_InventoryBucket > > * `[`GetRulesOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1aa6f495271ece6c98d8538fe12042124c)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1aa6f495271ece6c98d8538fe12042124c"></a>
+#### `public inline FORCEINLINE const TMap< FString, TArray< ERHAPI_InventoryBucket > > * `[`GetRulesOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad941924ecf66f13461d06075dc271430)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ad941924ecf66f13461d06075dc271430"></a>
 
 Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a78b07c63b6dc3c68dd46edeecdf11fd1)`(const TMap< FString, TArray< ERHAPI_InventoryBucket > > & NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a78b07c63b6dc3c68dd46edeecdf11fd1"></a>
+#### `public inline FORCEINLINE void `[`SetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1a57c2d29ad6f6af5e8e515ed968e4e0c8)`(const TMap< FString, TArray< ERHAPI_InventoryBucket > > & NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a57c2d29ad6f6af5e8e515ed968e4e0c8"></a>
 
 Sets the value of Rules_Optional and also sets Rules_IsSet to true.
 
-#### `public inline void `[`SetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1aef5f6655891dcbdd3a5292ae43ab9652)`(TMap< FString, TArray< ERHAPI_InventoryBucket > > && NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1aef5f6655891dcbdd3a5292ae43ab9652"></a>
+#### `public inline FORCEINLINE void `[`SetRules`](#structFRHAPI__InventoryBucketUseRuleSet_1ae67f38e423d15015640034faed960d93)`(TMap< FString, TArray< ERHAPI_InventoryBucket > > && NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ae67f38e423d15015640034faed960d93"></a>
 
 Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics.
 
@@ -182,39 +175,35 @@ Sets the value of Rules_Optional and also sets Rules_IsSet to true using move se
 
 Clears the value of Rules_Optional and sets Rules_IsSet to false.
 
-#### `public inline bool `[`IsRulesSet`](#structFRHAPI__InventoryBucketUseRuleSet_1aa150f3e69bbdbe879403e33c8b816c02)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1aa150f3e69bbdbe879403e33c8b816c02"></a>
-
-Checks whether Rules_Optional has been set.
-
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a105d3bc49837de2e67f1da30d86221af)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a105d3bc49837de2e67f1da30d86221af"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1ad13ce4b2bfb0e00b390120ffee2b5299)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ad13ce4b2bfb0e00b390120ffee2b5299"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1ab021ceae2dd534f8ed8f84b823094551)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ab021ceae2dd534f8ed8f84b823094551"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a108cb5422fa6efad92fe2058dbbf234a)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a108cb5422fa6efad92fe2058dbbf234a"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a1e883cb07eb735ce599fa9fb9a63d429)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a1e883cb07eb735ce599fa9fb9a63d429"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1aa7bccf28271ffef053181dacabaf13e7)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1aa7bccf28271ffef053181dacabaf13e7"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a9a3c8b2abb791da4fbb64517e54b64d5)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a9a3c8b2abb791da4fbb64517e54b64d5"></a>
+#### `public inline FORCEINLINE bool `[`GetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a167345598974880050e18de9e15dcb9b)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a167345598974880050e18de9e15dcb9b"></a>
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad802e0220682f63f66260e3cdb66bfb9)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ad802e0220682f63f66260e3cdb66bfb9"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a7abeb2bdf1c124dd46564b562c2a5fb3)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a7abeb2bdf1c124dd46564b562c2a5fb3"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ad2a27600ec84f21ef60ad4d3f4eac4b9)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ad2a27600ec84f21ef60ad4d3f4eac4b9"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__InventoryBucketUseRuleSet_1acbe5914c4875eb40a29dda1e33f9b39c)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1acbe5914c4875eb40a29dda1e33f9b39c"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1af1e98e5e69e8e0e4f19610d7a249192e)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1af1e98e5e69e8e0e4f19610d7a249192e"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a3ad11edfee94ae6cfcafd954fb79d9a9)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a3ad11edfee94ae6cfcafd954fb79d9a9"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1af31d3e5fea551af46835596b4ba51aae)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1af31d3e5fea551af46835596b4ba51aae"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__InventoryBucketUseRuleSet_1a0a1b7c8540328e5eb3fc58f8e5c9dd06)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a0a1b7c8540328e5eb3fc58f8e5c9dd06"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
@@ -222,15 +211,11 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__InventoryBucketUseRuleSet_1ac777862e467d1a00aaf7a3c64ff567a1)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ac777862e467d1a00aaf7a3c64ff567a1"></a>
-
-Checks whether CacheInfo_Optional has been set.
-
-#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ac487c91f0fdb731299eb5741bbee311d)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ac487c91f0fdb731299eb5741bbee311d"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfoToNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a8ce8f319dd23cbf67338338b01224f80)`()` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a8ce8f319dd23cbf67338338b01224f80"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__InventoryBucketUseRuleSet_1a9f1a0cfb88f69e89a945bc62a9a8a950)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1a9f1a0cfb88f69e89a945bc62a9a8a950"></a>
+#### `public inline FORCEINLINE bool `[`IsCacheInfoNull`](#structFRHAPI__InventoryBucketUseRuleSet_1ab3fe6bb58e91cdb187edcfea097c7d89)`() const` <a id="structFRHAPI__InventoryBucketUseRuleSet_1ab3fe6bb58e91cdb187edcfea097c7d89"></a>
 
 Checks whether CacheInfo_Optional is set to null.
 

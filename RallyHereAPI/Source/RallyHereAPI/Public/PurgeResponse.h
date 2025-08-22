@@ -43,61 +43,61 @@ struct RALLYHEREAPI_API FRHAPI_PurgeResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PersonId{  };
 	/** @brief Gets the value of PersonId */
-	FGuid& GetPersonId() { return PersonId; }
+	FORCEINLINE FGuid& GetPersonId() { return PersonId; }
 	/** @brief Gets the value of PersonId */
-	const FGuid& GetPersonId() const { return PersonId; }
+	FORCEINLINE const FGuid& GetPersonId() const { return PersonId; }
 	/** @brief Sets the value of PersonId */
-	void SetPersonId(const FGuid& NewValue) { PersonId = NewValue;   }
+	FORCEINLINE void SetPersonId(const FGuid& NewValue) { PersonId = NewValue;   }
 	/** @brief Sets the value of PersonId using move semantics */
-	void SetPersonId(FGuid&& NewValue) { PersonId = NewValue;   }
+	FORCEINLINE void SetPersonId(FGuid&& NewValue) { PersonId = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime PurgeOn{  };
 	/** @brief Gets the value of PurgeOn */
-	FDateTime& GetPurgeOn() { return PurgeOn; }
+	FORCEINLINE FDateTime& GetPurgeOn() { return PurgeOn; }
 	/** @brief Gets the value of PurgeOn */
-	const FDateTime& GetPurgeOn() const { return PurgeOn; }
+	FORCEINLINE const FDateTime& GetPurgeOn() const { return PurgeOn; }
 	/** @brief Sets the value of PurgeOn */
-	void SetPurgeOn(const FDateTime& NewValue) { PurgeOn = NewValue;   }
+	FORCEINLINE void SetPurgeOn(const FDateTime& NewValue) { PurgeOn = NewValue;   }
 	/** @brief Sets the value of PurgeOn using move semantics */
-	void SetPurgeOn(FDateTime&& NewValue) { PurgeOn = NewValue;   }
+	FORCEINLINE void SetPurgeOn(FDateTime&& NewValue) { PurgeOn = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime CreatedOn{  };
 	/** @brief Gets the value of CreatedOn */
-	FDateTime& GetCreatedOn() { return CreatedOn; }
+	FORCEINLINE FDateTime& GetCreatedOn() { return CreatedOn; }
 	/** @brief Gets the value of CreatedOn */
-	const FDateTime& GetCreatedOn() const { return CreatedOn; }
+	FORCEINLINE const FDateTime& GetCreatedOn() const { return CreatedOn; }
 	/** @brief Sets the value of CreatedOn */
-	void SetCreatedOn(const FDateTime& NewValue) { CreatedOn = NewValue;   }
+	FORCEINLINE void SetCreatedOn(const FDateTime& NewValue) { CreatedOn = NewValue;   }
 	/** @brief Sets the value of CreatedOn using move semantics */
-	void SetCreatedOn(FDateTime&& NewValue) { CreatedOn = NewValue;   }
+	FORCEINLINE void SetCreatedOn(FDateTime&& NewValue) { CreatedOn = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedOn{  };
 	/** @brief Gets the value of LastModifiedOn */
-	FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
+	FORCEINLINE FDateTime& GetLastModifiedOn() { return LastModifiedOn; }
 	/** @brief Gets the value of LastModifiedOn */
-	const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
+	FORCEINLINE const FDateTime& GetLastModifiedOn() const { return LastModifiedOn; }
 	/** @brief Sets the value of LastModifiedOn */
-	void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
+	FORCEINLINE void SetLastModifiedOn(const FDateTime& NewValue) { LastModifiedOn = NewValue;   }
 	/** @brief Sets the value of LastModifiedOn using move semantics */
-	void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
+	FORCEINLINE void SetLastModifiedOn(FDateTime&& NewValue) { LastModifiedOn = NewValue;   }
 
 	/** @brief Status of the purge request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Status{  };
 	/** @brief Gets the value of Status */
-	FString& GetStatus() { return Status; }
+	FORCEINLINE FString& GetStatus() { return Status; }
 	/** @brief Gets the value of Status */
-	const FString& GetStatus() const { return Status; }
+	FORCEINLINE const FString& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(const FString& NewValue) { Status = NewValue;   }
+	FORCEINLINE void SetStatus(const FString& NewValue) { Status = NewValue;   }
 	/** @brief Sets the value of Status using move semantics */
-	void SetStatus(FString&& NewValue) { Status = NewValue;   }
+	FORCEINLINE void SetStatus(FString&& NewValue) { Status = NewValue;   }
 };
 
 /** @} */

@@ -42,46 +42,46 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReferralCode : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ReferralCode{  };
 	/** @brief Gets the value of ReferralCode */
-	FString& GetReferralCode() { return ReferralCode; }
+	FORCEINLINE FString& GetReferralCode() { return ReferralCode; }
 	/** @brief Gets the value of ReferralCode */
-	const FString& GetReferralCode() const { return ReferralCode; }
+	FORCEINLINE const FString& GetReferralCode() const { return ReferralCode; }
 	/** @brief Sets the value of ReferralCode */
-	void SetReferralCode(const FString& NewValue) { ReferralCode = NewValue;   }
+	FORCEINLINE void SetReferralCode(const FString& NewValue) { ReferralCode = NewValue;   }
 	/** @brief Sets the value of ReferralCode using move semantics */
-	void SetReferralCode(FString&& NewValue) { ReferralCode = NewValue;   }
+	FORCEINLINE void SetReferralCode(FString&& NewValue) { ReferralCode = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime CreatedDatetime{  };
 	/** @brief Gets the value of CreatedDatetime */
-	FDateTime& GetCreatedDatetime() { return CreatedDatetime; }
+	FORCEINLINE FDateTime& GetCreatedDatetime() { return CreatedDatetime; }
 	/** @brief Gets the value of CreatedDatetime */
-	const FDateTime& GetCreatedDatetime() const { return CreatedDatetime; }
+	FORCEINLINE const FDateTime& GetCreatedDatetime() const { return CreatedDatetime; }
 	/** @brief Sets the value of CreatedDatetime */
-	void SetCreatedDatetime(const FDateTime& NewValue) { CreatedDatetime = NewValue;   }
+	FORCEINLINE void SetCreatedDatetime(const FDateTime& NewValue) { CreatedDatetime = NewValue;   }
 	/** @brief Sets the value of CreatedDatetime using move semantics */
-	void SetCreatedDatetime(FDateTime&& NewValue) { CreatedDatetime = NewValue;   }
+	FORCEINLINE void SetCreatedDatetime(FDateTime&& NewValue) { CreatedDatetime = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastModifiedTimestamp{  };
 	/** @brief Gets the value of LastModifiedTimestamp */
-	FDateTime& GetLastModifiedTimestamp() { return LastModifiedTimestamp; }
+	FORCEINLINE FDateTime& GetLastModifiedTimestamp() { return LastModifiedTimestamp; }
 	/** @brief Gets the value of LastModifiedTimestamp */
-	const FDateTime& GetLastModifiedTimestamp() const { return LastModifiedTimestamp; }
+	FORCEINLINE const FDateTime& GetLastModifiedTimestamp() const { return LastModifiedTimestamp; }
 	/** @brief Sets the value of LastModifiedTimestamp */
-	void SetLastModifiedTimestamp(const FDateTime& NewValue) { LastModifiedTimestamp = NewValue;   }
+	FORCEINLINE void SetLastModifiedTimestamp(const FDateTime& NewValue) { LastModifiedTimestamp = NewValue;   }
 	/** @brief Sets the value of LastModifiedTimestamp using move semantics */
-	void SetLastModifiedTimestamp(FDateTime&& NewValue) { LastModifiedTimestamp = NewValue;   }
+	FORCEINLINE void SetLastModifiedTimestamp(FDateTime&& NewValue) { LastModifiedTimestamp = NewValue;   }
 };
 
 /** @} */

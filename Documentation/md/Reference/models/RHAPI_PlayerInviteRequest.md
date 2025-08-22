@@ -27,38 +27,34 @@ struct FRHAPI_PlayerInviteRequest
 `public bool `[`CustomData_IsSet`](#structFRHAPI__PlayerInviteRequest_1af320c4bac14ea883a5a89fbf46cc0f50) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerInviteRequest_1ad78758c09df212bc19233d6cabe5e9b0)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerInviteRequest_1aa60677465b35779ab1f437e4f9836201)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a339cec7ae6c383cd9b4270dfd8b9f8e8)`()` | Gets the value of TeamId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a1d0ab5e188fede665489e1cdef78fa69)`() const` | Gets the value of TeamId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a8cd818f4f0f20b99ef8a6ed840d97ed4)`(const int32 & DefaultValue) const` | Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1afa08ce937885049024c89ada9866fac1)`(int32 & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetTeamIdOrNull`](#structFRHAPI__PlayerInviteRequest_1a6e52bfc2b423ba656edc9019261ee5a3)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__PlayerInviteRequest_1a8a2cd5d7e9e5f778882f44273c2fe822)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTeamId`](#structFRHAPI__PlayerInviteRequest_1a9b29393d1208649120ddd5ac12566270)`(const int32 & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
-`public inline void `[`SetTeamId`](#structFRHAPI__PlayerInviteRequest_1a2cdfc62b3c26aa98333935ac86b6dfd7)`(int32 && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a347ff92d3e8b44a8dcae2c85f43eb5e9)`()` | Gets the value of TeamId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a9f20865899865d74281e23c427c95e50)`() const` | Gets the value of TeamId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a9ad0ef658b43b2ac788394b3efcff04e)`(const int32 & DefaultValue) const` | Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1af7c2bd221fce116e9ceac7bf7864d2c9)`(int32 & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetTeamIdOrNull`](#structFRHAPI__PlayerInviteRequest_1a6d2293decbf57db32b28bcd88cf96e9b)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__PlayerInviteRequest_1adfd62eda91bf7fd1255d1e553e1e3c90)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__PlayerInviteRequest_1ad991a40f0a65f6c65d789cd1806e57ed)`(const int32 & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+`public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__PlayerInviteRequest_1aa7db54a137d11fe72c2f13c973284fa6)`(int32 && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 `public inline void `[`ClearTeamId`](#structFRHAPI__PlayerInviteRequest_1a4a4391b995314263b7e4a378a1997611)`()` | Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
-`public inline bool `[`IsTeamIdSet`](#structFRHAPI__PlayerInviteRequest_1ae3260a4dfdf82ce313cf988eb9d3e300)`() const` | Checks whether TeamId_Optional has been set.
-`public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__PlayerInviteRequest_1aec2b36b9510ebc167f535eb0d0751183)`() const` | Returns true if TeamId_Optional is set and matches the default value.
-`public inline void `[`SetTeamIdToDefault`](#structFRHAPI__PlayerInviteRequest_1a11aaa9709b7f44c01b150411ba624e4a)`()` | Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true.
-`public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a3a15ae4df5b6a837a827dd331bd1cd03)`()` | Gets the value of OverflowAction_Optional, regardless of it having been set.
-`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1aa94acc58d73044ba261a3ef4e9b435b5)`() const` | Gets the value of OverflowAction_Optional, regardless of it having been set.
-`public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a9c6b77658a6ff82ba8fb2ce68fb51608)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` | Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a60cc539d8223321cb36c17ba165b3c28)`(ERHAPI_TeamOverflowAction & OutValue) const` | Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__PlayerInviteRequest_1aded265ec30533e3ba7d8b7371fa67c6f)`()` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__PlayerInviteRequest_1a1d9be43d942aebaec66147d21cc343f5)`() const` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1ae8ba1281290c1b484d9cd172d101d1d2)`(const ERHAPI_TeamOverflowAction & NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
-`public inline void `[`SetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1ac3e3f87988fb6ed5cd1deba9c553bd2c)`(ERHAPI_TeamOverflowAction && NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TeamId`](#structFRHAPI__PlayerInviteRequest_1afb30cb18657549cd7f2353ac241f4197)`()` | Returns the default value of TeamId.
+`public inline FORCEINLINE ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a4921ed24c2e1a7395eefb37116398ae9)`()` | Gets the value of OverflowAction_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a70d3d0b1dcf16b7d31967a91aff73b25)`() const` | Gets the value of OverflowAction_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1ac4064a02314ff4e618225014db3bebb6)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` | Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a24973f7b7f84d2d43de3e26adb180afa)`(ERHAPI_TeamOverflowAction & OutValue) const` | Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__PlayerInviteRequest_1a96b4a28183b654f85693b8881f5e8855)`()` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__PlayerInviteRequest_1a53362299a91c360f172c502c534e0749)`() const` | Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a3d7d67cabd8853364c4701c14e381c4f)`(const ERHAPI_TeamOverflowAction & NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
+`public inline FORCEINLINE void `[`SetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1ab0f50a8820b5a4239d88c0d9c1e4d0f2)`(ERHAPI_TeamOverflowAction && NewValue)` | Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics.
 `public inline void `[`ClearOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a6939fe292845cf95020f9045b256ea8f)`()` | Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
-`public inline bool `[`IsOverflowActionSet`](#structFRHAPI__PlayerInviteRequest_1ab9cbc2a38d4b5c1ef3c872f22d575246)`() const` | Checks whether OverflowAction_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a1ed9aa2a9724365ce95d51e40833a428)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a1d413cb1e845cf4049c77e6d877dd572)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a63c69d16759b6232280e4a9745db54dd)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a14607cf44b4093cb334007847036c345)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerInviteRequest_1a4b8ffd9fc26b012ce6bce516aa04c713)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerInviteRequest_1a586ce52f0d964d3f02352d371b0f6eb4)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__PlayerInviteRequest_1ad82d0ccec754c235b80a2f81d6b58557)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__PlayerInviteRequest_1a039307e361e9b1ecbbf236398948883e)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a9ec03cff737d0eab056bbadc705430c6)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a831b7e8c2be316f5922de16f6c86857b)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a99341b594fe0973f75466753f5b65fed)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a186a5eb96a930dfa18bad62a41a25708)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerInviteRequest_1af8ec5adf80d0cea57bb1dcfac05f290b)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerInviteRequest_1a8a6eba6508cf9d2015d23eebd2cb076d)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__PlayerInviteRequest_1aeffe9e6f07715bd0ed3a0c8c96896ed5)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__PlayerInviteRequest_1aea7d38d7fa0c8bdc452eccb22b8ef5cb)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerInviteRequest_1afcdc93fd4d4ca3cffb2c94fee4ce7375)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerInviteRequest_1aa623c7afc6e301cd8a2382811884c379)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -103,35 +99,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a339cec7ae6c383cd9b4270dfd8b9f8e8)`()` <a id="structFRHAPI__PlayerInviteRequest_1a339cec7ae6c383cd9b4270dfd8b9f8e8"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a347ff92d3e8b44a8dcae2c85f43eb5e9)`()` <a id="structFRHAPI__PlayerInviteRequest_1a347ff92d3e8b44a8dcae2c85f43eb5e9"></a>
 
 Gets the value of TeamId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a1d0ab5e188fede665489e1cdef78fa69)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a1d0ab5e188fede665489e1cdef78fa69"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a9f20865899865d74281e23c427c95e50)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a9f20865899865d74281e23c427c95e50"></a>
 
 Gets the value of TeamId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a8cd818f4f0f20b99ef8a6ed840d97ed4)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a8cd818f4f0f20b99ef8a6ed840d97ed4"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1a9ad0ef658b43b2ac788394b3efcff04e)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a9ad0ef658b43b2ac788394b3efcff04e"></a>
 
 Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1afa08ce937885049024c89ada9866fac1)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerInviteRequest_1afa08ce937885049024c89ada9866fac1"></a>
+#### `public inline FORCEINLINE bool `[`GetTeamId`](#structFRHAPI__PlayerInviteRequest_1af7c2bd221fce116e9ceac7bf7864d2c9)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerInviteRequest_1af7c2bd221fce116e9ceac7bf7864d2c9"></a>
 
 Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetTeamIdOrNull`](#structFRHAPI__PlayerInviteRequest_1a6e52bfc2b423ba656edc9019261ee5a3)`()` <a id="structFRHAPI__PlayerInviteRequest_1a6e52bfc2b423ba656edc9019261ee5a3"></a>
+#### `public inline FORCEINLINE int32 * `[`GetTeamIdOrNull`](#structFRHAPI__PlayerInviteRequest_1a6d2293decbf57db32b28bcd88cf96e9b)`()` <a id="structFRHAPI__PlayerInviteRequest_1a6d2293decbf57db32b28bcd88cf96e9b"></a>
 
 Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__PlayerInviteRequest_1a8a2cd5d7e9e5f778882f44273c2fe822)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a8a2cd5d7e9e5f778882f44273c2fe822"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__PlayerInviteRequest_1adfd62eda91bf7fd1255d1e553e1e3c90)`() const` <a id="structFRHAPI__PlayerInviteRequest_1adfd62eda91bf7fd1255d1e553e1e3c90"></a>
 
 Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__PlayerInviteRequest_1a9b29393d1208649120ddd5ac12566270)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1a9b29393d1208649120ddd5ac12566270"></a>
+#### `public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__PlayerInviteRequest_1ad991a40f0a65f6c65d789cd1806e57ed)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1ad991a40f0a65f6c65d789cd1806e57ed"></a>
 
 Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__PlayerInviteRequest_1a2cdfc62b3c26aa98333935ac86b6dfd7)`(int32 && NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1a2cdfc62b3c26aa98333935ac86b6dfd7"></a>
+#### `public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__PlayerInviteRequest_1aa7db54a137d11fe72c2f13c973284fa6)`(int32 && NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1aa7db54a137d11fe72c2f13c973284fa6"></a>
 
 Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 
@@ -139,47 +135,39 @@ Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move 
 
 Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
 
-#### `public inline bool `[`IsTeamIdSet`](#structFRHAPI__PlayerInviteRequest_1ae3260a4dfdf82ce313cf988eb9d3e300)`() const` <a id="structFRHAPI__PlayerInviteRequest_1ae3260a4dfdf82ce313cf988eb9d3e300"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TeamId`](#structFRHAPI__PlayerInviteRequest_1afb30cb18657549cd7f2353ac241f4197)`()` <a id="structFRHAPI__PlayerInviteRequest_1afb30cb18657549cd7f2353ac241f4197"></a>
 
-Checks whether TeamId_Optional has been set.
+Returns the default value of TeamId.
 
-#### `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__PlayerInviteRequest_1aec2b36b9510ebc167f535eb0d0751183)`() const` <a id="structFRHAPI__PlayerInviteRequest_1aec2b36b9510ebc167f535eb0d0751183"></a>
-
-Returns true if TeamId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTeamIdToDefault`](#structFRHAPI__PlayerInviteRequest_1a11aaa9709b7f44c01b150411ba624e4a)`()` <a id="structFRHAPI__PlayerInviteRequest_1a11aaa9709b7f44c01b150411ba624e4a"></a>
-
-Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true.
-
-#### `public inline ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a3a15ae4df5b6a837a827dd331bd1cd03)`()` <a id="structFRHAPI__PlayerInviteRequest_1a3a15ae4df5b6a837a827dd331bd1cd03"></a>
+#### `public inline FORCEINLINE ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a4921ed24c2e1a7395eefb37116398ae9)`()` <a id="structFRHAPI__PlayerInviteRequest_1a4921ed24c2e1a7395eefb37116398ae9"></a>
 
 Gets the value of OverflowAction_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1aa94acc58d73044ba261a3ef4e9b435b5)`() const` <a id="structFRHAPI__PlayerInviteRequest_1aa94acc58d73044ba261a3ef4e9b435b5"></a>
+#### `public inline FORCEINLINE const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a70d3d0b1dcf16b7d31967a91aff73b25)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a70d3d0b1dcf16b7d31967a91aff73b25"></a>
 
 Gets the value of OverflowAction_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a9c6b77658a6ff82ba8fb2ce68fb51608)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a9c6b77658a6ff82ba8fb2ce68fb51608"></a>
+#### `public inline FORCEINLINE const ERHAPI_TeamOverflowAction & `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1ac4064a02314ff4e618225014db3bebb6)`(const ERHAPI_TeamOverflowAction & DefaultValue) const` <a id="structFRHAPI__PlayerInviteRequest_1ac4064a02314ff4e618225014db3bebb6"></a>
 
 Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a60cc539d8223321cb36c17ba165b3c28)`(ERHAPI_TeamOverflowAction & OutValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a60cc539d8223321cb36c17ba165b3c28"></a>
+#### `public inline FORCEINLINE bool `[`GetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a24973f7b7f84d2d43de3e26adb180afa)`(ERHAPI_TeamOverflowAction & OutValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a24973f7b7f84d2d43de3e26adb180afa"></a>
 
 Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__PlayerInviteRequest_1aded265ec30533e3ba7d8b7371fa67c6f)`()` <a id="structFRHAPI__PlayerInviteRequest_1aded265ec30533e3ba7d8b7371fa67c6f"></a>
+#### `public inline FORCEINLINE ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__PlayerInviteRequest_1a96b4a28183b654f85693b8881f5e8855)`()` <a id="structFRHAPI__PlayerInviteRequest_1a96b4a28183b654f85693b8881f5e8855"></a>
 
 Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__PlayerInviteRequest_1a1d9be43d942aebaec66147d21cc343f5)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a1d9be43d942aebaec66147d21cc343f5"></a>
+#### `public inline FORCEINLINE const ERHAPI_TeamOverflowAction * `[`GetOverflowActionOrNull`](#structFRHAPI__PlayerInviteRequest_1a53362299a91c360f172c502c534e0749)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a53362299a91c360f172c502c534e0749"></a>
 
 Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1ae8ba1281290c1b484d9cd172d101d1d2)`(const ERHAPI_TeamOverflowAction & NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1ae8ba1281290c1b484d9cd172d101d1d2"></a>
+#### `public inline FORCEINLINE void `[`SetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1a3d7d67cabd8853364c4701c14e381c4f)`(const ERHAPI_TeamOverflowAction & NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1a3d7d67cabd8853364c4701c14e381c4f"></a>
 
 Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true.
 
-#### `public inline void `[`SetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1ac3e3f87988fb6ed5cd1deba9c553bd2c)`(ERHAPI_TeamOverflowAction && NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1ac3e3f87988fb6ed5cd1deba9c553bd2c"></a>
+#### `public inline FORCEINLINE void `[`SetOverflowAction`](#structFRHAPI__PlayerInviteRequest_1ab0f50a8820b5a4239d88c0d9c1e4d0f2)`(ERHAPI_TeamOverflowAction && NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1ab0f50a8820b5a4239d88c0d9c1e4d0f2"></a>
 
 Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics.
 
@@ -187,47 +175,39 @@ Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to 
 
 Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false.
 
-#### `public inline bool `[`IsOverflowActionSet`](#structFRHAPI__PlayerInviteRequest_1ab9cbc2a38d4b5c1ef3c872f22d575246)`() const` <a id="structFRHAPI__PlayerInviteRequest_1ab9cbc2a38d4b5c1ef3c872f22d575246"></a>
-
-Checks whether OverflowAction_Optional has been set.
-
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a1ed9aa2a9724365ce95d51e40833a428)`()` <a id="structFRHAPI__PlayerInviteRequest_1a1ed9aa2a9724365ce95d51e40833a428"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a9ec03cff737d0eab056bbadc705430c6)`()` <a id="structFRHAPI__PlayerInviteRequest_1a9ec03cff737d0eab056bbadc705430c6"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a1d413cb1e845cf4049c77e6d877dd572)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a1d413cb1e845cf4049c77e6d877dd572"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a831b7e8c2be316f5922de16f6c86857b)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a831b7e8c2be316f5922de16f6c86857b"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a63c69d16759b6232280e4a9745db54dd)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a63c69d16759b6232280e4a9745db54dd"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a99341b594fe0973f75466753f5b65fed)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a99341b594fe0973f75466753f5b65fed"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a14607cf44b4093cb334007847036c345)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a14607cf44b4093cb334007847036c345"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__PlayerInviteRequest_1a186a5eb96a930dfa18bad62a41a25708)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PlayerInviteRequest_1a186a5eb96a930dfa18bad62a41a25708"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerInviteRequest_1a4b8ffd9fc26b012ce6bce516aa04c713)`()` <a id="structFRHAPI__PlayerInviteRequest_1a4b8ffd9fc26b012ce6bce516aa04c713"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerInviteRequest_1af8ec5adf80d0cea57bb1dcfac05f290b)`()` <a id="structFRHAPI__PlayerInviteRequest_1af8ec5adf80d0cea57bb1dcfac05f290b"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerInviteRequest_1a586ce52f0d964d3f02352d371b0f6eb4)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a586ce52f0d964d3f02352d371b0f6eb4"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerInviteRequest_1a8a6eba6508cf9d2015d23eebd2cb076d)`() const` <a id="structFRHAPI__PlayerInviteRequest_1a8a6eba6508cf9d2015d23eebd2cb076d"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__PlayerInviteRequest_1ad82d0ccec754c235b80a2f81d6b58557)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1ad82d0ccec754c235b80a2f81d6b58557"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__PlayerInviteRequest_1aeffe9e6f07715bd0ed3a0c8c96896ed5)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1aeffe9e6f07715bd0ed3a0c8c96896ed5"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__PlayerInviteRequest_1a039307e361e9b1ecbbf236398948883e)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1a039307e361e9b1ecbbf236398948883e"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__PlayerInviteRequest_1aea7d38d7fa0c8bdc452eccb22b8ef5cb)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__PlayerInviteRequest_1aea7d38d7fa0c8bdc452eccb22b8ef5cb"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerInviteRequest_1afcdc93fd4d4ca3cffb2c94fee4ce7375)`()` <a id="structFRHAPI__PlayerInviteRequest_1afcdc93fd4d4ca3cffb2c94fee4ce7375"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerInviteRequest_1aa623c7afc6e301cd8a2382811884c379)`() const` <a id="structFRHAPI__PlayerInviteRequest_1aa623c7afc6e301cd8a2382811884c379"></a>
-
-Checks whether CustomData_Optional has been set.
 

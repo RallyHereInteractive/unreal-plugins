@@ -45,25 +45,23 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReferralSetPayload : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ReferrerPlayerUuid_IsSet{ false };
 	/** @brief Gets the value of ReferrerPlayerUuid_Optional, regardless of it having been set */
-	FGuid& GetReferrerPlayerUuid() { return ReferrerPlayerUuid_Optional; }
+	FORCEINLINE FGuid& GetReferrerPlayerUuid() { return ReferrerPlayerUuid_Optional; }
 	/** @brief Gets the value of ReferrerPlayerUuid_Optional, regardless of it having been set */
-	const FGuid& GetReferrerPlayerUuid() const { return ReferrerPlayerUuid_Optional; }
+	FORCEINLINE const FGuid& GetReferrerPlayerUuid() const { return ReferrerPlayerUuid_Optional; }
 	/** @brief Gets the value of ReferrerPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetReferrerPlayerUuid(const FGuid& DefaultValue) const { if (ReferrerPlayerUuid_IsSet) return ReferrerPlayerUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetReferrerPlayerUuid(const FGuid& DefaultValue) const { if (ReferrerPlayerUuid_IsSet) return ReferrerPlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ReferrerPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetReferrerPlayerUuid(FGuid& OutValue) const { if (ReferrerPlayerUuid_IsSet) OutValue = ReferrerPlayerUuid_Optional; return ReferrerPlayerUuid_IsSet; }
+	FORCEINLINE bool GetReferrerPlayerUuid(FGuid& OutValue) const { if (ReferrerPlayerUuid_IsSet) OutValue = ReferrerPlayerUuid_Optional; return ReferrerPlayerUuid_IsSet; }
 	/** @brief Returns a pointer to ReferrerPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetReferrerPlayerUuidOrNull() { if (ReferrerPlayerUuid_IsSet) return (&ReferrerPlayerUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetReferrerPlayerUuidOrNull() { if (ReferrerPlayerUuid_IsSet) return (&ReferrerPlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to ReferrerPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetReferrerPlayerUuidOrNull() const { if (ReferrerPlayerUuid_IsSet) return (&ReferrerPlayerUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetReferrerPlayerUuidOrNull() const { if (ReferrerPlayerUuid_IsSet) return (&ReferrerPlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_IsSet to true */
-	void SetReferrerPlayerUuid(const FGuid& NewValue) { ReferrerPlayerUuid_Optional = NewValue; ReferrerPlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetReferrerPlayerUuid(const FGuid& NewValue) { ReferrerPlayerUuid_Optional = NewValue; ReferrerPlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_IsSet to true using move semantics */
-	void SetReferrerPlayerUuid(FGuid&& NewValue) { ReferrerPlayerUuid_Optional = NewValue; ReferrerPlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetReferrerPlayerUuid(FGuid&& NewValue) { ReferrerPlayerUuid_Optional = NewValue; ReferrerPlayerUuid_IsSet = true;  }
 	/** @brief Clears the value of ReferrerPlayerUuid_Optional and sets ReferrerPlayerUuid_IsSet to false */
 	void ClearReferrerPlayerUuid() { ReferrerPlayerUuid_IsSet = false;  }
-	/** @brief Checks whether ReferrerPlayerUuid_Optional has been set */
-	bool IsReferrerPlayerUuidSet() const { return ReferrerPlayerUuid_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ReferralCode_Optional{  };
@@ -71,25 +69,23 @@ struct RALLYHEREAPI_API FRHAPI_PlayerReferralSetPayload : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ReferralCode_IsSet{ false };
 	/** @brief Gets the value of ReferralCode_Optional, regardless of it having been set */
-	FString& GetReferralCode() { return ReferralCode_Optional; }
+	FORCEINLINE FString& GetReferralCode() { return ReferralCode_Optional; }
 	/** @brief Gets the value of ReferralCode_Optional, regardless of it having been set */
-	const FString& GetReferralCode() const { return ReferralCode_Optional; }
+	FORCEINLINE const FString& GetReferralCode() const { return ReferralCode_Optional; }
 	/** @brief Gets the value of ReferralCode_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetReferralCode(const FString& DefaultValue) const { if (ReferralCode_IsSet) return ReferralCode_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetReferralCode(const FString& DefaultValue) const { if (ReferralCode_IsSet) return ReferralCode_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ReferralCode_Optional and returns true if it has been set, otherwise returns false */
-	bool GetReferralCode(FString& OutValue) const { if (ReferralCode_IsSet) OutValue = ReferralCode_Optional; return ReferralCode_IsSet; }
+	FORCEINLINE bool GetReferralCode(FString& OutValue) const { if (ReferralCode_IsSet) OutValue = ReferralCode_Optional; return ReferralCode_IsSet; }
 	/** @brief Returns a pointer to ReferralCode_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetReferralCodeOrNull() { if (ReferralCode_IsSet) return (&ReferralCode_Optional); return nullptr; }
+	FORCEINLINE FString* GetReferralCodeOrNull() { if (ReferralCode_IsSet) return (&ReferralCode_Optional); return nullptr; }
 	/** @brief Returns a pointer to ReferralCode_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetReferralCodeOrNull() const { if (ReferralCode_IsSet) return (&ReferralCode_Optional); return nullptr; }
+	FORCEINLINE const FString* GetReferralCodeOrNull() const { if (ReferralCode_IsSet) return (&ReferralCode_Optional); return nullptr; }
 	/** @brief Sets the value of ReferralCode_Optional and also sets ReferralCode_IsSet to true */
-	void SetReferralCode(const FString& NewValue) { ReferralCode_Optional = NewValue; ReferralCode_IsSet = true;  }
+	FORCEINLINE void SetReferralCode(const FString& NewValue) { ReferralCode_Optional = NewValue; ReferralCode_IsSet = true;  }
 	/** @brief Sets the value of ReferralCode_Optional and also sets ReferralCode_IsSet to true using move semantics */
-	void SetReferralCode(FString&& NewValue) { ReferralCode_Optional = NewValue; ReferralCode_IsSet = true;  }
+	FORCEINLINE void SetReferralCode(FString&& NewValue) { ReferralCode_Optional = NewValue; ReferralCode_IsSet = true;  }
 	/** @brief Clears the value of ReferralCode_Optional and sets ReferralCode_IsSet to false */
 	void ClearReferralCode() { ReferralCode_IsSet = false;  }
-	/** @brief Checks whether ReferralCode_Optional has been set */
-	bool IsReferralCodeSet() const { return ReferralCode_IsSet; }
 };
 
 /** @} */

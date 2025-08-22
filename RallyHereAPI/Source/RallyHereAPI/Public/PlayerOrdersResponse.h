@@ -48,36 +48,34 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrdersResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Data_IsSet{ false };
 	/** @brief Gets the value of Data_Optional, regardless of it having been set */
-	TArray<FRHAPI_PlayerOrder>& GetData() { return Data_Optional; }
+	FORCEINLINE TArray<FRHAPI_PlayerOrder>& GetData() { return Data_Optional; }
 	/** @brief Gets the value of Data_Optional, regardless of it having been set */
-	const TArray<FRHAPI_PlayerOrder>& GetData() const { return Data_Optional; }
+	FORCEINLINE const TArray<FRHAPI_PlayerOrder>& GetData() const { return Data_Optional; }
 	/** @brief Gets the value of Data_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_PlayerOrder>& GetData(const TArray<FRHAPI_PlayerOrder>& DefaultValue) const { if (Data_IsSet) return Data_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_PlayerOrder>& GetData(const TArray<FRHAPI_PlayerOrder>& DefaultValue) const { if (Data_IsSet) return Data_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Data_Optional and returns true if it has been set, otherwise returns false */
-	bool GetData(TArray<FRHAPI_PlayerOrder>& OutValue) const { if (Data_IsSet) OutValue = Data_Optional; return Data_IsSet; }
+	FORCEINLINE bool GetData(TArray<FRHAPI_PlayerOrder>& OutValue) const { if (Data_IsSet) OutValue = Data_Optional; return Data_IsSet; }
 	/** @brief Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlayerOrder>* GetDataOrNull() { if (Data_IsSet) return (&Data_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_PlayerOrder>* GetDataOrNull() { if (Data_IsSet) return (&Data_Optional); return nullptr; }
 	/** @brief Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlayerOrder>* GetDataOrNull() const { if (Data_IsSet) return (&Data_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_PlayerOrder>* GetDataOrNull() const { if (Data_IsSet) return (&Data_Optional); return nullptr; }
 	/** @brief Sets the value of Data_Optional and also sets Data_IsSet to true */
-	void SetData(const TArray<FRHAPI_PlayerOrder>& NewValue) { Data_Optional = NewValue; Data_IsSet = true;  }
+	FORCEINLINE void SetData(const TArray<FRHAPI_PlayerOrder>& NewValue) { Data_Optional = NewValue; Data_IsSet = true;  }
 	/** @brief Sets the value of Data_Optional and also sets Data_IsSet to true using move semantics */
-	void SetData(TArray<FRHAPI_PlayerOrder>&& NewValue) { Data_Optional = NewValue; Data_IsSet = true;  }
+	FORCEINLINE void SetData(TArray<FRHAPI_PlayerOrder>&& NewValue) { Data_Optional = NewValue; Data_IsSet = true;  }
 	/** @brief Clears the value of Data_Optional and sets Data_IsSet to false */
 	void ClearData() { Data_IsSet = false;  }
-	/** @brief Checks whether Data_Optional has been set */
-	bool IsDataSet() const { return Data_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_InventoryPageMeta Page{  };
 	/** @brief Gets the value of Page */
-	FRHAPI_InventoryPageMeta& GetPage() { return Page; }
+	FORCEINLINE FRHAPI_InventoryPageMeta& GetPage() { return Page; }
 	/** @brief Gets the value of Page */
-	const FRHAPI_InventoryPageMeta& GetPage() const { return Page; }
+	FORCEINLINE const FRHAPI_InventoryPageMeta& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(const FRHAPI_InventoryPageMeta& NewValue) { Page = NewValue;   }
+	FORCEINLINE void SetPage(const FRHAPI_InventoryPageMeta& NewValue) { Page = NewValue;   }
 	/** @brief Sets the value of Page using move semantics */
-	void SetPage(FRHAPI_InventoryPageMeta&& NewValue) { Page = NewValue;   }
+	FORCEINLINE void SetPage(FRHAPI_InventoryPageMeta&& NewValue) { Page = NewValue;   }
 };
 
 /** @} */

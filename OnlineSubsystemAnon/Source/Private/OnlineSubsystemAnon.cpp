@@ -4,6 +4,7 @@
 #include "OnlineSubsystemAnon.h"
 #include "OnlineSubsystemAnonPrivate.h"
 #include "OnlineIdentityInterfaceAnon.h"
+#include "OnlineFriendsAnon.h"
 #include "Misc/App.h"
 #include "CoreMinimal.h"
 #include "Misc/ConfigCacheIni.h"
@@ -15,7 +16,7 @@ IOnlineSessionPtr FOnlineSubsystemAnon::GetSessionInterface() const
 
 IOnlineFriendsPtr FOnlineSubsystemAnon::GetFriendsInterface() const
 {
-    return nullptr;
+    return FriendsInterface;
 }
 
 IOnlinePartyPtr FOnlineSubsystemAnon::GetPartyInterface() const
@@ -141,6 +142,9 @@ bool FOnlineSubsystemAnon::Init()
     }
 
     IdentityInterface = MakeShareable(new FOnlineIdentityAnon(this));
+#if RH_ANON_FRIENDS_DEBUG
+	FriendsInterface = MakeShareable(new FOnlineFriendsAnon(this));
+#endif
     bInitialized = true;
     UE_LOG_ONLINE(Log, TEXT("Init complete"));
     return true;
@@ -154,6 +158,12 @@ bool FOnlineSubsystemAnon::Shutdown()
     {
         return true;
     }
+
+	if (FriendsInterface.IsValid())
+	{
+		ensure(FriendsInterface.IsUnique());
+		FriendsInterface = nullptr;
+	}
 
     if (IdentityInterface.IsValid())
     {

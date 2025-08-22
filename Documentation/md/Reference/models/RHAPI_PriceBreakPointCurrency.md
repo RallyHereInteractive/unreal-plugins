@@ -29,36 +29,32 @@ The currencies of a Price Breakpoint.
 `public bool `[`MinReducedPrice_IsNull`](#structFRHAPI__PriceBreakPointCurrency_1ad03da28c1045d1a07dd31c23a6c1b67d) | true if MinReducedPrice_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PriceBreakPointCurrency_1a38b39a44fd1bae117ba63e1600323843)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PriceBreakPointCurrency_1acc2a9f0bcbf761ac28f72dbec33036c6)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a84def262ad151efaf84a85ef83c8c4e1)`()` | Gets the value of PriceItemUuid.
-`public inline const FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1aef87ed3e12b86b9e33bdce90cb5e34d1)`() const` | Gets the value of PriceItemUuid.
-`public inline void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a8aba90f373601cf290a7ad4c497604fa)`(const FGuid & NewValue)` | Sets the value of PriceItemUuid.
-`public inline void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a2df2da4998d4d43c6546aafa0dc17ccd)`(FGuid && NewValue)` | Sets the value of PriceItemUuid using move semantics.
-`public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a9a7ccc14c2d3cd089b6f961c08587549)`()` | Gets the value of PriceItemId.
-`public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1ac5ce26340bdadbc7d68a224588fc825e)`() const` | Gets the value of PriceItemId.
-`public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a4c32f427fd1a34146735b5e25cf5b7a8)`(const int32 & NewValue)` | Sets the value of PriceItemId.
-`public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1adee55d4262e267879deccf1346671bfc)`(int32 && NewValue)` | Sets the value of PriceItemId using move semantics.
-`public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1ac2e90c50c94de4f0366f965267d94755)`() const` | Returns true if PriceItemId matches the default value.
-`public inline void `[`SetPriceItemIdToDefault`](#structFRHAPI__PriceBreakPointCurrency_1af16d3af705d6e44aa6fc0bf8ea763873)`()` | Sets the value of PriceItemId to its default
-`public inline int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac6d75ef6afcc418ff02d95801920ecce)`()` | Gets the value of Price.
-`public inline const int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a1f3ef328ca614a26458c2b2958d804ba)`() const` | Gets the value of Price.
-`public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac631554943d37765136f4e554b2cde2d)`(const int32 & NewValue)` | Sets the value of Price.
-`public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a4573389211659ecc6dc5a920a5d0b884)`(int32 && NewValue)` | Sets the value of Price using move semantics.
-`public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1a9a1537b11431e1c8253bbe95f15e7c16)`() const` | Returns true if Price matches the default value.
-`public inline void `[`SetPriceToDefault`](#structFRHAPI__PriceBreakPointCurrency_1a3ff3ff898ac78e428be02c407a1c847e)`()` | Sets the value of Price to its default
-`public inline int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a4365322aaee8d0cdc393eabc4dbb8545)`()` | Gets the value of MinReducedPrice_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1ade698dc02f475a21000772cd479b3840)`() const` | Gets the value of MinReducedPrice_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a2e7d2f21d32a916150ac8e96a6a4e382)`(const int32 & DefaultValue) const` | Gets the value of MinReducedPrice_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a36c818e93c18a149a0792178f898980f)`(int32 & OutValue) const` | Fills OutValue with the value of MinReducedPrice_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetMinReducedPriceOrNull`](#structFRHAPI__PriceBreakPointCurrency_1abf0f2e9147af8e4b42f5d9ec85ccf981)`()` | Returns a pointer to MinReducedPrice_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetMinReducedPriceOrNull`](#structFRHAPI__PriceBreakPointCurrency_1a565ba21fe9bd88d77fc8f9c852467169)`() const` | Returns a pointer to MinReducedPrice_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a96e19ffceff35e68c40c56228413878a)`(const int32 & NewValue)` | Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet to true.
-`public inline void `[`SetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1acfa379675c8cac131d2f551ca0c932a9)`(int32 && NewValue)` | Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1aedcccb6998c4cf300ae5dab1d6694e57)`()` | Gets the value of PriceItemUuid.
+`public inline FORCEINLINE const FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1adfd877484f115c5bbbd6b5ea98f8117b)`() const` | Gets the value of PriceItemUuid.
+`public inline FORCEINLINE void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a873f4de6b897b038379c43635485a4bc)`(const FGuid & NewValue)` | Sets the value of PriceItemUuid.
+`public inline FORCEINLINE void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a0473f49e6f4f696af8dd6e98b038a403)`(FGuid && NewValue)` | Sets the value of PriceItemUuid using move semantics.
+`public inline FORCEINLINE int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a1ea9750ac0ed39a4154b67209ce0ef56)`()` | Gets the value of PriceItemId.
+`public inline FORCEINLINE const int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a00d3f3e61ba9b4016086de803677462d)`() const` | Gets the value of PriceItemId.
+`public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a3a7b5ccf001367e96ab6fd51db0cc152)`(const int32 & NewValue)` | Sets the value of PriceItemId.
+`public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1ab5690fab4c02f12d12d77f2fc48dec19)`(int32 && NewValue)` | Sets the value of PriceItemId using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a9359a70c6885073d80a2ef658cc238fe)`()` | Returns the default value of PriceItemId.
+`public inline FORCEINLINE int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a56c37c39e89cd6231f1d950ee0f40bdc)`()` | Gets the value of Price.
+`public inline FORCEINLINE const int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a9e116ac9ecd3696ec23c56a4069d4229)`() const` | Gets the value of Price.
+`public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a43a6e93e7526b6f05340698f26cccba8)`(const int32 & NewValue)` | Sets the value of Price.
+`public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a3d4db9efe15318e0289344d7e8f1f106)`(int32 && NewValue)` | Sets the value of Price using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Price`](#structFRHAPI__PriceBreakPointCurrency_1a49c6178e2ecda2a249cca1670e524836)`()` | Returns the default value of Price.
+`public inline FORCEINLINE int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1abf2475a1f49777ace89db507b803abad)`()` | Gets the value of MinReducedPrice_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a5de6e82e9e72c09840bbe3c7d82626fe)`() const` | Gets the value of MinReducedPrice_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a9936529b1565899397100a3590ca0ee8)`(const int32 & DefaultValue) const` | Gets the value of MinReducedPrice_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac3487cb1ef4392cc754b7b47decd79c6)`(int32 & OutValue) const` | Fills OutValue with the value of MinReducedPrice_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetMinReducedPriceOrNull`](#structFRHAPI__PriceBreakPointCurrency_1a4b8f002619b9d96b25df4827521d6b72)`()` | Returns a pointer to MinReducedPrice_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetMinReducedPriceOrNull`](#structFRHAPI__PriceBreakPointCurrency_1a5ac0981e327ab0a0d14c5e06ad5c1041)`() const` | Returns a pointer to MinReducedPrice_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac543b80a955ad3a62507dd0fabafa446)`(const int32 & NewValue)` | Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet to true.
+`public inline FORCEINLINE void `[`SetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a89ea65e99b0056aa46cd18791e82e385)`(int32 && NewValue)` | Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet to true using move semantics.
 `public inline void `[`ClearMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a92c5e8210e4de9957632082bd76d0a76)`()` | Clears the value of MinReducedPrice_Optional and sets MinReducedPrice_IsSet to false.
-`public inline bool `[`IsMinReducedPriceSet`](#structFRHAPI__PriceBreakPointCurrency_1ad9d1aff88698f8e87dfb36dcf7931f7f)`() const` | Checks whether MinReducedPrice_Optional has been set.
-`public inline bool `[`IsMinReducedPriceDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1acc6d374b30880074044321b5ee90d721)`() const` | Returns true if MinReducedPrice_Optional is set and matches the default value.
-`public inline void `[`SetMinReducedPriceToDefault`](#structFRHAPI__PriceBreakPointCurrency_1a24b4b946154fe4a23b80c0eea199ad20)`()` | Sets the value of MinReducedPrice_Optional to its default and also sets MinReducedPrice_IsSet to true.
-`public inline void `[`SetMinReducedPriceToNull`](#structFRHAPI__PriceBreakPointCurrency_1af9798e8920d1994e470838b2761d6a9e)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsMinReducedPriceNull`](#structFRHAPI__PriceBreakPointCurrency_1a18689898754eacbaa4080c09e4beb4ad)`() const` | Checks whether MinReducedPrice_Optional is set to null.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_MinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a885aa715d3bd3784b5d88196c5ff6223)`()` | Returns the default value of MinReducedPrice.
+`public inline FORCEINLINE void `[`SetMinReducedPriceToNull`](#structFRHAPI__PriceBreakPointCurrency_1aa3cbc63ba34e76a8a9312a8a435baeb4)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsMinReducedPriceNull`](#structFRHAPI__PriceBreakPointCurrency_1ae93ad2fb5961e789dac252b4a3202ae0)`() const` | Checks whether MinReducedPrice_Optional is set to null.
 
 ### Members
 
@@ -101,99 +97,91 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a84def262ad151efaf84a85ef83c8c4e1)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a84def262ad151efaf84a85ef83c8c4e1"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1aedcccb6998c4cf300ae5dab1d6694e57)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1aedcccb6998c4cf300ae5dab1d6694e57"></a>
 
 Gets the value of PriceItemUuid.
 
-#### `public inline const FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1aef87ed3e12b86b9e33bdce90cb5e34d1)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1aef87ed3e12b86b9e33bdce90cb5e34d1"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1adfd877484f115c5bbbd6b5ea98f8117b)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1adfd877484f115c5bbbd6b5ea98f8117b"></a>
 
 Gets the value of PriceItemUuid.
 
-#### `public inline void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a8aba90f373601cf290a7ad4c497604fa)`(const FGuid & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a8aba90f373601cf290a7ad4c497604fa"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a873f4de6b897b038379c43635485a4bc)`(const FGuid & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a873f4de6b897b038379c43635485a4bc"></a>
 
 Sets the value of PriceItemUuid.
 
-#### `public inline void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a2df2da4998d4d43c6546aafa0dc17ccd)`(FGuid && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a2df2da4998d4d43c6546aafa0dc17ccd"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemUuid`](#structFRHAPI__PriceBreakPointCurrency_1a0473f49e6f4f696af8dd6e98b038a403)`(FGuid && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a0473f49e6f4f696af8dd6e98b038a403"></a>
 
 Sets the value of PriceItemUuid using move semantics.
 
-#### `public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a9a7ccc14c2d3cd089b6f961c08587549)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a9a7ccc14c2d3cd089b6f961c08587549"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a1ea9750ac0ed39a4154b67209ce0ef56)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a1ea9750ac0ed39a4154b67209ce0ef56"></a>
 
 Gets the value of PriceItemId.
 
-#### `public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1ac5ce26340bdadbc7d68a224588fc825e)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1ac5ce26340bdadbc7d68a224588fc825e"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a00d3f3e61ba9b4016086de803677462d)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a00d3f3e61ba9b4016086de803677462d"></a>
 
 Gets the value of PriceItemId.
 
-#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a4c32f427fd1a34146735b5e25cf5b7a8)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a4c32f427fd1a34146735b5e25cf5b7a8"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a3a7b5ccf001367e96ab6fd51db0cc152)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a3a7b5ccf001367e96ab6fd51db0cc152"></a>
 
 Sets the value of PriceItemId.
 
-#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1adee55d4262e267879deccf1346671bfc)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1adee55d4262e267879deccf1346671bfc"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1ab5690fab4c02f12d12d77f2fc48dec19)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1ab5690fab4c02f12d12d77f2fc48dec19"></a>
 
 Sets the value of PriceItemId using move semantics.
 
-#### `public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1ac2e90c50c94de4f0366f965267d94755)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1ac2e90c50c94de4f0366f965267d94755"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PriceItemId`](#structFRHAPI__PriceBreakPointCurrency_1a9359a70c6885073d80a2ef658cc238fe)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a9359a70c6885073d80a2ef658cc238fe"></a>
 
-Returns true if PriceItemId matches the default value.
+Returns the default value of PriceItemId.
 
-#### `public inline void `[`SetPriceItemIdToDefault`](#structFRHAPI__PriceBreakPointCurrency_1af16d3af705d6e44aa6fc0bf8ea763873)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1af16d3af705d6e44aa6fc0bf8ea763873"></a>
-
-Sets the value of PriceItemId to its default
-
-#### `public inline int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac6d75ef6afcc418ff02d95801920ecce)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1ac6d75ef6afcc418ff02d95801920ecce"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a56c37c39e89cd6231f1d950ee0f40bdc)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a56c37c39e89cd6231f1d950ee0f40bdc"></a>
 
 Gets the value of Price.
 
-#### `public inline const int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a1f3ef328ca614a26458c2b2958d804ba)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a1f3ef328ca614a26458c2b2958d804ba"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a9e116ac9ecd3696ec23c56a4069d4229)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a9e116ac9ecd3696ec23c56a4069d4229"></a>
 
 Gets the value of Price.
 
-#### `public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac631554943d37765136f4e554b2cde2d)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1ac631554943d37765136f4e554b2cde2d"></a>
+#### `public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a43a6e93e7526b6f05340698f26cccba8)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a43a6e93e7526b6f05340698f26cccba8"></a>
 
 Sets the value of Price.
 
-#### `public inline void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a4573389211659ecc6dc5a920a5d0b884)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a4573389211659ecc6dc5a920a5d0b884"></a>
+#### `public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PriceBreakPointCurrency_1a3d4db9efe15318e0289344d7e8f1f106)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a3d4db9efe15318e0289344d7e8f1f106"></a>
 
 Sets the value of Price using move semantics.
 
-#### `public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1a9a1537b11431e1c8253bbe95f15e7c16)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a9a1537b11431e1c8253bbe95f15e7c16"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Price`](#structFRHAPI__PriceBreakPointCurrency_1a49c6178e2ecda2a249cca1670e524836)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a49c6178e2ecda2a249cca1670e524836"></a>
 
-Returns true if Price matches the default value.
+Returns the default value of Price.
 
-#### `public inline void `[`SetPriceToDefault`](#structFRHAPI__PriceBreakPointCurrency_1a3ff3ff898ac78e428be02c407a1c847e)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a3ff3ff898ac78e428be02c407a1c847e"></a>
-
-Sets the value of Price to its default
-
-#### `public inline int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a4365322aaee8d0cdc393eabc4dbb8545)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a4365322aaee8d0cdc393eabc4dbb8545"></a>
+#### `public inline FORCEINLINE int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1abf2475a1f49777ace89db507b803abad)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1abf2475a1f49777ace89db507b803abad"></a>
 
 Gets the value of MinReducedPrice_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1ade698dc02f475a21000772cd479b3840)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1ade698dc02f475a21000772cd479b3840"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a5de6e82e9e72c09840bbe3c7d82626fe)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a5de6e82e9e72c09840bbe3c7d82626fe"></a>
 
 Gets the value of MinReducedPrice_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a2e7d2f21d32a916150ac8e96a6a4e382)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PriceBreakPointCurrency_1a2e7d2f21d32a916150ac8e96a6a4e382"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a9936529b1565899397100a3590ca0ee8)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PriceBreakPointCurrency_1a9936529b1565899397100a3590ca0ee8"></a>
 
 Gets the value of MinReducedPrice_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a36c818e93c18a149a0792178f898980f)`(int32 & OutValue) const` <a id="structFRHAPI__PriceBreakPointCurrency_1a36c818e93c18a149a0792178f898980f"></a>
+#### `public inline FORCEINLINE bool `[`GetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac3487cb1ef4392cc754b7b47decd79c6)`(int32 & OutValue) const` <a id="structFRHAPI__PriceBreakPointCurrency_1ac3487cb1ef4392cc754b7b47decd79c6"></a>
 
 Fills OutValue with the value of MinReducedPrice_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetMinReducedPriceOrNull`](#structFRHAPI__PriceBreakPointCurrency_1abf0f2e9147af8e4b42f5d9ec85ccf981)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1abf0f2e9147af8e4b42f5d9ec85ccf981"></a>
+#### `public inline FORCEINLINE int32 * `[`GetMinReducedPriceOrNull`](#structFRHAPI__PriceBreakPointCurrency_1a4b8f002619b9d96b25df4827521d6b72)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a4b8f002619b9d96b25df4827521d6b72"></a>
 
 Returns a pointer to MinReducedPrice_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetMinReducedPriceOrNull`](#structFRHAPI__PriceBreakPointCurrency_1a565ba21fe9bd88d77fc8f9c852467169)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a565ba21fe9bd88d77fc8f9c852467169"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetMinReducedPriceOrNull`](#structFRHAPI__PriceBreakPointCurrency_1a5ac0981e327ab0a0d14c5e06ad5c1041)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a5ac0981e327ab0a0d14c5e06ad5c1041"></a>
 
 Returns a pointer to MinReducedPrice_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a96e19ffceff35e68c40c56228413878a)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a96e19ffceff35e68c40c56228413878a"></a>
+#### `public inline FORCEINLINE void `[`SetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1ac543b80a955ad3a62507dd0fabafa446)`(const int32 & NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1ac543b80a955ad3a62507dd0fabafa446"></a>
 
 Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet to true.
 
-#### `public inline void `[`SetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1acfa379675c8cac131d2f551ca0c932a9)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1acfa379675c8cac131d2f551ca0c932a9"></a>
+#### `public inline FORCEINLINE void `[`SetMinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a89ea65e99b0056aa46cd18791e82e385)`(int32 && NewValue)` <a id="structFRHAPI__PriceBreakPointCurrency_1a89ea65e99b0056aa46cd18791e82e385"></a>
 
 Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet to true using move semantics.
 
@@ -201,23 +189,15 @@ Sets the value of MinReducedPrice_Optional and also sets MinReducedPrice_IsSet t
 
 Clears the value of MinReducedPrice_Optional and sets MinReducedPrice_IsSet to false.
 
-#### `public inline bool `[`IsMinReducedPriceSet`](#structFRHAPI__PriceBreakPointCurrency_1ad9d1aff88698f8e87dfb36dcf7931f7f)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1ad9d1aff88698f8e87dfb36dcf7931f7f"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_MinReducedPrice`](#structFRHAPI__PriceBreakPointCurrency_1a885aa715d3bd3784b5d88196c5ff6223)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a885aa715d3bd3784b5d88196c5ff6223"></a>
 
-Checks whether MinReducedPrice_Optional has been set.
+Returns the default value of MinReducedPrice.
 
-#### `public inline bool `[`IsMinReducedPriceDefaultValue`](#structFRHAPI__PriceBreakPointCurrency_1acc6d374b30880074044321b5ee90d721)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1acc6d374b30880074044321b5ee90d721"></a>
-
-Returns true if MinReducedPrice_Optional is set and matches the default value.
-
-#### `public inline void `[`SetMinReducedPriceToDefault`](#structFRHAPI__PriceBreakPointCurrency_1a24b4b946154fe4a23b80c0eea199ad20)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1a24b4b946154fe4a23b80c0eea199ad20"></a>
-
-Sets the value of MinReducedPrice_Optional to its default and also sets MinReducedPrice_IsSet to true.
-
-#### `public inline void `[`SetMinReducedPriceToNull`](#structFRHAPI__PriceBreakPointCurrency_1af9798e8920d1994e470838b2761d6a9e)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1af9798e8920d1994e470838b2761d6a9e"></a>
+#### `public inline FORCEINLINE void `[`SetMinReducedPriceToNull`](#structFRHAPI__PriceBreakPointCurrency_1aa3cbc63ba34e76a8a9312a8a435baeb4)`()` <a id="structFRHAPI__PriceBreakPointCurrency_1aa3cbc63ba34e76a8a9312a8a435baeb4"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsMinReducedPriceNull`](#structFRHAPI__PriceBreakPointCurrency_1a18689898754eacbaa4080c09e4beb4ad)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1a18689898754eacbaa4080c09e4beb4ad"></a>
+#### `public inline FORCEINLINE bool `[`IsMinReducedPriceNull`](#structFRHAPI__PriceBreakPointCurrency_1ae93ad2fb5961e789dac252b4a3202ae0)`() const` <a id="structFRHAPI__PriceBreakPointCurrency_1ae93ad2fb5961e789dac252b4a3202ae0"></a>
 
 Checks whether MinReducedPrice_Optional is set to null.
 

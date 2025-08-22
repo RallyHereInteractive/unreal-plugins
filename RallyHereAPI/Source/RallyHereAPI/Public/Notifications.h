@@ -47,37 +47,35 @@ struct RALLYHEREAPI_API FRHAPI_Notifications : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Notifications_IsSet{ false };
 	/** @brief Gets the value of Notifications_Optional, regardless of it having been set */
-	TArray<FRHAPI_Notification>& GetNotifications() { return Notifications_Optional; }
+	FORCEINLINE TArray<FRHAPI_Notification>& GetNotifications() { return Notifications_Optional; }
 	/** @brief Gets the value of Notifications_Optional, regardless of it having been set */
-	const TArray<FRHAPI_Notification>& GetNotifications() const { return Notifications_Optional; }
+	FORCEINLINE const TArray<FRHAPI_Notification>& GetNotifications() const { return Notifications_Optional; }
 	/** @brief Gets the value of Notifications_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_Notification>& GetNotifications(const TArray<FRHAPI_Notification>& DefaultValue) const { if (Notifications_IsSet) return Notifications_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_Notification>& GetNotifications(const TArray<FRHAPI_Notification>& DefaultValue) const { if (Notifications_IsSet) return Notifications_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Notifications_Optional and returns true if it has been set, otherwise returns false */
-	bool GetNotifications(TArray<FRHAPI_Notification>& OutValue) const { if (Notifications_IsSet) OutValue = Notifications_Optional; return Notifications_IsSet; }
+	FORCEINLINE bool GetNotifications(TArray<FRHAPI_Notification>& OutValue) const { if (Notifications_IsSet) OutValue = Notifications_Optional; return Notifications_IsSet; }
 	/** @brief Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_Notification>* GetNotificationsOrNull() { if (Notifications_IsSet) return (&Notifications_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_Notification>* GetNotificationsOrNull() { if (Notifications_IsSet) return (&Notifications_Optional); return nullptr; }
 	/** @brief Returns a pointer to Notifications_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_Notification>* GetNotificationsOrNull() const { if (Notifications_IsSet) return (&Notifications_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_Notification>* GetNotificationsOrNull() const { if (Notifications_IsSet) return (&Notifications_Optional); return nullptr; }
 	/** @brief Sets the value of Notifications_Optional and also sets Notifications_IsSet to true */
-	void SetNotifications(const TArray<FRHAPI_Notification>& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true;  }
+	FORCEINLINE void SetNotifications(const TArray<FRHAPI_Notification>& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true;  }
 	/** @brief Sets the value of Notifications_Optional and also sets Notifications_IsSet to true using move semantics */
-	void SetNotifications(TArray<FRHAPI_Notification>&& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true;  }
+	FORCEINLINE void SetNotifications(TArray<FRHAPI_Notification>&& NewValue) { Notifications_Optional = NewValue; Notifications_IsSet = true;  }
 	/** @brief Clears the value of Notifications_Optional and sets Notifications_IsSet to false */
 	void ClearNotifications() { Notifications_IsSet = false;  }
-	/** @brief Checks whether Notifications_Optional has been set */
-	bool IsNotificationsSet() const { return Notifications_IsSet; }
 
 	/** @brief Cursor to use for the next request */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Cursor{  };
 	/** @brief Gets the value of Cursor */
-	FString& GetCursor() { return Cursor; }
+	FORCEINLINE FString& GetCursor() { return Cursor; }
 	/** @brief Gets the value of Cursor */
-	const FString& GetCursor() const { return Cursor; }
+	FORCEINLINE const FString& GetCursor() const { return Cursor; }
 	/** @brief Sets the value of Cursor */
-	void SetCursor(const FString& NewValue) { Cursor = NewValue;   }
+	FORCEINLINE void SetCursor(const FString& NewValue) { Cursor = NewValue;   }
 	/** @brief Sets the value of Cursor using move semantics */
-	void SetCursor(FString&& NewValue) { Cursor = NewValue;   }
+	FORCEINLINE void SetCursor(FString&& NewValue) { Cursor = NewValue;   }
 };
 
 /** @} */

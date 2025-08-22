@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_EventParamsSchemaResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_JsonObject EventParamSchemas{  };
 	/** @brief Gets the value of EventParamSchemas */
-	FRHAPI_JsonObject& GetEventParamSchemas() { return EventParamSchemas; }
+	FORCEINLINE FRHAPI_JsonObject& GetEventParamSchemas() { return EventParamSchemas; }
 	/** @brief Gets the value of EventParamSchemas */
-	const FRHAPI_JsonObject& GetEventParamSchemas() const { return EventParamSchemas; }
+	FORCEINLINE const FRHAPI_JsonObject& GetEventParamSchemas() const { return EventParamSchemas; }
 	/** @brief Sets the value of EventParamSchemas */
-	void SetEventParamSchemas(const FRHAPI_JsonObject& NewValue) { EventParamSchemas = NewValue;   }
+	FORCEINLINE void SetEventParamSchemas(const FRHAPI_JsonObject& NewValue) { EventParamSchemas = NewValue;   }
 	/** @brief Sets the value of EventParamSchemas using move semantics */
-	void SetEventParamSchemas(FRHAPI_JsonObject&& NewValue) { EventParamSchemas = NewValue;   }
+	FORCEINLINE void SetEventParamSchemas(FRHAPI_JsonObject&& NewValue) { EventParamSchemas = NewValue;   }
 };
 
 /** @} */

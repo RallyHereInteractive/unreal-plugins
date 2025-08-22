@@ -55,7 +55,7 @@ void FRHDTW_PlayerRanks::DoViewRankings()
 		ImGui::Text("Please select a player with a Player UUID in Player Repository.");
 		return;
 	}
-	ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+	ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower)));
 
 	if (ImGui::Button("Get Rankings Data"))
 	{

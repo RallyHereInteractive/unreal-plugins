@@ -28,26 +28,25 @@ A key/value pair that represents a setting to be used by the client.
 `public bool `[`Notes_IsNull`](#structFRHAPI__KVV1_1af8953ff35d2fac6eac48c1b453073dd7) | true if Notes_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__KVV1_1a11f5ed51e69d88e7d414aaf5c335531d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__KVV1_1ab1a6e32e7af0cd22f95169888f2fde71)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetKey`](#structFRHAPI__KVV1_1a3797e987fc1ce56def992b10e182e69b)`()` | Gets the value of Key.
-`public inline const FString & `[`GetKey`](#structFRHAPI__KVV1_1af51553d2d587bf60dc76d0ffa92fc26c)`() const` | Gets the value of Key.
-`public inline void `[`SetKey`](#structFRHAPI__KVV1_1ab5cfb7d89de63853749921cbdd61e785)`(const FString & NewValue)` | Sets the value of Key.
-`public inline void `[`SetKey`](#structFRHAPI__KVV1_1a362e6e765193edd8772a9307da3cbfd5)`(FString && NewValue)` | Sets the value of Key using move semantics.
-`public inline FString & `[`GetValue`](#structFRHAPI__KVV1_1a5133afa04a5969ea2b99c6b885750945)`()` | Gets the value of Value.
-`public inline const FString & `[`GetValue`](#structFRHAPI__KVV1_1a83e80c2df870df25aa50553763a08bf5)`() const` | Gets the value of Value.
-`public inline void `[`SetValue`](#structFRHAPI__KVV1_1aa1b11486e3ee8b660d26c44473b7ea8d)`(const FString & NewValue)` | Sets the value of Value.
-`public inline void `[`SetValue`](#structFRHAPI__KVV1_1a62f331ec1b744b20a9207532c5e11de7)`(FString && NewValue)` | Sets the value of Value using move semantics.
-`public inline FString & `[`GetNotes`](#structFRHAPI__KVV1_1a480a1e6a06ab1e567775d8c08a5dce83)`()` | Gets the value of Notes_Optional, regardless of it having been set.
-`public inline const FString & `[`GetNotes`](#structFRHAPI__KVV1_1a4fedf001c1e0cb43458331f95b765752)`() const` | Gets the value of Notes_Optional, regardless of it having been set.
-`public inline const FString & `[`GetNotes`](#structFRHAPI__KVV1_1ae767143570fdea272f39b8ee37925180)`(const FString & DefaultValue) const` | Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetNotes`](#structFRHAPI__KVV1_1a6f418b98db58d45a0d99b3d879f76540)`(FString & OutValue) const` | Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetNotesOrNull`](#structFRHAPI__KVV1_1ae3d7519bcecc35542f282e9371cda73b)`()` | Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetNotesOrNull`](#structFRHAPI__KVV1_1ae07053a7c6028c3847a2f53255df7f63)`() const` | Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetNotes`](#structFRHAPI__KVV1_1ae036966c62919eabae4a3dc8dfb57cfc)`(const FString & NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true.
-`public inline void `[`SetNotes`](#structFRHAPI__KVV1_1a8cf2a83390b6f97f5ca27e5837c6af20)`(FString && NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetKey`](#structFRHAPI__KVV1_1a3d4bb7d62fdf3038f5f0ba0a919f70cc)`()` | Gets the value of Key.
+`public inline FORCEINLINE const FString & `[`GetKey`](#structFRHAPI__KVV1_1a5bdcd9142b052fd78638cccbe1b20b19)`() const` | Gets the value of Key.
+`public inline FORCEINLINE void `[`SetKey`](#structFRHAPI__KVV1_1afd29363bb8b8d7c20c9dbc39f8f73f1f)`(const FString & NewValue)` | Sets the value of Key.
+`public inline FORCEINLINE void `[`SetKey`](#structFRHAPI__KVV1_1a24db072d5f3d3613d9e5990523d59f87)`(FString && NewValue)` | Sets the value of Key using move semantics.
+`public inline FORCEINLINE FString & `[`GetValue`](#structFRHAPI__KVV1_1af449f2f7dde3afb4e2ddc2e1decf41e5)`()` | Gets the value of Value.
+`public inline FORCEINLINE const FString & `[`GetValue`](#structFRHAPI__KVV1_1af85eb29f957565e779024fe27011f104)`() const` | Gets the value of Value.
+`public inline FORCEINLINE void `[`SetValue`](#structFRHAPI__KVV1_1a64e48276bd39d37e55fed06c696409d2)`(const FString & NewValue)` | Sets the value of Value.
+`public inline FORCEINLINE void `[`SetValue`](#structFRHAPI__KVV1_1aec21ac71062c43f4dd56246ac6557626)`(FString && NewValue)` | Sets the value of Value using move semantics.
+`public inline FORCEINLINE FString & `[`GetNotes`](#structFRHAPI__KVV1_1afa4a11a8145090378c8f687f13dd081f)`()` | Gets the value of Notes_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetNotes`](#structFRHAPI__KVV1_1a7090ae2fdf7256bc53191b65e29b4122)`() const` | Gets the value of Notes_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetNotes`](#structFRHAPI__KVV1_1a8e0393339777d3e80bc64b4370b2ffdc)`(const FString & DefaultValue) const` | Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetNotes`](#structFRHAPI__KVV1_1a6f08a2def63d24a1a234425881cc3834)`(FString & OutValue) const` | Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetNotesOrNull`](#structFRHAPI__KVV1_1ab546b9ed77154c16e49f5130fad29617)`()` | Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetNotesOrNull`](#structFRHAPI__KVV1_1aedcc505500e222a90532e4518521095d)`() const` | Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetNotes`](#structFRHAPI__KVV1_1a586c545973a5bb53ab85282b2b2b6046)`(const FString & NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true.
+`public inline FORCEINLINE void `[`SetNotes`](#structFRHAPI__KVV1_1a5d7c493d12b8ea33d7101d28ba8ee294)`(FString && NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics.
 `public inline void `[`ClearNotes`](#structFRHAPI__KVV1_1af6138e37d8c64331aa5f9877e5fd3bab)`()` | Clears the value of Notes_Optional and sets Notes_IsSet to false.
-`public inline bool `[`IsNotesSet`](#structFRHAPI__KVV1_1ad508a91f34e21b50eb7ffb3941f71bf6)`() const` | Checks whether Notes_Optional has been set.
-`public inline void `[`SetNotesToNull`](#structFRHAPI__KVV1_1a8f5d46c72646c6b7d956d431868428f7)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsNotesNull`](#structFRHAPI__KVV1_1ad39f6f297acf47d794702089280bc7c4)`() const` | Checks whether Notes_Optional is set to null.
+`public inline FORCEINLINE void `[`SetNotesToNull`](#structFRHAPI__KVV1_1ac3357946889b9088d6945fa2f4afefe8)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsNotesNull`](#structFRHAPI__KVV1_1a526f8b314f5fc77bc8a103df24760071)`() const` | Checks whether Notes_Optional is set to null.
 
 ### Members
 
@@ -86,67 +85,67 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetKey`](#structFRHAPI__KVV1_1a3797e987fc1ce56def992b10e182e69b)`()` <a id="structFRHAPI__KVV1_1a3797e987fc1ce56def992b10e182e69b"></a>
+#### `public inline FORCEINLINE FString & `[`GetKey`](#structFRHAPI__KVV1_1a3d4bb7d62fdf3038f5f0ba0a919f70cc)`()` <a id="structFRHAPI__KVV1_1a3d4bb7d62fdf3038f5f0ba0a919f70cc"></a>
 
 Gets the value of Key.
 
-#### `public inline const FString & `[`GetKey`](#structFRHAPI__KVV1_1af51553d2d587bf60dc76d0ffa92fc26c)`() const` <a id="structFRHAPI__KVV1_1af51553d2d587bf60dc76d0ffa92fc26c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetKey`](#structFRHAPI__KVV1_1a5bdcd9142b052fd78638cccbe1b20b19)`() const` <a id="structFRHAPI__KVV1_1a5bdcd9142b052fd78638cccbe1b20b19"></a>
 
 Gets the value of Key.
 
-#### `public inline void `[`SetKey`](#structFRHAPI__KVV1_1ab5cfb7d89de63853749921cbdd61e785)`(const FString & NewValue)` <a id="structFRHAPI__KVV1_1ab5cfb7d89de63853749921cbdd61e785"></a>
+#### `public inline FORCEINLINE void `[`SetKey`](#structFRHAPI__KVV1_1afd29363bb8b8d7c20c9dbc39f8f73f1f)`(const FString & NewValue)` <a id="structFRHAPI__KVV1_1afd29363bb8b8d7c20c9dbc39f8f73f1f"></a>
 
 Sets the value of Key.
 
-#### `public inline void `[`SetKey`](#structFRHAPI__KVV1_1a362e6e765193edd8772a9307da3cbfd5)`(FString && NewValue)` <a id="structFRHAPI__KVV1_1a362e6e765193edd8772a9307da3cbfd5"></a>
+#### `public inline FORCEINLINE void `[`SetKey`](#structFRHAPI__KVV1_1a24db072d5f3d3613d9e5990523d59f87)`(FString && NewValue)` <a id="structFRHAPI__KVV1_1a24db072d5f3d3613d9e5990523d59f87"></a>
 
 Sets the value of Key using move semantics.
 
-#### `public inline FString & `[`GetValue`](#structFRHAPI__KVV1_1a5133afa04a5969ea2b99c6b885750945)`()` <a id="structFRHAPI__KVV1_1a5133afa04a5969ea2b99c6b885750945"></a>
+#### `public inline FORCEINLINE FString & `[`GetValue`](#structFRHAPI__KVV1_1af449f2f7dde3afb4e2ddc2e1decf41e5)`()` <a id="structFRHAPI__KVV1_1af449f2f7dde3afb4e2ddc2e1decf41e5"></a>
 
 Gets the value of Value.
 
-#### `public inline const FString & `[`GetValue`](#structFRHAPI__KVV1_1a83e80c2df870df25aa50553763a08bf5)`() const` <a id="structFRHAPI__KVV1_1a83e80c2df870df25aa50553763a08bf5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetValue`](#structFRHAPI__KVV1_1af85eb29f957565e779024fe27011f104)`() const` <a id="structFRHAPI__KVV1_1af85eb29f957565e779024fe27011f104"></a>
 
 Gets the value of Value.
 
-#### `public inline void `[`SetValue`](#structFRHAPI__KVV1_1aa1b11486e3ee8b660d26c44473b7ea8d)`(const FString & NewValue)` <a id="structFRHAPI__KVV1_1aa1b11486e3ee8b660d26c44473b7ea8d"></a>
+#### `public inline FORCEINLINE void `[`SetValue`](#structFRHAPI__KVV1_1a64e48276bd39d37e55fed06c696409d2)`(const FString & NewValue)` <a id="structFRHAPI__KVV1_1a64e48276bd39d37e55fed06c696409d2"></a>
 
 Sets the value of Value.
 
-#### `public inline void `[`SetValue`](#structFRHAPI__KVV1_1a62f331ec1b744b20a9207532c5e11de7)`(FString && NewValue)` <a id="structFRHAPI__KVV1_1a62f331ec1b744b20a9207532c5e11de7"></a>
+#### `public inline FORCEINLINE void `[`SetValue`](#structFRHAPI__KVV1_1aec21ac71062c43f4dd56246ac6557626)`(FString && NewValue)` <a id="structFRHAPI__KVV1_1aec21ac71062c43f4dd56246ac6557626"></a>
 
 Sets the value of Value using move semantics.
 
-#### `public inline FString & `[`GetNotes`](#structFRHAPI__KVV1_1a480a1e6a06ab1e567775d8c08a5dce83)`()` <a id="structFRHAPI__KVV1_1a480a1e6a06ab1e567775d8c08a5dce83"></a>
+#### `public inline FORCEINLINE FString & `[`GetNotes`](#structFRHAPI__KVV1_1afa4a11a8145090378c8f687f13dd081f)`()` <a id="structFRHAPI__KVV1_1afa4a11a8145090378c8f687f13dd081f"></a>
 
 Gets the value of Notes_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetNotes`](#structFRHAPI__KVV1_1a4fedf001c1e0cb43458331f95b765752)`() const` <a id="structFRHAPI__KVV1_1a4fedf001c1e0cb43458331f95b765752"></a>
+#### `public inline FORCEINLINE const FString & `[`GetNotes`](#structFRHAPI__KVV1_1a7090ae2fdf7256bc53191b65e29b4122)`() const` <a id="structFRHAPI__KVV1_1a7090ae2fdf7256bc53191b65e29b4122"></a>
 
 Gets the value of Notes_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetNotes`](#structFRHAPI__KVV1_1ae767143570fdea272f39b8ee37925180)`(const FString & DefaultValue) const` <a id="structFRHAPI__KVV1_1ae767143570fdea272f39b8ee37925180"></a>
+#### `public inline FORCEINLINE const FString & `[`GetNotes`](#structFRHAPI__KVV1_1a8e0393339777d3e80bc64b4370b2ffdc)`(const FString & DefaultValue) const` <a id="structFRHAPI__KVV1_1a8e0393339777d3e80bc64b4370b2ffdc"></a>
 
 Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetNotes`](#structFRHAPI__KVV1_1a6f418b98db58d45a0d99b3d879f76540)`(FString & OutValue) const` <a id="structFRHAPI__KVV1_1a6f418b98db58d45a0d99b3d879f76540"></a>
+#### `public inline FORCEINLINE bool `[`GetNotes`](#structFRHAPI__KVV1_1a6f08a2def63d24a1a234425881cc3834)`(FString & OutValue) const` <a id="structFRHAPI__KVV1_1a6f08a2def63d24a1a234425881cc3834"></a>
 
 Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetNotesOrNull`](#structFRHAPI__KVV1_1ae3d7519bcecc35542f282e9371cda73b)`()` <a id="structFRHAPI__KVV1_1ae3d7519bcecc35542f282e9371cda73b"></a>
+#### `public inline FORCEINLINE FString * `[`GetNotesOrNull`](#structFRHAPI__KVV1_1ab546b9ed77154c16e49f5130fad29617)`()` <a id="structFRHAPI__KVV1_1ab546b9ed77154c16e49f5130fad29617"></a>
 
 Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetNotesOrNull`](#structFRHAPI__KVV1_1ae07053a7c6028c3847a2f53255df7f63)`() const` <a id="structFRHAPI__KVV1_1ae07053a7c6028c3847a2f53255df7f63"></a>
+#### `public inline FORCEINLINE const FString * `[`GetNotesOrNull`](#structFRHAPI__KVV1_1aedcc505500e222a90532e4518521095d)`() const` <a id="structFRHAPI__KVV1_1aedcc505500e222a90532e4518521095d"></a>
 
 Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetNotes`](#structFRHAPI__KVV1_1ae036966c62919eabae4a3dc8dfb57cfc)`(const FString & NewValue)` <a id="structFRHAPI__KVV1_1ae036966c62919eabae4a3dc8dfb57cfc"></a>
+#### `public inline FORCEINLINE void `[`SetNotes`](#structFRHAPI__KVV1_1a586c545973a5bb53ab85282b2b2b6046)`(const FString & NewValue)` <a id="structFRHAPI__KVV1_1a586c545973a5bb53ab85282b2b2b6046"></a>
 
 Sets the value of Notes_Optional and also sets Notes_IsSet to true.
 
-#### `public inline void `[`SetNotes`](#structFRHAPI__KVV1_1a8cf2a83390b6f97f5ca27e5837c6af20)`(FString && NewValue)` <a id="structFRHAPI__KVV1_1a8cf2a83390b6f97f5ca27e5837c6af20"></a>
+#### `public inline FORCEINLINE void `[`SetNotes`](#structFRHAPI__KVV1_1a5d7c493d12b8ea33d7101d28ba8ee294)`(FString && NewValue)` <a id="structFRHAPI__KVV1_1a5d7c493d12b8ea33d7101d28ba8ee294"></a>
 
 Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics.
 
@@ -154,15 +153,11 @@ Sets the value of Notes_Optional and also sets Notes_IsSet to true using move se
 
 Clears the value of Notes_Optional and sets Notes_IsSet to false.
 
-#### `public inline bool `[`IsNotesSet`](#structFRHAPI__KVV1_1ad508a91f34e21b50eb7ffb3941f71bf6)`() const` <a id="structFRHAPI__KVV1_1ad508a91f34e21b50eb7ffb3941f71bf6"></a>
-
-Checks whether Notes_Optional has been set.
-
-#### `public inline void `[`SetNotesToNull`](#structFRHAPI__KVV1_1a8f5d46c72646c6b7d956d431868428f7)`()` <a id="structFRHAPI__KVV1_1a8f5d46c72646c6b7d956d431868428f7"></a>
+#### `public inline FORCEINLINE void `[`SetNotesToNull`](#structFRHAPI__KVV1_1ac3357946889b9088d6945fa2f4afefe8)`()` <a id="structFRHAPI__KVV1_1ac3357946889b9088d6945fa2f4afefe8"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsNotesNull`](#structFRHAPI__KVV1_1ad39f6f297acf47d794702089280bc7c4)`() const` <a id="structFRHAPI__KVV1_1ad39f6f297acf47d794702089280bc7c4"></a>
+#### `public inline FORCEINLINE bool `[`IsNotesNull`](#structFRHAPI__KVV1_1a526f8b314f5fc77bc8a103df24760071)`() const` <a id="structFRHAPI__KVV1_1a526f8b314f5fc77bc8a103df24760071"></a>
 
 Checks whether Notes_Optional is set to null.
 

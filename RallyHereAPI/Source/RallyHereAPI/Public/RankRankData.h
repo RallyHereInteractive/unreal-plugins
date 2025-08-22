@@ -43,25 +43,25 @@ struct RALLYHEREAPI_API FRHAPI_RankRankData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Mu{  };
 	/** @brief Gets the value of Mu */
-	float& GetMu() { return Mu; }
+	FORCEINLINE float& GetMu() { return Mu; }
 	/** @brief Gets the value of Mu */
-	const float& GetMu() const { return Mu; }
+	FORCEINLINE const float& GetMu() const { return Mu; }
 	/** @brief Sets the value of Mu */
-	void SetMu(const float& NewValue) { Mu = NewValue;   }
+	FORCEINLINE void SetMu(const float& NewValue) { Mu = NewValue;   }
 	/** @brief Sets the value of Mu using move semantics */
-	void SetMu(float&& NewValue) { Mu = NewValue;   }
+	FORCEINLINE void SetMu(float&& NewValue) { Mu = NewValue;   }
 
 	/** @brief A measure of how confident we are in the perceived skill (high sigma means low confidence) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Sigma{  };
 	/** @brief Gets the value of Sigma */
-	float& GetSigma() { return Sigma; }
+	FORCEINLINE float& GetSigma() { return Sigma; }
 	/** @brief Gets the value of Sigma */
-	const float& GetSigma() const { return Sigma; }
+	FORCEINLINE const float& GetSigma() const { return Sigma; }
 	/** @brief Sets the value of Sigma */
-	void SetSigma(const float& NewValue) { Sigma = NewValue;   }
+	FORCEINLINE void SetSigma(const float& NewValue) { Sigma = NewValue;   }
 	/** @brief Sets the value of Sigma using move semantics */
-	void SetSigma(float&& NewValue) { Sigma = NewValue;   }
+	FORCEINLINE void SetSigma(float&& NewValue) { Sigma = NewValue;   }
 
 	/** @brief Custom key-value player rank data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -70,25 +70,23 @@ struct RALLYHEREAPI_API FRHAPI_RankRankData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -97,25 +95,23 @@ struct RALLYHEREAPI_API FRHAPI_RankRankData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LastUpdatedDatetime_IsSet{ false };
 	/** @brief Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set */
-	FDateTime& GetLastUpdatedDatetime() { return LastUpdatedDatetime_Optional; }
+	FORCEINLINE FDateTime& GetLastUpdatedDatetime() { return LastUpdatedDatetime_Optional; }
 	/** @brief Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set */
-	const FDateTime& GetLastUpdatedDatetime() const { return LastUpdatedDatetime_Optional; }
+	FORCEINLINE const FDateTime& GetLastUpdatedDatetime() const { return LastUpdatedDatetime_Optional; }
 	/** @brief Gets the value of LastUpdatedDatetime_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetLastUpdatedDatetime(const FDateTime& DefaultValue) const { if (LastUpdatedDatetime_IsSet) return LastUpdatedDatetime_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetLastUpdatedDatetime(const FDateTime& DefaultValue) const { if (LastUpdatedDatetime_IsSet) return LastUpdatedDatetime_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of LastUpdatedDatetime_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLastUpdatedDatetime(FDateTime& OutValue) const { if (LastUpdatedDatetime_IsSet) OutValue = LastUpdatedDatetime_Optional; return LastUpdatedDatetime_IsSet; }
+	FORCEINLINE bool GetLastUpdatedDatetime(FDateTime& OutValue) const { if (LastUpdatedDatetime_IsSet) OutValue = LastUpdatedDatetime_Optional; return LastUpdatedDatetime_IsSet; }
 	/** @brief Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetLastUpdatedDatetimeOrNull() { if (LastUpdatedDatetime_IsSet) return (&LastUpdatedDatetime_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetLastUpdatedDatetimeOrNull() { if (LastUpdatedDatetime_IsSet) return (&LastUpdatedDatetime_Optional); return nullptr; }
 	/** @brief Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetLastUpdatedDatetimeOrNull() const { if (LastUpdatedDatetime_IsSet) return (&LastUpdatedDatetime_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetLastUpdatedDatetimeOrNull() const { if (LastUpdatedDatetime_IsSet) return (&LastUpdatedDatetime_Optional); return nullptr; }
 	/** @brief Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true */
-	void SetLastUpdatedDatetime(const FDateTime& NewValue) { LastUpdatedDatetime_Optional = NewValue; LastUpdatedDatetime_IsSet = true;  }
+	FORCEINLINE void SetLastUpdatedDatetime(const FDateTime& NewValue) { LastUpdatedDatetime_Optional = NewValue; LastUpdatedDatetime_IsSet = true;  }
 	/** @brief Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true using move semantics */
-	void SetLastUpdatedDatetime(FDateTime&& NewValue) { LastUpdatedDatetime_Optional = NewValue; LastUpdatedDatetime_IsSet = true;  }
+	FORCEINLINE void SetLastUpdatedDatetime(FDateTime&& NewValue) { LastUpdatedDatetime_Optional = NewValue; LastUpdatedDatetime_IsSet = true;  }
 	/** @brief Clears the value of LastUpdatedDatetime_Optional and sets LastUpdatedDatetime_IsSet to false */
 	void ClearLastUpdatedDatetime() { LastUpdatedDatetime_IsSet = false;  }
-	/** @brief Checks whether LastUpdatedDatetime_Optional has been set */
-	bool IsLastUpdatedDatetimeSet() const { return LastUpdatedDatetime_IsSet; }
 };
 
 /** @} */

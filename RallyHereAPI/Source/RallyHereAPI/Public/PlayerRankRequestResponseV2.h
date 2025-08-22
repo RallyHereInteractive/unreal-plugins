@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerRankRequestResponseV2 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PlayerRankResponseV2> PlayerRanks{  };
 	/** @brief Gets the value of PlayerRanks */
-	TArray<FRHAPI_PlayerRankResponseV2>& GetPlayerRanks() { return PlayerRanks; }
+	FORCEINLINE TArray<FRHAPI_PlayerRankResponseV2>& GetPlayerRanks() { return PlayerRanks; }
 	/** @brief Gets the value of PlayerRanks */
-	const TArray<FRHAPI_PlayerRankResponseV2>& GetPlayerRanks() const { return PlayerRanks; }
+	FORCEINLINE const TArray<FRHAPI_PlayerRankResponseV2>& GetPlayerRanks() const { return PlayerRanks; }
 	/** @brief Sets the value of PlayerRanks */
-	void SetPlayerRanks(const TArray<FRHAPI_PlayerRankResponseV2>& NewValue) { PlayerRanks = NewValue;   }
+	FORCEINLINE void SetPlayerRanks(const TArray<FRHAPI_PlayerRankResponseV2>& NewValue) { PlayerRanks = NewValue;   }
 	/** @brief Sets the value of PlayerRanks using move semantics */
-	void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponseV2>&& NewValue) { PlayerRanks = NewValue;   }
+	FORCEINLINE void SetPlayerRanks(TArray<FRHAPI_PlayerRankResponseV2>&& NewValue) { PlayerRanks = NewValue;   }
 };
 
 /** @} */

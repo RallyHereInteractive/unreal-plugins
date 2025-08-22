@@ -18,6 +18,9 @@ title: Match
 `public  `[`DECLARE_DYNAMIC_DELEGATE_ThreeParams`](#group__Match_1ga92b4d9fb42e1e8fed8edf6794eefd15f)`(FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate,bool,bSuccess,const `[`FRHAPI_MatchPlayerWithMatch`](RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,Match,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &,ErrorInfo)`            | 
 `public  `[`DECLARE_DELEGATE_ThreeParams`](#group__Match_1ga15de38ee827d4b11f3b5f121c40ce77f)`(FRH_OnMatchPlayerUpdateCompleteDelegate,bool,const `[`FRHAPI_MatchPlayerWithMatch`](RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)`            | 
 `public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1gadb89201c5ff064ef71a8fddb770c9343)`(FRH_OnMatchPlayerUpdateCompleteDelegateBlock,FRH_OnMatchPlayerUpdateCompleteDelegate,FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate,bool,const `[`FRHAPI_MatchPlayerWithMatch`](RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)`            | 
+`public  `[`DECLARE_DYNAMIC_DELEGATE_ThreeParams`](#group__Match_1ga04a21a3b42677fc86291f65524560474)`(FRH_OnMatchTimelineReceivedDynamicDelegate,bool,bSuccess,const `[`FRHAPI_MatchTimelinePage`](RHAPI_MatchTimelinePage.md#structFRHAPI__MatchTimelinePage)` &,Match,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &,ErrorInfo)`            | 
+`public  `[`DECLARE_DELEGATE_ThreeParams`](#group__Match_1gaf7a56670ce93795ec3f858961c24d29f)`(FRH_OnMatchTimelineReceivedDelegate,bool,const `[`FRHAPI_MatchTimelinePage`](RHAPI_MatchTimelinePage.md#structFRHAPI__MatchTimelinePage)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)`            | 
+`public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1ga9c3e853f13c74f5bf0dfb9effaae1ec7)`(FRH_OnMatchTimelineReceivedDelegateBlock,FRH_OnMatchTimelineReceivedDelegate,FRH_OnMatchTimelineReceivedDynamicDelegate,bool,const `[`FRHAPI_MatchTimelinePage`](RHAPI_MatchTimelinePage.md#structFRHAPI__MatchTimelinePage)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)`            | 
 `class `[`URH_MatchSubsystem`](#classURH__MatchSubsystem) | Match Subsystem used for match API calls.
 `struct `[`FRH_MatchSearchParams`](#structFRH__MatchSearchParams) | 
 `struct `[`FRH_MatchSearchResult`](#structFRH__MatchSearchResult) | Struct containint the results of a Session Browser search.
@@ -48,6 +51,12 @@ title: Match
 
 #### `public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1gadb89201c5ff064ef71a8fddb770c9343)`(FRH_OnMatchPlayerUpdateCompleteDelegateBlock,FRH_OnMatchPlayerUpdateCompleteDelegate,FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate,bool,const `[`FRHAPI_MatchPlayerWithMatch`](RHAPI_MatchPlayerWithMatch.md#structFRHAPI__MatchPlayerWithMatch)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)` <a id="group__Match_1gadb89201c5ff064ef71a8fddb770c9343"></a>
 
+#### `public  `[`DECLARE_DYNAMIC_DELEGATE_ThreeParams`](#group__Match_1ga04a21a3b42677fc86291f65524560474)`(FRH_OnMatchTimelineReceivedDynamicDelegate,bool,bSuccess,const `[`FRHAPI_MatchTimelinePage`](RHAPI_MatchTimelinePage.md#structFRHAPI__MatchTimelinePage)` &,Match,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &,ErrorInfo)` <a id="group__Match_1ga04a21a3b42677fc86291f65524560474"></a>
+
+#### `public  `[`DECLARE_DELEGATE_ThreeParams`](#group__Match_1gaf7a56670ce93795ec3f858961c24d29f)`(FRH_OnMatchTimelineReceivedDelegate,bool,const `[`FRHAPI_MatchTimelinePage`](RHAPI_MatchTimelinePage.md#structFRHAPI__MatchTimelinePage)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)` <a id="group__Match_1gaf7a56670ce93795ec3f858961c24d29f"></a>
+
+#### `public  `[`DECLARE_RH_DELEGATE_BLOCK`](#group__Match_1ga9c3e853f13c74f5bf0dfb9effaae1ec7)`(FRH_OnMatchTimelineReceivedDelegateBlock,FRH_OnMatchTimelineReceivedDelegate,FRH_OnMatchTimelineReceivedDynamicDelegate,bool,const `[`FRHAPI_MatchTimelinePage`](RHAPI_MatchTimelinePage.md#structFRHAPI__MatchTimelinePage)` &,const `[`FRH_ErrorInfo`](Common.md#structFRH__ErrorInfo)` &)` <a id="group__Match_1ga9c3e853f13c74f5bf0dfb9effaae1ec7"></a>
+
 ## class `URH_MatchSubsystem` <a id="classURH__MatchSubsystem"></a>
 
 ```
@@ -74,6 +83,9 @@ Match Subsystem used for match API calls.
 `public virtual void `[`UpdateMatch`](#classURH__MatchSubsystem_1a3300d745ccd6c04a28a76895dfd7a6fd)`(const FString & MatchId,const `[`FRHAPI_MatchRequest`](RHAPI_MatchRequest.md#structFRHAPI__MatchRequest)` & Match,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a match (PATCH w/ UPSERT)
 `public virtual void `[`UpdateMatchPlayer`](#classURH__MatchSubsystem_1a920e474a59dcdd94bc07bf58fc71f710)`(const FString & MatchId,const FGuid & PlayerId,const `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` & Player,const FRH_OnMatchPlayerUpdateCompleteDelegateBlock & Delegate)` | Update a player in a match (PATCH w/ UPSERT)
 `public virtual void `[`UpdateMatchSegment`](#classURH__MatchSubsystem_1af480a4bdb8be3d1ae88ffe0b0e888510)`(const FString & MatchId,const FString & SegmentId,const `[`FRHAPI_MatchSegmentPatchRequest`](RHAPI_MatchSegmentPatchRequest.md#structFRHAPI__MatchSegmentPatchRequest)` & Segment,const FRH_OnMatchUpdateCompleteDelegateBlock & Delegate)` | Update a specific match segment (PATCH w/ UPSERT)
+`public virtual void `[`GetMatchTimelinePage`](#classURH__MatchSubsystem_1ad99cb2ab98872018e7547b9597f2ee9f)`(const FString & MatchId,FString Cursor,const FRH_OnMatchTimelineReceivedDelegateBlock & Delegate)` | Get the match timeline for a match.
+`public virtual void `[`UploadMatchTimeline`](#classURH__MatchSubsystem_1a1c762c9ce4b466e4c7632864bb376aac)`(const FString & MatchId,`[`FRHAPI_MatchTimeline`](RHAPI_MatchTimeline.md#structFRHAPI__MatchTimeline)` MatchTimeline,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Upload a match timeline.
+`public virtual void `[`UploadMatchTimelineFromFile`](#classURH__MatchSubsystem_1a3a776dfb7e4e7dd6a987d5aefc42ba28)`(const FString MatchId,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Upload a match timeline from a file.
 `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) | 
 `protected TOptional< FString > `[`ActiveMatchId`](#classURH__MatchSubsystem_1aa6948be8c609b94e612435f7b0767e7b) | The last match created with bSetActive = true, for ease of use.
 
@@ -165,6 +177,18 @@ Update a specific match segment (PATCH w/ UPSERT)
 * `Segment` The segment data to update 
 
 * `Delegate` Callback with the results of the match update
+
+#### `public virtual void `[`GetMatchTimelinePage`](#classURH__MatchSubsystem_1ad99cb2ab98872018e7547b9597f2ee9f)`(const FString & MatchId,FString Cursor,const FRH_OnMatchTimelineReceivedDelegateBlock & Delegate)` <a id="classURH__MatchSubsystem_1ad99cb2ab98872018e7547b9597f2ee9f"></a>
+
+Get the match timeline for a match.
+
+#### `public virtual void `[`UploadMatchTimeline`](#classURH__MatchSubsystem_1a1c762c9ce4b466e4c7632864bb376aac)`(const FString & MatchId,`[`FRHAPI_MatchTimeline`](RHAPI_MatchTimeline.md#structFRHAPI__MatchTimeline)` MatchTimeline,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__MatchSubsystem_1a1c762c9ce4b466e4c7632864bb376aac"></a>
+
+Upload a match timeline.
+
+#### `public virtual void `[`UploadMatchTimelineFromFile`](#classURH__MatchSubsystem_1a3a776dfb7e4e7dd6a987d5aefc42ba28)`(const FString MatchId,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__MatchSubsystem_1a3a776dfb7e4e7dd6a987d5aefc42ba28"></a>
+
+Upload a match timeline from a file.
 
 #### `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) <a id="classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a"></a>
 

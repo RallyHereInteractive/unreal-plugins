@@ -34,68 +34,63 @@ struct FRHAPI_TicketData
 `public bool `[`QueuedSessionId_IsSet`](#structFRHAPI__TicketData_1a137d40b189749479d57f3d560fa8a93c) | true if QueuedSessionId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__TicketData_1aa6543a65f2b9581b045757d92831a62a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__TicketData_1a9cd3c53afe8fb05319a3927992d4fa1e)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetTicketId`](#structFRHAPI__TicketData_1a9822bbe67bc5e4aaa140902d43e72c4d)`()` | Gets the value of TicketId.
-`public inline const FString & `[`GetTicketId`](#structFRHAPI__TicketData_1aec0cf169d5d2ff33417f5911655a2d5e)`() const` | Gets the value of TicketId.
-`public inline void `[`SetTicketId`](#structFRHAPI__TicketData_1ad022952990863743fb0b10638467c51d)`(const FString & NewValue)` | Sets the value of TicketId.
-`public inline void `[`SetTicketId`](#structFRHAPI__TicketData_1abc2fc4a75522c49964d4d70c03ccba4e)`(FString && NewValue)` | Sets the value of TicketId using move semantics.
-`public inline TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1aea341ed88f86fb8a764b69781adb48fa)`()` | Gets the value of PlayerUuids_Optional, regardless of it having been set.
-`public inline const TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a32851eb55d8f957e3dd29f9b419dca54)`() const` | Gets the value of PlayerUuids_Optional, regardless of it having been set.
-`public inline const TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a969832b30b6d26af7f71dca729df2636)`(const TArray< FGuid > & DefaultValue) const` | Gets the value of PlayerUuids_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a5f081c485fc887c538accb47743330f7)`(TArray< FGuid > & OutValue) const` | Fills OutValue with the value of PlayerUuids_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< FGuid > * `[`GetPlayerUuidsOrNull`](#structFRHAPI__TicketData_1a04ac215bb50cae7cb6eee4df06195be8)`()` | Returns a pointer to PlayerUuids_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< FGuid > * `[`GetPlayerUuidsOrNull`](#structFRHAPI__TicketData_1a908c0d1ad18f92e404a4fce1dab6b587)`() const` | Returns a pointer to PlayerUuids_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerUuids`](#structFRHAPI__TicketData_1ac65aa40a94dbdb877e401f43290ca5ce)`(const TArray< FGuid > & NewValue)` | Sets the value of PlayerUuids_Optional and also sets PlayerUuids_IsSet to true.
-`public inline void `[`SetPlayerUuids`](#structFRHAPI__TicketData_1a92f2d97394395c91b70a4257cbf8a158)`(TArray< FGuid > && NewValue)` | Sets the value of PlayerUuids_Optional and also sets PlayerUuids_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetTicketId`](#structFRHAPI__TicketData_1abf3f112bfca744de4ef2c871ac4df627)`()` | Gets the value of TicketId.
+`public inline FORCEINLINE const FString & `[`GetTicketId`](#structFRHAPI__TicketData_1a902385a83e15027342740c4ced6563a2)`() const` | Gets the value of TicketId.
+`public inline FORCEINLINE void `[`SetTicketId`](#structFRHAPI__TicketData_1a744e5f87525dfbd86528b9250c8a9412)`(const FString & NewValue)` | Sets the value of TicketId.
+`public inline FORCEINLINE void `[`SetTicketId`](#structFRHAPI__TicketData_1a45b41dc7d2e679db3915ed0dfb2780bc)`(FString && NewValue)` | Sets the value of TicketId using move semantics.
+`public inline FORCEINLINE TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a3a96d0fefe0ecd6300217b3b8ec5bffb)`()` | Gets the value of PlayerUuids_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a9b6e5efb82802ddae61ec98d71c51e3b)`() const` | Gets the value of PlayerUuids_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a4a9a07ebed38fca140e29c7c7d1841f2)`(const TArray< FGuid > & DefaultValue) const` | Gets the value of PlayerUuids_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayerUuids`](#structFRHAPI__TicketData_1ac09497321705c928260bb09235de7ae4)`(TArray< FGuid > & OutValue) const` | Fills OutValue with the value of PlayerUuids_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< FGuid > * `[`GetPlayerUuidsOrNull`](#structFRHAPI__TicketData_1a7ab71e2c992afb94e181aa44e32cfbaa)`()` | Returns a pointer to PlayerUuids_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< FGuid > * `[`GetPlayerUuidsOrNull`](#structFRHAPI__TicketData_1afb18fbc03ecd78dccb33f061e524d66d)`() const` | Returns a pointer to PlayerUuids_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayerUuids`](#structFRHAPI__TicketData_1a72d3c49791f7a3aa381532a12e725a1d)`(const TArray< FGuid > & NewValue)` | Sets the value of PlayerUuids_Optional and also sets PlayerUuids_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayerUuids`](#structFRHAPI__TicketData_1aaeb7664e505f3a75fbb6ab3609bf7ea1)`(TArray< FGuid > && NewValue)` | Sets the value of PlayerUuids_Optional and also sets PlayerUuids_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerUuids`](#structFRHAPI__TicketData_1a4c8e331e0797c90da08892d8a2567a4e)`()` | Clears the value of PlayerUuids_Optional and sets PlayerUuids_IsSet to false.
-`public inline bool `[`IsPlayerUuidsSet`](#structFRHAPI__TicketData_1a860027fd7dd3ea71ead538a40e7965f3)`() const` | Checks whether PlayerUuids_Optional has been set.
-`public inline FDateTime & `[`GetQueueJoinDatetime`](#structFRHAPI__TicketData_1a036d8a424abb288183f9cb882295dbfe)`()` | Gets the value of QueueJoinDatetime.
-`public inline const FDateTime & `[`GetQueueJoinDatetime`](#structFRHAPI__TicketData_1a1270640284cdc6329104130d587a6fc1)`() const` | Gets the value of QueueJoinDatetime.
-`public inline void `[`SetQueueJoinDatetime`](#structFRHAPI__TicketData_1a0f052f92f2539f329fe18d1e8b7170aa)`(const FDateTime & NewValue)` | Sets the value of QueueJoinDatetime.
-`public inline void `[`SetQueueJoinDatetime`](#structFRHAPI__TicketData_1affde6098253c802f13ab8bc4f44e3078)`(FDateTime && NewValue)` | Sets the value of QueueJoinDatetime using move semantics.
-`public inline FString & `[`GetRegionId`](#structFRHAPI__TicketData_1ac99bc42e253775de2108d9d45b0216af)`()` | Gets the value of RegionId.
-`public inline const FString & `[`GetRegionId`](#structFRHAPI__TicketData_1a80d3c7c1ba9a19cdba2c31491ec4a5a1)`() const` | Gets the value of RegionId.
-`public inline void `[`SetRegionId`](#structFRHAPI__TicketData_1ac2c50d01701f5b01ec952d3bb77bbec5)`(const FString & NewValue)` | Sets the value of RegionId.
-`public inline void `[`SetRegionId`](#structFRHAPI__TicketData_1a23f748965b9c6d01b09308956cb6632c)`(FString && NewValue)` | Sets the value of RegionId using move semantics.
-`public inline FString & `[`GetQueueId`](#structFRHAPI__TicketData_1a6279551dc30aac029d9d80a911968c1e)`()` | Gets the value of QueueId.
-`public inline const FString & `[`GetQueueId`](#structFRHAPI__TicketData_1a020b7e7cb0ec816cce5764d246907c87)`() const` | Gets the value of QueueId.
-`public inline void `[`SetQueueId`](#structFRHAPI__TicketData_1a4a3855f70d1edec15f2c46d1dd93fe8e)`(const FString & NewValue)` | Sets the value of QueueId.
-`public inline void `[`SetQueueId`](#structFRHAPI__TicketData_1a962bfefb038f5e88e23d9b58fcaa7ccd)`(FString && NewValue)` | Sets the value of QueueId using move semantics.
-`public inline TArray< FString > & `[`GetProfileIds`](#structFRHAPI__TicketData_1a46770f187eeb6227023765061c0190c2)`()` | Gets the value of ProfileIds.
-`public inline const TArray< FString > & `[`GetProfileIds`](#structFRHAPI__TicketData_1ae8a7e96cc89adcb337d59fd318096d75)`() const` | Gets the value of ProfileIds.
-`public inline void `[`SetProfileIds`](#structFRHAPI__TicketData_1a7681350c2261715ef9ecdd06eaa3fb43)`(const TArray< FString > & NewValue)` | Sets the value of ProfileIds.
-`public inline void `[`SetProfileIds`](#structFRHAPI__TicketData_1af206b53fac415618ebe093579dde0d43)`(TArray< FString > && NewValue)` | Sets the value of ProfileIds using move semantics.
-`public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a5d4b7bd6353c02a3ced05312140c1660)`()` | Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a1a823d83cd4bd0a4391fb184255698a0)`() const` | Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a25b1277b428ebbd5bb576e7c32b962d6)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` | Gets the value of AdditionalJoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a8071007bbfc9ae07d1295f44f1a29c8e)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` | Fills OutValue with the value of AdditionalJoinParams_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__TicketData_1a57133f77bb0fc56ddaf67ed93eb4276d)`()` | Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__TicketData_1a133fc706a083ba31f7e1a4677e696f83)`() const` | Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__TicketData_1a2a3cb2694b0c3cb779df661ec870dc16)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
-`public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__TicketData_1af4b12b9638903673660952f8782b2804)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetQueueJoinDatetime`](#structFRHAPI__TicketData_1ac92f94a2ab84e20e5a7c5f3a992461aa)`()` | Gets the value of QueueJoinDatetime.
+`public inline FORCEINLINE const FDateTime & `[`GetQueueJoinDatetime`](#structFRHAPI__TicketData_1a82105bb2b85d196c8ef8f49c2643ea21)`() const` | Gets the value of QueueJoinDatetime.
+`public inline FORCEINLINE void `[`SetQueueJoinDatetime`](#structFRHAPI__TicketData_1ae5c6e7cacdd358f86dc78a022a1af284)`(const FDateTime & NewValue)` | Sets the value of QueueJoinDatetime.
+`public inline FORCEINLINE void `[`SetQueueJoinDatetime`](#structFRHAPI__TicketData_1a2f03135b02f53828ca001c678c9ad170)`(FDateTime && NewValue)` | Sets the value of QueueJoinDatetime using move semantics.
+`public inline FORCEINLINE FString & `[`GetRegionId`](#structFRHAPI__TicketData_1ae7e7d1d9519b9c15e6f36edc74ec7969)`()` | Gets the value of RegionId.
+`public inline FORCEINLINE const FString & `[`GetRegionId`](#structFRHAPI__TicketData_1a942660703647b9e1ee5d3e10477f3c8f)`() const` | Gets the value of RegionId.
+`public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__TicketData_1a7f4aca38f4af0628dc5ae5485301a706)`(const FString & NewValue)` | Sets the value of RegionId.
+`public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__TicketData_1a39a2d29daee388a57e964bd629a0b533)`(FString && NewValue)` | Sets the value of RegionId using move semantics.
+`public inline FORCEINLINE FString & `[`GetQueueId`](#structFRHAPI__TicketData_1a90bc4f04aa2bcb22213d354052558d41)`()` | Gets the value of QueueId.
+`public inline FORCEINLINE const FString & `[`GetQueueId`](#structFRHAPI__TicketData_1a07540705f0f106add73b83f5b58ab0f3)`() const` | Gets the value of QueueId.
+`public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__TicketData_1a4bb1951717de19ce8a3ae3afd9148e48)`(const FString & NewValue)` | Sets the value of QueueId.
+`public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__TicketData_1a0d47eceb8f1f6970188337f062fa3d64)`(FString && NewValue)` | Sets the value of QueueId using move semantics.
+`public inline FORCEINLINE TArray< FString > & `[`GetProfileIds`](#structFRHAPI__TicketData_1a669f1b58ef08da176e55fe56ad811e91)`()` | Gets the value of ProfileIds.
+`public inline FORCEINLINE const TArray< FString > & `[`GetProfileIds`](#structFRHAPI__TicketData_1a2d8ff0198a7d84852f9df7f9bda13458)`() const` | Gets the value of ProfileIds.
+`public inline FORCEINLINE void `[`SetProfileIds`](#structFRHAPI__TicketData_1ac0bc340eb8741419a28d2ddda185a1c1)`(const TArray< FString > & NewValue)` | Sets the value of ProfileIds.
+`public inline FORCEINLINE void `[`SetProfileIds`](#structFRHAPI__TicketData_1a54deee05a2d1f760e7931b9d75216167)`(TArray< FString > && NewValue)` | Sets the value of ProfileIds using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a9c6e6d5d34a782d8e53b6c137984bb6a)`()` | Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1adf2937a5f58968737504aa14afdd6432)`() const` | Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a3e9ff114571a434c72ee74b149713ec2)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` | Gets the value of AdditionalJoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a6ab7b598e09a4eb159af50962b58ff26)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` | Fills OutValue with the value of AdditionalJoinParams_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__TicketData_1a6a2a81f7c636785a0dd437e668bb379f)`()` | Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__TicketData_1a33b50ee9ef8e6e0e308ae904f69d5c09)`() const` | Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAdditionalJoinParams`](#structFRHAPI__TicketData_1ac5f8924b4b9ba0501ad945d29c3fa797)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
+`public inline FORCEINLINE void `[`SetAdditionalJoinParams`](#structFRHAPI__TicketData_1a26639017e16011da898bcbce14f1dd06)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` | Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics.
 `public inline void `[`ClearAdditionalJoinParams`](#structFRHAPI__TicketData_1a3e3dea6278f363e3500fd3f7d2024c76)`()` | Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false.
-`public inline bool `[`IsAdditionalJoinParamsSet`](#structFRHAPI__TicketData_1a8988a86891722ebbefb3fd2e8f291004)`() const` | Checks whether AdditionalJoinParams_Optional has been set.
-`public inline TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1a7727b5430fb63279f2f4ea2643b611ea)`()` | Gets the value of RankData_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1a243f8ce14e60d934dbded8d2a2be819c)`() const` | Gets the value of RankData_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1a5aeb9db0e765da5727d37468dc5073c0)`(const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & DefaultValue) const` | Gets the value of RankData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRankData`](#structFRHAPI__TicketData_1a7552d9376e7e7d8d66d6be263db1830d)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & OutValue) const` | Fills OutValue with the value of RankData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > * `[`GetRankDataOrNull`](#structFRHAPI__TicketData_1a8e558d05d3da78cc0e54f90a88c53f18)`()` | Returns a pointer to RankData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > * `[`GetRankDataOrNull`](#structFRHAPI__TicketData_1a30ebd2fd7ada205804cc69daafd76514)`() const` | Returns a pointer to RankData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRankData`](#structFRHAPI__TicketData_1a330b558938eddbbe03230877d6e9e6c1)`(const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & NewValue)` | Sets the value of RankData_Optional and also sets RankData_IsSet to true.
-`public inline void `[`SetRankData`](#structFRHAPI__TicketData_1a8e3dd1e995dcf3256a70c19457a73be4)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > && NewValue)` | Sets the value of RankData_Optional and also sets RankData_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1ab606f1adce67613f30507bbe9f2c3b9f)`()` | Gets the value of RankData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1af6ec7fbb6fa0652e5414a7ca41208be8)`() const` | Gets the value of RankData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1aab93eac51a5faadb0fe92f5f62d65937)`(const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & DefaultValue) const` | Gets the value of RankData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRankData`](#structFRHAPI__TicketData_1a44eaa498dd9600831891480c46426da4)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & OutValue) const` | Fills OutValue with the value of RankData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > * `[`GetRankDataOrNull`](#structFRHAPI__TicketData_1a8981073f6c90b916bf966efa5fad4092)`()` | Returns a pointer to RankData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > * `[`GetRankDataOrNull`](#structFRHAPI__TicketData_1a577e035801d5572496e99d4876e62e3c)`() const` | Returns a pointer to RankData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRankData`](#structFRHAPI__TicketData_1a2a18c536770f8cf55b3f81ca7b6e51ec)`(const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & NewValue)` | Sets the value of RankData_Optional and also sets RankData_IsSet to true.
+`public inline FORCEINLINE void `[`SetRankData`](#structFRHAPI__TicketData_1a824a6837f2f239c60da2bc1a8ef1cd3e)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > && NewValue)` | Sets the value of RankData_Optional and also sets RankData_IsSet to true using move semantics.
 `public inline void `[`ClearRankData`](#structFRHAPI__TicketData_1aad62250fae5049dc81df972209f53d2e)`()` | Clears the value of RankData_Optional and sets RankData_IsSet to false.
-`public inline bool `[`IsRankDataSet`](#structFRHAPI__TicketData_1a4ecd64a81de014c1294365bbb7900c0f)`() const` | Checks whether RankData_Optional has been set.
-`public inline FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a06f78cb96640d9dcec634feaebb216dc)`()` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1ab367e5406a0803acadbe1c42ddc213ee)`() const` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a5d0fb5baf7e8e77a963e0363a87b1062)`(const FString & DefaultValue) const` | Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1aba0e368bf8363c41232d30baf76dce18)`(FString & OutValue) const` | Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a30786cc7442967bf661c47f6632cd3c9)`()` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a855c6438f7aac58a90bd53bfe13a8a13)`() const` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1ac203aa679a9bbef2b6850c524311857f)`(const FString & NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
-`public inline void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1a5564873032c79a94edde88ad045cdbf4)`(FString && NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1ac23ea4541cff37fd85accb7fd725f8d3)`()` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a2d3c71087e17fa64a4a808255ed560be)`() const` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a6c2cf5a7ef0aa15e9cba9205933a09a7)`(const FString & DefaultValue) const` | Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a8e6b0a198697d634988aca8e3e67a312)`(FString & OutValue) const` | Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a67923d89a11671163a58a9d47f078d31)`()` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a70f1d7507340bf0b2081573d96c41bb9)`() const` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1a36cd86a44fc58a750384bd855e0460b4)`(const FString & NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
+`public inline FORCEINLINE void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1ad6932f715603d812a404f413c9f4ec1a)`(FString && NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
 `public inline void `[`ClearQueuedSessionId`](#structFRHAPI__TicketData_1a28326f3b13bb54b7eeded642f5bde64b)`()` | Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false.
-`public inline bool `[`IsQueuedSessionIdSet`](#structFRHAPI__TicketData_1a0358ce43ffb1a3e58ff345ed9966a365)`() const` | Checks whether QueuedSessionId_Optional has been set.
-`public inline bool `[`IsQueuedSessionIdDefaultValue`](#structFRHAPI__TicketData_1a1942f27b52ea3c3beb3528986d2fa97b)`() const` | Returns true if QueuedSessionId_Optional is set and matches the default value.
-`public inline void `[`SetQueuedSessionIdToDefault`](#structFRHAPI__TicketData_1aea4cbf70a7b3cf1eed858cdd4c6c6b7d)`()` | Sets the value of QueuedSessionId_Optional to its default and also sets QueuedSessionId_IsSet to true.
+`public inline FORCEINLINE FString `[`GetDefaultValue_QueuedSessionId`](#structFRHAPI__TicketData_1abe406885e79dd347f9fed44f58e2b653)`()` | Returns the default value of QueuedSessionId.
 
 ### Members
 
@@ -168,51 +163,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetTicketId`](#structFRHAPI__TicketData_1a9822bbe67bc5e4aaa140902d43e72c4d)`()` <a id="structFRHAPI__TicketData_1a9822bbe67bc5e4aaa140902d43e72c4d"></a>
+#### `public inline FORCEINLINE FString & `[`GetTicketId`](#structFRHAPI__TicketData_1abf3f112bfca744de4ef2c871ac4df627)`()` <a id="structFRHAPI__TicketData_1abf3f112bfca744de4ef2c871ac4df627"></a>
 
 Gets the value of TicketId.
 
-#### `public inline const FString & `[`GetTicketId`](#structFRHAPI__TicketData_1aec0cf169d5d2ff33417f5911655a2d5e)`() const` <a id="structFRHAPI__TicketData_1aec0cf169d5d2ff33417f5911655a2d5e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTicketId`](#structFRHAPI__TicketData_1a902385a83e15027342740c4ced6563a2)`() const` <a id="structFRHAPI__TicketData_1a902385a83e15027342740c4ced6563a2"></a>
 
 Gets the value of TicketId.
 
-#### `public inline void `[`SetTicketId`](#structFRHAPI__TicketData_1ad022952990863743fb0b10638467c51d)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1ad022952990863743fb0b10638467c51d"></a>
+#### `public inline FORCEINLINE void `[`SetTicketId`](#structFRHAPI__TicketData_1a744e5f87525dfbd86528b9250c8a9412)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1a744e5f87525dfbd86528b9250c8a9412"></a>
 
 Sets the value of TicketId.
 
-#### `public inline void `[`SetTicketId`](#structFRHAPI__TicketData_1abc2fc4a75522c49964d4d70c03ccba4e)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1abc2fc4a75522c49964d4d70c03ccba4e"></a>
+#### `public inline FORCEINLINE void `[`SetTicketId`](#structFRHAPI__TicketData_1a45b41dc7d2e679db3915ed0dfb2780bc)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1a45b41dc7d2e679db3915ed0dfb2780bc"></a>
 
 Sets the value of TicketId using move semantics.
 
-#### `public inline TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1aea341ed88f86fb8a764b69781adb48fa)`()` <a id="structFRHAPI__TicketData_1aea341ed88f86fb8a764b69781adb48fa"></a>
+#### `public inline FORCEINLINE TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a3a96d0fefe0ecd6300217b3b8ec5bffb)`()` <a id="structFRHAPI__TicketData_1a3a96d0fefe0ecd6300217b3b8ec5bffb"></a>
 
 Gets the value of PlayerUuids_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a32851eb55d8f957e3dd29f9b419dca54)`() const` <a id="structFRHAPI__TicketData_1a32851eb55d8f957e3dd29f9b419dca54"></a>
+#### `public inline FORCEINLINE const TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a9b6e5efb82802ddae61ec98d71c51e3b)`() const` <a id="structFRHAPI__TicketData_1a9b6e5efb82802ddae61ec98d71c51e3b"></a>
 
 Gets the value of PlayerUuids_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a969832b30b6d26af7f71dca729df2636)`(const TArray< FGuid > & DefaultValue) const` <a id="structFRHAPI__TicketData_1a969832b30b6d26af7f71dca729df2636"></a>
+#### `public inline FORCEINLINE const TArray< FGuid > & `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a4a9a07ebed38fca140e29c7c7d1841f2)`(const TArray< FGuid > & DefaultValue) const` <a id="structFRHAPI__TicketData_1a4a9a07ebed38fca140e29c7c7d1841f2"></a>
 
 Gets the value of PlayerUuids_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayerUuids`](#structFRHAPI__TicketData_1a5f081c485fc887c538accb47743330f7)`(TArray< FGuid > & OutValue) const` <a id="structFRHAPI__TicketData_1a5f081c485fc887c538accb47743330f7"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayerUuids`](#structFRHAPI__TicketData_1ac09497321705c928260bb09235de7ae4)`(TArray< FGuid > & OutValue) const` <a id="structFRHAPI__TicketData_1ac09497321705c928260bb09235de7ae4"></a>
 
 Fills OutValue with the value of PlayerUuids_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< FGuid > * `[`GetPlayerUuidsOrNull`](#structFRHAPI__TicketData_1a04ac215bb50cae7cb6eee4df06195be8)`()` <a id="structFRHAPI__TicketData_1a04ac215bb50cae7cb6eee4df06195be8"></a>
+#### `public inline FORCEINLINE TArray< FGuid > * `[`GetPlayerUuidsOrNull`](#structFRHAPI__TicketData_1a7ab71e2c992afb94e181aa44e32cfbaa)`()` <a id="structFRHAPI__TicketData_1a7ab71e2c992afb94e181aa44e32cfbaa"></a>
 
 Returns a pointer to PlayerUuids_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< FGuid > * `[`GetPlayerUuidsOrNull`](#structFRHAPI__TicketData_1a908c0d1ad18f92e404a4fce1dab6b587)`() const` <a id="structFRHAPI__TicketData_1a908c0d1ad18f92e404a4fce1dab6b587"></a>
+#### `public inline FORCEINLINE const TArray< FGuid > * `[`GetPlayerUuidsOrNull`](#structFRHAPI__TicketData_1afb18fbc03ecd78dccb33f061e524d66d)`() const` <a id="structFRHAPI__TicketData_1afb18fbc03ecd78dccb33f061e524d66d"></a>
 
 Returns a pointer to PlayerUuids_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerUuids`](#structFRHAPI__TicketData_1ac65aa40a94dbdb877e401f43290ca5ce)`(const TArray< FGuid > & NewValue)` <a id="structFRHAPI__TicketData_1ac65aa40a94dbdb877e401f43290ca5ce"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuids`](#structFRHAPI__TicketData_1a72d3c49791f7a3aa381532a12e725a1d)`(const TArray< FGuid > & NewValue)` <a id="structFRHAPI__TicketData_1a72d3c49791f7a3aa381532a12e725a1d"></a>
 
 Sets the value of PlayerUuids_Optional and also sets PlayerUuids_IsSet to true.
 
-#### `public inline void `[`SetPlayerUuids`](#structFRHAPI__TicketData_1a92f2d97394395c91b70a4257cbf8a158)`(TArray< FGuid > && NewValue)` <a id="structFRHAPI__TicketData_1a92f2d97394395c91b70a4257cbf8a158"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuids`](#structFRHAPI__TicketData_1aaeb7664e505f3a75fbb6ab3609bf7ea1)`(TArray< FGuid > && NewValue)` <a id="structFRHAPI__TicketData_1aaeb7664e505f3a75fbb6ab3609bf7ea1"></a>
 
 Sets the value of PlayerUuids_Optional and also sets PlayerUuids_IsSet to true using move semantics.
 
@@ -220,103 +215,99 @@ Sets the value of PlayerUuids_Optional and also sets PlayerUuids_IsSet to true u
 
 Clears the value of PlayerUuids_Optional and sets PlayerUuids_IsSet to false.
 
-#### `public inline bool `[`IsPlayerUuidsSet`](#structFRHAPI__TicketData_1a860027fd7dd3ea71ead538a40e7965f3)`() const` <a id="structFRHAPI__TicketData_1a860027fd7dd3ea71ead538a40e7965f3"></a>
-
-Checks whether PlayerUuids_Optional has been set.
-
-#### `public inline FDateTime & `[`GetQueueJoinDatetime`](#structFRHAPI__TicketData_1a036d8a424abb288183f9cb882295dbfe)`()` <a id="structFRHAPI__TicketData_1a036d8a424abb288183f9cb882295dbfe"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetQueueJoinDatetime`](#structFRHAPI__TicketData_1ac92f94a2ab84e20e5a7c5f3a992461aa)`()` <a id="structFRHAPI__TicketData_1ac92f94a2ab84e20e5a7c5f3a992461aa"></a>
 
 Gets the value of QueueJoinDatetime.
 
-#### `public inline const FDateTime & `[`GetQueueJoinDatetime`](#structFRHAPI__TicketData_1a1270640284cdc6329104130d587a6fc1)`() const` <a id="structFRHAPI__TicketData_1a1270640284cdc6329104130d587a6fc1"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetQueueJoinDatetime`](#structFRHAPI__TicketData_1a82105bb2b85d196c8ef8f49c2643ea21)`() const` <a id="structFRHAPI__TicketData_1a82105bb2b85d196c8ef8f49c2643ea21"></a>
 
 Gets the value of QueueJoinDatetime.
 
-#### `public inline void `[`SetQueueJoinDatetime`](#structFRHAPI__TicketData_1a0f052f92f2539f329fe18d1e8b7170aa)`(const FDateTime & NewValue)` <a id="structFRHAPI__TicketData_1a0f052f92f2539f329fe18d1e8b7170aa"></a>
+#### `public inline FORCEINLINE void `[`SetQueueJoinDatetime`](#structFRHAPI__TicketData_1ae5c6e7cacdd358f86dc78a022a1af284)`(const FDateTime & NewValue)` <a id="structFRHAPI__TicketData_1ae5c6e7cacdd358f86dc78a022a1af284"></a>
 
 Sets the value of QueueJoinDatetime.
 
-#### `public inline void `[`SetQueueJoinDatetime`](#structFRHAPI__TicketData_1affde6098253c802f13ab8bc4f44e3078)`(FDateTime && NewValue)` <a id="structFRHAPI__TicketData_1affde6098253c802f13ab8bc4f44e3078"></a>
+#### `public inline FORCEINLINE void `[`SetQueueJoinDatetime`](#structFRHAPI__TicketData_1a2f03135b02f53828ca001c678c9ad170)`(FDateTime && NewValue)` <a id="structFRHAPI__TicketData_1a2f03135b02f53828ca001c678c9ad170"></a>
 
 Sets the value of QueueJoinDatetime using move semantics.
 
-#### `public inline FString & `[`GetRegionId`](#structFRHAPI__TicketData_1ac99bc42e253775de2108d9d45b0216af)`()` <a id="structFRHAPI__TicketData_1ac99bc42e253775de2108d9d45b0216af"></a>
+#### `public inline FORCEINLINE FString & `[`GetRegionId`](#structFRHAPI__TicketData_1ae7e7d1d9519b9c15e6f36edc74ec7969)`()` <a id="structFRHAPI__TicketData_1ae7e7d1d9519b9c15e6f36edc74ec7969"></a>
 
 Gets the value of RegionId.
 
-#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__TicketData_1a80d3c7c1ba9a19cdba2c31491ec4a5a1)`() const` <a id="structFRHAPI__TicketData_1a80d3c7c1ba9a19cdba2c31491ec4a5a1"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRegionId`](#structFRHAPI__TicketData_1a942660703647b9e1ee5d3e10477f3c8f)`() const` <a id="structFRHAPI__TicketData_1a942660703647b9e1ee5d3e10477f3c8f"></a>
 
 Gets the value of RegionId.
 
-#### `public inline void `[`SetRegionId`](#structFRHAPI__TicketData_1ac2c50d01701f5b01ec952d3bb77bbec5)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1ac2c50d01701f5b01ec952d3bb77bbec5"></a>
+#### `public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__TicketData_1a7f4aca38f4af0628dc5ae5485301a706)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1a7f4aca38f4af0628dc5ae5485301a706"></a>
 
 Sets the value of RegionId.
 
-#### `public inline void `[`SetRegionId`](#structFRHAPI__TicketData_1a23f748965b9c6d01b09308956cb6632c)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1a23f748965b9c6d01b09308956cb6632c"></a>
+#### `public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__TicketData_1a39a2d29daee388a57e964bd629a0b533)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1a39a2d29daee388a57e964bd629a0b533"></a>
 
 Sets the value of RegionId using move semantics.
 
-#### `public inline FString & `[`GetQueueId`](#structFRHAPI__TicketData_1a6279551dc30aac029d9d80a911968c1e)`()` <a id="structFRHAPI__TicketData_1a6279551dc30aac029d9d80a911968c1e"></a>
+#### `public inline FORCEINLINE FString & `[`GetQueueId`](#structFRHAPI__TicketData_1a90bc4f04aa2bcb22213d354052558d41)`()` <a id="structFRHAPI__TicketData_1a90bc4f04aa2bcb22213d354052558d41"></a>
 
 Gets the value of QueueId.
 
-#### `public inline const FString & `[`GetQueueId`](#structFRHAPI__TicketData_1a020b7e7cb0ec816cce5764d246907c87)`() const` <a id="structFRHAPI__TicketData_1a020b7e7cb0ec816cce5764d246907c87"></a>
+#### `public inline FORCEINLINE const FString & `[`GetQueueId`](#structFRHAPI__TicketData_1a07540705f0f106add73b83f5b58ab0f3)`() const` <a id="structFRHAPI__TicketData_1a07540705f0f106add73b83f5b58ab0f3"></a>
 
 Gets the value of QueueId.
 
-#### `public inline void `[`SetQueueId`](#structFRHAPI__TicketData_1a4a3855f70d1edec15f2c46d1dd93fe8e)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1a4a3855f70d1edec15f2c46d1dd93fe8e"></a>
+#### `public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__TicketData_1a4bb1951717de19ce8a3ae3afd9148e48)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1a4bb1951717de19ce8a3ae3afd9148e48"></a>
 
 Sets the value of QueueId.
 
-#### `public inline void `[`SetQueueId`](#structFRHAPI__TicketData_1a962bfefb038f5e88e23d9b58fcaa7ccd)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1a962bfefb038f5e88e23d9b58fcaa7ccd"></a>
+#### `public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__TicketData_1a0d47eceb8f1f6970188337f062fa3d64)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1a0d47eceb8f1f6970188337f062fa3d64"></a>
 
 Sets the value of QueueId using move semantics.
 
-#### `public inline TArray< FString > & `[`GetProfileIds`](#structFRHAPI__TicketData_1a46770f187eeb6227023765061c0190c2)`()` <a id="structFRHAPI__TicketData_1a46770f187eeb6227023765061c0190c2"></a>
+#### `public inline FORCEINLINE TArray< FString > & `[`GetProfileIds`](#structFRHAPI__TicketData_1a669f1b58ef08da176e55fe56ad811e91)`()` <a id="structFRHAPI__TicketData_1a669f1b58ef08da176e55fe56ad811e91"></a>
 
 Gets the value of ProfileIds.
 
-#### `public inline const TArray< FString > & `[`GetProfileIds`](#structFRHAPI__TicketData_1ae8a7e96cc89adcb337d59fd318096d75)`() const` <a id="structFRHAPI__TicketData_1ae8a7e96cc89adcb337d59fd318096d75"></a>
+#### `public inline FORCEINLINE const TArray< FString > & `[`GetProfileIds`](#structFRHAPI__TicketData_1a2d8ff0198a7d84852f9df7f9bda13458)`() const` <a id="structFRHAPI__TicketData_1a2d8ff0198a7d84852f9df7f9bda13458"></a>
 
 Gets the value of ProfileIds.
 
-#### `public inline void `[`SetProfileIds`](#structFRHAPI__TicketData_1a7681350c2261715ef9ecdd06eaa3fb43)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__TicketData_1a7681350c2261715ef9ecdd06eaa3fb43"></a>
+#### `public inline FORCEINLINE void `[`SetProfileIds`](#structFRHAPI__TicketData_1ac0bc340eb8741419a28d2ddda185a1c1)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__TicketData_1ac0bc340eb8741419a28d2ddda185a1c1"></a>
 
 Sets the value of ProfileIds.
 
-#### `public inline void `[`SetProfileIds`](#structFRHAPI__TicketData_1af206b53fac415618ebe093579dde0d43)`(TArray< FString > && NewValue)` <a id="structFRHAPI__TicketData_1af206b53fac415618ebe093579dde0d43"></a>
+#### `public inline FORCEINLINE void `[`SetProfileIds`](#structFRHAPI__TicketData_1a54deee05a2d1f760e7931b9d75216167)`(TArray< FString > && NewValue)` <a id="structFRHAPI__TicketData_1a54deee05a2d1f760e7931b9d75216167"></a>
 
 Sets the value of ProfileIds using move semantics.
 
-#### `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a5d4b7bd6353c02a3ced05312140c1660)`()` <a id="structFRHAPI__TicketData_1a5d4b7bd6353c02a3ced05312140c1660"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a9c6e6d5d34a782d8e53b6c137984bb6a)`()` <a id="structFRHAPI__TicketData_1a9c6e6d5d34a782d8e53b6c137984bb6a"></a>
 
 Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a1a823d83cd4bd0a4391fb184255698a0)`() const` <a id="structFRHAPI__TicketData_1a1a823d83cd4bd0a4391fb184255698a0"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1adf2937a5f58968737504aa14afdd6432)`() const` <a id="structFRHAPI__TicketData_1adf2937a5f58968737504aa14afdd6432"></a>
 
 Gets the value of AdditionalJoinParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a25b1277b428ebbd5bb576e7c32b962d6)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` <a id="structFRHAPI__TicketData_1a25b1277b428ebbd5bb576e7c32b962d6"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a3e9ff114571a434c72ee74b149713ec2)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` <a id="structFRHAPI__TicketData_1a3e9ff114571a434c72ee74b149713ec2"></a>
 
 Gets the value of AdditionalJoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a8071007bbfc9ae07d1295f44f1a29c8e)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` <a id="structFRHAPI__TicketData_1a8071007bbfc9ae07d1295f44f1a29c8e"></a>
+#### `public inline FORCEINLINE bool `[`GetAdditionalJoinParams`](#structFRHAPI__TicketData_1a6ab7b598e09a4eb159af50962b58ff26)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` <a id="structFRHAPI__TicketData_1a6ab7b598e09a4eb159af50962b58ff26"></a>
 
 Fills OutValue with the value of AdditionalJoinParams_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__TicketData_1a57133f77bb0fc56ddaf67ed93eb4276d)`()` <a id="structFRHAPI__TicketData_1a57133f77bb0fc56ddaf67ed93eb4276d"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__TicketData_1a6a2a81f7c636785a0dd437e668bb379f)`()` <a id="structFRHAPI__TicketData_1a6a2a81f7c636785a0dd437e668bb379f"></a>
 
 Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__TicketData_1a133fc706a083ba31f7e1a4677e696f83)`() const` <a id="structFRHAPI__TicketData_1a133fc706a083ba31f7e1a4677e696f83"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalJoinParamsOrNull`](#structFRHAPI__TicketData_1a33b50ee9ef8e6e0e308ae904f69d5c09)`() const` <a id="structFRHAPI__TicketData_1a33b50ee9ef8e6e0e308ae904f69d5c09"></a>
 
 Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__TicketData_1a2a3cb2694b0c3cb779df661ec870dc16)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` <a id="structFRHAPI__TicketData_1a2a3cb2694b0c3cb779df661ec870dc16"></a>
+#### `public inline FORCEINLINE void `[`SetAdditionalJoinParams`](#structFRHAPI__TicketData_1ac5f8924b4b9ba0501ad945d29c3fa797)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` <a id="structFRHAPI__TicketData_1ac5f8924b4b9ba0501ad945d29c3fa797"></a>
 
 Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true.
 
-#### `public inline void `[`SetAdditionalJoinParams`](#structFRHAPI__TicketData_1af4b12b9638903673660952f8782b2804)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` <a id="structFRHAPI__TicketData_1af4b12b9638903673660952f8782b2804"></a>
+#### `public inline FORCEINLINE void `[`SetAdditionalJoinParams`](#structFRHAPI__TicketData_1a26639017e16011da898bcbce14f1dd06)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` <a id="structFRHAPI__TicketData_1a26639017e16011da898bcbce14f1dd06"></a>
 
 Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics.
 
@@ -324,39 +315,35 @@ Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinPara
 
 Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false.
 
-#### `public inline bool `[`IsAdditionalJoinParamsSet`](#structFRHAPI__TicketData_1a8988a86891722ebbefb3fd2e8f291004)`() const` <a id="structFRHAPI__TicketData_1a8988a86891722ebbefb3fd2e8f291004"></a>
-
-Checks whether AdditionalJoinParams_Optional has been set.
-
-#### `public inline TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1a7727b5430fb63279f2f4ea2643b611ea)`()` <a id="structFRHAPI__TicketData_1a7727b5430fb63279f2f4ea2643b611ea"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1ab606f1adce67613f30507bbe9f2c3b9f)`()` <a id="structFRHAPI__TicketData_1ab606f1adce67613f30507bbe9f2c3b9f"></a>
 
 Gets the value of RankData_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1a243f8ce14e60d934dbded8d2a2be819c)`() const` <a id="structFRHAPI__TicketData_1a243f8ce14e60d934dbded8d2a2be819c"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1af6ec7fbb6fa0652e5414a7ca41208be8)`() const` <a id="structFRHAPI__TicketData_1af6ec7fbb6fa0652e5414a7ca41208be8"></a>
 
 Gets the value of RankData_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1a5aeb9db0e765da5727d37468dc5073c0)`(const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & DefaultValue) const` <a id="structFRHAPI__TicketData_1a5aeb9db0e765da5727d37468dc5073c0"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & `[`GetRankData`](#structFRHAPI__TicketData_1aab93eac51a5faadb0fe92f5f62d65937)`(const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & DefaultValue) const` <a id="structFRHAPI__TicketData_1aab93eac51a5faadb0fe92f5f62d65937"></a>
 
 Gets the value of RankData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRankData`](#structFRHAPI__TicketData_1a7552d9376e7e7d8d66d6be263db1830d)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & OutValue) const` <a id="structFRHAPI__TicketData_1a7552d9376e7e7d8d66d6be263db1830d"></a>
+#### `public inline FORCEINLINE bool `[`GetRankData`](#structFRHAPI__TicketData_1a44eaa498dd9600831891480c46426da4)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & OutValue) const` <a id="structFRHAPI__TicketData_1a44eaa498dd9600831891480c46426da4"></a>
 
 Fills OutValue with the value of RankData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > * `[`GetRankDataOrNull`](#structFRHAPI__TicketData_1a8e558d05d3da78cc0e54f90a88c53f18)`()` <a id="structFRHAPI__TicketData_1a8e558d05d3da78cc0e54f90a88c53f18"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > * `[`GetRankDataOrNull`](#structFRHAPI__TicketData_1a8981073f6c90b916bf966efa5fad4092)`()` <a id="structFRHAPI__TicketData_1a8981073f6c90b916bf966efa5fad4092"></a>
 
 Returns a pointer to RankData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > * `[`GetRankDataOrNull`](#structFRHAPI__TicketData_1a30ebd2fd7ada205804cc69daafd76514)`() const` <a id="structFRHAPI__TicketData_1a30ebd2fd7ada205804cc69daafd76514"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > * `[`GetRankDataOrNull`](#structFRHAPI__TicketData_1a577e035801d5572496e99d4876e62e3c)`() const` <a id="structFRHAPI__TicketData_1a577e035801d5572496e99d4876e62e3c"></a>
 
 Returns a pointer to RankData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRankData`](#structFRHAPI__TicketData_1a330b558938eddbbe03230877d6e9e6c1)`(const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & NewValue)` <a id="structFRHAPI__TicketData_1a330b558938eddbbe03230877d6e9e6c1"></a>
+#### `public inline FORCEINLINE void `[`SetRankData`](#structFRHAPI__TicketData_1a2a18c536770f8cf55b3f81ca7b6e51ec)`(const TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > & NewValue)` <a id="structFRHAPI__TicketData_1a2a18c536770f8cf55b3f81ca7b6e51ec"></a>
 
 Sets the value of RankData_Optional and also sets RankData_IsSet to true.
 
-#### `public inline void `[`SetRankData`](#structFRHAPI__TicketData_1a8e3dd1e995dcf3256a70c19457a73be4)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > && NewValue)` <a id="structFRHAPI__TicketData_1a8e3dd1e995dcf3256a70c19457a73be4"></a>
+#### `public inline FORCEINLINE void `[`SetRankData`](#structFRHAPI__TicketData_1a824a6837f2f239c60da2bc1a8ef1cd3e)`(TArray< `[`FRHAPI_RankData`](RHAPI_RankData.md#structFRHAPI__RankData)` > && NewValue)` <a id="structFRHAPI__TicketData_1a824a6837f2f239c60da2bc1a8ef1cd3e"></a>
 
 Sets the value of RankData_Optional and also sets RankData_IsSet to true using move semantics.
 
@@ -364,39 +351,35 @@ Sets the value of RankData_Optional and also sets RankData_IsSet to true using m
 
 Clears the value of RankData_Optional and sets RankData_IsSet to false.
 
-#### `public inline bool `[`IsRankDataSet`](#structFRHAPI__TicketData_1a4ecd64a81de014c1294365bbb7900c0f)`() const` <a id="structFRHAPI__TicketData_1a4ecd64a81de014c1294365bbb7900c0f"></a>
-
-Checks whether RankData_Optional has been set.
-
-#### `public inline FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a06f78cb96640d9dcec634feaebb216dc)`()` <a id="structFRHAPI__TicketData_1a06f78cb96640d9dcec634feaebb216dc"></a>
+#### `public inline FORCEINLINE FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1ac23ea4541cff37fd85accb7fd725f8d3)`()` <a id="structFRHAPI__TicketData_1ac23ea4541cff37fd85accb7fd725f8d3"></a>
 
 Gets the value of QueuedSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1ab367e5406a0803acadbe1c42ddc213ee)`() const` <a id="structFRHAPI__TicketData_1ab367e5406a0803acadbe1c42ddc213ee"></a>
+#### `public inline FORCEINLINE const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a2d3c71087e17fa64a4a808255ed560be)`() const` <a id="structFRHAPI__TicketData_1a2d3c71087e17fa64a4a808255ed560be"></a>
 
 Gets the value of QueuedSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a5d0fb5baf7e8e77a963e0363a87b1062)`(const FString & DefaultValue) const` <a id="structFRHAPI__TicketData_1a5d0fb5baf7e8e77a963e0363a87b1062"></a>
+#### `public inline FORCEINLINE const FString & `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a6c2cf5a7ef0aa15e9cba9205933a09a7)`(const FString & DefaultValue) const` <a id="structFRHAPI__TicketData_1a6c2cf5a7ef0aa15e9cba9205933a09a7"></a>
 
 Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1aba0e368bf8363c41232d30baf76dce18)`(FString & OutValue) const` <a id="structFRHAPI__TicketData_1aba0e368bf8363c41232d30baf76dce18"></a>
+#### `public inline FORCEINLINE bool `[`GetQueuedSessionId`](#structFRHAPI__TicketData_1a8e6b0a198697d634988aca8e3e67a312)`(FString & OutValue) const` <a id="structFRHAPI__TicketData_1a8e6b0a198697d634988aca8e3e67a312"></a>
 
 Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a30786cc7442967bf661c47f6632cd3c9)`()` <a id="structFRHAPI__TicketData_1a30786cc7442967bf661c47f6632cd3c9"></a>
+#### `public inline FORCEINLINE FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a67923d89a11671163a58a9d47f078d31)`()` <a id="structFRHAPI__TicketData_1a67923d89a11671163a58a9d47f078d31"></a>
 
 Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a855c6438f7aac58a90bd53bfe13a8a13)`() const` <a id="structFRHAPI__TicketData_1a855c6438f7aac58a90bd53bfe13a8a13"></a>
+#### `public inline FORCEINLINE const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__TicketData_1a70f1d7507340bf0b2081573d96c41bb9)`() const` <a id="structFRHAPI__TicketData_1a70f1d7507340bf0b2081573d96c41bb9"></a>
 
 Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1ac203aa679a9bbef2b6850c524311857f)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1ac203aa679a9bbef2b6850c524311857f"></a>
+#### `public inline FORCEINLINE void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1a36cd86a44fc58a750384bd855e0460b4)`(const FString & NewValue)` <a id="structFRHAPI__TicketData_1a36cd86a44fc58a750384bd855e0460b4"></a>
 
 Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
 
-#### `public inline void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1a5564873032c79a94edde88ad045cdbf4)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1a5564873032c79a94edde88ad045cdbf4"></a>
+#### `public inline FORCEINLINE void `[`SetQueuedSessionId`](#structFRHAPI__TicketData_1ad6932f715603d812a404f413c9f4ec1a)`(FString && NewValue)` <a id="structFRHAPI__TicketData_1ad6932f715603d812a404f413c9f4ec1a"></a>
 
 Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
 
@@ -404,15 +387,7 @@ Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet t
 
 Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false.
 
-#### `public inline bool `[`IsQueuedSessionIdSet`](#structFRHAPI__TicketData_1a0358ce43ffb1a3e58ff345ed9966a365)`() const` <a id="structFRHAPI__TicketData_1a0358ce43ffb1a3e58ff345ed9966a365"></a>
+#### `public inline FORCEINLINE FString `[`GetDefaultValue_QueuedSessionId`](#structFRHAPI__TicketData_1abe406885e79dd347f9fed44f58e2b653)`()` <a id="structFRHAPI__TicketData_1abe406885e79dd347f9fed44f58e2b653"></a>
 
-Checks whether QueuedSessionId_Optional has been set.
-
-#### `public inline bool `[`IsQueuedSessionIdDefaultValue`](#structFRHAPI__TicketData_1a1942f27b52ea3c3beb3528986d2fa97b)`() const` <a id="structFRHAPI__TicketData_1a1942f27b52ea3c3beb3528986d2fa97b"></a>
-
-Returns true if QueuedSessionId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetQueuedSessionIdToDefault`](#structFRHAPI__TicketData_1aea4cbf70a7b3cf1eed858cdd4c6c6b7d)`()` <a id="structFRHAPI__TicketData_1aea4cbf70a7b3cf1eed858cdd4c6c6b7d"></a>
-
-Sets the value of QueuedSessionId_Optional to its default and also sets QueuedSessionId_IsSet to true.
+Returns the default value of QueuedSessionId.
 

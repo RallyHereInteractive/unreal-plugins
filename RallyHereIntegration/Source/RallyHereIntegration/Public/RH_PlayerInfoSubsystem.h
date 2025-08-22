@@ -23,6 +23,8 @@
 
 #include "RH_PlayerInfoSubsystem.generated.h"
 
+bool RALLYHEREINTEGRATION_API IsBeyondStaleThreshold(const FDateTime& LastUpdated, const FTimespan& StaleThreshold);
+
 USTRUCT(BlueprintType)
 struct FRH_PlayerSettingsDataWrapper
 {
@@ -52,14 +54,14 @@ DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoGetPlatformsDelegate, bool, const TArra
 DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlatformsBlock, FRH_PlayerInfoGetPlatformsDelegate, FRH_PlayerInfoGetPlatformsDynamicDelegate, bool, const TArray<URH_PlayerPlatformInfo*>&)
 
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerSettingsDynamicDelegate, bool, bSuccess, const FRH_PlayerSettingsDataWrapper&, Response);
-DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerSettingsDelegate, bool, const FRH_PlayerSettingsDataWrapper&);
-DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlayerSettingsBlock, FRH_PlayerInfoGetPlayerSettingsDelegate, FRH_PlayerInfoGetPlayerSettingsDynamicDelegate, bool, const FRH_PlayerSettingsDataWrapper&);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_PlayerInfoGetPlayerSettingsDynamicDelegate, bool, bSuccess, const FRH_PlayerSettingsDataWrapper&, Response, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_PlayerInfoGetPlayerSettingsDelegate, bool, const FRH_PlayerSettingsDataWrapper&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlayerSettingsBlock, FRH_PlayerInfoGetPlayerSettingsDelegate, FRH_PlayerInfoGetPlayerSettingsDynamicDelegate, bool, const FRH_PlayerSettingsDataWrapper&, const FRH_ErrorInfo&);
 
 UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_PlayerInfoSetPlayerSettingsDynamicDelegate, bool, bSuccess, const FRH_PlayerSettingsDataWrapper&, Response);
-DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoSetPlayerSettingsDelegate, bool, const FRH_PlayerSettingsDataWrapper&);
-DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoSetPlayerSettingsBlock, FRH_PlayerInfoSetPlayerSettingsDelegate, FRH_PlayerInfoSetPlayerSettingsDynamicDelegate, bool, const FRH_PlayerSettingsDataWrapper&);
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_PlayerInfoSetPlayerSettingsDynamicDelegate, bool, bSuccess, const FRH_PlayerSettingsDataWrapper&, Response, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_PlayerInfoSetPlayerSettingsDelegate, bool, const FRH_PlayerSettingsDataWrapper&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoSetPlayerSettingsBlock, FRH_PlayerInfoSetPlayerSettingsDelegate, FRH_PlayerInfoSetPlayerSettingsDynamicDelegate, bool, const FRH_PlayerSettingsDataWrapper&, const FRH_ErrorInfo&);
 
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_PlayerInfoSetPlayerSettingDynamicDelegate, bool, bSuccess, const FRH_PlayerSettingsDataWrapper&, UpdatedSettings, const FRH_ErrorInfo&, ErrorInfo);
@@ -80,7 +82,6 @@ UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_PlayerRankResponseV2>&, PlayerRankingInfo);
 DECLARE_DELEGATE_TwoParams(FRH_PlayerInfoGetPlayerRankingsDelegate, bool, const TArray<FRHAPI_PlayerRankResponseV2>&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_PlayerInfoGetPlayerRankingsBlock, FRH_PlayerInfoGetPlayerRankingsDelegate, FRH_PlayerInfoGetPlayerRankingsDynamicDelegate, bool, const TArray<FRHAPI_PlayerRankResponseV2>&)
-
 
 UDELEGATE()
 DECLARE_DYNAMIC_DELEGATE_FourParams(FRH_PlayerInfoGetPlayerReportsDynamicDelegate, bool, bSuccess, const TArray<FRHAPI_PlayerReport>&, PlayerReports, const FString&, Cursor, const FRH_ErrorInfo&, ErrorInfo);
@@ -182,6 +183,8 @@ public:
 		LastUpdated = FDateTime();
 	}
 
+	
+
 	/**
 	* @brief Enqueues an update request for the players information from the RallyHere API.
 	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
@@ -212,6 +215,12 @@ public:
 	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
 	*/
 	virtual void CheckPollStatus(const bool bForceUpdate = false);
+
+	/*
+	 * @brief Is the object considered stale for the purposes of the RequestUpdateIfStale function.  Will always return true if the info hasn't been initialized with the first set of data
+	 * @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
+	 */
+	virtual bool IsStale(const FTimespan& StaleThreshold = FTimespan()) const;
 protected:
 	/**
 	 * @brief Poller for the players matches.
@@ -268,6 +277,52 @@ protected:
 	virtual void ExecuteUpdatedDelegates(bool bSuccess);
 };
 
+USTRUCT(BlueprintType)
+struct RALLYHEREINTEGRATION_API FRH_PlayerPresenceInfo
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	ERHAPI_OnlineStatus Status;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	bool bIsDoNotDisturb;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	FString Message;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	FString Platform;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	FString DisplayName;
+	
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	TMap<FString, FString> CustomData;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	bool Initialized;
+
+	bool operator==(const FRH_PlayerPresenceInfo& Other) const
+	{
+		return Status == Other.Status &&
+			bIsDoNotDisturb == Other.bIsDoNotDisturb &&
+			Message == Other.Message &&
+			Platform == Other.Platform &&
+			DisplayName == Other.DisplayName &&
+			Initialized == Other.Initialized &&
+			CustomData.OrderIndependentCompareEqual(Other.CustomData);
+	}
+	bool operator!=(const FRH_PlayerPresenceInfo& Other) const
+	{
+		return !(*this == Other);
+	}
+};
+
+UDELEGATE()
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FRH_OnPresenceChangedDynamicMulticastDelegate, const FGuid&, PlayerUuid, const FRH_PlayerPresenceInfo&, Before, const FRH_PlayerPresenceInfo&, After);
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRH_OnPresenceChangedMulticastDelegate, const FGuid&, const FRH_PlayerPresenceInfo&, const FRH_PlayerPresenceInfo&);
+
 /**
  * @brief Player Presence class used to store player presence data.
  */
@@ -284,6 +339,11 @@ public:
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
 	ERHAPI_OnlineStatus Status;
+	/**
+	* @brief Do not Disturb status of the player.
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	bool bIsDoNotDisturb;
 	/**
 	* @brief Message set by a player to display on their presence information.
 	*/
@@ -304,8 +364,21 @@ public:
 	*/
 	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
 	TMap<FString, FString> CustomData;
+	/**
+	* @brief Flag to show if the player's presence has been initialized by the API or not
+	*/
+	UPROPERTY(BlueprintReadOnly, Category = "Player Info Subsystem | Player Presence")
+	bool Initialized;
 
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "RH And Platform Friend", meta = (DisplayName = "On Presence Changed"))
+	FRH_OnPresenceChangedDynamicMulticastDelegate BLUEPRINT_OnPresenceChangedDynamicDelegate;
+	
+	FRH_OnPresenceChangedMulticastDelegate OnPresenceChangedDelegate;
 
+    FRH_PlayerPresenceInfo AsInfo() const
+    {
+	    return FRH_PlayerPresenceInfo{Status, bIsDoNotDisturb, Message, Platform, DisplayName, CustomData, Initialized};
+    }
 
 protected:
 	/**
@@ -319,6 +392,7 @@ protected:
 	 */
 	virtual void Update(const GetPresenceType::Response& Other)
 	{
+		const auto Before = AsInfo();
 		UpdateBase(Other);
 		Other.TryGetDefaultHeader_ETag(ETag);
 
@@ -326,11 +400,20 @@ protected:
 		if (Other.TryGetDefaultContent(Presence))
 		{
 			Status = Presence.GetStatus(ERHAPI_OnlineStatus::Offline);
+			bIsDoNotDisturb = Presence.GetDoNotDisturb();
 			Message = Presence.GetMessage(TEXT(""));
 			Platform = Presence.Platform;
 			DisplayName = Presence.DisplayName;
 			CustomData = Presence.GetCustomData(TMap<FString, FString>());
 			PlayerUuid = Presence.PlayerUuid;
+			Initialized = true;
+		}
+
+		const auto After = AsInfo();
+		if (Before != After)
+		{
+			OnPresenceChangedDelegate.Broadcast(PlayerUuid, Before, After);
+			BLUEPRINT_OnPresenceChangedDynamicDelegate.Broadcast(PlayerUuid, Before, After);
 		}
 	}
 };
@@ -947,7 +1030,7 @@ public:
 	* @return The players Platform Id struct.
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Platform Info")
-	virtual FRH_PlayerPlatformId GetPlayerPlatformId() const { return PlayerPlatformId; }
+	virtual const FRH_PlayerPlatformId& GetPlayerPlatformId() const { return PlayerPlatformId; }
 	/**
 	* @brief Gets the Platform Id for the player.
 	* @return The players Platform Unique Id.
@@ -1159,6 +1242,8 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Display Name"))
 	bool BLUEPRINT_GetLastKnownDisplayName(ERHAPI_Platform PreferredPlatformType, FString& OutDisplayName) const { return GetLastKnownDisplayName(OutDisplayName, PreferredPlatformType); }
 
+	bool IsLinkedPlatformInfoStale(const FTimespan& StaleThreshold = FTimespan()) const;
+	
 	/**
 	* @brief Gets the players linked platforms via API call.
 	* @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
@@ -1169,6 +1254,8 @@ public:
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DisplayName = "Get Linked Platform Info", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetLinkedPlatformInfo(const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlatformsDynamicDelegate& Delegate) { GetLinkedPlatformInfo(StaleThreshold, bForceRefresh, Delegate); }
+
+	void AddLinkedPlatformId(const FRH_PlayerPlatformId& PlayerPlatformId) { LinkedPlayerPlatforms.Add(PlayerPlatformId); } //$$ DLF - Force fetch local player's GDK display name
 
 	/**
 	* @brief Gets the players settings information for a given type.

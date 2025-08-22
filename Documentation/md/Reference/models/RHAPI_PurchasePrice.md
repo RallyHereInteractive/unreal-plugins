@@ -35,60 +35,53 @@ The purchase price of an Item.
 `public bool `[`Currencies_IsNull`](#structFRHAPI__PurchasePrice_1add0c99ce76d2abd2baff0d2b2de2282c) | true if Currencies_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PurchasePrice_1a0ff3da398c5aa47aa9fa948c70da562a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PurchasePrice_1a01defa4513f3ad2f6daac36d8a4a0aba)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a0bbad8fb526c795e5ef94e9486732873)`()` | Gets the value of PriceItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1ab07a56ec86108c79ebe61d1c6a2e8ddb)`() const` | Gets the value of PriceItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a79026f16d5ab5fe86b29868c5b42f4d1)`(const int32 & DefaultValue) const` | Gets the value of PriceItemId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a38592831d19b11ef864aab2c87e66cb2)`(int32 & OutValue) const` | Fills OutValue with the value of PriceItemId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PurchasePrice_1ab5b406ab0c1ad7833af4ee527a0cb549)`()` | Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PurchasePrice_1a34720db51374bc9ae7b9eada2839fc57)`() const` | Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPriceItemId`](#structFRHAPI__PurchasePrice_1a576be34260b4bd36199f9fcd8c1eb3c7)`(const int32 & NewValue)` | Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true.
-`public inline void `[`SetPriceItemId`](#structFRHAPI__PurchasePrice_1ab9f07a2a0e33a1afa9f7df20937811a9)`(int32 && NewValue)` | Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a40727548092021688cd448e2756bef0d)`()` | Gets the value of PriceItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1ae38fe1964f38d97fc4ec829a8934ce4c)`() const` | Gets the value of PriceItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a395910a36bbc3e22889dc9aeee88aac3)`(const int32 & DefaultValue) const` | Gets the value of PriceItemId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a822ff69f19cf4acedc65b34b42b26604)`(int32 & OutValue) const` | Fills OutValue with the value of PriceItemId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PurchasePrice_1a3439611cf4d91ba15638b9a95266c054)`()` | Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PurchasePrice_1a06659b7c8d5d7895ffe2fae58f624c78)`() const` | Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PurchasePrice_1aa2c3579a6a3ac320510ad1d55bc1b5ca)`(const int32 & NewValue)` | Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PurchasePrice_1a0d0287f105a9814421d34f4719259232)`(int32 && NewValue)` | Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics.
 `public inline void `[`ClearPriceItemId`](#structFRHAPI__PurchasePrice_1a58f9863a3c3d1b3c5b81e787cf4e0ddc)`()` | Clears the value of PriceItemId_Optional and sets PriceItemId_IsSet to false.
-`public inline bool `[`IsPriceItemIdSet`](#structFRHAPI__PurchasePrice_1aea4f03f31308974f418c09404f1986ac)`() const` | Checks whether PriceItemId_Optional has been set.
-`public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PurchasePrice_1a75bb8c52ba21bf3defe631a5df761e8f)`() const` | Returns true if PriceItemId_Optional is set and matches the default value.
-`public inline void `[`SetPriceItemIdToDefault`](#structFRHAPI__PurchasePrice_1a1850ddc2111274968198f63c0d63e6d7)`()` | Sets the value of PriceItemId_Optional to its default and also sets PriceItemId_IsSet to true.
-`public inline void `[`SetPriceItemIdToNull`](#structFRHAPI__PurchasePrice_1af932101c11e0e8d9b70344c6ab28041e)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPriceItemIdNull`](#structFRHAPI__PurchasePrice_1a9cb93baa58cc12e79edc14935ca764cb)`() const` | Checks whether PriceItemId_Optional is set to null.
-`public inline int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1ae82a232869857df7781f733b6f0e8405)`()` | Gets the value of Price_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1a22f98d9ee805b5b30ce1992f9d2e54b9)`() const` | Gets the value of Price_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1aa693c948a1f28954fe8bec6225d59fa7)`(const int32 & DefaultValue) const` | Gets the value of Price_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPrice`](#structFRHAPI__PurchasePrice_1a9de82033e012e6ec77df26f9e2ac7e20)`(int32 & OutValue) const` | Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetPriceOrNull`](#structFRHAPI__PurchasePrice_1abea1c0312f6f743fd3057ec173942224)`()` | Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetPriceOrNull`](#structFRHAPI__PurchasePrice_1ad7b4b21209e5197d5c99bb23cc234d0a)`() const` | Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPrice`](#structFRHAPI__PurchasePrice_1ac77de08a63edaac744f1bbb757bcb6a4)`(const int32 & NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true.
-`public inline void `[`SetPrice`](#structFRHAPI__PurchasePrice_1a20ca007791351db8a82bf3466286fd77)`(int32 && NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PriceItemId`](#structFRHAPI__PurchasePrice_1ad7318b201cba96376e57ac91a72bb5c6)`()` | Returns the default value of PriceItemId.
+`public inline FORCEINLINE void `[`SetPriceItemIdToNull`](#structFRHAPI__PurchasePrice_1abb59bb27466b1006b04033e72ad6f1be)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPriceItemIdNull`](#structFRHAPI__PurchasePrice_1a4a733617561d61c51458d2d6c07cfd1c)`() const` | Checks whether PriceItemId_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1a7d783244ab9cc5cc35103353fdf3186c)`()` | Gets the value of Price_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1a83287aa416f9fb0b5ee8bb223ea06dcf)`() const` | Gets the value of Price_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1ae819a4873a8f6082a60ed99935c3edf6)`(const int32 & DefaultValue) const` | Gets the value of Price_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPrice`](#structFRHAPI__PurchasePrice_1acb1708833ed875a4d46aa453657f1fe5)`(int32 & OutValue) const` | Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetPriceOrNull`](#structFRHAPI__PurchasePrice_1acce5863cd742a5005b199ec45a6fbd95)`()` | Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetPriceOrNull`](#structFRHAPI__PurchasePrice_1a96abf073731800f5c66aa82941096ce4)`() const` | Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PurchasePrice_1a4bb0df132a7f48a55c5b7c57d98ebe1e)`(const int32 & NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true.
+`public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PurchasePrice_1adf44cafb62d833a84441a3062539a8e8)`(int32 && NewValue)` | Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics.
 `public inline void `[`ClearPrice`](#structFRHAPI__PurchasePrice_1afe42ef65f179daf4a556aa45dac59f26)`()` | Clears the value of Price_Optional and sets Price_IsSet to false.
-`public inline bool `[`IsPriceSet`](#structFRHAPI__PurchasePrice_1ab855164885438d759d81309d52b053dd)`() const` | Checks whether Price_Optional has been set.
-`public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PurchasePrice_1a224a5979e95142cd68db59f9f8075899)`() const` | Returns true if Price_Optional is set and matches the default value.
-`public inline void `[`SetPriceToDefault`](#structFRHAPI__PurchasePrice_1ab939845ed712db2c72b5ba0077ecd812)`()` | Sets the value of Price_Optional to its default and also sets Price_IsSet to true.
-`public inline void `[`SetPriceToNull`](#structFRHAPI__PurchasePrice_1a9e3ad61fe191d7f73406708c18023efa)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPriceNull`](#structFRHAPI__PurchasePrice_1a52e8e22d86ba4a85598cf00cb49a965e)`() const` | Checks whether Price_Optional is set to null.
-`public inline int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1adcdfbcfe42e900d9f75dc912f423db18)`()` | Gets the value of PriceCouponItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a742a7b9bdff50c88ca59504924c3bd4f)`() const` | Gets the value of PriceCouponItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a47df9e5eef0c570ef02337d560694f7d)`(const int32 & DefaultValue) const` | Gets the value of PriceCouponItemId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a85051adee9d0cd3757805c0950498091)`(int32 & OutValue) const` | Fills OutValue with the value of PriceCouponItemId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetPriceCouponItemIdOrNull`](#structFRHAPI__PurchasePrice_1a34af82ae77ab08794c5ad0430440cbec)`()` | Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetPriceCouponItemIdOrNull`](#structFRHAPI__PurchasePrice_1ae6d37883de533dfc6c188d2a293ad858)`() const` | Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a03bccd19cb99f406ae6527a357daedec)`(const int32 & NewValue)` | Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true.
-`public inline void `[`SetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a79bb4b09df74e75102c0a119893828de)`(int32 && NewValue)` | Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Price`](#structFRHAPI__PurchasePrice_1a4d1dc52f909ad189b0c5167b442d5612)`()` | Returns the default value of Price.
+`public inline FORCEINLINE void `[`SetPriceToNull`](#structFRHAPI__PurchasePrice_1a228aecb7fe7ff240f6a662f12892e2ab)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPriceNull`](#structFRHAPI__PurchasePrice_1a3b1fd48dd453517ca14fa1283178b3a9)`() const` | Checks whether Price_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a859c4a34c327847ea2d040f93a40638b)`()` | Gets the value of PriceCouponItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1ac208bf533b7cbdc0682383eca83b56c4)`() const` | Gets the value of PriceCouponItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1aac82f3d3f986f285c96fa344b0c35b94)`(const int32 & DefaultValue) const` | Gets the value of PriceCouponItemId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1ab88a557fa5323b3bb3560691ad714089)`(int32 & OutValue) const` | Fills OutValue with the value of PriceCouponItemId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetPriceCouponItemIdOrNull`](#structFRHAPI__PurchasePrice_1acfe0f2e147efc9c981f45e61be43f2d7)`()` | Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetPriceCouponItemIdOrNull`](#structFRHAPI__PurchasePrice_1a2250c7bbe0c5dbc52c09d71d75e76cee)`() const` | Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1ab9183598a6c6cb03f4bf1ea8e6f83423)`(const int32 & NewValue)` | Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a362fa79e2cfd4cf11624c7c4f0116232)`(int32 && NewValue)` | Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true using move semantics.
 `public inline void `[`ClearPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a00e220ca6dbbe2a39c393dcb93afa873)`()` | Clears the value of PriceCouponItemId_Optional and sets PriceCouponItemId_IsSet to false.
-`public inline bool `[`IsPriceCouponItemIdSet`](#structFRHAPI__PurchasePrice_1a68c11da13099ee91dafacd573c90ea68)`() const` | Checks whether PriceCouponItemId_Optional has been set.
-`public inline bool `[`IsPriceCouponItemIdDefaultValue`](#structFRHAPI__PurchasePrice_1a96c915426f89bd6a468c80e9d6c79440)`() const` | Returns true if PriceCouponItemId_Optional is set and matches the default value.
-`public inline void `[`SetPriceCouponItemIdToDefault`](#structFRHAPI__PurchasePrice_1a8a7053cacb8105cd2efc15a153c3ba78)`()` | Sets the value of PriceCouponItemId_Optional to its default and also sets PriceCouponItemId_IsSet to true.
-`public inline void `[`SetPriceCouponItemIdToNull`](#structFRHAPI__PurchasePrice_1afbd15ae92804edb8a18075e7ac430ae7)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPriceCouponItemIdNull`](#structFRHAPI__PurchasePrice_1a60c3c9af769d95368efd517a9e23b5fa)`() const` | Checks whether PriceCouponItemId_Optional is set to null.
-`public inline TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a75085407be253da11175b776b1b6953c)`()` | Gets the value of Currencies_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a6e98063de4271eaf908d3bfd63c5e680)`() const` | Gets the value of Currencies_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1ae92b849020c4176f2dc11ef122d9a51f)`(const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & DefaultValue) const` | Gets the value of Currencies_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a0c7fd1d2f86beecf5ec7a4b3c03e5b1f)`(TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & OutValue) const` | Fills OutValue with the value of Currencies_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PurchasePrice_1a4259061203baed114e5749e2dcb305db)`()` | Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PurchasePrice_1a8773dfaaf5a5178c6f915f7c1938f057)`() const` | Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCurrencies`](#structFRHAPI__PurchasePrice_1a16651c51e97b10d8670d8cc050eccd03)`(const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & NewValue)` | Sets the value of Currencies_Optional and also sets Currencies_IsSet to true.
-`public inline void `[`SetCurrencies`](#structFRHAPI__PurchasePrice_1aaf899f1478b661e10fe6b234b20534ed)`(TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > && NewValue)` | Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PriceCouponItemId`](#structFRHAPI__PurchasePrice_1a33f14e928c478f0c8d15f51c6c20d9bd)`()` | Returns the default value of PriceCouponItemId.
+`public inline FORCEINLINE void `[`SetPriceCouponItemIdToNull`](#structFRHAPI__PurchasePrice_1a9e7b1733b5aeccd312ea24779c30efb6)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPriceCouponItemIdNull`](#structFRHAPI__PurchasePrice_1ac984795380225afdb9f7e586425e1620)`() const` | Checks whether PriceCouponItemId_Optional is set to null.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a5ab2f63e2c86f933d590bd459d218bd0)`()` | Gets the value of Currencies_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1ab3973d888bf276f3379cfb52eafc65b1)`() const` | Gets the value of Currencies_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1aceb73de628fe6db5b71e04e19a3446f0)`(const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & DefaultValue) const` | Gets the value of Currencies_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a63e4c8c4c8d081b05057fc172811187a)`(TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & OutValue) const` | Fills OutValue with the value of Currencies_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PurchasePrice_1ad0fa66b88d2229ca221e73bfa30eb638)`()` | Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PurchasePrice_1a7a41e6033295bd2f457e1609e560f114)`() const` | Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCurrencies`](#structFRHAPI__PurchasePrice_1a6508498523fb6f49ce8692b8e77a2079)`(const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & NewValue)` | Sets the value of Currencies_Optional and also sets Currencies_IsSet to true.
+`public inline FORCEINLINE void `[`SetCurrencies`](#structFRHAPI__PurchasePrice_1a89b8c6ad525a14c69a35a7710ad51723)`(TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > && NewValue)` | Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics.
 `public inline void `[`ClearCurrencies`](#structFRHAPI__PurchasePrice_1a69bff048e3709cd32124677c6f33f02a)`()` | Clears the value of Currencies_Optional and sets Currencies_IsSet to false.
-`public inline bool `[`IsCurrenciesSet`](#structFRHAPI__PurchasePrice_1a127cf025847595e13dfea72b02097b9d)`() const` | Checks whether Currencies_Optional has been set.
-`public inline void `[`SetCurrenciesToNull`](#structFRHAPI__PurchasePrice_1af53ed025396159279b2e8360032c3bcf)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCurrenciesNull`](#structFRHAPI__PurchasePrice_1ae9a74770990070bfb26eae2df90ba37c)`() const` | Checks whether Currencies_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCurrenciesToNull`](#structFRHAPI__PurchasePrice_1a542b17b3eeb384295fa653b6cc613561)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCurrenciesNull`](#structFRHAPI__PurchasePrice_1ac6735ddc32888f9d6b230e4360854a3c)`() const` | Checks whether Currencies_Optional is set to null.
 
 ### Members
 
@@ -149,35 +142,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a0bbad8fb526c795e5ef94e9486732873)`()` <a id="structFRHAPI__PurchasePrice_1a0bbad8fb526c795e5ef94e9486732873"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a40727548092021688cd448e2756bef0d)`()` <a id="structFRHAPI__PurchasePrice_1a40727548092021688cd448e2756bef0d"></a>
 
 Gets the value of PriceItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1ab07a56ec86108c79ebe61d1c6a2e8ddb)`() const` <a id="structFRHAPI__PurchasePrice_1ab07a56ec86108c79ebe61d1c6a2e8ddb"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1ae38fe1964f38d97fc4ec829a8934ce4c)`() const` <a id="structFRHAPI__PurchasePrice_1ae38fe1964f38d97fc4ec829a8934ce4c"></a>
 
 Gets the value of PriceItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a79026f16d5ab5fe86b29868c5b42f4d1)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PurchasePrice_1a79026f16d5ab5fe86b29868c5b42f4d1"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a395910a36bbc3e22889dc9aeee88aac3)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PurchasePrice_1a395910a36bbc3e22889dc9aeee88aac3"></a>
 
 Gets the value of PriceItemId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a38592831d19b11ef864aab2c87e66cb2)`(int32 & OutValue) const` <a id="structFRHAPI__PurchasePrice_1a38592831d19b11ef864aab2c87e66cb2"></a>
+#### `public inline FORCEINLINE bool `[`GetPriceItemId`](#structFRHAPI__PurchasePrice_1a822ff69f19cf4acedc65b34b42b26604)`(int32 & OutValue) const` <a id="structFRHAPI__PurchasePrice_1a822ff69f19cf4acedc65b34b42b26604"></a>
 
 Fills OutValue with the value of PriceItemId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PurchasePrice_1ab5b406ab0c1ad7833af4ee527a0cb549)`()` <a id="structFRHAPI__PurchasePrice_1ab5b406ab0c1ad7833af4ee527a0cb549"></a>
+#### `public inline FORCEINLINE int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PurchasePrice_1a3439611cf4d91ba15638b9a95266c054)`()` <a id="structFRHAPI__PurchasePrice_1a3439611cf4d91ba15638b9a95266c054"></a>
 
 Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PurchasePrice_1a34720db51374bc9ae7b9eada2839fc57)`() const` <a id="structFRHAPI__PurchasePrice_1a34720db51374bc9ae7b9eada2839fc57"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetPriceItemIdOrNull`](#structFRHAPI__PurchasePrice_1a06659b7c8d5d7895ffe2fae58f624c78)`() const` <a id="structFRHAPI__PurchasePrice_1a06659b7c8d5d7895ffe2fae58f624c78"></a>
 
 Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PurchasePrice_1a576be34260b4bd36199f9fcd8c1eb3c7)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePrice_1a576be34260b4bd36199f9fcd8c1eb3c7"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PurchasePrice_1aa2c3579a6a3ac320510ad1d55bc1b5ca)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePrice_1aa2c3579a6a3ac320510ad1d55bc1b5ca"></a>
 
 Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true.
 
-#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PurchasePrice_1ab9f07a2a0e33a1afa9f7df20937811a9)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePrice_1ab9f07a2a0e33a1afa9f7df20937811a9"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PurchasePrice_1a0d0287f105a9814421d34f4719259232)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePrice_1a0d0287f105a9814421d34f4719259232"></a>
 
 Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics.
 
@@ -185,55 +178,47 @@ Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true u
 
 Clears the value of PriceItemId_Optional and sets PriceItemId_IsSet to false.
 
-#### `public inline bool `[`IsPriceItemIdSet`](#structFRHAPI__PurchasePrice_1aea4f03f31308974f418c09404f1986ac)`() const` <a id="structFRHAPI__PurchasePrice_1aea4f03f31308974f418c09404f1986ac"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PriceItemId`](#structFRHAPI__PurchasePrice_1ad7318b201cba96376e57ac91a72bb5c6)`()` <a id="structFRHAPI__PurchasePrice_1ad7318b201cba96376e57ac91a72bb5c6"></a>
 
-Checks whether PriceItemId_Optional has been set.
+Returns the default value of PriceItemId.
 
-#### `public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PurchasePrice_1a75bb8c52ba21bf3defe631a5df761e8f)`() const` <a id="structFRHAPI__PurchasePrice_1a75bb8c52ba21bf3defe631a5df761e8f"></a>
-
-Returns true if PriceItemId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetPriceItemIdToDefault`](#structFRHAPI__PurchasePrice_1a1850ddc2111274968198f63c0d63e6d7)`()` <a id="structFRHAPI__PurchasePrice_1a1850ddc2111274968198f63c0d63e6d7"></a>
-
-Sets the value of PriceItemId_Optional to its default and also sets PriceItemId_IsSet to true.
-
-#### `public inline void `[`SetPriceItemIdToNull`](#structFRHAPI__PurchasePrice_1af932101c11e0e8d9b70344c6ab28041e)`()` <a id="structFRHAPI__PurchasePrice_1af932101c11e0e8d9b70344c6ab28041e"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemIdToNull`](#structFRHAPI__PurchasePrice_1abb59bb27466b1006b04033e72ad6f1be)`()` <a id="structFRHAPI__PurchasePrice_1abb59bb27466b1006b04033e72ad6f1be"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPriceItemIdNull`](#structFRHAPI__PurchasePrice_1a9cb93baa58cc12e79edc14935ca764cb)`() const` <a id="structFRHAPI__PurchasePrice_1a9cb93baa58cc12e79edc14935ca764cb"></a>
+#### `public inline FORCEINLINE bool `[`IsPriceItemIdNull`](#structFRHAPI__PurchasePrice_1a4a733617561d61c51458d2d6c07cfd1c)`() const` <a id="structFRHAPI__PurchasePrice_1a4a733617561d61c51458d2d6c07cfd1c"></a>
 
 Checks whether PriceItemId_Optional is set to null.
 
-#### `public inline int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1ae82a232869857df7781f733b6f0e8405)`()` <a id="structFRHAPI__PurchasePrice_1ae82a232869857df7781f733b6f0e8405"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1a7d783244ab9cc5cc35103353fdf3186c)`()` <a id="structFRHAPI__PurchasePrice_1a7d783244ab9cc5cc35103353fdf3186c"></a>
 
 Gets the value of Price_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1a22f98d9ee805b5b30ce1992f9d2e54b9)`() const` <a id="structFRHAPI__PurchasePrice_1a22f98d9ee805b5b30ce1992f9d2e54b9"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1a83287aa416f9fb0b5ee8bb223ea06dcf)`() const` <a id="structFRHAPI__PurchasePrice_1a83287aa416f9fb0b5ee8bb223ea06dcf"></a>
 
 Gets the value of Price_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1aa693c948a1f28954fe8bec6225d59fa7)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PurchasePrice_1aa693c948a1f28954fe8bec6225d59fa7"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPrice`](#structFRHAPI__PurchasePrice_1ae819a4873a8f6082a60ed99935c3edf6)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PurchasePrice_1ae819a4873a8f6082a60ed99935c3edf6"></a>
 
 Gets the value of Price_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPrice`](#structFRHAPI__PurchasePrice_1a9de82033e012e6ec77df26f9e2ac7e20)`(int32 & OutValue) const` <a id="structFRHAPI__PurchasePrice_1a9de82033e012e6ec77df26f9e2ac7e20"></a>
+#### `public inline FORCEINLINE bool `[`GetPrice`](#structFRHAPI__PurchasePrice_1acb1708833ed875a4d46aa453657f1fe5)`(int32 & OutValue) const` <a id="structFRHAPI__PurchasePrice_1acb1708833ed875a4d46aa453657f1fe5"></a>
 
 Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetPriceOrNull`](#structFRHAPI__PurchasePrice_1abea1c0312f6f743fd3057ec173942224)`()` <a id="structFRHAPI__PurchasePrice_1abea1c0312f6f743fd3057ec173942224"></a>
+#### `public inline FORCEINLINE int32 * `[`GetPriceOrNull`](#structFRHAPI__PurchasePrice_1acce5863cd742a5005b199ec45a6fbd95)`()` <a id="structFRHAPI__PurchasePrice_1acce5863cd742a5005b199ec45a6fbd95"></a>
 
 Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetPriceOrNull`](#structFRHAPI__PurchasePrice_1ad7b4b21209e5197d5c99bb23cc234d0a)`() const` <a id="structFRHAPI__PurchasePrice_1ad7b4b21209e5197d5c99bb23cc234d0a"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetPriceOrNull`](#structFRHAPI__PurchasePrice_1a96abf073731800f5c66aa82941096ce4)`() const` <a id="structFRHAPI__PurchasePrice_1a96abf073731800f5c66aa82941096ce4"></a>
 
 Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPrice`](#structFRHAPI__PurchasePrice_1ac77de08a63edaac744f1bbb757bcb6a4)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePrice_1ac77de08a63edaac744f1bbb757bcb6a4"></a>
+#### `public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PurchasePrice_1a4bb0df132a7f48a55c5b7c57d98ebe1e)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePrice_1a4bb0df132a7f48a55c5b7c57d98ebe1e"></a>
 
 Sets the value of Price_Optional and also sets Price_IsSet to true.
 
-#### `public inline void `[`SetPrice`](#structFRHAPI__PurchasePrice_1a20ca007791351db8a82bf3466286fd77)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePrice_1a20ca007791351db8a82bf3466286fd77"></a>
+#### `public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PurchasePrice_1adf44cafb62d833a84441a3062539a8e8)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePrice_1adf44cafb62d833a84441a3062539a8e8"></a>
 
 Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics.
 
@@ -241,55 +226,47 @@ Sets the value of Price_Optional and also sets Price_IsSet to true using move se
 
 Clears the value of Price_Optional and sets Price_IsSet to false.
 
-#### `public inline bool `[`IsPriceSet`](#structFRHAPI__PurchasePrice_1ab855164885438d759d81309d52b053dd)`() const` <a id="structFRHAPI__PurchasePrice_1ab855164885438d759d81309d52b053dd"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Price`](#structFRHAPI__PurchasePrice_1a4d1dc52f909ad189b0c5167b442d5612)`()` <a id="structFRHAPI__PurchasePrice_1a4d1dc52f909ad189b0c5167b442d5612"></a>
 
-Checks whether Price_Optional has been set.
+Returns the default value of Price.
 
-#### `public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PurchasePrice_1a224a5979e95142cd68db59f9f8075899)`() const` <a id="structFRHAPI__PurchasePrice_1a224a5979e95142cd68db59f9f8075899"></a>
-
-Returns true if Price_Optional is set and matches the default value.
-
-#### `public inline void `[`SetPriceToDefault`](#structFRHAPI__PurchasePrice_1ab939845ed712db2c72b5ba0077ecd812)`()` <a id="structFRHAPI__PurchasePrice_1ab939845ed712db2c72b5ba0077ecd812"></a>
-
-Sets the value of Price_Optional to its default and also sets Price_IsSet to true.
-
-#### `public inline void `[`SetPriceToNull`](#structFRHAPI__PurchasePrice_1a9e3ad61fe191d7f73406708c18023efa)`()` <a id="structFRHAPI__PurchasePrice_1a9e3ad61fe191d7f73406708c18023efa"></a>
+#### `public inline FORCEINLINE void `[`SetPriceToNull`](#structFRHAPI__PurchasePrice_1a228aecb7fe7ff240f6a662f12892e2ab)`()` <a id="structFRHAPI__PurchasePrice_1a228aecb7fe7ff240f6a662f12892e2ab"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPriceNull`](#structFRHAPI__PurchasePrice_1a52e8e22d86ba4a85598cf00cb49a965e)`() const` <a id="structFRHAPI__PurchasePrice_1a52e8e22d86ba4a85598cf00cb49a965e"></a>
+#### `public inline FORCEINLINE bool `[`IsPriceNull`](#structFRHAPI__PurchasePrice_1a3b1fd48dd453517ca14fa1283178b3a9)`() const` <a id="structFRHAPI__PurchasePrice_1a3b1fd48dd453517ca14fa1283178b3a9"></a>
 
 Checks whether Price_Optional is set to null.
 
-#### `public inline int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1adcdfbcfe42e900d9f75dc912f423db18)`()` <a id="structFRHAPI__PurchasePrice_1adcdfbcfe42e900d9f75dc912f423db18"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a859c4a34c327847ea2d040f93a40638b)`()` <a id="structFRHAPI__PurchasePrice_1a859c4a34c327847ea2d040f93a40638b"></a>
 
 Gets the value of PriceCouponItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a742a7b9bdff50c88ca59504924c3bd4f)`() const` <a id="structFRHAPI__PurchasePrice_1a742a7b9bdff50c88ca59504924c3bd4f"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1ac208bf533b7cbdc0682383eca83b56c4)`() const` <a id="structFRHAPI__PurchasePrice_1ac208bf533b7cbdc0682383eca83b56c4"></a>
 
 Gets the value of PriceCouponItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a47df9e5eef0c570ef02337d560694f7d)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PurchasePrice_1a47df9e5eef0c570ef02337d560694f7d"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1aac82f3d3f986f285c96fa344b0c35b94)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PurchasePrice_1aac82f3d3f986f285c96fa344b0c35b94"></a>
 
 Gets the value of PriceCouponItemId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a85051adee9d0cd3757805c0950498091)`(int32 & OutValue) const` <a id="structFRHAPI__PurchasePrice_1a85051adee9d0cd3757805c0950498091"></a>
+#### `public inline FORCEINLINE bool `[`GetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1ab88a557fa5323b3bb3560691ad714089)`(int32 & OutValue) const` <a id="structFRHAPI__PurchasePrice_1ab88a557fa5323b3bb3560691ad714089"></a>
 
 Fills OutValue with the value of PriceCouponItemId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetPriceCouponItemIdOrNull`](#structFRHAPI__PurchasePrice_1a34af82ae77ab08794c5ad0430440cbec)`()` <a id="structFRHAPI__PurchasePrice_1a34af82ae77ab08794c5ad0430440cbec"></a>
+#### `public inline FORCEINLINE int32 * `[`GetPriceCouponItemIdOrNull`](#structFRHAPI__PurchasePrice_1acfe0f2e147efc9c981f45e61be43f2d7)`()` <a id="structFRHAPI__PurchasePrice_1acfe0f2e147efc9c981f45e61be43f2d7"></a>
 
 Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetPriceCouponItemIdOrNull`](#structFRHAPI__PurchasePrice_1ae6d37883de533dfc6c188d2a293ad858)`() const` <a id="structFRHAPI__PurchasePrice_1ae6d37883de533dfc6c188d2a293ad858"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetPriceCouponItemIdOrNull`](#structFRHAPI__PurchasePrice_1a2250c7bbe0c5dbc52c09d71d75e76cee)`() const` <a id="structFRHAPI__PurchasePrice_1a2250c7bbe0c5dbc52c09d71d75e76cee"></a>
 
 Returns a pointer to PriceCouponItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a03bccd19cb99f406ae6527a357daedec)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePrice_1a03bccd19cb99f406ae6527a357daedec"></a>
+#### `public inline FORCEINLINE void `[`SetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1ab9183598a6c6cb03f4bf1ea8e6f83423)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePrice_1ab9183598a6c6cb03f4bf1ea8e6f83423"></a>
 
 Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true.
 
-#### `public inline void `[`SetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a79bb4b09df74e75102c0a119893828de)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePrice_1a79bb4b09df74e75102c0a119893828de"></a>
+#### `public inline FORCEINLINE void `[`SetPriceCouponItemId`](#structFRHAPI__PurchasePrice_1a362fa79e2cfd4cf11624c7c4f0116232)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePrice_1a362fa79e2cfd4cf11624c7c4f0116232"></a>
 
 Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsSet to true using move semantics.
 
@@ -297,55 +274,47 @@ Sets the value of PriceCouponItemId_Optional and also sets PriceCouponItemId_IsS
 
 Clears the value of PriceCouponItemId_Optional and sets PriceCouponItemId_IsSet to false.
 
-#### `public inline bool `[`IsPriceCouponItemIdSet`](#structFRHAPI__PurchasePrice_1a68c11da13099ee91dafacd573c90ea68)`() const` <a id="structFRHAPI__PurchasePrice_1a68c11da13099ee91dafacd573c90ea68"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PriceCouponItemId`](#structFRHAPI__PurchasePrice_1a33f14e928c478f0c8d15f51c6c20d9bd)`()` <a id="structFRHAPI__PurchasePrice_1a33f14e928c478f0c8d15f51c6c20d9bd"></a>
 
-Checks whether PriceCouponItemId_Optional has been set.
+Returns the default value of PriceCouponItemId.
 
-#### `public inline bool `[`IsPriceCouponItemIdDefaultValue`](#structFRHAPI__PurchasePrice_1a96c915426f89bd6a468c80e9d6c79440)`() const` <a id="structFRHAPI__PurchasePrice_1a96c915426f89bd6a468c80e9d6c79440"></a>
-
-Returns true if PriceCouponItemId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetPriceCouponItemIdToDefault`](#structFRHAPI__PurchasePrice_1a8a7053cacb8105cd2efc15a153c3ba78)`()` <a id="structFRHAPI__PurchasePrice_1a8a7053cacb8105cd2efc15a153c3ba78"></a>
-
-Sets the value of PriceCouponItemId_Optional to its default and also sets PriceCouponItemId_IsSet to true.
-
-#### `public inline void `[`SetPriceCouponItemIdToNull`](#structFRHAPI__PurchasePrice_1afbd15ae92804edb8a18075e7ac430ae7)`()` <a id="structFRHAPI__PurchasePrice_1afbd15ae92804edb8a18075e7ac430ae7"></a>
+#### `public inline FORCEINLINE void `[`SetPriceCouponItemIdToNull`](#structFRHAPI__PurchasePrice_1a9e7b1733b5aeccd312ea24779c30efb6)`()` <a id="structFRHAPI__PurchasePrice_1a9e7b1733b5aeccd312ea24779c30efb6"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPriceCouponItemIdNull`](#structFRHAPI__PurchasePrice_1a60c3c9af769d95368efd517a9e23b5fa)`() const` <a id="structFRHAPI__PurchasePrice_1a60c3c9af769d95368efd517a9e23b5fa"></a>
+#### `public inline FORCEINLINE bool `[`IsPriceCouponItemIdNull`](#structFRHAPI__PurchasePrice_1ac984795380225afdb9f7e586425e1620)`() const` <a id="structFRHAPI__PurchasePrice_1ac984795380225afdb9f7e586425e1620"></a>
 
 Checks whether PriceCouponItemId_Optional is set to null.
 
-#### `public inline TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a75085407be253da11175b776b1b6953c)`()` <a id="structFRHAPI__PurchasePrice_1a75085407be253da11175b776b1b6953c"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a5ab2f63e2c86f933d590bd459d218bd0)`()` <a id="structFRHAPI__PurchasePrice_1a5ab2f63e2c86f933d590bd459d218bd0"></a>
 
 Gets the value of Currencies_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a6e98063de4271eaf908d3bfd63c5e680)`() const` <a id="structFRHAPI__PurchasePrice_1a6e98063de4271eaf908d3bfd63c5e680"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1ab3973d888bf276f3379cfb52eafc65b1)`() const` <a id="structFRHAPI__PurchasePrice_1ab3973d888bf276f3379cfb52eafc65b1"></a>
 
 Gets the value of Currencies_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1ae92b849020c4176f2dc11ef122d9a51f)`(const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & DefaultValue) const` <a id="structFRHAPI__PurchasePrice_1ae92b849020c4176f2dc11ef122d9a51f"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1aceb73de628fe6db5b71e04e19a3446f0)`(const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & DefaultValue) const` <a id="structFRHAPI__PurchasePrice_1aceb73de628fe6db5b71e04e19a3446f0"></a>
 
 Gets the value of Currencies_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a0c7fd1d2f86beecf5ec7a4b3c03e5b1f)`(TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & OutValue) const` <a id="structFRHAPI__PurchasePrice_1a0c7fd1d2f86beecf5ec7a4b3c03e5b1f"></a>
+#### `public inline FORCEINLINE bool `[`GetCurrencies`](#structFRHAPI__PurchasePrice_1a63e4c8c4c8d081b05057fc172811187a)`(TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & OutValue) const` <a id="structFRHAPI__PurchasePrice_1a63e4c8c4c8d081b05057fc172811187a"></a>
 
 Fills OutValue with the value of Currencies_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PurchasePrice_1a4259061203baed114e5749e2dcb305db)`()` <a id="structFRHAPI__PurchasePrice_1a4259061203baed114e5749e2dcb305db"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PurchasePrice_1ad0fa66b88d2229ca221e73bfa30eb638)`()` <a id="structFRHAPI__PurchasePrice_1ad0fa66b88d2229ca221e73bfa30eb638"></a>
 
 Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PurchasePrice_1a8773dfaaf5a5178c6f915f7c1938f057)`() const` <a id="structFRHAPI__PurchasePrice_1a8773dfaaf5a5178c6f915f7c1938f057"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > * `[`GetCurrenciesOrNull`](#structFRHAPI__PurchasePrice_1a7a41e6033295bd2f457e1609e560f114)`() const` <a id="structFRHAPI__PurchasePrice_1a7a41e6033295bd2f457e1609e560f114"></a>
 
 Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCurrencies`](#structFRHAPI__PurchasePrice_1a16651c51e97b10d8670d8cc050eccd03)`(const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & NewValue)` <a id="structFRHAPI__PurchasePrice_1a16651c51e97b10d8670d8cc050eccd03"></a>
+#### `public inline FORCEINLINE void `[`SetCurrencies`](#structFRHAPI__PurchasePrice_1a6508498523fb6f49ce8692b8e77a2079)`(const TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > & NewValue)` <a id="structFRHAPI__PurchasePrice_1a6508498523fb6f49ce8692b8e77a2079"></a>
 
 Sets the value of Currencies_Optional and also sets Currencies_IsSet to true.
 
-#### `public inline void `[`SetCurrencies`](#structFRHAPI__PurchasePrice_1aaf899f1478b661e10fe6b234b20534ed)`(TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > && NewValue)` <a id="structFRHAPI__PurchasePrice_1aaf899f1478b661e10fe6b234b20534ed"></a>
+#### `public inline FORCEINLINE void `[`SetCurrencies`](#structFRHAPI__PurchasePrice_1a89b8c6ad525a14c69a35a7710ad51723)`(TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > && NewValue)` <a id="structFRHAPI__PurchasePrice_1a89b8c6ad525a14c69a35a7710ad51723"></a>
 
 Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics.
 
@@ -353,15 +322,11 @@ Sets the value of Currencies_Optional and also sets Currencies_IsSet to true usi
 
 Clears the value of Currencies_Optional and sets Currencies_IsSet to false.
 
-#### `public inline bool `[`IsCurrenciesSet`](#structFRHAPI__PurchasePrice_1a127cf025847595e13dfea72b02097b9d)`() const` <a id="structFRHAPI__PurchasePrice_1a127cf025847595e13dfea72b02097b9d"></a>
-
-Checks whether Currencies_Optional has been set.
-
-#### `public inline void `[`SetCurrenciesToNull`](#structFRHAPI__PurchasePrice_1af53ed025396159279b2e8360032c3bcf)`()` <a id="structFRHAPI__PurchasePrice_1af53ed025396159279b2e8360032c3bcf"></a>
+#### `public inline FORCEINLINE void `[`SetCurrenciesToNull`](#structFRHAPI__PurchasePrice_1a542b17b3eeb384295fa653b6cc613561)`()` <a id="structFRHAPI__PurchasePrice_1a542b17b3eeb384295fa653b6cc613561"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCurrenciesNull`](#structFRHAPI__PurchasePrice_1ae9a74770990070bfb26eae2df90ba37c)`() const` <a id="structFRHAPI__PurchasePrice_1ae9a74770990070bfb26eae2df90ba37c"></a>
+#### `public inline FORCEINLINE bool `[`IsCurrenciesNull`](#structFRHAPI__PurchasePrice_1ac6735ddc32888f9d6b230e4360854a3c)`() const` <a id="structFRHAPI__PurchasePrice_1ac6735ddc32888f9d6b230e4360854a3c"></a>
 
 Checks whether Currencies_Optional is set to null.
 

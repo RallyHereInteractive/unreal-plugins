@@ -44,41 +44,39 @@ struct RALLYHEREAPI_API FRHAPI_CalculatedRank : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	/** @brief Current rank info about player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_RankRankData Rank{  };
 	/** @brief Gets the value of Rank */
-	FRHAPI_RankRankData& GetRank() { return Rank; }
+	FORCEINLINE FRHAPI_RankRankData& GetRank() { return Rank; }
 	/** @brief Gets the value of Rank */
-	const FRHAPI_RankRankData& GetRank() const { return Rank; }
+	FORCEINLINE const FRHAPI_RankRankData& GetRank() const { return Rank; }
 	/** @brief Sets the value of Rank */
-	void SetRank(const FRHAPI_RankRankData& NewValue) { Rank = NewValue;   }
+	FORCEINLINE void SetRank(const FRHAPI_RankRankData& NewValue) { Rank = NewValue;   }
 	/** @brief Sets the value of Rank using move semantics */
-	void SetRank(FRHAPI_RankRankData&& NewValue) { Rank = NewValue;   }
+	FORCEINLINE void SetRank(FRHAPI_RankRankData&& NewValue) { Rank = NewValue;   }
 
 	/** @brief How many seconds this player was in the match */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 SecondsInMatch{ 0 };
 	/** @brief Gets the value of SecondsInMatch */
-	int32& GetSecondsInMatch() { return SecondsInMatch; }
+	FORCEINLINE int32& GetSecondsInMatch() { return SecondsInMatch; }
 	/** @brief Gets the value of SecondsInMatch */
-	const int32& GetSecondsInMatch() const { return SecondsInMatch; }
+	FORCEINLINE const int32& GetSecondsInMatch() const { return SecondsInMatch; }
 	/** @brief Sets the value of SecondsInMatch */
-	void SetSecondsInMatch(const int32& NewValue) { SecondsInMatch = NewValue;   }
+	FORCEINLINE void SetSecondsInMatch(const int32& NewValue) { SecondsInMatch = NewValue;   }
 	/** @brief Sets the value of SecondsInMatch using move semantics */
-	void SetSecondsInMatch(int32&& NewValue) { SecondsInMatch = NewValue;   }
-	/** @brief Returns true if SecondsInMatch matches the default value */
-	bool IsSecondsInMatchDefaultValue() const { return SecondsInMatch == 0; }
-	/** @brief Sets the value of SecondsInMatch to its default  */
-	void SetSecondsInMatchToDefault() { SetSecondsInMatch(0); }
+	FORCEINLINE void SetSecondsInMatch(int32&& NewValue) { SecondsInMatch = NewValue;   }
+	/** @brief Returns the default value of SecondsInMatch */
+	FORCEINLINE int32 GetDefaultValue_SecondsInMatch() { return 0; }
 };
 
 /** @} */

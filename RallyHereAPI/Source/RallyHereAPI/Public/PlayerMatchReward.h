@@ -44,25 +44,25 @@ struct RALLYHEREAPI_API FRHAPI_PlayerMatchReward : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	/** @brief List of specific rewards for this player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_MatchReward> Rewards{  };
 	/** @brief Gets the value of Rewards */
-	TArray<FRHAPI_MatchReward>& GetRewards() { return Rewards; }
+	FORCEINLINE TArray<FRHAPI_MatchReward>& GetRewards() { return Rewards; }
 	/** @brief Gets the value of Rewards */
-	const TArray<FRHAPI_MatchReward>& GetRewards() const { return Rewards; }
+	FORCEINLINE const TArray<FRHAPI_MatchReward>& GetRewards() const { return Rewards; }
 	/** @brief Sets the value of Rewards */
-	void SetRewards(const TArray<FRHAPI_MatchReward>& NewValue) { Rewards = NewValue;   }
+	FORCEINLINE void SetRewards(const TArray<FRHAPI_MatchReward>& NewValue) { Rewards = NewValue;   }
 	/** @brief Sets the value of Rewards using move semantics */
-	void SetRewards(TArray<FRHAPI_MatchReward>&& NewValue) { Rewards = NewValue;   }
+	FORCEINLINE void SetRewards(TArray<FRHAPI_MatchReward>&& NewValue) { Rewards = NewValue;   }
 };
 
 /** @} */

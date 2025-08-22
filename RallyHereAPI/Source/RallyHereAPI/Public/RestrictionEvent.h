@@ -49,25 +49,23 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionEvent : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Type_IsSet{ false };
 	/** @brief Gets the value of Type_Optional, regardless of it having been set */
-	ERHAPI_RestrictionType& GetType() { return Type_Optional; }
+	FORCEINLINE ERHAPI_RestrictionType& GetType() { return Type_Optional; }
 	/** @brief Gets the value of Type_Optional, regardless of it having been set */
-	const ERHAPI_RestrictionType& GetType() const { return Type_Optional; }
+	FORCEINLINE const ERHAPI_RestrictionType& GetType() const { return Type_Optional; }
 	/** @brief Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_RestrictionType& GetType(const ERHAPI_RestrictionType& DefaultValue) const { if (Type_IsSet) return Type_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_RestrictionType& GetType(const ERHAPI_RestrictionType& DefaultValue) const { if (Type_IsSet) return Type_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false */
-	bool GetType(ERHAPI_RestrictionType& OutValue) const { if (Type_IsSet) OutValue = Type_Optional; return Type_IsSet; }
+	FORCEINLINE bool GetType(ERHAPI_RestrictionType& OutValue) const { if (Type_IsSet) OutValue = Type_Optional; return Type_IsSet; }
 	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_RestrictionType* GetTypeOrNull() { if (Type_IsSet) return (&Type_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_RestrictionType* GetTypeOrNull() { if (Type_IsSet) return (&Type_Optional); return nullptr; }
 	/** @brief Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_RestrictionType* GetTypeOrNull() const { if (Type_IsSet) return (&Type_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_RestrictionType* GetTypeOrNull() const { if (Type_IsSet) return (&Type_Optional); return nullptr; }
 	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true */
-	void SetType(const ERHAPI_RestrictionType& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
+	FORCEINLINE void SetType(const ERHAPI_RestrictionType& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
 	/** @brief Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics */
-	void SetType(ERHAPI_RestrictionType&& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
+	FORCEINLINE void SetType(ERHAPI_RestrictionType&& NewValue) { Type_Optional = NewValue; Type_IsSet = true;  }
 	/** @brief Clears the value of Type_Optional and sets Type_IsSet to false */
 	void ClearType() { Type_IsSet = false;  }
-	/** @brief Checks whether Type_Optional has been set */
-	bool IsTypeSet() const { return Type_IsSet; }
 
 	/** @brief Reason the restriction was applied */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -76,25 +74,23 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionEvent : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Reason_IsSet{ false };
 	/** @brief Gets the value of Reason_Optional, regardless of it having been set */
-	ERHAPI_RestrictionReasonCode& GetReason() { return Reason_Optional; }
+	FORCEINLINE ERHAPI_RestrictionReasonCode& GetReason() { return Reason_Optional; }
 	/** @brief Gets the value of Reason_Optional, regardless of it having been set */
-	const ERHAPI_RestrictionReasonCode& GetReason() const { return Reason_Optional; }
+	FORCEINLINE const ERHAPI_RestrictionReasonCode& GetReason() const { return Reason_Optional; }
 	/** @brief Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_RestrictionReasonCode& GetReason(const ERHAPI_RestrictionReasonCode& DefaultValue) const { if (Reason_IsSet) return Reason_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_RestrictionReasonCode& GetReason(const ERHAPI_RestrictionReasonCode& DefaultValue) const { if (Reason_IsSet) return Reason_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false */
-	bool GetReason(ERHAPI_RestrictionReasonCode& OutValue) const { if (Reason_IsSet) OutValue = Reason_Optional; return Reason_IsSet; }
+	FORCEINLINE bool GetReason(ERHAPI_RestrictionReasonCode& OutValue) const { if (Reason_IsSet) OutValue = Reason_Optional; return Reason_IsSet; }
 	/** @brief Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_RestrictionReasonCode* GetReasonOrNull() { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_RestrictionReasonCode* GetReasonOrNull() { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
 	/** @brief Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_RestrictionReasonCode* GetReasonOrNull() const { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_RestrictionReasonCode* GetReasonOrNull() const { if (Reason_IsSet) return (&Reason_Optional); return nullptr; }
 	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true */
-	void SetReason(const ERHAPI_RestrictionReasonCode& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
+	FORCEINLINE void SetReason(const ERHAPI_RestrictionReasonCode& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
 	/** @brief Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics */
-	void SetReason(ERHAPI_RestrictionReasonCode&& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
+	FORCEINLINE void SetReason(ERHAPI_RestrictionReasonCode&& NewValue) { Reason_Optional = NewValue; Reason_IsSet = true;  }
 	/** @brief Clears the value of Reason_Optional and sets Reason_IsSet to false */
 	void ClearReason() { Reason_IsSet = false;  }
-	/** @brief Checks whether Reason_Optional has been set */
-	bool IsReasonSet() const { return Reason_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -103,49 +99,47 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionEvent : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Expiration_IsSet{ false };
 	/** @brief Gets the value of Expiration_Optional, regardless of it having been set */
-	FDateTime& GetExpiration() { return Expiration_Optional; }
+	FORCEINLINE FDateTime& GetExpiration() { return Expiration_Optional; }
 	/** @brief Gets the value of Expiration_Optional, regardless of it having been set */
-	const FDateTime& GetExpiration() const { return Expiration_Optional; }
+	FORCEINLINE const FDateTime& GetExpiration() const { return Expiration_Optional; }
 	/** @brief Gets the value of Expiration_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetExpiration(const FDateTime& DefaultValue) const { if (Expiration_IsSet) return Expiration_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetExpiration(const FDateTime& DefaultValue) const { if (Expiration_IsSet) return Expiration_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Expiration_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExpiration(FDateTime& OutValue) const { if (Expiration_IsSet) OutValue = Expiration_Optional; return Expiration_IsSet; }
+	FORCEINLINE bool GetExpiration(FDateTime& OutValue) const { if (Expiration_IsSet) OutValue = Expiration_Optional; return Expiration_IsSet; }
 	/** @brief Returns a pointer to Expiration_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetExpirationOrNull() { if (Expiration_IsSet) return (&Expiration_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetExpirationOrNull() { if (Expiration_IsSet) return (&Expiration_Optional); return nullptr; }
 	/** @brief Returns a pointer to Expiration_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetExpirationOrNull() const { if (Expiration_IsSet) return (&Expiration_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetExpirationOrNull() const { if (Expiration_IsSet) return (&Expiration_Optional); return nullptr; }
 	/** @brief Sets the value of Expiration_Optional and also sets Expiration_IsSet to true */
-	void SetExpiration(const FDateTime& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true;  }
+	FORCEINLINE void SetExpiration(const FDateTime& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true;  }
 	/** @brief Sets the value of Expiration_Optional and also sets Expiration_IsSet to true using move semantics */
-	void SetExpiration(FDateTime&& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true;  }
+	FORCEINLINE void SetExpiration(FDateTime&& NewValue) { Expiration_Optional = NewValue; Expiration_IsSet = true;  }
 	/** @brief Clears the value of Expiration_Optional and sets Expiration_IsSet to false */
 	void ClearExpiration() { Expiration_IsSet = false;  }
-	/** @brief Checks whether Expiration_Optional has been set */
-	bool IsExpirationSet() const { return Expiration_IsSet; }
 
 	/** @brief Type of the Issuer */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_RestrictionIssuerType IssuerType{  };
 	/** @brief Gets the value of IssuerType */
-	ERHAPI_RestrictionIssuerType& GetIssuerType() { return IssuerType; }
+	FORCEINLINE ERHAPI_RestrictionIssuerType& GetIssuerType() { return IssuerType; }
 	/** @brief Gets the value of IssuerType */
-	const ERHAPI_RestrictionIssuerType& GetIssuerType() const { return IssuerType; }
+	FORCEINLINE const ERHAPI_RestrictionIssuerType& GetIssuerType() const { return IssuerType; }
 	/** @brief Sets the value of IssuerType */
-	void SetIssuerType(const ERHAPI_RestrictionIssuerType& NewValue) { IssuerType = NewValue;   }
+	FORCEINLINE void SetIssuerType(const ERHAPI_RestrictionIssuerType& NewValue) { IssuerType = NewValue;   }
 	/** @brief Sets the value of IssuerType using move semantics */
-	void SetIssuerType(ERHAPI_RestrictionIssuerType&& NewValue) { IssuerType = NewValue;   }
+	FORCEINLINE void SetIssuerType(ERHAPI_RestrictionIssuerType&& NewValue) { IssuerType = NewValue;   }
 
 	/** @brief The creator of the restriction */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Issuer{  };
 	/** @brief Gets the value of Issuer */
-	FString& GetIssuer() { return Issuer; }
+	FORCEINLINE FString& GetIssuer() { return Issuer; }
 	/** @brief Gets the value of Issuer */
-	const FString& GetIssuer() const { return Issuer; }
+	FORCEINLINE const FString& GetIssuer() const { return Issuer; }
 	/** @brief Sets the value of Issuer */
-	void SetIssuer(const FString& NewValue) { Issuer = NewValue;   }
+	FORCEINLINE void SetIssuer(const FString& NewValue) { Issuer = NewValue;   }
 	/** @brief Sets the value of Issuer using move semantics */
-	void SetIssuer(FString&& NewValue) { Issuer = NewValue;   }
+	FORCEINLINE void SetIssuer(FString&& NewValue) { Issuer = NewValue;   }
 
 	/** @brief Internal-only reason describing the restriction */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -154,61 +148,59 @@ struct RALLYHEREAPI_API FRHAPI_RestrictionEvent : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ReasonDetail_IsSet{ false };
 	/** @brief Gets the value of ReasonDetail_Optional, regardless of it having been set */
-	FString& GetReasonDetail() { return ReasonDetail_Optional; }
+	FORCEINLINE FString& GetReasonDetail() { return ReasonDetail_Optional; }
 	/** @brief Gets the value of ReasonDetail_Optional, regardless of it having been set */
-	const FString& GetReasonDetail() const { return ReasonDetail_Optional; }
+	FORCEINLINE const FString& GetReasonDetail() const { return ReasonDetail_Optional; }
 	/** @brief Gets the value of ReasonDetail_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetReasonDetail(const FString& DefaultValue) const { if (ReasonDetail_IsSet) return ReasonDetail_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetReasonDetail(const FString& DefaultValue) const { if (ReasonDetail_IsSet) return ReasonDetail_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ReasonDetail_Optional and returns true if it has been set, otherwise returns false */
-	bool GetReasonDetail(FString& OutValue) const { if (ReasonDetail_IsSet) OutValue = ReasonDetail_Optional; return ReasonDetail_IsSet; }
+	FORCEINLINE bool GetReasonDetail(FString& OutValue) const { if (ReasonDetail_IsSet) OutValue = ReasonDetail_Optional; return ReasonDetail_IsSet; }
 	/** @brief Returns a pointer to ReasonDetail_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetReasonDetailOrNull() { if (ReasonDetail_IsSet) return (&ReasonDetail_Optional); return nullptr; }
+	FORCEINLINE FString* GetReasonDetailOrNull() { if (ReasonDetail_IsSet) return (&ReasonDetail_Optional); return nullptr; }
 	/** @brief Returns a pointer to ReasonDetail_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetReasonDetailOrNull() const { if (ReasonDetail_IsSet) return (&ReasonDetail_Optional); return nullptr; }
+	FORCEINLINE const FString* GetReasonDetailOrNull() const { if (ReasonDetail_IsSet) return (&ReasonDetail_Optional); return nullptr; }
 	/** @brief Sets the value of ReasonDetail_Optional and also sets ReasonDetail_IsSet to true */
-	void SetReasonDetail(const FString& NewValue) { ReasonDetail_Optional = NewValue; ReasonDetail_IsSet = true;  }
+	FORCEINLINE void SetReasonDetail(const FString& NewValue) { ReasonDetail_Optional = NewValue; ReasonDetail_IsSet = true;  }
 	/** @brief Sets the value of ReasonDetail_Optional and also sets ReasonDetail_IsSet to true using move semantics */
-	void SetReasonDetail(FString&& NewValue) { ReasonDetail_Optional = NewValue; ReasonDetail_IsSet = true;  }
+	FORCEINLINE void SetReasonDetail(FString&& NewValue) { ReasonDetail_Optional = NewValue; ReasonDetail_IsSet = true;  }
 	/** @brief Clears the value of ReasonDetail_Optional and sets ReasonDetail_IsSet to false */
 	void ClearReasonDetail() { ReasonDetail_IsSet = false;  }
-	/** @brief Checks whether ReasonDetail_Optional has been set */
-	bool IsReasonDetailSet() const { return ReasonDetail_IsSet; }
 
 	/** @brief Unique ID identifying the restriction */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString RestrictionEventId{  };
 	/** @brief Gets the value of RestrictionEventId */
-	FString& GetRestrictionEventId() { return RestrictionEventId; }
+	FORCEINLINE FString& GetRestrictionEventId() { return RestrictionEventId; }
 	/** @brief Gets the value of RestrictionEventId */
-	const FString& GetRestrictionEventId() const { return RestrictionEventId; }
+	FORCEINLINE const FString& GetRestrictionEventId() const { return RestrictionEventId; }
 	/** @brief Sets the value of RestrictionEventId */
-	void SetRestrictionEventId(const FString& NewValue) { RestrictionEventId = NewValue;   }
+	FORCEINLINE void SetRestrictionEventId(const FString& NewValue) { RestrictionEventId = NewValue;   }
 	/** @brief Sets the value of RestrictionEventId using move semantics */
-	void SetRestrictionEventId(FString&& NewValue) { RestrictionEventId = NewValue;   }
+	FORCEINLINE void SetRestrictionEventId(FString&& NewValue) { RestrictionEventId = NewValue;   }
 
 	/** @brief Person the restriction was applied to */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PersonId{  };
 	/** @brief Gets the value of PersonId */
-	FGuid& GetPersonId() { return PersonId; }
+	FORCEINLINE FGuid& GetPersonId() { return PersonId; }
 	/** @brief Gets the value of PersonId */
-	const FGuid& GetPersonId() const { return PersonId; }
+	FORCEINLINE const FGuid& GetPersonId() const { return PersonId; }
 	/** @brief Sets the value of PersonId */
-	void SetPersonId(const FGuid& NewValue) { PersonId = NewValue;   }
+	FORCEINLINE void SetPersonId(const FGuid& NewValue) { PersonId = NewValue;   }
 	/** @brief Sets the value of PersonId using move semantics */
-	void SetPersonId(FGuid&& NewValue) { PersonId = NewValue;   }
+	FORCEINLINE void SetPersonId(FGuid&& NewValue) { PersonId = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Created{  };
 	/** @brief Gets the value of Created */
-	FDateTime& GetCreated() { return Created; }
+	FORCEINLINE FDateTime& GetCreated() { return Created; }
 	/** @brief Gets the value of Created */
-	const FDateTime& GetCreated() const { return Created; }
+	FORCEINLINE const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
+	FORCEINLINE void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
 	/** @brief Sets the value of Created using move semantics */
-	void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
+	FORCEINLINE void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
 };
 
 /** @} */

@@ -48,25 +48,23 @@ struct RALLYHEREAPI_API FRHAPI_PortalUseRulesets : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FRHAPI_PortalUseRuleset> Rulesets_Optional{  };
@@ -74,25 +72,23 @@ struct RALLYHEREAPI_API FRHAPI_PortalUseRulesets : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Rulesets_IsSet{ false };
 	/** @brief Gets the value of Rulesets_Optional, regardless of it having been set */
-	TMap<FString, FRHAPI_PortalUseRuleset>& GetRulesets() { return Rulesets_Optional; }
+	FORCEINLINE TMap<FString, FRHAPI_PortalUseRuleset>& GetRulesets() { return Rulesets_Optional; }
 	/** @brief Gets the value of Rulesets_Optional, regardless of it having been set */
-	const TMap<FString, FRHAPI_PortalUseRuleset>& GetRulesets() const { return Rulesets_Optional; }
+	FORCEINLINE const TMap<FString, FRHAPI_PortalUseRuleset>& GetRulesets() const { return Rulesets_Optional; }
 	/** @brief Gets the value of Rulesets_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FRHAPI_PortalUseRuleset>& GetRulesets(const TMap<FString, FRHAPI_PortalUseRuleset>& DefaultValue) const { if (Rulesets_IsSet) return Rulesets_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FRHAPI_PortalUseRuleset>& GetRulesets(const TMap<FString, FRHAPI_PortalUseRuleset>& DefaultValue) const { if (Rulesets_IsSet) return Rulesets_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Rulesets_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRulesets(TMap<FString, FRHAPI_PortalUseRuleset>& OutValue) const { if (Rulesets_IsSet) OutValue = Rulesets_Optional; return Rulesets_IsSet; }
+	FORCEINLINE bool GetRulesets(TMap<FString, FRHAPI_PortalUseRuleset>& OutValue) const { if (Rulesets_IsSet) OutValue = Rulesets_Optional; return Rulesets_IsSet; }
 	/** @brief Returns a pointer to Rulesets_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FRHAPI_PortalUseRuleset>* GetRulesetsOrNull() { if (Rulesets_IsSet) return (&Rulesets_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FRHAPI_PortalUseRuleset>* GetRulesetsOrNull() { if (Rulesets_IsSet) return (&Rulesets_Optional); return nullptr; }
 	/** @brief Returns a pointer to Rulesets_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FRHAPI_PortalUseRuleset>* GetRulesetsOrNull() const { if (Rulesets_IsSet) return (&Rulesets_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FRHAPI_PortalUseRuleset>* GetRulesetsOrNull() const { if (Rulesets_IsSet) return (&Rulesets_Optional); return nullptr; }
 	/** @brief Sets the value of Rulesets_Optional and also sets Rulesets_IsSet to true */
-	void SetRulesets(const TMap<FString, FRHAPI_PortalUseRuleset>& NewValue) { Rulesets_Optional = NewValue; Rulesets_IsSet = true;  }
+	FORCEINLINE void SetRulesets(const TMap<FString, FRHAPI_PortalUseRuleset>& NewValue) { Rulesets_Optional = NewValue; Rulesets_IsSet = true;  }
 	/** @brief Sets the value of Rulesets_Optional and also sets Rulesets_IsSet to true using move semantics */
-	void SetRulesets(TMap<FString, FRHAPI_PortalUseRuleset>&& NewValue) { Rulesets_Optional = NewValue; Rulesets_IsSet = true;  }
+	FORCEINLINE void SetRulesets(TMap<FString, FRHAPI_PortalUseRuleset>&& NewValue) { Rulesets_Optional = NewValue; Rulesets_IsSet = true;  }
 	/** @brief Clears the value of Rulesets_Optional and sets Rulesets_IsSet to false */
 	void ClearRulesets() { Rulesets_IsSet = false;  }
-	/** @brief Checks whether Rulesets_Optional has been set */
-	bool IsRulesetsSet() const { return Rulesets_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
@@ -103,29 +99,27 @@ struct RALLYHEREAPI_API FRHAPI_PortalUseRulesets : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CacheInfo_IsNull{ false };
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-	FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
+	FORCEINLINE FRHAPI_CacheInfo& GetCacheInfo() { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, regardless of it having been set */
-	const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
+	FORCEINLINE const FRHAPI_CacheInfo& GetCacheInfo() const { return CacheInfo_Optional; }
 	/** @brief Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_CacheInfo& GetCacheInfo(const FRHAPI_CacheInfo& DefaultValue) const { if (CacheInfo_IsSet) return CacheInfo_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
+	FORCEINLINE bool GetCacheInfo(FRHAPI_CacheInfo& OutValue) const { if (CacheInfo_IsSet && !CacheInfo_IsNull) OutValue = CacheInfo_Optional; return CacheInfo_IsSet; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_CacheInfo* GetCacheInfoOrNull() { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_CacheInfo* GetCacheInfoOrNull() const { if (CacheInfo_IsSet) return (CacheInfo_IsNull ? nullptr : &CacheInfo_Optional); return nullptr; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true */
-	void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
+	FORCEINLINE void SetCacheInfo(const FRHAPI_CacheInfo& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics */
-	void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
+	FORCEINLINE void SetCacheInfo(FRHAPI_CacheInfo&& NewValue) { CacheInfo_Optional = NewValue; CacheInfo_IsSet = true; CacheInfo_IsNull = false; }
 	/** @brief Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false */
 	void ClearCacheInfo() { CacheInfo_IsSet = false; CacheInfo_IsNull = false; }
-	/** @brief Checks whether CacheInfo_Optional has been set */
-	bool IsCacheInfoSet() const { return CacheInfo_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
+	FORCEINLINE void SetCacheInfoToNull() { CacheInfo_IsSet = true; CacheInfo_IsNull = true; }
 	/** @brief Checks whether CacheInfo_Optional is set to null */
-	bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
+	FORCEINLINE bool IsCacheInfoNull() const { return CacheInfo_IsSet && CacheInfo_IsNull; }
 };
 
 /** @} */

@@ -76,272 +76,238 @@ An Item. Item come in a couple of different flavors; determined by the &#x60;typ
 `public bool `[`CacheInfo_IsNull`](#structFRHAPI__Item_1aba48c9d3eb60b570bba2b1855f67f3bb) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__Item_1a5e75ef0aa4b1af5286da65c549597c73)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Item_1af420192ca00e833b25ecebe48ea0408a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a454f466ad8f83a8a10b7b7b3cb50c56e)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a06d6f6a22c3e6f25a618c96a5dd27cfd)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a8ada1dc78ddce0721ed790826e6ec345)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__Item_1a3925a150ee30d43bf0234cf1127104c3)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a77d0cd9e702208a5a6c01b97f6ea14be)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a03e06b40cc43cec8626b724d1a6cf65c)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__Item_1a015c53d3908e56ffb9c77b746133ea97)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__Item_1a704b6df3915791b80a6e8a880aa57f77)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a5f81adc39246382df4426eced37f7d93)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a5c7bc29c43dbc4194b31ca57f09a9a7b)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a128038db69fe7c8fefdded404e0edeaa)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__Item_1acd380f8408d198f428d4ba8931fc66c7)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a46fe1df6b27c75b7bb078551a0f23256)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a9f28123635b4cd90b15cc6cc68a1f286)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Item_1a483cb295493465dac095708f2a6ff082)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Item_1a30848c8c3ab243691f1d8cb84b430d05)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__Item_1a48d100ed90f7baca2adbf58f396992f3)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__Item_1abe6c005fbaa770ed6fbee5be3920f1cc)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a65143dd48fe575aa3699352cabd7ad81)`()` | Gets the value of ItemUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a0a5cb19161e0be4105f7a97899202313)`() const` | Gets the value of ItemUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a5e4435f541a9f544c3cf11b694413734)`(const FGuid & DefaultValue) const` | Gets the value of ItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetItemUuid`](#structFRHAPI__Item_1a0355f157155593bf7ad0341f6e8213ad)`(FGuid & OutValue) const` | Fills OutValue with the value of ItemUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetItemUuidOrNull`](#structFRHAPI__Item_1ac128984c6fecb6557d2cc7c476e5c497)`()` | Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetItemUuidOrNull`](#structFRHAPI__Item_1a436d82d04450b5176eb5b6080a36e6d2)`() const` | Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetItemUuid`](#structFRHAPI__Item_1a6f75624e5e10d13177207ce4db3f1b45)`(const FGuid & NewValue)` | Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true.
-`public inline void `[`SetItemUuid`](#structFRHAPI__Item_1afa8eda7ecbd1c8cc0e299a2c2f9fdf0e)`(FGuid && NewValue)` | Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a0fb5b72e741b7c1560849a2c6363ca11)`()` | Gets the value of ItemUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a4d17fe7c641a56fea21259a54088af40)`() const` | Gets the value of ItemUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1aecc008206ece12ee05fc0e871dcb6f82)`(const FGuid & DefaultValue) const` | Gets the value of ItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetItemUuid`](#structFRHAPI__Item_1aee511d356985aed25628243d9a0295b4)`(FGuid & OutValue) const` | Fills OutValue with the value of ItemUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetItemUuidOrNull`](#structFRHAPI__Item_1a94adce19bc3b9683ba79c38885eadf22)`()` | Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetItemUuidOrNull`](#structFRHAPI__Item_1a9c8a2a0c28cd4e2abe867b8e33a4f5e5)`() const` | Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetItemUuid`](#structFRHAPI__Item_1acc7f50c978acd208ed768c00e5fd2afd)`(const FGuid & NewValue)` | Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetItemUuid`](#structFRHAPI__Item_1af839987b42d507ad278984f7ad9f81f0)`(FGuid && NewValue)` | Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using move semantics.
 `public inline void `[`ClearItemUuid`](#structFRHAPI__Item_1ae117f4643d50d55557c3472cbf5839c1)`()` | Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false.
-`public inline bool `[`IsItemUuidSet`](#structFRHAPI__Item_1a32232968f40beb8608b89bea1f71195a)`() const` | Checks whether ItemUuid_Optional has been set.
-`public inline void `[`SetItemUuidToNull`](#structFRHAPI__Item_1ad455962b5ae89a2cb9e7fe2da0d56424)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsItemUuidNull`](#structFRHAPI__Item_1a6b75713e68d697699fe25d2e0b0cc5c0)`() const` | Checks whether ItemUuid_Optional is set to null.
-`public inline ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a3da7e87d3fb39720c8978643f0608048)`()` | Gets the value of Type_Optional, regardless of it having been set.
-`public inline const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a167463cfa205ffd92e595fadbae521b4)`() const` | Gets the value of Type_Optional, regardless of it having been set.
-`public inline const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1ab08927d0116d8262149d2a7f479fad33)`(const ERHAPI_ItemType & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetType`](#structFRHAPI__Item_1a00930eaab0b51d2209fff3d0f9c92548)`(ERHAPI_ItemType & OutValue) const` | Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_ItemType * `[`GetTypeOrNull`](#structFRHAPI__Item_1aab3e4bb8a872da96867c34453c3e9ebc)`()` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_ItemType * `[`GetTypeOrNull`](#structFRHAPI__Item_1a67f24da81a9ea7567b9c0cdf11898aa7)`() const` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetType`](#structFRHAPI__Item_1a82309b5edc4557a16563a65a13204108)`(const ERHAPI_ItemType & NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
-`public inline void `[`SetType`](#structFRHAPI__Item_1a10f023eb32d4a77fb36e7cba53683bdc)`(ERHAPI_ItemType && NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetItemUuidToNull`](#structFRHAPI__Item_1aea4ae0b5a39524fbf791260a2d7bf9fd)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsItemUuidNull`](#structFRHAPI__Item_1a2111616c6579678df57b3d5837bc4e4f)`() const` | Checks whether ItemUuid_Optional is set to null.
+`public inline FORCEINLINE ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a6bfa555cd908fff45f1cf7ab7132aeef)`()` | Gets the value of Type_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a2b7774a95ad1d47f4010cee23e5877d9)`() const` | Gets the value of Type_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a4e734b80cb38baa3b12bc9496cce148f)`(const ERHAPI_ItemType & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetType`](#structFRHAPI__Item_1abf621b0829dc4d1a4bc4f2d78effcdd1)`(ERHAPI_ItemType & OutValue) const` | Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_ItemType * `[`GetTypeOrNull`](#structFRHAPI__Item_1a233957110f50a1cb7f2493186fa36e59)`()` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_ItemType * `[`GetTypeOrNull`](#structFRHAPI__Item_1ada1f3058199e60c8094eec69f06e2424)`() const` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetType`](#structFRHAPI__Item_1a0220dfbfcc1a3a51dce5f830322b023e)`(const ERHAPI_ItemType & NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
+`public inline FORCEINLINE void `[`SetType`](#structFRHAPI__Item_1a64b4993ef8fb037b47c379ecc1c37229)`(ERHAPI_ItemType && NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
 `public inline void `[`ClearType`](#structFRHAPI__Item_1a362cf257461d3f93b83ecf5145fe6f84)`()` | Clears the value of Type_Optional and sets Type_IsSet to false.
-`public inline bool `[`IsTypeSet`](#structFRHAPI__Item_1ab3b1ab78f0108df20c008523bbfed86a)`() const` | Checks whether Type_Optional has been set.
-`public inline int32 & `[`GetLegacyType`](#structFRHAPI__Item_1ab4e77f33645109b5de6f71ec3c411d28)`()` | Gets the value of LegacyType_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLegacyType`](#structFRHAPI__Item_1ad5beb1b63b50c7237df66fe189cde66f)`() const` | Gets the value of LegacyType_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLegacyType`](#structFRHAPI__Item_1a817c4e6a282bd086fb6b4ad848dbb0d5)`(const int32 & DefaultValue) const` | Gets the value of LegacyType_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLegacyType`](#structFRHAPI__Item_1a248418aa5571ba2b2f2adb9c42949403)`(int32 & OutValue) const` | Fills OutValue with the value of LegacyType_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Item_1a7e19b350e952de0d89ee1fd7b5ad4874)`()` | Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Item_1a06825abfc8d9b21c29f49fbcb208b655)`() const` | Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLegacyType`](#structFRHAPI__Item_1af62176137a2de1ce9a009a2c49b414ce)`(const int32 & NewValue)` | Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true.
-`public inline void `[`SetLegacyType`](#structFRHAPI__Item_1a60e5fe4bae50df0518f6f33708384b17)`(int32 && NewValue)` | Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetLegacyType`](#structFRHAPI__Item_1a1b52532e4365d1fe545047b8943eaed2)`()` | Gets the value of LegacyType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLegacyType`](#structFRHAPI__Item_1ae0ca211dc950fec54b14606aad32979c)`() const` | Gets the value of LegacyType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLegacyType`](#structFRHAPI__Item_1a13d789f67c72529575af61df15c45834)`(const int32 & DefaultValue) const` | Gets the value of LegacyType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLegacyType`](#structFRHAPI__Item_1ab42affb06769605967573bbd40617cdb)`(int32 & OutValue) const` | Fills OutValue with the value of LegacyType_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Item_1a8f5b0ddc58e47e8ac97ead0051b43577)`()` | Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Item_1a29e5b31539214f4b9332aeb91ce89699)`() const` | Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLegacyType`](#structFRHAPI__Item_1a8f6631b845a8af254d6a4e45ad9a3fef)`(const int32 & NewValue)` | Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true.
+`public inline FORCEINLINE void `[`SetLegacyType`](#structFRHAPI__Item_1aa4d07d6f78a9ef74914ac73357f2d057)`(int32 && NewValue)` | Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyType`](#structFRHAPI__Item_1a3b348d7a2b201cfd7a226ff2357d13ef)`()` | Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false.
-`public inline bool `[`IsLegacyTypeSet`](#structFRHAPI__Item_1a689f46c32454425484e52f6b06cacc29)`() const` | Checks whether LegacyType_Optional has been set.
-`public inline bool `[`IsLegacyTypeDefaultValue`](#structFRHAPI__Item_1a5ee3a8b2559b1163c4f14bbba5f2fba4)`() const` | Returns true if LegacyType_Optional is set and matches the default value.
-`public inline void `[`SetLegacyTypeToDefault`](#structFRHAPI__Item_1a720984f8c98db38b0d40bc8e5682cba5)`()` | Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true.
-`public inline int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1a7a65342233ae1a29ebd6878536472670)`()` | Gets the value of LegacySubtype_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1a8470453b4d696babdf4fc6596f480ba4)`() const` | Gets the value of LegacySubtype_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1aaa040a460cec1a681fc079c8bb5e82ad)`(const int32 & DefaultValue) const` | Gets the value of LegacySubtype_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLegacySubtype`](#structFRHAPI__Item_1ab311f92e98d5238fe1fd5ed58a18eed4)`(int32 & OutValue) const` | Fills OutValue with the value of LegacySubtype_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetLegacySubtypeOrNull`](#structFRHAPI__Item_1ab44cb90acf53bbcfa4898303d9de31e4)`()` | Returns a pointer to LegacySubtype_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetLegacySubtypeOrNull`](#structFRHAPI__Item_1a2073482d5a00fe266c4e9fd61c9372fe)`() const` | Returns a pointer to LegacySubtype_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLegacySubtype`](#structFRHAPI__Item_1a025515fcfc514f0297534e5346fd9578)`(const int32 & NewValue)` | Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to true.
-`public inline void `[`SetLegacySubtype`](#structFRHAPI__Item_1a30e943d3f917eb26cc0e00fcf0ed854e)`(int32 && NewValue)` | Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_LegacyType`](#structFRHAPI__Item_1a6680fb545cb03d89e91c37d8b65c5fca)`()` | Returns the default value of LegacyType.
+`public inline FORCEINLINE int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1af2d9b3f5c879e4bbd8a9eb1df9ba493f)`()` | Gets the value of LegacySubtype_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1a6a65a583fb014d311e0aac973dae0d75)`() const` | Gets the value of LegacySubtype_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1acaeba8ebc22c914b82237625462808f3)`(const int32 & DefaultValue) const` | Gets the value of LegacySubtype_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLegacySubtype`](#structFRHAPI__Item_1a8294dfd16e62919ab966f5311786093e)`(int32 & OutValue) const` | Fills OutValue with the value of LegacySubtype_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetLegacySubtypeOrNull`](#structFRHAPI__Item_1a2c52ae6223f386a463907772b9beb817)`()` | Returns a pointer to LegacySubtype_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetLegacySubtypeOrNull`](#structFRHAPI__Item_1af52e9aba74872b97dab9ed92c16b62a9)`() const` | Returns a pointer to LegacySubtype_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLegacySubtype`](#structFRHAPI__Item_1a0f572aa059be5226180bb9042f530c51)`(const int32 & NewValue)` | Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to true.
+`public inline FORCEINLINE void `[`SetLegacySubtype`](#structFRHAPI__Item_1a01dbee6e2b76d1952216afaf35b58deb)`(int32 && NewValue)` | Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to true using move semantics.
 `public inline void `[`ClearLegacySubtype`](#structFRHAPI__Item_1a0a39fa9d8be15b57818fffadbc315976)`()` | Clears the value of LegacySubtype_Optional and sets LegacySubtype_IsSet to false.
-`public inline bool `[`IsLegacySubtypeSet`](#structFRHAPI__Item_1afd43847f1e904c769d777aa73a124ec9)`() const` | Checks whether LegacySubtype_Optional has been set.
-`public inline bool `[`IsLegacySubtypeDefaultValue`](#structFRHAPI__Item_1a1066b8828dab67a895e13d0140679562)`() const` | Returns true if LegacySubtype_Optional is set and matches the default value.
-`public inline void `[`SetLegacySubtypeToDefault`](#structFRHAPI__Item_1a26a6a394bb57a448f1feb37c175011f2)`()` | Sets the value of LegacySubtype_Optional to its default and also sets LegacySubtype_IsSet to true.
-`public inline int32 & `[`GetRefItemId`](#structFRHAPI__Item_1af9bf68ffe3d909fde5fce6a4e9e6bf22)`()` | Gets the value of RefItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetRefItemId`](#structFRHAPI__Item_1ad9b0f2a9c462f554977f77d6814fb12b)`() const` | Gets the value of RefItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetRefItemId`](#structFRHAPI__Item_1a1bcf1b5a19bcafa0bb2ab0bd6d2b312d)`(const int32 & DefaultValue) const` | Gets the value of RefItemId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRefItemId`](#structFRHAPI__Item_1ae883e7828a3c06fd368959887ef2d88d)`(int32 & OutValue) const` | Fills OutValue with the value of RefItemId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetRefItemIdOrNull`](#structFRHAPI__Item_1a91eb20df6698ccc84779123fc5785ca9)`()` | Returns a pointer to RefItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetRefItemIdOrNull`](#structFRHAPI__Item_1a671b9e4de4c50ef4b65c99568f2947c1)`() const` | Returns a pointer to RefItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRefItemId`](#structFRHAPI__Item_1ab23eb90e592503296cd5033a9dcf58b1)`(const int32 & NewValue)` | Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true.
-`public inline void `[`SetRefItemId`](#structFRHAPI__Item_1a5d4bf03570c2f591d5119515570d6bc1)`(int32 && NewValue)` | Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_LegacySubtype`](#structFRHAPI__Item_1ac486576891119cea067ecc5f3a3e18df)`()` | Returns the default value of LegacySubtype.
+`public inline FORCEINLINE int32 & `[`GetRefItemId`](#structFRHAPI__Item_1aba88404d8cfee9d8de83e8ce69121c4d)`()` | Gets the value of RefItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetRefItemId`](#structFRHAPI__Item_1a3f54e8a298988e1b9b67e1479af801cc)`() const` | Gets the value of RefItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetRefItemId`](#structFRHAPI__Item_1a0b0b19210c5c6099992ac8fbfc6c6c06)`(const int32 & DefaultValue) const` | Gets the value of RefItemId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRefItemId`](#structFRHAPI__Item_1aa527838da2082714a6c748c67b4bc601)`(int32 & OutValue) const` | Fills OutValue with the value of RefItemId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetRefItemIdOrNull`](#structFRHAPI__Item_1a8f2d754ea2258470b3b946a37277a80e)`()` | Returns a pointer to RefItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetRefItemIdOrNull`](#structFRHAPI__Item_1a9066075ae9c2d29a5d5a6f542fd0d506)`() const` | Returns a pointer to RefItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRefItemId`](#structFRHAPI__Item_1a6059eeb5f94e20a1b28d1691abf5cb84)`(const int32 & NewValue)` | Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true.
+`public inline FORCEINLINE void `[`SetRefItemId`](#structFRHAPI__Item_1adf96b77975c85c15f4e65556bf9173ff)`(int32 && NewValue)` | Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true using move semantics.
 `public inline void `[`ClearRefItemId`](#structFRHAPI__Item_1a627bd51ce7a252982a40502f90731754)`()` | Clears the value of RefItemId_Optional and sets RefItemId_IsSet to false.
-`public inline bool `[`IsRefItemIdSet`](#structFRHAPI__Item_1a6154d1197c0e93ccc270edaf5b300d7b)`() const` | Checks whether RefItemId_Optional has been set.
-`public inline bool `[`IsRefItemIdDefaultValue`](#structFRHAPI__Item_1a1af549c0e4ae73ae1e2a21cc8db4f2f5)`() const` | Returns true if RefItemId_Optional is set and matches the default value.
-`public inline void `[`SetRefItemIdToDefault`](#structFRHAPI__Item_1a5ffafc7f7977147c1304e6b2d9a0c57d)`()` | Sets the value of RefItemId_Optional to its default and also sets RefItemId_IsSet to true.
-`public inline int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1aebe8bc5258ba6472ef7e4ae23469b72a)`()` | Gets the value of AvailabilityFlags_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1af82c9450260c7f2c9d59abbdbce5ba39)`() const` | Gets the value of AvailabilityFlags_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1a3f10009ab29ac1312bfb8048b7c20198)`(const int32 & DefaultValue) const` | Gets the value of AvailabilityFlags_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAvailabilityFlags`](#structFRHAPI__Item_1a9a7ae008c53e0a3fa3c44ee868c1d057)`(int32 & OutValue) const` | Fills OutValue with the value of AvailabilityFlags_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetAvailabilityFlagsOrNull`](#structFRHAPI__Item_1a2cc05867279ef0f48d1f57b972829975)`()` | Returns a pointer to AvailabilityFlags_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetAvailabilityFlagsOrNull`](#structFRHAPI__Item_1afc6d10a5d579cb7d0c68ce6435da494f)`() const` | Returns a pointer to AvailabilityFlags_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAvailabilityFlags`](#structFRHAPI__Item_1a787ded3092c3a4515c990b4f42b4d697)`(const int32 & NewValue)` | Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsSet to true.
-`public inline void `[`SetAvailabilityFlags`](#structFRHAPI__Item_1afbeb845e860d93d68994cd64d6df27cb)`(int32 && NewValue)` | Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_RefItemId`](#structFRHAPI__Item_1affea15654e8c1a556bbeda5686e702b8)`()` | Returns the default value of RefItemId.
+`public inline FORCEINLINE int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1a7a91a6cab74be4fa9d3b95f470a10e95)`()` | Gets the value of AvailabilityFlags_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1af75829e52e457a8c28b36e003593c4f6)`() const` | Gets the value of AvailabilityFlags_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1a9913d0a620e7d1dc968cf71a0178618a)`(const int32 & DefaultValue) const` | Gets the value of AvailabilityFlags_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAvailabilityFlags`](#structFRHAPI__Item_1aa29da69b84779d99a1dd207f909a77c7)`(int32 & OutValue) const` | Fills OutValue with the value of AvailabilityFlags_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetAvailabilityFlagsOrNull`](#structFRHAPI__Item_1aac344fb365ab5ffd805a2260b25c3d83)`()` | Returns a pointer to AvailabilityFlags_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetAvailabilityFlagsOrNull`](#structFRHAPI__Item_1a2260cbfd0870810116e49f3ade2950e5)`() const` | Returns a pointer to AvailabilityFlags_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAvailabilityFlags`](#structFRHAPI__Item_1a10086a737765226e6c07ba5814520e0b)`(const int32 & NewValue)` | Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsSet to true.
+`public inline FORCEINLINE void `[`SetAvailabilityFlags`](#structFRHAPI__Item_1a13b9a7a868d7aef7b6f9b1d7f14ac8d7)`(int32 && NewValue)` | Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsSet to true using move semantics.
 `public inline void `[`ClearAvailabilityFlags`](#structFRHAPI__Item_1ab6431ed841c08437bde7da3f64d759a8)`()` | Clears the value of AvailabilityFlags_Optional and sets AvailabilityFlags_IsSet to false.
-`public inline bool `[`IsAvailabilityFlagsSet`](#structFRHAPI__Item_1a7635dda467e04cbd47351dc4862cb4c8)`() const` | Checks whether AvailabilityFlags_Optional has been set.
-`public inline bool `[`IsAvailabilityFlagsDefaultValue`](#structFRHAPI__Item_1a23be4efbe75354ed2cc0aa5188c827fb)`() const` | Returns true if AvailabilityFlags_Optional is set and matches the default value.
-`public inline void `[`SetAvailabilityFlagsToDefault`](#structFRHAPI__Item_1aef8c5832626e314d6a91b041d1014bc9)`()` | Sets the value of AvailabilityFlags_Optional to its default and also sets AvailabilityFlags_IsSet to true.
-`public inline FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a9fca88e2b642728ee80f93dcab3cd040)`()` | Gets the value of EntitledLootUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a7b5fb4bdd772241a8342f74183abef2f)`() const` | Gets the value of EntitledLootUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a1d0b02123bf2ba7c4103bac9e9885f36)`(const FGuid & DefaultValue) const` | Gets the value of EntitledLootUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a42eeaf6b6692598add6973b2796dffd0)`(FGuid & OutValue) const` | Fills OutValue with the value of EntitledLootUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetEntitledLootUuidOrNull`](#structFRHAPI__Item_1a7c5c3dfb697b417e65bc14afd2384cd3)`()` | Returns a pointer to EntitledLootUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetEntitledLootUuidOrNull`](#structFRHAPI__Item_1a6cf85edfd288281cdceb812aab6f4f19)`() const` | Returns a pointer to EntitledLootUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1aee8811848eac772eb9b5ff228765675d)`(const FGuid & NewValue)` | Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true.
-`public inline void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1a56ba00061fb3c807ae5f1a7a34e7555e)`(FGuid && NewValue)` | Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_AvailabilityFlags`](#structFRHAPI__Item_1ae1b1dcf6443d294a648ed376f5d392db)`()` | Returns the default value of AvailabilityFlags.
+`public inline FORCEINLINE FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a986213b1ee62f9ff7d03e2a00116c942)`()` | Gets the value of EntitledLootUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a2eb3ad536b0a704f6933cdd08f283123)`() const` | Gets the value of EntitledLootUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1ae6c92ac45b7e1b366969a0af226cba32)`(const FGuid & DefaultValue) const` | Gets the value of EntitledLootUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a7a053f56309e67328a23ac50d3c2df94)`(FGuid & OutValue) const` | Fills OutValue with the value of EntitledLootUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetEntitledLootUuidOrNull`](#structFRHAPI__Item_1aae4e85d26d964a7e9d6b1996f8d9522f)`()` | Returns a pointer to EntitledLootUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetEntitledLootUuidOrNull`](#structFRHAPI__Item_1ae828ed1cb95c8b6116efebfb2173c932)`() const` | Returns a pointer to EntitledLootUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1aeffec62c21560367413471f376353537)`(const FGuid & NewValue)` | Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1ab83d07cbb9ece3ee488db9cb151d6228)`(FGuid && NewValue)` | Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true using move semantics.
 `public inline void `[`ClearEntitledLootUuid`](#structFRHAPI__Item_1a80b307d98d2d4dfd01c5f180d8afb707)`()` | Clears the value of EntitledLootUuid_Optional and sets EntitledLootUuid_IsSet to false.
-`public inline bool `[`IsEntitledLootUuidSet`](#structFRHAPI__Item_1a5d3d67041b84635a8c2d641ff1f26e0a)`() const` | Checks whether EntitledLootUuid_Optional has been set.
-`public inline void `[`SetEntitledLootUuidToNull`](#structFRHAPI__Item_1adbe4c3be863a8da8fc19e0b1f3919272)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsEntitledLootUuidNull`](#structFRHAPI__Item_1a991c70ad3e9d145c35401504ee11bfb8)`() const` | Checks whether EntitledLootUuid_Optional is set to null.
-`public inline int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1ae7c458dc55f2f24701123939f674aaea)`()` | Gets the value of EntitledLootId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1a64d792574e0c14ab1cba1d7310277eb4)`() const` | Gets the value of EntitledLootId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1accf5503c5de62bd6209ba26d088f0c9a)`(const int32 & DefaultValue) const` | Gets the value of EntitledLootId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetEntitledLootId`](#structFRHAPI__Item_1a3b5abfb93e819a326cb9df5a5d172cac)`(int32 & OutValue) const` | Fills OutValue with the value of EntitledLootId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetEntitledLootIdOrNull`](#structFRHAPI__Item_1ad96dc4b7ea0d231b24e6e7b6a2d93551)`()` | Returns a pointer to EntitledLootId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetEntitledLootIdOrNull`](#structFRHAPI__Item_1af213cc5fa5b55480914570fc7297245c)`() const` | Returns a pointer to EntitledLootId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEntitledLootId`](#structFRHAPI__Item_1aa94cde1b0428d56fc20beaee1fd0c4d7)`(const int32 & NewValue)` | Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to true.
-`public inline void `[`SetEntitledLootId`](#structFRHAPI__Item_1adef78784a94266ff134fe98173e771b0)`(int32 && NewValue)` | Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetEntitledLootUuidToNull`](#structFRHAPI__Item_1ad29ac8d21f2949ef9d0c97eb7cd1cdb9)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsEntitledLootUuidNull`](#structFRHAPI__Item_1a5e203f61fa1ee53bad382e2514022e97)`() const` | Checks whether EntitledLootUuid_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1a742791c4e607afc5506dfc193a2e891d)`()` | Gets the value of EntitledLootId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1a67c6de375a0a9ce983e96e7d663f7f12)`() const` | Gets the value of EntitledLootId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1ab2d09fc85c7c5dd3310d01a2f14c94cb)`(const int32 & DefaultValue) const` | Gets the value of EntitledLootId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetEntitledLootId`](#structFRHAPI__Item_1abcd4333a337a6201fd159b3fd80c097d)`(int32 & OutValue) const` | Fills OutValue with the value of EntitledLootId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetEntitledLootIdOrNull`](#structFRHAPI__Item_1a775fc0fa15734b0cd283746a8d6879ab)`()` | Returns a pointer to EntitledLootId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetEntitledLootIdOrNull`](#structFRHAPI__Item_1abce12ab27fe0ffecf58ede4ea1858075)`() const` | Returns a pointer to EntitledLootId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetEntitledLootId`](#structFRHAPI__Item_1ab66036ee605b51fb3aca34f0a167c8de)`(const int32 & NewValue)` | Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to true.
+`public inline FORCEINLINE void `[`SetEntitledLootId`](#structFRHAPI__Item_1a2abd341f69aceaad0e7a7109401d9742)`(int32 && NewValue)` | Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to true using move semantics.
 `public inline void `[`ClearEntitledLootId`](#structFRHAPI__Item_1af391494a5410e3f80f61a9e5e25dccda)`()` | Clears the value of EntitledLootId_Optional and sets EntitledLootId_IsSet to false.
-`public inline bool `[`IsEntitledLootIdSet`](#structFRHAPI__Item_1ab09f0bd3d6856035af3e141b4723c066)`() const` | Checks whether EntitledLootId_Optional has been set.
-`public inline bool `[`IsEntitledLootIdDefaultValue`](#structFRHAPI__Item_1a89de44af3b2baea1dcf09c5297058dfb)`() const` | Returns true if EntitledLootId_Optional is set and matches the default value.
-`public inline void `[`SetEntitledLootIdToDefault`](#structFRHAPI__Item_1aa92bb7b9880364b596cca22b0833546b)`()` | Sets the value of EntitledLootId_Optional to its default and also sets EntitledLootId_IsSet to true.
-`public inline FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a69c8cf63ccb2ba4ff2a1940b514990ed)`()` | Gets the value of LevelXpTableUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a63b61258d97d599db61d910af34b48be)`() const` | Gets the value of LevelXpTableUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a975b0079c7b1da37d2f770aa16bce98a)`(const FGuid & DefaultValue) const` | Gets the value of LevelXpTableUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1aad99d1104aa4c7c69cdd7e96287f9860)`(FGuid & OutValue) const` | Fills OutValue with the value of LevelXpTableUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetLevelXpTableUuidOrNull`](#structFRHAPI__Item_1a992c2aa6c1380108ce7cf063b545e840)`()` | Returns a pointer to LevelXpTableUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetLevelXpTableUuidOrNull`](#structFRHAPI__Item_1a64ba2f6f6cdcb5cf9b7e57cb98d06d57)`() const` | Returns a pointer to LevelXpTableUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1a49dc70a310aaec33fc1dfddf780a773f)`(const FGuid & NewValue)` | Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true.
-`public inline void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1ae2d873fe4792b0657cd0d9c0a7cd905b)`(FGuid && NewValue)` | Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_EntitledLootId`](#structFRHAPI__Item_1ae3d1e1efae68b016f65a2b38007b2f77)`()` | Returns the default value of EntitledLootId.
+`public inline FORCEINLINE FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a2c71defaace2733281736977b4e76a48)`()` | Gets the value of LevelXpTableUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a53c8c9956709b6f70772e209813f33bc)`() const` | Gets the value of LevelXpTableUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1aada4400ca3d7464c83b0b048d70277c6)`(const FGuid & DefaultValue) const` | Gets the value of LevelXpTableUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a4620d615af2e120a893c998f6f11198b)`(FGuid & OutValue) const` | Fills OutValue with the value of LevelXpTableUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetLevelXpTableUuidOrNull`](#structFRHAPI__Item_1a1e1a3223165a5132e85766abfab055f4)`()` | Returns a pointer to LevelXpTableUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetLevelXpTableUuidOrNull`](#structFRHAPI__Item_1a69512c781cf1511eb5f54d7108afb268)`() const` | Returns a pointer to LevelXpTableUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1adfa59e40e28828ff6fc8a616c71955c2)`(const FGuid & NewValue)` | Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1a47ab7b33f58b6c2f6af36a524d9f3cde)`(FGuid && NewValue)` | Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true using move semantics.
 `public inline void `[`ClearLevelXpTableUuid`](#structFRHAPI__Item_1aa045a9bebae787bfd2ca849c041b3a4f)`()` | Clears the value of LevelXpTableUuid_Optional and sets LevelXpTableUuid_IsSet to false.
-`public inline bool `[`IsLevelXpTableUuidSet`](#structFRHAPI__Item_1a4a011653b815f41974b88e5bc21df0ce)`() const` | Checks whether LevelXpTableUuid_Optional has been set.
-`public inline void `[`SetLevelXpTableUuidToNull`](#structFRHAPI__Item_1a374acbf3626627b060ec2c78ecdec5d6)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLevelXpTableUuidNull`](#structFRHAPI__Item_1a94e18011fd34561c9829e421c97f3d4d)`() const` | Checks whether LevelXpTableUuid_Optional is set to null.
-`public inline int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a09dd729edd44e83abbaa7d885e90d9fc)`()` | Gets the value of LevelXpTableId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a89ffc96012836dbbcb52fe856777e5b8)`() const` | Gets the value of LevelXpTableId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1ad1087a14c51e23ce212aed7c8b9ba650)`(const int32 & DefaultValue) const` | Gets the value of LevelXpTableId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLevelXpTableId`](#structFRHAPI__Item_1a9ea97eb49e4e90964abce5ab17f270b5)`(int32 & OutValue) const` | Fills OutValue with the value of LevelXpTableId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetLevelXpTableIdOrNull`](#structFRHAPI__Item_1a0960189f52f3bee153cdee4a0e96e5d2)`()` | Returns a pointer to LevelXpTableId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetLevelXpTableIdOrNull`](#structFRHAPI__Item_1aa9e734f968279b8abcf942fa8a29d983)`() const` | Returns a pointer to LevelXpTableId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLevelXpTableId`](#structFRHAPI__Item_1affac8e552e618cd3646d020b8c572acf)`(const int32 & NewValue)` | Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to true.
-`public inline void `[`SetLevelXpTableId`](#structFRHAPI__Item_1aaec876c264a786f5e47edd03e07a9774)`(int32 && NewValue)` | Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetLevelXpTableUuidToNull`](#structFRHAPI__Item_1ae4e735f0d1561b627424cea781e0dd04)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLevelXpTableUuidNull`](#structFRHAPI__Item_1a67569818c40f09221afabd1433a9e26f)`() const` | Checks whether LevelXpTableUuid_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1aebab51c0784e638eed2a325cc414c531)`()` | Gets the value of LevelXpTableId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a07bae5eff7bb612bfc246925a0d70bbb)`() const` | Gets the value of LevelXpTableId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a4dd2efcac5235f13473dd53cf92e6de5)`(const int32 & DefaultValue) const` | Gets the value of LevelXpTableId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLevelXpTableId`](#structFRHAPI__Item_1a8733dc10396cd5cc4c12df526b4f68e5)`(int32 & OutValue) const` | Fills OutValue with the value of LevelXpTableId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetLevelXpTableIdOrNull`](#structFRHAPI__Item_1af087625a77abd472b7df6d213c24b0e7)`()` | Returns a pointer to LevelXpTableId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetLevelXpTableIdOrNull`](#structFRHAPI__Item_1a17a0cee3ab4b997edfd69d4792043845)`() const` | Returns a pointer to LevelXpTableId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLevelXpTableId`](#structFRHAPI__Item_1ab4f91ab7677f2a2f14dc6d414c69e6ce)`(const int32 & NewValue)` | Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to true.
+`public inline FORCEINLINE void `[`SetLevelXpTableId`](#structFRHAPI__Item_1ae0e0a0eb8f5c67f058330836e481e040)`(int32 && NewValue)` | Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to true using move semantics.
 `public inline void `[`ClearLevelXpTableId`](#structFRHAPI__Item_1a1c89518a19b75fc04c9a6bef06610463)`()` | Clears the value of LevelXpTableId_Optional and sets LevelXpTableId_IsSet to false.
-`public inline bool `[`IsLevelXpTableIdSet`](#structFRHAPI__Item_1aa4dddc6efc3bbe6013aced0593cb55d3)`() const` | Checks whether LevelXpTableId_Optional has been set.
-`public inline bool `[`IsLevelXpTableIdDefaultValue`](#structFRHAPI__Item_1aa20e8f9abb29c6b87f5f47e4c3b54ba9)`() const` | Returns true if LevelXpTableId_Optional is set and matches the default value.
-`public inline void `[`SetLevelXpTableIdToDefault`](#structFRHAPI__Item_1ac6f63b9312de41a44c7c3c49f4e17fde)`()` | Sets the value of LevelXpTableId_Optional to its default and also sets LevelXpTableId_IsSet to true.
-`public inline FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a41dd25ff85457a7d07b38ab468b87f84)`()` | Gets the value of LevelVendorUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a6e9aaabeecbe59a9376f34ad78246bc0)`() const` | Gets the value of LevelVendorUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a1577c839e15477ee991a14d255dcd3be)`(const FGuid & DefaultValue) const` | Gets the value of LevelVendorUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a106505efa4e84e24c23780bcb5f3c826)`(FGuid & OutValue) const` | Fills OutValue with the value of LevelVendorUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetLevelVendorUuidOrNull`](#structFRHAPI__Item_1a0d123ebfa35dfbcda79ee806fa4d47e3)`()` | Returns a pointer to LevelVendorUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetLevelVendorUuidOrNull`](#structFRHAPI__Item_1abdb358860da5277e8e0df26077cae632)`() const` | Returns a pointer to LevelVendorUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1aae04871c0242965b67a9eb74a4d3e553)`(const FGuid & NewValue)` | Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true.
-`public inline void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1a5e15a80ca954fc6ae976fba37878cdf6)`(FGuid && NewValue)` | Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_LevelXpTableId`](#structFRHAPI__Item_1a94841fd6fb1d5ac326b125a4d765ca0c)`()` | Returns the default value of LevelXpTableId.
+`public inline FORCEINLINE FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a099a8f3bbad98e0ebd52a930c1297738)`()` | Gets the value of LevelVendorUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a5a3337e58cb58a2e460d56f45e77999e)`() const` | Gets the value of LevelVendorUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1afccc923c2c628e0bdda2a7521bc39c0a)`(const FGuid & DefaultValue) const` | Gets the value of LevelVendorUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLevelVendorUuid`](#structFRHAPI__Item_1aa086413b36057b7bf5d0e25a1620f16d)`(FGuid & OutValue) const` | Fills OutValue with the value of LevelVendorUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetLevelVendorUuidOrNull`](#structFRHAPI__Item_1a5edba27e9b89c8672daa91b6a57f68f5)`()` | Returns a pointer to LevelVendorUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetLevelVendorUuidOrNull`](#structFRHAPI__Item_1a5b357658ce1b3f89a07f06e203ca6a68)`() const` | Returns a pointer to LevelVendorUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1af42605c5d9ee7d49f048f081b74ed0b8)`(const FGuid & NewValue)` | Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1a357d22757a02200e53f3bf4c68f759cd)`(FGuid && NewValue)` | Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true using move semantics.
 `public inline void `[`ClearLevelVendorUuid`](#structFRHAPI__Item_1a5e63c9d337ee6543483319fa12b01c6d)`()` | Clears the value of LevelVendorUuid_Optional and sets LevelVendorUuid_IsSet to false.
-`public inline bool `[`IsLevelVendorUuidSet`](#structFRHAPI__Item_1a1eb134198a801e945e40c861208a30a5)`() const` | Checks whether LevelVendorUuid_Optional has been set.
-`public inline void `[`SetLevelVendorUuidToNull`](#structFRHAPI__Item_1a314344e8aabe27d33b3e8310d9a8407d)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLevelVendorUuidNull`](#structFRHAPI__Item_1ae3465e2291b884421a8976cf3e79304d)`() const` | Checks whether LevelVendorUuid_Optional is set to null.
-`public inline int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1ac0267cbf41820c783d2fd20991585153)`()` | Gets the value of LevelVendorId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1ad0ccbe959c0b5eeb8123badceeee37a6)`() const` | Gets the value of LevelVendorId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1a249c565fc1bc9a9b07e75364e0d82951)`(const int32 & DefaultValue) const` | Gets the value of LevelVendorId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLevelVendorId`](#structFRHAPI__Item_1a3cb4c5ed96cfea63a1a0b270d53c0016)`(int32 & OutValue) const` | Fills OutValue with the value of LevelVendorId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetLevelVendorIdOrNull`](#structFRHAPI__Item_1adf99f266d18cde705ad948b210a47842)`()` | Returns a pointer to LevelVendorId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetLevelVendorIdOrNull`](#structFRHAPI__Item_1ad2070d05565c6b574062b66c8fbb7638)`() const` | Returns a pointer to LevelVendorId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLevelVendorId`](#structFRHAPI__Item_1a6206e135389392cf3a8b9ab2dd73aa64)`(const int32 & NewValue)` | Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to true.
-`public inline void `[`SetLevelVendorId`](#structFRHAPI__Item_1a091a8aa94eb7e8ac8522498fc4a48d2e)`(int32 && NewValue)` | Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetLevelVendorUuidToNull`](#structFRHAPI__Item_1ad45ff1ce5e42675f8963da7d38268c57)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLevelVendorUuidNull`](#structFRHAPI__Item_1a8eed1a4813aba930caaefc00dd4b7766)`() const` | Checks whether LevelVendorUuid_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1af2ae153e9f018fc153cd491cfd787bf5)`()` | Gets the value of LevelVendorId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1afd5fe90f67bee175ae670398be670dff)`() const` | Gets the value of LevelVendorId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1a6acd2159fe1decb904d9e9d509d06630)`(const int32 & DefaultValue) const` | Gets the value of LevelVendorId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLevelVendorId`](#structFRHAPI__Item_1a9607965c31c727ebc884ff4cb4871533)`(int32 & OutValue) const` | Fills OutValue with the value of LevelVendorId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetLevelVendorIdOrNull`](#structFRHAPI__Item_1a6e54deee3996741acf0aa30df7ae9683)`()` | Returns a pointer to LevelVendorId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetLevelVendorIdOrNull`](#structFRHAPI__Item_1aac3a14877bdd7f23a1b7fd4a643f6b32)`() const` | Returns a pointer to LevelVendorId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLevelVendorId`](#structFRHAPI__Item_1af458fdbee236e66c400cc145db4fe6dd)`(const int32 & NewValue)` | Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to true.
+`public inline FORCEINLINE void `[`SetLevelVendorId`](#structFRHAPI__Item_1ac0686303a50ca9660a3b4f00f6740df3)`(int32 && NewValue)` | Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to true using move semantics.
 `public inline void `[`ClearLevelVendorId`](#structFRHAPI__Item_1a355b5f7551ed3105dd68b45e2393aee2)`()` | Clears the value of LevelVendorId_Optional and sets LevelVendorId_IsSet to false.
-`public inline bool `[`IsLevelVendorIdSet`](#structFRHAPI__Item_1a70dd0dabebfb683fb9b450808b5e6606)`() const` | Checks whether LevelVendorId_Optional has been set.
-`public inline bool `[`IsLevelVendorIdDefaultValue`](#structFRHAPI__Item_1a6142502c0d3ecc38bc20254af3cffc22)`() const` | Returns true if LevelVendorId_Optional is set and matches the default value.
-`public inline void `[`SetLevelVendorIdToDefault`](#structFRHAPI__Item_1ad31d4c1ae0420e87716468dccbc6cb44)`()` | Sets the value of LevelVendorId_Optional to its default and also sets LevelVendorId_IsSet to true.
-`public inline FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1ad9616fd72ef6ffac18e5e8af0a8030dc)`()` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afdf15e83f4c9127a9ef83bccd3504ba6)`() const` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a4daf693b2dfe1a204ac5b264a6b8f2df)`(const FGuid & DefaultValue) const` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1abc7fdc2c9ec76e9bb02c0574e34ba141)`(FGuid & OutValue) const` | Fills OutValue with the value of CouponDiscountCurrencyItemUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1adedb7c383b0d994f1a457eb090b74bb7)`()` | Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1af6cb84e053224e128aa643e48c193c11)`() const` | Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1af6b1428a71bab1c0999b8e097f9bb4de)`(const FGuid & NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true.
-`public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afa57506fd183e4e65cd8ad955e588242)`(FGuid && NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_LevelVendorId`](#structFRHAPI__Item_1af4372196edaacf0962d5416ee5d00562)`()` | Returns the default value of LevelVendorId.
+`public inline FORCEINLINE FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a3716f22c577baadf52b0d34dfa908be7)`()` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a373d318a2005c62dbdda06bb0248efc5)`() const` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a800ca266534e9d06f62f846615e5d79b)`(const FGuid & DefaultValue) const` | Gets the value of CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afd6e094a7f6bf76c18a11bdd29bd35d3)`(FGuid & OutValue) const` | Fills OutValue with the value of CouponDiscountCurrencyItemUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1ab932c279269e8495582694d5def9722c)`()` | Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1a8e794a1b7de926e5d27a5f0ad8c41c73)`() const` | Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a0f40592b16ad57f3cb9cc2803421081b)`(const FGuid & NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a58221a61a7e3cde026d333474dfb9ab1)`(FGuid && NewValue)` | Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics.
 `public inline void `[`ClearCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1aad2f0040ddc2e9e4f217aed5358cd17b)`()` | Clears the value of CouponDiscountCurrencyItemUuid_Optional and sets CouponDiscountCurrencyItemUuid_IsSet to false.
-`public inline bool `[`IsCouponDiscountCurrencyItemUuidSet`](#structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b)`() const` | Checks whether CouponDiscountCurrencyItemUuid_Optional has been set.
-`public inline void `[`SetCouponDiscountCurrencyItemUuidToNull`](#structFRHAPI__Item_1ae4ac5789fd52ab5b743c66ecdaa786a0)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCouponDiscountCurrencyItemUuidNull`](#structFRHAPI__Item_1a520303a5d9dccf123db6d105fd179508)`() const` | Checks whether CouponDiscountCurrencyItemUuid_Optional is set to null.
-`public inline int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a54c5bee3b0fa90382725b859cf6413ab)`()` | Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ac179ef75f5caaf4218f25d4cfb462bdc)`() const` | Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1acbc01922d7bd546f049702a758ca3b74)`(const int32 & DefaultValue) const` | Gets the value of CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ae288be3af3f201bb47f7b1593804ec81)`(int32 & OutValue) const` | Fills OutValue with the value of CouponDiscountCurrencyItemId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetCouponDiscountCurrencyItemIdOrNull`](#structFRHAPI__Item_1a643a21df5d3e28f929710f6a9cd03c77)`()` | Returns a pointer to CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetCouponDiscountCurrencyItemIdOrNull`](#structFRHAPI__Item_1adfb4b019643923b04f2a433970ab3a89)`() const` | Returns a pointer to CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a637dbd62fcdc71be9cd2535a9576d9f8)`(const int32 & NewValue)` | Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDiscountCurrencyItemId_IsSet to true.
-`public inline void `[`SetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ad09ba063591a147765edbf8be84953a4)`(int32 && NewValue)` | Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDiscountCurrencyItemId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemUuidToNull`](#structFRHAPI__Item_1a260f2e500de65ee8a7b48061565a311b)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCouponDiscountCurrencyItemUuidNull`](#structFRHAPI__Item_1a5c89c31952d0533365592e3a56aae5ea)`() const` | Checks whether CouponDiscountCurrencyItemUuid_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a9abf1d20914df7a91dd0fdec23bc0564)`()` | Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a3016e1b5f3bf9c2380eb2b92fc120ff5)`() const` | Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1aaa4028e3e2414db8d093fb663a444798)`(const int32 & DefaultValue) const` | Gets the value of CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ac44816706a2b9d8f8ce4053321228d92)`(int32 & OutValue) const` | Fills OutValue with the value of CouponDiscountCurrencyItemId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetCouponDiscountCurrencyItemIdOrNull`](#structFRHAPI__Item_1af1d1385cef5b0751b0c8984d2b8d8790)`()` | Returns a pointer to CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetCouponDiscountCurrencyItemIdOrNull`](#structFRHAPI__Item_1a87066315249830cb860b8847260406a6)`() const` | Returns a pointer to CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a3b542e30989c273b1ef080199931df75)`(const int32 & NewValue)` | Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDiscountCurrencyItemId_IsSet to true.
+`public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a09a8e70ae612412c478032780354c640)`(int32 && NewValue)` | Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDiscountCurrencyItemId_IsSet to true using move semantics.
 `public inline void `[`ClearCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a21c2c0a800b54b6af060b83257912675)`()` | Clears the value of CouponDiscountCurrencyItemId_Optional and sets CouponDiscountCurrencyItemId_IsSet to false.
-`public inline bool `[`IsCouponDiscountCurrencyItemIdSet`](#structFRHAPI__Item_1ae37f62a54627f0c8c6b799776df51d3a)`() const` | Checks whether CouponDiscountCurrencyItemId_Optional has been set.
-`public inline bool `[`IsCouponDiscountCurrencyItemIdDefaultValue`](#structFRHAPI__Item_1ad2a4ae4c698ce16d4da22a01ebabff5c)`() const` | Returns true if CouponDiscountCurrencyItemId_Optional is set and matches the default value.
-`public inline void `[`SetCouponDiscountCurrencyItemIdToDefault`](#structFRHAPI__Item_1a96e413cc85c150d5304c819aa99fc188)`()` | Sets the value of CouponDiscountCurrencyItemId_Optional to its default and also sets CouponDiscountCurrencyItemId_IsSet to true.
-`public inline float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1ad4e717297885715707f908b112f85c0d)`()` | Gets the value of CouponDiscountPercentage_Optional, regardless of it having been set.
-`public inline const float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1aa64eeba4e9ca922c95ac503418ed7ede)`() const` | Gets the value of CouponDiscountPercentage_Optional, regardless of it having been set.
-`public inline const float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1ab4caa5afd4921753ba943a916ebed44d)`(const float & DefaultValue) const` | Gets the value of CouponDiscountPercentage_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1ab4edbf9af9acbcab0d31e952fa3d1dcf)`(float & OutValue) const` | Fills OutValue with the value of CouponDiscountPercentage_Optional and returns true if it has been set, otherwise returns false.
-`public inline float * `[`GetCouponDiscountPercentageOrNull`](#structFRHAPI__Item_1a912591262f19a4a20423de3cc069d6a1)`()` | Returns a pointer to CouponDiscountPercentage_Optional, if it has been set, otherwise returns nullptr.
-`public inline const float * `[`GetCouponDiscountPercentageOrNull`](#structFRHAPI__Item_1a2e136d45fdb68e11375a4a89fbe88dde)`() const` | Returns a pointer to CouponDiscountPercentage_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCouponDiscountPercentage`](#structFRHAPI__Item_1a9c176a59ea3705b2aed3ce59580b2637)`(const float & NewValue)` | Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscountPercentage_IsSet to true.
-`public inline void `[`SetCouponDiscountPercentage`](#structFRHAPI__Item_1a902a987b0f0c44b65747e9a4adabbe25)`(float && NewValue)` | Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscountPercentage_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_CouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a5dcf71d904c0f52aac799101a4809a3b)`()` | Returns the default value of CouponDiscountCurrencyItemId.
+`public inline FORCEINLINE float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1aeb8735b18eb4de95a071abaa6a5910fe)`()` | Gets the value of CouponDiscountPercentage_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1af394a19187a0334ba83c3787f934ebdc)`() const` | Gets the value of CouponDiscountPercentage_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1a8b59c229baf1eda357063ec8e3aaf4ce)`(const float & DefaultValue) const` | Gets the value of CouponDiscountPercentage_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1a5e874ba3ad14cdd022aa81ab0f4761bb)`(float & OutValue) const` | Fills OutValue with the value of CouponDiscountPercentage_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE float * `[`GetCouponDiscountPercentageOrNull`](#structFRHAPI__Item_1adc211520929d90d02dc627883e6ad88c)`()` | Returns a pointer to CouponDiscountPercentage_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const float * `[`GetCouponDiscountPercentageOrNull`](#structFRHAPI__Item_1ac07586560421a076aceca5718d635359)`() const` | Returns a pointer to CouponDiscountPercentage_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCouponDiscountPercentage`](#structFRHAPI__Item_1abc8841f1426c6bddb5fef1cf1b4d2a25)`(const float & NewValue)` | Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscountPercentage_IsSet to true.
+`public inline FORCEINLINE void `[`SetCouponDiscountPercentage`](#structFRHAPI__Item_1a9c1d4c98e73820c4415405f79fe0a0e0)`(float && NewValue)` | Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscountPercentage_IsSet to true using move semantics.
 `public inline void `[`ClearCouponDiscountPercentage`](#structFRHAPI__Item_1abe260223c46cd98da72b17d3c6ca6f2b)`()` | Clears the value of CouponDiscountPercentage_Optional and sets CouponDiscountPercentage_IsSet to false.
-`public inline bool `[`IsCouponDiscountPercentageSet`](#structFRHAPI__Item_1a3c776f49711660f9a6a8cb8442f232c8)`() const` | Checks whether CouponDiscountPercentage_Optional has been set.
-`public inline bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a9d9d2ee6d7a07a057e9f5a0a18b32552)`()` | Gets the value of CouponConsumeOnUse_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a2265a9e11c225b85292489ebc74e4def)`() const` | Gets the value of CouponConsumeOnUse_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a545e6d81828ad3a4a3d03d123b76b717)`(const bool & DefaultValue) const` | Gets the value of CouponConsumeOnUse_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a26420a8731f2fc00a508a421e0c7f796)`(bool & OutValue) const` | Fills OutValue with the value of CouponConsumeOnUse_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetCouponConsumeOnUseOrNull`](#structFRHAPI__Item_1a0b09088d24824134757c8a6fefdaaaf5)`()` | Returns a pointer to CouponConsumeOnUse_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetCouponConsumeOnUseOrNull`](#structFRHAPI__Item_1a17b5b0d3e39c6a2f266d8a6c21447d97)`() const` | Returns a pointer to CouponConsumeOnUse_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCouponConsumeOnUse`](#structFRHAPI__Item_1a2906d3fcab28c1e68243e7d686b3d3fd)`(const bool & NewValue)` | Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_IsSet to true.
-`public inline void `[`SetCouponConsumeOnUse`](#structFRHAPI__Item_1a0fc7e9c8f2d9bc1cea02ab6bb3db636a)`(bool && NewValue)` | Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_IsSet to true using move semantics.
+`public inline FORCEINLINE bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a330bbf4dca354a2572b61c99e39a7288)`()` | Gets the value of CouponConsumeOnUse_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a2c831f066933238b87448d3983d2f63c)`() const` | Gets the value of CouponConsumeOnUse_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a6f8e7fc51e0b01f104cbd92a0695c782)`(const bool & DefaultValue) const` | Gets the value of CouponConsumeOnUse_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a731fc4b2db28ab414a3139df26fc57ef)`(bool & OutValue) const` | Fills OutValue with the value of CouponConsumeOnUse_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetCouponConsumeOnUseOrNull`](#structFRHAPI__Item_1a153c588a3c174c9da88bae5cd03d82e2)`()` | Returns a pointer to CouponConsumeOnUse_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetCouponConsumeOnUseOrNull`](#structFRHAPI__Item_1a9064bcb41e18d8761e5d09b5c1dcb8af)`() const` | Returns a pointer to CouponConsumeOnUse_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCouponConsumeOnUse`](#structFRHAPI__Item_1a387b70fa9e430c652e731e28042cfc65)`(const bool & NewValue)` | Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_IsSet to true.
+`public inline FORCEINLINE void `[`SetCouponConsumeOnUse`](#structFRHAPI__Item_1a3a0d7970012296d77f1820614ebf2f5c)`(bool && NewValue)` | Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_IsSet to true using move semantics.
 `public inline void `[`ClearCouponConsumeOnUse`](#structFRHAPI__Item_1a2683fa55d3ee92ef0d96de6f31e34480)`()` | Clears the value of CouponConsumeOnUse_Optional and sets CouponConsumeOnUse_IsSet to false.
-`public inline bool `[`IsCouponConsumeOnUseSet`](#structFRHAPI__Item_1a6f0e7fa2c8d0d0ef789ce713b25cd291)`() const` | Checks whether CouponConsumeOnUse_Optional has been set.
-`public inline bool `[`IsCouponConsumeOnUseDefaultValue`](#structFRHAPI__Item_1a27ee21d9a1af8be2d1e0970fb9d122fa)`() const` | Returns true if CouponConsumeOnUse_Optional is set and matches the default value.
-`public inline void `[`SetCouponConsumeOnUseToDefault`](#structFRHAPI__Item_1a002f4547e9b061e2792f368936a4e2a0)`()` | Sets the value of CouponConsumeOnUse_Optional to its default and also sets CouponConsumeOnUse_IsSet to true.
-`public inline int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1a978e254c84b3f117308c1d56fcc18488)`()` | Gets the value of ItemPortalUseRulesetId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ae7a6ee16e6297a7c4424e12fb5508e6e)`() const` | Gets the value of ItemPortalUseRulesetId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ac76630094d02dc3109e6f51b064e0a2a)`(const int32 & DefaultValue) const` | Gets the value of ItemPortalUseRulesetId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1acc1530a5f5f45c01bfc15a770433e5a0)`(int32 & OutValue) const` | Fills OutValue with the value of ItemPortalUseRulesetId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetItemPortalUseRulesetIdOrNull`](#structFRHAPI__Item_1aa7bb6ac356b5d656a7f5b3e8069e7b39)`()` | Returns a pointer to ItemPortalUseRulesetId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetItemPortalUseRulesetIdOrNull`](#structFRHAPI__Item_1a68535a51c20da035799063718a3c2a4e)`() const` | Returns a pointer to ItemPortalUseRulesetId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetItemPortalUseRulesetId`](#structFRHAPI__Item_1a24da1028351f3903a231c68b0f035f91)`(const int32 & NewValue)` | Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRulesetId_IsSet to true.
-`public inline void `[`SetItemPortalUseRulesetId`](#structFRHAPI__Item_1a9b8d5544fa4f30e0e2495f1bf733b1b2)`(int32 && NewValue)` | Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRulesetId_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_CouponConsumeOnUse`](#structFRHAPI__Item_1aa4cdcabc346c53a248129ae82961cd23)`()` | Returns the default value of CouponConsumeOnUse.
+`public inline FORCEINLINE int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ae5c22bea2c8e87cfc1b0f6b334fc3690)`()` | Gets the value of ItemPortalUseRulesetId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ad8bdc7e273b9f9bccaabc28d45b217f7)`() const` | Gets the value of ItemPortalUseRulesetId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ac00c0faadf7b824d5910ccb91447cd3f)`(const int32 & DefaultValue) const` | Gets the value of ItemPortalUseRulesetId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1a9de4f7030fd2557d398c6488f2f3776f)`(int32 & OutValue) const` | Fills OutValue with the value of ItemPortalUseRulesetId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetItemPortalUseRulesetIdOrNull`](#structFRHAPI__Item_1a1f6e047f3633d94ae3de16014bfe9e77)`()` | Returns a pointer to ItemPortalUseRulesetId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetItemPortalUseRulesetIdOrNull`](#structFRHAPI__Item_1aad99f8b63572f2ef6901b53835976b10)`() const` | Returns a pointer to ItemPortalUseRulesetId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetItemPortalUseRulesetId`](#structFRHAPI__Item_1a89c17f395ca211674c690c3efe69423e)`(const int32 & NewValue)` | Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRulesetId_IsSet to true.
+`public inline FORCEINLINE void `[`SetItemPortalUseRulesetId`](#structFRHAPI__Item_1a19fa060b4ee85edb16d84264569c0818)`(int32 && NewValue)` | Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRulesetId_IsSet to true using move semantics.
 `public inline void `[`ClearItemPortalUseRulesetId`](#structFRHAPI__Item_1ab20636f41b4e4f24a9d47808623758d5)`()` | Clears the value of ItemPortalUseRulesetId_Optional and sets ItemPortalUseRulesetId_IsSet to false.
-`public inline bool `[`IsItemPortalUseRulesetIdSet`](#structFRHAPI__Item_1a88872ad1535b5d4928bc80aeda9f962b)`() const` | Checks whether ItemPortalUseRulesetId_Optional has been set.
-`public inline bool `[`IsItemPortalUseRulesetIdDefaultValue`](#structFRHAPI__Item_1a855c742cd4f2f1dbf1c7de69a353927e)`() const` | Returns true if ItemPortalUseRulesetId_Optional is set and matches the default value.
-`public inline void `[`SetItemPortalUseRulesetIdToDefault`](#structFRHAPI__Item_1a0585c33836f0635d3b4722f7bfbf4f3c)`()` | Sets the value of ItemPortalUseRulesetId_Optional to its default and also sets ItemPortalUseRulesetId_IsSet to true.
-`public inline FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a004a64f598ee703cfa4a3aa1829e9b39)`()` | Gets the value of InventoryBucketUseRuleSetId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a24d45e705a0cc05b3e345ffd50f97031)`() const` | Gets the value of InventoryBucketUseRuleSetId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a2e08fd66a7ae476a09bfc9046fd5d972)`(const FString & DefaultValue) const` | Gets the value of InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1af4b6b107c6f4ff2ea9e3f2c084e8e72a)`(FString & OutValue) const` | Fills OutValue with the value of InventoryBucketUseRuleSetId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetInventoryBucketUseRuleSetIdOrNull`](#structFRHAPI__Item_1ae5591ca6ec96e57a03a1b6e52fffcb2d)`()` | Returns a pointer to InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetInventoryBucketUseRuleSetIdOrNull`](#structFRHAPI__Item_1a10303c6bd1102d4611bb281a310e8935)`() const` | Returns a pointer to InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a73b40b8ae9c42addec4d0ced6b3db8ef)`(const FString & NewValue)` | Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true.
-`public inline void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a765a19c21abc7b6f2510220b303759c6)`(FString && NewValue)` | Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_ItemPortalUseRulesetId`](#structFRHAPI__Item_1aa774f1cb6fb2fb7c9011707221c1b44b)`()` | Returns the default value of ItemPortalUseRulesetId.
+`public inline FORCEINLINE FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1aa1a3f5703deac3a54ae96aa6ffe4c541)`()` | Gets the value of InventoryBucketUseRuleSetId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a4393a9a743d17483e25a7b256ca52394)`() const` | Gets the value of InventoryBucketUseRuleSetId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a2bd07c7f8e3c4a4b71434ddc2b39ac1d)`(const FString & DefaultValue) const` | Gets the value of InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1ac6b5880cbc772d300efb9cd9bf0116d1)`(FString & OutValue) const` | Fills OutValue with the value of InventoryBucketUseRuleSetId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetInventoryBucketUseRuleSetIdOrNull`](#structFRHAPI__Item_1adac33f116a1659b5c040b9b4da42665e)`()` | Returns a pointer to InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetInventoryBucketUseRuleSetIdOrNull`](#structFRHAPI__Item_1a19d2a733b65a7fe5ed6f1f4f40b17ef3)`() const` | Returns a pointer to InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a509b1f8e1ad890f8ce7ca6971123bfaf)`(const FString & NewValue)` | Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true.
+`public inline FORCEINLINE void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a98287ef0633f2b1e49c31aae5715fbbb)`(FString && NewValue)` | Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true using move semantics.
 `public inline void `[`ClearInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1afd23945b8a24b88e3f1bea74901cb8c0)`()` | Clears the value of InventoryBucketUseRuleSetId_Optional and sets InventoryBucketUseRuleSetId_IsSet to false.
-`public inline bool `[`IsInventoryBucketUseRuleSetIdSet`](#structFRHAPI__Item_1a3bc734432134f82dd3c3222f4c783a4b)`() const` | Checks whether InventoryBucketUseRuleSetId_Optional has been set.
-`public inline void `[`SetInventoryBucketUseRuleSetIdToNull`](#structFRHAPI__Item_1a334a2c1de68d3f3271998a04b7cfc0f9)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsInventoryBucketUseRuleSetIdNull`](#structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0)`() const` | Checks whether InventoryBucketUseRuleSetId_Optional is set to null.
-`public inline int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a60b8036bc6c5cfc37a784bf62978c543)`()` | Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a80e71b3efde58a3045d840ab3a4d6c6a)`() const` | Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a25dad5fe51ad267809ee8d13f215fb06)`(const int32 & DefaultValue) const` | Gets the value of TotalOwnershipMax_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a4c8c19b1a7b3269c580a110702b1c575)`(int32 & OutValue) const` | Fills OutValue with the value of TotalOwnershipMax_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a9f299e5fbd55b91ad25a276c453043a4)`()` | Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a4155b1250f070fd47b6f696e1ff8e841)`() const` | Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1a7f76e988265608c9ab3c7b242d3d1a5a)`(const int32 & NewValue)` | Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true.
-`public inline void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1ad4985107c0885028f5f2d177b7d52e7a)`(int32 && NewValue)` | Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetInventoryBucketUseRuleSetIdToNull`](#structFRHAPI__Item_1adfdab6b89c52388f80120953a249936a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsInventoryBucketUseRuleSetIdNull`](#structFRHAPI__Item_1a2bcc8d877639562320cfea7d4c33289f)`() const` | Checks whether InventoryBucketUseRuleSetId_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a04556bc289f3f1df85f40fc669f3f64e)`()` | Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1aa0a6a5c02ffc3ad600f74b05611e248c)`() const` | Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a1b61f750fcca67d84ab1e9a69110d7b6)`(const int32 & DefaultValue) const` | Gets the value of TotalOwnershipMax_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a6ce34a9e76f14eaf7eab08a43b425798)`(int32 & OutValue) const` | Fills OutValue with the value of TotalOwnershipMax_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a16c4d23b922ad48f88c7426d6520c920)`()` | Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1ae87ed48e3f1c7787ec378b848247664a)`() const` | Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1aa4314d97fbe65b5f7829cda2e8fa14d4)`(const int32 & NewValue)` | Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true.
+`public inline FORCEINLINE void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1a74c12fbc6d5b1c7c3bc24d51f7834ae1)`(int32 && NewValue)` | Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true using move semantics.
 `public inline void `[`ClearTotalOwnershipMax`](#structFRHAPI__Item_1a252e461b463a6cf1b229bb55a79b8259)`()` | Clears the value of TotalOwnershipMax_Optional and sets TotalOwnershipMax_IsSet to false.
-`public inline bool `[`IsTotalOwnershipMaxSet`](#structFRHAPI__Item_1a530e54fdc415223c06042dcbfbcd3df0)`() const` | Checks whether TotalOwnershipMax_Optional has been set.
-`public inline bool `[`IsTotalOwnershipMaxDefaultValue`](#structFRHAPI__Item_1a74ce0bba5399e3277fb570e55a31bd25)`() const` | Returns true if TotalOwnershipMax_Optional is set and matches the default value.
-`public inline void `[`SetTotalOwnershipMaxToDefault`](#structFRHAPI__Item_1ae9495863ab58175e1125f18645480ef2)`()` | Sets the value of TotalOwnershipMax_Optional to its default and also sets TotalOwnershipMax_IsSet to true.
-`public inline TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88)`()` | Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
-`public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a61240a94f9e017f869841ab65b2dbda5)`() const` | Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
-`public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1ae7b6e717d8bc5eeeb6fed59db496d354)`(const TArray< int32 > & DefaultValue) const` | Gets the value of CouponDiscountLoot_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a647967de5190c2eae1cc4cc305545a50)`(TArray< int32 > & OutValue) const` | Fills OutValue with the value of CouponDiscountLoot_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< int32 > * `[`GetCouponDiscountLootOrNull`](#structFRHAPI__Item_1aab9dd3fe192d5a99acf650e063c37429)`()` | Returns a pointer to CouponDiscountLoot_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< int32 > * `[`GetCouponDiscountLootOrNull`](#structFRHAPI__Item_1a0137c26939c21001a2569695fb887782)`() const` | Returns a pointer to CouponDiscountLoot_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCouponDiscountLoot`](#structFRHAPI__Item_1a4f8a6c38ddf7a95c6c3ca4039c85b52d)`(const TArray< int32 > & NewValue)` | Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_IsSet to true.
-`public inline void `[`SetCouponDiscountLoot`](#structFRHAPI__Item_1a5788557190d4cb6a98368c9b5cd26d2d)`(TArray< int32 > && NewValue)` | Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TotalOwnershipMax`](#structFRHAPI__Item_1a83c60841693f8de1b3ca8a79a782efc1)`()` | Returns the default value of TotalOwnershipMax.
+`public inline FORCEINLINE TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1aaed819220157a3080253fe5a5c06495f)`()` | Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1ab2d580462eea1e2cf9e06bcc2300e8b1)`() const` | Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a658f01c8ea7295ac5f090e823b421d90)`(const TArray< int32 > & DefaultValue) const` | Gets the value of CouponDiscountLoot_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a6db2a4d2002636eb55d50555572f8f01)`(TArray< int32 > & OutValue) const` | Fills OutValue with the value of CouponDiscountLoot_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< int32 > * `[`GetCouponDiscountLootOrNull`](#structFRHAPI__Item_1a17f51e29c064f75035574daca32521df)`()` | Returns a pointer to CouponDiscountLoot_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< int32 > * `[`GetCouponDiscountLootOrNull`](#structFRHAPI__Item_1a0cdcce77eef8582cba5a113557d37ced)`() const` | Returns a pointer to CouponDiscountLoot_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCouponDiscountLoot`](#structFRHAPI__Item_1a154b0067558f3572562092b46738d566)`(const TArray< int32 > & NewValue)` | Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_IsSet to true.
+`public inline FORCEINLINE void `[`SetCouponDiscountLoot`](#structFRHAPI__Item_1acfa2809b73752129d0798a17e600b923)`(TArray< int32 > && NewValue)` | Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_IsSet to true using move semantics.
 `public inline void `[`ClearCouponDiscountLoot`](#structFRHAPI__Item_1aad4697dea3a8b5b4b0fc08abfb8abf1b)`()` | Clears the value of CouponDiscountLoot_Optional and sets CouponDiscountLoot_IsSet to false.
-`public inline bool `[`IsCouponDiscountLootSet`](#structFRHAPI__Item_1aaa9e6982882230ed1f423e33f3e03484)`() const` | Checks whether CouponDiscountLoot_Optional has been set.
-`public inline TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a14a3076132cc64bf1ccaabf25f286a1f)`()` | Gets the value of CouponDiscountLootUuid_Optional, regardless of it having been set.
-`public inline const TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a37d156db6189b76e89b15052c36085a0)`() const` | Gets the value of CouponDiscountLootUuid_Optional, regardless of it having been set.
-`public inline const TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1af84bdebd57c60b2dfe0a240aca11aa05)`(const TArray< FGuid > & DefaultValue) const` | Gets the value of CouponDiscountLootUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a9e14a7d704d977345988ba528d5479d5)`(TArray< FGuid > & OutValue) const` | Fills OutValue with the value of CouponDiscountLootUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< FGuid > * `[`GetCouponDiscountLootUuidOrNull`](#structFRHAPI__Item_1abb53f58fd8189eb782654c2dbf9f2ac6)`()` | Returns a pointer to CouponDiscountLootUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< FGuid > * `[`GetCouponDiscountLootUuidOrNull`](#structFRHAPI__Item_1a0c84ab089403460ef46ac074ed3031e9)`() const` | Returns a pointer to CouponDiscountLootUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCouponDiscountLootUuid`](#structFRHAPI__Item_1a7d39c17dfb06a2e8bdfa38861d72b4d9)`(const TArray< FGuid > & NewValue)` | Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLootUuid_IsSet to true.
-`public inline void `[`SetCouponDiscountLootUuid`](#structFRHAPI__Item_1a859cda7ddeb427e90852e98f31742872)`(TArray< FGuid > && NewValue)` | Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLootUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1ab02a6add51a33e3d9d5486e87f1d77e1)`()` | Gets the value of CouponDiscountLootUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a6026a8bb4e3ba4c40bd867744a99bcfb)`() const` | Gets the value of CouponDiscountLootUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a2ed880cf9691b8395939226f83c91457)`(const TArray< FGuid > & DefaultValue) const` | Gets the value of CouponDiscountLootUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a3c928df5dd22abaf67976a401bc10509)`(TArray< FGuid > & OutValue) const` | Fills OutValue with the value of CouponDiscountLootUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< FGuid > * `[`GetCouponDiscountLootUuidOrNull`](#structFRHAPI__Item_1a20902a1a0efcee760de1b647a2108812)`()` | Returns a pointer to CouponDiscountLootUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< FGuid > * `[`GetCouponDiscountLootUuidOrNull`](#structFRHAPI__Item_1a55e7d534ec5ba39771127009d21e21a5)`() const` | Returns a pointer to CouponDiscountLootUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCouponDiscountLootUuid`](#structFRHAPI__Item_1ade99a8aca0ee563e1d8f30cf8cbfe33d)`(const TArray< FGuid > & NewValue)` | Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLootUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetCouponDiscountLootUuid`](#structFRHAPI__Item_1a0fdf26b1452a7ed148e4d5b2bcd18a7b)`(TArray< FGuid > && NewValue)` | Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLootUuid_IsSet to true using move semantics.
 `public inline void `[`ClearCouponDiscountLootUuid`](#structFRHAPI__Item_1ae15a27df3513971d3a1a02ba5107b357)`()` | Clears the value of CouponDiscountLootUuid_Optional and sets CouponDiscountLootUuid_IsSet to false.
-`public inline bool `[`IsCouponDiscountLootUuidSet`](#structFRHAPI__Item_1ad28fdd2b1a0a63810eced58bea9bd96c)`() const` | Checks whether CouponDiscountLootUuid_Optional has been set.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a07c7dd3920c9bbacf019de9fe8107fbc)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a32b1bda82af145990e90fd98c1e2c48e)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a8d612dc96874b040e91859630ea7f668)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCacheInfo`](#structFRHAPI__Item_1a74a10cf52863208f9cfb9e26484a1b6f)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Item_1a3a411803212cccc3e424c49280cb7a43)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Item_1a38d747645f8de1f82ce9a68be770f190)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Item_1a2af066addfb875c3a081297e00626263)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Item_1a4deaa7b49f5c2a74e6c9623265a07d66)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a39cb264b8c423ba64e4ef5b8a1b932e3)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a697dfa94e60b5c2c858afef84dd26fee)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1af3ca4d418b72834217993f2aecdc637b)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCacheInfo`](#structFRHAPI__Item_1a4f4e99091fecfe5cf08f1c17ee5a166b)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Item_1ab12bdb4bea90e3b6b7398fe75ed62c03)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Item_1a45c6eaef118c6ad2df8c97113f10ddf9)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Item_1a5d9e89d2f3ba57a64a9ee1f0efe3d21e)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Item_1a2f8c863b8c49db2075a300d8576fc560)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Item_1a8a81e5e596e24291c204b1a28c28a6d0)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
-`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Item_1a9e9f1fe041fe7d0913950d86191a00b8)`() const` | Checks whether CacheInfo_Optional has been set.
-`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Item_1aa77d2d59f41442f6ed4f3f9cabf7c772)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Item_1ad1b8287ef3e99ef065a2b1786ea793f0)`() const` | Checks whether CacheInfo_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCacheInfoToNull`](#structFRHAPI__Item_1aab7107a53938050b75bdf37a2a3f2a12)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCacheInfoNull`](#structFRHAPI__Item_1a73e78c20b74a02c9d3fddae00d19e0f6)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -548,35 +514,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a454f466ad8f83a8a10b7b7b3cb50c56e)`()` <a id="structFRHAPI__Item_1a454f466ad8f83a8a10b7b7b3cb50c56e"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a5f81adc39246382df4426eced37f7d93)`()` <a id="structFRHAPI__Item_1a5f81adc39246382df4426eced37f7d93"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a06d6f6a22c3e6f25a618c96a5dd27cfd)`() const` <a id="structFRHAPI__Item_1a06d6f6a22c3e6f25a618c96a5dd27cfd"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a5c7bc29c43dbc4194b31ca57f09a9a7b)`() const` <a id="structFRHAPI__Item_1a5c7bc29c43dbc4194b31ca57f09a9a7b"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a8ada1dc78ddce0721ed790826e6ec345)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__Item_1a8ada1dc78ddce0721ed790826e6ec345"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Item_1a128038db69fe7c8fefdded404e0edeaa)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__Item_1a128038db69fe7c8fefdded404e0edeaa"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__Item_1a3925a150ee30d43bf0234cf1127104c3)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__Item_1a3925a150ee30d43bf0234cf1127104c3"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__Item_1acd380f8408d198f428d4ba8931fc66c7)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__Item_1acd380f8408d198f428d4ba8931fc66c7"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a77d0cd9e702208a5a6c01b97f6ea14be)`()` <a id="structFRHAPI__Item_1a77d0cd9e702208a5a6c01b97f6ea14be"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a46fe1df6b27c75b7bb078551a0f23256)`()` <a id="structFRHAPI__Item_1a46fe1df6b27c75b7bb078551a0f23256"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a03e06b40cc43cec8626b724d1a6cf65c)`() const` <a id="structFRHAPI__Item_1a03e06b40cc43cec8626b724d1a6cf65c"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Item_1a9f28123635b4cd90b15cc6cc68a1f286)`() const` <a id="structFRHAPI__Item_1a9f28123635b4cd90b15cc6cc68a1f286"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__Item_1a015c53d3908e56ffb9c77b746133ea97)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__Item_1a015c53d3908e56ffb9c77b746133ea97"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Item_1a483cb295493465dac095708f2a6ff082)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__Item_1a483cb295493465dac095708f2a6ff082"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__Item_1a704b6df3915791b80a6e8a880aa57f77)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__Item_1a704b6df3915791b80a6e8a880aa57f77"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Item_1a30848c8c3ab243691f1d8cb84b430d05)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__Item_1a30848c8c3ab243691f1d8cb84b430d05"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -584,39 +550,35 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__Item_1abe6c005fbaa770ed6fbee5be3920f1cc)`() const` <a id="structFRHAPI__Item_1abe6c005fbaa770ed6fbee5be3920f1cc"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a65143dd48fe575aa3699352cabd7ad81)`()` <a id="structFRHAPI__Item_1a65143dd48fe575aa3699352cabd7ad81"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a0fb5b72e741b7c1560849a2c6363ca11)`()` <a id="structFRHAPI__Item_1a0fb5b72e741b7c1560849a2c6363ca11"></a>
 
 Gets the value of ItemUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a0a5cb19161e0be4105f7a97899202313)`() const` <a id="structFRHAPI__Item_1a0a5cb19161e0be4105f7a97899202313"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a4d17fe7c641a56fea21259a54088af40)`() const` <a id="structFRHAPI__Item_1a4d17fe7c641a56fea21259a54088af40"></a>
 
 Gets the value of ItemUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1a5e4435f541a9f544c3cf11b694413734)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1a5e4435f541a9f544c3cf11b694413734"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetItemUuid`](#structFRHAPI__Item_1aecc008206ece12ee05fc0e871dcb6f82)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1aecc008206ece12ee05fc0e871dcb6f82"></a>
 
 Gets the value of ItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetItemUuid`](#structFRHAPI__Item_1a0355f157155593bf7ad0341f6e8213ad)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1a0355f157155593bf7ad0341f6e8213ad"></a>
+#### `public inline FORCEINLINE bool `[`GetItemUuid`](#structFRHAPI__Item_1aee511d356985aed25628243d9a0295b4)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1aee511d356985aed25628243d9a0295b4"></a>
 
 Fills OutValue with the value of ItemUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetItemUuidOrNull`](#structFRHAPI__Item_1ac128984c6fecb6557d2cc7c476e5c497)`()` <a id="structFRHAPI__Item_1ac128984c6fecb6557d2cc7c476e5c497"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetItemUuidOrNull`](#structFRHAPI__Item_1a94adce19bc3b9683ba79c38885eadf22)`()` <a id="structFRHAPI__Item_1a94adce19bc3b9683ba79c38885eadf22"></a>
 
 Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetItemUuidOrNull`](#structFRHAPI__Item_1a436d82d04450b5176eb5b6080a36e6d2)`() const` <a id="structFRHAPI__Item_1a436d82d04450b5176eb5b6080a36e6d2"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetItemUuidOrNull`](#structFRHAPI__Item_1a9c8a2a0c28cd4e2abe867b8e33a4f5e5)`() const` <a id="structFRHAPI__Item_1a9c8a2a0c28cd4e2abe867b8e33a4f5e5"></a>
 
 Returns a pointer to ItemUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetItemUuid`](#structFRHAPI__Item_1a6f75624e5e10d13177207ce4db3f1b45)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1a6f75624e5e10d13177207ce4db3f1b45"></a>
+#### `public inline FORCEINLINE void `[`SetItemUuid`](#structFRHAPI__Item_1acc7f50c978acd208ed768c00e5fd2afd)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1acc7f50c978acd208ed768c00e5fd2afd"></a>
 
 Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true.
 
-#### `public inline void `[`SetItemUuid`](#structFRHAPI__Item_1afa8eda7ecbd1c8cc0e299a2c2f9fdf0e)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1afa8eda7ecbd1c8cc0e299a2c2f9fdf0e"></a>
+#### `public inline FORCEINLINE void `[`SetItemUuid`](#structFRHAPI__Item_1af839987b42d507ad278984f7ad9f81f0)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1af839987b42d507ad278984f7ad9f81f0"></a>
 
 Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using move semantics.
 
@@ -624,47 +586,43 @@ Sets the value of ItemUuid_Optional and also sets ItemUuid_IsSet to true using m
 
 Clears the value of ItemUuid_Optional and sets ItemUuid_IsSet to false.
 
-#### `public inline bool `[`IsItemUuidSet`](#structFRHAPI__Item_1a32232968f40beb8608b89bea1f71195a)`() const` <a id="structFRHAPI__Item_1a32232968f40beb8608b89bea1f71195a"></a>
-
-Checks whether ItemUuid_Optional has been set.
-
-#### `public inline void `[`SetItemUuidToNull`](#structFRHAPI__Item_1ad455962b5ae89a2cb9e7fe2da0d56424)`()` <a id="structFRHAPI__Item_1ad455962b5ae89a2cb9e7fe2da0d56424"></a>
+#### `public inline FORCEINLINE void `[`SetItemUuidToNull`](#structFRHAPI__Item_1aea4ae0b5a39524fbf791260a2d7bf9fd)`()` <a id="structFRHAPI__Item_1aea4ae0b5a39524fbf791260a2d7bf9fd"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsItemUuidNull`](#structFRHAPI__Item_1a6b75713e68d697699fe25d2e0b0cc5c0)`() const` <a id="structFRHAPI__Item_1a6b75713e68d697699fe25d2e0b0cc5c0"></a>
+#### `public inline FORCEINLINE bool `[`IsItemUuidNull`](#structFRHAPI__Item_1a2111616c6579678df57b3d5837bc4e4f)`() const` <a id="structFRHAPI__Item_1a2111616c6579678df57b3d5837bc4e4f"></a>
 
 Checks whether ItemUuid_Optional is set to null.
 
-#### `public inline ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a3da7e87d3fb39720c8978643f0608048)`()` <a id="structFRHAPI__Item_1a3da7e87d3fb39720c8978643f0608048"></a>
+#### `public inline FORCEINLINE ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a6bfa555cd908fff45f1cf7ab7132aeef)`()` <a id="structFRHAPI__Item_1a6bfa555cd908fff45f1cf7ab7132aeef"></a>
 
 Gets the value of Type_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a167463cfa205ffd92e595fadbae521b4)`() const` <a id="structFRHAPI__Item_1a167463cfa205ffd92e595fadbae521b4"></a>
+#### `public inline FORCEINLINE const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a2b7774a95ad1d47f4010cee23e5877d9)`() const` <a id="structFRHAPI__Item_1a2b7774a95ad1d47f4010cee23e5877d9"></a>
 
 Gets the value of Type_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1ab08927d0116d8262149d2a7f479fad33)`(const ERHAPI_ItemType & DefaultValue) const` <a id="structFRHAPI__Item_1ab08927d0116d8262149d2a7f479fad33"></a>
+#### `public inline FORCEINLINE const ERHAPI_ItemType & `[`GetType`](#structFRHAPI__Item_1a4e734b80cb38baa3b12bc9496cce148f)`(const ERHAPI_ItemType & DefaultValue) const` <a id="structFRHAPI__Item_1a4e734b80cb38baa3b12bc9496cce148f"></a>
 
 Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetType`](#structFRHAPI__Item_1a00930eaab0b51d2209fff3d0f9c92548)`(ERHAPI_ItemType & OutValue) const` <a id="structFRHAPI__Item_1a00930eaab0b51d2209fff3d0f9c92548"></a>
+#### `public inline FORCEINLINE bool `[`GetType`](#structFRHAPI__Item_1abf621b0829dc4d1a4bc4f2d78effcdd1)`(ERHAPI_ItemType & OutValue) const` <a id="structFRHAPI__Item_1abf621b0829dc4d1a4bc4f2d78effcdd1"></a>
 
 Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_ItemType * `[`GetTypeOrNull`](#structFRHAPI__Item_1aab3e4bb8a872da96867c34453c3e9ebc)`()` <a id="structFRHAPI__Item_1aab3e4bb8a872da96867c34453c3e9ebc"></a>
+#### `public inline FORCEINLINE ERHAPI_ItemType * `[`GetTypeOrNull`](#structFRHAPI__Item_1a233957110f50a1cb7f2493186fa36e59)`()` <a id="structFRHAPI__Item_1a233957110f50a1cb7f2493186fa36e59"></a>
 
 Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_ItemType * `[`GetTypeOrNull`](#structFRHAPI__Item_1a67f24da81a9ea7567b9c0cdf11898aa7)`() const` <a id="structFRHAPI__Item_1a67f24da81a9ea7567b9c0cdf11898aa7"></a>
+#### `public inline FORCEINLINE const ERHAPI_ItemType * `[`GetTypeOrNull`](#structFRHAPI__Item_1ada1f3058199e60c8094eec69f06e2424)`() const` <a id="structFRHAPI__Item_1ada1f3058199e60c8094eec69f06e2424"></a>
 
 Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetType`](#structFRHAPI__Item_1a82309b5edc4557a16563a65a13204108)`(const ERHAPI_ItemType & NewValue)` <a id="structFRHAPI__Item_1a82309b5edc4557a16563a65a13204108"></a>
+#### `public inline FORCEINLINE void `[`SetType`](#structFRHAPI__Item_1a0220dfbfcc1a3a51dce5f830322b023e)`(const ERHAPI_ItemType & NewValue)` <a id="structFRHAPI__Item_1a0220dfbfcc1a3a51dce5f830322b023e"></a>
 
 Sets the value of Type_Optional and also sets Type_IsSet to true.
 
-#### `public inline void `[`SetType`](#structFRHAPI__Item_1a10f023eb32d4a77fb36e7cba53683bdc)`(ERHAPI_ItemType && NewValue)` <a id="structFRHAPI__Item_1a10f023eb32d4a77fb36e7cba53683bdc"></a>
+#### `public inline FORCEINLINE void `[`SetType`](#structFRHAPI__Item_1a64b4993ef8fb037b47c379ecc1c37229)`(ERHAPI_ItemType && NewValue)` <a id="structFRHAPI__Item_1a64b4993ef8fb037b47c379ecc1c37229"></a>
 
 Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
 
@@ -672,39 +630,35 @@ Sets the value of Type_Optional and also sets Type_IsSet to true using move sema
 
 Clears the value of Type_Optional and sets Type_IsSet to false.
 
-#### `public inline bool `[`IsTypeSet`](#structFRHAPI__Item_1ab3b1ab78f0108df20c008523bbfed86a)`() const` <a id="structFRHAPI__Item_1ab3b1ab78f0108df20c008523bbfed86a"></a>
-
-Checks whether Type_Optional has been set.
-
-#### `public inline int32 & `[`GetLegacyType`](#structFRHAPI__Item_1ab4e77f33645109b5de6f71ec3c411d28)`()` <a id="structFRHAPI__Item_1ab4e77f33645109b5de6f71ec3c411d28"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLegacyType`](#structFRHAPI__Item_1a1b52532e4365d1fe545047b8943eaed2)`()` <a id="structFRHAPI__Item_1a1b52532e4365d1fe545047b8943eaed2"></a>
 
 Gets the value of LegacyType_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLegacyType`](#structFRHAPI__Item_1ad5beb1b63b50c7237df66fe189cde66f)`() const` <a id="structFRHAPI__Item_1ad5beb1b63b50c7237df66fe189cde66f"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLegacyType`](#structFRHAPI__Item_1ae0ca211dc950fec54b14606aad32979c)`() const` <a id="structFRHAPI__Item_1ae0ca211dc950fec54b14606aad32979c"></a>
 
 Gets the value of LegacyType_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLegacyType`](#structFRHAPI__Item_1a817c4e6a282bd086fb6b4ad848dbb0d5)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a817c4e6a282bd086fb6b4ad848dbb0d5"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLegacyType`](#structFRHAPI__Item_1a13d789f67c72529575af61df15c45834)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a13d789f67c72529575af61df15c45834"></a>
 
 Gets the value of LegacyType_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLegacyType`](#structFRHAPI__Item_1a248418aa5571ba2b2f2adb9c42949403)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a248418aa5571ba2b2f2adb9c42949403"></a>
+#### `public inline FORCEINLINE bool `[`GetLegacyType`](#structFRHAPI__Item_1ab42affb06769605967573bbd40617cdb)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1ab42affb06769605967573bbd40617cdb"></a>
 
 Fills OutValue with the value of LegacyType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Item_1a7e19b350e952de0d89ee1fd7b5ad4874)`()` <a id="structFRHAPI__Item_1a7e19b350e952de0d89ee1fd7b5ad4874"></a>
+#### `public inline FORCEINLINE int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Item_1a8f5b0ddc58e47e8ac97ead0051b43577)`()` <a id="structFRHAPI__Item_1a8f5b0ddc58e47e8ac97ead0051b43577"></a>
 
 Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Item_1a06825abfc8d9b21c29f49fbcb208b655)`() const` <a id="structFRHAPI__Item_1a06825abfc8d9b21c29f49fbcb208b655"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetLegacyTypeOrNull`](#structFRHAPI__Item_1a29e5b31539214f4b9332aeb91ce89699)`() const` <a id="structFRHAPI__Item_1a29e5b31539214f4b9332aeb91ce89699"></a>
 
 Returns a pointer to LegacyType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLegacyType`](#structFRHAPI__Item_1af62176137a2de1ce9a009a2c49b414ce)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1af62176137a2de1ce9a009a2c49b414ce"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyType`](#structFRHAPI__Item_1a8f6631b845a8af254d6a4e45ad9a3fef)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a8f6631b845a8af254d6a4e45ad9a3fef"></a>
 
 Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true.
 
-#### `public inline void `[`SetLegacyType`](#structFRHAPI__Item_1a60e5fe4bae50df0518f6f33708384b17)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a60e5fe4bae50df0518f6f33708384b17"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyType`](#structFRHAPI__Item_1aa4d07d6f78a9ef74914ac73357f2d057)`(int32 && NewValue)` <a id="structFRHAPI__Item_1aa4d07d6f78a9ef74914ac73357f2d057"></a>
 
 Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true using move semantics.
 
@@ -712,47 +666,39 @@ Sets the value of LegacyType_Optional and also sets LegacyType_IsSet to true usi
 
 Clears the value of LegacyType_Optional and sets LegacyType_IsSet to false.
 
-#### `public inline bool `[`IsLegacyTypeSet`](#structFRHAPI__Item_1a689f46c32454425484e52f6b06cacc29)`() const` <a id="structFRHAPI__Item_1a689f46c32454425484e52f6b06cacc29"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_LegacyType`](#structFRHAPI__Item_1a6680fb545cb03d89e91c37d8b65c5fca)`()` <a id="structFRHAPI__Item_1a6680fb545cb03d89e91c37d8b65c5fca"></a>
 
-Checks whether LegacyType_Optional has been set.
+Returns the default value of LegacyType.
 
-#### `public inline bool `[`IsLegacyTypeDefaultValue`](#structFRHAPI__Item_1a5ee3a8b2559b1163c4f14bbba5f2fba4)`() const` <a id="structFRHAPI__Item_1a5ee3a8b2559b1163c4f14bbba5f2fba4"></a>
-
-Returns true if LegacyType_Optional is set and matches the default value.
-
-#### `public inline void `[`SetLegacyTypeToDefault`](#structFRHAPI__Item_1a720984f8c98db38b0d40bc8e5682cba5)`()` <a id="structFRHAPI__Item_1a720984f8c98db38b0d40bc8e5682cba5"></a>
-
-Sets the value of LegacyType_Optional to its default and also sets LegacyType_IsSet to true.
-
-#### `public inline int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1a7a65342233ae1a29ebd6878536472670)`()` <a id="structFRHAPI__Item_1a7a65342233ae1a29ebd6878536472670"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1af2d9b3f5c879e4bbd8a9eb1df9ba493f)`()` <a id="structFRHAPI__Item_1af2d9b3f5c879e4bbd8a9eb1df9ba493f"></a>
 
 Gets the value of LegacySubtype_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1a8470453b4d696babdf4fc6596f480ba4)`() const` <a id="structFRHAPI__Item_1a8470453b4d696babdf4fc6596f480ba4"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1a6a65a583fb014d311e0aac973dae0d75)`() const` <a id="structFRHAPI__Item_1a6a65a583fb014d311e0aac973dae0d75"></a>
 
 Gets the value of LegacySubtype_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1aaa040a460cec1a681fc079c8bb5e82ad)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1aaa040a460cec1a681fc079c8bb5e82ad"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLegacySubtype`](#structFRHAPI__Item_1acaeba8ebc22c914b82237625462808f3)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1acaeba8ebc22c914b82237625462808f3"></a>
 
 Gets the value of LegacySubtype_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLegacySubtype`](#structFRHAPI__Item_1ab311f92e98d5238fe1fd5ed58a18eed4)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1ab311f92e98d5238fe1fd5ed58a18eed4"></a>
+#### `public inline FORCEINLINE bool `[`GetLegacySubtype`](#structFRHAPI__Item_1a8294dfd16e62919ab966f5311786093e)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a8294dfd16e62919ab966f5311786093e"></a>
 
 Fills OutValue with the value of LegacySubtype_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetLegacySubtypeOrNull`](#structFRHAPI__Item_1ab44cb90acf53bbcfa4898303d9de31e4)`()` <a id="structFRHAPI__Item_1ab44cb90acf53bbcfa4898303d9de31e4"></a>
+#### `public inline FORCEINLINE int32 * `[`GetLegacySubtypeOrNull`](#structFRHAPI__Item_1a2c52ae6223f386a463907772b9beb817)`()` <a id="structFRHAPI__Item_1a2c52ae6223f386a463907772b9beb817"></a>
 
 Returns a pointer to LegacySubtype_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetLegacySubtypeOrNull`](#structFRHAPI__Item_1a2073482d5a00fe266c4e9fd61c9372fe)`() const` <a id="structFRHAPI__Item_1a2073482d5a00fe266c4e9fd61c9372fe"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetLegacySubtypeOrNull`](#structFRHAPI__Item_1af52e9aba74872b97dab9ed92c16b62a9)`() const` <a id="structFRHAPI__Item_1af52e9aba74872b97dab9ed92c16b62a9"></a>
 
 Returns a pointer to LegacySubtype_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLegacySubtype`](#structFRHAPI__Item_1a025515fcfc514f0297534e5346fd9578)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a025515fcfc514f0297534e5346fd9578"></a>
+#### `public inline FORCEINLINE void `[`SetLegacySubtype`](#structFRHAPI__Item_1a0f572aa059be5226180bb9042f530c51)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a0f572aa059be5226180bb9042f530c51"></a>
 
 Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to true.
 
-#### `public inline void `[`SetLegacySubtype`](#structFRHAPI__Item_1a30e943d3f917eb26cc0e00fcf0ed854e)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a30e943d3f917eb26cc0e00fcf0ed854e"></a>
+#### `public inline FORCEINLINE void `[`SetLegacySubtype`](#structFRHAPI__Item_1a01dbee6e2b76d1952216afaf35b58deb)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a01dbee6e2b76d1952216afaf35b58deb"></a>
 
 Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to true using move semantics.
 
@@ -760,47 +706,39 @@ Sets the value of LegacySubtype_Optional and also sets LegacySubtype_IsSet to tr
 
 Clears the value of LegacySubtype_Optional and sets LegacySubtype_IsSet to false.
 
-#### `public inline bool `[`IsLegacySubtypeSet`](#structFRHAPI__Item_1afd43847f1e904c769d777aa73a124ec9)`() const` <a id="structFRHAPI__Item_1afd43847f1e904c769d777aa73a124ec9"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_LegacySubtype`](#structFRHAPI__Item_1ac486576891119cea067ecc5f3a3e18df)`()` <a id="structFRHAPI__Item_1ac486576891119cea067ecc5f3a3e18df"></a>
 
-Checks whether LegacySubtype_Optional has been set.
+Returns the default value of LegacySubtype.
 
-#### `public inline bool `[`IsLegacySubtypeDefaultValue`](#structFRHAPI__Item_1a1066b8828dab67a895e13d0140679562)`() const` <a id="structFRHAPI__Item_1a1066b8828dab67a895e13d0140679562"></a>
-
-Returns true if LegacySubtype_Optional is set and matches the default value.
-
-#### `public inline void `[`SetLegacySubtypeToDefault`](#structFRHAPI__Item_1a26a6a394bb57a448f1feb37c175011f2)`()` <a id="structFRHAPI__Item_1a26a6a394bb57a448f1feb37c175011f2"></a>
-
-Sets the value of LegacySubtype_Optional to its default and also sets LegacySubtype_IsSet to true.
-
-#### `public inline int32 & `[`GetRefItemId`](#structFRHAPI__Item_1af9bf68ffe3d909fde5fce6a4e9e6bf22)`()` <a id="structFRHAPI__Item_1af9bf68ffe3d909fde5fce6a4e9e6bf22"></a>
+#### `public inline FORCEINLINE int32 & `[`GetRefItemId`](#structFRHAPI__Item_1aba88404d8cfee9d8de83e8ce69121c4d)`()` <a id="structFRHAPI__Item_1aba88404d8cfee9d8de83e8ce69121c4d"></a>
 
 Gets the value of RefItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetRefItemId`](#structFRHAPI__Item_1ad9b0f2a9c462f554977f77d6814fb12b)`() const` <a id="structFRHAPI__Item_1ad9b0f2a9c462f554977f77d6814fb12b"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetRefItemId`](#structFRHAPI__Item_1a3f54e8a298988e1b9b67e1479af801cc)`() const` <a id="structFRHAPI__Item_1a3f54e8a298988e1b9b67e1479af801cc"></a>
 
 Gets the value of RefItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetRefItemId`](#structFRHAPI__Item_1a1bcf1b5a19bcafa0bb2ab0bd6d2b312d)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a1bcf1b5a19bcafa0bb2ab0bd6d2b312d"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetRefItemId`](#structFRHAPI__Item_1a0b0b19210c5c6099992ac8fbfc6c6c06)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a0b0b19210c5c6099992ac8fbfc6c6c06"></a>
 
 Gets the value of RefItemId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRefItemId`](#structFRHAPI__Item_1ae883e7828a3c06fd368959887ef2d88d)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1ae883e7828a3c06fd368959887ef2d88d"></a>
+#### `public inline FORCEINLINE bool `[`GetRefItemId`](#structFRHAPI__Item_1aa527838da2082714a6c748c67b4bc601)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1aa527838da2082714a6c748c67b4bc601"></a>
 
 Fills OutValue with the value of RefItemId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetRefItemIdOrNull`](#structFRHAPI__Item_1a91eb20df6698ccc84779123fc5785ca9)`()` <a id="structFRHAPI__Item_1a91eb20df6698ccc84779123fc5785ca9"></a>
+#### `public inline FORCEINLINE int32 * `[`GetRefItemIdOrNull`](#structFRHAPI__Item_1a8f2d754ea2258470b3b946a37277a80e)`()` <a id="structFRHAPI__Item_1a8f2d754ea2258470b3b946a37277a80e"></a>
 
 Returns a pointer to RefItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetRefItemIdOrNull`](#structFRHAPI__Item_1a671b9e4de4c50ef4b65c99568f2947c1)`() const` <a id="structFRHAPI__Item_1a671b9e4de4c50ef4b65c99568f2947c1"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetRefItemIdOrNull`](#structFRHAPI__Item_1a9066075ae9c2d29a5d5a6f542fd0d506)`() const` <a id="structFRHAPI__Item_1a9066075ae9c2d29a5d5a6f542fd0d506"></a>
 
 Returns a pointer to RefItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRefItemId`](#structFRHAPI__Item_1ab23eb90e592503296cd5033a9dcf58b1)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1ab23eb90e592503296cd5033a9dcf58b1"></a>
+#### `public inline FORCEINLINE void `[`SetRefItemId`](#structFRHAPI__Item_1a6059eeb5f94e20a1b28d1691abf5cb84)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a6059eeb5f94e20a1b28d1691abf5cb84"></a>
 
 Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true.
 
-#### `public inline void `[`SetRefItemId`](#structFRHAPI__Item_1a5d4bf03570c2f591d5119515570d6bc1)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a5d4bf03570c2f591d5119515570d6bc1"></a>
+#### `public inline FORCEINLINE void `[`SetRefItemId`](#structFRHAPI__Item_1adf96b77975c85c15f4e65556bf9173ff)`(int32 && NewValue)` <a id="structFRHAPI__Item_1adf96b77975c85c15f4e65556bf9173ff"></a>
 
 Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true using move semantics.
 
@@ -808,47 +746,39 @@ Sets the value of RefItemId_Optional and also sets RefItemId_IsSet to true using
 
 Clears the value of RefItemId_Optional and sets RefItemId_IsSet to false.
 
-#### `public inline bool `[`IsRefItemIdSet`](#structFRHAPI__Item_1a6154d1197c0e93ccc270edaf5b300d7b)`() const` <a id="structFRHAPI__Item_1a6154d1197c0e93ccc270edaf5b300d7b"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_RefItemId`](#structFRHAPI__Item_1affea15654e8c1a556bbeda5686e702b8)`()` <a id="structFRHAPI__Item_1affea15654e8c1a556bbeda5686e702b8"></a>
 
-Checks whether RefItemId_Optional has been set.
+Returns the default value of RefItemId.
 
-#### `public inline bool `[`IsRefItemIdDefaultValue`](#structFRHAPI__Item_1a1af549c0e4ae73ae1e2a21cc8db4f2f5)`() const` <a id="structFRHAPI__Item_1a1af549c0e4ae73ae1e2a21cc8db4f2f5"></a>
-
-Returns true if RefItemId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetRefItemIdToDefault`](#structFRHAPI__Item_1a5ffafc7f7977147c1304e6b2d9a0c57d)`()` <a id="structFRHAPI__Item_1a5ffafc7f7977147c1304e6b2d9a0c57d"></a>
-
-Sets the value of RefItemId_Optional to its default and also sets RefItemId_IsSet to true.
-
-#### `public inline int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1aebe8bc5258ba6472ef7e4ae23469b72a)`()` <a id="structFRHAPI__Item_1aebe8bc5258ba6472ef7e4ae23469b72a"></a>
+#### `public inline FORCEINLINE int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1a7a91a6cab74be4fa9d3b95f470a10e95)`()` <a id="structFRHAPI__Item_1a7a91a6cab74be4fa9d3b95f470a10e95"></a>
 
 Gets the value of AvailabilityFlags_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1af82c9450260c7f2c9d59abbdbce5ba39)`() const` <a id="structFRHAPI__Item_1af82c9450260c7f2c9d59abbdbce5ba39"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1af75829e52e457a8c28b36e003593c4f6)`() const` <a id="structFRHAPI__Item_1af75829e52e457a8c28b36e003593c4f6"></a>
 
 Gets the value of AvailabilityFlags_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1a3f10009ab29ac1312bfb8048b7c20198)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a3f10009ab29ac1312bfb8048b7c20198"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetAvailabilityFlags`](#structFRHAPI__Item_1a9913d0a620e7d1dc968cf71a0178618a)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a9913d0a620e7d1dc968cf71a0178618a"></a>
 
 Gets the value of AvailabilityFlags_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAvailabilityFlags`](#structFRHAPI__Item_1a9a7ae008c53e0a3fa3c44ee868c1d057)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a9a7ae008c53e0a3fa3c44ee868c1d057"></a>
+#### `public inline FORCEINLINE bool `[`GetAvailabilityFlags`](#structFRHAPI__Item_1aa29da69b84779d99a1dd207f909a77c7)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1aa29da69b84779d99a1dd207f909a77c7"></a>
 
 Fills OutValue with the value of AvailabilityFlags_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetAvailabilityFlagsOrNull`](#structFRHAPI__Item_1a2cc05867279ef0f48d1f57b972829975)`()` <a id="structFRHAPI__Item_1a2cc05867279ef0f48d1f57b972829975"></a>
+#### `public inline FORCEINLINE int32 * `[`GetAvailabilityFlagsOrNull`](#structFRHAPI__Item_1aac344fb365ab5ffd805a2260b25c3d83)`()` <a id="structFRHAPI__Item_1aac344fb365ab5ffd805a2260b25c3d83"></a>
 
 Returns a pointer to AvailabilityFlags_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetAvailabilityFlagsOrNull`](#structFRHAPI__Item_1afc6d10a5d579cb7d0c68ce6435da494f)`() const` <a id="structFRHAPI__Item_1afc6d10a5d579cb7d0c68ce6435da494f"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetAvailabilityFlagsOrNull`](#structFRHAPI__Item_1a2260cbfd0870810116e49f3ade2950e5)`() const` <a id="structFRHAPI__Item_1a2260cbfd0870810116e49f3ade2950e5"></a>
 
 Returns a pointer to AvailabilityFlags_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAvailabilityFlags`](#structFRHAPI__Item_1a787ded3092c3a4515c990b4f42b4d697)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a787ded3092c3a4515c990b4f42b4d697"></a>
+#### `public inline FORCEINLINE void `[`SetAvailabilityFlags`](#structFRHAPI__Item_1a10086a737765226e6c07ba5814520e0b)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a10086a737765226e6c07ba5814520e0b"></a>
 
 Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsSet to true.
 
-#### `public inline void `[`SetAvailabilityFlags`](#structFRHAPI__Item_1afbeb845e860d93d68994cd64d6df27cb)`(int32 && NewValue)` <a id="structFRHAPI__Item_1afbeb845e860d93d68994cd64d6df27cb"></a>
+#### `public inline FORCEINLINE void `[`SetAvailabilityFlags`](#structFRHAPI__Item_1a13b9a7a868d7aef7b6f9b1d7f14ac8d7)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a13b9a7a868d7aef7b6f9b1d7f14ac8d7"></a>
 
 Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsSet to true using move semantics.
 
@@ -856,47 +786,39 @@ Sets the value of AvailabilityFlags_Optional and also sets AvailabilityFlags_IsS
 
 Clears the value of AvailabilityFlags_Optional and sets AvailabilityFlags_IsSet to false.
 
-#### `public inline bool `[`IsAvailabilityFlagsSet`](#structFRHAPI__Item_1a7635dda467e04cbd47351dc4862cb4c8)`() const` <a id="structFRHAPI__Item_1a7635dda467e04cbd47351dc4862cb4c8"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_AvailabilityFlags`](#structFRHAPI__Item_1ae1b1dcf6443d294a648ed376f5d392db)`()` <a id="structFRHAPI__Item_1ae1b1dcf6443d294a648ed376f5d392db"></a>
 
-Checks whether AvailabilityFlags_Optional has been set.
+Returns the default value of AvailabilityFlags.
 
-#### `public inline bool `[`IsAvailabilityFlagsDefaultValue`](#structFRHAPI__Item_1a23be4efbe75354ed2cc0aa5188c827fb)`() const` <a id="structFRHAPI__Item_1a23be4efbe75354ed2cc0aa5188c827fb"></a>
-
-Returns true if AvailabilityFlags_Optional is set and matches the default value.
-
-#### `public inline void `[`SetAvailabilityFlagsToDefault`](#structFRHAPI__Item_1aef8c5832626e314d6a91b041d1014bc9)`()` <a id="structFRHAPI__Item_1aef8c5832626e314d6a91b041d1014bc9"></a>
-
-Sets the value of AvailabilityFlags_Optional to its default and also sets AvailabilityFlags_IsSet to true.
-
-#### `public inline FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a9fca88e2b642728ee80f93dcab3cd040)`()` <a id="structFRHAPI__Item_1a9fca88e2b642728ee80f93dcab3cd040"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a986213b1ee62f9ff7d03e2a00116c942)`()` <a id="structFRHAPI__Item_1a986213b1ee62f9ff7d03e2a00116c942"></a>
 
 Gets the value of EntitledLootUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a7b5fb4bdd772241a8342f74183abef2f)`() const` <a id="structFRHAPI__Item_1a7b5fb4bdd772241a8342f74183abef2f"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a2eb3ad536b0a704f6933cdd08f283123)`() const` <a id="structFRHAPI__Item_1a2eb3ad536b0a704f6933cdd08f283123"></a>
 
 Gets the value of EntitledLootUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a1d0b02123bf2ba7c4103bac9e9885f36)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1a1d0b02123bf2ba7c4103bac9e9885f36"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetEntitledLootUuid`](#structFRHAPI__Item_1ae6c92ac45b7e1b366969a0af226cba32)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1ae6c92ac45b7e1b366969a0af226cba32"></a>
 
 Gets the value of EntitledLootUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a42eeaf6b6692598add6973b2796dffd0)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1a42eeaf6b6692598add6973b2796dffd0"></a>
+#### `public inline FORCEINLINE bool `[`GetEntitledLootUuid`](#structFRHAPI__Item_1a7a053f56309e67328a23ac50d3c2df94)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1a7a053f56309e67328a23ac50d3c2df94"></a>
 
 Fills OutValue with the value of EntitledLootUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetEntitledLootUuidOrNull`](#structFRHAPI__Item_1a7c5c3dfb697b417e65bc14afd2384cd3)`()` <a id="structFRHAPI__Item_1a7c5c3dfb697b417e65bc14afd2384cd3"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetEntitledLootUuidOrNull`](#structFRHAPI__Item_1aae4e85d26d964a7e9d6b1996f8d9522f)`()` <a id="structFRHAPI__Item_1aae4e85d26d964a7e9d6b1996f8d9522f"></a>
 
 Returns a pointer to EntitledLootUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetEntitledLootUuidOrNull`](#structFRHAPI__Item_1a6cf85edfd288281cdceb812aab6f4f19)`() const` <a id="structFRHAPI__Item_1a6cf85edfd288281cdceb812aab6f4f19"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetEntitledLootUuidOrNull`](#structFRHAPI__Item_1ae828ed1cb95c8b6116efebfb2173c932)`() const` <a id="structFRHAPI__Item_1ae828ed1cb95c8b6116efebfb2173c932"></a>
 
 Returns a pointer to EntitledLootUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1aee8811848eac772eb9b5ff228765675d)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1aee8811848eac772eb9b5ff228765675d"></a>
+#### `public inline FORCEINLINE void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1aeffec62c21560367413471f376353537)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1aeffec62c21560367413471f376353537"></a>
 
 Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true.
 
-#### `public inline void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1a56ba00061fb3c807ae5f1a7a34e7555e)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1a56ba00061fb3c807ae5f1a7a34e7555e"></a>
+#### `public inline FORCEINLINE void `[`SetEntitledLootUuid`](#structFRHAPI__Item_1ab83d07cbb9ece3ee488db9cb151d6228)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1ab83d07cbb9ece3ee488db9cb151d6228"></a>
 
 Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet to true using move semantics.
 
@@ -904,47 +826,43 @@ Sets the value of EntitledLootUuid_Optional and also sets EntitledLootUuid_IsSet
 
 Clears the value of EntitledLootUuid_Optional and sets EntitledLootUuid_IsSet to false.
 
-#### `public inline bool `[`IsEntitledLootUuidSet`](#structFRHAPI__Item_1a5d3d67041b84635a8c2d641ff1f26e0a)`() const` <a id="structFRHAPI__Item_1a5d3d67041b84635a8c2d641ff1f26e0a"></a>
-
-Checks whether EntitledLootUuid_Optional has been set.
-
-#### `public inline void `[`SetEntitledLootUuidToNull`](#structFRHAPI__Item_1adbe4c3be863a8da8fc19e0b1f3919272)`()` <a id="structFRHAPI__Item_1adbe4c3be863a8da8fc19e0b1f3919272"></a>
+#### `public inline FORCEINLINE void `[`SetEntitledLootUuidToNull`](#structFRHAPI__Item_1ad29ac8d21f2949ef9d0c97eb7cd1cdb9)`()` <a id="structFRHAPI__Item_1ad29ac8d21f2949ef9d0c97eb7cd1cdb9"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsEntitledLootUuidNull`](#structFRHAPI__Item_1a991c70ad3e9d145c35401504ee11bfb8)`() const` <a id="structFRHAPI__Item_1a991c70ad3e9d145c35401504ee11bfb8"></a>
+#### `public inline FORCEINLINE bool `[`IsEntitledLootUuidNull`](#structFRHAPI__Item_1a5e203f61fa1ee53bad382e2514022e97)`() const` <a id="structFRHAPI__Item_1a5e203f61fa1ee53bad382e2514022e97"></a>
 
 Checks whether EntitledLootUuid_Optional is set to null.
 
-#### `public inline int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1ae7c458dc55f2f24701123939f674aaea)`()` <a id="structFRHAPI__Item_1ae7c458dc55f2f24701123939f674aaea"></a>
+#### `public inline FORCEINLINE int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1a742791c4e607afc5506dfc193a2e891d)`()` <a id="structFRHAPI__Item_1a742791c4e607afc5506dfc193a2e891d"></a>
 
 Gets the value of EntitledLootId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1a64d792574e0c14ab1cba1d7310277eb4)`() const` <a id="structFRHAPI__Item_1a64d792574e0c14ab1cba1d7310277eb4"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1a67c6de375a0a9ce983e96e7d663f7f12)`() const` <a id="structFRHAPI__Item_1a67c6de375a0a9ce983e96e7d663f7f12"></a>
 
 Gets the value of EntitledLootId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1accf5503c5de62bd6209ba26d088f0c9a)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1accf5503c5de62bd6209ba26d088f0c9a"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetEntitledLootId`](#structFRHAPI__Item_1ab2d09fc85c7c5dd3310d01a2f14c94cb)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1ab2d09fc85c7c5dd3310d01a2f14c94cb"></a>
 
 Gets the value of EntitledLootId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetEntitledLootId`](#structFRHAPI__Item_1a3b5abfb93e819a326cb9df5a5d172cac)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a3b5abfb93e819a326cb9df5a5d172cac"></a>
+#### `public inline FORCEINLINE bool `[`GetEntitledLootId`](#structFRHAPI__Item_1abcd4333a337a6201fd159b3fd80c097d)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1abcd4333a337a6201fd159b3fd80c097d"></a>
 
 Fills OutValue with the value of EntitledLootId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetEntitledLootIdOrNull`](#structFRHAPI__Item_1ad96dc4b7ea0d231b24e6e7b6a2d93551)`()` <a id="structFRHAPI__Item_1ad96dc4b7ea0d231b24e6e7b6a2d93551"></a>
+#### `public inline FORCEINLINE int32 * `[`GetEntitledLootIdOrNull`](#structFRHAPI__Item_1a775fc0fa15734b0cd283746a8d6879ab)`()` <a id="structFRHAPI__Item_1a775fc0fa15734b0cd283746a8d6879ab"></a>
 
 Returns a pointer to EntitledLootId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetEntitledLootIdOrNull`](#structFRHAPI__Item_1af213cc5fa5b55480914570fc7297245c)`() const` <a id="structFRHAPI__Item_1af213cc5fa5b55480914570fc7297245c"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetEntitledLootIdOrNull`](#structFRHAPI__Item_1abce12ab27fe0ffecf58ede4ea1858075)`() const` <a id="structFRHAPI__Item_1abce12ab27fe0ffecf58ede4ea1858075"></a>
 
 Returns a pointer to EntitledLootId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEntitledLootId`](#structFRHAPI__Item_1aa94cde1b0428d56fc20beaee1fd0c4d7)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1aa94cde1b0428d56fc20beaee1fd0c4d7"></a>
+#### `public inline FORCEINLINE void `[`SetEntitledLootId`](#structFRHAPI__Item_1ab66036ee605b51fb3aca34f0a167c8de)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1ab66036ee605b51fb3aca34f0a167c8de"></a>
 
 Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to true.
 
-#### `public inline void `[`SetEntitledLootId`](#structFRHAPI__Item_1adef78784a94266ff134fe98173e771b0)`(int32 && NewValue)` <a id="structFRHAPI__Item_1adef78784a94266ff134fe98173e771b0"></a>
+#### `public inline FORCEINLINE void `[`SetEntitledLootId`](#structFRHAPI__Item_1a2abd341f69aceaad0e7a7109401d9742)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a2abd341f69aceaad0e7a7109401d9742"></a>
 
 Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to true using move semantics.
 
@@ -952,47 +870,39 @@ Sets the value of EntitledLootId_Optional and also sets EntitledLootId_IsSet to 
 
 Clears the value of EntitledLootId_Optional and sets EntitledLootId_IsSet to false.
 
-#### `public inline bool `[`IsEntitledLootIdSet`](#structFRHAPI__Item_1ab09f0bd3d6856035af3e141b4723c066)`() const` <a id="structFRHAPI__Item_1ab09f0bd3d6856035af3e141b4723c066"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_EntitledLootId`](#structFRHAPI__Item_1ae3d1e1efae68b016f65a2b38007b2f77)`()` <a id="structFRHAPI__Item_1ae3d1e1efae68b016f65a2b38007b2f77"></a>
 
-Checks whether EntitledLootId_Optional has been set.
+Returns the default value of EntitledLootId.
 
-#### `public inline bool `[`IsEntitledLootIdDefaultValue`](#structFRHAPI__Item_1a89de44af3b2baea1dcf09c5297058dfb)`() const` <a id="structFRHAPI__Item_1a89de44af3b2baea1dcf09c5297058dfb"></a>
-
-Returns true if EntitledLootId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetEntitledLootIdToDefault`](#structFRHAPI__Item_1aa92bb7b9880364b596cca22b0833546b)`()` <a id="structFRHAPI__Item_1aa92bb7b9880364b596cca22b0833546b"></a>
-
-Sets the value of EntitledLootId_Optional to its default and also sets EntitledLootId_IsSet to true.
-
-#### `public inline FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a69c8cf63ccb2ba4ff2a1940b514990ed)`()` <a id="structFRHAPI__Item_1a69c8cf63ccb2ba4ff2a1940b514990ed"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a2c71defaace2733281736977b4e76a48)`()` <a id="structFRHAPI__Item_1a2c71defaace2733281736977b4e76a48"></a>
 
 Gets the value of LevelXpTableUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a63b61258d97d599db61d910af34b48be)`() const` <a id="structFRHAPI__Item_1a63b61258d97d599db61d910af34b48be"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a53c8c9956709b6f70772e209813f33bc)`() const` <a id="structFRHAPI__Item_1a53c8c9956709b6f70772e209813f33bc"></a>
 
 Gets the value of LevelXpTableUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a975b0079c7b1da37d2f770aa16bce98a)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1a975b0079c7b1da37d2f770aa16bce98a"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1aada4400ca3d7464c83b0b048d70277c6)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1aada4400ca3d7464c83b0b048d70277c6"></a>
 
 Gets the value of LevelXpTableUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1aad99d1104aa4c7c69cdd7e96287f9860)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1aad99d1104aa4c7c69cdd7e96287f9860"></a>
+#### `public inline FORCEINLINE bool `[`GetLevelXpTableUuid`](#structFRHAPI__Item_1a4620d615af2e120a893c998f6f11198b)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1a4620d615af2e120a893c998f6f11198b"></a>
 
 Fills OutValue with the value of LevelXpTableUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetLevelXpTableUuidOrNull`](#structFRHAPI__Item_1a992c2aa6c1380108ce7cf063b545e840)`()` <a id="structFRHAPI__Item_1a992c2aa6c1380108ce7cf063b545e840"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetLevelXpTableUuidOrNull`](#structFRHAPI__Item_1a1e1a3223165a5132e85766abfab055f4)`()` <a id="structFRHAPI__Item_1a1e1a3223165a5132e85766abfab055f4"></a>
 
 Returns a pointer to LevelXpTableUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetLevelXpTableUuidOrNull`](#structFRHAPI__Item_1a64ba2f6f6cdcb5cf9b7e57cb98d06d57)`() const` <a id="structFRHAPI__Item_1a64ba2f6f6cdcb5cf9b7e57cb98d06d57"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetLevelXpTableUuidOrNull`](#structFRHAPI__Item_1a69512c781cf1511eb5f54d7108afb268)`() const` <a id="structFRHAPI__Item_1a69512c781cf1511eb5f54d7108afb268"></a>
 
 Returns a pointer to LevelXpTableUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1a49dc70a310aaec33fc1dfddf780a773f)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1a49dc70a310aaec33fc1dfddf780a773f"></a>
+#### `public inline FORCEINLINE void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1adfa59e40e28828ff6fc8a616c71955c2)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1adfa59e40e28828ff6fc8a616c71955c2"></a>
 
 Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true.
 
-#### `public inline void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1ae2d873fe4792b0657cd0d9c0a7cd905b)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1ae2d873fe4792b0657cd0d9c0a7cd905b"></a>
+#### `public inline FORCEINLINE void `[`SetLevelXpTableUuid`](#structFRHAPI__Item_1a47ab7b33f58b6c2f6af36a524d9f3cde)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1a47ab7b33f58b6c2f6af36a524d9f3cde"></a>
 
 Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet to true using move semantics.
 
@@ -1000,47 +910,43 @@ Sets the value of LevelXpTableUuid_Optional and also sets LevelXpTableUuid_IsSet
 
 Clears the value of LevelXpTableUuid_Optional and sets LevelXpTableUuid_IsSet to false.
 
-#### `public inline bool `[`IsLevelXpTableUuidSet`](#structFRHAPI__Item_1a4a011653b815f41974b88e5bc21df0ce)`() const` <a id="structFRHAPI__Item_1a4a011653b815f41974b88e5bc21df0ce"></a>
-
-Checks whether LevelXpTableUuid_Optional has been set.
-
-#### `public inline void `[`SetLevelXpTableUuidToNull`](#structFRHAPI__Item_1a374acbf3626627b060ec2c78ecdec5d6)`()` <a id="structFRHAPI__Item_1a374acbf3626627b060ec2c78ecdec5d6"></a>
+#### `public inline FORCEINLINE void `[`SetLevelXpTableUuidToNull`](#structFRHAPI__Item_1ae4e735f0d1561b627424cea781e0dd04)`()` <a id="structFRHAPI__Item_1ae4e735f0d1561b627424cea781e0dd04"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLevelXpTableUuidNull`](#structFRHAPI__Item_1a94e18011fd34561c9829e421c97f3d4d)`() const` <a id="structFRHAPI__Item_1a94e18011fd34561c9829e421c97f3d4d"></a>
+#### `public inline FORCEINLINE bool `[`IsLevelXpTableUuidNull`](#structFRHAPI__Item_1a67569818c40f09221afabd1433a9e26f)`() const` <a id="structFRHAPI__Item_1a67569818c40f09221afabd1433a9e26f"></a>
 
 Checks whether LevelXpTableUuid_Optional is set to null.
 
-#### `public inline int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a09dd729edd44e83abbaa7d885e90d9fc)`()` <a id="structFRHAPI__Item_1a09dd729edd44e83abbaa7d885e90d9fc"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1aebab51c0784e638eed2a325cc414c531)`()` <a id="structFRHAPI__Item_1aebab51c0784e638eed2a325cc414c531"></a>
 
 Gets the value of LevelXpTableId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a89ffc96012836dbbcb52fe856777e5b8)`() const` <a id="structFRHAPI__Item_1a89ffc96012836dbbcb52fe856777e5b8"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a07bae5eff7bb612bfc246925a0d70bbb)`() const` <a id="structFRHAPI__Item_1a07bae5eff7bb612bfc246925a0d70bbb"></a>
 
 Gets the value of LevelXpTableId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1ad1087a14c51e23ce212aed7c8b9ba650)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1ad1087a14c51e23ce212aed7c8b9ba650"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLevelXpTableId`](#structFRHAPI__Item_1a4dd2efcac5235f13473dd53cf92e6de5)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a4dd2efcac5235f13473dd53cf92e6de5"></a>
 
 Gets the value of LevelXpTableId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLevelXpTableId`](#structFRHAPI__Item_1a9ea97eb49e4e90964abce5ab17f270b5)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a9ea97eb49e4e90964abce5ab17f270b5"></a>
+#### `public inline FORCEINLINE bool `[`GetLevelXpTableId`](#structFRHAPI__Item_1a8733dc10396cd5cc4c12df526b4f68e5)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a8733dc10396cd5cc4c12df526b4f68e5"></a>
 
 Fills OutValue with the value of LevelXpTableId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetLevelXpTableIdOrNull`](#structFRHAPI__Item_1a0960189f52f3bee153cdee4a0e96e5d2)`()` <a id="structFRHAPI__Item_1a0960189f52f3bee153cdee4a0e96e5d2"></a>
+#### `public inline FORCEINLINE int32 * `[`GetLevelXpTableIdOrNull`](#structFRHAPI__Item_1af087625a77abd472b7df6d213c24b0e7)`()` <a id="structFRHAPI__Item_1af087625a77abd472b7df6d213c24b0e7"></a>
 
 Returns a pointer to LevelXpTableId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetLevelXpTableIdOrNull`](#structFRHAPI__Item_1aa9e734f968279b8abcf942fa8a29d983)`() const` <a id="structFRHAPI__Item_1aa9e734f968279b8abcf942fa8a29d983"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetLevelXpTableIdOrNull`](#structFRHAPI__Item_1a17a0cee3ab4b997edfd69d4792043845)`() const` <a id="structFRHAPI__Item_1a17a0cee3ab4b997edfd69d4792043845"></a>
 
 Returns a pointer to LevelXpTableId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLevelXpTableId`](#structFRHAPI__Item_1affac8e552e618cd3646d020b8c572acf)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1affac8e552e618cd3646d020b8c572acf"></a>
+#### `public inline FORCEINLINE void `[`SetLevelXpTableId`](#structFRHAPI__Item_1ab4f91ab7677f2a2f14dc6d414c69e6ce)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1ab4f91ab7677f2a2f14dc6d414c69e6ce"></a>
 
 Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to true.
 
-#### `public inline void `[`SetLevelXpTableId`](#structFRHAPI__Item_1aaec876c264a786f5e47edd03e07a9774)`(int32 && NewValue)` <a id="structFRHAPI__Item_1aaec876c264a786f5e47edd03e07a9774"></a>
+#### `public inline FORCEINLINE void `[`SetLevelXpTableId`](#structFRHAPI__Item_1ae0e0a0eb8f5c67f058330836e481e040)`(int32 && NewValue)` <a id="structFRHAPI__Item_1ae0e0a0eb8f5c67f058330836e481e040"></a>
 
 Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to true using move semantics.
 
@@ -1048,47 +954,39 @@ Sets the value of LevelXpTableId_Optional and also sets LevelXpTableId_IsSet to 
 
 Clears the value of LevelXpTableId_Optional and sets LevelXpTableId_IsSet to false.
 
-#### `public inline bool `[`IsLevelXpTableIdSet`](#structFRHAPI__Item_1aa4dddc6efc3bbe6013aced0593cb55d3)`() const` <a id="structFRHAPI__Item_1aa4dddc6efc3bbe6013aced0593cb55d3"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_LevelXpTableId`](#structFRHAPI__Item_1a94841fd6fb1d5ac326b125a4d765ca0c)`()` <a id="structFRHAPI__Item_1a94841fd6fb1d5ac326b125a4d765ca0c"></a>
 
-Checks whether LevelXpTableId_Optional has been set.
+Returns the default value of LevelXpTableId.
 
-#### `public inline bool `[`IsLevelXpTableIdDefaultValue`](#structFRHAPI__Item_1aa20e8f9abb29c6b87f5f47e4c3b54ba9)`() const` <a id="structFRHAPI__Item_1aa20e8f9abb29c6b87f5f47e4c3b54ba9"></a>
-
-Returns true if LevelXpTableId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetLevelXpTableIdToDefault`](#structFRHAPI__Item_1ac6f63b9312de41a44c7c3c49f4e17fde)`()` <a id="structFRHAPI__Item_1ac6f63b9312de41a44c7c3c49f4e17fde"></a>
-
-Sets the value of LevelXpTableId_Optional to its default and also sets LevelXpTableId_IsSet to true.
-
-#### `public inline FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a41dd25ff85457a7d07b38ab468b87f84)`()` <a id="structFRHAPI__Item_1a41dd25ff85457a7d07b38ab468b87f84"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a099a8f3bbad98e0ebd52a930c1297738)`()` <a id="structFRHAPI__Item_1a099a8f3bbad98e0ebd52a930c1297738"></a>
 
 Gets the value of LevelVendorUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a6e9aaabeecbe59a9376f34ad78246bc0)`() const` <a id="structFRHAPI__Item_1a6e9aaabeecbe59a9376f34ad78246bc0"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a5a3337e58cb58a2e460d56f45e77999e)`() const` <a id="structFRHAPI__Item_1a5a3337e58cb58a2e460d56f45e77999e"></a>
 
 Gets the value of LevelVendorUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a1577c839e15477ee991a14d255dcd3be)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1a1577c839e15477ee991a14d255dcd3be"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetLevelVendorUuid`](#structFRHAPI__Item_1afccc923c2c628e0bdda2a7521bc39c0a)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1afccc923c2c628e0bdda2a7521bc39c0a"></a>
 
 Gets the value of LevelVendorUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLevelVendorUuid`](#structFRHAPI__Item_1a106505efa4e84e24c23780bcb5f3c826)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1a106505efa4e84e24c23780bcb5f3c826"></a>
+#### `public inline FORCEINLINE bool `[`GetLevelVendorUuid`](#structFRHAPI__Item_1aa086413b36057b7bf5d0e25a1620f16d)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1aa086413b36057b7bf5d0e25a1620f16d"></a>
 
 Fills OutValue with the value of LevelVendorUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetLevelVendorUuidOrNull`](#structFRHAPI__Item_1a0d123ebfa35dfbcda79ee806fa4d47e3)`()` <a id="structFRHAPI__Item_1a0d123ebfa35dfbcda79ee806fa4d47e3"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetLevelVendorUuidOrNull`](#structFRHAPI__Item_1a5edba27e9b89c8672daa91b6a57f68f5)`()` <a id="structFRHAPI__Item_1a5edba27e9b89c8672daa91b6a57f68f5"></a>
 
 Returns a pointer to LevelVendorUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetLevelVendorUuidOrNull`](#structFRHAPI__Item_1abdb358860da5277e8e0df26077cae632)`() const` <a id="structFRHAPI__Item_1abdb358860da5277e8e0df26077cae632"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetLevelVendorUuidOrNull`](#structFRHAPI__Item_1a5b357658ce1b3f89a07f06e203ca6a68)`() const` <a id="structFRHAPI__Item_1a5b357658ce1b3f89a07f06e203ca6a68"></a>
 
 Returns a pointer to LevelVendorUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1aae04871c0242965b67a9eb74a4d3e553)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1aae04871c0242965b67a9eb74a4d3e553"></a>
+#### `public inline FORCEINLINE void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1af42605c5d9ee7d49f048f081b74ed0b8)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1af42605c5d9ee7d49f048f081b74ed0b8"></a>
 
 Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true.
 
-#### `public inline void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1a5e15a80ca954fc6ae976fba37878cdf6)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1a5e15a80ca954fc6ae976fba37878cdf6"></a>
+#### `public inline FORCEINLINE void `[`SetLevelVendorUuid`](#structFRHAPI__Item_1a357d22757a02200e53f3bf4c68f759cd)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1a357d22757a02200e53f3bf4c68f759cd"></a>
 
 Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet to true using move semantics.
 
@@ -1096,47 +994,43 @@ Sets the value of LevelVendorUuid_Optional and also sets LevelVendorUuid_IsSet t
 
 Clears the value of LevelVendorUuid_Optional and sets LevelVendorUuid_IsSet to false.
 
-#### `public inline bool `[`IsLevelVendorUuidSet`](#structFRHAPI__Item_1a1eb134198a801e945e40c861208a30a5)`() const` <a id="structFRHAPI__Item_1a1eb134198a801e945e40c861208a30a5"></a>
-
-Checks whether LevelVendorUuid_Optional has been set.
-
-#### `public inline void `[`SetLevelVendorUuidToNull`](#structFRHAPI__Item_1a314344e8aabe27d33b3e8310d9a8407d)`()` <a id="structFRHAPI__Item_1a314344e8aabe27d33b3e8310d9a8407d"></a>
+#### `public inline FORCEINLINE void `[`SetLevelVendorUuidToNull`](#structFRHAPI__Item_1ad45ff1ce5e42675f8963da7d38268c57)`()` <a id="structFRHAPI__Item_1ad45ff1ce5e42675f8963da7d38268c57"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLevelVendorUuidNull`](#structFRHAPI__Item_1ae3465e2291b884421a8976cf3e79304d)`() const` <a id="structFRHAPI__Item_1ae3465e2291b884421a8976cf3e79304d"></a>
+#### `public inline FORCEINLINE bool `[`IsLevelVendorUuidNull`](#structFRHAPI__Item_1a8eed1a4813aba930caaefc00dd4b7766)`() const` <a id="structFRHAPI__Item_1a8eed1a4813aba930caaefc00dd4b7766"></a>
 
 Checks whether LevelVendorUuid_Optional is set to null.
 
-#### `public inline int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1ac0267cbf41820c783d2fd20991585153)`()` <a id="structFRHAPI__Item_1ac0267cbf41820c783d2fd20991585153"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1af2ae153e9f018fc153cd491cfd787bf5)`()` <a id="structFRHAPI__Item_1af2ae153e9f018fc153cd491cfd787bf5"></a>
 
 Gets the value of LevelVendorId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1ad0ccbe959c0b5eeb8123badceeee37a6)`() const` <a id="structFRHAPI__Item_1ad0ccbe959c0b5eeb8123badceeee37a6"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1afd5fe90f67bee175ae670398be670dff)`() const` <a id="structFRHAPI__Item_1afd5fe90f67bee175ae670398be670dff"></a>
 
 Gets the value of LevelVendorId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1a249c565fc1bc9a9b07e75364e0d82951)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a249c565fc1bc9a9b07e75364e0d82951"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLevelVendorId`](#structFRHAPI__Item_1a6acd2159fe1decb904d9e9d509d06630)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a6acd2159fe1decb904d9e9d509d06630"></a>
 
 Gets the value of LevelVendorId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLevelVendorId`](#structFRHAPI__Item_1a3cb4c5ed96cfea63a1a0b270d53c0016)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a3cb4c5ed96cfea63a1a0b270d53c0016"></a>
+#### `public inline FORCEINLINE bool `[`GetLevelVendorId`](#structFRHAPI__Item_1a9607965c31c727ebc884ff4cb4871533)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a9607965c31c727ebc884ff4cb4871533"></a>
 
 Fills OutValue with the value of LevelVendorId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetLevelVendorIdOrNull`](#structFRHAPI__Item_1adf99f266d18cde705ad948b210a47842)`()` <a id="structFRHAPI__Item_1adf99f266d18cde705ad948b210a47842"></a>
+#### `public inline FORCEINLINE int32 * `[`GetLevelVendorIdOrNull`](#structFRHAPI__Item_1a6e54deee3996741acf0aa30df7ae9683)`()` <a id="structFRHAPI__Item_1a6e54deee3996741acf0aa30df7ae9683"></a>
 
 Returns a pointer to LevelVendorId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetLevelVendorIdOrNull`](#structFRHAPI__Item_1ad2070d05565c6b574062b66c8fbb7638)`() const` <a id="structFRHAPI__Item_1ad2070d05565c6b574062b66c8fbb7638"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetLevelVendorIdOrNull`](#structFRHAPI__Item_1aac3a14877bdd7f23a1b7fd4a643f6b32)`() const` <a id="structFRHAPI__Item_1aac3a14877bdd7f23a1b7fd4a643f6b32"></a>
 
 Returns a pointer to LevelVendorId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLevelVendorId`](#structFRHAPI__Item_1a6206e135389392cf3a8b9ab2dd73aa64)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a6206e135389392cf3a8b9ab2dd73aa64"></a>
+#### `public inline FORCEINLINE void `[`SetLevelVendorId`](#structFRHAPI__Item_1af458fdbee236e66c400cc145db4fe6dd)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1af458fdbee236e66c400cc145db4fe6dd"></a>
 
 Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to true.
 
-#### `public inline void `[`SetLevelVendorId`](#structFRHAPI__Item_1a091a8aa94eb7e8ac8522498fc4a48d2e)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a091a8aa94eb7e8ac8522498fc4a48d2e"></a>
+#### `public inline FORCEINLINE void `[`SetLevelVendorId`](#structFRHAPI__Item_1ac0686303a50ca9660a3b4f00f6740df3)`(int32 && NewValue)` <a id="structFRHAPI__Item_1ac0686303a50ca9660a3b4f00f6740df3"></a>
 
 Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to true using move semantics.
 
@@ -1144,47 +1038,39 @@ Sets the value of LevelVendorId_Optional and also sets LevelVendorId_IsSet to tr
 
 Clears the value of LevelVendorId_Optional and sets LevelVendorId_IsSet to false.
 
-#### `public inline bool `[`IsLevelVendorIdSet`](#structFRHAPI__Item_1a70dd0dabebfb683fb9b450808b5e6606)`() const` <a id="structFRHAPI__Item_1a70dd0dabebfb683fb9b450808b5e6606"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_LevelVendorId`](#structFRHAPI__Item_1af4372196edaacf0962d5416ee5d00562)`()` <a id="structFRHAPI__Item_1af4372196edaacf0962d5416ee5d00562"></a>
 
-Checks whether LevelVendorId_Optional has been set.
+Returns the default value of LevelVendorId.
 
-#### `public inline bool `[`IsLevelVendorIdDefaultValue`](#structFRHAPI__Item_1a6142502c0d3ecc38bc20254af3cffc22)`() const` <a id="structFRHAPI__Item_1a6142502c0d3ecc38bc20254af3cffc22"></a>
-
-Returns true if LevelVendorId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetLevelVendorIdToDefault`](#structFRHAPI__Item_1ad31d4c1ae0420e87716468dccbc6cb44)`()` <a id="structFRHAPI__Item_1ad31d4c1ae0420e87716468dccbc6cb44"></a>
-
-Sets the value of LevelVendorId_Optional to its default and also sets LevelVendorId_IsSet to true.
-
-#### `public inline FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1ad9616fd72ef6ffac18e5e8af0a8030dc)`()` <a id="structFRHAPI__Item_1ad9616fd72ef6ffac18e5e8af0a8030dc"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a3716f22c577baadf52b0d34dfa908be7)`()` <a id="structFRHAPI__Item_1a3716f22c577baadf52b0d34dfa908be7"></a>
 
 Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afdf15e83f4c9127a9ef83bccd3504ba6)`() const` <a id="structFRHAPI__Item_1afdf15e83f4c9127a9ef83bccd3504ba6"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a373d318a2005c62dbdda06bb0248efc5)`() const` <a id="structFRHAPI__Item_1a373d318a2005c62dbdda06bb0248efc5"></a>
 
 Gets the value of CouponDiscountCurrencyItemUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a4daf693b2dfe1a204ac5b264a6b8f2df)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1a4daf693b2dfe1a204ac5b264a6b8f2df"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a800ca266534e9d06f62f846615e5d79b)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__Item_1a800ca266534e9d06f62f846615e5d79b"></a>
 
 Gets the value of CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1abc7fdc2c9ec76e9bb02c0574e34ba141)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1abc7fdc2c9ec76e9bb02c0574e34ba141"></a>
+#### `public inline FORCEINLINE bool `[`GetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afd6e094a7f6bf76c18a11bdd29bd35d3)`(FGuid & OutValue) const` <a id="structFRHAPI__Item_1afd6e094a7f6bf76c18a11bdd29bd35d3"></a>
 
 Fills OutValue with the value of CouponDiscountCurrencyItemUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1adedb7c383b0d994f1a457eb090b74bb7)`()` <a id="structFRHAPI__Item_1adedb7c383b0d994f1a457eb090b74bb7"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1ab932c279269e8495582694d5def9722c)`()` <a id="structFRHAPI__Item_1ab932c279269e8495582694d5def9722c"></a>
 
 Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1af6cb84e053224e128aa643e48c193c11)`() const` <a id="structFRHAPI__Item_1af6cb84e053224e128aa643e48c193c11"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetCouponDiscountCurrencyItemUuidOrNull`](#structFRHAPI__Item_1a8e794a1b7de926e5d27a5f0ad8c41c73)`() const` <a id="structFRHAPI__Item_1a8e794a1b7de926e5d27a5f0ad8c41c73"></a>
 
 Returns a pointer to CouponDiscountCurrencyItemUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1af6b1428a71bab1c0999b8e097f9bb4de)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1af6b1428a71bab1c0999b8e097f9bb4de"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a0f40592b16ad57f3cb9cc2803421081b)`(const FGuid & NewValue)` <a id="structFRHAPI__Item_1a0f40592b16ad57f3cb9cc2803421081b"></a>
 
 Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true.
 
-#### `public inline void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1afa57506fd183e4e65cd8ad955e588242)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1afa57506fd183e4e65cd8ad955e588242"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemUuid`](#structFRHAPI__Item_1a58221a61a7e3cde026d333474dfb9ab1)`(FGuid && NewValue)` <a id="structFRHAPI__Item_1a58221a61a7e3cde026d333474dfb9ab1"></a>
 
 Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDiscountCurrencyItemUuid_IsSet to true using move semantics.
 
@@ -1192,47 +1078,43 @@ Sets the value of CouponDiscountCurrencyItemUuid_Optional and also sets CouponDi
 
 Clears the value of CouponDiscountCurrencyItemUuid_Optional and sets CouponDiscountCurrencyItemUuid_IsSet to false.
 
-#### `public inline bool `[`IsCouponDiscountCurrencyItemUuidSet`](#structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b)`() const` <a id="structFRHAPI__Item_1af9580809322a553ee79f764eaff8b15b"></a>
-
-Checks whether CouponDiscountCurrencyItemUuid_Optional has been set.
-
-#### `public inline void `[`SetCouponDiscountCurrencyItemUuidToNull`](#structFRHAPI__Item_1ae4ac5789fd52ab5b743c66ecdaa786a0)`()` <a id="structFRHAPI__Item_1ae4ac5789fd52ab5b743c66ecdaa786a0"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemUuidToNull`](#structFRHAPI__Item_1a260f2e500de65ee8a7b48061565a311b)`()` <a id="structFRHAPI__Item_1a260f2e500de65ee8a7b48061565a311b"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCouponDiscountCurrencyItemUuidNull`](#structFRHAPI__Item_1a520303a5d9dccf123db6d105fd179508)`() const` <a id="structFRHAPI__Item_1a520303a5d9dccf123db6d105fd179508"></a>
+#### `public inline FORCEINLINE bool `[`IsCouponDiscountCurrencyItemUuidNull`](#structFRHAPI__Item_1a5c89c31952d0533365592e3a56aae5ea)`() const` <a id="structFRHAPI__Item_1a5c89c31952d0533365592e3a56aae5ea"></a>
 
 Checks whether CouponDiscountCurrencyItemUuid_Optional is set to null.
 
-#### `public inline int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a54c5bee3b0fa90382725b859cf6413ab)`()` <a id="structFRHAPI__Item_1a54c5bee3b0fa90382725b859cf6413ab"></a>
+#### `public inline FORCEINLINE int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a9abf1d20914df7a91dd0fdec23bc0564)`()` <a id="structFRHAPI__Item_1a9abf1d20914df7a91dd0fdec23bc0564"></a>
 
 Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ac179ef75f5caaf4218f25d4cfb462bdc)`() const` <a id="structFRHAPI__Item_1ac179ef75f5caaf4218f25d4cfb462bdc"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a3016e1b5f3bf9c2380eb2b92fc120ff5)`() const` <a id="structFRHAPI__Item_1a3016e1b5f3bf9c2380eb2b92fc120ff5"></a>
 
 Gets the value of CouponDiscountCurrencyItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1acbc01922d7bd546f049702a758ca3b74)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1acbc01922d7bd546f049702a758ca3b74"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1aaa4028e3e2414db8d093fb663a444798)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1aaa4028e3e2414db8d093fb663a444798"></a>
 
 Gets the value of CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ae288be3af3f201bb47f7b1593804ec81)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1ae288be3af3f201bb47f7b1593804ec81"></a>
+#### `public inline FORCEINLINE bool `[`GetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ac44816706a2b9d8f8ce4053321228d92)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1ac44816706a2b9d8f8ce4053321228d92"></a>
 
 Fills OutValue with the value of CouponDiscountCurrencyItemId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetCouponDiscountCurrencyItemIdOrNull`](#structFRHAPI__Item_1a643a21df5d3e28f929710f6a9cd03c77)`()` <a id="structFRHAPI__Item_1a643a21df5d3e28f929710f6a9cd03c77"></a>
+#### `public inline FORCEINLINE int32 * `[`GetCouponDiscountCurrencyItemIdOrNull`](#structFRHAPI__Item_1af1d1385cef5b0751b0c8984d2b8d8790)`()` <a id="structFRHAPI__Item_1af1d1385cef5b0751b0c8984d2b8d8790"></a>
 
 Returns a pointer to CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetCouponDiscountCurrencyItemIdOrNull`](#structFRHAPI__Item_1adfb4b019643923b04f2a433970ab3a89)`() const` <a id="structFRHAPI__Item_1adfb4b019643923b04f2a433970ab3a89"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetCouponDiscountCurrencyItemIdOrNull`](#structFRHAPI__Item_1a87066315249830cb860b8847260406a6)`() const` <a id="structFRHAPI__Item_1a87066315249830cb860b8847260406a6"></a>
 
 Returns a pointer to CouponDiscountCurrencyItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a637dbd62fcdc71be9cd2535a9576d9f8)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a637dbd62fcdc71be9cd2535a9576d9f8"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a3b542e30989c273b1ef080199931df75)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a3b542e30989c273b1ef080199931df75"></a>
 
 Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDiscountCurrencyItemId_IsSet to true.
 
-#### `public inline void `[`SetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1ad09ba063591a147765edbf8be84953a4)`(int32 && NewValue)` <a id="structFRHAPI__Item_1ad09ba063591a147765edbf8be84953a4"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a09a8e70ae612412c478032780354c640)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a09a8e70ae612412c478032780354c640"></a>
 
 Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDiscountCurrencyItemId_IsSet to true using move semantics.
 
@@ -1240,47 +1122,39 @@ Sets the value of CouponDiscountCurrencyItemId_Optional and also sets CouponDisc
 
 Clears the value of CouponDiscountCurrencyItemId_Optional and sets CouponDiscountCurrencyItemId_IsSet to false.
 
-#### `public inline bool `[`IsCouponDiscountCurrencyItemIdSet`](#structFRHAPI__Item_1ae37f62a54627f0c8c6b799776df51d3a)`() const` <a id="structFRHAPI__Item_1ae37f62a54627f0c8c6b799776df51d3a"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_CouponDiscountCurrencyItemId`](#structFRHAPI__Item_1a5dcf71d904c0f52aac799101a4809a3b)`()` <a id="structFRHAPI__Item_1a5dcf71d904c0f52aac799101a4809a3b"></a>
 
-Checks whether CouponDiscountCurrencyItemId_Optional has been set.
+Returns the default value of CouponDiscountCurrencyItemId.
 
-#### `public inline bool `[`IsCouponDiscountCurrencyItemIdDefaultValue`](#structFRHAPI__Item_1ad2a4ae4c698ce16d4da22a01ebabff5c)`() const` <a id="structFRHAPI__Item_1ad2a4ae4c698ce16d4da22a01ebabff5c"></a>
-
-Returns true if CouponDiscountCurrencyItemId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetCouponDiscountCurrencyItemIdToDefault`](#structFRHAPI__Item_1a96e413cc85c150d5304c819aa99fc188)`()` <a id="structFRHAPI__Item_1a96e413cc85c150d5304c819aa99fc188"></a>
-
-Sets the value of CouponDiscountCurrencyItemId_Optional to its default and also sets CouponDiscountCurrencyItemId_IsSet to true.
-
-#### `public inline float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1ad4e717297885715707f908b112f85c0d)`()` <a id="structFRHAPI__Item_1ad4e717297885715707f908b112f85c0d"></a>
+#### `public inline FORCEINLINE float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1aeb8735b18eb4de95a071abaa6a5910fe)`()` <a id="structFRHAPI__Item_1aeb8735b18eb4de95a071abaa6a5910fe"></a>
 
 Gets the value of CouponDiscountPercentage_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1aa64eeba4e9ca922c95ac503418ed7ede)`() const` <a id="structFRHAPI__Item_1aa64eeba4e9ca922c95ac503418ed7ede"></a>
+#### `public inline FORCEINLINE const float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1af394a19187a0334ba83c3787f934ebdc)`() const` <a id="structFRHAPI__Item_1af394a19187a0334ba83c3787f934ebdc"></a>
 
 Gets the value of CouponDiscountPercentage_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1ab4caa5afd4921753ba943a916ebed44d)`(const float & DefaultValue) const` <a id="structFRHAPI__Item_1ab4caa5afd4921753ba943a916ebed44d"></a>
+#### `public inline FORCEINLINE const float & `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1a8b59c229baf1eda357063ec8e3aaf4ce)`(const float & DefaultValue) const` <a id="structFRHAPI__Item_1a8b59c229baf1eda357063ec8e3aaf4ce"></a>
 
 Gets the value of CouponDiscountPercentage_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1ab4edbf9af9acbcab0d31e952fa3d1dcf)`(float & OutValue) const` <a id="structFRHAPI__Item_1ab4edbf9af9acbcab0d31e952fa3d1dcf"></a>
+#### `public inline FORCEINLINE bool `[`GetCouponDiscountPercentage`](#structFRHAPI__Item_1a5e874ba3ad14cdd022aa81ab0f4761bb)`(float & OutValue) const` <a id="structFRHAPI__Item_1a5e874ba3ad14cdd022aa81ab0f4761bb"></a>
 
 Fills OutValue with the value of CouponDiscountPercentage_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline float * `[`GetCouponDiscountPercentageOrNull`](#structFRHAPI__Item_1a912591262f19a4a20423de3cc069d6a1)`()` <a id="structFRHAPI__Item_1a912591262f19a4a20423de3cc069d6a1"></a>
+#### `public inline FORCEINLINE float * `[`GetCouponDiscountPercentageOrNull`](#structFRHAPI__Item_1adc211520929d90d02dc627883e6ad88c)`()` <a id="structFRHAPI__Item_1adc211520929d90d02dc627883e6ad88c"></a>
 
 Returns a pointer to CouponDiscountPercentage_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const float * `[`GetCouponDiscountPercentageOrNull`](#structFRHAPI__Item_1a2e136d45fdb68e11375a4a89fbe88dde)`() const` <a id="structFRHAPI__Item_1a2e136d45fdb68e11375a4a89fbe88dde"></a>
+#### `public inline FORCEINLINE const float * `[`GetCouponDiscountPercentageOrNull`](#structFRHAPI__Item_1ac07586560421a076aceca5718d635359)`() const` <a id="structFRHAPI__Item_1ac07586560421a076aceca5718d635359"></a>
 
 Returns a pointer to CouponDiscountPercentage_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCouponDiscountPercentage`](#structFRHAPI__Item_1a9c176a59ea3705b2aed3ce59580b2637)`(const float & NewValue)` <a id="structFRHAPI__Item_1a9c176a59ea3705b2aed3ce59580b2637"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountPercentage`](#structFRHAPI__Item_1abc8841f1426c6bddb5fef1cf1b4d2a25)`(const float & NewValue)` <a id="structFRHAPI__Item_1abc8841f1426c6bddb5fef1cf1b4d2a25"></a>
 
 Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscountPercentage_IsSet to true.
 
-#### `public inline void `[`SetCouponDiscountPercentage`](#structFRHAPI__Item_1a902a987b0f0c44b65747e9a4adabbe25)`(float && NewValue)` <a id="structFRHAPI__Item_1a902a987b0f0c44b65747e9a4adabbe25"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountPercentage`](#structFRHAPI__Item_1a9c1d4c98e73820c4415405f79fe0a0e0)`(float && NewValue)` <a id="structFRHAPI__Item_1a9c1d4c98e73820c4415405f79fe0a0e0"></a>
 
 Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscountPercentage_IsSet to true using move semantics.
 
@@ -1288,39 +1162,35 @@ Sets the value of CouponDiscountPercentage_Optional and also sets CouponDiscount
 
 Clears the value of CouponDiscountPercentage_Optional and sets CouponDiscountPercentage_IsSet to false.
 
-#### `public inline bool `[`IsCouponDiscountPercentageSet`](#structFRHAPI__Item_1a3c776f49711660f9a6a8cb8442f232c8)`() const` <a id="structFRHAPI__Item_1a3c776f49711660f9a6a8cb8442f232c8"></a>
-
-Checks whether CouponDiscountPercentage_Optional has been set.
-
-#### `public inline bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a9d9d2ee6d7a07a057e9f5a0a18b32552)`()` <a id="structFRHAPI__Item_1a9d9d2ee6d7a07a057e9f5a0a18b32552"></a>
+#### `public inline FORCEINLINE bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a330bbf4dca354a2572b61c99e39a7288)`()` <a id="structFRHAPI__Item_1a330bbf4dca354a2572b61c99e39a7288"></a>
 
 Gets the value of CouponConsumeOnUse_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a2265a9e11c225b85292489ebc74e4def)`() const` <a id="structFRHAPI__Item_1a2265a9e11c225b85292489ebc74e4def"></a>
+#### `public inline FORCEINLINE const bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a2c831f066933238b87448d3983d2f63c)`() const` <a id="structFRHAPI__Item_1a2c831f066933238b87448d3983d2f63c"></a>
 
 Gets the value of CouponConsumeOnUse_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a545e6d81828ad3a4a3d03d123b76b717)`(const bool & DefaultValue) const` <a id="structFRHAPI__Item_1a545e6d81828ad3a4a3d03d123b76b717"></a>
+#### `public inline FORCEINLINE const bool & `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a6f8e7fc51e0b01f104cbd92a0695c782)`(const bool & DefaultValue) const` <a id="structFRHAPI__Item_1a6f8e7fc51e0b01f104cbd92a0695c782"></a>
 
 Gets the value of CouponConsumeOnUse_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a26420a8731f2fc00a508a421e0c7f796)`(bool & OutValue) const` <a id="structFRHAPI__Item_1a26420a8731f2fc00a508a421e0c7f796"></a>
+#### `public inline FORCEINLINE bool `[`GetCouponConsumeOnUse`](#structFRHAPI__Item_1a731fc4b2db28ab414a3139df26fc57ef)`(bool & OutValue) const` <a id="structFRHAPI__Item_1a731fc4b2db28ab414a3139df26fc57ef"></a>
 
 Fills OutValue with the value of CouponConsumeOnUse_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetCouponConsumeOnUseOrNull`](#structFRHAPI__Item_1a0b09088d24824134757c8a6fefdaaaf5)`()` <a id="structFRHAPI__Item_1a0b09088d24824134757c8a6fefdaaaf5"></a>
+#### `public inline FORCEINLINE bool * `[`GetCouponConsumeOnUseOrNull`](#structFRHAPI__Item_1a153c588a3c174c9da88bae5cd03d82e2)`()` <a id="structFRHAPI__Item_1a153c588a3c174c9da88bae5cd03d82e2"></a>
 
 Returns a pointer to CouponConsumeOnUse_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetCouponConsumeOnUseOrNull`](#structFRHAPI__Item_1a17b5b0d3e39c6a2f266d8a6c21447d97)`() const` <a id="structFRHAPI__Item_1a17b5b0d3e39c6a2f266d8a6c21447d97"></a>
+#### `public inline FORCEINLINE const bool * `[`GetCouponConsumeOnUseOrNull`](#structFRHAPI__Item_1a9064bcb41e18d8761e5d09b5c1dcb8af)`() const` <a id="structFRHAPI__Item_1a9064bcb41e18d8761e5d09b5c1dcb8af"></a>
 
 Returns a pointer to CouponConsumeOnUse_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCouponConsumeOnUse`](#structFRHAPI__Item_1a2906d3fcab28c1e68243e7d686b3d3fd)`(const bool & NewValue)` <a id="structFRHAPI__Item_1a2906d3fcab28c1e68243e7d686b3d3fd"></a>
+#### `public inline FORCEINLINE void `[`SetCouponConsumeOnUse`](#structFRHAPI__Item_1a387b70fa9e430c652e731e28042cfc65)`(const bool & NewValue)` <a id="structFRHAPI__Item_1a387b70fa9e430c652e731e28042cfc65"></a>
 
 Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_IsSet to true.
 
-#### `public inline void `[`SetCouponConsumeOnUse`](#structFRHAPI__Item_1a0fc7e9c8f2d9bc1cea02ab6bb3db636a)`(bool && NewValue)` <a id="structFRHAPI__Item_1a0fc7e9c8f2d9bc1cea02ab6bb3db636a"></a>
+#### `public inline FORCEINLINE void `[`SetCouponConsumeOnUse`](#structFRHAPI__Item_1a3a0d7970012296d77f1820614ebf2f5c)`(bool && NewValue)` <a id="structFRHAPI__Item_1a3a0d7970012296d77f1820614ebf2f5c"></a>
 
 Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_IsSet to true using move semantics.
 
@@ -1328,47 +1198,39 @@ Sets the value of CouponConsumeOnUse_Optional and also sets CouponConsumeOnUse_I
 
 Clears the value of CouponConsumeOnUse_Optional and sets CouponConsumeOnUse_IsSet to false.
 
-#### `public inline bool `[`IsCouponConsumeOnUseSet`](#structFRHAPI__Item_1a6f0e7fa2c8d0d0ef789ce713b25cd291)`() const` <a id="structFRHAPI__Item_1a6f0e7fa2c8d0d0ef789ce713b25cd291"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_CouponConsumeOnUse`](#structFRHAPI__Item_1aa4cdcabc346c53a248129ae82961cd23)`()` <a id="structFRHAPI__Item_1aa4cdcabc346c53a248129ae82961cd23"></a>
 
-Checks whether CouponConsumeOnUse_Optional has been set.
+Returns the default value of CouponConsumeOnUse.
 
-#### `public inline bool `[`IsCouponConsumeOnUseDefaultValue`](#structFRHAPI__Item_1a27ee21d9a1af8be2d1e0970fb9d122fa)`() const` <a id="structFRHAPI__Item_1a27ee21d9a1af8be2d1e0970fb9d122fa"></a>
-
-Returns true if CouponConsumeOnUse_Optional is set and matches the default value.
-
-#### `public inline void `[`SetCouponConsumeOnUseToDefault`](#structFRHAPI__Item_1a002f4547e9b061e2792f368936a4e2a0)`()` <a id="structFRHAPI__Item_1a002f4547e9b061e2792f368936a4e2a0"></a>
-
-Sets the value of CouponConsumeOnUse_Optional to its default and also sets CouponConsumeOnUse_IsSet to true.
-
-#### `public inline int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1a978e254c84b3f117308c1d56fcc18488)`()` <a id="structFRHAPI__Item_1a978e254c84b3f117308c1d56fcc18488"></a>
+#### `public inline FORCEINLINE int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ae5c22bea2c8e87cfc1b0f6b334fc3690)`()` <a id="structFRHAPI__Item_1ae5c22bea2c8e87cfc1b0f6b334fc3690"></a>
 
 Gets the value of ItemPortalUseRulesetId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ae7a6ee16e6297a7c4424e12fb5508e6e)`() const` <a id="structFRHAPI__Item_1ae7a6ee16e6297a7c4424e12fb5508e6e"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ad8bdc7e273b9f9bccaabc28d45b217f7)`() const` <a id="structFRHAPI__Item_1ad8bdc7e273b9f9bccaabc28d45b217f7"></a>
 
 Gets the value of ItemPortalUseRulesetId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ac76630094d02dc3109e6f51b064e0a2a)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1ac76630094d02dc3109e6f51b064e0a2a"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1ac00c0faadf7b824d5910ccb91447cd3f)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1ac00c0faadf7b824d5910ccb91447cd3f"></a>
 
 Gets the value of ItemPortalUseRulesetId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1acc1530a5f5f45c01bfc15a770433e5a0)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1acc1530a5f5f45c01bfc15a770433e5a0"></a>
+#### `public inline FORCEINLINE bool `[`GetItemPortalUseRulesetId`](#structFRHAPI__Item_1a9de4f7030fd2557d398c6488f2f3776f)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a9de4f7030fd2557d398c6488f2f3776f"></a>
 
 Fills OutValue with the value of ItemPortalUseRulesetId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetItemPortalUseRulesetIdOrNull`](#structFRHAPI__Item_1aa7bb6ac356b5d656a7f5b3e8069e7b39)`()` <a id="structFRHAPI__Item_1aa7bb6ac356b5d656a7f5b3e8069e7b39"></a>
+#### `public inline FORCEINLINE int32 * `[`GetItemPortalUseRulesetIdOrNull`](#structFRHAPI__Item_1a1f6e047f3633d94ae3de16014bfe9e77)`()` <a id="structFRHAPI__Item_1a1f6e047f3633d94ae3de16014bfe9e77"></a>
 
 Returns a pointer to ItemPortalUseRulesetId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetItemPortalUseRulesetIdOrNull`](#structFRHAPI__Item_1a68535a51c20da035799063718a3c2a4e)`() const` <a id="structFRHAPI__Item_1a68535a51c20da035799063718a3c2a4e"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetItemPortalUseRulesetIdOrNull`](#structFRHAPI__Item_1aad99f8b63572f2ef6901b53835976b10)`() const` <a id="structFRHAPI__Item_1aad99f8b63572f2ef6901b53835976b10"></a>
 
 Returns a pointer to ItemPortalUseRulesetId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetItemPortalUseRulesetId`](#structFRHAPI__Item_1a24da1028351f3903a231c68b0f035f91)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a24da1028351f3903a231c68b0f035f91"></a>
+#### `public inline FORCEINLINE void `[`SetItemPortalUseRulesetId`](#structFRHAPI__Item_1a89c17f395ca211674c690c3efe69423e)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a89c17f395ca211674c690c3efe69423e"></a>
 
 Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRulesetId_IsSet to true.
 
-#### `public inline void `[`SetItemPortalUseRulesetId`](#structFRHAPI__Item_1a9b8d5544fa4f30e0e2495f1bf733b1b2)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a9b8d5544fa4f30e0e2495f1bf733b1b2"></a>
+#### `public inline FORCEINLINE void `[`SetItemPortalUseRulesetId`](#structFRHAPI__Item_1a19fa060b4ee85edb16d84264569c0818)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a19fa060b4ee85edb16d84264569c0818"></a>
 
 Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRulesetId_IsSet to true using move semantics.
 
@@ -1376,47 +1238,39 @@ Sets the value of ItemPortalUseRulesetId_Optional and also sets ItemPortalUseRul
 
 Clears the value of ItemPortalUseRulesetId_Optional and sets ItemPortalUseRulesetId_IsSet to false.
 
-#### `public inline bool `[`IsItemPortalUseRulesetIdSet`](#structFRHAPI__Item_1a88872ad1535b5d4928bc80aeda9f962b)`() const` <a id="structFRHAPI__Item_1a88872ad1535b5d4928bc80aeda9f962b"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_ItemPortalUseRulesetId`](#structFRHAPI__Item_1aa774f1cb6fb2fb7c9011707221c1b44b)`()` <a id="structFRHAPI__Item_1aa774f1cb6fb2fb7c9011707221c1b44b"></a>
 
-Checks whether ItemPortalUseRulesetId_Optional has been set.
+Returns the default value of ItemPortalUseRulesetId.
 
-#### `public inline bool `[`IsItemPortalUseRulesetIdDefaultValue`](#structFRHAPI__Item_1a855c742cd4f2f1dbf1c7de69a353927e)`() const` <a id="structFRHAPI__Item_1a855c742cd4f2f1dbf1c7de69a353927e"></a>
-
-Returns true if ItemPortalUseRulesetId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetItemPortalUseRulesetIdToDefault`](#structFRHAPI__Item_1a0585c33836f0635d3b4722f7bfbf4f3c)`()` <a id="structFRHAPI__Item_1a0585c33836f0635d3b4722f7bfbf4f3c"></a>
-
-Sets the value of ItemPortalUseRulesetId_Optional to its default and also sets ItemPortalUseRulesetId_IsSet to true.
-
-#### `public inline FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a004a64f598ee703cfa4a3aa1829e9b39)`()` <a id="structFRHAPI__Item_1a004a64f598ee703cfa4a3aa1829e9b39"></a>
+#### `public inline FORCEINLINE FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1aa1a3f5703deac3a54ae96aa6ffe4c541)`()` <a id="structFRHAPI__Item_1aa1a3f5703deac3a54ae96aa6ffe4c541"></a>
 
 Gets the value of InventoryBucketUseRuleSetId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a24d45e705a0cc05b3e345ffd50f97031)`() const` <a id="structFRHAPI__Item_1a24d45e705a0cc05b3e345ffd50f97031"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a4393a9a743d17483e25a7b256ca52394)`() const` <a id="structFRHAPI__Item_1a4393a9a743d17483e25a7b256ca52394"></a>
 
 Gets the value of InventoryBucketUseRuleSetId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a2e08fd66a7ae476a09bfc9046fd5d972)`(const FString & DefaultValue) const` <a id="structFRHAPI__Item_1a2e08fd66a7ae476a09bfc9046fd5d972"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a2bd07c7f8e3c4a4b71434ddc2b39ac1d)`(const FString & DefaultValue) const` <a id="structFRHAPI__Item_1a2bd07c7f8e3c4a4b71434ddc2b39ac1d"></a>
 
 Gets the value of InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1af4b6b107c6f4ff2ea9e3f2c084e8e72a)`(FString & OutValue) const` <a id="structFRHAPI__Item_1af4b6b107c6f4ff2ea9e3f2c084e8e72a"></a>
+#### `public inline FORCEINLINE bool `[`GetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1ac6b5880cbc772d300efb9cd9bf0116d1)`(FString & OutValue) const` <a id="structFRHAPI__Item_1ac6b5880cbc772d300efb9cd9bf0116d1"></a>
 
 Fills OutValue with the value of InventoryBucketUseRuleSetId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetInventoryBucketUseRuleSetIdOrNull`](#structFRHAPI__Item_1ae5591ca6ec96e57a03a1b6e52fffcb2d)`()` <a id="structFRHAPI__Item_1ae5591ca6ec96e57a03a1b6e52fffcb2d"></a>
+#### `public inline FORCEINLINE FString * `[`GetInventoryBucketUseRuleSetIdOrNull`](#structFRHAPI__Item_1adac33f116a1659b5c040b9b4da42665e)`()` <a id="structFRHAPI__Item_1adac33f116a1659b5c040b9b4da42665e"></a>
 
 Returns a pointer to InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetInventoryBucketUseRuleSetIdOrNull`](#structFRHAPI__Item_1a10303c6bd1102d4611bb281a310e8935)`() const` <a id="structFRHAPI__Item_1a10303c6bd1102d4611bb281a310e8935"></a>
+#### `public inline FORCEINLINE const FString * `[`GetInventoryBucketUseRuleSetIdOrNull`](#structFRHAPI__Item_1a19d2a733b65a7fe5ed6f1f4f40b17ef3)`() const` <a id="structFRHAPI__Item_1a19d2a733b65a7fe5ed6f1f4f40b17ef3"></a>
 
 Returns a pointer to InventoryBucketUseRuleSetId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a73b40b8ae9c42addec4d0ced6b3db8ef)`(const FString & NewValue)` <a id="structFRHAPI__Item_1a73b40b8ae9c42addec4d0ced6b3db8ef"></a>
+#### `public inline FORCEINLINE void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a509b1f8e1ad890f8ce7ca6971123bfaf)`(const FString & NewValue)` <a id="structFRHAPI__Item_1a509b1f8e1ad890f8ce7ca6971123bfaf"></a>
 
 Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true.
 
-#### `public inline void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a765a19c21abc7b6f2510220b303759c6)`(FString && NewValue)` <a id="structFRHAPI__Item_1a765a19c21abc7b6f2510220b303759c6"></a>
+#### `public inline FORCEINLINE void `[`SetInventoryBucketUseRuleSetId`](#structFRHAPI__Item_1a98287ef0633f2b1e49c31aae5715fbbb)`(FString && NewValue)` <a id="structFRHAPI__Item_1a98287ef0633f2b1e49c31aae5715fbbb"></a>
 
 Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBucketUseRuleSetId_IsSet to true using move semantics.
 
@@ -1424,47 +1278,43 @@ Sets the value of InventoryBucketUseRuleSetId_Optional and also sets InventoryBu
 
 Clears the value of InventoryBucketUseRuleSetId_Optional and sets InventoryBucketUseRuleSetId_IsSet to false.
 
-#### `public inline bool `[`IsInventoryBucketUseRuleSetIdSet`](#structFRHAPI__Item_1a3bc734432134f82dd3c3222f4c783a4b)`() const` <a id="structFRHAPI__Item_1a3bc734432134f82dd3c3222f4c783a4b"></a>
-
-Checks whether InventoryBucketUseRuleSetId_Optional has been set.
-
-#### `public inline void `[`SetInventoryBucketUseRuleSetIdToNull`](#structFRHAPI__Item_1a334a2c1de68d3f3271998a04b7cfc0f9)`()` <a id="structFRHAPI__Item_1a334a2c1de68d3f3271998a04b7cfc0f9"></a>
+#### `public inline FORCEINLINE void `[`SetInventoryBucketUseRuleSetIdToNull`](#structFRHAPI__Item_1adfdab6b89c52388f80120953a249936a)`()` <a id="structFRHAPI__Item_1adfdab6b89c52388f80120953a249936a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsInventoryBucketUseRuleSetIdNull`](#structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0)`() const` <a id="structFRHAPI__Item_1a2a8a0c6cf31bd3ce87455cda00d39df0"></a>
+#### `public inline FORCEINLINE bool `[`IsInventoryBucketUseRuleSetIdNull`](#structFRHAPI__Item_1a2bcc8d877639562320cfea7d4c33289f)`() const` <a id="structFRHAPI__Item_1a2bcc8d877639562320cfea7d4c33289f"></a>
 
 Checks whether InventoryBucketUseRuleSetId_Optional is set to null.
 
-#### `public inline int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a60b8036bc6c5cfc37a784bf62978c543)`()` <a id="structFRHAPI__Item_1a60b8036bc6c5cfc37a784bf62978c543"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a04556bc289f3f1df85f40fc669f3f64e)`()` <a id="structFRHAPI__Item_1a04556bc289f3f1df85f40fc669f3f64e"></a>
 
 Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a80e71b3efde58a3045d840ab3a4d6c6a)`() const` <a id="structFRHAPI__Item_1a80e71b3efde58a3045d840ab3a4d6c6a"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1aa0a6a5c02ffc3ad600f74b05611e248c)`() const` <a id="structFRHAPI__Item_1aa0a6a5c02ffc3ad600f74b05611e248c"></a>
 
 Gets the value of TotalOwnershipMax_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a25dad5fe51ad267809ee8d13f215fb06)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a25dad5fe51ad267809ee8d13f215fb06"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a1b61f750fcca67d84ab1e9a69110d7b6)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Item_1a1b61f750fcca67d84ab1e9a69110d7b6"></a>
 
 Gets the value of TotalOwnershipMax_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a4c8c19b1a7b3269c580a110702b1c575)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a4c8c19b1a7b3269c580a110702b1c575"></a>
+#### `public inline FORCEINLINE bool `[`GetTotalOwnershipMax`](#structFRHAPI__Item_1a6ce34a9e76f14eaf7eab08a43b425798)`(int32 & OutValue) const` <a id="structFRHAPI__Item_1a6ce34a9e76f14eaf7eab08a43b425798"></a>
 
 Fills OutValue with the value of TotalOwnershipMax_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a9f299e5fbd55b91ad25a276c453043a4)`()` <a id="structFRHAPI__Item_1a9f299e5fbd55b91ad25a276c453043a4"></a>
+#### `public inline FORCEINLINE int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a16c4d23b922ad48f88c7426d6520c920)`()` <a id="structFRHAPI__Item_1a16c4d23b922ad48f88c7426d6520c920"></a>
 
 Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1a4155b1250f070fd47b6f696e1ff8e841)`() const` <a id="structFRHAPI__Item_1a4155b1250f070fd47b6f696e1ff8e841"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetTotalOwnershipMaxOrNull`](#structFRHAPI__Item_1ae87ed48e3f1c7787ec378b848247664a)`() const` <a id="structFRHAPI__Item_1ae87ed48e3f1c7787ec378b848247664a"></a>
 
 Returns a pointer to TotalOwnershipMax_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1a7f76e988265608c9ab3c7b242d3d1a5a)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1a7f76e988265608c9ab3c7b242d3d1a5a"></a>
+#### `public inline FORCEINLINE void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1aa4314d97fbe65b5f7829cda2e8fa14d4)`(const int32 & NewValue)` <a id="structFRHAPI__Item_1aa4314d97fbe65b5f7829cda2e8fa14d4"></a>
 
 Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true.
 
-#### `public inline void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1ad4985107c0885028f5f2d177b7d52e7a)`(int32 && NewValue)` <a id="structFRHAPI__Item_1ad4985107c0885028f5f2d177b7d52e7a"></a>
+#### `public inline FORCEINLINE void `[`SetTotalOwnershipMax`](#structFRHAPI__Item_1a74c12fbc6d5b1c7c3bc24d51f7834ae1)`(int32 && NewValue)` <a id="structFRHAPI__Item_1a74c12fbc6d5b1c7c3bc24d51f7834ae1"></a>
 
 Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsSet to true using move semantics.
 
@@ -1472,47 +1322,39 @@ Sets the value of TotalOwnershipMax_Optional and also sets TotalOwnershipMax_IsS
 
 Clears the value of TotalOwnershipMax_Optional and sets TotalOwnershipMax_IsSet to false.
 
-#### `public inline bool `[`IsTotalOwnershipMaxSet`](#structFRHAPI__Item_1a530e54fdc415223c06042dcbfbcd3df0)`() const` <a id="structFRHAPI__Item_1a530e54fdc415223c06042dcbfbcd3df0"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TotalOwnershipMax`](#structFRHAPI__Item_1a83c60841693f8de1b3ca8a79a782efc1)`()` <a id="structFRHAPI__Item_1a83c60841693f8de1b3ca8a79a782efc1"></a>
 
-Checks whether TotalOwnershipMax_Optional has been set.
+Returns the default value of TotalOwnershipMax.
 
-#### `public inline bool `[`IsTotalOwnershipMaxDefaultValue`](#structFRHAPI__Item_1a74ce0bba5399e3277fb570e55a31bd25)`() const` <a id="structFRHAPI__Item_1a74ce0bba5399e3277fb570e55a31bd25"></a>
-
-Returns true if TotalOwnershipMax_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTotalOwnershipMaxToDefault`](#structFRHAPI__Item_1ae9495863ab58175e1125f18645480ef2)`()` <a id="structFRHAPI__Item_1ae9495863ab58175e1125f18645480ef2"></a>
-
-Sets the value of TotalOwnershipMax_Optional to its default and also sets TotalOwnershipMax_IsSet to true.
-
-#### `public inline TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88)`()` <a id="structFRHAPI__Item_1a8f20801a07174512d41f6317af38aa88"></a>
+#### `public inline FORCEINLINE TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1aaed819220157a3080253fe5a5c06495f)`()` <a id="structFRHAPI__Item_1aaed819220157a3080253fe5a5c06495f"></a>
 
 Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
 
-#### `public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a61240a94f9e017f869841ab65b2dbda5)`() const` <a id="structFRHAPI__Item_1a61240a94f9e017f869841ab65b2dbda5"></a>
+#### `public inline FORCEINLINE const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1ab2d580462eea1e2cf9e06bcc2300e8b1)`() const` <a id="structFRHAPI__Item_1ab2d580462eea1e2cf9e06bcc2300e8b1"></a>
 
 Gets the value of CouponDiscountLoot_Optional, regardless of it having been set.
 
-#### `public inline const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1ae7b6e717d8bc5eeeb6fed59db496d354)`(const TArray< int32 > & DefaultValue) const` <a id="structFRHAPI__Item_1ae7b6e717d8bc5eeeb6fed59db496d354"></a>
+#### `public inline FORCEINLINE const TArray< int32 > & `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a658f01c8ea7295ac5f090e823b421d90)`(const TArray< int32 > & DefaultValue) const` <a id="structFRHAPI__Item_1a658f01c8ea7295ac5f090e823b421d90"></a>
 
 Gets the value of CouponDiscountLoot_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a647967de5190c2eae1cc4cc305545a50)`(TArray< int32 > & OutValue) const` <a id="structFRHAPI__Item_1a647967de5190c2eae1cc4cc305545a50"></a>
+#### `public inline FORCEINLINE bool `[`GetCouponDiscountLoot`](#structFRHAPI__Item_1a6db2a4d2002636eb55d50555572f8f01)`(TArray< int32 > & OutValue) const` <a id="structFRHAPI__Item_1a6db2a4d2002636eb55d50555572f8f01"></a>
 
 Fills OutValue with the value of CouponDiscountLoot_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< int32 > * `[`GetCouponDiscountLootOrNull`](#structFRHAPI__Item_1aab9dd3fe192d5a99acf650e063c37429)`()` <a id="structFRHAPI__Item_1aab9dd3fe192d5a99acf650e063c37429"></a>
+#### `public inline FORCEINLINE TArray< int32 > * `[`GetCouponDiscountLootOrNull`](#structFRHAPI__Item_1a17f51e29c064f75035574daca32521df)`()` <a id="structFRHAPI__Item_1a17f51e29c064f75035574daca32521df"></a>
 
 Returns a pointer to CouponDiscountLoot_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< int32 > * `[`GetCouponDiscountLootOrNull`](#structFRHAPI__Item_1a0137c26939c21001a2569695fb887782)`() const` <a id="structFRHAPI__Item_1a0137c26939c21001a2569695fb887782"></a>
+#### `public inline FORCEINLINE const TArray< int32 > * `[`GetCouponDiscountLootOrNull`](#structFRHAPI__Item_1a0cdcce77eef8582cba5a113557d37ced)`() const` <a id="structFRHAPI__Item_1a0cdcce77eef8582cba5a113557d37ced"></a>
 
 Returns a pointer to CouponDiscountLoot_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCouponDiscountLoot`](#structFRHAPI__Item_1a4f8a6c38ddf7a95c6c3ca4039c85b52d)`(const TArray< int32 > & NewValue)` <a id="structFRHAPI__Item_1a4f8a6c38ddf7a95c6c3ca4039c85b52d"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountLoot`](#structFRHAPI__Item_1a154b0067558f3572562092b46738d566)`(const TArray< int32 > & NewValue)` <a id="structFRHAPI__Item_1a154b0067558f3572562092b46738d566"></a>
 
 Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_IsSet to true.
 
-#### `public inline void `[`SetCouponDiscountLoot`](#structFRHAPI__Item_1a5788557190d4cb6a98368c9b5cd26d2d)`(TArray< int32 > && NewValue)` <a id="structFRHAPI__Item_1a5788557190d4cb6a98368c9b5cd26d2d"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountLoot`](#structFRHAPI__Item_1acfa2809b73752129d0798a17e600b923)`(TArray< int32 > && NewValue)` <a id="structFRHAPI__Item_1acfa2809b73752129d0798a17e600b923"></a>
 
 Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_IsSet to true using move semantics.
 
@@ -1520,39 +1362,35 @@ Sets the value of CouponDiscountLoot_Optional and also sets CouponDiscountLoot_I
 
 Clears the value of CouponDiscountLoot_Optional and sets CouponDiscountLoot_IsSet to false.
 
-#### `public inline bool `[`IsCouponDiscountLootSet`](#structFRHAPI__Item_1aaa9e6982882230ed1f423e33f3e03484)`() const` <a id="structFRHAPI__Item_1aaa9e6982882230ed1f423e33f3e03484"></a>
-
-Checks whether CouponDiscountLoot_Optional has been set.
-
-#### `public inline TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a14a3076132cc64bf1ccaabf25f286a1f)`()` <a id="structFRHAPI__Item_1a14a3076132cc64bf1ccaabf25f286a1f"></a>
+#### `public inline FORCEINLINE TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1ab02a6add51a33e3d9d5486e87f1d77e1)`()` <a id="structFRHAPI__Item_1ab02a6add51a33e3d9d5486e87f1d77e1"></a>
 
 Gets the value of CouponDiscountLootUuid_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a37d156db6189b76e89b15052c36085a0)`() const` <a id="structFRHAPI__Item_1a37d156db6189b76e89b15052c36085a0"></a>
+#### `public inline FORCEINLINE const TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a6026a8bb4e3ba4c40bd867744a99bcfb)`() const` <a id="structFRHAPI__Item_1a6026a8bb4e3ba4c40bd867744a99bcfb"></a>
 
 Gets the value of CouponDiscountLootUuid_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1af84bdebd57c60b2dfe0a240aca11aa05)`(const TArray< FGuid > & DefaultValue) const` <a id="structFRHAPI__Item_1af84bdebd57c60b2dfe0a240aca11aa05"></a>
+#### `public inline FORCEINLINE const TArray< FGuid > & `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a2ed880cf9691b8395939226f83c91457)`(const TArray< FGuid > & DefaultValue) const` <a id="structFRHAPI__Item_1a2ed880cf9691b8395939226f83c91457"></a>
 
 Gets the value of CouponDiscountLootUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a9e14a7d704d977345988ba528d5479d5)`(TArray< FGuid > & OutValue) const` <a id="structFRHAPI__Item_1a9e14a7d704d977345988ba528d5479d5"></a>
+#### `public inline FORCEINLINE bool `[`GetCouponDiscountLootUuid`](#structFRHAPI__Item_1a3c928df5dd22abaf67976a401bc10509)`(TArray< FGuid > & OutValue) const` <a id="structFRHAPI__Item_1a3c928df5dd22abaf67976a401bc10509"></a>
 
 Fills OutValue with the value of CouponDiscountLootUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< FGuid > * `[`GetCouponDiscountLootUuidOrNull`](#structFRHAPI__Item_1abb53f58fd8189eb782654c2dbf9f2ac6)`()` <a id="structFRHAPI__Item_1abb53f58fd8189eb782654c2dbf9f2ac6"></a>
+#### `public inline FORCEINLINE TArray< FGuid > * `[`GetCouponDiscountLootUuidOrNull`](#structFRHAPI__Item_1a20902a1a0efcee760de1b647a2108812)`()` <a id="structFRHAPI__Item_1a20902a1a0efcee760de1b647a2108812"></a>
 
 Returns a pointer to CouponDiscountLootUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< FGuid > * `[`GetCouponDiscountLootUuidOrNull`](#structFRHAPI__Item_1a0c84ab089403460ef46ac074ed3031e9)`() const` <a id="structFRHAPI__Item_1a0c84ab089403460ef46ac074ed3031e9"></a>
+#### `public inline FORCEINLINE const TArray< FGuid > * `[`GetCouponDiscountLootUuidOrNull`](#structFRHAPI__Item_1a55e7d534ec5ba39771127009d21e21a5)`() const` <a id="structFRHAPI__Item_1a55e7d534ec5ba39771127009d21e21a5"></a>
 
 Returns a pointer to CouponDiscountLootUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCouponDiscountLootUuid`](#structFRHAPI__Item_1a7d39c17dfb06a2e8bdfa38861d72b4d9)`(const TArray< FGuid > & NewValue)` <a id="structFRHAPI__Item_1a7d39c17dfb06a2e8bdfa38861d72b4d9"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountLootUuid`](#structFRHAPI__Item_1ade99a8aca0ee563e1d8f30cf8cbfe33d)`(const TArray< FGuid > & NewValue)` <a id="structFRHAPI__Item_1ade99a8aca0ee563e1d8f30cf8cbfe33d"></a>
 
 Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLootUuid_IsSet to true.
 
-#### `public inline void `[`SetCouponDiscountLootUuid`](#structFRHAPI__Item_1a859cda7ddeb427e90852e98f31742872)`(TArray< FGuid > && NewValue)` <a id="structFRHAPI__Item_1a859cda7ddeb427e90852e98f31742872"></a>
+#### `public inline FORCEINLINE void `[`SetCouponDiscountLootUuid`](#structFRHAPI__Item_1a0fdf26b1452a7ed148e4d5b2bcd18a7b)`(TArray< FGuid > && NewValue)` <a id="structFRHAPI__Item_1a0fdf26b1452a7ed148e4d5b2bcd18a7b"></a>
 
 Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLootUuid_IsSet to true using move semantics.
 
@@ -1560,39 +1398,35 @@ Sets the value of CouponDiscountLootUuid_Optional and also sets CouponDiscountLo
 
 Clears the value of CouponDiscountLootUuid_Optional and sets CouponDiscountLootUuid_IsSet to false.
 
-#### `public inline bool `[`IsCouponDiscountLootUuidSet`](#structFRHAPI__Item_1ad28fdd2b1a0a63810eced58bea9bd96c)`() const` <a id="structFRHAPI__Item_1ad28fdd2b1a0a63810eced58bea9bd96c"></a>
-
-Checks whether CouponDiscountLootUuid_Optional has been set.
-
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a07c7dd3920c9bbacf019de9fe8107fbc)`()` <a id="structFRHAPI__Item_1a07c7dd3920c9bbacf019de9fe8107fbc"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a39cb264b8c423ba64e4ef5b8a1b932e3)`()` <a id="structFRHAPI__Item_1a39cb264b8c423ba64e4ef5b8a1b932e3"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a32b1bda82af145990e90fd98c1e2c48e)`() const` <a id="structFRHAPI__Item_1a32b1bda82af145990e90fd98c1e2c48e"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a697dfa94e60b5c2c858afef84dd26fee)`() const` <a id="structFRHAPI__Item_1a697dfa94e60b5c2c858afef84dd26fee"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1a8d612dc96874b040e91859630ea7f668)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__Item_1a8d612dc96874b040e91859630ea7f668"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Item_1af3ca4d418b72834217993f2aecdc637b)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__Item_1af3ca4d418b72834217993f2aecdc637b"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCacheInfo`](#structFRHAPI__Item_1a74a10cf52863208f9cfb9e26484a1b6f)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__Item_1a74a10cf52863208f9cfb9e26484a1b6f"></a>
+#### `public inline FORCEINLINE bool `[`GetCacheInfo`](#structFRHAPI__Item_1a4f4e99091fecfe5cf08f1c17ee5a166b)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__Item_1a4f4e99091fecfe5cf08f1c17ee5a166b"></a>
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Item_1a3a411803212cccc3e424c49280cb7a43)`()` <a id="structFRHAPI__Item_1a3a411803212cccc3e424c49280cb7a43"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Item_1ab12bdb4bea90e3b6b7398fe75ed62c03)`()` <a id="structFRHAPI__Item_1ab12bdb4bea90e3b6b7398fe75ed62c03"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Item_1a38d747645f8de1f82ce9a68be770f190)`() const` <a id="structFRHAPI__Item_1a38d747645f8de1f82ce9a68be770f190"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Item_1a45c6eaef118c6ad2df8c97113f10ddf9)`() const` <a id="structFRHAPI__Item_1a45c6eaef118c6ad2df8c97113f10ddf9"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Item_1a2af066addfb875c3a081297e00626263)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Item_1a2af066addfb875c3a081297e00626263"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Item_1a5d9e89d2f3ba57a64a9ee1f0efe3d21e)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Item_1a5d9e89d2f3ba57a64a9ee1f0efe3d21e"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Item_1a4deaa7b49f5c2a74e6c9623265a07d66)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Item_1a4deaa7b49f5c2a74e6c9623265a07d66"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Item_1a2f8c863b8c49db2075a300d8576fc560)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Item_1a2f8c863b8c49db2075a300d8576fc560"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
@@ -1600,15 +1434,11 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Item_1a9e9f1fe041fe7d0913950d86191a00b8)`() const` <a id="structFRHAPI__Item_1a9e9f1fe041fe7d0913950d86191a00b8"></a>
-
-Checks whether CacheInfo_Optional has been set.
-
-#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Item_1aa77d2d59f41442f6ed4f3f9cabf7c772)`()` <a id="structFRHAPI__Item_1aa77d2d59f41442f6ed4f3f9cabf7c772"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfoToNull`](#structFRHAPI__Item_1aab7107a53938050b75bdf37a2a3f2a12)`()` <a id="structFRHAPI__Item_1aab7107a53938050b75bdf37a2a3f2a12"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Item_1ad1b8287ef3e99ef065a2b1786ea793f0)`() const` <a id="structFRHAPI__Item_1ad1b8287ef3e99ef065a2b1786ea793f0"></a>
+#### `public inline FORCEINLINE bool `[`IsCacheInfoNull`](#structFRHAPI__Item_1a73e78c20b74a02c9d3fddae00d19e0f6)`() const` <a id="structFRHAPI__Item_1a73e78c20b74a02c9d3fddae00d19e0f6"></a>
 
 Checks whether CacheInfo_Optional is set to null.
 

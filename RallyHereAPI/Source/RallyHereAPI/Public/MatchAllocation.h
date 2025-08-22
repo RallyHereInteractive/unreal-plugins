@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_MatchAllocation : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString AllocationId{  };
 	/** @brief Gets the value of AllocationId */
-	FString& GetAllocationId() { return AllocationId; }
+	FORCEINLINE FString& GetAllocationId() { return AllocationId; }
 	/** @brief Gets the value of AllocationId */
-	const FString& GetAllocationId() const { return AllocationId; }
+	FORCEINLINE const FString& GetAllocationId() const { return AllocationId; }
 	/** @brief Sets the value of AllocationId */
-	void SetAllocationId(const FString& NewValue) { AllocationId = NewValue;   }
+	FORCEINLINE void SetAllocationId(const FString& NewValue) { AllocationId = NewValue;   }
 	/** @brief Sets the value of AllocationId using move semantics */
-	void SetAllocationId(FString&& NewValue) { AllocationId = NewValue;   }
+	FORCEINLINE void SetAllocationId(FString&& NewValue) { AllocationId = NewValue;   }
 };
 
 /** @} */

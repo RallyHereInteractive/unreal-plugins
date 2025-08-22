@@ -174,8 +174,8 @@ namespace
 				}
 				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem Steam Item ID: %s"), *ItemId);
 				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem SKU: %s"), *FromSteamItemDefId(steamEnt.m_iDefinition));
-				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem Count: %s"), ItemCount);
-				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem SteamItemFlags: %s"), steamEnt.m_unFlags);
+				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem Count: %d"), ItemCount);
+				UE_LOG_ONLINE_PURCHASE(Verbose, TEXT("FOnlineAsyncTaskSteamGetAllUserInventory - ReceiptItem SteamItemFlags: %d"), steamEnt.m_unFlags);
 
 				PurchaseReceipt.ReceiptOffers.Emplace(MoveTemp(OfferEntry));
 			}
@@ -551,7 +551,7 @@ void FOnlinePurchaseSteamV2::MarkPurchasesAsClosed()
 			// The event for "user accepted the transaction" comes in *after* the window closes, so we have to wait for a bit to see if that appears
 			Purch->Receipt->TransactionState = EPurchaseTransactionState::Canceled;
 			Purch->Expiration = 2.0f;
-			UE_LOG_ONLINE_PURCHASE(Log, TEXT("Transaction %s UI closed, waiting %d seconds for possible success"), *Purch->Receipt->TransactionId, Purch->Expiration);
+			UE_LOG_ONLINE_PURCHASE(Log, TEXT("Transaction %s UI closed, waiting %f seconds for possible success"), *Purch->Receipt->TransactionId, Purch->Expiration);
 		}
 	}
 }

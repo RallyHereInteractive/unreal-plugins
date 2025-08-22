@@ -45,13 +45,13 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString InstanceId{  };
 	/** @brief Gets the value of InstanceId */
-	FString& GetInstanceId() { return InstanceId; }
+	FORCEINLINE FString& GetInstanceId() { return InstanceId; }
 	/** @brief Gets the value of InstanceId */
-	const FString& GetInstanceId() const { return InstanceId; }
+	FORCEINLINE const FString& GetInstanceId() const { return InstanceId; }
 	/** @brief Sets the value of InstanceId */
-	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;   }
+	FORCEINLINE void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;   }
 	/** @brief Sets the value of InstanceId using move semantics */
-	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;   }
+	FORCEINLINE void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;   }
 
 	/** @brief Additional extensions to add to the Assignment for the backfill resource associated with the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -60,25 +60,23 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Extensions_IsSet{ false };
 	/** @brief Gets the value of Extensions_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetExtensions() { return Extensions_Optional; }
 	/** @brief Gets the value of Extensions_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetExtensions() const { return Extensions_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetExtensions() const { return Extensions_Optional; }
 	/** @brief Gets the value of Extensions_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetExtensions(const TMap<FString, FString>& DefaultValue) const { if (Extensions_IsSet) return Extensions_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetExtensions(const TMap<FString, FString>& DefaultValue) const { if (Extensions_IsSet) return Extensions_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Extensions_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExtensions(TMap<FString, FString>& OutValue) const { if (Extensions_IsSet) OutValue = Extensions_Optional; return Extensions_IsSet; }
+	FORCEINLINE bool GetExtensions(TMap<FString, FString>& OutValue) const { if (Extensions_IsSet) OutValue = Extensions_Optional; return Extensions_IsSet; }
 	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetExtensionsOrNull() { if (Extensions_IsSet) return (&Extensions_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetExtensionsOrNull() { if (Extensions_IsSet) return (&Extensions_Optional); return nullptr; }
 	/** @brief Returns a pointer to Extensions_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return (&Extensions_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetExtensionsOrNull() const { if (Extensions_IsSet) return (&Extensions_Optional); return nullptr; }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true */
-	void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
+	FORCEINLINE void SetExtensions(const TMap<FString, FString>& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
 	/** @brief Sets the value of Extensions_Optional and also sets Extensions_IsSet to true using move semantics */
-	void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
+	FORCEINLINE void SetExtensions(TMap<FString, FString>&& NewValue) { Extensions_Optional = NewValue; Extensions_IsSet = true;  }
 	/** @brief Clears the value of Extensions_Optional and sets Extensions_IsSet to false */
 	void ClearExtensions() { Extensions_IsSet = false;  }
-	/** @brief Checks whether Extensions_Optional has been set */
-	bool IsExtensionsSet() const { return Extensions_IsSet; }
 
 	/** @brief How to handle backfills that return too many players for a team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -87,25 +85,23 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OverflowAction_IsSet{ false };
 	/** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
-	ERHAPI_TeamOverflowAction& GetOverflowAction() { return OverflowAction_Optional; }
+	FORCEINLINE ERHAPI_TeamOverflowAction& GetOverflowAction() { return OverflowAction_Optional; }
 	/** @brief Gets the value of OverflowAction_Optional, regardless of it having been set */
-	const ERHAPI_TeamOverflowAction& GetOverflowAction() const { return OverflowAction_Optional; }
+	FORCEINLINE const ERHAPI_TeamOverflowAction& GetOverflowAction() const { return OverflowAction_Optional; }
 	/** @brief Gets the value of OverflowAction_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_TeamOverflowAction& GetOverflowAction(const ERHAPI_TeamOverflowAction& DefaultValue) const { if (OverflowAction_IsSet) return OverflowAction_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_TeamOverflowAction& GetOverflowAction(const ERHAPI_TeamOverflowAction& DefaultValue) const { if (OverflowAction_IsSet) return OverflowAction_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OverflowAction_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOverflowAction(ERHAPI_TeamOverflowAction& OutValue) const { if (OverflowAction_IsSet) OutValue = OverflowAction_Optional; return OverflowAction_IsSet; }
+	FORCEINLINE bool GetOverflowAction(ERHAPI_TeamOverflowAction& OutValue) const { if (OverflowAction_IsSet) OutValue = OverflowAction_Optional; return OverflowAction_IsSet; }
 	/** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() { if (OverflowAction_IsSet) return (&OverflowAction_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() { if (OverflowAction_IsSet) return (&OverflowAction_Optional); return nullptr; }
 	/** @brief Returns a pointer to OverflowAction_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return (&OverflowAction_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_TeamOverflowAction* GetOverflowActionOrNull() const { if (OverflowAction_IsSet) return (&OverflowAction_Optional); return nullptr; }
 	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true */
-	void SetOverflowAction(const ERHAPI_TeamOverflowAction& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
+	FORCEINLINE void SetOverflowAction(const ERHAPI_TeamOverflowAction& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
 	/** @brief Sets the value of OverflowAction_Optional and also sets OverflowAction_IsSet to true using move semantics */
-	void SetOverflowAction(ERHAPI_TeamOverflowAction&& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
+	FORCEINLINE void SetOverflowAction(ERHAPI_TeamOverflowAction&& NewValue) { OverflowAction_Optional = NewValue; OverflowAction_IsSet = true;  }
 	/** @brief Clears the value of OverflowAction_Optional and sets OverflowAction_IsSet to false */
 	void ClearOverflowAction() { OverflowAction_IsSet = false;  }
-	/** @brief Checks whether OverflowAction_Optional has been set */
-	bool IsOverflowActionSet() const { return OverflowAction_IsSet; }
 
 	/** @brief The styles of backfill to acknowledge. Can provide multiple for backwards compatibility. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,25 +110,23 @@ struct RALLYHEREAPI_API FRHAPI_AcknowledgeBackfillRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Styles_IsSet{ false };
 	/** @brief Gets the value of Styles_Optional, regardless of it having been set */
-	TArray<ERHAPI_BackfillStyle>& GetStyles() { return Styles_Optional; }
+	FORCEINLINE TArray<ERHAPI_BackfillStyle>& GetStyles() { return Styles_Optional; }
 	/** @brief Gets the value of Styles_Optional, regardless of it having been set */
-	const TArray<ERHAPI_BackfillStyle>& GetStyles() const { return Styles_Optional; }
+	FORCEINLINE const TArray<ERHAPI_BackfillStyle>& GetStyles() const { return Styles_Optional; }
 	/** @brief Gets the value of Styles_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<ERHAPI_BackfillStyle>& GetStyles(const TArray<ERHAPI_BackfillStyle>& DefaultValue) const { if (Styles_IsSet) return Styles_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<ERHAPI_BackfillStyle>& GetStyles(const TArray<ERHAPI_BackfillStyle>& DefaultValue) const { if (Styles_IsSet) return Styles_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Styles_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStyles(TArray<ERHAPI_BackfillStyle>& OutValue) const { if (Styles_IsSet) OutValue = Styles_Optional; return Styles_IsSet; }
+	FORCEINLINE bool GetStyles(TArray<ERHAPI_BackfillStyle>& OutValue) const { if (Styles_IsSet) OutValue = Styles_Optional; return Styles_IsSet; }
 	/** @brief Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr */
-	TArray<ERHAPI_BackfillStyle>* GetStylesOrNull() { if (Styles_IsSet) return (&Styles_Optional); return nullptr; }
+	FORCEINLINE TArray<ERHAPI_BackfillStyle>* GetStylesOrNull() { if (Styles_IsSet) return (&Styles_Optional); return nullptr; }
 	/** @brief Returns a pointer to Styles_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<ERHAPI_BackfillStyle>* GetStylesOrNull() const { if (Styles_IsSet) return (&Styles_Optional); return nullptr; }
+	FORCEINLINE const TArray<ERHAPI_BackfillStyle>* GetStylesOrNull() const { if (Styles_IsSet) return (&Styles_Optional); return nullptr; }
 	/** @brief Sets the value of Styles_Optional and also sets Styles_IsSet to true */
-	void SetStyles(const TArray<ERHAPI_BackfillStyle>& NewValue) { Styles_Optional = NewValue; Styles_IsSet = true;  }
+	FORCEINLINE void SetStyles(const TArray<ERHAPI_BackfillStyle>& NewValue) { Styles_Optional = NewValue; Styles_IsSet = true;  }
 	/** @brief Sets the value of Styles_Optional and also sets Styles_IsSet to true using move semantics */
-	void SetStyles(TArray<ERHAPI_BackfillStyle>&& NewValue) { Styles_Optional = NewValue; Styles_IsSet = true;  }
+	FORCEINLINE void SetStyles(TArray<ERHAPI_BackfillStyle>&& NewValue) { Styles_Optional = NewValue; Styles_IsSet = true;  }
 	/** @brief Clears the value of Styles_Optional and sets Styles_IsSet to false */
 	void ClearStyles() { Styles_IsSet = false;  }
-	/** @brief Checks whether Styles_Optional has been set */
-	bool IsStylesSet() const { return Styles_IsSet; }
 };
 
 /** @} */

@@ -27,42 +27,36 @@ struct FRHAPI_StorageInformation
 `public bool `[`TotalSizeMb_IsSet`](#structFRHAPI__StorageInformation_1a117986467c7d78a224a6c92bbd89cc65) | true if TotalSizeMb_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__StorageInformation_1aad1f70e8a67b582cd00c73d21daafd02)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__StorageInformation_1ab054bd986c2ec7c01b0514cc4ee9dbee)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1a97da2a0cbd7e924a0306973f8b8be2de)`()` | Gets the value of TotalFiles_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1a1d2f7b6765e981ce7affbeb82751d934)`() const` | Gets the value of TotalFiles_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1a6abb510bfd40e72155fffece47491ce9)`(const int32 & DefaultValue) const` | Gets the value of TotalFiles_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1a562e8c74f5ead691c982347308f2b318)`(int32 & OutValue) const` | Fills OutValue with the value of TotalFiles_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetTotalFilesOrNull`](#structFRHAPI__StorageInformation_1ad9fc4eadcb855ec689e8c6fa3587fd20)`()` | Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetTotalFilesOrNull`](#structFRHAPI__StorageInformation_1a801fca52e63837bb484d5767ef38a296)`() const` | Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTotalFiles`](#structFRHAPI__StorageInformation_1a2a29acbb6503595b19b715eacbc6858b)`(const int32 & NewValue)` | Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true.
-`public inline void `[`SetTotalFiles`](#structFRHAPI__StorageInformation_1a52ae5f70c913123e4eec471059b94e94)`(int32 && NewValue)` | Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1afa1a58e74b0dba3fdae556358994e524)`()` | Gets the value of TotalFiles_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1aafb40a497b9a1c2095a419ccae26ed70)`() const` | Gets the value of TotalFiles_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1ac7645a2b930e26846b99bf9a6d9e8e30)`(const int32 & DefaultValue) const` | Gets the value of TotalFiles_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1aaea76ca4e84c18dd031aba81d9de4cae)`(int32 & OutValue) const` | Fills OutValue with the value of TotalFiles_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetTotalFilesOrNull`](#structFRHAPI__StorageInformation_1a808c2b099d7f13d40167aaa6e98c8994)`()` | Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetTotalFilesOrNull`](#structFRHAPI__StorageInformation_1ab758da2514ee5b0376c5f736d18d9121)`() const` | Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTotalFiles`](#structFRHAPI__StorageInformation_1a9896c2b6dea71f1e16f4cdb581e510fb)`(const int32 & NewValue)` | Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true.
+`public inline FORCEINLINE void `[`SetTotalFiles`](#structFRHAPI__StorageInformation_1acbea2766125a9a78eb4473cb923e74ee)`(int32 && NewValue)` | Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true using move semantics.
 `public inline void `[`ClearTotalFiles`](#structFRHAPI__StorageInformation_1a54b4cfc15895ab8a8daa5fa7732720e1)`()` | Clears the value of TotalFiles_Optional and sets TotalFiles_IsSet to false.
-`public inline bool `[`IsTotalFilesSet`](#structFRHAPI__StorageInformation_1a269ecea66f6991724a647894e53ec100)`() const` | Checks whether TotalFiles_Optional has been set.
-`public inline bool `[`IsTotalFilesDefaultValue`](#structFRHAPI__StorageInformation_1acdeb195bfc23e310690f2d28876f6ed0)`() const` | Returns true if TotalFiles_Optional is set and matches the default value.
-`public inline void `[`SetTotalFilesToDefault`](#structFRHAPI__StorageInformation_1a0a2971c8a2ce136e075539387806049f)`()` | Sets the value of TotalFiles_Optional to its default and also sets TotalFiles_IsSet to true.
-`public inline int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1af25ecc7173e611c747eecde7e2d31d93)`()` | Gets the value of TotalSizeBytes_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ad8f321f54a58dfead842af763bdc1cf1)`() const` | Gets the value of TotalSizeBytes_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1affda44af460a2a5bd20d7305b765992b)`(const int32 & DefaultValue) const` | Gets the value of TotalSizeBytes_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ae75422d273a715d725de8bc37b5fc44c)`(int32 & OutValue) const` | Fills OutValue with the value of TotalSizeBytes_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetTotalSizeBytesOrNull`](#structFRHAPI__StorageInformation_1a6b0d393030b21cb4cc7f6c8d7b5f7e65)`()` | Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetTotalSizeBytesOrNull`](#structFRHAPI__StorageInformation_1a6a7da0d794b3b233ac51600e76a06c14)`() const` | Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTotalSizeBytes`](#structFRHAPI__StorageInformation_1a8376a97e89f26534db18f156ee41b5f1)`(const int32 & NewValue)` | Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true.
-`public inline void `[`SetTotalSizeBytes`](#structFRHAPI__StorageInformation_1aef0a8c1b5d4e2ebc9420e005b6937521)`(int32 && NewValue)` | Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TotalFiles`](#structFRHAPI__StorageInformation_1a60997327a1a2598be0c553fbbf833b3c)`()` | Returns the default value of TotalFiles.
+`public inline FORCEINLINE int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1a20ebaf3edaf6b7cf6f001db7852cdd83)`()` | Gets the value of TotalSizeBytes_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ae704aec621895a7c8900f854b72c8a19)`() const` | Gets the value of TotalSizeBytes_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1aed9cfe7e58431d438bc351912d6e1629)`(const int32 & DefaultValue) const` | Gets the value of TotalSizeBytes_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ac569a3c60efdac13c69351ab8874a037)`(int32 & OutValue) const` | Fills OutValue with the value of TotalSizeBytes_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetTotalSizeBytesOrNull`](#structFRHAPI__StorageInformation_1a9dbbffdcc37d2d6c150a22aca8a143fa)`()` | Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetTotalSizeBytesOrNull`](#structFRHAPI__StorageInformation_1aba2796e686371876e73d9db0d06e4f91)`() const` | Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTotalSizeBytes`](#structFRHAPI__StorageInformation_1a3524a2dd706b0038b8d99f009168eee2)`(const int32 & NewValue)` | Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true.
+`public inline FORCEINLINE void `[`SetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ad1a40de76122caab0717995f6662a036)`(int32 && NewValue)` | Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true using move semantics.
 `public inline void `[`ClearTotalSizeBytes`](#structFRHAPI__StorageInformation_1aaa0e6dcb7e5f5db0bcdf11affc78b797)`()` | Clears the value of TotalSizeBytes_Optional and sets TotalSizeBytes_IsSet to false.
-`public inline bool `[`IsTotalSizeBytesSet`](#structFRHAPI__StorageInformation_1ab581b69233924a39bdeb9d3b6f24660c)`() const` | Checks whether TotalSizeBytes_Optional has been set.
-`public inline bool `[`IsTotalSizeBytesDefaultValue`](#structFRHAPI__StorageInformation_1a331d2539bd935fd53d1ddfbf66a8524c)`() const` | Returns true if TotalSizeBytes_Optional is set and matches the default value.
-`public inline void `[`SetTotalSizeBytesToDefault`](#structFRHAPI__StorageInformation_1a75cd16e0d30fe99cdd90967cbbdeb82c)`()` | Sets the value of TotalSizeBytes_Optional to its default and also sets TotalSizeBytes_IsSet to true.
-`public inline int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1aa7e3442c3358fd79190fb949bef3f025)`()` | Gets the value of TotalSizeMb_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1a92c67da200a25916ad783f7c9e6fc878)`() const` | Gets the value of TotalSizeMb_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1abc7727778b20931f673773d80fd47053)`(const int32 & DefaultValue) const` | Gets the value of TotalSizeMb_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1aa7534b56db228463255dc5ad336ad56e)`(int32 & OutValue) const` | Fills OutValue with the value of TotalSizeMb_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetTotalSizeMbOrNull`](#structFRHAPI__StorageInformation_1ad83733f2709fe718af5b172a265cb455)`()` | Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetTotalSizeMbOrNull`](#structFRHAPI__StorageInformation_1a0ee07c76898cc0702042376fd6d9bebc)`() const` | Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTotalSizeMb`](#structFRHAPI__StorageInformation_1ad44718e6d14caa7f8879c3e3d24ab377)`(const int32 & NewValue)` | Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true.
-`public inline void `[`SetTotalSizeMb`](#structFRHAPI__StorageInformation_1afa3ab93e54eb95e6ebc54a9047313d83)`(int32 && NewValue)` | Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TotalSizeBytes`](#structFRHAPI__StorageInformation_1a2fa1f191552b560f748f38ba37051d07)`()` | Returns the default value of TotalSizeBytes.
+`public inline FORCEINLINE int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1abd40f2526baa58e21708c038867d1e1b)`()` | Gets the value of TotalSizeMb_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1a6355afcf792768b9661d4d6de527bc47)`() const` | Gets the value of TotalSizeMb_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1a1c311fcc267c2c78d35561f36bfabb61)`(const int32 & DefaultValue) const` | Gets the value of TotalSizeMb_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1a1cdc6992b419ef466adc19a7b22ac71f)`(int32 & OutValue) const` | Fills OutValue with the value of TotalSizeMb_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetTotalSizeMbOrNull`](#structFRHAPI__StorageInformation_1a74e2b71c5e2ae6aceff03a5ccd3eb297)`()` | Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetTotalSizeMbOrNull`](#structFRHAPI__StorageInformation_1a431749424a34a9de02ec0d5854ac24b7)`() const` | Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTotalSizeMb`](#structFRHAPI__StorageInformation_1a6ab140089b73c297ac64b264d263b170)`(const int32 & NewValue)` | Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true.
+`public inline FORCEINLINE void `[`SetTotalSizeMb`](#structFRHAPI__StorageInformation_1a277ec35fd373aeed0b6b542abf3e7bd1)`(int32 && NewValue)` | Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true using move semantics.
 `public inline void `[`ClearTotalSizeMb`](#structFRHAPI__StorageInformation_1ae18909b0b9abb778e0fefb8d2b1748c4)`()` | Clears the value of TotalSizeMb_Optional and sets TotalSizeMb_IsSet to false.
-`public inline bool `[`IsTotalSizeMbSet`](#structFRHAPI__StorageInformation_1ae8a7ec53bc255efb9b2e1e4be6df9afa)`() const` | Checks whether TotalSizeMb_Optional has been set.
-`public inline bool `[`IsTotalSizeMbDefaultValue`](#structFRHAPI__StorageInformation_1a44b5ab38e3f863a6b1b430490fa2a3de)`() const` | Returns true if TotalSizeMb_Optional is set and matches the default value.
-`public inline void `[`SetTotalSizeMbToDefault`](#structFRHAPI__StorageInformation_1a9682073ededa502cb652a0d8557a8f7f)`()` | Sets the value of TotalSizeMb_Optional to its default and also sets TotalSizeMb_IsSet to true.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TotalSizeMb`](#structFRHAPI__StorageInformation_1a090885464dac914b575c5bf376e5dc4f)`()` | Returns the default value of TotalSizeMb.
 
 ### Members
 
@@ -101,35 +95,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1a97da2a0cbd7e924a0306973f8b8be2de)`()` <a id="structFRHAPI__StorageInformation_1a97da2a0cbd7e924a0306973f8b8be2de"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1afa1a58e74b0dba3fdae556358994e524)`()` <a id="structFRHAPI__StorageInformation_1afa1a58e74b0dba3fdae556358994e524"></a>
 
 Gets the value of TotalFiles_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1a1d2f7b6765e981ce7affbeb82751d934)`() const` <a id="structFRHAPI__StorageInformation_1a1d2f7b6765e981ce7affbeb82751d934"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1aafb40a497b9a1c2095a419ccae26ed70)`() const` <a id="structFRHAPI__StorageInformation_1aafb40a497b9a1c2095a419ccae26ed70"></a>
 
 Gets the value of TotalFiles_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1a6abb510bfd40e72155fffece47491ce9)`(const int32 & DefaultValue) const` <a id="structFRHAPI__StorageInformation_1a6abb510bfd40e72155fffece47491ce9"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1ac7645a2b930e26846b99bf9a6d9e8e30)`(const int32 & DefaultValue) const` <a id="structFRHAPI__StorageInformation_1ac7645a2b930e26846b99bf9a6d9e8e30"></a>
 
 Gets the value of TotalFiles_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1a562e8c74f5ead691c982347308f2b318)`(int32 & OutValue) const` <a id="structFRHAPI__StorageInformation_1a562e8c74f5ead691c982347308f2b318"></a>
+#### `public inline FORCEINLINE bool `[`GetTotalFiles`](#structFRHAPI__StorageInformation_1aaea76ca4e84c18dd031aba81d9de4cae)`(int32 & OutValue) const` <a id="structFRHAPI__StorageInformation_1aaea76ca4e84c18dd031aba81d9de4cae"></a>
 
 Fills OutValue with the value of TotalFiles_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetTotalFilesOrNull`](#structFRHAPI__StorageInformation_1ad9fc4eadcb855ec689e8c6fa3587fd20)`()` <a id="structFRHAPI__StorageInformation_1ad9fc4eadcb855ec689e8c6fa3587fd20"></a>
+#### `public inline FORCEINLINE int32 * `[`GetTotalFilesOrNull`](#structFRHAPI__StorageInformation_1a808c2b099d7f13d40167aaa6e98c8994)`()` <a id="structFRHAPI__StorageInformation_1a808c2b099d7f13d40167aaa6e98c8994"></a>
 
 Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetTotalFilesOrNull`](#structFRHAPI__StorageInformation_1a801fca52e63837bb484d5767ef38a296)`() const` <a id="structFRHAPI__StorageInformation_1a801fca52e63837bb484d5767ef38a296"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetTotalFilesOrNull`](#structFRHAPI__StorageInformation_1ab758da2514ee5b0376c5f736d18d9121)`() const` <a id="structFRHAPI__StorageInformation_1ab758da2514ee5b0376c5f736d18d9121"></a>
 
 Returns a pointer to TotalFiles_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTotalFiles`](#structFRHAPI__StorageInformation_1a2a29acbb6503595b19b715eacbc6858b)`(const int32 & NewValue)` <a id="structFRHAPI__StorageInformation_1a2a29acbb6503595b19b715eacbc6858b"></a>
+#### `public inline FORCEINLINE void `[`SetTotalFiles`](#structFRHAPI__StorageInformation_1a9896c2b6dea71f1e16f4cdb581e510fb)`(const int32 & NewValue)` <a id="structFRHAPI__StorageInformation_1a9896c2b6dea71f1e16f4cdb581e510fb"></a>
 
 Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true.
 
-#### `public inline void `[`SetTotalFiles`](#structFRHAPI__StorageInformation_1a52ae5f70c913123e4eec471059b94e94)`(int32 && NewValue)` <a id="structFRHAPI__StorageInformation_1a52ae5f70c913123e4eec471059b94e94"></a>
+#### `public inline FORCEINLINE void `[`SetTotalFiles`](#structFRHAPI__StorageInformation_1acbea2766125a9a78eb4473cb923e74ee)`(int32 && NewValue)` <a id="structFRHAPI__StorageInformation_1acbea2766125a9a78eb4473cb923e74ee"></a>
 
 Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true using move semantics.
 
@@ -137,47 +131,39 @@ Sets the value of TotalFiles_Optional and also sets TotalFiles_IsSet to true usi
 
 Clears the value of TotalFiles_Optional and sets TotalFiles_IsSet to false.
 
-#### `public inline bool `[`IsTotalFilesSet`](#structFRHAPI__StorageInformation_1a269ecea66f6991724a647894e53ec100)`() const` <a id="structFRHAPI__StorageInformation_1a269ecea66f6991724a647894e53ec100"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TotalFiles`](#structFRHAPI__StorageInformation_1a60997327a1a2598be0c553fbbf833b3c)`()` <a id="structFRHAPI__StorageInformation_1a60997327a1a2598be0c553fbbf833b3c"></a>
 
-Checks whether TotalFiles_Optional has been set.
+Returns the default value of TotalFiles.
 
-#### `public inline bool `[`IsTotalFilesDefaultValue`](#structFRHAPI__StorageInformation_1acdeb195bfc23e310690f2d28876f6ed0)`() const` <a id="structFRHAPI__StorageInformation_1acdeb195bfc23e310690f2d28876f6ed0"></a>
-
-Returns true if TotalFiles_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTotalFilesToDefault`](#structFRHAPI__StorageInformation_1a0a2971c8a2ce136e075539387806049f)`()` <a id="structFRHAPI__StorageInformation_1a0a2971c8a2ce136e075539387806049f"></a>
-
-Sets the value of TotalFiles_Optional to its default and also sets TotalFiles_IsSet to true.
-
-#### `public inline int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1af25ecc7173e611c747eecde7e2d31d93)`()` <a id="structFRHAPI__StorageInformation_1af25ecc7173e611c747eecde7e2d31d93"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1a20ebaf3edaf6b7cf6f001db7852cdd83)`()` <a id="structFRHAPI__StorageInformation_1a20ebaf3edaf6b7cf6f001db7852cdd83"></a>
 
 Gets the value of TotalSizeBytes_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ad8f321f54a58dfead842af763bdc1cf1)`() const` <a id="structFRHAPI__StorageInformation_1ad8f321f54a58dfead842af763bdc1cf1"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ae704aec621895a7c8900f854b72c8a19)`() const` <a id="structFRHAPI__StorageInformation_1ae704aec621895a7c8900f854b72c8a19"></a>
 
 Gets the value of TotalSizeBytes_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1affda44af460a2a5bd20d7305b765992b)`(const int32 & DefaultValue) const` <a id="structFRHAPI__StorageInformation_1affda44af460a2a5bd20d7305b765992b"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1aed9cfe7e58431d438bc351912d6e1629)`(const int32 & DefaultValue) const` <a id="structFRHAPI__StorageInformation_1aed9cfe7e58431d438bc351912d6e1629"></a>
 
 Gets the value of TotalSizeBytes_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ae75422d273a715d725de8bc37b5fc44c)`(int32 & OutValue) const` <a id="structFRHAPI__StorageInformation_1ae75422d273a715d725de8bc37b5fc44c"></a>
+#### `public inline FORCEINLINE bool `[`GetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ac569a3c60efdac13c69351ab8874a037)`(int32 & OutValue) const` <a id="structFRHAPI__StorageInformation_1ac569a3c60efdac13c69351ab8874a037"></a>
 
 Fills OutValue with the value of TotalSizeBytes_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetTotalSizeBytesOrNull`](#structFRHAPI__StorageInformation_1a6b0d393030b21cb4cc7f6c8d7b5f7e65)`()` <a id="structFRHAPI__StorageInformation_1a6b0d393030b21cb4cc7f6c8d7b5f7e65"></a>
+#### `public inline FORCEINLINE int32 * `[`GetTotalSizeBytesOrNull`](#structFRHAPI__StorageInformation_1a9dbbffdcc37d2d6c150a22aca8a143fa)`()` <a id="structFRHAPI__StorageInformation_1a9dbbffdcc37d2d6c150a22aca8a143fa"></a>
 
 Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetTotalSizeBytesOrNull`](#structFRHAPI__StorageInformation_1a6a7da0d794b3b233ac51600e76a06c14)`() const` <a id="structFRHAPI__StorageInformation_1a6a7da0d794b3b233ac51600e76a06c14"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetTotalSizeBytesOrNull`](#structFRHAPI__StorageInformation_1aba2796e686371876e73d9db0d06e4f91)`() const` <a id="structFRHAPI__StorageInformation_1aba2796e686371876e73d9db0d06e4f91"></a>
 
 Returns a pointer to TotalSizeBytes_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTotalSizeBytes`](#structFRHAPI__StorageInformation_1a8376a97e89f26534db18f156ee41b5f1)`(const int32 & NewValue)` <a id="structFRHAPI__StorageInformation_1a8376a97e89f26534db18f156ee41b5f1"></a>
+#### `public inline FORCEINLINE void `[`SetTotalSizeBytes`](#structFRHAPI__StorageInformation_1a3524a2dd706b0038b8d99f009168eee2)`(const int32 & NewValue)` <a id="structFRHAPI__StorageInformation_1a3524a2dd706b0038b8d99f009168eee2"></a>
 
 Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true.
 
-#### `public inline void `[`SetTotalSizeBytes`](#structFRHAPI__StorageInformation_1aef0a8c1b5d4e2ebc9420e005b6937521)`(int32 && NewValue)` <a id="structFRHAPI__StorageInformation_1aef0a8c1b5d4e2ebc9420e005b6937521"></a>
+#### `public inline FORCEINLINE void `[`SetTotalSizeBytes`](#structFRHAPI__StorageInformation_1ad1a40de76122caab0717995f6662a036)`(int32 && NewValue)` <a id="structFRHAPI__StorageInformation_1ad1a40de76122caab0717995f6662a036"></a>
 
 Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to true using move semantics.
 
@@ -185,47 +171,39 @@ Sets the value of TotalSizeBytes_Optional and also sets TotalSizeBytes_IsSet to 
 
 Clears the value of TotalSizeBytes_Optional and sets TotalSizeBytes_IsSet to false.
 
-#### `public inline bool `[`IsTotalSizeBytesSet`](#structFRHAPI__StorageInformation_1ab581b69233924a39bdeb9d3b6f24660c)`() const` <a id="structFRHAPI__StorageInformation_1ab581b69233924a39bdeb9d3b6f24660c"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TotalSizeBytes`](#structFRHAPI__StorageInformation_1a2fa1f191552b560f748f38ba37051d07)`()` <a id="structFRHAPI__StorageInformation_1a2fa1f191552b560f748f38ba37051d07"></a>
 
-Checks whether TotalSizeBytes_Optional has been set.
+Returns the default value of TotalSizeBytes.
 
-#### `public inline bool `[`IsTotalSizeBytesDefaultValue`](#structFRHAPI__StorageInformation_1a331d2539bd935fd53d1ddfbf66a8524c)`() const` <a id="structFRHAPI__StorageInformation_1a331d2539bd935fd53d1ddfbf66a8524c"></a>
-
-Returns true if TotalSizeBytes_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTotalSizeBytesToDefault`](#structFRHAPI__StorageInformation_1a75cd16e0d30fe99cdd90967cbbdeb82c)`()` <a id="structFRHAPI__StorageInformation_1a75cd16e0d30fe99cdd90967cbbdeb82c"></a>
-
-Sets the value of TotalSizeBytes_Optional to its default and also sets TotalSizeBytes_IsSet to true.
-
-#### `public inline int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1aa7e3442c3358fd79190fb949bef3f025)`()` <a id="structFRHAPI__StorageInformation_1aa7e3442c3358fd79190fb949bef3f025"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1abd40f2526baa58e21708c038867d1e1b)`()` <a id="structFRHAPI__StorageInformation_1abd40f2526baa58e21708c038867d1e1b"></a>
 
 Gets the value of TotalSizeMb_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1a92c67da200a25916ad783f7c9e6fc878)`() const` <a id="structFRHAPI__StorageInformation_1a92c67da200a25916ad783f7c9e6fc878"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1a6355afcf792768b9661d4d6de527bc47)`() const` <a id="structFRHAPI__StorageInformation_1a6355afcf792768b9661d4d6de527bc47"></a>
 
 Gets the value of TotalSizeMb_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1abc7727778b20931f673773d80fd47053)`(const int32 & DefaultValue) const` <a id="structFRHAPI__StorageInformation_1abc7727778b20931f673773d80fd47053"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1a1c311fcc267c2c78d35561f36bfabb61)`(const int32 & DefaultValue) const` <a id="structFRHAPI__StorageInformation_1a1c311fcc267c2c78d35561f36bfabb61"></a>
 
 Gets the value of TotalSizeMb_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1aa7534b56db228463255dc5ad336ad56e)`(int32 & OutValue) const` <a id="structFRHAPI__StorageInformation_1aa7534b56db228463255dc5ad336ad56e"></a>
+#### `public inline FORCEINLINE bool `[`GetTotalSizeMb`](#structFRHAPI__StorageInformation_1a1cdc6992b419ef466adc19a7b22ac71f)`(int32 & OutValue) const` <a id="structFRHAPI__StorageInformation_1a1cdc6992b419ef466adc19a7b22ac71f"></a>
 
 Fills OutValue with the value of TotalSizeMb_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetTotalSizeMbOrNull`](#structFRHAPI__StorageInformation_1ad83733f2709fe718af5b172a265cb455)`()` <a id="structFRHAPI__StorageInformation_1ad83733f2709fe718af5b172a265cb455"></a>
+#### `public inline FORCEINLINE int32 * `[`GetTotalSizeMbOrNull`](#structFRHAPI__StorageInformation_1a74e2b71c5e2ae6aceff03a5ccd3eb297)`()` <a id="structFRHAPI__StorageInformation_1a74e2b71c5e2ae6aceff03a5ccd3eb297"></a>
 
 Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetTotalSizeMbOrNull`](#structFRHAPI__StorageInformation_1a0ee07c76898cc0702042376fd6d9bebc)`() const` <a id="structFRHAPI__StorageInformation_1a0ee07c76898cc0702042376fd6d9bebc"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetTotalSizeMbOrNull`](#structFRHAPI__StorageInformation_1a431749424a34a9de02ec0d5854ac24b7)`() const` <a id="structFRHAPI__StorageInformation_1a431749424a34a9de02ec0d5854ac24b7"></a>
 
 Returns a pointer to TotalSizeMb_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTotalSizeMb`](#structFRHAPI__StorageInformation_1ad44718e6d14caa7f8879c3e3d24ab377)`(const int32 & NewValue)` <a id="structFRHAPI__StorageInformation_1ad44718e6d14caa7f8879c3e3d24ab377"></a>
+#### `public inline FORCEINLINE void `[`SetTotalSizeMb`](#structFRHAPI__StorageInformation_1a6ab140089b73c297ac64b264d263b170)`(const int32 & NewValue)` <a id="structFRHAPI__StorageInformation_1a6ab140089b73c297ac64b264d263b170"></a>
 
 Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true.
 
-#### `public inline void `[`SetTotalSizeMb`](#structFRHAPI__StorageInformation_1afa3ab93e54eb95e6ebc54a9047313d83)`(int32 && NewValue)` <a id="structFRHAPI__StorageInformation_1afa3ab93e54eb95e6ebc54a9047313d83"></a>
+#### `public inline FORCEINLINE void `[`SetTotalSizeMb`](#structFRHAPI__StorageInformation_1a277ec35fd373aeed0b6b542abf3e7bd1)`(int32 && NewValue)` <a id="structFRHAPI__StorageInformation_1a277ec35fd373aeed0b6b542abf3e7bd1"></a>
 
 Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true using move semantics.
 
@@ -233,15 +211,7 @@ Sets the value of TotalSizeMb_Optional and also sets TotalSizeMb_IsSet to true u
 
 Clears the value of TotalSizeMb_Optional and sets TotalSizeMb_IsSet to false.
 
-#### `public inline bool `[`IsTotalSizeMbSet`](#structFRHAPI__StorageInformation_1ae8a7ec53bc255efb9b2e1e4be6df9afa)`() const` <a id="structFRHAPI__StorageInformation_1ae8a7ec53bc255efb9b2e1e4be6df9afa"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TotalSizeMb`](#structFRHAPI__StorageInformation_1a090885464dac914b575c5bf376e5dc4f)`()` <a id="structFRHAPI__StorageInformation_1a090885464dac914b575c5bf376e5dc4f"></a>
 
-Checks whether TotalSizeMb_Optional has been set.
-
-#### `public inline bool `[`IsTotalSizeMbDefaultValue`](#structFRHAPI__StorageInformation_1a44b5ab38e3f863a6b1b430490fa2a3de)`() const` <a id="structFRHAPI__StorageInformation_1a44b5ab38e3f863a6b1b430490fa2a3de"></a>
-
-Returns true if TotalSizeMb_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTotalSizeMbToDefault`](#structFRHAPI__StorageInformation_1a9682073ededa502cb652a0d8557a8f7f)`()` <a id="structFRHAPI__StorageInformation_1a9682073ededa502cb652a0d8557a8f7f"></a>
-
-Sets the value of TotalSizeMb_Optional to its default and also sets TotalSizeMb_IsSet to true.
+Returns the default value of TotalSizeMb.
 

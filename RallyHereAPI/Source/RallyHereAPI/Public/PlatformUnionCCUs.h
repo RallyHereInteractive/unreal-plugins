@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_PlatformUnionCCUs : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FRHAPI_UnionCCU> PlatformCounts{  };
 	/** @brief Gets the value of PlatformCounts */
-	TMap<FString, FRHAPI_UnionCCU>& GetPlatformCounts() { return PlatformCounts; }
+	FORCEINLINE TMap<FString, FRHAPI_UnionCCU>& GetPlatformCounts() { return PlatformCounts; }
 	/** @brief Gets the value of PlatformCounts */
-	const TMap<FString, FRHAPI_UnionCCU>& GetPlatformCounts() const { return PlatformCounts; }
+	FORCEINLINE const TMap<FString, FRHAPI_UnionCCU>& GetPlatformCounts() const { return PlatformCounts; }
 	/** @brief Sets the value of PlatformCounts */
-	void SetPlatformCounts(const TMap<FString, FRHAPI_UnionCCU>& NewValue) { PlatformCounts = NewValue;   }
+	FORCEINLINE void SetPlatformCounts(const TMap<FString, FRHAPI_UnionCCU>& NewValue) { PlatformCounts = NewValue;   }
 	/** @brief Sets the value of PlatformCounts using move semantics */
-	void SetPlatformCounts(TMap<FString, FRHAPI_UnionCCU>&& NewValue) { PlatformCounts = NewValue;   }
+	FORCEINLINE void SetPlatformCounts(TMap<FString, FRHAPI_UnionCCU>&& NewValue) { PlatformCounts = NewValue;   }
 };
 
 /** @} */

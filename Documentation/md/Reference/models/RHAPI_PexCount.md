@@ -24,18 +24,17 @@ struct FRHAPI_PexCount
 `public bool `[`Count_IsNull`](#structFRHAPI__PexCount_1a43093b2c88ad2086268b799b69214f55) | true if Count_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PexCount_1a10c74edb8db4fca98fd539968c1a4318)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PexCount_1aa746cddefb81c7766ee0001f9d6fadc2)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline float & `[`GetCount`](#structFRHAPI__PexCount_1a4e27f439b149b58668a09a58aa53cde7)`()` | Gets the value of Count_Optional, regardless of it having been set.
-`public inline const float & `[`GetCount`](#structFRHAPI__PexCount_1ae053a2d35d24645bf621f7745221a6a6)`() const` | Gets the value of Count_Optional, regardless of it having been set.
-`public inline const float & `[`GetCount`](#structFRHAPI__PexCount_1a5e8598877a1baa43709a394d39d5a73a)`(const float & DefaultValue) const` | Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCount`](#structFRHAPI__PexCount_1ad7662026f67286f692a7f0bd17d25b19)`(float & OutValue) const` | Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false.
-`public inline float * `[`GetCountOrNull`](#structFRHAPI__PexCount_1a89fafceae2bd684889f631550dadfe39)`()` | Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
-`public inline const float * `[`GetCountOrNull`](#structFRHAPI__PexCount_1aff6f62f11be65194d68ad7dba242abec)`() const` | Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCount`](#structFRHAPI__PexCount_1a11ddb1c41d7ec291a228a0ad23c7b5ad)`(const float & NewValue)` | Sets the value of Count_Optional and also sets Count_IsSet to true.
-`public inline void `[`SetCount`](#structFRHAPI__PexCount_1a219a9f3d0e08aa5d943c564ab426a342)`(float && NewValue)` | Sets the value of Count_Optional and also sets Count_IsSet to true using move semantics.
+`public inline FORCEINLINE float & `[`GetCount`](#structFRHAPI__PexCount_1a1c653c553e96166667bed6f52a97a844)`()` | Gets the value of Count_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetCount`](#structFRHAPI__PexCount_1a3bab25bd21a73bff2fbf3f37150ba2a3)`() const` | Gets the value of Count_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetCount`](#structFRHAPI__PexCount_1a6f0a6743fe04dc7e2a450720a9aa8fc7)`(const float & DefaultValue) const` | Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCount`](#structFRHAPI__PexCount_1aaf41f70c3e0b9711a3d76360b8810695)`(float & OutValue) const` | Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE float * `[`GetCountOrNull`](#structFRHAPI__PexCount_1a7d06259a97fb97643ffb93a36db4ddfb)`()` | Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const float * `[`GetCountOrNull`](#structFRHAPI__PexCount_1a0c945a3610927c504015d9aabc0695e6)`() const` | Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCount`](#structFRHAPI__PexCount_1a8f840f7ef4099bef3e1f0f078160d7ae)`(const float & NewValue)` | Sets the value of Count_Optional and also sets Count_IsSet to true.
+`public inline FORCEINLINE void `[`SetCount`](#structFRHAPI__PexCount_1a36d595b52ec1c9bcbe98aa0293e73b55)`(float && NewValue)` | Sets the value of Count_Optional and also sets Count_IsSet to true using move semantics.
 `public inline void `[`ClearCount`](#structFRHAPI__PexCount_1aeed66bc650144cee6f9b1eaf08fb9249)`()` | Clears the value of Count_Optional and sets Count_IsSet to false.
-`public inline bool `[`IsCountSet`](#structFRHAPI__PexCount_1ab63c2bda0e5295ef525f66f9c18d0705)`() const` | Checks whether Count_Optional has been set.
-`public inline void `[`SetCountToNull`](#structFRHAPI__PexCount_1a487759204e318a2e4bcb3bbc13ded5fd)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCountNull`](#structFRHAPI__PexCount_1aff3464ead48e7017c04a38dcdb5590f7)`() const` | Checks whether Count_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCountToNull`](#structFRHAPI__PexCount_1aa0f04e12863102c9b7b7ca10a5245091)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCountNull`](#structFRHAPI__PexCount_1ae07723f292c89ae2cd2a9a75f625f228)`() const` | Checks whether Count_Optional is set to null.
 
 ### Members
 
@@ -66,35 +65,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline float & `[`GetCount`](#structFRHAPI__PexCount_1a4e27f439b149b58668a09a58aa53cde7)`()` <a id="structFRHAPI__PexCount_1a4e27f439b149b58668a09a58aa53cde7"></a>
+#### `public inline FORCEINLINE float & `[`GetCount`](#structFRHAPI__PexCount_1a1c653c553e96166667bed6f52a97a844)`()` <a id="structFRHAPI__PexCount_1a1c653c553e96166667bed6f52a97a844"></a>
 
 Gets the value of Count_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetCount`](#structFRHAPI__PexCount_1ae053a2d35d24645bf621f7745221a6a6)`() const` <a id="structFRHAPI__PexCount_1ae053a2d35d24645bf621f7745221a6a6"></a>
+#### `public inline FORCEINLINE const float & `[`GetCount`](#structFRHAPI__PexCount_1a3bab25bd21a73bff2fbf3f37150ba2a3)`() const` <a id="structFRHAPI__PexCount_1a3bab25bd21a73bff2fbf3f37150ba2a3"></a>
 
 Gets the value of Count_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetCount`](#structFRHAPI__PexCount_1a5e8598877a1baa43709a394d39d5a73a)`(const float & DefaultValue) const` <a id="structFRHAPI__PexCount_1a5e8598877a1baa43709a394d39d5a73a"></a>
+#### `public inline FORCEINLINE const float & `[`GetCount`](#structFRHAPI__PexCount_1a6f0a6743fe04dc7e2a450720a9aa8fc7)`(const float & DefaultValue) const` <a id="structFRHAPI__PexCount_1a6f0a6743fe04dc7e2a450720a9aa8fc7"></a>
 
 Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCount`](#structFRHAPI__PexCount_1ad7662026f67286f692a7f0bd17d25b19)`(float & OutValue) const` <a id="structFRHAPI__PexCount_1ad7662026f67286f692a7f0bd17d25b19"></a>
+#### `public inline FORCEINLINE bool `[`GetCount`](#structFRHAPI__PexCount_1aaf41f70c3e0b9711a3d76360b8810695)`(float & OutValue) const` <a id="structFRHAPI__PexCount_1aaf41f70c3e0b9711a3d76360b8810695"></a>
 
 Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline float * `[`GetCountOrNull`](#structFRHAPI__PexCount_1a89fafceae2bd684889f631550dadfe39)`()` <a id="structFRHAPI__PexCount_1a89fafceae2bd684889f631550dadfe39"></a>
+#### `public inline FORCEINLINE float * `[`GetCountOrNull`](#structFRHAPI__PexCount_1a7d06259a97fb97643ffb93a36db4ddfb)`()` <a id="structFRHAPI__PexCount_1a7d06259a97fb97643ffb93a36db4ddfb"></a>
 
 Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const float * `[`GetCountOrNull`](#structFRHAPI__PexCount_1aff6f62f11be65194d68ad7dba242abec)`() const` <a id="structFRHAPI__PexCount_1aff6f62f11be65194d68ad7dba242abec"></a>
+#### `public inline FORCEINLINE const float * `[`GetCountOrNull`](#structFRHAPI__PexCount_1a0c945a3610927c504015d9aabc0695e6)`() const` <a id="structFRHAPI__PexCount_1a0c945a3610927c504015d9aabc0695e6"></a>
 
 Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCount`](#structFRHAPI__PexCount_1a11ddb1c41d7ec291a228a0ad23c7b5ad)`(const float & NewValue)` <a id="structFRHAPI__PexCount_1a11ddb1c41d7ec291a228a0ad23c7b5ad"></a>
+#### `public inline FORCEINLINE void `[`SetCount`](#structFRHAPI__PexCount_1a8f840f7ef4099bef3e1f0f078160d7ae)`(const float & NewValue)` <a id="structFRHAPI__PexCount_1a8f840f7ef4099bef3e1f0f078160d7ae"></a>
 
 Sets the value of Count_Optional and also sets Count_IsSet to true.
 
-#### `public inline void `[`SetCount`](#structFRHAPI__PexCount_1a219a9f3d0e08aa5d943c564ab426a342)`(float && NewValue)` <a id="structFRHAPI__PexCount_1a219a9f3d0e08aa5d943c564ab426a342"></a>
+#### `public inline FORCEINLINE void `[`SetCount`](#structFRHAPI__PexCount_1a36d595b52ec1c9bcbe98aa0293e73b55)`(float && NewValue)` <a id="structFRHAPI__PexCount_1a36d595b52ec1c9bcbe98aa0293e73b55"></a>
 
 Sets the value of Count_Optional and also sets Count_IsSet to true using move semantics.
 
@@ -102,15 +101,11 @@ Sets the value of Count_Optional and also sets Count_IsSet to true using move se
 
 Clears the value of Count_Optional and sets Count_IsSet to false.
 
-#### `public inline bool `[`IsCountSet`](#structFRHAPI__PexCount_1ab63c2bda0e5295ef525f66f9c18d0705)`() const` <a id="structFRHAPI__PexCount_1ab63c2bda0e5295ef525f66f9c18d0705"></a>
-
-Checks whether Count_Optional has been set.
-
-#### `public inline void `[`SetCountToNull`](#structFRHAPI__PexCount_1a487759204e318a2e4bcb3bbc13ded5fd)`()` <a id="structFRHAPI__PexCount_1a487759204e318a2e4bcb3bbc13ded5fd"></a>
+#### `public inline FORCEINLINE void `[`SetCountToNull`](#structFRHAPI__PexCount_1aa0f04e12863102c9b7b7ca10a5245091)`()` <a id="structFRHAPI__PexCount_1aa0f04e12863102c9b7b7ca10a5245091"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCountNull`](#structFRHAPI__PexCount_1aff3464ead48e7017c04a38dcdb5590f7)`() const` <a id="structFRHAPI__PexCount_1aff3464ead48e7017c04a38dcdb5590f7"></a>
+#### `public inline FORCEINLINE bool `[`IsCountNull`](#structFRHAPI__PexCount_1ae07723f292c89ae2cd2a9a75f625f228)`() const` <a id="structFRHAPI__PexCount_1ae07723f292c89ae2cd2a9a75f625f228"></a>
 
 Checks whether Count_Optional is set to null.
 

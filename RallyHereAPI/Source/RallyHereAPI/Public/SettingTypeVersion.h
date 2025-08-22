@@ -46,29 +46,25 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AllowUpdate_IsSet{ false };
 	/** @brief Gets the value of AllowUpdate_Optional, regardless of it having been set */
-	bool& GetAllowUpdate() { return AllowUpdate_Optional; }
+	FORCEINLINE bool& GetAllowUpdate() { return AllowUpdate_Optional; }
 	/** @brief Gets the value of AllowUpdate_Optional, regardless of it having been set */
-	const bool& GetAllowUpdate() const { return AllowUpdate_Optional; }
+	FORCEINLINE const bool& GetAllowUpdate() const { return AllowUpdate_Optional; }
 	/** @brief Gets the value of AllowUpdate_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetAllowUpdate(const bool& DefaultValue) const { if (AllowUpdate_IsSet) return AllowUpdate_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetAllowUpdate(const bool& DefaultValue) const { if (AllowUpdate_IsSet) return AllowUpdate_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AllowUpdate_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAllowUpdate(bool& OutValue) const { if (AllowUpdate_IsSet) OutValue = AllowUpdate_Optional; return AllowUpdate_IsSet; }
+	FORCEINLINE bool GetAllowUpdate(bool& OutValue) const { if (AllowUpdate_IsSet) OutValue = AllowUpdate_Optional; return AllowUpdate_IsSet; }
 	/** @brief Returns a pointer to AllowUpdate_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAllowUpdateOrNull() { if (AllowUpdate_IsSet) return (&AllowUpdate_Optional); return nullptr; }
+	FORCEINLINE bool* GetAllowUpdateOrNull() { if (AllowUpdate_IsSet) return (&AllowUpdate_Optional); return nullptr; }
 	/** @brief Returns a pointer to AllowUpdate_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAllowUpdateOrNull() const { if (AllowUpdate_IsSet) return (&AllowUpdate_Optional); return nullptr; }
+	FORCEINLINE const bool* GetAllowUpdateOrNull() const { if (AllowUpdate_IsSet) return (&AllowUpdate_Optional); return nullptr; }
 	/** @brief Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true */
-	void SetAllowUpdate(const bool& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true;  }
+	FORCEINLINE void SetAllowUpdate(const bool& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true;  }
 	/** @brief Sets the value of AllowUpdate_Optional and also sets AllowUpdate_IsSet to true using move semantics */
-	void SetAllowUpdate(bool&& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true;  }
+	FORCEINLINE void SetAllowUpdate(bool&& NewValue) { AllowUpdate_Optional = NewValue; AllowUpdate_IsSet = true;  }
 	/** @brief Clears the value of AllowUpdate_Optional and sets AllowUpdate_IsSet to false */
 	void ClearAllowUpdate() { AllowUpdate_Optional = true; AllowUpdate_IsSet = false;  }
-	/** @brief Checks whether AllowUpdate_Optional has been set */
-	bool IsAllowUpdateSet() const { return AllowUpdate_IsSet; }
-	/** @brief Returns true if AllowUpdate_Optional is set and matches the default value */
-	bool IsAllowUpdateDefaultValue() const { return AllowUpdate_IsSet && AllowUpdate_Optional == true; }
-	/** @brief Sets the value of AllowUpdate_Optional to its default and also sets AllowUpdate_IsSet to true */
-	void SetAllowUpdateToDefault() { SetAllowUpdate(true); }
+	/** @brief Returns the default value of AllowUpdate */
+	FORCEINLINE bool GetDefaultValue_AllowUpdate() { return true; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool IsInternal_Optional{ false };
@@ -79,33 +75,29 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool IsInternal_IsNull{ false };
 	/** @brief Gets the value of IsInternal_Optional, regardless of it having been set */
-	bool& GetIsInternal() { return IsInternal_Optional; }
+	FORCEINLINE bool& GetIsInternal() { return IsInternal_Optional; }
 	/** @brief Gets the value of IsInternal_Optional, regardless of it having been set */
-	const bool& GetIsInternal() const { return IsInternal_Optional; }
+	FORCEINLINE const bool& GetIsInternal() const { return IsInternal_Optional; }
 	/** @brief Gets the value of IsInternal_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetIsInternal(const bool& DefaultValue) const { if (IsInternal_IsSet) return IsInternal_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetIsInternal(const bool& DefaultValue) const { if (IsInternal_IsSet) return IsInternal_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of IsInternal_Optional and returns true if it has been set, otherwise returns false */
-	bool GetIsInternal(bool& OutValue) const { if (IsInternal_IsSet && !IsInternal_IsNull) OutValue = IsInternal_Optional; return IsInternal_IsSet; }
+	FORCEINLINE bool GetIsInternal(bool& OutValue) const { if (IsInternal_IsSet && !IsInternal_IsNull) OutValue = IsInternal_Optional; return IsInternal_IsSet; }
 	/** @brief Returns a pointer to IsInternal_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetIsInternalOrNull() { if (IsInternal_IsSet) return (IsInternal_IsNull ? nullptr : &IsInternal_Optional); return nullptr; }
+	FORCEINLINE bool* GetIsInternalOrNull() { if (IsInternal_IsSet) return (IsInternal_IsNull ? nullptr : &IsInternal_Optional); return nullptr; }
 	/** @brief Returns a pointer to IsInternal_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetIsInternalOrNull() const { if (IsInternal_IsSet) return (IsInternal_IsNull ? nullptr : &IsInternal_Optional); return nullptr; }
+	FORCEINLINE const bool* GetIsInternalOrNull() const { if (IsInternal_IsSet) return (IsInternal_IsNull ? nullptr : &IsInternal_Optional); return nullptr; }
 	/** @brief Sets the value of IsInternal_Optional and also sets IsInternal_IsSet to true */
-	void SetIsInternal(const bool& NewValue) { IsInternal_Optional = NewValue; IsInternal_IsSet = true; IsInternal_IsNull = false; }
+	FORCEINLINE void SetIsInternal(const bool& NewValue) { IsInternal_Optional = NewValue; IsInternal_IsSet = true; IsInternal_IsNull = false; }
 	/** @brief Sets the value of IsInternal_Optional and also sets IsInternal_IsSet to true using move semantics */
-	void SetIsInternal(bool&& NewValue) { IsInternal_Optional = NewValue; IsInternal_IsSet = true; IsInternal_IsNull = false; }
+	FORCEINLINE void SetIsInternal(bool&& NewValue) { IsInternal_Optional = NewValue; IsInternal_IsSet = true; IsInternal_IsNull = false; }
 	/** @brief Clears the value of IsInternal_Optional and sets IsInternal_IsSet to false */
 	void ClearIsInternal() { IsInternal_Optional = false; IsInternal_IsSet = false; IsInternal_IsNull = false; }
-	/** @brief Checks whether IsInternal_Optional has been set */
-	bool IsIsInternalSet() const { return IsInternal_IsSet; }
-	/** @brief Returns true if IsInternal_Optional is set and matches the default value */
-	bool IsIsInternalDefaultValue() const { return IsInternal_IsSet && IsInternal_Optional == false; }
-	/** @brief Sets the value of IsInternal_Optional to its default and also sets IsInternal_IsSet to true */
-	void SetIsInternalToDefault() { SetIsInternal(false); }
+	/** @brief Returns the default value of IsInternal */
+	FORCEINLINE bool GetDefaultValue_IsInternal() { return false; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetIsInternalToNull() { IsInternal_IsSet = true; IsInternal_IsNull = true; }
+	FORCEINLINE void SetIsInternalToNull() { IsInternal_IsSet = true; IsInternal_IsNull = true; }
 	/** @brief Checks whether IsInternal_Optional is set to null */
-	bool IsIsInternalNull() const { return IsInternal_IsSet && IsInternal_IsNull; }
+	FORCEINLINE bool IsIsInternalNull() const { return IsInternal_IsSet && IsInternal_IsNull; }
 
 	/** @brief Regex that is used to verify keys at assignment time */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -114,41 +106,37 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool KeyRegex_IsSet{ false };
 	/** @brief Gets the value of KeyRegex_Optional, regardless of it having been set */
-	FString& GetKeyRegex() { return KeyRegex_Optional; }
+	FORCEINLINE FString& GetKeyRegex() { return KeyRegex_Optional; }
 	/** @brief Gets the value of KeyRegex_Optional, regardless of it having been set */
-	const FString& GetKeyRegex() const { return KeyRegex_Optional; }
+	FORCEINLINE const FString& GetKeyRegex() const { return KeyRegex_Optional; }
 	/** @brief Gets the value of KeyRegex_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetKeyRegex(const FString& DefaultValue) const { if (KeyRegex_IsSet) return KeyRegex_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetKeyRegex(const FString& DefaultValue) const { if (KeyRegex_IsSet) return KeyRegex_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of KeyRegex_Optional and returns true if it has been set, otherwise returns false */
-	bool GetKeyRegex(FString& OutValue) const { if (KeyRegex_IsSet) OutValue = KeyRegex_Optional; return KeyRegex_IsSet; }
+	FORCEINLINE bool GetKeyRegex(FString& OutValue) const { if (KeyRegex_IsSet) OutValue = KeyRegex_Optional; return KeyRegex_IsSet; }
 	/** @brief Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetKeyRegexOrNull() { if (KeyRegex_IsSet) return (&KeyRegex_Optional); return nullptr; }
+	FORCEINLINE FString* GetKeyRegexOrNull() { if (KeyRegex_IsSet) return (&KeyRegex_Optional); return nullptr; }
 	/** @brief Returns a pointer to KeyRegex_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetKeyRegexOrNull() const { if (KeyRegex_IsSet) return (&KeyRegex_Optional); return nullptr; }
+	FORCEINLINE const FString* GetKeyRegexOrNull() const { if (KeyRegex_IsSet) return (&KeyRegex_Optional); return nullptr; }
 	/** @brief Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true */
-	void SetKeyRegex(const FString& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true;  }
+	FORCEINLINE void SetKeyRegex(const FString& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true;  }
 	/** @brief Sets the value of KeyRegex_Optional and also sets KeyRegex_IsSet to true using move semantics */
-	void SetKeyRegex(FString&& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true;  }
+	FORCEINLINE void SetKeyRegex(FString&& NewValue) { KeyRegex_Optional = NewValue; KeyRegex_IsSet = true;  }
 	/** @brief Clears the value of KeyRegex_Optional and sets KeyRegex_IsSet to false */
 	void ClearKeyRegex() { KeyRegex_Optional = TEXT("^.+$"); KeyRegex_IsSet = false;  }
-	/** @brief Checks whether KeyRegex_Optional has been set */
-	bool IsKeyRegexSet() const { return KeyRegex_IsSet; }
-	/** @brief Returns true if KeyRegex_Optional is set and matches the default value */
-	bool IsKeyRegexDefaultValue() const { return KeyRegex_IsSet && KeyRegex_Optional == TEXT("^.+$"); }
-	/** @brief Sets the value of KeyRegex_Optional to its default and also sets KeyRegex_IsSet to true */
-	void SetKeyRegexToDefault() { SetKeyRegex(TEXT("^.+$")); }
+	/** @brief Returns the default value of KeyRegex */
+	FORCEINLINE FString GetDefaultValue_KeyRegex() { return TEXT("^.+$"); }
 
 	/** @brief [jsonschema](https://json-schema.org/understanding-json-schema/index.html) that is used to verify values at assignment time */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FRHAPI_JsonValue> ValueJsonschema{  };
 	/** @brief Gets the value of ValueJsonschema */
-	TMap<FString, FRHAPI_JsonValue>& GetValueJsonschema() { return ValueJsonschema; }
+	FORCEINLINE TMap<FString, FRHAPI_JsonValue>& GetValueJsonschema() { return ValueJsonschema; }
 	/** @brief Gets the value of ValueJsonschema */
-	const TMap<FString, FRHAPI_JsonValue>& GetValueJsonschema() const { return ValueJsonschema; }
+	FORCEINLINE const TMap<FString, FRHAPI_JsonValue>& GetValueJsonschema() const { return ValueJsonschema; }
 	/** @brief Sets the value of ValueJsonschema */
-	void SetValueJsonschema(const TMap<FString, FRHAPI_JsonValue>& NewValue) { ValueJsonschema = NewValue;   }
+	FORCEINLINE void SetValueJsonschema(const TMap<FString, FRHAPI_JsonValue>& NewValue) { ValueJsonschema = NewValue;   }
 	/** @brief Sets the value of ValueJsonschema using move semantics */
-	void SetValueJsonschema(TMap<FString, FRHAPI_JsonValue>&& NewValue) { ValueJsonschema = NewValue;   }
+	FORCEINLINE void SetValueJsonschema(TMap<FString, FRHAPI_JsonValue>&& NewValue) { ValueJsonschema = NewValue;   }
 
 	/** @brief Custom data that was provided when the setting type was created */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -157,25 +145,23 @@ struct RALLYHEREAPI_API FRHAPI_SettingTypeVersion : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

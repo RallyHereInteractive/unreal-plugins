@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_TokenRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_OAuthGrantType GrantType{  };
 	/** @brief Gets the value of GrantType */
-	ERHAPI_OAuthGrantType& GetGrantType() { return GrantType; }
+	FORCEINLINE ERHAPI_OAuthGrantType& GetGrantType() { return GrantType; }
 	/** @brief Gets the value of GrantType */
-	const ERHAPI_OAuthGrantType& GetGrantType() const { return GrantType; }
+	FORCEINLINE const ERHAPI_OAuthGrantType& GetGrantType() const { return GrantType; }
 	/** @brief Sets the value of GrantType */
-	void SetGrantType(const ERHAPI_OAuthGrantType& NewValue) { GrantType = NewValue;   }
+	FORCEINLINE void SetGrantType(const ERHAPI_OAuthGrantType& NewValue) { GrantType = NewValue;   }
 	/** @brief Sets the value of GrantType using move semantics */
-	void SetGrantType(ERHAPI_OAuthGrantType&& NewValue) { GrantType = NewValue;   }
+	FORCEINLINE void SetGrantType(ERHAPI_OAuthGrantType&& NewValue) { GrantType = NewValue;   }
 };
 
 /** @} */

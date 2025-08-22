@@ -44,61 +44,55 @@ struct RALLYHEREAPI_API FRHAPI_SupportLogPageResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_SupportLogEntry> Logs{  };
 	/** @brief Gets the value of Logs */
-	TArray<FRHAPI_SupportLogEntry>& GetLogs() { return Logs; }
+	FORCEINLINE TArray<FRHAPI_SupportLogEntry>& GetLogs() { return Logs; }
 	/** @brief Gets the value of Logs */
-	const TArray<FRHAPI_SupportLogEntry>& GetLogs() const { return Logs; }
+	FORCEINLINE const TArray<FRHAPI_SupportLogEntry>& GetLogs() const { return Logs; }
 	/** @brief Sets the value of Logs */
-	void SetLogs(const TArray<FRHAPI_SupportLogEntry>& NewValue) { Logs = NewValue;   }
+	FORCEINLINE void SetLogs(const TArray<FRHAPI_SupportLogEntry>& NewValue) { Logs = NewValue;   }
 	/** @brief Sets the value of Logs using move semantics */
-	void SetLogs(TArray<FRHAPI_SupportLogEntry>&& NewValue) { Logs = NewValue;   }
+	FORCEINLINE void SetLogs(TArray<FRHAPI_SupportLogEntry>&& NewValue) { Logs = NewValue;   }
 
 	/** @brief Current page number */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Page{ 0 };
 	/** @brief Gets the value of Page */
-	int32& GetPage() { return Page; }
+	FORCEINLINE int32& GetPage() { return Page; }
 	/** @brief Gets the value of Page */
-	const int32& GetPage() const { return Page; }
+	FORCEINLINE const int32& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(const int32& NewValue) { Page = NewValue;   }
+	FORCEINLINE void SetPage(const int32& NewValue) { Page = NewValue;   }
 	/** @brief Sets the value of Page using move semantics */
-	void SetPage(int32&& NewValue) { Page = NewValue;   }
-	/** @brief Returns true if Page matches the default value */
-	bool IsPageDefaultValue() const { return Page == 0; }
-	/** @brief Sets the value of Page to its default  */
-	void SetPageToDefault() { SetPage(0); }
+	FORCEINLINE void SetPage(int32&& NewValue) { Page = NewValue;   }
+	/** @brief Returns the default value of Page */
+	FORCEINLINE int32 GetDefaultValue_Page() { return 0; }
 
 	/** @brief Total number of pages available */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 TotalPages{ 0 };
 	/** @brief Gets the value of TotalPages */
-	int32& GetTotalPages() { return TotalPages; }
+	FORCEINLINE int32& GetTotalPages() { return TotalPages; }
 	/** @brief Gets the value of TotalPages */
-	const int32& GetTotalPages() const { return TotalPages; }
+	FORCEINLINE const int32& GetTotalPages() const { return TotalPages; }
 	/** @brief Sets the value of TotalPages */
-	void SetTotalPages(const int32& NewValue) { TotalPages = NewValue;   }
+	FORCEINLINE void SetTotalPages(const int32& NewValue) { TotalPages = NewValue;   }
 	/** @brief Sets the value of TotalPages using move semantics */
-	void SetTotalPages(int32&& NewValue) { TotalPages = NewValue;   }
-	/** @brief Returns true if TotalPages matches the default value */
-	bool IsTotalPagesDefaultValue() const { return TotalPages == 0; }
-	/** @brief Sets the value of TotalPages to its default  */
-	void SetTotalPagesToDefault() { SetTotalPages(0); }
+	FORCEINLINE void SetTotalPages(int32&& NewValue) { TotalPages = NewValue;   }
+	/** @brief Returns the default value of TotalPages */
+	FORCEINLINE int32 GetDefaultValue_TotalPages() { return 0; }
 
 	/** @brief Total number of log entries available */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 TotalEntries{ 0 };
 	/** @brief Gets the value of TotalEntries */
-	int32& GetTotalEntries() { return TotalEntries; }
+	FORCEINLINE int32& GetTotalEntries() { return TotalEntries; }
 	/** @brief Gets the value of TotalEntries */
-	const int32& GetTotalEntries() const { return TotalEntries; }
+	FORCEINLINE const int32& GetTotalEntries() const { return TotalEntries; }
 	/** @brief Sets the value of TotalEntries */
-	void SetTotalEntries(const int32& NewValue) { TotalEntries = NewValue;   }
+	FORCEINLINE void SetTotalEntries(const int32& NewValue) { TotalEntries = NewValue;   }
 	/** @brief Sets the value of TotalEntries using move semantics */
-	void SetTotalEntries(int32&& NewValue) { TotalEntries = NewValue;   }
-	/** @brief Returns true if TotalEntries matches the default value */
-	bool IsTotalEntriesDefaultValue() const { return TotalEntries == 0; }
-	/** @brief Sets the value of TotalEntries to its default  */
-	void SetTotalEntriesToDefault() { SetTotalEntries(0); }
+	FORCEINLINE void SetTotalEntries(int32&& NewValue) { TotalEntries = NewValue;   }
+	/** @brief Returns the default value of TotalEntries */
+	FORCEINLINE int32 GetDefaultValue_TotalEntries() { return 0; }
 };
 
 /** @} */

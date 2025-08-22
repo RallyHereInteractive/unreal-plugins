@@ -45,29 +45,25 @@ struct RALLYHEREAPI_API FRHAPI_PlayerStatsResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TotalMatchesPlayed_IsSet{ false };
 	/** @brief Gets the value of TotalMatchesPlayed_Optional, regardless of it having been set */
-	int32& GetTotalMatchesPlayed() { return TotalMatchesPlayed_Optional; }
+	FORCEINLINE int32& GetTotalMatchesPlayed() { return TotalMatchesPlayed_Optional; }
 	/** @brief Gets the value of TotalMatchesPlayed_Optional, regardless of it having been set */
-	const int32& GetTotalMatchesPlayed() const { return TotalMatchesPlayed_Optional; }
+	FORCEINLINE const int32& GetTotalMatchesPlayed() const { return TotalMatchesPlayed_Optional; }
 	/** @brief Gets the value of TotalMatchesPlayed_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetTotalMatchesPlayed(const int32& DefaultValue) const { if (TotalMatchesPlayed_IsSet) return TotalMatchesPlayed_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetTotalMatchesPlayed(const int32& DefaultValue) const { if (TotalMatchesPlayed_IsSet) return TotalMatchesPlayed_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TotalMatchesPlayed_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTotalMatchesPlayed(int32& OutValue) const { if (TotalMatchesPlayed_IsSet) OutValue = TotalMatchesPlayed_Optional; return TotalMatchesPlayed_IsSet; }
+	FORCEINLINE bool GetTotalMatchesPlayed(int32& OutValue) const { if (TotalMatchesPlayed_IsSet) OutValue = TotalMatchesPlayed_Optional; return TotalMatchesPlayed_IsSet; }
 	/** @brief Returns a pointer to TotalMatchesPlayed_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetTotalMatchesPlayedOrNull() { if (TotalMatchesPlayed_IsSet) return (&TotalMatchesPlayed_Optional); return nullptr; }
+	FORCEINLINE int32* GetTotalMatchesPlayedOrNull() { if (TotalMatchesPlayed_IsSet) return (&TotalMatchesPlayed_Optional); return nullptr; }
 	/** @brief Returns a pointer to TotalMatchesPlayed_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetTotalMatchesPlayedOrNull() const { if (TotalMatchesPlayed_IsSet) return (&TotalMatchesPlayed_Optional); return nullptr; }
+	FORCEINLINE const int32* GetTotalMatchesPlayedOrNull() const { if (TotalMatchesPlayed_IsSet) return (&TotalMatchesPlayed_Optional); return nullptr; }
 	/** @brief Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_IsSet to true */
-	void SetTotalMatchesPlayed(const int32& NewValue) { TotalMatchesPlayed_Optional = NewValue; TotalMatchesPlayed_IsSet = true;  }
+	FORCEINLINE void SetTotalMatchesPlayed(const int32& NewValue) { TotalMatchesPlayed_Optional = NewValue; TotalMatchesPlayed_IsSet = true;  }
 	/** @brief Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_IsSet to true using move semantics */
-	void SetTotalMatchesPlayed(int32&& NewValue) { TotalMatchesPlayed_Optional = NewValue; TotalMatchesPlayed_IsSet = true;  }
+	FORCEINLINE void SetTotalMatchesPlayed(int32&& NewValue) { TotalMatchesPlayed_Optional = NewValue; TotalMatchesPlayed_IsSet = true;  }
 	/** @brief Clears the value of TotalMatchesPlayed_Optional and sets TotalMatchesPlayed_IsSet to false */
 	void ClearTotalMatchesPlayed() { TotalMatchesPlayed_Optional = 0; TotalMatchesPlayed_IsSet = false;  }
-	/** @brief Checks whether TotalMatchesPlayed_Optional has been set */
-	bool IsTotalMatchesPlayedSet() const { return TotalMatchesPlayed_IsSet; }
-	/** @brief Returns true if TotalMatchesPlayed_Optional is set and matches the default value */
-	bool IsTotalMatchesPlayedDefaultValue() const { return TotalMatchesPlayed_IsSet && TotalMatchesPlayed_Optional == 0; }
-	/** @brief Sets the value of TotalMatchesPlayed_Optional to its default and also sets TotalMatchesPlayed_IsSet to true */
-	void SetTotalMatchesPlayedToDefault() { SetTotalMatchesPlayed(0); }
+	/** @brief Returns the default value of TotalMatchesPlayed */
+	FORCEINLINE int32 GetDefaultValue_TotalMatchesPlayed() { return 0; }
 };
 
 /** @} */

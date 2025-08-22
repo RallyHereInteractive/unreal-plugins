@@ -10,6 +10,9 @@
 #include "RallyHereIntegrationModule.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RH_CatalogSubsystem.h"
+#include "RH_GamesightHelper.h"
+#include "Internationalization/Culture.h"
+#include "Internationalization/Internationalization.h"
 
 void URH_PlayerInventory::Initialize()
 {
@@ -72,6 +75,42 @@ void URH_PlayerInventory::OnUserChanged()
 const FGuid URH_PlayerInventory::GetRHPlayerUuid() const
 {
 	return PlayerInfo ? PlayerInfo->GetRHPlayerUuid() : FGuid();
+}
+
+bool URH_PlayerInventory::TryGetInventoryCount(const int32& ItemId, int32& OutCount) const
+{
+	OutCount = 0;
+	if (ItemId <= 0)
+	{
+		return false;
+	}
+	
+	URH_CatalogSubsystem* CatalogSubsystem = GetCatalogSubsystem();
+	URH_CatalogItem* CatalogItem = CatalogSubsystem ? CatalogSubsystem->GetCatalogItemByItemId(ItemId) : nullptr;
+	bool bHasRuleset = CatalogItem != nullptr;
+	for (auto& InventoryItem : GetCachedInventoryForItem(ItemId))
+	{
+		if (CatalogItem && !CatalogItem->GetItemInventoryBucketUseRulesetId().IsEmpty())
+		{
+			bool bHasRulesetCheck = false;
+			if (!CatalogSubsystem->CanRulesetUsePlatformForBucket(CatalogItem->GetItemInventoryBucketUseRulesetId(), RH_GetInventoryBucketFromPlatform(GetPlayerInfo()->GetLoggedInPlatform()), InventoryItem.Bucket, &bHasRulesetCheck))
+			{
+				bHasRuleset &= bHasRulesetCheck; 
+				continue;
+			}
+			bHasRuleset &= bHasRulesetCheck; 
+		}
+
+		if (!InventoryItem.Expires.IsSet())
+		{
+			OutCount += InventoryItem.Count;
+		}
+		else if (InventoryItem.Expires.GetValue() >= FDateTime::UtcNow())
+		{
+			OutCount += InventoryItem.Count;
+		}
+	}
+	return bHasRuleset;
 }
 
 void URH_PlayerInventory::GetInventoryCount(const int32& ItemId, const FRH_GetInventoryCountBlock& Delegate) const
@@ -413,15 +452,17 @@ const TArray<FRH_ItemInventory> URH_PlayerInventory::GetCachedInventoryForItemsA
 	{
 		for (const auto ItemId : ItemIds)
 		{
-			if (InventoryCache.Contains(ItemId))
+			const auto& InventoryForItem = InventoryCache.Find(ItemId);
+			if (!InventoryForItem)
 			{
-				const auto& InventoryForItem = InventoryCache.Find(ItemId);
-				for (const auto& Inv : *InventoryForItem)
+				continue;
+			}
+			
+			for (const auto& Inv : *InventoryForItem)
+			{
+				if (Types.Num() <= 0 || Types.Contains(Inv.InventoryType))
 				{
-					if (Types.Num() <= 0 || Types.Contains(Inv.InventoryType))
-					{
-						Results.Emplace(Inv);
-					}
+					Results.Emplace(Inv);
 				}
 			}
 		}
@@ -452,7 +493,16 @@ bool URH_PlayerInventory::GetCachedInventoryForInventoryId(const FGuid& Inventor
 	return false;
 }
 
-void URH_PlayerInventory::GetInventory(TArray<int32> ItemIds, const FRH_OnInventoryUpdateDelegateBlock& Delegate)
+bool URH_PlayerInventory::IsAnyInventoryStale(const FTimespan& StaleThreshold) const
+{
+	if (!LastAnyInventoryTime.IsSet())
+	{
+		return true;
+	}
+	return IsBeyondStaleThreshold(*LastAnyInventoryTime, StaleThreshold);
+}
+
+void URH_PlayerInventory::GetInventory(const FTimespan& StaleThresold, bool bForce, TArray<int32> ItemIds, const FRH_OnInventoryUpdateDelegateBlock& Delegate)
 {
 	auto Request = RallyHereAPI::FRequest_GetPlayerInventoryUuid();
 
@@ -488,6 +538,20 @@ void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPl
 	const auto Inventory = Content->GetInventoryOrNull();
 	const auto Items = Inventory ? Inventory->GetItemsOrNull() : nullptr;
 
+	// mark full inventory as being received, allowing it to then poll deltas
+	// if header has date time in it, use that as it is the proper server time.
+	bool bHasHeaderDate = false;
+	FString HeaderDateTimeString;
+	if (Response.TryGetHeader(TEXT("Date"), HeaderDateTimeString))
+	{
+		FDateTime HeaderDateTime;
+		if (FDateTime::ParseHttpDate(HeaderDateTimeString, HeaderDateTime))
+		{
+			bHasHeaderDate = true;
+			LastAnyInventoryTime = HeaderDateTime;
+		}
+	}
+	
 	// partial item updates
 	if (ItemIds.Num() > 0)
 	{
@@ -566,14 +630,9 @@ void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPl
 
 	// mark full inventory as being received, allowing it to then poll deltas
 	// if header has date time in it, use that as it is the proper server time.
-	FString HeaderDateTimeString;
-	if (Response.TryGetHeader(TEXT("Date"), HeaderDateTimeString))
+	if (bHasHeaderDate)
 	{
-		FDateTime HeaderDateTime;
-		if (FDateTime::ParseHttpDate(HeaderDateTimeString, HeaderDateTime))
-		{
-			LastFullInventoryTime = HeaderDateTime;
-		}
+		LastFullInventoryTime = LastAnyInventoryTime;
 	}
 
 	BroadcastOnInventoryCacheUpdated(FullInventoryItemIds);
@@ -1004,11 +1063,22 @@ void URH_PlayerInventory::ParseOrderResult(const FRHAPI_PlayerOrder& Content)
 
 	ParsedInventoryOrders.Add(Content.GetOrderId());
 
+	TArray<FOnlineStoreOfferRef> StoreOffers;
+	URH_EntitlementSubsystem* pRH_EntitlementSubsystem = GetEntitlementSubsystem();
+	if (pRH_EntitlementSubsystem)
+	{
+		pRH_EntitlementSubsystem->GetCachedStoreOffers(StoreOffers);
+	}
+
 	for (auto& OrderEntry : Content.Entries)
 	{
 		if (const auto Details = OrderEntry.GetDetailsOrNull())
 		{
 			UpdateInventoryFromOrderDetails(*Details);
+		}
+		if (!StoreOffers.IsEmpty())
+		{
+			SendGamesightExternalPurchaseEvent(OrderEntry, StoreOffers);
 		}
 	}
 
@@ -1048,11 +1118,11 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 
 						if (ModifiedCount == 0)
 						{
-							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Failed to find an existing inventory record to update for item id %d with inventory id %s"), *BeforeItemIdPtr, *BeforeRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphens));
+							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Failed to find an existing inventory record to update for item id %d with inventory id %s"), *BeforeItemIdPtr, *BeforeRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphensLower));
 						}
 						else if (ModifiedCount > 1)
 						{
-							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Found multiple inventory records to update for item id %d with inventory id %s"), *BeforeItemIdPtr, *BeforeRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphens));
+							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Found multiple inventory records to update for item id %d with inventory id %s"), *BeforeItemIdPtr, *BeforeRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphensLower));
 						}
 
 						// it is possible this removed the only entry on this item, we will clean up later if so, since after item update could just readd it
@@ -1091,7 +1161,7 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 						});
 						if (ModifiedCount > 0)
 						{
-							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Found an existing inventory record to update for item id %d with inventory id %s"), *AfterItemIdPtr, *AfterRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphens));
+							UE_LOG(LogRallyHereIntegration, Warning, TEXT("Found an existing inventory record to update for item id %d with inventory id %s"), *AfterItemIdPtr, *AfterRecord.GetInventoryId().ToString(EGuidFormats::DigitsWithHyphensLower));
 						}
 						
 						InventoryForItem->Push(NewInventoryItem);
@@ -1224,10 +1294,28 @@ void URH_PlayerInventory::WriteOrderEntries(TArray<FRHAPI_PlayerOrderEntryCreate
 				NewPurchasePrice.SetPrice(OrderEntry->GetPrice());
 				PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			}
-			
+
 			NewPurchasePrice.SetPriceCouponItemId(OrderEntry->GetCouponItemId());
 
 			NewOrderEntry.SetPurchasePrice(NewPurchasePrice);
+		}
+		else if (OrderEntry->GetFillType() == ERHAPI_PlayerOrderEntryType::CustomLoot)
+		{
+			NewOrderEntry.SetInventorySelectorType(OrderEntry->Selector);
+			NewOrderEntry.SetInventoryOperation(OrderEntry->Operation);
+			NewOrderEntry.SetXpQuantityTransformType(OrderEntry->XpQuantityTransform);
+			if (OrderEntry->HardQuantityMaximum > 0)
+			{
+				NewOrderEntry.SetHardQuantityMaximum(OrderEntry->HardQuantityMaximum);
+			}
+			if (OrderEntry->TimeFrameId != 0)
+			{
+				NewOrderEntry.SetTimeFrameId(OrderEntry->TimeFrameId);
+			}
+			if (OrderEntry->QuantityMultInvItemId != 0)
+			{
+				NewOrderEntry.SetQuantityMultInventoryItemId(OrderEntry->QuantityMultInvItemId);
+			}
 		}
 
 		Entries.Push(NewOrderEntry);
@@ -1361,6 +1449,96 @@ URH_CatalogSubsystem* URH_PlayerInventory::GetCatalogSubsystem() const
 	return nullptr;
 }
 
+URH_EntitlementSubsystem* URH_PlayerInventory::GetEntitlementSubsystem() const
+{
+	auto* pGameInstance = GetGameInstance();
+	if (!pGameInstance)
+	{
+		return nullptr;
+	}
+
+	const auto& LocalPlayers = pGameInstance->GetLocalPlayers();
+	if (LocalPlayers.Num() <= 0)
+	{
+		return nullptr;
+	}
+	const auto& pLocalPlayer = LocalPlayers[0];
+
+	const URH_LocalPlayerSubsystem* pRH_LocalPlayerSubsystem = pLocalPlayer->GetSubsystem<URH_LocalPlayerSubsystem>();
+	if (!pRH_LocalPlayerSubsystem)
+	{
+		return nullptr;
+	}
+
+	return pRH_LocalPlayerSubsystem->GetEntitlementSubsystem();
+}
+
+UGameInstance* URH_PlayerInventory::GetGameInstance() const
+{
+	if (const auto& RHGI = GetGameInstanceSubsystem())
+	{
+		return RHGI->GetGameInstance();
+	}
+
+	return nullptr;
+}
+
+void URH_PlayerInventory::SendGamesightExternalPurchaseEvent(const FRHAPI_PlayerOrderEntry& Entry, TArray<FOnlineStoreOfferRef>& StoreOffers)
+{
+	auto* pGameInstance = GetGameInstance();
+	if (!pGameInstance)
+	{
+		return;
+	}
+
+	const auto& LocalPlayers = pGameInstance->GetLocalPlayers();
+	if (LocalPlayers.Num() <= 0)
+	{
+		return;
+	}
+	const auto& pLocalPlayer = LocalPlayers[0];
+
+	URH_EntitlementSubsystem* pRH_EntitlementSubsystem = GetEntitlementSubsystem();
+	if (!pRH_EntitlementSubsystem)
+	{
+		return;
+	}
+
+	if (Entry.GetExternalItemSku().IsEmpty())
+	{
+		return;
+	}
+
+	for (auto& Offer : StoreOffers)
+	{
+		if (Offer.Get().OfferId == Entry.GetExternalItemSku())
+		{
+			if (auto GamesightHelper = NewObject<URHGamesightHelper>(this))
+			{
+				GamesightHelper->Initialize(pGameInstance, pLocalPlayer);
+				auto Params = FGamesightEventParameters();
+				Params.TransactionID = Entry.GetExternalTranId();
+				Params.EventNameSuffix = Entry.GetExternalItemSku();
+				Params.StringFields.Add(FString("revenue_currency"), FString(Offer.Get().CurrencyCode));
+
+				// FText can turn the Numeric Price into a string value (with currency sign), but gamesight wants a float
+				// This is a copy of FText::AsCurrencyBase without converting it back into a string
+				FInternationalization& I18N = FInternationalization::Get();
+				const FCulture& Culture = *I18N.GetCurrentLocale();
+				const FDecimalNumberFormattingRules& FormattingRules = Culture.GetCurrencyFormattingRules(Offer.Get().CurrencyCode);
+				const FNumberFormattingOptions& FormattingOptions = FormattingRules.CultureDefaultFormattingOptions;
+				int32 DecimalPlaces = FormattingOptions.MaximumFractionalDigits;
+				double Price = static_cast<double>(Offer.Get().NumericPrice) / static_cast<double>(FastDecimalFormat::Pow10(DecimalPlaces));
+				// END copy of FText::AsCurrencyBase
+
+				Params.DoubleFields.Add(FString("revenue_amount"), Price);
+				GamesightHelper->SendEvent(EGamesightEvent::ESE_RealMoneyPurchase, Params);
+			}
+			return;
+		}
+	}
+}
+
 ///
 
 URH_PlayerInventory* URH_PlayerOrderWatch::GetPlayerInventory() const
@@ -1381,7 +1559,7 @@ bool URH_PlayerOrderWatch::RequestOrders(const FRH_GenericSuccessWithErrorBlock&
 	// if we have not yet requested the player's inventory, do so now and wait for completion
 	if (!PlayerInventory->LastFullInventoryTime.IsSet())
 	{
-		PlayerInventory->GetInventory(TArray<int32>(), FRH_OnInventoryUpdateDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess)
+		PlayerInventory->GetInventory(FTimespan{}, true, TArray<int32>(), FRH_OnInventoryUpdateDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess)
 			{
 				auto PlayerInventory = GetPlayerInventory(); 
 				if (bSuccess && PlayerInventory != nullptr && PlayerInventory->LastFullInventoryTime.IsSet())

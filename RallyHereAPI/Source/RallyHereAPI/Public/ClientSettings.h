@@ -50,25 +50,23 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformId_IsSet{ false };
 	/** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
-	ERHAPI_PlatformID& GetPlatformId() { return PlatformId_Optional; }
+	FORCEINLINE ERHAPI_PlatformID& GetPlatformId() { return PlatformId_Optional; }
 	/** @brief Gets the value of PlatformId_Optional, regardless of it having been set */
-	const ERHAPI_PlatformID& GetPlatformId() const { return PlatformId_Optional; }
+	FORCEINLINE const ERHAPI_PlatformID& GetPlatformId() const { return PlatformId_Optional; }
 	/** @brief Gets the value of PlatformId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_PlatformID& GetPlatformId(const ERHAPI_PlatformID& DefaultValue) const { if (PlatformId_IsSet) return PlatformId_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_PlatformID& GetPlatformId(const ERHAPI_PlatformID& DefaultValue) const { if (PlatformId_IsSet) return PlatformId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformId(ERHAPI_PlatformID& OutValue) const { if (PlatformId_IsSet) OutValue = PlatformId_Optional; return PlatformId_IsSet; }
+	FORCEINLINE bool GetPlatformId(ERHAPI_PlatformID& OutValue) const { if (PlatformId_IsSet) OutValue = PlatformId_Optional; return PlatformId_IsSet; }
 	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_PlatformID* GetPlatformIdOrNull() { if (PlatformId_IsSet) return (&PlatformId_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_PlatformID* GetPlatformIdOrNull() { if (PlatformId_IsSet) return (&PlatformId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformId_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_PlatformID* GetPlatformIdOrNull() const { if (PlatformId_IsSet) return (&PlatformId_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_PlatformID* GetPlatformIdOrNull() const { if (PlatformId_IsSet) return (&PlatformId_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true */
-	void SetPlatformId(const ERHAPI_PlatformID& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true;  }
+	FORCEINLINE void SetPlatformId(const ERHAPI_PlatformID& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true;  }
 	/** @brief Sets the value of PlatformId_Optional and also sets PlatformId_IsSet to true using move semantics */
-	void SetPlatformId(ERHAPI_PlatformID&& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true;  }
+	FORCEINLINE void SetPlatformId(ERHAPI_PlatformID&& NewValue) { PlatformId_Optional = NewValue; PlatformId_IsSet = true;  }
 	/** @brief Clears the value of PlatformId_Optional and sets PlatformId_IsSet to false */
 	void ClearPlatformId() { PlatformId_IsSet = false;  }
-	/** @brief Checks whether PlatformId_Optional has been set */
-	bool IsPlatformIdSet() const { return PlatformId_IsSet; }
 
 	/** @brief Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -77,37 +75,35 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Platform_IsSet{ false };
 	/** @brief Gets the value of Platform_Optional, regardless of it having been set */
-	ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
+	FORCEINLINE ERHAPI_Platform& GetPlatform() { return Platform_Optional; }
 	/** @brief Gets the value of Platform_Optional, regardless of it having been set */
-	const ERHAPI_Platform& GetPlatform() const { return Platform_Optional; }
+	FORCEINLINE const ERHAPI_Platform& GetPlatform() const { return Platform_Optional; }
 	/** @brief Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_Platform& GetPlatform(const ERHAPI_Platform& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_Platform& GetPlatform(const ERHAPI_Platform& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatform(ERHAPI_Platform& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
+	FORCEINLINE bool GetPlatform(ERHAPI_Platform& OutValue) const { if (Platform_IsSet) OutValue = Platform_Optional; return Platform_IsSet; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Platform* GetPlatformOrNull() { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_Platform* GetPlatformOrNull() { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_Platform* GetPlatformOrNull() const { if (Platform_IsSet) return (&Platform_Optional); return nullptr; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
-	void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
+	FORCEINLINE void SetPlatform(const ERHAPI_Platform& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
-	void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
+	FORCEINLINE void SetPlatform(ERHAPI_Platform&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true;  }
 	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false;  }
-	/** @brief Checks whether Platform_Optional has been set */
-	bool IsPlatformSet() const { return Platform_IsSet; }
 
 	/** @brief Which input type this client is using */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_Input Input{  };
 	/** @brief Gets the value of Input */
-	ERHAPI_Input& GetInput() { return Input; }
+	FORCEINLINE ERHAPI_Input& GetInput() { return Input; }
 	/** @brief Gets the value of Input */
-	const ERHAPI_Input& GetInput() const { return Input; }
+	FORCEINLINE const ERHAPI_Input& GetInput() const { return Input; }
 	/** @brief Sets the value of Input */
-	void SetInput(const ERHAPI_Input& NewValue) { Input = NewValue;   }
+	FORCEINLINE void SetInput(const ERHAPI_Input& NewValue) { Input = NewValue;   }
 	/** @brief Sets the value of Input using move semantics */
-	void SetInput(ERHAPI_Input&& NewValue) { Input = NewValue;   }
+	FORCEINLINE void SetInput(ERHAPI_Input&& NewValue) { Input = NewValue;   }
 
 	/** @brief Platform verified device type for this client */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -116,25 +112,23 @@ struct RALLYHEREAPI_API FRHAPI_ClientSettings : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DeviceType_IsSet{ false };
 	/** @brief Gets the value of DeviceType_Optional, regardless of it having been set */
-	ERHAPI_DeviceType& GetDeviceType() { return DeviceType_Optional; }
+	FORCEINLINE ERHAPI_DeviceType& GetDeviceType() { return DeviceType_Optional; }
 	/** @brief Gets the value of DeviceType_Optional, regardless of it having been set */
-	const ERHAPI_DeviceType& GetDeviceType() const { return DeviceType_Optional; }
+	FORCEINLINE const ERHAPI_DeviceType& GetDeviceType() const { return DeviceType_Optional; }
 	/** @brief Gets the value of DeviceType_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_DeviceType& GetDeviceType(const ERHAPI_DeviceType& DefaultValue) const { if (DeviceType_IsSet) return DeviceType_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_DeviceType& GetDeviceType(const ERHAPI_DeviceType& DefaultValue) const { if (DeviceType_IsSet) return DeviceType_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DeviceType_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDeviceType(ERHAPI_DeviceType& OutValue) const { if (DeviceType_IsSet) OutValue = DeviceType_Optional; return DeviceType_IsSet; }
+	FORCEINLINE bool GetDeviceType(ERHAPI_DeviceType& OutValue) const { if (DeviceType_IsSet) OutValue = DeviceType_Optional; return DeviceType_IsSet; }
 	/** @brief Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_DeviceType* GetDeviceTypeOrNull() { if (DeviceType_IsSet) return (&DeviceType_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_DeviceType* GetDeviceTypeOrNull() { if (DeviceType_IsSet) return (&DeviceType_Optional); return nullptr; }
 	/** @brief Returns a pointer to DeviceType_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_DeviceType* GetDeviceTypeOrNull() const { if (DeviceType_IsSet) return (&DeviceType_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_DeviceType* GetDeviceTypeOrNull() const { if (DeviceType_IsSet) return (&DeviceType_Optional); return nullptr; }
 	/** @brief Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true */
-	void SetDeviceType(const ERHAPI_DeviceType& NewValue) { DeviceType_Optional = NewValue; DeviceType_IsSet = true;  }
+	FORCEINLINE void SetDeviceType(const ERHAPI_DeviceType& NewValue) { DeviceType_Optional = NewValue; DeviceType_IsSet = true;  }
 	/** @brief Sets the value of DeviceType_Optional and also sets DeviceType_IsSet to true using move semantics */
-	void SetDeviceType(ERHAPI_DeviceType&& NewValue) { DeviceType_Optional = NewValue; DeviceType_IsSet = true;  }
+	FORCEINLINE void SetDeviceType(ERHAPI_DeviceType&& NewValue) { DeviceType_Optional = NewValue; DeviceType_IsSet = true;  }
 	/** @brief Clears the value of DeviceType_Optional and sets DeviceType_IsSet to false */
 	void ClearDeviceType() { DeviceType_IsSet = false;  }
-	/** @brief Checks whether DeviceType_Optional has been set */
-	bool IsDeviceTypeSet() const { return DeviceType_IsSet; }
 };
 
 /** @} */

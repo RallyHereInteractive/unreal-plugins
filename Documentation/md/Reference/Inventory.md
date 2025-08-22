@@ -333,6 +333,12 @@ Player Order Entry class defines the data of an Order used to submit one to the 
 `public TArray< `[`FRHAPI_PurchasePriceCurrency`](RHAPI_PurchasePriceCurrency.md#structFRHAPI__PurchasePriceCurrency)` > `[`Prices`](#classURH__PlayerOrderEntry_1a0dbea9af8bde1181c736798c763fd60d) | An array of items and their types being used for payment, this is verified to match the expected price.
 `public int32 `[`CouponItemId`](#classURH__PlayerOrderEntry_1a81d35b761d82023ac6b29c949d2f182f) | The item id of a coupon item being used if one is being applied for an item discount.
 `public TMap< FString, FString > `[`CustomData`](#classURH__PlayerOrderEntry_1a465d00f2f73358c3509caf95166df187) | Custom data for the given order to be placed on the item.
+`public ERHAPI_InventorySelector `[`Selector`](#classURH__PlayerOrderEntry_1a8a875f713d10a5fcf898ff9e39d968ff) | For the CustomLoot fill type, what inventory will be selected for modification?
+`public ERHAPI_InventoryOperation `[`Operation`](#classURH__PlayerOrderEntry_1a353ad96d5f52c480d121902ad4c99b5e) | For the CustomLoot fill type, what operation will be used to modify selected inventory?
+`public ERHAPI_XpQuantityTransform `[`XpQuantityTransform`](#classURH__PlayerOrderEntry_1a2ab563e55c8501c7102591356e637dd5) | For the CustomLoot fill type, how should the quantity be transformed?
+`public int32 `[`HardQuantityMaximum`](#classURH__PlayerOrderEntry_1ad46813656494eb4b225729250f6c8a43) | For the CustomLoot fill type, what is the hard upper limit of the quantity (after all other calculations)?
+`public int32 `[`QuantityMultInvItemId`](#classURH__PlayerOrderEntry_1ae96527b6bf0d3ba09b6e62ec70cd1c45) | For the CustomLoot fill type, what existing item id should the quantity be multiplied by? (i.e. find all existing items the player owns of this item id and multiply that number by the quantity when calculating how much to grant)
+`public int32 `[`TimeFrameId`](#classURH__PlayerOrderEntry_1ae03c2d4e8d670212a3a9b8f60ed4fe7f) | For the CustomLoot fill type, what time frame should be used? (only relevant for the RentTimeframeLocked selector)
 `public inline ERHAPI_PlayerOrderEntryType `[`GetFillType`](#classURH__PlayerOrderEntry_1a14ca340eba40b938357e21e65c6fa439)`() const` | Gets the Fill Type of the order.
 `public inline const `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` & `[`GetLootItem`](#classURH__PlayerOrderEntry_1a58f278e373a3bb39033562409e90f463)`() const` | Gets the Loot Item the order is for.
 `public inline const int32 & `[`GetLootId`](#classURH__PlayerOrderEntry_1a908488cfc667411bf4495a7e9cc78cb0)`() const` | Gets the Loot Id of the loot item.
@@ -385,6 +391,30 @@ The item id of a coupon item being used if one is being applied for an item disc
 #### `public TMap< FString, FString > `[`CustomData`](#classURH__PlayerOrderEntry_1a465d00f2f73358c3509caf95166df187) <a id="classURH__PlayerOrderEntry_1a465d00f2f73358c3509caf95166df187"></a>
 
 Custom data for the given order to be placed on the item.
+
+#### `public ERHAPI_InventorySelector `[`Selector`](#classURH__PlayerOrderEntry_1a8a875f713d10a5fcf898ff9e39d968ff) <a id="classURH__PlayerOrderEntry_1a8a875f713d10a5fcf898ff9e39d968ff"></a>
+
+For the CustomLoot fill type, what inventory will be selected for modification?
+
+#### `public ERHAPI_InventoryOperation `[`Operation`](#classURH__PlayerOrderEntry_1a353ad96d5f52c480d121902ad4c99b5e) <a id="classURH__PlayerOrderEntry_1a353ad96d5f52c480d121902ad4c99b5e"></a>
+
+For the CustomLoot fill type, what operation will be used to modify selected inventory?
+
+#### `public ERHAPI_XpQuantityTransform `[`XpQuantityTransform`](#classURH__PlayerOrderEntry_1a2ab563e55c8501c7102591356e637dd5) <a id="classURH__PlayerOrderEntry_1a2ab563e55c8501c7102591356e637dd5"></a>
+
+For the CustomLoot fill type, how should the quantity be transformed?
+
+#### `public int32 `[`HardQuantityMaximum`](#classURH__PlayerOrderEntry_1ad46813656494eb4b225729250f6c8a43) <a id="classURH__PlayerOrderEntry_1ad46813656494eb4b225729250f6c8a43"></a>
+
+For the CustomLoot fill type, what is the hard upper limit of the quantity (after all other calculations)?
+
+#### `public int32 `[`QuantityMultInvItemId`](#classURH__PlayerOrderEntry_1ae96527b6bf0d3ba09b6e62ec70cd1c45) <a id="classURH__PlayerOrderEntry_1ae96527b6bf0d3ba09b6e62ec70cd1c45"></a>
+
+For the CustomLoot fill type, what existing item id should the quantity be multiplied by? (i.e. find all existing items the player owns of this item id and multiply that number by the quantity when calculating how much to grant)
+
+#### `public int32 `[`TimeFrameId`](#classURH__PlayerOrderEntry_1ae03c2d4e8d670212a3a9b8f60ed4fe7f) <a id="classURH__PlayerOrderEntry_1ae03c2d4e8d670212a3a9b8f60ed4fe7f"></a>
+
+For the CustomLoot fill type, what time frame should be used? (only relevant for the RentTimeframeLocked selector)
 
 #### `public inline ERHAPI_PlayerOrderEntryType `[`GetFillType`](#classURH__PlayerOrderEntry_1a14ca340eba40b938357e21e65c6fa439)`() const` <a id="classURH__PlayerOrderEntry_1a14ca340eba40b938357e21e65c6fa439"></a>
 
@@ -452,6 +482,7 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public const FGuid `[`GetRHPlayerUuid`](#classURH__PlayerInventory_1a098b20b913bfc2a048627aefad4a9073)`() const` | Gets the associated player infos Unique Player Id.
 `public const FAuthContextPtr `[`GetAuthContext`](#classURH__PlayerInventory_1ae6585ec255e5cd5fc4fd4bcb32c662fb)`() const` | Gets the Auth Context that has authority to operate on this players inventory.
 `public inline void `[`SetPlayerInfo`](#classURH__PlayerInventory_1a76b4f19b926a83f287c3515acd8b9150)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * InPlayerInfo)` | Sets the Player Info owner of the subsystem.
+`public bool `[`TryGetInventoryCount`](#classURH__PlayerInventory_1a3703d3679299bec21c0a10e257b89e4c)`(const int32 & ItemId,int32 & OutCount) const` | 
 `public void `[`GetInventoryCount`](#classURH__PlayerInventory_1addb1cf44dbc4684f4bef23c51a012bb5)`(const int32 & ItemId,const FRH_GetInventoryCountBlock & Delegate) const` | Gets the Players Inventory Count of the item for the connected platform, async pulls needed item data if it isn't already cached.
 `public void `[`IsInventoryItemOwned`](#classURH__PlayerInventory_1ab6843d485cb715c42e3c84dbf542c179)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` | Gets if the player owns at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
 `public void `[`IsInventoryItemRented`](#classURH__PlayerInventory_1a82cfc3b4a12f0d7ce7774ff6100a4245)`(const int32 & ItemId,const FRH_GetInventoryStateBlock & Delegate) const` | Gets if the player has rented at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
@@ -470,7 +501,8 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public inline void `[`ClearOrderCache`](#classURH__PlayerInventory_1a5387581632c52d10ec6464099ade2b3b)`()` | Clears all cached order results for the player.
 `public void `[`GetInventorySession`](#classURH__PlayerInventory_1a00d805080c0941cf004bfbc77b8942cb)`(const FRH_OnInventorySessionUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the players active Inventory Session.
 `public void `[`CreateInventorySession`](#classURH__PlayerInventory_1ae2a34390c2f3ee08c33669c2d915d7e9)`(const TOptional< ERHAPI_InventoryPlatform > Platform,const FRH_OnInventorySessionUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the create an Inventory Session for the player.
-`public void `[`GetInventory`](#classURH__PlayerInventory_1aa39e94993d051196093f8eb69f6a8e5e)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the the inventory for the player.
+`public void `[`GetInventory`](#classURH__PlayerInventory_1a9ba9d8eac0330477f579bcc6d15713ed)`(const FTimespan & StaleThresold,bool bForce,TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` | Calls the Inventory API to get the the inventory for the player.
+`public bool `[`IsAnyInventoryStale`](#classURH__PlayerInventory_1a209a8a6d1045503b66e78c2355165dfc)`(const FTimespan & StaleThreshold) const` | 
 `public inline void `[`CreatePlayerOrder`](#classURH__PlayerInventory_1a25a32d0d801bfe8460c9fd5ffcc8a5e3)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,FRH_OrderResultBlock Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
 `public inline void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1a383ffde7d88402ff420fd3b76a1145ab)`(ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultBlock & Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
 `public void `[`CreateNewPlayerOrder`](#classURH__PlayerInventory_1abbc28af90b1624685bcc4d2a7aba6cd4)`(ERHAPI_Source OrderSource,bool IsTransaction,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,const FRH_OrderResultBlock & Delegate)` | Creates an order for the player, used for purchasing and other loot related actions.
@@ -484,6 +516,7 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `public void `[`UpdateInventory`](#classURH__PlayerInventory_1af6944787996721ab352942ea487b23ca)`(const TOptional< FGuid > & ClientOrderReferenceId,const TArray< `[`FRH_UpdateInventory`](Inventory.md#structFRH__UpdateInventory)` > & UpdateInventories,const ERHAPI_Source Source,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` | Requests direct inventory modifications to the players inventory.
 `public void `[`ClearPendingOrder`](#classURH__PlayerInventory_1a1023ef83a9e1d7a88d3da06246aa7637)`(const `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & OrderResult)` | Used by the PendingOrder to clear itself from the pending order list when it completes.
 `public void `[`ParseOrderResult`](#classURH__PlayerInventory_1a0a3af764f187ffbd05955fb16a8bd5d7)`(const `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` & Content)` | Parses a player order result API into a [URH_PlayerOrderEntry](Inventory.md#classURH__PlayerOrderEntry).
+`public inline bool `[`HasRecievedPlayerInventory`](#classURH__PlayerInventory_1af65094d13ef7a252c6fd8be26e746e69)`() const` | 
 `protected TMap< int32, TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > > `[`InventoryCache`](#classURH__PlayerInventory_1a5d5179ccce89d685f086005d1b907ad8) | Inventory cache map of Item Id to inventory records.
 `protected TOptional< FDateTime > `[`LastFullInventoryTime`](#classURH__PlayerInventory_1aa0850ee414c71713fc6bfb385759aa83) | Last time the full inventory has been retrieved since this watch was created.
 `protected TMap< int32, `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > `[`ItemLevelCache`](#classURH__PlayerInventory_1a65e72dec4ba9427fece680d1649849c9) | Map of Item Id to Inventory Level.
@@ -497,6 +530,7 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `protected `[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * `[`PlayerInfo`](#classURH__PlayerInventory_1a2da991415c67eb60ab1a5df90848568f) | The Player Info associated with this Inventory.
 `protected bool `[`bReceivedInventoryNotification`](#classURH__PlayerInventory_1a45996faae3c7235df63ddd72c3baaba2) | Tracking of Inventory Notifications.
 `protected bool `[`bReceivedPendingInventoryNotification`](#classURH__PlayerInventory_1a55c3db5006da2c2ed1ece4afc1a84bc2) | Tracking of Pending Inventory Notifications.
+`protected TOptional< FDateTime > `[`LastAnyInventoryTime`](#classURH__PlayerInventory_1ac0f6a6a1745277f0e42c2d0360e6e5ed) | Flag that gets set to true if the player inventory has been successfully loaded.
 `protected inline bool `[`ShouldPollInventory`](#classURH__PlayerInventory_1a6d4188288df48ec55bb6daf7edeb4959)`() const` | Gets if the inventory should be polled due to an active watch.
 `protected inline bool `[`ShouldPollPendingInventory`](#classURH__PlayerInventory_1a44bb8f812b678184d35450f313bca922)`() const` | Gets if pending inventory should be polled due to outstanding orders.
 `protected void `[`HandleNotification`](#classURH__PlayerInventory_1a6164fd974fa48e65497343d05285d371)`(const `[`FRHAPI_Notification`](RHAPI_Notification.md#structFRHAPI__Notification)` & Notification,const FString & APIName,const TArray< FString > & APIParams)` | Handles an incoming notification, checks if it is an invnetory notification, then operates if need be.
@@ -521,6 +555,9 @@ Inventory Subsystem created per player for tracking and updating player inventor
 `protected void `[`IsInventoryItemRented_INTERNAL`](#classURH__PlayerInventory_1a83e3ae985adc5320194657b1a63b554a)`(`[`URH_CatalogItem`](Catalog.md#classURH__CatalogItem)` * Item,const FRH_GetInventoryStateBlock & Delegate) const` | Internal helper function to complete Is Inventory Item Rented.
 `protected `[`URH_GameInstanceSubsystem`](GameInstance.md#classURH__GameInstanceSubsystem)` * `[`GetGameInstanceSubsystem`](#classURH__PlayerInventory_1ab528e8cf173b2b68244efe4b80d8b6b9)`() const` | Helper function to get Game Instance Subsystem.
 `protected `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`GetCatalogSubsystem`](#classURH__PlayerInventory_1a9382ddbc1126c05c1752cb37d5daa883)`() const` | Helper function to get Catalog Subsystem.
+`protected `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__PlayerInventory_1a40e3426c6dfe1c2f0f460b88f93d9347)`() const` | Helper function to get Entitlement Subsystem.
+`protected UGameInstance * `[`GetGameInstance`](#classURH__PlayerInventory_1a93fcea41662852f1ce7f30a22c7c1bca)`() const` | Helper function to get game instance.
+`protected void `[`SendGamesightExternalPurchaseEvent`](#classURH__PlayerInventory_1a0acd41dbc26b0acab6bd55e8a166288e)`(const `[`FRHAPI_PlayerOrderEntry`](RHAPI_PlayerOrderEntry.md#structFRHAPI__PlayerOrderEntry)` & Entry,TArray< FOnlineStoreOfferRef > & StoreOffers)` | 
 `typedef `[`TCreateOrder`](#classURH__PlayerInventory_1a946da8328c5ead7256bcf01d73ba342c) | 
 
 ### Members
@@ -561,6 +598,8 @@ The local or instance Auth Context.
 #### `public inline void `[`SetPlayerInfo`](#classURH__PlayerInventory_1a76b4f19b926a83f287c3515acd8b9150)`(`[`URH_PlayerInfo`](PlayerInfo.md#classURH__PlayerInfo)` * InPlayerInfo)` <a id="classURH__PlayerInventory_1a76b4f19b926a83f287c3515acd8b9150"></a>
 
 Sets the Player Info owner of the subsystem.
+
+#### `public bool `[`TryGetInventoryCount`](#classURH__PlayerInventory_1a3703d3679299bec21c0a10e257b89e4c)`(const int32 & ItemId,int32 & OutCount) const` <a id="classURH__PlayerInventory_1a3703d3679299bec21c0a10e257b89e4c"></a>
 
 #### `public void `[`GetInventoryCount`](#classURH__PlayerInventory_1addb1cf44dbc4684f4bef23c51a012bb5)`(const int32 & ItemId,const FRH_GetInventoryCountBlock & Delegate) const` <a id="classURH__PlayerInventory_1addb1cf44dbc4684f4bef23c51a012bb5"></a>
 
@@ -709,7 +748,7 @@ Calls the Inventory API to get the create an Inventory Session for the player.
 
 * `Delegate` Callback delegate for creating the players session.
 
-#### `public void `[`GetInventory`](#classURH__PlayerInventory_1aa39e94993d051196093f8eb69f6a8e5e)`(TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` <a id="classURH__PlayerInventory_1aa39e94993d051196093f8eb69f6a8e5e"></a>
+#### `public void `[`GetInventory`](#classURH__PlayerInventory_1a9ba9d8eac0330477f579bcc6d15713ed)`(const FTimespan & StaleThresold,bool bForce,TArray< int32 > ItemIds,const FRH_OnInventoryUpdateDelegateBlock & Delegate)` <a id="classURH__PlayerInventory_1a9ba9d8eac0330477f579bcc6d15713ed"></a>
 
 Calls the Inventory API to get the the inventory for the player.
 
@@ -717,6 +756,8 @@ Calls the Inventory API to get the the inventory for the player.
 * `ItemIds` The Item Ids of inventory requested, if empty all inventory will be returned. 
 
 * `Delegate` Callback delegate for getting the inventory.
+
+#### `public bool `[`IsAnyInventoryStale`](#classURH__PlayerInventory_1a209a8a6d1045503b66e78c2355165dfc)`(const FTimespan & StaleThreshold) const` <a id="classURH__PlayerInventory_1a209a8a6d1045503b66e78c2355165dfc"></a>
 
 #### `public inline void `[`CreatePlayerOrder`](#classURH__PlayerInventory_1a25a32d0d801bfe8460c9fd5ffcc8a5e3)`(ERHAPI_PlayerOrderEntryType FillType,ERHAPI_Source OrderSource,const TArray< `[`URH_PlayerOrderEntry`](Inventory.md#classURH__PlayerOrderEntry)` * > & OrderEntries,FRH_OrderResultBlock Delegate)` <a id="classURH__PlayerInventory_1a25a32d0d801bfe8460c9fd5ffcc8a5e3"></a>
 
@@ -837,6 +878,8 @@ Parses a player order result API into a [URH_PlayerOrderEntry](Inventory.md#clas
 #### Parameters
 * `Content` The PlayerOrder data to parse.
 
+#### `public inline bool `[`HasRecievedPlayerInventory`](#classURH__PlayerInventory_1af65094d13ef7a252c6fd8be26e746e69)`() const` <a id="classURH__PlayerInventory_1af65094d13ef7a252c6fd8be26e746e69"></a>
+
 #### `protected TMap< int32, TArray< `[`FRH_ItemInventory`](Inventory.md#structFRH__ItemInventory)` > > `[`InventoryCache`](#classURH__PlayerInventory_1a5d5179ccce89d685f086005d1b907ad8) <a id="classURH__PlayerInventory_1a5d5179ccce89d685f086005d1b907ad8"></a>
 
 Inventory cache map of Item Id to inventory records.
@@ -888,6 +931,10 @@ Tracking of Inventory Notifications.
 #### `protected bool `[`bReceivedPendingInventoryNotification`](#classURH__PlayerInventory_1a55c3db5006da2c2ed1ece4afc1a84bc2) <a id="classURH__PlayerInventory_1a55c3db5006da2c2ed1ece4afc1a84bc2"></a>
 
 Tracking of Pending Inventory Notifications.
+
+#### `protected TOptional< FDateTime > `[`LastAnyInventoryTime`](#classURH__PlayerInventory_1ac0f6a6a1745277f0e42c2d0360e6e5ed) <a id="classURH__PlayerInventory_1ac0f6a6a1745277f0e42c2d0360e6e5ed"></a>
+
+Flag that gets set to true if the player inventory has been successfully loaded.
 
 #### `protected inline bool `[`ShouldPollInventory`](#classURH__PlayerInventory_1a6d4188288df48ec55bb6daf7edeb4959)`() const` <a id="classURH__PlayerInventory_1a6d4188288df48ec55bb6daf7edeb4959"></a>
 
@@ -1070,6 +1117,16 @@ Helper function to get Game Instance Subsystem.
 #### `protected `[`URH_CatalogSubsystem`](Catalog.md#classURH__CatalogSubsystem)` * `[`GetCatalogSubsystem`](#classURH__PlayerInventory_1a9382ddbc1126c05c1752cb37d5daa883)`() const` <a id="classURH__PlayerInventory_1a9382ddbc1126c05c1752cb37d5daa883"></a>
 
 Helper function to get Catalog Subsystem.
+
+#### `protected `[`URH_EntitlementSubsystem`](Entitlement.md#classURH__EntitlementSubsystem)` * `[`GetEntitlementSubsystem`](#classURH__PlayerInventory_1a40e3426c6dfe1c2f0f460b88f93d9347)`() const` <a id="classURH__PlayerInventory_1a40e3426c6dfe1c2f0f460b88f93d9347"></a>
+
+Helper function to get Entitlement Subsystem.
+
+#### `protected UGameInstance * `[`GetGameInstance`](#classURH__PlayerInventory_1a93fcea41662852f1ce7f30a22c7c1bca)`() const` <a id="classURH__PlayerInventory_1a93fcea41662852f1ce7f30a22c7c1bca"></a>
+
+Helper function to get game instance.
+
+#### `protected void `[`SendGamesightExternalPurchaseEvent`](#classURH__PlayerInventory_1a0acd41dbc26b0acab6bd55e8a166288e)`(const `[`FRHAPI_PlayerOrderEntry`](RHAPI_PlayerOrderEntry.md#structFRHAPI__PlayerOrderEntry)` & Entry,TArray< FOnlineStoreOfferRef > & StoreOffers)` <a id="classURH__PlayerInventory_1a0acd41dbc26b0acab6bd55e8a166288e"></a>
 
 #### `typedef `[`TCreateOrder`](#classURH__PlayerInventory_1a946da8328c5ead7256bcf01d73ba342c) <a id="classURH__PlayerInventory_1a946da8328c5ead7256bcf01d73ba342c"></a>
 

@@ -43,25 +43,25 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MatchId{  };
 	/** @brief Gets the value of MatchId */
-	FString& GetMatchId() { return MatchId; }
+	FORCEINLINE FString& GetMatchId() { return MatchId; }
 	/** @brief Gets the value of MatchId */
-	const FString& GetMatchId() const { return MatchId; }
+	FORCEINLINE const FString& GetMatchId() const { return MatchId; }
 	/** @brief Sets the value of MatchId */
-	void SetMatchId(const FString& NewValue) { MatchId = NewValue;   }
+	FORCEINLINE void SetMatchId(const FString& NewValue) { MatchId = NewValue;   }
 	/** @brief Sets the value of MatchId using move semantics */
-	void SetMatchId(FString&& NewValue) { MatchId = NewValue;   }
+	FORCEINLINE void SetMatchId(FString&& NewValue) { MatchId = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Created{  };
 	/** @brief Gets the value of Created */
-	FDateTime& GetCreated() { return Created; }
+	FORCEINLINE FDateTime& GetCreated() { return Created; }
 	/** @brief Gets the value of Created */
-	const FDateTime& GetCreated() const { return Created; }
+	FORCEINLINE const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
+	FORCEINLINE void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
 	/** @brief Sets the value of Created using move semantics */
-	void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
+	FORCEINLINE void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
 
 	/** @brief instance-defined custom data */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -70,25 +70,23 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief List of tickets that were assigned to this match if created by matchmaking */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -97,25 +95,23 @@ struct RALLYHEREAPI_API FRHAPI_MatchInfo : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TicketIds_IsSet{ false };
 	/** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
-	TArray<FString>& GetTicketIds() { return TicketIds_Optional; }
+	FORCEINLINE TArray<FString>& GetTicketIds() { return TicketIds_Optional; }
 	/** @brief Gets the value of TicketIds_Optional, regardless of it having been set */
-	const TArray<FString>& GetTicketIds() const { return TicketIds_Optional; }
+	FORCEINLINE const TArray<FString>& GetTicketIds() const { return TicketIds_Optional; }
 	/** @brief Gets the value of TicketIds_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FString>& GetTicketIds(const TArray<FString>& DefaultValue) const { if (TicketIds_IsSet) return TicketIds_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FString>& GetTicketIds(const TArray<FString>& DefaultValue) const { if (TicketIds_IsSet) return TicketIds_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TicketIds_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTicketIds(TArray<FString>& OutValue) const { if (TicketIds_IsSet) OutValue = TicketIds_Optional; return TicketIds_IsSet; }
+	FORCEINLINE bool GetTicketIds(TArray<FString>& OutValue) const { if (TicketIds_IsSet) OutValue = TicketIds_Optional; return TicketIds_IsSet; }
 	/** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FString>* GetTicketIdsOrNull() { if (TicketIds_IsSet) return (&TicketIds_Optional); return nullptr; }
+	FORCEINLINE TArray<FString>* GetTicketIdsOrNull() { if (TicketIds_IsSet) return (&TicketIds_Optional); return nullptr; }
 	/** @brief Returns a pointer to TicketIds_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return (&TicketIds_Optional); return nullptr; }
+	FORCEINLINE const TArray<FString>* GetTicketIdsOrNull() const { if (TicketIds_IsSet) return (&TicketIds_Optional); return nullptr; }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true */
-	void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
+	FORCEINLINE void SetTicketIds(const TArray<FString>& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
 	/** @brief Sets the value of TicketIds_Optional and also sets TicketIds_IsSet to true using move semantics */
-	void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
+	FORCEINLINE void SetTicketIds(TArray<FString>&& NewValue) { TicketIds_Optional = NewValue; TicketIds_IsSet = true;  }
 	/** @brief Clears the value of TicketIds_Optional and sets TicketIds_IsSet to false */
 	void ClearTicketIds() { TicketIds_IsSet = false;  }
-	/** @brief Checks whether TicketIds_Optional has been set */
-	bool IsTicketIdsSet() const { return TicketIds_IsSet; }
 };
 
 /** @} */

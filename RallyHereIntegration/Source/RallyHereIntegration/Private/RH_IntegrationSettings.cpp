@@ -59,6 +59,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	WebRequestsDefaultRetryCount = 6;
 	WebRequestsDefaultRetryTimeout = 60;
 	WebRequestMaxSanitizedContentLength = 4096;
+	ClientDeviceIpEndpoint = TEXT("https://checkip.amazonaws.com");
 
 	bAutoMakeSessionsJoinableOnHostMapLoadComplete = true;
 	bUseSecurityTokenForJoining = true;
@@ -87,6 +88,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	GetCatalogAllPriority = 900000;
 	GetCatalogXpAllPriority = 900000;
 	GetCatalogItemPriority = 1000000;
+	GetCatalogLootPriority = 1000000;
 	GetCatalogInventoryBucketUseRuleSetsAllPriority = 700000;
 	GetCatalogPricePointsAllPriority = 700000;
 	GetCatalogTimeFramesAllPriority = 1200000;
@@ -130,6 +132,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	SessionPollPriority = 700000;
 	SessionJoinPriority = 700000;
 	SessionLeavePriority = 700000;
+	SessionGenerateShortCodePriority = 700000;
 	SessionInvitePriority = 700000;
 	SessionKickPriority = 1000000;
 	SessionLeaderChangePriority = 1000000;
@@ -169,6 +172,8 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	MatchesLookupPriority = 1000000;
 	MatchesUpdatePriority = 900000;
 	MatchesUpdatePlayerPriority = 900000;
+	MatchTimelineGetPriority = 900000;
+	MatchTimelineUploadPriority = 900000;
 	PexReportPriority = 500000;
 	GetPlayerReportsSentPriority = 1000000;
 	GetPlayerReportsReceivedPriority = 1000000;

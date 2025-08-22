@@ -29,36 +29,33 @@ A collection of rules that are used to determine whether a MatchMakingTemplate s
 `public bool `[`PlayersToValidate_IsSet`](#structFRHAPI__MatchMakingRuleset_1a1053ee76fe29e4c034cab3cdb72fac5d) | true if PlayersToValidate_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingRuleset_1a80c858c052b7546f24642994b2faaa1e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingRuleset_1ab308ea6ef9b131c7be23d9cd575f9f00)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a8c5503c31c4a3c33cdaa19b5a319ea28)`()` | Gets the value of Rules_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1aea32bc5d6df31869f64e95e3cfc65f62)`() const` | Gets the value of Rules_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a9b13b6f6172f42f9a12e574799692293)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & DefaultValue) const` | Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a45fa64772049608807364383ea381613)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & OutValue) const` | Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > * `[`GetRulesOrNull`](#structFRHAPI__MatchMakingRuleset_1a0a5d3ea0898603e4abe706fea905d9b7)`()` | Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > * `[`GetRulesOrNull`](#structFRHAPI__MatchMakingRuleset_1a24b88ef3f2c8be5b0d370ec85e4644eb)`() const` | Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a95dd984ce4623055d498de65234758f6)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true.
-`public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a6deb26d921c7b27c4f10e0934a8f4c79)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > && NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a64800a80ba33d08ab2f735508c41311c)`()` | Gets the value of Rules_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a5a58ae8dcf3f78d65db3f71b6b7ef576)`() const` | Gets the value of Rules_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a6f56189da83a9c99298c5198ab3c784f)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & DefaultValue) const` | Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1ab25f9b33bace1931d06bf0c1764414f8)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & OutValue) const` | Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > * `[`GetRulesOrNull`](#structFRHAPI__MatchMakingRuleset_1a5138c0afab43306cab112f28d327136c)`()` | Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > * `[`GetRulesOrNull`](#structFRHAPI__MatchMakingRuleset_1ac23610059b785f18a66012db70f8e348)`() const` | Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1ab923ef5661002cd8c06b4707a7b39188)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true.
+`public inline FORCEINLINE void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a191ff21e4265811f61fd9229f2fc8253)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > && NewValue)` | Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics.
 `public inline void `[`ClearRules`](#structFRHAPI__MatchMakingRuleset_1ac5e27b95f504890017e37f935c478838)`()` | Clears the value of Rules_Optional and sets Rules_IsSet to false.
-`public inline bool `[`IsRulesSet`](#structFRHAPI__MatchMakingRuleset_1a9d65d46ab0baaaab3135042d64b8e8f3)`() const` | Checks whether Rules_Optional has been set.
-`public inline ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8ed56b52a92cc80d0bc197d2660658c2)`()` | Gets the value of Determiner_Optional, regardless of it having been set.
-`public inline const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1af037b1bba74bfe2a6a7233fd7ecf57f1)`() const` | Gets the value of Determiner_Optional, regardless of it having been set.
-`public inline const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a18d3ddb88e6b3fbea1a5d570f809dab4)`(const ERHAPI_Determiner & DefaultValue) const` | Gets the value of Determiner_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a5ca48a4e38e8d9a4227c3dfd6d08c35f)`(ERHAPI_Determiner & OutValue) const` | Fills OutValue with the value of Determiner_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1a729a3f38a78cc5b309d5de5aa2f344d4)`()` | Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1a143e7446ea873242e47965c4ba5282fc)`() const` | Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8e545ca2611db722685e0b16abf014f3)`(const ERHAPI_Determiner & NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true.
-`public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1acb0772787c71128b04e7e3ed9ce5000e)`(ERHAPI_Determiner && NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1aa7dde6874d582f36e3b7709470770fce)`()` | Gets the value of Determiner_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a7959b7c3f9aad2e4185532b2d3beb150)`() const` | Gets the value of Determiner_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a1699643b424675aa9724cdd4e86730b7)`(const ERHAPI_Determiner & DefaultValue) const` | Gets the value of Determiner_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8abfbeca4ad935be843d8a9d221bcb87)`(ERHAPI_Determiner & OutValue) const` | Fills OutValue with the value of Determiner_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1ab5c8a3464afc8643dfbc63d4d2a32048)`()` | Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1aa6b3b1461b00438ed5a8628db03cce7d)`() const` | Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a14ae6b058f667152454987fe42d0631d)`(const ERHAPI_Determiner & NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true.
+`public inline FORCEINLINE void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a910d17de6f5537d1d8d19a9b0940d4d6)`(ERHAPI_Determiner && NewValue)` | Sets the value of Determiner_Optional and also sets Determiner_IsSet to true using move semantics.
 `public inline void `[`ClearDeterminer`](#structFRHAPI__MatchMakingRuleset_1a48e9ee08c491fb294cc3167b406e7e41)`()` | Clears the value of Determiner_Optional and sets Determiner_IsSet to false.
-`public inline bool `[`IsDeterminerSet`](#structFRHAPI__MatchMakingRuleset_1a0b587aaf95d39915d0cc5904a363d7b1)`() const` | Checks whether Determiner_Optional has been set.
-`public inline ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a73680b2f101e1a847f6084c5f2262c77)`()` | Gets the value of PlayersToValidate_Optional, regardless of it having been set.
-`public inline const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a0a86d41ed5c5e6e304a9beea3c168c43)`() const` | Gets the value of PlayersToValidate_Optional, regardless of it having been set.
-`public inline const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a73e710996abeec0a307594efb92a4e45)`(const ERHAPI_PlayersToValidate & DefaultValue) const` | Gets the value of PlayersToValidate_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a79c3db09ef2374b1ee420e8fe3e9410e)`(ERHAPI_PlayersToValidate & OutValue) const` | Fills OutValue with the value of PlayersToValidate_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_PlayersToValidate * `[`GetPlayersToValidateOrNull`](#structFRHAPI__MatchMakingRuleset_1a3875832c6e871a554b01d0d8d277a4db)`()` | Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_PlayersToValidate * `[`GetPlayersToValidateOrNull`](#structFRHAPI__MatchMakingRuleset_1ad50ed507367a6894eeaf6ec6f0e3e3c7)`() const` | Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a26ba7671713585ceac3513a4d1e31a74)`(const ERHAPI_PlayersToValidate & NewValue)` | Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true.
-`public inline void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a434c2821b9d39572c45f0d78ee36ea20)`(ERHAPI_PlayersToValidate && NewValue)` | Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a495c40a730e20a7d96b3fc1d52750c3e)`()` | Gets the value of PlayersToValidate_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a4198a919e845a492433e96bbf06b83a1)`() const` | Gets the value of PlayersToValidate_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a1ba55481463e7b4a35a6d74a29e550c6)`(const ERHAPI_PlayersToValidate & DefaultValue) const` | Gets the value of PlayersToValidate_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1af511e8df833f5fd1e893c005e0eb91e0)`(ERHAPI_PlayersToValidate & OutValue) const` | Fills OutValue with the value of PlayersToValidate_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_PlayersToValidate * `[`GetPlayersToValidateOrNull`](#structFRHAPI__MatchMakingRuleset_1a4bd6c3d3fa9e3768048a2a63b1de5b3b)`()` | Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_PlayersToValidate * `[`GetPlayersToValidateOrNull`](#structFRHAPI__MatchMakingRuleset_1afbb86f0160f69b87bd5b67b92951b4dc)`() const` | Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a357d0e2bcfc5e5cc5963b5e05499f9eb)`(const ERHAPI_PlayersToValidate & NewValue)` | Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a0548db521c67206612b9ae4e0d68d925)`(ERHAPI_PlayersToValidate && NewValue)` | Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true using move semantics.
 `public inline void `[`ClearPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1ad5cffee37be4af621d5ed9ad4a9dea43)`()` | Clears the value of PlayersToValidate_Optional and sets PlayersToValidate_IsSet to false.
-`public inline bool `[`IsPlayersToValidateSet`](#structFRHAPI__MatchMakingRuleset_1a860db2163fa0feb40a636444c355558a)`() const` | Checks whether PlayersToValidate_Optional has been set.
 
 ### Members
 
@@ -103,35 +100,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a8c5503c31c4a3c33cdaa19b5a319ea28)`()` <a id="structFRHAPI__MatchMakingRuleset_1a8c5503c31c4a3c33cdaa19b5a319ea28"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a64800a80ba33d08ab2f735508c41311c)`()` <a id="structFRHAPI__MatchMakingRuleset_1a64800a80ba33d08ab2f735508c41311c"></a>
 
 Gets the value of Rules_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1aea32bc5d6df31869f64e95e3cfc65f62)`() const` <a id="structFRHAPI__MatchMakingRuleset_1aea32bc5d6df31869f64e95e3cfc65f62"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a5a58ae8dcf3f78d65db3f71b6b7ef576)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a5a58ae8dcf3f78d65db3f71b6b7ef576"></a>
 
 Gets the value of Rules_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a9b13b6f6172f42f9a12e574799692293)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & DefaultValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a9b13b6f6172f42f9a12e574799692293"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a6f56189da83a9c99298c5198ab3c784f)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & DefaultValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a6f56189da83a9c99298c5198ab3c784f"></a>
 
 Gets the value of Rules_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1a45fa64772049608807364383ea381613)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & OutValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a45fa64772049608807364383ea381613"></a>
+#### `public inline FORCEINLINE bool `[`GetRules`](#structFRHAPI__MatchMakingRuleset_1ab25f9b33bace1931d06bf0c1764414f8)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & OutValue) const` <a id="structFRHAPI__MatchMakingRuleset_1ab25f9b33bace1931d06bf0c1764414f8"></a>
 
 Fills OutValue with the value of Rules_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > * `[`GetRulesOrNull`](#structFRHAPI__MatchMakingRuleset_1a0a5d3ea0898603e4abe706fea905d9b7)`()` <a id="structFRHAPI__MatchMakingRuleset_1a0a5d3ea0898603e4abe706fea905d9b7"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > * `[`GetRulesOrNull`](#structFRHAPI__MatchMakingRuleset_1a5138c0afab43306cab112f28d327136c)`()` <a id="structFRHAPI__MatchMakingRuleset_1a5138c0afab43306cab112f28d327136c"></a>
 
 Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > * `[`GetRulesOrNull`](#structFRHAPI__MatchMakingRuleset_1a24b88ef3f2c8be5b0d370ec85e4644eb)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a24b88ef3f2c8be5b0d370ec85e4644eb"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > * `[`GetRulesOrNull`](#structFRHAPI__MatchMakingRuleset_1ac23610059b785f18a66012db70f8e348)`() const` <a id="structFRHAPI__MatchMakingRuleset_1ac23610059b785f18a66012db70f8e348"></a>
 
 Returns a pointer to Rules_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a95dd984ce4623055d498de65234758f6)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a95dd984ce4623055d498de65234758f6"></a>
+#### `public inline FORCEINLINE void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1ab923ef5661002cd8c06b4707a7b39188)`(const TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > & NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1ab923ef5661002cd8c06b4707a7b39188"></a>
 
 Sets the value of Rules_Optional and also sets Rules_IsSet to true.
 
-#### `public inline void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a6deb26d921c7b27c4f10e0934a8f4c79)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > && NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a6deb26d921c7b27c4f10e0934a8f4c79"></a>
+#### `public inline FORCEINLINE void `[`SetRules`](#structFRHAPI__MatchMakingRuleset_1a191ff21e4265811f61fd9229f2fc8253)`(TArray< `[`FRHAPI_Rule`](RHAPI_Rule.md#structFRHAPI__Rule)` > && NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a191ff21e4265811f61fd9229f2fc8253"></a>
 
 Sets the value of Rules_Optional and also sets Rules_IsSet to true using move semantics.
 
@@ -139,39 +136,35 @@ Sets the value of Rules_Optional and also sets Rules_IsSet to true using move se
 
 Clears the value of Rules_Optional and sets Rules_IsSet to false.
 
-#### `public inline bool `[`IsRulesSet`](#structFRHAPI__MatchMakingRuleset_1a9d65d46ab0baaaab3135042d64b8e8f3)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a9d65d46ab0baaaab3135042d64b8e8f3"></a>
-
-Checks whether Rules_Optional has been set.
-
-#### `public inline ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8ed56b52a92cc80d0bc197d2660658c2)`()` <a id="structFRHAPI__MatchMakingRuleset_1a8ed56b52a92cc80d0bc197d2660658c2"></a>
+#### `public inline FORCEINLINE ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1aa7dde6874d582f36e3b7709470770fce)`()` <a id="structFRHAPI__MatchMakingRuleset_1aa7dde6874d582f36e3b7709470770fce"></a>
 
 Gets the value of Determiner_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1af037b1bba74bfe2a6a7233fd7ecf57f1)`() const` <a id="structFRHAPI__MatchMakingRuleset_1af037b1bba74bfe2a6a7233fd7ecf57f1"></a>
+#### `public inline FORCEINLINE const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a7959b7c3f9aad2e4185532b2d3beb150)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a7959b7c3f9aad2e4185532b2d3beb150"></a>
 
 Gets the value of Determiner_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a18d3ddb88e6b3fbea1a5d570f809dab4)`(const ERHAPI_Determiner & DefaultValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a18d3ddb88e6b3fbea1a5d570f809dab4"></a>
+#### `public inline FORCEINLINE const ERHAPI_Determiner & `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a1699643b424675aa9724cdd4e86730b7)`(const ERHAPI_Determiner & DefaultValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a1699643b424675aa9724cdd4e86730b7"></a>
 
 Gets the value of Determiner_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a5ca48a4e38e8d9a4227c3dfd6d08c35f)`(ERHAPI_Determiner & OutValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a5ca48a4e38e8d9a4227c3dfd6d08c35f"></a>
+#### `public inline FORCEINLINE bool `[`GetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8abfbeca4ad935be843d8a9d221bcb87)`(ERHAPI_Determiner & OutValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a8abfbeca4ad935be843d8a9d221bcb87"></a>
 
 Fills OutValue with the value of Determiner_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1a729a3f38a78cc5b309d5de5aa2f344d4)`()` <a id="structFRHAPI__MatchMakingRuleset_1a729a3f38a78cc5b309d5de5aa2f344d4"></a>
+#### `public inline FORCEINLINE ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1ab5c8a3464afc8643dfbc63d4d2a32048)`()` <a id="structFRHAPI__MatchMakingRuleset_1ab5c8a3464afc8643dfbc63d4d2a32048"></a>
 
 Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1a143e7446ea873242e47965c4ba5282fc)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a143e7446ea873242e47965c4ba5282fc"></a>
+#### `public inline FORCEINLINE const ERHAPI_Determiner * `[`GetDeterminerOrNull`](#structFRHAPI__MatchMakingRuleset_1aa6b3b1461b00438ed5a8628db03cce7d)`() const` <a id="structFRHAPI__MatchMakingRuleset_1aa6b3b1461b00438ed5a8628db03cce7d"></a>
 
 Returns a pointer to Determiner_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a8e545ca2611db722685e0b16abf014f3)`(const ERHAPI_Determiner & NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a8e545ca2611db722685e0b16abf014f3"></a>
+#### `public inline FORCEINLINE void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a14ae6b058f667152454987fe42d0631d)`(const ERHAPI_Determiner & NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a14ae6b058f667152454987fe42d0631d"></a>
 
 Sets the value of Determiner_Optional and also sets Determiner_IsSet to true.
 
-#### `public inline void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1acb0772787c71128b04e7e3ed9ce5000e)`(ERHAPI_Determiner && NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1acb0772787c71128b04e7e3ed9ce5000e"></a>
+#### `public inline FORCEINLINE void `[`SetDeterminer`](#structFRHAPI__MatchMakingRuleset_1a910d17de6f5537d1d8d19a9b0940d4d6)`(ERHAPI_Determiner && NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a910d17de6f5537d1d8d19a9b0940d4d6"></a>
 
 Sets the value of Determiner_Optional and also sets Determiner_IsSet to true using move semantics.
 
@@ -179,47 +172,39 @@ Sets the value of Determiner_Optional and also sets Determiner_IsSet to true usi
 
 Clears the value of Determiner_Optional and sets Determiner_IsSet to false.
 
-#### `public inline bool `[`IsDeterminerSet`](#structFRHAPI__MatchMakingRuleset_1a0b587aaf95d39915d0cc5904a363d7b1)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a0b587aaf95d39915d0cc5904a363d7b1"></a>
-
-Checks whether Determiner_Optional has been set.
-
-#### `public inline ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a73680b2f101e1a847f6084c5f2262c77)`()` <a id="structFRHAPI__MatchMakingRuleset_1a73680b2f101e1a847f6084c5f2262c77"></a>
+#### `public inline FORCEINLINE ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a495c40a730e20a7d96b3fc1d52750c3e)`()` <a id="structFRHAPI__MatchMakingRuleset_1a495c40a730e20a7d96b3fc1d52750c3e"></a>
 
 Gets the value of PlayersToValidate_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a0a86d41ed5c5e6e304a9beea3c168c43)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a0a86d41ed5c5e6e304a9beea3c168c43"></a>
+#### `public inline FORCEINLINE const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a4198a919e845a492433e96bbf06b83a1)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a4198a919e845a492433e96bbf06b83a1"></a>
 
 Gets the value of PlayersToValidate_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a73e710996abeec0a307594efb92a4e45)`(const ERHAPI_PlayersToValidate & DefaultValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a73e710996abeec0a307594efb92a4e45"></a>
+#### `public inline FORCEINLINE const ERHAPI_PlayersToValidate & `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a1ba55481463e7b4a35a6d74a29e550c6)`(const ERHAPI_PlayersToValidate & DefaultValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a1ba55481463e7b4a35a6d74a29e550c6"></a>
 
 Gets the value of PlayersToValidate_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a79c3db09ef2374b1ee420e8fe3e9410e)`(ERHAPI_PlayersToValidate & OutValue) const` <a id="structFRHAPI__MatchMakingRuleset_1a79c3db09ef2374b1ee420e8fe3e9410e"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1af511e8df833f5fd1e893c005e0eb91e0)`(ERHAPI_PlayersToValidate & OutValue) const` <a id="structFRHAPI__MatchMakingRuleset_1af511e8df833f5fd1e893c005e0eb91e0"></a>
 
 Fills OutValue with the value of PlayersToValidate_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_PlayersToValidate * `[`GetPlayersToValidateOrNull`](#structFRHAPI__MatchMakingRuleset_1a3875832c6e871a554b01d0d8d277a4db)`()` <a id="structFRHAPI__MatchMakingRuleset_1a3875832c6e871a554b01d0d8d277a4db"></a>
+#### `public inline FORCEINLINE ERHAPI_PlayersToValidate * `[`GetPlayersToValidateOrNull`](#structFRHAPI__MatchMakingRuleset_1a4bd6c3d3fa9e3768048a2a63b1de5b3b)`()` <a id="structFRHAPI__MatchMakingRuleset_1a4bd6c3d3fa9e3768048a2a63b1de5b3b"></a>
 
 Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_PlayersToValidate * `[`GetPlayersToValidateOrNull`](#structFRHAPI__MatchMakingRuleset_1ad50ed507367a6894eeaf6ec6f0e3e3c7)`() const` <a id="structFRHAPI__MatchMakingRuleset_1ad50ed507367a6894eeaf6ec6f0e3e3c7"></a>
+#### `public inline FORCEINLINE const ERHAPI_PlayersToValidate * `[`GetPlayersToValidateOrNull`](#structFRHAPI__MatchMakingRuleset_1afbb86f0160f69b87bd5b67b92951b4dc)`() const` <a id="structFRHAPI__MatchMakingRuleset_1afbb86f0160f69b87bd5b67b92951b4dc"></a>
 
 Returns a pointer to PlayersToValidate_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a26ba7671713585ceac3513a4d1e31a74)`(const ERHAPI_PlayersToValidate & NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a26ba7671713585ceac3513a4d1e31a74"></a>
+#### `public inline FORCEINLINE void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a357d0e2bcfc5e5cc5963b5e05499f9eb)`(const ERHAPI_PlayersToValidate & NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a357d0e2bcfc5e5cc5963b5e05499f9eb"></a>
 
 Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true.
 
-#### `public inline void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a434c2821b9d39572c45f0d78ee36ea20)`(ERHAPI_PlayersToValidate && NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a434c2821b9d39572c45f0d78ee36ea20"></a>
+#### `public inline FORCEINLINE void `[`SetPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1a0548db521c67206612b9ae4e0d68d925)`(ERHAPI_PlayersToValidate && NewValue)` <a id="structFRHAPI__MatchMakingRuleset_1a0548db521c67206612b9ae4e0d68d925"></a>
 
 Sets the value of PlayersToValidate_Optional and also sets PlayersToValidate_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlayersToValidate`](#structFRHAPI__MatchMakingRuleset_1ad5cffee37be4af621d5ed9ad4a9dea43)`()` <a id="structFRHAPI__MatchMakingRuleset_1ad5cffee37be4af621d5ed9ad4a9dea43"></a>
 
 Clears the value of PlayersToValidate_Optional and sets PlayersToValidate_IsSet to false.
-
-#### `public inline bool `[`IsPlayersToValidateSet`](#structFRHAPI__MatchMakingRuleset_1a860db2163fa0feb40a636444c355558a)`() const` <a id="structFRHAPI__MatchMakingRuleset_1a860db2163fa0feb40a636444c355558a"></a>
-
-Checks whether PlayersToValidate_Optional has been set.
 

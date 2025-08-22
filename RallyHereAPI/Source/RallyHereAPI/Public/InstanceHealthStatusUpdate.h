@@ -44,25 +44,25 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusUpdate : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_InstanceHealthStatus InstanceHealth{  };
 	/** @brief Gets the value of InstanceHealth */
-	ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth; }
+	FORCEINLINE ERHAPI_InstanceHealthStatus& GetInstanceHealth() { return InstanceHealth; }
 	/** @brief Gets the value of InstanceHealth */
-	const ERHAPI_InstanceHealthStatus& GetInstanceHealth() const { return InstanceHealth; }
+	FORCEINLINE const ERHAPI_InstanceHealthStatus& GetInstanceHealth() const { return InstanceHealth; }
 	/** @brief Sets the value of InstanceHealth */
-	void SetInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { InstanceHealth = NewValue;   }
+	FORCEINLINE void SetInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { InstanceHealth = NewValue;   }
 	/** @brief Sets the value of InstanceHealth using move semantics */
-	void SetInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { InstanceHealth = NewValue;   }
+	FORCEINLINE void SetInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { InstanceHealth = NewValue;   }
 
 	/** @brief The instance ID for the instance whose health you are reporting */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString InstanceId{  };
 	/** @brief Gets the value of InstanceId */
-	FString& GetInstanceId() { return InstanceId; }
+	FORCEINLINE FString& GetInstanceId() { return InstanceId; }
 	/** @brief Gets the value of InstanceId */
-	const FString& GetInstanceId() const { return InstanceId; }
+	FORCEINLINE const FString& GetInstanceId() const { return InstanceId; }
 	/** @brief Sets the value of InstanceId */
-	void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;   }
+	FORCEINLINE void SetInstanceId(const FString& NewValue) { InstanceId = NewValue;   }
 	/** @brief Sets the value of InstanceId using move semantics */
-	void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;   }
+	FORCEINLINE void SetInstanceId(FString&& NewValue) { InstanceId = NewValue;   }
 };
 
 /** @} */

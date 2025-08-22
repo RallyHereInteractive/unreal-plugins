@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString QueueId{  };
 	/** @brief Gets the value of QueueId */
-	FString& GetQueueId() { return QueueId; }
+	FORCEINLINE FString& GetQueueId() { return QueueId; }
 	/** @brief Gets the value of QueueId */
-	const FString& GetQueueId() const { return QueueId; }
+	FORCEINLINE const FString& GetQueueId() const { return QueueId; }
 	/** @brief Sets the value of QueueId */
-	void SetQueueId(const FString& NewValue) { QueueId = NewValue;   }
+	FORCEINLINE void SetQueueId(const FString& NewValue) { QueueId = NewValue;   }
 	/** @brief Sets the value of QueueId using move semantics */
-	void SetQueueId(FString&& NewValue) { QueueId = NewValue;   }
+	FORCEINLINE void SetQueueId(FString&& NewValue) { QueueId = NewValue;   }
 
 	/** @brief Additional fields put on the matchmaking ticket for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,25 +59,23 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AdditionalJoinParams_IsSet{ false };
 	/** @brief Gets the value of AdditionalJoinParams_Optional, regardless of it having been set */
-	FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams() { return AdditionalJoinParams_Optional; }
+	FORCEINLINE FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams() { return AdditionalJoinParams_Optional; }
 	/** @brief Gets the value of AdditionalJoinParams_Optional, regardless of it having been set */
-	const FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams() const { return AdditionalJoinParams_Optional; }
+	FORCEINLINE const FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams() const { return AdditionalJoinParams_Optional; }
 	/** @brief Gets the value of AdditionalJoinParams_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& DefaultValue) const { if (AdditionalJoinParams_IsSet) return AdditionalJoinParams_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_AdditionalJoinParams& GetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& DefaultValue) const { if (AdditionalJoinParams_IsSet) return AdditionalJoinParams_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AdditionalJoinParams_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAdditionalJoinParams(FRHAPI_AdditionalJoinParams& OutValue) const { if (AdditionalJoinParams_IsSet) OutValue = AdditionalJoinParams_Optional; return AdditionalJoinParams_IsSet; }
+	FORCEINLINE bool GetAdditionalJoinParams(FRHAPI_AdditionalJoinParams& OutValue) const { if (AdditionalJoinParams_IsSet) OutValue = AdditionalJoinParams_Optional; return AdditionalJoinParams_IsSet; }
 	/** @brief Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_AdditionalJoinParams* GetAdditionalJoinParamsOrNull() { if (AdditionalJoinParams_IsSet) return (&AdditionalJoinParams_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_AdditionalJoinParams* GetAdditionalJoinParamsOrNull() { if (AdditionalJoinParams_IsSet) return (&AdditionalJoinParams_Optional); return nullptr; }
 	/** @brief Returns a pointer to AdditionalJoinParams_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_AdditionalJoinParams* GetAdditionalJoinParamsOrNull() const { if (AdditionalJoinParams_IsSet) return (&AdditionalJoinParams_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_AdditionalJoinParams* GetAdditionalJoinParamsOrNull() const { if (AdditionalJoinParams_IsSet) return (&AdditionalJoinParams_Optional); return nullptr; }
 	/** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true */
-	void SetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true;  }
+	FORCEINLINE void SetAdditionalJoinParams(const FRHAPI_AdditionalJoinParams& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true;  }
 	/** @brief Sets the value of AdditionalJoinParams_Optional and also sets AdditionalJoinParams_IsSet to true using move semantics */
-	void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams&& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true;  }
+	FORCEINLINE void SetAdditionalJoinParams(FRHAPI_AdditionalJoinParams&& NewValue) { AdditionalJoinParams_Optional = NewValue; AdditionalJoinParams_IsSet = true;  }
 	/** @brief Clears the value of AdditionalJoinParams_Optional and sets AdditionalJoinParams_IsSet to false */
 	void ClearAdditionalJoinParams() { AdditionalJoinParams_IsSet = false;  }
-	/** @brief Checks whether AdditionalJoinParams_Optional has been set */
-	bool IsAdditionalJoinParamsSet() const { return AdditionalJoinParams_IsSet; }
 
 	/** @brief List of map preferences in order from most desired, to least desired */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -86,25 +84,23 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MapPreferences_IsSet{ false };
 	/** @brief Gets the value of MapPreferences_Optional, regardless of it having been set */
-	TArray<FString>& GetMapPreferences() { return MapPreferences_Optional; }
+	FORCEINLINE TArray<FString>& GetMapPreferences() { return MapPreferences_Optional; }
 	/** @brief Gets the value of MapPreferences_Optional, regardless of it having been set */
-	const TArray<FString>& GetMapPreferences() const { return MapPreferences_Optional; }
+	FORCEINLINE const TArray<FString>& GetMapPreferences() const { return MapPreferences_Optional; }
 	/** @brief Gets the value of MapPreferences_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FString>& GetMapPreferences(const TArray<FString>& DefaultValue) const { if (MapPreferences_IsSet) return MapPreferences_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FString>& GetMapPreferences(const TArray<FString>& DefaultValue) const { if (MapPreferences_IsSet) return MapPreferences_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MapPreferences_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMapPreferences(TArray<FString>& OutValue) const { if (MapPreferences_IsSet) OutValue = MapPreferences_Optional; return MapPreferences_IsSet; }
+	FORCEINLINE bool GetMapPreferences(TArray<FString>& OutValue) const { if (MapPreferences_IsSet) OutValue = MapPreferences_Optional; return MapPreferences_IsSet; }
 	/** @brief Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FString>* GetMapPreferencesOrNull() { if (MapPreferences_IsSet) return (&MapPreferences_Optional); return nullptr; }
+	FORCEINLINE TArray<FString>* GetMapPreferencesOrNull() { if (MapPreferences_IsSet) return (&MapPreferences_Optional); return nullptr; }
 	/** @brief Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FString>* GetMapPreferencesOrNull() const { if (MapPreferences_IsSet) return (&MapPreferences_Optional); return nullptr; }
+	FORCEINLINE const TArray<FString>* GetMapPreferencesOrNull() const { if (MapPreferences_IsSet) return (&MapPreferences_Optional); return nullptr; }
 	/** @brief Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true */
-	void SetMapPreferences(const TArray<FString>& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true;  }
+	FORCEINLINE void SetMapPreferences(const TArray<FString>& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true;  }
 	/** @brief Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics */
-	void SetMapPreferences(TArray<FString>&& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true;  }
+	FORCEINLINE void SetMapPreferences(TArray<FString>&& NewValue) { MapPreferences_Optional = NewValue; MapPreferences_IsSet = true;  }
 	/** @brief Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false */
 	void ClearMapPreferences() { MapPreferences_IsSet = false;  }
-	/** @brief Checks whether MapPreferences_Optional has been set */
-	bool IsMapPreferencesSet() const { return MapPreferences_IsSet; }
 
 	/** @brief Argument to artifcially add queue time to a ticket. Older tickets are considered for lower quaulity matches. This can be used to get faster matches at the expense of quality, or to restore a session's place in queue after a failure */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -113,29 +109,25 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PassedQueueTimeSeconds_IsSet{ false };
 	/** @brief Gets the value of PassedQueueTimeSeconds_Optional, regardless of it having been set */
-	int32& GetPassedQueueTimeSeconds() { return PassedQueueTimeSeconds_Optional; }
+	FORCEINLINE int32& GetPassedQueueTimeSeconds() { return PassedQueueTimeSeconds_Optional; }
 	/** @brief Gets the value of PassedQueueTimeSeconds_Optional, regardless of it having been set */
-	const int32& GetPassedQueueTimeSeconds() const { return PassedQueueTimeSeconds_Optional; }
+	FORCEINLINE const int32& GetPassedQueueTimeSeconds() const { return PassedQueueTimeSeconds_Optional; }
 	/** @brief Gets the value of PassedQueueTimeSeconds_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetPassedQueueTimeSeconds(const int32& DefaultValue) const { if (PassedQueueTimeSeconds_IsSet) return PassedQueueTimeSeconds_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetPassedQueueTimeSeconds(const int32& DefaultValue) const { if (PassedQueueTimeSeconds_IsSet) return PassedQueueTimeSeconds_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PassedQueueTimeSeconds_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPassedQueueTimeSeconds(int32& OutValue) const { if (PassedQueueTimeSeconds_IsSet) OutValue = PassedQueueTimeSeconds_Optional; return PassedQueueTimeSeconds_IsSet; }
+	FORCEINLINE bool GetPassedQueueTimeSeconds(int32& OutValue) const { if (PassedQueueTimeSeconds_IsSet) OutValue = PassedQueueTimeSeconds_Optional; return PassedQueueTimeSeconds_IsSet; }
 	/** @brief Returns a pointer to PassedQueueTimeSeconds_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPassedQueueTimeSecondsOrNull() { if (PassedQueueTimeSeconds_IsSet) return (&PassedQueueTimeSeconds_Optional); return nullptr; }
+	FORCEINLINE int32* GetPassedQueueTimeSecondsOrNull() { if (PassedQueueTimeSeconds_IsSet) return (&PassedQueueTimeSeconds_Optional); return nullptr; }
 	/** @brief Returns a pointer to PassedQueueTimeSeconds_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPassedQueueTimeSecondsOrNull() const { if (PassedQueueTimeSeconds_IsSet) return (&PassedQueueTimeSeconds_Optional); return nullptr; }
+	FORCEINLINE const int32* GetPassedQueueTimeSecondsOrNull() const { if (PassedQueueTimeSeconds_IsSet) return (&PassedQueueTimeSeconds_Optional); return nullptr; }
 	/** @brief Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true */
-	void SetPassedQueueTimeSeconds(const int32& NewValue) { PassedQueueTimeSeconds_Optional = NewValue; PassedQueueTimeSeconds_IsSet = true;  }
+	FORCEINLINE void SetPassedQueueTimeSeconds(const int32& NewValue) { PassedQueueTimeSeconds_Optional = NewValue; PassedQueueTimeSeconds_IsSet = true;  }
 	/** @brief Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true using move semantics */
-	void SetPassedQueueTimeSeconds(int32&& NewValue) { PassedQueueTimeSeconds_Optional = NewValue; PassedQueueTimeSeconds_IsSet = true;  }
+	FORCEINLINE void SetPassedQueueTimeSeconds(int32&& NewValue) { PassedQueueTimeSeconds_Optional = NewValue; PassedQueueTimeSeconds_IsSet = true;  }
 	/** @brief Clears the value of PassedQueueTimeSeconds_Optional and sets PassedQueueTimeSeconds_IsSet to false */
 	void ClearPassedQueueTimeSeconds() { PassedQueueTimeSeconds_Optional = 0; PassedQueueTimeSeconds_IsSet = false;  }
-	/** @brief Checks whether PassedQueueTimeSeconds_Optional has been set */
-	bool IsPassedQueueTimeSecondsSet() const { return PassedQueueTimeSeconds_IsSet; }
-	/** @brief Returns true if PassedQueueTimeSeconds_Optional is set and matches the default value */
-	bool IsPassedQueueTimeSecondsDefaultValue() const { return PassedQueueTimeSeconds_IsSet && PassedQueueTimeSeconds_Optional == 0; }
-	/** @brief Sets the value of PassedQueueTimeSeconds_Optional to its default and also sets PassedQueueTimeSeconds_IsSet to true */
-	void SetPassedQueueTimeSecondsToDefault() { SetPassedQueueTimeSeconds(0); }
+	/** @brief Returns the default value of PassedQueueTimeSeconds */
+	FORCEINLINE int32 GetDefaultValue_PassedQueueTimeSeconds() { return 0; }
 };
 
 /** @} */

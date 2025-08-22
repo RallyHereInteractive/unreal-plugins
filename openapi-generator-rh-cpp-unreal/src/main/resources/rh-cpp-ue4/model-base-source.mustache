@@ -376,7 +376,7 @@ void FAPI::HandleResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResp
 	});
 	
 	// create an async task, which will potentially be run synchronously
-	auto Task = new FAsyncTask<FHandleResponseParseAsyncTask>(InOutResponse, OnAsyncParseComplete);
+	auto Task = new FAutoDeleteAsyncTask<FHandleResponseParseAsyncTask>(InOutResponse, OnAsyncParseComplete);
 	
 	// parse the response asynchronously
 	const auto MaxContentLength = GetDefault<U{{unrealModuleName}}Settings>()->InlineJsonParseMaximumSize;

@@ -27,22 +27,22 @@ Represents a player referral relationship where one player was referred by anoth
 `public FDateTime `[`LastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1a48816bbc61307481f3fdb15e5e5321d4) | 
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerReferral_1abebeb0c7affa26a9de43ed7e3b3bea9d)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerReferral_1a27e432ccd6fa8bca79075579cdaff64f)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a5d62e4882fad695e943e6b59d389d410)`()` | Gets the value of ReferreePlayerUuid.
-`public inline const FGuid & `[`GetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1ab45964360bb09e49180e174ea032de27)`() const` | Gets the value of ReferreePlayerUuid.
-`public inline void `[`SetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a278b0f7feb73b37455d8919b78680493)`(const FGuid & NewValue)` | Sets the value of ReferreePlayerUuid.
-`public inline void `[`SetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a6031ff2c78441515c41dfc713593a12c)`(FGuid && NewValue)` | Sets the value of ReferreePlayerUuid using move semantics.
-`public inline FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1aae054830cac4aabc68df2b21b5f5eb51)`()` | Gets the value of ReferrerPlayerUuid.
-`public inline const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1af54ce3648065020792e7f4e049dc6f1f)`() const` | Gets the value of ReferrerPlayerUuid.
-`public inline void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a8614063d0c7ca27b69bef0ebd526a560)`(const FGuid & NewValue)` | Sets the value of ReferrerPlayerUuid.
-`public inline void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a876e89e80c2bd0c3ec5bf8ed6fb72b5e)`(FGuid && NewValue)` | Sets the value of ReferrerPlayerUuid using move semantics.
-`public inline FDateTime & `[`GetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a68f9de1a1b77c28a805cb5b3e6e26f67)`()` | Gets the value of CreatedDatetime.
-`public inline const FDateTime & `[`GetCreatedDatetime`](#structFRHAPI__PlayerReferral_1ae812cded0468572ed4d9dc1b93781255)`() const` | Gets the value of CreatedDatetime.
-`public inline void `[`SetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a4c7dbc2e0acff63503a6ff3de716c3a5)`(const FDateTime & NewValue)` | Sets the value of CreatedDatetime.
-`public inline void `[`SetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a6cc9600c1cb6ed88e17f576f20ec2027)`(FDateTime && NewValue)` | Sets the value of CreatedDatetime using move semantics.
-`public inline FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1af535037913207f349d6a2aa862826308)`()` | Gets the value of LastModifiedTimestamp.
-`public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1abb7adc9829d64fc2b0ec88aae8a0279f)`() const` | Gets the value of LastModifiedTimestamp.
-`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1ab94cbdc0c7f0390a82a1d9756653acd1)`(const FDateTime & NewValue)` | Sets the value of LastModifiedTimestamp.
-`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1a56068db53ebf528f677cbc768ae8cbe8)`(FDateTime && NewValue)` | Sets the value of LastModifiedTimestamp using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a2bcd83fc32edd89fb9046877a61ece37)`()` | Gets the value of ReferreePlayerUuid.
+`public inline FORCEINLINE const FGuid & `[`GetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a6f92704b92e52a999b36a33d4c253ca4)`() const` | Gets the value of ReferreePlayerUuid.
+`public inline FORCEINLINE void `[`SetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a89367fd2d01e7fdfeac5d06fefabfb6e)`(const FGuid & NewValue)` | Sets the value of ReferreePlayerUuid.
+`public inline FORCEINLINE void `[`SetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a5658e8620101341f1053bce39d6ffe31)`(FGuid && NewValue)` | Sets the value of ReferreePlayerUuid using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1ab5aaab0fbd4962134a8accc9e56becb8)`()` | Gets the value of ReferrerPlayerUuid.
+`public inline FORCEINLINE const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a9d0490370dd451b44263d72757c75d5f)`() const` | Gets the value of ReferrerPlayerUuid.
+`public inline FORCEINLINE void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a69b1d9a0e6414fa9b1f8fe64b0f1a1d3)`(const FGuid & NewValue)` | Sets the value of ReferrerPlayerUuid.
+`public inline FORCEINLINE void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a8171cf0fa585334141c291d9b19a5d63)`(FGuid && NewValue)` | Sets the value of ReferrerPlayerUuid using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetCreatedDatetime`](#structFRHAPI__PlayerReferral_1aa6a386de9d157e7abd5cc09fc09c7024)`()` | Gets the value of CreatedDatetime.
+`public inline FORCEINLINE const FDateTime & `[`GetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a29e1e66c45d209f6d89435fb808acb47)`() const` | Gets the value of CreatedDatetime.
+`public inline FORCEINLINE void `[`SetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a4be0edded09633601c3c26c667c73fa8)`(const FDateTime & NewValue)` | Sets the value of CreatedDatetime.
+`public inline FORCEINLINE void `[`SetCreatedDatetime`](#structFRHAPI__PlayerReferral_1aa73bcbb8a5733b3854b61d5a3b0ca46d)`(FDateTime && NewValue)` | Sets the value of CreatedDatetime using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1ae1c8929bdfce631b39d41ce0439306b9)`()` | Gets the value of LastModifiedTimestamp.
+`public inline FORCEINLINE const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1afb26871a1d9c4760f0c8f70de7dbf77a)`() const` | Gets the value of LastModifiedTimestamp.
+`public inline FORCEINLINE void `[`SetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1ae2ccc14aa47ef923a6fe93eddcb5670e)`(const FDateTime & NewValue)` | Sets the value of LastModifiedTimestamp.
+`public inline FORCEINLINE void `[`SetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1a877180974464e04e0872d3f3062a27b4)`(FDateTime && NewValue)` | Sets the value of LastModifiedTimestamp using move semantics.
 
 ### Members
 
@@ -71,67 +71,67 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a5d62e4882fad695e943e6b59d389d410)`()` <a id="structFRHAPI__PlayerReferral_1a5d62e4882fad695e943e6b59d389d410"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a2bcd83fc32edd89fb9046877a61ece37)`()` <a id="structFRHAPI__PlayerReferral_1a2bcd83fc32edd89fb9046877a61ece37"></a>
 
 Gets the value of ReferreePlayerUuid.
 
-#### `public inline const FGuid & `[`GetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1ab45964360bb09e49180e174ea032de27)`() const` <a id="structFRHAPI__PlayerReferral_1ab45964360bb09e49180e174ea032de27"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a6f92704b92e52a999b36a33d4c253ca4)`() const` <a id="structFRHAPI__PlayerReferral_1a6f92704b92e52a999b36a33d4c253ca4"></a>
 
 Gets the value of ReferreePlayerUuid.
 
-#### `public inline void `[`SetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a278b0f7feb73b37455d8919b78680493)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerReferral_1a278b0f7feb73b37455d8919b78680493"></a>
+#### `public inline FORCEINLINE void `[`SetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a89367fd2d01e7fdfeac5d06fefabfb6e)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerReferral_1a89367fd2d01e7fdfeac5d06fefabfb6e"></a>
 
 Sets the value of ReferreePlayerUuid.
 
-#### `public inline void `[`SetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a6031ff2c78441515c41dfc713593a12c)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerReferral_1a6031ff2c78441515c41dfc713593a12c"></a>
+#### `public inline FORCEINLINE void `[`SetReferreePlayerUuid`](#structFRHAPI__PlayerReferral_1a5658e8620101341f1053bce39d6ffe31)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerReferral_1a5658e8620101341f1053bce39d6ffe31"></a>
 
 Sets the value of ReferreePlayerUuid using move semantics.
 
-#### `public inline FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1aae054830cac4aabc68df2b21b5f5eb51)`()` <a id="structFRHAPI__PlayerReferral_1aae054830cac4aabc68df2b21b5f5eb51"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1ab5aaab0fbd4962134a8accc9e56becb8)`()` <a id="structFRHAPI__PlayerReferral_1ab5aaab0fbd4962134a8accc9e56becb8"></a>
 
 Gets the value of ReferrerPlayerUuid.
 
-#### `public inline const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1af54ce3648065020792e7f4e049dc6f1f)`() const` <a id="structFRHAPI__PlayerReferral_1af54ce3648065020792e7f4e049dc6f1f"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a9d0490370dd451b44263d72757c75d5f)`() const` <a id="structFRHAPI__PlayerReferral_1a9d0490370dd451b44263d72757c75d5f"></a>
 
 Gets the value of ReferrerPlayerUuid.
 
-#### `public inline void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a8614063d0c7ca27b69bef0ebd526a560)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerReferral_1a8614063d0c7ca27b69bef0ebd526a560"></a>
+#### `public inline FORCEINLINE void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a69b1d9a0e6414fa9b1f8fe64b0f1a1d3)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerReferral_1a69b1d9a0e6414fa9b1f8fe64b0f1a1d3"></a>
 
 Sets the value of ReferrerPlayerUuid.
 
-#### `public inline void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a876e89e80c2bd0c3ec5bf8ed6fb72b5e)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerReferral_1a876e89e80c2bd0c3ec5bf8ed6fb72b5e"></a>
+#### `public inline FORCEINLINE void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferral_1a8171cf0fa585334141c291d9b19a5d63)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerReferral_1a8171cf0fa585334141c291d9b19a5d63"></a>
 
 Sets the value of ReferrerPlayerUuid using move semantics.
 
-#### `public inline FDateTime & `[`GetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a68f9de1a1b77c28a805cb5b3e6e26f67)`()` <a id="structFRHAPI__PlayerReferral_1a68f9de1a1b77c28a805cb5b3e6e26f67"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetCreatedDatetime`](#structFRHAPI__PlayerReferral_1aa6a386de9d157e7abd5cc09fc09c7024)`()` <a id="structFRHAPI__PlayerReferral_1aa6a386de9d157e7abd5cc09fc09c7024"></a>
 
 Gets the value of CreatedDatetime.
 
-#### `public inline const FDateTime & `[`GetCreatedDatetime`](#structFRHAPI__PlayerReferral_1ae812cded0468572ed4d9dc1b93781255)`() const` <a id="structFRHAPI__PlayerReferral_1ae812cded0468572ed4d9dc1b93781255"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a29e1e66c45d209f6d89435fb808acb47)`() const` <a id="structFRHAPI__PlayerReferral_1a29e1e66c45d209f6d89435fb808acb47"></a>
 
 Gets the value of CreatedDatetime.
 
-#### `public inline void `[`SetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a4c7dbc2e0acff63503a6ff3de716c3a5)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerReferral_1a4c7dbc2e0acff63503a6ff3de716c3a5"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a4be0edded09633601c3c26c667c73fa8)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerReferral_1a4be0edded09633601c3c26c667c73fa8"></a>
 
 Sets the value of CreatedDatetime.
 
-#### `public inline void `[`SetCreatedDatetime`](#structFRHAPI__PlayerReferral_1a6cc9600c1cb6ed88e17f576f20ec2027)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerReferral_1a6cc9600c1cb6ed88e17f576f20ec2027"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedDatetime`](#structFRHAPI__PlayerReferral_1aa73bcbb8a5733b3854b61d5a3b0ca46d)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerReferral_1aa73bcbb8a5733b3854b61d5a3b0ca46d"></a>
 
 Sets the value of CreatedDatetime using move semantics.
 
-#### `public inline FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1af535037913207f349d6a2aa862826308)`()` <a id="structFRHAPI__PlayerReferral_1af535037913207f349d6a2aa862826308"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1ae1c8929bdfce631b39d41ce0439306b9)`()` <a id="structFRHAPI__PlayerReferral_1ae1c8929bdfce631b39d41ce0439306b9"></a>
 
 Gets the value of LastModifiedTimestamp.
 
-#### `public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1abb7adc9829d64fc2b0ec88aae8a0279f)`() const` <a id="structFRHAPI__PlayerReferral_1abb7adc9829d64fc2b0ec88aae8a0279f"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1afb26871a1d9c4760f0c8f70de7dbf77a)`() const` <a id="structFRHAPI__PlayerReferral_1afb26871a1d9c4760f0c8f70de7dbf77a"></a>
 
 Gets the value of LastModifiedTimestamp.
 
-#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1ab94cbdc0c7f0390a82a1d9756653acd1)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerReferral_1ab94cbdc0c7f0390a82a1d9756653acd1"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1ae2ccc14aa47ef923a6fe93eddcb5670e)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerReferral_1ae2ccc14aa47ef923a6fe93eddcb5670e"></a>
 
 Sets the value of LastModifiedTimestamp.
 
-#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1a56068db53ebf528f677cbc768ae8cbe8)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerReferral_1a56068db53ebf528f677cbc768ae8cbe8"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedTimestamp`](#structFRHAPI__PlayerReferral_1a877180974464e04e0872d3f3062a27b4)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerReferral_1a877180974464e04e0872d3f3062a27b4"></a>
 
 Sets the value of LastModifiedTimestamp using move semantics.
 

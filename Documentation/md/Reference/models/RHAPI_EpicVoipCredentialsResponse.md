@@ -25,22 +25,22 @@ struct FRHAPI_EpicVoipCredentialsResponse
 `public FString `[`ProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a502c21555427ad73abed4fb1696d1401) | Epic ProductUserId for the authenticated user.
 `public virtual bool `[`FromJson`](#structFRHAPI__EpicVoipCredentialsResponse_1a8ace05b4ccbcbad3427bf6551d0ab7a8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__EpicVoipCredentialsResponse_1aaeda2b439c6755532669177534df82c1)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a8ab849b875f69870a61857db335b1daf)`()` | Gets the value of RoomId.
-`public inline const FString & `[`GetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a4111c2aa51465dbd0f295eb3d4172902)`() const` | Gets the value of RoomId.
-`public inline void `[`SetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a9de7e8efcb0c0605794d3c1b4e89646c)`(const FString & NewValue)` | Sets the value of RoomId.
-`public inline void `[`SetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a39f8beb7362d2528acbdae0fdbf6735b)`(FString && NewValue)` | Sets the value of RoomId using move semantics.
-`public inline FString & `[`GetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1ac622133ba66e2fea9e908b00d85bc51d)`()` | Gets the value of ParticipantToken.
-`public inline const FString & `[`GetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1a95550252cef5ac9ec6f99f87cf3cd785)`() const` | Gets the value of ParticipantToken.
-`public inline void `[`SetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1aaad23e5ec30678c8c921af400e5ac63e)`(const FString & NewValue)` | Sets the value of ParticipantToken.
-`public inline void `[`SetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1a985f41eea83735462262d179ea3e2040)`(FString && NewValue)` | Sets the value of ParticipantToken using move semantics.
-`public inline FString & `[`GetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a111c68cc362a6fbacb3204448c30b02f)`()` | Gets the value of ClientBaseUrl.
-`public inline const FString & `[`GetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a541ae72a4b6f497f4fc2a17588e47796)`() const` | Gets the value of ClientBaseUrl.
-`public inline void `[`SetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a9abb0f284674d2ae7ecf13aef82e2888)`(const FString & NewValue)` | Sets the value of ClientBaseUrl.
-`public inline void `[`SetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a0cfea02c65472adf4b0772875402002c)`(FString && NewValue)` | Sets the value of ClientBaseUrl using move semantics.
-`public inline FString & `[`GetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1af51133dfa23bc77e4e5fd239402560d5)`()` | Gets the value of ProductUserId.
-`public inline const FString & `[`GetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a9642fc859d058737949c2ef9ab6f7076)`() const` | Gets the value of ProductUserId.
-`public inline void `[`SetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a32276a266a786b5ad49ee0fd19f10275)`(const FString & NewValue)` | Sets the value of ProductUserId.
-`public inline void `[`SetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1ae2d73b1456526aa9d2c12d338d490bc1)`(FString && NewValue)` | Sets the value of ProductUserId using move semantics.
+`public inline FORCEINLINE FString & `[`GetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a4be163f460cae9127b03390d1f114e1b)`()` | Gets the value of RoomId.
+`public inline FORCEINLINE const FString & `[`GetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a7275cc2d56d6d5539fc78af113d44a52)`() const` | Gets the value of RoomId.
+`public inline FORCEINLINE void `[`SetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a4a686416a76e9be7951c1718ea9c822c)`(const FString & NewValue)` | Sets the value of RoomId.
+`public inline FORCEINLINE void `[`SetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1ab050dd95f9c5ab3f777ec62ac4d550c3)`(FString && NewValue)` | Sets the value of RoomId using move semantics.
+`public inline FORCEINLINE FString & `[`GetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1a261b07d6c19efdabbc0676133b616973)`()` | Gets the value of ParticipantToken.
+`public inline FORCEINLINE const FString & `[`GetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1a606f76e71161f4c7b0f3b2d5ecf18456)`() const` | Gets the value of ParticipantToken.
+`public inline FORCEINLINE void `[`SetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1af5b3c8b1921878d6d3f2644ba36d9245)`(const FString & NewValue)` | Sets the value of ParticipantToken.
+`public inline FORCEINLINE void `[`SetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1ad5c1cb1d0a91878f7e6c040ff77579e2)`(FString && NewValue)` | Sets the value of ParticipantToken using move semantics.
+`public inline FORCEINLINE FString & `[`GetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a35ec6eabde72e0014a6522e6e5718d0b)`()` | Gets the value of ClientBaseUrl.
+`public inline FORCEINLINE const FString & `[`GetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1ad2895841bea497cb24bc305e29e7ffce)`() const` | Gets the value of ClientBaseUrl.
+`public inline FORCEINLINE void `[`SetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1aef758f6c9c528ead8413ee91b59fc6cc)`(const FString & NewValue)` | Sets the value of ClientBaseUrl.
+`public inline FORCEINLINE void `[`SetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a536708aec6617e3475424986a65eed57)`(FString && NewValue)` | Sets the value of ClientBaseUrl using move semantics.
+`public inline FORCEINLINE FString & `[`GetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a0039b14633261840cecc89d20a7cc1ad)`()` | Gets the value of ProductUserId.
+`public inline FORCEINLINE const FString & `[`GetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1aba11bbd88fbecb780264eccc971fd6f2)`() const` | Gets the value of ProductUserId.
+`public inline FORCEINLINE void `[`SetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a34edee75ca545780cb95504f68978242)`(const FString & NewValue)` | Sets the value of ProductUserId.
+`public inline FORCEINLINE void `[`SetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1af52eea8f963ab7eac05d5d490e4b238e)`(FString && NewValue)` | Sets the value of ProductUserId using move semantics.
 
 ### Members
 
@@ -77,67 +77,67 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a8ab849b875f69870a61857db335b1daf)`()` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a8ab849b875f69870a61857db335b1daf"></a>
+#### `public inline FORCEINLINE FString & `[`GetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a4be163f460cae9127b03390d1f114e1b)`()` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a4be163f460cae9127b03390d1f114e1b"></a>
 
 Gets the value of RoomId.
 
-#### `public inline const FString & `[`GetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a4111c2aa51465dbd0f295eb3d4172902)`() const` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a4111c2aa51465dbd0f295eb3d4172902"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a7275cc2d56d6d5539fc78af113d44a52)`() const` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a7275cc2d56d6d5539fc78af113d44a52"></a>
 
 Gets the value of RoomId.
 
-#### `public inline void `[`SetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a9de7e8efcb0c0605794d3c1b4e89646c)`(const FString & NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a9de7e8efcb0c0605794d3c1b4e89646c"></a>
+#### `public inline FORCEINLINE void `[`SetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a4a686416a76e9be7951c1718ea9c822c)`(const FString & NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a4a686416a76e9be7951c1718ea9c822c"></a>
 
 Sets the value of RoomId.
 
-#### `public inline void `[`SetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1a39f8beb7362d2528acbdae0fdbf6735b)`(FString && NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a39f8beb7362d2528acbdae0fdbf6735b"></a>
+#### `public inline FORCEINLINE void `[`SetRoomId`](#structFRHAPI__EpicVoipCredentialsResponse_1ab050dd95f9c5ab3f777ec62ac4d550c3)`(FString && NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1ab050dd95f9c5ab3f777ec62ac4d550c3"></a>
 
 Sets the value of RoomId using move semantics.
 
-#### `public inline FString & `[`GetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1ac622133ba66e2fea9e908b00d85bc51d)`()` <a id="structFRHAPI__EpicVoipCredentialsResponse_1ac622133ba66e2fea9e908b00d85bc51d"></a>
+#### `public inline FORCEINLINE FString & `[`GetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1a261b07d6c19efdabbc0676133b616973)`()` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a261b07d6c19efdabbc0676133b616973"></a>
 
 Gets the value of ParticipantToken.
 
-#### `public inline const FString & `[`GetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1a95550252cef5ac9ec6f99f87cf3cd785)`() const` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a95550252cef5ac9ec6f99f87cf3cd785"></a>
+#### `public inline FORCEINLINE const FString & `[`GetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1a606f76e71161f4c7b0f3b2d5ecf18456)`() const` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a606f76e71161f4c7b0f3b2d5ecf18456"></a>
 
 Gets the value of ParticipantToken.
 
-#### `public inline void `[`SetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1aaad23e5ec30678c8c921af400e5ac63e)`(const FString & NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1aaad23e5ec30678c8c921af400e5ac63e"></a>
+#### `public inline FORCEINLINE void `[`SetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1af5b3c8b1921878d6d3f2644ba36d9245)`(const FString & NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1af5b3c8b1921878d6d3f2644ba36d9245"></a>
 
 Sets the value of ParticipantToken.
 
-#### `public inline void `[`SetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1a985f41eea83735462262d179ea3e2040)`(FString && NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a985f41eea83735462262d179ea3e2040"></a>
+#### `public inline FORCEINLINE void `[`SetParticipantToken`](#structFRHAPI__EpicVoipCredentialsResponse_1ad5c1cb1d0a91878f7e6c040ff77579e2)`(FString && NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1ad5c1cb1d0a91878f7e6c040ff77579e2"></a>
 
 Sets the value of ParticipantToken using move semantics.
 
-#### `public inline FString & `[`GetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a111c68cc362a6fbacb3204448c30b02f)`()` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a111c68cc362a6fbacb3204448c30b02f"></a>
+#### `public inline FORCEINLINE FString & `[`GetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a35ec6eabde72e0014a6522e6e5718d0b)`()` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a35ec6eabde72e0014a6522e6e5718d0b"></a>
 
 Gets the value of ClientBaseUrl.
 
-#### `public inline const FString & `[`GetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a541ae72a4b6f497f4fc2a17588e47796)`() const` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a541ae72a4b6f497f4fc2a17588e47796"></a>
+#### `public inline FORCEINLINE const FString & `[`GetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1ad2895841bea497cb24bc305e29e7ffce)`() const` <a id="structFRHAPI__EpicVoipCredentialsResponse_1ad2895841bea497cb24bc305e29e7ffce"></a>
 
 Gets the value of ClientBaseUrl.
 
-#### `public inline void `[`SetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a9abb0f284674d2ae7ecf13aef82e2888)`(const FString & NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a9abb0f284674d2ae7ecf13aef82e2888"></a>
+#### `public inline FORCEINLINE void `[`SetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1aef758f6c9c528ead8413ee91b59fc6cc)`(const FString & NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1aef758f6c9c528ead8413ee91b59fc6cc"></a>
 
 Sets the value of ClientBaseUrl.
 
-#### `public inline void `[`SetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a0cfea02c65472adf4b0772875402002c)`(FString && NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a0cfea02c65472adf4b0772875402002c"></a>
+#### `public inline FORCEINLINE void `[`SetClientBaseUrl`](#structFRHAPI__EpicVoipCredentialsResponse_1a536708aec6617e3475424986a65eed57)`(FString && NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a536708aec6617e3475424986a65eed57"></a>
 
 Sets the value of ClientBaseUrl using move semantics.
 
-#### `public inline FString & `[`GetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1af51133dfa23bc77e4e5fd239402560d5)`()` <a id="structFRHAPI__EpicVoipCredentialsResponse_1af51133dfa23bc77e4e5fd239402560d5"></a>
+#### `public inline FORCEINLINE FString & `[`GetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a0039b14633261840cecc89d20a7cc1ad)`()` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a0039b14633261840cecc89d20a7cc1ad"></a>
 
 Gets the value of ProductUserId.
 
-#### `public inline const FString & `[`GetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a9642fc859d058737949c2ef9ab6f7076)`() const` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a9642fc859d058737949c2ef9ab6f7076"></a>
+#### `public inline FORCEINLINE const FString & `[`GetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1aba11bbd88fbecb780264eccc971fd6f2)`() const` <a id="structFRHAPI__EpicVoipCredentialsResponse_1aba11bbd88fbecb780264eccc971fd6f2"></a>
 
 Gets the value of ProductUserId.
 
-#### `public inline void `[`SetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a32276a266a786b5ad49ee0fd19f10275)`(const FString & NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a32276a266a786b5ad49ee0fd19f10275"></a>
+#### `public inline FORCEINLINE void `[`SetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1a34edee75ca545780cb95504f68978242)`(const FString & NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1a34edee75ca545780cb95504f68978242"></a>
 
 Sets the value of ProductUserId.
 
-#### `public inline void `[`SetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1ae2d73b1456526aa9d2c12d338d490bc1)`(FString && NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1ae2d73b1456526aa9d2c12d338d490bc1"></a>
+#### `public inline FORCEINLINE void `[`SetProductUserId`](#structFRHAPI__EpicVoipCredentialsResponse_1af52eea8f963ab7eac05d5d490e4b238e)`(FString && NewValue)` <a id="structFRHAPI__EpicVoipCredentialsResponse_1af52eea8f963ab7eac05d5d490e4b238e"></a>
 
 Sets the value of ProductUserId using move semantics.
 

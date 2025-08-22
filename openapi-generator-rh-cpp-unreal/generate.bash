@@ -55,7 +55,7 @@ fi
 
 ########################################
 # Download openapi-generator-cli
-curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.10.0/openapi-generator-cli-7.10.0.jar --create-dirs -o bin/openapi-generator-cli.jar
+curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.14.0/openapi-generator-cli-7.14.0.jar --create-dirs -o bin/openapi-generator-cli.jar
 
 ########################################
 # Build the rh-cpp-ue4 generator

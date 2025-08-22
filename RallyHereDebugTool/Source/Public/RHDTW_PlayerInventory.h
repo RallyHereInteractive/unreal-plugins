@@ -20,6 +20,7 @@ struct FRHDTW_PlayerInventory : public FRH_DebugToolWindow
 	void DoInventory();
 	void DoModifyInventory();
 	void DoOrderWatchTab();
+	void DoClaim();
 
 	bool WatchEnabled;
 	FRH_OrderDetailsBlock OrderDetailsBlock;
@@ -156,5 +157,8 @@ private:
 	TArray<const ANSICHAR*> InventoryBucketChars;
 
 	FImGuiCustomDataStager CustomDataStager;
+
+	FString PromoCode;
+	int32 InputLootId;
 };
 

@@ -182,6 +182,12 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnMatchPlayerUpdatedCompleteDynamicDele
 DECLARE_DELEGATE_ThreeParams(FRH_OnMatchPlayerUpdateCompleteDelegate, bool, const FRHAPI_MatchPlayerWithMatch&, const FRH_ErrorInfo&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_OnMatchPlayerUpdateCompleteDelegateBlock, FRH_OnMatchPlayerUpdateCompleteDelegate, FRH_OnMatchPlayerUpdatedCompleteDynamicDelegate, bool, const FRHAPI_MatchPlayerWithMatch&, const FRH_ErrorInfo&);
 
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnMatchTimelineReceivedDynamicDelegate, bool, bSuccess, const FRHAPI_MatchTimelinePage&, Match, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnMatchTimelineReceivedDelegate, bool, const FRHAPI_MatchTimelinePage&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnMatchTimelineReceivedDelegateBlock, FRH_OnMatchTimelineReceivedDelegate, FRH_OnMatchTimelineReceivedDynamicDelegate, bool, const FRHAPI_MatchTimelinePage&, const FRH_ErrorInfo&);
+
+
 /**
  * @brief Match Subsystem used for match API calls.
  */
@@ -307,6 +313,25 @@ public:
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Matches", meta = (DisplayName = "Update Match", AutoCreateRefTerm = "Match,Delegate"))
 	void BLUEPRINT_UpdateMatchSegment(const FString& MatchId, const FString& SegmentId, const FRHAPI_MatchSegmentPatchRequest& Segment, const FRH_OnMatchUpdateCompleteDynamicDelegate& Delegate) { UpdateMatchSegment(MatchId, SegmentId, Segment, Delegate); }
+
+	/**
+	 * @brief Get the match timeline for a match
+	 */
+	virtual void GetMatchTimelinePage(const FString& MatchId, FString Cursor = FString(), const FRH_OnMatchTimelineReceivedDelegateBlock& Delegate = FRH_OnMatchTimelineReceivedDelegateBlock());
+	/** @private */
+	void BLUEPRINT_GetMatchTimelinePage(const FString& MatchId, FString Cursor = FString(), const FRH_OnMatchTimelineReceivedDynamicDelegate& Delegate = FRH_OnMatchTimelineReceivedDynamicDelegate()) { GetMatchTimelinePage(MatchId, MoveTemp(Cursor), Delegate); }
+
+	/**
+	 * @brief Upload a match timeline
+	 */
+	virtual void UploadMatchTimeline(const FString& MatchId, FRHAPI_MatchTimeline MatchTimeline, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+	/** @private */
+	void BLUEPRINT_UploadMatchTimeline(const FString& MatchId, FRHAPI_MatchTimeline MatchTimeline, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate = FRH_GenericSuccessWithErrorDynamicDelegate()) { UploadMatchTimeline(MatchId, MoveTemp(MatchTimeline), Delegate); }
+
+	/**
+	 * @brief Upload a match timeline from a file
+	 */
+	virtual void UploadMatchTimelineFromFile(const FString MatchId, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	
 	// Files
 	/**

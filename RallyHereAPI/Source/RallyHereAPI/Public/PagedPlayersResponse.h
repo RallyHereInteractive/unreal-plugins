@@ -47,41 +47,37 @@ struct RALLYHEREAPI_API FRHAPI_PagedPlayersResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Teams_IsSet{ false };
 	/** @brief Gets the value of Teams_Optional, regardless of it having been set */
-	TArray<FRHAPI_SessionTeam>& GetTeams() { return Teams_Optional; }
+	FORCEINLINE TArray<FRHAPI_SessionTeam>& GetTeams() { return Teams_Optional; }
 	/** @brief Gets the value of Teams_Optional, regardless of it having been set */
-	const TArray<FRHAPI_SessionTeam>& GetTeams() const { return Teams_Optional; }
+	FORCEINLINE const TArray<FRHAPI_SessionTeam>& GetTeams() const { return Teams_Optional; }
 	/** @brief Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_SessionTeam>& GetTeams(const TArray<FRHAPI_SessionTeam>& DefaultValue) const { if (Teams_IsSet) return Teams_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_SessionTeam>& GetTeams(const TArray<FRHAPI_SessionTeam>& DefaultValue) const { if (Teams_IsSet) return Teams_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTeams(TArray<FRHAPI_SessionTeam>& OutValue) const { if (Teams_IsSet) OutValue = Teams_Optional; return Teams_IsSet; }
+	FORCEINLINE bool GetTeams(TArray<FRHAPI_SessionTeam>& OutValue) const { if (Teams_IsSet) OutValue = Teams_Optional; return Teams_IsSet; }
 	/** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_SessionTeam>* GetTeamsOrNull() { if (Teams_IsSet) return (&Teams_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_SessionTeam>* GetTeamsOrNull() { if (Teams_IsSet) return (&Teams_Optional); return nullptr; }
 	/** @brief Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_SessionTeam>* GetTeamsOrNull() const { if (Teams_IsSet) return (&Teams_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_SessionTeam>* GetTeamsOrNull() const { if (Teams_IsSet) return (&Teams_Optional); return nullptr; }
 	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true */
-	void SetTeams(const TArray<FRHAPI_SessionTeam>& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true;  }
+	FORCEINLINE void SetTeams(const TArray<FRHAPI_SessionTeam>& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true;  }
 	/** @brief Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics */
-	void SetTeams(TArray<FRHAPI_SessionTeam>&& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true;  }
+	FORCEINLINE void SetTeams(TArray<FRHAPI_SessionTeam>&& NewValue) { Teams_Optional = NewValue; Teams_IsSet = true;  }
 	/** @brief Clears the value of Teams_Optional and sets Teams_IsSet to false */
 	void ClearTeams() { Teams_IsSet = false;  }
-	/** @brief Checks whether Teams_Optional has been set */
-	bool IsTeamsSet() const { return Teams_IsSet; }
 
 	/** @brief Cursor to continue iterating through players in a session. 0 means we have returned the last entry */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Cursor{ 0 };
 	/** @brief Gets the value of Cursor */
-	int32& GetCursor() { return Cursor; }
+	FORCEINLINE int32& GetCursor() { return Cursor; }
 	/** @brief Gets the value of Cursor */
-	const int32& GetCursor() const { return Cursor; }
+	FORCEINLINE const int32& GetCursor() const { return Cursor; }
 	/** @brief Sets the value of Cursor */
-	void SetCursor(const int32& NewValue) { Cursor = NewValue;   }
+	FORCEINLINE void SetCursor(const int32& NewValue) { Cursor = NewValue;   }
 	/** @brief Sets the value of Cursor using move semantics */
-	void SetCursor(int32&& NewValue) { Cursor = NewValue;   }
-	/** @brief Returns true if Cursor matches the default value */
-	bool IsCursorDefaultValue() const { return Cursor == 0; }
-	/** @brief Sets the value of Cursor to its default  */
-	void SetCursorToDefault() { SetCursor(0); }
+	FORCEINLINE void SetCursor(int32&& NewValue) { Cursor = NewValue;   }
+	/** @brief Returns the default value of Cursor */
+	FORCEINLINE int32 GetDefaultValue_Cursor() { return 0; }
 };
 
 /** @} */

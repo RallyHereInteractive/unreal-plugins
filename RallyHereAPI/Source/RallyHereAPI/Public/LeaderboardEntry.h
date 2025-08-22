@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float StatValue_Optional{  };
@@ -60,45 +60,41 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardEntry : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool StatValue_IsNull{ false };
 	/** @brief Gets the value of StatValue_Optional, regardless of it having been set */
-	float& GetStatValue() { return StatValue_Optional; }
+	FORCEINLINE float& GetStatValue() { return StatValue_Optional; }
 	/** @brief Gets the value of StatValue_Optional, regardless of it having been set */
-	const float& GetStatValue() const { return StatValue_Optional; }
+	FORCEINLINE const float& GetStatValue() const { return StatValue_Optional; }
 	/** @brief Gets the value of StatValue_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetStatValue(const float& DefaultValue) const { if (StatValue_IsSet) return StatValue_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetStatValue(const float& DefaultValue) const { if (StatValue_IsSet) return StatValue_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of StatValue_Optional and returns true if it has been set, otherwise returns false */
-	bool GetStatValue(float& OutValue) const { if (StatValue_IsSet && !StatValue_IsNull) OutValue = StatValue_Optional; return StatValue_IsSet; }
+	FORCEINLINE bool GetStatValue(float& OutValue) const { if (StatValue_IsSet && !StatValue_IsNull) OutValue = StatValue_Optional; return StatValue_IsSet; }
 	/** @brief Returns a pointer to StatValue_Optional, if it has been set, otherwise returns nullptr */
-	float* GetStatValueOrNull() { if (StatValue_IsSet) return (StatValue_IsNull ? nullptr : &StatValue_Optional); return nullptr; }
+	FORCEINLINE float* GetStatValueOrNull() { if (StatValue_IsSet) return (StatValue_IsNull ? nullptr : &StatValue_Optional); return nullptr; }
 	/** @brief Returns a pointer to StatValue_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetStatValueOrNull() const { if (StatValue_IsSet) return (StatValue_IsNull ? nullptr : &StatValue_Optional); return nullptr; }
+	FORCEINLINE const float* GetStatValueOrNull() const { if (StatValue_IsSet) return (StatValue_IsNull ? nullptr : &StatValue_Optional); return nullptr; }
 	/** @brief Sets the value of StatValue_Optional and also sets StatValue_IsSet to true */
-	void SetStatValue(const float& NewValue) { StatValue_Optional = NewValue; StatValue_IsSet = true; StatValue_IsNull = false; }
+	FORCEINLINE void SetStatValue(const float& NewValue) { StatValue_Optional = NewValue; StatValue_IsSet = true; StatValue_IsNull = false; }
 	/** @brief Sets the value of StatValue_Optional and also sets StatValue_IsSet to true using move semantics */
-	void SetStatValue(float&& NewValue) { StatValue_Optional = NewValue; StatValue_IsSet = true; StatValue_IsNull = false; }
+	FORCEINLINE void SetStatValue(float&& NewValue) { StatValue_Optional = NewValue; StatValue_IsSet = true; StatValue_IsNull = false; }
 	/** @brief Clears the value of StatValue_Optional and sets StatValue_IsSet to false */
 	void ClearStatValue() { StatValue_IsSet = false; StatValue_IsNull = false; }
-	/** @brief Checks whether StatValue_Optional has been set */
-	bool IsStatValueSet() const { return StatValue_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetStatValueToNull() { StatValue_IsSet = true; StatValue_IsNull = true; }
+	FORCEINLINE void SetStatValueToNull() { StatValue_IsSet = true; StatValue_IsNull = true; }
 	/** @brief Checks whether StatValue_Optional is set to null */
-	bool IsStatValueNull() const { return StatValue_IsSet && StatValue_IsNull; }
+	FORCEINLINE bool IsStatValueNull() const { return StatValue_IsSet && StatValue_IsNull; }
 
 	/** @brief What position this entry is on the leaderboard */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Position{ 0 };
 	/** @brief Gets the value of Position */
-	int32& GetPosition() { return Position; }
+	FORCEINLINE int32& GetPosition() { return Position; }
 	/** @brief Gets the value of Position */
-	const int32& GetPosition() const { return Position; }
+	FORCEINLINE const int32& GetPosition() const { return Position; }
 	/** @brief Sets the value of Position */
-	void SetPosition(const int32& NewValue) { Position = NewValue;   }
+	FORCEINLINE void SetPosition(const int32& NewValue) { Position = NewValue;   }
 	/** @brief Sets the value of Position using move semantics */
-	void SetPosition(int32&& NewValue) { Position = NewValue;   }
-	/** @brief Returns true if Position matches the default value */
-	bool IsPositionDefaultValue() const { return Position == 0; }
-	/** @brief Sets the value of Position to its default  */
-	void SetPositionToDefault() { SetPosition(0); }
+	FORCEINLINE void SetPosition(int32&& NewValue) { Position = NewValue;   }
+	/** @brief Returns the default value of Position */
+	FORCEINLINE int32 GetDefaultValue_Position() { return 0; }
 };
 
 /** @} */

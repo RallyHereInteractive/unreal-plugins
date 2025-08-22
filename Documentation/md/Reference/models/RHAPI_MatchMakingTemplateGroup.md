@@ -27,24 +27,23 @@ DEPRECATED A collection of MatchMakingTemplates that may be used when a session 
 `public bool `[`RequiredItemIds_IsSet`](#structFRHAPI__MatchMakingTemplateGroup_1a3e01b3ff08aaf06e2b13085d40f00722) | true if RequiredItemIds_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroup_1acc88a050d788ebf1b8cdd85038ce90d6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroup_1aa6c55c8dcea42b9f70ed89d66600734f)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a8c7a92d5198c38e91510366b3dd7d8fd)`()` | Gets the value of TemplateGroupId.
-`public inline const FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a1065db3eba69479aaa243a8469315421)`() const` | Gets the value of TemplateGroupId.
-`public inline void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a9893fb99fefc189808371a0e4a31cccc)`(const FGuid & NewValue)` | Sets the value of TemplateGroupId.
-`public inline void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a00aa2ac8d88ee72700921c73df1d3af5)`(FGuid && NewValue)` | Sets the value of TemplateGroupId using move semantics.
-`public inline TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a1dfcb2f5d85730585082ec8da3e16037)`()` | Gets the value of TemplateOptions.
-`public inline const TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1ab25acfbae5186e9045ff5abe4544a8da)`() const` | Gets the value of TemplateOptions.
-`public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1ad3a9258de52f386ea2e3afe2bfe8ff98)`(const TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & NewValue)` | Sets the value of TemplateOptions.
-`public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a93f107fe7ef8d5b7c70ec135d03cf46a)`(TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > && NewValue)` | Sets the value of TemplateOptions using move semantics.
-`public inline TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1ad441347240a666a6d1102583f7b2dbe9)`()` | Gets the value of RequiredItemIds_Optional, regardless of it having been set.
-`public inline const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1abad6b784c81e75db44c92ea49a182bf2)`() const` | Gets the value of RequiredItemIds_Optional, regardless of it having been set.
-`public inline const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a2ea262870c980f747cea6a30be65b946)`(const TSet< int32 > & DefaultValue) const` | Gets the value of RequiredItemIds_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a38185a19d7b89025b245ffaf3e007fc8)`(TSet< int32 > & OutValue) const` | Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false.
-`public inline TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroup_1a9f8840bfc1e1a5a0742655237b88cb65)`()` | Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroup_1a64f5b1cdaddf69a1545175711f4915ef)`() const` | Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a74b354e3f991d4ae9ba5a76d03165718)`(const TSet< int32 > & NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
-`public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a8b2ffd32cffcf860028698dc16a578e5)`(TSet< int32 > && NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1ae6dca76f20c4bc44515bdffd5d9aaa93)`()` | Gets the value of TemplateGroupId.
+`public inline FORCEINLINE const FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1aa9d76b08aa792163e92acb213e6c454c)`() const` | Gets the value of TemplateGroupId.
+`public inline FORCEINLINE void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a8eb59bbcfcf4464096ea5f761c656e77)`(const FGuid & NewValue)` | Sets the value of TemplateGroupId.
+`public inline FORCEINLINE void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a0c1544687b36878de2b056ccb52a637f)`(FGuid && NewValue)` | Sets the value of TemplateGroupId using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a1acba11ca1b3a2ccd731ed1f74f176e8)`()` | Gets the value of TemplateOptions.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a653f90142185ab49b88f3a90cdccd514)`() const` | Gets the value of TemplateOptions.
+`public inline FORCEINLINE void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a34077cc191669119352f8cab6a9a34ed)`(const TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & NewValue)` | Sets the value of TemplateOptions.
+`public inline FORCEINLINE void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a50abfdd148158293f2db74bfe35ca37b)`(TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > && NewValue)` | Sets the value of TemplateOptions using move semantics.
+`public inline FORCEINLINE TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a39fd688a0446dd78564c25d23d4cab07)`()` | Gets the value of RequiredItemIds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a3465df6b0d46b93c4bca0590cace2e0a)`() const` | Gets the value of RequiredItemIds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1abd7a145b2ded7634049523c10922c20f)`(const TSet< int32 > & DefaultValue) const` | Gets the value of RequiredItemIds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a35c3201ba95e819e313a96b9296e9101)`(TSet< int32 > & OutValue) const` | Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroup_1a16291207eb4dbc8b1b042188ceb08d1b)`()` | Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroup_1af1eb24573a24e1b90eb53b8fa34eee82)`() const` | Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a72a13d481e21e069a835430ecab8cb57)`(const TSet< int32 > & NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
+`public inline FORCEINLINE void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a5c4d7e33bc218e06323b2b9c52ddac8d)`(TSet< int32 > && NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics.
 `public inline void `[`ClearRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a0314a2ef038598347f0d17de6fda851b)`()` | Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
-`public inline bool `[`IsRequiredItemIdsSet`](#structFRHAPI__MatchMakingTemplateGroup_1a76088870f10dd0164f74fbdfbb043702)`() const` | Checks whether RequiredItemIds_Optional has been set.
 
 ### Members
 
@@ -81,75 +80,71 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a8c7a92d5198c38e91510366b3dd7d8fd)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1a8c7a92d5198c38e91510366b3dd7d8fd"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1ae6dca76f20c4bc44515bdffd5d9aaa93)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1ae6dca76f20c4bc44515bdffd5d9aaa93"></a>
 
 Gets the value of TemplateGroupId.
 
-#### `public inline const FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a1065db3eba69479aaa243a8469315421)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a1065db3eba69479aaa243a8469315421"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1aa9d76b08aa792163e92acb213e6c454c)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1aa9d76b08aa792163e92acb213e6c454c"></a>
 
 Gets the value of TemplateGroupId.
 
-#### `public inline void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a9893fb99fefc189808371a0e4a31cccc)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a9893fb99fefc189808371a0e4a31cccc"></a>
+#### `public inline FORCEINLINE void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a8eb59bbcfcf4464096ea5f761c656e77)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a8eb59bbcfcf4464096ea5f761c656e77"></a>
 
 Sets the value of TemplateGroupId.
 
-#### `public inline void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a00aa2ac8d88ee72700921c73df1d3af5)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a00aa2ac8d88ee72700921c73df1d3af5"></a>
+#### `public inline FORCEINLINE void `[`SetTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroup_1a0c1544687b36878de2b056ccb52a637f)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a0c1544687b36878de2b056ccb52a637f"></a>
 
 Sets the value of TemplateGroupId using move semantics.
 
-#### `public inline TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a1dfcb2f5d85730585082ec8da3e16037)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1a1dfcb2f5d85730585082ec8da3e16037"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a1acba11ca1b3a2ccd731ed1f74f176e8)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1a1acba11ca1b3a2ccd731ed1f74f176e8"></a>
 
 Gets the value of TemplateOptions.
 
-#### `public inline const TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1ab25acfbae5186e9045ff5abe4544a8da)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1ab25acfbae5186e9045ff5abe4544a8da"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a653f90142185ab49b88f3a90cdccd514)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a653f90142185ab49b88f3a90cdccd514"></a>
 
 Gets the value of TemplateOptions.
 
-#### `public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1ad3a9258de52f386ea2e3afe2bfe8ff98)`(const TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1ad3a9258de52f386ea2e3afe2bfe8ff98"></a>
+#### `public inline FORCEINLINE void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a34077cc191669119352f8cab6a9a34ed)`(const TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a34077cc191669119352f8cab6a9a34ed"></a>
 
 Sets the value of TemplateOptions.
 
-#### `public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a93f107fe7ef8d5b7c70ec135d03cf46a)`(TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a93f107fe7ef8d5b7c70ec135d03cf46a"></a>
+#### `public inline FORCEINLINE void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroup_1a50abfdd148158293f2db74bfe35ca37b)`(TArray< `[`FRHAPI_MatchMakingTemplate`](RHAPI_MatchMakingTemplate.md#structFRHAPI__MatchMakingTemplate)` > && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a50abfdd148158293f2db74bfe35ca37b"></a>
 
 Sets the value of TemplateOptions using move semantics.
 
-#### `public inline TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1ad441347240a666a6d1102583f7b2dbe9)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1ad441347240a666a6d1102583f7b2dbe9"></a>
+#### `public inline FORCEINLINE TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a39fd688a0446dd78564c25d23d4cab07)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1a39fd688a0446dd78564c25d23d4cab07"></a>
 
 Gets the value of RequiredItemIds_Optional, regardless of it having been set.
 
-#### `public inline const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1abad6b784c81e75db44c92ea49a182bf2)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1abad6b784c81e75db44c92ea49a182bf2"></a>
+#### `public inline FORCEINLINE const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a3465df6b0d46b93c4bca0590cace2e0a)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a3465df6b0d46b93c4bca0590cace2e0a"></a>
 
 Gets the value of RequiredItemIds_Optional, regardless of it having been set.
 
-#### `public inline const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a2ea262870c980f747cea6a30be65b946)`(const TSet< int32 > & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a2ea262870c980f747cea6a30be65b946"></a>
+#### `public inline FORCEINLINE const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1abd7a145b2ded7634049523c10922c20f)`(const TSet< int32 > & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroup_1abd7a145b2ded7634049523c10922c20f"></a>
 
 Gets the value of RequiredItemIds_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a38185a19d7b89025b245ffaf3e007fc8)`(TSet< int32 > & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a38185a19d7b89025b245ffaf3e007fc8"></a>
+#### `public inline FORCEINLINE bool `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a35c3201ba95e819e313a96b9296e9101)`(TSet< int32 > & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a35c3201ba95e819e313a96b9296e9101"></a>
 
 Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroup_1a9f8840bfc1e1a5a0742655237b88cb65)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1a9f8840bfc1e1a5a0742655237b88cb65"></a>
+#### `public inline FORCEINLINE TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroup_1a16291207eb4dbc8b1b042188ceb08d1b)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1a16291207eb4dbc8b1b042188ceb08d1b"></a>
 
 Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroup_1a64f5b1cdaddf69a1545175711f4915ef)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a64f5b1cdaddf69a1545175711f4915ef"></a>
+#### `public inline FORCEINLINE const TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroup_1af1eb24573a24e1b90eb53b8fa34eee82)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1af1eb24573a24e1b90eb53b8fa34eee82"></a>
 
 Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a74b354e3f991d4ae9ba5a76d03165718)`(const TSet< int32 > & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a74b354e3f991d4ae9ba5a76d03165718"></a>
+#### `public inline FORCEINLINE void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a72a13d481e21e069a835430ecab8cb57)`(const TSet< int32 > & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a72a13d481e21e069a835430ecab8cb57"></a>
 
 Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
 
-#### `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a8b2ffd32cffcf860028698dc16a578e5)`(TSet< int32 > && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a8b2ffd32cffcf860028698dc16a578e5"></a>
+#### `public inline FORCEINLINE void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a5c4d7e33bc218e06323b2b9c52ddac8d)`(TSet< int32 > && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroup_1a5c4d7e33bc218e06323b2b9c52ddac8d"></a>
 
 Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroup_1a0314a2ef038598347f0d17de6fda851b)`()` <a id="structFRHAPI__MatchMakingTemplateGroup_1a0314a2ef038598347f0d17de6fda851b"></a>
 
 Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
-
-#### `public inline bool `[`IsRequiredItemIdsSet`](#structFRHAPI__MatchMakingTemplateGroup_1a76088870f10dd0164f74fbdfbb043702)`() const` <a id="structFRHAPI__MatchMakingTemplateGroup_1a76088870f10dd0164f74fbdfbb043702"></a>
-
-Checks whether RequiredItemIds_Optional has been set.
 

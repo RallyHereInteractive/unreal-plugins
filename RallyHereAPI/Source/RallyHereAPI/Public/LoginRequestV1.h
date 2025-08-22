@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_GrantType GrantType{  };
 	/** @brief Gets the value of GrantType */
-	ERHAPI_GrantType& GetGrantType() { return GrantType; }
+	FORCEINLINE ERHAPI_GrantType& GetGrantType() { return GrantType; }
 	/** @brief Gets the value of GrantType */
-	const ERHAPI_GrantType& GetGrantType() const { return GrantType; }
+	FORCEINLINE const ERHAPI_GrantType& GetGrantType() const { return GrantType; }
 	/** @brief Sets the value of GrantType */
-	void SetGrantType(const ERHAPI_GrantType& NewValue) { GrantType = NewValue;   }
+	FORCEINLINE void SetGrantType(const ERHAPI_GrantType& NewValue) { GrantType = NewValue;   }
 	/** @brief Sets the value of GrantType using move semantics */
-	void SetGrantType(ERHAPI_GrantType&& NewValue) { GrantType = NewValue;   }
+	FORCEINLINE void SetGrantType(ERHAPI_GrantType&& NewValue) { GrantType = NewValue;   }
 
 	/** @brief Token or secret used to authenticate the provided grant type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,29 +59,25 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalAccessToken_IsSet{ false };
 	/** @brief Gets the value of PortalAccessToken_Optional, regardless of it having been set */
-	FString& GetPortalAccessToken() { return PortalAccessToken_Optional; }
+	FORCEINLINE FString& GetPortalAccessToken() { return PortalAccessToken_Optional; }
 	/** @brief Gets the value of PortalAccessToken_Optional, regardless of it having been set */
-	const FString& GetPortalAccessToken() const { return PortalAccessToken_Optional; }
+	FORCEINLINE const FString& GetPortalAccessToken() const { return PortalAccessToken_Optional; }
 	/** @brief Gets the value of PortalAccessToken_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPortalAccessToken(const FString& DefaultValue) const { if (PortalAccessToken_IsSet) return PortalAccessToken_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPortalAccessToken(const FString& DefaultValue) const { if (PortalAccessToken_IsSet) return PortalAccessToken_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalAccessToken_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalAccessToken(FString& OutValue) const { if (PortalAccessToken_IsSet) OutValue = PortalAccessToken_Optional; return PortalAccessToken_IsSet; }
+	FORCEINLINE bool GetPortalAccessToken(FString& OutValue) const { if (PortalAccessToken_IsSet) OutValue = PortalAccessToken_Optional; return PortalAccessToken_IsSet; }
 	/** @brief Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPortalAccessTokenOrNull() { if (PortalAccessToken_IsSet) return (&PortalAccessToken_Optional); return nullptr; }
+	FORCEINLINE FString* GetPortalAccessTokenOrNull() { if (PortalAccessToken_IsSet) return (&PortalAccessToken_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalAccessToken_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPortalAccessTokenOrNull() const { if (PortalAccessToken_IsSet) return (&PortalAccessToken_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPortalAccessTokenOrNull() const { if (PortalAccessToken_IsSet) return (&PortalAccessToken_Optional); return nullptr; }
 	/** @brief Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true */
-	void SetPortalAccessToken(const FString& NewValue) { PortalAccessToken_Optional = NewValue; PortalAccessToken_IsSet = true;  }
+	FORCEINLINE void SetPortalAccessToken(const FString& NewValue) { PortalAccessToken_Optional = NewValue; PortalAccessToken_IsSet = true;  }
 	/** @brief Sets the value of PortalAccessToken_Optional and also sets PortalAccessToken_IsSet to true using move semantics */
-	void SetPortalAccessToken(FString&& NewValue) { PortalAccessToken_Optional = NewValue; PortalAccessToken_IsSet = true;  }
+	FORCEINLINE void SetPortalAccessToken(FString&& NewValue) { PortalAccessToken_Optional = NewValue; PortalAccessToken_IsSet = true;  }
 	/** @brief Clears the value of PortalAccessToken_Optional and sets PortalAccessToken_IsSet to false */
 	void ClearPortalAccessToken() { PortalAccessToken_Optional = TEXT(""); PortalAccessToken_IsSet = false;  }
-	/** @brief Checks whether PortalAccessToken_Optional has been set */
-	bool IsPortalAccessTokenSet() const { return PortalAccessToken_IsSet; }
-	/** @brief Returns true if PortalAccessToken_Optional is set and matches the default value */
-	bool IsPortalAccessTokenDefaultValue() const { return PortalAccessToken_IsSet && PortalAccessToken_Optional == TEXT(""); }
-	/** @brief Sets the value of PortalAccessToken_Optional to its default and also sets PortalAccessToken_IsSet to true */
-	void SetPortalAccessTokenToDefault() { SetPortalAccessToken(TEXT("")); }
+	/** @brief Returns the default value of PortalAccessToken */
+	FORCEINLINE FString GetDefaultValue_PortalAccessToken() { return TEXT(""); }
 
 	/** @brief Some grant types support client-provided names */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -90,29 +86,25 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalDisplayName_IsSet{ false };
 	/** @brief Gets the value of PortalDisplayName_Optional, regardless of it having been set */
-	FString& GetPortalDisplayName() { return PortalDisplayName_Optional; }
+	FORCEINLINE FString& GetPortalDisplayName() { return PortalDisplayName_Optional; }
 	/** @brief Gets the value of PortalDisplayName_Optional, regardless of it having been set */
-	const FString& GetPortalDisplayName() const { return PortalDisplayName_Optional; }
+	FORCEINLINE const FString& GetPortalDisplayName() const { return PortalDisplayName_Optional; }
 	/** @brief Gets the value of PortalDisplayName_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPortalDisplayName(const FString& DefaultValue) const { if (PortalDisplayName_IsSet) return PortalDisplayName_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPortalDisplayName(const FString& DefaultValue) const { if (PortalDisplayName_IsSet) return PortalDisplayName_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalDisplayName_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalDisplayName(FString& OutValue) const { if (PortalDisplayName_IsSet) OutValue = PortalDisplayName_Optional; return PortalDisplayName_IsSet; }
+	FORCEINLINE bool GetPortalDisplayName(FString& OutValue) const { if (PortalDisplayName_IsSet) OutValue = PortalDisplayName_Optional; return PortalDisplayName_IsSet; }
 	/** @brief Returns a pointer to PortalDisplayName_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPortalDisplayNameOrNull() { if (PortalDisplayName_IsSet) return (&PortalDisplayName_Optional); return nullptr; }
+	FORCEINLINE FString* GetPortalDisplayNameOrNull() { if (PortalDisplayName_IsSet) return (&PortalDisplayName_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalDisplayName_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPortalDisplayNameOrNull() const { if (PortalDisplayName_IsSet) return (&PortalDisplayName_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPortalDisplayNameOrNull() const { if (PortalDisplayName_IsSet) return (&PortalDisplayName_Optional); return nullptr; }
 	/** @brief Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true */
-	void SetPortalDisplayName(const FString& NewValue) { PortalDisplayName_Optional = NewValue; PortalDisplayName_IsSet = true;  }
+	FORCEINLINE void SetPortalDisplayName(const FString& NewValue) { PortalDisplayName_Optional = NewValue; PortalDisplayName_IsSet = true;  }
 	/** @brief Sets the value of PortalDisplayName_Optional and also sets PortalDisplayName_IsSet to true using move semantics */
-	void SetPortalDisplayName(FString&& NewValue) { PortalDisplayName_Optional = NewValue; PortalDisplayName_IsSet = true;  }
+	FORCEINLINE void SetPortalDisplayName(FString&& NewValue) { PortalDisplayName_Optional = NewValue; PortalDisplayName_IsSet = true;  }
 	/** @brief Clears the value of PortalDisplayName_Optional and sets PortalDisplayName_IsSet to false */
 	void ClearPortalDisplayName() { PortalDisplayName_Optional = TEXT(""); PortalDisplayName_IsSet = false;  }
-	/** @brief Checks whether PortalDisplayName_Optional has been set */
-	bool IsPortalDisplayNameSet() const { return PortalDisplayName_IsSet; }
-	/** @brief Returns true if PortalDisplayName_Optional is set and matches the default value */
-	bool IsPortalDisplayNameDefaultValue() const { return PortalDisplayName_IsSet && PortalDisplayName_Optional == TEXT(""); }
-	/** @brief Sets the value of PortalDisplayName_Optional to its default and also sets PortalDisplayName_IsSet to true */
-	void SetPortalDisplayNameToDefault() { SetPortalDisplayName(TEXT("")); }
+	/** @brief Returns the default value of PortalDisplayName */
+	FORCEINLINE FString GetDefaultValue_PortalDisplayName() { return TEXT(""); }
 
 	/** @brief Some grant types have 2 tier authentication and require a second token/secret */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -121,29 +113,25 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalParentAccessToken_IsSet{ false };
 	/** @brief Gets the value of PortalParentAccessToken_Optional, regardless of it having been set */
-	FString& GetPortalParentAccessToken() { return PortalParentAccessToken_Optional; }
+	FORCEINLINE FString& GetPortalParentAccessToken() { return PortalParentAccessToken_Optional; }
 	/** @brief Gets the value of PortalParentAccessToken_Optional, regardless of it having been set */
-	const FString& GetPortalParentAccessToken() const { return PortalParentAccessToken_Optional; }
+	FORCEINLINE const FString& GetPortalParentAccessToken() const { return PortalParentAccessToken_Optional; }
 	/** @brief Gets the value of PortalParentAccessToken_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPortalParentAccessToken(const FString& DefaultValue) const { if (PortalParentAccessToken_IsSet) return PortalParentAccessToken_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPortalParentAccessToken(const FString& DefaultValue) const { if (PortalParentAccessToken_IsSet) return PortalParentAccessToken_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalParentAccessToken_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalParentAccessToken(FString& OutValue) const { if (PortalParentAccessToken_IsSet) OutValue = PortalParentAccessToken_Optional; return PortalParentAccessToken_IsSet; }
+	FORCEINLINE bool GetPortalParentAccessToken(FString& OutValue) const { if (PortalParentAccessToken_IsSet) OutValue = PortalParentAccessToken_Optional; return PortalParentAccessToken_IsSet; }
 	/** @brief Returns a pointer to PortalParentAccessToken_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPortalParentAccessTokenOrNull() { if (PortalParentAccessToken_IsSet) return (&PortalParentAccessToken_Optional); return nullptr; }
+	FORCEINLINE FString* GetPortalParentAccessTokenOrNull() { if (PortalParentAccessToken_IsSet) return (&PortalParentAccessToken_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalParentAccessToken_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPortalParentAccessTokenOrNull() const { if (PortalParentAccessToken_IsSet) return (&PortalParentAccessToken_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPortalParentAccessTokenOrNull() const { if (PortalParentAccessToken_IsSet) return (&PortalParentAccessToken_Optional); return nullptr; }
 	/** @brief Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true */
-	void SetPortalParentAccessToken(const FString& NewValue) { PortalParentAccessToken_Optional = NewValue; PortalParentAccessToken_IsSet = true;  }
+	FORCEINLINE void SetPortalParentAccessToken(const FString& NewValue) { PortalParentAccessToken_Optional = NewValue; PortalParentAccessToken_IsSet = true;  }
 	/** @brief Sets the value of PortalParentAccessToken_Optional and also sets PortalParentAccessToken_IsSet to true using move semantics */
-	void SetPortalParentAccessToken(FString&& NewValue) { PortalParentAccessToken_Optional = NewValue; PortalParentAccessToken_IsSet = true;  }
+	FORCEINLINE void SetPortalParentAccessToken(FString&& NewValue) { PortalParentAccessToken_Optional = NewValue; PortalParentAccessToken_IsSet = true;  }
 	/** @brief Clears the value of PortalParentAccessToken_Optional and sets PortalParentAccessToken_IsSet to false */
 	void ClearPortalParentAccessToken() { PortalParentAccessToken_Optional = TEXT(""); PortalParentAccessToken_IsSet = false;  }
-	/** @brief Checks whether PortalParentAccessToken_Optional has been set */
-	bool IsPortalParentAccessTokenSet() const { return PortalParentAccessToken_IsSet; }
-	/** @brief Returns true if PortalParentAccessToken_Optional is set and matches the default value */
-	bool IsPortalParentAccessTokenDefaultValue() const { return PortalParentAccessToken_IsSet && PortalParentAccessToken_Optional == TEXT(""); }
-	/** @brief Sets the value of PortalParentAccessToken_Optional to its default and also sets PortalParentAccessToken_IsSet to true */
-	void SetPortalParentAccessTokenToDefault() { SetPortalParentAccessToken(TEXT("")); }
+	/** @brief Returns the default value of PortalParentAccessToken */
+	FORCEINLINE FString GetDefaultValue_PortalParentAccessToken() { return TEXT(""); }
 
 	/** @brief Some grant types have 2 tier authentication and support a second display name */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -152,29 +140,25 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalParentDisplayName_IsSet{ false };
 	/** @brief Gets the value of PortalParentDisplayName_Optional, regardless of it having been set */
-	FString& GetPortalParentDisplayName() { return PortalParentDisplayName_Optional; }
+	FORCEINLINE FString& GetPortalParentDisplayName() { return PortalParentDisplayName_Optional; }
 	/** @brief Gets the value of PortalParentDisplayName_Optional, regardless of it having been set */
-	const FString& GetPortalParentDisplayName() const { return PortalParentDisplayName_Optional; }
+	FORCEINLINE const FString& GetPortalParentDisplayName() const { return PortalParentDisplayName_Optional; }
 	/** @brief Gets the value of PortalParentDisplayName_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPortalParentDisplayName(const FString& DefaultValue) const { if (PortalParentDisplayName_IsSet) return PortalParentDisplayName_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPortalParentDisplayName(const FString& DefaultValue) const { if (PortalParentDisplayName_IsSet) return PortalParentDisplayName_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalParentDisplayName_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalParentDisplayName(FString& OutValue) const { if (PortalParentDisplayName_IsSet) OutValue = PortalParentDisplayName_Optional; return PortalParentDisplayName_IsSet; }
+	FORCEINLINE bool GetPortalParentDisplayName(FString& OutValue) const { if (PortalParentDisplayName_IsSet) OutValue = PortalParentDisplayName_Optional; return PortalParentDisplayName_IsSet; }
 	/** @brief Returns a pointer to PortalParentDisplayName_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPortalParentDisplayNameOrNull() { if (PortalParentDisplayName_IsSet) return (&PortalParentDisplayName_Optional); return nullptr; }
+	FORCEINLINE FString* GetPortalParentDisplayNameOrNull() { if (PortalParentDisplayName_IsSet) return (&PortalParentDisplayName_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalParentDisplayName_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPortalParentDisplayNameOrNull() const { if (PortalParentDisplayName_IsSet) return (&PortalParentDisplayName_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPortalParentDisplayNameOrNull() const { if (PortalParentDisplayName_IsSet) return (&PortalParentDisplayName_Optional); return nullptr; }
 	/** @brief Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true */
-	void SetPortalParentDisplayName(const FString& NewValue) { PortalParentDisplayName_Optional = NewValue; PortalParentDisplayName_IsSet = true;  }
+	FORCEINLINE void SetPortalParentDisplayName(const FString& NewValue) { PortalParentDisplayName_Optional = NewValue; PortalParentDisplayName_IsSet = true;  }
 	/** @brief Sets the value of PortalParentDisplayName_Optional and also sets PortalParentDisplayName_IsSet to true using move semantics */
-	void SetPortalParentDisplayName(FString&& NewValue) { PortalParentDisplayName_Optional = NewValue; PortalParentDisplayName_IsSet = true;  }
+	FORCEINLINE void SetPortalParentDisplayName(FString&& NewValue) { PortalParentDisplayName_Optional = NewValue; PortalParentDisplayName_IsSet = true;  }
 	/** @brief Clears the value of PortalParentDisplayName_Optional and sets PortalParentDisplayName_IsSet to false */
 	void ClearPortalParentDisplayName() { PortalParentDisplayName_Optional = TEXT(""); PortalParentDisplayName_IsSet = false;  }
-	/** @brief Checks whether PortalParentDisplayName_Optional has been set */
-	bool IsPortalParentDisplayNameSet() const { return PortalParentDisplayName_IsSet; }
-	/** @brief Returns true if PortalParentDisplayName_Optional is set and matches the default value */
-	bool IsPortalParentDisplayNameDefaultValue() const { return PortalParentDisplayName_IsSet && PortalParentDisplayName_Optional == TEXT(""); }
-	/** @brief Sets the value of PortalParentDisplayName_Optional to its default and also sets PortalParentDisplayName_IsSet to true */
-	void SetPortalParentDisplayNameToDefault() { SetPortalParentDisplayName(TEXT("")); }
+	/** @brief Returns the default value of PortalParentDisplayName */
+	FORCEINLINE FString GetDefaultValue_PortalParentDisplayName() { return TEXT(""); }
 
 	/** @brief Indicates if the client wants a refresh token returned */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -183,29 +167,25 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool IncludeRefresh_IsSet{ false };
 	/** @brief Gets the value of IncludeRefresh_Optional, regardless of it having been set */
-	bool& GetIncludeRefresh() { return IncludeRefresh_Optional; }
+	FORCEINLINE bool& GetIncludeRefresh() { return IncludeRefresh_Optional; }
 	/** @brief Gets the value of IncludeRefresh_Optional, regardless of it having been set */
-	const bool& GetIncludeRefresh() const { return IncludeRefresh_Optional; }
+	FORCEINLINE const bool& GetIncludeRefresh() const { return IncludeRefresh_Optional; }
 	/** @brief Gets the value of IncludeRefresh_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetIncludeRefresh(const bool& DefaultValue) const { if (IncludeRefresh_IsSet) return IncludeRefresh_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetIncludeRefresh(const bool& DefaultValue) const { if (IncludeRefresh_IsSet) return IncludeRefresh_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of IncludeRefresh_Optional and returns true if it has been set, otherwise returns false */
-	bool GetIncludeRefresh(bool& OutValue) const { if (IncludeRefresh_IsSet) OutValue = IncludeRefresh_Optional; return IncludeRefresh_IsSet; }
+	FORCEINLINE bool GetIncludeRefresh(bool& OutValue) const { if (IncludeRefresh_IsSet) OutValue = IncludeRefresh_Optional; return IncludeRefresh_IsSet; }
 	/** @brief Returns a pointer to IncludeRefresh_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetIncludeRefreshOrNull() { if (IncludeRefresh_IsSet) return (&IncludeRefresh_Optional); return nullptr; }
+	FORCEINLINE bool* GetIncludeRefreshOrNull() { if (IncludeRefresh_IsSet) return (&IncludeRefresh_Optional); return nullptr; }
 	/** @brief Returns a pointer to IncludeRefresh_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetIncludeRefreshOrNull() const { if (IncludeRefresh_IsSet) return (&IncludeRefresh_Optional); return nullptr; }
+	FORCEINLINE const bool* GetIncludeRefreshOrNull() const { if (IncludeRefresh_IsSet) return (&IncludeRefresh_Optional); return nullptr; }
 	/** @brief Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true */
-	void SetIncludeRefresh(const bool& NewValue) { IncludeRefresh_Optional = NewValue; IncludeRefresh_IsSet = true;  }
+	FORCEINLINE void SetIncludeRefresh(const bool& NewValue) { IncludeRefresh_Optional = NewValue; IncludeRefresh_IsSet = true;  }
 	/** @brief Sets the value of IncludeRefresh_Optional and also sets IncludeRefresh_IsSet to true using move semantics */
-	void SetIncludeRefresh(bool&& NewValue) { IncludeRefresh_Optional = NewValue; IncludeRefresh_IsSet = true;  }
+	FORCEINLINE void SetIncludeRefresh(bool&& NewValue) { IncludeRefresh_Optional = NewValue; IncludeRefresh_IsSet = true;  }
 	/** @brief Clears the value of IncludeRefresh_Optional and sets IncludeRefresh_IsSet to false */
 	void ClearIncludeRefresh() { IncludeRefresh_Optional = false; IncludeRefresh_IsSet = false;  }
-	/** @brief Checks whether IncludeRefresh_Optional has been set */
-	bool IsIncludeRefreshSet() const { return IncludeRefresh_IsSet; }
-	/** @brief Returns true if IncludeRefresh_Optional is set and matches the default value */
-	bool IsIncludeRefreshDefaultValue() const { return IncludeRefresh_IsSet && IncludeRefresh_Optional == false; }
-	/** @brief Sets the value of IncludeRefresh_Optional to its default and also sets IncludeRefresh_IsSet to true */
-	void SetIncludeRefreshToDefault() { SetIncludeRefresh(false); }
+	/** @brief Returns the default value of IncludeRefresh */
+	FORCEINLINE bool GetDefaultValue_IncludeRefresh() { return false; }
 
 	/** @brief If true, the user has accepted the EULA */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -214,29 +194,25 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptEula_IsSet{ false };
 	/** @brief Gets the value of AcceptEula_Optional, regardless of it having been set */
-	bool& GetAcceptEula() { return AcceptEula_Optional; }
+	FORCEINLINE bool& GetAcceptEula() { return AcceptEula_Optional; }
 	/** @brief Gets the value of AcceptEula_Optional, regardless of it having been set */
-	const bool& GetAcceptEula() const { return AcceptEula_Optional; }
+	FORCEINLINE const bool& GetAcceptEula() const { return AcceptEula_Optional; }
 	/** @brief Gets the value of AcceptEula_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetAcceptEula(const bool& DefaultValue) const { if (AcceptEula_IsSet) return AcceptEula_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetAcceptEula(const bool& DefaultValue) const { if (AcceptEula_IsSet) return AcceptEula_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AcceptEula_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAcceptEula(bool& OutValue) const { if (AcceptEula_IsSet) OutValue = AcceptEula_Optional; return AcceptEula_IsSet; }
+	FORCEINLINE bool GetAcceptEula(bool& OutValue) const { if (AcceptEula_IsSet) OutValue = AcceptEula_Optional; return AcceptEula_IsSet; }
 	/** @brief Returns a pointer to AcceptEula_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAcceptEulaOrNull() { if (AcceptEula_IsSet) return (&AcceptEula_Optional); return nullptr; }
+	FORCEINLINE bool* GetAcceptEulaOrNull() { if (AcceptEula_IsSet) return (&AcceptEula_Optional); return nullptr; }
 	/** @brief Returns a pointer to AcceptEula_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAcceptEulaOrNull() const { if (AcceptEula_IsSet) return (&AcceptEula_Optional); return nullptr; }
+	FORCEINLINE const bool* GetAcceptEulaOrNull() const { if (AcceptEula_IsSet) return (&AcceptEula_Optional); return nullptr; }
 	/** @brief Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true */
-	void SetAcceptEula(const bool& NewValue) { AcceptEula_Optional = NewValue; AcceptEula_IsSet = true;  }
+	FORCEINLINE void SetAcceptEula(const bool& NewValue) { AcceptEula_Optional = NewValue; AcceptEula_IsSet = true;  }
 	/** @brief Sets the value of AcceptEula_Optional and also sets AcceptEula_IsSet to true using move semantics */
-	void SetAcceptEula(bool&& NewValue) { AcceptEula_Optional = NewValue; AcceptEula_IsSet = true;  }
+	FORCEINLINE void SetAcceptEula(bool&& NewValue) { AcceptEula_Optional = NewValue; AcceptEula_IsSet = true;  }
 	/** @brief Clears the value of AcceptEula_Optional and sets AcceptEula_IsSet to false */
 	void ClearAcceptEula() { AcceptEula_Optional = false; AcceptEula_IsSet = false;  }
-	/** @brief Checks whether AcceptEula_Optional has been set */
-	bool IsAcceptEulaSet() const { return AcceptEula_IsSet; }
-	/** @brief Returns true if AcceptEula_Optional is set and matches the default value */
-	bool IsAcceptEulaDefaultValue() const { return AcceptEula_IsSet && AcceptEula_Optional == false; }
-	/** @brief Sets the value of AcceptEula_Optional to its default and also sets AcceptEula_IsSet to true */
-	void SetAcceptEulaToDefault() { SetAcceptEula(false); }
+	/** @brief Returns the default value of AcceptEula */
+	FORCEINLINE bool GetDefaultValue_AcceptEula() { return false; }
 
 	/** @brief If true, the user has accepted the Terms of Service */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -245,29 +221,25 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptTos_IsSet{ false };
 	/** @brief Gets the value of AcceptTos_Optional, regardless of it having been set */
-	bool& GetAcceptTos() { return AcceptTos_Optional; }
+	FORCEINLINE bool& GetAcceptTos() { return AcceptTos_Optional; }
 	/** @brief Gets the value of AcceptTos_Optional, regardless of it having been set */
-	const bool& GetAcceptTos() const { return AcceptTos_Optional; }
+	FORCEINLINE const bool& GetAcceptTos() const { return AcceptTos_Optional; }
 	/** @brief Gets the value of AcceptTos_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetAcceptTos(const bool& DefaultValue) const { if (AcceptTos_IsSet) return AcceptTos_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetAcceptTos(const bool& DefaultValue) const { if (AcceptTos_IsSet) return AcceptTos_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AcceptTos_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAcceptTos(bool& OutValue) const { if (AcceptTos_IsSet) OutValue = AcceptTos_Optional; return AcceptTos_IsSet; }
+	FORCEINLINE bool GetAcceptTos(bool& OutValue) const { if (AcceptTos_IsSet) OutValue = AcceptTos_Optional; return AcceptTos_IsSet; }
 	/** @brief Returns a pointer to AcceptTos_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAcceptTosOrNull() { if (AcceptTos_IsSet) return (&AcceptTos_Optional); return nullptr; }
+	FORCEINLINE bool* GetAcceptTosOrNull() { if (AcceptTos_IsSet) return (&AcceptTos_Optional); return nullptr; }
 	/** @brief Returns a pointer to AcceptTos_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAcceptTosOrNull() const { if (AcceptTos_IsSet) return (&AcceptTos_Optional); return nullptr; }
+	FORCEINLINE const bool* GetAcceptTosOrNull() const { if (AcceptTos_IsSet) return (&AcceptTos_Optional); return nullptr; }
 	/** @brief Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true */
-	void SetAcceptTos(const bool& NewValue) { AcceptTos_Optional = NewValue; AcceptTos_IsSet = true;  }
+	FORCEINLINE void SetAcceptTos(const bool& NewValue) { AcceptTos_Optional = NewValue; AcceptTos_IsSet = true;  }
 	/** @brief Sets the value of AcceptTos_Optional and also sets AcceptTos_IsSet to true using move semantics */
-	void SetAcceptTos(bool&& NewValue) { AcceptTos_Optional = NewValue; AcceptTos_IsSet = true;  }
+	FORCEINLINE void SetAcceptTos(bool&& NewValue) { AcceptTos_Optional = NewValue; AcceptTos_IsSet = true;  }
 	/** @brief Clears the value of AcceptTos_Optional and sets AcceptTos_IsSet to false */
 	void ClearAcceptTos() { AcceptTos_Optional = false; AcceptTos_IsSet = false;  }
-	/** @brief Checks whether AcceptTos_Optional has been set */
-	bool IsAcceptTosSet() const { return AcceptTos_IsSet; }
-	/** @brief Returns true if AcceptTos_Optional is set and matches the default value */
-	bool IsAcceptTosDefaultValue() const { return AcceptTos_IsSet && AcceptTos_Optional == false; }
-	/** @brief Sets the value of AcceptTos_Optional to its default and also sets AcceptTos_IsSet to true */
-	void SetAcceptTosToDefault() { SetAcceptTos(false); }
+	/** @brief Returns the default value of AcceptTos */
+	FORCEINLINE bool GetDefaultValue_AcceptTos() { return false; }
 
 	/** @brief If true, the user has accepted the Privacy Policy */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -276,29 +248,25 @@ struct RALLYHEREAPI_API FRHAPI_LoginRequestV1 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool AcceptPrivacyPolicy_IsSet{ false };
 	/** @brief Gets the value of AcceptPrivacyPolicy_Optional, regardless of it having been set */
-	bool& GetAcceptPrivacyPolicy() { return AcceptPrivacyPolicy_Optional; }
+	FORCEINLINE bool& GetAcceptPrivacyPolicy() { return AcceptPrivacyPolicy_Optional; }
 	/** @brief Gets the value of AcceptPrivacyPolicy_Optional, regardless of it having been set */
-	const bool& GetAcceptPrivacyPolicy() const { return AcceptPrivacyPolicy_Optional; }
+	FORCEINLINE const bool& GetAcceptPrivacyPolicy() const { return AcceptPrivacyPolicy_Optional; }
 	/** @brief Gets the value of AcceptPrivacyPolicy_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetAcceptPrivacyPolicy(const bool& DefaultValue) const { if (AcceptPrivacyPolicy_IsSet) return AcceptPrivacyPolicy_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetAcceptPrivacyPolicy(const bool& DefaultValue) const { if (AcceptPrivacyPolicy_IsSet) return AcceptPrivacyPolicy_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of AcceptPrivacyPolicy_Optional and returns true if it has been set, otherwise returns false */
-	bool GetAcceptPrivacyPolicy(bool& OutValue) const { if (AcceptPrivacyPolicy_IsSet) OutValue = AcceptPrivacyPolicy_Optional; return AcceptPrivacyPolicy_IsSet; }
+	FORCEINLINE bool GetAcceptPrivacyPolicy(bool& OutValue) const { if (AcceptPrivacyPolicy_IsSet) OutValue = AcceptPrivacyPolicy_Optional; return AcceptPrivacyPolicy_IsSet; }
 	/** @brief Returns a pointer to AcceptPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetAcceptPrivacyPolicyOrNull() { if (AcceptPrivacyPolicy_IsSet) return (&AcceptPrivacyPolicy_Optional); return nullptr; }
+	FORCEINLINE bool* GetAcceptPrivacyPolicyOrNull() { if (AcceptPrivacyPolicy_IsSet) return (&AcceptPrivacyPolicy_Optional); return nullptr; }
 	/** @brief Returns a pointer to AcceptPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetAcceptPrivacyPolicyOrNull() const { if (AcceptPrivacyPolicy_IsSet) return (&AcceptPrivacyPolicy_Optional); return nullptr; }
+	FORCEINLINE const bool* GetAcceptPrivacyPolicyOrNull() const { if (AcceptPrivacyPolicy_IsSet) return (&AcceptPrivacyPolicy_Optional); return nullptr; }
 	/** @brief Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true */
-	void SetAcceptPrivacyPolicy(const bool& NewValue) { AcceptPrivacyPolicy_Optional = NewValue; AcceptPrivacyPolicy_IsSet = true;  }
+	FORCEINLINE void SetAcceptPrivacyPolicy(const bool& NewValue) { AcceptPrivacyPolicy_Optional = NewValue; AcceptPrivacyPolicy_IsSet = true;  }
 	/** @brief Sets the value of AcceptPrivacyPolicy_Optional and also sets AcceptPrivacyPolicy_IsSet to true using move semantics */
-	void SetAcceptPrivacyPolicy(bool&& NewValue) { AcceptPrivacyPolicy_Optional = NewValue; AcceptPrivacyPolicy_IsSet = true;  }
+	FORCEINLINE void SetAcceptPrivacyPolicy(bool&& NewValue) { AcceptPrivacyPolicy_Optional = NewValue; AcceptPrivacyPolicy_IsSet = true;  }
 	/** @brief Clears the value of AcceptPrivacyPolicy_Optional and sets AcceptPrivacyPolicy_IsSet to false */
 	void ClearAcceptPrivacyPolicy() { AcceptPrivacyPolicy_Optional = false; AcceptPrivacyPolicy_IsSet = false;  }
-	/** @brief Checks whether AcceptPrivacyPolicy_Optional has been set */
-	bool IsAcceptPrivacyPolicySet() const { return AcceptPrivacyPolicy_IsSet; }
-	/** @brief Returns true if AcceptPrivacyPolicy_Optional is set and matches the default value */
-	bool IsAcceptPrivacyPolicyDefaultValue() const { return AcceptPrivacyPolicy_IsSet && AcceptPrivacyPolicy_Optional == false; }
-	/** @brief Sets the value of AcceptPrivacyPolicy_Optional to its default and also sets AcceptPrivacyPolicy_IsSet to true */
-	void SetAcceptPrivacyPolicyToDefault() { SetAcceptPrivacyPolicy(false); }
+	/** @brief Returns the default value of AcceptPrivacyPolicy */
+	FORCEINLINE bool GetDefaultValue_AcceptPrivacyPolicy() { return false; }
 };
 
 /** @} */

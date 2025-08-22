@@ -88,268 +88,246 @@ Event on a match timeline.
 `public bool `[`CustomData_IsNull`](#structFRHAPI__MatchTimelineEvent_1a4abedf28af22c2016f9b185f4c79539e) | true if CustomData_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchTimelineEvent_1a626b4165b789eba6a4de25dc877917bd)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchTimelineEvent_1a2574557e325d5693cb48bbf2cb7c188b)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a1d779aa454a8d2b94d6bbdc979011597)`()` | Gets the value of CreatedInto_Optional, regardless of it having been set.
-`public inline const float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1abb3cd5554c2d20b6c5b27353ab5a6360)`() const` | Gets the value of CreatedInto_Optional, regardless of it having been set.
-`public inline const float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a949944743380edd5257eddaa317bb785)`(const float & DefaultValue) const` | Gets the value of CreatedInto_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a924c77f8cf61cd3913b2f7e564eb711f)`(float & OutValue) const` | Fills OutValue with the value of CreatedInto_Optional and returns true if it has been set, otherwise returns false.
-`public inline float * `[`GetCreatedIntoOrNull`](#structFRHAPI__MatchTimelineEvent_1abf2f35a9f1dd8f4ac74b5765ef608f62)`()` | Returns a pointer to CreatedInto_Optional, if it has been set, otherwise returns nullptr.
-`public inline const float * `[`GetCreatedIntoOrNull`](#structFRHAPI__MatchTimelineEvent_1a25ed46fab14a4edd3de346df1eed376a)`() const` | Returns a pointer to CreatedInto_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a8686fb149bdd178be198ee1a01cf5a0f)`(const float & NewValue)` | Sets the value of CreatedInto_Optional and also sets CreatedInto_IsSet to true.
-`public inline void `[`SetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1af6489b14c076e53a73cbf99cee6031f8)`(float && NewValue)` | Sets the value of CreatedInto_Optional and also sets CreatedInto_IsSet to true using move semantics.
+`public inline FORCEINLINE float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a58e0645db0838d4c927016746ef7f3e8)`()` | Gets the value of CreatedInto_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a27d00bb548266171a3ae15a90a87c295)`() const` | Gets the value of CreatedInto_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1ab88eb2ad4a9566e63cd15ff825a6e26a)`(const float & DefaultValue) const` | Gets the value of CreatedInto_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1ae883cc0ec9c015a23b3296e03a58d760)`(float & OutValue) const` | Fills OutValue with the value of CreatedInto_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE float * `[`GetCreatedIntoOrNull`](#structFRHAPI__MatchTimelineEvent_1a1e7c0084d899384a06b528549ebb307c)`()` | Returns a pointer to CreatedInto_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const float * `[`GetCreatedIntoOrNull`](#structFRHAPI__MatchTimelineEvent_1a8d388667c2d8922532a53b85742c4a78)`() const` | Returns a pointer to CreatedInto_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a489d38b7bebd366e9674d9e211553180)`(const float & NewValue)` | Sets the value of CreatedInto_Optional and also sets CreatedInto_IsSet to true.
+`public inline FORCEINLINE void `[`SetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1ac653038ac704a2fc03607e8c3ab417a6)`(float && NewValue)` | Sets the value of CreatedInto_Optional and also sets CreatedInto_IsSet to true using move semantics.
 `public inline void `[`ClearCreatedInto`](#structFRHAPI__MatchTimelineEvent_1aca2f1ff2c72f6c09a52df0ccc9862fa7)`()` | Clears the value of CreatedInto_Optional and sets CreatedInto_IsSet to false.
-`public inline bool `[`IsCreatedIntoSet`](#structFRHAPI__MatchTimelineEvent_1a356a11a9013c5d7bde44e59daeb4f36b)`() const` | Checks whether CreatedInto_Optional has been set.
-`public inline void `[`SetCreatedIntoToNull`](#structFRHAPI__MatchTimelineEvent_1a3daea9bd774e43638343af5ba9034a1b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCreatedIntoNull`](#structFRHAPI__MatchTimelineEvent_1a46271b5ce70ee6fb90f048b22e2a850e)`() const` | Checks whether CreatedInto_Optional is set to null.
-`public inline FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a23b995f0d28a17c306b5353f3a947690)`()` | Gets the value of CreatedDt_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1acd3c8aea1a156fa7b6ba88c0da1e59db)`() const` | Gets the value of CreatedDt_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1af979d0d5fa19353a1f023fcfe18e0cee)`(const FDateTime & DefaultValue) const` | Gets the value of CreatedDt_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1ae032a336df039b59b47f17c0451e111d)`(FDateTime & OutValue) const` | Fills OutValue with the value of CreatedDt_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetCreatedDtOrNull`](#structFRHAPI__MatchTimelineEvent_1ac99ffec165cf7435a5a30e350afba61f)`()` | Returns a pointer to CreatedDt_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetCreatedDtOrNull`](#structFRHAPI__MatchTimelineEvent_1a759660877412027ff173c887e312ca1c)`() const` | Returns a pointer to CreatedDt_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1aab2fe687ccd656f3ecb045f567466f6b)`(const FDateTime & NewValue)` | Sets the value of CreatedDt_Optional and also sets CreatedDt_IsSet to true.
-`public inline void `[`SetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1af71971cc6c677b2a67cf50fbe5fa327a)`(FDateTime && NewValue)` | Sets the value of CreatedDt_Optional and also sets CreatedDt_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetCreatedIntoToNull`](#structFRHAPI__MatchTimelineEvent_1a662eb69e65ed77ebce51588a696ba856)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCreatedIntoNull`](#structFRHAPI__MatchTimelineEvent_1aca57551f3f14d29fdf0faca6c40c89b3)`() const` | Checks whether CreatedInto_Optional is set to null.
+`public inline FORCEINLINE FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a77bdc4fc9b9e72907d724a59c16f6d6a)`()` | Gets the value of CreatedDt_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a442a9184581337798f0569025080b006)`() const` | Gets the value of CreatedDt_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1ae347b4b80ec7743910dd344ee5f55165)`(const FDateTime & DefaultValue) const` | Gets the value of CreatedDt_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a4206ac67858034b328c3daf9a6d83e0b)`(FDateTime & OutValue) const` | Fills OutValue with the value of CreatedDt_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetCreatedDtOrNull`](#structFRHAPI__MatchTimelineEvent_1a1e1ec9767175115d752545fc2b1ab8ae)`()` | Returns a pointer to CreatedDt_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetCreatedDtOrNull`](#structFRHAPI__MatchTimelineEvent_1a9030e2e8100a80b4abe3d6d9b6111dca)`() const` | Returns a pointer to CreatedDt_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a5d791bb08db637b3e1854f550de246e3)`(const FDateTime & NewValue)` | Sets the value of CreatedDt_Optional and also sets CreatedDt_IsSet to true.
+`public inline FORCEINLINE void `[`SetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1ac1ecd8bf6e1454160fd362ec43c20945)`(FDateTime && NewValue)` | Sets the value of CreatedDt_Optional and also sets CreatedDt_IsSet to true using move semantics.
 `public inline void `[`ClearCreatedDt`](#structFRHAPI__MatchTimelineEvent_1add6500bcf5937146815a505858241b24)`()` | Clears the value of CreatedDt_Optional and sets CreatedDt_IsSet to false.
-`public inline bool `[`IsCreatedDtSet`](#structFRHAPI__MatchTimelineEvent_1afec6825811d6b641d2e026ec76b352aa)`() const` | Checks whether CreatedDt_Optional has been set.
-`public inline void `[`SetCreatedDtToNull`](#structFRHAPI__MatchTimelineEvent_1a9fbf35c331a116562e7e862c0ce85387)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCreatedDtNull`](#structFRHAPI__MatchTimelineEvent_1ae979d673af6845bfa91dea78e20a1d1e)`() const` | Checks whether CreatedDt_Optional is set to null.
-`public inline FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1afb27cd58c4fd4713195077d177820794)`()` | Gets the value of Type_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1a6d09b53db57fc033234fef9b83f6eb61)`() const` | Gets the value of Type_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1af6eafe8e65c5b2ea59bef9c410bd9c4c)`(const FString & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetType`](#structFRHAPI__MatchTimelineEvent_1a73120a724e599f87e1dfe11e4ebdfc0d)`(FString & OutValue) const` | Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTypeOrNull`](#structFRHAPI__MatchTimelineEvent_1a9803935351702f7aef128b7daaa578cb)`()` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTypeOrNull`](#structFRHAPI__MatchTimelineEvent_1aa679cb0ca3550eb04dc63b1a6dc8675c)`() const` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetType`](#structFRHAPI__MatchTimelineEvent_1a1df07d16fcc1c4646aa03e5fa8b06bc7)`(const FString & NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
-`public inline void `[`SetType`](#structFRHAPI__MatchTimelineEvent_1a7da01ba6280a272b3d65ef06611251e6)`(FString && NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetCreatedDtToNull`](#structFRHAPI__MatchTimelineEvent_1ae8aba3e369b7766fae707007f65555db)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCreatedDtNull`](#structFRHAPI__MatchTimelineEvent_1aedff7e281452bb42026e5e05cbc4f423)`() const` | Checks whether CreatedDt_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1a3c3238a968d876755365f48cbab45c80)`()` | Gets the value of Type_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1af65e3f417111663fdb18fdc55023dbe5)`() const` | Gets the value of Type_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1aa2db77bf2309ca7451948cad5ad6a767)`(const FString & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetType`](#structFRHAPI__MatchTimelineEvent_1ad5bc57dd7270e9f3c23d9be3cdff71c0)`(FString & OutValue) const` | Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTypeOrNull`](#structFRHAPI__MatchTimelineEvent_1aaa0422bf0fb6eb1d23cdd297346daf87)`()` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTypeOrNull`](#structFRHAPI__MatchTimelineEvent_1a34971da07efc5ddcecebcbf1366ed3b2)`() const` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetType`](#structFRHAPI__MatchTimelineEvent_1a3a4bba5246e291bd8d33632eb37692eb)`(const FString & NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
+`public inline FORCEINLINE void `[`SetType`](#structFRHAPI__MatchTimelineEvent_1a655a35b74968c4f401a3bb396917945f)`(FString && NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
 `public inline void `[`ClearType`](#structFRHAPI__MatchTimelineEvent_1ad0699927de601eb12d90312d40c72bef)`()` | Clears the value of Type_Optional and sets Type_IsSet to false.
-`public inline bool `[`IsTypeSet`](#structFRHAPI__MatchTimelineEvent_1ad45db0412c0e9d34efd9acd43d815095)`() const` | Checks whether Type_Optional has been set.
-`public inline void `[`SetTypeToNull`](#structFRHAPI__MatchTimelineEvent_1ad136203516bfa77982abdd7ec022c900)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsTypeNull`](#structFRHAPI__MatchTimelineEvent_1ab3146d1f8b6c291153a8543b53921670)`() const` | Checks whether Type_Optional is set to null.
-`public inline FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1ac17839e63a634c2e72cee406dec56c72)`()` | Gets the value of Type2_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a99491276c1450e495c07fae3c8c86fe2)`() const` | Gets the value of Type2_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1aa26546fbbd71e84256d8de9d901f3197)`(const FString & DefaultValue) const` | Gets the value of Type2_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a5d48d3fc66752262988ae447372d98ca)`(FString & OutValue) const` | Fills OutValue with the value of Type2_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetType2OrNull`](#structFRHAPI__MatchTimelineEvent_1a61e3e586e943066e3df5128746818c03)`()` | Returns a pointer to Type2_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetType2OrNull`](#structFRHAPI__MatchTimelineEvent_1a635523a34e28cdf9a9c4830b259da790)`() const` | Returns a pointer to Type2_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetType2`](#structFRHAPI__MatchTimelineEvent_1a0548da06dfae837f7a87abfec9a16b49)`(const FString & NewValue)` | Sets the value of Type2_Optional and also sets Type2_IsSet to true.
-`public inline void `[`SetType2`](#structFRHAPI__MatchTimelineEvent_1a8c326c309e94e229420d325418281106)`(FString && NewValue)` | Sets the value of Type2_Optional and also sets Type2_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetTypeToNull`](#structFRHAPI__MatchTimelineEvent_1a4f5eaee5269d78a6a55a4ea7cd3088c0)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsTypeNull`](#structFRHAPI__MatchTimelineEvent_1a55e92cf1fe5580acd24b82613bd66931)`() const` | Checks whether Type_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a4bfe6913bd4d6d009813e75191344b51)`()` | Gets the value of Type2_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a643a8e862d521ee49320031a4ceb0828)`() const` | Gets the value of Type2_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a2749dd675862120d9ecab91347e65e71)`(const FString & DefaultValue) const` | Gets the value of Type2_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a5e1b51e5417ca14d39d8f2cefd5d7013)`(FString & OutValue) const` | Fills OutValue with the value of Type2_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetType2OrNull`](#structFRHAPI__MatchTimelineEvent_1a4debaeec2346bfed9128fad83abb6eaf)`()` | Returns a pointer to Type2_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetType2OrNull`](#structFRHAPI__MatchTimelineEvent_1a5361732054258bbf4e4121d004b12b4c)`() const` | Returns a pointer to Type2_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetType2`](#structFRHAPI__MatchTimelineEvent_1afb7effdeabe3b33fa303dd934b1d3099)`(const FString & NewValue)` | Sets the value of Type2_Optional and also sets Type2_IsSet to true.
+`public inline FORCEINLINE void `[`SetType2`](#structFRHAPI__MatchTimelineEvent_1a1419447b605d3f0fb3f00a4665156b13)`(FString && NewValue)` | Sets the value of Type2_Optional and also sets Type2_IsSet to true using move semantics.
 `public inline void `[`ClearType2`](#structFRHAPI__MatchTimelineEvent_1a69e249319219979f9f163851be7dc76a)`()` | Clears the value of Type2_Optional and sets Type2_IsSet to false.
-`public inline bool `[`IsType2Set`](#structFRHAPI__MatchTimelineEvent_1af8662cdc087d8201e9fa600efbc46ff4)`() const` | Checks whether Type2_Optional has been set.
-`public inline void `[`SetType2ToNull`](#structFRHAPI__MatchTimelineEvent_1a0eed7f8b0a1d04fdf9cee732e5da59ae)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsType2Null`](#structFRHAPI__MatchTimelineEvent_1ad69874668039f670e736edb7b5e9c9a8)`() const` | Checks whether Type2_Optional is set to null.
-`public inline FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1abd464e183ac961456521076916b4e50b)`()` | Gets the value of Type3_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1a96b94af9ab71830099ada623b0b76dde)`() const` | Gets the value of Type3_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1a1db8d0fa86cb399b91c6082309fca0ac)`(const FString & DefaultValue) const` | Gets the value of Type3_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1acad0070c79d51da2135fde2fdfd56475)`(FString & OutValue) const` | Fills OutValue with the value of Type3_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetType3OrNull`](#structFRHAPI__MatchTimelineEvent_1a842bb38ae805cf43a23d73460942e796)`()` | Returns a pointer to Type3_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetType3OrNull`](#structFRHAPI__MatchTimelineEvent_1a970a4139f6062608951cf9a8819ee671)`() const` | Returns a pointer to Type3_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetType3`](#structFRHAPI__MatchTimelineEvent_1a42292444cab07597b94942ee4967ede3)`(const FString & NewValue)` | Sets the value of Type3_Optional and also sets Type3_IsSet to true.
-`public inline void `[`SetType3`](#structFRHAPI__MatchTimelineEvent_1a047bf6ba782927c925ba276b309ae618)`(FString && NewValue)` | Sets the value of Type3_Optional and also sets Type3_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetType2ToNull`](#structFRHAPI__MatchTimelineEvent_1af0d1cf1f174832d77436397a6bc2d5bb)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsType2Null`](#structFRHAPI__MatchTimelineEvent_1a9561acb3da9715b012b19516474f2b4f)`() const` | Checks whether Type2_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1af37834e5c70f756bc0fe8f9a39b079a2)`()` | Gets the value of Type3_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1a73b9d0b3c42306385c0c5fb7f64d8c9c)`() const` | Gets the value of Type3_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1a3441e4bd89f88679f15c33704d7f00e7)`(const FString & DefaultValue) const` | Gets the value of Type3_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1ae8352a879ae8fe45b90a75b84066a8bd)`(FString & OutValue) const` | Fills OutValue with the value of Type3_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetType3OrNull`](#structFRHAPI__MatchTimelineEvent_1a89c7fd723a830815770c6824d6384faa)`()` | Returns a pointer to Type3_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetType3OrNull`](#structFRHAPI__MatchTimelineEvent_1ac4c83b41546bcf58a1d66d630eb78cd6)`() const` | Returns a pointer to Type3_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetType3`](#structFRHAPI__MatchTimelineEvent_1a83020216ae6db95cb1150412efe2811f)`(const FString & NewValue)` | Sets the value of Type3_Optional and also sets Type3_IsSet to true.
+`public inline FORCEINLINE void `[`SetType3`](#structFRHAPI__MatchTimelineEvent_1ab6d46aafbedfb456f6b2e5a163bde15b)`(FString && NewValue)` | Sets the value of Type3_Optional and also sets Type3_IsSet to true using move semantics.
 `public inline void `[`ClearType3`](#structFRHAPI__MatchTimelineEvent_1a259c1d79a7d01a96ab949abc8240d15a)`()` | Clears the value of Type3_Optional and sets Type3_IsSet to false.
-`public inline bool `[`IsType3Set`](#structFRHAPI__MatchTimelineEvent_1af3e310600154677023bf26eefab55a91)`() const` | Checks whether Type3_Optional has been set.
-`public inline void `[`SetType3ToNull`](#structFRHAPI__MatchTimelineEvent_1a26673cf7e83bf34593f7f8da6a7c97e6)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsType3Null`](#structFRHAPI__MatchTimelineEvent_1af19627d9b23a511d9fb8d1d06191f6b8)`() const` | Checks whether Type3_Optional is set to null.
-`public inline FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a8460f4afece5c5632f26a3645cf8469c)`()` | Gets the value of Type4_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1aaa7d6bef119a8113411854a326ee7c1e)`() const` | Gets the value of Type4_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a82762ab955ad0ca3aa84467f603dc8a3)`(const FString & DefaultValue) const` | Gets the value of Type4_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a5a5ff220cb74b307d6bd6bbf3e50c831)`(FString & OutValue) const` | Fills OutValue with the value of Type4_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetType4OrNull`](#structFRHAPI__MatchTimelineEvent_1a075212d835528253331b6f8b6f530025)`()` | Returns a pointer to Type4_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetType4OrNull`](#structFRHAPI__MatchTimelineEvent_1a3b4f4c03a1ecf78df1b48ba4c4e10d1d)`() const` | Returns a pointer to Type4_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetType4`](#structFRHAPI__MatchTimelineEvent_1a0d39eb1819a9445f445e46cf092d67b8)`(const FString & NewValue)` | Sets the value of Type4_Optional and also sets Type4_IsSet to true.
-`public inline void `[`SetType4`](#structFRHAPI__MatchTimelineEvent_1a92e91ff4e525757683dda5d6a8b43f58)`(FString && NewValue)` | Sets the value of Type4_Optional and also sets Type4_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetType3ToNull`](#structFRHAPI__MatchTimelineEvent_1a823d914a4b259cf85c635ad0c0bb979a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsType3Null`](#structFRHAPI__MatchTimelineEvent_1a608dd2c700f2ffd2ba511fa069d5fa02)`() const` | Checks whether Type3_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1ab04993de6742df72bc7376de2b05328a)`()` | Gets the value of Type4_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a6521c49df70d57afadcf0182567f8dc8)`() const` | Gets the value of Type4_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1ae06d4e999fa53036f93f20bfb00f29d6)`(const FString & DefaultValue) const` | Gets the value of Type4_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a4ff5c3aea5dba1d88d85a3a8c683850e)`(FString & OutValue) const` | Fills OutValue with the value of Type4_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetType4OrNull`](#structFRHAPI__MatchTimelineEvent_1ac7f650153da2822b72c415677d01bba0)`()` | Returns a pointer to Type4_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetType4OrNull`](#structFRHAPI__MatchTimelineEvent_1a21eaee642013308e3d3586ac93c87390)`() const` | Returns a pointer to Type4_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetType4`](#structFRHAPI__MatchTimelineEvent_1a1934a83aec4e5626b76df82bd3641605)`(const FString & NewValue)` | Sets the value of Type4_Optional and also sets Type4_IsSet to true.
+`public inline FORCEINLINE void `[`SetType4`](#structFRHAPI__MatchTimelineEvent_1a62e2378eae24657c96ecc6a2d0cdd42e)`(FString && NewValue)` | Sets the value of Type4_Optional and also sets Type4_IsSet to true using move semantics.
 `public inline void `[`ClearType4`](#structFRHAPI__MatchTimelineEvent_1ab82236cdc24e1a1a022a0cbcf081bfc1)`()` | Clears the value of Type4_Optional and sets Type4_IsSet to false.
-`public inline bool `[`IsType4Set`](#structFRHAPI__MatchTimelineEvent_1adfb86e8e462ad79314655c25c46b20c0)`() const` | Checks whether Type4_Optional has been set.
-`public inline void `[`SetType4ToNull`](#structFRHAPI__MatchTimelineEvent_1a48a864a3e2acafa80804ff5648e9328e)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsType4Null`](#structFRHAPI__MatchTimelineEvent_1a30eae85ebfd3ba54950b3d22b7dd83e4)`() const` | Checks whether Type4_Optional is set to null.
-`public inline float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a0ab3e0153945f2a389572b00aa1caf48)`()` | Gets the value of LocX_Optional, regardless of it having been set.
-`public inline const float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1ac6762d15586bbe25540e0f9e32236a96)`() const` | Gets the value of LocX_Optional, regardless of it having been set.
-`public inline const float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a7d5534e7cc8586ff18ca4c8430f18c89)`(const float & DefaultValue) const` | Gets the value of LocX_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a6d0a226f9e8ed7d14203adf56cd1e33a)`(float & OutValue) const` | Fills OutValue with the value of LocX_Optional and returns true if it has been set, otherwise returns false.
-`public inline float * `[`GetLocXOrNull`](#structFRHAPI__MatchTimelineEvent_1a369a1277c26911034f206bbbb6270c4e)`()` | Returns a pointer to LocX_Optional, if it has been set, otherwise returns nullptr.
-`public inline const float * `[`GetLocXOrNull`](#structFRHAPI__MatchTimelineEvent_1a0c1bf422a07b18fa9007f199a8e24dcd)`() const` | Returns a pointer to LocX_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLocX`](#structFRHAPI__MatchTimelineEvent_1a5da8527f1f973a454fa10651bd8f5c7c)`(const float & NewValue)` | Sets the value of LocX_Optional and also sets LocX_IsSet to true.
-`public inline void `[`SetLocX`](#structFRHAPI__MatchTimelineEvent_1a1a5f00ee0d8abdd0c6085c90dcce3654)`(float && NewValue)` | Sets the value of LocX_Optional and also sets LocX_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetType4ToNull`](#structFRHAPI__MatchTimelineEvent_1ac9b22140f1734325ee5023e473a27e85)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsType4Null`](#structFRHAPI__MatchTimelineEvent_1af86ede006248af7160ca7fd805da3dfd)`() const` | Checks whether Type4_Optional is set to null.
+`public inline FORCEINLINE float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1aed8970173bb516b9a0d1e7c1703207a4)`()` | Gets the value of LocX_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a5547b9d19cd42ae60919b8af3202ada2)`() const` | Gets the value of LocX_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a8ff21a61cedd8578e729ace84f5bbe7c)`(const float & DefaultValue) const` | Gets the value of LocX_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a7adc2e445d2a7d66908fbfff9fbcf763)`(float & OutValue) const` | Fills OutValue with the value of LocX_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE float * `[`GetLocXOrNull`](#structFRHAPI__MatchTimelineEvent_1a99cb7c9e31e9be98e8fdabdade6ec161)`()` | Returns a pointer to LocX_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const float * `[`GetLocXOrNull`](#structFRHAPI__MatchTimelineEvent_1a0813fbd1def8c8fe492c2bef53178723)`() const` | Returns a pointer to LocX_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLocX`](#structFRHAPI__MatchTimelineEvent_1a93e61e4c95b491f997900373dfa70577)`(const float & NewValue)` | Sets the value of LocX_Optional and also sets LocX_IsSet to true.
+`public inline FORCEINLINE void `[`SetLocX`](#structFRHAPI__MatchTimelineEvent_1a673c0d3bd1a981fafd651c763126aeb5)`(float && NewValue)` | Sets the value of LocX_Optional and also sets LocX_IsSet to true using move semantics.
 `public inline void `[`ClearLocX`](#structFRHAPI__MatchTimelineEvent_1aa2d5cfd4bed1ecac5ae1d56d95622415)`()` | Clears the value of LocX_Optional and sets LocX_IsSet to false.
-`public inline bool `[`IsLocXSet`](#structFRHAPI__MatchTimelineEvent_1a7e2e4cd8978aef53362c302934abffca)`() const` | Checks whether LocX_Optional has been set.
-`public inline void `[`SetLocXToNull`](#structFRHAPI__MatchTimelineEvent_1a2d539a9fb4f427df5ed19ccb22cf83eb)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLocXNull`](#structFRHAPI__MatchTimelineEvent_1a0f09b51805855e26682680f40978c920)`() const` | Checks whether LocX_Optional is set to null.
-`public inline float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1ae34c2b753fd8b982a2fc1f31ca4771c6)`()` | Gets the value of LocY_Optional, regardless of it having been set.
-`public inline const float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a18f7f353d1e4669bf2933739ca01ec3c)`() const` | Gets the value of LocY_Optional, regardless of it having been set.
-`public inline const float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1acabcc1fae34e0e129bbd037844b7cc1b)`(const float & DefaultValue) const` | Gets the value of LocY_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a6c28181df66bb0078915916bb20579f9)`(float & OutValue) const` | Fills OutValue with the value of LocY_Optional and returns true if it has been set, otherwise returns false.
-`public inline float * `[`GetLocYOrNull`](#structFRHAPI__MatchTimelineEvent_1a9a61d45769e3c4558d19440cca72fe94)`()` | Returns a pointer to LocY_Optional, if it has been set, otherwise returns nullptr.
-`public inline const float * `[`GetLocYOrNull`](#structFRHAPI__MatchTimelineEvent_1aee1a22b979d8c4071fef208c0a0f753a)`() const` | Returns a pointer to LocY_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLocY`](#structFRHAPI__MatchTimelineEvent_1accafc79cfab8c9453c2b9074e82fc9d4)`(const float & NewValue)` | Sets the value of LocY_Optional and also sets LocY_IsSet to true.
-`public inline void `[`SetLocY`](#structFRHAPI__MatchTimelineEvent_1a0699d2564d2e78268009dabfa4814b77)`(float && NewValue)` | Sets the value of LocY_Optional and also sets LocY_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetLocXToNull`](#structFRHAPI__MatchTimelineEvent_1a7a4cf301d3ae568ae143f9334cb2f63c)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLocXNull`](#structFRHAPI__MatchTimelineEvent_1a845137121c655efd78cf55dd66abda02)`() const` | Checks whether LocX_Optional is set to null.
+`public inline FORCEINLINE float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a7d2840441ca0524ce86dd582010a0a15)`()` | Gets the value of LocY_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1ad128f8c3b8533db96e92c6b912095a8b)`() const` | Gets the value of LocY_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a56803cca1b7666e6dcffd89c4ec9ccc5)`(const float & DefaultValue) const` | Gets the value of LocY_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a5559928518e036172efa9bfeea7ce298)`(float & OutValue) const` | Fills OutValue with the value of LocY_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE float * `[`GetLocYOrNull`](#structFRHAPI__MatchTimelineEvent_1ae5d7e6fd2e443e2310b60d13469d004c)`()` | Returns a pointer to LocY_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const float * `[`GetLocYOrNull`](#structFRHAPI__MatchTimelineEvent_1ae90a3c5da7ef51dc7ce3a22dffdb764d)`() const` | Returns a pointer to LocY_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLocY`](#structFRHAPI__MatchTimelineEvent_1a39a12bf296be118f47d235e85ae224bb)`(const float & NewValue)` | Sets the value of LocY_Optional and also sets LocY_IsSet to true.
+`public inline FORCEINLINE void `[`SetLocY`](#structFRHAPI__MatchTimelineEvent_1a98efc0ff248f1e9dc07f0331e5b75c66)`(float && NewValue)` | Sets the value of LocY_Optional and also sets LocY_IsSet to true using move semantics.
 `public inline void `[`ClearLocY`](#structFRHAPI__MatchTimelineEvent_1acd52d7c8274991d0ecb7523ace7473f5)`()` | Clears the value of LocY_Optional and sets LocY_IsSet to false.
-`public inline bool `[`IsLocYSet`](#structFRHAPI__MatchTimelineEvent_1a5509eba7dc228f4eb6e1c73c982ff290)`() const` | Checks whether LocY_Optional has been set.
-`public inline void `[`SetLocYToNull`](#structFRHAPI__MatchTimelineEvent_1afc62fcb1c83aa756523201aba5650d02)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLocYNull`](#structFRHAPI__MatchTimelineEvent_1aa5739ce05ae6e2e5c64c53e7e51fa5cf)`() const` | Checks whether LocY_Optional is set to null.
-`public inline float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1af5e31fd2194f854cfa2f91ce3ca723c8)`()` | Gets the value of LocZ_Optional, regardless of it having been set.
-`public inline const float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1ad75d258afda757e8a08f664a2ac4d9eb)`() const` | Gets the value of LocZ_Optional, regardless of it having been set.
-`public inline const float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1a8332fab224372c75dadd5b9d4aadcf20)`(const float & DefaultValue) const` | Gets the value of LocZ_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1a23eef5f0de98eaaed6a76c43223244a5)`(float & OutValue) const` | Fills OutValue with the value of LocZ_Optional and returns true if it has been set, otherwise returns false.
-`public inline float * `[`GetLocZOrNull`](#structFRHAPI__MatchTimelineEvent_1ad56a7245b9d5c7a645bbacc2f984a5ac)`()` | Returns a pointer to LocZ_Optional, if it has been set, otherwise returns nullptr.
-`public inline const float * `[`GetLocZOrNull`](#structFRHAPI__MatchTimelineEvent_1a14f204d9f820d1d2db38f5a3d51cdfdd)`() const` | Returns a pointer to LocZ_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLocZ`](#structFRHAPI__MatchTimelineEvent_1aada1c0b3f7f8d8bee8ae025cfbf233ab)`(const float & NewValue)` | Sets the value of LocZ_Optional and also sets LocZ_IsSet to true.
-`public inline void `[`SetLocZ`](#structFRHAPI__MatchTimelineEvent_1a5e5d6f05f4daff32f3a13a24ba347547)`(float && NewValue)` | Sets the value of LocZ_Optional and also sets LocZ_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetLocYToNull`](#structFRHAPI__MatchTimelineEvent_1a309fe1e6d31324e3c0e49cfb18fe35de)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLocYNull`](#structFRHAPI__MatchTimelineEvent_1a85d4023da93ba3e5fa7ceb294ca2ee96)`() const` | Checks whether LocY_Optional is set to null.
+`public inline FORCEINLINE float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1aca891386d08de01af9c7e0ef404a62af)`()` | Gets the value of LocZ_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1a7da707e9d1ff859d6384a3d5bcc04368)`() const` | Gets the value of LocZ_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1a84770c231071d54e2b72787e980151bd)`(const float & DefaultValue) const` | Gets the value of LocZ_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1aebb993546406b0269bfa5e81ba84bd55)`(float & OutValue) const` | Fills OutValue with the value of LocZ_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE float * `[`GetLocZOrNull`](#structFRHAPI__MatchTimelineEvent_1a1430f72330fb4a1464b02098f0fabc48)`()` | Returns a pointer to LocZ_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const float * `[`GetLocZOrNull`](#structFRHAPI__MatchTimelineEvent_1ae39ae0de1330b5eeda1aa3a7fbf92148)`() const` | Returns a pointer to LocZ_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLocZ`](#structFRHAPI__MatchTimelineEvent_1a8545ffd0df7c7e9fb631d498e4a3086d)`(const float & NewValue)` | Sets the value of LocZ_Optional and also sets LocZ_IsSet to true.
+`public inline FORCEINLINE void `[`SetLocZ`](#structFRHAPI__MatchTimelineEvent_1a581f049cba60be3601ffefdd227f5306)`(float && NewValue)` | Sets the value of LocZ_Optional and also sets LocZ_IsSet to true using move semantics.
 `public inline void `[`ClearLocZ`](#structFRHAPI__MatchTimelineEvent_1a758aa7740b7e5f40ba55606c4a9fbbd1)`()` | Clears the value of LocZ_Optional and sets LocZ_IsSet to false.
-`public inline bool `[`IsLocZSet`](#structFRHAPI__MatchTimelineEvent_1a7b3fa7f47e270262d530e6a2bb045fed)`() const` | Checks whether LocZ_Optional has been set.
-`public inline void `[`SetLocZToNull`](#structFRHAPI__MatchTimelineEvent_1a770282814680b281ebd516dc8e5940c8)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLocZNull`](#structFRHAPI__MatchTimelineEvent_1a934adfcfdbf7c1957c87c63b9867c55a)`() const` | Checks whether LocZ_Optional is set to null.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aeefc73b9b6958738e78d21f34bec0ff8)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a09458e7cb483f030a88de8e3ca8e0b6b)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ab07eea55933ee5fb28fff0cdaca2f4aa)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a3b4f578249f0ea7951d9a975498043ab)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a70d3a190130dfbf4da5da3cdef783194)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1adc2311a203d55c30dc091db3b97c0b84)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a66f787da5b911988ce7cea4083465fd2)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a5c464d93f788e996590e66c9be2d0c3d)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetLocZToNull`](#structFRHAPI__MatchTimelineEvent_1aefac3f6b2df7bdbd55f0d1027d405d33)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLocZNull`](#structFRHAPI__MatchTimelineEvent_1a860ece4f0e5d7ebb8e74fa05efe286bd)`() const` | Checks whether LocZ_Optional is set to null.
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a0df8c2826fd55b4478019c07500ea6d2)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a780976fb223deb54f6c09441ddacdd72)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ae7fe62396631ba8c2c2f808793e78a9e)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1af9c34e4372e6a783418869cfd4c29fd3)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1ae72c3631a4f3bcce2af6e35eef109ab4)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a4a2e65c9a232b6ff5bf94a4d64dc0e87)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a0a13b0206f8514333913b42a532e9805)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ae508575aae5d8ac78d86736a4a1260ae)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ab565c7e037efb50a6a7283757c7ccf19)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
-`public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__MatchTimelineEvent_1aa51268c58039402d86ac2be12b2fdef9)`() const` | Checks whether PlayerUuid_Optional has been set.
-`public inline void `[`SetPlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1a7708a00946cd3b8589b9deac26819ff5)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a7c8f6ec50f5f9bf9fe0a2eea483e4536)`() const` | Checks whether PlayerUuid_Optional is set to null.
-`public inline FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a9eec4254b922df50a667b6233a693595)`()` | Gets the value of SourcePlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aa6b84c7bcd9642e16da62cc4a4f037a5)`() const` | Gets the value of SourcePlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aa5bc979cdedcdc9eb8e2ac2e3183bd9d)`(const FGuid & DefaultValue) const` | Gets the value of SourcePlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a4a77a92fdb6015a20bca9595f44fc872)`(FGuid & OutValue) const` | Fills OutValue with the value of SourcePlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetSourcePlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a938a79624747be6894a76e9e4fc9c87d)`()` | Returns a pointer to SourcePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetSourcePlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1ad8340259b6772713587b64541c611c23)`() const` | Returns a pointer to SourcePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1af5de616f39f9b16c7a708e177a86ae0f)`(const FGuid & NewValue)` | Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet to true.
-`public inline void `[`SetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a2494c58bf8eb3a6b767d3cdc8cd778ef)`(FGuid && NewValue)` | Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetPlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1af0c9b1c9a6a5052b2d6474e41fbc4aab)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a1ee9f1b3e4614e32e4ac0580c3509409)`() const` | Checks whether PlayerUuid_Optional is set to null.
+`public inline FORCEINLINE FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a80dfcd973318d8f0b5a158cfa5993326)`()` | Gets the value of SourcePlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a9473ceb1f45e5ef7da7f32f1dd2f7ce8)`() const` | Gets the value of SourcePlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a8fb7fc6813e7a9f609f7df835a5fc182)`(const FGuid & DefaultValue) const` | Gets the value of SourcePlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aebb201e4ce08d0794287b3e4ddafecbe)`(FGuid & OutValue) const` | Fills OutValue with the value of SourcePlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetSourcePlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a2c8a33b269b6728b4e5dd7de33e14607)`()` | Returns a pointer to SourcePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetSourcePlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1aa638615d7517049ecb5323a35fd7824a)`() const` | Returns a pointer to SourcePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a59bf0f12791c7f4c9ffbfa611c7d4456)`(const FGuid & NewValue)` | Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ab23edb97d023fe7a2ddaac6d475582d7)`(FGuid && NewValue)` | Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1affe8756a00e36d1517c15be9e353080d)`()` | Clears the value of SourcePlayerUuid_Optional and sets SourcePlayerUuid_IsSet to false.
-`public inline bool `[`IsSourcePlayerUuidSet`](#structFRHAPI__MatchTimelineEvent_1a8bddb95b1e2452ce44f3adec4d6a35a7)`() const` | Checks whether SourcePlayerUuid_Optional has been set.
-`public inline void `[`SetSourcePlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1a8c5f5438bdd7a09bf71e27bd821e0ac4)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsSourcePlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1ac1af944f09d371d89fdf054040f86a20)`() const` | Checks whether SourcePlayerUuid_Optional is set to null.
-`public inline FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1a6fe0c8342d5a937213c704a2734a6c69)`()` | Gets the value of SourceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1a4d332bf46c7318b621899b6bd11277d8)`() const` | Gets the value of SourceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1aa84708a5f6db47f73c5f7e42f172d671)`(const FString & DefaultValue) const` | Gets the value of SourceId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1ac64d74e1cc99ce53f43eec30823b176e)`(FString & OutValue) const` | Fills OutValue with the value of SourceId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetSourceIdOrNull`](#structFRHAPI__MatchTimelineEvent_1a72791820917b462a006a3fa2b2dfbd71)`()` | Returns a pointer to SourceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetSourceIdOrNull`](#structFRHAPI__MatchTimelineEvent_1ae71ba225169e72a0f0d1dc6cf04de791)`() const` | Returns a pointer to SourceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSourceId`](#structFRHAPI__MatchTimelineEvent_1af496e5aec51d25c8c268add140a34986)`(const FString & NewValue)` | Sets the value of SourceId_Optional and also sets SourceId_IsSet to true.
-`public inline void `[`SetSourceId`](#structFRHAPI__MatchTimelineEvent_1a5d152578b2481bb17229fc8a9793faa3)`(FString && NewValue)` | Sets the value of SourceId_Optional and also sets SourceId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetSourcePlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1a908c2f22db1ca05b00f857f8e1583ffb)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsSourcePlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a38a5b7e51caf2ffa7f219a06043afbde)`() const` | Checks whether SourcePlayerUuid_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1ae1d67b85b077d7b03a7452c0c73858b1)`()` | Gets the value of SourceId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1aaee64046be4bd79c03ab7dbb28145085)`() const` | Gets the value of SourceId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1ac67f9089aefbd16165dcfd03af98dddb)`(const FString & DefaultValue) const` | Gets the value of SourceId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1a5554dfcb346b5736d8163572d617e611)`(FString & OutValue) const` | Fills OutValue with the value of SourceId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetSourceIdOrNull`](#structFRHAPI__MatchTimelineEvent_1aaeefd88672adfb0e814c79d8e12d7a6e)`()` | Returns a pointer to SourceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetSourceIdOrNull`](#structFRHAPI__MatchTimelineEvent_1ab9a02069eecb9f8f7f6b773043c24f7f)`() const` | Returns a pointer to SourceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSourceId`](#structFRHAPI__MatchTimelineEvent_1aed526fd2ca6c7edf54091f02a3cc4de5)`(const FString & NewValue)` | Sets the value of SourceId_Optional and also sets SourceId_IsSet to true.
+`public inline FORCEINLINE void `[`SetSourceId`](#structFRHAPI__MatchTimelineEvent_1a1cbf480007cbadb917a8b4192126857e)`(FString && NewValue)` | Sets the value of SourceId_Optional and also sets SourceId_IsSet to true using move semantics.
 `public inline void `[`ClearSourceId`](#structFRHAPI__MatchTimelineEvent_1a6c217fa613446ee33733e88befd8d8e2)`()` | Clears the value of SourceId_Optional and sets SourceId_IsSet to false.
-`public inline bool `[`IsSourceIdSet`](#structFRHAPI__MatchTimelineEvent_1a23bcb21cc20ec88ab7687c22ec2c078d)`() const` | Checks whether SourceId_Optional has been set.
-`public inline void `[`SetSourceIdToNull`](#structFRHAPI__MatchTimelineEvent_1aa4c7f0fc14037cf48e04853d21972fcc)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsSourceIdNull`](#structFRHAPI__MatchTimelineEvent_1a2c5ee18a09de243c1d45d160c017b88b)`() const` | Checks whether SourceId_Optional is set to null.
-`public inline FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a2d71c1f547f8afa33b0dcce55d0dabd1)`()` | Gets the value of SourceId2_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1aaf8f819daffd415a0172abb94eecbc3d)`() const` | Gets the value of SourceId2_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1ad484e32d9986c39ba6a0a33de46d2d15)`(const FString & DefaultValue) const` | Gets the value of SourceId2_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a93b6df64fd30f36f74975b8d5c79104a)`(FString & OutValue) const` | Fills OutValue with the value of SourceId2_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetSourceId2OrNull`](#structFRHAPI__MatchTimelineEvent_1aa2b970610cac60910839db16289c868d)`()` | Returns a pointer to SourceId2_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetSourceId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a2f4d0407793b5198bf7bdfba5b01869b)`() const` | Returns a pointer to SourceId2_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSourceId2`](#structFRHAPI__MatchTimelineEvent_1ad01a3f095ff2f459db93de79c857037c)`(const FString & NewValue)` | Sets the value of SourceId2_Optional and also sets SourceId2_IsSet to true.
-`public inline void `[`SetSourceId2`](#structFRHAPI__MatchTimelineEvent_1af173f35a6639f73d6763e88ea06b6d75)`(FString && NewValue)` | Sets the value of SourceId2_Optional and also sets SourceId2_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetSourceIdToNull`](#structFRHAPI__MatchTimelineEvent_1a6d5de35ece4600ed4978f53089d4fd3f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsSourceIdNull`](#structFRHAPI__MatchTimelineEvent_1a6e98c40cb3a87ea242f932b1189bbc6d)`() const` | Checks whether SourceId_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1aa28ad9024c770163e554f98c14930a4b)`()` | Gets the value of SourceId2_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a74204a706681f648043d1ffc47a73609)`() const` | Gets the value of SourceId2_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1abcf0cfc200f4bc7bcbd5898a52a13d31)`(const FString & DefaultValue) const` | Gets the value of SourceId2_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a551fe33fab31c6b86f75806c4c56a4c1)`(FString & OutValue) const` | Fills OutValue with the value of SourceId2_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetSourceId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a0cf9d67708f68f71cdf9e468821fde9f)`()` | Returns a pointer to SourceId2_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetSourceId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a7d33e8d679c0963298939cfd7aba6460)`() const` | Returns a pointer to SourceId2_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a7846fc6be028dc1590b84cfe572ad41e)`(const FString & NewValue)` | Sets the value of SourceId2_Optional and also sets SourceId2_IsSet to true.
+`public inline FORCEINLINE void `[`SetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a6af2a640e0f405b2e34c8330f6b42db5)`(FString && NewValue)` | Sets the value of SourceId2_Optional and also sets SourceId2_IsSet to true using move semantics.
 `public inline void `[`ClearSourceId2`](#structFRHAPI__MatchTimelineEvent_1a0aeee2c744cb177d4c8f4e38879f09ff)`()` | Clears the value of SourceId2_Optional and sets SourceId2_IsSet to false.
-`public inline bool `[`IsSourceId2Set`](#structFRHAPI__MatchTimelineEvent_1a92a880576b195454eb30f23e3841efa7)`() const` | Checks whether SourceId2_Optional has been set.
-`public inline void `[`SetSourceId2ToNull`](#structFRHAPI__MatchTimelineEvent_1a0817d1ca3a38a9b25230ae914bb4641a)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsSourceId2Null`](#structFRHAPI__MatchTimelineEvent_1a9cb1e5366235913220589a51af965f1e)`() const` | Checks whether SourceId2_Optional is set to null.
-`public inline FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a942387fd1e79795140fd05c5a2632afb)`()` | Gets the value of SourceId3_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1ad6620c1e4d1ea15a933a2a6aaccb2935)`() const` | Gets the value of SourceId3_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a33b8dcd5c10679b4de7449f638e8a551)`(const FString & DefaultValue) const` | Gets the value of SourceId3_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1af6cca4fe56772e6689cc65793ad7cdf0)`(FString & OutValue) const` | Fills OutValue with the value of SourceId3_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetSourceId3OrNull`](#structFRHAPI__MatchTimelineEvent_1ab61abd0f7f3dca48ad6950dfbff46e4f)`()` | Returns a pointer to SourceId3_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetSourceId3OrNull`](#structFRHAPI__MatchTimelineEvent_1a2925d8f683a29a8f96315ed7ad1a4a69)`() const` | Returns a pointer to SourceId3_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a6363fc331cb88966058a0be376af938d)`(const FString & NewValue)` | Sets the value of SourceId3_Optional and also sets SourceId3_IsSet to true.
-`public inline void `[`SetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a7ea4f43a93fa916ba3dceb58bf607428)`(FString && NewValue)` | Sets the value of SourceId3_Optional and also sets SourceId3_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetSourceId2ToNull`](#structFRHAPI__MatchTimelineEvent_1afa0b85180fd02cada668d1baf2438faf)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsSourceId2Null`](#structFRHAPI__MatchTimelineEvent_1aeb1694e27057c94d16ec1bc0585314d6)`() const` | Checks whether SourceId2_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a9418ca1faa6c55b4c909640dc1b1332e)`()` | Gets the value of SourceId3_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1acc769f463d2e201f74be20f79b4cb1cd)`() const` | Gets the value of SourceId3_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a174df385b953016ba23fdf0b7b1fc368)`(const FString & DefaultValue) const` | Gets the value of SourceId3_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a39829e8aa03dac9ce4c6dea78d6d75ba)`(FString & OutValue) const` | Fills OutValue with the value of SourceId3_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetSourceId3OrNull`](#structFRHAPI__MatchTimelineEvent_1abbe0ff5d5cfae800ec7fa56cc384233c)`()` | Returns a pointer to SourceId3_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetSourceId3OrNull`](#structFRHAPI__MatchTimelineEvent_1ad23c925603ca65dee7556bbefc8d9ca9)`() const` | Returns a pointer to SourceId3_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a64c966649820af15e6fb24887970f50f)`(const FString & NewValue)` | Sets the value of SourceId3_Optional and also sets SourceId3_IsSet to true.
+`public inline FORCEINLINE void `[`SetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a26f6abfb11dfd94ac59a93b7eac9c570)`(FString && NewValue)` | Sets the value of SourceId3_Optional and also sets SourceId3_IsSet to true using move semantics.
 `public inline void `[`ClearSourceId3`](#structFRHAPI__MatchTimelineEvent_1ad2d8024c45fa42d9f52a3396e8dbec8f)`()` | Clears the value of SourceId3_Optional and sets SourceId3_IsSet to false.
-`public inline bool `[`IsSourceId3Set`](#structFRHAPI__MatchTimelineEvent_1a0f821d8f210ccc69aa347622f78dc61c)`() const` | Checks whether SourceId3_Optional has been set.
-`public inline void `[`SetSourceId3ToNull`](#structFRHAPI__MatchTimelineEvent_1aacd2aafd3a7839294c24e4ea1380d437)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsSourceId3Null`](#structFRHAPI__MatchTimelineEvent_1ab03a894e20af1bf44f10dfe14b33010e)`() const` | Checks whether SourceId3_Optional is set to null.
-`public inline FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a637785b000cbad2d338f09e6385426f3)`()` | Gets the value of SourceId4_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a457ae5c04e264058978cf347ed8b7e51)`() const` | Gets the value of SourceId4_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1ad259c2c58a1fef3939476306b4131062)`(const FString & DefaultValue) const` | Gets the value of SourceId4_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a10793919f013d5c8ad41713349b04283)`(FString & OutValue) const` | Fills OutValue with the value of SourceId4_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetSourceId4OrNull`](#structFRHAPI__MatchTimelineEvent_1aef5ffc8ae1354f569c49ba02be66256f)`()` | Returns a pointer to SourceId4_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetSourceId4OrNull`](#structFRHAPI__MatchTimelineEvent_1a1c477f2dbb4238c58d7b03a3e80dd285)`() const` | Returns a pointer to SourceId4_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSourceId4`](#structFRHAPI__MatchTimelineEvent_1ae54b5c90ac69c641a26af32cf7ccdf58)`(const FString & NewValue)` | Sets the value of SourceId4_Optional and also sets SourceId4_IsSet to true.
-`public inline void `[`SetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a8a369d41032229a4ad9873c171cbb8f0)`(FString && NewValue)` | Sets the value of SourceId4_Optional and also sets SourceId4_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetSourceId3ToNull`](#structFRHAPI__MatchTimelineEvent_1af0667d238134924d2afb879ff1d747ac)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsSourceId3Null`](#structFRHAPI__MatchTimelineEvent_1af8e1f67767c42e868b9b281fb6a0492a)`() const` | Checks whether SourceId3_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a766f128b69a0500d2b5075f3363b94e7)`()` | Gets the value of SourceId4_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a9038603a5f03cc437155c89be70f9fd2)`() const` | Gets the value of SourceId4_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a58dfc5b0ae0638776c6f254ddfbf2f64)`(const FString & DefaultValue) const` | Gets the value of SourceId4_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a6b3b77a75a015ff7416ce0e43b5266f3)`(FString & OutValue) const` | Fills OutValue with the value of SourceId4_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetSourceId4OrNull`](#structFRHAPI__MatchTimelineEvent_1a7f887b46e6993323bf7af0a46f25128b)`()` | Returns a pointer to SourceId4_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetSourceId4OrNull`](#structFRHAPI__MatchTimelineEvent_1a52d0c62515e9a6bcdaf6093a4e3f9c54)`() const` | Returns a pointer to SourceId4_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a0e93585b791728d960eebf12f208ec2e)`(const FString & NewValue)` | Sets the value of SourceId4_Optional and also sets SourceId4_IsSet to true.
+`public inline FORCEINLINE void `[`SetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a73a8e3d63ef635c9bd5062b315da7f83)`(FString && NewValue)` | Sets the value of SourceId4_Optional and also sets SourceId4_IsSet to true using move semantics.
 `public inline void `[`ClearSourceId4`](#structFRHAPI__MatchTimelineEvent_1afc4c548ec7674c1c1cd827f592f6d4c5)`()` | Clears the value of SourceId4_Optional and sets SourceId4_IsSet to false.
-`public inline bool `[`IsSourceId4Set`](#structFRHAPI__MatchTimelineEvent_1a82c3dc3c28aaa40cdb51bb72c334779b)`() const` | Checks whether SourceId4_Optional has been set.
-`public inline void `[`SetSourceId4ToNull`](#structFRHAPI__MatchTimelineEvent_1a08a714aadf5b77d2c9d696d45ebf3d1f)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsSourceId4Null`](#structFRHAPI__MatchTimelineEvent_1a6d63ad5b112037369dd923a80b398d5b)`() const` | Checks whether SourceId4_Optional is set to null.
-`public inline FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a1ee19f9796381525a176b08bab2c9be8)`()` | Gets the value of TargetPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ad94452e66fbeacf8ad568033b4f300f6)`() const` | Gets the value of TargetPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a224ac2b881f0b8d11287ffe3bc1d07e9)`(const FGuid & DefaultValue) const` | Gets the value of TargetPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1af555322e3fcd05ddc62ec7117ca9e513)`(FGuid & OutValue) const` | Fills OutValue with the value of TargetPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetTargetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a79de6d7c343f430c5c3cac6738329924)`()` | Returns a pointer to TargetPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetTargetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a4edde20f02486b47a3ad3b468bc7da0f)`() const` | Returns a pointer to TargetPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aea78e8159cb6068f51b5fa78036cca4b)`(const FGuid & NewValue)` | Sets the value of TargetPlayerUuid_Optional and also sets TargetPlayerUuid_IsSet to true.
-`public inline void `[`SetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a4c32fd848073bf47f21fefef9a0810d4)`(FGuid && NewValue)` | Sets the value of TargetPlayerUuid_Optional and also sets TargetPlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetSourceId4ToNull`](#structFRHAPI__MatchTimelineEvent_1a857dd886d6234373f42fd7df09eda32f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsSourceId4Null`](#structFRHAPI__MatchTimelineEvent_1a96ad317ca6275edacf1d98b95cdd2947)`() const` | Checks whether SourceId4_Optional is set to null.
+`public inline FORCEINLINE FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a0b32db0c7bdc728bccf6555f69b6a82f)`()` | Gets the value of TargetPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a486fec85965f773bd83708034260d4f0)`() const` | Gets the value of TargetPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a0b19a38f4949bfdf0f1116f32b8c4bda)`(const FGuid & DefaultValue) const` | Gets the value of TargetPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a62d0496f0afad12d9374652946a9077f)`(FGuid & OutValue) const` | Fills OutValue with the value of TargetPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetTargetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a64b544f06e71302085729bf3137f057f)`()` | Returns a pointer to TargetPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetTargetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a78d1468cce9380bf61883db5e230ffe6)`() const` | Returns a pointer to TargetPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1acaa4eb6d1032df95e8ff6700d44edf03)`(const FGuid & NewValue)` | Sets the value of TargetPlayerUuid_Optional and also sets TargetPlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a6074bafba6fcc26cc461e8081a2f9d06)`(FGuid && NewValue)` | Sets the value of TargetPlayerUuid_Optional and also sets TargetPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a44505bb0c5e18d45aeb809d0db9d456d)`()` | Clears the value of TargetPlayerUuid_Optional and sets TargetPlayerUuid_IsSet to false.
-`public inline bool `[`IsTargetPlayerUuidSet`](#structFRHAPI__MatchTimelineEvent_1af6ea0b55d3555e073ec2b7b8bc78597e)`() const` | Checks whether TargetPlayerUuid_Optional has been set.
-`public inline void `[`SetTargetPlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1a30660262e2a382351a080fe6a1f695a1)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsTargetPlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a90504bba72ca463e90b7498b2c35aeac)`() const` | Checks whether TargetPlayerUuid_Optional is set to null.
-`public inline FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a007619ff042d4e3bbafa6742a933d5e9)`()` | Gets the value of TargetId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1ada9b54c90ab23c7ba7287ba3d9876830)`() const` | Gets the value of TargetId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a4202587b0073872391eb02201ae0115d)`(const FString & DefaultValue) const` | Gets the value of TargetId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1abd9397990c143398b2349882f1cea621)`(FString & OutValue) const` | Fills OutValue with the value of TargetId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTargetIdOrNull`](#structFRHAPI__MatchTimelineEvent_1af4ae9bccadff52101232b73a8657251a)`()` | Returns a pointer to TargetId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTargetIdOrNull`](#structFRHAPI__MatchTimelineEvent_1a1f2f087d0add8d618e0afe9867ce67e7)`() const` | Returns a pointer to TargetId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTargetId`](#structFRHAPI__MatchTimelineEvent_1acf3dbaec3e74c28e0cfd5e5cee671dcc)`(const FString & NewValue)` | Sets the value of TargetId_Optional and also sets TargetId_IsSet to true.
-`public inline void `[`SetTargetId`](#structFRHAPI__MatchTimelineEvent_1a13937966b2a8aa1facc82c1c7f43b998)`(FString && NewValue)` | Sets the value of TargetId_Optional and also sets TargetId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetTargetPlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1ae29c48acc3b45afab8b42fa57cc1e4d5)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsTargetPlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a56485f49b85948a87f0b0585179be583)`() const` | Checks whether TargetPlayerUuid_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1acbebcdfbd9f2ddba8f24810215465d33)`()` | Gets the value of TargetId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a126e865dae4e6d184296722211ad3731)`() const` | Gets the value of TargetId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a295e018f3a0369f4432d4947265bdfe3)`(const FString & DefaultValue) const` | Gets the value of TargetId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a7878ebfa2898271383125892bf2cb704)`(FString & OutValue) const` | Fills OutValue with the value of TargetId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTargetIdOrNull`](#structFRHAPI__MatchTimelineEvent_1a5e1ee1ae7a47e171b55beabca275ed97)`()` | Returns a pointer to TargetId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTargetIdOrNull`](#structFRHAPI__MatchTimelineEvent_1a78cd074c07804cbc5272591624d53ad5)`() const` | Returns a pointer to TargetId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTargetId`](#structFRHAPI__MatchTimelineEvent_1a8609e75ae7b2264c4ce3dba8d74352cc)`(const FString & NewValue)` | Sets the value of TargetId_Optional and also sets TargetId_IsSet to true.
+`public inline FORCEINLINE void `[`SetTargetId`](#structFRHAPI__MatchTimelineEvent_1a38d4ede52a3b3fcfccb2088cc3262161)`(FString && NewValue)` | Sets the value of TargetId_Optional and also sets TargetId_IsSet to true using move semantics.
 `public inline void `[`ClearTargetId`](#structFRHAPI__MatchTimelineEvent_1a6d5eec0b6e03f4358f60b0e6a187ee24)`()` | Clears the value of TargetId_Optional and sets TargetId_IsSet to false.
-`public inline bool `[`IsTargetIdSet`](#structFRHAPI__MatchTimelineEvent_1a592d463c8c618d68356c285789539fb4)`() const` | Checks whether TargetId_Optional has been set.
-`public inline void `[`SetTargetIdToNull`](#structFRHAPI__MatchTimelineEvent_1a0b2cffe74aa0c0d644a0f50aaaa1b795)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsTargetIdNull`](#structFRHAPI__MatchTimelineEvent_1a49aebfea073e9e8511d26cf347b96aa7)`() const` | Checks whether TargetId_Optional is set to null.
-`public inline FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1abefc9f313a863a69a43f0c7c49088cfc)`()` | Gets the value of TargetId2_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a1c09eb9197948087b40dac609515020d)`() const` | Gets the value of TargetId2_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1affd7f57c582ea996d0cf5908924d7d64)`(const FString & DefaultValue) const` | Gets the value of TargetId2_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a86b54e304ed598f607d1088407a2897b)`(FString & OutValue) const` | Fills OutValue with the value of TargetId2_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTargetId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a14750568f1925b7ff385e9d96056a92a)`()` | Returns a pointer to TargetId2_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTargetId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a0c19466e724a9388e2366413c52a199f)`() const` | Returns a pointer to TargetId2_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTargetId2`](#structFRHAPI__MatchTimelineEvent_1aff4d665f99e9c7526e8b059d70df404f)`(const FString & NewValue)` | Sets the value of TargetId2_Optional and also sets TargetId2_IsSet to true.
-`public inline void `[`SetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a791586447757abc866d3fb291b9aa936)`(FString && NewValue)` | Sets the value of TargetId2_Optional and also sets TargetId2_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetTargetIdToNull`](#structFRHAPI__MatchTimelineEvent_1a734f29f5ea443d2db341c53d197c44b1)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsTargetIdNull`](#structFRHAPI__MatchTimelineEvent_1a629873be76e419c9d04cd8c5c1f9e48c)`() const` | Checks whether TargetId_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1ac293fce69e4e021ae3d90c956cbaea1b)`()` | Gets the value of TargetId2_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a00ccb2af16ac968521be57d80331da05)`() const` | Gets the value of TargetId2_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a4ca0200d257afc4043c588a7f81a4890)`(const FString & DefaultValue) const` | Gets the value of TargetId2_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1aa14f52c5b46ed512003219ac1d1d210c)`(FString & OutValue) const` | Fills OutValue with the value of TargetId2_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTargetId2OrNull`](#structFRHAPI__MatchTimelineEvent_1aa1490dab9ac9f5cb80fb26ecc71e1c88)`()` | Returns a pointer to TargetId2_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTargetId2OrNull`](#structFRHAPI__MatchTimelineEvent_1ab05575aff40c278006fc70e4f0d07ba1)`() const` | Returns a pointer to TargetId2_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTargetId2`](#structFRHAPI__MatchTimelineEvent_1afda59a92527da70a62693583e051dc2b)`(const FString & NewValue)` | Sets the value of TargetId2_Optional and also sets TargetId2_IsSet to true.
+`public inline FORCEINLINE void `[`SetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a0e4d0bb7eb39334a4b920fbbc49b5302)`(FString && NewValue)` | Sets the value of TargetId2_Optional and also sets TargetId2_IsSet to true using move semantics.
 `public inline void `[`ClearTargetId2`](#structFRHAPI__MatchTimelineEvent_1acef8285fe6d28388d3e9e35003b12bfd)`()` | Clears the value of TargetId2_Optional and sets TargetId2_IsSet to false.
-`public inline bool `[`IsTargetId2Set`](#structFRHAPI__MatchTimelineEvent_1ab8004f09b73f595746d116f5cb5148fa)`() const` | Checks whether TargetId2_Optional has been set.
-`public inline void `[`SetTargetId2ToNull`](#structFRHAPI__MatchTimelineEvent_1a2ab642941bd864238618e198388b5cef)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsTargetId2Null`](#structFRHAPI__MatchTimelineEvent_1a46d1991efd4eb2572e1560899043c20b)`() const` | Checks whether TargetId2_Optional is set to null.
-`public inline FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a1af376990bc0b56c762978b75ba3912e)`()` | Gets the value of TargetId3_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1af503c889475b14e679bb610c248e5530)`() const` | Gets the value of TargetId3_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a339e8f8debfd5b87813bbd87f50dddda)`(const FString & DefaultValue) const` | Gets the value of TargetId3_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a55cc73912d0c4703eba9a2ad32cac967)`(FString & OutValue) const` | Fills OutValue with the value of TargetId3_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTargetId3OrNull`](#structFRHAPI__MatchTimelineEvent_1a75b97042f099231950fbf1cb8cb13e44)`()` | Returns a pointer to TargetId3_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTargetId3OrNull`](#structFRHAPI__MatchTimelineEvent_1af0202c2a1fc934e69e1e3ef9b9ccce65)`() const` | Returns a pointer to TargetId3_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTargetId3`](#structFRHAPI__MatchTimelineEvent_1aa53a6a2125700f66ae3440b69da2ef80)`(const FString & NewValue)` | Sets the value of TargetId3_Optional and also sets TargetId3_IsSet to true.
-`public inline void `[`SetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a6e0c9848b31b614f782f7b6c84ccdb0d)`(FString && NewValue)` | Sets the value of TargetId3_Optional and also sets TargetId3_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetTargetId2ToNull`](#structFRHAPI__MatchTimelineEvent_1a823e0d47998fe60b0976de11e3b3902b)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsTargetId2Null`](#structFRHAPI__MatchTimelineEvent_1ac5ba2cbb8799090348a2a911833cad5d)`() const` | Checks whether TargetId2_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a9faecc7cb1fb7fc82e78bdbd4afb3cff)`()` | Gets the value of TargetId3_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a2ee31b14424edb1fd823d41764ae0811)`() const` | Gets the value of TargetId3_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a86d4d26351f26cdc82762633ee0d3dbd)`(const FString & DefaultValue) const` | Gets the value of TargetId3_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a5644f3eee6dbe48c5b1c447f0d2ef020)`(FString & OutValue) const` | Fills OutValue with the value of TargetId3_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTargetId3OrNull`](#structFRHAPI__MatchTimelineEvent_1aa54a92c0dc858411c0acb1908578f868)`()` | Returns a pointer to TargetId3_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTargetId3OrNull`](#structFRHAPI__MatchTimelineEvent_1ab29fbd800ff0bdf3b7f21cf5db1ad263)`() const` | Returns a pointer to TargetId3_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a5276aee1dfeb949dd3cc435036120a31)`(const FString & NewValue)` | Sets the value of TargetId3_Optional and also sets TargetId3_IsSet to true.
+`public inline FORCEINLINE void `[`SetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a127d0b62220d26c1a57e6f45ce4c771d)`(FString && NewValue)` | Sets the value of TargetId3_Optional and also sets TargetId3_IsSet to true using move semantics.
 `public inline void `[`ClearTargetId3`](#structFRHAPI__MatchTimelineEvent_1a45f28cdb3da9b02d9039a213186217e4)`()` | Clears the value of TargetId3_Optional and sets TargetId3_IsSet to false.
-`public inline bool `[`IsTargetId3Set`](#structFRHAPI__MatchTimelineEvent_1a1bd054d39b0ee14ab64d8ef3c3daa379)`() const` | Checks whether TargetId3_Optional has been set.
-`public inline void `[`SetTargetId3ToNull`](#structFRHAPI__MatchTimelineEvent_1af9940a0a5b79533d609a14b52a701640)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsTargetId3Null`](#structFRHAPI__MatchTimelineEvent_1a1001b44e61e7fdf36b3e220bd774eb98)`() const` | Checks whether TargetId3_Optional is set to null.
-`public inline FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a72bf96bc2f542cc59ca019b703f54510)`()` | Gets the value of TargetId4_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a2033480c7e52fe851c16be294f12a719)`() const` | Gets the value of TargetId4_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1ad67c394fcb0cc601a60fcb1f0e3804c4)`(const FString & DefaultValue) const` | Gets the value of TargetId4_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1aed12f4ae9624744c8217c59e473a8a85)`(FString & OutValue) const` | Fills OutValue with the value of TargetId4_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTargetId4OrNull`](#structFRHAPI__MatchTimelineEvent_1acabd756c98c96165b7893dfc0f23907d)`()` | Returns a pointer to TargetId4_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTargetId4OrNull`](#structFRHAPI__MatchTimelineEvent_1aa472eb45d06566d16ceae7fddaf5e8d2)`() const` | Returns a pointer to TargetId4_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a2441ea68dd7883474d81bf29101ee7e8)`(const FString & NewValue)` | Sets the value of TargetId4_Optional and also sets TargetId4_IsSet to true.
-`public inline void `[`SetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a6604a498ac52f56eb36717d767415ed3)`(FString && NewValue)` | Sets the value of TargetId4_Optional and also sets TargetId4_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetTargetId3ToNull`](#structFRHAPI__MatchTimelineEvent_1acb87e002d0df20c26eb1e7f11747465d)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsTargetId3Null`](#structFRHAPI__MatchTimelineEvent_1a10f7f4b23a8f4918a6aae9502b212b64)`() const` | Checks whether TargetId3_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a8b2c6a41046fe21f9713b83b26d743a1)`()` | Gets the value of TargetId4_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a7ebbbaedd6aaf3f1b21bf8a64ec474d8)`() const` | Gets the value of TargetId4_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1ac31e5e125a68041b06a580ea477ce75e)`(const FString & DefaultValue) const` | Gets the value of TargetId4_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1ae412263c84e903a5e7cea7b9d725e7c0)`(FString & OutValue) const` | Fills OutValue with the value of TargetId4_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTargetId4OrNull`](#structFRHAPI__MatchTimelineEvent_1a96dad2721fb40eba36ff08011339e5e7)`()` | Returns a pointer to TargetId4_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTargetId4OrNull`](#structFRHAPI__MatchTimelineEvent_1af31c3b0640d4c4687cf152f97d94955c)`() const` | Returns a pointer to TargetId4_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a63f764ee429ca50a6b94ff2cc903c307)`(const FString & NewValue)` | Sets the value of TargetId4_Optional and also sets TargetId4_IsSet to true.
+`public inline FORCEINLINE void `[`SetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a8db9c3145fed205eee291a7a8770c200)`(FString && NewValue)` | Sets the value of TargetId4_Optional and also sets TargetId4_IsSet to true using move semantics.
 `public inline void `[`ClearTargetId4`](#structFRHAPI__MatchTimelineEvent_1a85d5fb948094a7cc8881c72d0a10cd3e)`()` | Clears the value of TargetId4_Optional and sets TargetId4_IsSet to false.
-`public inline bool `[`IsTargetId4Set`](#structFRHAPI__MatchTimelineEvent_1a99b0e180a61a8f746ef666a84df2a807)`() const` | Checks whether TargetId4_Optional has been set.
-`public inline void `[`SetTargetId4ToNull`](#structFRHAPI__MatchTimelineEvent_1a03edbb508d3bd7d12d814dd5fd3e0ddb)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsTargetId4Null`](#structFRHAPI__MatchTimelineEvent_1a0e71af8a4cc50f3bffe7ec441b285970)`() const` | Checks whether TargetId4_Optional is set to null.
-`public inline `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1a2de7fadb5648ddc71057c11429a3c504)`()` | Gets the value of Properties_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1ad90fc98c03740f40f173289bf1ec53c2)`() const` | Gets the value of Properties_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1a44b7b53bf6b063720c70c5669d18b3ec)`(const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & DefaultValue) const` | Gets the value of Properties_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1aa7a96f6842a952472e9fefe0c152448d)`(`[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & OutValue) const` | Fills OutValue with the value of Properties_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` * `[`GetPropertiesOrNull`](#structFRHAPI__MatchTimelineEvent_1abdc754f504a01295261b1935fe6073fd)`()` | Returns a pointer to Properties_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` * `[`GetPropertiesOrNull`](#structFRHAPI__MatchTimelineEvent_1a0f45f1d7752589c80c13ebacf0a60a2b)`() const` | Returns a pointer to Properties_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetProperties`](#structFRHAPI__MatchTimelineEvent_1a8cbe13d7aa6ed93a60be5073927b1c35)`(const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & NewValue)` | Sets the value of Properties_Optional and also sets Properties_IsSet to true.
-`public inline void `[`SetProperties`](#structFRHAPI__MatchTimelineEvent_1a6697074f25030a8c5f315c4ed1896599)`(`[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` && NewValue)` | Sets the value of Properties_Optional and also sets Properties_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetTargetId4ToNull`](#structFRHAPI__MatchTimelineEvent_1afd27be454e552c44ca1f0e14ce9c709f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsTargetId4Null`](#structFRHAPI__MatchTimelineEvent_1ae2175fc734742d30d9869035356c3de4)`() const` | Checks whether TargetId4_Optional is set to null.
+`public inline FORCEINLINE `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1aaa15cc64001ad7179f49c6b75d0555a8)`()` | Gets the value of Properties_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1a6663190f1a3180c2f5fa874b9e3884be)`() const` | Gets the value of Properties_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1af456940336d43e3ec8acfbb1fdee99f3)`(const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & DefaultValue) const` | Gets the value of Properties_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1a631b9466a4324ba5aea98a6aef1332a2)`(`[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & OutValue) const` | Fills OutValue with the value of Properties_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` * `[`GetPropertiesOrNull`](#structFRHAPI__MatchTimelineEvent_1a0ffc8c86388a1ffb5376490a7585ff88)`()` | Returns a pointer to Properties_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` * `[`GetPropertiesOrNull`](#structFRHAPI__MatchTimelineEvent_1afbce3611c99c3236d37ebd7d0661bdd8)`() const` | Returns a pointer to Properties_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetProperties`](#structFRHAPI__MatchTimelineEvent_1a395d0bcaede2b63e82007dac0e4fe321)`(const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & NewValue)` | Sets the value of Properties_Optional and also sets Properties_IsSet to true.
+`public inline FORCEINLINE void `[`SetProperties`](#structFRHAPI__MatchTimelineEvent_1a904a8ae4eb7c261d1d20ba924082dd22)`(`[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` && NewValue)` | Sets the value of Properties_Optional and also sets Properties_IsSet to true using move semantics.
 `public inline void `[`ClearProperties`](#structFRHAPI__MatchTimelineEvent_1a1ef30e0b628b225228576857bbe87bc5)`()` | Clears the value of Properties_Optional and sets Properties_IsSet to false.
-`public inline bool `[`IsPropertiesSet`](#structFRHAPI__MatchTimelineEvent_1aba7a9c8ddd4d125567e174fc3c8f1800)`() const` | Checks whether Properties_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1ad4bb0569565c3890b12424ecd02f0024)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a6432d6aff9e4ae7325e3926f297e1af1)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1af6bc62f83041f7396dc8ea7e7eda9d0c)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a0326ef4f69a5c3af270da4f86c481a47)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchTimelineEvent_1a02ded057063a877d1cae14c9c9a95079)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchTimelineEvent_1a5a96ab4dc6bda4b2981346662023a06c)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchTimelineEvent_1aaa0c5aea57c89437362e1732c41e7061)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchTimelineEvent_1ad57a22be922f7e2ef32a341e4bc9466f)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a6ce38d3cc9c53e3f667440a49bd31ebb)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a8950d8f5c8106ec140e49e946f941eff)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a9bda31c05cccc3f3eac898b66ffc7288)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a4fb2b0c775138e3a4c1393fe209bc5d3)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchTimelineEvent_1a887a3da819b9b089b26d5088fe8aeb66)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchTimelineEvent_1a468fad7843aa5b92fd351e48566c6ab3)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchTimelineEvent_1a796a6eb54140caa1884e5b32fced673f)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchTimelineEvent_1a9165ebda763aac0aceeafae59e6dcb67)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchTimelineEvent_1ae448b9ae5f762f06302051620d016fe5)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchTimelineEvent_1a36dd0f559a6ca5149ce514664894c7e3)`() const` | Checks whether CustomData_Optional has been set.
-`public inline void `[`SetCustomDataToNull`](#structFRHAPI__MatchTimelineEvent_1aedb3dcab4d76e25ca0b7a2a298cec643)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCustomDataNull`](#structFRHAPI__MatchTimelineEvent_1a0ece037e9481fa2a6e28031822781eca)`() const` | Checks whether CustomData_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCustomDataToNull`](#structFRHAPI__MatchTimelineEvent_1aa21f1df872ddccc366f0198d23075e4a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCustomDataNull`](#structFRHAPI__MatchTimelineEvent_1a4213c9627c3afa3b779a4fb69fb26c41)`() const` | Checks whether CustomData_Optional is set to null.
 
 ### Members
 
@@ -588,35 +566,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a1d779aa454a8d2b94d6bbdc979011597)`()` <a id="structFRHAPI__MatchTimelineEvent_1a1d779aa454a8d2b94d6bbdc979011597"></a>
+#### `public inline FORCEINLINE float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a58e0645db0838d4c927016746ef7f3e8)`()` <a id="structFRHAPI__MatchTimelineEvent_1a58e0645db0838d4c927016746ef7f3e8"></a>
 
 Gets the value of CreatedInto_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1abb3cd5554c2d20b6c5b27353ab5a6360)`() const` <a id="structFRHAPI__MatchTimelineEvent_1abb3cd5554c2d20b6c5b27353ab5a6360"></a>
+#### `public inline FORCEINLINE const float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a27d00bb548266171a3ae15a90a87c295)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a27d00bb548266171a3ae15a90a87c295"></a>
 
 Gets the value of CreatedInto_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a949944743380edd5257eddaa317bb785)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a949944743380edd5257eddaa317bb785"></a>
+#### `public inline FORCEINLINE const float & `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1ab88eb2ad4a9566e63cd15ff825a6e26a)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ab88eb2ad4a9566e63cd15ff825a6e26a"></a>
 
 Gets the value of CreatedInto_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a924c77f8cf61cd3913b2f7e564eb711f)`(float & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a924c77f8cf61cd3913b2f7e564eb711f"></a>
+#### `public inline FORCEINLINE bool `[`GetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1ae883cc0ec9c015a23b3296e03a58d760)`(float & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ae883cc0ec9c015a23b3296e03a58d760"></a>
 
 Fills OutValue with the value of CreatedInto_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline float * `[`GetCreatedIntoOrNull`](#structFRHAPI__MatchTimelineEvent_1abf2f35a9f1dd8f4ac74b5765ef608f62)`()` <a id="structFRHAPI__MatchTimelineEvent_1abf2f35a9f1dd8f4ac74b5765ef608f62"></a>
+#### `public inline FORCEINLINE float * `[`GetCreatedIntoOrNull`](#structFRHAPI__MatchTimelineEvent_1a1e7c0084d899384a06b528549ebb307c)`()` <a id="structFRHAPI__MatchTimelineEvent_1a1e7c0084d899384a06b528549ebb307c"></a>
 
 Returns a pointer to CreatedInto_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const float * `[`GetCreatedIntoOrNull`](#structFRHAPI__MatchTimelineEvent_1a25ed46fab14a4edd3de346df1eed376a)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a25ed46fab14a4edd3de346df1eed376a"></a>
+#### `public inline FORCEINLINE const float * `[`GetCreatedIntoOrNull`](#structFRHAPI__MatchTimelineEvent_1a8d388667c2d8922532a53b85742c4a78)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a8d388667c2d8922532a53b85742c4a78"></a>
 
 Returns a pointer to CreatedInto_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a8686fb149bdd178be198ee1a01cf5a0f)`(const float & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a8686fb149bdd178be198ee1a01cf5a0f"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1a489d38b7bebd366e9674d9e211553180)`(const float & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a489d38b7bebd366e9674d9e211553180"></a>
 
 Sets the value of CreatedInto_Optional and also sets CreatedInto_IsSet to true.
 
-#### `public inline void `[`SetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1af6489b14c076e53a73cbf99cee6031f8)`(float && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1af6489b14c076e53a73cbf99cee6031f8"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedInto`](#structFRHAPI__MatchTimelineEvent_1ac653038ac704a2fc03607e8c3ab417a6)`(float && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1ac653038ac704a2fc03607e8c3ab417a6"></a>
 
 Sets the value of CreatedInto_Optional and also sets CreatedInto_IsSet to true using move semantics.
 
@@ -624,47 +602,43 @@ Sets the value of CreatedInto_Optional and also sets CreatedInto_IsSet to true u
 
 Clears the value of CreatedInto_Optional and sets CreatedInto_IsSet to false.
 
-#### `public inline bool `[`IsCreatedIntoSet`](#structFRHAPI__MatchTimelineEvent_1a356a11a9013c5d7bde44e59daeb4f36b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a356a11a9013c5d7bde44e59daeb4f36b"></a>
-
-Checks whether CreatedInto_Optional has been set.
-
-#### `public inline void `[`SetCreatedIntoToNull`](#structFRHAPI__MatchTimelineEvent_1a3daea9bd774e43638343af5ba9034a1b)`()` <a id="structFRHAPI__MatchTimelineEvent_1a3daea9bd774e43638343af5ba9034a1b"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedIntoToNull`](#structFRHAPI__MatchTimelineEvent_1a662eb69e65ed77ebce51588a696ba856)`()` <a id="structFRHAPI__MatchTimelineEvent_1a662eb69e65ed77ebce51588a696ba856"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCreatedIntoNull`](#structFRHAPI__MatchTimelineEvent_1a46271b5ce70ee6fb90f048b22e2a850e)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a46271b5ce70ee6fb90f048b22e2a850e"></a>
+#### `public inline FORCEINLINE bool `[`IsCreatedIntoNull`](#structFRHAPI__MatchTimelineEvent_1aca57551f3f14d29fdf0faca6c40c89b3)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aca57551f3f14d29fdf0faca6c40c89b3"></a>
 
 Checks whether CreatedInto_Optional is set to null.
 
-#### `public inline FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a23b995f0d28a17c306b5353f3a947690)`()` <a id="structFRHAPI__MatchTimelineEvent_1a23b995f0d28a17c306b5353f3a947690"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a77bdc4fc9b9e72907d724a59c16f6d6a)`()` <a id="structFRHAPI__MatchTimelineEvent_1a77bdc4fc9b9e72907d724a59c16f6d6a"></a>
 
 Gets the value of CreatedDt_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1acd3c8aea1a156fa7b6ba88c0da1e59db)`() const` <a id="structFRHAPI__MatchTimelineEvent_1acd3c8aea1a156fa7b6ba88c0da1e59db"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a442a9184581337798f0569025080b006)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a442a9184581337798f0569025080b006"></a>
 
 Gets the value of CreatedDt_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1af979d0d5fa19353a1f023fcfe18e0cee)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1af979d0d5fa19353a1f023fcfe18e0cee"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1ae347b4b80ec7743910dd344ee5f55165)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ae347b4b80ec7743910dd344ee5f55165"></a>
 
 Gets the value of CreatedDt_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1ae032a336df039b59b47f17c0451e111d)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ae032a336df039b59b47f17c0451e111d"></a>
+#### `public inline FORCEINLINE bool `[`GetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a4206ac67858034b328c3daf9a6d83e0b)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a4206ac67858034b328c3daf9a6d83e0b"></a>
 
 Fills OutValue with the value of CreatedDt_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetCreatedDtOrNull`](#structFRHAPI__MatchTimelineEvent_1ac99ffec165cf7435a5a30e350afba61f)`()` <a id="structFRHAPI__MatchTimelineEvent_1ac99ffec165cf7435a5a30e350afba61f"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetCreatedDtOrNull`](#structFRHAPI__MatchTimelineEvent_1a1e1ec9767175115d752545fc2b1ab8ae)`()` <a id="structFRHAPI__MatchTimelineEvent_1a1e1ec9767175115d752545fc2b1ab8ae"></a>
 
 Returns a pointer to CreatedDt_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetCreatedDtOrNull`](#structFRHAPI__MatchTimelineEvent_1a759660877412027ff173c887e312ca1c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a759660877412027ff173c887e312ca1c"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetCreatedDtOrNull`](#structFRHAPI__MatchTimelineEvent_1a9030e2e8100a80b4abe3d6d9b6111dca)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a9030e2e8100a80b4abe3d6d9b6111dca"></a>
 
 Returns a pointer to CreatedDt_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1aab2fe687ccd656f3ecb045f567466f6b)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1aab2fe687ccd656f3ecb045f567466f6b"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1a5d791bb08db637b3e1854f550de246e3)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a5d791bb08db637b3e1854f550de246e3"></a>
 
 Sets the value of CreatedDt_Optional and also sets CreatedDt_IsSet to true.
 
-#### `public inline void `[`SetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1af71971cc6c677b2a67cf50fbe5fa327a)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1af71971cc6c677b2a67cf50fbe5fa327a"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedDt`](#structFRHAPI__MatchTimelineEvent_1ac1ecd8bf6e1454160fd362ec43c20945)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1ac1ecd8bf6e1454160fd362ec43c20945"></a>
 
 Sets the value of CreatedDt_Optional and also sets CreatedDt_IsSet to true using move semantics.
 
@@ -672,47 +646,43 @@ Sets the value of CreatedDt_Optional and also sets CreatedDt_IsSet to true using
 
 Clears the value of CreatedDt_Optional and sets CreatedDt_IsSet to false.
 
-#### `public inline bool `[`IsCreatedDtSet`](#structFRHAPI__MatchTimelineEvent_1afec6825811d6b641d2e026ec76b352aa)`() const` <a id="structFRHAPI__MatchTimelineEvent_1afec6825811d6b641d2e026ec76b352aa"></a>
-
-Checks whether CreatedDt_Optional has been set.
-
-#### `public inline void `[`SetCreatedDtToNull`](#structFRHAPI__MatchTimelineEvent_1a9fbf35c331a116562e7e862c0ce85387)`()` <a id="structFRHAPI__MatchTimelineEvent_1a9fbf35c331a116562e7e862c0ce85387"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedDtToNull`](#structFRHAPI__MatchTimelineEvent_1ae8aba3e369b7766fae707007f65555db)`()` <a id="structFRHAPI__MatchTimelineEvent_1ae8aba3e369b7766fae707007f65555db"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCreatedDtNull`](#structFRHAPI__MatchTimelineEvent_1ae979d673af6845bfa91dea78e20a1d1e)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ae979d673af6845bfa91dea78e20a1d1e"></a>
+#### `public inline FORCEINLINE bool `[`IsCreatedDtNull`](#structFRHAPI__MatchTimelineEvent_1aedff7e281452bb42026e5e05cbc4f423)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aedff7e281452bb42026e5e05cbc4f423"></a>
 
 Checks whether CreatedDt_Optional is set to null.
 
-#### `public inline FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1afb27cd58c4fd4713195077d177820794)`()` <a id="structFRHAPI__MatchTimelineEvent_1afb27cd58c4fd4713195077d177820794"></a>
+#### `public inline FORCEINLINE FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1a3c3238a968d876755365f48cbab45c80)`()` <a id="structFRHAPI__MatchTimelineEvent_1a3c3238a968d876755365f48cbab45c80"></a>
 
 Gets the value of Type_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1a6d09b53db57fc033234fef9b83f6eb61)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a6d09b53db57fc033234fef9b83f6eb61"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1af65e3f417111663fdb18fdc55023dbe5)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af65e3f417111663fdb18fdc55023dbe5"></a>
 
 Gets the value of Type_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1af6eafe8e65c5b2ea59bef9c410bd9c4c)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1af6eafe8e65c5b2ea59bef9c410bd9c4c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType`](#structFRHAPI__MatchTimelineEvent_1aa2db77bf2309ca7451948cad5ad6a767)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aa2db77bf2309ca7451948cad5ad6a767"></a>
 
 Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetType`](#structFRHAPI__MatchTimelineEvent_1a73120a724e599f87e1dfe11e4ebdfc0d)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a73120a724e599f87e1dfe11e4ebdfc0d"></a>
+#### `public inline FORCEINLINE bool `[`GetType`](#structFRHAPI__MatchTimelineEvent_1ad5bc57dd7270e9f3c23d9be3cdff71c0)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ad5bc57dd7270e9f3c23d9be3cdff71c0"></a>
 
 Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTypeOrNull`](#structFRHAPI__MatchTimelineEvent_1a9803935351702f7aef128b7daaa578cb)`()` <a id="structFRHAPI__MatchTimelineEvent_1a9803935351702f7aef128b7daaa578cb"></a>
+#### `public inline FORCEINLINE FString * `[`GetTypeOrNull`](#structFRHAPI__MatchTimelineEvent_1aaa0422bf0fb6eb1d23cdd297346daf87)`()` <a id="structFRHAPI__MatchTimelineEvent_1aaa0422bf0fb6eb1d23cdd297346daf87"></a>
 
 Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTypeOrNull`](#structFRHAPI__MatchTimelineEvent_1aa679cb0ca3550eb04dc63b1a6dc8675c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aa679cb0ca3550eb04dc63b1a6dc8675c"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTypeOrNull`](#structFRHAPI__MatchTimelineEvent_1a34971da07efc5ddcecebcbf1366ed3b2)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a34971da07efc5ddcecebcbf1366ed3b2"></a>
 
 Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetType`](#structFRHAPI__MatchTimelineEvent_1a1df07d16fcc1c4646aa03e5fa8b06bc7)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a1df07d16fcc1c4646aa03e5fa8b06bc7"></a>
+#### `public inline FORCEINLINE void `[`SetType`](#structFRHAPI__MatchTimelineEvent_1a3a4bba5246e291bd8d33632eb37692eb)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a3a4bba5246e291bd8d33632eb37692eb"></a>
 
 Sets the value of Type_Optional and also sets Type_IsSet to true.
 
-#### `public inline void `[`SetType`](#structFRHAPI__MatchTimelineEvent_1a7da01ba6280a272b3d65ef06611251e6)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a7da01ba6280a272b3d65ef06611251e6"></a>
+#### `public inline FORCEINLINE void `[`SetType`](#structFRHAPI__MatchTimelineEvent_1a655a35b74968c4f401a3bb396917945f)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a655a35b74968c4f401a3bb396917945f"></a>
 
 Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
 
@@ -720,47 +690,43 @@ Sets the value of Type_Optional and also sets Type_IsSet to true using move sema
 
 Clears the value of Type_Optional and sets Type_IsSet to false.
 
-#### `public inline bool `[`IsTypeSet`](#structFRHAPI__MatchTimelineEvent_1ad45db0412c0e9d34efd9acd43d815095)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad45db0412c0e9d34efd9acd43d815095"></a>
-
-Checks whether Type_Optional has been set.
-
-#### `public inline void `[`SetTypeToNull`](#structFRHAPI__MatchTimelineEvent_1ad136203516bfa77982abdd7ec022c900)`()` <a id="structFRHAPI__MatchTimelineEvent_1ad136203516bfa77982abdd7ec022c900"></a>
+#### `public inline FORCEINLINE void `[`SetTypeToNull`](#structFRHAPI__MatchTimelineEvent_1a4f5eaee5269d78a6a55a4ea7cd3088c0)`()` <a id="structFRHAPI__MatchTimelineEvent_1a4f5eaee5269d78a6a55a4ea7cd3088c0"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsTypeNull`](#structFRHAPI__MatchTimelineEvent_1ab3146d1f8b6c291153a8543b53921670)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ab3146d1f8b6c291153a8543b53921670"></a>
+#### `public inline FORCEINLINE bool `[`IsTypeNull`](#structFRHAPI__MatchTimelineEvent_1a55e92cf1fe5580acd24b82613bd66931)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a55e92cf1fe5580acd24b82613bd66931"></a>
 
 Checks whether Type_Optional is set to null.
 
-#### `public inline FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1ac17839e63a634c2e72cee406dec56c72)`()` <a id="structFRHAPI__MatchTimelineEvent_1ac17839e63a634c2e72cee406dec56c72"></a>
+#### `public inline FORCEINLINE FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a4bfe6913bd4d6d009813e75191344b51)`()` <a id="structFRHAPI__MatchTimelineEvent_1a4bfe6913bd4d6d009813e75191344b51"></a>
 
 Gets the value of Type2_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a99491276c1450e495c07fae3c8c86fe2)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a99491276c1450e495c07fae3c8c86fe2"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a643a8e862d521ee49320031a4ceb0828)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a643a8e862d521ee49320031a4ceb0828"></a>
 
 Gets the value of Type2_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1aa26546fbbd71e84256d8de9d901f3197)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aa26546fbbd71e84256d8de9d901f3197"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a2749dd675862120d9ecab91347e65e71)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a2749dd675862120d9ecab91347e65e71"></a>
 
 Gets the value of Type2_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a5d48d3fc66752262988ae447372d98ca)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a5d48d3fc66752262988ae447372d98ca"></a>
+#### `public inline FORCEINLINE bool `[`GetType2`](#structFRHAPI__MatchTimelineEvent_1a5e1b51e5417ca14d39d8f2cefd5d7013)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a5e1b51e5417ca14d39d8f2cefd5d7013"></a>
 
 Fills OutValue with the value of Type2_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetType2OrNull`](#structFRHAPI__MatchTimelineEvent_1a61e3e586e943066e3df5128746818c03)`()` <a id="structFRHAPI__MatchTimelineEvent_1a61e3e586e943066e3df5128746818c03"></a>
+#### `public inline FORCEINLINE FString * `[`GetType2OrNull`](#structFRHAPI__MatchTimelineEvent_1a4debaeec2346bfed9128fad83abb6eaf)`()` <a id="structFRHAPI__MatchTimelineEvent_1a4debaeec2346bfed9128fad83abb6eaf"></a>
 
 Returns a pointer to Type2_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetType2OrNull`](#structFRHAPI__MatchTimelineEvent_1a635523a34e28cdf9a9c4830b259da790)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a635523a34e28cdf9a9c4830b259da790"></a>
+#### `public inline FORCEINLINE const FString * `[`GetType2OrNull`](#structFRHAPI__MatchTimelineEvent_1a5361732054258bbf4e4121d004b12b4c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a5361732054258bbf4e4121d004b12b4c"></a>
 
 Returns a pointer to Type2_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetType2`](#structFRHAPI__MatchTimelineEvent_1a0548da06dfae837f7a87abfec9a16b49)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a0548da06dfae837f7a87abfec9a16b49"></a>
+#### `public inline FORCEINLINE void `[`SetType2`](#structFRHAPI__MatchTimelineEvent_1afb7effdeabe3b33fa303dd934b1d3099)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1afb7effdeabe3b33fa303dd934b1d3099"></a>
 
 Sets the value of Type2_Optional and also sets Type2_IsSet to true.
 
-#### `public inline void `[`SetType2`](#structFRHAPI__MatchTimelineEvent_1a8c326c309e94e229420d325418281106)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a8c326c309e94e229420d325418281106"></a>
+#### `public inline FORCEINLINE void `[`SetType2`](#structFRHAPI__MatchTimelineEvent_1a1419447b605d3f0fb3f00a4665156b13)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a1419447b605d3f0fb3f00a4665156b13"></a>
 
 Sets the value of Type2_Optional and also sets Type2_IsSet to true using move semantics.
 
@@ -768,47 +734,43 @@ Sets the value of Type2_Optional and also sets Type2_IsSet to true using move se
 
 Clears the value of Type2_Optional and sets Type2_IsSet to false.
 
-#### `public inline bool `[`IsType2Set`](#structFRHAPI__MatchTimelineEvent_1af8662cdc087d8201e9fa600efbc46ff4)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af8662cdc087d8201e9fa600efbc46ff4"></a>
-
-Checks whether Type2_Optional has been set.
-
-#### `public inline void `[`SetType2ToNull`](#structFRHAPI__MatchTimelineEvent_1a0eed7f8b0a1d04fdf9cee732e5da59ae)`()` <a id="structFRHAPI__MatchTimelineEvent_1a0eed7f8b0a1d04fdf9cee732e5da59ae"></a>
+#### `public inline FORCEINLINE void `[`SetType2ToNull`](#structFRHAPI__MatchTimelineEvent_1af0d1cf1f174832d77436397a6bc2d5bb)`()` <a id="structFRHAPI__MatchTimelineEvent_1af0d1cf1f174832d77436397a6bc2d5bb"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsType2Null`](#structFRHAPI__MatchTimelineEvent_1ad69874668039f670e736edb7b5e9c9a8)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad69874668039f670e736edb7b5e9c9a8"></a>
+#### `public inline FORCEINLINE bool `[`IsType2Null`](#structFRHAPI__MatchTimelineEvent_1a9561acb3da9715b012b19516474f2b4f)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a9561acb3da9715b012b19516474f2b4f"></a>
 
 Checks whether Type2_Optional is set to null.
 
-#### `public inline FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1abd464e183ac961456521076916b4e50b)`()` <a id="structFRHAPI__MatchTimelineEvent_1abd464e183ac961456521076916b4e50b"></a>
+#### `public inline FORCEINLINE FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1af37834e5c70f756bc0fe8f9a39b079a2)`()` <a id="structFRHAPI__MatchTimelineEvent_1af37834e5c70f756bc0fe8f9a39b079a2"></a>
 
 Gets the value of Type3_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1a96b94af9ab71830099ada623b0b76dde)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a96b94af9ab71830099ada623b0b76dde"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1a73b9d0b3c42306385c0c5fb7f64d8c9c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a73b9d0b3c42306385c0c5fb7f64d8c9c"></a>
 
 Gets the value of Type3_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1a1db8d0fa86cb399b91c6082309fca0ac)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a1db8d0fa86cb399b91c6082309fca0ac"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1a3441e4bd89f88679f15c33704d7f00e7)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a3441e4bd89f88679f15c33704d7f00e7"></a>
 
 Gets the value of Type3_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1acad0070c79d51da2135fde2fdfd56475)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1acad0070c79d51da2135fde2fdfd56475"></a>
+#### `public inline FORCEINLINE bool `[`GetType3`](#structFRHAPI__MatchTimelineEvent_1ae8352a879ae8fe45b90a75b84066a8bd)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ae8352a879ae8fe45b90a75b84066a8bd"></a>
 
 Fills OutValue with the value of Type3_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetType3OrNull`](#structFRHAPI__MatchTimelineEvent_1a842bb38ae805cf43a23d73460942e796)`()` <a id="structFRHAPI__MatchTimelineEvent_1a842bb38ae805cf43a23d73460942e796"></a>
+#### `public inline FORCEINLINE FString * `[`GetType3OrNull`](#structFRHAPI__MatchTimelineEvent_1a89c7fd723a830815770c6824d6384faa)`()` <a id="structFRHAPI__MatchTimelineEvent_1a89c7fd723a830815770c6824d6384faa"></a>
 
 Returns a pointer to Type3_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetType3OrNull`](#structFRHAPI__MatchTimelineEvent_1a970a4139f6062608951cf9a8819ee671)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a970a4139f6062608951cf9a8819ee671"></a>
+#### `public inline FORCEINLINE const FString * `[`GetType3OrNull`](#structFRHAPI__MatchTimelineEvent_1ac4c83b41546bcf58a1d66d630eb78cd6)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ac4c83b41546bcf58a1d66d630eb78cd6"></a>
 
 Returns a pointer to Type3_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetType3`](#structFRHAPI__MatchTimelineEvent_1a42292444cab07597b94942ee4967ede3)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a42292444cab07597b94942ee4967ede3"></a>
+#### `public inline FORCEINLINE void `[`SetType3`](#structFRHAPI__MatchTimelineEvent_1a83020216ae6db95cb1150412efe2811f)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a83020216ae6db95cb1150412efe2811f"></a>
 
 Sets the value of Type3_Optional and also sets Type3_IsSet to true.
 
-#### `public inline void `[`SetType3`](#structFRHAPI__MatchTimelineEvent_1a047bf6ba782927c925ba276b309ae618)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a047bf6ba782927c925ba276b309ae618"></a>
+#### `public inline FORCEINLINE void `[`SetType3`](#structFRHAPI__MatchTimelineEvent_1ab6d46aafbedfb456f6b2e5a163bde15b)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1ab6d46aafbedfb456f6b2e5a163bde15b"></a>
 
 Sets the value of Type3_Optional and also sets Type3_IsSet to true using move semantics.
 
@@ -816,47 +778,43 @@ Sets the value of Type3_Optional and also sets Type3_IsSet to true using move se
 
 Clears the value of Type3_Optional and sets Type3_IsSet to false.
 
-#### `public inline bool `[`IsType3Set`](#structFRHAPI__MatchTimelineEvent_1af3e310600154677023bf26eefab55a91)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af3e310600154677023bf26eefab55a91"></a>
-
-Checks whether Type3_Optional has been set.
-
-#### `public inline void `[`SetType3ToNull`](#structFRHAPI__MatchTimelineEvent_1a26673cf7e83bf34593f7f8da6a7c97e6)`()` <a id="structFRHAPI__MatchTimelineEvent_1a26673cf7e83bf34593f7f8da6a7c97e6"></a>
+#### `public inline FORCEINLINE void `[`SetType3ToNull`](#structFRHAPI__MatchTimelineEvent_1a823d914a4b259cf85c635ad0c0bb979a)`()` <a id="structFRHAPI__MatchTimelineEvent_1a823d914a4b259cf85c635ad0c0bb979a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsType3Null`](#structFRHAPI__MatchTimelineEvent_1af19627d9b23a511d9fb8d1d06191f6b8)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af19627d9b23a511d9fb8d1d06191f6b8"></a>
+#### `public inline FORCEINLINE bool `[`IsType3Null`](#structFRHAPI__MatchTimelineEvent_1a608dd2c700f2ffd2ba511fa069d5fa02)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a608dd2c700f2ffd2ba511fa069d5fa02"></a>
 
 Checks whether Type3_Optional is set to null.
 
-#### `public inline FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a8460f4afece5c5632f26a3645cf8469c)`()` <a id="structFRHAPI__MatchTimelineEvent_1a8460f4afece5c5632f26a3645cf8469c"></a>
+#### `public inline FORCEINLINE FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1ab04993de6742df72bc7376de2b05328a)`()` <a id="structFRHAPI__MatchTimelineEvent_1ab04993de6742df72bc7376de2b05328a"></a>
 
 Gets the value of Type4_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1aaa7d6bef119a8113411854a326ee7c1e)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aaa7d6bef119a8113411854a326ee7c1e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a6521c49df70d57afadcf0182567f8dc8)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a6521c49df70d57afadcf0182567f8dc8"></a>
 
 Gets the value of Type4_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a82762ab955ad0ca3aa84467f603dc8a3)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a82762ab955ad0ca3aa84467f603dc8a3"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1ae06d4e999fa53036f93f20bfb00f29d6)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ae06d4e999fa53036f93f20bfb00f29d6"></a>
 
 Gets the value of Type4_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a5a5ff220cb74b307d6bd6bbf3e50c831)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a5a5ff220cb74b307d6bd6bbf3e50c831"></a>
+#### `public inline FORCEINLINE bool `[`GetType4`](#structFRHAPI__MatchTimelineEvent_1a4ff5c3aea5dba1d88d85a3a8c683850e)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a4ff5c3aea5dba1d88d85a3a8c683850e"></a>
 
 Fills OutValue with the value of Type4_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetType4OrNull`](#structFRHAPI__MatchTimelineEvent_1a075212d835528253331b6f8b6f530025)`()` <a id="structFRHAPI__MatchTimelineEvent_1a075212d835528253331b6f8b6f530025"></a>
+#### `public inline FORCEINLINE FString * `[`GetType4OrNull`](#structFRHAPI__MatchTimelineEvent_1ac7f650153da2822b72c415677d01bba0)`()` <a id="structFRHAPI__MatchTimelineEvent_1ac7f650153da2822b72c415677d01bba0"></a>
 
 Returns a pointer to Type4_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetType4OrNull`](#structFRHAPI__MatchTimelineEvent_1a3b4f4c03a1ecf78df1b48ba4c4e10d1d)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a3b4f4c03a1ecf78df1b48ba4c4e10d1d"></a>
+#### `public inline FORCEINLINE const FString * `[`GetType4OrNull`](#structFRHAPI__MatchTimelineEvent_1a21eaee642013308e3d3586ac93c87390)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a21eaee642013308e3d3586ac93c87390"></a>
 
 Returns a pointer to Type4_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetType4`](#structFRHAPI__MatchTimelineEvent_1a0d39eb1819a9445f445e46cf092d67b8)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a0d39eb1819a9445f445e46cf092d67b8"></a>
+#### `public inline FORCEINLINE void `[`SetType4`](#structFRHAPI__MatchTimelineEvent_1a1934a83aec4e5626b76df82bd3641605)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a1934a83aec4e5626b76df82bd3641605"></a>
 
 Sets the value of Type4_Optional and also sets Type4_IsSet to true.
 
-#### `public inline void `[`SetType4`](#structFRHAPI__MatchTimelineEvent_1a92e91ff4e525757683dda5d6a8b43f58)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a92e91ff4e525757683dda5d6a8b43f58"></a>
+#### `public inline FORCEINLINE void `[`SetType4`](#structFRHAPI__MatchTimelineEvent_1a62e2378eae24657c96ecc6a2d0cdd42e)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a62e2378eae24657c96ecc6a2d0cdd42e"></a>
 
 Sets the value of Type4_Optional and also sets Type4_IsSet to true using move semantics.
 
@@ -864,47 +822,43 @@ Sets the value of Type4_Optional and also sets Type4_IsSet to true using move se
 
 Clears the value of Type4_Optional and sets Type4_IsSet to false.
 
-#### `public inline bool `[`IsType4Set`](#structFRHAPI__MatchTimelineEvent_1adfb86e8e462ad79314655c25c46b20c0)`() const` <a id="structFRHAPI__MatchTimelineEvent_1adfb86e8e462ad79314655c25c46b20c0"></a>
-
-Checks whether Type4_Optional has been set.
-
-#### `public inline void `[`SetType4ToNull`](#structFRHAPI__MatchTimelineEvent_1a48a864a3e2acafa80804ff5648e9328e)`()` <a id="structFRHAPI__MatchTimelineEvent_1a48a864a3e2acafa80804ff5648e9328e"></a>
+#### `public inline FORCEINLINE void `[`SetType4ToNull`](#structFRHAPI__MatchTimelineEvent_1ac9b22140f1734325ee5023e473a27e85)`()` <a id="structFRHAPI__MatchTimelineEvent_1ac9b22140f1734325ee5023e473a27e85"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsType4Null`](#structFRHAPI__MatchTimelineEvent_1a30eae85ebfd3ba54950b3d22b7dd83e4)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a30eae85ebfd3ba54950b3d22b7dd83e4"></a>
+#### `public inline FORCEINLINE bool `[`IsType4Null`](#structFRHAPI__MatchTimelineEvent_1af86ede006248af7160ca7fd805da3dfd)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af86ede006248af7160ca7fd805da3dfd"></a>
 
 Checks whether Type4_Optional is set to null.
 
-#### `public inline float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a0ab3e0153945f2a389572b00aa1caf48)`()` <a id="structFRHAPI__MatchTimelineEvent_1a0ab3e0153945f2a389572b00aa1caf48"></a>
+#### `public inline FORCEINLINE float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1aed8970173bb516b9a0d1e7c1703207a4)`()` <a id="structFRHAPI__MatchTimelineEvent_1aed8970173bb516b9a0d1e7c1703207a4"></a>
 
 Gets the value of LocX_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1ac6762d15586bbe25540e0f9e32236a96)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ac6762d15586bbe25540e0f9e32236a96"></a>
+#### `public inline FORCEINLINE const float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a5547b9d19cd42ae60919b8af3202ada2)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a5547b9d19cd42ae60919b8af3202ada2"></a>
 
 Gets the value of LocX_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a7d5534e7cc8586ff18ca4c8430f18c89)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a7d5534e7cc8586ff18ca4c8430f18c89"></a>
+#### `public inline FORCEINLINE const float & `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a8ff21a61cedd8578e729ace84f5bbe7c)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a8ff21a61cedd8578e729ace84f5bbe7c"></a>
 
 Gets the value of LocX_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a6d0a226f9e8ed7d14203adf56cd1e33a)`(float & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a6d0a226f9e8ed7d14203adf56cd1e33a"></a>
+#### `public inline FORCEINLINE bool `[`GetLocX`](#structFRHAPI__MatchTimelineEvent_1a7adc2e445d2a7d66908fbfff9fbcf763)`(float & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a7adc2e445d2a7d66908fbfff9fbcf763"></a>
 
 Fills OutValue with the value of LocX_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline float * `[`GetLocXOrNull`](#structFRHAPI__MatchTimelineEvent_1a369a1277c26911034f206bbbb6270c4e)`()` <a id="structFRHAPI__MatchTimelineEvent_1a369a1277c26911034f206bbbb6270c4e"></a>
+#### `public inline FORCEINLINE float * `[`GetLocXOrNull`](#structFRHAPI__MatchTimelineEvent_1a99cb7c9e31e9be98e8fdabdade6ec161)`()` <a id="structFRHAPI__MatchTimelineEvent_1a99cb7c9e31e9be98e8fdabdade6ec161"></a>
 
 Returns a pointer to LocX_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const float * `[`GetLocXOrNull`](#structFRHAPI__MatchTimelineEvent_1a0c1bf422a07b18fa9007f199a8e24dcd)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a0c1bf422a07b18fa9007f199a8e24dcd"></a>
+#### `public inline FORCEINLINE const float * `[`GetLocXOrNull`](#structFRHAPI__MatchTimelineEvent_1a0813fbd1def8c8fe492c2bef53178723)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a0813fbd1def8c8fe492c2bef53178723"></a>
 
 Returns a pointer to LocX_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLocX`](#structFRHAPI__MatchTimelineEvent_1a5da8527f1f973a454fa10651bd8f5c7c)`(const float & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a5da8527f1f973a454fa10651bd8f5c7c"></a>
+#### `public inline FORCEINLINE void `[`SetLocX`](#structFRHAPI__MatchTimelineEvent_1a93e61e4c95b491f997900373dfa70577)`(const float & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a93e61e4c95b491f997900373dfa70577"></a>
 
 Sets the value of LocX_Optional and also sets LocX_IsSet to true.
 
-#### `public inline void `[`SetLocX`](#structFRHAPI__MatchTimelineEvent_1a1a5f00ee0d8abdd0c6085c90dcce3654)`(float && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a1a5f00ee0d8abdd0c6085c90dcce3654"></a>
+#### `public inline FORCEINLINE void `[`SetLocX`](#structFRHAPI__MatchTimelineEvent_1a673c0d3bd1a981fafd651c763126aeb5)`(float && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a673c0d3bd1a981fafd651c763126aeb5"></a>
 
 Sets the value of LocX_Optional and also sets LocX_IsSet to true using move semantics.
 
@@ -912,47 +866,43 @@ Sets the value of LocX_Optional and also sets LocX_IsSet to true using move sema
 
 Clears the value of LocX_Optional and sets LocX_IsSet to false.
 
-#### `public inline bool `[`IsLocXSet`](#structFRHAPI__MatchTimelineEvent_1a7e2e4cd8978aef53362c302934abffca)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a7e2e4cd8978aef53362c302934abffca"></a>
-
-Checks whether LocX_Optional has been set.
-
-#### `public inline void `[`SetLocXToNull`](#structFRHAPI__MatchTimelineEvent_1a2d539a9fb4f427df5ed19ccb22cf83eb)`()` <a id="structFRHAPI__MatchTimelineEvent_1a2d539a9fb4f427df5ed19ccb22cf83eb"></a>
+#### `public inline FORCEINLINE void `[`SetLocXToNull`](#structFRHAPI__MatchTimelineEvent_1a7a4cf301d3ae568ae143f9334cb2f63c)`()` <a id="structFRHAPI__MatchTimelineEvent_1a7a4cf301d3ae568ae143f9334cb2f63c"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLocXNull`](#structFRHAPI__MatchTimelineEvent_1a0f09b51805855e26682680f40978c920)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a0f09b51805855e26682680f40978c920"></a>
+#### `public inline FORCEINLINE bool `[`IsLocXNull`](#structFRHAPI__MatchTimelineEvent_1a845137121c655efd78cf55dd66abda02)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a845137121c655efd78cf55dd66abda02"></a>
 
 Checks whether LocX_Optional is set to null.
 
-#### `public inline float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1ae34c2b753fd8b982a2fc1f31ca4771c6)`()` <a id="structFRHAPI__MatchTimelineEvent_1ae34c2b753fd8b982a2fc1f31ca4771c6"></a>
+#### `public inline FORCEINLINE float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a7d2840441ca0524ce86dd582010a0a15)`()` <a id="structFRHAPI__MatchTimelineEvent_1a7d2840441ca0524ce86dd582010a0a15"></a>
 
 Gets the value of LocY_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a18f7f353d1e4669bf2933739ca01ec3c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a18f7f353d1e4669bf2933739ca01ec3c"></a>
+#### `public inline FORCEINLINE const float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1ad128f8c3b8533db96e92c6b912095a8b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad128f8c3b8533db96e92c6b912095a8b"></a>
 
 Gets the value of LocY_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1acabcc1fae34e0e129bbd037844b7cc1b)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1acabcc1fae34e0e129bbd037844b7cc1b"></a>
+#### `public inline FORCEINLINE const float & `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a56803cca1b7666e6dcffd89c4ec9ccc5)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a56803cca1b7666e6dcffd89c4ec9ccc5"></a>
 
 Gets the value of LocY_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a6c28181df66bb0078915916bb20579f9)`(float & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a6c28181df66bb0078915916bb20579f9"></a>
+#### `public inline FORCEINLINE bool `[`GetLocY`](#structFRHAPI__MatchTimelineEvent_1a5559928518e036172efa9bfeea7ce298)`(float & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a5559928518e036172efa9bfeea7ce298"></a>
 
 Fills OutValue with the value of LocY_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline float * `[`GetLocYOrNull`](#structFRHAPI__MatchTimelineEvent_1a9a61d45769e3c4558d19440cca72fe94)`()` <a id="structFRHAPI__MatchTimelineEvent_1a9a61d45769e3c4558d19440cca72fe94"></a>
+#### `public inline FORCEINLINE float * `[`GetLocYOrNull`](#structFRHAPI__MatchTimelineEvent_1ae5d7e6fd2e443e2310b60d13469d004c)`()` <a id="structFRHAPI__MatchTimelineEvent_1ae5d7e6fd2e443e2310b60d13469d004c"></a>
 
 Returns a pointer to LocY_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const float * `[`GetLocYOrNull`](#structFRHAPI__MatchTimelineEvent_1aee1a22b979d8c4071fef208c0a0f753a)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aee1a22b979d8c4071fef208c0a0f753a"></a>
+#### `public inline FORCEINLINE const float * `[`GetLocYOrNull`](#structFRHAPI__MatchTimelineEvent_1ae90a3c5da7ef51dc7ce3a22dffdb764d)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ae90a3c5da7ef51dc7ce3a22dffdb764d"></a>
 
 Returns a pointer to LocY_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLocY`](#structFRHAPI__MatchTimelineEvent_1accafc79cfab8c9453c2b9074e82fc9d4)`(const float & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1accafc79cfab8c9453c2b9074e82fc9d4"></a>
+#### `public inline FORCEINLINE void `[`SetLocY`](#structFRHAPI__MatchTimelineEvent_1a39a12bf296be118f47d235e85ae224bb)`(const float & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a39a12bf296be118f47d235e85ae224bb"></a>
 
 Sets the value of LocY_Optional and also sets LocY_IsSet to true.
 
-#### `public inline void `[`SetLocY`](#structFRHAPI__MatchTimelineEvent_1a0699d2564d2e78268009dabfa4814b77)`(float && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a0699d2564d2e78268009dabfa4814b77"></a>
+#### `public inline FORCEINLINE void `[`SetLocY`](#structFRHAPI__MatchTimelineEvent_1a98efc0ff248f1e9dc07f0331e5b75c66)`(float && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a98efc0ff248f1e9dc07f0331e5b75c66"></a>
 
 Sets the value of LocY_Optional and also sets LocY_IsSet to true using move semantics.
 
@@ -960,47 +910,43 @@ Sets the value of LocY_Optional and also sets LocY_IsSet to true using move sema
 
 Clears the value of LocY_Optional and sets LocY_IsSet to false.
 
-#### `public inline bool `[`IsLocYSet`](#structFRHAPI__MatchTimelineEvent_1a5509eba7dc228f4eb6e1c73c982ff290)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a5509eba7dc228f4eb6e1c73c982ff290"></a>
-
-Checks whether LocY_Optional has been set.
-
-#### `public inline void `[`SetLocYToNull`](#structFRHAPI__MatchTimelineEvent_1afc62fcb1c83aa756523201aba5650d02)`()` <a id="structFRHAPI__MatchTimelineEvent_1afc62fcb1c83aa756523201aba5650d02"></a>
+#### `public inline FORCEINLINE void `[`SetLocYToNull`](#structFRHAPI__MatchTimelineEvent_1a309fe1e6d31324e3c0e49cfb18fe35de)`()` <a id="structFRHAPI__MatchTimelineEvent_1a309fe1e6d31324e3c0e49cfb18fe35de"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLocYNull`](#structFRHAPI__MatchTimelineEvent_1aa5739ce05ae6e2e5c64c53e7e51fa5cf)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aa5739ce05ae6e2e5c64c53e7e51fa5cf"></a>
+#### `public inline FORCEINLINE bool `[`IsLocYNull`](#structFRHAPI__MatchTimelineEvent_1a85d4023da93ba3e5fa7ceb294ca2ee96)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a85d4023da93ba3e5fa7ceb294ca2ee96"></a>
 
 Checks whether LocY_Optional is set to null.
 
-#### `public inline float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1af5e31fd2194f854cfa2f91ce3ca723c8)`()` <a id="structFRHAPI__MatchTimelineEvent_1af5e31fd2194f854cfa2f91ce3ca723c8"></a>
+#### `public inline FORCEINLINE float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1aca891386d08de01af9c7e0ef404a62af)`()` <a id="structFRHAPI__MatchTimelineEvent_1aca891386d08de01af9c7e0ef404a62af"></a>
 
 Gets the value of LocZ_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1ad75d258afda757e8a08f664a2ac4d9eb)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad75d258afda757e8a08f664a2ac4d9eb"></a>
+#### `public inline FORCEINLINE const float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1a7da707e9d1ff859d6384a3d5bcc04368)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a7da707e9d1ff859d6384a3d5bcc04368"></a>
 
 Gets the value of LocZ_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1a8332fab224372c75dadd5b9d4aadcf20)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a8332fab224372c75dadd5b9d4aadcf20"></a>
+#### `public inline FORCEINLINE const float & `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1a84770c231071d54e2b72787e980151bd)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a84770c231071d54e2b72787e980151bd"></a>
 
 Gets the value of LocZ_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1a23eef5f0de98eaaed6a76c43223244a5)`(float & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a23eef5f0de98eaaed6a76c43223244a5"></a>
+#### `public inline FORCEINLINE bool `[`GetLocZ`](#structFRHAPI__MatchTimelineEvent_1aebb993546406b0269bfa5e81ba84bd55)`(float & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aebb993546406b0269bfa5e81ba84bd55"></a>
 
 Fills OutValue with the value of LocZ_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline float * `[`GetLocZOrNull`](#structFRHAPI__MatchTimelineEvent_1ad56a7245b9d5c7a645bbacc2f984a5ac)`()` <a id="structFRHAPI__MatchTimelineEvent_1ad56a7245b9d5c7a645bbacc2f984a5ac"></a>
+#### `public inline FORCEINLINE float * `[`GetLocZOrNull`](#structFRHAPI__MatchTimelineEvent_1a1430f72330fb4a1464b02098f0fabc48)`()` <a id="structFRHAPI__MatchTimelineEvent_1a1430f72330fb4a1464b02098f0fabc48"></a>
 
 Returns a pointer to LocZ_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const float * `[`GetLocZOrNull`](#structFRHAPI__MatchTimelineEvent_1a14f204d9f820d1d2db38f5a3d51cdfdd)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a14f204d9f820d1d2db38f5a3d51cdfdd"></a>
+#### `public inline FORCEINLINE const float * `[`GetLocZOrNull`](#structFRHAPI__MatchTimelineEvent_1ae39ae0de1330b5eeda1aa3a7fbf92148)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ae39ae0de1330b5eeda1aa3a7fbf92148"></a>
 
 Returns a pointer to LocZ_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLocZ`](#structFRHAPI__MatchTimelineEvent_1aada1c0b3f7f8d8bee8ae025cfbf233ab)`(const float & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1aada1c0b3f7f8d8bee8ae025cfbf233ab"></a>
+#### `public inline FORCEINLINE void `[`SetLocZ`](#structFRHAPI__MatchTimelineEvent_1a8545ffd0df7c7e9fb631d498e4a3086d)`(const float & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a8545ffd0df7c7e9fb631d498e4a3086d"></a>
 
 Sets the value of LocZ_Optional and also sets LocZ_IsSet to true.
 
-#### `public inline void `[`SetLocZ`](#structFRHAPI__MatchTimelineEvent_1a5e5d6f05f4daff32f3a13a24ba347547)`(float && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a5e5d6f05f4daff32f3a13a24ba347547"></a>
+#### `public inline FORCEINLINE void `[`SetLocZ`](#structFRHAPI__MatchTimelineEvent_1a581f049cba60be3601ffefdd227f5306)`(float && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a581f049cba60be3601ffefdd227f5306"></a>
 
 Sets the value of LocZ_Optional and also sets LocZ_IsSet to true using move semantics.
 
@@ -1008,47 +954,43 @@ Sets the value of LocZ_Optional and also sets LocZ_IsSet to true using move sema
 
 Clears the value of LocZ_Optional and sets LocZ_IsSet to false.
 
-#### `public inline bool `[`IsLocZSet`](#structFRHAPI__MatchTimelineEvent_1a7b3fa7f47e270262d530e6a2bb045fed)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a7b3fa7f47e270262d530e6a2bb045fed"></a>
-
-Checks whether LocZ_Optional has been set.
-
-#### `public inline void `[`SetLocZToNull`](#structFRHAPI__MatchTimelineEvent_1a770282814680b281ebd516dc8e5940c8)`()` <a id="structFRHAPI__MatchTimelineEvent_1a770282814680b281ebd516dc8e5940c8"></a>
+#### `public inline FORCEINLINE void `[`SetLocZToNull`](#structFRHAPI__MatchTimelineEvent_1aefac3f6b2df7bdbd55f0d1027d405d33)`()` <a id="structFRHAPI__MatchTimelineEvent_1aefac3f6b2df7bdbd55f0d1027d405d33"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLocZNull`](#structFRHAPI__MatchTimelineEvent_1a934adfcfdbf7c1957c87c63b9867c55a)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a934adfcfdbf7c1957c87c63b9867c55a"></a>
+#### `public inline FORCEINLINE bool `[`IsLocZNull`](#structFRHAPI__MatchTimelineEvent_1a860ece4f0e5d7ebb8e74fa05efe286bd)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a860ece4f0e5d7ebb8e74fa05efe286bd"></a>
 
 Checks whether LocZ_Optional is set to null.
 
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aeefc73b9b6958738e78d21f34bec0ff8)`()` <a id="structFRHAPI__MatchTimelineEvent_1aeefc73b9b6958738e78d21f34bec0ff8"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a0df8c2826fd55b4478019c07500ea6d2)`()` <a id="structFRHAPI__MatchTimelineEvent_1a0df8c2826fd55b4478019c07500ea6d2"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a09458e7cb483f030a88de8e3ca8e0b6b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a09458e7cb483f030a88de8e3ca8e0b6b"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a780976fb223deb54f6c09441ddacdd72)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a780976fb223deb54f6c09441ddacdd72"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ab07eea55933ee5fb28fff0cdaca2f4aa)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ab07eea55933ee5fb28fff0cdaca2f4aa"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ae7fe62396631ba8c2c2f808793e78a9e)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ae7fe62396631ba8c2c2f808793e78a9e"></a>
 
 Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a3b4f578249f0ea7951d9a975498043ab)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a3b4f578249f0ea7951d9a975498043ab"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1af9c34e4372e6a783418869cfd4c29fd3)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1af9c34e4372e6a783418869cfd4c29fd3"></a>
 
 Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a70d3a190130dfbf4da5da3cdef783194)`()` <a id="structFRHAPI__MatchTimelineEvent_1a70d3a190130dfbf4da5da3cdef783194"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1ae72c3631a4f3bcce2af6e35eef109ab4)`()` <a id="structFRHAPI__MatchTimelineEvent_1ae72c3631a4f3bcce2af6e35eef109ab4"></a>
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1adc2311a203d55c30dc091db3b97c0b84)`() const` <a id="structFRHAPI__MatchTimelineEvent_1adc2311a203d55c30dc091db3b97c0b84"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a4a2e65c9a232b6ff5bf94a4d64dc0e87)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a4a2e65c9a232b6ff5bf94a4d64dc0e87"></a>
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a66f787da5b911988ce7cea4083465fd2)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a66f787da5b911988ce7cea4083465fd2"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a0a13b0206f8514333913b42a532e9805)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a0a13b0206f8514333913b42a532e9805"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a5c464d93f788e996590e66c9be2d0c3d)`(FGuid && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a5c464d93f788e996590e66c9be2d0c3d"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ae508575aae5d8ac78d86736a4a1260ae)`(FGuid && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1ae508575aae5d8ac78d86736a4a1260ae"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 
@@ -1056,47 +998,43 @@ Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true usi
 
 Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__MatchTimelineEvent_1aa51268c58039402d86ac2be12b2fdef9)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aa51268c58039402d86ac2be12b2fdef9"></a>
-
-Checks whether PlayerUuid_Optional has been set.
-
-#### `public inline void `[`SetPlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1a7708a00946cd3b8589b9deac26819ff5)`()` <a id="structFRHAPI__MatchTimelineEvent_1a7708a00946cd3b8589b9deac26819ff5"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1af0c9b1c9a6a5052b2d6474e41fbc4aab)`()` <a id="structFRHAPI__MatchTimelineEvent_1af0c9b1c9a6a5052b2d6474e41fbc4aab"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a7c8f6ec50f5f9bf9fe0a2eea483e4536)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a7c8f6ec50f5f9bf9fe0a2eea483e4536"></a>
+#### `public inline FORCEINLINE bool `[`IsPlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a1ee9f1b3e4614e32e4ac0580c3509409)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a1ee9f1b3e4614e32e4ac0580c3509409"></a>
 
 Checks whether PlayerUuid_Optional is set to null.
 
-#### `public inline FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a9eec4254b922df50a667b6233a693595)`()` <a id="structFRHAPI__MatchTimelineEvent_1a9eec4254b922df50a667b6233a693595"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a80dfcd973318d8f0b5a158cfa5993326)`()` <a id="structFRHAPI__MatchTimelineEvent_1a80dfcd973318d8f0b5a158cfa5993326"></a>
 
 Gets the value of SourcePlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aa6b84c7bcd9642e16da62cc4a4f037a5)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aa6b84c7bcd9642e16da62cc4a4f037a5"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a9473ceb1f45e5ef7da7f32f1dd2f7ce8)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a9473ceb1f45e5ef7da7f32f1dd2f7ce8"></a>
 
 Gets the value of SourcePlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aa5bc979cdedcdc9eb8e2ac2e3183bd9d)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aa5bc979cdedcdc9eb8e2ac2e3183bd9d"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a8fb7fc6813e7a9f609f7df835a5fc182)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a8fb7fc6813e7a9f609f7df835a5fc182"></a>
 
 Gets the value of SourcePlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a4a77a92fdb6015a20bca9595f44fc872)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a4a77a92fdb6015a20bca9595f44fc872"></a>
+#### `public inline FORCEINLINE bool `[`GetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aebb201e4ce08d0794287b3e4ddafecbe)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aebb201e4ce08d0794287b3e4ddafecbe"></a>
 
 Fills OutValue with the value of SourcePlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetSourcePlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a938a79624747be6894a76e9e4fc9c87d)`()` <a id="structFRHAPI__MatchTimelineEvent_1a938a79624747be6894a76e9e4fc9c87d"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetSourcePlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a2c8a33b269b6728b4e5dd7de33e14607)`()` <a id="structFRHAPI__MatchTimelineEvent_1a2c8a33b269b6728b4e5dd7de33e14607"></a>
 
 Returns a pointer to SourcePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetSourcePlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1ad8340259b6772713587b64541c611c23)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad8340259b6772713587b64541c611c23"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetSourcePlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1aa638615d7517049ecb5323a35fd7824a)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aa638615d7517049ecb5323a35fd7824a"></a>
 
 Returns a pointer to SourcePlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1af5de616f39f9b16c7a708e177a86ae0f)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1af5de616f39f9b16c7a708e177a86ae0f"></a>
+#### `public inline FORCEINLINE void `[`SetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a59bf0f12791c7f4c9ffbfa611c7d4456)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a59bf0f12791c7f4c9ffbfa611c7d4456"></a>
 
 Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a2494c58bf8eb3a6b767d3cdc8cd778ef)`(FGuid && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a2494c58bf8eb3a6b767d3cdc8cd778ef"></a>
+#### `public inline FORCEINLINE void `[`SetSourcePlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ab23edb97d023fe7a2ddaac6d475582d7)`(FGuid && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1ab23edb97d023fe7a2ddaac6d475582d7"></a>
 
 Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet to true using move semantics.
 
@@ -1104,47 +1042,43 @@ Sets the value of SourcePlayerUuid_Optional and also sets SourcePlayerUuid_IsSet
 
 Clears the value of SourcePlayerUuid_Optional and sets SourcePlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsSourcePlayerUuidSet`](#structFRHAPI__MatchTimelineEvent_1a8bddb95b1e2452ce44f3adec4d6a35a7)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a8bddb95b1e2452ce44f3adec4d6a35a7"></a>
-
-Checks whether SourcePlayerUuid_Optional has been set.
-
-#### `public inline void `[`SetSourcePlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1a8c5f5438bdd7a09bf71e27bd821e0ac4)`()` <a id="structFRHAPI__MatchTimelineEvent_1a8c5f5438bdd7a09bf71e27bd821e0ac4"></a>
+#### `public inline FORCEINLINE void `[`SetSourcePlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1a908c2f22db1ca05b00f857f8e1583ffb)`()` <a id="structFRHAPI__MatchTimelineEvent_1a908c2f22db1ca05b00f857f8e1583ffb"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsSourcePlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1ac1af944f09d371d89fdf054040f86a20)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ac1af944f09d371d89fdf054040f86a20"></a>
+#### `public inline FORCEINLINE bool `[`IsSourcePlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a38a5b7e51caf2ffa7f219a06043afbde)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a38a5b7e51caf2ffa7f219a06043afbde"></a>
 
 Checks whether SourcePlayerUuid_Optional is set to null.
 
-#### `public inline FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1a6fe0c8342d5a937213c704a2734a6c69)`()` <a id="structFRHAPI__MatchTimelineEvent_1a6fe0c8342d5a937213c704a2734a6c69"></a>
+#### `public inline FORCEINLINE FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1ae1d67b85b077d7b03a7452c0c73858b1)`()` <a id="structFRHAPI__MatchTimelineEvent_1ae1d67b85b077d7b03a7452c0c73858b1"></a>
 
 Gets the value of SourceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1a4d332bf46c7318b621899b6bd11277d8)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a4d332bf46c7318b621899b6bd11277d8"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1aaee64046be4bd79c03ab7dbb28145085)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aaee64046be4bd79c03ab7dbb28145085"></a>
 
 Gets the value of SourceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1aa84708a5f6db47f73c5f7e42f172d671)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aa84708a5f6db47f73c5f7e42f172d671"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1ac67f9089aefbd16165dcfd03af98dddb)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ac67f9089aefbd16165dcfd03af98dddb"></a>
 
 Gets the value of SourceId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1ac64d74e1cc99ce53f43eec30823b176e)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ac64d74e1cc99ce53f43eec30823b176e"></a>
+#### `public inline FORCEINLINE bool `[`GetSourceId`](#structFRHAPI__MatchTimelineEvent_1a5554dfcb346b5736d8163572d617e611)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a5554dfcb346b5736d8163572d617e611"></a>
 
 Fills OutValue with the value of SourceId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetSourceIdOrNull`](#structFRHAPI__MatchTimelineEvent_1a72791820917b462a006a3fa2b2dfbd71)`()` <a id="structFRHAPI__MatchTimelineEvent_1a72791820917b462a006a3fa2b2dfbd71"></a>
+#### `public inline FORCEINLINE FString * `[`GetSourceIdOrNull`](#structFRHAPI__MatchTimelineEvent_1aaeefd88672adfb0e814c79d8e12d7a6e)`()` <a id="structFRHAPI__MatchTimelineEvent_1aaeefd88672adfb0e814c79d8e12d7a6e"></a>
 
 Returns a pointer to SourceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetSourceIdOrNull`](#structFRHAPI__MatchTimelineEvent_1ae71ba225169e72a0f0d1dc6cf04de791)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ae71ba225169e72a0f0d1dc6cf04de791"></a>
+#### `public inline FORCEINLINE const FString * `[`GetSourceIdOrNull`](#structFRHAPI__MatchTimelineEvent_1ab9a02069eecb9f8f7f6b773043c24f7f)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ab9a02069eecb9f8f7f6b773043c24f7f"></a>
 
 Returns a pointer to SourceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSourceId`](#structFRHAPI__MatchTimelineEvent_1af496e5aec51d25c8c268add140a34986)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1af496e5aec51d25c8c268add140a34986"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId`](#structFRHAPI__MatchTimelineEvent_1aed526fd2ca6c7edf54091f02a3cc4de5)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1aed526fd2ca6c7edf54091f02a3cc4de5"></a>
 
 Sets the value of SourceId_Optional and also sets SourceId_IsSet to true.
 
-#### `public inline void `[`SetSourceId`](#structFRHAPI__MatchTimelineEvent_1a5d152578b2481bb17229fc8a9793faa3)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a5d152578b2481bb17229fc8a9793faa3"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId`](#structFRHAPI__MatchTimelineEvent_1a1cbf480007cbadb917a8b4192126857e)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a1cbf480007cbadb917a8b4192126857e"></a>
 
 Sets the value of SourceId_Optional and also sets SourceId_IsSet to true using move semantics.
 
@@ -1152,47 +1086,43 @@ Sets the value of SourceId_Optional and also sets SourceId_IsSet to true using m
 
 Clears the value of SourceId_Optional and sets SourceId_IsSet to false.
 
-#### `public inline bool `[`IsSourceIdSet`](#structFRHAPI__MatchTimelineEvent_1a23bcb21cc20ec88ab7687c22ec2c078d)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a23bcb21cc20ec88ab7687c22ec2c078d"></a>
-
-Checks whether SourceId_Optional has been set.
-
-#### `public inline void `[`SetSourceIdToNull`](#structFRHAPI__MatchTimelineEvent_1aa4c7f0fc14037cf48e04853d21972fcc)`()` <a id="structFRHAPI__MatchTimelineEvent_1aa4c7f0fc14037cf48e04853d21972fcc"></a>
+#### `public inline FORCEINLINE void `[`SetSourceIdToNull`](#structFRHAPI__MatchTimelineEvent_1a6d5de35ece4600ed4978f53089d4fd3f)`()` <a id="structFRHAPI__MatchTimelineEvent_1a6d5de35ece4600ed4978f53089d4fd3f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsSourceIdNull`](#structFRHAPI__MatchTimelineEvent_1a2c5ee18a09de243c1d45d160c017b88b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a2c5ee18a09de243c1d45d160c017b88b"></a>
+#### `public inline FORCEINLINE bool `[`IsSourceIdNull`](#structFRHAPI__MatchTimelineEvent_1a6e98c40cb3a87ea242f932b1189bbc6d)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a6e98c40cb3a87ea242f932b1189bbc6d"></a>
 
 Checks whether SourceId_Optional is set to null.
 
-#### `public inline FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a2d71c1f547f8afa33b0dcce55d0dabd1)`()` <a id="structFRHAPI__MatchTimelineEvent_1a2d71c1f547f8afa33b0dcce55d0dabd1"></a>
+#### `public inline FORCEINLINE FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1aa28ad9024c770163e554f98c14930a4b)`()` <a id="structFRHAPI__MatchTimelineEvent_1aa28ad9024c770163e554f98c14930a4b"></a>
 
 Gets the value of SourceId2_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1aaf8f819daffd415a0172abb94eecbc3d)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aaf8f819daffd415a0172abb94eecbc3d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a74204a706681f648043d1ffc47a73609)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a74204a706681f648043d1ffc47a73609"></a>
 
 Gets the value of SourceId2_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1ad484e32d9986c39ba6a0a33de46d2d15)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ad484e32d9986c39ba6a0a33de46d2d15"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1abcf0cfc200f4bc7bcbd5898a52a13d31)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1abcf0cfc200f4bc7bcbd5898a52a13d31"></a>
 
 Gets the value of SourceId2_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a93b6df64fd30f36f74975b8d5c79104a)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a93b6df64fd30f36f74975b8d5c79104a"></a>
+#### `public inline FORCEINLINE bool `[`GetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a551fe33fab31c6b86f75806c4c56a4c1)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a551fe33fab31c6b86f75806c4c56a4c1"></a>
 
 Fills OutValue with the value of SourceId2_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetSourceId2OrNull`](#structFRHAPI__MatchTimelineEvent_1aa2b970610cac60910839db16289c868d)`()` <a id="structFRHAPI__MatchTimelineEvent_1aa2b970610cac60910839db16289c868d"></a>
+#### `public inline FORCEINLINE FString * `[`GetSourceId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a0cf9d67708f68f71cdf9e468821fde9f)`()` <a id="structFRHAPI__MatchTimelineEvent_1a0cf9d67708f68f71cdf9e468821fde9f"></a>
 
 Returns a pointer to SourceId2_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetSourceId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a2f4d0407793b5198bf7bdfba5b01869b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a2f4d0407793b5198bf7bdfba5b01869b"></a>
+#### `public inline FORCEINLINE const FString * `[`GetSourceId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a7d33e8d679c0963298939cfd7aba6460)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a7d33e8d679c0963298939cfd7aba6460"></a>
 
 Returns a pointer to SourceId2_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSourceId2`](#structFRHAPI__MatchTimelineEvent_1ad01a3f095ff2f459db93de79c857037c)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1ad01a3f095ff2f459db93de79c857037c"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a7846fc6be028dc1590b84cfe572ad41e)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a7846fc6be028dc1590b84cfe572ad41e"></a>
 
 Sets the value of SourceId2_Optional and also sets SourceId2_IsSet to true.
 
-#### `public inline void `[`SetSourceId2`](#structFRHAPI__MatchTimelineEvent_1af173f35a6639f73d6763e88ea06b6d75)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1af173f35a6639f73d6763e88ea06b6d75"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId2`](#structFRHAPI__MatchTimelineEvent_1a6af2a640e0f405b2e34c8330f6b42db5)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a6af2a640e0f405b2e34c8330f6b42db5"></a>
 
 Sets the value of SourceId2_Optional and also sets SourceId2_IsSet to true using move semantics.
 
@@ -1200,47 +1130,43 @@ Sets the value of SourceId2_Optional and also sets SourceId2_IsSet to true using
 
 Clears the value of SourceId2_Optional and sets SourceId2_IsSet to false.
 
-#### `public inline bool `[`IsSourceId2Set`](#structFRHAPI__MatchTimelineEvent_1a92a880576b195454eb30f23e3841efa7)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a92a880576b195454eb30f23e3841efa7"></a>
-
-Checks whether SourceId2_Optional has been set.
-
-#### `public inline void `[`SetSourceId2ToNull`](#structFRHAPI__MatchTimelineEvent_1a0817d1ca3a38a9b25230ae914bb4641a)`()` <a id="structFRHAPI__MatchTimelineEvent_1a0817d1ca3a38a9b25230ae914bb4641a"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId2ToNull`](#structFRHAPI__MatchTimelineEvent_1afa0b85180fd02cada668d1baf2438faf)`()` <a id="structFRHAPI__MatchTimelineEvent_1afa0b85180fd02cada668d1baf2438faf"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsSourceId2Null`](#structFRHAPI__MatchTimelineEvent_1a9cb1e5366235913220589a51af965f1e)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a9cb1e5366235913220589a51af965f1e"></a>
+#### `public inline FORCEINLINE bool `[`IsSourceId2Null`](#structFRHAPI__MatchTimelineEvent_1aeb1694e27057c94d16ec1bc0585314d6)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aeb1694e27057c94d16ec1bc0585314d6"></a>
 
 Checks whether SourceId2_Optional is set to null.
 
-#### `public inline FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a942387fd1e79795140fd05c5a2632afb)`()` <a id="structFRHAPI__MatchTimelineEvent_1a942387fd1e79795140fd05c5a2632afb"></a>
+#### `public inline FORCEINLINE FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a9418ca1faa6c55b4c909640dc1b1332e)`()` <a id="structFRHAPI__MatchTimelineEvent_1a9418ca1faa6c55b4c909640dc1b1332e"></a>
 
 Gets the value of SourceId3_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1ad6620c1e4d1ea15a933a2a6aaccb2935)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad6620c1e4d1ea15a933a2a6aaccb2935"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1acc769f463d2e201f74be20f79b4cb1cd)`() const` <a id="structFRHAPI__MatchTimelineEvent_1acc769f463d2e201f74be20f79b4cb1cd"></a>
 
 Gets the value of SourceId3_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a33b8dcd5c10679b4de7449f638e8a551)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a33b8dcd5c10679b4de7449f638e8a551"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a174df385b953016ba23fdf0b7b1fc368)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a174df385b953016ba23fdf0b7b1fc368"></a>
 
 Gets the value of SourceId3_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1af6cca4fe56772e6689cc65793ad7cdf0)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1af6cca4fe56772e6689cc65793ad7cdf0"></a>
+#### `public inline FORCEINLINE bool `[`GetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a39829e8aa03dac9ce4c6dea78d6d75ba)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a39829e8aa03dac9ce4c6dea78d6d75ba"></a>
 
 Fills OutValue with the value of SourceId3_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetSourceId3OrNull`](#structFRHAPI__MatchTimelineEvent_1ab61abd0f7f3dca48ad6950dfbff46e4f)`()` <a id="structFRHAPI__MatchTimelineEvent_1ab61abd0f7f3dca48ad6950dfbff46e4f"></a>
+#### `public inline FORCEINLINE FString * `[`GetSourceId3OrNull`](#structFRHAPI__MatchTimelineEvent_1abbe0ff5d5cfae800ec7fa56cc384233c)`()` <a id="structFRHAPI__MatchTimelineEvent_1abbe0ff5d5cfae800ec7fa56cc384233c"></a>
 
 Returns a pointer to SourceId3_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetSourceId3OrNull`](#structFRHAPI__MatchTimelineEvent_1a2925d8f683a29a8f96315ed7ad1a4a69)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a2925d8f683a29a8f96315ed7ad1a4a69"></a>
+#### `public inline FORCEINLINE const FString * `[`GetSourceId3OrNull`](#structFRHAPI__MatchTimelineEvent_1ad23c925603ca65dee7556bbefc8d9ca9)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad23c925603ca65dee7556bbefc8d9ca9"></a>
 
 Returns a pointer to SourceId3_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a6363fc331cb88966058a0be376af938d)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a6363fc331cb88966058a0be376af938d"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a64c966649820af15e6fb24887970f50f)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a64c966649820af15e6fb24887970f50f"></a>
 
 Sets the value of SourceId3_Optional and also sets SourceId3_IsSet to true.
 
-#### `public inline void `[`SetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a7ea4f43a93fa916ba3dceb58bf607428)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a7ea4f43a93fa916ba3dceb58bf607428"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId3`](#structFRHAPI__MatchTimelineEvent_1a26f6abfb11dfd94ac59a93b7eac9c570)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a26f6abfb11dfd94ac59a93b7eac9c570"></a>
 
 Sets the value of SourceId3_Optional and also sets SourceId3_IsSet to true using move semantics.
 
@@ -1248,47 +1174,43 @@ Sets the value of SourceId3_Optional and also sets SourceId3_IsSet to true using
 
 Clears the value of SourceId3_Optional and sets SourceId3_IsSet to false.
 
-#### `public inline bool `[`IsSourceId3Set`](#structFRHAPI__MatchTimelineEvent_1a0f821d8f210ccc69aa347622f78dc61c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a0f821d8f210ccc69aa347622f78dc61c"></a>
-
-Checks whether SourceId3_Optional has been set.
-
-#### `public inline void `[`SetSourceId3ToNull`](#structFRHAPI__MatchTimelineEvent_1aacd2aafd3a7839294c24e4ea1380d437)`()` <a id="structFRHAPI__MatchTimelineEvent_1aacd2aafd3a7839294c24e4ea1380d437"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId3ToNull`](#structFRHAPI__MatchTimelineEvent_1af0667d238134924d2afb879ff1d747ac)`()` <a id="structFRHAPI__MatchTimelineEvent_1af0667d238134924d2afb879ff1d747ac"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsSourceId3Null`](#structFRHAPI__MatchTimelineEvent_1ab03a894e20af1bf44f10dfe14b33010e)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ab03a894e20af1bf44f10dfe14b33010e"></a>
+#### `public inline FORCEINLINE bool `[`IsSourceId3Null`](#structFRHAPI__MatchTimelineEvent_1af8e1f67767c42e868b9b281fb6a0492a)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af8e1f67767c42e868b9b281fb6a0492a"></a>
 
 Checks whether SourceId3_Optional is set to null.
 
-#### `public inline FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a637785b000cbad2d338f09e6385426f3)`()` <a id="structFRHAPI__MatchTimelineEvent_1a637785b000cbad2d338f09e6385426f3"></a>
+#### `public inline FORCEINLINE FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a766f128b69a0500d2b5075f3363b94e7)`()` <a id="structFRHAPI__MatchTimelineEvent_1a766f128b69a0500d2b5075f3363b94e7"></a>
 
 Gets the value of SourceId4_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a457ae5c04e264058978cf347ed8b7e51)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a457ae5c04e264058978cf347ed8b7e51"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a9038603a5f03cc437155c89be70f9fd2)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a9038603a5f03cc437155c89be70f9fd2"></a>
 
 Gets the value of SourceId4_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1ad259c2c58a1fef3939476306b4131062)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ad259c2c58a1fef3939476306b4131062"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a58dfc5b0ae0638776c6f254ddfbf2f64)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a58dfc5b0ae0638776c6f254ddfbf2f64"></a>
 
 Gets the value of SourceId4_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a10793919f013d5c8ad41713349b04283)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a10793919f013d5c8ad41713349b04283"></a>
+#### `public inline FORCEINLINE bool `[`GetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a6b3b77a75a015ff7416ce0e43b5266f3)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a6b3b77a75a015ff7416ce0e43b5266f3"></a>
 
 Fills OutValue with the value of SourceId4_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetSourceId4OrNull`](#structFRHAPI__MatchTimelineEvent_1aef5ffc8ae1354f569c49ba02be66256f)`()` <a id="structFRHAPI__MatchTimelineEvent_1aef5ffc8ae1354f569c49ba02be66256f"></a>
+#### `public inline FORCEINLINE FString * `[`GetSourceId4OrNull`](#structFRHAPI__MatchTimelineEvent_1a7f887b46e6993323bf7af0a46f25128b)`()` <a id="structFRHAPI__MatchTimelineEvent_1a7f887b46e6993323bf7af0a46f25128b"></a>
 
 Returns a pointer to SourceId4_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetSourceId4OrNull`](#structFRHAPI__MatchTimelineEvent_1a1c477f2dbb4238c58d7b03a3e80dd285)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a1c477f2dbb4238c58d7b03a3e80dd285"></a>
+#### `public inline FORCEINLINE const FString * `[`GetSourceId4OrNull`](#structFRHAPI__MatchTimelineEvent_1a52d0c62515e9a6bcdaf6093a4e3f9c54)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a52d0c62515e9a6bcdaf6093a4e3f9c54"></a>
 
 Returns a pointer to SourceId4_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSourceId4`](#structFRHAPI__MatchTimelineEvent_1ae54b5c90ac69c641a26af32cf7ccdf58)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1ae54b5c90ac69c641a26af32cf7ccdf58"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a0e93585b791728d960eebf12f208ec2e)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a0e93585b791728d960eebf12f208ec2e"></a>
 
 Sets the value of SourceId4_Optional and also sets SourceId4_IsSet to true.
 
-#### `public inline void `[`SetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a8a369d41032229a4ad9873c171cbb8f0)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a8a369d41032229a4ad9873c171cbb8f0"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId4`](#structFRHAPI__MatchTimelineEvent_1a73a8e3d63ef635c9bd5062b315da7f83)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a73a8e3d63ef635c9bd5062b315da7f83"></a>
 
 Sets the value of SourceId4_Optional and also sets SourceId4_IsSet to true using move semantics.
 
@@ -1296,47 +1218,43 @@ Sets the value of SourceId4_Optional and also sets SourceId4_IsSet to true using
 
 Clears the value of SourceId4_Optional and sets SourceId4_IsSet to false.
 
-#### `public inline bool `[`IsSourceId4Set`](#structFRHAPI__MatchTimelineEvent_1a82c3dc3c28aaa40cdb51bb72c334779b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a82c3dc3c28aaa40cdb51bb72c334779b"></a>
-
-Checks whether SourceId4_Optional has been set.
-
-#### `public inline void `[`SetSourceId4ToNull`](#structFRHAPI__MatchTimelineEvent_1a08a714aadf5b77d2c9d696d45ebf3d1f)`()` <a id="structFRHAPI__MatchTimelineEvent_1a08a714aadf5b77d2c9d696d45ebf3d1f"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId4ToNull`](#structFRHAPI__MatchTimelineEvent_1a857dd886d6234373f42fd7df09eda32f)`()` <a id="structFRHAPI__MatchTimelineEvent_1a857dd886d6234373f42fd7df09eda32f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsSourceId4Null`](#structFRHAPI__MatchTimelineEvent_1a6d63ad5b112037369dd923a80b398d5b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a6d63ad5b112037369dd923a80b398d5b"></a>
+#### `public inline FORCEINLINE bool `[`IsSourceId4Null`](#structFRHAPI__MatchTimelineEvent_1a96ad317ca6275edacf1d98b95cdd2947)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a96ad317ca6275edacf1d98b95cdd2947"></a>
 
 Checks whether SourceId4_Optional is set to null.
 
-#### `public inline FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a1ee19f9796381525a176b08bab2c9be8)`()` <a id="structFRHAPI__MatchTimelineEvent_1a1ee19f9796381525a176b08bab2c9be8"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a0b32db0c7bdc728bccf6555f69b6a82f)`()` <a id="structFRHAPI__MatchTimelineEvent_1a0b32db0c7bdc728bccf6555f69b6a82f"></a>
 
 Gets the value of TargetPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1ad94452e66fbeacf8ad568033b4f300f6)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad94452e66fbeacf8ad568033b4f300f6"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a486fec85965f773bd83708034260d4f0)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a486fec85965f773bd83708034260d4f0"></a>
 
 Gets the value of TargetPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a224ac2b881f0b8d11287ffe3bc1d07e9)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a224ac2b881f0b8d11287ffe3bc1d07e9"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a0b19a38f4949bfdf0f1116f32b8c4bda)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a0b19a38f4949bfdf0f1116f32b8c4bda"></a>
 
 Gets the value of TargetPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1af555322e3fcd05ddc62ec7117ca9e513)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1af555322e3fcd05ddc62ec7117ca9e513"></a>
+#### `public inline FORCEINLINE bool `[`GetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a62d0496f0afad12d9374652946a9077f)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a62d0496f0afad12d9374652946a9077f"></a>
 
 Fills OutValue with the value of TargetPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetTargetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a79de6d7c343f430c5c3cac6738329924)`()` <a id="structFRHAPI__MatchTimelineEvent_1a79de6d7c343f430c5c3cac6738329924"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetTargetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a64b544f06e71302085729bf3137f057f)`()` <a id="structFRHAPI__MatchTimelineEvent_1a64b544f06e71302085729bf3137f057f"></a>
 
 Returns a pointer to TargetPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetTargetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a4edde20f02486b47a3ad3b468bc7da0f)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a4edde20f02486b47a3ad3b468bc7da0f"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetTargetPlayerUuidOrNull`](#structFRHAPI__MatchTimelineEvent_1a78d1468cce9380bf61883db5e230ffe6)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a78d1468cce9380bf61883db5e230ffe6"></a>
 
 Returns a pointer to TargetPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1aea78e8159cb6068f51b5fa78036cca4b)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1aea78e8159cb6068f51b5fa78036cca4b"></a>
+#### `public inline FORCEINLINE void `[`SetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1acaa4eb6d1032df95e8ff6700d44edf03)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1acaa4eb6d1032df95e8ff6700d44edf03"></a>
 
 Sets the value of TargetPlayerUuid_Optional and also sets TargetPlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a4c32fd848073bf47f21fefef9a0810d4)`(FGuid && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a4c32fd848073bf47f21fefef9a0810d4"></a>
+#### `public inline FORCEINLINE void `[`SetTargetPlayerUuid`](#structFRHAPI__MatchTimelineEvent_1a6074bafba6fcc26cc461e8081a2f9d06)`(FGuid && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a6074bafba6fcc26cc461e8081a2f9d06"></a>
 
 Sets the value of TargetPlayerUuid_Optional and also sets TargetPlayerUuid_IsSet to true using move semantics.
 
@@ -1344,47 +1262,43 @@ Sets the value of TargetPlayerUuid_Optional and also sets TargetPlayerUuid_IsSet
 
 Clears the value of TargetPlayerUuid_Optional and sets TargetPlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsTargetPlayerUuidSet`](#structFRHAPI__MatchTimelineEvent_1af6ea0b55d3555e073ec2b7b8bc78597e)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af6ea0b55d3555e073ec2b7b8bc78597e"></a>
-
-Checks whether TargetPlayerUuid_Optional has been set.
-
-#### `public inline void `[`SetTargetPlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1a30660262e2a382351a080fe6a1f695a1)`()` <a id="structFRHAPI__MatchTimelineEvent_1a30660262e2a382351a080fe6a1f695a1"></a>
+#### `public inline FORCEINLINE void `[`SetTargetPlayerUuidToNull`](#structFRHAPI__MatchTimelineEvent_1ae29c48acc3b45afab8b42fa57cc1e4d5)`()` <a id="structFRHAPI__MatchTimelineEvent_1ae29c48acc3b45afab8b42fa57cc1e4d5"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsTargetPlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a90504bba72ca463e90b7498b2c35aeac)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a90504bba72ca463e90b7498b2c35aeac"></a>
+#### `public inline FORCEINLINE bool `[`IsTargetPlayerUuidNull`](#structFRHAPI__MatchTimelineEvent_1a56485f49b85948a87f0b0585179be583)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a56485f49b85948a87f0b0585179be583"></a>
 
 Checks whether TargetPlayerUuid_Optional is set to null.
 
-#### `public inline FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a007619ff042d4e3bbafa6742a933d5e9)`()` <a id="structFRHAPI__MatchTimelineEvent_1a007619ff042d4e3bbafa6742a933d5e9"></a>
+#### `public inline FORCEINLINE FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1acbebcdfbd9f2ddba8f24810215465d33)`()` <a id="structFRHAPI__MatchTimelineEvent_1acbebcdfbd9f2ddba8f24810215465d33"></a>
 
 Gets the value of TargetId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1ada9b54c90ab23c7ba7287ba3d9876830)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ada9b54c90ab23c7ba7287ba3d9876830"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a126e865dae4e6d184296722211ad3731)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a126e865dae4e6d184296722211ad3731"></a>
 
 Gets the value of TargetId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a4202587b0073872391eb02201ae0115d)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a4202587b0073872391eb02201ae0115d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a295e018f3a0369f4432d4947265bdfe3)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a295e018f3a0369f4432d4947265bdfe3"></a>
 
 Gets the value of TargetId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1abd9397990c143398b2349882f1cea621)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1abd9397990c143398b2349882f1cea621"></a>
+#### `public inline FORCEINLINE bool `[`GetTargetId`](#structFRHAPI__MatchTimelineEvent_1a7878ebfa2898271383125892bf2cb704)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a7878ebfa2898271383125892bf2cb704"></a>
 
 Fills OutValue with the value of TargetId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTargetIdOrNull`](#structFRHAPI__MatchTimelineEvent_1af4ae9bccadff52101232b73a8657251a)`()` <a id="structFRHAPI__MatchTimelineEvent_1af4ae9bccadff52101232b73a8657251a"></a>
+#### `public inline FORCEINLINE FString * `[`GetTargetIdOrNull`](#structFRHAPI__MatchTimelineEvent_1a5e1ee1ae7a47e171b55beabca275ed97)`()` <a id="structFRHAPI__MatchTimelineEvent_1a5e1ee1ae7a47e171b55beabca275ed97"></a>
 
 Returns a pointer to TargetId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTargetIdOrNull`](#structFRHAPI__MatchTimelineEvent_1a1f2f087d0add8d618e0afe9867ce67e7)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a1f2f087d0add8d618e0afe9867ce67e7"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTargetIdOrNull`](#structFRHAPI__MatchTimelineEvent_1a78cd074c07804cbc5272591624d53ad5)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a78cd074c07804cbc5272591624d53ad5"></a>
 
 Returns a pointer to TargetId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTargetId`](#structFRHAPI__MatchTimelineEvent_1acf3dbaec3e74c28e0cfd5e5cee671dcc)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1acf3dbaec3e74c28e0cfd5e5cee671dcc"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId`](#structFRHAPI__MatchTimelineEvent_1a8609e75ae7b2264c4ce3dba8d74352cc)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a8609e75ae7b2264c4ce3dba8d74352cc"></a>
 
 Sets the value of TargetId_Optional and also sets TargetId_IsSet to true.
 
-#### `public inline void `[`SetTargetId`](#structFRHAPI__MatchTimelineEvent_1a13937966b2a8aa1facc82c1c7f43b998)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a13937966b2a8aa1facc82c1c7f43b998"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId`](#structFRHAPI__MatchTimelineEvent_1a38d4ede52a3b3fcfccb2088cc3262161)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a38d4ede52a3b3fcfccb2088cc3262161"></a>
 
 Sets the value of TargetId_Optional and also sets TargetId_IsSet to true using move semantics.
 
@@ -1392,47 +1306,43 @@ Sets the value of TargetId_Optional and also sets TargetId_IsSet to true using m
 
 Clears the value of TargetId_Optional and sets TargetId_IsSet to false.
 
-#### `public inline bool `[`IsTargetIdSet`](#structFRHAPI__MatchTimelineEvent_1a592d463c8c618d68356c285789539fb4)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a592d463c8c618d68356c285789539fb4"></a>
-
-Checks whether TargetId_Optional has been set.
-
-#### `public inline void `[`SetTargetIdToNull`](#structFRHAPI__MatchTimelineEvent_1a0b2cffe74aa0c0d644a0f50aaaa1b795)`()` <a id="structFRHAPI__MatchTimelineEvent_1a0b2cffe74aa0c0d644a0f50aaaa1b795"></a>
+#### `public inline FORCEINLINE void `[`SetTargetIdToNull`](#structFRHAPI__MatchTimelineEvent_1a734f29f5ea443d2db341c53d197c44b1)`()` <a id="structFRHAPI__MatchTimelineEvent_1a734f29f5ea443d2db341c53d197c44b1"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsTargetIdNull`](#structFRHAPI__MatchTimelineEvent_1a49aebfea073e9e8511d26cf347b96aa7)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a49aebfea073e9e8511d26cf347b96aa7"></a>
+#### `public inline FORCEINLINE bool `[`IsTargetIdNull`](#structFRHAPI__MatchTimelineEvent_1a629873be76e419c9d04cd8c5c1f9e48c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a629873be76e419c9d04cd8c5c1f9e48c"></a>
 
 Checks whether TargetId_Optional is set to null.
 
-#### `public inline FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1abefc9f313a863a69a43f0c7c49088cfc)`()` <a id="structFRHAPI__MatchTimelineEvent_1abefc9f313a863a69a43f0c7c49088cfc"></a>
+#### `public inline FORCEINLINE FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1ac293fce69e4e021ae3d90c956cbaea1b)`()` <a id="structFRHAPI__MatchTimelineEvent_1ac293fce69e4e021ae3d90c956cbaea1b"></a>
 
 Gets the value of TargetId2_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a1c09eb9197948087b40dac609515020d)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a1c09eb9197948087b40dac609515020d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a00ccb2af16ac968521be57d80331da05)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a00ccb2af16ac968521be57d80331da05"></a>
 
 Gets the value of TargetId2_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1affd7f57c582ea996d0cf5908924d7d64)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1affd7f57c582ea996d0cf5908924d7d64"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a4ca0200d257afc4043c588a7f81a4890)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a4ca0200d257afc4043c588a7f81a4890"></a>
 
 Gets the value of TargetId2_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a86b54e304ed598f607d1088407a2897b)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a86b54e304ed598f607d1088407a2897b"></a>
+#### `public inline FORCEINLINE bool `[`GetTargetId2`](#structFRHAPI__MatchTimelineEvent_1aa14f52c5b46ed512003219ac1d1d210c)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aa14f52c5b46ed512003219ac1d1d210c"></a>
 
 Fills OutValue with the value of TargetId2_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTargetId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a14750568f1925b7ff385e9d96056a92a)`()` <a id="structFRHAPI__MatchTimelineEvent_1a14750568f1925b7ff385e9d96056a92a"></a>
+#### `public inline FORCEINLINE FString * `[`GetTargetId2OrNull`](#structFRHAPI__MatchTimelineEvent_1aa1490dab9ac9f5cb80fb26ecc71e1c88)`()` <a id="structFRHAPI__MatchTimelineEvent_1aa1490dab9ac9f5cb80fb26ecc71e1c88"></a>
 
 Returns a pointer to TargetId2_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTargetId2OrNull`](#structFRHAPI__MatchTimelineEvent_1a0c19466e724a9388e2366413c52a199f)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a0c19466e724a9388e2366413c52a199f"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTargetId2OrNull`](#structFRHAPI__MatchTimelineEvent_1ab05575aff40c278006fc70e4f0d07ba1)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ab05575aff40c278006fc70e4f0d07ba1"></a>
 
 Returns a pointer to TargetId2_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTargetId2`](#structFRHAPI__MatchTimelineEvent_1aff4d665f99e9c7526e8b059d70df404f)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1aff4d665f99e9c7526e8b059d70df404f"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId2`](#structFRHAPI__MatchTimelineEvent_1afda59a92527da70a62693583e051dc2b)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1afda59a92527da70a62693583e051dc2b"></a>
 
 Sets the value of TargetId2_Optional and also sets TargetId2_IsSet to true.
 
-#### `public inline void `[`SetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a791586447757abc866d3fb291b9aa936)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a791586447757abc866d3fb291b9aa936"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId2`](#structFRHAPI__MatchTimelineEvent_1a0e4d0bb7eb39334a4b920fbbc49b5302)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a0e4d0bb7eb39334a4b920fbbc49b5302"></a>
 
 Sets the value of TargetId2_Optional and also sets TargetId2_IsSet to true using move semantics.
 
@@ -1440,47 +1350,43 @@ Sets the value of TargetId2_Optional and also sets TargetId2_IsSet to true using
 
 Clears the value of TargetId2_Optional and sets TargetId2_IsSet to false.
 
-#### `public inline bool `[`IsTargetId2Set`](#structFRHAPI__MatchTimelineEvent_1ab8004f09b73f595746d116f5cb5148fa)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ab8004f09b73f595746d116f5cb5148fa"></a>
-
-Checks whether TargetId2_Optional has been set.
-
-#### `public inline void `[`SetTargetId2ToNull`](#structFRHAPI__MatchTimelineEvent_1a2ab642941bd864238618e198388b5cef)`()` <a id="structFRHAPI__MatchTimelineEvent_1a2ab642941bd864238618e198388b5cef"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId2ToNull`](#structFRHAPI__MatchTimelineEvent_1a823e0d47998fe60b0976de11e3b3902b)`()` <a id="structFRHAPI__MatchTimelineEvent_1a823e0d47998fe60b0976de11e3b3902b"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsTargetId2Null`](#structFRHAPI__MatchTimelineEvent_1a46d1991efd4eb2572e1560899043c20b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a46d1991efd4eb2572e1560899043c20b"></a>
+#### `public inline FORCEINLINE bool `[`IsTargetId2Null`](#structFRHAPI__MatchTimelineEvent_1ac5ba2cbb8799090348a2a911833cad5d)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ac5ba2cbb8799090348a2a911833cad5d"></a>
 
 Checks whether TargetId2_Optional is set to null.
 
-#### `public inline FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a1af376990bc0b56c762978b75ba3912e)`()` <a id="structFRHAPI__MatchTimelineEvent_1a1af376990bc0b56c762978b75ba3912e"></a>
+#### `public inline FORCEINLINE FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a9faecc7cb1fb7fc82e78bdbd4afb3cff)`()` <a id="structFRHAPI__MatchTimelineEvent_1a9faecc7cb1fb7fc82e78bdbd4afb3cff"></a>
 
 Gets the value of TargetId3_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1af503c889475b14e679bb610c248e5530)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af503c889475b14e679bb610c248e5530"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a2ee31b14424edb1fd823d41764ae0811)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a2ee31b14424edb1fd823d41764ae0811"></a>
 
 Gets the value of TargetId3_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a339e8f8debfd5b87813bbd87f50dddda)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a339e8f8debfd5b87813bbd87f50dddda"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a86d4d26351f26cdc82762633ee0d3dbd)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a86d4d26351f26cdc82762633ee0d3dbd"></a>
 
 Gets the value of TargetId3_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a55cc73912d0c4703eba9a2ad32cac967)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a55cc73912d0c4703eba9a2ad32cac967"></a>
+#### `public inline FORCEINLINE bool `[`GetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a5644f3eee6dbe48c5b1c447f0d2ef020)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a5644f3eee6dbe48c5b1c447f0d2ef020"></a>
 
 Fills OutValue with the value of TargetId3_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTargetId3OrNull`](#structFRHAPI__MatchTimelineEvent_1a75b97042f099231950fbf1cb8cb13e44)`()` <a id="structFRHAPI__MatchTimelineEvent_1a75b97042f099231950fbf1cb8cb13e44"></a>
+#### `public inline FORCEINLINE FString * `[`GetTargetId3OrNull`](#structFRHAPI__MatchTimelineEvent_1aa54a92c0dc858411c0acb1908578f868)`()` <a id="structFRHAPI__MatchTimelineEvent_1aa54a92c0dc858411c0acb1908578f868"></a>
 
 Returns a pointer to TargetId3_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTargetId3OrNull`](#structFRHAPI__MatchTimelineEvent_1af0202c2a1fc934e69e1e3ef9b9ccce65)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af0202c2a1fc934e69e1e3ef9b9ccce65"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTargetId3OrNull`](#structFRHAPI__MatchTimelineEvent_1ab29fbd800ff0bdf3b7f21cf5db1ad263)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ab29fbd800ff0bdf3b7f21cf5db1ad263"></a>
 
 Returns a pointer to TargetId3_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTargetId3`](#structFRHAPI__MatchTimelineEvent_1aa53a6a2125700f66ae3440b69da2ef80)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1aa53a6a2125700f66ae3440b69da2ef80"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a5276aee1dfeb949dd3cc435036120a31)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a5276aee1dfeb949dd3cc435036120a31"></a>
 
 Sets the value of TargetId3_Optional and also sets TargetId3_IsSet to true.
 
-#### `public inline void `[`SetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a6e0c9848b31b614f782f7b6c84ccdb0d)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a6e0c9848b31b614f782f7b6c84ccdb0d"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId3`](#structFRHAPI__MatchTimelineEvent_1a127d0b62220d26c1a57e6f45ce4c771d)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a127d0b62220d26c1a57e6f45ce4c771d"></a>
 
 Sets the value of TargetId3_Optional and also sets TargetId3_IsSet to true using move semantics.
 
@@ -1488,47 +1394,43 @@ Sets the value of TargetId3_Optional and also sets TargetId3_IsSet to true using
 
 Clears the value of TargetId3_Optional and sets TargetId3_IsSet to false.
 
-#### `public inline bool `[`IsTargetId3Set`](#structFRHAPI__MatchTimelineEvent_1a1bd054d39b0ee14ab64d8ef3c3daa379)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a1bd054d39b0ee14ab64d8ef3c3daa379"></a>
-
-Checks whether TargetId3_Optional has been set.
-
-#### `public inline void `[`SetTargetId3ToNull`](#structFRHAPI__MatchTimelineEvent_1af9940a0a5b79533d609a14b52a701640)`()` <a id="structFRHAPI__MatchTimelineEvent_1af9940a0a5b79533d609a14b52a701640"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId3ToNull`](#structFRHAPI__MatchTimelineEvent_1acb87e002d0df20c26eb1e7f11747465d)`()` <a id="structFRHAPI__MatchTimelineEvent_1acb87e002d0df20c26eb1e7f11747465d"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsTargetId3Null`](#structFRHAPI__MatchTimelineEvent_1a1001b44e61e7fdf36b3e220bd774eb98)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a1001b44e61e7fdf36b3e220bd774eb98"></a>
+#### `public inline FORCEINLINE bool `[`IsTargetId3Null`](#structFRHAPI__MatchTimelineEvent_1a10f7f4b23a8f4918a6aae9502b212b64)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a10f7f4b23a8f4918a6aae9502b212b64"></a>
 
 Checks whether TargetId3_Optional is set to null.
 
-#### `public inline FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a72bf96bc2f542cc59ca019b703f54510)`()` <a id="structFRHAPI__MatchTimelineEvent_1a72bf96bc2f542cc59ca019b703f54510"></a>
+#### `public inline FORCEINLINE FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a8b2c6a41046fe21f9713b83b26d743a1)`()` <a id="structFRHAPI__MatchTimelineEvent_1a8b2c6a41046fe21f9713b83b26d743a1"></a>
 
 Gets the value of TargetId4_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a2033480c7e52fe851c16be294f12a719)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a2033480c7e52fe851c16be294f12a719"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a7ebbbaedd6aaf3f1b21bf8a64ec474d8)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a7ebbbaedd6aaf3f1b21bf8a64ec474d8"></a>
 
 Gets the value of TargetId4_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1ad67c394fcb0cc601a60fcb1f0e3804c4)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ad67c394fcb0cc601a60fcb1f0e3804c4"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1ac31e5e125a68041b06a580ea477ce75e)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ac31e5e125a68041b06a580ea477ce75e"></a>
 
 Gets the value of TargetId4_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1aed12f4ae9624744c8217c59e473a8a85)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aed12f4ae9624744c8217c59e473a8a85"></a>
+#### `public inline FORCEINLINE bool `[`GetTargetId4`](#structFRHAPI__MatchTimelineEvent_1ae412263c84e903a5e7cea7b9d725e7c0)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1ae412263c84e903a5e7cea7b9d725e7c0"></a>
 
 Fills OutValue with the value of TargetId4_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTargetId4OrNull`](#structFRHAPI__MatchTimelineEvent_1acabd756c98c96165b7893dfc0f23907d)`()` <a id="structFRHAPI__MatchTimelineEvent_1acabd756c98c96165b7893dfc0f23907d"></a>
+#### `public inline FORCEINLINE FString * `[`GetTargetId4OrNull`](#structFRHAPI__MatchTimelineEvent_1a96dad2721fb40eba36ff08011339e5e7)`()` <a id="structFRHAPI__MatchTimelineEvent_1a96dad2721fb40eba36ff08011339e5e7"></a>
 
 Returns a pointer to TargetId4_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTargetId4OrNull`](#structFRHAPI__MatchTimelineEvent_1aa472eb45d06566d16ceae7fddaf5e8d2)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aa472eb45d06566d16ceae7fddaf5e8d2"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTargetId4OrNull`](#structFRHAPI__MatchTimelineEvent_1af31c3b0640d4c4687cf152f97d94955c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1af31c3b0640d4c4687cf152f97d94955c"></a>
 
 Returns a pointer to TargetId4_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a2441ea68dd7883474d81bf29101ee7e8)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a2441ea68dd7883474d81bf29101ee7e8"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a63f764ee429ca50a6b94ff2cc903c307)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a63f764ee429ca50a6b94ff2cc903c307"></a>
 
 Sets the value of TargetId4_Optional and also sets TargetId4_IsSet to true.
 
-#### `public inline void `[`SetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a6604a498ac52f56eb36717d767415ed3)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a6604a498ac52f56eb36717d767415ed3"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId4`](#structFRHAPI__MatchTimelineEvent_1a8db9c3145fed205eee291a7a8770c200)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a8db9c3145fed205eee291a7a8770c200"></a>
 
 Sets the value of TargetId4_Optional and also sets TargetId4_IsSet to true using move semantics.
 
@@ -1536,47 +1438,43 @@ Sets the value of TargetId4_Optional and also sets TargetId4_IsSet to true using
 
 Clears the value of TargetId4_Optional and sets TargetId4_IsSet to false.
 
-#### `public inline bool `[`IsTargetId4Set`](#structFRHAPI__MatchTimelineEvent_1a99b0e180a61a8f746ef666a84df2a807)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a99b0e180a61a8f746ef666a84df2a807"></a>
-
-Checks whether TargetId4_Optional has been set.
-
-#### `public inline void `[`SetTargetId4ToNull`](#structFRHAPI__MatchTimelineEvent_1a03edbb508d3bd7d12d814dd5fd3e0ddb)`()` <a id="structFRHAPI__MatchTimelineEvent_1a03edbb508d3bd7d12d814dd5fd3e0ddb"></a>
+#### `public inline FORCEINLINE void `[`SetTargetId4ToNull`](#structFRHAPI__MatchTimelineEvent_1afd27be454e552c44ca1f0e14ce9c709f)`()` <a id="structFRHAPI__MatchTimelineEvent_1afd27be454e552c44ca1f0e14ce9c709f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsTargetId4Null`](#structFRHAPI__MatchTimelineEvent_1a0e71af8a4cc50f3bffe7ec441b285970)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a0e71af8a4cc50f3bffe7ec441b285970"></a>
+#### `public inline FORCEINLINE bool `[`IsTargetId4Null`](#structFRHAPI__MatchTimelineEvent_1ae2175fc734742d30d9869035356c3de4)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ae2175fc734742d30d9869035356c3de4"></a>
 
 Checks whether TargetId4_Optional is set to null.
 
-#### `public inline `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1a2de7fadb5648ddc71057c11429a3c504)`()` <a id="structFRHAPI__MatchTimelineEvent_1a2de7fadb5648ddc71057c11429a3c504"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1aaa15cc64001ad7179f49c6b75d0555a8)`()` <a id="structFRHAPI__MatchTimelineEvent_1aaa15cc64001ad7179f49c6b75d0555a8"></a>
 
 Gets the value of Properties_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1ad90fc98c03740f40f173289bf1ec53c2)`() const` <a id="structFRHAPI__MatchTimelineEvent_1ad90fc98c03740f40f173289bf1ec53c2"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1a6663190f1a3180c2f5fa874b9e3884be)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a6663190f1a3180c2f5fa874b9e3884be"></a>
 
 Gets the value of Properties_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1a44b7b53bf6b063720c70c5669d18b3ec)`(const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a44b7b53bf6b063720c70c5669d18b3ec"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1af456940336d43e3ec8acfbb1fdee99f3)`(const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1af456940336d43e3ec8acfbb1fdee99f3"></a>
 
 Gets the value of Properties_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1aa7a96f6842a952472e9fefe0c152448d)`(`[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1aa7a96f6842a952472e9fefe0c152448d"></a>
+#### `public inline FORCEINLINE bool `[`GetProperties`](#structFRHAPI__MatchTimelineEvent_1a631b9466a4324ba5aea98a6aef1332a2)`(`[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a631b9466a4324ba5aea98a6aef1332a2"></a>
 
 Fills OutValue with the value of Properties_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` * `[`GetPropertiesOrNull`](#structFRHAPI__MatchTimelineEvent_1abdc754f504a01295261b1935fe6073fd)`()` <a id="structFRHAPI__MatchTimelineEvent_1abdc754f504a01295261b1935fe6073fd"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` * `[`GetPropertiesOrNull`](#structFRHAPI__MatchTimelineEvent_1a0ffc8c86388a1ffb5376490a7585ff88)`()` <a id="structFRHAPI__MatchTimelineEvent_1a0ffc8c86388a1ffb5376490a7585ff88"></a>
 
 Returns a pointer to Properties_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` * `[`GetPropertiesOrNull`](#structFRHAPI__MatchTimelineEvent_1a0f45f1d7752589c80c13ebacf0a60a2b)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a0f45f1d7752589c80c13ebacf0a60a2b"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` * `[`GetPropertiesOrNull`](#structFRHAPI__MatchTimelineEvent_1afbce3611c99c3236d37ebd7d0661bdd8)`() const` <a id="structFRHAPI__MatchTimelineEvent_1afbce3611c99c3236d37ebd7d0661bdd8"></a>
 
 Returns a pointer to Properties_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetProperties`](#structFRHAPI__MatchTimelineEvent_1a8cbe13d7aa6ed93a60be5073927b1c35)`(const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a8cbe13d7aa6ed93a60be5073927b1c35"></a>
+#### `public inline FORCEINLINE void `[`SetProperties`](#structFRHAPI__MatchTimelineEvent_1a395d0bcaede2b63e82007dac0e4fe321)`(const `[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a395d0bcaede2b63e82007dac0e4fe321"></a>
 
 Sets the value of Properties_Optional and also sets Properties_IsSet to true.
 
-#### `public inline void `[`SetProperties`](#structFRHAPI__MatchTimelineEvent_1a6697074f25030a8c5f315c4ed1896599)`(`[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a6697074f25030a8c5f315c4ed1896599"></a>
+#### `public inline FORCEINLINE void `[`SetProperties`](#structFRHAPI__MatchTimelineEvent_1a904a8ae4eb7c261d1d20ba924082dd22)`(`[`FRHAPI_MatchTimelineProperties`](RHAPI_MatchTimelineProperties.md#structFRHAPI__MatchTimelineProperties)` && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a904a8ae4eb7c261d1d20ba924082dd22"></a>
 
 Sets the value of Properties_Optional and also sets Properties_IsSet to true using move semantics.
 
@@ -1584,39 +1482,35 @@ Sets the value of Properties_Optional and also sets Properties_IsSet to true usi
 
 Clears the value of Properties_Optional and sets Properties_IsSet to false.
 
-#### `public inline bool `[`IsPropertiesSet`](#structFRHAPI__MatchTimelineEvent_1aba7a9c8ddd4d125567e174fc3c8f1800)`() const` <a id="structFRHAPI__MatchTimelineEvent_1aba7a9c8ddd4d125567e174fc3c8f1800"></a>
-
-Checks whether Properties_Optional has been set.
-
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1ad4bb0569565c3890b12424ecd02f0024)`()` <a id="structFRHAPI__MatchTimelineEvent_1ad4bb0569565c3890b12424ecd02f0024"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a6ce38d3cc9c53e3f667440a49bd31ebb)`()` <a id="structFRHAPI__MatchTimelineEvent_1a6ce38d3cc9c53e3f667440a49bd31ebb"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a6432d6aff9e4ae7325e3926f297e1af1)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a6432d6aff9e4ae7325e3926f297e1af1"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a8950d8f5c8106ec140e49e946f941eff)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a8950d8f5c8106ec140e49e946f941eff"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1af6bc62f83041f7396dc8ea7e7eda9d0c)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1af6bc62f83041f7396dc8ea7e7eda9d0c"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a9bda31c05cccc3f3eac898b66ffc7288)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a9bda31c05cccc3f3eac898b66ffc7288"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a0326ef4f69a5c3af270da4f86c481a47)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a0326ef4f69a5c3af270da4f86c481a47"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__MatchTimelineEvent_1a4fb2b0c775138e3a4c1393fe209bc5d3)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchTimelineEvent_1a4fb2b0c775138e3a4c1393fe209bc5d3"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchTimelineEvent_1a02ded057063a877d1cae14c9c9a95079)`()` <a id="structFRHAPI__MatchTimelineEvent_1a02ded057063a877d1cae14c9c9a95079"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchTimelineEvent_1a887a3da819b9b089b26d5088fe8aeb66)`()` <a id="structFRHAPI__MatchTimelineEvent_1a887a3da819b9b089b26d5088fe8aeb66"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchTimelineEvent_1a5a96ab4dc6bda4b2981346662023a06c)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a5a96ab4dc6bda4b2981346662023a06c"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchTimelineEvent_1a468fad7843aa5b92fd351e48566c6ab3)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a468fad7843aa5b92fd351e48566c6ab3"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchTimelineEvent_1aaa0c5aea57c89437362e1732c41e7061)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1aaa0c5aea57c89437362e1732c41e7061"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchTimelineEvent_1a796a6eb54140caa1884e5b32fced673f)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a796a6eb54140caa1884e5b32fced673f"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchTimelineEvent_1ad57a22be922f7e2ef32a341e4bc9466f)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1ad57a22be922f7e2ef32a341e4bc9466f"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchTimelineEvent_1a9165ebda763aac0aceeafae59e6dcb67)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchTimelineEvent_1a9165ebda763aac0aceeafae59e6dcb67"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -1624,15 +1518,11 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchTimelineEvent_1a36dd0f559a6ca5149ce514664894c7e3)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a36dd0f559a6ca5149ce514664894c7e3"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline void `[`SetCustomDataToNull`](#structFRHAPI__MatchTimelineEvent_1aedb3dcab4d76e25ca0b7a2a298cec643)`()` <a id="structFRHAPI__MatchTimelineEvent_1aedb3dcab4d76e25ca0b7a2a298cec643"></a>
+#### `public inline FORCEINLINE void `[`SetCustomDataToNull`](#structFRHAPI__MatchTimelineEvent_1aa21f1df872ddccc366f0198d23075e4a)`()` <a id="structFRHAPI__MatchTimelineEvent_1aa21f1df872ddccc366f0198d23075e4a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCustomDataNull`](#structFRHAPI__MatchTimelineEvent_1a0ece037e9481fa2a6e28031822781eca)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a0ece037e9481fa2a6e28031822781eca"></a>
+#### `public inline FORCEINLINE bool `[`IsCustomDataNull`](#structFRHAPI__MatchTimelineEvent_1a4213c9627c3afa3b779a4fb69fb26c41)`() const` <a id="structFRHAPI__MatchTimelineEvent_1a4213c9627c3afa3b779a4fb69fb26c41"></a>
 
 Checks whether CustomData_Optional is set to null.
 

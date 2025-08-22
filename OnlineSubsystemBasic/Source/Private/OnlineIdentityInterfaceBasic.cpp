@@ -256,7 +256,7 @@ void FOnlineIdentityBasic::GetUserPrivilege(const FUniqueNetId& UserId, EUserPri
 #else
 void FOnlineIdentityBasic::GetUserPrivilege(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, const FOnGetUserPrivilegeCompleteDelegate& Delegate)
 {
-	Delegate.ExecuteIfBound(UserId, Privilege, (uint32)EPrivilegeResults::NoFailures);
+    Delegate.ExecuteIfBound(UserId, Privilege, (uint32)EPrivilegeResults::NoFailures);
 }
 #endif
 

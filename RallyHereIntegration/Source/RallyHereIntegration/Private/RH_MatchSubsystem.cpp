@@ -336,6 +336,94 @@ void URH_MatchSubsystem::UpdateMatchSegment(const FString& MatchId, const FStrin
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
 }
 
+void URH_MatchSubsystem::GetMatchTimelinePage(const FString& MatchId, FString Cursor, const FRH_OnMatchTimelineReceivedDelegateBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_GetMatchTimelinePage BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchId = MatchId;
+	Request.Cursor = MoveTemp(Cursor);
+
+	auto Context = MakeShared<FRHAPI_MatchTimelinePage>();
+	
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateWeakLambda(this, [this, Context](const BaseType::Response& Resp)
+			{
+				if (Resp.IsSuccessful())
+				{
+					Resp.TryGetDefaultContent(*Context);
+				}
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateWeakLambda(this, [this, Context, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				Delegate.ExecuteIfBound(bSuccess, *Context, ErrorInfo);
+			}),
+		GetDefault<URH_IntegrationSettings>()->MatchTimelineGetPriority
+	);
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
+void URH_MatchSubsystem::UploadMatchTimeline(const FString& MatchId, FRHAPI_MatchTimeline MatchTimeline, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_CreateMatchTimeline BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchId = MatchId;
+	Request.MatchTimeline = MoveTemp(MatchTimeline);
+	auto RetryParams = Request.GetRetryParams();
+	RetryParams->RetryVerbs.Add(FName(TEXT("POST")));
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate(),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->MatchTimelineUploadPriority
+	);
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
+void URH_MatchSubsystem::UploadMatchTimelineFromFile(const FString MatchId, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_CreateMatchTimeline BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchId = MatchId;
+	
+	// disable reading the request content, as we are going to stream it
+	Request.SetDisableReadContent(true, false);
+
+	FString MatchTimeline;
+	if (!FFileHelper::LoadFileToString(MatchTimeline, *LocalFilePath, FFileHelper::EHashOptions::None, EFileRead::FILEREAD_AllowWrite))
+	{
+		UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Failed to load file %s"), ANSI_TO_TCHAR(__FUNCTION__), *LocalFilePath);
+		Delegate.ExecuteIfBound(false, FRH_ErrorInfo());
+		return;
+	}
+
+	// modify the request after creation to override request handling to stream the data
+	Request.OnModifyRequest().AddLambda([MatchTimeline = MoveTemp(MatchTimeline)](const RallyHereAPI::FRequest& APIRequest, FHttpRequestRef HttpRequest)
+	{
+		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json"));
+		HttpRequest->SetContentAsString(MatchTimeline);
+	});
+	
+	auto RetryParams = Request.GetRetryParams();
+	RetryParams->RetryVerbs.Add(FName(TEXT("POST")));
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate(),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->MatchTimelineUploadPriority
+	);
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "RH_AutomationTests.h"
@@ -348,7 +436,7 @@ FRHAPI_MatchPlayerRequest GenerateTestMatchPlayer()
 	FRHAPI_MatchPlayerRequest PlayerRequest;
 	PlayerRequest.SetPlayerUuid(FGuid::NewGuid());
 	PlayerRequest.SetTeamId(FMath::RandBool() ? TEXT("Red") : TEXT("Blue"));
-	PlayerRequest.SetPartySessionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+	PlayerRequest.SetPartySessionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower));
 	PlayerRequest.SetPlacement(1);
 	const float Duration = 100;
 	PlayerRequest.SetJoinedMatchTimestamp(FDateTime::UtcNow());
@@ -398,8 +486,8 @@ T GenerateTestMatchEntry()
 	TArray<FRHAPI_MatchSession> Sessions;
 	{
 		FRHAPI_MatchSession Session;
-		Session.SetMatchmakingProfileId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
-		Session.SetSessionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Session.SetMatchmakingProfileId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower));
+		Session.SetSessionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower));
 		Sessions.Add(Session);
 
 		MatchRequest.SetSessions(Sessions);
@@ -409,10 +497,10 @@ T GenerateTestMatchEntry()
 	TArray<FRHAPI_MatchInstance> Instances;
 	{
 		FRHAPI_MatchInstance Instance;
-		Instance.SetInstanceId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Instance.SetInstanceId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower));
 		Instance.SetHostPlayerUuid(Players[0].GetPlayerUuid());
-		Instance.SetRegionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
-		Instance.SetInstanceRequestTemplateId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Instance.SetRegionId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower));
+		Instance.SetInstanceRequestTemplateId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower));
 		Instance.SetMap(UGameMapsSettings::GetGameDefaultMap());
 		Instance.SetGameMode(UGameMapsSettings::GetGlobalDefaultGameMode());
 		Instance.SetHostType(ERHAPI_MatchHostType::Player);
@@ -427,7 +515,7 @@ T GenerateTestMatchEntry()
 		TArray<FRHAPI_MatchAllocation> Allocations;
 
 		FRHAPI_MatchAllocation Allocation;
-		Allocation.SetAllocationId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens));
+		Allocation.SetAllocationId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower));
 		Allocations.Add(Allocation);
 
 		MatchRequest.SetAllocations(Allocations);

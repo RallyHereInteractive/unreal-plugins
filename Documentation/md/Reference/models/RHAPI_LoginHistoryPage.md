@@ -24,20 +24,19 @@ struct FRHAPI_LoginHistoryPage
 `public bool `[`ContinuationToken_IsSet`](#structFRHAPI__LoginHistoryPage_1aa7efa46fc736debb688497937a2930ed) | true if ContinuationToken_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__LoginHistoryPage_1a9320e1edf84affdb1e680ccab65de6e9)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LoginHistoryPage_1a81e7af4eeb918870bd207dea0080bfbb)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1aac17637bd8be46603a0e08f850da43bb)`()` | Gets the value of Entries.
-`public inline const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1aeb6b9d8c5f92b111e7d1963715f26566)`() const` | Gets the value of Entries.
-`public inline void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1af2b61d09cdd51caa038820292645723d)`(const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & NewValue)` | Sets the value of Entries.
-`public inline void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1a628687d0dac31727c65dab6cb792a056)`(TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > && NewValue)` | Sets the value of Entries using move semantics.
-`public inline FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1aac29a31537fb9cb2c44fa3c50d6a5629)`()` | Gets the value of ContinuationToken_Optional, regardless of it having been set.
-`public inline const FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1ac8f78a77aa1b57d0f2faf6f61bb61f5b)`() const` | Gets the value of ContinuationToken_Optional, regardless of it having been set.
-`public inline const FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a839362301cbb4e9398d4ed7d9f66f91d)`(const FString & DefaultValue) const` | Gets the value of ContinuationToken_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a079a293895338cac8631b597714efd76)`(FString & OutValue) const` | Fills OutValue with the value of ContinuationToken_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetContinuationTokenOrNull`](#structFRHAPI__LoginHistoryPage_1aa931892eab1a9e70aa6550a600b9795f)`()` | Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetContinuationTokenOrNull`](#structFRHAPI__LoginHistoryPage_1aa7e5684ed348c9a51326477be194619f)`() const` | Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a781b011aa9422a2e9140a0bb6047cdae)`(const FString & NewValue)` | Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true.
-`public inline void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a404c404e0186e776bd2c8e92b964f813)`(FString && NewValue)` | Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1afaacf8b5fc958e86e3471a5c4ed1f281)`()` | Gets the value of Entries.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1ae61c0e0d173563c63abca9c564de4975)`() const` | Gets the value of Entries.
+`public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1a2e101a1247b74ec4120c7c5174b9de61)`(const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & NewValue)` | Sets the value of Entries.
+`public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1a752201c17a084f9b94f47a88411ea331)`(TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > && NewValue)` | Sets the value of Entries using move semantics.
+`public inline FORCEINLINE FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a90f8e14526de8afab3fc3b871ac243de)`()` | Gets the value of ContinuationToken_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a120e1f9e770523cc42caa0f4f3853177)`() const` | Gets the value of ContinuationToken_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1ae8f4f452af49b420286130fa31aaa515)`(const FString & DefaultValue) const` | Gets the value of ContinuationToken_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a066e4d93f7d798e067eb1723c5d409c4)`(FString & OutValue) const` | Fills OutValue with the value of ContinuationToken_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetContinuationTokenOrNull`](#structFRHAPI__LoginHistoryPage_1a396147db62b18011ba99fbd71e08378e)`()` | Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetContinuationTokenOrNull`](#structFRHAPI__LoginHistoryPage_1a18a03ce26c27b114657f4f19e41b3426)`() const` | Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a9395d4a21780f1df542a469972ace59c)`(const FString & NewValue)` | Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true.
+`public inline FORCEINLINE void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a58c874fd294b7befa1a2dbbfb640b44f)`(FString && NewValue)` | Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true using move semantics.
 `public inline void `[`ClearContinuationToken`](#structFRHAPI__LoginHistoryPage_1a0aadae52cf25417902e09c1378374209)`()` | Clears the value of ContinuationToken_Optional and sets ContinuationToken_IsSet to false.
-`public inline bool `[`IsContinuationTokenSet`](#structFRHAPI__LoginHistoryPage_1a556005273c3001a10dfb17feba6f2084)`() const` | Checks whether ContinuationToken_Optional has been set.
 
 ### Members
 
@@ -70,59 +69,55 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1aac17637bd8be46603a0e08f850da43bb)`()` <a id="structFRHAPI__LoginHistoryPage_1aac17637bd8be46603a0e08f850da43bb"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1afaacf8b5fc958e86e3471a5c4ed1f281)`()` <a id="structFRHAPI__LoginHistoryPage_1afaacf8b5fc958e86e3471a5c4ed1f281"></a>
 
 Gets the value of Entries.
 
-#### `public inline const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1aeb6b9d8c5f92b111e7d1963715f26566)`() const` <a id="structFRHAPI__LoginHistoryPage_1aeb6b9d8c5f92b111e7d1963715f26566"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & `[`GetEntries`](#structFRHAPI__LoginHistoryPage_1ae61c0e0d173563c63abca9c564de4975)`() const` <a id="structFRHAPI__LoginHistoryPage_1ae61c0e0d173563c63abca9c564de4975"></a>
 
 Gets the value of Entries.
 
-#### `public inline void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1af2b61d09cdd51caa038820292645723d)`(const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & NewValue)` <a id="structFRHAPI__LoginHistoryPage_1af2b61d09cdd51caa038820292645723d"></a>
+#### `public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1a2e101a1247b74ec4120c7c5174b9de61)`(const TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > & NewValue)` <a id="structFRHAPI__LoginHistoryPage_1a2e101a1247b74ec4120c7c5174b9de61"></a>
 
 Sets the value of Entries.
 
-#### `public inline void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1a628687d0dac31727c65dab6cb792a056)`(TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > && NewValue)` <a id="structFRHAPI__LoginHistoryPage_1a628687d0dac31727c65dab6cb792a056"></a>
+#### `public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__LoginHistoryPage_1a752201c17a084f9b94f47a88411ea331)`(TArray< `[`FRHAPI_LoginHistoryEntry`](RHAPI_LoginHistoryEntry.md#structFRHAPI__LoginHistoryEntry)` > && NewValue)` <a id="structFRHAPI__LoginHistoryPage_1a752201c17a084f9b94f47a88411ea331"></a>
 
 Sets the value of Entries using move semantics.
 
-#### `public inline FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1aac29a31537fb9cb2c44fa3c50d6a5629)`()` <a id="structFRHAPI__LoginHistoryPage_1aac29a31537fb9cb2c44fa3c50d6a5629"></a>
+#### `public inline FORCEINLINE FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a90f8e14526de8afab3fc3b871ac243de)`()` <a id="structFRHAPI__LoginHistoryPage_1a90f8e14526de8afab3fc3b871ac243de"></a>
 
 Gets the value of ContinuationToken_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1ac8f78a77aa1b57d0f2faf6f61bb61f5b)`() const` <a id="structFRHAPI__LoginHistoryPage_1ac8f78a77aa1b57d0f2faf6f61bb61f5b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a120e1f9e770523cc42caa0f4f3853177)`() const` <a id="structFRHAPI__LoginHistoryPage_1a120e1f9e770523cc42caa0f4f3853177"></a>
 
 Gets the value of ContinuationToken_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a839362301cbb4e9398d4ed7d9f66f91d)`(const FString & DefaultValue) const` <a id="structFRHAPI__LoginHistoryPage_1a839362301cbb4e9398d4ed7d9f66f91d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1ae8f4f452af49b420286130fa31aaa515)`(const FString & DefaultValue) const` <a id="structFRHAPI__LoginHistoryPage_1ae8f4f452af49b420286130fa31aaa515"></a>
 
 Gets the value of ContinuationToken_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a079a293895338cac8631b597714efd76)`(FString & OutValue) const` <a id="structFRHAPI__LoginHistoryPage_1a079a293895338cac8631b597714efd76"></a>
+#### `public inline FORCEINLINE bool `[`GetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a066e4d93f7d798e067eb1723c5d409c4)`(FString & OutValue) const` <a id="structFRHAPI__LoginHistoryPage_1a066e4d93f7d798e067eb1723c5d409c4"></a>
 
 Fills OutValue with the value of ContinuationToken_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetContinuationTokenOrNull`](#structFRHAPI__LoginHistoryPage_1aa931892eab1a9e70aa6550a600b9795f)`()` <a id="structFRHAPI__LoginHistoryPage_1aa931892eab1a9e70aa6550a600b9795f"></a>
+#### `public inline FORCEINLINE FString * `[`GetContinuationTokenOrNull`](#structFRHAPI__LoginHistoryPage_1a396147db62b18011ba99fbd71e08378e)`()` <a id="structFRHAPI__LoginHistoryPage_1a396147db62b18011ba99fbd71e08378e"></a>
 
 Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetContinuationTokenOrNull`](#structFRHAPI__LoginHistoryPage_1aa7e5684ed348c9a51326477be194619f)`() const` <a id="structFRHAPI__LoginHistoryPage_1aa7e5684ed348c9a51326477be194619f"></a>
+#### `public inline FORCEINLINE const FString * `[`GetContinuationTokenOrNull`](#structFRHAPI__LoginHistoryPage_1a18a03ce26c27b114657f4f19e41b3426)`() const` <a id="structFRHAPI__LoginHistoryPage_1a18a03ce26c27b114657f4f19e41b3426"></a>
 
 Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a781b011aa9422a2e9140a0bb6047cdae)`(const FString & NewValue)` <a id="structFRHAPI__LoginHistoryPage_1a781b011aa9422a2e9140a0bb6047cdae"></a>
+#### `public inline FORCEINLINE void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a9395d4a21780f1df542a469972ace59c)`(const FString & NewValue)` <a id="structFRHAPI__LoginHistoryPage_1a9395d4a21780f1df542a469972ace59c"></a>
 
 Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true.
 
-#### `public inline void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a404c404e0186e776bd2c8e92b964f813)`(FString && NewValue)` <a id="structFRHAPI__LoginHistoryPage_1a404c404e0186e776bd2c8e92b964f813"></a>
+#### `public inline FORCEINLINE void `[`SetContinuationToken`](#structFRHAPI__LoginHistoryPage_1a58c874fd294b7befa1a2dbbfb640b44f)`(FString && NewValue)` <a id="structFRHAPI__LoginHistoryPage_1a58c874fd294b7befa1a2dbbfb640b44f"></a>
 
 Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearContinuationToken`](#structFRHAPI__LoginHistoryPage_1a0aadae52cf25417902e09c1378374209)`()` <a id="structFRHAPI__LoginHistoryPage_1a0aadae52cf25417902e09c1378374209"></a>
 
 Clears the value of ContinuationToken_Optional and sets ContinuationToken_IsSet to false.
-
-#### `public inline bool `[`IsContinuationTokenSet`](#structFRHAPI__LoginHistoryPage_1a556005273c3001a10dfb17feba6f2084)`() const` <a id="structFRHAPI__LoginHistoryPage_1a556005273c3001a10dfb17feba6f2084"></a>
-
-Checks whether ContinuationToken_Optional has been set.
 

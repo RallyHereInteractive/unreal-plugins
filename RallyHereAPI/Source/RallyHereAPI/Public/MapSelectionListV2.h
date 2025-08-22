@@ -44,25 +44,25 @@ struct RALLYHEREAPI_API FRHAPI_MapSelectionListV2 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MapSelectionListId{  };
 	/** @brief Gets the value of MapSelectionListId */
-	FString& GetMapSelectionListId() { return MapSelectionListId; }
+	FORCEINLINE FString& GetMapSelectionListId() { return MapSelectionListId; }
 	/** @brief Gets the value of MapSelectionListId */
-	const FString& GetMapSelectionListId() const { return MapSelectionListId; }
+	FORCEINLINE const FString& GetMapSelectionListId() const { return MapSelectionListId; }
 	/** @brief Sets the value of MapSelectionListId */
-	void SetMapSelectionListId(const FString& NewValue) { MapSelectionListId = NewValue;   }
+	FORCEINLINE void SetMapSelectionListId(const FString& NewValue) { MapSelectionListId = NewValue;   }
 	/** @brief Sets the value of MapSelectionListId using move semantics */
-	void SetMapSelectionListId(FString&& NewValue) { MapSelectionListId = NewValue;   }
+	FORCEINLINE void SetMapSelectionListId(FString&& NewValue) { MapSelectionListId = NewValue;   }
 
 	/** @brief List of maps that can be chosen in this selection list */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_MapConfigV2> Maps{  };
 	/** @brief Gets the value of Maps */
-	TArray<FRHAPI_MapConfigV2>& GetMaps() { return Maps; }
+	FORCEINLINE TArray<FRHAPI_MapConfigV2>& GetMaps() { return Maps; }
 	/** @brief Gets the value of Maps */
-	const TArray<FRHAPI_MapConfigV2>& GetMaps() const { return Maps; }
+	FORCEINLINE const TArray<FRHAPI_MapConfigV2>& GetMaps() const { return Maps; }
 	/** @brief Sets the value of Maps */
-	void SetMaps(const TArray<FRHAPI_MapConfigV2>& NewValue) { Maps = NewValue;   }
+	FORCEINLINE void SetMaps(const TArray<FRHAPI_MapConfigV2>& NewValue) { Maps = NewValue;   }
 	/** @brief Sets the value of Maps using move semantics */
-	void SetMaps(TArray<FRHAPI_MapConfigV2>&& NewValue) { Maps = NewValue;   }
+	FORCEINLINE void SetMaps(TArray<FRHAPI_MapConfigV2>&& NewValue) { Maps = NewValue;   }
 };
 
 /** @} */

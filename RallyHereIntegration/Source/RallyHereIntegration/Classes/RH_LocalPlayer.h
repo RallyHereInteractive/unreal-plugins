@@ -101,6 +101,10 @@ public:
 	FORCEINLINE int32 IsRemoteLoggedIn() const { return bRH_RemoteIsLoggedIn; }
 	FORCEINLINE const FGuid& GetRHPlayerUuid() const { return RH_PlayerUuid; }
 
+#if WITH_EDITOR
+	FORCEINLINE void SetRHPlayerUuid(const FGuid& InPlayerUuid) { RH_PlayerUuid = InPlayerUuid; }
+#endif
+
 	virtual void ImportPlayerOptionsfromURL(bool& bFound, bool& bValid);
 	virtual void ClearLocalIds()
 	{
@@ -114,6 +118,7 @@ protected:
 	bool bRH_RemoteIsLoggedIn;
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRHConnectionDestroyed, class URH_IpConnection*, Connection);
 
 /** @ingroup LocalPlayer
  * @brief IpConnection base class (implements the interface)
@@ -125,4 +130,16 @@ class RALLYHEREINTEGRATION_API URH_IpConnection : public UIpConnection, public I
 
 public:
 	virtual FString GetImportRequestURL() const override { return RequestURL; }
+	virtual void CleanUp() override
+	{
+		Super::CleanUp();
+		if(GetConnectionState() == USOCK_Closed)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Closing connection for URH_IpConnection"));
+			OnConnectionDestroyedDel.Broadcast(this);
+		}
+	}
+
+	UPROPERTY()
+	FOnRHConnectionDestroyed OnConnectionDestroyedDel;
 };

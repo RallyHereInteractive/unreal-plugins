@@ -28,26 +28,26 @@ Purge response from a purge request.
 `public FString `[`Status`](#structFRHAPI__PurgeResponse_1ab7e558d3cf6553cb712431e7aa5792e9) | Status of the purge request.
 `public virtual bool `[`FromJson`](#structFRHAPI__PurgeResponse_1abe0fe09f2a2b15c52d504a6878e4f708)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PurgeResponse_1ac9359010ec6a7883a8451f191ea429ab)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1adf386c85e0b3ddeb3986359888355054)`()` | Gets the value of PersonId.
-`public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1a60c22797f40d8df90f3df6e8dd38995c)`() const` | Gets the value of PersonId.
-`public inline void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1ae2b18b987142364ab6aed9292ffb2d81)`(const FGuid & NewValue)` | Sets the value of PersonId.
-`public inline void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1a817678b947743d9d1d6e610ad9d04fe0)`(FGuid && NewValue)` | Sets the value of PersonId using move semantics.
-`public inline FDateTime & `[`GetPurgeOn`](#structFRHAPI__PurgeResponse_1a1954a79410ade3c8cfc2cba6c8b589be)`()` | Gets the value of PurgeOn.
-`public inline const FDateTime & `[`GetPurgeOn`](#structFRHAPI__PurgeResponse_1abed6965edf2afb945c64ce7550526bb6)`() const` | Gets the value of PurgeOn.
-`public inline void `[`SetPurgeOn`](#structFRHAPI__PurgeResponse_1abf5b59391018705e74984239f6786585)`(const FDateTime & NewValue)` | Sets the value of PurgeOn.
-`public inline void `[`SetPurgeOn`](#structFRHAPI__PurgeResponse_1a5d964bd744007867c7d476fac97d5189)`(FDateTime && NewValue)` | Sets the value of PurgeOn using move semantics.
-`public inline FDateTime & `[`GetCreatedOn`](#structFRHAPI__PurgeResponse_1aa7da94e0305f29acca24cbb1b937f540)`()` | Gets the value of CreatedOn.
-`public inline const FDateTime & `[`GetCreatedOn`](#structFRHAPI__PurgeResponse_1a6338f71ab76be3a573e7714de7cbe765)`() const` | Gets the value of CreatedOn.
-`public inline void `[`SetCreatedOn`](#structFRHAPI__PurgeResponse_1aceccd5e8541a249b5e4f51261f696195)`(const FDateTime & NewValue)` | Sets the value of CreatedOn.
-`public inline void `[`SetCreatedOn`](#structFRHAPI__PurgeResponse_1aabeb3392c637d8fa25f0ac5e4b422ff9)`(FDateTime && NewValue)` | Sets the value of CreatedOn using move semantics.
-`public inline FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__PurgeResponse_1aa42ac0dd611d11f83225e031509d496d)`()` | Gets the value of LastModifiedOn.
-`public inline const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a32547f73138e478132bd8a40cacf35b2)`() const` | Gets the value of LastModifiedOn.
-`public inline void `[`SetLastModifiedOn`](#structFRHAPI__PurgeResponse_1aa35defb29ede459682467055fa60a361)`(const FDateTime & NewValue)` | Sets the value of LastModifiedOn.
-`public inline void `[`SetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a887397db7bfd8924fa39467a79f91557)`(FDateTime && NewValue)` | Sets the value of LastModifiedOn using move semantics.
-`public inline FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1a07a7d7b89632194e742a21fda04b1ef1)`()` | Gets the value of Status.
-`public inline const FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1aad6504c983354cc88ce76fe64f12ec42)`() const` | Gets the value of Status.
-`public inline void `[`SetStatus`](#structFRHAPI__PurgeResponse_1ac0a32dcb605ca12da1277d7edc8c5946)`(const FString & NewValue)` | Sets the value of Status.
-`public inline void `[`SetStatus`](#structFRHAPI__PurgeResponse_1aa07561b62631e43bae2d314e76e82837)`(FString && NewValue)` | Sets the value of Status using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1aaacb0d87f356c6f264ef3a882ecb99f3)`()` | Gets the value of PersonId.
+`public inline FORCEINLINE const FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1a7a94df8b7a1e843045a6e0d16bda8eb7)`() const` | Gets the value of PersonId.
+`public inline FORCEINLINE void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1af53304b9890bde19a5f300f5c80e5ddf)`(const FGuid & NewValue)` | Sets the value of PersonId.
+`public inline FORCEINLINE void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1af86c8c398747480e1377cbcc68b8d331)`(FGuid && NewValue)` | Sets the value of PersonId using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetPurgeOn`](#structFRHAPI__PurgeResponse_1a636c09bc994a19cc54c5a7af7f43ce47)`()` | Gets the value of PurgeOn.
+`public inline FORCEINLINE const FDateTime & `[`GetPurgeOn`](#structFRHAPI__PurgeResponse_1ade16bcea59c5dc8f48ae07d5b1db616c)`() const` | Gets the value of PurgeOn.
+`public inline FORCEINLINE void `[`SetPurgeOn`](#structFRHAPI__PurgeResponse_1a8898542dd038226f20aa2f725ad37b7d)`(const FDateTime & NewValue)` | Sets the value of PurgeOn.
+`public inline FORCEINLINE void `[`SetPurgeOn`](#structFRHAPI__PurgeResponse_1a86b51103489c64517e047c3484631b58)`(FDateTime && NewValue)` | Sets the value of PurgeOn using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetCreatedOn`](#structFRHAPI__PurgeResponse_1a1a33c6eae6028fcf2639855101cc17c4)`()` | Gets the value of CreatedOn.
+`public inline FORCEINLINE const FDateTime & `[`GetCreatedOn`](#structFRHAPI__PurgeResponse_1a385d98719d22fd3cd9e4934ab4efaf58)`() const` | Gets the value of CreatedOn.
+`public inline FORCEINLINE void `[`SetCreatedOn`](#structFRHAPI__PurgeResponse_1a1891ae9a2badd57f94ddbc2ef9f99549)`(const FDateTime & NewValue)` | Sets the value of CreatedOn.
+`public inline FORCEINLINE void `[`SetCreatedOn`](#structFRHAPI__PurgeResponse_1ad6dd9d5e86b4da80b324badaf37bb4e1)`(FDateTime && NewValue)` | Sets the value of CreatedOn using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a47aa21389f950b56c6fd0189af988eff)`()` | Gets the value of LastModifiedOn.
+`public inline FORCEINLINE const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a5b1ae209e5bbf857bd5d779dcac2dfb0)`() const` | Gets the value of LastModifiedOn.
+`public inline FORCEINLINE void `[`SetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a68c36d669cb17eb7e34e3dd7bde0d27d)`(const FDateTime & NewValue)` | Sets the value of LastModifiedOn.
+`public inline FORCEINLINE void `[`SetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a0b4c3b489783ca324d3720dbb71111c1)`(FDateTime && NewValue)` | Sets the value of LastModifiedOn using move semantics.
+`public inline FORCEINLINE FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1a1e3f19a5870c3c37f2d5406e5550cc0e)`()` | Gets the value of Status.
+`public inline FORCEINLINE const FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1a417bee732f5c73bf432715260fe274e4)`() const` | Gets the value of Status.
+`public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PurgeResponse_1a5f403da76dfd3f7fb90ce74b96f90207)`(const FString & NewValue)` | Sets the value of Status.
+`public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PurgeResponse_1a6798846aea1a29427699a5a0f00ee0fc)`(FString && NewValue)` | Sets the value of Status using move semantics.
 
 ### Members
 
@@ -88,83 +88,83 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1adf386c85e0b3ddeb3986359888355054)`()` <a id="structFRHAPI__PurgeResponse_1adf386c85e0b3ddeb3986359888355054"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1aaacb0d87f356c6f264ef3a882ecb99f3)`()` <a id="structFRHAPI__PurgeResponse_1aaacb0d87f356c6f264ef3a882ecb99f3"></a>
 
 Gets the value of PersonId.
 
-#### `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1a60c22797f40d8df90f3df6e8dd38995c)`() const` <a id="structFRHAPI__PurgeResponse_1a60c22797f40d8df90f3df6e8dd38995c"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPersonId`](#structFRHAPI__PurgeResponse_1a7a94df8b7a1e843045a6e0d16bda8eb7)`() const` <a id="structFRHAPI__PurgeResponse_1a7a94df8b7a1e843045a6e0d16bda8eb7"></a>
 
 Gets the value of PersonId.
 
-#### `public inline void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1ae2b18b987142364ab6aed9292ffb2d81)`(const FGuid & NewValue)` <a id="structFRHAPI__PurgeResponse_1ae2b18b987142364ab6aed9292ffb2d81"></a>
+#### `public inline FORCEINLINE void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1af53304b9890bde19a5f300f5c80e5ddf)`(const FGuid & NewValue)` <a id="structFRHAPI__PurgeResponse_1af53304b9890bde19a5f300f5c80e5ddf"></a>
 
 Sets the value of PersonId.
 
-#### `public inline void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1a817678b947743d9d1d6e610ad9d04fe0)`(FGuid && NewValue)` <a id="structFRHAPI__PurgeResponse_1a817678b947743d9d1d6e610ad9d04fe0"></a>
+#### `public inline FORCEINLINE void `[`SetPersonId`](#structFRHAPI__PurgeResponse_1af86c8c398747480e1377cbcc68b8d331)`(FGuid && NewValue)` <a id="structFRHAPI__PurgeResponse_1af86c8c398747480e1377cbcc68b8d331"></a>
 
 Sets the value of PersonId using move semantics.
 
-#### `public inline FDateTime & `[`GetPurgeOn`](#structFRHAPI__PurgeResponse_1a1954a79410ade3c8cfc2cba6c8b589be)`()` <a id="structFRHAPI__PurgeResponse_1a1954a79410ade3c8cfc2cba6c8b589be"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetPurgeOn`](#structFRHAPI__PurgeResponse_1a636c09bc994a19cc54c5a7af7f43ce47)`()` <a id="structFRHAPI__PurgeResponse_1a636c09bc994a19cc54c5a7af7f43ce47"></a>
 
 Gets the value of PurgeOn.
 
-#### `public inline const FDateTime & `[`GetPurgeOn`](#structFRHAPI__PurgeResponse_1abed6965edf2afb945c64ce7550526bb6)`() const` <a id="structFRHAPI__PurgeResponse_1abed6965edf2afb945c64ce7550526bb6"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetPurgeOn`](#structFRHAPI__PurgeResponse_1ade16bcea59c5dc8f48ae07d5b1db616c)`() const` <a id="structFRHAPI__PurgeResponse_1ade16bcea59c5dc8f48ae07d5b1db616c"></a>
 
 Gets the value of PurgeOn.
 
-#### `public inline void `[`SetPurgeOn`](#structFRHAPI__PurgeResponse_1abf5b59391018705e74984239f6786585)`(const FDateTime & NewValue)` <a id="structFRHAPI__PurgeResponse_1abf5b59391018705e74984239f6786585"></a>
+#### `public inline FORCEINLINE void `[`SetPurgeOn`](#structFRHAPI__PurgeResponse_1a8898542dd038226f20aa2f725ad37b7d)`(const FDateTime & NewValue)` <a id="structFRHAPI__PurgeResponse_1a8898542dd038226f20aa2f725ad37b7d"></a>
 
 Sets the value of PurgeOn.
 
-#### `public inline void `[`SetPurgeOn`](#structFRHAPI__PurgeResponse_1a5d964bd744007867c7d476fac97d5189)`(FDateTime && NewValue)` <a id="structFRHAPI__PurgeResponse_1a5d964bd744007867c7d476fac97d5189"></a>
+#### `public inline FORCEINLINE void `[`SetPurgeOn`](#structFRHAPI__PurgeResponse_1a86b51103489c64517e047c3484631b58)`(FDateTime && NewValue)` <a id="structFRHAPI__PurgeResponse_1a86b51103489c64517e047c3484631b58"></a>
 
 Sets the value of PurgeOn using move semantics.
 
-#### `public inline FDateTime & `[`GetCreatedOn`](#structFRHAPI__PurgeResponse_1aa7da94e0305f29acca24cbb1b937f540)`()` <a id="structFRHAPI__PurgeResponse_1aa7da94e0305f29acca24cbb1b937f540"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetCreatedOn`](#structFRHAPI__PurgeResponse_1a1a33c6eae6028fcf2639855101cc17c4)`()` <a id="structFRHAPI__PurgeResponse_1a1a33c6eae6028fcf2639855101cc17c4"></a>
 
 Gets the value of CreatedOn.
 
-#### `public inline const FDateTime & `[`GetCreatedOn`](#structFRHAPI__PurgeResponse_1a6338f71ab76be3a573e7714de7cbe765)`() const` <a id="structFRHAPI__PurgeResponse_1a6338f71ab76be3a573e7714de7cbe765"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreatedOn`](#structFRHAPI__PurgeResponse_1a385d98719d22fd3cd9e4934ab4efaf58)`() const` <a id="structFRHAPI__PurgeResponse_1a385d98719d22fd3cd9e4934ab4efaf58"></a>
 
 Gets the value of CreatedOn.
 
-#### `public inline void `[`SetCreatedOn`](#structFRHAPI__PurgeResponse_1aceccd5e8541a249b5e4f51261f696195)`(const FDateTime & NewValue)` <a id="structFRHAPI__PurgeResponse_1aceccd5e8541a249b5e4f51261f696195"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedOn`](#structFRHAPI__PurgeResponse_1a1891ae9a2badd57f94ddbc2ef9f99549)`(const FDateTime & NewValue)` <a id="structFRHAPI__PurgeResponse_1a1891ae9a2badd57f94ddbc2ef9f99549"></a>
 
 Sets the value of CreatedOn.
 
-#### `public inline void `[`SetCreatedOn`](#structFRHAPI__PurgeResponse_1aabeb3392c637d8fa25f0ac5e4b422ff9)`(FDateTime && NewValue)` <a id="structFRHAPI__PurgeResponse_1aabeb3392c637d8fa25f0ac5e4b422ff9"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedOn`](#structFRHAPI__PurgeResponse_1ad6dd9d5e86b4da80b324badaf37bb4e1)`(FDateTime && NewValue)` <a id="structFRHAPI__PurgeResponse_1ad6dd9d5e86b4da80b324badaf37bb4e1"></a>
 
 Sets the value of CreatedOn using move semantics.
 
-#### `public inline FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__PurgeResponse_1aa42ac0dd611d11f83225e031509d496d)`()` <a id="structFRHAPI__PurgeResponse_1aa42ac0dd611d11f83225e031509d496d"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a47aa21389f950b56c6fd0189af988eff)`()` <a id="structFRHAPI__PurgeResponse_1a47aa21389f950b56c6fd0189af988eff"></a>
 
 Gets the value of LastModifiedOn.
 
-#### `public inline const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a32547f73138e478132bd8a40cacf35b2)`() const` <a id="structFRHAPI__PurgeResponse_1a32547f73138e478132bd8a40cacf35b2"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a5b1ae209e5bbf857bd5d779dcac2dfb0)`() const` <a id="structFRHAPI__PurgeResponse_1a5b1ae209e5bbf857bd5d779dcac2dfb0"></a>
 
 Gets the value of LastModifiedOn.
 
-#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__PurgeResponse_1aa35defb29ede459682467055fa60a361)`(const FDateTime & NewValue)` <a id="structFRHAPI__PurgeResponse_1aa35defb29ede459682467055fa60a361"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a68c36d669cb17eb7e34e3dd7bde0d27d)`(const FDateTime & NewValue)` <a id="structFRHAPI__PurgeResponse_1a68c36d669cb17eb7e34e3dd7bde0d27d"></a>
 
 Sets the value of LastModifiedOn.
 
-#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a887397db7bfd8924fa39467a79f91557)`(FDateTime && NewValue)` <a id="structFRHAPI__PurgeResponse_1a887397db7bfd8924fa39467a79f91557"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedOn`](#structFRHAPI__PurgeResponse_1a0b4c3b489783ca324d3720dbb71111c1)`(FDateTime && NewValue)` <a id="structFRHAPI__PurgeResponse_1a0b4c3b489783ca324d3720dbb71111c1"></a>
 
 Sets the value of LastModifiedOn using move semantics.
 
-#### `public inline FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1a07a7d7b89632194e742a21fda04b1ef1)`()` <a id="structFRHAPI__PurgeResponse_1a07a7d7b89632194e742a21fda04b1ef1"></a>
+#### `public inline FORCEINLINE FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1a1e3f19a5870c3c37f2d5406e5550cc0e)`()` <a id="structFRHAPI__PurgeResponse_1a1e3f19a5870c3c37f2d5406e5550cc0e"></a>
 
 Gets the value of Status.
 
-#### `public inline const FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1aad6504c983354cc88ce76fe64f12ec42)`() const` <a id="structFRHAPI__PurgeResponse_1aad6504c983354cc88ce76fe64f12ec42"></a>
+#### `public inline FORCEINLINE const FString & `[`GetStatus`](#structFRHAPI__PurgeResponse_1a417bee732f5c73bf432715260fe274e4)`() const` <a id="structFRHAPI__PurgeResponse_1a417bee732f5c73bf432715260fe274e4"></a>
 
 Gets the value of Status.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__PurgeResponse_1ac0a32dcb605ca12da1277d7edc8c5946)`(const FString & NewValue)` <a id="structFRHAPI__PurgeResponse_1ac0a32dcb605ca12da1277d7edc8c5946"></a>
+#### `public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PurgeResponse_1a5f403da76dfd3f7fb90ce74b96f90207)`(const FString & NewValue)` <a id="structFRHAPI__PurgeResponse_1a5f403da76dfd3f7fb90ce74b96f90207"></a>
 
 Sets the value of Status.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__PurgeResponse_1aa07561b62631e43bae2d314e76e82837)`(FString && NewValue)` <a id="structFRHAPI__PurgeResponse_1aa07561b62631e43bae2d314e76e82837"></a>
+#### `public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PurgeResponse_1a6798846aea1a29427699a5a0f00ee0fc)`(FString && NewValue)` <a id="structFRHAPI__PurgeResponse_1a6798846aea1a29427699a5a0f00ee0fc"></a>
 
 Sets the value of Status using move semantics.
 

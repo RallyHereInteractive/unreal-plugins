@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_AdOpportunities : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_AdOpportunity> Opportunities{  };
 	/** @brief Gets the value of Opportunities */
-	TArray<FRHAPI_AdOpportunity>& GetOpportunities() { return Opportunities; }
+	FORCEINLINE TArray<FRHAPI_AdOpportunity>& GetOpportunities() { return Opportunities; }
 	/** @brief Gets the value of Opportunities */
-	const TArray<FRHAPI_AdOpportunity>& GetOpportunities() const { return Opportunities; }
+	FORCEINLINE const TArray<FRHAPI_AdOpportunity>& GetOpportunities() const { return Opportunities; }
 	/** @brief Sets the value of Opportunities */
-	void SetOpportunities(const TArray<FRHAPI_AdOpportunity>& NewValue) { Opportunities = NewValue;   }
+	FORCEINLINE void SetOpportunities(const TArray<FRHAPI_AdOpportunity>& NewValue) { Opportunities = NewValue;   }
 	/** @brief Sets the value of Opportunities using move semantics */
-	void SetOpportunities(TArray<FRHAPI_AdOpportunity>&& NewValue) { Opportunities = NewValue;   }
+	FORCEINLINE void SetOpportunities(TArray<FRHAPI_AdOpportunity>&& NewValue) { Opportunities = NewValue;   }
 };
 
 /** @} */

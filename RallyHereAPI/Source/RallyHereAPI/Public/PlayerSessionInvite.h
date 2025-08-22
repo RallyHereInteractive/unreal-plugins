@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString SessionId{  };
 	/** @brief Gets the value of SessionId */
-	FString& GetSessionId() { return SessionId; }
+	FORCEINLINE FString& GetSessionId() { return SessionId; }
 	/** @brief Gets the value of SessionId */
-	const FString& GetSessionId() const { return SessionId; }
+	FORCEINLINE const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
+	FORCEINLINE void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
 	/** @brief Sets the value of SessionId using move semantics */
-	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
+	FORCEINLINE void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
 
 	/** @brief Player who sent the invite */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,25 +58,23 @@ struct RALLYHEREAPI_API FRHAPI_PlayerSessionInvite : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InvitingPlayerUuid_IsSet{ false };
 	/** @brief Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set */
-	FGuid& GetInvitingPlayerUuid() { return InvitingPlayerUuid_Optional; }
+	FORCEINLINE FGuid& GetInvitingPlayerUuid() { return InvitingPlayerUuid_Optional; }
 	/** @brief Gets the value of InvitingPlayerUuid_Optional, regardless of it having been set */
-	const FGuid& GetInvitingPlayerUuid() const { return InvitingPlayerUuid_Optional; }
+	FORCEINLINE const FGuid& GetInvitingPlayerUuid() const { return InvitingPlayerUuid_Optional; }
 	/** @brief Gets the value of InvitingPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetInvitingPlayerUuid(const FGuid& DefaultValue) const { if (InvitingPlayerUuid_IsSet) return InvitingPlayerUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetInvitingPlayerUuid(const FGuid& DefaultValue) const { if (InvitingPlayerUuid_IsSet) return InvitingPlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of InvitingPlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInvitingPlayerUuid(FGuid& OutValue) const { if (InvitingPlayerUuid_IsSet) OutValue = InvitingPlayerUuid_Optional; return InvitingPlayerUuid_IsSet; }
+	FORCEINLINE bool GetInvitingPlayerUuid(FGuid& OutValue) const { if (InvitingPlayerUuid_IsSet) OutValue = InvitingPlayerUuid_Optional; return InvitingPlayerUuid_IsSet; }
 	/** @brief Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetInvitingPlayerUuidOrNull() { if (InvitingPlayerUuid_IsSet) return (&InvitingPlayerUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetInvitingPlayerUuidOrNull() { if (InvitingPlayerUuid_IsSet) return (&InvitingPlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to InvitingPlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetInvitingPlayerUuidOrNull() const { if (InvitingPlayerUuid_IsSet) return (&InvitingPlayerUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetInvitingPlayerUuidOrNull() const { if (InvitingPlayerUuid_IsSet) return (&InvitingPlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true */
-	void SetInvitingPlayerUuid(const FGuid& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetInvitingPlayerUuid(const FGuid& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of InvitingPlayerUuid_Optional and also sets InvitingPlayerUuid_IsSet to true using move semantics */
-	void SetInvitingPlayerUuid(FGuid&& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetInvitingPlayerUuid(FGuid&& NewValue) { InvitingPlayerUuid_Optional = NewValue; InvitingPlayerUuid_IsSet = true;  }
 	/** @brief Clears the value of InvitingPlayerUuid_Optional and sets InvitingPlayerUuid_IsSet to false */
 	void ClearInvitingPlayerUuid() { InvitingPlayerUuid_IsSet = false;  }
-	/** @brief Checks whether InvitingPlayerUuid_Optional has been set */
-	bool IsInvitingPlayerUuidSet() const { return InvitingPlayerUuid_IsSet; }
 };
 
 /** @} */

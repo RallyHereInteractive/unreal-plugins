@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_Platforms : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FString> Platforms{  };
 	/** @brief Gets the value of Platforms */
-	TArray<FString>& GetPlatforms() { return Platforms; }
+	FORCEINLINE TArray<FString>& GetPlatforms() { return Platforms; }
 	/** @brief Gets the value of Platforms */
-	const TArray<FString>& GetPlatforms() const { return Platforms; }
+	FORCEINLINE const TArray<FString>& GetPlatforms() const { return Platforms; }
 	/** @brief Sets the value of Platforms */
-	void SetPlatforms(const TArray<FString>& NewValue) { Platforms = NewValue;   }
+	FORCEINLINE void SetPlatforms(const TArray<FString>& NewValue) { Platforms = NewValue;   }
 	/** @brief Sets the value of Platforms using move semantics */
-	void SetPlatforms(TArray<FString>&& NewValue) { Platforms = NewValue;   }
+	FORCEINLINE void SetPlatforms(TArray<FString>&& NewValue) { Platforms = NewValue;   }
 };
 
 /** @} */

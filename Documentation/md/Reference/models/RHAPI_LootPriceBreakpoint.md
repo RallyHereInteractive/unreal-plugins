@@ -27,28 +27,25 @@ Price Breakpoint for a specific quantity of units to purchase.
 `public bool `[`Prices_IsSet`](#structFRHAPI__LootPriceBreakpoint_1a15564d6db277336bf69f5742650d8388) | true if Prices_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__LootPriceBreakpoint_1a7394cf7b2197617c095373e1afd2f4c5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LootPriceBreakpoint_1ac334405aaca90310ba3f2911a84dfac0)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1af196622b72c1bf6fcd883322a0c69585)`()` | Gets the value of Quantity_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1aa6775fb5942d4e3bab5acea0df6dc9d7)`() const` | Gets the value of Quantity_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a3e1ecd261bee4831e6553f41fbb3fca0)`(const int32 & DefaultValue) const` | Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a4ff5ec289a167764db18708d577e4247)`(int32 & OutValue) const` | Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetQuantityOrNull`](#structFRHAPI__LootPriceBreakpoint_1aed4fdc8fc50d0ff4981563fcf8cc35cf)`()` | Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetQuantityOrNull`](#structFRHAPI__LootPriceBreakpoint_1aeea27282d2dc28821e95e11022b94e5e)`() const` | Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a3c897aa8709f9f66fcf604161ecd9aaf)`(const int32 & NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true.
-`public inline void `[`SetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a6a46fafcf3ccfafc236ff46fdb6eaa9a)`(int32 && NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1ada63849d17e11e3aff84615399a74131)`()` | Gets the value of Quantity_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a91b078d4afcd9ea00891dd376b2b867e)`() const` | Gets the value of Quantity_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1ac5e208d6ec524ae0cba9228b5bc02e9c)`(const int32 & DefaultValue) const` | Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a99d9ab58d983780f6a9eb4756e14dbb9)`(int32 & OutValue) const` | Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetQuantityOrNull`](#structFRHAPI__LootPriceBreakpoint_1a821eaf3b377c528ba01004f671338ba2)`()` | Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetQuantityOrNull`](#structFRHAPI__LootPriceBreakpoint_1aa0a075a5e999d1d3ef2052dae8ee074d)`() const` | Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a50c5aef735e08a926e503e26ff8ac00a)`(const int32 & NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true.
+`public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a9e1934b69294d50b90bf1034253cad08)`(int32 && NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics.
 `public inline void `[`ClearQuantity`](#structFRHAPI__LootPriceBreakpoint_1a368a1f8252c9026f6f8ab37500628d1f)`()` | Clears the value of Quantity_Optional and sets Quantity_IsSet to false.
-`public inline bool `[`IsQuantitySet`](#structFRHAPI__LootPriceBreakpoint_1a8d1246663ce0ca9db1295d14a012a0ad)`() const` | Checks whether Quantity_Optional has been set.
-`public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__LootPriceBreakpoint_1ab6058f2af55df28d667124b8a223e076)`() const` | Returns true if Quantity_Optional is set and matches the default value.
-`public inline void `[`SetQuantityToDefault`](#structFRHAPI__LootPriceBreakpoint_1af7732c581eea26a71b2427e426a05436)`()` | Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true.
-`public inline TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1aa1bb9e59716ab6fa4bbb7bad4ff0e0c8)`()` | Gets the value of Prices_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a08b4a9c2ebb7be03b40a8f617c01450a)`() const` | Gets the value of Prices_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a0fdc97e9fc4772c4c0449db393bc901a)`(const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & DefaultValue) const` | Gets the value of Prices_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a9738f7406cc8a7340b3c860a007bb648)`(TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & OutValue) const` | Fills OutValue with the value of Prices_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > * `[`GetPricesOrNull`](#structFRHAPI__LootPriceBreakpoint_1a760a1e6fbdd92d79feb4a5c41938dcd4)`()` | Returns a pointer to Prices_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > * `[`GetPricesOrNull`](#structFRHAPI__LootPriceBreakpoint_1aa97469e0459a105921e1390aacd64717)`() const` | Returns a pointer to Prices_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPrices`](#structFRHAPI__LootPriceBreakpoint_1ae6a49fd6731176d9c3685fd905820d56)`(const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & NewValue)` | Sets the value of Prices_Optional and also sets Prices_IsSet to true.
-`public inline void `[`SetPrices`](#structFRHAPI__LootPriceBreakpoint_1a712e276c2f8a642a0433f411780d0880)`(TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > && NewValue)` | Sets the value of Prices_Optional and also sets Prices_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Quantity`](#structFRHAPI__LootPriceBreakpoint_1a1f82cb2c33539d92cf0f05cb82d5149c)`()` | Returns the default value of Quantity.
+`public inline FORCEINLINE TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a3c0c977ae57b06cd6c84a5567c5caf0b)`()` | Gets the value of Prices_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a6a4ce0d2487c3aaf32da49107ae5995e)`() const` | Gets the value of Prices_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1ad35082cea6886166539a75163ab767a9)`(const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & DefaultValue) const` | Gets the value of Prices_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1ac062e533c6e832738dbbf9574e5a6800)`(TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & OutValue) const` | Fills OutValue with the value of Prices_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > * `[`GetPricesOrNull`](#structFRHAPI__LootPriceBreakpoint_1a9bdb6cd9054e77289fec60cc7e971546)`()` | Returns a pointer to Prices_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > * `[`GetPricesOrNull`](#structFRHAPI__LootPriceBreakpoint_1a19b0eb8b1a8021a8bb59c06aa9115320)`() const` | Returns a pointer to Prices_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPrices`](#structFRHAPI__LootPriceBreakpoint_1a5907d1d0185d1e5dbd95353c2da643ca)`(const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & NewValue)` | Sets the value of Prices_Optional and also sets Prices_IsSet to true.
+`public inline FORCEINLINE void `[`SetPrices`](#structFRHAPI__LootPriceBreakpoint_1a030d137e1f343e49283794db769c4622)`(TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > && NewValue)` | Sets the value of Prices_Optional and also sets Prices_IsSet to true using move semantics.
 `public inline void `[`ClearPrices`](#structFRHAPI__LootPriceBreakpoint_1a1cfa25b466d2012c8fb4ab91f89b9b36)`()` | Clears the value of Prices_Optional and sets Prices_IsSet to false.
-`public inline bool `[`IsPricesSet`](#structFRHAPI__LootPriceBreakpoint_1a12f3017bfe5dad0be173cf4829598325)`() const` | Checks whether Prices_Optional has been set.
 
 ### Members
 
@@ -85,35 +82,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1af196622b72c1bf6fcd883322a0c69585)`()` <a id="structFRHAPI__LootPriceBreakpoint_1af196622b72c1bf6fcd883322a0c69585"></a>
+#### `public inline FORCEINLINE int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1ada63849d17e11e3aff84615399a74131)`()` <a id="structFRHAPI__LootPriceBreakpoint_1ada63849d17e11e3aff84615399a74131"></a>
 
 Gets the value of Quantity_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1aa6775fb5942d4e3bab5acea0df6dc9d7)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1aa6775fb5942d4e3bab5acea0df6dc9d7"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a91b078d4afcd9ea00891dd376b2b867e)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1a91b078d4afcd9ea00891dd376b2b867e"></a>
 
 Gets the value of Quantity_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a3e1ecd261bee4831e6553f41fbb3fca0)`(const int32 & DefaultValue) const` <a id="structFRHAPI__LootPriceBreakpoint_1a3e1ecd261bee4831e6553f41fbb3fca0"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1ac5e208d6ec524ae0cba9228b5bc02e9c)`(const int32 & DefaultValue) const` <a id="structFRHAPI__LootPriceBreakpoint_1ac5e208d6ec524ae0cba9228b5bc02e9c"></a>
 
 Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a4ff5ec289a167764db18708d577e4247)`(int32 & OutValue) const` <a id="structFRHAPI__LootPriceBreakpoint_1a4ff5ec289a167764db18708d577e4247"></a>
+#### `public inline FORCEINLINE bool `[`GetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a99d9ab58d983780f6a9eb4756e14dbb9)`(int32 & OutValue) const` <a id="structFRHAPI__LootPriceBreakpoint_1a99d9ab58d983780f6a9eb4756e14dbb9"></a>
 
 Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetQuantityOrNull`](#structFRHAPI__LootPriceBreakpoint_1aed4fdc8fc50d0ff4981563fcf8cc35cf)`()` <a id="structFRHAPI__LootPriceBreakpoint_1aed4fdc8fc50d0ff4981563fcf8cc35cf"></a>
+#### `public inline FORCEINLINE int32 * `[`GetQuantityOrNull`](#structFRHAPI__LootPriceBreakpoint_1a821eaf3b377c528ba01004f671338ba2)`()` <a id="structFRHAPI__LootPriceBreakpoint_1a821eaf3b377c528ba01004f671338ba2"></a>
 
 Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetQuantityOrNull`](#structFRHAPI__LootPriceBreakpoint_1aeea27282d2dc28821e95e11022b94e5e)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1aeea27282d2dc28821e95e11022b94e5e"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetQuantityOrNull`](#structFRHAPI__LootPriceBreakpoint_1aa0a075a5e999d1d3ef2052dae8ee074d)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1aa0a075a5e999d1d3ef2052dae8ee074d"></a>
 
 Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a3c897aa8709f9f66fcf604161ecd9aaf)`(const int32 & NewValue)` <a id="structFRHAPI__LootPriceBreakpoint_1a3c897aa8709f9f66fcf604161ecd9aaf"></a>
+#### `public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a50c5aef735e08a926e503e26ff8ac00a)`(const int32 & NewValue)` <a id="structFRHAPI__LootPriceBreakpoint_1a50c5aef735e08a926e503e26ff8ac00a"></a>
 
 Sets the value of Quantity_Optional and also sets Quantity_IsSet to true.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a6a46fafcf3ccfafc236ff46fdb6eaa9a)`(int32 && NewValue)` <a id="structFRHAPI__LootPriceBreakpoint_1a6a46fafcf3ccfafc236ff46fdb6eaa9a"></a>
+#### `public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__LootPriceBreakpoint_1a9e1934b69294d50b90bf1034253cad08)`(int32 && NewValue)` <a id="structFRHAPI__LootPriceBreakpoint_1a9e1934b69294d50b90bf1034253cad08"></a>
 
 Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics.
 
@@ -121,55 +118,43 @@ Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using m
 
 Clears the value of Quantity_Optional and sets Quantity_IsSet to false.
 
-#### `public inline bool `[`IsQuantitySet`](#structFRHAPI__LootPriceBreakpoint_1a8d1246663ce0ca9db1295d14a012a0ad)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1a8d1246663ce0ca9db1295d14a012a0ad"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Quantity`](#structFRHAPI__LootPriceBreakpoint_1a1f82cb2c33539d92cf0f05cb82d5149c)`()` <a id="structFRHAPI__LootPriceBreakpoint_1a1f82cb2c33539d92cf0f05cb82d5149c"></a>
 
-Checks whether Quantity_Optional has been set.
+Returns the default value of Quantity.
 
-#### `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__LootPriceBreakpoint_1ab6058f2af55df28d667124b8a223e076)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1ab6058f2af55df28d667124b8a223e076"></a>
-
-Returns true if Quantity_Optional is set and matches the default value.
-
-#### `public inline void `[`SetQuantityToDefault`](#structFRHAPI__LootPriceBreakpoint_1af7732c581eea26a71b2427e426a05436)`()` <a id="structFRHAPI__LootPriceBreakpoint_1af7732c581eea26a71b2427e426a05436"></a>
-
-Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true.
-
-#### `public inline TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1aa1bb9e59716ab6fa4bbb7bad4ff0e0c8)`()` <a id="structFRHAPI__LootPriceBreakpoint_1aa1bb9e59716ab6fa4bbb7bad4ff0e0c8"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a3c0c977ae57b06cd6c84a5567c5caf0b)`()` <a id="structFRHAPI__LootPriceBreakpoint_1a3c0c977ae57b06cd6c84a5567c5caf0b"></a>
 
 Gets the value of Prices_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a08b4a9c2ebb7be03b40a8f617c01450a)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1a08b4a9c2ebb7be03b40a8f617c01450a"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a6a4ce0d2487c3aaf32da49107ae5995e)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1a6a4ce0d2487c3aaf32da49107ae5995e"></a>
 
 Gets the value of Prices_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a0fdc97e9fc4772c4c0449db393bc901a)`(const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & DefaultValue) const` <a id="structFRHAPI__LootPriceBreakpoint_1a0fdc97e9fc4772c4c0449db393bc901a"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1ad35082cea6886166539a75163ab767a9)`(const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & DefaultValue) const` <a id="structFRHAPI__LootPriceBreakpoint_1ad35082cea6886166539a75163ab767a9"></a>
 
 Gets the value of Prices_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1a9738f7406cc8a7340b3c860a007bb648)`(TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & OutValue) const` <a id="structFRHAPI__LootPriceBreakpoint_1a9738f7406cc8a7340b3c860a007bb648"></a>
+#### `public inline FORCEINLINE bool `[`GetPrices`](#structFRHAPI__LootPriceBreakpoint_1ac062e533c6e832738dbbf9574e5a6800)`(TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & OutValue) const` <a id="structFRHAPI__LootPriceBreakpoint_1ac062e533c6e832738dbbf9574e5a6800"></a>
 
 Fills OutValue with the value of Prices_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > * `[`GetPricesOrNull`](#structFRHAPI__LootPriceBreakpoint_1a760a1e6fbdd92d79feb4a5c41938dcd4)`()` <a id="structFRHAPI__LootPriceBreakpoint_1a760a1e6fbdd92d79feb4a5c41938dcd4"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > * `[`GetPricesOrNull`](#structFRHAPI__LootPriceBreakpoint_1a9bdb6cd9054e77289fec60cc7e971546)`()` <a id="structFRHAPI__LootPriceBreakpoint_1a9bdb6cd9054e77289fec60cc7e971546"></a>
 
 Returns a pointer to Prices_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > * `[`GetPricesOrNull`](#structFRHAPI__LootPriceBreakpoint_1aa97469e0459a105921e1390aacd64717)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1aa97469e0459a105921e1390aacd64717"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > * `[`GetPricesOrNull`](#structFRHAPI__LootPriceBreakpoint_1a19b0eb8b1a8021a8bb59c06aa9115320)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1a19b0eb8b1a8021a8bb59c06aa9115320"></a>
 
 Returns a pointer to Prices_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPrices`](#structFRHAPI__LootPriceBreakpoint_1ae6a49fd6731176d9c3685fd905820d56)`(const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & NewValue)` <a id="structFRHAPI__LootPriceBreakpoint_1ae6a49fd6731176d9c3685fd905820d56"></a>
+#### `public inline FORCEINLINE void `[`SetPrices`](#structFRHAPI__LootPriceBreakpoint_1a5907d1d0185d1e5dbd95353c2da643ca)`(const TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > & NewValue)` <a id="structFRHAPI__LootPriceBreakpoint_1a5907d1d0185d1e5dbd95353c2da643ca"></a>
 
 Sets the value of Prices_Optional and also sets Prices_IsSet to true.
 
-#### `public inline void `[`SetPrices`](#structFRHAPI__LootPriceBreakpoint_1a712e276c2f8a642a0433f411780d0880)`(TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > && NewValue)` <a id="structFRHAPI__LootPriceBreakpoint_1a712e276c2f8a642a0433f411780d0880"></a>
+#### `public inline FORCEINLINE void `[`SetPrices`](#structFRHAPI__LootPriceBreakpoint_1a030d137e1f343e49283794db769c4622)`(TArray< `[`FRHAPI_LootPriceCurrencies`](RHAPI_LootPriceCurrencies.md#structFRHAPI__LootPriceCurrencies)` > && NewValue)` <a id="structFRHAPI__LootPriceBreakpoint_1a030d137e1f343e49283794db769c4622"></a>
 
 Sets the value of Prices_Optional and also sets Prices_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPrices`](#structFRHAPI__LootPriceBreakpoint_1a1cfa25b466d2012c8fb4ab91f89b9b36)`()` <a id="structFRHAPI__LootPriceBreakpoint_1a1cfa25b466d2012c8fb4ab91f89b9b36"></a>
 
 Clears the value of Prices_Optional and sets Prices_IsSet to false.
-
-#### `public inline bool `[`IsPricesSet`](#structFRHAPI__LootPriceBreakpoint_1a12f3017bfe5dad0be173cf4829598325)`() const` <a id="structFRHAPI__LootPriceBreakpoint_1a12f3017bfe5dad0be173cf4829598325"></a>
-
-Checks whether Prices_Optional has been set.
 

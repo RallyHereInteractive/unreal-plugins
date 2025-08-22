@@ -42,13 +42,13 @@ struct RALLYHEREAPI_API FRHAPI_Friends : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FGuid> Friends{  };
 	/** @brief Gets the value of Friends */
-	TArray<FGuid>& GetFriends() { return Friends; }
+	FORCEINLINE TArray<FGuid>& GetFriends() { return Friends; }
 	/** @brief Gets the value of Friends */
-	const TArray<FGuid>& GetFriends() const { return Friends; }
+	FORCEINLINE const TArray<FGuid>& GetFriends() const { return Friends; }
 	/** @brief Sets the value of Friends */
-	void SetFriends(const TArray<FGuid>& NewValue) { Friends = NewValue;   }
+	FORCEINLINE void SetFriends(const TArray<FGuid>& NewValue) { Friends = NewValue;   }
 	/** @brief Sets the value of Friends using move semantics */
-	void SetFriends(TArray<FGuid>&& NewValue) { Friends = NewValue;   }
+	FORCEINLINE void SetFriends(TArray<FGuid>&& NewValue) { Friends = NewValue;   }
 };
 
 /** @} */

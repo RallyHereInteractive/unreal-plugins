@@ -23,16 +23,15 @@ struct FRHAPI_ExternalKeyEntitlement
 `public int32 `[`Quantity`](#structFRHAPI__ExternalKeyEntitlement_1a810b35bdfda5a77732ecaef7c1bb64de) | The quantity of the External Key Entitlement.
 `public virtual bool `[`FromJson`](#structFRHAPI__ExternalKeyEntitlement_1a37c7f892a7b35dfe64f77c97930a5143)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__ExternalKeyEntitlement_1a41e52f0e034a06c98c307dc3297b317b)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a4a3b566a8b29c9876f1f5787eea256c1)`()` | Gets the value of ExternalKeyCampaignId.
-`public inline const FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a9c241f439b2f8093e660f846432a2f60)`() const` | Gets the value of ExternalKeyCampaignId.
-`public inline void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a2e888984fb8e180516c5454bfe85ed8e)`(const FGuid & NewValue)` | Sets the value of ExternalKeyCampaignId.
-`public inline void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a877eebe76d2a106760f0f70e6c59f5a7)`(FGuid && NewValue)` | Sets the value of ExternalKeyCampaignId using move semantics.
-`public inline int32 & `[`GetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a0f6f79f69d47e7629abf05c6086b1162)`()` | Gets the value of Quantity.
-`public inline const int32 & `[`GetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a0be6d5bb8921171ff2daf68f799d8ebc)`() const` | Gets the value of Quantity.
-`public inline void `[`SetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a1fadc4240aad3af9f8345e4c98c3e3d3)`(const int32 & NewValue)` | Sets the value of Quantity.
-`public inline void `[`SetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a99c834310c0f21806b08b653731445db)`(int32 && NewValue)` | Sets the value of Quantity using move semantics.
-`public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__ExternalKeyEntitlement_1a28fabc8019a38a4095a253b47a95ba85)`() const` | Returns true if Quantity matches the default value.
-`public inline void `[`SetQuantityToDefault`](#structFRHAPI__ExternalKeyEntitlement_1a78d3992451251c7886a18365176d6a10)`()` | Sets the value of Quantity to its default
+`public inline FORCEINLINE FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a33335a379ef06e67ccfecc288d6e3499)`()` | Gets the value of ExternalKeyCampaignId.
+`public inline FORCEINLINE const FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a7b9f85616bd375ad52a6db2172c27e1c)`() const` | Gets the value of ExternalKeyCampaignId.
+`public inline FORCEINLINE void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1afea28c5c4410cbda994a91877f964d33)`(const FGuid & NewValue)` | Sets the value of ExternalKeyCampaignId.
+`public inline FORCEINLINE void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a00e2a88149f410f4fe5975cf1a5d185c)`(FGuid && NewValue)` | Sets the value of ExternalKeyCampaignId using move semantics.
+`public inline FORCEINLINE int32 & `[`GetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a180b04b9b8e574a4cdbe80140b89b868)`()` | Gets the value of Quantity.
+`public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a33fef64a0664bb7b36cbfc344cba299f)`() const` | Gets the value of Quantity.
+`public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1aed34af571ca73c2338a8d17cc5009237)`(const int32 & NewValue)` | Sets the value of Quantity.
+`public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a48af002d6b35cf0b3873a46ed2f280dd)`(int32 && NewValue)` | Sets the value of Quantity using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Quantity`](#structFRHAPI__ExternalKeyEntitlement_1a91f32b8ca56ef05d22eb800a319e2f06)`()` | Returns the default value of Quantity.
 
 ### Members
 
@@ -61,43 +60,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a4a3b566a8b29c9876f1f5787eea256c1)`()` <a id="structFRHAPI__ExternalKeyEntitlement_1a4a3b566a8b29c9876f1f5787eea256c1"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a33335a379ef06e67ccfecc288d6e3499)`()` <a id="structFRHAPI__ExternalKeyEntitlement_1a33335a379ef06e67ccfecc288d6e3499"></a>
 
 Gets the value of ExternalKeyCampaignId.
 
-#### `public inline const FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a9c241f439b2f8093e660f846432a2f60)`() const` <a id="structFRHAPI__ExternalKeyEntitlement_1a9c241f439b2f8093e660f846432a2f60"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a7b9f85616bd375ad52a6db2172c27e1c)`() const` <a id="structFRHAPI__ExternalKeyEntitlement_1a7b9f85616bd375ad52a6db2172c27e1c"></a>
 
 Gets the value of ExternalKeyCampaignId.
 
-#### `public inline void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a2e888984fb8e180516c5454bfe85ed8e)`(const FGuid & NewValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1a2e888984fb8e180516c5454bfe85ed8e"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1afea28c5c4410cbda994a91877f964d33)`(const FGuid & NewValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1afea28c5c4410cbda994a91877f964d33"></a>
 
 Sets the value of ExternalKeyCampaignId.
 
-#### `public inline void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a877eebe76d2a106760f0f70e6c59f5a7)`(FGuid && NewValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1a877eebe76d2a106760f0f70e6c59f5a7"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyCampaignId`](#structFRHAPI__ExternalKeyEntitlement_1a00e2a88149f410f4fe5975cf1a5d185c)`(FGuid && NewValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1a00e2a88149f410f4fe5975cf1a5d185c"></a>
 
 Sets the value of ExternalKeyCampaignId using move semantics.
 
-#### `public inline int32 & `[`GetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a0f6f79f69d47e7629abf05c6086b1162)`()` <a id="structFRHAPI__ExternalKeyEntitlement_1a0f6f79f69d47e7629abf05c6086b1162"></a>
+#### `public inline FORCEINLINE int32 & `[`GetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a180b04b9b8e574a4cdbe80140b89b868)`()` <a id="structFRHAPI__ExternalKeyEntitlement_1a180b04b9b8e574a4cdbe80140b89b868"></a>
 
 Gets the value of Quantity.
 
-#### `public inline const int32 & `[`GetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a0be6d5bb8921171ff2daf68f799d8ebc)`() const` <a id="structFRHAPI__ExternalKeyEntitlement_1a0be6d5bb8921171ff2daf68f799d8ebc"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a33fef64a0664bb7b36cbfc344cba299f)`() const` <a id="structFRHAPI__ExternalKeyEntitlement_1a33fef64a0664bb7b36cbfc344cba299f"></a>
 
 Gets the value of Quantity.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a1fadc4240aad3af9f8345e4c98c3e3d3)`(const int32 & NewValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1a1fadc4240aad3af9f8345e4c98c3e3d3"></a>
+#### `public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1aed34af571ca73c2338a8d17cc5009237)`(const int32 & NewValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1aed34af571ca73c2338a8d17cc5009237"></a>
 
 Sets the value of Quantity.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a99c834310c0f21806b08b653731445db)`(int32 && NewValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1a99c834310c0f21806b08b653731445db"></a>
+#### `public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__ExternalKeyEntitlement_1a48af002d6b35cf0b3873a46ed2f280dd)`(int32 && NewValue)` <a id="structFRHAPI__ExternalKeyEntitlement_1a48af002d6b35cf0b3873a46ed2f280dd"></a>
 
 Sets the value of Quantity using move semantics.
 
-#### `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__ExternalKeyEntitlement_1a28fabc8019a38a4095a253b47a95ba85)`() const` <a id="structFRHAPI__ExternalKeyEntitlement_1a28fabc8019a38a4095a253b47a95ba85"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Quantity`](#structFRHAPI__ExternalKeyEntitlement_1a91f32b8ca56ef05d22eb800a319e2f06)`()` <a id="structFRHAPI__ExternalKeyEntitlement_1a91f32b8ca56ef05d22eb800a319e2f06"></a>
 
-Returns true if Quantity matches the default value.
-
-#### `public inline void `[`SetQuantityToDefault`](#structFRHAPI__ExternalKeyEntitlement_1a78d3992451251c7886a18365176d6a10)`()` <a id="structFRHAPI__ExternalKeyEntitlement_1a78d3992451251c7886a18365176d6a10"></a>
-
-Sets the value of Quantity to its default
+Returns the default value of Quantity.
 

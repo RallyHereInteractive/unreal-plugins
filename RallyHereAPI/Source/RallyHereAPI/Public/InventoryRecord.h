@@ -45,24 +45,24 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid InventoryId{  };
 	/** @brief Gets the value of InventoryId */
-	FGuid& GetInventoryId() { return InventoryId; }
+	FORCEINLINE FGuid& GetInventoryId() { return InventoryId; }
 	/** @brief Gets the value of InventoryId */
-	const FGuid& GetInventoryId() const { return InventoryId; }
+	FORCEINLINE const FGuid& GetInventoryId() const { return InventoryId; }
 	/** @brief Sets the value of InventoryId */
-	void SetInventoryId(const FGuid& NewValue) { InventoryId = NewValue;   }
+	FORCEINLINE void SetInventoryId(const FGuid& NewValue) { InventoryId = NewValue;   }
 	/** @brief Sets the value of InventoryId using move semantics */
-	void SetInventoryId(FGuid&& NewValue) { InventoryId = NewValue;   }
+	FORCEINLINE void SetInventoryId(FGuid&& NewValue) { InventoryId = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_InventoryType Type{  };
 	/** @brief Gets the value of Type */
-	ERHAPI_InventoryType& GetType() { return Type; }
+	FORCEINLINE ERHAPI_InventoryType& GetType() { return Type; }
 	/** @brief Gets the value of Type */
-	const ERHAPI_InventoryType& GetType() const { return Type; }
+	FORCEINLINE const ERHAPI_InventoryType& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(const ERHAPI_InventoryType& NewValue) { Type = NewValue;   }
+	FORCEINLINE void SetType(const ERHAPI_InventoryType& NewValue) { Type = NewValue;   }
 	/** @brief Sets the value of Type using move semantics */
-	void SetType(ERHAPI_InventoryType&& NewValue) { Type = NewValue;   }
+	FORCEINLINE void SetType(ERHAPI_InventoryType&& NewValue) { Type = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 LegacyInventoryId_Optional{ 0 };
@@ -73,33 +73,29 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LegacyInventoryId_IsNull{ false };
 	/** @brief Gets the value of LegacyInventoryId_Optional, regardless of it having been set */
-	int32& GetLegacyInventoryId() { return LegacyInventoryId_Optional; }
+	FORCEINLINE int32& GetLegacyInventoryId() { return LegacyInventoryId_Optional; }
 	/** @brief Gets the value of LegacyInventoryId_Optional, regardless of it having been set */
-	const int32& GetLegacyInventoryId() const { return LegacyInventoryId_Optional; }
+	FORCEINLINE const int32& GetLegacyInventoryId() const { return LegacyInventoryId_Optional; }
 	/** @brief Gets the value of LegacyInventoryId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetLegacyInventoryId(const int32& DefaultValue) const { if (LegacyInventoryId_IsSet) return LegacyInventoryId_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetLegacyInventoryId(const int32& DefaultValue) const { if (LegacyInventoryId_IsSet) return LegacyInventoryId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of LegacyInventoryId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLegacyInventoryId(int32& OutValue) const { if (LegacyInventoryId_IsSet && !LegacyInventoryId_IsNull) OutValue = LegacyInventoryId_Optional; return LegacyInventoryId_IsSet; }
+	FORCEINLINE bool GetLegacyInventoryId(int32& OutValue) const { if (LegacyInventoryId_IsSet && !LegacyInventoryId_IsNull) OutValue = LegacyInventoryId_Optional; return LegacyInventoryId_IsSet; }
 	/** @brief Returns a pointer to LegacyInventoryId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetLegacyInventoryIdOrNull() { if (LegacyInventoryId_IsSet) return (LegacyInventoryId_IsNull ? nullptr : &LegacyInventoryId_Optional); return nullptr; }
+	FORCEINLINE int32* GetLegacyInventoryIdOrNull() { if (LegacyInventoryId_IsSet) return (LegacyInventoryId_IsNull ? nullptr : &LegacyInventoryId_Optional); return nullptr; }
 	/** @brief Returns a pointer to LegacyInventoryId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetLegacyInventoryIdOrNull() const { if (LegacyInventoryId_IsSet) return (LegacyInventoryId_IsNull ? nullptr : &LegacyInventoryId_Optional); return nullptr; }
+	FORCEINLINE const int32* GetLegacyInventoryIdOrNull() const { if (LegacyInventoryId_IsSet) return (LegacyInventoryId_IsNull ? nullptr : &LegacyInventoryId_Optional); return nullptr; }
 	/** @brief Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true */
-	void SetLegacyInventoryId(const int32& NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true; LegacyInventoryId_IsNull = false; }
+	FORCEINLINE void SetLegacyInventoryId(const int32& NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true; LegacyInventoryId_IsNull = false; }
 	/** @brief Sets the value of LegacyInventoryId_Optional and also sets LegacyInventoryId_IsSet to true using move semantics */
-	void SetLegacyInventoryId(int32&& NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true; LegacyInventoryId_IsNull = false; }
+	FORCEINLINE void SetLegacyInventoryId(int32&& NewValue) { LegacyInventoryId_Optional = NewValue; LegacyInventoryId_IsSet = true; LegacyInventoryId_IsNull = false; }
 	/** @brief Clears the value of LegacyInventoryId_Optional and sets LegacyInventoryId_IsSet to false */
 	void ClearLegacyInventoryId() { LegacyInventoryId_Optional = 0; LegacyInventoryId_IsSet = false; LegacyInventoryId_IsNull = false; }
-	/** @brief Checks whether LegacyInventoryId_Optional has been set */
-	bool IsLegacyInventoryIdSet() const { return LegacyInventoryId_IsSet; }
-	/** @brief Returns true if LegacyInventoryId_Optional is set and matches the default value */
-	bool IsLegacyInventoryIdDefaultValue() const { return LegacyInventoryId_IsSet && LegacyInventoryId_Optional == 0; }
-	/** @brief Sets the value of LegacyInventoryId_Optional to its default and also sets LegacyInventoryId_IsSet to true */
-	void SetLegacyInventoryIdToDefault() { SetLegacyInventoryId(0); }
+	/** @brief Returns the default value of LegacyInventoryId */
+	FORCEINLINE int32 GetDefaultValue_LegacyInventoryId() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetLegacyInventoryIdToNull() { LegacyInventoryId_IsSet = true; LegacyInventoryId_IsNull = true; }
+	FORCEINLINE void SetLegacyInventoryIdToNull() { LegacyInventoryId_IsSet = true; LegacyInventoryId_IsNull = true; }
 	/** @brief Checks whether LegacyInventoryId_Optional is set to null */
-	bool IsLegacyInventoryIdNull() const { return LegacyInventoryId_IsSet && LegacyInventoryId_IsNull; }
+	FORCEINLINE bool IsLegacyInventoryIdNull() const { return LegacyInventoryId_IsSet && LegacyInventoryId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_InventoryBucket Bucket_Optional{  };
@@ -107,53 +103,49 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Bucket_IsSet{ false };
 	/** @brief Gets the value of Bucket_Optional, regardless of it having been set */
-	ERHAPI_InventoryBucket& GetBucket() { return Bucket_Optional; }
+	FORCEINLINE ERHAPI_InventoryBucket& GetBucket() { return Bucket_Optional; }
 	/** @brief Gets the value of Bucket_Optional, regardless of it having been set */
-	const ERHAPI_InventoryBucket& GetBucket() const { return Bucket_Optional; }
+	FORCEINLINE const ERHAPI_InventoryBucket& GetBucket() const { return Bucket_Optional; }
 	/** @brief Gets the value of Bucket_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_InventoryBucket& GetBucket(const ERHAPI_InventoryBucket& DefaultValue) const { if (Bucket_IsSet) return Bucket_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_InventoryBucket& GetBucket(const ERHAPI_InventoryBucket& DefaultValue) const { if (Bucket_IsSet) return Bucket_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Bucket_Optional and returns true if it has been set, otherwise returns false */
-	bool GetBucket(ERHAPI_InventoryBucket& OutValue) const { if (Bucket_IsSet) OutValue = Bucket_Optional; return Bucket_IsSet; }
+	FORCEINLINE bool GetBucket(ERHAPI_InventoryBucket& OutValue) const { if (Bucket_IsSet) OutValue = Bucket_Optional; return Bucket_IsSet; }
 	/** @brief Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_InventoryBucket* GetBucketOrNull() { if (Bucket_IsSet) return (&Bucket_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_InventoryBucket* GetBucketOrNull() { if (Bucket_IsSet) return (&Bucket_Optional); return nullptr; }
 	/** @brief Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_InventoryBucket* GetBucketOrNull() const { if (Bucket_IsSet) return (&Bucket_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_InventoryBucket* GetBucketOrNull() const { if (Bucket_IsSet) return (&Bucket_Optional); return nullptr; }
 	/** @brief Sets the value of Bucket_Optional and also sets Bucket_IsSet to true */
-	void SetBucket(const ERHAPI_InventoryBucket& NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true;  }
+	FORCEINLINE void SetBucket(const ERHAPI_InventoryBucket& NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true;  }
 	/** @brief Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move semantics */
-	void SetBucket(ERHAPI_InventoryBucket&& NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true;  }
+	FORCEINLINE void SetBucket(ERHAPI_InventoryBucket&& NewValue) { Bucket_Optional = NewValue; Bucket_IsSet = true;  }
 	/** @brief Clears the value of Bucket_Optional and sets Bucket_IsSet to false */
 	void ClearBucket() { Bucket_IsSet = false;  }
-	/** @brief Checks whether Bucket_Optional has been set */
-	bool IsBucketSet() const { return Bucket_IsSet; }
 
 	/** @brief Instance count for this Inventory Record. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Count{ 0 };
 	/** @brief Gets the value of Count */
-	int32& GetCount() { return Count; }
+	FORCEINLINE int32& GetCount() { return Count; }
 	/** @brief Gets the value of Count */
-	const int32& GetCount() const { return Count; }
+	FORCEINLINE const int32& GetCount() const { return Count; }
 	/** @brief Sets the value of Count */
-	void SetCount(const int32& NewValue) { Count = NewValue;   }
+	FORCEINLINE void SetCount(const int32& NewValue) { Count = NewValue;   }
 	/** @brief Sets the value of Count using move semantics */
-	void SetCount(int32&& NewValue) { Count = NewValue;   }
-	/** @brief Returns true if Count matches the default value */
-	bool IsCountDefaultValue() const { return Count == 0; }
-	/** @brief Sets the value of Count to its default  */
-	void SetCountToDefault() { SetCount(0); }
+	FORCEINLINE void SetCount(int32&& NewValue) { Count = NewValue;   }
+	/** @brief Returns the default value of Count */
+	FORCEINLINE int32 GetDefaultValue_Count() { return 0; }
 
 	/** @brief When this Inventory Record was acquired. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Acquired{  };
 	/** @brief Gets the value of Acquired */
-	FDateTime& GetAcquired() { return Acquired; }
+	FORCEINLINE FDateTime& GetAcquired() { return Acquired; }
 	/** @brief Gets the value of Acquired */
-	const FDateTime& GetAcquired() const { return Acquired; }
+	FORCEINLINE const FDateTime& GetAcquired() const { return Acquired; }
 	/** @brief Sets the value of Acquired */
-	void SetAcquired(const FDateTime& NewValue) { Acquired = NewValue;   }
+	FORCEINLINE void SetAcquired(const FDateTime& NewValue) { Acquired = NewValue;   }
 	/** @brief Sets the value of Acquired using move semantics */
-	void SetAcquired(FDateTime&& NewValue) { Acquired = NewValue;   }
+	FORCEINLINE void SetAcquired(FDateTime&& NewValue) { Acquired = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -165,29 +157,27 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Expires_IsNull{ false };
 	/** @brief Gets the value of Expires_Optional, regardless of it having been set */
-	FDateTime& GetExpires() { return Expires_Optional; }
+	FORCEINLINE FDateTime& GetExpires() { return Expires_Optional; }
 	/** @brief Gets the value of Expires_Optional, regardless of it having been set */
-	const FDateTime& GetExpires() const { return Expires_Optional; }
+	FORCEINLINE const FDateTime& GetExpires() const { return Expires_Optional; }
 	/** @brief Gets the value of Expires_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetExpires(const FDateTime& DefaultValue) const { if (Expires_IsSet) return Expires_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetExpires(const FDateTime& DefaultValue) const { if (Expires_IsSet) return Expires_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Expires_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExpires(FDateTime& OutValue) const { if (Expires_IsSet && !Expires_IsNull) OutValue = Expires_Optional; return Expires_IsSet; }
+	FORCEINLINE bool GetExpires(FDateTime& OutValue) const { if (Expires_IsSet && !Expires_IsNull) OutValue = Expires_Optional; return Expires_IsSet; }
 	/** @brief Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetExpiresOrNull() { if (Expires_IsSet) return (Expires_IsNull ? nullptr : &Expires_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetExpiresOrNull() { if (Expires_IsSet) return (Expires_IsNull ? nullptr : &Expires_Optional); return nullptr; }
 	/** @brief Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetExpiresOrNull() const { if (Expires_IsSet) return (Expires_IsNull ? nullptr : &Expires_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetExpiresOrNull() const { if (Expires_IsSet) return (Expires_IsNull ? nullptr : &Expires_Optional); return nullptr; }
 	/** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true */
-	void SetExpires(const FDateTime& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true; Expires_IsNull = false; }
+	FORCEINLINE void SetExpires(const FDateTime& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true; Expires_IsNull = false; }
 	/** @brief Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics */
-	void SetExpires(FDateTime&& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true; Expires_IsNull = false; }
+	FORCEINLINE void SetExpires(FDateTime&& NewValue) { Expires_Optional = NewValue; Expires_IsSet = true; Expires_IsNull = false; }
 	/** @brief Clears the value of Expires_Optional and sets Expires_IsSet to false */
 	void ClearExpires() { Expires_IsSet = false; Expires_IsNull = false; }
-	/** @brief Checks whether Expires_Optional has been set */
-	bool IsExpiresSet() const { return Expires_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetExpiresToNull() { Expires_IsSet = true; Expires_IsNull = true; }
+	FORCEINLINE void SetExpiresToNull() { Expires_IsSet = true; Expires_IsNull = true; }
 	/** @brief Checks whether Expires_Optional is set to null */
-	bool IsExpiresNull() const { return Expires_IsSet && Expires_IsNull; }
+	FORCEINLINE bool IsExpiresNull() const { return Expires_IsSet && Expires_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FString> CustomData_Optional{  };
@@ -198,29 +188,27 @@ struct RALLYHEREAPI_API FRHAPI_InventoryRecord : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsNull{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet && !CustomData_IsNull) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet && !CustomData_IsNull) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (CustomData_IsNull ? nullptr : &CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true; CustomData_IsNull = false; }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false; CustomData_IsNull = false; }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCustomDataToNull() { CustomData_IsSet = true; CustomData_IsNull = true; }
+	FORCEINLINE void SetCustomDataToNull() { CustomData_IsSet = true; CustomData_IsNull = true; }
 	/** @brief Checks whether CustomData_Optional is set to null */
-	bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
+	FORCEINLINE bool IsCustomDataNull() const { return CustomData_IsSet && CustomData_IsNull; }
 };
 
 /** @} */

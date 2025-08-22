@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString RankUuid{  };
 	/** @brief Gets the value of RankUuid */
-	FString& GetRankUuid() { return RankUuid; }
+	FORCEINLINE FString& GetRankUuid() { return RankUuid; }
 	/** @brief Gets the value of RankUuid */
-	const FString& GetRankUuid() const { return RankUuid; }
+	FORCEINLINE const FString& GetRankUuid() const { return RankUuid; }
 	/** @brief Sets the value of RankUuid */
-	void SetRankUuid(const FString& NewValue) { RankUuid = NewValue;   }
+	FORCEINLINE void SetRankUuid(const FString& NewValue) { RankUuid = NewValue;   }
 	/** @brief Sets the value of RankUuid using move semantics */
-	void SetRankUuid(FString&& NewValue) { RankUuid = NewValue;   }
+	FORCEINLINE void SetRankUuid(FString&& NewValue) { RankUuid = NewValue;   }
 
 	/** @brief Ticket's group mu for this rank */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -58,25 +58,23 @@ struct RALLYHEREAPI_API FRHAPI_RankData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Mu_IsSet{ false };
 	/** @brief Gets the value of Mu_Optional, regardless of it having been set */
-	float& GetMu() { return Mu_Optional; }
+	FORCEINLINE float& GetMu() { return Mu_Optional; }
 	/** @brief Gets the value of Mu_Optional, regardless of it having been set */
-	const float& GetMu() const { return Mu_Optional; }
+	FORCEINLINE const float& GetMu() const { return Mu_Optional; }
 	/** @brief Gets the value of Mu_Optional, if it has been set, otherwise it returns DefaultValue */
-	const float& GetMu(const float& DefaultValue) const { if (Mu_IsSet) return Mu_Optional; return DefaultValue; }
+	FORCEINLINE const float& GetMu(const float& DefaultValue) const { if (Mu_IsSet) return Mu_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Mu_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMu(float& OutValue) const { if (Mu_IsSet) OutValue = Mu_Optional; return Mu_IsSet; }
+	FORCEINLINE bool GetMu(float& OutValue) const { if (Mu_IsSet) OutValue = Mu_Optional; return Mu_IsSet; }
 	/** @brief Returns a pointer to Mu_Optional, if it has been set, otherwise returns nullptr */
-	float* GetMuOrNull() { if (Mu_IsSet) return (&Mu_Optional); return nullptr; }
+	FORCEINLINE float* GetMuOrNull() { if (Mu_IsSet) return (&Mu_Optional); return nullptr; }
 	/** @brief Returns a pointer to Mu_Optional, if it has been set, otherwise returns nullptr */
-	const float* GetMuOrNull() const { if (Mu_IsSet) return (&Mu_Optional); return nullptr; }
+	FORCEINLINE const float* GetMuOrNull() const { if (Mu_IsSet) return (&Mu_Optional); return nullptr; }
 	/** @brief Sets the value of Mu_Optional and also sets Mu_IsSet to true */
-	void SetMu(const float& NewValue) { Mu_Optional = NewValue; Mu_IsSet = true;  }
+	FORCEINLINE void SetMu(const float& NewValue) { Mu_Optional = NewValue; Mu_IsSet = true;  }
 	/** @brief Sets the value of Mu_Optional and also sets Mu_IsSet to true using move semantics */
-	void SetMu(float&& NewValue) { Mu_Optional = NewValue; Mu_IsSet = true;  }
+	FORCEINLINE void SetMu(float&& NewValue) { Mu_Optional = NewValue; Mu_IsSet = true;  }
 	/** @brief Clears the value of Mu_Optional and sets Mu_IsSet to false */
 	void ClearMu() { Mu_IsSet = false;  }
-	/** @brief Checks whether Mu_Optional has been set */
-	bool IsMuSet() const { return Mu_IsSet; }
 };
 
 /** @} */

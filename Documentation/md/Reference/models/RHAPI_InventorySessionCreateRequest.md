@@ -26,18 +26,17 @@ Request body for creating a new Inventory Session.
 `public bool `[`SessionPlatform_IsNull`](#structFRHAPI__InventorySessionCreateRequest_1ab37d307b83249bffcdac10e9a3be43b9) | true if SessionPlatform_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__InventorySessionCreateRequest_1a61617728516e30cb907f4aa87274e50c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InventorySessionCreateRequest_1a3c5f2a3c077819b1342d68a20a2fc5dc)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a30579149217861dd7202ecc487e8e37b)`()` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1abd37d1628b11d8f4538c39733e152375)`() const` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a3743a7a3bd6ead7830ef346d0852e7e5)`(const ERHAPI_InventoryPlatform & DefaultValue) const` | Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1af011ce034500f91f04f6d423736031f1)`(ERHAPI_InventoryPlatform & OutValue) const` | Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InventoryPlatform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateRequest_1ab08d2eaf25bfb0b3eca0133c0be549aa)`()` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InventoryPlatform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateRequest_1afb2a0dde8e405dcf6541f59fb1ad1abb)`() const` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a34ab98421419f350844d1e988a80e649)`(const ERHAPI_InventoryPlatform & NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
-`public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a47ceb3eaf376b00b99620998319e9226)`(ERHAPI_InventoryPlatform && NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a24b1102a56e0b9f10f4312f1e862e4eb)`()` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a32f9db76f6bae208c83b64ae6e7f1a25)`() const` | Gets the value of SessionPlatform_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a73ac532c52624ff9701396be69dbdf9a)`(const ERHAPI_InventoryPlatform & DefaultValue) const` | Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1ae2cc87d13ffd4dee20c808910cb6a15a)`(ERHAPI_InventoryPlatform & OutValue) const` | Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_InventoryPlatform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateRequest_1abb8561f99a221ec4a668915532a04363)`()` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_InventoryPlatform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateRequest_1a90dfe3cb50447160cbdaf169571c7644)`() const` | Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1aee7ea747619a0929415221913fef86b1)`(const ERHAPI_InventoryPlatform & NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
+`public inline FORCEINLINE void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a54b9cf705a5068c74d2f0cc825a0d6c5)`(ERHAPI_InventoryPlatform && NewValue)` | Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics.
 `public inline void `[`ClearSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1aad55a63e039262d87c1dd0715bd54d71)`()` | Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false.
-`public inline bool `[`IsSessionPlatformSet`](#structFRHAPI__InventorySessionCreateRequest_1af9d3edc5d283e4ac6dea85b3fb7b7992)`() const` | Checks whether SessionPlatform_Optional has been set.
-`public inline void `[`SetSessionPlatformToNull`](#structFRHAPI__InventorySessionCreateRequest_1aeb0f289d9c0ba242878f25614e6dea02)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsSessionPlatformNull`](#structFRHAPI__InventorySessionCreateRequest_1abdb20168b4bfa89a5b754bf50a41eeb8)`() const` | Checks whether SessionPlatform_Optional is set to null.
+`public inline FORCEINLINE void `[`SetSessionPlatformToNull`](#structFRHAPI__InventorySessionCreateRequest_1a28af4259db85d1fa216de2975de23430)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsSessionPlatformNull`](#structFRHAPI__InventorySessionCreateRequest_1a1dd1df6ae60bfa9e0c9f2f034d7fdf78)`() const` | Checks whether SessionPlatform_Optional is set to null.
 
 ### Members
 
@@ -68,35 +67,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a30579149217861dd7202ecc487e8e37b)`()` <a id="structFRHAPI__InventorySessionCreateRequest_1a30579149217861dd7202ecc487e8e37b"></a>
+#### `public inline FORCEINLINE ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a24b1102a56e0b9f10f4312f1e862e4eb)`()` <a id="structFRHAPI__InventorySessionCreateRequest_1a24b1102a56e0b9f10f4312f1e862e4eb"></a>
 
 Gets the value of SessionPlatform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1abd37d1628b11d8f4538c39733e152375)`() const` <a id="structFRHAPI__InventorySessionCreateRequest_1abd37d1628b11d8f4538c39733e152375"></a>
+#### `public inline FORCEINLINE const ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a32f9db76f6bae208c83b64ae6e7f1a25)`() const` <a id="structFRHAPI__InventorySessionCreateRequest_1a32f9db76f6bae208c83b64ae6e7f1a25"></a>
 
 Gets the value of SessionPlatform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a3743a7a3bd6ead7830ef346d0852e7e5)`(const ERHAPI_InventoryPlatform & DefaultValue) const` <a id="structFRHAPI__InventorySessionCreateRequest_1a3743a7a3bd6ead7830ef346d0852e7e5"></a>
+#### `public inline FORCEINLINE const ERHAPI_InventoryPlatform & `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a73ac532c52624ff9701396be69dbdf9a)`(const ERHAPI_InventoryPlatform & DefaultValue) const` <a id="structFRHAPI__InventorySessionCreateRequest_1a73ac532c52624ff9701396be69dbdf9a"></a>
 
 Gets the value of SessionPlatform_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1af011ce034500f91f04f6d423736031f1)`(ERHAPI_InventoryPlatform & OutValue) const` <a id="structFRHAPI__InventorySessionCreateRequest_1af011ce034500f91f04f6d423736031f1"></a>
+#### `public inline FORCEINLINE bool `[`GetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1ae2cc87d13ffd4dee20c808910cb6a15a)`(ERHAPI_InventoryPlatform & OutValue) const` <a id="structFRHAPI__InventorySessionCreateRequest_1ae2cc87d13ffd4dee20c808910cb6a15a"></a>
 
 Fills OutValue with the value of SessionPlatform_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_InventoryPlatform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateRequest_1ab08d2eaf25bfb0b3eca0133c0be549aa)`()` <a id="structFRHAPI__InventorySessionCreateRequest_1ab08d2eaf25bfb0b3eca0133c0be549aa"></a>
+#### `public inline FORCEINLINE ERHAPI_InventoryPlatform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateRequest_1abb8561f99a221ec4a668915532a04363)`()` <a id="structFRHAPI__InventorySessionCreateRequest_1abb8561f99a221ec4a668915532a04363"></a>
 
 Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_InventoryPlatform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateRequest_1afb2a0dde8e405dcf6541f59fb1ad1abb)`() const` <a id="structFRHAPI__InventorySessionCreateRequest_1afb2a0dde8e405dcf6541f59fb1ad1abb"></a>
+#### `public inline FORCEINLINE const ERHAPI_InventoryPlatform * `[`GetSessionPlatformOrNull`](#structFRHAPI__InventorySessionCreateRequest_1a90dfe3cb50447160cbdaf169571c7644)`() const` <a id="structFRHAPI__InventorySessionCreateRequest_1a90dfe3cb50447160cbdaf169571c7644"></a>
 
 Returns a pointer to SessionPlatform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a34ab98421419f350844d1e988a80e649)`(const ERHAPI_InventoryPlatform & NewValue)` <a id="structFRHAPI__InventorySessionCreateRequest_1a34ab98421419f350844d1e988a80e649"></a>
+#### `public inline FORCEINLINE void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1aee7ea747619a0929415221913fef86b1)`(const ERHAPI_InventoryPlatform & NewValue)` <a id="structFRHAPI__InventorySessionCreateRequest_1aee7ea747619a0929415221913fef86b1"></a>
 
 Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true.
 
-#### `public inline void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a47ceb3eaf376b00b99620998319e9226)`(ERHAPI_InventoryPlatform && NewValue)` <a id="structFRHAPI__InventorySessionCreateRequest_1a47ceb3eaf376b00b99620998319e9226"></a>
+#### `public inline FORCEINLINE void `[`SetSessionPlatform`](#structFRHAPI__InventorySessionCreateRequest_1a54b9cf705a5068c74d2f0cc825a0d6c5)`(ERHAPI_InventoryPlatform && NewValue)` <a id="structFRHAPI__InventorySessionCreateRequest_1a54b9cf705a5068c74d2f0cc825a0d6c5"></a>
 
 Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet to true using move semantics.
 
@@ -104,15 +103,11 @@ Sets the value of SessionPlatform_Optional and also sets SessionPlatform_IsSet t
 
 Clears the value of SessionPlatform_Optional and sets SessionPlatform_IsSet to false.
 
-#### `public inline bool `[`IsSessionPlatformSet`](#structFRHAPI__InventorySessionCreateRequest_1af9d3edc5d283e4ac6dea85b3fb7b7992)`() const` <a id="structFRHAPI__InventorySessionCreateRequest_1af9d3edc5d283e4ac6dea85b3fb7b7992"></a>
-
-Checks whether SessionPlatform_Optional has been set.
-
-#### `public inline void `[`SetSessionPlatformToNull`](#structFRHAPI__InventorySessionCreateRequest_1aeb0f289d9c0ba242878f25614e6dea02)`()` <a id="structFRHAPI__InventorySessionCreateRequest_1aeb0f289d9c0ba242878f25614e6dea02"></a>
+#### `public inline FORCEINLINE void `[`SetSessionPlatformToNull`](#structFRHAPI__InventorySessionCreateRequest_1a28af4259db85d1fa216de2975de23430)`()` <a id="structFRHAPI__InventorySessionCreateRequest_1a28af4259db85d1fa216de2975de23430"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsSessionPlatformNull`](#structFRHAPI__InventorySessionCreateRequest_1abdb20168b4bfa89a5b754bf50a41eeb8)`() const` <a id="structFRHAPI__InventorySessionCreateRequest_1abdb20168b4bfa89a5b754bf50a41eeb8"></a>
+#### `public inline FORCEINLINE bool `[`IsSessionPlatformNull`](#structFRHAPI__InventorySessionCreateRequest_1a1dd1df6ae60bfa9e0c9f2f034d7fdf78)`() const` <a id="structFRHAPI__InventorySessionCreateRequest_1a1dd1df6ae60bfa9e0c9f2f034d7fdf78"></a>
 
 Checks whether SessionPlatform_Optional is set to null.
 

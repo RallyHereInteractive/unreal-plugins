@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_BackfillSettingsResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float Timeout{  };
 	/** @brief Gets the value of Timeout */
-	float& GetTimeout() { return Timeout; }
+	FORCEINLINE float& GetTimeout() { return Timeout; }
 	/** @brief Gets the value of Timeout */
-	const float& GetTimeout() const { return Timeout; }
+	FORCEINLINE const float& GetTimeout() const { return Timeout; }
 	/** @brief Sets the value of Timeout */
-	void SetTimeout(const float& NewValue) { Timeout = NewValue;   }
+	FORCEINLINE void SetTimeout(const float& NewValue) { Timeout = NewValue;   }
 	/** @brief Sets the value of Timeout using move semantics */
-	void SetTimeout(float&& NewValue) { Timeout = NewValue;   }
+	FORCEINLINE void SetTimeout(float&& NewValue) { Timeout = NewValue;   }
 };
 
 /** @} */

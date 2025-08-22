@@ -104,7 +104,8 @@ Index of this file:
 #include <stdio.h>          // vsnprintf, sscanf, printf
 #include <stdlib.h>         // NULL, malloc, free, atoi
 #include <stdint.h>         // intptr_t
-#if !defined(_MSC_VER) || _MSC_VER >= 1800
+//$$ Add platform check
+#if (!defined(_MSC_VER) || _MSC_VER >= 1800) && PLATFORM_WINDOWS
 #include <inttypes.h>       // PRId64/PRIu64, not avail in some MinGW headers.
 #endif
 

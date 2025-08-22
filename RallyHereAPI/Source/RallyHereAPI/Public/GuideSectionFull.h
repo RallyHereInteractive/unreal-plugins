@@ -42,24 +42,24 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString SectionType{  };
 	/** @brief Gets the value of SectionType */
-	FString& GetSectionType() { return SectionType; }
+	FORCEINLINE FString& GetSectionType() { return SectionType; }
 	/** @brief Gets the value of SectionType */
-	const FString& GetSectionType() const { return SectionType; }
+	FORCEINLINE const FString& GetSectionType() const { return SectionType; }
 	/** @brief Sets the value of SectionType */
-	void SetSectionType(const FString& NewValue) { SectionType = NewValue;   }
+	FORCEINLINE void SetSectionType(const FString& NewValue) { SectionType = NewValue;   }
 	/** @brief Sets the value of SectionType using move semantics */
-	void SetSectionType(FString&& NewValue) { SectionType = NewValue;   }
+	FORCEINLINE void SetSectionType(FString&& NewValue) { SectionType = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Name{  };
 	/** @brief Gets the value of Name */
-	FString& GetName() { return Name; }
+	FORCEINLINE FString& GetName() { return Name; }
 	/** @brief Gets the value of Name */
-	const FString& GetName() const { return Name; }
+	FORCEINLINE const FString& GetName() const { return Name; }
 	/** @brief Sets the value of Name */
-	void SetName(const FString& NewValue) { Name = NewValue;   }
+	FORCEINLINE void SetName(const FString& NewValue) { Name = NewValue;   }
 	/** @brief Sets the value of Name using move semantics */
-	void SetName(FString&& NewValue) { Name = NewValue;   }
+	FORCEINLINE void SetName(FString&& NewValue) { Name = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ShortDesc_Optional{  };
@@ -70,29 +70,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ShortDesc_IsNull{ false };
 	/** @brief Gets the value of ShortDesc_Optional, regardless of it having been set */
-	FString& GetShortDesc() { return ShortDesc_Optional; }
+	FORCEINLINE FString& GetShortDesc() { return ShortDesc_Optional; }
 	/** @brief Gets the value of ShortDesc_Optional, regardless of it having been set */
-	const FString& GetShortDesc() const { return ShortDesc_Optional; }
+	FORCEINLINE const FString& GetShortDesc() const { return ShortDesc_Optional; }
 	/** @brief Gets the value of ShortDesc_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetShortDesc(const FString& DefaultValue) const { if (ShortDesc_IsSet) return ShortDesc_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetShortDesc(const FString& DefaultValue) const { if (ShortDesc_IsSet) return ShortDesc_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ShortDesc_Optional and returns true if it has been set, otherwise returns false */
-	bool GetShortDesc(FString& OutValue) const { if (ShortDesc_IsSet && !ShortDesc_IsNull) OutValue = ShortDesc_Optional; return ShortDesc_IsSet; }
+	FORCEINLINE bool GetShortDesc(FString& OutValue) const { if (ShortDesc_IsSet && !ShortDesc_IsNull) OutValue = ShortDesc_Optional; return ShortDesc_IsSet; }
 	/** @brief Returns a pointer to ShortDesc_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetShortDescOrNull() { if (ShortDesc_IsSet) return (ShortDesc_IsNull ? nullptr : &ShortDesc_Optional); return nullptr; }
+	FORCEINLINE FString* GetShortDescOrNull() { if (ShortDesc_IsSet) return (ShortDesc_IsNull ? nullptr : &ShortDesc_Optional); return nullptr; }
 	/** @brief Returns a pointer to ShortDesc_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetShortDescOrNull() const { if (ShortDesc_IsSet) return (ShortDesc_IsNull ? nullptr : &ShortDesc_Optional); return nullptr; }
+	FORCEINLINE const FString* GetShortDescOrNull() const { if (ShortDesc_IsSet) return (ShortDesc_IsNull ? nullptr : &ShortDesc_Optional); return nullptr; }
 	/** @brief Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true */
-	void SetShortDesc(const FString& NewValue) { ShortDesc_Optional = NewValue; ShortDesc_IsSet = true; ShortDesc_IsNull = false; }
+	FORCEINLINE void SetShortDesc(const FString& NewValue) { ShortDesc_Optional = NewValue; ShortDesc_IsSet = true; ShortDesc_IsNull = false; }
 	/** @brief Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true using move semantics */
-	void SetShortDesc(FString&& NewValue) { ShortDesc_Optional = NewValue; ShortDesc_IsSet = true; ShortDesc_IsNull = false; }
+	FORCEINLINE void SetShortDesc(FString&& NewValue) { ShortDesc_Optional = NewValue; ShortDesc_IsSet = true; ShortDesc_IsNull = false; }
 	/** @brief Clears the value of ShortDesc_Optional and sets ShortDesc_IsSet to false */
 	void ClearShortDesc() { ShortDesc_IsSet = false; ShortDesc_IsNull = false; }
-	/** @brief Checks whether ShortDesc_Optional has been set */
-	bool IsShortDescSet() const { return ShortDesc_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetShortDescToNull() { ShortDesc_IsSet = true; ShortDesc_IsNull = true; }
+	FORCEINLINE void SetShortDescToNull() { ShortDesc_IsSet = true; ShortDesc_IsNull = true; }
 	/** @brief Checks whether ShortDesc_Optional is set to null */
-	bool IsShortDescNull() const { return ShortDesc_IsSet && ShortDesc_IsNull; }
+	FORCEINLINE bool IsShortDescNull() const { return ShortDesc_IsSet && ShortDesc_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Content_Optional{  };
@@ -103,29 +101,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Content_IsNull{ false };
 	/** @brief Gets the value of Content_Optional, regardless of it having been set */
-	FString& GetContent() { return Content_Optional; }
+	FORCEINLINE FString& GetContent() { return Content_Optional; }
 	/** @brief Gets the value of Content_Optional, regardless of it having been set */
-	const FString& GetContent() const { return Content_Optional; }
+	FORCEINLINE const FString& GetContent() const { return Content_Optional; }
 	/** @brief Gets the value of Content_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetContent(const FString& DefaultValue) const { if (Content_IsSet) return Content_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetContent(const FString& DefaultValue) const { if (Content_IsSet) return Content_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Content_Optional and returns true if it has been set, otherwise returns false */
-	bool GetContent(FString& OutValue) const { if (Content_IsSet && !Content_IsNull) OutValue = Content_Optional; return Content_IsSet; }
+	FORCEINLINE bool GetContent(FString& OutValue) const { if (Content_IsSet && !Content_IsNull) OutValue = Content_Optional; return Content_IsSet; }
 	/** @brief Returns a pointer to Content_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetContentOrNull() { if (Content_IsSet) return (Content_IsNull ? nullptr : &Content_Optional); return nullptr; }
+	FORCEINLINE FString* GetContentOrNull() { if (Content_IsSet) return (Content_IsNull ? nullptr : &Content_Optional); return nullptr; }
 	/** @brief Returns a pointer to Content_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetContentOrNull() const { if (Content_IsSet) return (Content_IsNull ? nullptr : &Content_Optional); return nullptr; }
+	FORCEINLINE const FString* GetContentOrNull() const { if (Content_IsSet) return (Content_IsNull ? nullptr : &Content_Optional); return nullptr; }
 	/** @brief Sets the value of Content_Optional and also sets Content_IsSet to true */
-	void SetContent(const FString& NewValue) { Content_Optional = NewValue; Content_IsSet = true; Content_IsNull = false; }
+	FORCEINLINE void SetContent(const FString& NewValue) { Content_Optional = NewValue; Content_IsSet = true; Content_IsNull = false; }
 	/** @brief Sets the value of Content_Optional and also sets Content_IsSet to true using move semantics */
-	void SetContent(FString&& NewValue) { Content_Optional = NewValue; Content_IsSet = true; Content_IsNull = false; }
+	FORCEINLINE void SetContent(FString&& NewValue) { Content_Optional = NewValue; Content_IsSet = true; Content_IsNull = false; }
 	/** @brief Clears the value of Content_Optional and sets Content_IsSet to false */
 	void ClearContent() { Content_IsSet = false; Content_IsNull = false; }
-	/** @brief Checks whether Content_Optional has been set */
-	bool IsContentSet() const { return Content_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetContentToNull() { Content_IsSet = true; Content_IsNull = true; }
+	FORCEINLINE void SetContentToNull() { Content_IsSet = true; Content_IsNull = true; }
 	/** @brief Checks whether Content_Optional is set to null */
-	bool IsContentNull() const { return Content_IsSet && Content_IsNull; }
+	FORCEINLINE bool IsContentNull() const { return Content_IsSet && Content_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref1_Optional{  };
@@ -136,29 +132,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref1_IsNull{ false };
 	/** @brief Gets the value of Ref1_Optional, regardless of it having been set */
-	FString& GetRef1() { return Ref1_Optional; }
+	FORCEINLINE FString& GetRef1() { return Ref1_Optional; }
 	/** @brief Gets the value of Ref1_Optional, regardless of it having been set */
-	const FString& GetRef1() const { return Ref1_Optional; }
+	FORCEINLINE const FString& GetRef1() const { return Ref1_Optional; }
 	/** @brief Gets the value of Ref1_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef1(const FString& DefaultValue) const { if (Ref1_IsSet) return Ref1_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef1(const FString& DefaultValue) const { if (Ref1_IsSet) return Ref1_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref1_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef1(FString& OutValue) const { if (Ref1_IsSet && !Ref1_IsNull) OutValue = Ref1_Optional; return Ref1_IsSet; }
+	FORCEINLINE bool GetRef1(FString& OutValue) const { if (Ref1_IsSet && !Ref1_IsNull) OutValue = Ref1_Optional; return Ref1_IsSet; }
 	/** @brief Returns a pointer to Ref1_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef1OrNull() { if (Ref1_IsSet) return (Ref1_IsNull ? nullptr : &Ref1_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef1OrNull() { if (Ref1_IsSet) return (Ref1_IsNull ? nullptr : &Ref1_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref1_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef1OrNull() const { if (Ref1_IsSet) return (Ref1_IsNull ? nullptr : &Ref1_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef1OrNull() const { if (Ref1_IsSet) return (Ref1_IsNull ? nullptr : &Ref1_Optional); return nullptr; }
 	/** @brief Sets the value of Ref1_Optional and also sets Ref1_IsSet to true */
-	void SetRef1(const FString& NewValue) { Ref1_Optional = NewValue; Ref1_IsSet = true; Ref1_IsNull = false; }
+	FORCEINLINE void SetRef1(const FString& NewValue) { Ref1_Optional = NewValue; Ref1_IsSet = true; Ref1_IsNull = false; }
 	/** @brief Sets the value of Ref1_Optional and also sets Ref1_IsSet to true using move semantics */
-	void SetRef1(FString&& NewValue) { Ref1_Optional = NewValue; Ref1_IsSet = true; Ref1_IsNull = false; }
+	FORCEINLINE void SetRef1(FString&& NewValue) { Ref1_Optional = NewValue; Ref1_IsSet = true; Ref1_IsNull = false; }
 	/** @brief Clears the value of Ref1_Optional and sets Ref1_IsSet to false */
 	void ClearRef1() { Ref1_IsSet = false; Ref1_IsNull = false; }
-	/** @brief Checks whether Ref1_Optional has been set */
-	bool IsRef1Set() const { return Ref1_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef1ToNull() { Ref1_IsSet = true; Ref1_IsNull = true; }
+	FORCEINLINE void SetRef1ToNull() { Ref1_IsSet = true; Ref1_IsNull = true; }
 	/** @brief Checks whether Ref1_Optional is set to null */
-	bool IsRef1Null() const { return Ref1_IsSet && Ref1_IsNull; }
+	FORCEINLINE bool IsRef1Null() const { return Ref1_IsSet && Ref1_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref2_Optional{  };
@@ -169,29 +163,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref2_IsNull{ false };
 	/** @brief Gets the value of Ref2_Optional, regardless of it having been set */
-	FString& GetRef2() { return Ref2_Optional; }
+	FORCEINLINE FString& GetRef2() { return Ref2_Optional; }
 	/** @brief Gets the value of Ref2_Optional, regardless of it having been set */
-	const FString& GetRef2() const { return Ref2_Optional; }
+	FORCEINLINE const FString& GetRef2() const { return Ref2_Optional; }
 	/** @brief Gets the value of Ref2_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef2(const FString& DefaultValue) const { if (Ref2_IsSet) return Ref2_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef2(const FString& DefaultValue) const { if (Ref2_IsSet) return Ref2_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref2_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef2(FString& OutValue) const { if (Ref2_IsSet && !Ref2_IsNull) OutValue = Ref2_Optional; return Ref2_IsSet; }
+	FORCEINLINE bool GetRef2(FString& OutValue) const { if (Ref2_IsSet && !Ref2_IsNull) OutValue = Ref2_Optional; return Ref2_IsSet; }
 	/** @brief Returns a pointer to Ref2_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef2OrNull() { if (Ref2_IsSet) return (Ref2_IsNull ? nullptr : &Ref2_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef2OrNull() { if (Ref2_IsSet) return (Ref2_IsNull ? nullptr : &Ref2_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref2_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef2OrNull() const { if (Ref2_IsSet) return (Ref2_IsNull ? nullptr : &Ref2_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef2OrNull() const { if (Ref2_IsSet) return (Ref2_IsNull ? nullptr : &Ref2_Optional); return nullptr; }
 	/** @brief Sets the value of Ref2_Optional and also sets Ref2_IsSet to true */
-	void SetRef2(const FString& NewValue) { Ref2_Optional = NewValue; Ref2_IsSet = true; Ref2_IsNull = false; }
+	FORCEINLINE void SetRef2(const FString& NewValue) { Ref2_Optional = NewValue; Ref2_IsSet = true; Ref2_IsNull = false; }
 	/** @brief Sets the value of Ref2_Optional and also sets Ref2_IsSet to true using move semantics */
-	void SetRef2(FString&& NewValue) { Ref2_Optional = NewValue; Ref2_IsSet = true; Ref2_IsNull = false; }
+	FORCEINLINE void SetRef2(FString&& NewValue) { Ref2_Optional = NewValue; Ref2_IsSet = true; Ref2_IsNull = false; }
 	/** @brief Clears the value of Ref2_Optional and sets Ref2_IsSet to false */
 	void ClearRef2() { Ref2_IsSet = false; Ref2_IsNull = false; }
-	/** @brief Checks whether Ref2_Optional has been set */
-	bool IsRef2Set() const { return Ref2_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef2ToNull() { Ref2_IsSet = true; Ref2_IsNull = true; }
+	FORCEINLINE void SetRef2ToNull() { Ref2_IsSet = true; Ref2_IsNull = true; }
 	/** @brief Checks whether Ref2_Optional is set to null */
-	bool IsRef2Null() const { return Ref2_IsSet && Ref2_IsNull; }
+	FORCEINLINE bool IsRef2Null() const { return Ref2_IsSet && Ref2_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref3_Optional{  };
@@ -202,29 +194,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref3_IsNull{ false };
 	/** @brief Gets the value of Ref3_Optional, regardless of it having been set */
-	FString& GetRef3() { return Ref3_Optional; }
+	FORCEINLINE FString& GetRef3() { return Ref3_Optional; }
 	/** @brief Gets the value of Ref3_Optional, regardless of it having been set */
-	const FString& GetRef3() const { return Ref3_Optional; }
+	FORCEINLINE const FString& GetRef3() const { return Ref3_Optional; }
 	/** @brief Gets the value of Ref3_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef3(const FString& DefaultValue) const { if (Ref3_IsSet) return Ref3_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef3(const FString& DefaultValue) const { if (Ref3_IsSet) return Ref3_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref3_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef3(FString& OutValue) const { if (Ref3_IsSet && !Ref3_IsNull) OutValue = Ref3_Optional; return Ref3_IsSet; }
+	FORCEINLINE bool GetRef3(FString& OutValue) const { if (Ref3_IsSet && !Ref3_IsNull) OutValue = Ref3_Optional; return Ref3_IsSet; }
 	/** @brief Returns a pointer to Ref3_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef3OrNull() { if (Ref3_IsSet) return (Ref3_IsNull ? nullptr : &Ref3_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef3OrNull() { if (Ref3_IsSet) return (Ref3_IsNull ? nullptr : &Ref3_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref3_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef3OrNull() const { if (Ref3_IsSet) return (Ref3_IsNull ? nullptr : &Ref3_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef3OrNull() const { if (Ref3_IsSet) return (Ref3_IsNull ? nullptr : &Ref3_Optional); return nullptr; }
 	/** @brief Sets the value of Ref3_Optional and also sets Ref3_IsSet to true */
-	void SetRef3(const FString& NewValue) { Ref3_Optional = NewValue; Ref3_IsSet = true; Ref3_IsNull = false; }
+	FORCEINLINE void SetRef3(const FString& NewValue) { Ref3_Optional = NewValue; Ref3_IsSet = true; Ref3_IsNull = false; }
 	/** @brief Sets the value of Ref3_Optional and also sets Ref3_IsSet to true using move semantics */
-	void SetRef3(FString&& NewValue) { Ref3_Optional = NewValue; Ref3_IsSet = true; Ref3_IsNull = false; }
+	FORCEINLINE void SetRef3(FString&& NewValue) { Ref3_Optional = NewValue; Ref3_IsSet = true; Ref3_IsNull = false; }
 	/** @brief Clears the value of Ref3_Optional and sets Ref3_IsSet to false */
 	void ClearRef3() { Ref3_IsSet = false; Ref3_IsNull = false; }
-	/** @brief Checks whether Ref3_Optional has been set */
-	bool IsRef3Set() const { return Ref3_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef3ToNull() { Ref3_IsSet = true; Ref3_IsNull = true; }
+	FORCEINLINE void SetRef3ToNull() { Ref3_IsSet = true; Ref3_IsNull = true; }
 	/** @brief Checks whether Ref3_Optional is set to null */
-	bool IsRef3Null() const { return Ref3_IsSet && Ref3_IsNull; }
+	FORCEINLINE bool IsRef3Null() const { return Ref3_IsSet && Ref3_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref4_Optional{  };
@@ -235,29 +225,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref4_IsNull{ false };
 	/** @brief Gets the value of Ref4_Optional, regardless of it having been set */
-	FString& GetRef4() { return Ref4_Optional; }
+	FORCEINLINE FString& GetRef4() { return Ref4_Optional; }
 	/** @brief Gets the value of Ref4_Optional, regardless of it having been set */
-	const FString& GetRef4() const { return Ref4_Optional; }
+	FORCEINLINE const FString& GetRef4() const { return Ref4_Optional; }
 	/** @brief Gets the value of Ref4_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef4(const FString& DefaultValue) const { if (Ref4_IsSet) return Ref4_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef4(const FString& DefaultValue) const { if (Ref4_IsSet) return Ref4_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref4_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef4(FString& OutValue) const { if (Ref4_IsSet && !Ref4_IsNull) OutValue = Ref4_Optional; return Ref4_IsSet; }
+	FORCEINLINE bool GetRef4(FString& OutValue) const { if (Ref4_IsSet && !Ref4_IsNull) OutValue = Ref4_Optional; return Ref4_IsSet; }
 	/** @brief Returns a pointer to Ref4_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef4OrNull() { if (Ref4_IsSet) return (Ref4_IsNull ? nullptr : &Ref4_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef4OrNull() { if (Ref4_IsSet) return (Ref4_IsNull ? nullptr : &Ref4_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref4_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef4OrNull() const { if (Ref4_IsSet) return (Ref4_IsNull ? nullptr : &Ref4_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef4OrNull() const { if (Ref4_IsSet) return (Ref4_IsNull ? nullptr : &Ref4_Optional); return nullptr; }
 	/** @brief Sets the value of Ref4_Optional and also sets Ref4_IsSet to true */
-	void SetRef4(const FString& NewValue) { Ref4_Optional = NewValue; Ref4_IsSet = true; Ref4_IsNull = false; }
+	FORCEINLINE void SetRef4(const FString& NewValue) { Ref4_Optional = NewValue; Ref4_IsSet = true; Ref4_IsNull = false; }
 	/** @brief Sets the value of Ref4_Optional and also sets Ref4_IsSet to true using move semantics */
-	void SetRef4(FString&& NewValue) { Ref4_Optional = NewValue; Ref4_IsSet = true; Ref4_IsNull = false; }
+	FORCEINLINE void SetRef4(FString&& NewValue) { Ref4_Optional = NewValue; Ref4_IsSet = true; Ref4_IsNull = false; }
 	/** @brief Clears the value of Ref4_Optional and sets Ref4_IsSet to false */
 	void ClearRef4() { Ref4_IsSet = false; Ref4_IsNull = false; }
-	/** @brief Checks whether Ref4_Optional has been set */
-	bool IsRef4Set() const { return Ref4_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef4ToNull() { Ref4_IsSet = true; Ref4_IsNull = true; }
+	FORCEINLINE void SetRef4ToNull() { Ref4_IsSet = true; Ref4_IsNull = true; }
 	/** @brief Checks whether Ref4_Optional is set to null */
-	bool IsRef4Null() const { return Ref4_IsSet && Ref4_IsNull; }
+	FORCEINLINE bool IsRef4Null() const { return Ref4_IsSet && Ref4_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref5_Optional{  };
@@ -268,29 +256,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref5_IsNull{ false };
 	/** @brief Gets the value of Ref5_Optional, regardless of it having been set */
-	FString& GetRef5() { return Ref5_Optional; }
+	FORCEINLINE FString& GetRef5() { return Ref5_Optional; }
 	/** @brief Gets the value of Ref5_Optional, regardless of it having been set */
-	const FString& GetRef5() const { return Ref5_Optional; }
+	FORCEINLINE const FString& GetRef5() const { return Ref5_Optional; }
 	/** @brief Gets the value of Ref5_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef5(const FString& DefaultValue) const { if (Ref5_IsSet) return Ref5_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef5(const FString& DefaultValue) const { if (Ref5_IsSet) return Ref5_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref5_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef5(FString& OutValue) const { if (Ref5_IsSet && !Ref5_IsNull) OutValue = Ref5_Optional; return Ref5_IsSet; }
+	FORCEINLINE bool GetRef5(FString& OutValue) const { if (Ref5_IsSet && !Ref5_IsNull) OutValue = Ref5_Optional; return Ref5_IsSet; }
 	/** @brief Returns a pointer to Ref5_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef5OrNull() { if (Ref5_IsSet) return (Ref5_IsNull ? nullptr : &Ref5_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef5OrNull() { if (Ref5_IsSet) return (Ref5_IsNull ? nullptr : &Ref5_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref5_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef5OrNull() const { if (Ref5_IsSet) return (Ref5_IsNull ? nullptr : &Ref5_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef5OrNull() const { if (Ref5_IsSet) return (Ref5_IsNull ? nullptr : &Ref5_Optional); return nullptr; }
 	/** @brief Sets the value of Ref5_Optional and also sets Ref5_IsSet to true */
-	void SetRef5(const FString& NewValue) { Ref5_Optional = NewValue; Ref5_IsSet = true; Ref5_IsNull = false; }
+	FORCEINLINE void SetRef5(const FString& NewValue) { Ref5_Optional = NewValue; Ref5_IsSet = true; Ref5_IsNull = false; }
 	/** @brief Sets the value of Ref5_Optional and also sets Ref5_IsSet to true using move semantics */
-	void SetRef5(FString&& NewValue) { Ref5_Optional = NewValue; Ref5_IsSet = true; Ref5_IsNull = false; }
+	FORCEINLINE void SetRef5(FString&& NewValue) { Ref5_Optional = NewValue; Ref5_IsSet = true; Ref5_IsNull = false; }
 	/** @brief Clears the value of Ref5_Optional and sets Ref5_IsSet to false */
 	void ClearRef5() { Ref5_IsSet = false; Ref5_IsNull = false; }
-	/** @brief Checks whether Ref5_Optional has been set */
-	bool IsRef5Set() const { return Ref5_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef5ToNull() { Ref5_IsSet = true; Ref5_IsNull = true; }
+	FORCEINLINE void SetRef5ToNull() { Ref5_IsSet = true; Ref5_IsNull = true; }
 	/** @brief Checks whether Ref5_Optional is set to null */
-	bool IsRef5Null() const { return Ref5_IsSet && Ref5_IsNull; }
+	FORCEINLINE bool IsRef5Null() const { return Ref5_IsSet && Ref5_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref6_Optional{  };
@@ -301,29 +287,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref6_IsNull{ false };
 	/** @brief Gets the value of Ref6_Optional, regardless of it having been set */
-	FString& GetRef6() { return Ref6_Optional; }
+	FORCEINLINE FString& GetRef6() { return Ref6_Optional; }
 	/** @brief Gets the value of Ref6_Optional, regardless of it having been set */
-	const FString& GetRef6() const { return Ref6_Optional; }
+	FORCEINLINE const FString& GetRef6() const { return Ref6_Optional; }
 	/** @brief Gets the value of Ref6_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef6(const FString& DefaultValue) const { if (Ref6_IsSet) return Ref6_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef6(const FString& DefaultValue) const { if (Ref6_IsSet) return Ref6_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref6_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef6(FString& OutValue) const { if (Ref6_IsSet && !Ref6_IsNull) OutValue = Ref6_Optional; return Ref6_IsSet; }
+	FORCEINLINE bool GetRef6(FString& OutValue) const { if (Ref6_IsSet && !Ref6_IsNull) OutValue = Ref6_Optional; return Ref6_IsSet; }
 	/** @brief Returns a pointer to Ref6_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef6OrNull() { if (Ref6_IsSet) return (Ref6_IsNull ? nullptr : &Ref6_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef6OrNull() { if (Ref6_IsSet) return (Ref6_IsNull ? nullptr : &Ref6_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref6_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef6OrNull() const { if (Ref6_IsSet) return (Ref6_IsNull ? nullptr : &Ref6_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef6OrNull() const { if (Ref6_IsSet) return (Ref6_IsNull ? nullptr : &Ref6_Optional); return nullptr; }
 	/** @brief Sets the value of Ref6_Optional and also sets Ref6_IsSet to true */
-	void SetRef6(const FString& NewValue) { Ref6_Optional = NewValue; Ref6_IsSet = true; Ref6_IsNull = false; }
+	FORCEINLINE void SetRef6(const FString& NewValue) { Ref6_Optional = NewValue; Ref6_IsSet = true; Ref6_IsNull = false; }
 	/** @brief Sets the value of Ref6_Optional and also sets Ref6_IsSet to true using move semantics */
-	void SetRef6(FString&& NewValue) { Ref6_Optional = NewValue; Ref6_IsSet = true; Ref6_IsNull = false; }
+	FORCEINLINE void SetRef6(FString&& NewValue) { Ref6_Optional = NewValue; Ref6_IsSet = true; Ref6_IsNull = false; }
 	/** @brief Clears the value of Ref6_Optional and sets Ref6_IsSet to false */
 	void ClearRef6() { Ref6_IsSet = false; Ref6_IsNull = false; }
-	/** @brief Checks whether Ref6_Optional has been set */
-	bool IsRef6Set() const { return Ref6_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef6ToNull() { Ref6_IsSet = true; Ref6_IsNull = true; }
+	FORCEINLINE void SetRef6ToNull() { Ref6_IsSet = true; Ref6_IsNull = true; }
 	/** @brief Checks whether Ref6_Optional is set to null */
-	bool IsRef6Null() const { return Ref6_IsSet && Ref6_IsNull; }
+	FORCEINLINE bool IsRef6Null() const { return Ref6_IsSet && Ref6_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref7_Optional{  };
@@ -334,29 +318,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref7_IsNull{ false };
 	/** @brief Gets the value of Ref7_Optional, regardless of it having been set */
-	FString& GetRef7() { return Ref7_Optional; }
+	FORCEINLINE FString& GetRef7() { return Ref7_Optional; }
 	/** @brief Gets the value of Ref7_Optional, regardless of it having been set */
-	const FString& GetRef7() const { return Ref7_Optional; }
+	FORCEINLINE const FString& GetRef7() const { return Ref7_Optional; }
 	/** @brief Gets the value of Ref7_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef7(const FString& DefaultValue) const { if (Ref7_IsSet) return Ref7_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef7(const FString& DefaultValue) const { if (Ref7_IsSet) return Ref7_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref7_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef7(FString& OutValue) const { if (Ref7_IsSet && !Ref7_IsNull) OutValue = Ref7_Optional; return Ref7_IsSet; }
+	FORCEINLINE bool GetRef7(FString& OutValue) const { if (Ref7_IsSet && !Ref7_IsNull) OutValue = Ref7_Optional; return Ref7_IsSet; }
 	/** @brief Returns a pointer to Ref7_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef7OrNull() { if (Ref7_IsSet) return (Ref7_IsNull ? nullptr : &Ref7_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef7OrNull() { if (Ref7_IsSet) return (Ref7_IsNull ? nullptr : &Ref7_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref7_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef7OrNull() const { if (Ref7_IsSet) return (Ref7_IsNull ? nullptr : &Ref7_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef7OrNull() const { if (Ref7_IsSet) return (Ref7_IsNull ? nullptr : &Ref7_Optional); return nullptr; }
 	/** @brief Sets the value of Ref7_Optional and also sets Ref7_IsSet to true */
-	void SetRef7(const FString& NewValue) { Ref7_Optional = NewValue; Ref7_IsSet = true; Ref7_IsNull = false; }
+	FORCEINLINE void SetRef7(const FString& NewValue) { Ref7_Optional = NewValue; Ref7_IsSet = true; Ref7_IsNull = false; }
 	/** @brief Sets the value of Ref7_Optional and also sets Ref7_IsSet to true using move semantics */
-	void SetRef7(FString&& NewValue) { Ref7_Optional = NewValue; Ref7_IsSet = true; Ref7_IsNull = false; }
+	FORCEINLINE void SetRef7(FString&& NewValue) { Ref7_Optional = NewValue; Ref7_IsSet = true; Ref7_IsNull = false; }
 	/** @brief Clears the value of Ref7_Optional and sets Ref7_IsSet to false */
 	void ClearRef7() { Ref7_IsSet = false; Ref7_IsNull = false; }
-	/** @brief Checks whether Ref7_Optional has been set */
-	bool IsRef7Set() const { return Ref7_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef7ToNull() { Ref7_IsSet = true; Ref7_IsNull = true; }
+	FORCEINLINE void SetRef7ToNull() { Ref7_IsSet = true; Ref7_IsNull = true; }
 	/** @brief Checks whether Ref7_Optional is set to null */
-	bool IsRef7Null() const { return Ref7_IsSet && Ref7_IsNull; }
+	FORCEINLINE bool IsRef7Null() const { return Ref7_IsSet && Ref7_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref8_Optional{  };
@@ -367,29 +349,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref8_IsNull{ false };
 	/** @brief Gets the value of Ref8_Optional, regardless of it having been set */
-	FString& GetRef8() { return Ref8_Optional; }
+	FORCEINLINE FString& GetRef8() { return Ref8_Optional; }
 	/** @brief Gets the value of Ref8_Optional, regardless of it having been set */
-	const FString& GetRef8() const { return Ref8_Optional; }
+	FORCEINLINE const FString& GetRef8() const { return Ref8_Optional; }
 	/** @brief Gets the value of Ref8_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef8(const FString& DefaultValue) const { if (Ref8_IsSet) return Ref8_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef8(const FString& DefaultValue) const { if (Ref8_IsSet) return Ref8_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref8_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef8(FString& OutValue) const { if (Ref8_IsSet && !Ref8_IsNull) OutValue = Ref8_Optional; return Ref8_IsSet; }
+	FORCEINLINE bool GetRef8(FString& OutValue) const { if (Ref8_IsSet && !Ref8_IsNull) OutValue = Ref8_Optional; return Ref8_IsSet; }
 	/** @brief Returns a pointer to Ref8_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef8OrNull() { if (Ref8_IsSet) return (Ref8_IsNull ? nullptr : &Ref8_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef8OrNull() { if (Ref8_IsSet) return (Ref8_IsNull ? nullptr : &Ref8_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref8_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef8OrNull() const { if (Ref8_IsSet) return (Ref8_IsNull ? nullptr : &Ref8_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef8OrNull() const { if (Ref8_IsSet) return (Ref8_IsNull ? nullptr : &Ref8_Optional); return nullptr; }
 	/** @brief Sets the value of Ref8_Optional and also sets Ref8_IsSet to true */
-	void SetRef8(const FString& NewValue) { Ref8_Optional = NewValue; Ref8_IsSet = true; Ref8_IsNull = false; }
+	FORCEINLINE void SetRef8(const FString& NewValue) { Ref8_Optional = NewValue; Ref8_IsSet = true; Ref8_IsNull = false; }
 	/** @brief Sets the value of Ref8_Optional and also sets Ref8_IsSet to true using move semantics */
-	void SetRef8(FString&& NewValue) { Ref8_Optional = NewValue; Ref8_IsSet = true; Ref8_IsNull = false; }
+	FORCEINLINE void SetRef8(FString&& NewValue) { Ref8_Optional = NewValue; Ref8_IsSet = true; Ref8_IsNull = false; }
 	/** @brief Clears the value of Ref8_Optional and sets Ref8_IsSet to false */
 	void ClearRef8() { Ref8_IsSet = false; Ref8_IsNull = false; }
-	/** @brief Checks whether Ref8_Optional has been set */
-	bool IsRef8Set() const { return Ref8_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef8ToNull() { Ref8_IsSet = true; Ref8_IsNull = true; }
+	FORCEINLINE void SetRef8ToNull() { Ref8_IsSet = true; Ref8_IsNull = true; }
 	/** @brief Checks whether Ref8_Optional is set to null */
-	bool IsRef8Null() const { return Ref8_IsSet && Ref8_IsNull; }
+	FORCEINLINE bool IsRef8Null() const { return Ref8_IsSet && Ref8_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref9_Optional{  };
@@ -400,29 +380,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref9_IsNull{ false };
 	/** @brief Gets the value of Ref9_Optional, regardless of it having been set */
-	FString& GetRef9() { return Ref9_Optional; }
+	FORCEINLINE FString& GetRef9() { return Ref9_Optional; }
 	/** @brief Gets the value of Ref9_Optional, regardless of it having been set */
-	const FString& GetRef9() const { return Ref9_Optional; }
+	FORCEINLINE const FString& GetRef9() const { return Ref9_Optional; }
 	/** @brief Gets the value of Ref9_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef9(const FString& DefaultValue) const { if (Ref9_IsSet) return Ref9_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef9(const FString& DefaultValue) const { if (Ref9_IsSet) return Ref9_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref9_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef9(FString& OutValue) const { if (Ref9_IsSet && !Ref9_IsNull) OutValue = Ref9_Optional; return Ref9_IsSet; }
+	FORCEINLINE bool GetRef9(FString& OutValue) const { if (Ref9_IsSet && !Ref9_IsNull) OutValue = Ref9_Optional; return Ref9_IsSet; }
 	/** @brief Returns a pointer to Ref9_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef9OrNull() { if (Ref9_IsSet) return (Ref9_IsNull ? nullptr : &Ref9_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef9OrNull() { if (Ref9_IsSet) return (Ref9_IsNull ? nullptr : &Ref9_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref9_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef9OrNull() const { if (Ref9_IsSet) return (Ref9_IsNull ? nullptr : &Ref9_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef9OrNull() const { if (Ref9_IsSet) return (Ref9_IsNull ? nullptr : &Ref9_Optional); return nullptr; }
 	/** @brief Sets the value of Ref9_Optional and also sets Ref9_IsSet to true */
-	void SetRef9(const FString& NewValue) { Ref9_Optional = NewValue; Ref9_IsSet = true; Ref9_IsNull = false; }
+	FORCEINLINE void SetRef9(const FString& NewValue) { Ref9_Optional = NewValue; Ref9_IsSet = true; Ref9_IsNull = false; }
 	/** @brief Sets the value of Ref9_Optional and also sets Ref9_IsSet to true using move semantics */
-	void SetRef9(FString&& NewValue) { Ref9_Optional = NewValue; Ref9_IsSet = true; Ref9_IsNull = false; }
+	FORCEINLINE void SetRef9(FString&& NewValue) { Ref9_Optional = NewValue; Ref9_IsSet = true; Ref9_IsNull = false; }
 	/** @brief Clears the value of Ref9_Optional and sets Ref9_IsSet to false */
 	void ClearRef9() { Ref9_IsSet = false; Ref9_IsNull = false; }
-	/** @brief Checks whether Ref9_Optional has been set */
-	bool IsRef9Set() const { return Ref9_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef9ToNull() { Ref9_IsSet = true; Ref9_IsNull = true; }
+	FORCEINLINE void SetRef9ToNull() { Ref9_IsSet = true; Ref9_IsNull = true; }
 	/** @brief Checks whether Ref9_Optional is set to null */
-	bool IsRef9Null() const { return Ref9_IsSet && Ref9_IsNull; }
+	FORCEINLINE bool IsRef9Null() const { return Ref9_IsSet && Ref9_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref10_Optional{  };
@@ -433,29 +411,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref10_IsNull{ false };
 	/** @brief Gets the value of Ref10_Optional, regardless of it having been set */
-	FString& GetRef10() { return Ref10_Optional; }
+	FORCEINLINE FString& GetRef10() { return Ref10_Optional; }
 	/** @brief Gets the value of Ref10_Optional, regardless of it having been set */
-	const FString& GetRef10() const { return Ref10_Optional; }
+	FORCEINLINE const FString& GetRef10() const { return Ref10_Optional; }
 	/** @brief Gets the value of Ref10_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef10(const FString& DefaultValue) const { if (Ref10_IsSet) return Ref10_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef10(const FString& DefaultValue) const { if (Ref10_IsSet) return Ref10_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref10_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef10(FString& OutValue) const { if (Ref10_IsSet && !Ref10_IsNull) OutValue = Ref10_Optional; return Ref10_IsSet; }
+	FORCEINLINE bool GetRef10(FString& OutValue) const { if (Ref10_IsSet && !Ref10_IsNull) OutValue = Ref10_Optional; return Ref10_IsSet; }
 	/** @brief Returns a pointer to Ref10_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef10OrNull() { if (Ref10_IsSet) return (Ref10_IsNull ? nullptr : &Ref10_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef10OrNull() { if (Ref10_IsSet) return (Ref10_IsNull ? nullptr : &Ref10_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref10_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef10OrNull() const { if (Ref10_IsSet) return (Ref10_IsNull ? nullptr : &Ref10_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef10OrNull() const { if (Ref10_IsSet) return (Ref10_IsNull ? nullptr : &Ref10_Optional); return nullptr; }
 	/** @brief Sets the value of Ref10_Optional and also sets Ref10_IsSet to true */
-	void SetRef10(const FString& NewValue) { Ref10_Optional = NewValue; Ref10_IsSet = true; Ref10_IsNull = false; }
+	FORCEINLINE void SetRef10(const FString& NewValue) { Ref10_Optional = NewValue; Ref10_IsSet = true; Ref10_IsNull = false; }
 	/** @brief Sets the value of Ref10_Optional and also sets Ref10_IsSet to true using move semantics */
-	void SetRef10(FString&& NewValue) { Ref10_Optional = NewValue; Ref10_IsSet = true; Ref10_IsNull = false; }
+	FORCEINLINE void SetRef10(FString&& NewValue) { Ref10_Optional = NewValue; Ref10_IsSet = true; Ref10_IsNull = false; }
 	/** @brief Clears the value of Ref10_Optional and sets Ref10_IsSet to false */
 	void ClearRef10() { Ref10_IsSet = false; Ref10_IsNull = false; }
-	/** @brief Checks whether Ref10_Optional has been set */
-	bool IsRef10Set() const { return Ref10_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef10ToNull() { Ref10_IsSet = true; Ref10_IsNull = true; }
+	FORCEINLINE void SetRef10ToNull() { Ref10_IsSet = true; Ref10_IsNull = true; }
 	/** @brief Checks whether Ref10_Optional is set to null */
-	bool IsRef10Null() const { return Ref10_IsSet && Ref10_IsNull; }
+	FORCEINLINE bool IsRef10Null() const { return Ref10_IsSet && Ref10_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref11_Optional{  };
@@ -466,29 +442,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref11_IsNull{ false };
 	/** @brief Gets the value of Ref11_Optional, regardless of it having been set */
-	FString& GetRef11() { return Ref11_Optional; }
+	FORCEINLINE FString& GetRef11() { return Ref11_Optional; }
 	/** @brief Gets the value of Ref11_Optional, regardless of it having been set */
-	const FString& GetRef11() const { return Ref11_Optional; }
+	FORCEINLINE const FString& GetRef11() const { return Ref11_Optional; }
 	/** @brief Gets the value of Ref11_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef11(const FString& DefaultValue) const { if (Ref11_IsSet) return Ref11_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef11(const FString& DefaultValue) const { if (Ref11_IsSet) return Ref11_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref11_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef11(FString& OutValue) const { if (Ref11_IsSet && !Ref11_IsNull) OutValue = Ref11_Optional; return Ref11_IsSet; }
+	FORCEINLINE bool GetRef11(FString& OutValue) const { if (Ref11_IsSet && !Ref11_IsNull) OutValue = Ref11_Optional; return Ref11_IsSet; }
 	/** @brief Returns a pointer to Ref11_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef11OrNull() { if (Ref11_IsSet) return (Ref11_IsNull ? nullptr : &Ref11_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef11OrNull() { if (Ref11_IsSet) return (Ref11_IsNull ? nullptr : &Ref11_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref11_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef11OrNull() const { if (Ref11_IsSet) return (Ref11_IsNull ? nullptr : &Ref11_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef11OrNull() const { if (Ref11_IsSet) return (Ref11_IsNull ? nullptr : &Ref11_Optional); return nullptr; }
 	/** @brief Sets the value of Ref11_Optional and also sets Ref11_IsSet to true */
-	void SetRef11(const FString& NewValue) { Ref11_Optional = NewValue; Ref11_IsSet = true; Ref11_IsNull = false; }
+	FORCEINLINE void SetRef11(const FString& NewValue) { Ref11_Optional = NewValue; Ref11_IsSet = true; Ref11_IsNull = false; }
 	/** @brief Sets the value of Ref11_Optional and also sets Ref11_IsSet to true using move semantics */
-	void SetRef11(FString&& NewValue) { Ref11_Optional = NewValue; Ref11_IsSet = true; Ref11_IsNull = false; }
+	FORCEINLINE void SetRef11(FString&& NewValue) { Ref11_Optional = NewValue; Ref11_IsSet = true; Ref11_IsNull = false; }
 	/** @brief Clears the value of Ref11_Optional and sets Ref11_IsSet to false */
 	void ClearRef11() { Ref11_IsSet = false; Ref11_IsNull = false; }
-	/** @brief Checks whether Ref11_Optional has been set */
-	bool IsRef11Set() const { return Ref11_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef11ToNull() { Ref11_IsSet = true; Ref11_IsNull = true; }
+	FORCEINLINE void SetRef11ToNull() { Ref11_IsSet = true; Ref11_IsNull = true; }
 	/** @brief Checks whether Ref11_Optional is set to null */
-	bool IsRef11Null() const { return Ref11_IsSet && Ref11_IsNull; }
+	FORCEINLINE bool IsRef11Null() const { return Ref11_IsSet && Ref11_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref12_Optional{  };
@@ -499,29 +473,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref12_IsNull{ false };
 	/** @brief Gets the value of Ref12_Optional, regardless of it having been set */
-	FString& GetRef12() { return Ref12_Optional; }
+	FORCEINLINE FString& GetRef12() { return Ref12_Optional; }
 	/** @brief Gets the value of Ref12_Optional, regardless of it having been set */
-	const FString& GetRef12() const { return Ref12_Optional; }
+	FORCEINLINE const FString& GetRef12() const { return Ref12_Optional; }
 	/** @brief Gets the value of Ref12_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef12(const FString& DefaultValue) const { if (Ref12_IsSet) return Ref12_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef12(const FString& DefaultValue) const { if (Ref12_IsSet) return Ref12_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref12_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef12(FString& OutValue) const { if (Ref12_IsSet && !Ref12_IsNull) OutValue = Ref12_Optional; return Ref12_IsSet; }
+	FORCEINLINE bool GetRef12(FString& OutValue) const { if (Ref12_IsSet && !Ref12_IsNull) OutValue = Ref12_Optional; return Ref12_IsSet; }
 	/** @brief Returns a pointer to Ref12_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef12OrNull() { if (Ref12_IsSet) return (Ref12_IsNull ? nullptr : &Ref12_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef12OrNull() { if (Ref12_IsSet) return (Ref12_IsNull ? nullptr : &Ref12_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref12_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef12OrNull() const { if (Ref12_IsSet) return (Ref12_IsNull ? nullptr : &Ref12_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef12OrNull() const { if (Ref12_IsSet) return (Ref12_IsNull ? nullptr : &Ref12_Optional); return nullptr; }
 	/** @brief Sets the value of Ref12_Optional and also sets Ref12_IsSet to true */
-	void SetRef12(const FString& NewValue) { Ref12_Optional = NewValue; Ref12_IsSet = true; Ref12_IsNull = false; }
+	FORCEINLINE void SetRef12(const FString& NewValue) { Ref12_Optional = NewValue; Ref12_IsSet = true; Ref12_IsNull = false; }
 	/** @brief Sets the value of Ref12_Optional and also sets Ref12_IsSet to true using move semantics */
-	void SetRef12(FString&& NewValue) { Ref12_Optional = NewValue; Ref12_IsSet = true; Ref12_IsNull = false; }
+	FORCEINLINE void SetRef12(FString&& NewValue) { Ref12_Optional = NewValue; Ref12_IsSet = true; Ref12_IsNull = false; }
 	/** @brief Clears the value of Ref12_Optional and sets Ref12_IsSet to false */
 	void ClearRef12() { Ref12_IsSet = false; Ref12_IsNull = false; }
-	/** @brief Checks whether Ref12_Optional has been set */
-	bool IsRef12Set() const { return Ref12_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef12ToNull() { Ref12_IsSet = true; Ref12_IsNull = true; }
+	FORCEINLINE void SetRef12ToNull() { Ref12_IsSet = true; Ref12_IsNull = true; }
 	/** @brief Checks whether Ref12_Optional is set to null */
-	bool IsRef12Null() const { return Ref12_IsSet && Ref12_IsNull; }
+	FORCEINLINE bool IsRef12Null() const { return Ref12_IsSet && Ref12_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref13_Optional{  };
@@ -532,29 +504,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref13_IsNull{ false };
 	/** @brief Gets the value of Ref13_Optional, regardless of it having been set */
-	FString& GetRef13() { return Ref13_Optional; }
+	FORCEINLINE FString& GetRef13() { return Ref13_Optional; }
 	/** @brief Gets the value of Ref13_Optional, regardless of it having been set */
-	const FString& GetRef13() const { return Ref13_Optional; }
+	FORCEINLINE const FString& GetRef13() const { return Ref13_Optional; }
 	/** @brief Gets the value of Ref13_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef13(const FString& DefaultValue) const { if (Ref13_IsSet) return Ref13_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef13(const FString& DefaultValue) const { if (Ref13_IsSet) return Ref13_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref13_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef13(FString& OutValue) const { if (Ref13_IsSet && !Ref13_IsNull) OutValue = Ref13_Optional; return Ref13_IsSet; }
+	FORCEINLINE bool GetRef13(FString& OutValue) const { if (Ref13_IsSet && !Ref13_IsNull) OutValue = Ref13_Optional; return Ref13_IsSet; }
 	/** @brief Returns a pointer to Ref13_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef13OrNull() { if (Ref13_IsSet) return (Ref13_IsNull ? nullptr : &Ref13_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef13OrNull() { if (Ref13_IsSet) return (Ref13_IsNull ? nullptr : &Ref13_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref13_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef13OrNull() const { if (Ref13_IsSet) return (Ref13_IsNull ? nullptr : &Ref13_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef13OrNull() const { if (Ref13_IsSet) return (Ref13_IsNull ? nullptr : &Ref13_Optional); return nullptr; }
 	/** @brief Sets the value of Ref13_Optional and also sets Ref13_IsSet to true */
-	void SetRef13(const FString& NewValue) { Ref13_Optional = NewValue; Ref13_IsSet = true; Ref13_IsNull = false; }
+	FORCEINLINE void SetRef13(const FString& NewValue) { Ref13_Optional = NewValue; Ref13_IsSet = true; Ref13_IsNull = false; }
 	/** @brief Sets the value of Ref13_Optional and also sets Ref13_IsSet to true using move semantics */
-	void SetRef13(FString&& NewValue) { Ref13_Optional = NewValue; Ref13_IsSet = true; Ref13_IsNull = false; }
+	FORCEINLINE void SetRef13(FString&& NewValue) { Ref13_Optional = NewValue; Ref13_IsSet = true; Ref13_IsNull = false; }
 	/** @brief Clears the value of Ref13_Optional and sets Ref13_IsSet to false */
 	void ClearRef13() { Ref13_IsSet = false; Ref13_IsNull = false; }
-	/** @brief Checks whether Ref13_Optional has been set */
-	bool IsRef13Set() const { return Ref13_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef13ToNull() { Ref13_IsSet = true; Ref13_IsNull = true; }
+	FORCEINLINE void SetRef13ToNull() { Ref13_IsSet = true; Ref13_IsNull = true; }
 	/** @brief Checks whether Ref13_Optional is set to null */
-	bool IsRef13Null() const { return Ref13_IsSet && Ref13_IsNull; }
+	FORCEINLINE bool IsRef13Null() const { return Ref13_IsSet && Ref13_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref14_Optional{  };
@@ -565,29 +535,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref14_IsNull{ false };
 	/** @brief Gets the value of Ref14_Optional, regardless of it having been set */
-	FString& GetRef14() { return Ref14_Optional; }
+	FORCEINLINE FString& GetRef14() { return Ref14_Optional; }
 	/** @brief Gets the value of Ref14_Optional, regardless of it having been set */
-	const FString& GetRef14() const { return Ref14_Optional; }
+	FORCEINLINE const FString& GetRef14() const { return Ref14_Optional; }
 	/** @brief Gets the value of Ref14_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef14(const FString& DefaultValue) const { if (Ref14_IsSet) return Ref14_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef14(const FString& DefaultValue) const { if (Ref14_IsSet) return Ref14_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref14_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef14(FString& OutValue) const { if (Ref14_IsSet && !Ref14_IsNull) OutValue = Ref14_Optional; return Ref14_IsSet; }
+	FORCEINLINE bool GetRef14(FString& OutValue) const { if (Ref14_IsSet && !Ref14_IsNull) OutValue = Ref14_Optional; return Ref14_IsSet; }
 	/** @brief Returns a pointer to Ref14_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef14OrNull() { if (Ref14_IsSet) return (Ref14_IsNull ? nullptr : &Ref14_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef14OrNull() { if (Ref14_IsSet) return (Ref14_IsNull ? nullptr : &Ref14_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref14_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef14OrNull() const { if (Ref14_IsSet) return (Ref14_IsNull ? nullptr : &Ref14_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef14OrNull() const { if (Ref14_IsSet) return (Ref14_IsNull ? nullptr : &Ref14_Optional); return nullptr; }
 	/** @brief Sets the value of Ref14_Optional and also sets Ref14_IsSet to true */
-	void SetRef14(const FString& NewValue) { Ref14_Optional = NewValue; Ref14_IsSet = true; Ref14_IsNull = false; }
+	FORCEINLINE void SetRef14(const FString& NewValue) { Ref14_Optional = NewValue; Ref14_IsSet = true; Ref14_IsNull = false; }
 	/** @brief Sets the value of Ref14_Optional and also sets Ref14_IsSet to true using move semantics */
-	void SetRef14(FString&& NewValue) { Ref14_Optional = NewValue; Ref14_IsSet = true; Ref14_IsNull = false; }
+	FORCEINLINE void SetRef14(FString&& NewValue) { Ref14_Optional = NewValue; Ref14_IsSet = true; Ref14_IsNull = false; }
 	/** @brief Clears the value of Ref14_Optional and sets Ref14_IsSet to false */
 	void ClearRef14() { Ref14_IsSet = false; Ref14_IsNull = false; }
-	/** @brief Checks whether Ref14_Optional has been set */
-	bool IsRef14Set() const { return Ref14_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef14ToNull() { Ref14_IsSet = true; Ref14_IsNull = true; }
+	FORCEINLINE void SetRef14ToNull() { Ref14_IsSet = true; Ref14_IsNull = true; }
 	/** @brief Checks whether Ref14_Optional is set to null */
-	bool IsRef14Null() const { return Ref14_IsSet && Ref14_IsNull; }
+	FORCEINLINE bool IsRef14Null() const { return Ref14_IsSet && Ref14_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref15_Optional{  };
@@ -598,29 +566,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref15_IsNull{ false };
 	/** @brief Gets the value of Ref15_Optional, regardless of it having been set */
-	FString& GetRef15() { return Ref15_Optional; }
+	FORCEINLINE FString& GetRef15() { return Ref15_Optional; }
 	/** @brief Gets the value of Ref15_Optional, regardless of it having been set */
-	const FString& GetRef15() const { return Ref15_Optional; }
+	FORCEINLINE const FString& GetRef15() const { return Ref15_Optional; }
 	/** @brief Gets the value of Ref15_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef15(const FString& DefaultValue) const { if (Ref15_IsSet) return Ref15_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef15(const FString& DefaultValue) const { if (Ref15_IsSet) return Ref15_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref15_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef15(FString& OutValue) const { if (Ref15_IsSet && !Ref15_IsNull) OutValue = Ref15_Optional; return Ref15_IsSet; }
+	FORCEINLINE bool GetRef15(FString& OutValue) const { if (Ref15_IsSet && !Ref15_IsNull) OutValue = Ref15_Optional; return Ref15_IsSet; }
 	/** @brief Returns a pointer to Ref15_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef15OrNull() { if (Ref15_IsSet) return (Ref15_IsNull ? nullptr : &Ref15_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef15OrNull() { if (Ref15_IsSet) return (Ref15_IsNull ? nullptr : &Ref15_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref15_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef15OrNull() const { if (Ref15_IsSet) return (Ref15_IsNull ? nullptr : &Ref15_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef15OrNull() const { if (Ref15_IsSet) return (Ref15_IsNull ? nullptr : &Ref15_Optional); return nullptr; }
 	/** @brief Sets the value of Ref15_Optional and also sets Ref15_IsSet to true */
-	void SetRef15(const FString& NewValue) { Ref15_Optional = NewValue; Ref15_IsSet = true; Ref15_IsNull = false; }
+	FORCEINLINE void SetRef15(const FString& NewValue) { Ref15_Optional = NewValue; Ref15_IsSet = true; Ref15_IsNull = false; }
 	/** @brief Sets the value of Ref15_Optional and also sets Ref15_IsSet to true using move semantics */
-	void SetRef15(FString&& NewValue) { Ref15_Optional = NewValue; Ref15_IsSet = true; Ref15_IsNull = false; }
+	FORCEINLINE void SetRef15(FString&& NewValue) { Ref15_Optional = NewValue; Ref15_IsSet = true; Ref15_IsNull = false; }
 	/** @brief Clears the value of Ref15_Optional and sets Ref15_IsSet to false */
 	void ClearRef15() { Ref15_IsSet = false; Ref15_IsNull = false; }
-	/** @brief Checks whether Ref15_Optional has been set */
-	bool IsRef15Set() const { return Ref15_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef15ToNull() { Ref15_IsSet = true; Ref15_IsNull = true; }
+	FORCEINLINE void SetRef15ToNull() { Ref15_IsSet = true; Ref15_IsNull = true; }
 	/** @brief Checks whether Ref15_Optional is set to null */
-	bool IsRef15Null() const { return Ref15_IsSet && Ref15_IsNull; }
+	FORCEINLINE bool IsRef15Null() const { return Ref15_IsSet && Ref15_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref16_Optional{  };
@@ -631,29 +597,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref16_IsNull{ false };
 	/** @brief Gets the value of Ref16_Optional, regardless of it having been set */
-	FString& GetRef16() { return Ref16_Optional; }
+	FORCEINLINE FString& GetRef16() { return Ref16_Optional; }
 	/** @brief Gets the value of Ref16_Optional, regardless of it having been set */
-	const FString& GetRef16() const { return Ref16_Optional; }
+	FORCEINLINE const FString& GetRef16() const { return Ref16_Optional; }
 	/** @brief Gets the value of Ref16_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef16(const FString& DefaultValue) const { if (Ref16_IsSet) return Ref16_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef16(const FString& DefaultValue) const { if (Ref16_IsSet) return Ref16_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref16_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef16(FString& OutValue) const { if (Ref16_IsSet && !Ref16_IsNull) OutValue = Ref16_Optional; return Ref16_IsSet; }
+	FORCEINLINE bool GetRef16(FString& OutValue) const { if (Ref16_IsSet && !Ref16_IsNull) OutValue = Ref16_Optional; return Ref16_IsSet; }
 	/** @brief Returns a pointer to Ref16_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef16OrNull() { if (Ref16_IsSet) return (Ref16_IsNull ? nullptr : &Ref16_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef16OrNull() { if (Ref16_IsSet) return (Ref16_IsNull ? nullptr : &Ref16_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref16_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef16OrNull() const { if (Ref16_IsSet) return (Ref16_IsNull ? nullptr : &Ref16_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef16OrNull() const { if (Ref16_IsSet) return (Ref16_IsNull ? nullptr : &Ref16_Optional); return nullptr; }
 	/** @brief Sets the value of Ref16_Optional and also sets Ref16_IsSet to true */
-	void SetRef16(const FString& NewValue) { Ref16_Optional = NewValue; Ref16_IsSet = true; Ref16_IsNull = false; }
+	FORCEINLINE void SetRef16(const FString& NewValue) { Ref16_Optional = NewValue; Ref16_IsSet = true; Ref16_IsNull = false; }
 	/** @brief Sets the value of Ref16_Optional and also sets Ref16_IsSet to true using move semantics */
-	void SetRef16(FString&& NewValue) { Ref16_Optional = NewValue; Ref16_IsSet = true; Ref16_IsNull = false; }
+	FORCEINLINE void SetRef16(FString&& NewValue) { Ref16_Optional = NewValue; Ref16_IsSet = true; Ref16_IsNull = false; }
 	/** @brief Clears the value of Ref16_Optional and sets Ref16_IsSet to false */
 	void ClearRef16() { Ref16_IsSet = false; Ref16_IsNull = false; }
-	/** @brief Checks whether Ref16_Optional has been set */
-	bool IsRef16Set() const { return Ref16_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef16ToNull() { Ref16_IsSet = true; Ref16_IsNull = true; }
+	FORCEINLINE void SetRef16ToNull() { Ref16_IsSet = true; Ref16_IsNull = true; }
 	/** @brief Checks whether Ref16_Optional is set to null */
-	bool IsRef16Null() const { return Ref16_IsSet && Ref16_IsNull; }
+	FORCEINLINE bool IsRef16Null() const { return Ref16_IsSet && Ref16_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref17_Optional{  };
@@ -664,29 +628,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref17_IsNull{ false };
 	/** @brief Gets the value of Ref17_Optional, regardless of it having been set */
-	FString& GetRef17() { return Ref17_Optional; }
+	FORCEINLINE FString& GetRef17() { return Ref17_Optional; }
 	/** @brief Gets the value of Ref17_Optional, regardless of it having been set */
-	const FString& GetRef17() const { return Ref17_Optional; }
+	FORCEINLINE const FString& GetRef17() const { return Ref17_Optional; }
 	/** @brief Gets the value of Ref17_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef17(const FString& DefaultValue) const { if (Ref17_IsSet) return Ref17_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef17(const FString& DefaultValue) const { if (Ref17_IsSet) return Ref17_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref17_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef17(FString& OutValue) const { if (Ref17_IsSet && !Ref17_IsNull) OutValue = Ref17_Optional; return Ref17_IsSet; }
+	FORCEINLINE bool GetRef17(FString& OutValue) const { if (Ref17_IsSet && !Ref17_IsNull) OutValue = Ref17_Optional; return Ref17_IsSet; }
 	/** @brief Returns a pointer to Ref17_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef17OrNull() { if (Ref17_IsSet) return (Ref17_IsNull ? nullptr : &Ref17_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef17OrNull() { if (Ref17_IsSet) return (Ref17_IsNull ? nullptr : &Ref17_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref17_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef17OrNull() const { if (Ref17_IsSet) return (Ref17_IsNull ? nullptr : &Ref17_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef17OrNull() const { if (Ref17_IsSet) return (Ref17_IsNull ? nullptr : &Ref17_Optional); return nullptr; }
 	/** @brief Sets the value of Ref17_Optional and also sets Ref17_IsSet to true */
-	void SetRef17(const FString& NewValue) { Ref17_Optional = NewValue; Ref17_IsSet = true; Ref17_IsNull = false; }
+	FORCEINLINE void SetRef17(const FString& NewValue) { Ref17_Optional = NewValue; Ref17_IsSet = true; Ref17_IsNull = false; }
 	/** @brief Sets the value of Ref17_Optional and also sets Ref17_IsSet to true using move semantics */
-	void SetRef17(FString&& NewValue) { Ref17_Optional = NewValue; Ref17_IsSet = true; Ref17_IsNull = false; }
+	FORCEINLINE void SetRef17(FString&& NewValue) { Ref17_Optional = NewValue; Ref17_IsSet = true; Ref17_IsNull = false; }
 	/** @brief Clears the value of Ref17_Optional and sets Ref17_IsSet to false */
 	void ClearRef17() { Ref17_IsSet = false; Ref17_IsNull = false; }
-	/** @brief Checks whether Ref17_Optional has been set */
-	bool IsRef17Set() const { return Ref17_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef17ToNull() { Ref17_IsSet = true; Ref17_IsNull = true; }
+	FORCEINLINE void SetRef17ToNull() { Ref17_IsSet = true; Ref17_IsNull = true; }
 	/** @brief Checks whether Ref17_Optional is set to null */
-	bool IsRef17Null() const { return Ref17_IsSet && Ref17_IsNull; }
+	FORCEINLINE bool IsRef17Null() const { return Ref17_IsSet && Ref17_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref18_Optional{  };
@@ -697,29 +659,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref18_IsNull{ false };
 	/** @brief Gets the value of Ref18_Optional, regardless of it having been set */
-	FString& GetRef18() { return Ref18_Optional; }
+	FORCEINLINE FString& GetRef18() { return Ref18_Optional; }
 	/** @brief Gets the value of Ref18_Optional, regardless of it having been set */
-	const FString& GetRef18() const { return Ref18_Optional; }
+	FORCEINLINE const FString& GetRef18() const { return Ref18_Optional; }
 	/** @brief Gets the value of Ref18_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef18(const FString& DefaultValue) const { if (Ref18_IsSet) return Ref18_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef18(const FString& DefaultValue) const { if (Ref18_IsSet) return Ref18_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref18_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef18(FString& OutValue) const { if (Ref18_IsSet && !Ref18_IsNull) OutValue = Ref18_Optional; return Ref18_IsSet; }
+	FORCEINLINE bool GetRef18(FString& OutValue) const { if (Ref18_IsSet && !Ref18_IsNull) OutValue = Ref18_Optional; return Ref18_IsSet; }
 	/** @brief Returns a pointer to Ref18_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef18OrNull() { if (Ref18_IsSet) return (Ref18_IsNull ? nullptr : &Ref18_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef18OrNull() { if (Ref18_IsSet) return (Ref18_IsNull ? nullptr : &Ref18_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref18_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef18OrNull() const { if (Ref18_IsSet) return (Ref18_IsNull ? nullptr : &Ref18_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef18OrNull() const { if (Ref18_IsSet) return (Ref18_IsNull ? nullptr : &Ref18_Optional); return nullptr; }
 	/** @brief Sets the value of Ref18_Optional and also sets Ref18_IsSet to true */
-	void SetRef18(const FString& NewValue) { Ref18_Optional = NewValue; Ref18_IsSet = true; Ref18_IsNull = false; }
+	FORCEINLINE void SetRef18(const FString& NewValue) { Ref18_Optional = NewValue; Ref18_IsSet = true; Ref18_IsNull = false; }
 	/** @brief Sets the value of Ref18_Optional and also sets Ref18_IsSet to true using move semantics */
-	void SetRef18(FString&& NewValue) { Ref18_Optional = NewValue; Ref18_IsSet = true; Ref18_IsNull = false; }
+	FORCEINLINE void SetRef18(FString&& NewValue) { Ref18_Optional = NewValue; Ref18_IsSet = true; Ref18_IsNull = false; }
 	/** @brief Clears the value of Ref18_Optional and sets Ref18_IsSet to false */
 	void ClearRef18() { Ref18_IsSet = false; Ref18_IsNull = false; }
-	/** @brief Checks whether Ref18_Optional has been set */
-	bool IsRef18Set() const { return Ref18_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef18ToNull() { Ref18_IsSet = true; Ref18_IsNull = true; }
+	FORCEINLINE void SetRef18ToNull() { Ref18_IsSet = true; Ref18_IsNull = true; }
 	/** @brief Checks whether Ref18_Optional is set to null */
-	bool IsRef18Null() const { return Ref18_IsSet && Ref18_IsNull; }
+	FORCEINLINE bool IsRef18Null() const { return Ref18_IsSet && Ref18_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref19_Optional{  };
@@ -730,29 +690,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref19_IsNull{ false };
 	/** @brief Gets the value of Ref19_Optional, regardless of it having been set */
-	FString& GetRef19() { return Ref19_Optional; }
+	FORCEINLINE FString& GetRef19() { return Ref19_Optional; }
 	/** @brief Gets the value of Ref19_Optional, regardless of it having been set */
-	const FString& GetRef19() const { return Ref19_Optional; }
+	FORCEINLINE const FString& GetRef19() const { return Ref19_Optional; }
 	/** @brief Gets the value of Ref19_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef19(const FString& DefaultValue) const { if (Ref19_IsSet) return Ref19_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef19(const FString& DefaultValue) const { if (Ref19_IsSet) return Ref19_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref19_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef19(FString& OutValue) const { if (Ref19_IsSet && !Ref19_IsNull) OutValue = Ref19_Optional; return Ref19_IsSet; }
+	FORCEINLINE bool GetRef19(FString& OutValue) const { if (Ref19_IsSet && !Ref19_IsNull) OutValue = Ref19_Optional; return Ref19_IsSet; }
 	/** @brief Returns a pointer to Ref19_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef19OrNull() { if (Ref19_IsSet) return (Ref19_IsNull ? nullptr : &Ref19_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef19OrNull() { if (Ref19_IsSet) return (Ref19_IsNull ? nullptr : &Ref19_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref19_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef19OrNull() const { if (Ref19_IsSet) return (Ref19_IsNull ? nullptr : &Ref19_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef19OrNull() const { if (Ref19_IsSet) return (Ref19_IsNull ? nullptr : &Ref19_Optional); return nullptr; }
 	/** @brief Sets the value of Ref19_Optional and also sets Ref19_IsSet to true */
-	void SetRef19(const FString& NewValue) { Ref19_Optional = NewValue; Ref19_IsSet = true; Ref19_IsNull = false; }
+	FORCEINLINE void SetRef19(const FString& NewValue) { Ref19_Optional = NewValue; Ref19_IsSet = true; Ref19_IsNull = false; }
 	/** @brief Sets the value of Ref19_Optional and also sets Ref19_IsSet to true using move semantics */
-	void SetRef19(FString&& NewValue) { Ref19_Optional = NewValue; Ref19_IsSet = true; Ref19_IsNull = false; }
+	FORCEINLINE void SetRef19(FString&& NewValue) { Ref19_Optional = NewValue; Ref19_IsSet = true; Ref19_IsNull = false; }
 	/** @brief Clears the value of Ref19_Optional and sets Ref19_IsSet to false */
 	void ClearRef19() { Ref19_IsSet = false; Ref19_IsNull = false; }
-	/** @brief Checks whether Ref19_Optional has been set */
-	bool IsRef19Set() const { return Ref19_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef19ToNull() { Ref19_IsSet = true; Ref19_IsNull = true; }
+	FORCEINLINE void SetRef19ToNull() { Ref19_IsSet = true; Ref19_IsNull = true; }
 	/** @brief Checks whether Ref19_Optional is set to null */
-	bool IsRef19Null() const { return Ref19_IsSet && Ref19_IsNull; }
+	FORCEINLINE bool IsRef19Null() const { return Ref19_IsSet && Ref19_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref20_Optional{  };
@@ -763,29 +721,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref20_IsNull{ false };
 	/** @brief Gets the value of Ref20_Optional, regardless of it having been set */
-	FString& GetRef20() { return Ref20_Optional; }
+	FORCEINLINE FString& GetRef20() { return Ref20_Optional; }
 	/** @brief Gets the value of Ref20_Optional, regardless of it having been set */
-	const FString& GetRef20() const { return Ref20_Optional; }
+	FORCEINLINE const FString& GetRef20() const { return Ref20_Optional; }
 	/** @brief Gets the value of Ref20_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef20(const FString& DefaultValue) const { if (Ref20_IsSet) return Ref20_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef20(const FString& DefaultValue) const { if (Ref20_IsSet) return Ref20_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref20_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef20(FString& OutValue) const { if (Ref20_IsSet && !Ref20_IsNull) OutValue = Ref20_Optional; return Ref20_IsSet; }
+	FORCEINLINE bool GetRef20(FString& OutValue) const { if (Ref20_IsSet && !Ref20_IsNull) OutValue = Ref20_Optional; return Ref20_IsSet; }
 	/** @brief Returns a pointer to Ref20_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef20OrNull() { if (Ref20_IsSet) return (Ref20_IsNull ? nullptr : &Ref20_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef20OrNull() { if (Ref20_IsSet) return (Ref20_IsNull ? nullptr : &Ref20_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref20_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef20OrNull() const { if (Ref20_IsSet) return (Ref20_IsNull ? nullptr : &Ref20_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef20OrNull() const { if (Ref20_IsSet) return (Ref20_IsNull ? nullptr : &Ref20_Optional); return nullptr; }
 	/** @brief Sets the value of Ref20_Optional and also sets Ref20_IsSet to true */
-	void SetRef20(const FString& NewValue) { Ref20_Optional = NewValue; Ref20_IsSet = true; Ref20_IsNull = false; }
+	FORCEINLINE void SetRef20(const FString& NewValue) { Ref20_Optional = NewValue; Ref20_IsSet = true; Ref20_IsNull = false; }
 	/** @brief Sets the value of Ref20_Optional and also sets Ref20_IsSet to true using move semantics */
-	void SetRef20(FString&& NewValue) { Ref20_Optional = NewValue; Ref20_IsSet = true; Ref20_IsNull = false; }
+	FORCEINLINE void SetRef20(FString&& NewValue) { Ref20_Optional = NewValue; Ref20_IsSet = true; Ref20_IsNull = false; }
 	/** @brief Clears the value of Ref20_Optional and sets Ref20_IsSet to false */
 	void ClearRef20() { Ref20_IsSet = false; Ref20_IsNull = false; }
-	/** @brief Checks whether Ref20_Optional has been set */
-	bool IsRef20Set() const { return Ref20_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef20ToNull() { Ref20_IsSet = true; Ref20_IsNull = true; }
+	FORCEINLINE void SetRef20ToNull() { Ref20_IsSet = true; Ref20_IsNull = true; }
 	/** @brief Checks whether Ref20_Optional is set to null */
-	bool IsRef20Null() const { return Ref20_IsSet && Ref20_IsNull; }
+	FORCEINLINE bool IsRef20Null() const { return Ref20_IsSet && Ref20_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref21_Optional{  };
@@ -796,29 +752,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref21_IsNull{ false };
 	/** @brief Gets the value of Ref21_Optional, regardless of it having been set */
-	FString& GetRef21() { return Ref21_Optional; }
+	FORCEINLINE FString& GetRef21() { return Ref21_Optional; }
 	/** @brief Gets the value of Ref21_Optional, regardless of it having been set */
-	const FString& GetRef21() const { return Ref21_Optional; }
+	FORCEINLINE const FString& GetRef21() const { return Ref21_Optional; }
 	/** @brief Gets the value of Ref21_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef21(const FString& DefaultValue) const { if (Ref21_IsSet) return Ref21_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef21(const FString& DefaultValue) const { if (Ref21_IsSet) return Ref21_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref21_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef21(FString& OutValue) const { if (Ref21_IsSet && !Ref21_IsNull) OutValue = Ref21_Optional; return Ref21_IsSet; }
+	FORCEINLINE bool GetRef21(FString& OutValue) const { if (Ref21_IsSet && !Ref21_IsNull) OutValue = Ref21_Optional; return Ref21_IsSet; }
 	/** @brief Returns a pointer to Ref21_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef21OrNull() { if (Ref21_IsSet) return (Ref21_IsNull ? nullptr : &Ref21_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef21OrNull() { if (Ref21_IsSet) return (Ref21_IsNull ? nullptr : &Ref21_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref21_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef21OrNull() const { if (Ref21_IsSet) return (Ref21_IsNull ? nullptr : &Ref21_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef21OrNull() const { if (Ref21_IsSet) return (Ref21_IsNull ? nullptr : &Ref21_Optional); return nullptr; }
 	/** @brief Sets the value of Ref21_Optional and also sets Ref21_IsSet to true */
-	void SetRef21(const FString& NewValue) { Ref21_Optional = NewValue; Ref21_IsSet = true; Ref21_IsNull = false; }
+	FORCEINLINE void SetRef21(const FString& NewValue) { Ref21_Optional = NewValue; Ref21_IsSet = true; Ref21_IsNull = false; }
 	/** @brief Sets the value of Ref21_Optional and also sets Ref21_IsSet to true using move semantics */
-	void SetRef21(FString&& NewValue) { Ref21_Optional = NewValue; Ref21_IsSet = true; Ref21_IsNull = false; }
+	FORCEINLINE void SetRef21(FString&& NewValue) { Ref21_Optional = NewValue; Ref21_IsSet = true; Ref21_IsNull = false; }
 	/** @brief Clears the value of Ref21_Optional and sets Ref21_IsSet to false */
 	void ClearRef21() { Ref21_IsSet = false; Ref21_IsNull = false; }
-	/** @brief Checks whether Ref21_Optional has been set */
-	bool IsRef21Set() const { return Ref21_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef21ToNull() { Ref21_IsSet = true; Ref21_IsNull = true; }
+	FORCEINLINE void SetRef21ToNull() { Ref21_IsSet = true; Ref21_IsNull = true; }
 	/** @brief Checks whether Ref21_Optional is set to null */
-	bool IsRef21Null() const { return Ref21_IsSet && Ref21_IsNull; }
+	FORCEINLINE bool IsRef21Null() const { return Ref21_IsSet && Ref21_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref22_Optional{  };
@@ -829,29 +783,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref22_IsNull{ false };
 	/** @brief Gets the value of Ref22_Optional, regardless of it having been set */
-	FString& GetRef22() { return Ref22_Optional; }
+	FORCEINLINE FString& GetRef22() { return Ref22_Optional; }
 	/** @brief Gets the value of Ref22_Optional, regardless of it having been set */
-	const FString& GetRef22() const { return Ref22_Optional; }
+	FORCEINLINE const FString& GetRef22() const { return Ref22_Optional; }
 	/** @brief Gets the value of Ref22_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef22(const FString& DefaultValue) const { if (Ref22_IsSet) return Ref22_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef22(const FString& DefaultValue) const { if (Ref22_IsSet) return Ref22_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref22_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef22(FString& OutValue) const { if (Ref22_IsSet && !Ref22_IsNull) OutValue = Ref22_Optional; return Ref22_IsSet; }
+	FORCEINLINE bool GetRef22(FString& OutValue) const { if (Ref22_IsSet && !Ref22_IsNull) OutValue = Ref22_Optional; return Ref22_IsSet; }
 	/** @brief Returns a pointer to Ref22_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef22OrNull() { if (Ref22_IsSet) return (Ref22_IsNull ? nullptr : &Ref22_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef22OrNull() { if (Ref22_IsSet) return (Ref22_IsNull ? nullptr : &Ref22_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref22_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef22OrNull() const { if (Ref22_IsSet) return (Ref22_IsNull ? nullptr : &Ref22_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef22OrNull() const { if (Ref22_IsSet) return (Ref22_IsNull ? nullptr : &Ref22_Optional); return nullptr; }
 	/** @brief Sets the value of Ref22_Optional and also sets Ref22_IsSet to true */
-	void SetRef22(const FString& NewValue) { Ref22_Optional = NewValue; Ref22_IsSet = true; Ref22_IsNull = false; }
+	FORCEINLINE void SetRef22(const FString& NewValue) { Ref22_Optional = NewValue; Ref22_IsSet = true; Ref22_IsNull = false; }
 	/** @brief Sets the value of Ref22_Optional and also sets Ref22_IsSet to true using move semantics */
-	void SetRef22(FString&& NewValue) { Ref22_Optional = NewValue; Ref22_IsSet = true; Ref22_IsNull = false; }
+	FORCEINLINE void SetRef22(FString&& NewValue) { Ref22_Optional = NewValue; Ref22_IsSet = true; Ref22_IsNull = false; }
 	/** @brief Clears the value of Ref22_Optional and sets Ref22_IsSet to false */
 	void ClearRef22() { Ref22_IsSet = false; Ref22_IsNull = false; }
-	/** @brief Checks whether Ref22_Optional has been set */
-	bool IsRef22Set() const { return Ref22_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef22ToNull() { Ref22_IsSet = true; Ref22_IsNull = true; }
+	FORCEINLINE void SetRef22ToNull() { Ref22_IsSet = true; Ref22_IsNull = true; }
 	/** @brief Checks whether Ref22_Optional is set to null */
-	bool IsRef22Null() const { return Ref22_IsSet && Ref22_IsNull; }
+	FORCEINLINE bool IsRef22Null() const { return Ref22_IsSet && Ref22_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref23_Optional{  };
@@ -862,29 +814,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref23_IsNull{ false };
 	/** @brief Gets the value of Ref23_Optional, regardless of it having been set */
-	FString& GetRef23() { return Ref23_Optional; }
+	FORCEINLINE FString& GetRef23() { return Ref23_Optional; }
 	/** @brief Gets the value of Ref23_Optional, regardless of it having been set */
-	const FString& GetRef23() const { return Ref23_Optional; }
+	FORCEINLINE const FString& GetRef23() const { return Ref23_Optional; }
 	/** @brief Gets the value of Ref23_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef23(const FString& DefaultValue) const { if (Ref23_IsSet) return Ref23_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef23(const FString& DefaultValue) const { if (Ref23_IsSet) return Ref23_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref23_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef23(FString& OutValue) const { if (Ref23_IsSet && !Ref23_IsNull) OutValue = Ref23_Optional; return Ref23_IsSet; }
+	FORCEINLINE bool GetRef23(FString& OutValue) const { if (Ref23_IsSet && !Ref23_IsNull) OutValue = Ref23_Optional; return Ref23_IsSet; }
 	/** @brief Returns a pointer to Ref23_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef23OrNull() { if (Ref23_IsSet) return (Ref23_IsNull ? nullptr : &Ref23_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef23OrNull() { if (Ref23_IsSet) return (Ref23_IsNull ? nullptr : &Ref23_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref23_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef23OrNull() const { if (Ref23_IsSet) return (Ref23_IsNull ? nullptr : &Ref23_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef23OrNull() const { if (Ref23_IsSet) return (Ref23_IsNull ? nullptr : &Ref23_Optional); return nullptr; }
 	/** @brief Sets the value of Ref23_Optional and also sets Ref23_IsSet to true */
-	void SetRef23(const FString& NewValue) { Ref23_Optional = NewValue; Ref23_IsSet = true; Ref23_IsNull = false; }
+	FORCEINLINE void SetRef23(const FString& NewValue) { Ref23_Optional = NewValue; Ref23_IsSet = true; Ref23_IsNull = false; }
 	/** @brief Sets the value of Ref23_Optional and also sets Ref23_IsSet to true using move semantics */
-	void SetRef23(FString&& NewValue) { Ref23_Optional = NewValue; Ref23_IsSet = true; Ref23_IsNull = false; }
+	FORCEINLINE void SetRef23(FString&& NewValue) { Ref23_Optional = NewValue; Ref23_IsSet = true; Ref23_IsNull = false; }
 	/** @brief Clears the value of Ref23_Optional and sets Ref23_IsSet to false */
 	void ClearRef23() { Ref23_IsSet = false; Ref23_IsNull = false; }
-	/** @brief Checks whether Ref23_Optional has been set */
-	bool IsRef23Set() const { return Ref23_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef23ToNull() { Ref23_IsSet = true; Ref23_IsNull = true; }
+	FORCEINLINE void SetRef23ToNull() { Ref23_IsSet = true; Ref23_IsNull = true; }
 	/** @brief Checks whether Ref23_Optional is set to null */
-	bool IsRef23Null() const { return Ref23_IsSet && Ref23_IsNull; }
+	FORCEINLINE bool IsRef23Null() const { return Ref23_IsSet && Ref23_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref24_Optional{  };
@@ -895,29 +845,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref24_IsNull{ false };
 	/** @brief Gets the value of Ref24_Optional, regardless of it having been set */
-	FString& GetRef24() { return Ref24_Optional; }
+	FORCEINLINE FString& GetRef24() { return Ref24_Optional; }
 	/** @brief Gets the value of Ref24_Optional, regardless of it having been set */
-	const FString& GetRef24() const { return Ref24_Optional; }
+	FORCEINLINE const FString& GetRef24() const { return Ref24_Optional; }
 	/** @brief Gets the value of Ref24_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef24(const FString& DefaultValue) const { if (Ref24_IsSet) return Ref24_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef24(const FString& DefaultValue) const { if (Ref24_IsSet) return Ref24_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref24_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef24(FString& OutValue) const { if (Ref24_IsSet && !Ref24_IsNull) OutValue = Ref24_Optional; return Ref24_IsSet; }
+	FORCEINLINE bool GetRef24(FString& OutValue) const { if (Ref24_IsSet && !Ref24_IsNull) OutValue = Ref24_Optional; return Ref24_IsSet; }
 	/** @brief Returns a pointer to Ref24_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef24OrNull() { if (Ref24_IsSet) return (Ref24_IsNull ? nullptr : &Ref24_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef24OrNull() { if (Ref24_IsSet) return (Ref24_IsNull ? nullptr : &Ref24_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref24_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef24OrNull() const { if (Ref24_IsSet) return (Ref24_IsNull ? nullptr : &Ref24_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef24OrNull() const { if (Ref24_IsSet) return (Ref24_IsNull ? nullptr : &Ref24_Optional); return nullptr; }
 	/** @brief Sets the value of Ref24_Optional and also sets Ref24_IsSet to true */
-	void SetRef24(const FString& NewValue) { Ref24_Optional = NewValue; Ref24_IsSet = true; Ref24_IsNull = false; }
+	FORCEINLINE void SetRef24(const FString& NewValue) { Ref24_Optional = NewValue; Ref24_IsSet = true; Ref24_IsNull = false; }
 	/** @brief Sets the value of Ref24_Optional and also sets Ref24_IsSet to true using move semantics */
-	void SetRef24(FString&& NewValue) { Ref24_Optional = NewValue; Ref24_IsSet = true; Ref24_IsNull = false; }
+	FORCEINLINE void SetRef24(FString&& NewValue) { Ref24_Optional = NewValue; Ref24_IsSet = true; Ref24_IsNull = false; }
 	/** @brief Clears the value of Ref24_Optional and sets Ref24_IsSet to false */
 	void ClearRef24() { Ref24_IsSet = false; Ref24_IsNull = false; }
-	/** @brief Checks whether Ref24_Optional has been set */
-	bool IsRef24Set() const { return Ref24_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef24ToNull() { Ref24_IsSet = true; Ref24_IsNull = true; }
+	FORCEINLINE void SetRef24ToNull() { Ref24_IsSet = true; Ref24_IsNull = true; }
 	/** @brief Checks whether Ref24_Optional is set to null */
-	bool IsRef24Null() const { return Ref24_IsSet && Ref24_IsNull; }
+	FORCEINLINE bool IsRef24Null() const { return Ref24_IsSet && Ref24_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref25_Optional{  };
@@ -928,29 +876,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref25_IsNull{ false };
 	/** @brief Gets the value of Ref25_Optional, regardless of it having been set */
-	FString& GetRef25() { return Ref25_Optional; }
+	FORCEINLINE FString& GetRef25() { return Ref25_Optional; }
 	/** @brief Gets the value of Ref25_Optional, regardless of it having been set */
-	const FString& GetRef25() const { return Ref25_Optional; }
+	FORCEINLINE const FString& GetRef25() const { return Ref25_Optional; }
 	/** @brief Gets the value of Ref25_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef25(const FString& DefaultValue) const { if (Ref25_IsSet) return Ref25_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef25(const FString& DefaultValue) const { if (Ref25_IsSet) return Ref25_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref25_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef25(FString& OutValue) const { if (Ref25_IsSet && !Ref25_IsNull) OutValue = Ref25_Optional; return Ref25_IsSet; }
+	FORCEINLINE bool GetRef25(FString& OutValue) const { if (Ref25_IsSet && !Ref25_IsNull) OutValue = Ref25_Optional; return Ref25_IsSet; }
 	/** @brief Returns a pointer to Ref25_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef25OrNull() { if (Ref25_IsSet) return (Ref25_IsNull ? nullptr : &Ref25_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef25OrNull() { if (Ref25_IsSet) return (Ref25_IsNull ? nullptr : &Ref25_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref25_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef25OrNull() const { if (Ref25_IsSet) return (Ref25_IsNull ? nullptr : &Ref25_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef25OrNull() const { if (Ref25_IsSet) return (Ref25_IsNull ? nullptr : &Ref25_Optional); return nullptr; }
 	/** @brief Sets the value of Ref25_Optional and also sets Ref25_IsSet to true */
-	void SetRef25(const FString& NewValue) { Ref25_Optional = NewValue; Ref25_IsSet = true; Ref25_IsNull = false; }
+	FORCEINLINE void SetRef25(const FString& NewValue) { Ref25_Optional = NewValue; Ref25_IsSet = true; Ref25_IsNull = false; }
 	/** @brief Sets the value of Ref25_Optional and also sets Ref25_IsSet to true using move semantics */
-	void SetRef25(FString&& NewValue) { Ref25_Optional = NewValue; Ref25_IsSet = true; Ref25_IsNull = false; }
+	FORCEINLINE void SetRef25(FString&& NewValue) { Ref25_Optional = NewValue; Ref25_IsSet = true; Ref25_IsNull = false; }
 	/** @brief Clears the value of Ref25_Optional and sets Ref25_IsSet to false */
 	void ClearRef25() { Ref25_IsSet = false; Ref25_IsNull = false; }
-	/** @brief Checks whether Ref25_Optional has been set */
-	bool IsRef25Set() const { return Ref25_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef25ToNull() { Ref25_IsSet = true; Ref25_IsNull = true; }
+	FORCEINLINE void SetRef25ToNull() { Ref25_IsSet = true; Ref25_IsNull = true; }
 	/** @brief Checks whether Ref25_Optional is set to null */
-	bool IsRef25Null() const { return Ref25_IsSet && Ref25_IsNull; }
+	FORCEINLINE bool IsRef25Null() const { return Ref25_IsSet && Ref25_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref26_Optional{  };
@@ -961,29 +907,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref26_IsNull{ false };
 	/** @brief Gets the value of Ref26_Optional, regardless of it having been set */
-	FString& GetRef26() { return Ref26_Optional; }
+	FORCEINLINE FString& GetRef26() { return Ref26_Optional; }
 	/** @brief Gets the value of Ref26_Optional, regardless of it having been set */
-	const FString& GetRef26() const { return Ref26_Optional; }
+	FORCEINLINE const FString& GetRef26() const { return Ref26_Optional; }
 	/** @brief Gets the value of Ref26_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef26(const FString& DefaultValue) const { if (Ref26_IsSet) return Ref26_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef26(const FString& DefaultValue) const { if (Ref26_IsSet) return Ref26_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref26_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef26(FString& OutValue) const { if (Ref26_IsSet && !Ref26_IsNull) OutValue = Ref26_Optional; return Ref26_IsSet; }
+	FORCEINLINE bool GetRef26(FString& OutValue) const { if (Ref26_IsSet && !Ref26_IsNull) OutValue = Ref26_Optional; return Ref26_IsSet; }
 	/** @brief Returns a pointer to Ref26_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef26OrNull() { if (Ref26_IsSet) return (Ref26_IsNull ? nullptr : &Ref26_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef26OrNull() { if (Ref26_IsSet) return (Ref26_IsNull ? nullptr : &Ref26_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref26_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef26OrNull() const { if (Ref26_IsSet) return (Ref26_IsNull ? nullptr : &Ref26_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef26OrNull() const { if (Ref26_IsSet) return (Ref26_IsNull ? nullptr : &Ref26_Optional); return nullptr; }
 	/** @brief Sets the value of Ref26_Optional and also sets Ref26_IsSet to true */
-	void SetRef26(const FString& NewValue) { Ref26_Optional = NewValue; Ref26_IsSet = true; Ref26_IsNull = false; }
+	FORCEINLINE void SetRef26(const FString& NewValue) { Ref26_Optional = NewValue; Ref26_IsSet = true; Ref26_IsNull = false; }
 	/** @brief Sets the value of Ref26_Optional and also sets Ref26_IsSet to true using move semantics */
-	void SetRef26(FString&& NewValue) { Ref26_Optional = NewValue; Ref26_IsSet = true; Ref26_IsNull = false; }
+	FORCEINLINE void SetRef26(FString&& NewValue) { Ref26_Optional = NewValue; Ref26_IsSet = true; Ref26_IsNull = false; }
 	/** @brief Clears the value of Ref26_Optional and sets Ref26_IsSet to false */
 	void ClearRef26() { Ref26_IsSet = false; Ref26_IsNull = false; }
-	/** @brief Checks whether Ref26_Optional has been set */
-	bool IsRef26Set() const { return Ref26_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef26ToNull() { Ref26_IsSet = true; Ref26_IsNull = true; }
+	FORCEINLINE void SetRef26ToNull() { Ref26_IsSet = true; Ref26_IsNull = true; }
 	/** @brief Checks whether Ref26_Optional is set to null */
-	bool IsRef26Null() const { return Ref26_IsSet && Ref26_IsNull; }
+	FORCEINLINE bool IsRef26Null() const { return Ref26_IsSet && Ref26_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref27_Optional{  };
@@ -994,29 +938,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref27_IsNull{ false };
 	/** @brief Gets the value of Ref27_Optional, regardless of it having been set */
-	FString& GetRef27() { return Ref27_Optional; }
+	FORCEINLINE FString& GetRef27() { return Ref27_Optional; }
 	/** @brief Gets the value of Ref27_Optional, regardless of it having been set */
-	const FString& GetRef27() const { return Ref27_Optional; }
+	FORCEINLINE const FString& GetRef27() const { return Ref27_Optional; }
 	/** @brief Gets the value of Ref27_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef27(const FString& DefaultValue) const { if (Ref27_IsSet) return Ref27_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef27(const FString& DefaultValue) const { if (Ref27_IsSet) return Ref27_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref27_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef27(FString& OutValue) const { if (Ref27_IsSet && !Ref27_IsNull) OutValue = Ref27_Optional; return Ref27_IsSet; }
+	FORCEINLINE bool GetRef27(FString& OutValue) const { if (Ref27_IsSet && !Ref27_IsNull) OutValue = Ref27_Optional; return Ref27_IsSet; }
 	/** @brief Returns a pointer to Ref27_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef27OrNull() { if (Ref27_IsSet) return (Ref27_IsNull ? nullptr : &Ref27_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef27OrNull() { if (Ref27_IsSet) return (Ref27_IsNull ? nullptr : &Ref27_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref27_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef27OrNull() const { if (Ref27_IsSet) return (Ref27_IsNull ? nullptr : &Ref27_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef27OrNull() const { if (Ref27_IsSet) return (Ref27_IsNull ? nullptr : &Ref27_Optional); return nullptr; }
 	/** @brief Sets the value of Ref27_Optional and also sets Ref27_IsSet to true */
-	void SetRef27(const FString& NewValue) { Ref27_Optional = NewValue; Ref27_IsSet = true; Ref27_IsNull = false; }
+	FORCEINLINE void SetRef27(const FString& NewValue) { Ref27_Optional = NewValue; Ref27_IsSet = true; Ref27_IsNull = false; }
 	/** @brief Sets the value of Ref27_Optional and also sets Ref27_IsSet to true using move semantics */
-	void SetRef27(FString&& NewValue) { Ref27_Optional = NewValue; Ref27_IsSet = true; Ref27_IsNull = false; }
+	FORCEINLINE void SetRef27(FString&& NewValue) { Ref27_Optional = NewValue; Ref27_IsSet = true; Ref27_IsNull = false; }
 	/** @brief Clears the value of Ref27_Optional and sets Ref27_IsSet to false */
 	void ClearRef27() { Ref27_IsSet = false; Ref27_IsNull = false; }
-	/** @brief Checks whether Ref27_Optional has been set */
-	bool IsRef27Set() const { return Ref27_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef27ToNull() { Ref27_IsSet = true; Ref27_IsNull = true; }
+	FORCEINLINE void SetRef27ToNull() { Ref27_IsSet = true; Ref27_IsNull = true; }
 	/** @brief Checks whether Ref27_Optional is set to null */
-	bool IsRef27Null() const { return Ref27_IsSet && Ref27_IsNull; }
+	FORCEINLINE bool IsRef27Null() const { return Ref27_IsSet && Ref27_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref28_Optional{  };
@@ -1027,29 +969,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref28_IsNull{ false };
 	/** @brief Gets the value of Ref28_Optional, regardless of it having been set */
-	FString& GetRef28() { return Ref28_Optional; }
+	FORCEINLINE FString& GetRef28() { return Ref28_Optional; }
 	/** @brief Gets the value of Ref28_Optional, regardless of it having been set */
-	const FString& GetRef28() const { return Ref28_Optional; }
+	FORCEINLINE const FString& GetRef28() const { return Ref28_Optional; }
 	/** @brief Gets the value of Ref28_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef28(const FString& DefaultValue) const { if (Ref28_IsSet) return Ref28_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef28(const FString& DefaultValue) const { if (Ref28_IsSet) return Ref28_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref28_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef28(FString& OutValue) const { if (Ref28_IsSet && !Ref28_IsNull) OutValue = Ref28_Optional; return Ref28_IsSet; }
+	FORCEINLINE bool GetRef28(FString& OutValue) const { if (Ref28_IsSet && !Ref28_IsNull) OutValue = Ref28_Optional; return Ref28_IsSet; }
 	/** @brief Returns a pointer to Ref28_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef28OrNull() { if (Ref28_IsSet) return (Ref28_IsNull ? nullptr : &Ref28_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef28OrNull() { if (Ref28_IsSet) return (Ref28_IsNull ? nullptr : &Ref28_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref28_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef28OrNull() const { if (Ref28_IsSet) return (Ref28_IsNull ? nullptr : &Ref28_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef28OrNull() const { if (Ref28_IsSet) return (Ref28_IsNull ? nullptr : &Ref28_Optional); return nullptr; }
 	/** @brief Sets the value of Ref28_Optional and also sets Ref28_IsSet to true */
-	void SetRef28(const FString& NewValue) { Ref28_Optional = NewValue; Ref28_IsSet = true; Ref28_IsNull = false; }
+	FORCEINLINE void SetRef28(const FString& NewValue) { Ref28_Optional = NewValue; Ref28_IsSet = true; Ref28_IsNull = false; }
 	/** @brief Sets the value of Ref28_Optional and also sets Ref28_IsSet to true using move semantics */
-	void SetRef28(FString&& NewValue) { Ref28_Optional = NewValue; Ref28_IsSet = true; Ref28_IsNull = false; }
+	FORCEINLINE void SetRef28(FString&& NewValue) { Ref28_Optional = NewValue; Ref28_IsSet = true; Ref28_IsNull = false; }
 	/** @brief Clears the value of Ref28_Optional and sets Ref28_IsSet to false */
 	void ClearRef28() { Ref28_IsSet = false; Ref28_IsNull = false; }
-	/** @brief Checks whether Ref28_Optional has been set */
-	bool IsRef28Set() const { return Ref28_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef28ToNull() { Ref28_IsSet = true; Ref28_IsNull = true; }
+	FORCEINLINE void SetRef28ToNull() { Ref28_IsSet = true; Ref28_IsNull = true; }
 	/** @brief Checks whether Ref28_Optional is set to null */
-	bool IsRef28Null() const { return Ref28_IsSet && Ref28_IsNull; }
+	FORCEINLINE bool IsRef28Null() const { return Ref28_IsSet && Ref28_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref29_Optional{  };
@@ -1060,29 +1000,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref29_IsNull{ false };
 	/** @brief Gets the value of Ref29_Optional, regardless of it having been set */
-	FString& GetRef29() { return Ref29_Optional; }
+	FORCEINLINE FString& GetRef29() { return Ref29_Optional; }
 	/** @brief Gets the value of Ref29_Optional, regardless of it having been set */
-	const FString& GetRef29() const { return Ref29_Optional; }
+	FORCEINLINE const FString& GetRef29() const { return Ref29_Optional; }
 	/** @brief Gets the value of Ref29_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef29(const FString& DefaultValue) const { if (Ref29_IsSet) return Ref29_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef29(const FString& DefaultValue) const { if (Ref29_IsSet) return Ref29_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref29_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef29(FString& OutValue) const { if (Ref29_IsSet && !Ref29_IsNull) OutValue = Ref29_Optional; return Ref29_IsSet; }
+	FORCEINLINE bool GetRef29(FString& OutValue) const { if (Ref29_IsSet && !Ref29_IsNull) OutValue = Ref29_Optional; return Ref29_IsSet; }
 	/** @brief Returns a pointer to Ref29_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef29OrNull() { if (Ref29_IsSet) return (Ref29_IsNull ? nullptr : &Ref29_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef29OrNull() { if (Ref29_IsSet) return (Ref29_IsNull ? nullptr : &Ref29_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref29_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef29OrNull() const { if (Ref29_IsSet) return (Ref29_IsNull ? nullptr : &Ref29_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef29OrNull() const { if (Ref29_IsSet) return (Ref29_IsNull ? nullptr : &Ref29_Optional); return nullptr; }
 	/** @brief Sets the value of Ref29_Optional and also sets Ref29_IsSet to true */
-	void SetRef29(const FString& NewValue) { Ref29_Optional = NewValue; Ref29_IsSet = true; Ref29_IsNull = false; }
+	FORCEINLINE void SetRef29(const FString& NewValue) { Ref29_Optional = NewValue; Ref29_IsSet = true; Ref29_IsNull = false; }
 	/** @brief Sets the value of Ref29_Optional and also sets Ref29_IsSet to true using move semantics */
-	void SetRef29(FString&& NewValue) { Ref29_Optional = NewValue; Ref29_IsSet = true; Ref29_IsNull = false; }
+	FORCEINLINE void SetRef29(FString&& NewValue) { Ref29_Optional = NewValue; Ref29_IsSet = true; Ref29_IsNull = false; }
 	/** @brief Clears the value of Ref29_Optional and sets Ref29_IsSet to false */
 	void ClearRef29() { Ref29_IsSet = false; Ref29_IsNull = false; }
-	/** @brief Checks whether Ref29_Optional has been set */
-	bool IsRef29Set() const { return Ref29_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef29ToNull() { Ref29_IsSet = true; Ref29_IsNull = true; }
+	FORCEINLINE void SetRef29ToNull() { Ref29_IsSet = true; Ref29_IsNull = true; }
 	/** @brief Checks whether Ref29_Optional is set to null */
-	bool IsRef29Null() const { return Ref29_IsSet && Ref29_IsNull; }
+	FORCEINLINE bool IsRef29Null() const { return Ref29_IsSet && Ref29_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref30_Optional{  };
@@ -1093,29 +1031,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref30_IsNull{ false };
 	/** @brief Gets the value of Ref30_Optional, regardless of it having been set */
-	FString& GetRef30() { return Ref30_Optional; }
+	FORCEINLINE FString& GetRef30() { return Ref30_Optional; }
 	/** @brief Gets the value of Ref30_Optional, regardless of it having been set */
-	const FString& GetRef30() const { return Ref30_Optional; }
+	FORCEINLINE const FString& GetRef30() const { return Ref30_Optional; }
 	/** @brief Gets the value of Ref30_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef30(const FString& DefaultValue) const { if (Ref30_IsSet) return Ref30_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef30(const FString& DefaultValue) const { if (Ref30_IsSet) return Ref30_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref30_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef30(FString& OutValue) const { if (Ref30_IsSet && !Ref30_IsNull) OutValue = Ref30_Optional; return Ref30_IsSet; }
+	FORCEINLINE bool GetRef30(FString& OutValue) const { if (Ref30_IsSet && !Ref30_IsNull) OutValue = Ref30_Optional; return Ref30_IsSet; }
 	/** @brief Returns a pointer to Ref30_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef30OrNull() { if (Ref30_IsSet) return (Ref30_IsNull ? nullptr : &Ref30_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef30OrNull() { if (Ref30_IsSet) return (Ref30_IsNull ? nullptr : &Ref30_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref30_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef30OrNull() const { if (Ref30_IsSet) return (Ref30_IsNull ? nullptr : &Ref30_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef30OrNull() const { if (Ref30_IsSet) return (Ref30_IsNull ? nullptr : &Ref30_Optional); return nullptr; }
 	/** @brief Sets the value of Ref30_Optional and also sets Ref30_IsSet to true */
-	void SetRef30(const FString& NewValue) { Ref30_Optional = NewValue; Ref30_IsSet = true; Ref30_IsNull = false; }
+	FORCEINLINE void SetRef30(const FString& NewValue) { Ref30_Optional = NewValue; Ref30_IsSet = true; Ref30_IsNull = false; }
 	/** @brief Sets the value of Ref30_Optional and also sets Ref30_IsSet to true using move semantics */
-	void SetRef30(FString&& NewValue) { Ref30_Optional = NewValue; Ref30_IsSet = true; Ref30_IsNull = false; }
+	FORCEINLINE void SetRef30(FString&& NewValue) { Ref30_Optional = NewValue; Ref30_IsSet = true; Ref30_IsNull = false; }
 	/** @brief Clears the value of Ref30_Optional and sets Ref30_IsSet to false */
 	void ClearRef30() { Ref30_IsSet = false; Ref30_IsNull = false; }
-	/** @brief Checks whether Ref30_Optional has been set */
-	bool IsRef30Set() const { return Ref30_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef30ToNull() { Ref30_IsSet = true; Ref30_IsNull = true; }
+	FORCEINLINE void SetRef30ToNull() { Ref30_IsSet = true; Ref30_IsNull = true; }
 	/** @brief Checks whether Ref30_Optional is set to null */
-	bool IsRef30Null() const { return Ref30_IsSet && Ref30_IsNull; }
+	FORCEINLINE bool IsRef30Null() const { return Ref30_IsSet && Ref30_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref31_Optional{  };
@@ -1126,29 +1062,27 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref31_IsNull{ false };
 	/** @brief Gets the value of Ref31_Optional, regardless of it having been set */
-	FString& GetRef31() { return Ref31_Optional; }
+	FORCEINLINE FString& GetRef31() { return Ref31_Optional; }
 	/** @brief Gets the value of Ref31_Optional, regardless of it having been set */
-	const FString& GetRef31() const { return Ref31_Optional; }
+	FORCEINLINE const FString& GetRef31() const { return Ref31_Optional; }
 	/** @brief Gets the value of Ref31_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef31(const FString& DefaultValue) const { if (Ref31_IsSet) return Ref31_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef31(const FString& DefaultValue) const { if (Ref31_IsSet) return Ref31_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref31_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef31(FString& OutValue) const { if (Ref31_IsSet && !Ref31_IsNull) OutValue = Ref31_Optional; return Ref31_IsSet; }
+	FORCEINLINE bool GetRef31(FString& OutValue) const { if (Ref31_IsSet && !Ref31_IsNull) OutValue = Ref31_Optional; return Ref31_IsSet; }
 	/** @brief Returns a pointer to Ref31_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef31OrNull() { if (Ref31_IsSet) return (Ref31_IsNull ? nullptr : &Ref31_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef31OrNull() { if (Ref31_IsSet) return (Ref31_IsNull ? nullptr : &Ref31_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref31_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef31OrNull() const { if (Ref31_IsSet) return (Ref31_IsNull ? nullptr : &Ref31_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef31OrNull() const { if (Ref31_IsSet) return (Ref31_IsNull ? nullptr : &Ref31_Optional); return nullptr; }
 	/** @brief Sets the value of Ref31_Optional and also sets Ref31_IsSet to true */
-	void SetRef31(const FString& NewValue) { Ref31_Optional = NewValue; Ref31_IsSet = true; Ref31_IsNull = false; }
+	FORCEINLINE void SetRef31(const FString& NewValue) { Ref31_Optional = NewValue; Ref31_IsSet = true; Ref31_IsNull = false; }
 	/** @brief Sets the value of Ref31_Optional and also sets Ref31_IsSet to true using move semantics */
-	void SetRef31(FString&& NewValue) { Ref31_Optional = NewValue; Ref31_IsSet = true; Ref31_IsNull = false; }
+	FORCEINLINE void SetRef31(FString&& NewValue) { Ref31_Optional = NewValue; Ref31_IsSet = true; Ref31_IsNull = false; }
 	/** @brief Clears the value of Ref31_Optional and sets Ref31_IsSet to false */
 	void ClearRef31() { Ref31_IsSet = false; Ref31_IsNull = false; }
-	/** @brief Checks whether Ref31_Optional has been set */
-	bool IsRef31Set() const { return Ref31_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef31ToNull() { Ref31_IsSet = true; Ref31_IsNull = true; }
+	FORCEINLINE void SetRef31ToNull() { Ref31_IsSet = true; Ref31_IsNull = true; }
 	/** @brief Checks whether Ref31_Optional is set to null */
-	bool IsRef31Null() const { return Ref31_IsSet && Ref31_IsNull; }
+	FORCEINLINE bool IsRef31Null() const { return Ref31_IsSet && Ref31_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Ref32_Optional{  };
@@ -1159,53 +1093,51 @@ struct RALLYHEREAPI_API FRHAPI_GuideSectionFull : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Ref32_IsNull{ false };
 	/** @brief Gets the value of Ref32_Optional, regardless of it having been set */
-	FString& GetRef32() { return Ref32_Optional; }
+	FORCEINLINE FString& GetRef32() { return Ref32_Optional; }
 	/** @brief Gets the value of Ref32_Optional, regardless of it having been set */
-	const FString& GetRef32() const { return Ref32_Optional; }
+	FORCEINLINE const FString& GetRef32() const { return Ref32_Optional; }
 	/** @brief Gets the value of Ref32_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRef32(const FString& DefaultValue) const { if (Ref32_IsSet) return Ref32_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRef32(const FString& DefaultValue) const { if (Ref32_IsSet) return Ref32_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Ref32_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRef32(FString& OutValue) const { if (Ref32_IsSet && !Ref32_IsNull) OutValue = Ref32_Optional; return Ref32_IsSet; }
+	FORCEINLINE bool GetRef32(FString& OutValue) const { if (Ref32_IsSet && !Ref32_IsNull) OutValue = Ref32_Optional; return Ref32_IsSet; }
 	/** @brief Returns a pointer to Ref32_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRef32OrNull() { if (Ref32_IsSet) return (Ref32_IsNull ? nullptr : &Ref32_Optional); return nullptr; }
+	FORCEINLINE FString* GetRef32OrNull() { if (Ref32_IsSet) return (Ref32_IsNull ? nullptr : &Ref32_Optional); return nullptr; }
 	/** @brief Returns a pointer to Ref32_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRef32OrNull() const { if (Ref32_IsSet) return (Ref32_IsNull ? nullptr : &Ref32_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRef32OrNull() const { if (Ref32_IsSet) return (Ref32_IsNull ? nullptr : &Ref32_Optional); return nullptr; }
 	/** @brief Sets the value of Ref32_Optional and also sets Ref32_IsSet to true */
-	void SetRef32(const FString& NewValue) { Ref32_Optional = NewValue; Ref32_IsSet = true; Ref32_IsNull = false; }
+	FORCEINLINE void SetRef32(const FString& NewValue) { Ref32_Optional = NewValue; Ref32_IsSet = true; Ref32_IsNull = false; }
 	/** @brief Sets the value of Ref32_Optional and also sets Ref32_IsSet to true using move semantics */
-	void SetRef32(FString&& NewValue) { Ref32_Optional = NewValue; Ref32_IsSet = true; Ref32_IsNull = false; }
+	FORCEINLINE void SetRef32(FString&& NewValue) { Ref32_Optional = NewValue; Ref32_IsSet = true; Ref32_IsNull = false; }
 	/** @brief Clears the value of Ref32_Optional and sets Ref32_IsSet to false */
 	void ClearRef32() { Ref32_IsSet = false; Ref32_IsNull = false; }
-	/** @brief Checks whether Ref32_Optional has been set */
-	bool IsRef32Set() const { return Ref32_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetRef32ToNull() { Ref32_IsSet = true; Ref32_IsNull = true; }
+	FORCEINLINE void SetRef32ToNull() { Ref32_IsSet = true; Ref32_IsNull = true; }
 	/** @brief Checks whether Ref32_Optional is set to null */
-	bool IsRef32Null() const { return Ref32_IsSet && Ref32_IsNull; }
+	FORCEINLINE bool IsRef32Null() const { return Ref32_IsSet && Ref32_IsNull; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Created{  };
 	/** @brief Gets the value of Created */
-	FDateTime& GetCreated() { return Created; }
+	FORCEINLINE FDateTime& GetCreated() { return Created; }
 	/** @brief Gets the value of Created */
-	const FDateTime& GetCreated() const { return Created; }
+	FORCEINLINE const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
+	FORCEINLINE void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
 	/** @brief Sets the value of Created using move semantics */
-	void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
+	FORCEINLINE void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Modified{  };
 	/** @brief Gets the value of Modified */
-	FDateTime& GetModified() { return Modified; }
+	FORCEINLINE FDateTime& GetModified() { return Modified; }
 	/** @brief Gets the value of Modified */
-	const FDateTime& GetModified() const { return Modified; }
+	FORCEINLINE const FDateTime& GetModified() const { return Modified; }
 	/** @brief Sets the value of Modified */
-	void SetModified(const FDateTime& NewValue) { Modified = NewValue;   }
+	FORCEINLINE void SetModified(const FDateTime& NewValue) { Modified = NewValue;   }
 	/** @brief Sets the value of Modified using move semantics */
-	void SetModified(FDateTime&& NewValue) { Modified = NewValue;   }
+	FORCEINLINE void SetModified(FDateTime&& NewValue) { Modified = NewValue;   }
 };
 
 /** @} */

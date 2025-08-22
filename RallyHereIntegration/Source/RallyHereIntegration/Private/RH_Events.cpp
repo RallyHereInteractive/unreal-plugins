@@ -112,7 +112,7 @@ namespace RHStandardEvents
 
 		if (ParentUserId.IsSet())
 		{
-			JsonData->SetStringField(TEXT("parent_user_id"), ParentUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens));
+			JsonData->SetStringField(TEXT("parent_user_id"), ParentUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphensLower));
 		}
 
 		if (PlayerIndex.IsSet())
@@ -242,19 +242,19 @@ bool FRH_GetsAutomationTestAll::RunTest(const FString& Parameters)
 	{
 		// common values for consistency across the entire run
 		const FGuid UserIdGuid = FGuid::NewGuid();
-		const FString UserId = UserIdGuid.ToString(EGuidFormats::DigitsWithHyphens);
+		const FString UserId = UserIdGuid.ToString(EGuidFormats::DigitsWithHyphensLower);
 		const FString UserIdPlatformId = EnumToString(ERHAPI_Platform::Anon);
 		const FString UserIdPlatformUserId = UserId;
 		const FString UserIdPlatformDisplayName = TEXT("TestUser");
-		const FString UserIdPersonId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+		const FString UserIdPersonId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower);
 
 		const FGuid UserId2Guid = FGuid::NewGuid();
-		const FString UserId2 = UserId2Guid.ToString(EGuidFormats::DigitsWithHyphens);
+		const FString UserId2 = UserId2Guid.ToString(EGuidFormats::DigitsWithHyphensLower);
 		const FString UserId2PlatformId = EnumToString(ERHAPI_Platform::Anon);
 		const FString UserId2PlatformUserId = UserId2;
 
-		const FString SessionId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
-		const FString InstanceId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphens);
+		const FString SessionId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower);
+		const FString InstanceId = FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower);
 		const FString Reason = TEXT("TestReason");
 		const FString LocalIp = TEXT("127.0.0.1");
 		const FString ConnectionString = TEXT("TestConnectionString");

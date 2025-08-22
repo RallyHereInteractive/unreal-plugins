@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Time{  };
 	/** @brief Gets the value of Time */
-	FDateTime& GetTime() { return Time; }
+	FORCEINLINE FDateTime& GetTime() { return Time; }
 	/** @brief Gets the value of Time */
-	const FDateTime& GetTime() const { return Time; }
+	FORCEINLINE const FDateTime& GetTime() const { return Time; }
 	/** @brief Sets the value of Time */
-	void SetTime(const FDateTime& NewValue) { Time = NewValue;   }
+	FORCEINLINE void SetTime(const FDateTime& NewValue) { Time = NewValue;   }
 	/** @brief Sets the value of Time using move semantics */
-	void SetTime(FDateTime&& NewValue) { Time = NewValue;   }
+	FORCEINLINE void SetTime(FDateTime&& NewValue) { Time = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Platform_Optional{  };
@@ -60,29 +60,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Platform_IsNull{ false };
 	/** @brief Gets the value of Platform_Optional, regardless of it having been set */
-	FString& GetPlatform() { return Platform_Optional; }
+	FORCEINLINE FString& GetPlatform() { return Platform_Optional; }
 	/** @brief Gets the value of Platform_Optional, regardless of it having been set */
-	const FString& GetPlatform() const { return Platform_Optional; }
+	FORCEINLINE const FString& GetPlatform() const { return Platform_Optional; }
 	/** @brief Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPlatform(const FString& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPlatform(const FString& DefaultValue) const { if (Platform_IsSet) return Platform_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatform(FString& OutValue) const { if (Platform_IsSet && !Platform_IsNull) OutValue = Platform_Optional; return Platform_IsSet; }
+	FORCEINLINE bool GetPlatform(FString& OutValue) const { if (Platform_IsSet && !Platform_IsNull) OutValue = Platform_Optional; return Platform_IsSet; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPlatformOrNull() { if (Platform_IsSet) return (Platform_IsNull ? nullptr : &Platform_Optional); return nullptr; }
+	FORCEINLINE FString* GetPlatformOrNull() { if (Platform_IsSet) return (Platform_IsNull ? nullptr : &Platform_Optional); return nullptr; }
 	/** @brief Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPlatformOrNull() const { if (Platform_IsSet) return (Platform_IsNull ? nullptr : &Platform_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPlatformOrNull() const { if (Platform_IsSet) return (Platform_IsNull ? nullptr : &Platform_Optional); return nullptr; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true */
-	void SetPlatform(const FString& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; Platform_IsNull = false; }
+	FORCEINLINE void SetPlatform(const FString& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; Platform_IsNull = false; }
 	/** @brief Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics */
-	void SetPlatform(FString&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; Platform_IsNull = false; }
+	FORCEINLINE void SetPlatform(FString&& NewValue) { Platform_Optional = NewValue; Platform_IsSet = true; Platform_IsNull = false; }
 	/** @brief Clears the value of Platform_Optional and sets Platform_IsSet to false */
 	void ClearPlatform() { Platform_IsSet = false; Platform_IsNull = false; }
-	/** @brief Checks whether Platform_Optional has been set */
-	bool IsPlatformSet() const { return Platform_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPlatformToNull() { Platform_IsSet = true; Platform_IsNull = true; }
+	FORCEINLINE void SetPlatformToNull() { Platform_IsSet = true; Platform_IsNull = true; }
 	/** @brief Checks whether Platform_Optional is set to null */
-	bool IsPlatformNull() const { return Platform_IsSet && Platform_IsNull; }
+	FORCEINLINE bool IsPlatformNull() const { return Platform_IsSet && Platform_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString DisplayName_Optional{  };
@@ -93,29 +91,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLastSeenUpdate : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool DisplayName_IsNull{ false };
 	/** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
-	FString& GetDisplayName() { return DisplayName_Optional; }
+	FORCEINLINE FString& GetDisplayName() { return DisplayName_Optional; }
 	/** @brief Gets the value of DisplayName_Optional, regardless of it having been set */
-	const FString& GetDisplayName() const { return DisplayName_Optional; }
+	FORCEINLINE const FString& GetDisplayName() const { return DisplayName_Optional; }
 	/** @brief Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetDisplayName(const FString& DefaultValue) const { if (DisplayName_IsSet) return DisplayName_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetDisplayName(const FString& DefaultValue) const { if (DisplayName_IsSet) return DisplayName_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false */
-	bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet && !DisplayName_IsNull) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
+	FORCEINLINE bool GetDisplayName(FString& OutValue) const { if (DisplayName_IsSet && !DisplayName_IsNull) OutValue = DisplayName_Optional; return DisplayName_IsSet; }
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return (DisplayName_IsNull ? nullptr : &DisplayName_Optional); return nullptr; }
+	FORCEINLINE FString* GetDisplayNameOrNull() { if (DisplayName_IsSet) return (DisplayName_IsNull ? nullptr : &DisplayName_Optional); return nullptr; }
 	/** @brief Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return (DisplayName_IsNull ? nullptr : &DisplayName_Optional); return nullptr; }
+	FORCEINLINE const FString* GetDisplayNameOrNull() const { if (DisplayName_IsSet) return (DisplayName_IsNull ? nullptr : &DisplayName_Optional); return nullptr; }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true */
-	void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; DisplayName_IsNull = false; }
+	FORCEINLINE void SetDisplayName(const FString& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; DisplayName_IsNull = false; }
 	/** @brief Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics */
-	void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; DisplayName_IsNull = false; }
+	FORCEINLINE void SetDisplayName(FString&& NewValue) { DisplayName_Optional = NewValue; DisplayName_IsSet = true; DisplayName_IsNull = false; }
 	/** @brief Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false */
 	void ClearDisplayName() { DisplayName_IsSet = false; DisplayName_IsNull = false; }
-	/** @brief Checks whether DisplayName_Optional has been set */
-	bool IsDisplayNameSet() const { return DisplayName_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetDisplayNameToNull() { DisplayName_IsSet = true; DisplayName_IsNull = true; }
+	FORCEINLINE void SetDisplayNameToNull() { DisplayName_IsSet = true; DisplayName_IsNull = true; }
 	/** @brief Checks whether DisplayName_Optional is set to null */
-	bool IsDisplayNameNull() const { return DisplayName_IsSet && DisplayName_IsNull; }
+	FORCEINLINE bool IsDisplayNameNull() const { return DisplayName_IsSet && DisplayName_IsNull; }
 };
 
 /** @} */

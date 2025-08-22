@@ -591,7 +591,7 @@ namespace RHStandardEvents
 			}
 			if (InUserId.IsSet())
 			{
-				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens)));
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			}
 			if (InIpAddress.IsSet())
 			{
@@ -711,7 +711,7 @@ namespace RHStandardEvents
 			}
 			if (InUserId.IsSet())
 			{
-				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens)));
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			}
 			if (InPlatformUserId.IsSet())
 			{
@@ -799,7 +799,7 @@ namespace RHStandardEvents
 			}
 			if (InUserId.IsSet())
 			{
-				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens)));
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			}
 
 			CreateCustomDataAttributes(InCustomData, Attributes);
@@ -870,7 +870,7 @@ namespace RHStandardEvents
 			}
 			if (InUserId.IsSet())
 			{
-				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphens)));
+				Attributes.Add(FAnalyticsEventAttribute(TEXT("user_id"), InUserId.GetValue().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			}
 			if (InReason.IsSet())
 			{

@@ -47,53 +47,49 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlayerUuid_IsSet{ false };
 	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
-	FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
 	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid_Optional; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid_Optional; }
 	/** @brief Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetPlayerUuid(const FGuid& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetPlayerUuid(const FGuid& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
+	FORCEINLINE bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
 	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return (&PlayerUuid_Optional); return nullptr; }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true;  }
 	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
 	void ClearPlayerUuid() { PlayerUuid_IsSet = false;  }
-	/** @brief Checks whether PlayerUuid_Optional has been set */
-	bool IsPlayerUuidSet() const { return PlayerUuid_IsSet; }
 
 	/** @brief Status of the player after the request is completed */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_SessionPlayerStatus Status{  };
 	/** @brief Gets the value of Status */
-	ERHAPI_SessionPlayerStatus& GetStatus() { return Status; }
+	FORCEINLINE ERHAPI_SessionPlayerStatus& GetStatus() { return Status; }
 	/** @brief Gets the value of Status */
-	const ERHAPI_SessionPlayerStatus& GetStatus() const { return Status; }
+	FORCEINLINE const ERHAPI_SessionPlayerStatus& GetStatus() const { return Status; }
 	/** @brief Sets the value of Status */
-	void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status = NewValue;   }
+	FORCEINLINE void SetStatus(const ERHAPI_SessionPlayerStatus& NewValue) { Status = NewValue;   }
 	/** @brief Sets the value of Status using move semantics */
-	void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status = NewValue;   }
+	FORCEINLINE void SetStatus(ERHAPI_SessionPlayerStatus&& NewValue) { Status = NewValue;   }
 
 	/** @brief Which team the player joined */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 TeamId{ 0 };
 	/** @brief Gets the value of TeamId */
-	int32& GetTeamId() { return TeamId; }
+	FORCEINLINE int32& GetTeamId() { return TeamId; }
 	/** @brief Gets the value of TeamId */
-	const int32& GetTeamId() const { return TeamId; }
+	FORCEINLINE const int32& GetTeamId() const { return TeamId; }
 	/** @brief Sets the value of TeamId */
-	void SetTeamId(const int32& NewValue) { TeamId = NewValue;   }
+	FORCEINLINE void SetTeamId(const int32& NewValue) { TeamId = NewValue;   }
 	/** @brief Sets the value of TeamId using move semantics */
-	void SetTeamId(int32&& NewValue) { TeamId = NewValue;   }
-	/** @brief Returns true if TeamId matches the default value */
-	bool IsTeamIdDefaultValue() const { return TeamId == 0; }
-	/** @brief Sets the value of TeamId to its default  */
-	void SetTeamIdToDefault() { SetTeamId(0); }
+	FORCEINLINE void SetTeamId(int32&& NewValue) { TeamId = NewValue;   }
+	/** @brief Returns the default value of TeamId */
+	FORCEINLINE int32 GetDefaultValue_TeamId() { return 0; }
 
 	/** @brief Resulting custom data about the player */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -102,25 +98,23 @@ struct RALLYHEREAPI_API FRHAPI_SessionPlayerUpdateResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 };
 
 /** @} */

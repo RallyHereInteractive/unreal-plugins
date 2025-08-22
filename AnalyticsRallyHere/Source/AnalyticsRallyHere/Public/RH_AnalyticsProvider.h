@@ -55,7 +55,7 @@ public:
 	{
 		FGuid SessionGUID;
 		FPlatformMisc::CreateGuid(SessionGUID);
-		return StartSession(SessionGUID.ToString(EGuidFormats::DigitsWithHyphens), Attributes);
+		return StartSession(SessionGUID.ToString(EGuidFormats::DigitsWithHyphensLower), Attributes);
 	}
 
 	virtual bool StartSession(FString InSessionID, const TArray<FAnalyticsEventAttribute>& Attributes) override;

@@ -32,42 +32,39 @@ Setting version/value document from a specific setting type/key for a player.
 `public bool `[`LastModified_IsNull`](#structFRHAPI__SettingData_1af6ef8e0a01bb9854d36240a6fee4e0f3) | true if LastModified_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__SettingData_1a451b18556c313331a9fdfae19f669f48)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SettingData_1a637b3b15012f3260998f97ec2c6d72ec)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetV`](#structFRHAPI__SettingData_1a15e7c3a1ab3ae340106de35f05af7ec6)`()` | Gets the value of V.
-`public inline const int32 & `[`GetV`](#structFRHAPI__SettingData_1aeffaf02e4a4a629ce2c999c989d223c5)`() const` | Gets the value of V.
-`public inline void `[`SetV`](#structFRHAPI__SettingData_1a25a11ae202e4d86e865063d20c39cdc7)`(const int32 & NewValue)` | Sets the value of V.
-`public inline void `[`SetV`](#structFRHAPI__SettingData_1ae470149875008c4ee6bd9a4ee47822aa)`(int32 && NewValue)` | Sets the value of V using move semantics.
-`public inline bool `[`IsVDefaultValue`](#structFRHAPI__SettingData_1afac8ce0d0cac1f2a2880f9378d959d14)`() const` | Returns true if V matches the default value.
-`public inline void `[`SetVToDefault`](#structFRHAPI__SettingData_1a96191983827c14b416c2bcd6b2cc660e)`()` | Sets the value of V to its default
-`public inline `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1a51f7e16c22d0c969fa69458167371fc4)`()` | Gets the value of Value.
-`public inline const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1af1038833a279618c3b1eb9387a59230f)`() const` | Gets the value of Value.
-`public inline void `[`SetValue`](#structFRHAPI__SettingData_1af8e69c18963b052c7387eaa4d301451e)`(const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & NewValue)` | Sets the value of Value.
-`public inline void `[`SetValue`](#structFRHAPI__SettingData_1a7e44672c04f8bfef29258ea4fca0d8cb)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` && NewValue)` | Sets the value of Value using move semantics.
-`public inline void `[`SetValueToNull`](#structFRHAPI__SettingData_1a501cbe0943435421c563cd8ffc200faa)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsValueNull`](#structFRHAPI__SettingData_1aa030381d1a1f052d397cb14cda8106c3)`() const` | Checks whether Value is set to null.
-`public inline FString & `[`GetEtag`](#structFRHAPI__SettingData_1a5f1913d3c6a958aa6e1c0ab897d3ead3)`()` | Gets the value of Etag_Optional, regardless of it having been set.
-`public inline const FString & `[`GetEtag`](#structFRHAPI__SettingData_1ae746d6dea9ae33f23abbe704acaf9170)`() const` | Gets the value of Etag_Optional, regardless of it having been set.
-`public inline const FString & `[`GetEtag`](#structFRHAPI__SettingData_1a9f1cef81a58f3e619e7014924937e42f)`(const FString & DefaultValue) const` | Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetEtag`](#structFRHAPI__SettingData_1a665f65c4781b2b68648cc5e9d3f252c2)`(FString & OutValue) const` | Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetEtagOrNull`](#structFRHAPI__SettingData_1a100b17f933787e045407ef396be190f7)`()` | Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetEtagOrNull`](#structFRHAPI__SettingData_1add9e145e55d5ba5cc349b76e017c0e51)`() const` | Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEtag`](#structFRHAPI__SettingData_1a40c46f48e5d4dad1df770779ffa40d2f)`(const FString & NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true.
-`public inline void `[`SetEtag`](#structFRHAPI__SettingData_1adc901eb5774c67c20647a53345e01059)`(FString && NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetV`](#structFRHAPI__SettingData_1a6797460b5ff6b843a5a63ade640a26f5)`()` | Gets the value of V.
+`public inline FORCEINLINE const int32 & `[`GetV`](#structFRHAPI__SettingData_1adad894b4169978df6476a942ca9bc1b8)`() const` | Gets the value of V.
+`public inline FORCEINLINE void `[`SetV`](#structFRHAPI__SettingData_1ae6e61f8f5c69d2dec7668f843e700a63)`(const int32 & NewValue)` | Sets the value of V.
+`public inline FORCEINLINE void `[`SetV`](#structFRHAPI__SettingData_1abb33f37938e91ed7e04d612892d2a4b3)`(int32 && NewValue)` | Sets the value of V using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_V`](#structFRHAPI__SettingData_1ab066c6e34bb307cd9bcbd37d6f96e1c6)`()` | Returns the default value of V.
+`public inline FORCEINLINE `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1a6586b6b33fad9a13c4bcecc7a879716e)`()` | Gets the value of Value.
+`public inline FORCEINLINE const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1adfa40fedad0a13f0a0aec8bebdbd1276)`() const` | Gets the value of Value.
+`public inline FORCEINLINE void `[`SetValue`](#structFRHAPI__SettingData_1a72d2abdf754da9b64fb10adcfd918aa1)`(const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & NewValue)` | Sets the value of Value.
+`public inline FORCEINLINE void `[`SetValue`](#structFRHAPI__SettingData_1ae515f8b0aab51b873523faf6f83c77dd)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` && NewValue)` | Sets the value of Value using move semantics.
+`public inline FORCEINLINE void `[`SetValueToNull`](#structFRHAPI__SettingData_1abc309a1632e468ea46d8ad242bd3c307)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsValueNull`](#structFRHAPI__SettingData_1a71d67b6382bc9239862a86a9d7797d06)`() const` | Checks whether Value is set to null.
+`public inline FORCEINLINE FString & `[`GetEtag`](#structFRHAPI__SettingData_1a2bfa8a32c83fe6bf6ea509ebf0776017)`()` | Gets the value of Etag_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetEtag`](#structFRHAPI__SettingData_1a677bb32a0881855e105e07e2bcc93ba0)`() const` | Gets the value of Etag_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetEtag`](#structFRHAPI__SettingData_1a34b6c918f784e4cc11e95fb9d9185036)`(const FString & DefaultValue) const` | Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetEtag`](#structFRHAPI__SettingData_1a916e994af4566b446fc97f8764cafd02)`(FString & OutValue) const` | Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetEtagOrNull`](#structFRHAPI__SettingData_1af86a6feab8e2f0c953e306b2f2bb15da)`()` | Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetEtagOrNull`](#structFRHAPI__SettingData_1abb40d92846b1c957507ea04de7044307)`() const` | Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetEtag`](#structFRHAPI__SettingData_1a5ec90fc611ce591422f43008c1fc1da3)`(const FString & NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true.
+`public inline FORCEINLINE void `[`SetEtag`](#structFRHAPI__SettingData_1ab4b1320f590ec5cf260f61d292ad781b)`(FString && NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics.
 `public inline void `[`ClearEtag`](#structFRHAPI__SettingData_1acf6fba7f6275365555f9967a7aa35c1b)`()` | Clears the value of Etag_Optional and sets Etag_IsSet to false.
-`public inline bool `[`IsEtagSet`](#structFRHAPI__SettingData_1a4c659cdfcfb5833fd1466b7dacfa19b6)`() const` | Checks whether Etag_Optional has been set.
-`public inline void `[`SetEtagToNull`](#structFRHAPI__SettingData_1a6a600703b3df66b7e6d0a3472255c1a8)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsEtagNull`](#structFRHAPI__SettingData_1afb972f4f496a0afc6852312ee9af785f)`() const` | Checks whether Etag_Optional is set to null.
-`public inline FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1a2b752d2b95e82133388a6d3a92cf8e0f)`()` | Gets the value of LastModified_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1ac3f6a2c70563797516c8dfef71b20e4c)`() const` | Gets the value of LastModified_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1af86817c7c6da47d4cbf3263d4de869c8)`(const FDateTime & DefaultValue) const` | Gets the value of LastModified_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLastModified`](#structFRHAPI__SettingData_1a3bce965c6675cd41b7734be83ca6617c)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastModified_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetLastModifiedOrNull`](#structFRHAPI__SettingData_1a8f45f81239864fd1852c2cb3bd94f037)`()` | Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetLastModifiedOrNull`](#structFRHAPI__SettingData_1adf0843b7f3f28584d3dc00a17e2a4b7f)`() const` | Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastModified`](#structFRHAPI__SettingData_1ac486000e1dfdcf4d6e3a5b202f6221b5)`(const FDateTime & NewValue)` | Sets the value of LastModified_Optional and also sets LastModified_IsSet to true.
-`public inline void `[`SetLastModified`](#structFRHAPI__SettingData_1a5c62f7947de051f351597ec7369a50a2)`(FDateTime && NewValue)` | Sets the value of LastModified_Optional and also sets LastModified_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetEtagToNull`](#structFRHAPI__SettingData_1a5db227aa64d69462030618622e9c091f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsEtagNull`](#structFRHAPI__SettingData_1af1a9b18af5050c07dff0e6a4ed6efa1e)`() const` | Checks whether Etag_Optional is set to null.
+`public inline FORCEINLINE FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1ad7d4169d17eb4d688d03f2b4e4a633c7)`()` | Gets the value of LastModified_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1acffece8be1629aed857d5ce150b0c05e)`() const` | Gets the value of LastModified_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1a37d785c1bee343f695af2fb09197bc22)`(const FDateTime & DefaultValue) const` | Gets the value of LastModified_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLastModified`](#structFRHAPI__SettingData_1a62353063ae075de3abe1c5c6fcca676d)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastModified_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetLastModifiedOrNull`](#structFRHAPI__SettingData_1a032215e7df569d7a12b208f1b705b282)`()` | Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetLastModifiedOrNull`](#structFRHAPI__SettingData_1ac911007eb60f431c2781bacd9b5fa317)`() const` | Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLastModified`](#structFRHAPI__SettingData_1a9998800db075a167cc66fe288c5753e6)`(const FDateTime & NewValue)` | Sets the value of LastModified_Optional and also sets LastModified_IsSet to true.
+`public inline FORCEINLINE void `[`SetLastModified`](#structFRHAPI__SettingData_1a5a47cfc030e2c93e22b5917a64fd7417)`(FDateTime && NewValue)` | Sets the value of LastModified_Optional and also sets LastModified_IsSet to true using move semantics.
 `public inline void `[`ClearLastModified`](#structFRHAPI__SettingData_1a36af553f5c7ce48c9d87a5ba3e0cf4f1)`()` | Clears the value of LastModified_Optional and sets LastModified_IsSet to false.
-`public inline bool `[`IsLastModifiedSet`](#structFRHAPI__SettingData_1a6d9d67818cc015ca2f37d24b7e8a8464)`() const` | Checks whether LastModified_Optional has been set.
-`public inline void `[`SetLastModifiedToNull`](#structFRHAPI__SettingData_1a37f8081c3e90b434ecfb526a81b601f3)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLastModifiedNull`](#structFRHAPI__SettingData_1ae9b412a46aaabd3881fee6f20afab159)`() const` | Checks whether LastModified_Optional is set to null.
+`public inline FORCEINLINE void `[`SetLastModifiedToNull`](#structFRHAPI__SettingData_1a62c41061f6f9127b5bb9f3453273a9a4)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLastModifiedNull`](#structFRHAPI__SettingData_1a9e3fb90b61e55211d0d92d0fc87e6075)`() const` | Checks whether LastModified_Optional is set to null.
 
 ### Members
 
@@ -122,83 +119,79 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetV`](#structFRHAPI__SettingData_1a15e7c3a1ab3ae340106de35f05af7ec6)`()` <a id="structFRHAPI__SettingData_1a15e7c3a1ab3ae340106de35f05af7ec6"></a>
+#### `public inline FORCEINLINE int32 & `[`GetV`](#structFRHAPI__SettingData_1a6797460b5ff6b843a5a63ade640a26f5)`()` <a id="structFRHAPI__SettingData_1a6797460b5ff6b843a5a63ade640a26f5"></a>
 
 Gets the value of V.
 
-#### `public inline const int32 & `[`GetV`](#structFRHAPI__SettingData_1aeffaf02e4a4a629ce2c999c989d223c5)`() const` <a id="structFRHAPI__SettingData_1aeffaf02e4a4a629ce2c999c989d223c5"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetV`](#structFRHAPI__SettingData_1adad894b4169978df6476a942ca9bc1b8)`() const` <a id="structFRHAPI__SettingData_1adad894b4169978df6476a942ca9bc1b8"></a>
 
 Gets the value of V.
 
-#### `public inline void `[`SetV`](#structFRHAPI__SettingData_1a25a11ae202e4d86e865063d20c39cdc7)`(const int32 & NewValue)` <a id="structFRHAPI__SettingData_1a25a11ae202e4d86e865063d20c39cdc7"></a>
+#### `public inline FORCEINLINE void `[`SetV`](#structFRHAPI__SettingData_1ae6e61f8f5c69d2dec7668f843e700a63)`(const int32 & NewValue)` <a id="structFRHAPI__SettingData_1ae6e61f8f5c69d2dec7668f843e700a63"></a>
 
 Sets the value of V.
 
-#### `public inline void `[`SetV`](#structFRHAPI__SettingData_1ae470149875008c4ee6bd9a4ee47822aa)`(int32 && NewValue)` <a id="structFRHAPI__SettingData_1ae470149875008c4ee6bd9a4ee47822aa"></a>
+#### `public inline FORCEINLINE void `[`SetV`](#structFRHAPI__SettingData_1abb33f37938e91ed7e04d612892d2a4b3)`(int32 && NewValue)` <a id="structFRHAPI__SettingData_1abb33f37938e91ed7e04d612892d2a4b3"></a>
 
 Sets the value of V using move semantics.
 
-#### `public inline bool `[`IsVDefaultValue`](#structFRHAPI__SettingData_1afac8ce0d0cac1f2a2880f9378d959d14)`() const` <a id="structFRHAPI__SettingData_1afac8ce0d0cac1f2a2880f9378d959d14"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_V`](#structFRHAPI__SettingData_1ab066c6e34bb307cd9bcbd37d6f96e1c6)`()` <a id="structFRHAPI__SettingData_1ab066c6e34bb307cd9bcbd37d6f96e1c6"></a>
 
-Returns true if V matches the default value.
+Returns the default value of V.
 
-#### `public inline void `[`SetVToDefault`](#structFRHAPI__SettingData_1a96191983827c14b416c2bcd6b2cc660e)`()` <a id="structFRHAPI__SettingData_1a96191983827c14b416c2bcd6b2cc660e"></a>
-
-Sets the value of V to its default
-
-#### `public inline `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1a51f7e16c22d0c969fa69458167371fc4)`()` <a id="structFRHAPI__SettingData_1a51f7e16c22d0c969fa69458167371fc4"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1a6586b6b33fad9a13c4bcecc7a879716e)`()` <a id="structFRHAPI__SettingData_1a6586b6b33fad9a13c4bcecc7a879716e"></a>
 
 Gets the value of Value.
 
-#### `public inline const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1af1038833a279618c3b1eb9387a59230f)`() const` <a id="structFRHAPI__SettingData_1af1038833a279618c3b1eb9387a59230f"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & `[`GetValue`](#structFRHAPI__SettingData_1adfa40fedad0a13f0a0aec8bebdbd1276)`() const` <a id="structFRHAPI__SettingData_1adfa40fedad0a13f0a0aec8bebdbd1276"></a>
 
 Gets the value of Value.
 
-#### `public inline void `[`SetValue`](#structFRHAPI__SettingData_1af8e69c18963b052c7387eaa4d301451e)`(const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & NewValue)` <a id="structFRHAPI__SettingData_1af8e69c18963b052c7387eaa4d301451e"></a>
+#### `public inline FORCEINLINE void `[`SetValue`](#structFRHAPI__SettingData_1a72d2abdf754da9b64fb10adcfd918aa1)`(const `[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` & NewValue)` <a id="structFRHAPI__SettingData_1a72d2abdf754da9b64fb10adcfd918aa1"></a>
 
 Sets the value of Value.
 
-#### `public inline void `[`SetValue`](#structFRHAPI__SettingData_1a7e44672c04f8bfef29258ea4fca0d8cb)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` && NewValue)` <a id="structFRHAPI__SettingData_1a7e44672c04f8bfef29258ea4fca0d8cb"></a>
+#### `public inline FORCEINLINE void `[`SetValue`](#structFRHAPI__SettingData_1ae515f8b0aab51b873523faf6f83c77dd)`(`[`FRHAPI_JsonValue`](undefined.md#structFRHAPI__JsonValue)` && NewValue)` <a id="structFRHAPI__SettingData_1ae515f8b0aab51b873523faf6f83c77dd"></a>
 
 Sets the value of Value using move semantics.
 
-#### `public inline void `[`SetValueToNull`](#structFRHAPI__SettingData_1a501cbe0943435421c563cd8ffc200faa)`()` <a id="structFRHAPI__SettingData_1a501cbe0943435421c563cd8ffc200faa"></a>
+#### `public inline FORCEINLINE void `[`SetValueToNull`](#structFRHAPI__SettingData_1abc309a1632e468ea46d8ad242bd3c307)`()` <a id="structFRHAPI__SettingData_1abc309a1632e468ea46d8ad242bd3c307"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsValueNull`](#structFRHAPI__SettingData_1aa030381d1a1f052d397cb14cda8106c3)`() const` <a id="structFRHAPI__SettingData_1aa030381d1a1f052d397cb14cda8106c3"></a>
+#### `public inline FORCEINLINE bool `[`IsValueNull`](#structFRHAPI__SettingData_1a71d67b6382bc9239862a86a9d7797d06)`() const` <a id="structFRHAPI__SettingData_1a71d67b6382bc9239862a86a9d7797d06"></a>
 
 Checks whether Value is set to null.
 
-#### `public inline FString & `[`GetEtag`](#structFRHAPI__SettingData_1a5f1913d3c6a958aa6e1c0ab897d3ead3)`()` <a id="structFRHAPI__SettingData_1a5f1913d3c6a958aa6e1c0ab897d3ead3"></a>
+#### `public inline FORCEINLINE FString & `[`GetEtag`](#structFRHAPI__SettingData_1a2bfa8a32c83fe6bf6ea509ebf0776017)`()` <a id="structFRHAPI__SettingData_1a2bfa8a32c83fe6bf6ea509ebf0776017"></a>
 
 Gets the value of Etag_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetEtag`](#structFRHAPI__SettingData_1ae746d6dea9ae33f23abbe704acaf9170)`() const` <a id="structFRHAPI__SettingData_1ae746d6dea9ae33f23abbe704acaf9170"></a>
+#### `public inline FORCEINLINE const FString & `[`GetEtag`](#structFRHAPI__SettingData_1a677bb32a0881855e105e07e2bcc93ba0)`() const` <a id="structFRHAPI__SettingData_1a677bb32a0881855e105e07e2bcc93ba0"></a>
 
 Gets the value of Etag_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetEtag`](#structFRHAPI__SettingData_1a9f1cef81a58f3e619e7014924937e42f)`(const FString & DefaultValue) const` <a id="structFRHAPI__SettingData_1a9f1cef81a58f3e619e7014924937e42f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetEtag`](#structFRHAPI__SettingData_1a34b6c918f784e4cc11e95fb9d9185036)`(const FString & DefaultValue) const` <a id="structFRHAPI__SettingData_1a34b6c918f784e4cc11e95fb9d9185036"></a>
 
 Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetEtag`](#structFRHAPI__SettingData_1a665f65c4781b2b68648cc5e9d3f252c2)`(FString & OutValue) const` <a id="structFRHAPI__SettingData_1a665f65c4781b2b68648cc5e9d3f252c2"></a>
+#### `public inline FORCEINLINE bool `[`GetEtag`](#structFRHAPI__SettingData_1a916e994af4566b446fc97f8764cafd02)`(FString & OutValue) const` <a id="structFRHAPI__SettingData_1a916e994af4566b446fc97f8764cafd02"></a>
 
 Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetEtagOrNull`](#structFRHAPI__SettingData_1a100b17f933787e045407ef396be190f7)`()` <a id="structFRHAPI__SettingData_1a100b17f933787e045407ef396be190f7"></a>
+#### `public inline FORCEINLINE FString * `[`GetEtagOrNull`](#structFRHAPI__SettingData_1af86a6feab8e2f0c953e306b2f2bb15da)`()` <a id="structFRHAPI__SettingData_1af86a6feab8e2f0c953e306b2f2bb15da"></a>
 
 Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetEtagOrNull`](#structFRHAPI__SettingData_1add9e145e55d5ba5cc349b76e017c0e51)`() const` <a id="structFRHAPI__SettingData_1add9e145e55d5ba5cc349b76e017c0e51"></a>
+#### `public inline FORCEINLINE const FString * `[`GetEtagOrNull`](#structFRHAPI__SettingData_1abb40d92846b1c957507ea04de7044307)`() const` <a id="structFRHAPI__SettingData_1abb40d92846b1c957507ea04de7044307"></a>
 
 Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEtag`](#structFRHAPI__SettingData_1a40c46f48e5d4dad1df770779ffa40d2f)`(const FString & NewValue)` <a id="structFRHAPI__SettingData_1a40c46f48e5d4dad1df770779ffa40d2f"></a>
+#### `public inline FORCEINLINE void `[`SetEtag`](#structFRHAPI__SettingData_1a5ec90fc611ce591422f43008c1fc1da3)`(const FString & NewValue)` <a id="structFRHAPI__SettingData_1a5ec90fc611ce591422f43008c1fc1da3"></a>
 
 Sets the value of Etag_Optional and also sets Etag_IsSet to true.
 
-#### `public inline void `[`SetEtag`](#structFRHAPI__SettingData_1adc901eb5774c67c20647a53345e01059)`(FString && NewValue)` <a id="structFRHAPI__SettingData_1adc901eb5774c67c20647a53345e01059"></a>
+#### `public inline FORCEINLINE void `[`SetEtag`](#structFRHAPI__SettingData_1ab4b1320f590ec5cf260f61d292ad781b)`(FString && NewValue)` <a id="structFRHAPI__SettingData_1ab4b1320f590ec5cf260f61d292ad781b"></a>
 
 Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics.
 
@@ -206,47 +199,43 @@ Sets the value of Etag_Optional and also sets Etag_IsSet to true using move sema
 
 Clears the value of Etag_Optional and sets Etag_IsSet to false.
 
-#### `public inline bool `[`IsEtagSet`](#structFRHAPI__SettingData_1a4c659cdfcfb5833fd1466b7dacfa19b6)`() const` <a id="structFRHAPI__SettingData_1a4c659cdfcfb5833fd1466b7dacfa19b6"></a>
-
-Checks whether Etag_Optional has been set.
-
-#### `public inline void `[`SetEtagToNull`](#structFRHAPI__SettingData_1a6a600703b3df66b7e6d0a3472255c1a8)`()` <a id="structFRHAPI__SettingData_1a6a600703b3df66b7e6d0a3472255c1a8"></a>
+#### `public inline FORCEINLINE void `[`SetEtagToNull`](#structFRHAPI__SettingData_1a5db227aa64d69462030618622e9c091f)`()` <a id="structFRHAPI__SettingData_1a5db227aa64d69462030618622e9c091f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsEtagNull`](#structFRHAPI__SettingData_1afb972f4f496a0afc6852312ee9af785f)`() const` <a id="structFRHAPI__SettingData_1afb972f4f496a0afc6852312ee9af785f"></a>
+#### `public inline FORCEINLINE bool `[`IsEtagNull`](#structFRHAPI__SettingData_1af1a9b18af5050c07dff0e6a4ed6efa1e)`() const` <a id="structFRHAPI__SettingData_1af1a9b18af5050c07dff0e6a4ed6efa1e"></a>
 
 Checks whether Etag_Optional is set to null.
 
-#### `public inline FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1a2b752d2b95e82133388a6d3a92cf8e0f)`()` <a id="structFRHAPI__SettingData_1a2b752d2b95e82133388a6d3a92cf8e0f"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1ad7d4169d17eb4d688d03f2b4e4a633c7)`()` <a id="structFRHAPI__SettingData_1ad7d4169d17eb4d688d03f2b4e4a633c7"></a>
 
 Gets the value of LastModified_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1ac3f6a2c70563797516c8dfef71b20e4c)`() const` <a id="structFRHAPI__SettingData_1ac3f6a2c70563797516c8dfef71b20e4c"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1acffece8be1629aed857d5ce150b0c05e)`() const` <a id="structFRHAPI__SettingData_1acffece8be1629aed857d5ce150b0c05e"></a>
 
 Gets the value of LastModified_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1af86817c7c6da47d4cbf3263d4de869c8)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__SettingData_1af86817c7c6da47d4cbf3263d4de869c8"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastModified`](#structFRHAPI__SettingData_1a37d785c1bee343f695af2fb09197bc22)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__SettingData_1a37d785c1bee343f695af2fb09197bc22"></a>
 
 Gets the value of LastModified_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLastModified`](#structFRHAPI__SettingData_1a3bce965c6675cd41b7734be83ca6617c)`(FDateTime & OutValue) const` <a id="structFRHAPI__SettingData_1a3bce965c6675cd41b7734be83ca6617c"></a>
+#### `public inline FORCEINLINE bool `[`GetLastModified`](#structFRHAPI__SettingData_1a62353063ae075de3abe1c5c6fcca676d)`(FDateTime & OutValue) const` <a id="structFRHAPI__SettingData_1a62353063ae075de3abe1c5c6fcca676d"></a>
 
 Fills OutValue with the value of LastModified_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetLastModifiedOrNull`](#structFRHAPI__SettingData_1a8f45f81239864fd1852c2cb3bd94f037)`()` <a id="structFRHAPI__SettingData_1a8f45f81239864fd1852c2cb3bd94f037"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetLastModifiedOrNull`](#structFRHAPI__SettingData_1a032215e7df569d7a12b208f1b705b282)`()` <a id="structFRHAPI__SettingData_1a032215e7df569d7a12b208f1b705b282"></a>
 
 Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetLastModifiedOrNull`](#structFRHAPI__SettingData_1adf0843b7f3f28584d3dc00a17e2a4b7f)`() const` <a id="structFRHAPI__SettingData_1adf0843b7f3f28584d3dc00a17e2a4b7f"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetLastModifiedOrNull`](#structFRHAPI__SettingData_1ac911007eb60f431c2781bacd9b5fa317)`() const` <a id="structFRHAPI__SettingData_1ac911007eb60f431c2781bacd9b5fa317"></a>
 
 Returns a pointer to LastModified_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastModified`](#structFRHAPI__SettingData_1ac486000e1dfdcf4d6e3a5b202f6221b5)`(const FDateTime & NewValue)` <a id="structFRHAPI__SettingData_1ac486000e1dfdcf4d6e3a5b202f6221b5"></a>
+#### `public inline FORCEINLINE void `[`SetLastModified`](#structFRHAPI__SettingData_1a9998800db075a167cc66fe288c5753e6)`(const FDateTime & NewValue)` <a id="structFRHAPI__SettingData_1a9998800db075a167cc66fe288c5753e6"></a>
 
 Sets the value of LastModified_Optional and also sets LastModified_IsSet to true.
 
-#### `public inline void `[`SetLastModified`](#structFRHAPI__SettingData_1a5c62f7947de051f351597ec7369a50a2)`(FDateTime && NewValue)` <a id="structFRHAPI__SettingData_1a5c62f7947de051f351597ec7369a50a2"></a>
+#### `public inline FORCEINLINE void `[`SetLastModified`](#structFRHAPI__SettingData_1a5a47cfc030e2c93e22b5917a64fd7417)`(FDateTime && NewValue)` <a id="structFRHAPI__SettingData_1a5a47cfc030e2c93e22b5917a64fd7417"></a>
 
 Sets the value of LastModified_Optional and also sets LastModified_IsSet to true using move semantics.
 
@@ -254,15 +243,11 @@ Sets the value of LastModified_Optional and also sets LastModified_IsSet to true
 
 Clears the value of LastModified_Optional and sets LastModified_IsSet to false.
 
-#### `public inline bool `[`IsLastModifiedSet`](#structFRHAPI__SettingData_1a6d9d67818cc015ca2f37d24b7e8a8464)`() const` <a id="structFRHAPI__SettingData_1a6d9d67818cc015ca2f37d24b7e8a8464"></a>
-
-Checks whether LastModified_Optional has been set.
-
-#### `public inline void `[`SetLastModifiedToNull`](#structFRHAPI__SettingData_1a37f8081c3e90b434ecfb526a81b601f3)`()` <a id="structFRHAPI__SettingData_1a37f8081c3e90b434ecfb526a81b601f3"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedToNull`](#structFRHAPI__SettingData_1a62c41061f6f9127b5bb9f3453273a9a4)`()` <a id="structFRHAPI__SettingData_1a62c41061f6f9127b5bb9f3453273a9a4"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLastModifiedNull`](#structFRHAPI__SettingData_1ae9b412a46aaabd3881fee6f20afab159)`() const` <a id="structFRHAPI__SettingData_1ae9b412a46aaabd3881fee6f20afab159"></a>
+#### `public inline FORCEINLINE bool `[`IsLastModifiedNull`](#structFRHAPI__SettingData_1a9e3fb90b61e55211d0d92d0fc87e6075)`() const` <a id="structFRHAPI__SettingData_1a9e3fb90b61e55211d0d92d0fc87e6075"></a>
 
 Checks whether LastModified_Optional is set to null.
 

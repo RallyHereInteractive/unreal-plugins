@@ -22,10 +22,10 @@ struct FRHAPI_BackfillSettingsResponse
 `public float `[`Timeout`](#structFRHAPI__BackfillSettingsResponse_1abe93a6bdf962bab45bb4767a775b8849) | How often we expect backfill heartbeats to occur.
 `public virtual bool `[`FromJson`](#structFRHAPI__BackfillSettingsResponse_1ae07788aab320f0618ce003a68673c9ab)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__BackfillSettingsResponse_1a2405cc804c821bc2b0527685b20b9124)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1a3518c0da6d461460a2e2bbab9b2bd405)`()` | Gets the value of Timeout.
-`public inline const float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ac59ef1f23246bf333f9aab9ebc2c660a)`() const` | Gets the value of Timeout.
-`public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1afeb2fc798d52bcde3c6021a564e36d85)`(const float & NewValue)` | Sets the value of Timeout.
-`public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ae3981a6b345312f27351e9ecec552ca0)`(float && NewValue)` | Sets the value of Timeout using move semantics.
+`public inline FORCEINLINE float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1a4e9e0e531186a7729800e87177aa3e23)`()` | Gets the value of Timeout.
+`public inline FORCEINLINE const float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1aed456ec0b1ad0597d4575567bd34b018)`() const` | Gets the value of Timeout.
+`public inline FORCEINLINE void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1aec71ebce7292d3477447fc7e1e971193)`(const float & NewValue)` | Sets the value of Timeout.
+`public inline FORCEINLINE void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1a8ad2563cffca2905c9f6916015c6889e)`(float && NewValue)` | Sets the value of Timeout using move semantics.
 
 ### Members
 
@@ -50,19 +50,19 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1a3518c0da6d461460a2e2bbab9b2bd405)`()` <a id="structFRHAPI__BackfillSettingsResponse_1a3518c0da6d461460a2e2bbab9b2bd405"></a>
+#### `public inline FORCEINLINE float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1a4e9e0e531186a7729800e87177aa3e23)`()` <a id="structFRHAPI__BackfillSettingsResponse_1a4e9e0e531186a7729800e87177aa3e23"></a>
 
 Gets the value of Timeout.
 
-#### `public inline const float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ac59ef1f23246bf333f9aab9ebc2c660a)`() const` <a id="structFRHAPI__BackfillSettingsResponse_1ac59ef1f23246bf333f9aab9ebc2c660a"></a>
+#### `public inline FORCEINLINE const float & `[`GetTimeout`](#structFRHAPI__BackfillSettingsResponse_1aed456ec0b1ad0597d4575567bd34b018)`() const` <a id="structFRHAPI__BackfillSettingsResponse_1aed456ec0b1ad0597d4575567bd34b018"></a>
 
 Gets the value of Timeout.
 
-#### `public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1afeb2fc798d52bcde3c6021a564e36d85)`(const float & NewValue)` <a id="structFRHAPI__BackfillSettingsResponse_1afeb2fc798d52bcde3c6021a564e36d85"></a>
+#### `public inline FORCEINLINE void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1aec71ebce7292d3477447fc7e1e971193)`(const float & NewValue)` <a id="structFRHAPI__BackfillSettingsResponse_1aec71ebce7292d3477447fc7e1e971193"></a>
 
 Sets the value of Timeout.
 
-#### `public inline void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1ae3981a6b345312f27351e9ecec552ca0)`(float && NewValue)` <a id="structFRHAPI__BackfillSettingsResponse_1ae3981a6b345312f27351e9ecec552ca0"></a>
+#### `public inline FORCEINLINE void `[`SetTimeout`](#structFRHAPI__BackfillSettingsResponse_1a8ad2563cffca2905c9f6916015c6889e)`(float && NewValue)` <a id="structFRHAPI__BackfillSettingsResponse_1a8ad2563cffca2905c9f6916015c6889e"></a>
 
 Sets the value of Timeout using move semantics.
 

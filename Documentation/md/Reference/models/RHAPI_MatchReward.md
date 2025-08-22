@@ -23,18 +23,16 @@ struct FRHAPI_MatchReward
 `public int32 `[`Quantity`](#structFRHAPI__MatchReward_1a29c92b98ab0f134e2e478fc0ac479bf0) | How many times to grant the loot to the player.
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchReward_1af3cd68bbd709a37180e2cb0927541dd4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchReward_1a99ae1b8115561be22c9f837545bf5f11)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetLegacyLootId`](#structFRHAPI__MatchReward_1a0907159edc50f4d7ef8f303227350338)`()` | Gets the value of LegacyLootId.
-`public inline const int32 & `[`GetLegacyLootId`](#structFRHAPI__MatchReward_1a439352d0b9d5e9fe00a107a241f17964)`() const` | Gets the value of LegacyLootId.
-`public inline void `[`SetLegacyLootId`](#structFRHAPI__MatchReward_1a25e94dffca9ba061f699a2f2a60240c5)`(const int32 & NewValue)` | Sets the value of LegacyLootId.
-`public inline void `[`SetLegacyLootId`](#structFRHAPI__MatchReward_1a3d9c060100acde6fe1ff99c3525807be)`(int32 && NewValue)` | Sets the value of LegacyLootId using move semantics.
-`public inline bool `[`IsLegacyLootIdDefaultValue`](#structFRHAPI__MatchReward_1a11d75e2dbc1078c7488f14c4869dd886)`() const` | Returns true if LegacyLootId matches the default value.
-`public inline void `[`SetLegacyLootIdToDefault`](#structFRHAPI__MatchReward_1a1ca7c0155375e3241d6c364971c04670)`()` | Sets the value of LegacyLootId to its default
-`public inline int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a0df531d1285963c8c7d6be2f1fefd979)`()` | Gets the value of Quantity.
-`public inline const int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a21d13a6abd295eae55c815f8a495487f)`() const` | Gets the value of Quantity.
-`public inline void `[`SetQuantity`](#structFRHAPI__MatchReward_1afd4de34e83b386737898572b7da7f145)`(const int32 & NewValue)` | Sets the value of Quantity.
-`public inline void `[`SetQuantity`](#structFRHAPI__MatchReward_1a3ac16881976c18d2fbcdbf42c33adf05)`(int32 && NewValue)` | Sets the value of Quantity using move semantics.
-`public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__MatchReward_1af46379b00d725cf2ecd86db33e4e1f8e)`() const` | Returns true if Quantity matches the default value.
-`public inline void `[`SetQuantityToDefault`](#structFRHAPI__MatchReward_1a2c1eb4fbd5f16b9d3c745a455369117c)`()` | Sets the value of Quantity to its default
+`public inline FORCEINLINE int32 & `[`GetLegacyLootId`](#structFRHAPI__MatchReward_1acab8be5d97f7cd723809237e98773d9d)`()` | Gets the value of LegacyLootId.
+`public inline FORCEINLINE const int32 & `[`GetLegacyLootId`](#structFRHAPI__MatchReward_1af98b6dde8925283850f46e79e0df61b3)`() const` | Gets the value of LegacyLootId.
+`public inline FORCEINLINE void `[`SetLegacyLootId`](#structFRHAPI__MatchReward_1a2b2ab508372ea7d9e53ec71626ad336b)`(const int32 & NewValue)` | Sets the value of LegacyLootId.
+`public inline FORCEINLINE void `[`SetLegacyLootId`](#structFRHAPI__MatchReward_1aaad45b957100300dba8da9ccce653cc9)`(int32 && NewValue)` | Sets the value of LegacyLootId using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_LegacyLootId`](#structFRHAPI__MatchReward_1a82e3244f4df5816c88d127528317af4d)`()` | Returns the default value of LegacyLootId.
+`public inline FORCEINLINE int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a36c0e68488b90c61f421e0f4131cdd7a)`()` | Gets the value of Quantity.
+`public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a7962aceb45547e1deb0a3ed29261ed5e)`() const` | Gets the value of Quantity.
+`public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__MatchReward_1a94809774d4b65f28184f35ad0f7cb094)`(const int32 & NewValue)` | Sets the value of Quantity.
+`public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__MatchReward_1a727484cedfbea5c00da50dca300df218)`(int32 && NewValue)` | Sets the value of Quantity using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Quantity`](#structFRHAPI__MatchReward_1ab8b242a39f3ffedbfe9bdb12ed9eb376)`()` | Returns the default value of Quantity.
 
 ### Members
 
@@ -63,51 +61,43 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetLegacyLootId`](#structFRHAPI__MatchReward_1a0907159edc50f4d7ef8f303227350338)`()` <a id="structFRHAPI__MatchReward_1a0907159edc50f4d7ef8f303227350338"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLegacyLootId`](#structFRHAPI__MatchReward_1acab8be5d97f7cd723809237e98773d9d)`()` <a id="structFRHAPI__MatchReward_1acab8be5d97f7cd723809237e98773d9d"></a>
 
 Gets the value of LegacyLootId.
 
-#### `public inline const int32 & `[`GetLegacyLootId`](#structFRHAPI__MatchReward_1a439352d0b9d5e9fe00a107a241f17964)`() const` <a id="structFRHAPI__MatchReward_1a439352d0b9d5e9fe00a107a241f17964"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLegacyLootId`](#structFRHAPI__MatchReward_1af98b6dde8925283850f46e79e0df61b3)`() const` <a id="structFRHAPI__MatchReward_1af98b6dde8925283850f46e79e0df61b3"></a>
 
 Gets the value of LegacyLootId.
 
-#### `public inline void `[`SetLegacyLootId`](#structFRHAPI__MatchReward_1a25e94dffca9ba061f699a2f2a60240c5)`(const int32 & NewValue)` <a id="structFRHAPI__MatchReward_1a25e94dffca9ba061f699a2f2a60240c5"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyLootId`](#structFRHAPI__MatchReward_1a2b2ab508372ea7d9e53ec71626ad336b)`(const int32 & NewValue)` <a id="structFRHAPI__MatchReward_1a2b2ab508372ea7d9e53ec71626ad336b"></a>
 
 Sets the value of LegacyLootId.
 
-#### `public inline void `[`SetLegacyLootId`](#structFRHAPI__MatchReward_1a3d9c060100acde6fe1ff99c3525807be)`(int32 && NewValue)` <a id="structFRHAPI__MatchReward_1a3d9c060100acde6fe1ff99c3525807be"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyLootId`](#structFRHAPI__MatchReward_1aaad45b957100300dba8da9ccce653cc9)`(int32 && NewValue)` <a id="structFRHAPI__MatchReward_1aaad45b957100300dba8da9ccce653cc9"></a>
 
 Sets the value of LegacyLootId using move semantics.
 
-#### `public inline bool `[`IsLegacyLootIdDefaultValue`](#structFRHAPI__MatchReward_1a11d75e2dbc1078c7488f14c4869dd886)`() const` <a id="structFRHAPI__MatchReward_1a11d75e2dbc1078c7488f14c4869dd886"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_LegacyLootId`](#structFRHAPI__MatchReward_1a82e3244f4df5816c88d127528317af4d)`()` <a id="structFRHAPI__MatchReward_1a82e3244f4df5816c88d127528317af4d"></a>
 
-Returns true if LegacyLootId matches the default value.
+Returns the default value of LegacyLootId.
 
-#### `public inline void `[`SetLegacyLootIdToDefault`](#structFRHAPI__MatchReward_1a1ca7c0155375e3241d6c364971c04670)`()` <a id="structFRHAPI__MatchReward_1a1ca7c0155375e3241d6c364971c04670"></a>
-
-Sets the value of LegacyLootId to its default
-
-#### `public inline int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a0df531d1285963c8c7d6be2f1fefd979)`()` <a id="structFRHAPI__MatchReward_1a0df531d1285963c8c7d6be2f1fefd979"></a>
+#### `public inline FORCEINLINE int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a36c0e68488b90c61f421e0f4131cdd7a)`()` <a id="structFRHAPI__MatchReward_1a36c0e68488b90c61f421e0f4131cdd7a"></a>
 
 Gets the value of Quantity.
 
-#### `public inline const int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a21d13a6abd295eae55c815f8a495487f)`() const` <a id="structFRHAPI__MatchReward_1a21d13a6abd295eae55c815f8a495487f"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__MatchReward_1a7962aceb45547e1deb0a3ed29261ed5e)`() const` <a id="structFRHAPI__MatchReward_1a7962aceb45547e1deb0a3ed29261ed5e"></a>
 
 Gets the value of Quantity.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__MatchReward_1afd4de34e83b386737898572b7da7f145)`(const int32 & NewValue)` <a id="structFRHAPI__MatchReward_1afd4de34e83b386737898572b7da7f145"></a>
+#### `public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__MatchReward_1a94809774d4b65f28184f35ad0f7cb094)`(const int32 & NewValue)` <a id="structFRHAPI__MatchReward_1a94809774d4b65f28184f35ad0f7cb094"></a>
 
 Sets the value of Quantity.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__MatchReward_1a3ac16881976c18d2fbcdbf42c33adf05)`(int32 && NewValue)` <a id="structFRHAPI__MatchReward_1a3ac16881976c18d2fbcdbf42c33adf05"></a>
+#### `public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__MatchReward_1a727484cedfbea5c00da50dca300df218)`(int32 && NewValue)` <a id="structFRHAPI__MatchReward_1a727484cedfbea5c00da50dca300df218"></a>
 
 Sets the value of Quantity using move semantics.
 
-#### `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__MatchReward_1af46379b00d725cf2ecd86db33e4e1f8e)`() const` <a id="structFRHAPI__MatchReward_1af46379b00d725cf2ecd86db33e4e1f8e"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Quantity`](#structFRHAPI__MatchReward_1ab8b242a39f3ffedbfe9bdb12ed9eb376)`()` <a id="structFRHAPI__MatchReward_1ab8b242a39f3ffedbfe9bdb12ed9eb376"></a>
 
-Returns true if Quantity matches the default value.
-
-#### `public inline void `[`SetQuantityToDefault`](#structFRHAPI__MatchReward_1a2c1eb4fbd5f16b9d3c745a455369117c)`()` <a id="structFRHAPI__MatchReward_1a2c1eb4fbd5f16b9d3c745a455369117c"></a>
-
-Sets the value of Quantity to its default
+Returns the default value of Quantity.
 

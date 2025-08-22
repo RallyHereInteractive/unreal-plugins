@@ -24,24 +24,21 @@ struct FRHAPI_PageMeta
 `public int32 `[`Total`](#structFRHAPI__PageMeta_1a13e9adca196130185d55586e2c812859) | 
 `public virtual bool `[`FromJson`](#structFRHAPI__PageMeta_1a3a6c36c80d941d3803312fdd3396c4b5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PageMeta_1a53f5dc92abc0b7edbf4e5a8cdda6795a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetPage`](#structFRHAPI__PageMeta_1a82b9f23db8a2dcc99360d91e7006f5f7)`()` | Gets the value of Page.
-`public inline const int32 & `[`GetPage`](#structFRHAPI__PageMeta_1a4434a0803bb2eca1740b5f758908489e)`() const` | Gets the value of Page.
-`public inline void `[`SetPage`](#structFRHAPI__PageMeta_1aa1e4cab16e2b23f83e88a2fc86964641)`(const int32 & NewValue)` | Sets the value of Page.
-`public inline void `[`SetPage`](#structFRHAPI__PageMeta_1aa4548f30744d45005a8de5394b4f92e4)`(int32 && NewValue)` | Sets the value of Page using move semantics.
-`public inline bool `[`IsPageDefaultValue`](#structFRHAPI__PageMeta_1a94fa3af0ff5253703ae52a78a2114844)`() const` | Returns true if Page matches the default value.
-`public inline void `[`SetPageToDefault`](#structFRHAPI__PageMeta_1a939ed340b81a12ea247b275682232b1a)`()` | Sets the value of Page to its default
-`public inline int32 & `[`GetLimit`](#structFRHAPI__PageMeta_1a4365770e26763ba2cef00cde80e82305)`()` | Gets the value of Limit.
-`public inline const int32 & `[`GetLimit`](#structFRHAPI__PageMeta_1ad5c5caa369399c7c35955e1f8d84a2c2)`() const` | Gets the value of Limit.
-`public inline void `[`SetLimit`](#structFRHAPI__PageMeta_1acb6abc9056ba40b3d3a6845d0038f099)`(const int32 & NewValue)` | Sets the value of Limit.
-`public inline void `[`SetLimit`](#structFRHAPI__PageMeta_1a70dc4834ca91acadffc3e14704feea63)`(int32 && NewValue)` | Sets the value of Limit using move semantics.
-`public inline bool `[`IsLimitDefaultValue`](#structFRHAPI__PageMeta_1a47179c3bc0898b6bbf9933190cd9c098)`() const` | Returns true if Limit matches the default value.
-`public inline void `[`SetLimitToDefault`](#structFRHAPI__PageMeta_1adaa1f4e0bf20a7e6763f9bdc280c4f10)`()` | Sets the value of Limit to its default
-`public inline int32 & `[`GetTotal`](#structFRHAPI__PageMeta_1a7e6133d46c53d370b8c0c805fb7f27a8)`()` | Gets the value of Total.
-`public inline const int32 & `[`GetTotal`](#structFRHAPI__PageMeta_1aef64d242292a305c3a167b7d11956bca)`() const` | Gets the value of Total.
-`public inline void `[`SetTotal`](#structFRHAPI__PageMeta_1a806413086a1057520bd4b638f85717c3)`(const int32 & NewValue)` | Sets the value of Total.
-`public inline void `[`SetTotal`](#structFRHAPI__PageMeta_1a2ebe4335c034c1ea1fb1088574335f55)`(int32 && NewValue)` | Sets the value of Total using move semantics.
-`public inline bool `[`IsTotalDefaultValue`](#structFRHAPI__PageMeta_1a999342514882e895d280ab861137cba1)`() const` | Returns true if Total matches the default value.
-`public inline void `[`SetTotalToDefault`](#structFRHAPI__PageMeta_1a32d285464f71b75b05be71450f894b97)`()` | Sets the value of Total to its default
+`public inline FORCEINLINE int32 & `[`GetPage`](#structFRHAPI__PageMeta_1a2028df9c22bc42ae1045220ce2256da7)`()` | Gets the value of Page.
+`public inline FORCEINLINE const int32 & `[`GetPage`](#structFRHAPI__PageMeta_1aa1e4e5ea1f7496d68ba145e9a1b29336)`() const` | Gets the value of Page.
+`public inline FORCEINLINE void `[`SetPage`](#structFRHAPI__PageMeta_1a9285a65eb32c3b03ceb60697bbb50c1d)`(const int32 & NewValue)` | Sets the value of Page.
+`public inline FORCEINLINE void `[`SetPage`](#structFRHAPI__PageMeta_1afe26154929c982afef5d0e28fa6e91f7)`(int32 && NewValue)` | Sets the value of Page using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Page`](#structFRHAPI__PageMeta_1a001cbb6c9df88352134fb31c06f5c0d5)`()` | Returns the default value of Page.
+`public inline FORCEINLINE int32 & `[`GetLimit`](#structFRHAPI__PageMeta_1a3b59d4c5b7b2e60bcebd8c6d4707c439)`()` | Gets the value of Limit.
+`public inline FORCEINLINE const int32 & `[`GetLimit`](#structFRHAPI__PageMeta_1a7d8cb4898fbab3fc90a88bfdf647978d)`() const` | Gets the value of Limit.
+`public inline FORCEINLINE void `[`SetLimit`](#structFRHAPI__PageMeta_1a930a9a0d26f3060d4f9825536bcca724)`(const int32 & NewValue)` | Sets the value of Limit.
+`public inline FORCEINLINE void `[`SetLimit`](#structFRHAPI__PageMeta_1a6b257699da805285aee4ab3331657455)`(int32 && NewValue)` | Sets the value of Limit using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Limit`](#structFRHAPI__PageMeta_1a92ce76f859d933f230f418868c4b6313)`()` | Returns the default value of Limit.
+`public inline FORCEINLINE int32 & `[`GetTotal`](#structFRHAPI__PageMeta_1a0979456f0923b0bdbb44e5cd660fad3a)`()` | Gets the value of Total.
+`public inline FORCEINLINE const int32 & `[`GetTotal`](#structFRHAPI__PageMeta_1a2b45f5dec9f982c38337c37e15354b3a)`() const` | Gets the value of Total.
+`public inline FORCEINLINE void `[`SetTotal`](#structFRHAPI__PageMeta_1a15856897c50256d04c8d3de8805ceb99)`(const int32 & NewValue)` | Sets the value of Total.
+`public inline FORCEINLINE void `[`SetTotal`](#structFRHAPI__PageMeta_1a32eda26aed4271119bdbdea6a05d42fa)`(int32 && NewValue)` | Sets the value of Total using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Total`](#structFRHAPI__PageMeta_1ac124485f7a9a398f621000b010baf4c5)`()` | Returns the default value of Total.
 
 ### Members
 
@@ -68,75 +65,63 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetPage`](#structFRHAPI__PageMeta_1a82b9f23db8a2dcc99360d91e7006f5f7)`()` <a id="structFRHAPI__PageMeta_1a82b9f23db8a2dcc99360d91e7006f5f7"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPage`](#structFRHAPI__PageMeta_1a2028df9c22bc42ae1045220ce2256da7)`()` <a id="structFRHAPI__PageMeta_1a2028df9c22bc42ae1045220ce2256da7"></a>
 
 Gets the value of Page.
 
-#### `public inline const int32 & `[`GetPage`](#structFRHAPI__PageMeta_1a4434a0803bb2eca1740b5f758908489e)`() const` <a id="structFRHAPI__PageMeta_1a4434a0803bb2eca1740b5f758908489e"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPage`](#structFRHAPI__PageMeta_1aa1e4e5ea1f7496d68ba145e9a1b29336)`() const` <a id="structFRHAPI__PageMeta_1aa1e4e5ea1f7496d68ba145e9a1b29336"></a>
 
 Gets the value of Page.
 
-#### `public inline void `[`SetPage`](#structFRHAPI__PageMeta_1aa1e4cab16e2b23f83e88a2fc86964641)`(const int32 & NewValue)` <a id="structFRHAPI__PageMeta_1aa1e4cab16e2b23f83e88a2fc86964641"></a>
+#### `public inline FORCEINLINE void `[`SetPage`](#structFRHAPI__PageMeta_1a9285a65eb32c3b03ceb60697bbb50c1d)`(const int32 & NewValue)` <a id="structFRHAPI__PageMeta_1a9285a65eb32c3b03ceb60697bbb50c1d"></a>
 
 Sets the value of Page.
 
-#### `public inline void `[`SetPage`](#structFRHAPI__PageMeta_1aa4548f30744d45005a8de5394b4f92e4)`(int32 && NewValue)` <a id="structFRHAPI__PageMeta_1aa4548f30744d45005a8de5394b4f92e4"></a>
+#### `public inline FORCEINLINE void `[`SetPage`](#structFRHAPI__PageMeta_1afe26154929c982afef5d0e28fa6e91f7)`(int32 && NewValue)` <a id="structFRHAPI__PageMeta_1afe26154929c982afef5d0e28fa6e91f7"></a>
 
 Sets the value of Page using move semantics.
 
-#### `public inline bool `[`IsPageDefaultValue`](#structFRHAPI__PageMeta_1a94fa3af0ff5253703ae52a78a2114844)`() const` <a id="structFRHAPI__PageMeta_1a94fa3af0ff5253703ae52a78a2114844"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Page`](#structFRHAPI__PageMeta_1a001cbb6c9df88352134fb31c06f5c0d5)`()` <a id="structFRHAPI__PageMeta_1a001cbb6c9df88352134fb31c06f5c0d5"></a>
 
-Returns true if Page matches the default value.
+Returns the default value of Page.
 
-#### `public inline void `[`SetPageToDefault`](#structFRHAPI__PageMeta_1a939ed340b81a12ea247b275682232b1a)`()` <a id="structFRHAPI__PageMeta_1a939ed340b81a12ea247b275682232b1a"></a>
-
-Sets the value of Page to its default
-
-#### `public inline int32 & `[`GetLimit`](#structFRHAPI__PageMeta_1a4365770e26763ba2cef00cde80e82305)`()` <a id="structFRHAPI__PageMeta_1a4365770e26763ba2cef00cde80e82305"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLimit`](#structFRHAPI__PageMeta_1a3b59d4c5b7b2e60bcebd8c6d4707c439)`()` <a id="structFRHAPI__PageMeta_1a3b59d4c5b7b2e60bcebd8c6d4707c439"></a>
 
 Gets the value of Limit.
 
-#### `public inline const int32 & `[`GetLimit`](#structFRHAPI__PageMeta_1ad5c5caa369399c7c35955e1f8d84a2c2)`() const` <a id="structFRHAPI__PageMeta_1ad5c5caa369399c7c35955e1f8d84a2c2"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLimit`](#structFRHAPI__PageMeta_1a7d8cb4898fbab3fc90a88bfdf647978d)`() const` <a id="structFRHAPI__PageMeta_1a7d8cb4898fbab3fc90a88bfdf647978d"></a>
 
 Gets the value of Limit.
 
-#### `public inline void `[`SetLimit`](#structFRHAPI__PageMeta_1acb6abc9056ba40b3d3a6845d0038f099)`(const int32 & NewValue)` <a id="structFRHAPI__PageMeta_1acb6abc9056ba40b3d3a6845d0038f099"></a>
+#### `public inline FORCEINLINE void `[`SetLimit`](#structFRHAPI__PageMeta_1a930a9a0d26f3060d4f9825536bcca724)`(const int32 & NewValue)` <a id="structFRHAPI__PageMeta_1a930a9a0d26f3060d4f9825536bcca724"></a>
 
 Sets the value of Limit.
 
-#### `public inline void `[`SetLimit`](#structFRHAPI__PageMeta_1a70dc4834ca91acadffc3e14704feea63)`(int32 && NewValue)` <a id="structFRHAPI__PageMeta_1a70dc4834ca91acadffc3e14704feea63"></a>
+#### `public inline FORCEINLINE void `[`SetLimit`](#structFRHAPI__PageMeta_1a6b257699da805285aee4ab3331657455)`(int32 && NewValue)` <a id="structFRHAPI__PageMeta_1a6b257699da805285aee4ab3331657455"></a>
 
 Sets the value of Limit using move semantics.
 
-#### `public inline bool `[`IsLimitDefaultValue`](#structFRHAPI__PageMeta_1a47179c3bc0898b6bbf9933190cd9c098)`() const` <a id="structFRHAPI__PageMeta_1a47179c3bc0898b6bbf9933190cd9c098"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Limit`](#structFRHAPI__PageMeta_1a92ce76f859d933f230f418868c4b6313)`()` <a id="structFRHAPI__PageMeta_1a92ce76f859d933f230f418868c4b6313"></a>
 
-Returns true if Limit matches the default value.
+Returns the default value of Limit.
 
-#### `public inline void `[`SetLimitToDefault`](#structFRHAPI__PageMeta_1adaa1f4e0bf20a7e6763f9bdc280c4f10)`()` <a id="structFRHAPI__PageMeta_1adaa1f4e0bf20a7e6763f9bdc280c4f10"></a>
-
-Sets the value of Limit to its default
-
-#### `public inline int32 & `[`GetTotal`](#structFRHAPI__PageMeta_1a7e6133d46c53d370b8c0c805fb7f27a8)`()` <a id="structFRHAPI__PageMeta_1a7e6133d46c53d370b8c0c805fb7f27a8"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTotal`](#structFRHAPI__PageMeta_1a0979456f0923b0bdbb44e5cd660fad3a)`()` <a id="structFRHAPI__PageMeta_1a0979456f0923b0bdbb44e5cd660fad3a"></a>
 
 Gets the value of Total.
 
-#### `public inline const int32 & `[`GetTotal`](#structFRHAPI__PageMeta_1aef64d242292a305c3a167b7d11956bca)`() const` <a id="structFRHAPI__PageMeta_1aef64d242292a305c3a167b7d11956bca"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotal`](#structFRHAPI__PageMeta_1a2b45f5dec9f982c38337c37e15354b3a)`() const` <a id="structFRHAPI__PageMeta_1a2b45f5dec9f982c38337c37e15354b3a"></a>
 
 Gets the value of Total.
 
-#### `public inline void `[`SetTotal`](#structFRHAPI__PageMeta_1a806413086a1057520bd4b638f85717c3)`(const int32 & NewValue)` <a id="structFRHAPI__PageMeta_1a806413086a1057520bd4b638f85717c3"></a>
+#### `public inline FORCEINLINE void `[`SetTotal`](#structFRHAPI__PageMeta_1a15856897c50256d04c8d3de8805ceb99)`(const int32 & NewValue)` <a id="structFRHAPI__PageMeta_1a15856897c50256d04c8d3de8805ceb99"></a>
 
 Sets the value of Total.
 
-#### `public inline void `[`SetTotal`](#structFRHAPI__PageMeta_1a2ebe4335c034c1ea1fb1088574335f55)`(int32 && NewValue)` <a id="structFRHAPI__PageMeta_1a2ebe4335c034c1ea1fb1088574335f55"></a>
+#### `public inline FORCEINLINE void `[`SetTotal`](#structFRHAPI__PageMeta_1a32eda26aed4271119bdbdea6a05d42fa)`(int32 && NewValue)` <a id="structFRHAPI__PageMeta_1a32eda26aed4271119bdbdea6a05d42fa"></a>
 
 Sets the value of Total using move semantics.
 
-#### `public inline bool `[`IsTotalDefaultValue`](#structFRHAPI__PageMeta_1a999342514882e895d280ab861137cba1)`() const` <a id="structFRHAPI__PageMeta_1a999342514882e895d280ab861137cba1"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Total`](#structFRHAPI__PageMeta_1ac124485f7a9a398f621000b010baf4c5)`()` <a id="structFRHAPI__PageMeta_1ac124485f7a9a398f621000b010baf4c5"></a>
 
-Returns true if Total matches the default value.
-
-#### `public inline void `[`SetTotalToDefault`](#structFRHAPI__PageMeta_1a32d285464f71b75b05be71450f894b97)`()` <a id="structFRHAPI__PageMeta_1a32d285464f71b75b05be71450f894b97"></a>
-
-Sets the value of Total to its default
+Returns the default value of Total.
 

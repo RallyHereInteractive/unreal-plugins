@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_DeserterConfigResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_DeserterConfig> DeserterConfigs{  };
 	/** @brief Gets the value of DeserterConfigs */
-	TArray<FRHAPI_DeserterConfig>& GetDeserterConfigs() { return DeserterConfigs; }
+	FORCEINLINE TArray<FRHAPI_DeserterConfig>& GetDeserterConfigs() { return DeserterConfigs; }
 	/** @brief Gets the value of DeserterConfigs */
-	const TArray<FRHAPI_DeserterConfig>& GetDeserterConfigs() const { return DeserterConfigs; }
+	FORCEINLINE const TArray<FRHAPI_DeserterConfig>& GetDeserterConfigs() const { return DeserterConfigs; }
 	/** @brief Sets the value of DeserterConfigs */
-	void SetDeserterConfigs(const TArray<FRHAPI_DeserterConfig>& NewValue) { DeserterConfigs = NewValue;   }
+	FORCEINLINE void SetDeserterConfigs(const TArray<FRHAPI_DeserterConfig>& NewValue) { DeserterConfigs = NewValue;   }
 	/** @brief Sets the value of DeserterConfigs using move semantics */
-	void SetDeserterConfigs(TArray<FRHAPI_DeserterConfig>&& NewValue) { DeserterConfigs = NewValue;   }
+	FORCEINLINE void SetDeserterConfigs(TArray<FRHAPI_DeserterConfig>&& NewValue) { DeserterConfigs = NewValue;   }
 };
 
 /** @} */

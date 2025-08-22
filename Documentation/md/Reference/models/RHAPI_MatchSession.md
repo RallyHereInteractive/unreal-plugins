@@ -25,22 +25,21 @@ struct FRHAPI_MatchSession
 `public bool `[`MatchmakingProfileId_IsNull`](#structFRHAPI__MatchSession_1a11772773df94890a47bca6a1c5a03b28) | true if MatchmakingProfileId_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchSession_1a0ca3b9c6415fec3618b589c8a2790b5a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchSession_1aad5283f4065d243c0ee80b0540e968b4)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1a2e01af7028e299bb27a2ef787fe17491)`()` | Gets the value of SessionId.
-`public inline const FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1a4b7cc575c5b605edfcb4cbd7e4d0a600)`() const` | Gets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__MatchSession_1a0de515a8e818ddb0fd9c47361a84e320)`(const FString & NewValue)` | Sets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__MatchSession_1ad3c518b309d93fd0f9cd88749c8eec2f)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
-`public inline FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a13f1095bb605e7623d9224f91197f726)`()` | Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1ab90b1ffe33a088b0cffdb673d05f89ab)`() const` | Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a147607ca525561c37e7302f9c7e1945e)`(const FString & DefaultValue) const` | Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1ab554234d68fe02cccdfa012dae45c096)`(FString & OutValue) const` | Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__MatchSession_1a5bbadb32bfcd8e3a838c932d3c526405)`()` | Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__MatchSession_1a7df7da63e7923821ef81aec8c79f6cda)`() const` | Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a160b1b1d01e0b332e92dfde4d43a3725)`(const FString & NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true.
-`public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a80d3bdc3aa38fd0c8bcaac499eb26c38)`(FString && NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1a65723b6ce607886613f88ef74c538329)`()` | Gets the value of SessionId.
+`public inline FORCEINLINE const FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1a6a3bb58b45fc9b6663dd4320be3c76ff)`() const` | Gets the value of SessionId.
+`public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__MatchSession_1af5fcf44259a886d5566a94635e15f1d6)`(const FString & NewValue)` | Sets the value of SessionId.
+`public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__MatchSession_1ad48f9127b0a99e0c92a5e52e3f50a480)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
+`public inline FORCEINLINE FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a1c4012d18d3eb4bb73230eba3a5fb40c)`()` | Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a8b9d16f99de655aee3276f3db1c95164)`() const` | Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a003b4bafeb7770f1ff4b1d8a3ad457d4)`(const FString & DefaultValue) const` | Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a5ae9bf6e4465a94253966b97309d8e28)`(FString & OutValue) const` | Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__MatchSession_1a11e3091952130044017aefa9ac4f9ff1)`()` | Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__MatchSession_1a59edfc3caaa3a1cfe575cfd9b815084d)`() const` | Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1adda057bdddde8fd6272ded4f4ab9c143)`(const FString & NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true.
+`public inline FORCEINLINE void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1afdd3aaa872181bd2821a2debb58f06eb)`(FString && NewValue)` | Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchmakingProfileId`](#structFRHAPI__MatchSession_1a619a8b5b4a2c7348fd5a26f7c4b10caf)`()` | Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false.
-`public inline bool `[`IsMatchmakingProfileIdSet`](#structFRHAPI__MatchSession_1a52b5e1c26a9078d4e341e74aec7b9f18)`() const` | Checks whether MatchmakingProfileId_Optional has been set.
-`public inline void `[`SetMatchmakingProfileIdToNull`](#structFRHAPI__MatchSession_1a0896d1f5e2b7e033ad847563c776bef2)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsMatchmakingProfileIdNull`](#structFRHAPI__MatchSession_1a41a832d6f035be1573b5be34d18c5dc9)`() const` | Checks whether MatchmakingProfileId_Optional is set to null.
+`public inline FORCEINLINE void `[`SetMatchmakingProfileIdToNull`](#structFRHAPI__MatchSession_1aa2a6cddea80894bc902a3f3a755da52d)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsMatchmakingProfileIdNull`](#structFRHAPI__MatchSession_1afc4cda5ef41847a0e341c57611727620)`() const` | Checks whether MatchmakingProfileId_Optional is set to null.
 
 ### Members
 
@@ -75,51 +74,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1a2e01af7028e299bb27a2ef787fe17491)`()` <a id="structFRHAPI__MatchSession_1a2e01af7028e299bb27a2ef787fe17491"></a>
+#### `public inline FORCEINLINE FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1a65723b6ce607886613f88ef74c538329)`()` <a id="structFRHAPI__MatchSession_1a65723b6ce607886613f88ef74c538329"></a>
 
 Gets the value of SessionId.
 
-#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1a4b7cc575c5b605edfcb4cbd7e4d0a600)`() const` <a id="structFRHAPI__MatchSession_1a4b7cc575c5b605edfcb4cbd7e4d0a600"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSessionId`](#structFRHAPI__MatchSession_1a6a3bb58b45fc9b6663dd4320be3c76ff)`() const` <a id="structFRHAPI__MatchSession_1a6a3bb58b45fc9b6663dd4320be3c76ff"></a>
 
 Gets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__MatchSession_1a0de515a8e818ddb0fd9c47361a84e320)`(const FString & NewValue)` <a id="structFRHAPI__MatchSession_1a0de515a8e818ddb0fd9c47361a84e320"></a>
+#### `public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__MatchSession_1af5fcf44259a886d5566a94635e15f1d6)`(const FString & NewValue)` <a id="structFRHAPI__MatchSession_1af5fcf44259a886d5566a94635e15f1d6"></a>
 
 Sets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__MatchSession_1ad3c518b309d93fd0f9cd88749c8eec2f)`(FString && NewValue)` <a id="structFRHAPI__MatchSession_1ad3c518b309d93fd0f9cd88749c8eec2f"></a>
+#### `public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__MatchSession_1ad48f9127b0a99e0c92a5e52e3f50a480)`(FString && NewValue)` <a id="structFRHAPI__MatchSession_1ad48f9127b0a99e0c92a5e52e3f50a480"></a>
 
 Sets the value of SessionId using move semantics.
 
-#### `public inline FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a13f1095bb605e7623d9224f91197f726)`()` <a id="structFRHAPI__MatchSession_1a13f1095bb605e7623d9224f91197f726"></a>
+#### `public inline FORCEINLINE FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a1c4012d18d3eb4bb73230eba3a5fb40c)`()` <a id="structFRHAPI__MatchSession_1a1c4012d18d3eb4bb73230eba3a5fb40c"></a>
 
 Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1ab90b1ffe33a088b0cffdb673d05f89ab)`() const` <a id="structFRHAPI__MatchSession_1ab90b1ffe33a088b0cffdb673d05f89ab"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a8b9d16f99de655aee3276f3db1c95164)`() const` <a id="structFRHAPI__MatchSession_1a8b9d16f99de655aee3276f3db1c95164"></a>
 
 Gets the value of MatchmakingProfileId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a147607ca525561c37e7302f9c7e1945e)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchSession_1a147607ca525561c37e7302f9c7e1945e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a003b4bafeb7770f1ff4b1d8a3ad457d4)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchSession_1a003b4bafeb7770f1ff4b1d8a3ad457d4"></a>
 
 Gets the value of MatchmakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1ab554234d68fe02cccdfa012dae45c096)`(FString & OutValue) const` <a id="structFRHAPI__MatchSession_1ab554234d68fe02cccdfa012dae45c096"></a>
+#### `public inline FORCEINLINE bool `[`GetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a5ae9bf6e4465a94253966b97309d8e28)`(FString & OutValue) const` <a id="structFRHAPI__MatchSession_1a5ae9bf6e4465a94253966b97309d8e28"></a>
 
 Fills OutValue with the value of MatchmakingProfileId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__MatchSession_1a5bbadb32bfcd8e3a838c932d3c526405)`()` <a id="structFRHAPI__MatchSession_1a5bbadb32bfcd8e3a838c932d3c526405"></a>
+#### `public inline FORCEINLINE FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__MatchSession_1a11e3091952130044017aefa9ac4f9ff1)`()` <a id="structFRHAPI__MatchSession_1a11e3091952130044017aefa9ac4f9ff1"></a>
 
 Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__MatchSession_1a7df7da63e7923821ef81aec8c79f6cda)`() const` <a id="structFRHAPI__MatchSession_1a7df7da63e7923821ef81aec8c79f6cda"></a>
+#### `public inline FORCEINLINE const FString * `[`GetMatchmakingProfileIdOrNull`](#structFRHAPI__MatchSession_1a59edfc3caaa3a1cfe575cfd9b815084d)`() const` <a id="structFRHAPI__MatchSession_1a59edfc3caaa3a1cfe575cfd9b815084d"></a>
 
 Returns a pointer to MatchmakingProfileId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a160b1b1d01e0b332e92dfde4d43a3725)`(const FString & NewValue)` <a id="structFRHAPI__MatchSession_1a160b1b1d01e0b332e92dfde4d43a3725"></a>
+#### `public inline FORCEINLINE void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1adda057bdddde8fd6272ded4f4ab9c143)`(const FString & NewValue)` <a id="structFRHAPI__MatchSession_1adda057bdddde8fd6272ded4f4ab9c143"></a>
 
 Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true.
 
-#### `public inline void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1a80d3bdc3aa38fd0c8bcaac499eb26c38)`(FString && NewValue)` <a id="structFRHAPI__MatchSession_1a80d3bdc3aa38fd0c8bcaac499eb26c38"></a>
+#### `public inline FORCEINLINE void `[`SetMatchmakingProfileId`](#structFRHAPI__MatchSession_1afdd3aaa872181bd2821a2debb58f06eb)`(FString && NewValue)` <a id="structFRHAPI__MatchSession_1afdd3aaa872181bd2821a2debb58f06eb"></a>
 
 Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfileId_IsSet to true using move semantics.
 
@@ -127,15 +126,11 @@ Sets the value of MatchmakingProfileId_Optional and also sets MatchmakingProfile
 
 Clears the value of MatchmakingProfileId_Optional and sets MatchmakingProfileId_IsSet to false.
 
-#### `public inline bool `[`IsMatchmakingProfileIdSet`](#structFRHAPI__MatchSession_1a52b5e1c26a9078d4e341e74aec7b9f18)`() const` <a id="structFRHAPI__MatchSession_1a52b5e1c26a9078d4e341e74aec7b9f18"></a>
-
-Checks whether MatchmakingProfileId_Optional has been set.
-
-#### `public inline void `[`SetMatchmakingProfileIdToNull`](#structFRHAPI__MatchSession_1a0896d1f5e2b7e033ad847563c776bef2)`()` <a id="structFRHAPI__MatchSession_1a0896d1f5e2b7e033ad847563c776bef2"></a>
+#### `public inline FORCEINLINE void `[`SetMatchmakingProfileIdToNull`](#structFRHAPI__MatchSession_1aa2a6cddea80894bc902a3f3a755da52d)`()` <a id="structFRHAPI__MatchSession_1aa2a6cddea80894bc902a3f3a755da52d"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsMatchmakingProfileIdNull`](#structFRHAPI__MatchSession_1a41a832d6f035be1573b5be34d18c5dc9)`() const` <a id="structFRHAPI__MatchSession_1a41a832d6f035be1573b5be34d18c5dc9"></a>
+#### `public inline FORCEINLINE bool `[`IsMatchmakingProfileIdNull`](#structFRHAPI__MatchSession_1afc4cda5ef41847a0e341c57611727620)`() const` <a id="structFRHAPI__MatchSession_1afc4cda5ef41847a0e341c57611727620"></a>
 
 Checks whether MatchmakingProfileId_Optional is set to null.
 

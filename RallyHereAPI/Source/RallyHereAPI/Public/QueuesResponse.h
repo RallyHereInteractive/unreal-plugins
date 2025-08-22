@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_QueuesResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_QueueConfig> Queues{  };
 	/** @brief Gets the value of Queues */
-	TArray<FRHAPI_QueueConfig>& GetQueues() { return Queues; }
+	FORCEINLINE TArray<FRHAPI_QueueConfig>& GetQueues() { return Queues; }
 	/** @brief Gets the value of Queues */
-	const TArray<FRHAPI_QueueConfig>& GetQueues() const { return Queues; }
+	FORCEINLINE const TArray<FRHAPI_QueueConfig>& GetQueues() const { return Queues; }
 	/** @brief Sets the value of Queues */
-	void SetQueues(const TArray<FRHAPI_QueueConfig>& NewValue) { Queues = NewValue;   }
+	FORCEINLINE void SetQueues(const TArray<FRHAPI_QueueConfig>& NewValue) { Queues = NewValue;   }
 	/** @brief Sets the value of Queues using move semantics */
-	void SetQueues(TArray<FRHAPI_QueueConfig>&& NewValue) { Queues = NewValue;   }
+	FORCEINLINE void SetQueues(TArray<FRHAPI_QueueConfig>&& NewValue) { Queues = NewValue;   }
 };
 
 /** @} */

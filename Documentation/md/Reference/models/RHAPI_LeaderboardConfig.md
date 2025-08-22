@@ -37,88 +37,78 @@ struct FRHAPI_LeaderboardConfig
 `public bool `[`ExposePlayers_IsSet`](#structFRHAPI__LeaderboardConfig_1a8851ba3bdcb548837dff00342c77039d) | true if ExposePlayers_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__LeaderboardConfig_1af7bfdcdebbc8ac86f2eb0fc03ef5d7a5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LeaderboardConfig_1aef7cdabaca7b810de63c55dc0b948e96)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ac2ac7eb5c9cad53a850eb7096393723f)`()` | Gets the value of LeaderboardId.
-`public inline const FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1af4ac931597ad4cf31f2e51ab05b65a90)`() const` | Gets the value of LeaderboardId.
-`public inline void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ab282e534bc2a12aa8f94752967fb3256)`(const FString & NewValue)` | Sets the value of LeaderboardId.
-`public inline void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ad6b72ff24e5dcaac745aed38fdd397bf)`(FString && NewValue)` | Sets the value of LeaderboardId using move semantics.
-`public inline ERHAPI_PlayerListType & `[`GetPlayerList`](#structFRHAPI__LeaderboardConfig_1a28921b4be86f4a981b2266165454280e)`()` | Gets the value of PlayerList.
-`public inline const ERHAPI_PlayerListType & `[`GetPlayerList`](#structFRHAPI__LeaderboardConfig_1a62bacb6c91abb0769e2fed3b9bc125e8)`() const` | Gets the value of PlayerList.
-`public inline void `[`SetPlayerList`](#structFRHAPI__LeaderboardConfig_1a28fcda37e17fd728a34ad8ffe33ed50b)`(const ERHAPI_PlayerListType & NewValue)` | Sets the value of PlayerList.
-`public inline void `[`SetPlayerList`](#structFRHAPI__LeaderboardConfig_1ad94244fb65b88e8451c5163ca105166d)`(ERHAPI_PlayerListType && NewValue)` | Sets the value of PlayerList using move semantics.
-`public inline int32 & `[`GetMaxSize`](#structFRHAPI__LeaderboardConfig_1a54e5a0221b100445f9088c28909cc20b)`()` | Gets the value of MaxSize.
-`public inline const int32 & `[`GetMaxSize`](#structFRHAPI__LeaderboardConfig_1ad5b4d9f230a7565d634b92f65d4384aa)`() const` | Gets the value of MaxSize.
-`public inline void `[`SetMaxSize`](#structFRHAPI__LeaderboardConfig_1ada522264e5e9b133a1812b6af857b638)`(const int32 & NewValue)` | Sets the value of MaxSize.
-`public inline void `[`SetMaxSize`](#structFRHAPI__LeaderboardConfig_1a421f1aa2e293d6e44a890ffac5574c09)`(int32 && NewValue)` | Sets the value of MaxSize using move semantics.
-`public inline bool `[`IsMaxSizeDefaultValue`](#structFRHAPI__LeaderboardConfig_1a1ff0bc4c20338c1fb9d8ae0eb3bc3ec6)`() const` | Returns true if MaxSize matches the default value.
-`public inline void `[`SetMaxSizeToDefault`](#structFRHAPI__LeaderboardConfig_1a641d87fb9c5a6a2d4ae4a03a09b1fbc6)`()` | Sets the value of MaxSize to its default
-`public inline ERHAPI_LeaderboardSortOrder & `[`GetSortOrder`](#structFRHAPI__LeaderboardConfig_1a20cbfa226fe9e1943d19384e83a23cae)`()` | Gets the value of SortOrder.
-`public inline const ERHAPI_LeaderboardSortOrder & `[`GetSortOrder`](#structFRHAPI__LeaderboardConfig_1a56400970ddf662df749dc2ffffa40850)`() const` | Gets the value of SortOrder.
-`public inline void `[`SetSortOrder`](#structFRHAPI__LeaderboardConfig_1a970a6527406140c2479771495a134cee)`(const ERHAPI_LeaderboardSortOrder & NewValue)` | Sets the value of SortOrder.
-`public inline void `[`SetSortOrder`](#structFRHAPI__LeaderboardConfig_1abdba4cca96529983eaeff83ea83939d9)`(ERHAPI_LeaderboardSortOrder && NewValue)` | Sets the value of SortOrder using move semantics.
-`public inline ERHAPI_LeaderboardSource & `[`GetSource`](#structFRHAPI__LeaderboardConfig_1a2381d6259651d3b7d56bf4cfe86409e5)`()` | Gets the value of Source.
-`public inline const ERHAPI_LeaderboardSource & `[`GetSource`](#structFRHAPI__LeaderboardConfig_1aafa1ad9b6d980a552f327c646229492f)`() const` | Gets the value of Source.
-`public inline void `[`SetSource`](#structFRHAPI__LeaderboardConfig_1af9972251484ed41e8c08e1ef5eed5c94)`(const ERHAPI_LeaderboardSource & NewValue)` | Sets the value of Source.
-`public inline void `[`SetSource`](#structFRHAPI__LeaderboardConfig_1a06a20031cd22c7e337e1ce2e15df6fd8)`(ERHAPI_LeaderboardSource && NewValue)` | Sets the value of Source using move semantics.
-`public inline FString & `[`GetSourceId`](#structFRHAPI__LeaderboardConfig_1ac53a98a3ebee3a8d53e23c9ff2cffccb)`()` | Gets the value of SourceId.
-`public inline const FString & `[`GetSourceId`](#structFRHAPI__LeaderboardConfig_1a6855bb0745960cfe9e6e6f70a647042b)`() const` | Gets the value of SourceId.
-`public inline void `[`SetSourceId`](#structFRHAPI__LeaderboardConfig_1a7519de4bc11220b694ede7e2bb394910)`(const FString & NewValue)` | Sets the value of SourceId.
-`public inline void `[`SetSourceId`](#structFRHAPI__LeaderboardConfig_1ac81736ec65eb3459a7393051d52c3ee1)`(FString && NewValue)` | Sets the value of SourceId using move semantics.
-`public inline bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a3e0633df9016b303ed78433e375c8373)`()` | Gets the value of RemoveRestricted_Optional, regardless of it having been set.
-`public inline const bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a07004af364daae8ae65df73912c0a57c)`() const` | Gets the value of RemoveRestricted_Optional, regardless of it having been set.
-`public inline const bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a0e5638e6f20860e6c5f0a762b3496421)`(const bool & DefaultValue) const` | Gets the value of RemoveRestricted_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a37f402ceae348efb5419a66e6c7881a8)`(bool & OutValue) const` | Fills OutValue with the value of RemoveRestricted_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetRemoveRestrictedOrNull`](#structFRHAPI__LeaderboardConfig_1abaef284bc137730978eefc897a602ee6)`()` | Returns a pointer to RemoveRestricted_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetRemoveRestrictedOrNull`](#structFRHAPI__LeaderboardConfig_1a0595e36252f6579845985fc0c6585941)`() const` | Returns a pointer to RemoveRestricted_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a3c1358ae4d7c7f3cda62667b4601ddc9)`(const bool & NewValue)` | Sets the value of RemoveRestricted_Optional and also sets RemoveRestricted_IsSet to true.
-`public inline void `[`SetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a0f348170986c187badd2ef758a2039d9)`(bool && NewValue)` | Sets the value of RemoveRestricted_Optional and also sets RemoveRestricted_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ae163c2f4a900e6fa8d954d455888b1e4)`()` | Gets the value of LeaderboardId.
+`public inline FORCEINLINE const FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1a14ec3c6856e345de9043d47c99bce54c)`() const` | Gets the value of LeaderboardId.
+`public inline FORCEINLINE void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1a88ee218e850c9ed079c3547cf202c308)`(const FString & NewValue)` | Sets the value of LeaderboardId.
+`public inline FORCEINLINE void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ac94df852ff83664c1c08cf5d03e0fb85)`(FString && NewValue)` | Sets the value of LeaderboardId using move semantics.
+`public inline FORCEINLINE ERHAPI_PlayerListType & `[`GetPlayerList`](#structFRHAPI__LeaderboardConfig_1ac58a1051007c7a0159927c45cccf094c)`()` | Gets the value of PlayerList.
+`public inline FORCEINLINE const ERHAPI_PlayerListType & `[`GetPlayerList`](#structFRHAPI__LeaderboardConfig_1a82d073c74302afa159ba927f9112fffd)`() const` | Gets the value of PlayerList.
+`public inline FORCEINLINE void `[`SetPlayerList`](#structFRHAPI__LeaderboardConfig_1a03038d2d6f267b1ce3a9c3925b1f0b44)`(const ERHAPI_PlayerListType & NewValue)` | Sets the value of PlayerList.
+`public inline FORCEINLINE void `[`SetPlayerList`](#structFRHAPI__LeaderboardConfig_1ad23a1e3a117287294ba773dec3440c99)`(ERHAPI_PlayerListType && NewValue)` | Sets the value of PlayerList using move semantics.
+`public inline FORCEINLINE int32 & `[`GetMaxSize`](#structFRHAPI__LeaderboardConfig_1af4c77a9a075e93968842f6be50137d96)`()` | Gets the value of MaxSize.
+`public inline FORCEINLINE const int32 & `[`GetMaxSize`](#structFRHAPI__LeaderboardConfig_1a1b0b38bba783e0646572bacb88c8b9a1)`() const` | Gets the value of MaxSize.
+`public inline FORCEINLINE void `[`SetMaxSize`](#structFRHAPI__LeaderboardConfig_1ad7f3dca9573903673e3bffdb4beb0b7f)`(const int32 & NewValue)` | Sets the value of MaxSize.
+`public inline FORCEINLINE void `[`SetMaxSize`](#structFRHAPI__LeaderboardConfig_1a6c7e75657c780738df56c1fe16df2971)`(int32 && NewValue)` | Sets the value of MaxSize using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_MaxSize`](#structFRHAPI__LeaderboardConfig_1aed55fae1f4b92d4db28d29454f34f800)`()` | Returns the default value of MaxSize.
+`public inline FORCEINLINE ERHAPI_LeaderboardSortOrder & `[`GetSortOrder`](#structFRHAPI__LeaderboardConfig_1aa68b025c8cbc2c014d1b714362bf1593)`()` | Gets the value of SortOrder.
+`public inline FORCEINLINE const ERHAPI_LeaderboardSortOrder & `[`GetSortOrder`](#structFRHAPI__LeaderboardConfig_1aa399faf8902f6cb5de391541fb6d866b)`() const` | Gets the value of SortOrder.
+`public inline FORCEINLINE void `[`SetSortOrder`](#structFRHAPI__LeaderboardConfig_1a2be3d6928b32dabc7d5cf22dff03c769)`(const ERHAPI_LeaderboardSortOrder & NewValue)` | Sets the value of SortOrder.
+`public inline FORCEINLINE void `[`SetSortOrder`](#structFRHAPI__LeaderboardConfig_1a63cd17da85e1bb3f4afb451b2b81bafc)`(ERHAPI_LeaderboardSortOrder && NewValue)` | Sets the value of SortOrder using move semantics.
+`public inline FORCEINLINE ERHAPI_LeaderboardSource & `[`GetSource`](#structFRHAPI__LeaderboardConfig_1add0a4fb20225dda6572021c0b31f2610)`()` | Gets the value of Source.
+`public inline FORCEINLINE const ERHAPI_LeaderboardSource & `[`GetSource`](#structFRHAPI__LeaderboardConfig_1a67a52bc626bf6826f2eda56a6f7c87d5)`() const` | Gets the value of Source.
+`public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__LeaderboardConfig_1a7b12b02c6ea7efc44a8e06d7bbb42609)`(const ERHAPI_LeaderboardSource & NewValue)` | Sets the value of Source.
+`public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__LeaderboardConfig_1ab5f82851e8296b331814a375cae772bf)`(ERHAPI_LeaderboardSource && NewValue)` | Sets the value of Source using move semantics.
+`public inline FORCEINLINE FString & `[`GetSourceId`](#structFRHAPI__LeaderboardConfig_1ad9a9e10078994174e1075492e0e650e1)`()` | Gets the value of SourceId.
+`public inline FORCEINLINE const FString & `[`GetSourceId`](#structFRHAPI__LeaderboardConfig_1a7f72d404dc7dd3f86a0683382e2d49f6)`() const` | Gets the value of SourceId.
+`public inline FORCEINLINE void `[`SetSourceId`](#structFRHAPI__LeaderboardConfig_1a8caa9647abea0b0e17209301156068d8)`(const FString & NewValue)` | Sets the value of SourceId.
+`public inline FORCEINLINE void `[`SetSourceId`](#structFRHAPI__LeaderboardConfig_1a3bdd6cd019676a9c8422dd2f501949c5)`(FString && NewValue)` | Sets the value of SourceId using move semantics.
+`public inline FORCEINLINE bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a2ee39448ee6416b9c8bd59289ee73562)`()` | Gets the value of RemoveRestricted_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1ad5c6dcc045ae66867e644e16d9ce964d)`() const` | Gets the value of RemoveRestricted_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a984eef97f544a7cabd1ceedc9704eb28)`(const bool & DefaultValue) const` | Gets the value of RemoveRestricted_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a003ce816c594237a30bb320a03f76cb8)`(bool & OutValue) const` | Fills OutValue with the value of RemoveRestricted_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetRemoveRestrictedOrNull`](#structFRHAPI__LeaderboardConfig_1a2bcb81944c50b82c9bb95fee7b6f5ef9)`()` | Returns a pointer to RemoveRestricted_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetRemoveRestrictedOrNull`](#structFRHAPI__LeaderboardConfig_1a81522c15cea67a0e68f75487f7aee848)`() const` | Returns a pointer to RemoveRestricted_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a99149329b1c791ca271a5945402e99ca)`(const bool & NewValue)` | Sets the value of RemoveRestricted_Optional and also sets RemoveRestricted_IsSet to true.
+`public inline FORCEINLINE void `[`SetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a6a10506ffa3ed54a07cdd5176c054dee)`(bool && NewValue)` | Sets the value of RemoveRestricted_Optional and also sets RemoveRestricted_IsSet to true using move semantics.
 `public inline void `[`ClearRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a401bfdb1f7902ffb5e7623f8813434b1)`()` | Clears the value of RemoveRestricted_Optional and sets RemoveRestricted_IsSet to false.
-`public inline bool `[`IsRemoveRestrictedSet`](#structFRHAPI__LeaderboardConfig_1a34ca4faeb424a91a802f877c5b629b4f)`() const` | Checks whether RemoveRestricted_Optional has been set.
-`public inline bool `[`IsRemoveRestrictedDefaultValue`](#structFRHAPI__LeaderboardConfig_1a87f38f4b65e8e2661dcd6707a79a3d0e)`() const` | Returns true if RemoveRestricted_Optional is set and matches the default value.
-`public inline void `[`SetRemoveRestrictedToDefault`](#structFRHAPI__LeaderboardConfig_1adc92166f52264e81391169fceb475cb1)`()` | Sets the value of RemoveRestricted_Optional to its default and also sets RemoveRestricted_IsSet to true.
-`public inline int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a3c2a3c7550851ab214155a295bf6b246)`()` | Gets the value of RequiredRecentLoginDays_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1ae3afd0fe912a2d1fb7915ba47dc350f6)`() const` | Gets the value of RequiredRecentLoginDays_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a9db88c677b33d27fa27cb9d963b91dbd)`(const int32 & DefaultValue) const` | Gets the value of RequiredRecentLoginDays_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a9717e1f5c0acfe6f20f0cc0bd6a6bcae)`(int32 & OutValue) const` | Fills OutValue with the value of RequiredRecentLoginDays_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetRequiredRecentLoginDaysOrNull`](#structFRHAPI__LeaderboardConfig_1a88a6e6bc7ad8a8081475bb6200744f78)`()` | Returns a pointer to RequiredRecentLoginDays_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetRequiredRecentLoginDaysOrNull`](#structFRHAPI__LeaderboardConfig_1a7c89cca08d59589e141f4e49fc2715aa)`() const` | Returns a pointer to RequiredRecentLoginDays_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1aaeebc4a7a35f61cf3ec7fc2f8228de27)`(const int32 & NewValue)` | Sets the value of RequiredRecentLoginDays_Optional and also sets RequiredRecentLoginDays_IsSet to true.
-`public inline void `[`SetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a3cc82a4bd8550c643057babbf0326b35)`(int32 && NewValue)` | Sets the value of RequiredRecentLoginDays_Optional and also sets RequiredRecentLoginDays_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_RemoveRestricted`](#structFRHAPI__LeaderboardConfig_1ac561058c33e33aaa726bcaa00f62b6fc)`()` | Returns the default value of RemoveRestricted.
+`public inline FORCEINLINE int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1ae1f0fc6d0053ce06822452b099ac961f)`()` | Gets the value of RequiredRecentLoginDays_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a494bd0a72a18bdf6ab3c96df075feace)`() const` | Gets the value of RequiredRecentLoginDays_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1af015b094ae8314cd87920d3e0e023138)`(const int32 & DefaultValue) const` | Gets the value of RequiredRecentLoginDays_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a5ce6033a10862d38f76892dc91a5cfd5)`(int32 & OutValue) const` | Fills OutValue with the value of RequiredRecentLoginDays_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetRequiredRecentLoginDaysOrNull`](#structFRHAPI__LeaderboardConfig_1af36b9de5cf3c40012892ffbcd619b9e3)`()` | Returns a pointer to RequiredRecentLoginDays_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetRequiredRecentLoginDaysOrNull`](#structFRHAPI__LeaderboardConfig_1a1a17f283cd26477dd229bb28ffd19fe9)`() const` | Returns a pointer to RequiredRecentLoginDays_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a9d046221d36d84c6f7a142221bbf7097)`(const int32 & NewValue)` | Sets the value of RequiredRecentLoginDays_Optional and also sets RequiredRecentLoginDays_IsSet to true.
+`public inline FORCEINLINE void `[`SetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1aa6f00e65dcd77f2ae4a78e54ed867fdc)`(int32 && NewValue)` | Sets the value of RequiredRecentLoginDays_Optional and also sets RequiredRecentLoginDays_IsSet to true using move semantics.
 `public inline void `[`ClearRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a9152fd07f06d89e784231c5889e06390)`()` | Clears the value of RequiredRecentLoginDays_Optional and sets RequiredRecentLoginDays_IsSet to false.
-`public inline bool `[`IsRequiredRecentLoginDaysSet`](#structFRHAPI__LeaderboardConfig_1a70855fc251bce0e48fc0badc60a8f6c9)`() const` | Checks whether RequiredRecentLoginDays_Optional has been set.
-`public inline bool `[`IsRequiredRecentLoginDaysDefaultValue`](#structFRHAPI__LeaderboardConfig_1ac891e6d2edc8fb536db611bbe1293118)`() const` | Returns true if RequiredRecentLoginDays_Optional is set and matches the default value.
-`public inline void `[`SetRequiredRecentLoginDaysToDefault`](#structFRHAPI__LeaderboardConfig_1ac1585dd4c99088ea6959f6dfc310b4c6)`()` | Sets the value of RequiredRecentLoginDays_Optional to its default and also sets RequiredRecentLoginDays_IsSet to true.
-`public inline void `[`SetRequiredRecentLoginDaysToNull`](#structFRHAPI__LeaderboardConfig_1aa86a3a4ecfbde99a5e174722969d3112)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRequiredRecentLoginDaysNull`](#structFRHAPI__LeaderboardConfig_1aaeb3b3843b1c4cefc8361d3ba3690996)`() const` | Checks whether RequiredRecentLoginDays_Optional is set to null.
-`public inline int32 & `[`GetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1af9589325e6d82dbcd57847fccd392412)`()` | Gets the value of UpdateFrequencySeconds.
-`public inline const int32 & `[`GetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a24666acbf47da3c7cd5b77b3d699b368)`() const` | Gets the value of UpdateFrequencySeconds.
-`public inline void `[`SetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1ac202af3f767a6ce33e66537565bdb8b2)`(const int32 & NewValue)` | Sets the value of UpdateFrequencySeconds.
-`public inline void `[`SetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a3de460c42ccdbad26577e4d2d098d4ae)`(int32 && NewValue)` | Sets the value of UpdateFrequencySeconds using move semantics.
-`public inline bool `[`IsUpdateFrequencySecondsDefaultValue`](#structFRHAPI__LeaderboardConfig_1a50467e0454074b4bbd5028b328d58c5a)`() const` | Returns true if UpdateFrequencySeconds matches the default value.
-`public inline void `[`SetUpdateFrequencySecondsToDefault`](#structFRHAPI__LeaderboardConfig_1a7a6771659637bffc93f5fa4f366ace3b)`()` | Sets the value of UpdateFrequencySeconds to its default
-`public inline bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a433988dfb3f155325552751cf0b38e9a)`()` | Gets the value of ExposeStat_Optional, regardless of it having been set.
-`public inline const bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a2ebcfe37be49637bffc70799b73e301d)`() const` | Gets the value of ExposeStat_Optional, regardless of it having been set.
-`public inline const bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1adb4c7120674799ddac1d2124eda2fa8b)`(const bool & DefaultValue) const` | Gets the value of ExposeStat_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a47f99f11a21f9fe8cfc82c5af60b4d97)`(bool & OutValue) const` | Fills OutValue with the value of ExposeStat_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetExposeStatOrNull`](#structFRHAPI__LeaderboardConfig_1aa0b1362b8cf7aff6386d4a08bbd7a595)`()` | Returns a pointer to ExposeStat_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetExposeStatOrNull`](#structFRHAPI__LeaderboardConfig_1a20789a20c3acea04368240d225eed508)`() const` | Returns a pointer to ExposeStat_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetExposeStat`](#structFRHAPI__LeaderboardConfig_1a7c2680ea1551104d3dfc621306a4b07e)`(const bool & NewValue)` | Sets the value of ExposeStat_Optional and also sets ExposeStat_IsSet to true.
-`public inline void `[`SetExposeStat`](#structFRHAPI__LeaderboardConfig_1aa17bc70e628a9091c99040fd1c54bdaa)`(bool && NewValue)` | Sets the value of ExposeStat_Optional and also sets ExposeStat_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_RequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1aab4f56e71f43f3f8cfeaf08896ef4962)`()` | Returns the default value of RequiredRecentLoginDays.
+`public inline FORCEINLINE void `[`SetRequiredRecentLoginDaysToNull`](#structFRHAPI__LeaderboardConfig_1a22ebb2a9931982f05f79f27dca13dc04)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRequiredRecentLoginDaysNull`](#structFRHAPI__LeaderboardConfig_1a66ba94df0c25cf338e005fca10fec368)`() const` | Checks whether RequiredRecentLoginDays_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a3003e281efe53bba2d3d6e04228e3ad8)`()` | Gets the value of UpdateFrequencySeconds.
+`public inline FORCEINLINE const int32 & `[`GetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a94f5e84150c373df3a5b1b0a8e699d29)`() const` | Gets the value of UpdateFrequencySeconds.
+`public inline FORCEINLINE void `[`SetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1aa83ecf5a798d49b73e632bbd7240facf)`(const int32 & NewValue)` | Sets the value of UpdateFrequencySeconds.
+`public inline FORCEINLINE void `[`SetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a94fba944f95890cc21285fa03fe80424)`(int32 && NewValue)` | Sets the value of UpdateFrequencySeconds using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_UpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a8b69bfed2321351c5db38e636c89c0c6)`()` | Returns the default value of UpdateFrequencySeconds.
+`public inline FORCEINLINE bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1ac8fe06deb79303a18c6ef22b4615b818)`()` | Gets the value of ExposeStat_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a47c9a4e9767229e3a870692be6b8c407)`() const` | Gets the value of ExposeStat_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a5573857f530eaefc0a1f21d0c0b8434f)`(const bool & DefaultValue) const` | Gets the value of ExposeStat_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1ab62a24d72665a1a08f96af7e71f3cc7e)`(bool & OutValue) const` | Fills OutValue with the value of ExposeStat_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetExposeStatOrNull`](#structFRHAPI__LeaderboardConfig_1af2a69a352a303e2cea5a8cefa63b71b3)`()` | Returns a pointer to ExposeStat_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetExposeStatOrNull`](#structFRHAPI__LeaderboardConfig_1a554ff4ddc06b70fd27999d8f2e1a0853)`() const` | Returns a pointer to ExposeStat_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetExposeStat`](#structFRHAPI__LeaderboardConfig_1a89ef4f2557867c1706cf162c17e6cb4a)`(const bool & NewValue)` | Sets the value of ExposeStat_Optional and also sets ExposeStat_IsSet to true.
+`public inline FORCEINLINE void `[`SetExposeStat`](#structFRHAPI__LeaderboardConfig_1acc13280a34e4f6812675bf50e214a242)`(bool && NewValue)` | Sets the value of ExposeStat_Optional and also sets ExposeStat_IsSet to true using move semantics.
 `public inline void `[`ClearExposeStat`](#structFRHAPI__LeaderboardConfig_1a42fa6946647755973b35d4f30a9c2883)`()` | Clears the value of ExposeStat_Optional and sets ExposeStat_IsSet to false.
-`public inline bool `[`IsExposeStatSet`](#structFRHAPI__LeaderboardConfig_1a827019e584bb3da43b376c95175c270b)`() const` | Checks whether ExposeStat_Optional has been set.
-`public inline bool `[`IsExposeStatDefaultValue`](#structFRHAPI__LeaderboardConfig_1ae03986948c9cbaa771fe9e5c0ca3adf1)`() const` | Returns true if ExposeStat_Optional is set and matches the default value.
-`public inline void `[`SetExposeStatToDefault`](#structFRHAPI__LeaderboardConfig_1a975948e45d0ea5dffc687de3f62f1014)`()` | Sets the value of ExposeStat_Optional to its default and also sets ExposeStat_IsSet to true.
-`public inline bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1afcc99ffb59e13e009aa2a0879d1a1a29)`()` | Gets the value of ExposePlayers_Optional, regardless of it having been set.
-`public inline const bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1afc495bc5bff1bf745f35fbdd09f5e6b0)`() const` | Gets the value of ExposePlayers_Optional, regardless of it having been set.
-`public inline const bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1aea5f101a9d7fb25e129a5325ce45d015)`(const bool & DefaultValue) const` | Gets the value of ExposePlayers_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a9155825091f516419da761ba6a4e2ba7)`(bool & OutValue) const` | Fills OutValue with the value of ExposePlayers_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetExposePlayersOrNull`](#structFRHAPI__LeaderboardConfig_1aa131295095cf6d6c634295431bd21891)`()` | Returns a pointer to ExposePlayers_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetExposePlayersOrNull`](#structFRHAPI__LeaderboardConfig_1a4713292c77a978ee02273f92d32290d0)`() const` | Returns a pointer to ExposePlayers_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetExposePlayers`](#structFRHAPI__LeaderboardConfig_1ade2dbf97130575afd309f0f0de3e824a)`(const bool & NewValue)` | Sets the value of ExposePlayers_Optional and also sets ExposePlayers_IsSet to true.
-`public inline void `[`SetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a8eb18e98607918538d5d353f458f1e6d)`(bool && NewValue)` | Sets the value of ExposePlayers_Optional and also sets ExposePlayers_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_ExposeStat`](#structFRHAPI__LeaderboardConfig_1ab5ce979472a583a9f4e90fe0a4b6cb46)`()` | Returns the default value of ExposeStat.
+`public inline FORCEINLINE bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a874c6877ba15eb35491467a84acd7ebf)`()` | Gets the value of ExposePlayers_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a1abc0957ab9d0451a3a573191ddc4f53)`() const` | Gets the value of ExposePlayers_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1ad3a173542cb947b8acda72217cb21de6)`(const bool & DefaultValue) const` | Gets the value of ExposePlayers_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a154747427d59ecf42386aae01c893ba4)`(bool & OutValue) const` | Fills OutValue with the value of ExposePlayers_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetExposePlayersOrNull`](#structFRHAPI__LeaderboardConfig_1a9c1e05891e2580155a32f28fda7c6d3b)`()` | Returns a pointer to ExposePlayers_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetExposePlayersOrNull`](#structFRHAPI__LeaderboardConfig_1a0bd8445156b9cb4bfebb2cc3edb57fbd)`() const` | Returns a pointer to ExposePlayers_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a01e88c18ffca0905ae62f9bab36cd931)`(const bool & NewValue)` | Sets the value of ExposePlayers_Optional and also sets ExposePlayers_IsSet to true.
+`public inline FORCEINLINE void `[`SetExposePlayers`](#structFRHAPI__LeaderboardConfig_1ae54cc59ca6b70d18ee5461931e2645da)`(bool && NewValue)` | Sets the value of ExposePlayers_Optional and also sets ExposePlayers_IsSet to true using move semantics.
 `public inline void `[`ClearExposePlayers`](#structFRHAPI__LeaderboardConfig_1a4c603d8f96dc818689409bb15154e46c)`()` | Clears the value of ExposePlayers_Optional and sets ExposePlayers_IsSet to false.
-`public inline bool `[`IsExposePlayersSet`](#structFRHAPI__LeaderboardConfig_1a0c96e41b60548ba6409d1f7a4adef4a9)`() const` | Checks whether ExposePlayers_Optional has been set.
-`public inline bool `[`IsExposePlayersDefaultValue`](#structFRHAPI__LeaderboardConfig_1a77d8563cad4aad5d2276246b7935b237)`() const` | Returns true if ExposePlayers_Optional is set and matches the default value.
-`public inline void `[`SetExposePlayersToDefault`](#structFRHAPI__LeaderboardConfig_1aec9fbe35b7bc5582694a982c06fa3d27)`()` | Sets the value of ExposePlayers_Optional to its default and also sets ExposePlayers_IsSet to true.
+`public inline FORCEINLINE bool `[`GetDefaultValue_ExposePlayers`](#structFRHAPI__LeaderboardConfig_1a4355c73c7cb389a19d79696af8c57dd1)`()` | Returns the default value of ExposePlayers.
 
 ### Members
 
@@ -195,139 +185,135 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ac2ac7eb5c9cad53a850eb7096393723f)`()` <a id="structFRHAPI__LeaderboardConfig_1ac2ac7eb5c9cad53a850eb7096393723f"></a>
+#### `public inline FORCEINLINE FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ae163c2f4a900e6fa8d954d455888b1e4)`()` <a id="structFRHAPI__LeaderboardConfig_1ae163c2f4a900e6fa8d954d455888b1e4"></a>
 
 Gets the value of LeaderboardId.
 
-#### `public inline const FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1af4ac931597ad4cf31f2e51ab05b65a90)`() const` <a id="structFRHAPI__LeaderboardConfig_1af4ac931597ad4cf31f2e51ab05b65a90"></a>
+#### `public inline FORCEINLINE const FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1a14ec3c6856e345de9043d47c99bce54c)`() const` <a id="structFRHAPI__LeaderboardConfig_1a14ec3c6856e345de9043d47c99bce54c"></a>
 
 Gets the value of LeaderboardId.
 
-#### `public inline void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ab282e534bc2a12aa8f94752967fb3256)`(const FString & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ab282e534bc2a12aa8f94752967fb3256"></a>
+#### `public inline FORCEINLINE void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1a88ee218e850c9ed079c3547cf202c308)`(const FString & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a88ee218e850c9ed079c3547cf202c308"></a>
 
 Sets the value of LeaderboardId.
 
-#### `public inline void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ad6b72ff24e5dcaac745aed38fdd397bf)`(FString && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ad6b72ff24e5dcaac745aed38fdd397bf"></a>
+#### `public inline FORCEINLINE void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardConfig_1ac94df852ff83664c1c08cf5d03e0fb85)`(FString && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ac94df852ff83664c1c08cf5d03e0fb85"></a>
 
 Sets the value of LeaderboardId using move semantics.
 
-#### `public inline ERHAPI_PlayerListType & `[`GetPlayerList`](#structFRHAPI__LeaderboardConfig_1a28921b4be86f4a981b2266165454280e)`()` <a id="structFRHAPI__LeaderboardConfig_1a28921b4be86f4a981b2266165454280e"></a>
+#### `public inline FORCEINLINE ERHAPI_PlayerListType & `[`GetPlayerList`](#structFRHAPI__LeaderboardConfig_1ac58a1051007c7a0159927c45cccf094c)`()` <a id="structFRHAPI__LeaderboardConfig_1ac58a1051007c7a0159927c45cccf094c"></a>
 
 Gets the value of PlayerList.
 
-#### `public inline const ERHAPI_PlayerListType & `[`GetPlayerList`](#structFRHAPI__LeaderboardConfig_1a62bacb6c91abb0769e2fed3b9bc125e8)`() const` <a id="structFRHAPI__LeaderboardConfig_1a62bacb6c91abb0769e2fed3b9bc125e8"></a>
+#### `public inline FORCEINLINE const ERHAPI_PlayerListType & `[`GetPlayerList`](#structFRHAPI__LeaderboardConfig_1a82d073c74302afa159ba927f9112fffd)`() const` <a id="structFRHAPI__LeaderboardConfig_1a82d073c74302afa159ba927f9112fffd"></a>
 
 Gets the value of PlayerList.
 
-#### `public inline void `[`SetPlayerList`](#structFRHAPI__LeaderboardConfig_1a28fcda37e17fd728a34ad8ffe33ed50b)`(const ERHAPI_PlayerListType & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a28fcda37e17fd728a34ad8ffe33ed50b"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerList`](#structFRHAPI__LeaderboardConfig_1a03038d2d6f267b1ce3a9c3925b1f0b44)`(const ERHAPI_PlayerListType & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a03038d2d6f267b1ce3a9c3925b1f0b44"></a>
 
 Sets the value of PlayerList.
 
-#### `public inline void `[`SetPlayerList`](#structFRHAPI__LeaderboardConfig_1ad94244fb65b88e8451c5163ca105166d)`(ERHAPI_PlayerListType && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ad94244fb65b88e8451c5163ca105166d"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerList`](#structFRHAPI__LeaderboardConfig_1ad23a1e3a117287294ba773dec3440c99)`(ERHAPI_PlayerListType && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ad23a1e3a117287294ba773dec3440c99"></a>
 
 Sets the value of PlayerList using move semantics.
 
-#### `public inline int32 & `[`GetMaxSize`](#structFRHAPI__LeaderboardConfig_1a54e5a0221b100445f9088c28909cc20b)`()` <a id="structFRHAPI__LeaderboardConfig_1a54e5a0221b100445f9088c28909cc20b"></a>
+#### `public inline FORCEINLINE int32 & `[`GetMaxSize`](#structFRHAPI__LeaderboardConfig_1af4c77a9a075e93968842f6be50137d96)`()` <a id="structFRHAPI__LeaderboardConfig_1af4c77a9a075e93968842f6be50137d96"></a>
 
 Gets the value of MaxSize.
 
-#### `public inline const int32 & `[`GetMaxSize`](#structFRHAPI__LeaderboardConfig_1ad5b4d9f230a7565d634b92f65d4384aa)`() const` <a id="structFRHAPI__LeaderboardConfig_1ad5b4d9f230a7565d634b92f65d4384aa"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetMaxSize`](#structFRHAPI__LeaderboardConfig_1a1b0b38bba783e0646572bacb88c8b9a1)`() const` <a id="structFRHAPI__LeaderboardConfig_1a1b0b38bba783e0646572bacb88c8b9a1"></a>
 
 Gets the value of MaxSize.
 
-#### `public inline void `[`SetMaxSize`](#structFRHAPI__LeaderboardConfig_1ada522264e5e9b133a1812b6af857b638)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ada522264e5e9b133a1812b6af857b638"></a>
+#### `public inline FORCEINLINE void `[`SetMaxSize`](#structFRHAPI__LeaderboardConfig_1ad7f3dca9573903673e3bffdb4beb0b7f)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ad7f3dca9573903673e3bffdb4beb0b7f"></a>
 
 Sets the value of MaxSize.
 
-#### `public inline void `[`SetMaxSize`](#structFRHAPI__LeaderboardConfig_1a421f1aa2e293d6e44a890ffac5574c09)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a421f1aa2e293d6e44a890ffac5574c09"></a>
+#### `public inline FORCEINLINE void `[`SetMaxSize`](#structFRHAPI__LeaderboardConfig_1a6c7e75657c780738df56c1fe16df2971)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a6c7e75657c780738df56c1fe16df2971"></a>
 
 Sets the value of MaxSize using move semantics.
 
-#### `public inline bool `[`IsMaxSizeDefaultValue`](#structFRHAPI__LeaderboardConfig_1a1ff0bc4c20338c1fb9d8ae0eb3bc3ec6)`() const` <a id="structFRHAPI__LeaderboardConfig_1a1ff0bc4c20338c1fb9d8ae0eb3bc3ec6"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_MaxSize`](#structFRHAPI__LeaderboardConfig_1aed55fae1f4b92d4db28d29454f34f800)`()` <a id="structFRHAPI__LeaderboardConfig_1aed55fae1f4b92d4db28d29454f34f800"></a>
 
-Returns true if MaxSize matches the default value.
+Returns the default value of MaxSize.
 
-#### `public inline void `[`SetMaxSizeToDefault`](#structFRHAPI__LeaderboardConfig_1a641d87fb9c5a6a2d4ae4a03a09b1fbc6)`()` <a id="structFRHAPI__LeaderboardConfig_1a641d87fb9c5a6a2d4ae4a03a09b1fbc6"></a>
-
-Sets the value of MaxSize to its default
-
-#### `public inline ERHAPI_LeaderboardSortOrder & `[`GetSortOrder`](#structFRHAPI__LeaderboardConfig_1a20cbfa226fe9e1943d19384e83a23cae)`()` <a id="structFRHAPI__LeaderboardConfig_1a20cbfa226fe9e1943d19384e83a23cae"></a>
+#### `public inline FORCEINLINE ERHAPI_LeaderboardSortOrder & `[`GetSortOrder`](#structFRHAPI__LeaderboardConfig_1aa68b025c8cbc2c014d1b714362bf1593)`()` <a id="structFRHAPI__LeaderboardConfig_1aa68b025c8cbc2c014d1b714362bf1593"></a>
 
 Gets the value of SortOrder.
 
-#### `public inline const ERHAPI_LeaderboardSortOrder & `[`GetSortOrder`](#structFRHAPI__LeaderboardConfig_1a56400970ddf662df749dc2ffffa40850)`() const` <a id="structFRHAPI__LeaderboardConfig_1a56400970ddf662df749dc2ffffa40850"></a>
+#### `public inline FORCEINLINE const ERHAPI_LeaderboardSortOrder & `[`GetSortOrder`](#structFRHAPI__LeaderboardConfig_1aa399faf8902f6cb5de391541fb6d866b)`() const` <a id="structFRHAPI__LeaderboardConfig_1aa399faf8902f6cb5de391541fb6d866b"></a>
 
 Gets the value of SortOrder.
 
-#### `public inline void `[`SetSortOrder`](#structFRHAPI__LeaderboardConfig_1a970a6527406140c2479771495a134cee)`(const ERHAPI_LeaderboardSortOrder & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a970a6527406140c2479771495a134cee"></a>
+#### `public inline FORCEINLINE void `[`SetSortOrder`](#structFRHAPI__LeaderboardConfig_1a2be3d6928b32dabc7d5cf22dff03c769)`(const ERHAPI_LeaderboardSortOrder & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a2be3d6928b32dabc7d5cf22dff03c769"></a>
 
 Sets the value of SortOrder.
 
-#### `public inline void `[`SetSortOrder`](#structFRHAPI__LeaderboardConfig_1abdba4cca96529983eaeff83ea83939d9)`(ERHAPI_LeaderboardSortOrder && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1abdba4cca96529983eaeff83ea83939d9"></a>
+#### `public inline FORCEINLINE void `[`SetSortOrder`](#structFRHAPI__LeaderboardConfig_1a63cd17da85e1bb3f4afb451b2b81bafc)`(ERHAPI_LeaderboardSortOrder && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a63cd17da85e1bb3f4afb451b2b81bafc"></a>
 
 Sets the value of SortOrder using move semantics.
 
-#### `public inline ERHAPI_LeaderboardSource & `[`GetSource`](#structFRHAPI__LeaderboardConfig_1a2381d6259651d3b7d56bf4cfe86409e5)`()` <a id="structFRHAPI__LeaderboardConfig_1a2381d6259651d3b7d56bf4cfe86409e5"></a>
+#### `public inline FORCEINLINE ERHAPI_LeaderboardSource & `[`GetSource`](#structFRHAPI__LeaderboardConfig_1add0a4fb20225dda6572021c0b31f2610)`()` <a id="structFRHAPI__LeaderboardConfig_1add0a4fb20225dda6572021c0b31f2610"></a>
 
 Gets the value of Source.
 
-#### `public inline const ERHAPI_LeaderboardSource & `[`GetSource`](#structFRHAPI__LeaderboardConfig_1aafa1ad9b6d980a552f327c646229492f)`() const` <a id="structFRHAPI__LeaderboardConfig_1aafa1ad9b6d980a552f327c646229492f"></a>
+#### `public inline FORCEINLINE const ERHAPI_LeaderboardSource & `[`GetSource`](#structFRHAPI__LeaderboardConfig_1a67a52bc626bf6826f2eda56a6f7c87d5)`() const` <a id="structFRHAPI__LeaderboardConfig_1a67a52bc626bf6826f2eda56a6f7c87d5"></a>
 
 Gets the value of Source.
 
-#### `public inline void `[`SetSource`](#structFRHAPI__LeaderboardConfig_1af9972251484ed41e8c08e1ef5eed5c94)`(const ERHAPI_LeaderboardSource & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1af9972251484ed41e8c08e1ef5eed5c94"></a>
+#### `public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__LeaderboardConfig_1a7b12b02c6ea7efc44a8e06d7bbb42609)`(const ERHAPI_LeaderboardSource & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a7b12b02c6ea7efc44a8e06d7bbb42609"></a>
 
 Sets the value of Source.
 
-#### `public inline void `[`SetSource`](#structFRHAPI__LeaderboardConfig_1a06a20031cd22c7e337e1ce2e15df6fd8)`(ERHAPI_LeaderboardSource && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a06a20031cd22c7e337e1ce2e15df6fd8"></a>
+#### `public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__LeaderboardConfig_1ab5f82851e8296b331814a375cae772bf)`(ERHAPI_LeaderboardSource && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ab5f82851e8296b331814a375cae772bf"></a>
 
 Sets the value of Source using move semantics.
 
-#### `public inline FString & `[`GetSourceId`](#structFRHAPI__LeaderboardConfig_1ac53a98a3ebee3a8d53e23c9ff2cffccb)`()` <a id="structFRHAPI__LeaderboardConfig_1ac53a98a3ebee3a8d53e23c9ff2cffccb"></a>
+#### `public inline FORCEINLINE FString & `[`GetSourceId`](#structFRHAPI__LeaderboardConfig_1ad9a9e10078994174e1075492e0e650e1)`()` <a id="structFRHAPI__LeaderboardConfig_1ad9a9e10078994174e1075492e0e650e1"></a>
 
 Gets the value of SourceId.
 
-#### `public inline const FString & `[`GetSourceId`](#structFRHAPI__LeaderboardConfig_1a6855bb0745960cfe9e6e6f70a647042b)`() const` <a id="structFRHAPI__LeaderboardConfig_1a6855bb0745960cfe9e6e6f70a647042b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSourceId`](#structFRHAPI__LeaderboardConfig_1a7f72d404dc7dd3f86a0683382e2d49f6)`() const` <a id="structFRHAPI__LeaderboardConfig_1a7f72d404dc7dd3f86a0683382e2d49f6"></a>
 
 Gets the value of SourceId.
 
-#### `public inline void `[`SetSourceId`](#structFRHAPI__LeaderboardConfig_1a7519de4bc11220b694ede7e2bb394910)`(const FString & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a7519de4bc11220b694ede7e2bb394910"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId`](#structFRHAPI__LeaderboardConfig_1a8caa9647abea0b0e17209301156068d8)`(const FString & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a8caa9647abea0b0e17209301156068d8"></a>
 
 Sets the value of SourceId.
 
-#### `public inline void `[`SetSourceId`](#structFRHAPI__LeaderboardConfig_1ac81736ec65eb3459a7393051d52c3ee1)`(FString && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ac81736ec65eb3459a7393051d52c3ee1"></a>
+#### `public inline FORCEINLINE void `[`SetSourceId`](#structFRHAPI__LeaderboardConfig_1a3bdd6cd019676a9c8422dd2f501949c5)`(FString && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a3bdd6cd019676a9c8422dd2f501949c5"></a>
 
 Sets the value of SourceId using move semantics.
 
-#### `public inline bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a3e0633df9016b303ed78433e375c8373)`()` <a id="structFRHAPI__LeaderboardConfig_1a3e0633df9016b303ed78433e375c8373"></a>
+#### `public inline FORCEINLINE bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a2ee39448ee6416b9c8bd59289ee73562)`()` <a id="structFRHAPI__LeaderboardConfig_1a2ee39448ee6416b9c8bd59289ee73562"></a>
 
 Gets the value of RemoveRestricted_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a07004af364daae8ae65df73912c0a57c)`() const` <a id="structFRHAPI__LeaderboardConfig_1a07004af364daae8ae65df73912c0a57c"></a>
+#### `public inline FORCEINLINE const bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1ad5c6dcc045ae66867e644e16d9ce964d)`() const` <a id="structFRHAPI__LeaderboardConfig_1ad5c6dcc045ae66867e644e16d9ce964d"></a>
 
 Gets the value of RemoveRestricted_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a0e5638e6f20860e6c5f0a762b3496421)`(const bool & DefaultValue) const` <a id="structFRHAPI__LeaderboardConfig_1a0e5638e6f20860e6c5f0a762b3496421"></a>
+#### `public inline FORCEINLINE const bool & `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a984eef97f544a7cabd1ceedc9704eb28)`(const bool & DefaultValue) const` <a id="structFRHAPI__LeaderboardConfig_1a984eef97f544a7cabd1ceedc9704eb28"></a>
 
 Gets the value of RemoveRestricted_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a37f402ceae348efb5419a66e6c7881a8)`(bool & OutValue) const` <a id="structFRHAPI__LeaderboardConfig_1a37f402ceae348efb5419a66e6c7881a8"></a>
+#### `public inline FORCEINLINE bool `[`GetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a003ce816c594237a30bb320a03f76cb8)`(bool & OutValue) const` <a id="structFRHAPI__LeaderboardConfig_1a003ce816c594237a30bb320a03f76cb8"></a>
 
 Fills OutValue with the value of RemoveRestricted_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetRemoveRestrictedOrNull`](#structFRHAPI__LeaderboardConfig_1abaef284bc137730978eefc897a602ee6)`()` <a id="structFRHAPI__LeaderboardConfig_1abaef284bc137730978eefc897a602ee6"></a>
+#### `public inline FORCEINLINE bool * `[`GetRemoveRestrictedOrNull`](#structFRHAPI__LeaderboardConfig_1a2bcb81944c50b82c9bb95fee7b6f5ef9)`()` <a id="structFRHAPI__LeaderboardConfig_1a2bcb81944c50b82c9bb95fee7b6f5ef9"></a>
 
 Returns a pointer to RemoveRestricted_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetRemoveRestrictedOrNull`](#structFRHAPI__LeaderboardConfig_1a0595e36252f6579845985fc0c6585941)`() const` <a id="structFRHAPI__LeaderboardConfig_1a0595e36252f6579845985fc0c6585941"></a>
+#### `public inline FORCEINLINE const bool * `[`GetRemoveRestrictedOrNull`](#structFRHAPI__LeaderboardConfig_1a81522c15cea67a0e68f75487f7aee848)`() const` <a id="structFRHAPI__LeaderboardConfig_1a81522c15cea67a0e68f75487f7aee848"></a>
 
 Returns a pointer to RemoveRestricted_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a3c1358ae4d7c7f3cda62667b4601ddc9)`(const bool & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a3c1358ae4d7c7f3cda62667b4601ddc9"></a>
+#### `public inline FORCEINLINE void `[`SetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a99149329b1c791ca271a5945402e99ca)`(const bool & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a99149329b1c791ca271a5945402e99ca"></a>
 
 Sets the value of RemoveRestricted_Optional and also sets RemoveRestricted_IsSet to true.
 
-#### `public inline void `[`SetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a0f348170986c187badd2ef758a2039d9)`(bool && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a0f348170986c187badd2ef758a2039d9"></a>
+#### `public inline FORCEINLINE void `[`SetRemoveRestricted`](#structFRHAPI__LeaderboardConfig_1a6a10506ffa3ed54a07cdd5176c054dee)`(bool && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a6a10506ffa3ed54a07cdd5176c054dee"></a>
 
 Sets the value of RemoveRestricted_Optional and also sets RemoveRestricted_IsSet to true using move semantics.
 
@@ -335,47 +321,39 @@ Sets the value of RemoveRestricted_Optional and also sets RemoveRestricted_IsSet
 
 Clears the value of RemoveRestricted_Optional and sets RemoveRestricted_IsSet to false.
 
-#### `public inline bool `[`IsRemoveRestrictedSet`](#structFRHAPI__LeaderboardConfig_1a34ca4faeb424a91a802f877c5b629b4f)`() const` <a id="structFRHAPI__LeaderboardConfig_1a34ca4faeb424a91a802f877c5b629b4f"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_RemoveRestricted`](#structFRHAPI__LeaderboardConfig_1ac561058c33e33aaa726bcaa00f62b6fc)`()` <a id="structFRHAPI__LeaderboardConfig_1ac561058c33e33aaa726bcaa00f62b6fc"></a>
 
-Checks whether RemoveRestricted_Optional has been set.
+Returns the default value of RemoveRestricted.
 
-#### `public inline bool `[`IsRemoveRestrictedDefaultValue`](#structFRHAPI__LeaderboardConfig_1a87f38f4b65e8e2661dcd6707a79a3d0e)`() const` <a id="structFRHAPI__LeaderboardConfig_1a87f38f4b65e8e2661dcd6707a79a3d0e"></a>
-
-Returns true if RemoveRestricted_Optional is set and matches the default value.
-
-#### `public inline void `[`SetRemoveRestrictedToDefault`](#structFRHAPI__LeaderboardConfig_1adc92166f52264e81391169fceb475cb1)`()` <a id="structFRHAPI__LeaderboardConfig_1adc92166f52264e81391169fceb475cb1"></a>
-
-Sets the value of RemoveRestricted_Optional to its default and also sets RemoveRestricted_IsSet to true.
-
-#### `public inline int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a3c2a3c7550851ab214155a295bf6b246)`()` <a id="structFRHAPI__LeaderboardConfig_1a3c2a3c7550851ab214155a295bf6b246"></a>
+#### `public inline FORCEINLINE int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1ae1f0fc6d0053ce06822452b099ac961f)`()` <a id="structFRHAPI__LeaderboardConfig_1ae1f0fc6d0053ce06822452b099ac961f"></a>
 
 Gets the value of RequiredRecentLoginDays_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1ae3afd0fe912a2d1fb7915ba47dc350f6)`() const` <a id="structFRHAPI__LeaderboardConfig_1ae3afd0fe912a2d1fb7915ba47dc350f6"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a494bd0a72a18bdf6ab3c96df075feace)`() const` <a id="structFRHAPI__LeaderboardConfig_1a494bd0a72a18bdf6ab3c96df075feace"></a>
 
 Gets the value of RequiredRecentLoginDays_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a9db88c677b33d27fa27cb9d963b91dbd)`(const int32 & DefaultValue) const` <a id="structFRHAPI__LeaderboardConfig_1a9db88c677b33d27fa27cb9d963b91dbd"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1af015b094ae8314cd87920d3e0e023138)`(const int32 & DefaultValue) const` <a id="structFRHAPI__LeaderboardConfig_1af015b094ae8314cd87920d3e0e023138"></a>
 
 Gets the value of RequiredRecentLoginDays_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a9717e1f5c0acfe6f20f0cc0bd6a6bcae)`(int32 & OutValue) const` <a id="structFRHAPI__LeaderboardConfig_1a9717e1f5c0acfe6f20f0cc0bd6a6bcae"></a>
+#### `public inline FORCEINLINE bool `[`GetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a5ce6033a10862d38f76892dc91a5cfd5)`(int32 & OutValue) const` <a id="structFRHAPI__LeaderboardConfig_1a5ce6033a10862d38f76892dc91a5cfd5"></a>
 
 Fills OutValue with the value of RequiredRecentLoginDays_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetRequiredRecentLoginDaysOrNull`](#structFRHAPI__LeaderboardConfig_1a88a6e6bc7ad8a8081475bb6200744f78)`()` <a id="structFRHAPI__LeaderboardConfig_1a88a6e6bc7ad8a8081475bb6200744f78"></a>
+#### `public inline FORCEINLINE int32 * `[`GetRequiredRecentLoginDaysOrNull`](#structFRHAPI__LeaderboardConfig_1af36b9de5cf3c40012892ffbcd619b9e3)`()` <a id="structFRHAPI__LeaderboardConfig_1af36b9de5cf3c40012892ffbcd619b9e3"></a>
 
 Returns a pointer to RequiredRecentLoginDays_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetRequiredRecentLoginDaysOrNull`](#structFRHAPI__LeaderboardConfig_1a7c89cca08d59589e141f4e49fc2715aa)`() const` <a id="structFRHAPI__LeaderboardConfig_1a7c89cca08d59589e141f4e49fc2715aa"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetRequiredRecentLoginDaysOrNull`](#structFRHAPI__LeaderboardConfig_1a1a17f283cd26477dd229bb28ffd19fe9)`() const` <a id="structFRHAPI__LeaderboardConfig_1a1a17f283cd26477dd229bb28ffd19fe9"></a>
 
 Returns a pointer to RequiredRecentLoginDays_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1aaeebc4a7a35f61cf3ec7fc2f8228de27)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1aaeebc4a7a35f61cf3ec7fc2f8228de27"></a>
+#### `public inline FORCEINLINE void `[`SetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a9d046221d36d84c6f7a142221bbf7097)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a9d046221d36d84c6f7a142221bbf7097"></a>
 
 Sets the value of RequiredRecentLoginDays_Optional and also sets RequiredRecentLoginDays_IsSet to true.
 
-#### `public inline void `[`SetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1a3cc82a4bd8550c643057babbf0326b35)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a3cc82a4bd8550c643057babbf0326b35"></a>
+#### `public inline FORCEINLINE void `[`SetRequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1aa6f00e65dcd77f2ae4a78e54ed867fdc)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1aa6f00e65dcd77f2ae4a78e54ed867fdc"></a>
 
 Sets the value of RequiredRecentLoginDays_Optional and also sets RequiredRecentLoginDays_IsSet to true using move semantics.
 
@@ -383,79 +361,67 @@ Sets the value of RequiredRecentLoginDays_Optional and also sets RequiredRecentL
 
 Clears the value of RequiredRecentLoginDays_Optional and sets RequiredRecentLoginDays_IsSet to false.
 
-#### `public inline bool `[`IsRequiredRecentLoginDaysSet`](#structFRHAPI__LeaderboardConfig_1a70855fc251bce0e48fc0badc60a8f6c9)`() const` <a id="structFRHAPI__LeaderboardConfig_1a70855fc251bce0e48fc0badc60a8f6c9"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_RequiredRecentLoginDays`](#structFRHAPI__LeaderboardConfig_1aab4f56e71f43f3f8cfeaf08896ef4962)`()` <a id="structFRHAPI__LeaderboardConfig_1aab4f56e71f43f3f8cfeaf08896ef4962"></a>
 
-Checks whether RequiredRecentLoginDays_Optional has been set.
+Returns the default value of RequiredRecentLoginDays.
 
-#### `public inline bool `[`IsRequiredRecentLoginDaysDefaultValue`](#structFRHAPI__LeaderboardConfig_1ac891e6d2edc8fb536db611bbe1293118)`() const` <a id="structFRHAPI__LeaderboardConfig_1ac891e6d2edc8fb536db611bbe1293118"></a>
-
-Returns true if RequiredRecentLoginDays_Optional is set and matches the default value.
-
-#### `public inline void `[`SetRequiredRecentLoginDaysToDefault`](#structFRHAPI__LeaderboardConfig_1ac1585dd4c99088ea6959f6dfc310b4c6)`()` <a id="structFRHAPI__LeaderboardConfig_1ac1585dd4c99088ea6959f6dfc310b4c6"></a>
-
-Sets the value of RequiredRecentLoginDays_Optional to its default and also sets RequiredRecentLoginDays_IsSet to true.
-
-#### `public inline void `[`SetRequiredRecentLoginDaysToNull`](#structFRHAPI__LeaderboardConfig_1aa86a3a4ecfbde99a5e174722969d3112)`()` <a id="structFRHAPI__LeaderboardConfig_1aa86a3a4ecfbde99a5e174722969d3112"></a>
+#### `public inline FORCEINLINE void `[`SetRequiredRecentLoginDaysToNull`](#structFRHAPI__LeaderboardConfig_1a22ebb2a9931982f05f79f27dca13dc04)`()` <a id="structFRHAPI__LeaderboardConfig_1a22ebb2a9931982f05f79f27dca13dc04"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRequiredRecentLoginDaysNull`](#structFRHAPI__LeaderboardConfig_1aaeb3b3843b1c4cefc8361d3ba3690996)`() const` <a id="structFRHAPI__LeaderboardConfig_1aaeb3b3843b1c4cefc8361d3ba3690996"></a>
+#### `public inline FORCEINLINE bool `[`IsRequiredRecentLoginDaysNull`](#structFRHAPI__LeaderboardConfig_1a66ba94df0c25cf338e005fca10fec368)`() const` <a id="structFRHAPI__LeaderboardConfig_1a66ba94df0c25cf338e005fca10fec368"></a>
 
 Checks whether RequiredRecentLoginDays_Optional is set to null.
 
-#### `public inline int32 & `[`GetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1af9589325e6d82dbcd57847fccd392412)`()` <a id="structFRHAPI__LeaderboardConfig_1af9589325e6d82dbcd57847fccd392412"></a>
+#### `public inline FORCEINLINE int32 & `[`GetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a3003e281efe53bba2d3d6e04228e3ad8)`()` <a id="structFRHAPI__LeaderboardConfig_1a3003e281efe53bba2d3d6e04228e3ad8"></a>
 
 Gets the value of UpdateFrequencySeconds.
 
-#### `public inline const int32 & `[`GetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a24666acbf47da3c7cd5b77b3d699b368)`() const` <a id="structFRHAPI__LeaderboardConfig_1a24666acbf47da3c7cd5b77b3d699b368"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a94f5e84150c373df3a5b1b0a8e699d29)`() const` <a id="structFRHAPI__LeaderboardConfig_1a94f5e84150c373df3a5b1b0a8e699d29"></a>
 
 Gets the value of UpdateFrequencySeconds.
 
-#### `public inline void `[`SetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1ac202af3f767a6ce33e66537565bdb8b2)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ac202af3f767a6ce33e66537565bdb8b2"></a>
+#### `public inline FORCEINLINE void `[`SetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1aa83ecf5a798d49b73e632bbd7240facf)`(const int32 & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1aa83ecf5a798d49b73e632bbd7240facf"></a>
 
 Sets the value of UpdateFrequencySeconds.
 
-#### `public inline void `[`SetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a3de460c42ccdbad26577e4d2d098d4ae)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a3de460c42ccdbad26577e4d2d098d4ae"></a>
+#### `public inline FORCEINLINE void `[`SetUpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a94fba944f95890cc21285fa03fe80424)`(int32 && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a94fba944f95890cc21285fa03fe80424"></a>
 
 Sets the value of UpdateFrequencySeconds using move semantics.
 
-#### `public inline bool `[`IsUpdateFrequencySecondsDefaultValue`](#structFRHAPI__LeaderboardConfig_1a50467e0454074b4bbd5028b328d58c5a)`() const` <a id="structFRHAPI__LeaderboardConfig_1a50467e0454074b4bbd5028b328d58c5a"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_UpdateFrequencySeconds`](#structFRHAPI__LeaderboardConfig_1a8b69bfed2321351c5db38e636c89c0c6)`()` <a id="structFRHAPI__LeaderboardConfig_1a8b69bfed2321351c5db38e636c89c0c6"></a>
 
-Returns true if UpdateFrequencySeconds matches the default value.
+Returns the default value of UpdateFrequencySeconds.
 
-#### `public inline void `[`SetUpdateFrequencySecondsToDefault`](#structFRHAPI__LeaderboardConfig_1a7a6771659637bffc93f5fa4f366ace3b)`()` <a id="structFRHAPI__LeaderboardConfig_1a7a6771659637bffc93f5fa4f366ace3b"></a>
-
-Sets the value of UpdateFrequencySeconds to its default
-
-#### `public inline bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a433988dfb3f155325552751cf0b38e9a)`()` <a id="structFRHAPI__LeaderboardConfig_1a433988dfb3f155325552751cf0b38e9a"></a>
+#### `public inline FORCEINLINE bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1ac8fe06deb79303a18c6ef22b4615b818)`()` <a id="structFRHAPI__LeaderboardConfig_1ac8fe06deb79303a18c6ef22b4615b818"></a>
 
 Gets the value of ExposeStat_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a2ebcfe37be49637bffc70799b73e301d)`() const` <a id="structFRHAPI__LeaderboardConfig_1a2ebcfe37be49637bffc70799b73e301d"></a>
+#### `public inline FORCEINLINE const bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a47c9a4e9767229e3a870692be6b8c407)`() const` <a id="structFRHAPI__LeaderboardConfig_1a47c9a4e9767229e3a870692be6b8c407"></a>
 
 Gets the value of ExposeStat_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1adb4c7120674799ddac1d2124eda2fa8b)`(const bool & DefaultValue) const` <a id="structFRHAPI__LeaderboardConfig_1adb4c7120674799ddac1d2124eda2fa8b"></a>
+#### `public inline FORCEINLINE const bool & `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a5573857f530eaefc0a1f21d0c0b8434f)`(const bool & DefaultValue) const` <a id="structFRHAPI__LeaderboardConfig_1a5573857f530eaefc0a1f21d0c0b8434f"></a>
 
 Gets the value of ExposeStat_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1a47f99f11a21f9fe8cfc82c5af60b4d97)`(bool & OutValue) const` <a id="structFRHAPI__LeaderboardConfig_1a47f99f11a21f9fe8cfc82c5af60b4d97"></a>
+#### `public inline FORCEINLINE bool `[`GetExposeStat`](#structFRHAPI__LeaderboardConfig_1ab62a24d72665a1a08f96af7e71f3cc7e)`(bool & OutValue) const` <a id="structFRHAPI__LeaderboardConfig_1ab62a24d72665a1a08f96af7e71f3cc7e"></a>
 
 Fills OutValue with the value of ExposeStat_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetExposeStatOrNull`](#structFRHAPI__LeaderboardConfig_1aa0b1362b8cf7aff6386d4a08bbd7a595)`()` <a id="structFRHAPI__LeaderboardConfig_1aa0b1362b8cf7aff6386d4a08bbd7a595"></a>
+#### `public inline FORCEINLINE bool * `[`GetExposeStatOrNull`](#structFRHAPI__LeaderboardConfig_1af2a69a352a303e2cea5a8cefa63b71b3)`()` <a id="structFRHAPI__LeaderboardConfig_1af2a69a352a303e2cea5a8cefa63b71b3"></a>
 
 Returns a pointer to ExposeStat_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetExposeStatOrNull`](#structFRHAPI__LeaderboardConfig_1a20789a20c3acea04368240d225eed508)`() const` <a id="structFRHAPI__LeaderboardConfig_1a20789a20c3acea04368240d225eed508"></a>
+#### `public inline FORCEINLINE const bool * `[`GetExposeStatOrNull`](#structFRHAPI__LeaderboardConfig_1a554ff4ddc06b70fd27999d8f2e1a0853)`() const` <a id="structFRHAPI__LeaderboardConfig_1a554ff4ddc06b70fd27999d8f2e1a0853"></a>
 
 Returns a pointer to ExposeStat_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetExposeStat`](#structFRHAPI__LeaderboardConfig_1a7c2680ea1551104d3dfc621306a4b07e)`(const bool & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a7c2680ea1551104d3dfc621306a4b07e"></a>
+#### `public inline FORCEINLINE void `[`SetExposeStat`](#structFRHAPI__LeaderboardConfig_1a89ef4f2557867c1706cf162c17e6cb4a)`(const bool & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a89ef4f2557867c1706cf162c17e6cb4a"></a>
 
 Sets the value of ExposeStat_Optional and also sets ExposeStat_IsSet to true.
 
-#### `public inline void `[`SetExposeStat`](#structFRHAPI__LeaderboardConfig_1aa17bc70e628a9091c99040fd1c54bdaa)`(bool && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1aa17bc70e628a9091c99040fd1c54bdaa"></a>
+#### `public inline FORCEINLINE void `[`SetExposeStat`](#structFRHAPI__LeaderboardConfig_1acc13280a34e4f6812675bf50e214a242)`(bool && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1acc13280a34e4f6812675bf50e214a242"></a>
 
 Sets the value of ExposeStat_Optional and also sets ExposeStat_IsSet to true using move semantics.
 
@@ -463,47 +429,39 @@ Sets the value of ExposeStat_Optional and also sets ExposeStat_IsSet to true usi
 
 Clears the value of ExposeStat_Optional and sets ExposeStat_IsSet to false.
 
-#### `public inline bool `[`IsExposeStatSet`](#structFRHAPI__LeaderboardConfig_1a827019e584bb3da43b376c95175c270b)`() const` <a id="structFRHAPI__LeaderboardConfig_1a827019e584bb3da43b376c95175c270b"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_ExposeStat`](#structFRHAPI__LeaderboardConfig_1ab5ce979472a583a9f4e90fe0a4b6cb46)`()` <a id="structFRHAPI__LeaderboardConfig_1ab5ce979472a583a9f4e90fe0a4b6cb46"></a>
 
-Checks whether ExposeStat_Optional has been set.
+Returns the default value of ExposeStat.
 
-#### `public inline bool `[`IsExposeStatDefaultValue`](#structFRHAPI__LeaderboardConfig_1ae03986948c9cbaa771fe9e5c0ca3adf1)`() const` <a id="structFRHAPI__LeaderboardConfig_1ae03986948c9cbaa771fe9e5c0ca3adf1"></a>
-
-Returns true if ExposeStat_Optional is set and matches the default value.
-
-#### `public inline void `[`SetExposeStatToDefault`](#structFRHAPI__LeaderboardConfig_1a975948e45d0ea5dffc687de3f62f1014)`()` <a id="structFRHAPI__LeaderboardConfig_1a975948e45d0ea5dffc687de3f62f1014"></a>
-
-Sets the value of ExposeStat_Optional to its default and also sets ExposeStat_IsSet to true.
-
-#### `public inline bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1afcc99ffb59e13e009aa2a0879d1a1a29)`()` <a id="structFRHAPI__LeaderboardConfig_1afcc99ffb59e13e009aa2a0879d1a1a29"></a>
+#### `public inline FORCEINLINE bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a874c6877ba15eb35491467a84acd7ebf)`()` <a id="structFRHAPI__LeaderboardConfig_1a874c6877ba15eb35491467a84acd7ebf"></a>
 
 Gets the value of ExposePlayers_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1afc495bc5bff1bf745f35fbdd09f5e6b0)`() const` <a id="structFRHAPI__LeaderboardConfig_1afc495bc5bff1bf745f35fbdd09f5e6b0"></a>
+#### `public inline FORCEINLINE const bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a1abc0957ab9d0451a3a573191ddc4f53)`() const` <a id="structFRHAPI__LeaderboardConfig_1a1abc0957ab9d0451a3a573191ddc4f53"></a>
 
 Gets the value of ExposePlayers_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1aea5f101a9d7fb25e129a5325ce45d015)`(const bool & DefaultValue) const` <a id="structFRHAPI__LeaderboardConfig_1aea5f101a9d7fb25e129a5325ce45d015"></a>
+#### `public inline FORCEINLINE const bool & `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1ad3a173542cb947b8acda72217cb21de6)`(const bool & DefaultValue) const` <a id="structFRHAPI__LeaderboardConfig_1ad3a173542cb947b8acda72217cb21de6"></a>
 
 Gets the value of ExposePlayers_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a9155825091f516419da761ba6a4e2ba7)`(bool & OutValue) const` <a id="structFRHAPI__LeaderboardConfig_1a9155825091f516419da761ba6a4e2ba7"></a>
+#### `public inline FORCEINLINE bool `[`GetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a154747427d59ecf42386aae01c893ba4)`(bool & OutValue) const` <a id="structFRHAPI__LeaderboardConfig_1a154747427d59ecf42386aae01c893ba4"></a>
 
 Fills OutValue with the value of ExposePlayers_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetExposePlayersOrNull`](#structFRHAPI__LeaderboardConfig_1aa131295095cf6d6c634295431bd21891)`()` <a id="structFRHAPI__LeaderboardConfig_1aa131295095cf6d6c634295431bd21891"></a>
+#### `public inline FORCEINLINE bool * `[`GetExposePlayersOrNull`](#structFRHAPI__LeaderboardConfig_1a9c1e05891e2580155a32f28fda7c6d3b)`()` <a id="structFRHAPI__LeaderboardConfig_1a9c1e05891e2580155a32f28fda7c6d3b"></a>
 
 Returns a pointer to ExposePlayers_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetExposePlayersOrNull`](#structFRHAPI__LeaderboardConfig_1a4713292c77a978ee02273f92d32290d0)`() const` <a id="structFRHAPI__LeaderboardConfig_1a4713292c77a978ee02273f92d32290d0"></a>
+#### `public inline FORCEINLINE const bool * `[`GetExposePlayersOrNull`](#structFRHAPI__LeaderboardConfig_1a0bd8445156b9cb4bfebb2cc3edb57fbd)`() const` <a id="structFRHAPI__LeaderboardConfig_1a0bd8445156b9cb4bfebb2cc3edb57fbd"></a>
 
 Returns a pointer to ExposePlayers_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetExposePlayers`](#structFRHAPI__LeaderboardConfig_1ade2dbf97130575afd309f0f0de3e824a)`(const bool & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ade2dbf97130575afd309f0f0de3e824a"></a>
+#### `public inline FORCEINLINE void `[`SetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a01e88c18ffca0905ae62f9bab36cd931)`(const bool & NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a01e88c18ffca0905ae62f9bab36cd931"></a>
 
 Sets the value of ExposePlayers_Optional and also sets ExposePlayers_IsSet to true.
 
-#### `public inline void `[`SetExposePlayers`](#structFRHAPI__LeaderboardConfig_1a8eb18e98607918538d5d353f458f1e6d)`(bool && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1a8eb18e98607918538d5d353f458f1e6d"></a>
+#### `public inline FORCEINLINE void `[`SetExposePlayers`](#structFRHAPI__LeaderboardConfig_1ae54cc59ca6b70d18ee5461931e2645da)`(bool && NewValue)` <a id="structFRHAPI__LeaderboardConfig_1ae54cc59ca6b70d18ee5461931e2645da"></a>
 
 Sets the value of ExposePlayers_Optional and also sets ExposePlayers_IsSet to true using move semantics.
 
@@ -511,15 +469,7 @@ Sets the value of ExposePlayers_Optional and also sets ExposePlayers_IsSet to tr
 
 Clears the value of ExposePlayers_Optional and sets ExposePlayers_IsSet to false.
 
-#### `public inline bool `[`IsExposePlayersSet`](#structFRHAPI__LeaderboardConfig_1a0c96e41b60548ba6409d1f7a4adef4a9)`() const` <a id="structFRHAPI__LeaderboardConfig_1a0c96e41b60548ba6409d1f7a4adef4a9"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_ExposePlayers`](#structFRHAPI__LeaderboardConfig_1a4355c73c7cb389a19d79696af8c57dd1)`()` <a id="structFRHAPI__LeaderboardConfig_1a4355c73c7cb389a19d79696af8c57dd1"></a>
 
-Checks whether ExposePlayers_Optional has been set.
-
-#### `public inline bool `[`IsExposePlayersDefaultValue`](#structFRHAPI__LeaderboardConfig_1a77d8563cad4aad5d2276246b7935b237)`() const` <a id="structFRHAPI__LeaderboardConfig_1a77d8563cad4aad5d2276246b7935b237"></a>
-
-Returns true if ExposePlayers_Optional is set and matches the default value.
-
-#### `public inline void `[`SetExposePlayersToDefault`](#structFRHAPI__LeaderboardConfig_1aec9fbe35b7bc5582694a982c06fa3d27)`()` <a id="structFRHAPI__LeaderboardConfig_1aec9fbe35b7bc5582694a982c06fa3d27"></a>
-
-Sets the value of ExposePlayers_Optional to its default and also sets ExposePlayers_IsSet to true.
+Returns the default value of ExposePlayers.
 

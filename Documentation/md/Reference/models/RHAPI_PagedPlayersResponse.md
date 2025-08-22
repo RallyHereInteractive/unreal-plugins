@@ -24,22 +24,20 @@ struct FRHAPI_PagedPlayersResponse
 `public int32 `[`Cursor`](#structFRHAPI__PagedPlayersResponse_1adfdb58a18575ae1ac8e0bc44a11b729f) | Cursor to continue iterating through players in a session. 0 means we have returned the last entry.
 `public virtual bool `[`FromJson`](#structFRHAPI__PagedPlayersResponse_1aa0fd83ac1718fa9bc0391bcfcf57c1e7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PagedPlayersResponse_1ab1f8c66676163e54abb92c39db245c7e)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a97647b3a712252a0beeb78153e2d81cd)`()` | Gets the value of Teams_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a4b5b78abe58069ae73906b0cadd50b20)`() const` | Gets the value of Teams_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a364c3d51ace62627bf8c842885c55cde)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & DefaultValue) const` | Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a825864cd368386c7525fe23fc1f1fcc7)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & OutValue) const` | Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__PagedPlayersResponse_1ac214adeee7cd779a20ef2de72872676c)`()` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__PagedPlayersResponse_1ad767394df6f716b097142ae877a5a7e3)`() const` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTeams`](#structFRHAPI__PagedPlayersResponse_1a542ae5e09a3a38ccfacdc60b257079bc)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true.
-`public inline void `[`SetTeams`](#structFRHAPI__PagedPlayersResponse_1aee269b06fb8bb0d3f5daefaa6203e2f7)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1aa7de628ecf2b42d8da1dc5fd055d60b1)`()` | Gets the value of Teams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1af22f67ba6e008bd01d5bd163e9346e0f)`() const` | Gets the value of Teams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a06a6f7b5c5cd52b33ec4a4b801e7e6cd)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & DefaultValue) const` | Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a50c6f8dab35d01e039ac8ad1820fcc99)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & OutValue) const` | Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__PagedPlayersResponse_1ae5e31b2a2c2b1c50c528f04fff2ef1e8)`()` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__PagedPlayersResponse_1a4b2404cddba6da2b3df3ddb516b666a3)`() const` | Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTeams`](#structFRHAPI__PagedPlayersResponse_1a4b75f9e27aa6d611b4456601beca41d4)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true.
+`public inline FORCEINLINE void `[`SetTeams`](#structFRHAPI__PagedPlayersResponse_1a2affe1b2f2a4c00c445b6ac17c5fbf76)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` | Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics.
 `public inline void `[`ClearTeams`](#structFRHAPI__PagedPlayersResponse_1a381db510be477352dcab78c272fa6edd)`()` | Clears the value of Teams_Optional and sets Teams_IsSet to false.
-`public inline bool `[`IsTeamsSet`](#structFRHAPI__PagedPlayersResponse_1a1e2dc4eb68131fb97a40181a2c5e26a3)`() const` | Checks whether Teams_Optional has been set.
-`public inline int32 & `[`GetCursor`](#structFRHAPI__PagedPlayersResponse_1a9fa5bf6908e167283700b32adfdcea68)`()` | Gets the value of Cursor.
-`public inline const int32 & `[`GetCursor`](#structFRHAPI__PagedPlayersResponse_1a63e6a3d538e5729dddbee9d980b1e343)`() const` | Gets the value of Cursor.
-`public inline void `[`SetCursor`](#structFRHAPI__PagedPlayersResponse_1a8d0352cc130643984b40af39f4e6197c)`(const int32 & NewValue)` | Sets the value of Cursor.
-`public inline void `[`SetCursor`](#structFRHAPI__PagedPlayersResponse_1a7b9ab3c4a7e9fdfc8fcc8a9b6d98fb8d)`(int32 && NewValue)` | Sets the value of Cursor using move semantics.
-`public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__PagedPlayersResponse_1a99d8514387b381a11ee5a663eaf900d9)`() const` | Returns true if Cursor matches the default value.
-`public inline void `[`SetCursorToDefault`](#structFRHAPI__PagedPlayersResponse_1a6771a7348a652fb1d3c9c4125ef7684b)`()` | Sets the value of Cursor to its default
+`public inline FORCEINLINE int32 & `[`GetCursor`](#structFRHAPI__PagedPlayersResponse_1ab30f4e82954d490e5f5d92cc93678149)`()` | Gets the value of Cursor.
+`public inline FORCEINLINE const int32 & `[`GetCursor`](#structFRHAPI__PagedPlayersResponse_1a851f4447ea99856f2e06ff98f8344e0f)`() const` | Gets the value of Cursor.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__PagedPlayersResponse_1aec71953e1c3dbe7757388ce37b45446c)`(const int32 & NewValue)` | Sets the value of Cursor.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__PagedPlayersResponse_1afb4c1f4ad77af825dd5d4e2ad2772100)`(int32 && NewValue)` | Sets the value of Cursor using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Cursor`](#structFRHAPI__PagedPlayersResponse_1ae68916148bea25888afc09532fe0bf22)`()` | Returns the default value of Cursor.
 
 ### Members
 
@@ -72,35 +70,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a97647b3a712252a0beeb78153e2d81cd)`()` <a id="structFRHAPI__PagedPlayersResponse_1a97647b3a712252a0beeb78153e2d81cd"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1aa7de628ecf2b42d8da1dc5fd055d60b1)`()` <a id="structFRHAPI__PagedPlayersResponse_1aa7de628ecf2b42d8da1dc5fd055d60b1"></a>
 
 Gets the value of Teams_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a4b5b78abe58069ae73906b0cadd50b20)`() const` <a id="structFRHAPI__PagedPlayersResponse_1a4b5b78abe58069ae73906b0cadd50b20"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1af22f67ba6e008bd01d5bd163e9346e0f)`() const` <a id="structFRHAPI__PagedPlayersResponse_1af22f67ba6e008bd01d5bd163e9346e0f"></a>
 
 Gets the value of Teams_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a364c3d51ace62627bf8c842885c55cde)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & DefaultValue) const` <a id="structFRHAPI__PagedPlayersResponse_1a364c3d51ace62627bf8c842885c55cde"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a06a6f7b5c5cd52b33ec4a4b801e7e6cd)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & DefaultValue) const` <a id="structFRHAPI__PagedPlayersResponse_1a06a6f7b5c5cd52b33ec4a4b801e7e6cd"></a>
 
 Gets the value of Teams_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a825864cd368386c7525fe23fc1f1fcc7)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & OutValue) const` <a id="structFRHAPI__PagedPlayersResponse_1a825864cd368386c7525fe23fc1f1fcc7"></a>
+#### `public inline FORCEINLINE bool `[`GetTeams`](#structFRHAPI__PagedPlayersResponse_1a50c6f8dab35d01e039ac8ad1820fcc99)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & OutValue) const` <a id="structFRHAPI__PagedPlayersResponse_1a50c6f8dab35d01e039ac8ad1820fcc99"></a>
 
 Fills OutValue with the value of Teams_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__PagedPlayersResponse_1ac214adeee7cd779a20ef2de72872676c)`()` <a id="structFRHAPI__PagedPlayersResponse_1ac214adeee7cd779a20ef2de72872676c"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__PagedPlayersResponse_1ae5e31b2a2c2b1c50c528f04fff2ef1e8)`()` <a id="structFRHAPI__PagedPlayersResponse_1ae5e31b2a2c2b1c50c528f04fff2ef1e8"></a>
 
 Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__PagedPlayersResponse_1ad767394df6f716b097142ae877a5a7e3)`() const` <a id="structFRHAPI__PagedPlayersResponse_1ad767394df6f716b097142ae877a5a7e3"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > * `[`GetTeamsOrNull`](#structFRHAPI__PagedPlayersResponse_1a4b2404cddba6da2b3df3ddb516b666a3)`() const` <a id="structFRHAPI__PagedPlayersResponse_1a4b2404cddba6da2b3df3ddb516b666a3"></a>
 
 Returns a pointer to Teams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTeams`](#structFRHAPI__PagedPlayersResponse_1a542ae5e09a3a38ccfacdc60b257079bc)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` <a id="structFRHAPI__PagedPlayersResponse_1a542ae5e09a3a38ccfacdc60b257079bc"></a>
+#### `public inline FORCEINLINE void `[`SetTeams`](#structFRHAPI__PagedPlayersResponse_1a4b75f9e27aa6d611b4456601beca41d4)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` <a id="structFRHAPI__PagedPlayersResponse_1a4b75f9e27aa6d611b4456601beca41d4"></a>
 
 Sets the value of Teams_Optional and also sets Teams_IsSet to true.
 
-#### `public inline void `[`SetTeams`](#structFRHAPI__PagedPlayersResponse_1aee269b06fb8bb0d3f5daefaa6203e2f7)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` <a id="structFRHAPI__PagedPlayersResponse_1aee269b06fb8bb0d3f5daefaa6203e2f7"></a>
+#### `public inline FORCEINLINE void `[`SetTeams`](#structFRHAPI__PagedPlayersResponse_1a2affe1b2f2a4c00c445b6ac17c5fbf76)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` <a id="structFRHAPI__PagedPlayersResponse_1a2affe1b2f2a4c00c445b6ac17c5fbf76"></a>
 
 Sets the value of Teams_Optional and also sets Teams_IsSet to true using move semantics.
 
@@ -108,31 +106,23 @@ Sets the value of Teams_Optional and also sets Teams_IsSet to true using move se
 
 Clears the value of Teams_Optional and sets Teams_IsSet to false.
 
-#### `public inline bool `[`IsTeamsSet`](#structFRHAPI__PagedPlayersResponse_1a1e2dc4eb68131fb97a40181a2c5e26a3)`() const` <a id="structFRHAPI__PagedPlayersResponse_1a1e2dc4eb68131fb97a40181a2c5e26a3"></a>
-
-Checks whether Teams_Optional has been set.
-
-#### `public inline int32 & `[`GetCursor`](#structFRHAPI__PagedPlayersResponse_1a9fa5bf6908e167283700b32adfdcea68)`()` <a id="structFRHAPI__PagedPlayersResponse_1a9fa5bf6908e167283700b32adfdcea68"></a>
+#### `public inline FORCEINLINE int32 & `[`GetCursor`](#structFRHAPI__PagedPlayersResponse_1ab30f4e82954d490e5f5d92cc93678149)`()` <a id="structFRHAPI__PagedPlayersResponse_1ab30f4e82954d490e5f5d92cc93678149"></a>
 
 Gets the value of Cursor.
 
-#### `public inline const int32 & `[`GetCursor`](#structFRHAPI__PagedPlayersResponse_1a63e6a3d538e5729dddbee9d980b1e343)`() const` <a id="structFRHAPI__PagedPlayersResponse_1a63e6a3d538e5729dddbee9d980b1e343"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetCursor`](#structFRHAPI__PagedPlayersResponse_1a851f4447ea99856f2e06ff98f8344e0f)`() const` <a id="structFRHAPI__PagedPlayersResponse_1a851f4447ea99856f2e06ff98f8344e0f"></a>
 
 Gets the value of Cursor.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__PagedPlayersResponse_1a8d0352cc130643984b40af39f4e6197c)`(const int32 & NewValue)` <a id="structFRHAPI__PagedPlayersResponse_1a8d0352cc130643984b40af39f4e6197c"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__PagedPlayersResponse_1aec71953e1c3dbe7757388ce37b45446c)`(const int32 & NewValue)` <a id="structFRHAPI__PagedPlayersResponse_1aec71953e1c3dbe7757388ce37b45446c"></a>
 
 Sets the value of Cursor.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__PagedPlayersResponse_1a7b9ab3c4a7e9fdfc8fcc8a9b6d98fb8d)`(int32 && NewValue)` <a id="structFRHAPI__PagedPlayersResponse_1a7b9ab3c4a7e9fdfc8fcc8a9b6d98fb8d"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__PagedPlayersResponse_1afb4c1f4ad77af825dd5d4e2ad2772100)`(int32 && NewValue)` <a id="structFRHAPI__PagedPlayersResponse_1afb4c1f4ad77af825dd5d4e2ad2772100"></a>
 
 Sets the value of Cursor using move semantics.
 
-#### `public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__PagedPlayersResponse_1a99d8514387b381a11ee5a663eaf900d9)`() const` <a id="structFRHAPI__PagedPlayersResponse_1a99d8514387b381a11ee5a663eaf900d9"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Cursor`](#structFRHAPI__PagedPlayersResponse_1ae68916148bea25888afc09532fe0bf22)`()` <a id="structFRHAPI__PagedPlayersResponse_1ae68916148bea25888afc09532fe0bf22"></a>
 
-Returns true if Cursor matches the default value.
-
-#### `public inline void `[`SetCursorToDefault`](#structFRHAPI__PagedPlayersResponse_1a6771a7348a652fb1d3c9c4125ef7684b)`()` <a id="structFRHAPI__PagedPlayersResponse_1a6771a7348a652fb1d3c9c4125ef7684b"></a>
-
-Sets the value of Cursor to its default
+Returns the default value of Cursor.
 

@@ -92,7 +92,7 @@ void ImGuiDisplayCopyableValue(const FString& Key, const FText& Value, ECopyMode
 
 void ImGuiDisplayCopyableValue(const FString& Key, const FGuid& Value, ECopyMode CopyMode, bool bButtonOnLeftSide, bool bContentAsTooltip)
 {
-	FString ValueString = Value.ToString(EGuidFormats::DigitsWithHyphens);
+	FString ValueString = Value.ToString(EGuidFormats::DigitsWithHyphensLower);
 	ImGuiDisplayCopyableValue(Key, ValueString, CopyMode, bButtonOnLeftSide, bContentAsTooltip);
 }
 
@@ -223,7 +223,7 @@ void ImGuiDisplayProperty(const FString& Key, FProperty const* Property, FProper
 
 		if (FGuid::Parse(ValueStr, TestGuid))
 		{
-			ImGuiDisplayCopyableValue(Key, FString::Printf(TEXT("%s"), *TestGuid.ToString(EGuidFormats::DigitsWithHyphens)), ECopyMode::Value);
+			ImGuiDisplayCopyableValue(Key, FString::Printf(TEXT("%s"), *TestGuid.ToString(EGuidFormats::DigitsWithHyphensLower)), ECopyMode::Value);
 		}
 		else
 		{
@@ -362,9 +362,9 @@ FString ImGuiGetStringFromTextInputBuffer(TArray<ANSICHAR>& Buffer)
 
 FString GetShortUuid(const FGuid& Uuid)
 {
-	FString result = Uuid.ToString(EGuidFormats::DigitsWithHyphens); // Full UUID by default
+	FString result = Uuid.ToString(EGuidFormats::DigitsWithHyphensLower); // Full UUID by default
 	FString theRest = FString();
-	Uuid.ToString(EGuidFormats::DigitsWithHyphens).Split(FString(TEXT("-")), &result, &theRest, ESearchCase::CaseSensitive);
+	Uuid.ToString(EGuidFormats::DigitsWithHyphensLower).Split(FString(TEXT("-")), &result, &theRest, ESearchCase::CaseSensitive);
 	return result;
 }
 

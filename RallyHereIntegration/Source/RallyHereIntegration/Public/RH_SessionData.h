@@ -51,6 +51,17 @@ DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnSessionGetVoipTokenDynamicDelegate, b
 DECLARE_DELEGATE_ThreeParams(FRH_OnSessionGetVoipTokenDelegate, bool, const FRHAPI_VoipTokenResponse&, const FRH_ErrorInfo&);
 DECLARE_RH_DELEGATE_BLOCK(FRH_OnSessionGetVoipTokenDelegateBlock, FRH_OnSessionGetVoipTokenDelegate, FRH_OnSessionGetVoipTokenDynamicDelegate, bool, const FRHAPI_VoipTokenResponse&, const FRH_ErrorInfo&);
 
+// delegate for retrieving Epic Voice Join tokens
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_ThreeParams(FRH_OnSessionGetEpicVoiceJoinTokenDynamicDelegate, bool, bSuccess, const FRHAPI_EpicVoipCredentialsResponse&, VoipToken, const FRH_ErrorInfo&, ErrorInfo);
+DECLARE_DELEGATE_ThreeParams(FRH_OnSessionGetEpicVoiceJoinTokenDelegate, bool, const FRHAPI_EpicVoipCredentialsResponse&, const FRH_ErrorInfo&);
+DECLARE_RH_DELEGATE_BLOCK(FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock, FRH_OnSessionGetEpicVoiceJoinTokenDelegate, FRH_OnSessionGetEpicVoiceJoinTokenDynamicDelegate, bool, const FRHAPI_EpicVoipCredentialsResponse&, const FRH_ErrorInfo&);
+
+UDELEGATE()
+DECLARE_DYNAMIC_DELEGATE_OneParam(FRH_QueuedSessionInstanceInfoUpdateDynamicDelegate, URH_JoinedSession*, Session);
+DECLARE_DELEGATE_OneParam(FRH_QueuedSessionInstanceInfoUpdateDelegate, URH_JoinedSession*);
+DECLARE_RH_DELEGATE_BLOCK(FRH_QueuedSessionInstanceInfoUpdateDelegateBlock, FRH_QueuedSessionInstanceInfoUpdateDelegate, FRH_QueuedSessionInstanceInfoUpdateDynamicDelegate, URH_JoinedSession*);
+
 /** @defgroup Session RallyHere Session
  *  @{
  */
@@ -214,6 +225,7 @@ namespace RH_SessionCustomDataKeys
 {
 	// session data keys
 	static constexpr auto OfflineFlag = TEXT("rh.OfflineFlag");
+	static constexpr auto IsSealed = TEXT("rh.IsSealed");
 
 	// instance data keys
 	static constexpr auto SessionSecurityTokenName = TEXT("rh.SessionSecurityToken");
@@ -516,7 +528,6 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Force Poll For Update", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_ForcePollForUpdate(bool bClearETag, const FRH_GenericSuccessWithErrorDynamicDelegate& Delegate) { ForcePollForUpdate(bClearETag, Delegate); }
-
 	/**
 	 * @brief Add a deferred poll to the list of polls to run in sequence
 	 */
@@ -726,7 +737,7 @@ public:
 	 * @param [in] PlayerUuid The unique player Id to kick from the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
-	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickPlayer, ); }
+	virtual void KickPlayer(const FGuid& PlayerUuid, const FString& KickReason = FString(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::KickPlayer, ); }
 	/**
 	 * @private
 	 * @brief Blueprint compatible version of KickPlayer
@@ -734,8 +745,7 @@ public:
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Kick Player", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_KickPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { KickPlayer(PlayerUuid, Delegate); }
-
+	void BLUEPRINT_KickPlayer(UPARAM(ref) const FGuid& PlayerUuid, const FString& KickReason, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { KickPlayer(PlayerUuid, KickReason, Delegate); }
 	/**
 	 * @brief Invites a different session to this session.
 	 * @param [in] InvitedSessionId The session id to send the invite to
@@ -952,6 +962,20 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Generate Voip Action Token", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDynamicDelegate& Delegate) { GenerateVoipActionToken(VivoxAction, VoipSessionType, Delegate); }
+	/**
+	* @brief Generate a epic voice join token (room token) 
+	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate) { PURE_VIRTUAL(URH_JoinedSession::GenerateEpicVoiceJoinToken, ); }
+	/**
+	 * @private
+	 * @brief Blueprint compatible version of GenerateVoipActionToken
+	 * @param [in] VoipSessionType The type of voip session to generate a token for
+	 * @param [in] Delegate Callback delegate with the new voip token
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Generate Epic Voice Join Token", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDynamicDelegate& Delegate) { GenerateEpicVoiceJoinToken(VoipSessionType, Delegate); }
 
 	/**
 	 * @brief Updates the session info.
@@ -992,11 +1016,28 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Session|Host")
 	FRHAPI_InstanceInfoUpdate GetInstanceUpdateInfoDefaults() const;
 	/**
-	 * @brief Updates the sessions browser info.
-	 * @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
-	 * @param [in] CustomData The new browser data for the update.
-	 * @param [in] Delegate Callback delegate for the session being updated with new browser data.
-	 */
+	* @brief Queues the specified delegate to be called when the session can be safely updated with new instance data. 
+	* @param [in] Delegate Callback delegate triggered when the session can be safely updated with new instance data.
+	*/
+	virtual void EnqueueUpdateInstanceInfo(const FRH_QueuedSessionInstanceInfoUpdateDelegateBlock& Delegate);
+	/**
+	* @brief Blueprint compatible version of EnqueueUpdateInstanceInfo
+	* @param [in] Delegate Callback delegate triggered when the session can be safely updated with new instance data.
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Session|Host", meta = (DisplayName = "Enqueue Update Instance Info", AutoCreateRefTerm = "Delegate"))
+	void BLUEPRINT_EnqueueUpdateInstanceInfo(const FRH_QueuedSessionInstanceInfoUpdateDynamicDelegate& Delegate) { EnqueueUpdateInstanceInfo(Delegate); };
+	/**
+	* @brief Gets a reference to the pending instance update info struct, so that it can be modified before it's automatically passed into UpdateInstanceInfo next frame.
+	* @note This is intended to be used in conjunction with EnqueueUpdateInstanceInfo
+	*/
+	UFUNCTION(BlueprintPure, Category = "Session|Host")
+	FRHAPI_InstanceInfoUpdate& GetInstanceUpdateInfo();
+	/**
+	* @brief Updates the sessions browser info.
+	* @param [in] bEnable If true, sets the browser info. Otherwise, clear it out.
+	* @param [in] CustomData The new browser data for the update.
+	* @param [in] Delegate Callback delegate for the session being updated with new browser data.
+	*/
 	virtual void UpdateBrowserInfo(bool bEnable, const TMap<FString, FString>& CustomData, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) { PURE_VIRTUAL(URH_JoinedSession::UpdateBrowserInfo, ); };
 	/**
 	 * @private
@@ -1128,6 +1169,12 @@ protected:
 	 * @brief For debug tool usage, to track the last beacon.
 	 */
 	TWeakObjectPtr<AOnlineBeaconClient> LastBeacon;
+
+	void OnUpdateInstanceInfoComplete();
+	virtual bool IsWaitingForUpdateInstanceInfoResponse() const PURE_VIRTUAL(URH_JoinedSession::IsWaitingForUpdateInstanceInfoResponse, return false;);
+	TArray<FRH_QueuedSessionInstanceInfoUpdateDelegateBlock> QueuedSessionInstanceInfoUpdateDelegates;
+	FRHAPI_InstanceInfoUpdate PendingUpdate;
+	FTimerHandle UpdateInstanceInfoTimerHandle;
 };
 
 /** @ingroup Session
@@ -1147,7 +1194,8 @@ public:
 	/** @brief Currently not supported for offline sessions */
 	virtual void InvitePlayer(const FGuid& PlayerUuid, int32 Team = 0, const TMap<FString, FString>& CustomData = TMap<FString, FString>(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
-	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void KickPlayer(const FGuid& PlayerUuid, const FString& KickReason = FString(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+
 	/** @brief Currently not supported for offline sessions */
 	virtual void InviteOtherSession(const FString& InvitedSessionId, const FRHAPI_PlayerInviteRequest& SessionInviteRequest, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/** @brief Currently not supported for offline sessions */
@@ -1217,6 +1265,12 @@ public:
 	* @param [in] Delegate Callback delegate with the new voip token
 	*/
 	virtual void GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) override;
+	/**
+	* @brief Generate a epic voice join token (room token) 
+	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate);
 
 	// Host only functions
 	/**
@@ -1269,6 +1323,7 @@ public:
 	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const override;
 
 protected:
+	virtual bool IsWaitingForUpdateInstanceInfoResponse() const override { return false; } //$$ DLF - Added support for queueing up and combining multiple instance info updates
 	void ImportSessionUpdateToAllPlayers(const FRH_APISessionWithETag& Update);
 };
 
@@ -1312,6 +1367,18 @@ public:
 	 * @param [in] Delegate Callback delegate on the session being updated from create/join.
 	 */
 	static void BLUEPRINT_CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& CreateParams, TScriptInterface<IRH_SessionOwnerInterface> SessionOwner, const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { CreateOrJoinByType(CreateParams, SessionOwner, Delegate); }
+	/**
+	 * @brief Generate a short code for this session
+	 * @param [in] Delegate Callback delegate on the session short code being generated
+	 */
+	void GenerateShortCode(const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock());
+	UFUNCTION(BlueprintCallable, Category = "Session")
+	/**
+	 * @private
+	 * @brief Blueprint compatible version of GenerateShortCode
+	 * @param [in] Delegate callback on the shortcode being generated
+	*/
+	void BLUEPRINT_GenerateShortCode(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { GenerateShortCode(Delegate); }
 	/**
 	 * @brief Joins a specific queue with the session to be matchmade with others.
 	 * @param [in] Request The request for joining the queue.
@@ -1431,7 +1498,7 @@ public:
 	 * @param [in] PlayerUuid The unique player Id to kick from the session.
 	 * @param [in] Delegate Callback delegate for the session being updated by the kick.
 	 */
-	virtual void KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
+	virtual void KickPlayer(const FGuid& PlayerUuid, const FString& KickReason = FString(), const FRH_OnSessionUpdatedDelegateBlock& Delegate = FRH_OnSessionUpdatedDelegateBlock()) override;
 	/**
 	 * @brief Invites a different session to this session.
 	 * @param [in] InvitedSessionId The session id to send the invite to
@@ -1510,6 +1577,12 @@ public:
 	* @param [in] Delegate Callback delegate with the new voip token
 	*/
 	virtual void GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle VivoxAction, ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetVoipTokenDelegateBlock& Delegate) override;
+	/**
+	* @brief Generate a epic voice join token (room token) 
+	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] Delegate Callback delegate with the new voip token
+	*/
+	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate);
 
 	// Host only functions
 	/**
@@ -1560,6 +1633,9 @@ public:
 	* @param [in] Delegate Callback delegate for the completion of the audit event
 	*/
 	virtual void EmitAuditEvent(const FRHAPI_CreateAuditRequest& AuditEvent, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock()) const override;
+protected:
+	bool bWaitingForUpdateInstanceInfoResponse;
+	virtual bool IsWaitingForUpdateInstanceInfoResponse() const override { return bWaitingForUpdateInstanceInfoResponse; }
 };
 
 /** @ingroup Session
@@ -1607,6 +1683,11 @@ public:
 	 */
 	virtual void ReconcileAPITemplates(const TArray<FString>& InTemplates, const TOptional<FString>& ETag = TOptional<FString>()) = 0;
 
+	/**
+	 * @brief Gets the LocalPlayer Subsystem if available
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Session")
+	virtual class URH_LocalPlayerSubsystem* GetLocalPlayerSubsystem() const { return nullptr; }
 	/**
 	 * @brief Gets the PlayerInfo Subsystem.
 	 */
@@ -1656,7 +1737,7 @@ public:
 	/**
 	 * @brief Used to get all sessions, primarily for get all sessions polling where etag matches.
 	 */
-	virtual TArray<URH_SessionView*> GetAllSessionsForPolling() const = 0;
+	virtual TArray<URH_SessionView*> GetAllSessionsForPolling() = 0;
 	/**
 	 * @brief Gets a session by its id.
 	 * @param [in] SessionId The Session Id to get.

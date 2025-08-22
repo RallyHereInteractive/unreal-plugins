@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_UpdatePersonInfoRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Email{  };
 	/** @brief Gets the value of Email */
-	FString& GetEmail() { return Email; }
+	FORCEINLINE FString& GetEmail() { return Email; }
 	/** @brief Gets the value of Email */
-	const FString& GetEmail() const { return Email; }
+	FORCEINLINE const FString& GetEmail() const { return Email; }
 	/** @brief Sets the value of Email */
-	void SetEmail(const FString& NewValue) { Email = NewValue;   }
+	FORCEINLINE void SetEmail(const FString& NewValue) { Email = NewValue;   }
 	/** @brief Sets the value of Email using move semantics */
-	void SetEmail(FString&& NewValue) { Email = NewValue;   }
+	FORCEINLINE void SetEmail(FString&& NewValue) { Email = NewValue;   }
 };
 
 /** @} */

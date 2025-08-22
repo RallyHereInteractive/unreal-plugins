@@ -121,7 +121,7 @@ Server Bootstrapper for the Game Instance.
 `public virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__GameInstanceServerBootstrapper_1a0c31da8cfe9dcfcb2c8988e870e26931)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__GameInstanceServerBootstrapper_1a8953399c090da52f0903cd5e6cec0247)`() const` | Gets the etag to use for a "Get all Templates" type query.
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__GameInstanceServerBootstrapper_1adff7a5e92b0efc48576349d25fd51a81)`() const` | Gets the etag to use for a "Get all Sessions" type query.
-`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1a5b4fbd60f8f1f0c34f47570b1a7250f1)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
+`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1a0deb7d60c81e8e8011c8de82a424db04)`()` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__GameInstanceServerBootstrapper_1a76214bcf77e8597e335462954c7e2f93)`(const FString & SessionId) const` | Gets a session by its id.
 `public virtual void `[`RemoveSessionById`](#classURH__GameInstanceServerBootstrapper_1a493191c1aab0553e34f0dcf4c05f8f22)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public virtual bool `[`GetTemplate`](#classURH__GameInstanceServerBootstrapper_1a62d69a1d7e7021f03557dff715e6179d)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
@@ -321,7 +321,7 @@ Gets the etag to use for a "Get all Templates" type query.
 
 Gets the etag to use for a "Get all Sessions" type query.
 
-#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1a5b4fbd60f8f1f0c34f47570b1a7250f1)`() const` <a id="classURH__GameInstanceServerBootstrapper_1a5b4fbd60f8f1f0c34f47570b1a7250f1"></a>
+#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__GameInstanceServerBootstrapper_1a0deb7d60c81e8e8011c8de82a424db04)`()` <a id="classURH__GameInstanceServerBootstrapper_1a0deb7d60c81e8e8011c8de82a424db04"></a>
 
 Used to get all sessions, primarily for get all sessions polling where etag matches.
 

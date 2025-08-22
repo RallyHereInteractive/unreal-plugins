@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "UObject/WeakObjectPtr.h"
+#include "UObject/WeakObjectPtrTemplates.h"
 #include "FriendsAPI.h"
 #include "Engine/EngineTypes.h"
 #include "RH_Common.h"
@@ -20,6 +22,7 @@ class URH_RHFriendAndPlatformFriend;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_FriendListUpdatedDelegate, const TArray<URH_RHFriendAndPlatformFriend*>&);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_FriendUpdatedDelegate, URH_RHFriendAndPlatformFriend*);
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FRH_FriendPresenceChangedDelegate, URH_RHFriendAndPlatformFriend*, const FRH_PlayerPresenceInfo&, const FRH_PlayerPresenceInfo&);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_FriendUpdateErrorDelegate, const FGuid&, const FName&);
 DECLARE_MULTICAST_DELEGATE_OneParam(FRH_BlockedListUpdatedDelegate, const TArray<FRHAPI_BlockedPlayer>&);
 DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_BlockedPlayerUpdatedDelegate, const FGuid&, const bool);
@@ -27,6 +30,7 @@ DECLARE_MULTICAST_DELEGATE_TwoParams(FRH_BlockedPlayerUpdateErrorDelegate, const
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_FriendListUpdatedDynamicDelegate, const TArray<URH_RHFriendAndPlatformFriend*>&, FriendList);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_FriendUpdatedDynamicDelegate, URH_RHFriendAndPlatformFriend*, Friend);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FRH_FriendPresenceChangedDynamicDelegate, URH_RHFriendAndPlatformFriend*, Friend, const FRH_PlayerPresenceInfo&, Before, const FRH_PlayerPresenceInfo&, After);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_FriendUpdateErrorDynamicDelegate, const FGuid&, PlayerId, const FName&, Error);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FRH_BlockedListUpdatedDynamicDelegate, const TArray<FRHAPI_BlockedPlayer>&, Blocked);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FRH_BlockedPlayerUpdatedDynamicDelegate, const FGuid&, PlayerId, const bool, bSuccess);
@@ -303,16 +307,6 @@ public:
 	class URH_FriendSubsystem* GetFriendSubsystem() const;
 
 	/**
-	* @private
-	* @brief Blueprint delegate to listen for presence updates.
-	*/
-	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "RH And Platform Friend", meta = (DisplayName = "On Presence Updated"))
-    FRH_OnPlayerInfoSubobjectUpdatedMulticastDynamicDelegate BLUEPRINT_OnPresenceUpdatedDelegate;
-	/**
-	* @brief Native delegate to listen for presence updates.
-	*/
-	FRH_OnPlayerInfoSubobjectUpdatedMulticastDelegate OnPresenceUpdatedDelegate;
-	/**
 	 * @brief Gets if the player is a friend through Rally Here systems or their platform.
 	 */
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
@@ -564,6 +558,17 @@ public:
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
 	bool ViewPlatformProfile() const;
 	/**
+	* @brief Determines if the local player can open chat UI for this player
+	*/
+	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
+	bool CanSendPlatformMessage() const;
+	/**
+	 * @brief Attempts to show a platform-specific chat UI for the player
+	 * @return true if successfully requested the OSS to show the chat UI for the player
+	 */
+	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
+	bool SendPlatformMessage(FText Message = FText()) const;
+	/**
 	* @brief Attempts to get the player info
 	*/
 	UFUNCTION(BlueprintPure, Category = "RH And Platform Friend")
@@ -623,16 +628,8 @@ protected:
 	bool bHasRHFriendStatus;
 	/** @brief Did this object have the RH friend data before the most recent operation on it? */
 	bool bPreviousHadRHFriendStatus;
-	/**
-	 * @brief Passes presence updates of the player on through internal delgates.
-	 * @param PlayerPresence The players precence information.
-	 */
-	virtual void OnPresenceUpdated(URH_PlayerInfoSubobject* PlayerPresence)
-	{
-		SCOPED_NAMED_EVENT(RallyHere_BroadcastPresenceUpdated, FColor::Purple);
-		OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
-		BLUEPRINT_OnPresenceUpdatedDelegate.Broadcast(PlayerPresence);
-	}
+	/** @brief  */
+	FDelegateHandle PresenceUpdateHandle;
 	/**
 	 * @brief Clears the cached friendship status for the player.
 	 */
@@ -704,6 +701,16 @@ public:
 	 */
 	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Friend Player Updated"))
 	FRH_FriendUpdatedDynamicDelegate BLUEPRINT_FriendUpdatedDelegate;
+	/**
+	 * @brief Delegate that fires whenever a friend's presence is updated.
+	 */
+	FRH_FriendPresenceChangedDelegate FriendPresenceChangedDelegate;
+	/**
+	 * @private
+	 * @brief Delegate that fires whenever a friend is updated.
+	 */
+	UPROPERTY(BlueprintReadWrite, BlueprintAssignable, Category = "Friends Subsystem", meta = (DisplayName = "Friend Player Presence Changed"))
+	FRH_FriendPresenceChangedDynamicDelegate BLUEPRINT_FriendPresenceChangedDelegate;
 	/**
 	 * @brief Delegate that fires whenever a friend API call fails.
 	 */
@@ -1036,15 +1043,7 @@ public:
 	 * @brief Helper function to push out presence updates on delegates on this system.
 	 * @param [in] PlayerPresence The Player Presence updated.
 	 */
-	virtual void OnPresenceUpdated(URH_PlayerInfoSubobject* PlayerPresence)
-	{
-		if (URH_RHFriendAndPlatformFriend* Friend = GetFriendByPlayerInfo(PlayerPresence->GetPlayerInfo()))
-		{
-			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendUpdated, FColor::Purple);
-			FriendUpdatedDelegate.Broadcast(Friend);
-			BLUEPRINT_FriendUpdatedDelegate.Broadcast(Friend);
-		}
-	}
+	virtual void OnPresenceChanged(const FGuid& PlayerUuid, const FRH_PlayerPresenceInfo& Before, const FRH_PlayerPresenceInfo& After);
 protected:
 	/** @brief Cached array of all friends. */
 	UPROPERTY(Transient)
@@ -1085,6 +1084,15 @@ protected:
 	 * @param [in] PropertyThatWasLoaded The property loaded.
 	 */
 	virtual void PostReloadConfig(class FProperty* PropertyThatWasLoaded) override;
+
+    /**
+     * @brief Update associations between platform friends and rh friends based on receiving a player's links
+     * @param Platforms Linked platform information about a single player
+     * @param MainFriend Friend object for the single player's uuid
+     */
+    void GetLinkedPlatformInfoHandler(bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms, TWeakObjectPtr<URH_RHFriendAndPlatformFriend> MainFriendWeak);
+	void DoCheckPlatformAndUpdateRecentPlayerForOSSFromPresence(bool bSuccess, URH_PlayerInfoSubobject* Subobj);
+	void OnLinksUpdated_UpdateRecentPlayerForOSS(bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms);
 
 #pragma region API Request Handlers
 	/**

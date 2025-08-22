@@ -49,29 +49,27 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalId_IsNull{ false };
 	/** @brief Gets the value of PortalId_Optional, regardless of it having been set */
-	ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
+	FORCEINLINE ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
 	/** @brief Gets the value of PortalId_Optional, regardless of it having been set */
-	const ERHAPI_Portal& GetPortalId() const { return PortalId_Optional; }
+	FORCEINLINE const ERHAPI_Portal& GetPortalId() const { return PortalId_Optional; }
 	/** @brief Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_Portal& GetPortalId(const ERHAPI_Portal& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_Portal& GetPortalId(const ERHAPI_Portal& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalId(ERHAPI_Portal& OutValue) const { if (PortalId_IsSet && !PortalId_IsNull) OutValue = PortalId_Optional; return PortalId_IsSet; }
+	FORCEINLINE bool GetPortalId(ERHAPI_Portal& OutValue) const { if (PortalId_IsSet && !PortalId_IsNull) OutValue = PortalId_Optional; return PortalId_IsSet; }
 	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Portal* GetPortalIdOrNull() { if (PortalId_IsSet) return (PortalId_IsNull ? nullptr : &PortalId_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_Portal* GetPortalIdOrNull() { if (PortalId_IsSet) return (PortalId_IsNull ? nullptr : &PortalId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return (PortalId_IsNull ? nullptr : &PortalId_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return (PortalId_IsNull ? nullptr : &PortalId_Optional); return nullptr; }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
-	void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; PortalId_IsNull = false; }
+	FORCEINLINE void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; PortalId_IsNull = false; }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
-	void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; PortalId_IsNull = false; }
+	FORCEINLINE void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; PortalId_IsNull = false; }
 	/** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_IsSet = false; PortalId_IsNull = false; }
-	/** @brief Checks whether PortalId_Optional has been set */
-	bool IsPortalIdSet() const { return PortalId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPortalIdToNull() { PortalId_IsSet = true; PortalId_IsNull = true; }
+	FORCEINLINE void SetPortalIdToNull() { PortalId_IsSet = true; PortalId_IsNull = true; }
 	/** @brief Checks whether PortalId_Optional is set to null */
-	bool IsPortalIdNull() const { return PortalId_IsSet && PortalId_IsNull; }
+	FORCEINLINE bool IsPortalIdNull() const { return PortalId_IsSet && PortalId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString PortalUserId_Optional{  };
@@ -82,41 +80,39 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalUserId_IsNull{ false };
 	/** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
-	FString& GetPortalUserId() { return PortalUserId_Optional; }
+	FORCEINLINE FString& GetPortalUserId() { return PortalUserId_Optional; }
 	/** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
-	const FString& GetPortalUserId() const { return PortalUserId_Optional; }
+	FORCEINLINE const FString& GetPortalUserId() const { return PortalUserId_Optional; }
 	/** @brief Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPortalUserId(const FString& DefaultValue) const { if (PortalUserId_IsSet) return PortalUserId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPortalUserId(const FString& DefaultValue) const { if (PortalUserId_IsSet) return PortalUserId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalUserId(FString& OutValue) const { if (PortalUserId_IsSet && !PortalUserId_IsNull) OutValue = PortalUserId_Optional; return PortalUserId_IsSet; }
+	FORCEINLINE bool GetPortalUserId(FString& OutValue) const { if (PortalUserId_IsSet && !PortalUserId_IsNull) OutValue = PortalUserId_Optional; return PortalUserId_IsSet; }
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return (PortalUserId_IsNull ? nullptr : &PortalUserId_Optional); return nullptr; }
+	FORCEINLINE FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return (PortalUserId_IsNull ? nullptr : &PortalUserId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return (PortalUserId_IsNull ? nullptr : &PortalUserId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return (PortalUserId_IsNull ? nullptr : &PortalUserId_Optional); return nullptr; }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true */
-	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; PortalUserId_IsNull = false; }
+	FORCEINLINE void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; PortalUserId_IsNull = false; }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
-	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; PortalUserId_IsNull = false; }
+	FORCEINLINE void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; PortalUserId_IsNull = false; }
 	/** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false; PortalUserId_IsNull = false; }
-	/** @brief Checks whether PortalUserId_Optional has been set */
-	bool IsPortalUserIdSet() const { return PortalUserId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPortalUserIdToNull() { PortalUserId_IsSet = true; PortalUserId_IsNull = true; }
+	FORCEINLINE void SetPortalUserIdToNull() { PortalUserId_IsSet = true; PortalUserId_IsNull = true; }
 	/** @brief Checks whether PortalUserId_Optional is set to null */
-	bool IsPortalUserIdNull() const { return PortalUserId_IsSet && PortalUserId_IsNull; }
+	FORCEINLINE bool IsPortalUserIdNull() const { return PortalUserId_IsSet && PortalUserId_IsNull; }
 
 	/** @brief The unique identifier for the KeyClaim */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid KeyClaimUuid{  };
 	/** @brief Gets the value of KeyClaimUuid */
-	FGuid& GetKeyClaimUuid() { return KeyClaimUuid; }
+	FORCEINLINE FGuid& GetKeyClaimUuid() { return KeyClaimUuid; }
 	/** @brief Gets the value of KeyClaimUuid */
-	const FGuid& GetKeyClaimUuid() const { return KeyClaimUuid; }
+	FORCEINLINE const FGuid& GetKeyClaimUuid() const { return KeyClaimUuid; }
 	/** @brief Sets the value of KeyClaimUuid */
-	void SetKeyClaimUuid(const FGuid& NewValue) { KeyClaimUuid = NewValue;   }
+	FORCEINLINE void SetKeyClaimUuid(const FGuid& NewValue) { KeyClaimUuid = NewValue;   }
 	/** @brief Sets the value of KeyClaimUuid using move semantics */
-	void SetKeyClaimUuid(FGuid&& NewValue) { KeyClaimUuid = NewValue;   }
+	FORCEINLINE void SetKeyClaimUuid(FGuid&& NewValue) { KeyClaimUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Claimed_Optional{ false };
@@ -127,33 +123,29 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Claimed_IsNull{ false };
 	/** @brief Gets the value of Claimed_Optional, regardless of it having been set */
-	bool& GetClaimed() { return Claimed_Optional; }
+	FORCEINLINE bool& GetClaimed() { return Claimed_Optional; }
 	/** @brief Gets the value of Claimed_Optional, regardless of it having been set */
-	const bool& GetClaimed() const { return Claimed_Optional; }
+	FORCEINLINE const bool& GetClaimed() const { return Claimed_Optional; }
 	/** @brief Gets the value of Claimed_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetClaimed(const bool& DefaultValue) const { if (Claimed_IsSet) return Claimed_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetClaimed(const bool& DefaultValue) const { if (Claimed_IsSet) return Claimed_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Claimed_Optional and returns true if it has been set, otherwise returns false */
-	bool GetClaimed(bool& OutValue) const { if (Claimed_IsSet && !Claimed_IsNull) OutValue = Claimed_Optional; return Claimed_IsSet; }
+	FORCEINLINE bool GetClaimed(bool& OutValue) const { if (Claimed_IsSet && !Claimed_IsNull) OutValue = Claimed_Optional; return Claimed_IsSet; }
 	/** @brief Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetClaimedOrNull() { if (Claimed_IsSet) return (Claimed_IsNull ? nullptr : &Claimed_Optional); return nullptr; }
+	FORCEINLINE bool* GetClaimedOrNull() { if (Claimed_IsSet) return (Claimed_IsNull ? nullptr : &Claimed_Optional); return nullptr; }
 	/** @brief Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetClaimedOrNull() const { if (Claimed_IsSet) return (Claimed_IsNull ? nullptr : &Claimed_Optional); return nullptr; }
+	FORCEINLINE const bool* GetClaimedOrNull() const { if (Claimed_IsSet) return (Claimed_IsNull ? nullptr : &Claimed_Optional); return nullptr; }
 	/** @brief Sets the value of Claimed_Optional and also sets Claimed_IsSet to true */
-	void SetClaimed(const bool& NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true; Claimed_IsNull = false; }
+	FORCEINLINE void SetClaimed(const bool& NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true; Claimed_IsNull = false; }
 	/** @brief Sets the value of Claimed_Optional and also sets Claimed_IsSet to true using move semantics */
-	void SetClaimed(bool&& NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true; Claimed_IsNull = false; }
+	FORCEINLINE void SetClaimed(bool&& NewValue) { Claimed_Optional = NewValue; Claimed_IsSet = true; Claimed_IsNull = false; }
 	/** @brief Clears the value of Claimed_Optional and sets Claimed_IsSet to false */
 	void ClearClaimed() { Claimed_Optional = false; Claimed_IsSet = false; Claimed_IsNull = false; }
-	/** @brief Checks whether Claimed_Optional has been set */
-	bool IsClaimedSet() const { return Claimed_IsSet; }
-	/** @brief Returns true if Claimed_Optional is set and matches the default value */
-	bool IsClaimedDefaultValue() const { return Claimed_IsSet && Claimed_Optional == false; }
-	/** @brief Sets the value of Claimed_Optional to its default and also sets Claimed_IsSet to true */
-	void SetClaimedToDefault() { SetClaimed(false); }
+	/** @brief Returns the default value of Claimed */
+	FORCEINLINE bool GetDefaultValue_Claimed() { return false; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetClaimedToNull() { Claimed_IsSet = true; Claimed_IsNull = true; }
+	FORCEINLINE void SetClaimedToNull() { Claimed_IsSet = true; Claimed_IsNull = true; }
 	/** @brief Checks whether Claimed_Optional is set to null */
-	bool IsClaimedNull() const { return Claimed_IsSet && Claimed_IsNull; }
+	FORCEINLINE bool IsClaimedNull() const { return Claimed_IsSet && Claimed_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ExternalKey_Optional{  };
@@ -164,29 +156,27 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExternalKey_IsNull{ false };
 	/** @brief Gets the value of ExternalKey_Optional, regardless of it having been set */
-	FString& GetExternalKey() { return ExternalKey_Optional; }
+	FORCEINLINE FString& GetExternalKey() { return ExternalKey_Optional; }
 	/** @brief Gets the value of ExternalKey_Optional, regardless of it having been set */
-	const FString& GetExternalKey() const { return ExternalKey_Optional; }
+	FORCEINLINE const FString& GetExternalKey() const { return ExternalKey_Optional; }
 	/** @brief Gets the value of ExternalKey_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetExternalKey(const FString& DefaultValue) const { if (ExternalKey_IsSet) return ExternalKey_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetExternalKey(const FString& DefaultValue) const { if (ExternalKey_IsSet) return ExternalKey_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ExternalKey_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExternalKey(FString& OutValue) const { if (ExternalKey_IsSet && !ExternalKey_IsNull) OutValue = ExternalKey_Optional; return ExternalKey_IsSet; }
+	FORCEINLINE bool GetExternalKey(FString& OutValue) const { if (ExternalKey_IsSet && !ExternalKey_IsNull) OutValue = ExternalKey_Optional; return ExternalKey_IsSet; }
 	/** @brief Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetExternalKeyOrNull() { if (ExternalKey_IsSet) return (ExternalKey_IsNull ? nullptr : &ExternalKey_Optional); return nullptr; }
+	FORCEINLINE FString* GetExternalKeyOrNull() { if (ExternalKey_IsSet) return (ExternalKey_IsNull ? nullptr : &ExternalKey_Optional); return nullptr; }
 	/** @brief Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetExternalKeyOrNull() const { if (ExternalKey_IsSet) return (ExternalKey_IsNull ? nullptr : &ExternalKey_Optional); return nullptr; }
+	FORCEINLINE const FString* GetExternalKeyOrNull() const { if (ExternalKey_IsSet) return (ExternalKey_IsNull ? nullptr : &ExternalKey_Optional); return nullptr; }
 	/** @brief Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true */
-	void SetExternalKey(const FString& NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true; ExternalKey_IsNull = false; }
+	FORCEINLINE void SetExternalKey(const FString& NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true; ExternalKey_IsNull = false; }
 	/** @brief Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true using move semantics */
-	void SetExternalKey(FString&& NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true; ExternalKey_IsNull = false; }
+	FORCEINLINE void SetExternalKey(FString&& NewValue) { ExternalKey_Optional = NewValue; ExternalKey_IsSet = true; ExternalKey_IsNull = false; }
 	/** @brief Clears the value of ExternalKey_Optional and sets ExternalKey_IsSet to false */
 	void ClearExternalKey() { ExternalKey_IsSet = false; ExternalKey_IsNull = false; }
-	/** @brief Checks whether ExternalKey_Optional has been set */
-	bool IsExternalKeySet() const { return ExternalKey_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetExternalKeyToNull() { ExternalKey_IsSet = true; ExternalKey_IsNull = true; }
+	FORCEINLINE void SetExternalKeyToNull() { ExternalKey_IsSet = true; ExternalKey_IsNull = true; }
 	/** @brief Checks whether ExternalKey_Optional is set to null */
-	bool IsExternalKeyNull() const { return ExternalKey_IsSet && ExternalKey_IsNull; }
+	FORCEINLINE bool IsExternalKeyNull() const { return ExternalKey_IsSet && ExternalKey_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid ExternalKeyCampaignUuid_Optional{  };
@@ -197,29 +187,27 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExternalKeyCampaignUuid_IsNull{ false };
 	/** @brief Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set */
-	FGuid& GetExternalKeyCampaignUuid() { return ExternalKeyCampaignUuid_Optional; }
+	FORCEINLINE FGuid& GetExternalKeyCampaignUuid() { return ExternalKeyCampaignUuid_Optional; }
 	/** @brief Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set */
-	const FGuid& GetExternalKeyCampaignUuid() const { return ExternalKeyCampaignUuid_Optional; }
+	FORCEINLINE const FGuid& GetExternalKeyCampaignUuid() const { return ExternalKeyCampaignUuid_Optional; }
 	/** @brief Gets the value of ExternalKeyCampaignUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetExternalKeyCampaignUuid(const FGuid& DefaultValue) const { if (ExternalKeyCampaignUuid_IsSet) return ExternalKeyCampaignUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetExternalKeyCampaignUuid(const FGuid& DefaultValue) const { if (ExternalKeyCampaignUuid_IsSet) return ExternalKeyCampaignUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ExternalKeyCampaignUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExternalKeyCampaignUuid(FGuid& OutValue) const { if (ExternalKeyCampaignUuid_IsSet && !ExternalKeyCampaignUuid_IsNull) OutValue = ExternalKeyCampaignUuid_Optional; return ExternalKeyCampaignUuid_IsSet; }
+	FORCEINLINE bool GetExternalKeyCampaignUuid(FGuid& OutValue) const { if (ExternalKeyCampaignUuid_IsSet && !ExternalKeyCampaignUuid_IsNull) OutValue = ExternalKeyCampaignUuid_Optional; return ExternalKeyCampaignUuid_IsSet; }
 	/** @brief Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetExternalKeyCampaignUuidOrNull() { if (ExternalKeyCampaignUuid_IsSet) return (ExternalKeyCampaignUuid_IsNull ? nullptr : &ExternalKeyCampaignUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetExternalKeyCampaignUuidOrNull() { if (ExternalKeyCampaignUuid_IsSet) return (ExternalKeyCampaignUuid_IsNull ? nullptr : &ExternalKeyCampaignUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetExternalKeyCampaignUuidOrNull() const { if (ExternalKeyCampaignUuid_IsSet) return (ExternalKeyCampaignUuid_IsNull ? nullptr : &ExternalKeyCampaignUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetExternalKeyCampaignUuidOrNull() const { if (ExternalKeyCampaignUuid_IsSet) return (ExternalKeyCampaignUuid_IsNull ? nullptr : &ExternalKeyCampaignUuid_Optional); return nullptr; }
 	/** @brief Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true */
-	void SetExternalKeyCampaignUuid(const FGuid& NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true; ExternalKeyCampaignUuid_IsNull = false; }
+	FORCEINLINE void SetExternalKeyCampaignUuid(const FGuid& NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true; ExternalKeyCampaignUuid_IsNull = false; }
 	/** @brief Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true using move semantics */
-	void SetExternalKeyCampaignUuid(FGuid&& NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true; ExternalKeyCampaignUuid_IsNull = false; }
+	FORCEINLINE void SetExternalKeyCampaignUuid(FGuid&& NewValue) { ExternalKeyCampaignUuid_Optional = NewValue; ExternalKeyCampaignUuid_IsSet = true; ExternalKeyCampaignUuid_IsNull = false; }
 	/** @brief Clears the value of ExternalKeyCampaignUuid_Optional and sets ExternalKeyCampaignUuid_IsSet to false */
 	void ClearExternalKeyCampaignUuid() { ExternalKeyCampaignUuid_IsSet = false; ExternalKeyCampaignUuid_IsNull = false; }
-	/** @brief Checks whether ExternalKeyCampaignUuid_Optional has been set */
-	bool IsExternalKeyCampaignUuidSet() const { return ExternalKeyCampaignUuid_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetExternalKeyCampaignUuidToNull() { ExternalKeyCampaignUuid_IsSet = true; ExternalKeyCampaignUuid_IsNull = true; }
+	FORCEINLINE void SetExternalKeyCampaignUuidToNull() { ExternalKeyCampaignUuid_IsSet = true; ExternalKeyCampaignUuid_IsNull = true; }
 	/** @brief Checks whether ExternalKeyCampaignUuid_Optional is set to null */
-	bool IsExternalKeyCampaignUuidNull() const { return ExternalKeyCampaignUuid_IsSet && ExternalKeyCampaignUuid_IsNull; }
+	FORCEINLINE bool IsExternalKeyCampaignUuidNull() const { return ExternalKeyCampaignUuid_IsSet && ExternalKeyCampaignUuid_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ExternalKeyType_Optional{  };
@@ -230,29 +218,27 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ExternalKeyType_IsNull{ false };
 	/** @brief Gets the value of ExternalKeyType_Optional, regardless of it having been set */
-	FString& GetExternalKeyType() { return ExternalKeyType_Optional; }
+	FORCEINLINE FString& GetExternalKeyType() { return ExternalKeyType_Optional; }
 	/** @brief Gets the value of ExternalKeyType_Optional, regardless of it having been set */
-	const FString& GetExternalKeyType() const { return ExternalKeyType_Optional; }
+	FORCEINLINE const FString& GetExternalKeyType() const { return ExternalKeyType_Optional; }
 	/** @brief Gets the value of ExternalKeyType_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetExternalKeyType(const FString& DefaultValue) const { if (ExternalKeyType_IsSet) return ExternalKeyType_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetExternalKeyType(const FString& DefaultValue) const { if (ExternalKeyType_IsSet) return ExternalKeyType_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ExternalKeyType_Optional and returns true if it has been set, otherwise returns false */
-	bool GetExternalKeyType(FString& OutValue) const { if (ExternalKeyType_IsSet && !ExternalKeyType_IsNull) OutValue = ExternalKeyType_Optional; return ExternalKeyType_IsSet; }
+	FORCEINLINE bool GetExternalKeyType(FString& OutValue) const { if (ExternalKeyType_IsSet && !ExternalKeyType_IsNull) OutValue = ExternalKeyType_Optional; return ExternalKeyType_IsSet; }
 	/** @brief Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetExternalKeyTypeOrNull() { if (ExternalKeyType_IsSet) return (ExternalKeyType_IsNull ? nullptr : &ExternalKeyType_Optional); return nullptr; }
+	FORCEINLINE FString* GetExternalKeyTypeOrNull() { if (ExternalKeyType_IsSet) return (ExternalKeyType_IsNull ? nullptr : &ExternalKeyType_Optional); return nullptr; }
 	/** @brief Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetExternalKeyTypeOrNull() const { if (ExternalKeyType_IsSet) return (ExternalKeyType_IsNull ? nullptr : &ExternalKeyType_Optional); return nullptr; }
+	FORCEINLINE const FString* GetExternalKeyTypeOrNull() const { if (ExternalKeyType_IsSet) return (ExternalKeyType_IsNull ? nullptr : &ExternalKeyType_Optional); return nullptr; }
 	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true */
-	void SetExternalKeyType(const FString& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; ExternalKeyType_IsNull = false; }
+	FORCEINLINE void SetExternalKeyType(const FString& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; ExternalKeyType_IsNull = false; }
 	/** @brief Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics */
-	void SetExternalKeyType(FString&& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; ExternalKeyType_IsNull = false; }
+	FORCEINLINE void SetExternalKeyType(FString&& NewValue) { ExternalKeyType_Optional = NewValue; ExternalKeyType_IsSet = true; ExternalKeyType_IsNull = false; }
 	/** @brief Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false */
 	void ClearExternalKeyType() { ExternalKeyType_IsSet = false; ExternalKeyType_IsNull = false; }
-	/** @brief Checks whether ExternalKeyType_Optional has been set */
-	bool IsExternalKeyTypeSet() const { return ExternalKeyType_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetExternalKeyTypeToNull() { ExternalKeyType_IsSet = true; ExternalKeyType_IsNull = true; }
+	FORCEINLINE void SetExternalKeyTypeToNull() { ExternalKeyType_IsSet = true; ExternalKeyType_IsNull = true; }
 	/** @brief Checks whether ExternalKeyType_Optional is set to null */
-	bool IsExternalKeyTypeNull() const { return ExternalKeyType_IsSet && ExternalKeyType_IsNull; }
+	FORCEINLINE bool IsExternalKeyTypeNull() const { return ExternalKeyType_IsSet && ExternalKeyType_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString CreatedOn_Optional{  };
@@ -263,29 +249,27 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CreatedOn_IsNull{ false };
 	/** @brief Gets the value of CreatedOn_Optional, regardless of it having been set */
-	FString& GetCreatedOn() { return CreatedOn_Optional; }
+	FORCEINLINE FString& GetCreatedOn() { return CreatedOn_Optional; }
 	/** @brief Gets the value of CreatedOn_Optional, regardless of it having been set */
-	const FString& GetCreatedOn() const { return CreatedOn_Optional; }
+	FORCEINLINE const FString& GetCreatedOn() const { return CreatedOn_Optional; }
 	/** @brief Gets the value of CreatedOn_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetCreatedOn(const FString& DefaultValue) const { if (CreatedOn_IsSet) return CreatedOn_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetCreatedOn(const FString& DefaultValue) const { if (CreatedOn_IsSet) return CreatedOn_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CreatedOn_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCreatedOn(FString& OutValue) const { if (CreatedOn_IsSet && !CreatedOn_IsNull) OutValue = CreatedOn_Optional; return CreatedOn_IsSet; }
+	FORCEINLINE bool GetCreatedOn(FString& OutValue) const { if (CreatedOn_IsSet && !CreatedOn_IsNull) OutValue = CreatedOn_Optional; return CreatedOn_IsSet; }
 	/** @brief Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetCreatedOnOrNull() { if (CreatedOn_IsSet) return (CreatedOn_IsNull ? nullptr : &CreatedOn_Optional); return nullptr; }
+	FORCEINLINE FString* GetCreatedOnOrNull() { if (CreatedOn_IsSet) return (CreatedOn_IsNull ? nullptr : &CreatedOn_Optional); return nullptr; }
 	/** @brief Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetCreatedOnOrNull() const { if (CreatedOn_IsSet) return (CreatedOn_IsNull ? nullptr : &CreatedOn_Optional); return nullptr; }
+	FORCEINLINE const FString* GetCreatedOnOrNull() const { if (CreatedOn_IsSet) return (CreatedOn_IsNull ? nullptr : &CreatedOn_Optional); return nullptr; }
 	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true */
-	void SetCreatedOn(const FString& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; CreatedOn_IsNull = false; }
+	FORCEINLINE void SetCreatedOn(const FString& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; CreatedOn_IsNull = false; }
 	/** @brief Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics */
-	void SetCreatedOn(FString&& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; CreatedOn_IsNull = false; }
+	FORCEINLINE void SetCreatedOn(FString&& NewValue) { CreatedOn_Optional = NewValue; CreatedOn_IsSet = true; CreatedOn_IsNull = false; }
 	/** @brief Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false */
 	void ClearCreatedOn() { CreatedOn_IsSet = false; CreatedOn_IsNull = false; }
-	/** @brief Checks whether CreatedOn_Optional has been set */
-	bool IsCreatedOnSet() const { return CreatedOn_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCreatedOnToNull() { CreatedOn_IsSet = true; CreatedOn_IsNull = true; }
+	FORCEINLINE void SetCreatedOnToNull() { CreatedOn_IsSet = true; CreatedOn_IsNull = true; }
 	/** @brief Checks whether CreatedOn_Optional is set to null */
-	bool IsCreatedOnNull() const { return CreatedOn_IsSet && CreatedOn_IsNull; }
+	FORCEINLINE bool IsCreatedOnNull() const { return CreatedOn_IsSet && CreatedOn_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString LastModifiedOn_Optional{  };
@@ -296,29 +280,27 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaim : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LastModifiedOn_IsNull{ false };
 	/** @brief Gets the value of LastModifiedOn_Optional, regardless of it having been set */
-	FString& GetLastModifiedOn() { return LastModifiedOn_Optional; }
+	FORCEINLINE FString& GetLastModifiedOn() { return LastModifiedOn_Optional; }
 	/** @brief Gets the value of LastModifiedOn_Optional, regardless of it having been set */
-	const FString& GetLastModifiedOn() const { return LastModifiedOn_Optional; }
+	FORCEINLINE const FString& GetLastModifiedOn() const { return LastModifiedOn_Optional; }
 	/** @brief Gets the value of LastModifiedOn_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetLastModifiedOn(const FString& DefaultValue) const { if (LastModifiedOn_IsSet) return LastModifiedOn_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetLastModifiedOn(const FString& DefaultValue) const { if (LastModifiedOn_IsSet) return LastModifiedOn_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of LastModifiedOn_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLastModifiedOn(FString& OutValue) const { if (LastModifiedOn_IsSet && !LastModifiedOn_IsNull) OutValue = LastModifiedOn_Optional; return LastModifiedOn_IsSet; }
+	FORCEINLINE bool GetLastModifiedOn(FString& OutValue) const { if (LastModifiedOn_IsSet && !LastModifiedOn_IsNull) OutValue = LastModifiedOn_Optional; return LastModifiedOn_IsSet; }
 	/** @brief Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetLastModifiedOnOrNull() { if (LastModifiedOn_IsSet) return (LastModifiedOn_IsNull ? nullptr : &LastModifiedOn_Optional); return nullptr; }
+	FORCEINLINE FString* GetLastModifiedOnOrNull() { if (LastModifiedOn_IsSet) return (LastModifiedOn_IsNull ? nullptr : &LastModifiedOn_Optional); return nullptr; }
 	/** @brief Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetLastModifiedOnOrNull() const { if (LastModifiedOn_IsSet) return (LastModifiedOn_IsNull ? nullptr : &LastModifiedOn_Optional); return nullptr; }
+	FORCEINLINE const FString* GetLastModifiedOnOrNull() const { if (LastModifiedOn_IsSet) return (LastModifiedOn_IsNull ? nullptr : &LastModifiedOn_Optional); return nullptr; }
 	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true */
-	void SetLastModifiedOn(const FString& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; LastModifiedOn_IsNull = false; }
+	FORCEINLINE void SetLastModifiedOn(const FString& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; LastModifiedOn_IsNull = false; }
 	/** @brief Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics */
-	void SetLastModifiedOn(FString&& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; LastModifiedOn_IsNull = false; }
+	FORCEINLINE void SetLastModifiedOn(FString&& NewValue) { LastModifiedOn_Optional = NewValue; LastModifiedOn_IsSet = true; LastModifiedOn_IsNull = false; }
 	/** @brief Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false */
 	void ClearLastModifiedOn() { LastModifiedOn_IsSet = false; LastModifiedOn_IsNull = false; }
-	/** @brief Checks whether LastModifiedOn_Optional has been set */
-	bool IsLastModifiedOnSet() const { return LastModifiedOn_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetLastModifiedOnToNull() { LastModifiedOn_IsSet = true; LastModifiedOn_IsNull = true; }
+	FORCEINLINE void SetLastModifiedOnToNull() { LastModifiedOn_IsSet = true; LastModifiedOn_IsNull = true; }
 	/** @brief Checks whether LastModifiedOn_Optional is set to null */
-	bool IsLastModifiedOnNull() const { return LastModifiedOn_IsSet && LastModifiedOn_IsNull; }
+	FORCEINLINE bool IsLastModifiedOnNull() const { return LastModifiedOn_IsSet && LastModifiedOn_IsNull; }
 };
 
 /** @} */

@@ -29,34 +29,32 @@ Ranked data about a player&#39;s skill and confidence levels.
 `public bool `[`LastUpdatedDatetime_IsSet`](#structFRHAPI__RankRankData_1a7f6c36a96db2383fef577342b3954b38) | true if LastUpdatedDatetime_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__RankRankData_1a1d74e64ab2a269bca24689628afe39d6)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__RankRankData_1a0270dec7bc6cca9667da20b7acad3d18)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline float & `[`GetMu`](#structFRHAPI__RankRankData_1af2528ad1bbd3926cf55b0e11ddc19f88)`()` | Gets the value of Mu.
-`public inline const float & `[`GetMu`](#structFRHAPI__RankRankData_1a37218f25d9662731ed49a5e8a6fe39c8)`() const` | Gets the value of Mu.
-`public inline void `[`SetMu`](#structFRHAPI__RankRankData_1ab1db3987be4d19fd3c5b85237ed5be10)`(const float & NewValue)` | Sets the value of Mu.
-`public inline void `[`SetMu`](#structFRHAPI__RankRankData_1a3f57235c80b05c65c2432401c300eb71)`(float && NewValue)` | Sets the value of Mu using move semantics.
-`public inline float & `[`GetSigma`](#structFRHAPI__RankRankData_1aad8e2554c0d365b2b10a35b33da2f14d)`()` | Gets the value of Sigma.
-`public inline const float & `[`GetSigma`](#structFRHAPI__RankRankData_1a8115a63ee8900682568db9eaf87a701a)`() const` | Gets the value of Sigma.
-`public inline void `[`SetSigma`](#structFRHAPI__RankRankData_1abb913e0d4c1dee4f60d6a997c06c8d23)`(const float & NewValue)` | Sets the value of Sigma.
-`public inline void `[`SetSigma`](#structFRHAPI__RankRankData_1a94faaf303b770f8e98501574efa857a2)`(float && NewValue)` | Sets the value of Sigma using move semantics.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1a43a5b754f52caec10fd39f3e27c20ed6)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1a435e865c306b733c5d0a8b251bb586e2)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1ab2db92150fb5346303027fb68ca4f814)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__RankRankData_1a6ef447fa6edfe03588a8492684ac7392)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankRankData_1ad21371776bd528a82f7d7b6f083663c8)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankRankData_1a0b4f00a604f63c1dba38e6feccb9958e)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__RankRankData_1a28192b4c0fbd6a1bedc292ee4e3baaf4)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__RankRankData_1a2f9c6d0dcedc23236e0ec9321f5fb215)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE float & `[`GetMu`](#structFRHAPI__RankRankData_1a503f16e89cbb0d93a0e436c2774c772c)`()` | Gets the value of Mu.
+`public inline FORCEINLINE const float & `[`GetMu`](#structFRHAPI__RankRankData_1ac2bda417bb3d963acae708e4bdf0b180)`() const` | Gets the value of Mu.
+`public inline FORCEINLINE void `[`SetMu`](#structFRHAPI__RankRankData_1aeaaab876dc211a86e64b30f545d9167a)`(const float & NewValue)` | Sets the value of Mu.
+`public inline FORCEINLINE void `[`SetMu`](#structFRHAPI__RankRankData_1a1ad2bd1c66d888955fc082034b314790)`(float && NewValue)` | Sets the value of Mu using move semantics.
+`public inline FORCEINLINE float & `[`GetSigma`](#structFRHAPI__RankRankData_1a632ae7e6a40ddf8a179489d9f2826d4a)`()` | Gets the value of Sigma.
+`public inline FORCEINLINE const float & `[`GetSigma`](#structFRHAPI__RankRankData_1a187467e43288988fd1a165d059f085cd)`() const` | Gets the value of Sigma.
+`public inline FORCEINLINE void `[`SetSigma`](#structFRHAPI__RankRankData_1a089d2158b533c70c4c135be74f9c3d2d)`(const float & NewValue)` | Sets the value of Sigma.
+`public inline FORCEINLINE void `[`SetSigma`](#structFRHAPI__RankRankData_1aa149dd1d189732f512667b49b13b1e43)`(float && NewValue)` | Sets the value of Sigma using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1a93b53d2c33dcc2162798d3bb4cfad513)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1a55f170abb9c07909b2dc54040cda71ca)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1aa15a5c0b721756bd0b7da6d3705f1b49)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__RankRankData_1ab909d36b17ad7fb1219af9b791619a25)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankRankData_1ac57d4a24cb33f7c1344917f6ac497aee)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankRankData_1a3e325e1084808346449bb0c58cb6ccf1)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__RankRankData_1a76328576fd6d297e43011db920861f86)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__RankRankData_1a909213e208162e4216160c8272682201)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__RankRankData_1a319304e954e50f333da75582b1aea553)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__RankRankData_1abfc42bffa144324c93177659e8b13493)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a720a6296d11a58d87dd37a8e96deb1e4)`()` | Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1ac736ec51e149ab7944c81b2cb1e2d6b8)`() const` | Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a9fa14ca9d8032eff1473b14d050919ea)`(const FDateTime & DefaultValue) const` | Gets the value of LastUpdatedDatetime_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a0c42187cf1a5ab883f9b735332c1f77c)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastUpdatedDatetime_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetLastUpdatedDatetimeOrNull`](#structFRHAPI__RankRankData_1a5d0c598d5b8a90c45827bb45b5d1d72e)`()` | Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetLastUpdatedDatetimeOrNull`](#structFRHAPI__RankRankData_1aa39bbe33773a58bd7273dc84d95af5ef)`() const` | Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1ae848ae63b6284c28f01c729f310a95e4)`(const FDateTime & NewValue)` | Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true.
-`public inline void `[`SetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a305deb89578aa433fd1603830f9f9d42)`(FDateTime && NewValue)` | Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a681c9815628fbde34cce75d36e7c7d2c)`()` | Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1aec526a38c758c6cb929bff369ae1f53c)`() const` | Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a84c383efd69bea83c097568cd3eec5c5)`(const FDateTime & DefaultValue) const` | Gets the value of LastUpdatedDatetime_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a734782a13a7dc9b545df5e02097e7682)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastUpdatedDatetime_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetLastUpdatedDatetimeOrNull`](#structFRHAPI__RankRankData_1aca0577434fde102d9a880ca53cc5b233)`()` | Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetLastUpdatedDatetimeOrNull`](#structFRHAPI__RankRankData_1a7455a22522e03dd3bce563c5829b8f35)`() const` | Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1acc500ab30f3b26057aa060e915a61d18)`(const FDateTime & NewValue)` | Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true.
+`public inline FORCEINLINE void `[`SetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a8fbf505d86648cd99becb29a49a408c6)`(FDateTime && NewValue)` | Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true using move semantics.
 `public inline void `[`ClearLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a5a9c38cd67461009914656bd693e9a82)`()` | Clears the value of LastUpdatedDatetime_Optional and sets LastUpdatedDatetime_IsSet to false.
-`public inline bool `[`IsLastUpdatedDatetimeSet`](#structFRHAPI__RankRankData_1abcc87bd805a78e8113058471ab25bb4c)`() const` | Checks whether LastUpdatedDatetime_Optional has been set.
 
 ### Members
 
@@ -101,67 +99,67 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline float & `[`GetMu`](#structFRHAPI__RankRankData_1af2528ad1bbd3926cf55b0e11ddc19f88)`()` <a id="structFRHAPI__RankRankData_1af2528ad1bbd3926cf55b0e11ddc19f88"></a>
+#### `public inline FORCEINLINE float & `[`GetMu`](#structFRHAPI__RankRankData_1a503f16e89cbb0d93a0e436c2774c772c)`()` <a id="structFRHAPI__RankRankData_1a503f16e89cbb0d93a0e436c2774c772c"></a>
 
 Gets the value of Mu.
 
-#### `public inline const float & `[`GetMu`](#structFRHAPI__RankRankData_1a37218f25d9662731ed49a5e8a6fe39c8)`() const` <a id="structFRHAPI__RankRankData_1a37218f25d9662731ed49a5e8a6fe39c8"></a>
+#### `public inline FORCEINLINE const float & `[`GetMu`](#structFRHAPI__RankRankData_1ac2bda417bb3d963acae708e4bdf0b180)`() const` <a id="structFRHAPI__RankRankData_1ac2bda417bb3d963acae708e4bdf0b180"></a>
 
 Gets the value of Mu.
 
-#### `public inline void `[`SetMu`](#structFRHAPI__RankRankData_1ab1db3987be4d19fd3c5b85237ed5be10)`(const float & NewValue)` <a id="structFRHAPI__RankRankData_1ab1db3987be4d19fd3c5b85237ed5be10"></a>
+#### `public inline FORCEINLINE void `[`SetMu`](#structFRHAPI__RankRankData_1aeaaab876dc211a86e64b30f545d9167a)`(const float & NewValue)` <a id="structFRHAPI__RankRankData_1aeaaab876dc211a86e64b30f545d9167a"></a>
 
 Sets the value of Mu.
 
-#### `public inline void `[`SetMu`](#structFRHAPI__RankRankData_1a3f57235c80b05c65c2432401c300eb71)`(float && NewValue)` <a id="structFRHAPI__RankRankData_1a3f57235c80b05c65c2432401c300eb71"></a>
+#### `public inline FORCEINLINE void `[`SetMu`](#structFRHAPI__RankRankData_1a1ad2bd1c66d888955fc082034b314790)`(float && NewValue)` <a id="structFRHAPI__RankRankData_1a1ad2bd1c66d888955fc082034b314790"></a>
 
 Sets the value of Mu using move semantics.
 
-#### `public inline float & `[`GetSigma`](#structFRHAPI__RankRankData_1aad8e2554c0d365b2b10a35b33da2f14d)`()` <a id="structFRHAPI__RankRankData_1aad8e2554c0d365b2b10a35b33da2f14d"></a>
+#### `public inline FORCEINLINE float & `[`GetSigma`](#structFRHAPI__RankRankData_1a632ae7e6a40ddf8a179489d9f2826d4a)`()` <a id="structFRHAPI__RankRankData_1a632ae7e6a40ddf8a179489d9f2826d4a"></a>
 
 Gets the value of Sigma.
 
-#### `public inline const float & `[`GetSigma`](#structFRHAPI__RankRankData_1a8115a63ee8900682568db9eaf87a701a)`() const` <a id="structFRHAPI__RankRankData_1a8115a63ee8900682568db9eaf87a701a"></a>
+#### `public inline FORCEINLINE const float & `[`GetSigma`](#structFRHAPI__RankRankData_1a187467e43288988fd1a165d059f085cd)`() const` <a id="structFRHAPI__RankRankData_1a187467e43288988fd1a165d059f085cd"></a>
 
 Gets the value of Sigma.
 
-#### `public inline void `[`SetSigma`](#structFRHAPI__RankRankData_1abb913e0d4c1dee4f60d6a997c06c8d23)`(const float & NewValue)` <a id="structFRHAPI__RankRankData_1abb913e0d4c1dee4f60d6a997c06c8d23"></a>
+#### `public inline FORCEINLINE void `[`SetSigma`](#structFRHAPI__RankRankData_1a089d2158b533c70c4c135be74f9c3d2d)`(const float & NewValue)` <a id="structFRHAPI__RankRankData_1a089d2158b533c70c4c135be74f9c3d2d"></a>
 
 Sets the value of Sigma.
 
-#### `public inline void `[`SetSigma`](#structFRHAPI__RankRankData_1a94faaf303b770f8e98501574efa857a2)`(float && NewValue)` <a id="structFRHAPI__RankRankData_1a94faaf303b770f8e98501574efa857a2"></a>
+#### `public inline FORCEINLINE void `[`SetSigma`](#structFRHAPI__RankRankData_1aa149dd1d189732f512667b49b13b1e43)`(float && NewValue)` <a id="structFRHAPI__RankRankData_1aa149dd1d189732f512667b49b13b1e43"></a>
 
 Sets the value of Sigma using move semantics.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1a43a5b754f52caec10fd39f3e27c20ed6)`()` <a id="structFRHAPI__RankRankData_1a43a5b754f52caec10fd39f3e27c20ed6"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1a93b53d2c33dcc2162798d3bb4cfad513)`()` <a id="structFRHAPI__RankRankData_1a93b53d2c33dcc2162798d3bb4cfad513"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1a435e865c306b733c5d0a8b251bb586e2)`() const` <a id="structFRHAPI__RankRankData_1a435e865c306b733c5d0a8b251bb586e2"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1a55f170abb9c07909b2dc54040cda71ca)`() const` <a id="structFRHAPI__RankRankData_1a55f170abb9c07909b2dc54040cda71ca"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1ab2db92150fb5346303027fb68ca4f814)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__RankRankData_1ab2db92150fb5346303027fb68ca4f814"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__RankRankData_1aa15a5c0b721756bd0b7da6d3705f1b49)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__RankRankData_1aa15a5c0b721756bd0b7da6d3705f1b49"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__RankRankData_1a6ef447fa6edfe03588a8492684ac7392)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__RankRankData_1a6ef447fa6edfe03588a8492684ac7392"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__RankRankData_1ab909d36b17ad7fb1219af9b791619a25)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__RankRankData_1ab909d36b17ad7fb1219af9b791619a25"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankRankData_1ad21371776bd528a82f7d7b6f083663c8)`()` <a id="structFRHAPI__RankRankData_1ad21371776bd528a82f7d7b6f083663c8"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankRankData_1ac57d4a24cb33f7c1344917f6ac497aee)`()` <a id="structFRHAPI__RankRankData_1ac57d4a24cb33f7c1344917f6ac497aee"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankRankData_1a0b4f00a604f63c1dba38e6feccb9958e)`() const` <a id="structFRHAPI__RankRankData_1a0b4f00a604f63c1dba38e6feccb9958e"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__RankRankData_1a3e325e1084808346449bb0c58cb6ccf1)`() const` <a id="structFRHAPI__RankRankData_1a3e325e1084808346449bb0c58cb6ccf1"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__RankRankData_1a28192b4c0fbd6a1bedc292ee4e3baaf4)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__RankRankData_1a28192b4c0fbd6a1bedc292ee4e3baaf4"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__RankRankData_1a76328576fd6d297e43011db920861f86)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__RankRankData_1a76328576fd6d297e43011db920861f86"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__RankRankData_1a2f9c6d0dcedc23236e0ec9321f5fb215)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__RankRankData_1a2f9c6d0dcedc23236e0ec9321f5fb215"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__RankRankData_1a909213e208162e4216160c8272682201)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__RankRankData_1a909213e208162e4216160c8272682201"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -169,47 +167,39 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__RankRankData_1abfc42bffa144324c93177659e8b13493)`() const` <a id="structFRHAPI__RankRankData_1abfc42bffa144324c93177659e8b13493"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a720a6296d11a58d87dd37a8e96deb1e4)`()` <a id="structFRHAPI__RankRankData_1a720a6296d11a58d87dd37a8e96deb1e4"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a681c9815628fbde34cce75d36e7c7d2c)`()` <a id="structFRHAPI__RankRankData_1a681c9815628fbde34cce75d36e7c7d2c"></a>
 
 Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1ac736ec51e149ab7944c81b2cb1e2d6b8)`() const` <a id="structFRHAPI__RankRankData_1ac736ec51e149ab7944c81b2cb1e2d6b8"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1aec526a38c758c6cb929bff369ae1f53c)`() const` <a id="structFRHAPI__RankRankData_1aec526a38c758c6cb929bff369ae1f53c"></a>
 
 Gets the value of LastUpdatedDatetime_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a9fa14ca9d8032eff1473b14d050919ea)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__RankRankData_1a9fa14ca9d8032eff1473b14d050919ea"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a84c383efd69bea83c097568cd3eec5c5)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__RankRankData_1a84c383efd69bea83c097568cd3eec5c5"></a>
 
 Gets the value of LastUpdatedDatetime_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a0c42187cf1a5ab883f9b735332c1f77c)`(FDateTime & OutValue) const` <a id="structFRHAPI__RankRankData_1a0c42187cf1a5ab883f9b735332c1f77c"></a>
+#### `public inline FORCEINLINE bool `[`GetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a734782a13a7dc9b545df5e02097e7682)`(FDateTime & OutValue) const` <a id="structFRHAPI__RankRankData_1a734782a13a7dc9b545df5e02097e7682"></a>
 
 Fills OutValue with the value of LastUpdatedDatetime_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetLastUpdatedDatetimeOrNull`](#structFRHAPI__RankRankData_1a5d0c598d5b8a90c45827bb45b5d1d72e)`()` <a id="structFRHAPI__RankRankData_1a5d0c598d5b8a90c45827bb45b5d1d72e"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetLastUpdatedDatetimeOrNull`](#structFRHAPI__RankRankData_1aca0577434fde102d9a880ca53cc5b233)`()` <a id="structFRHAPI__RankRankData_1aca0577434fde102d9a880ca53cc5b233"></a>
 
 Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetLastUpdatedDatetimeOrNull`](#structFRHAPI__RankRankData_1aa39bbe33773a58bd7273dc84d95af5ef)`() const` <a id="structFRHAPI__RankRankData_1aa39bbe33773a58bd7273dc84d95af5ef"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetLastUpdatedDatetimeOrNull`](#structFRHAPI__RankRankData_1a7455a22522e03dd3bce563c5829b8f35)`() const` <a id="structFRHAPI__RankRankData_1a7455a22522e03dd3bce563c5829b8f35"></a>
 
 Returns a pointer to LastUpdatedDatetime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1ae848ae63b6284c28f01c729f310a95e4)`(const FDateTime & NewValue)` <a id="structFRHAPI__RankRankData_1ae848ae63b6284c28f01c729f310a95e4"></a>
+#### `public inline FORCEINLINE void `[`SetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1acc500ab30f3b26057aa060e915a61d18)`(const FDateTime & NewValue)` <a id="structFRHAPI__RankRankData_1acc500ab30f3b26057aa060e915a61d18"></a>
 
 Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true.
 
-#### `public inline void `[`SetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a305deb89578aa433fd1603830f9f9d42)`(FDateTime && NewValue)` <a id="structFRHAPI__RankRankData_1a305deb89578aa433fd1603830f9f9d42"></a>
+#### `public inline FORCEINLINE void `[`SetLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a8fbf505d86648cd99becb29a49a408c6)`(FDateTime && NewValue)` <a id="structFRHAPI__RankRankData_1a8fbf505d86648cd99becb29a49a408c6"></a>
 
 Sets the value of LastUpdatedDatetime_Optional and also sets LastUpdatedDatetime_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLastUpdatedDatetime`](#structFRHAPI__RankRankData_1a5a9c38cd67461009914656bd693e9a82)`()` <a id="structFRHAPI__RankRankData_1a5a9c38cd67461009914656bd693e9a82"></a>
 
 Clears the value of LastUpdatedDatetime_Optional and sets LastUpdatedDatetime_IsSet to false.
-
-#### `public inline bool `[`IsLastUpdatedDatetimeSet`](#structFRHAPI__RankRankData_1abcc87bd805a78e8113058471ab25bb4c)`() const` <a id="structFRHAPI__RankRankData_1abcc87bd805a78e8113058471ab25bb4c"></a>
-
-Checks whether LastUpdatedDatetime_Optional has been set.
 

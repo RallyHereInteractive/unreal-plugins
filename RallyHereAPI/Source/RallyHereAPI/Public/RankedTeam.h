@@ -44,29 +44,27 @@ struct RALLYHEREAPI_API FRHAPI_RankedTeam : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_CalculatedRank> Players{  };
 	/** @brief Gets the value of Players */
-	TArray<FRHAPI_CalculatedRank>& GetPlayers() { return Players; }
+	FORCEINLINE TArray<FRHAPI_CalculatedRank>& GetPlayers() { return Players; }
 	/** @brief Gets the value of Players */
-	const TArray<FRHAPI_CalculatedRank>& GetPlayers() const { return Players; }
+	FORCEINLINE const TArray<FRHAPI_CalculatedRank>& GetPlayers() const { return Players; }
 	/** @brief Sets the value of Players */
-	void SetPlayers(const TArray<FRHAPI_CalculatedRank>& NewValue) { Players = NewValue;   }
+	FORCEINLINE void SetPlayers(const TArray<FRHAPI_CalculatedRank>& NewValue) { Players = NewValue;   }
 	/** @brief Sets the value of Players using move semantics */
-	void SetPlayers(TArray<FRHAPI_CalculatedRank>&& NewValue) { Players = NewValue;   }
+	FORCEINLINE void SetPlayers(TArray<FRHAPI_CalculatedRank>&& NewValue) { Players = NewValue;   }
 
 	/** @brief What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 TeamRank{ 0 };
 	/** @brief Gets the value of TeamRank */
-	int32& GetTeamRank() { return TeamRank; }
+	FORCEINLINE int32& GetTeamRank() { return TeamRank; }
 	/** @brief Gets the value of TeamRank */
-	const int32& GetTeamRank() const { return TeamRank; }
+	FORCEINLINE const int32& GetTeamRank() const { return TeamRank; }
 	/** @brief Sets the value of TeamRank */
-	void SetTeamRank(const int32& NewValue) { TeamRank = NewValue;   }
+	FORCEINLINE void SetTeamRank(const int32& NewValue) { TeamRank = NewValue;   }
 	/** @brief Sets the value of TeamRank using move semantics */
-	void SetTeamRank(int32&& NewValue) { TeamRank = NewValue;   }
-	/** @brief Returns true if TeamRank matches the default value */
-	bool IsTeamRankDefaultValue() const { return TeamRank == 0; }
-	/** @brief Sets the value of TeamRank to its default  */
-	void SetTeamRankToDefault() { SetTeamRank(0); }
+	FORCEINLINE void SetTeamRank(int32&& NewValue) { TeamRank = NewValue;   }
+	/** @brief Returns the default value of TeamRank */
+	FORCEINLINE int32 GetDefaultValue_TeamRank() { return 0; }
 };
 
 /** @} */

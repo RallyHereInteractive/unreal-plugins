@@ -11,6 +11,7 @@
 #include "Interfaces/IMessageSanitizerInterface.h"
 #include "Online/OnlineSessionNames.h"
 
+bool URH_PlatformSessionSyncer::bJoiningSession = false;
 void MakeSessionIdJsonCaseConsistent(FString& SessionIdStr)
 {
 	TArray<FString> Tokens;
@@ -216,6 +217,7 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 		{
 			const auto& PlayerUuid = Player.GetPlayerUuid();
 			
+
 			// only consider players that have joined
 			auto JoinedTime = Player.GetJoinedOrNull();
 			if (JoinedTime == nullptr || JoinedTime->GetTicks() == 0)
@@ -393,6 +395,7 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 			{
 				auto CompletionDelegate = FRH_OnSessionUpdatedDelegate::CreateLambda([SessionInvite, Delegate](bool bSuccess, URH_SessionView* Session, const FRH_ErrorInfo& ErrorInfo)
 					{
+						bJoiningSession = false;
 						auto JoinedSession = Cast<URH_JoinedSession>(Session);
 						if (bSuccess && JoinedSession != nullptr)
 						{
@@ -411,6 +414,8 @@ void URH_PlatformSessionSyncer::JoinRHSessionByPlatformSession(FRH_SessionOwnerP
 						}
 					});
 
+				bJoiningSession = true;
+				
 				auto Helper = MakeShared<FRH_SessionJoinByPlatformIdHelper>(SessionOwner, CompletionDelegate, GetDefault<URH_IntegrationSettings>()->SessionJoinPriority);
 				Helper->Start(PlatformOptional.GetValue(), PlatformSessionIdStr, JoinDetails);
 				return;

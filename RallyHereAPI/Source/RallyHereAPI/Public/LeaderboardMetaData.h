@@ -43,29 +43,27 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardMetaData : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 EntryCount{ 0 };
 	/** @brief Gets the value of EntryCount */
-	int32& GetEntryCount() { return EntryCount; }
+	FORCEINLINE int32& GetEntryCount() { return EntryCount; }
 	/** @brief Gets the value of EntryCount */
-	const int32& GetEntryCount() const { return EntryCount; }
+	FORCEINLINE const int32& GetEntryCount() const { return EntryCount; }
 	/** @brief Sets the value of EntryCount */
-	void SetEntryCount(const int32& NewValue) { EntryCount = NewValue;   }
+	FORCEINLINE void SetEntryCount(const int32& NewValue) { EntryCount = NewValue;   }
 	/** @brief Sets the value of EntryCount using move semantics */
-	void SetEntryCount(int32&& NewValue) { EntryCount = NewValue;   }
-	/** @brief Returns true if EntryCount matches the default value */
-	bool IsEntryCountDefaultValue() const { return EntryCount == 0; }
-	/** @brief Sets the value of EntryCount to its default  */
-	void SetEntryCountToDefault() { SetEntryCount(0); }
+	FORCEINLINE void SetEntryCount(int32&& NewValue) { EntryCount = NewValue;   }
+	/** @brief Returns the default value of EntryCount */
+	FORCEINLINE int32 GetDefaultValue_EntryCount() { return 0; }
 
 	/** @brief When this leaderboard was last updated */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime LastUpdatedDatetime{  };
 	/** @brief Gets the value of LastUpdatedDatetime */
-	FDateTime& GetLastUpdatedDatetime() { return LastUpdatedDatetime; }
+	FORCEINLINE FDateTime& GetLastUpdatedDatetime() { return LastUpdatedDatetime; }
 	/** @brief Gets the value of LastUpdatedDatetime */
-	const FDateTime& GetLastUpdatedDatetime() const { return LastUpdatedDatetime; }
+	FORCEINLINE const FDateTime& GetLastUpdatedDatetime() const { return LastUpdatedDatetime; }
 	/** @brief Sets the value of LastUpdatedDatetime */
-	void SetLastUpdatedDatetime(const FDateTime& NewValue) { LastUpdatedDatetime = NewValue;   }
+	FORCEINLINE void SetLastUpdatedDatetime(const FDateTime& NewValue) { LastUpdatedDatetime = NewValue;   }
 	/** @brief Sets the value of LastUpdatedDatetime using move semantics */
-	void SetLastUpdatedDatetime(FDateTime&& NewValue) { LastUpdatedDatetime = NewValue;   }
+	FORCEINLINE void SetLastUpdatedDatetime(FDateTime&& NewValue) { LastUpdatedDatetime = NewValue;   }
 };
 
 /** @} */

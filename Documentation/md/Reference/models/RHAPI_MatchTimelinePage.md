@@ -26,28 +26,26 @@ struct FRHAPI_MatchTimelinePage
 `public bool `[`Cursor_IsNull`](#structFRHAPI__MatchTimelinePage_1aa9785e608952fd971df308f9c775f169) | true if Cursor_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchTimelinePage_1ae7fc3045c1e61fb0a899d47c776a649f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchTimelinePage_1a7a065d27c30421e24213c34580e12868)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a046966837e812d2d2bb8d348d05a5b84)`()` | Gets the value of Events_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1aa2051e8624100ab7f1213d43aeb9f4e0)`() const` | Gets the value of Events_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a85cd993815ed4e63c9186773d7b9dd5d)`(const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & DefaultValue) const` | Gets the value of Events_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1ad71469e9a6a49ba98328dc56d1d10200)`(TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & OutValue) const` | Fills OutValue with the value of Events_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > * `[`GetEventsOrNull`](#structFRHAPI__MatchTimelinePage_1a98d03913d6d056b0083a10cf4fb81cde)`()` | Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > * `[`GetEventsOrNull`](#structFRHAPI__MatchTimelinePage_1a4b4cdd9ca2c0c6a18f9657411e2fd3bd)`() const` | Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEvents`](#structFRHAPI__MatchTimelinePage_1a1d62b134b2796cccc274e2e0a4f2652a)`(const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & NewValue)` | Sets the value of Events_Optional and also sets Events_IsSet to true.
-`public inline void `[`SetEvents`](#structFRHAPI__MatchTimelinePage_1adcb5f594dc0a5dfdc543683cb14367e0)`(TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > && NewValue)` | Sets the value of Events_Optional and also sets Events_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a0f21f2fddf2c34c8b730826260be1dd2)`()` | Gets the value of Events_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1acfaa3aa066483c8353b4731b249056e0)`() const` | Gets the value of Events_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a4ccd4c6a427bf4544e8e6748af44fca8)`(const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & DefaultValue) const` | Gets the value of Events_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a446b381102988899d6824e02648ee10d)`(TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & OutValue) const` | Fills OutValue with the value of Events_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > * `[`GetEventsOrNull`](#structFRHAPI__MatchTimelinePage_1ace73aae2b9064d41382d2f5bdaedf63d)`()` | Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > * `[`GetEventsOrNull`](#structFRHAPI__MatchTimelinePage_1a1965796f6886f10b1fa3d032128855eb)`() const` | Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetEvents`](#structFRHAPI__MatchTimelinePage_1a20d813430181eebd4dd886db00335ad1)`(const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & NewValue)` | Sets the value of Events_Optional and also sets Events_IsSet to true.
+`public inline FORCEINLINE void `[`SetEvents`](#structFRHAPI__MatchTimelinePage_1ab1c193b067631737d5ac24f56a2498d5)`(TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > && NewValue)` | Sets the value of Events_Optional and also sets Events_IsSet to true using move semantics.
 `public inline void `[`ClearEvents`](#structFRHAPI__MatchTimelinePage_1adc3e100608a85c1e77178e6ce1230ddc)`()` | Clears the value of Events_Optional and sets Events_IsSet to false.
-`public inline bool `[`IsEventsSet`](#structFRHAPI__MatchTimelinePage_1a75ec9d2adc0c3379f667273627d43b14)`() const` | Checks whether Events_Optional has been set.
-`public inline FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a4e5eba392ac2e56bac01c32a08376e00)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a023101e8379480542e41193255b1b913)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a5d73a445845d9980cf576d7a31497043)`(const FString & DefaultValue) const` | Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1add46a056e08ee5e4dcfb271480fb7ab3)`(FString & OutValue) const` | Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetCursorOrNull`](#structFRHAPI__MatchTimelinePage_1a46526b0a00b8421e4ec7b43a2e7a8feb)`()` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetCursorOrNull`](#structFRHAPI__MatchTimelinePage_1a7bf83494c2ed4e43d7a727031ae26262)`() const` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCursor`](#structFRHAPI__MatchTimelinePage_1a1e80b968afb33e5829b02f8f0bdadc55)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
-`public inline void `[`SetCursor`](#structFRHAPI__MatchTimelinePage_1acfb2705deef01ea18ac81fe2f246edf3)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a17b7625ad106babf8afe2f64596fbd9c)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a63e5a37369564bd3f0e51d285855fc56)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1ab11290a859219d1281b147d440210038)`(const FString & DefaultValue) const` | Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a4c947bfb03ab30efd9353ad3f4fed7f1)`(FString & OutValue) const` | Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetCursorOrNull`](#structFRHAPI__MatchTimelinePage_1a6f6046d5fb679db16ed3c3681ebd4b74)`()` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetCursorOrNull`](#structFRHAPI__MatchTimelinePage_1a998c57e005bc6ae73c46409fc1e9a368)`() const` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__MatchTimelinePage_1a7b5634a25c84fd6efecf2237627a4fcf)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__MatchTimelinePage_1a6e47d771e4f570651765b9fe3291e4e8)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 `public inline void `[`ClearCursor`](#structFRHAPI__MatchTimelinePage_1a4cc443c8b67b4fff6d8444563967e26d)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
-`public inline bool `[`IsCursorSet`](#structFRHAPI__MatchTimelinePage_1a1f1306fc0d165042b0e9bfb54d79329c)`() const` | Checks whether Cursor_Optional has been set.
-`public inline void `[`SetCursorToNull`](#structFRHAPI__MatchTimelinePage_1a81f2a7c9174f526f5bb66a5ec58c968b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCursorNull`](#structFRHAPI__MatchTimelinePage_1a98ee8eb3277e02aa64ce32fe3e27f2a6)`() const` | Checks whether Cursor_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCursorToNull`](#structFRHAPI__MatchTimelinePage_1a74bb1c0a99387099a211a6359f2c430f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCursorNull`](#structFRHAPI__MatchTimelinePage_1a9be1819513a5019f7a1ecdde59216e51)`() const` | Checks whether Cursor_Optional is set to null.
 
 ### Members
 
@@ -86,35 +84,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a046966837e812d2d2bb8d348d05a5b84)`()` <a id="structFRHAPI__MatchTimelinePage_1a046966837e812d2d2bb8d348d05a5b84"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a0f21f2fddf2c34c8b730826260be1dd2)`()` <a id="structFRHAPI__MatchTimelinePage_1a0f21f2fddf2c34c8b730826260be1dd2"></a>
 
 Gets the value of Events_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1aa2051e8624100ab7f1213d43aeb9f4e0)`() const` <a id="structFRHAPI__MatchTimelinePage_1aa2051e8624100ab7f1213d43aeb9f4e0"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1acfaa3aa066483c8353b4731b249056e0)`() const` <a id="structFRHAPI__MatchTimelinePage_1acfaa3aa066483c8353b4731b249056e0"></a>
 
 Gets the value of Events_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a85cd993815ed4e63c9186773d7b9dd5d)`(const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & DefaultValue) const` <a id="structFRHAPI__MatchTimelinePage_1a85cd993815ed4e63c9186773d7b9dd5d"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a4ccd4c6a427bf4544e8e6748af44fca8)`(const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & DefaultValue) const` <a id="structFRHAPI__MatchTimelinePage_1a4ccd4c6a427bf4544e8e6748af44fca8"></a>
 
 Gets the value of Events_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1ad71469e9a6a49ba98328dc56d1d10200)`(TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & OutValue) const` <a id="structFRHAPI__MatchTimelinePage_1ad71469e9a6a49ba98328dc56d1d10200"></a>
+#### `public inline FORCEINLINE bool `[`GetEvents`](#structFRHAPI__MatchTimelinePage_1a446b381102988899d6824e02648ee10d)`(TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & OutValue) const` <a id="structFRHAPI__MatchTimelinePage_1a446b381102988899d6824e02648ee10d"></a>
 
 Fills OutValue with the value of Events_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > * `[`GetEventsOrNull`](#structFRHAPI__MatchTimelinePage_1a98d03913d6d056b0083a10cf4fb81cde)`()` <a id="structFRHAPI__MatchTimelinePage_1a98d03913d6d056b0083a10cf4fb81cde"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > * `[`GetEventsOrNull`](#structFRHAPI__MatchTimelinePage_1ace73aae2b9064d41382d2f5bdaedf63d)`()` <a id="structFRHAPI__MatchTimelinePage_1ace73aae2b9064d41382d2f5bdaedf63d"></a>
 
 Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > * `[`GetEventsOrNull`](#structFRHAPI__MatchTimelinePage_1a4b4cdd9ca2c0c6a18f9657411e2fd3bd)`() const` <a id="structFRHAPI__MatchTimelinePage_1a4b4cdd9ca2c0c6a18f9657411e2fd3bd"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > * `[`GetEventsOrNull`](#structFRHAPI__MatchTimelinePage_1a1965796f6886f10b1fa3d032128855eb)`() const` <a id="structFRHAPI__MatchTimelinePage_1a1965796f6886f10b1fa3d032128855eb"></a>
 
 Returns a pointer to Events_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEvents`](#structFRHAPI__MatchTimelinePage_1a1d62b134b2796cccc274e2e0a4f2652a)`(const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & NewValue)` <a id="structFRHAPI__MatchTimelinePage_1a1d62b134b2796cccc274e2e0a4f2652a"></a>
+#### `public inline FORCEINLINE void `[`SetEvents`](#structFRHAPI__MatchTimelinePage_1a20d813430181eebd4dd886db00335ad1)`(const TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > & NewValue)` <a id="structFRHAPI__MatchTimelinePage_1a20d813430181eebd4dd886db00335ad1"></a>
 
 Sets the value of Events_Optional and also sets Events_IsSet to true.
 
-#### `public inline void `[`SetEvents`](#structFRHAPI__MatchTimelinePage_1adcb5f594dc0a5dfdc543683cb14367e0)`(TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > && NewValue)` <a id="structFRHAPI__MatchTimelinePage_1adcb5f594dc0a5dfdc543683cb14367e0"></a>
+#### `public inline FORCEINLINE void `[`SetEvents`](#structFRHAPI__MatchTimelinePage_1ab1c193b067631737d5ac24f56a2498d5)`(TArray< `[`FRHAPI_MatchTimelineEvent`](RHAPI_MatchTimelineEvent.md#structFRHAPI__MatchTimelineEvent)` > && NewValue)` <a id="structFRHAPI__MatchTimelinePage_1ab1c193b067631737d5ac24f56a2498d5"></a>
 
 Sets the value of Events_Optional and also sets Events_IsSet to true using move semantics.
 
@@ -122,39 +120,35 @@ Sets the value of Events_Optional and also sets Events_IsSet to true using move 
 
 Clears the value of Events_Optional and sets Events_IsSet to false.
 
-#### `public inline bool `[`IsEventsSet`](#structFRHAPI__MatchTimelinePage_1a75ec9d2adc0c3379f667273627d43b14)`() const` <a id="structFRHAPI__MatchTimelinePage_1a75ec9d2adc0c3379f667273627d43b14"></a>
-
-Checks whether Events_Optional has been set.
-
-#### `public inline FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a4e5eba392ac2e56bac01c32a08376e00)`()` <a id="structFRHAPI__MatchTimelinePage_1a4e5eba392ac2e56bac01c32a08376e00"></a>
+#### `public inline FORCEINLINE FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a17b7625ad106babf8afe2f64596fbd9c)`()` <a id="structFRHAPI__MatchTimelinePage_1a17b7625ad106babf8afe2f64596fbd9c"></a>
 
 Gets the value of Cursor_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a023101e8379480542e41193255b1b913)`() const` <a id="structFRHAPI__MatchTimelinePage_1a023101e8379480542e41193255b1b913"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a63e5a37369564bd3f0e51d285855fc56)`() const` <a id="structFRHAPI__MatchTimelinePage_1a63e5a37369564bd3f0e51d285855fc56"></a>
 
 Gets the value of Cursor_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a5d73a445845d9980cf576d7a31497043)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelinePage_1a5d73a445845d9980cf576d7a31497043"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1ab11290a859219d1281b147d440210038)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchTimelinePage_1ab11290a859219d1281b147d440210038"></a>
 
 Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1add46a056e08ee5e4dcfb271480fb7ab3)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelinePage_1add46a056e08ee5e4dcfb271480fb7ab3"></a>
+#### `public inline FORCEINLINE bool `[`GetCursor`](#structFRHAPI__MatchTimelinePage_1a4c947bfb03ab30efd9353ad3f4fed7f1)`(FString & OutValue) const` <a id="structFRHAPI__MatchTimelinePage_1a4c947bfb03ab30efd9353ad3f4fed7f1"></a>
 
 Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetCursorOrNull`](#structFRHAPI__MatchTimelinePage_1a46526b0a00b8421e4ec7b43a2e7a8feb)`()` <a id="structFRHAPI__MatchTimelinePage_1a46526b0a00b8421e4ec7b43a2e7a8feb"></a>
+#### `public inline FORCEINLINE FString * `[`GetCursorOrNull`](#structFRHAPI__MatchTimelinePage_1a6f6046d5fb679db16ed3c3681ebd4b74)`()` <a id="structFRHAPI__MatchTimelinePage_1a6f6046d5fb679db16ed3c3681ebd4b74"></a>
 
 Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetCursorOrNull`](#structFRHAPI__MatchTimelinePage_1a7bf83494c2ed4e43d7a727031ae26262)`() const` <a id="structFRHAPI__MatchTimelinePage_1a7bf83494c2ed4e43d7a727031ae26262"></a>
+#### `public inline FORCEINLINE const FString * `[`GetCursorOrNull`](#structFRHAPI__MatchTimelinePage_1a998c57e005bc6ae73c46409fc1e9a368)`() const` <a id="structFRHAPI__MatchTimelinePage_1a998c57e005bc6ae73c46409fc1e9a368"></a>
 
 Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__MatchTimelinePage_1a1e80b968afb33e5829b02f8f0bdadc55)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelinePage_1a1e80b968afb33e5829b02f8f0bdadc55"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__MatchTimelinePage_1a7b5634a25c84fd6efecf2237627a4fcf)`(const FString & NewValue)` <a id="structFRHAPI__MatchTimelinePage_1a7b5634a25c84fd6efecf2237627a4fcf"></a>
 
 Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__MatchTimelinePage_1acfb2705deef01ea18ac81fe2f246edf3)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelinePage_1acfb2705deef01ea18ac81fe2f246edf3"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__MatchTimelinePage_1a6e47d771e4f570651765b9fe3291e4e8)`(FString && NewValue)` <a id="structFRHAPI__MatchTimelinePage_1a6e47d771e4f570651765b9fe3291e4e8"></a>
 
 Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 
@@ -162,15 +156,11 @@ Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move 
 
 Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 
-#### `public inline bool `[`IsCursorSet`](#structFRHAPI__MatchTimelinePage_1a1f1306fc0d165042b0e9bfb54d79329c)`() const` <a id="structFRHAPI__MatchTimelinePage_1a1f1306fc0d165042b0e9bfb54d79329c"></a>
-
-Checks whether Cursor_Optional has been set.
-
-#### `public inline void `[`SetCursorToNull`](#structFRHAPI__MatchTimelinePage_1a81f2a7c9174f526f5bb66a5ec58c968b)`()` <a id="structFRHAPI__MatchTimelinePage_1a81f2a7c9174f526f5bb66a5ec58c968b"></a>
+#### `public inline FORCEINLINE void `[`SetCursorToNull`](#structFRHAPI__MatchTimelinePage_1a74bb1c0a99387099a211a6359f2c430f)`()` <a id="structFRHAPI__MatchTimelinePage_1a74bb1c0a99387099a211a6359f2c430f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCursorNull`](#structFRHAPI__MatchTimelinePage_1a98ee8eb3277e02aa64ce32fe3e27f2a6)`() const` <a id="structFRHAPI__MatchTimelinePage_1a98ee8eb3277e02aa64ce32fe3e27f2a6"></a>
+#### `public inline FORCEINLINE bool `[`IsCursorNull`](#structFRHAPI__MatchTimelinePage_1a9be1819513a5019f7a1ecdde59216e51)`() const` <a id="structFRHAPI__MatchTimelinePage_1a9be1819513a5019f7a1ecdde59216e51"></a>
 
 Checks whether Cursor_Optional is set to null.
 

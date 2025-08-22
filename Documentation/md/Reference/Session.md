@@ -336,7 +336,7 @@ Simple container class to hold session view data, does not have its own auth con
 `public inline virtual FPlatformUserId `[`GetOSSPlatformUserId`](#classURH__SessionBrowserCache_1a207b2edbcb716481408845eae51f31a8)`() const` | Gets the Online Subsystem PlatformUserId to use for OSS calls (equivalent to controller index)
 `public inline virtual TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classURH__SessionBrowserCache_1ad6d358234276c10d59e23baa4870ad2d)`() const` | Gets the etag to use for a "Get all Templates" type query.
 `public inline virtual TOptional< FString > `[`GetETagForAllSessionsPoll`](#classURH__SessionBrowserCache_1abbc4078ddbc554e7837a79e09239e190)`() const` | Gets the etag to use for a "Get all Sessions" type query.
-`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1aadea8561a3f5852b4223a107602f77af)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
+`public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1a1297c44a1f2b3267b4d4574038cda1ad)`()` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public inline virtual `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classURH__SessionBrowserCache_1a36690247736f2e99456221caaf1f93f5)`(const FString & SessionId) const` | Gets a session by its id.
 `public virtual void `[`RemoveSessionById`](#classURH__SessionBrowserCache_1ac417818631c93603c294d653811d3948)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public virtual bool `[`GetTemplate`](#classURH__SessionBrowserCache_1aa529f70a678eb8569e794a9366d8e4fd)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
@@ -425,7 +425,7 @@ Gets the etag to use for a "Get all Templates" type query.
 
 Gets the etag to use for a "Get all Sessions" type query.
 
-#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1aadea8561a3f5852b4223a107602f77af)`() const` <a id="classURH__SessionBrowserCache_1aadea8561a3f5852b4223a107602f77af"></a>
+#### `public inline virtual TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classURH__SessionBrowserCache_1a1297c44a1f2b3267b4d4574038cda1ad)`()` <a id="classURH__SessionBrowserCache_1a1297c44a1f2b3267b4d4574038cda1ad"></a>
 
 Used to get all sessions, primarily for get all sessions polling where etag matches.
 
@@ -840,7 +840,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 --------------------------------|---------------------------------------------
 `public inline virtual bool `[`IsOffline`](#classURH__OfflineSession_1afb29afef2455da0af98c31af0ac31f92)`() const` | Gets that the session is offline.
 `public virtual void `[`InvitePlayer`](#classURH__OfflineSession_1af16376f4dc510808b79aa74cf2ea461d)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
-`public virtual void `[`KickPlayer`](#classURH__OfflineSession_1a0b8bc9e0caafb5cb35a1e7c1caa4dfbe)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
+`public virtual void `[`KickPlayer`](#classURH__OfflineSession_1ac8daa34adefdc9bba4679f00a93e0e1c)`(const FGuid & PlayerUuid,const FString & KickReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`InviteOtherSession`](#classURH__OfflineSession_1a18222ea515b0ad2e08e2b262259f1ae2)`(const FString & InvitedSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`JoinOtherSession`](#classURH__OfflineSession_1ac300bb01ecbe1cf134eeed716f47abdb)`(const FString & TargetSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
 `public virtual void `[`KickOtherSession`](#classURH__OfflineSession_1aef48af399b765fcf42bddbbb49242d18)`(const FString & KickedSessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Currently not supported for offline sessions.
@@ -855,6 +855,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`EndInstance`](#classURH__OfflineSession_1a42d2adfee51e818244e98e0d0888f410)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
 `public virtual void `[`GenerateVoipLoginToken`](#classURH__OfflineSession_1ac27726a868507a3200bf8724f57270df)`(const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP login token.
 `public virtual void `[`GenerateVoipActionToken`](#classURH__OfflineSession_1ae1fb00699b03e13df973851ab5a293d0)`(ERHAPI_VivoxSessionActionSingle VivoxAction,ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP action token.
+`public virtual void `[`GenerateEpicVoiceJoinToken`](#classURH__OfflineSession_1a3a2f4f524e104511bd1d62093e65d54c)`(ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock & Delegate)` | Generate a epic voice join token (room token)
 `public virtual void `[`UpdateSessionInfo`](#classURH__OfflineSession_1a298d217d999690851348cb4041ff7599)`(const `[`FRHAPI_SessionUpdate`](RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the session info.
 `public virtual void `[`UpdateInstanceInfo`](#classURH__OfflineSession_1a8b36aeef35d1acbe6e6af22d9a55cf0f)`(const `[`FRHAPI_InstanceInfoUpdate`](RHAPI_InstanceInfoUpdate.md#structFRHAPI__InstanceInfoUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions instance info.
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OfflineSession_1a1efa399f684ce083ce292c87717f22ad)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
@@ -862,6 +863,7 @@ Offline Sessions are sessions the session owner is actively a member of that are
 `public virtual void `[`AcknowledgeBackfill`](#classURH__OfflineSession_1aa0472dab20c9193181b61a87f7175db2)`(bool bEnable,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Acknowledge backfill for the session, keeping it alive and processing updates.
 `public virtual void `[`DeleteBackfill`](#classURH__OfflineSession_1ad422457d7e902b94d431a41d20246235)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Delete active backfill request for the session.
 `public virtual void `[`EmitAuditEvent`](#classURH__OfflineSession_1afeb6450ec8e2bf8912f50f7066c23c80)`(const `[`FRHAPI_CreateAuditRequest`](RHAPI_CreateAuditRequest.md#structFRHAPI__CreateAuditRequest)` & AuditEvent,const FRH_GenericSuccessWithErrorBlock & Delegate) const` | Emit an event to the session audit log.
+`protected inline virtual bool `[`IsWaitingForUpdateInstanceInfoResponse`](#classURH__OfflineSession_1ae65b0dc603783df26441c9a0b68924b5)`() const` | 
 `protected void `[`ImportSessionUpdateToAllPlayers`](#classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Update)` | 
 
 ### Members
@@ -874,7 +876,7 @@ Gets that the session is offline.
 
 Currently not supported for offline sessions.
 
-#### `public virtual void `[`KickPlayer`](#classURH__OfflineSession_1a0b8bc9e0caafb5cb35a1e7c1caa4dfbe)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a0b8bc9e0caafb5cb35a1e7c1caa4dfbe"></a>
+#### `public virtual void `[`KickPlayer`](#classURH__OfflineSession_1ac8daa34adefdc9bba4679f00a93e0e1c)`(const FGuid & PlayerUuid,const FString & KickReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1ac8daa34adefdc9bba4679f00a93e0e1c"></a>
 
 Currently not supported for offline sessions.
 
@@ -985,6 +987,15 @@ Generate a VOIP action token.
 
 * `Delegate` Callback delegate with the new voip token
 
+#### `public virtual void `[`GenerateEpicVoiceJoinToken`](#classURH__OfflineSession_1a3a2f4f524e104511bd1d62093e65d54c)`(ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a3a2f4f524e104511bd1d62093e65d54c"></a>
+
+Generate a epic voice join token (room token)
+
+#### Parameters
+* `VoipSessionType` The type of voip session to generate a token for 
+
+* `Delegate` Callback delegate with the new voip token
+
 #### `public virtual void `[`UpdateSessionInfo`](#classURH__OfflineSession_1a298d217d999690851348cb4041ff7599)`(const `[`FRHAPI_SessionUpdate`](RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OfflineSession_1a298d217d999690851348cb4041ff7599"></a>
 
 Updates the session info.
@@ -1048,6 +1059,8 @@ Emit an event to the session audit log.
 
 * `Delegate` Callback delegate for the completion of the audit event
 
+#### `protected inline virtual bool `[`IsWaitingForUpdateInstanceInfoResponse`](#classURH__OfflineSession_1ae65b0dc603783df26441c9a0b68924b5)`() const` <a id="classURH__OfflineSession_1ae65b0dc603783df26441c9a0b68924b5"></a>
+
 #### `protected void `[`ImportSessionUpdateToAllPlayers`](#classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & Update)` <a id="classURH__OfflineSession_1a662a10e6f117bb137f9d0d65b75171a8"></a>
 
 ## class `URH_OnlineSession` <a id="classURH__OnlineSession"></a>
@@ -1070,6 +1083,7 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public inline virtual bool `[`IsOffline`](#classURH__OnlineSession_1af734641e6fe04130aadcfb7a6ed1d58a)`() const` | Gets that an online session is not an offline session.
 `public virtual void `[`ImportAPISession`](#classURH__OnlineSession_1a4fe7233a68b23d1ca4985d3b0e103ef5)`(const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & newSessionData,const `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & newTemplate)` | Update a session from the owner, implies a template update.
 `public virtual void `[`Expire`](#classURH__OnlineSession_1a829df0d3fa147c93bc5bf43df526e050)`(const FRH_OnSessionExpiredDelegate & Delegate)` | Called when the session was removed from our session list. Cleans up state then trigger callback on owner.
+`public void `[`GenerateShortCode`](#classURH__OnlineSession_1a82cfa3878484945e16f3d81f6e86318f)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Generate a short code for this session.
 `public virtual void `[`JoinQueue`](#classURH__OnlineSession_1a28750e69db30613d54f4a6c9bfcc94a6)`(const `[`FRHAPI_QueueJoinRequest`](RHAPI_QueueJoinRequest.md#structFRHAPI__QueueJoinRequest)` & Request,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Joins a specific queue with the session to be matchmade with others.
 `public inline virtual void `[`JoinQueue`](#classURH__OnlineSession_1ac6471f91d2ee705b4849186e621e60c3)`(const FString & QueueId,const TArray< FString > & MatchmakingTags,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Simplified version of queue join, joins a specific queue with the session to be matchmade with others.
 `public  `[`UFUNCTION`](#classURH__OnlineSession_1a4e4d322afa4582235311cf5c2c0ba763)`(BlueprintCallable,Category,meta) const` | Blueprint compatible version of JoinQueue.
@@ -1078,7 +1092,7 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`GivePlayerPermission`](#classURH__OnlineSession_1a7615e5a17ed9456e4ef9996968bf5d55)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Grants a player a specific session permission.
 `public virtual void `[`RemovePlayerPermission`](#classURH__OnlineSession_1ab020cc205c6fa00ea95dcb19884cf0e4)`(const FGuid & PlayerUuid,const ERHAPI_IntraSessionPermissions & Permission,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Revokes a player a specific session permission.
 `public virtual void `[`InvitePlayer`](#classURH__OnlineSession_1a8bf3c389551cbdf8ecf5112c8af151cf)`(const FGuid & PlayerUuid,int32 Team,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Invites a player to the session.
-`public virtual void `[`KickPlayer`](#classURH__OnlineSession_1a4f8560ffb8ac393738907307ed2225bd)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Kicks a player from the session.
+`public virtual void `[`KickPlayer`](#classURH__OnlineSession_1a6073c9adab4b998a732385faaa71b98f)`(const FGuid & PlayerUuid,const FString & KickReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Kicks a player from the session.
 `public virtual void `[`InviteOtherSession`](#classURH__OnlineSession_1a2a71476133c92c2f641766e7a1eeed36)`(const FString & InvitedSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Invites a different session to this session.
 `public virtual void `[`JoinOtherSession`](#classURH__OnlineSession_1a8a686709d5991532e0965fe576c4d118)`(const FString & TargetSessionId,const `[`FRHAPI_PlayerInviteRequest`](RHAPI_PlayerInviteRequest.md#structFRHAPI__PlayerInviteRequest)` & SessionInviteRequest,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | This entire session is invited to/joins another session.
 `public virtual void `[`KickOtherSession`](#classURH__OnlineSession_1aaea0484871603acf63a76317dd1ffe9e)`(const FString & KickedSessionId,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Kicks all players in a target tsession from this session.
@@ -1091,6 +1105,7 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`EndInstance`](#classURH__OnlineSession_1a38a05f415495a019c3f02fcae76317ec)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Shutdown the existing instance for the session.
 `public virtual void `[`GenerateVoipLoginToken`](#classURH__OnlineSession_1aada1d23777b026c76b7e7b5bb2669b95)`(const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP login token.
 `public virtual void `[`GenerateVoipActionToken`](#classURH__OnlineSession_1ab8b5a3517f9670f980c0dc60ad80e709)`(ERHAPI_VivoxSessionActionSingle VivoxAction,ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetVoipTokenDelegateBlock & Delegate)` | Generate a VOIP action token.
+`public virtual void `[`GenerateEpicVoiceJoinToken`](#classURH__OnlineSession_1a93aad1ce14bf83c59125c85d2d92c55b)`(ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock & Delegate)` | Generate a epic voice join token (room token)
 `public virtual void `[`UpdateSessionInfo`](#classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50)`(const `[`FRHAPI_SessionUpdate`](RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the session info.
 `public virtual void `[`UpdateInstanceInfo`](#classURH__OnlineSession_1abdfc1e53b834da4afdfdce29de9b318b)`(const `[`FRHAPI_InstanceInfoUpdate`](RHAPI_InstanceInfoUpdate.md#structFRHAPI__InstanceInfoUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions instance info.
 `public virtual void `[`UpdateBrowserInfo`](#classURH__OnlineSession_1a35197db28a89b5325ef4384dca5d76c8)`(bool bEnable,const TMap< FString, FString > & CustomData,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Updates the sessions browser info.
@@ -1098,6 +1113,8 @@ Online Sessions are sessions that are synchronized from the API (and since it is
 `public virtual void `[`AcknowledgeBackfill`](#classURH__OnlineSession_1aa087b6190e032b3d3c22c110498cd33a)`(bool bEnable,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Acknowledge backfill for the session, keeping it alive and processing updates.
 `public virtual void `[`DeleteBackfill`](#classURH__OnlineSession_1a0e98bf0b3e205c2102364daccb7bb610)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` | Delete active backfill request for the session.
 `public virtual void `[`EmitAuditEvent`](#classURH__OnlineSession_1a7bdff0e988bdaa1fb3e4be2d2c8b3513)`(const `[`FRHAPI_CreateAuditRequest`](RHAPI_CreateAuditRequest.md#structFRHAPI__CreateAuditRequest)` & AuditEvent,const FRH_GenericSuccessWithErrorBlock & Delegate) const` | Emit an event to the session audit log.
+`protected bool `[`bWaitingForUpdateInstanceInfoResponse`](#classURH__OnlineSession_1a77be17113aa84940c57b6dbcc633761a) | 
+`protected inline virtual bool `[`IsWaitingForUpdateInstanceInfoResponse`](#classURH__OnlineSession_1a968aba257ad4ca442dda58fe8221469e)`() const` | 
 
 ### Members
 
@@ -1128,6 +1145,13 @@ Called when the session was removed from our session list. Cleans up state then 
 
 #### Parameters
 * `Delegate` The delegate to call when the session is removed.
+
+#### `public void `[`GenerateShortCode`](#classURH__OnlineSession_1a82cfa3878484945e16f3d81f6e86318f)`(const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a82cfa3878484945e16f3d81f6e86318f"></a>
+
+Generate a short code for this session.
+
+#### Parameters
+* `Delegate` Callback delegate on the session short code being generated
 
 #### `public virtual void `[`JoinQueue`](#classURH__OnlineSession_1a28750e69db30613d54f4a6c9bfcc94a6)`(const `[`FRHAPI_QueueJoinRequest`](RHAPI_QueueJoinRequest.md#structFRHAPI__QueueJoinRequest)` & Request,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a28750e69db30613d54f4a6c9bfcc94a6"></a>
 
@@ -1211,7 +1235,7 @@ Invites a player to the session.
 
 * `Delegate` Callback delegate for the session being updated by the invite.
 
-#### `public virtual void `[`KickPlayer`](#classURH__OnlineSession_1a4f8560ffb8ac393738907307ed2225bd)`(const FGuid & PlayerUuid,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a4f8560ffb8ac393738907307ed2225bd"></a>
+#### `public virtual void `[`KickPlayer`](#classURH__OnlineSession_1a6073c9adab4b998a732385faaa71b98f)`(const FGuid & PlayerUuid,const FString & KickReason,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a6073c9adab4b998a732385faaa71b98f"></a>
 
 Kicks a player from the session.
 
@@ -1336,6 +1360,15 @@ Generate a VOIP action token.
 
 * `Delegate` Callback delegate with the new voip token
 
+#### `public virtual void `[`GenerateEpicVoiceJoinToken`](#classURH__OnlineSession_1a93aad1ce14bf83c59125c85d2d92c55b)`(ERHAPI_VoipSessionType VoipSessionType,const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a93aad1ce14bf83c59125c85d2d92c55b"></a>
+
+Generate a epic voice join token (room token)
+
+#### Parameters
+* `VoipSessionType` The type of voip session to generate a token for 
+
+* `Delegate` Callback delegate with the new voip token
+
 #### `public virtual void `[`UpdateSessionInfo`](#classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50)`(const `[`FRHAPI_SessionUpdate`](RHAPI_SessionUpdate.md#structFRHAPI__SessionUpdate)` & Update,const FRH_OnSessionUpdatedDelegateBlock & Delegate)` <a id="classURH__OnlineSession_1a21428e63a1268ef552d3186cd7df9d50"></a>
 
 Updates the session info.
@@ -1399,6 +1432,10 @@ Emit an event to the session audit log.
 
 * `Delegate` Callback delegate for the completion of the audit event
 
+#### `protected bool `[`bWaitingForUpdateInstanceInfoResponse`](#classURH__OnlineSession_1a77be17113aa84940c57b6dbcc633761a) <a id="classURH__OnlineSession_1a77be17113aa84940c57b6dbcc633761a"></a>
+
+#### `protected inline virtual bool `[`IsWaitingForUpdateInstanceInfoResponse`](#classURH__OnlineSession_1a968aba257ad4ca442dda58fe8221469e)`() const` <a id="classURH__OnlineSession_1a968aba257ad4ca442dda58fe8221469e"></a>
+
 ## class `URH_SessionOwnerInterface` <a id="classURH__SessionOwnerInterface"></a>
 
 ```
@@ -1428,6 +1465,7 @@ Session Owner Interface.
 `public void `[`ImportAPITemplate`](#classIRH__SessionOwnerInterface_1ac81c6da37366c6151656aa2113eeed92)`(const `[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template)` | Imports the template into the owner's template list (ex: from polling).
 `public void `[`ReconcileAPISessions`](#classIRH__SessionOwnerInterface_1ae7d9a16efdbe4ab846e44371b6700b53)`(const TArray< FString > & SessionIds,const TOptional< FString > & ETag)` | Updates the list of sessions to only those that are active.
 `public void `[`ReconcileAPITemplates`](#classIRH__SessionOwnerInterface_1a8c884f478578ba55b83e6d3fb977e1c5)`(const TArray< FString > & InTemplates,const TOptional< FString > & ETag)` | Updates the list of session templates to those that are active.
+`public inline virtual class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * `[`GetLocalPlayerSubsystem`](#classIRH__SessionOwnerInterface_1aab2a7a0c0251ac27f9e46a7044a598f8)`() const` | Gets the LocalPlayer Subsystem if available.
 `public class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classIRH__SessionOwnerInterface_1afcbfbc9e6587ce0e9399e90310d9887c)`() const` | Gets the PlayerInfo Subsystem.
 `public IOnlineSubsystem * `[`GetOSS`](#classIRH__SessionOwnerInterface_1a35677a0a000e0ae22d7b8137bbc381e1)`() const` | Gets the Online Subsystem to use for OSS calls.
 `public FUniqueNetIdWrapper `[`GetOSSUniqueId`](#classIRH__SessionOwnerInterface_1ae7d146121a241b23c58cbf22cbb0debf)`() const` | Gets the Online Subsystem Unique Id to use for OSS calls.
@@ -1436,7 +1474,7 @@ Session Owner Interface.
 `public inline TOptional< FString > `[`GetETagForSession`](#classIRH__SessionOwnerInterface_1a13dd2296717487339a1685c1ab2596b8)`(const FString & SessionId) const` | Gets the Etag for a given Session.
 `public TOptional< FString > `[`GetETagForAllTemplatesPoll`](#classIRH__SessionOwnerInterface_1aacc34272adde5af55bc11b06c8f2abab)`() const` | Gets the etag to use for a "Get all Templates" type query.
 `public TOptional< FString > `[`GetETagForAllSessionsPoll`](#classIRH__SessionOwnerInterface_1a4cbac2d86e76e3be1051caed5908977a)`() const` | Gets the etag to use for a "Get all Sessions" type query.
-`public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classIRH__SessionOwnerInterface_1a3804b02f16c09b630fa8f01860f20193)`() const` | Used to get all sessions, primarily for get all sessions polling where etag matches.
+`public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classIRH__SessionOwnerInterface_1a5d1e5dd19539d8afd7e82c0f62123786)`()` | Used to get all sessions, primarily for get all sessions polling where etag matches.
 `public `[`URH_SessionView`](Session.md#classURH__SessionView)` * `[`GetSessionById`](#classIRH__SessionOwnerInterface_1a9880cac5cad5406d4a59bc65b86c3204)`(const FString & SessionId) const` | Gets a session by its id.
 `public void `[`RemoveSessionById`](#classIRH__SessionOwnerInterface_1acf42909a8b08c53d48ce3cca614348a5)`(const FString & SessionId)` | Removes a cached session for the local player, this does NOT try to leave it.
 `public bool `[`GetTemplate`](#classIRH__SessionOwnerInterface_1ae474fab73509d0a00372966f39ce216b)`(const FString & Type,`[`FRHAPI_SessionTemplate`](RHAPI_SessionTemplate.md#structFRHAPI__SessionTemplate)` & Template) const` | Gets a session template by type.
@@ -1484,6 +1522,10 @@ Updates the list of session templates to those that are active.
 
 * `ETag` The ETag to use for the update.
 
+#### `public inline virtual class `[`URH_LocalPlayerSubsystem`](LocalPlayer.md#classURH__LocalPlayerSubsystem)` * `[`GetLocalPlayerSubsystem`](#classIRH__SessionOwnerInterface_1aab2a7a0c0251ac27f9e46a7044a598f8)`() const` <a id="classIRH__SessionOwnerInterface_1aab2a7a0c0251ac27f9e46a7044a598f8"></a>
+
+Gets the LocalPlayer Subsystem if available.
+
 #### `public class `[`URH_PlayerInfoSubsystem`](PlayerInfo.md#classURH__PlayerInfoSubsystem)` * `[`GetPlayerInfoSubsystem`](#classIRH__SessionOwnerInterface_1afcbfbc9e6587ce0e9399e90310d9887c)`() const` <a id="classIRH__SessionOwnerInterface_1afcbfbc9e6587ce0e9399e90310d9887c"></a>
 
 Gets the PlayerInfo Subsystem.
@@ -1522,7 +1564,7 @@ Gets the etag to use for a "Get all Templates" type query.
 
 Gets the etag to use for a "Get all Sessions" type query.
 
-#### `public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classIRH__SessionOwnerInterface_1a3804b02f16c09b630fa8f01860f20193)`() const` <a id="classIRH__SessionOwnerInterface_1a3804b02f16c09b630fa8f01860f20193"></a>
+#### `public TArray< `[`URH_SessionView`](Session.md#classURH__SessionView)` * > `[`GetAllSessionsForPolling`](#classIRH__SessionOwnerInterface_1a5d1e5dd19539d8afd7e82c0f62123786)`()` <a id="classIRH__SessionOwnerInterface_1a5d1e5dd19539d8afd7e82c0f62123786"></a>
 
 Used to get all sessions, primarily for get all sessions polling where etag matches.
 

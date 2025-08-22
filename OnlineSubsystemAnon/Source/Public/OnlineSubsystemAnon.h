@@ -8,6 +8,7 @@
 #include "OnlineSubsystemAnonPackage.h"
 
 typedef TSharedPtr<class FOnlineIdentityAnon, ESPMode::ThreadSafe> FOnlineIdentityAnonPtr;
+typedef TSharedPtr<class FOnlineFriendsAnon, ESPMode::ThreadSafe> FOnlineFriendsAnonPtr;
 
 /**
  *	FOnlineSubsystemAnon - Implementation of the online subsystem for Anon login type
@@ -30,6 +31,7 @@ PACKAGE_SCOPE:
 	{}
 
     FOnlineIdentityAnonPtr IdentityInterface;
+	FOnlineFriendsAnonPtr FriendsInterface;
 
 public:
 

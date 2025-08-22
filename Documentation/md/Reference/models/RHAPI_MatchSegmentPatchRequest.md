@@ -50,132 +50,120 @@ struct FRHAPI_MatchSegmentPatchRequest
 `public bool `[`Players_IsSet`](#structFRHAPI__MatchSegmentPatchRequest_1ab5887e55232dfec06183d24dbaf1dbd6) | true if Players_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchSegmentPatchRequest_1afb20f0c19150b6369cdfa82daaff61de)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchSegmentPatchRequest_1a90b20a4e243516c047f89cf876ee9e9b)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a4bf34f8de5402739a328806c5e11e7f3)`()` | Gets the value of Type_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a69b72e623865d484e1da6dbf9b3544ad)`() const` | Gets the value of Type_Optional, regardless of it having been set.
-`public inline const FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a4d48b787a4f061361b45b6cfe7269cad)`(const FString & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a2a74696532109cc84a585907e3bd0a7d)`(FString & OutValue) const` | Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTypeOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a88bac8fc5a0adf7558cb39ba28f34fff)`()` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTypeOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa2c8cf8c7e73b10f3abe7c42c2c100fe)`() const` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetType`](#structFRHAPI__MatchSegmentPatchRequest_1acd40885089d3f6d0b22863c0959a25d0)`(const FString & NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
-`public inline void `[`SetType`](#structFRHAPI__MatchSegmentPatchRequest_1a06a01763235d9c63a60af77341275a9a)`(FString && NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a92de516612774324dda7d97640cc5dd3)`()` | Gets the value of Type_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1abbded39ffbf33a66dfa8d5b508b9d608)`() const` | Gets the value of Type_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a7fd0ebda53dee88aefd35e43fe5485db)`(const FString & DefaultValue) const` | Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a958f539760818cbd7a5e82bd8c4585fb)`(FString & OutValue) const` | Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTypeOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a456784cd315347a6c34b633396e2163e)`()` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTypeOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a839c69b7dcd343a9b48ae718b7518bb1)`() const` | Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetType`](#structFRHAPI__MatchSegmentPatchRequest_1adaf893103164589379d6ab6aca8d935c)`(const FString & NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true.
+`public inline FORCEINLINE void `[`SetType`](#structFRHAPI__MatchSegmentPatchRequest_1aca8179cd85dab294e3ee0185e3519e3c)`(FString && NewValue)` | Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
 `public inline void `[`ClearType`](#structFRHAPI__MatchSegmentPatchRequest_1a16cd35cf507846a1a5c72acce6b11896)`()` | Clears the value of Type_Optional and sets Type_IsSet to false.
-`public inline bool `[`IsTypeSet`](#structFRHAPI__MatchSegmentPatchRequest_1ad85faad7533f2cc462ed1d5e7d82fdcc)`() const` | Checks whether Type_Optional has been set.
-`public inline void `[`SetTypeToNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa7db3c1d30339269697e1baba6cc303f)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsTypeNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8a081f4bf9454b9173da6b3aa1baf001)`() const` | Checks whether Type_Optional is set to null.
-`public inline ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a856fbff58a4cdb4c3246ac474fbc3c80)`()` | Gets the value of State_Optional, regardless of it having been set.
-`public inline const ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a12079d45317cbd975f8e12f2bd78c725)`() const` | Gets the value of State_Optional, regardless of it having been set.
-`public inline const ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1afd32f83202ac67562dc4cfa20b03160d)`(const ERHAPI_MatchState & DefaultValue) const` | Gets the value of State_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1ad961c90daccbc37885d8f5442c304f20)`(ERHAPI_MatchState & OutValue) const` | Fills OutValue with the value of State_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_MatchState * `[`GetStateOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a70b7a0e7e95eab5c77cecf86e292d7e1)`()` | Returns a pointer to State_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_MatchState * `[`GetStateOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1add6c9bb7c83b052a54c509d1ad2f6b3b)`() const` | Returns a pointer to State_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetState`](#structFRHAPI__MatchSegmentPatchRequest_1ac6c14828145d82a7681e891b4f5c94ac)`(const ERHAPI_MatchState & NewValue)` | Sets the value of State_Optional and also sets State_IsSet to true.
-`public inline void `[`SetState`](#structFRHAPI__MatchSegmentPatchRequest_1afbb2431a92edfce73f5ae106634fd61a)`(ERHAPI_MatchState && NewValue)` | Sets the value of State_Optional and also sets State_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetTypeToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a1561f5e47e3625f90321ff394aee63bf)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsTypeNull`](#structFRHAPI__MatchSegmentPatchRequest_1af1d9ec0750287848d259457fee516f93)`() const` | Checks whether Type_Optional is set to null.
+`public inline FORCEINLINE ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a31fa4d8ccac9ea5221245b5b156674eb)`()` | Gets the value of State_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a939f7834dd6e3d0d9328ba9fc8ded84d)`() const` | Gets the value of State_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a9c463fda8da1d46721805e52aa15080d)`(const ERHAPI_MatchState & DefaultValue) const` | Gets the value of State_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a37e49d5ac9ee15d0f09e411c76f5d85f)`(ERHAPI_MatchState & OutValue) const` | Fills OutValue with the value of State_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_MatchState * `[`GetStateOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a6868de13b6d9717514082365ab71e5fb)`()` | Returns a pointer to State_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_MatchState * `[`GetStateOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ab2eb405f189a9dd1d8984efd989c2828)`() const` | Returns a pointer to State_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetState`](#structFRHAPI__MatchSegmentPatchRequest_1a5b3576766faf6075e17ba1e2951af66e)`(const ERHAPI_MatchState & NewValue)` | Sets the value of State_Optional and also sets State_IsSet to true.
+`public inline FORCEINLINE void `[`SetState`](#structFRHAPI__MatchSegmentPatchRequest_1aed0b59e068d7cb9342a0ce0de899c9c5)`(ERHAPI_MatchState && NewValue)` | Sets the value of State_Optional and also sets State_IsSet to true using move semantics.
 `public inline void `[`ClearState`](#structFRHAPI__MatchSegmentPatchRequest_1a1ac6736c8994648c143f83c613070e52)`()` | Clears the value of State_Optional and sets State_IsSet to false.
-`public inline bool `[`IsStateSet`](#structFRHAPI__MatchSegmentPatchRequest_1a1bbd42e2a288fd1aa9657282a993084c)`() const` | Checks whether State_Optional has been set.
-`public inline void `[`SetStateToNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa9a4c0d724fdbff26d7791e6d7c2c1a3)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsStateNull`](#structFRHAPI__MatchSegmentPatchRequest_1aadc0eb539fbafc87925d900cc1496787)`() const` | Checks whether State_Optional is set to null.
-`public inline FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a5cac49d52c4824e8de654cb5fda4bfeb)`()` | Gets the value of StartTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a3ef9dcb8098a8de82235eaef47c5a04d)`() const` | Gets the value of StartTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1aa133ec548ec5e7e634b8288cd381f412)`(const FDateTime & DefaultValue) const` | Gets the value of StartTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a67f0ce8d55a80c2520b7f0462918409b)`(FDateTime & OutValue) const` | Fills OutValue with the value of StartTimestamp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetStartTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1afe1463550cff318924ac6a1718dd77cd)`()` | Returns a pointer to StartTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetStartTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a89361c8c0cfcccff07576cc3464d8535)`() const` | Returns a pointer to StartTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a1448d13ae3116c809737dd4e86db287a)`(const FDateTime & NewValue)` | Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to true.
-`public inline void `[`SetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1acf0624edad188b7b042539f0164d2b4f)`(FDateTime && NewValue)` | Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetStateToNull`](#structFRHAPI__MatchSegmentPatchRequest_1adf98bf6dbf7b340d356fcd7258060adc)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsStateNull`](#structFRHAPI__MatchSegmentPatchRequest_1a0cee381bf0c44b1817ae26d1b2c4092c)`() const` | Checks whether State_Optional is set to null.
+`public inline FORCEINLINE FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a92b892e3fde1ec7b5db5305e1d6f95ac)`()` | Gets the value of StartTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a384df1167c0b32bb509e795057afa142)`() const` | Gets the value of StartTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a7082d62948fee37d92ab2b354b047771)`(const FDateTime & DefaultValue) const` | Gets the value of StartTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a237746e1c9c5db238c58bd0730ca19fe)`(FDateTime & OutValue) const` | Fills OutValue with the value of StartTimestamp_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetStartTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a741bba633f0b8429874140bc7bba9575)`()` | Returns a pointer to StartTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetStartTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae23303a1ed2307627ccffe3f57420c04)`() const` | Returns a pointer to StartTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1afa203b023340a5034d9fea0f97205b47)`(const FDateTime & NewValue)` | Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to true.
+`public inline FORCEINLINE void `[`SetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1abbc86ba7a62bcadd00be21a2909bec61)`(FDateTime && NewValue)` | Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a3f80de3ff6daf670a34b781487e2f2d6)`()` | Clears the value of StartTimestamp_Optional and sets StartTimestamp_IsSet to false.
-`public inline bool `[`IsStartTimestampSet`](#structFRHAPI__MatchSegmentPatchRequest_1a89c0c8b24b87609a142d2ed7178c7593)`() const` | Checks whether StartTimestamp_Optional has been set.
-`public inline void `[`SetStartTimestampToNull`](#structFRHAPI__MatchSegmentPatchRequest_1adc0daecee748b55b96c01eb55d943b65)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsStartTimestampNull`](#structFRHAPI__MatchSegmentPatchRequest_1aef447db72bd28112cc82302fdbb9be90)`() const` | Checks whether StartTimestamp_Optional is set to null.
-`public inline FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a9048e5c3555215556784a1647041106d)`()` | Gets the value of EndTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1aaaae5a3196cfb1d95a052d481222ce2d)`() const` | Gets the value of EndTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1ac5f0ce04bcffa7875dabda3764f2f86b)`(const FDateTime & DefaultValue) const` | Gets the value of EndTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a6dd6b509813298444a2aa9bc343afabd)`(FDateTime & OutValue) const` | Fills OutValue with the value of EndTimestamp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetEndTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a4b360e450f791669846e51e40531aeee)`()` | Returns a pointer to EndTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetEndTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ad6f48a2304589b49555de0e3c98e99b4)`() const` | Returns a pointer to EndTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a24cebc7857f8438fd3580a9bbdfca1dd)`(const FDateTime & NewValue)` | Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true.
-`public inline void `[`SetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a5aaf7a1c6ba7eead961ac08e2984775c)`(FDateTime && NewValue)` | Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetStartTimestampToNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae420e489c0ba4877d7c778135a26b059)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsStartTimestampNull`](#structFRHAPI__MatchSegmentPatchRequest_1a0abd0410c53365fa3caf8e7eb377ca16)`() const` | Checks whether StartTimestamp_Optional is set to null.
+`public inline FORCEINLINE FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1ad374140aceb56ab761f1adf5299feb73)`()` | Gets the value of EndTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a8929dd6a05d1b0edcd8c21df8b6e5d20)`() const` | Gets the value of EndTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a311b5f1f66ea7c2345cbc2e7af6b5156)`(const FDateTime & DefaultValue) const` | Gets the value of EndTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a4ff3eb8103ebc76bafd79b86581e0a0e)`(FDateTime & OutValue) const` | Fills OutValue with the value of EndTimestamp_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetEndTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a903b3a12be722570f7435e040e43e3f8)`()` | Returns a pointer to EndTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetEndTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ab832669163202c142291ec66796cf783)`() const` | Returns a pointer to EndTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1aa1d7c8d5d207afda5005110c89e11c45)`(const FDateTime & NewValue)` | Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true.
+`public inline FORCEINLINE void `[`SetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a75de3ed2d4a381988178c0dfdd9109dc)`(FDateTime && NewValue)` | Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a362c7f19a723bcd801e61aba485419d3)`()` | Clears the value of EndTimestamp_Optional and sets EndTimestamp_IsSet to false.
-`public inline bool `[`IsEndTimestampSet`](#structFRHAPI__MatchSegmentPatchRequest_1a5bc110aab920d74ac9f37dd420bfeb5b)`() const` | Checks whether EndTimestamp_Optional has been set.
-`public inline void `[`SetEndTimestampToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a49a5d14d7f1d4415d7ef251ed8da5307)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsEndTimestampNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8eee355d005d157a13da7acb76c18574)`() const` | Checks whether EndTimestamp_Optional is set to null.
-`public inline int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a97747fd5358ea8d969c9d23786da3c0c)`()` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a051901a01a5508ea6d640a1de99eecc9)`() const` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1aa2b4e98d5fa8f90a8371aafa6cfba3f1)`(const int32 & DefaultValue) const` | Gets the value of DurationSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a31f9fca187269d30efdae9b9fa60515d)`(int32 & OutValue) const` | Fills OutValue with the value of DurationSeconds_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a854d8c2075dca70b709661e53a5b6e75)`()` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8273fa300aa63248782a5d1e188528a2)`() const` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a88256b9fb921f8fd496f1c363df14158)`(const int32 & NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
-`public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1aa4b2c0af5e6fc3dd2d4c41df10846f35)`(int32 && NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetEndTimestampToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a5dea3d0b08f2f61cc389e52bed2bdcc9)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsEndTimestampNull`](#structFRHAPI__MatchSegmentPatchRequest_1aaa1a1eb76071fc96a16867044b253678)`() const` | Checks whether EndTimestamp_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a0a28461895529721282b853cc6af7e45)`()` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a1acd7f83f17e7ec297fb7fc93f2d3752)`() const` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a92cca9d8d7bc4fa2789cbae8b6352547)`(const int32 & DefaultValue) const` | Gets the value of DurationSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a45b8c4a6581e2085e00f3c4173b9982e)`(int32 & OutValue) const` | Fills OutValue with the value of DurationSeconds_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a03eeaf1807f59e3f3a7bf4158f1c7b39)`()` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae138be03bb61d9f977f295db175813e1)`() const` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1aede9270227025bd1ab54e213e00e657e)`(const int32 & NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
+`public inline FORCEINLINE void `[`SetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1abc96572a1b4de978331e5fa3982a6352)`(int32 && NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics.
 `public inline void `[`ClearDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a218ccb2f457b3daf2bc1c97574ad79d3)`()` | Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false.
-`public inline bool `[`IsDurationSecondsSet`](#structFRHAPI__MatchSegmentPatchRequest_1afde6849fbeb7ef3718032422404bc4db)`() const` | Checks whether DurationSeconds_Optional has been set.
-`public inline bool `[`IsDurationSecondsDefaultValue`](#structFRHAPI__MatchSegmentPatchRequest_1a10447ebcc9952e9d866c0b7ef034cee5)`() const` | Returns true if DurationSeconds_Optional is set and matches the default value.
-`public inline void `[`SetDurationSecondsToDefault`](#structFRHAPI__MatchSegmentPatchRequest_1aace6b71ff12ec5ad607995be1b9418b8)`()` | Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
-`public inline void `[`SetDurationSecondsToNull`](#structFRHAPI__MatchSegmentPatchRequest_1afb56762cd351d9ba0dbbad12bbc66808)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsDurationSecondsNull`](#structFRHAPI__MatchSegmentPatchRequest_1ad37876d96a5400e7d50c4155b315847e)`() const` | Checks whether DurationSeconds_Optional is set to null.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a8abe8313a137d929f7f67910c1d13390)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1ac38a83d3bcc0cc17cc8bd9f8f4649c45)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a65801da7f911b9bcaf115976af26d56a)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1aeba6fdeb43df9a7fe5549d2cf3b349fb)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa1b60cf9201144c6cddd614b5132f64c)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a00e8946d52c249fdd50a1529ec98bfa5)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a7547f588fe01b61bbf3a023b1dd3b4b9)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1aac05425ad2b6a2a438d92d49490d0f97)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_DurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1aadade4f3f1921e4f4bd1214c849930e4)`()` | Returns the default value of DurationSeconds.
+`public inline FORCEINLINE void `[`SetDurationSecondsToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a0d0b969d638802df6d5c08211180a609)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsDurationSecondsNull`](#structFRHAPI__MatchSegmentPatchRequest_1a76b7779e5c9cbcd0352c099dbe5525f6)`() const` | Checks whether DurationSeconds_Optional is set to null.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a33807577892260cf754b65789b0b914f)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1ae61b2aab02a148b2330ed8e6fc02c962)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a3f72bca573dcbc5c077f48046cad7a4c)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a94b516afc6b81a0cd86edac2f4316335)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a18baf0a72ee7cbb3a0cd9f7d4be3b32b)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a349c43bbfe735fdeb85c1ce46956c2ba)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a2a1455d42cafb769941f1d8323cdc015)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1ad0c510c403ad908e673b65adc13c0448)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a6d9bc923f704e913f7056cbf3e6c3616)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchSegmentPatchRequest_1a3756fcf179c28abf21c11f5ac973d786)`() const` | Checks whether CustomData_Optional has been set.
-`public inline void `[`SetCustomDataToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a6290d9cd5fb226f8e1291a48c369603b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCustomDataNull`](#structFRHAPI__MatchSegmentPatchRequest_1a56ec9a60a10c87a8913b6049ce2d5877)`() const` | Checks whether CustomData_Optional is set to null.
-`public inline FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a886617227dc5f4f023742efafd0a533d)`()` | Gets the value of CorrelationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a92dfc5b6f31a34bfe95f0f98af137425)`() const` | Gets the value of CorrelationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1aaddc26c2aba81d35587734bd073cff18)`(const FString & DefaultValue) const` | Gets the value of CorrelationId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a0526fb9e70b92bbfc276a94a63997c79)`(FString & OutValue) const` | Fills OutValue with the value of CorrelationId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a0b1efd0b5f41c858f7978900be8085fc)`()` | Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1adc70c193891b535d2899fb76cc5dfbdf)`() const` | Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a563179f74cdcb6a4e946e1fb9a87a353)`(const FString & NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true.
-`public inline void `[`SetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a536d0c1dbca8b2ff899451dbf1595f89)`(FString && NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetCustomDataToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a9704eb699f5cd17c06d8993c19bb0ea3)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCustomDataNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae3a43c7a90a8bf9fe16f217b6bf441bb)`() const` | Checks whether CustomData_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1af2f6493e4b38f2c3fe4b57abcf03d705)`()` | Gets the value of CorrelationId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1aeacb9da09c61495f53e0e6fc96f81b92)`() const` | Gets the value of CorrelationId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a2de02821c2339793cb7d3c2fdbe87b93)`(const FString & DefaultValue) const` | Gets the value of CorrelationId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a4cc85675fbe41c6d4102ddbd12bfc4b7)`(FString & OutValue) const` | Fills OutValue with the value of CorrelationId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a1e3a652fc5b0290b0e5c7c5acf47622f)`()` | Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a9e5216a7e008e16405c92b2d06181fcd)`() const` | Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1ada1b1682ceb35047012b3d18ab10c032)`(const FString & NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true.
+`public inline FORCEINLINE void `[`SetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1ae66ac0f16ad3207d6d0c19077b95d22c)`(FString && NewValue)` | Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true using move semantics.
 `public inline void `[`ClearCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a81cc453b6b2531fc4a95500826fcf8b1)`()` | Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false.
-`public inline bool `[`IsCorrelationIdSet`](#structFRHAPI__MatchSegmentPatchRequest_1ab702e1f8fee55224694054558e456ce4)`() const` | Checks whether CorrelationId_Optional has been set.
-`public inline void `[`SetCorrelationIdToNull`](#structFRHAPI__MatchSegmentPatchRequest_1adca98e397c80ed70887439c07eb6d07b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCorrelationIdNull`](#structFRHAPI__MatchSegmentPatchRequest_1a67b1540c32943ebbba15845097070a14)`() const` | Checks whether CorrelationId_Optional is set to null.
-`public inline TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1aa4bc209fe684916ce9cbacdd70e60084)`()` | Gets the value of Sessions_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a932bf84e1e52cfe05a7cf08fe22dcf14)`() const` | Gets the value of Sessions_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a9436bd604b9bd05b22e362033c1db152)`(const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & DefaultValue) const` | Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a4219b32b4b8c365cd5e06d9ffc1ddbd8)`(TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & OutValue) const` | Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1af2daf49fb33891e78cb932f911a56a57)`()` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa31ce491aa8ceeced2dbad0662e3faf3)`() const` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a048c5b90dc687d2963cc0a31734cd565)`(const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
-`public inline void `[`SetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1ae289593e2bfc8b0e600e38cde1676cd1)`(TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > && NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetCorrelationIdToNull`](#structFRHAPI__MatchSegmentPatchRequest_1ac0e2a9fba85211f2e4a529d1d5bf9115)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCorrelationIdNull`](#structFRHAPI__MatchSegmentPatchRequest_1a7f6fdebee39f0190e1e0af7ab5d2471f)`() const` | Checks whether CorrelationId_Optional is set to null.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a7d6f7428c4d5036e238f502894cbb808)`()` | Gets the value of Sessions_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a18076dbc245467ba637fbf25c2f75584)`() const` | Gets the value of Sessions_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a791e9377a3a61e9f9393116d890d634b)`(const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & DefaultValue) const` | Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a5618c1229d893496cedbb7eaf03a00ad)`(TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & OutValue) const` | Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a97736bfd426a5de3fcd1be0279ded509)`()` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8baa4e331dc9d40ae6b2697e68c33f6f)`() const` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a6388e806a67d3bbc6a1886d9a5b68f69)`(const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
+`public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a11b8be4983686f426892ecbd24ced36c)`(TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > && NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
 `public inline void `[`ClearSessions`](#structFRHAPI__MatchSegmentPatchRequest_1ac73a2dacadc0065c4bd4976e71dc2234)`()` | Clears the value of Sessions_Optional and sets Sessions_IsSet to false.
-`public inline bool `[`IsSessionsSet`](#structFRHAPI__MatchSegmentPatchRequest_1ab18fb5b0aeabc465dea5a92660bf2bbb)`() const` | Checks whether Sessions_Optional has been set.
-`public inline TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a3157d822c97ba17968d9a3bffc574204)`()` | Gets the value of Instances_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a1855de1d8b4f7f2bd161e410c813800e)`() const` | Gets the value of Instances_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1ab966b26f82171c60b4a9d016b739bb49)`(const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & DefaultValue) const` | Gets the value of Instances_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a64ab4a803005f5b55139979dc458efb5)`(TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & OutValue) const` | Fills OutValue with the value of Instances_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > * `[`GetInstancesOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa6f89aaba8c3195cbeff11582268dda4)`()` | Returns a pointer to Instances_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > * `[`GetInstancesOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ab14ca0d894f9a2273de3617e71b7b7d3)`() const` | Returns a pointer to Instances_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1afb9db2aa867feec089f1594331c0cd89)`(const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & NewValue)` | Sets the value of Instances_Optional and also sets Instances_IsSet to true.
-`public inline void `[`SetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1aaab510fc2844f54fbde1a03335cbf410)`(TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > && NewValue)` | Sets the value of Instances_Optional and also sets Instances_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a97f7249472b42832e640d13302965198)`()` | Gets the value of Instances_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a44e42ce08b222d64b8e562fdba635d03)`() const` | Gets the value of Instances_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a777e51f16eb6bd3682eed3cbefd82881)`(const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & DefaultValue) const` | Gets the value of Instances_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1abe3c6830e02afd88392177960fe787a5)`(TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & OutValue) const` | Fills OutValue with the value of Instances_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > * `[`GetInstancesOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a2cf2e49d0550d715414c0871cde965aa)`()` | Returns a pointer to Instances_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > * `[`GetInstancesOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a15321de22349b7779b9ba085afc1512e)`() const` | Returns a pointer to Instances_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1af05da7b007bfadd0e62ff000b848f050)`(const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & NewValue)` | Sets the value of Instances_Optional and also sets Instances_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a54344101b04f2eb9cb8877b7b1cab3d0)`(TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > && NewValue)` | Sets the value of Instances_Optional and also sets Instances_IsSet to true using move semantics.
 `public inline void `[`ClearInstances`](#structFRHAPI__MatchSegmentPatchRequest_1aba08455b31cbb849f6abf9f806fdec59)`()` | Clears the value of Instances_Optional and sets Instances_IsSet to false.
-`public inline bool `[`IsInstancesSet`](#structFRHAPI__MatchSegmentPatchRequest_1aa557d56417b85892b8fd41890409eab0)`() const` | Checks whether Instances_Optional has been set.
-`public inline TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1a98f79b9c43adc27371e4589b2b2a8498)`()` | Gets the value of Allocations_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1a53a75566fbda8dff096f59fceb011b39)`() const` | Gets the value of Allocations_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1aa8128929b4bab03ff46c2414303b038c)`(const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & DefaultValue) const` | Gets the value of Allocations_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1afcd5ad3a96affdc4bdce20aa8ad695d9)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & OutValue) const` | Fills OutValue with the value of Allocations_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a254648864c0534b67cb2ea6407ee738e)`()` | Returns a pointer to Allocations_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a82c3fe2ff5b07eacfa11770334a96467)`() const` | Returns a pointer to Allocations_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1ae541f5845e7250ed45490eb841c70a34)`(const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & NewValue)` | Sets the value of Allocations_Optional and also sets Allocations_IsSet to true.
-`public inline void `[`SetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1aea04326119f040c7ec4886227d695c51)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > && NewValue)` | Sets the value of Allocations_Optional and also sets Allocations_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1ac5481cbd8594438d68584fc27b1de934)`()` | Gets the value of Allocations_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1a903806d5a6428b5c83baa7d04ccf7d8b)`() const` | Gets the value of Allocations_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1ac2b4d713e11c23ef1aa5fecc1654f8c1)`(const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & DefaultValue) const` | Gets the value of Allocations_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1a8a47f5b392793ea5cff65424f2de0658)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & OutValue) const` | Fills OutValue with the value of Allocations_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a77e88d9c9990be87895d9f3a3d20a578)`()` | Returns a pointer to Allocations_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a5a30da9a6169272dfcba26c81f9438cb)`() const` | Returns a pointer to Allocations_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1acc08cb59c13c8eb1f9296aebce275498)`(const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & NewValue)` | Sets the value of Allocations_Optional and also sets Allocations_IsSet to true.
+`public inline FORCEINLINE void `[`SetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1aeddecf3e7c5b4f64289aa8878b53e6cf)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > && NewValue)` | Sets the value of Allocations_Optional and also sets Allocations_IsSet to true using move semantics.
 `public inline void `[`ClearAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1aac741b53da2295fffa2bff80e21f0148)`()` | Clears the value of Allocations_Optional and sets Allocations_IsSet to false.
-`public inline bool `[`IsAllocationsSet`](#structFRHAPI__MatchSegmentPatchRequest_1abaa0a53f4ae45a059e63410fc1ef6685)`() const` | Checks whether Allocations_Optional has been set.
-`public inline TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a86d5ba1df051ccecfe17d02ed07a41ac)`()` | Gets the value of Players_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a8387d7348c660eafdd1c171cb4b9bc19)`() const` | Gets the value of Players_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a988bac85e82d2643fda359a48e47face)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & DefaultValue) const` | Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1ad4a4346778da157c5fd68b59e83b5bd2)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & OutValue) const` | Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae203dfe285cdcb9111df04ac9000e608)`()` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a411dfdf8141afd5a95f7b5148544ff31)`() const` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1ae9812ba4dd7668bef9cb27f144d41ec6)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true.
-`public inline void `[`SetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a4e7046c9333bc259337fc65c0323839f)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > && NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1af2439010657ad9bf4db79fea1d1d182d)`()` | Gets the value of Players_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a055cec6357df08595f5fb73a2f63f3fb)`() const` | Gets the value of Players_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a761cbab71102f4563e50acdb346e4a01)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & DefaultValue) const` | Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a617e7f376a27804913c41c36a7deb7c5)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & OutValue) const` | Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8ed20484b2f65f9aa77fbfd76169ba51)`()` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae0ee6280cfe11e9b8ce581cb911af4e4)`() const` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1ab431042524a4da844d541ffb8ee81baa)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1af34680728d0e46a1db3e0b494d062a5d)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > && NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics.
 `public inline void `[`ClearPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1aa6a63dd8627e54f28f49d00dbee501b8)`()` | Clears the value of Players_Optional and sets Players_IsSet to false.
-`public inline bool `[`IsPlayersSet`](#structFRHAPI__MatchSegmentPatchRequest_1a9c4d82b78ab45b3f6f8ea37934fd01ef)`() const` | Checks whether Players_Optional has been set.
 
 ### Members
 
@@ -302,35 +290,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a4bf34f8de5402739a328806c5e11e7f3)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a4bf34f8de5402739a328806c5e11e7f3"></a>
+#### `public inline FORCEINLINE FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a92de516612774324dda7d97640cc5dd3)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a92de516612774324dda7d97640cc5dd3"></a>
 
 Gets the value of Type_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a69b72e623865d484e1da6dbf9b3544ad)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a69b72e623865d484e1da6dbf9b3544ad"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1abbded39ffbf33a66dfa8d5b508b9d608)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1abbded39ffbf33a66dfa8d5b508b9d608"></a>
 
 Gets the value of Type_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a4d48b787a4f061361b45b6cfe7269cad)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a4d48b787a4f061361b45b6cfe7269cad"></a>
+#### `public inline FORCEINLINE const FString & `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a7fd0ebda53dee88aefd35e43fe5485db)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a7fd0ebda53dee88aefd35e43fe5485db"></a>
 
 Gets the value of Type_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a2a74696532109cc84a585907e3bd0a7d)`(FString & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a2a74696532109cc84a585907e3bd0a7d"></a>
+#### `public inline FORCEINLINE bool `[`GetType`](#structFRHAPI__MatchSegmentPatchRequest_1a958f539760818cbd7a5e82bd8c4585fb)`(FString & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a958f539760818cbd7a5e82bd8c4585fb"></a>
 
 Fills OutValue with the value of Type_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTypeOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a88bac8fc5a0adf7558cb39ba28f34fff)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a88bac8fc5a0adf7558cb39ba28f34fff"></a>
+#### `public inline FORCEINLINE FString * `[`GetTypeOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a456784cd315347a6c34b633396e2163e)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a456784cd315347a6c34b633396e2163e"></a>
 
 Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTypeOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa2c8cf8c7e73b10f3abe7c42c2c100fe)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa2c8cf8c7e73b10f3abe7c42c2c100fe"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTypeOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a839c69b7dcd343a9b48ae718b7518bb1)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a839c69b7dcd343a9b48ae718b7518bb1"></a>
 
 Returns a pointer to Type_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetType`](#structFRHAPI__MatchSegmentPatchRequest_1acd40885089d3f6d0b22863c0959a25d0)`(const FString & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1acd40885089d3f6d0b22863c0959a25d0"></a>
+#### `public inline FORCEINLINE void `[`SetType`](#structFRHAPI__MatchSegmentPatchRequest_1adaf893103164589379d6ab6aca8d935c)`(const FString & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1adaf893103164589379d6ab6aca8d935c"></a>
 
 Sets the value of Type_Optional and also sets Type_IsSet to true.
 
-#### `public inline void `[`SetType`](#structFRHAPI__MatchSegmentPatchRequest_1a06a01763235d9c63a60af77341275a9a)`(FString && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a06a01763235d9c63a60af77341275a9a"></a>
+#### `public inline FORCEINLINE void `[`SetType`](#structFRHAPI__MatchSegmentPatchRequest_1aca8179cd85dab294e3ee0185e3519e3c)`(FString && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aca8179cd85dab294e3ee0185e3519e3c"></a>
 
 Sets the value of Type_Optional and also sets Type_IsSet to true using move semantics.
 
@@ -338,47 +326,43 @@ Sets the value of Type_Optional and also sets Type_IsSet to true using move sema
 
 Clears the value of Type_Optional and sets Type_IsSet to false.
 
-#### `public inline bool `[`IsTypeSet`](#structFRHAPI__MatchSegmentPatchRequest_1ad85faad7533f2cc462ed1d5e7d82fdcc)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ad85faad7533f2cc462ed1d5e7d82fdcc"></a>
-
-Checks whether Type_Optional has been set.
-
-#### `public inline void `[`SetTypeToNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa7db3c1d30339269697e1baba6cc303f)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa7db3c1d30339269697e1baba6cc303f"></a>
+#### `public inline FORCEINLINE void `[`SetTypeToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a1561f5e47e3625f90321ff394aee63bf)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a1561f5e47e3625f90321ff394aee63bf"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsTypeNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8a081f4bf9454b9173da6b3aa1baf001)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8a081f4bf9454b9173da6b3aa1baf001"></a>
+#### `public inline FORCEINLINE bool `[`IsTypeNull`](#structFRHAPI__MatchSegmentPatchRequest_1af1d9ec0750287848d259457fee516f93)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1af1d9ec0750287848d259457fee516f93"></a>
 
 Checks whether Type_Optional is set to null.
 
-#### `public inline ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a856fbff58a4cdb4c3246ac474fbc3c80)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a856fbff58a4cdb4c3246ac474fbc3c80"></a>
+#### `public inline FORCEINLINE ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a31fa4d8ccac9ea5221245b5b156674eb)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a31fa4d8ccac9ea5221245b5b156674eb"></a>
 
 Gets the value of State_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a12079d45317cbd975f8e12f2bd78c725)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a12079d45317cbd975f8e12f2bd78c725"></a>
+#### `public inline FORCEINLINE const ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a939f7834dd6e3d0d9328ba9fc8ded84d)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a939f7834dd6e3d0d9328ba9fc8ded84d"></a>
 
 Gets the value of State_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1afd32f83202ac67562dc4cfa20b03160d)`(const ERHAPI_MatchState & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1afd32f83202ac67562dc4cfa20b03160d"></a>
+#### `public inline FORCEINLINE const ERHAPI_MatchState & `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a9c463fda8da1d46721805e52aa15080d)`(const ERHAPI_MatchState & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a9c463fda8da1d46721805e52aa15080d"></a>
 
 Gets the value of State_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1ad961c90daccbc37885d8f5442c304f20)`(ERHAPI_MatchState & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ad961c90daccbc37885d8f5442c304f20"></a>
+#### `public inline FORCEINLINE bool `[`GetState`](#structFRHAPI__MatchSegmentPatchRequest_1a37e49d5ac9ee15d0f09e411c76f5d85f)`(ERHAPI_MatchState & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a37e49d5ac9ee15d0f09e411c76f5d85f"></a>
 
 Fills OutValue with the value of State_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_MatchState * `[`GetStateOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a70b7a0e7e95eab5c77cecf86e292d7e1)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a70b7a0e7e95eab5c77cecf86e292d7e1"></a>
+#### `public inline FORCEINLINE ERHAPI_MatchState * `[`GetStateOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a6868de13b6d9717514082365ab71e5fb)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a6868de13b6d9717514082365ab71e5fb"></a>
 
 Returns a pointer to State_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_MatchState * `[`GetStateOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1add6c9bb7c83b052a54c509d1ad2f6b3b)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1add6c9bb7c83b052a54c509d1ad2f6b3b"></a>
+#### `public inline FORCEINLINE const ERHAPI_MatchState * `[`GetStateOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ab2eb405f189a9dd1d8984efd989c2828)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ab2eb405f189a9dd1d8984efd989c2828"></a>
 
 Returns a pointer to State_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetState`](#structFRHAPI__MatchSegmentPatchRequest_1ac6c14828145d82a7681e891b4f5c94ac)`(const ERHAPI_MatchState & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1ac6c14828145d82a7681e891b4f5c94ac"></a>
+#### `public inline FORCEINLINE void `[`SetState`](#structFRHAPI__MatchSegmentPatchRequest_1a5b3576766faf6075e17ba1e2951af66e)`(const ERHAPI_MatchState & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a5b3576766faf6075e17ba1e2951af66e"></a>
 
 Sets the value of State_Optional and also sets State_IsSet to true.
 
-#### `public inline void `[`SetState`](#structFRHAPI__MatchSegmentPatchRequest_1afbb2431a92edfce73f5ae106634fd61a)`(ERHAPI_MatchState && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1afbb2431a92edfce73f5ae106634fd61a"></a>
+#### `public inline FORCEINLINE void `[`SetState`](#structFRHAPI__MatchSegmentPatchRequest_1aed0b59e068d7cb9342a0ce0de899c9c5)`(ERHAPI_MatchState && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aed0b59e068d7cb9342a0ce0de899c9c5"></a>
 
 Sets the value of State_Optional and also sets State_IsSet to true using move semantics.
 
@@ -386,47 +370,43 @@ Sets the value of State_Optional and also sets State_IsSet to true using move se
 
 Clears the value of State_Optional and sets State_IsSet to false.
 
-#### `public inline bool `[`IsStateSet`](#structFRHAPI__MatchSegmentPatchRequest_1a1bbd42e2a288fd1aa9657282a993084c)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a1bbd42e2a288fd1aa9657282a993084c"></a>
-
-Checks whether State_Optional has been set.
-
-#### `public inline void `[`SetStateToNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa9a4c0d724fdbff26d7791e6d7c2c1a3)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa9a4c0d724fdbff26d7791e6d7c2c1a3"></a>
+#### `public inline FORCEINLINE void `[`SetStateToNull`](#structFRHAPI__MatchSegmentPatchRequest_1adf98bf6dbf7b340d356fcd7258060adc)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1adf98bf6dbf7b340d356fcd7258060adc"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsStateNull`](#structFRHAPI__MatchSegmentPatchRequest_1aadc0eb539fbafc87925d900cc1496787)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aadc0eb539fbafc87925d900cc1496787"></a>
+#### `public inline FORCEINLINE bool `[`IsStateNull`](#structFRHAPI__MatchSegmentPatchRequest_1a0cee381bf0c44b1817ae26d1b2c4092c)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a0cee381bf0c44b1817ae26d1b2c4092c"></a>
 
 Checks whether State_Optional is set to null.
 
-#### `public inline FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a5cac49d52c4824e8de654cb5fda4bfeb)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a5cac49d52c4824e8de654cb5fda4bfeb"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a92b892e3fde1ec7b5db5305e1d6f95ac)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a92b892e3fde1ec7b5db5305e1d6f95ac"></a>
 
 Gets the value of StartTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a3ef9dcb8098a8de82235eaef47c5a04d)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a3ef9dcb8098a8de82235eaef47c5a04d"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a384df1167c0b32bb509e795057afa142)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a384df1167c0b32bb509e795057afa142"></a>
 
 Gets the value of StartTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1aa133ec548ec5e7e634b8288cd381f412)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa133ec548ec5e7e634b8288cd381f412"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a7082d62948fee37d92ab2b354b047771)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a7082d62948fee37d92ab2b354b047771"></a>
 
 Gets the value of StartTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a67f0ce8d55a80c2520b7f0462918409b)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a67f0ce8d55a80c2520b7f0462918409b"></a>
+#### `public inline FORCEINLINE bool `[`GetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a237746e1c9c5db238c58bd0730ca19fe)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a237746e1c9c5db238c58bd0730ca19fe"></a>
 
 Fills OutValue with the value of StartTimestamp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetStartTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1afe1463550cff318924ac6a1718dd77cd)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1afe1463550cff318924ac6a1718dd77cd"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetStartTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a741bba633f0b8429874140bc7bba9575)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a741bba633f0b8429874140bc7bba9575"></a>
 
 Returns a pointer to StartTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetStartTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a89361c8c0cfcccff07576cc3464d8535)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a89361c8c0cfcccff07576cc3464d8535"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetStartTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae23303a1ed2307627ccffe3f57420c04)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae23303a1ed2307627ccffe3f57420c04"></a>
 
 Returns a pointer to StartTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a1448d13ae3116c809737dd4e86db287a)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a1448d13ae3116c809737dd4e86db287a"></a>
+#### `public inline FORCEINLINE void `[`SetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1afa203b023340a5034d9fea0f97205b47)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1afa203b023340a5034d9fea0f97205b47"></a>
 
 Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to true.
 
-#### `public inline void `[`SetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1acf0624edad188b7b042539f0164d2b4f)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1acf0624edad188b7b042539f0164d2b4f"></a>
+#### `public inline FORCEINLINE void `[`SetStartTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1abbc86ba7a62bcadd00be21a2909bec61)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1abbc86ba7a62bcadd00be21a2909bec61"></a>
 
 Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to true using move semantics.
 
@@ -434,47 +414,43 @@ Sets the value of StartTimestamp_Optional and also sets StartTimestamp_IsSet to 
 
 Clears the value of StartTimestamp_Optional and sets StartTimestamp_IsSet to false.
 
-#### `public inline bool `[`IsStartTimestampSet`](#structFRHAPI__MatchSegmentPatchRequest_1a89c0c8b24b87609a142d2ed7178c7593)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a89c0c8b24b87609a142d2ed7178c7593"></a>
-
-Checks whether StartTimestamp_Optional has been set.
-
-#### `public inline void `[`SetStartTimestampToNull`](#structFRHAPI__MatchSegmentPatchRequest_1adc0daecee748b55b96c01eb55d943b65)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1adc0daecee748b55b96c01eb55d943b65"></a>
+#### `public inline FORCEINLINE void `[`SetStartTimestampToNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae420e489c0ba4877d7c778135a26b059)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae420e489c0ba4877d7c778135a26b059"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsStartTimestampNull`](#structFRHAPI__MatchSegmentPatchRequest_1aef447db72bd28112cc82302fdbb9be90)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aef447db72bd28112cc82302fdbb9be90"></a>
+#### `public inline FORCEINLINE bool `[`IsStartTimestampNull`](#structFRHAPI__MatchSegmentPatchRequest_1a0abd0410c53365fa3caf8e7eb377ca16)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a0abd0410c53365fa3caf8e7eb377ca16"></a>
 
 Checks whether StartTimestamp_Optional is set to null.
 
-#### `public inline FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a9048e5c3555215556784a1647041106d)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a9048e5c3555215556784a1647041106d"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1ad374140aceb56ab761f1adf5299feb73)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1ad374140aceb56ab761f1adf5299feb73"></a>
 
 Gets the value of EndTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1aaaae5a3196cfb1d95a052d481222ce2d)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aaaae5a3196cfb1d95a052d481222ce2d"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a8929dd6a05d1b0edcd8c21df8b6e5d20)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8929dd6a05d1b0edcd8c21df8b6e5d20"></a>
 
 Gets the value of EndTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1ac5f0ce04bcffa7875dabda3764f2f86b)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ac5f0ce04bcffa7875dabda3764f2f86b"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a311b5f1f66ea7c2345cbc2e7af6b5156)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a311b5f1f66ea7c2345cbc2e7af6b5156"></a>
 
 Gets the value of EndTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a6dd6b509813298444a2aa9bc343afabd)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a6dd6b509813298444a2aa9bc343afabd"></a>
+#### `public inline FORCEINLINE bool `[`GetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a4ff3eb8103ebc76bafd79b86581e0a0e)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a4ff3eb8103ebc76bafd79b86581e0a0e"></a>
 
 Fills OutValue with the value of EndTimestamp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetEndTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a4b360e450f791669846e51e40531aeee)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a4b360e450f791669846e51e40531aeee"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetEndTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a903b3a12be722570f7435e040e43e3f8)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a903b3a12be722570f7435e040e43e3f8"></a>
 
 Returns a pointer to EndTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetEndTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ad6f48a2304589b49555de0e3c98e99b4)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ad6f48a2304589b49555de0e3c98e99b4"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetEndTimestampOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ab832669163202c142291ec66796cf783)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ab832669163202c142291ec66796cf783"></a>
 
 Returns a pointer to EndTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a24cebc7857f8438fd3580a9bbdfca1dd)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a24cebc7857f8438fd3580a9bbdfca1dd"></a>
+#### `public inline FORCEINLINE void `[`SetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1aa1d7c8d5d207afda5005110c89e11c45)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa1d7c8d5d207afda5005110c89e11c45"></a>
 
 Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true.
 
-#### `public inline void `[`SetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a5aaf7a1c6ba7eead961ac08e2984775c)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a5aaf7a1c6ba7eead961ac08e2984775c"></a>
+#### `public inline FORCEINLINE void `[`SetEndTimestamp`](#structFRHAPI__MatchSegmentPatchRequest_1a75de3ed2d4a381988178c0dfdd9109dc)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a75de3ed2d4a381988178c0dfdd9109dc"></a>
 
 Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true using move semantics.
 
@@ -482,47 +458,43 @@ Sets the value of EndTimestamp_Optional and also sets EndTimestamp_IsSet to true
 
 Clears the value of EndTimestamp_Optional and sets EndTimestamp_IsSet to false.
 
-#### `public inline bool `[`IsEndTimestampSet`](#structFRHAPI__MatchSegmentPatchRequest_1a5bc110aab920d74ac9f37dd420bfeb5b)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a5bc110aab920d74ac9f37dd420bfeb5b"></a>
-
-Checks whether EndTimestamp_Optional has been set.
-
-#### `public inline void `[`SetEndTimestampToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a49a5d14d7f1d4415d7ef251ed8da5307)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a49a5d14d7f1d4415d7ef251ed8da5307"></a>
+#### `public inline FORCEINLINE void `[`SetEndTimestampToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a5dea3d0b08f2f61cc389e52bed2bdcc9)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a5dea3d0b08f2f61cc389e52bed2bdcc9"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsEndTimestampNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8eee355d005d157a13da7acb76c18574)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8eee355d005d157a13da7acb76c18574"></a>
+#### `public inline FORCEINLINE bool `[`IsEndTimestampNull`](#structFRHAPI__MatchSegmentPatchRequest_1aaa1a1eb76071fc96a16867044b253678)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aaa1a1eb76071fc96a16867044b253678"></a>
 
 Checks whether EndTimestamp_Optional is set to null.
 
-#### `public inline int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a97747fd5358ea8d969c9d23786da3c0c)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a97747fd5358ea8d969c9d23786da3c0c"></a>
+#### `public inline FORCEINLINE int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a0a28461895529721282b853cc6af7e45)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a0a28461895529721282b853cc6af7e45"></a>
 
 Gets the value of DurationSeconds_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a051901a01a5508ea6d640a1de99eecc9)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a051901a01a5508ea6d640a1de99eecc9"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a1acd7f83f17e7ec297fb7fc93f2d3752)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a1acd7f83f17e7ec297fb7fc93f2d3752"></a>
 
 Gets the value of DurationSeconds_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1aa2b4e98d5fa8f90a8371aafa6cfba3f1)`(const int32 & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa2b4e98d5fa8f90a8371aafa6cfba3f1"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a92cca9d8d7bc4fa2789cbae8b6352547)`(const int32 & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a92cca9d8d7bc4fa2789cbae8b6352547"></a>
 
 Gets the value of DurationSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a31f9fca187269d30efdae9b9fa60515d)`(int32 & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a31f9fca187269d30efdae9b9fa60515d"></a>
+#### `public inline FORCEINLINE bool `[`GetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a45b8c4a6581e2085e00f3c4173b9982e)`(int32 & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a45b8c4a6581e2085e00f3c4173b9982e"></a>
 
 Fills OutValue with the value of DurationSeconds_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a854d8c2075dca70b709661e53a5b6e75)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a854d8c2075dca70b709661e53a5b6e75"></a>
+#### `public inline FORCEINLINE int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a03eeaf1807f59e3f3a7bf4158f1c7b39)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a03eeaf1807f59e3f3a7bf4158f1c7b39"></a>
 
 Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8273fa300aa63248782a5d1e188528a2)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8273fa300aa63248782a5d1e188528a2"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae138be03bb61d9f977f295db175813e1)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae138be03bb61d9f977f295db175813e1"></a>
 
 Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1a88256b9fb921f8fd496f1c363df14158)`(const int32 & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a88256b9fb921f8fd496f1c363df14158"></a>
+#### `public inline FORCEINLINE void `[`SetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1aede9270227025bd1ab54e213e00e657e)`(const int32 & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aede9270227025bd1ab54e213e00e657e"></a>
 
 Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
 
-#### `public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1aa4b2c0af5e6fc3dd2d4c41df10846f35)`(int32 && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa4b2c0af5e6fc3dd2d4c41df10846f35"></a>
+#### `public inline FORCEINLINE void `[`SetDurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1abc96572a1b4de978331e5fa3982a6352)`(int32 && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1abc96572a1b4de978331e5fa3982a6352"></a>
 
 Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics.
 
@@ -530,55 +502,47 @@ Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet t
 
 Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false.
 
-#### `public inline bool `[`IsDurationSecondsSet`](#structFRHAPI__MatchSegmentPatchRequest_1afde6849fbeb7ef3718032422404bc4db)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1afde6849fbeb7ef3718032422404bc4db"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_DurationSeconds`](#structFRHAPI__MatchSegmentPatchRequest_1aadade4f3f1921e4f4bd1214c849930e4)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1aadade4f3f1921e4f4bd1214c849930e4"></a>
 
-Checks whether DurationSeconds_Optional has been set.
+Returns the default value of DurationSeconds.
 
-#### `public inline bool `[`IsDurationSecondsDefaultValue`](#structFRHAPI__MatchSegmentPatchRequest_1a10447ebcc9952e9d866c0b7ef034cee5)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a10447ebcc9952e9d866c0b7ef034cee5"></a>
-
-Returns true if DurationSeconds_Optional is set and matches the default value.
-
-#### `public inline void `[`SetDurationSecondsToDefault`](#structFRHAPI__MatchSegmentPatchRequest_1aace6b71ff12ec5ad607995be1b9418b8)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1aace6b71ff12ec5ad607995be1b9418b8"></a>
-
-Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
-
-#### `public inline void `[`SetDurationSecondsToNull`](#structFRHAPI__MatchSegmentPatchRequest_1afb56762cd351d9ba0dbbad12bbc66808)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1afb56762cd351d9ba0dbbad12bbc66808"></a>
+#### `public inline FORCEINLINE void `[`SetDurationSecondsToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a0d0b969d638802df6d5c08211180a609)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a0d0b969d638802df6d5c08211180a609"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsDurationSecondsNull`](#structFRHAPI__MatchSegmentPatchRequest_1ad37876d96a5400e7d50c4155b315847e)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ad37876d96a5400e7d50c4155b315847e"></a>
+#### `public inline FORCEINLINE bool `[`IsDurationSecondsNull`](#structFRHAPI__MatchSegmentPatchRequest_1a76b7779e5c9cbcd0352c099dbe5525f6)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a76b7779e5c9cbcd0352c099dbe5525f6"></a>
 
 Checks whether DurationSeconds_Optional is set to null.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a8abe8313a137d929f7f67910c1d13390)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8abe8313a137d929f7f67910c1d13390"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a33807577892260cf754b65789b0b914f)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a33807577892260cf754b65789b0b914f"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1ac38a83d3bcc0cc17cc8bd9f8f4649c45)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ac38a83d3bcc0cc17cc8bd9f8f4649c45"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1ae61b2aab02a148b2330ed8e6fc02c962)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae61b2aab02a148b2330ed8e6fc02c962"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a65801da7f911b9bcaf115976af26d56a)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a65801da7f911b9bcaf115976af26d56a"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a3f72bca573dcbc5c077f48046cad7a4c)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a3f72bca573dcbc5c077f48046cad7a4c"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1aeba6fdeb43df9a7fe5549d2cf3b349fb)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aeba6fdeb43df9a7fe5549d2cf3b349fb"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a94b516afc6b81a0cd86edac2f4316335)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a94b516afc6b81a0cd86edac2f4316335"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa1b60cf9201144c6cddd614b5132f64c)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa1b60cf9201144c6cddd614b5132f64c"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a18baf0a72ee7cbb3a0cd9f7d4be3b32b)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a18baf0a72ee7cbb3a0cd9f7d4be3b32b"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a00e8946d52c249fdd50a1529ec98bfa5)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a00e8946d52c249fdd50a1529ec98bfa5"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a349c43bbfe735fdeb85c1ce46956c2ba)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a349c43bbfe735fdeb85c1ce46956c2ba"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a7547f588fe01b61bbf3a023b1dd3b4b9)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a7547f588fe01b61bbf3a023b1dd3b4b9"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1a2a1455d42cafb769941f1d8323cdc015)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a2a1455d42cafb769941f1d8323cdc015"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1aac05425ad2b6a2a438d92d49490d0f97)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aac05425ad2b6a2a438d92d49490d0f97"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchSegmentPatchRequest_1ad0c510c403ad908e673b65adc13c0448)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1ad0c510c403ad908e673b65adc13c0448"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -586,47 +550,43 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchSegmentPatchRequest_1a3756fcf179c28abf21c11f5ac973d786)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a3756fcf179c28abf21c11f5ac973d786"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline void `[`SetCustomDataToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a6290d9cd5fb226f8e1291a48c369603b)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a6290d9cd5fb226f8e1291a48c369603b"></a>
+#### `public inline FORCEINLINE void `[`SetCustomDataToNull`](#structFRHAPI__MatchSegmentPatchRequest_1a9704eb699f5cd17c06d8993c19bb0ea3)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a9704eb699f5cd17c06d8993c19bb0ea3"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCustomDataNull`](#structFRHAPI__MatchSegmentPatchRequest_1a56ec9a60a10c87a8913b6049ce2d5877)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a56ec9a60a10c87a8913b6049ce2d5877"></a>
+#### `public inline FORCEINLINE bool `[`IsCustomDataNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae3a43c7a90a8bf9fe16f217b6bf441bb)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae3a43c7a90a8bf9fe16f217b6bf441bb"></a>
 
 Checks whether CustomData_Optional is set to null.
 
-#### `public inline FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a886617227dc5f4f023742efafd0a533d)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a886617227dc5f4f023742efafd0a533d"></a>
+#### `public inline FORCEINLINE FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1af2f6493e4b38f2c3fe4b57abcf03d705)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1af2f6493e4b38f2c3fe4b57abcf03d705"></a>
 
 Gets the value of CorrelationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a92dfc5b6f31a34bfe95f0f98af137425)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a92dfc5b6f31a34bfe95f0f98af137425"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1aeacb9da09c61495f53e0e6fc96f81b92)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aeacb9da09c61495f53e0e6fc96f81b92"></a>
 
 Gets the value of CorrelationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1aaddc26c2aba81d35587734bd073cff18)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aaddc26c2aba81d35587734bd073cff18"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a2de02821c2339793cb7d3c2fdbe87b93)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a2de02821c2339793cb7d3c2fdbe87b93"></a>
 
 Gets the value of CorrelationId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a0526fb9e70b92bbfc276a94a63997c79)`(FString & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a0526fb9e70b92bbfc276a94a63997c79"></a>
+#### `public inline FORCEINLINE bool `[`GetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a4cc85675fbe41c6d4102ddbd12bfc4b7)`(FString & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a4cc85675fbe41c6d4102ddbd12bfc4b7"></a>
 
 Fills OutValue with the value of CorrelationId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a0b1efd0b5f41c858f7978900be8085fc)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a0b1efd0b5f41c858f7978900be8085fc"></a>
+#### `public inline FORCEINLINE FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a1e3a652fc5b0290b0e5c7c5acf47622f)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a1e3a652fc5b0290b0e5c7c5acf47622f"></a>
 
 Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1adc70c193891b535d2899fb76cc5dfbdf)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1adc70c193891b535d2899fb76cc5dfbdf"></a>
+#### `public inline FORCEINLINE const FString * `[`GetCorrelationIdOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a9e5216a7e008e16405c92b2d06181fcd)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a9e5216a7e008e16405c92b2d06181fcd"></a>
 
 Returns a pointer to CorrelationId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a563179f74cdcb6a4e946e1fb9a87a353)`(const FString & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a563179f74cdcb6a4e946e1fb9a87a353"></a>
+#### `public inline FORCEINLINE void `[`SetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1ada1b1682ceb35047012b3d18ab10c032)`(const FString & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1ada1b1682ceb35047012b3d18ab10c032"></a>
 
 Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true.
 
-#### `public inline void `[`SetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1a536d0c1dbca8b2ff899451dbf1595f89)`(FString && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a536d0c1dbca8b2ff899451dbf1595f89"></a>
+#### `public inline FORCEINLINE void `[`SetCorrelationId`](#structFRHAPI__MatchSegmentPatchRequest_1ae66ac0f16ad3207d6d0c19077b95d22c)`(FString && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae66ac0f16ad3207d6d0c19077b95d22c"></a>
 
 Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to true using move semantics.
 
@@ -634,47 +594,43 @@ Sets the value of CorrelationId_Optional and also sets CorrelationId_IsSet to tr
 
 Clears the value of CorrelationId_Optional and sets CorrelationId_IsSet to false.
 
-#### `public inline bool `[`IsCorrelationIdSet`](#structFRHAPI__MatchSegmentPatchRequest_1ab702e1f8fee55224694054558e456ce4)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ab702e1f8fee55224694054558e456ce4"></a>
-
-Checks whether CorrelationId_Optional has been set.
-
-#### `public inline void `[`SetCorrelationIdToNull`](#structFRHAPI__MatchSegmentPatchRequest_1adca98e397c80ed70887439c07eb6d07b)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1adca98e397c80ed70887439c07eb6d07b"></a>
+#### `public inline FORCEINLINE void `[`SetCorrelationIdToNull`](#structFRHAPI__MatchSegmentPatchRequest_1ac0e2a9fba85211f2e4a529d1d5bf9115)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1ac0e2a9fba85211f2e4a529d1d5bf9115"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCorrelationIdNull`](#structFRHAPI__MatchSegmentPatchRequest_1a67b1540c32943ebbba15845097070a14)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a67b1540c32943ebbba15845097070a14"></a>
+#### `public inline FORCEINLINE bool `[`IsCorrelationIdNull`](#structFRHAPI__MatchSegmentPatchRequest_1a7f6fdebee39f0190e1e0af7ab5d2471f)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a7f6fdebee39f0190e1e0af7ab5d2471f"></a>
 
 Checks whether CorrelationId_Optional is set to null.
 
-#### `public inline TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1aa4bc209fe684916ce9cbacdd70e60084)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa4bc209fe684916ce9cbacdd70e60084"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a7d6f7428c4d5036e238f502894cbb808)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a7d6f7428c4d5036e238f502894cbb808"></a>
 
 Gets the value of Sessions_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a932bf84e1e52cfe05a7cf08fe22dcf14)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a932bf84e1e52cfe05a7cf08fe22dcf14"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a18076dbc245467ba637fbf25c2f75584)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a18076dbc245467ba637fbf25c2f75584"></a>
 
 Gets the value of Sessions_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a9436bd604b9bd05b22e362033c1db152)`(const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a9436bd604b9bd05b22e362033c1db152"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a791e9377a3a61e9f9393116d890d634b)`(const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a791e9377a3a61e9f9393116d890d634b"></a>
 
 Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a4219b32b4b8c365cd5e06d9ffc1ddbd8)`(TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a4219b32b4b8c365cd5e06d9ffc1ddbd8"></a>
+#### `public inline FORCEINLINE bool `[`GetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a5618c1229d893496cedbb7eaf03a00ad)`(TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a5618c1229d893496cedbb7eaf03a00ad"></a>
 
 Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1af2daf49fb33891e78cb932f911a56a57)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1af2daf49fb33891e78cb932f911a56a57"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a97736bfd426a5de3fcd1be0279ded509)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a97736bfd426a5de3fcd1be0279ded509"></a>
 
 Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa31ce491aa8ceeced2dbad0662e3faf3)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa31ce491aa8ceeced2dbad0662e3faf3"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8baa4e331dc9d40ae6b2697e68c33f6f)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8baa4e331dc9d40ae6b2697e68c33f6f"></a>
 
 Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a048c5b90dc687d2963cc0a31734cd565)`(const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a048c5b90dc687d2963cc0a31734cd565"></a>
+#### `public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a6388e806a67d3bbc6a1886d9a5b68f69)`(const TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a6388e806a67d3bbc6a1886d9a5b68f69"></a>
 
 Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
 
-#### `public inline void `[`SetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1ae289593e2bfc8b0e600e38cde1676cd1)`(TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae289593e2bfc8b0e600e38cde1676cd1"></a>
+#### `public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__MatchSegmentPatchRequest_1a11b8be4983686f426892ecbd24ced36c)`(TArray< `[`FRHAPI_MatchSession`](RHAPI_MatchSession.md#structFRHAPI__MatchSession)` > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a11b8be4983686f426892ecbd24ced36c"></a>
 
 Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
 
@@ -682,39 +638,35 @@ Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using m
 
 Clears the value of Sessions_Optional and sets Sessions_IsSet to false.
 
-#### `public inline bool `[`IsSessionsSet`](#structFRHAPI__MatchSegmentPatchRequest_1ab18fb5b0aeabc465dea5a92660bf2bbb)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ab18fb5b0aeabc465dea5a92660bf2bbb"></a>
-
-Checks whether Sessions_Optional has been set.
-
-#### `public inline TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a3157d822c97ba17968d9a3bffc574204)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a3157d822c97ba17968d9a3bffc574204"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a97f7249472b42832e640d13302965198)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a97f7249472b42832e640d13302965198"></a>
 
 Gets the value of Instances_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a1855de1d8b4f7f2bd161e410c813800e)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a1855de1d8b4f7f2bd161e410c813800e"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a44e42ce08b222d64b8e562fdba635d03)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a44e42ce08b222d64b8e562fdba635d03"></a>
 
 Gets the value of Instances_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1ab966b26f82171c60b4a9d016b739bb49)`(const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ab966b26f82171c60b4a9d016b739bb49"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a777e51f16eb6bd3682eed3cbefd82881)`(const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a777e51f16eb6bd3682eed3cbefd82881"></a>
 
 Gets the value of Instances_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a64ab4a803005f5b55139979dc458efb5)`(TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a64ab4a803005f5b55139979dc458efb5"></a>
+#### `public inline FORCEINLINE bool `[`GetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1abe3c6830e02afd88392177960fe787a5)`(TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1abe3c6830e02afd88392177960fe787a5"></a>
 
 Fills OutValue with the value of Instances_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > * `[`GetInstancesOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1aa6f89aaba8c3195cbeff11582268dda4)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa6f89aaba8c3195cbeff11582268dda4"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > * `[`GetInstancesOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a2cf2e49d0550d715414c0871cde965aa)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a2cf2e49d0550d715414c0871cde965aa"></a>
 
 Returns a pointer to Instances_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > * `[`GetInstancesOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ab14ca0d894f9a2273de3617e71b7b7d3)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ab14ca0d894f9a2273de3617e71b7b7d3"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > * `[`GetInstancesOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a15321de22349b7779b9ba085afc1512e)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a15321de22349b7779b9ba085afc1512e"></a>
 
 Returns a pointer to Instances_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1afb9db2aa867feec089f1594331c0cd89)`(const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1afb9db2aa867feec089f1594331c0cd89"></a>
+#### `public inline FORCEINLINE void `[`SetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1af05da7b007bfadd0e62ff000b848f050)`(const TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1af05da7b007bfadd0e62ff000b848f050"></a>
 
 Sets the value of Instances_Optional and also sets Instances_IsSet to true.
 
-#### `public inline void `[`SetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1aaab510fc2844f54fbde1a03335cbf410)`(TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aaab510fc2844f54fbde1a03335cbf410"></a>
+#### `public inline FORCEINLINE void `[`SetInstances`](#structFRHAPI__MatchSegmentPatchRequest_1a54344101b04f2eb9cb8877b7b1cab3d0)`(TArray< `[`FRHAPI_MatchInstance`](RHAPI_MatchInstance.md#structFRHAPI__MatchInstance)` > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a54344101b04f2eb9cb8877b7b1cab3d0"></a>
 
 Sets the value of Instances_Optional and also sets Instances_IsSet to true using move semantics.
 
@@ -722,39 +674,35 @@ Sets the value of Instances_Optional and also sets Instances_IsSet to true using
 
 Clears the value of Instances_Optional and sets Instances_IsSet to false.
 
-#### `public inline bool `[`IsInstancesSet`](#structFRHAPI__MatchSegmentPatchRequest_1aa557d56417b85892b8fd41890409eab0)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa557d56417b85892b8fd41890409eab0"></a>
-
-Checks whether Instances_Optional has been set.
-
-#### `public inline TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1a98f79b9c43adc27371e4589b2b2a8498)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a98f79b9c43adc27371e4589b2b2a8498"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1ac5481cbd8594438d68584fc27b1de934)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1ac5481cbd8594438d68584fc27b1de934"></a>
 
 Gets the value of Allocations_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1a53a75566fbda8dff096f59fceb011b39)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a53a75566fbda8dff096f59fceb011b39"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1a903806d5a6428b5c83baa7d04ccf7d8b)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a903806d5a6428b5c83baa7d04ccf7d8b"></a>
 
 Gets the value of Allocations_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1aa8128929b4bab03ff46c2414303b038c)`(const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa8128929b4bab03ff46c2414303b038c"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1ac2b4d713e11c23ef1aa5fecc1654f8c1)`(const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ac2b4d713e11c23ef1aa5fecc1654f8c1"></a>
 
 Gets the value of Allocations_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1afcd5ad3a96affdc4bdce20aa8ad695d9)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1afcd5ad3a96affdc4bdce20aa8ad695d9"></a>
+#### `public inline FORCEINLINE bool `[`GetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1a8a47f5b392793ea5cff65424f2de0658)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8a47f5b392793ea5cff65424f2de0658"></a>
 
 Fills OutValue with the value of Allocations_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a254648864c0534b67cb2ea6407ee738e)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a254648864c0534b67cb2ea6407ee738e"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a77e88d9c9990be87895d9f3a3d20a578)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a77e88d9c9990be87895d9f3a3d20a578"></a>
 
 Returns a pointer to Allocations_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a82c3fe2ff5b07eacfa11770334a96467)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a82c3fe2ff5b07eacfa11770334a96467"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > * `[`GetAllocationsOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a5a30da9a6169272dfcba26c81f9438cb)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a5a30da9a6169272dfcba26c81f9438cb"></a>
 
 Returns a pointer to Allocations_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1ae541f5845e7250ed45490eb841c70a34)`(const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae541f5845e7250ed45490eb841c70a34"></a>
+#### `public inline FORCEINLINE void `[`SetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1acc08cb59c13c8eb1f9296aebce275498)`(const TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1acc08cb59c13c8eb1f9296aebce275498"></a>
 
 Sets the value of Allocations_Optional and also sets Allocations_IsSet to true.
 
-#### `public inline void `[`SetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1aea04326119f040c7ec4886227d695c51)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aea04326119f040c7ec4886227d695c51"></a>
+#### `public inline FORCEINLINE void `[`SetAllocations`](#structFRHAPI__MatchSegmentPatchRequest_1aeddecf3e7c5b4f64289aa8878b53e6cf)`(TArray< `[`FRHAPI_MatchAllocation`](RHAPI_MatchAllocation.md#structFRHAPI__MatchAllocation)` > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1aeddecf3e7c5b4f64289aa8878b53e6cf"></a>
 
 Sets the value of Allocations_Optional and also sets Allocations_IsSet to true using move semantics.
 
@@ -762,47 +710,39 @@ Sets the value of Allocations_Optional and also sets Allocations_IsSet to true u
 
 Clears the value of Allocations_Optional and sets Allocations_IsSet to false.
 
-#### `public inline bool `[`IsAllocationsSet`](#structFRHAPI__MatchSegmentPatchRequest_1abaa0a53f4ae45a059e63410fc1ef6685)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1abaa0a53f4ae45a059e63410fc1ef6685"></a>
-
-Checks whether Allocations_Optional has been set.
-
-#### `public inline TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a86d5ba1df051ccecfe17d02ed07a41ac)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a86d5ba1df051ccecfe17d02ed07a41ac"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1af2439010657ad9bf4db79fea1d1d182d)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1af2439010657ad9bf4db79fea1d1d182d"></a>
 
 Gets the value of Players_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a8387d7348c660eafdd1c171cb4b9bc19)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8387d7348c660eafdd1c171cb4b9bc19"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a055cec6357df08595f5fb73a2f63f3fb)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a055cec6357df08595f5fb73a2f63f3fb"></a>
 
 Gets the value of Players_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a988bac85e82d2643fda359a48e47face)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a988bac85e82d2643fda359a48e47face"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a761cbab71102f4563e50acdb346e4a01)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & DefaultValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a761cbab71102f4563e50acdb346e4a01"></a>
 
 Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1ad4a4346778da157c5fd68b59e83b5bd2)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ad4a4346778da157c5fd68b59e83b5bd2"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a617e7f376a27804913c41c36a7deb7c5)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & OutValue) const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a617e7f376a27804913c41c36a7deb7c5"></a>
 
 Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae203dfe285cdcb9111df04ac9000e608)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae203dfe285cdcb9111df04ac9000e608"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a8ed20484b2f65f9aa77fbfd76169ba51)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1a8ed20484b2f65f9aa77fbfd76169ba51"></a>
 
 Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1a411dfdf8141afd5a95f7b5148544ff31)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a411dfdf8141afd5a95f7b5148544ff31"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > * `[`GetPlayersOrNull`](#structFRHAPI__MatchSegmentPatchRequest_1ae0ee6280cfe11e9b8ce581cb911af4e4)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae0ee6280cfe11e9b8ce581cb911af4e4"></a>
 
 Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1ae9812ba4dd7668bef9cb27f144d41ec6)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1ae9812ba4dd7668bef9cb27f144d41ec6"></a>
+#### `public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1ab431042524a4da844d541ffb8ee81baa)`(const TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > & NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1ab431042524a4da844d541ffb8ee81baa"></a>
 
 Sets the value of Players_Optional and also sets Players_IsSet to true.
 
-#### `public inline void `[`SetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1a4e7046c9333bc259337fc65c0323839f)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1a4e7046c9333bc259337fc65c0323839f"></a>
+#### `public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1af34680728d0e46a1db3e0b494d062a5d)`(TArray< `[`FRHAPI_MatchPlayerRequest`](RHAPI_MatchPlayerRequest.md#structFRHAPI__MatchPlayerRequest)` > && NewValue)` <a id="structFRHAPI__MatchSegmentPatchRequest_1af34680728d0e46a1db3e0b494d062a5d"></a>
 
 Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlayers`](#structFRHAPI__MatchSegmentPatchRequest_1aa6a63dd8627e54f28f49d00dbee501b8)`()` <a id="structFRHAPI__MatchSegmentPatchRequest_1aa6a63dd8627e54f28f49d00dbee501b8"></a>
 
 Clears the value of Players_Optional and sets Players_IsSet to false.
-
-#### `public inline bool `[`IsPlayersSet`](#structFRHAPI__MatchSegmentPatchRequest_1a9c4d82b78ab45b3f6f8ea37934fd01ef)`() const` <a id="structFRHAPI__MatchSegmentPatchRequest_1a9c4d82b78ab45b3f6f8ea37934fd01ef"></a>
-
-Checks whether Players_Optional has been set.
 

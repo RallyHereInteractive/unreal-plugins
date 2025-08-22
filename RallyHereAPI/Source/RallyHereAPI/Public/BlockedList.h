@@ -44,35 +44,35 @@ struct RALLYHEREAPI_API FRHAPI_BlockedList : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_BlockedPlayer> Blocked{  };
 	/** @brief Gets the value of Blocked */
-	TArray<FRHAPI_BlockedPlayer>& GetBlocked() { return Blocked; }
+	FORCEINLINE TArray<FRHAPI_BlockedPlayer>& GetBlocked() { return Blocked; }
 	/** @brief Gets the value of Blocked */
-	const TArray<FRHAPI_BlockedPlayer>& GetBlocked() const { return Blocked; }
+	FORCEINLINE const TArray<FRHAPI_BlockedPlayer>& GetBlocked() const { return Blocked; }
 	/** @brief Sets the value of Blocked */
-	void SetBlocked(const TArray<FRHAPI_BlockedPlayer>& NewValue) { Blocked = NewValue;   }
+	FORCEINLINE void SetBlocked(const TArray<FRHAPI_BlockedPlayer>& NewValue) { Blocked = NewValue;   }
 	/** @brief Sets the value of Blocked using move semantics */
-	void SetBlocked(TArray<FRHAPI_BlockedPlayer>&& NewValue) { Blocked = NewValue;   }
+	FORCEINLINE void SetBlocked(TArray<FRHAPI_BlockedPlayer>&& NewValue) { Blocked = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PageMeta Page{  };
 	/** @brief Gets the value of Page */
-	FRHAPI_PageMeta& GetPage() { return Page; }
+	FORCEINLINE FRHAPI_PageMeta& GetPage() { return Page; }
 	/** @brief Gets the value of Page */
-	const FRHAPI_PageMeta& GetPage() const { return Page; }
+	FORCEINLINE const FRHAPI_PageMeta& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(const FRHAPI_PageMeta& NewValue) { Page = NewValue;   }
+	FORCEINLINE void SetPage(const FRHAPI_PageMeta& NewValue) { Page = NewValue;   }
 	/** @brief Sets the value of Page using move semantics */
-	void SetPage(FRHAPI_PageMeta&& NewValue) { Page = NewValue;   }
+	FORCEINLINE void SetPage(FRHAPI_PageMeta&& NewValue) { Page = NewValue;   }
 };
 
 /** @} */

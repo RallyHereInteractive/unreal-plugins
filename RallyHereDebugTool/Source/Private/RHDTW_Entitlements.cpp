@@ -135,20 +135,23 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 		if (ImGui::CollapsingHeader(TCHAR_TO_UTF8(*label)))
 		{
 			ImGui::Text("Status : %s", TCHAR_TO_UTF8(*result.Status_Optional));
+			ImGui::Text("ErrorCode : %s", TCHAR_TO_UTF8(*result.ErrorCode_Optional));
 			ImGuiDisplayCopyableValue(TEXT("Request ID"), result.RequestId);
 			ImGui::Text("Platform ID : %s", TCHAR_TO_UTF8(*EnumToString(result.PlatformId)));
 			ImGuiDisplayCopyableValue(TEXT("Platform User ID"), result.PlatformUserId);
 			ImGui::Text("Client Type : %s", TCHAR_TO_UTF8(*EnumToString(result.ClientType)));
 			ImGui::Text("Platform Region : %s", TCHAR_TO_UTF8(*EnumToString(result.PlatformRegion)));
 			ImGuiDisplayCopyableValue(TEXT("Transaction ID"), result.TransactionId);
+			ImGui::Text("Skipped Server Entitlements: %s", TCHAR_TO_UTF8(result.GetSkippedServerEntitlements() ? TEXT("Yes") : TEXT("No")));
 
 			ImGui::Separator();
 
-			if (ImGui::BeginTable("EntitlementsTable", 5, RH_TableFlagsPropSizing))
+			if (ImGui::BeginTable("EntitlementsTable", 6, RH_TableFlagsPropSizing))
 			{
 				// Header
 				ImGui::TableSetupColumn("Authority");
 				ImGui::TableSetupColumn("SKU");
+				ImGui::TableSetupColumn("Quantity");
 				ImGui::TableSetupColumn("Unique ID");
 				ImGui::TableSetupColumn("Status");
 				ImGui::TableSetupColumn("Error Code");
@@ -164,11 +167,12 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 					ImGui::TableNextColumn();
 					ImGuiDisplayCopyableValue(TEXT("SKU"), entitlement.PlatformSku, ECopyMode::Value);
 					ImGui::TableNextColumn();
+					ImGuiDisplayCopyableValue(TEXT("Quantity"), entitlement.GetQuantity(), ECopyMode::Value);
+					ImGui::TableNextColumn();
 					ImGuiDisplayCopyableValue(TEXT("PlatformEntitlementId"), entitlement.PlatformEntitlementId, ECopyMode::Value);
 					ImGui::TableNextColumn();
 					ImGuiDisplayCopyableEnumValue(TEXT("Status"), entitlement.GetStatus(), ECopyMode::Value);
 					ImGui::TableNextColumn();
-					// use raw value for error code, so it is easier to look up
 					ImGuiDisplayCopyableValue(TEXT("ErrorCode"), entitlement.GetErrorCode(), ECopyMode::Value);
 				}
 				for (FRHAPI_PlatformEntitlement entitlement : result.GetClientEntitlements())
@@ -180,11 +184,12 @@ void FRHDTW_Entitlements::DoEntitlementsTab()
 					ImGui::TableNextColumn();
 					ImGuiDisplayCopyableValue(TEXT("SKU"), entitlement.PlatformSku, ECopyMode::Value);
 					ImGui::TableNextColumn();
+					ImGuiDisplayCopyableValue(TEXT("Quantity"), entitlement.GetQuantity(), ECopyMode::Value);
+					ImGui::TableNextColumn();
 					ImGuiDisplayCopyableValue(TEXT("PlatformEntitlementId"), entitlement.PlatformEntitlementId, ECopyMode::Value);
 					ImGui::TableNextColumn();
 					ImGuiDisplayCopyableEnumValue(TEXT("Status"), entitlement.GetStatus(), ECopyMode::Value);
 					ImGui::TableNextColumn();
-					// use raw value for error code, so it is easier to look up
 					ImGuiDisplayCopyableValue(TEXT("ErrorCode"), entitlement.GetErrorCode(), ECopyMode::Value);
 				}
 

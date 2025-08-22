@@ -140,7 +140,7 @@ void FRHDTW_Guide::DoGuideEngagement()
 	{
 		if (URH_PlayerInfo* ActivePlayerInfo = pOwner->GetFirstSelectedPlayerInfo())
 		{
-			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphens)));
+			ImGui::Text("For first selected player with UUID %s", TCHAR_TO_UTF8(*ActivePlayerInfo->GetRHPlayerUuid().ToString(EGuidFormats::DigitsWithHyphensLower)));
 			pURH_PlayerGuideEngagement  = ActivePlayerInfo->GetGuideEngagement();
 		}
 	}

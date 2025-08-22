@@ -15,6 +15,7 @@
 #include "RH_PlayerInfoSubsystem.h"
 #include "RH_GameInstanceSubsystem.h"
 #include "RH_GameInstanceSessionSubsystem.h"
+#include "RH_GameInstanceBootstrappers.h"
 
 // needed for offline sessions to mimic some API behavior
 #include "RH_LocalPlayerSubsystem.h"
@@ -277,11 +278,12 @@ void URH_SessionView::PollForUpdate(const FRH_PollCompleteFunc& Delegate)
 			Delegate.ExecuteIfBound(bSuccess, true);
 
 			// notify any waiting polls that we are done, and clear the list
-			for (auto& Poll : WaitingPolls)
+			auto PollList = WaitingPolls;
+			WaitingPolls.Reset();
+			for (auto& Poll : PollList)
 			{
 				Poll.TriggerDelegates(bSuccess, false, ErrorInfo);
 			}
-			WaitingPolls.Empty();
 
 			// any deferred polls with a matching etag can also be notified and cleared
 			// this allows modifications and notifications to race to add the poll request, but avoid polling a second time if one arrives while other's poll is already running
@@ -640,6 +642,70 @@ FRHAPI_InstanceInfoUpdate URH_JoinedSession::GetInstanceUpdateInfoDefaults() con
 	return Update;
 }
 
+//$$ DLF BEGIN - Added support for queueing up and combining multiple instance info updates
+void URH_JoinedSession::EnqueueUpdateInstanceInfo(const FRH_QueuedSessionInstanceInfoUpdateDelegateBlock& Delegate)
+{
+	if (!IsWaitingForUpdateInstanceInfoResponse())
+	{
+		Delegate.ExecuteIfBound(this);
+	}
+	else
+	{
+		QueuedSessionInstanceInfoUpdateDelegates.Add(Delegate);
+	}
+}
+
+void URH_JoinedSession::OnUpdateInstanceInfoComplete()
+{
+	if (QueuedSessionInstanceInfoUpdateDelegates.Num() > 0)
+	{
+		for (auto Delegate : QueuedSessionInstanceInfoUpdateDelegates)
+		{
+			Delegate.ExecuteIfBound(this);
+		}
+
+		QueuedSessionInstanceInfoUpdateDelegates.Empty();
+	}
+}
+
+FRHAPI_InstanceInfoUpdate& URH_JoinedSession::GetInstanceUpdateInfo()
+{
+	if (!PendingUpdate.Version_IsSet)
+	{
+		const auto* InstanceData = GetInstanceData();
+		if (InstanceData != nullptr)
+		{
+			if (InstanceData->GetAllocationId(PendingUpdate.GetAllocationId()))
+			{
+				PendingUpdate.AllocationId_IsSet = true;
+			}
+		}
+
+		PendingUpdate.SetVersion(GetClientVersionForSession());
+	}
+
+	if (!UpdateInstanceInfoTimerHandle.IsValid())
+	{
+		if (const URH_GameInstanceServerBootstrapper* pGISB = Cast<URH_GameInstanceServerBootstrapper>(GetSessionOwner().GetObject()))
+		{
+			if (const auto GameInstance = pGISB->GetWorld())
+			{
+				UpdateInstanceInfoTimerHandle = GameInstance->GetTimerManager().SetTimerForNextTick(FTimerDelegate::CreateWeakLambda(this, [this]()
+					{
+						UpdateInstanceInfoTimerHandle.Invalidate();
+						UpdateInstanceInfo(PendingUpdate);
+
+						TMap<FString, FString> CustomData = PendingUpdate.GetCustomData(TMap<FString, FString>());
+						PendingUpdate = FRHAPI_InstanceInfoUpdate();
+						PendingUpdate.SetCustomData(CustomData);
+					}));
+			}
+		}
+	}
+
+	return PendingUpdate;
+}
+//$$ DLF END - Added support for queueing up and combining multiple instance info updates
 
 AOnlineBeaconClient* URH_JoinedSession::CreateBeacon(ULocalPlayer* Player, TSubclassOf<AOnlineBeaconClient> BeaconClass, const FEncryptionData& EncryptionData)
 {
@@ -762,7 +828,7 @@ void URH_OfflineSession::InvitePlayer(const FGuid& PlayerId, int32 Team, const T
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
 }
 
-void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OfflineSession::KickPlayer(const FGuid& PlayerId, const FString& KickReason, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// currently not supported for offline sessions
 	Delegate.ExecuteIfBound(false, this, FRH_ErrorInfo());
@@ -1021,6 +1087,10 @@ void URH_OfflineSession::RequestInstance(const FRHAPI_InstanceRequest& InstanceR
 			{
 				Instance.SetInstanceId(*InstanceId);
 			}
+			else
+			{
+				Instance.SetInstanceId(FGuid::NewGuid().ToString(EGuidFormats::DigitsWithHyphensLower));
+			}
 			/* Type of the host */
 			Instance.SetHostType(ERHAPI_HostType::Player);
 			/* Player UUID of the host, if the host is not a dedicated server */
@@ -1092,6 +1162,13 @@ void URH_OfflineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle
 
 	// offline sessions do not support voip
 	Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), FRH_ErrorInfo());
+}
+void URH_OfflineSession::GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	// offline sessions do not support voip
+	Delegate.ExecuteIfBound(false, FRHAPI_EpicVoipCredentialsResponse(), FRH_ErrorInfo());
 }
 
 void URH_OfflineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& SessionInfoUpdate, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
@@ -1332,6 +1409,7 @@ void URH_OfflineSession::ImportSessionUpdateToAllPlayers(const FRH_APISessionWit
 URH_OnlineSession::URH_OnlineSession(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	bWaitingForUpdateInstanceInfoResponse = false; //$$ DLF - Added support for queueing up and combining multiple instance info updates
 }
 
 void URH_OnlineSession::ImportAPISession(const FRH_APISessionWithETag& newSessionData, const FRHAPI_SessionTemplate& newTemplate)
@@ -1358,7 +1436,7 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 	{
 		CreateParamsCopy.SetClientVersion(GetClientVersionForSession());
 	}
-	if (!CreateParamsCopy.ClientSettings.IsPlatformSet())
+	if (!CreateParamsCopy.ClientSettings.Platform_IsSet)
 	{
 		CreateParamsCopy.ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
 	}
@@ -1369,7 +1447,7 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 	if (CopyPlayerData)
 	{
 		// default to the leader if not otherwise specified
-		if (!CopyPlayerData->IsStatusSet())
+		if (!CopyPlayerData->Status_IsSet)
 		{
 			CopyPlayerData->SetStatus(ERHAPI_SessionPlayerStatus::Leader);
 		}
@@ -1377,7 +1455,7 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 		{
 			CopyPlayerData->SetClientVersion(GetClientVersionForSession());
 		}
-		if (!CopyPlayerData->ClientSettings.IsPlatformSet())
+		if (!CopyPlayerData->ClientSettings.Platform_IsSet)
 		{
 			CopyPlayerData->ClientSettings.SetPlatform(RH_GetPlatformFromOSSName(OSS ? OSS->GetSubsystemName() : NAME_None).Get(ERHAPI_Platform::Anon));
 		}
@@ -1385,6 +1463,18 @@ void URH_OnlineSession::CreateOrJoinByType(const FRHAPI_CreateOrJoinRequest& Cre
 	}
 
 	auto Helper = MakeShared<FRH_SessionCreateOrJoinByTypeHelper>(MakeWeakInterface(SessionOwner), CreateParamsCopy, Delegate, GetDefault<URH_IntegrationSettings>()->SessionJoinPriority);
+	Helper->Start();
+}
+
+void URH_OnlineSession::GenerateShortCode(const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+{
+	typedef RallyHereAPI::Traits_GenerateSessionShortCode BaseType;
+	auto SessionId = GetSessionId();
+	auto SessionOwner = GetSessionOwner();
+
+	UE_LOG(LogRHSession, Log, TEXT("[%s::%s] - %s"), ANSI_TO_TCHAR(__FUNCTION__), *BaseType::Name, *SessionId);
+
+	auto Helper = MakeShared<FRH_SessionGenerateShortCodeHelper>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionGenerateShortCodePriority);
 	Helper->Start();
 }
 
@@ -1454,7 +1544,7 @@ void URH_OnlineSession::InvitePlayer(const FGuid& PlayerUuid, int32 Team, const 
 	Helper->Start(Request);
 }
 
-void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
+void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FString& KickReason, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	// TODO - check that players is already in this session?
 
@@ -1466,6 +1556,10 @@ void URH_OnlineSession::KickPlayer(const FGuid& PlayerUuid, const FRH_OnSessionU
 	Request.AuthContext = SessionOwner->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
 	Request.PlayerUuid = PlayerUuid;
+	if (!KickReason.IsEmpty())
+	{
+		Request.Reason = KickReason;
+	}
 
 	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(SessionOwner), SessionId, Delegate, GetDefault<URH_IntegrationSettings>()->SessionKickPriority);
 	Helper->Start(Request);
@@ -1631,7 +1725,7 @@ void URH_OnlineSession::GenerateVoipLoginToken(const FRH_OnSessionGetVoipTokenDe
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	
-	typedef RallyHereAPI::Traits_GetVoipLoginToken BaseType;
+	typedef RallyHereAPI::Traits_GetVivoxLoginToken BaseType;
 	BaseType::Request Request;
 	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 	
@@ -1666,7 +1760,7 @@ void URH_OnlineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle 
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
-	typedef RallyHereAPI::Traits_GetVoipActionTokenMe BaseType;
+	typedef RallyHereAPI::Traits_GetVivoxActionTokenMe BaseType;
 	BaseType::Request Request;
 	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
@@ -1700,6 +1794,53 @@ void URH_OnlineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle 
 	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
+void URH_OnlineSession::GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate)
+{
+	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_GetEpicVoiceJoinTokenMe BaseType;
+	BaseType::Request Request;
+	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
+	Request.SessionId = GetSessionId();
+	Request.VoipSessionType = VoipSessionType;
+	
+	if(FModuleManager::Get().IsModuleLoaded("RallyHereIntegration"))
+	{
+		FString LastKnownIpAddr = FRallyHereIntegrationModule::Get().GetLastKnownIPAddress();
+		if (!LastKnownIpAddr.IsEmpty())
+		{
+			Request.XRhClientAddr = MoveTemp(LastKnownIpAddr);
+		}
+	}
+
+	struct FRH_EpicVoiceJoinTokenResponseContext
+	{
+		TOptional<FRHAPI_EpicVoipCredentialsResponse> Resp;
+	};
+	auto ResponseContext = MakeShared<FRH_EpicVoiceJoinTokenResponseContext>();
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate::CreateLambda([ResponseContext](const BaseType::Response& Resp)
+			{
+				ResponseContext->Resp = Resp.TryGetDefaultContentAsOptional();
+			}),
+		FRH_GenericSuccessWithErrorDelegate::CreateLambda([ResponseContext, Delegate](bool bSuccess, const FRH_ErrorInfo& ErrorInfo)
+			{
+				if (bSuccess)
+				{
+					Delegate.ExecuteIfBound(bSuccess, ResponseContext->Resp.GetValue(), ErrorInfo);
+				}
+				else
+				{
+					Delegate.ExecuteIfBound(false, FRHAPI_EpicVoipCredentialsResponse(), ErrorInfo);
+				}
+			}),
+		GetDefault<URH_IntegrationSettings>()->SessionVoipActionTokenPriority);
+
+	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
+}
+
+
 void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
 	typedef RallyHereAPI::Traits_UpdateSessionById BaseType;
@@ -1714,14 +1855,23 @@ void URH_OnlineSession::UpdateSessionInfo(const FRHAPI_SessionUpdate& Update, co
 
 void URH_OnlineSession::UpdateInstanceInfo(const FRHAPI_InstanceInfoUpdate& Update, const FRH_OnSessionUpdatedDelegateBlock& Delegate)
 {
+//$$ DLF BEGIN - Added support for queueing up and combining multiple instance info updates
+	bWaitingForUpdateInstanceInfoResponse = true;
+
 	typedef RallyHereAPI::Traits_UpdateInstanceInfo BaseType;
 	BaseType::Request Request;
 	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
 	Request.InstanceInfoUpdate = Update;
 
-	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), Delegate, GetDefault<URH_IntegrationSettings>()->SessionUpdateInstanceInfoPriority);
+	auto Helper = MakeShared<FRH_SessionRequestAndModifyHelper<BaseType>>(MakeWeakInterface(GetSessionOwner()), GetSessionId(), FRH_OnSessionUpdatedDelegate::CreateWeakLambda(this, [this, Delegate](bool bSuccess, URH_SessionView* SessionView, const FRH_ErrorInfo& ErrorInfo)
+		{
+			bWaitingForUpdateInstanceInfoResponse = false;
+			Delegate.ExecuteIfBound(bSuccess, SessionView, ErrorInfo);
+			OnUpdateInstanceInfoComplete();
+		}), GetDefault<URH_IntegrationSettings>()->SessionUpdateInstanceInfoPriority);
 	Helper->Start(Request);
+//$$ DLF END - Added support for queueing up and combining multiple instance info updates
 }
 
 void URH_OnlineSession::GivePlayerPermission(const FGuid& PlayerUuid, const ERHAPI_IntraSessionPermissions& Permission, const FRH_OnSessionUpdatedDelegateBlock& Delegate)

@@ -24,18 +24,17 @@ struct FRHAPI_PlatformEntitlementConnectionStatus
 `public bool `[`ErrorCode_IsNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1afe7812aa508fdbde844b6c394f9befb2) | true if ErrorCode_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a174896ae1530a5d34d23590a9798ec48)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a84fdd7d90a0624c115c3c49e532763b0)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a4fc19c1ccb8441a34b97966e8ee5909b)`()` | Gets the value of ErrorCode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1abccb6409eb1c5b578b6f609082db3b8f)`() const` | Gets the value of ErrorCode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a6544ebb22b6b95f729c5e437f0b85c8d)`(const FString & DefaultValue) const` | Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a3f9cbd5c7cfdc26fd1552be32de57bd9)`(FString & OutValue) const` | Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a3f1fdff1984bea859ecc74e4e295ebd5)`()` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a30d17007f38b1a54563399089244440b)`() const` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1ae8a18d6fc9311c81f08988e927e937fd)`(const FString & NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
-`public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1aa155b0d2524120e737b79aa94b2b2be5)`(FString && NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a7061b7feecf64c928dd83a75cd49336e)`()` | Gets the value of ErrorCode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a7e8c74be9d2ff137342766533610d836)`() const` | Gets the value of ErrorCode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1af17336b0eb2114a8c5aba071e8ec2c5a)`(const FString & DefaultValue) const` | Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a1b678f37a2df4852ed01786333b731c8)`(FString & OutValue) const` | Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1aa03c494bf7d91d236208c48eea5cd2f4)`()` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a72a47885a790543f580a93b4f0efda0e)`() const` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a39adf9b4fad2da8e5996d46e51fe088a)`(const FString & NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
+`public inline FORCEINLINE void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a43588c0ae0e7ced486c569f30a598ea7)`(FString && NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
 `public inline void `[`ClearErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1af7063855411d06bbbae9dc3153e006c2)`()` | Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
-`public inline bool `[`IsErrorCodeSet`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a64dfe96cfcb9acc8fae431539a954d3b)`() const` | Checks whether ErrorCode_Optional has been set.
-`public inline void `[`SetErrorCodeToNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1adc16d719e1ef7a260113e7109d76873b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsErrorCodeNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a5f48e194d3b91ef921e15328ea4b486c)`() const` | Checks whether ErrorCode_Optional is set to null.
+`public inline FORCEINLINE void `[`SetErrorCodeToNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a1eac8c1b09e6aa60037b8eaf1c5e44f6)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsErrorCodeNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a609e49351f355aa819fdc86752d229ab)`() const` | Checks whether ErrorCode_Optional is set to null.
 
 ### Members
 
@@ -66,35 +65,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a4fc19c1ccb8441a34b97966e8ee5909b)`()` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a4fc19c1ccb8441a34b97966e8ee5909b"></a>
+#### `public inline FORCEINLINE FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a7061b7feecf64c928dd83a75cd49336e)`()` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a7061b7feecf64c928dd83a75cd49336e"></a>
 
 Gets the value of ErrorCode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1abccb6409eb1c5b578b6f609082db3b8f)`() const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1abccb6409eb1c5b578b6f609082db3b8f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a7e8c74be9d2ff137342766533610d836)`() const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a7e8c74be9d2ff137342766533610d836"></a>
 
 Gets the value of ErrorCode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a6544ebb22b6b95f729c5e437f0b85c8d)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a6544ebb22b6b95f729c5e437f0b85c8d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1af17336b0eb2114a8c5aba071e8ec2c5a)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1af17336b0eb2114a8c5aba071e8ec2c5a"></a>
 
 Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a3f9cbd5c7cfdc26fd1552be32de57bd9)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a3f9cbd5c7cfdc26fd1552be32de57bd9"></a>
+#### `public inline FORCEINLINE bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a1b678f37a2df4852ed01786333b731c8)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a1b678f37a2df4852ed01786333b731c8"></a>
 
 Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a3f1fdff1984bea859ecc74e4e295ebd5)`()` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a3f1fdff1984bea859ecc74e4e295ebd5"></a>
+#### `public inline FORCEINLINE FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1aa03c494bf7d91d236208c48eea5cd2f4)`()` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1aa03c494bf7d91d236208c48eea5cd2f4"></a>
 
 Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a30d17007f38b1a54563399089244440b)`() const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a30d17007f38b1a54563399089244440b"></a>
+#### `public inline FORCEINLINE const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a72a47885a790543f580a93b4f0efda0e)`() const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a72a47885a790543f580a93b4f0efda0e"></a>
 
 Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1ae8a18d6fc9311c81f08988e927e937fd)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1ae8a18d6fc9311c81f08988e927e937fd"></a>
+#### `public inline FORCEINLINE void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a39adf9b4fad2da8e5996d46e51fe088a)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a39adf9b4fad2da8e5996d46e51fe088a"></a>
 
 Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
 
-#### `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1aa155b0d2524120e737b79aa94b2b2be5)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1aa155b0d2524120e737b79aa94b2b2be5"></a>
+#### `public inline FORCEINLINE void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a43588c0ae0e7ced486c569f30a598ea7)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a43588c0ae0e7ced486c569f30a598ea7"></a>
 
 Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
 
@@ -102,15 +101,11 @@ Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using
 
 Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
 
-#### `public inline bool `[`IsErrorCodeSet`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a64dfe96cfcb9acc8fae431539a954d3b)`() const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a64dfe96cfcb9acc8fae431539a954d3b"></a>
-
-Checks whether ErrorCode_Optional has been set.
-
-#### `public inline void `[`SetErrorCodeToNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1adc16d719e1ef7a260113e7109d76873b)`()` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1adc16d719e1ef7a260113e7109d76873b"></a>
+#### `public inline FORCEINLINE void `[`SetErrorCodeToNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a1eac8c1b09e6aa60037b8eaf1c5e44f6)`()` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a1eac8c1b09e6aa60037b8eaf1c5e44f6"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsErrorCodeNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a5f48e194d3b91ef921e15328ea4b486c)`() const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a5f48e194d3b91ef921e15328ea4b486c"></a>
+#### `public inline FORCEINLINE bool `[`IsErrorCodeNull`](#structFRHAPI__PlatformEntitlementConnectionStatus_1a609e49351f355aa819fdc86752d229ab)`() const` <a id="structFRHAPI__PlatformEntitlementConnectionStatus_1a609e49351f355aa819fdc86752d229ab"></a>
 
 Checks whether ErrorCode_Optional is set to null.
 

@@ -166,7 +166,7 @@ void FRHDTW_Purge::Do()
 		return;
 	}
 
-	ImGuiDisplayCopyableValue(TEXT("Person ID"), pRH_PurgeSubsystem->GetMyPurgeStatus().PersonId.ToString(EGuidFormats::DigitsWithHyphens));
+	ImGuiDisplayCopyableValue(TEXT("Person ID"), pRH_PurgeSubsystem->GetMyPurgeStatus().PersonId.ToString(EGuidFormats::DigitsWithHyphensLower));
 	ImGuiDisplayCopyableValue(TEXT("Status"), pRH_PurgeSubsystem->GetMyPurgeStatus().Status);
 	ImGuiDisplayCopyableValue(TEXT("Purge On"), pRH_PurgeSubsystem->GetMyPurgeStatus().PurgeOn.ToIso8601());
 	ImGuiDisplayCopyableValue(TEXT("Queued On"), pRH_PurgeSubsystem->GetMyPurgeStatus().CreatedOn.ToIso8601());

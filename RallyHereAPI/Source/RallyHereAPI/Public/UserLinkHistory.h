@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistory : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_UserLinkHistoryEntry> Entries{  };
 	/** @brief Gets the value of Entries */
-	TArray<FRHAPI_UserLinkHistoryEntry>& GetEntries() { return Entries; }
+	FORCEINLINE TArray<FRHAPI_UserLinkHistoryEntry>& GetEntries() { return Entries; }
 	/** @brief Gets the value of Entries */
-	const TArray<FRHAPI_UserLinkHistoryEntry>& GetEntries() const { return Entries; }
+	FORCEINLINE const TArray<FRHAPI_UserLinkHistoryEntry>& GetEntries() const { return Entries; }
 	/** @brief Sets the value of Entries */
-	void SetEntries(const TArray<FRHAPI_UserLinkHistoryEntry>& NewValue) { Entries = NewValue;   }
+	FORCEINLINE void SetEntries(const TArray<FRHAPI_UserLinkHistoryEntry>& NewValue) { Entries = NewValue;   }
 	/** @brief Sets the value of Entries using move semantics */
-	void SetEntries(TArray<FRHAPI_UserLinkHistoryEntry>&& NewValue) { Entries = NewValue;   }
+	FORCEINLINE void SetEntries(TArray<FRHAPI_UserLinkHistoryEntry>&& NewValue) { Entries = NewValue;   }
 
 	/** @brief Token to retrieve the next page of results */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -59,25 +59,23 @@ struct RALLYHEREAPI_API FRHAPI_UserLinkHistory : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ContinuationToken_IsSet{ false };
 	/** @brief Gets the value of ContinuationToken_Optional, regardless of it having been set */
-	FString& GetContinuationToken() { return ContinuationToken_Optional; }
+	FORCEINLINE FString& GetContinuationToken() { return ContinuationToken_Optional; }
 	/** @brief Gets the value of ContinuationToken_Optional, regardless of it having been set */
-	const FString& GetContinuationToken() const { return ContinuationToken_Optional; }
+	FORCEINLINE const FString& GetContinuationToken() const { return ContinuationToken_Optional; }
 	/** @brief Gets the value of ContinuationToken_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetContinuationToken(const FString& DefaultValue) const { if (ContinuationToken_IsSet) return ContinuationToken_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetContinuationToken(const FString& DefaultValue) const { if (ContinuationToken_IsSet) return ContinuationToken_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ContinuationToken_Optional and returns true if it has been set, otherwise returns false */
-	bool GetContinuationToken(FString& OutValue) const { if (ContinuationToken_IsSet) OutValue = ContinuationToken_Optional; return ContinuationToken_IsSet; }
+	FORCEINLINE bool GetContinuationToken(FString& OutValue) const { if (ContinuationToken_IsSet) OutValue = ContinuationToken_Optional; return ContinuationToken_IsSet; }
 	/** @brief Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetContinuationTokenOrNull() { if (ContinuationToken_IsSet) return (&ContinuationToken_Optional); return nullptr; }
+	FORCEINLINE FString* GetContinuationTokenOrNull() { if (ContinuationToken_IsSet) return (&ContinuationToken_Optional); return nullptr; }
 	/** @brief Returns a pointer to ContinuationToken_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetContinuationTokenOrNull() const { if (ContinuationToken_IsSet) return (&ContinuationToken_Optional); return nullptr; }
+	FORCEINLINE const FString* GetContinuationTokenOrNull() const { if (ContinuationToken_IsSet) return (&ContinuationToken_Optional); return nullptr; }
 	/** @brief Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true */
-	void SetContinuationToken(const FString& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true;  }
+	FORCEINLINE void SetContinuationToken(const FString& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true;  }
 	/** @brief Sets the value of ContinuationToken_Optional and also sets ContinuationToken_IsSet to true using move semantics */
-	void SetContinuationToken(FString&& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true;  }
+	FORCEINLINE void SetContinuationToken(FString&& NewValue) { ContinuationToken_Optional = NewValue; ContinuationToken_IsSet = true;  }
 	/** @brief Clears the value of ContinuationToken_Optional and sets ContinuationToken_IsSet to false */
 	void ClearContinuationToken() { ContinuationToken_IsSet = false;  }
-	/** @brief Checks whether ContinuationToken_Optional has been set */
-	bool IsContinuationTokenSet() const { return ContinuationToken_IsSet; }
 };
 
 /** @} */

@@ -24,10 +24,10 @@ Player that was recently played with.
 `public FGuid `[`PlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a37bcff1e77c0de2cb22ba028b3315e30) | Player UUID.
 `public virtual bool `[`FromJson`](#structFRHAPI__RecentlyPlayedPlayer_1a68d3fbe0c72231baee0fb426ab2ad2d7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__RecentlyPlayedPlayer_1a3e11ab63b833c40f14821b08053cbc7a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a51b325a04f28d829391e149960226a7f)`()` | Gets the value of PlayerUuid.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a17c45ee53a3fd7a7c5b38f381f812295)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a2c2f9f15308a0d53c8bba60a08d3a041)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a63b11755a9e13c988b5dec74bd81dbe3)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a395f9273ce1a6e5b49906cccc8762a9b)`()` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1aa38b71b8212c256605e9ade91a905237)`() const` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1ac85641e5e7bf731c0955b8cfd8af7743)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a6c853552caa8f5460f547018d2df624c)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 
 ### Members
 
@@ -52,19 +52,19 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a51b325a04f28d829391e149960226a7f)`()` <a id="structFRHAPI__RecentlyPlayedPlayer_1a51b325a04f28d829391e149960226a7f"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a395f9273ce1a6e5b49906cccc8762a9b)`()` <a id="structFRHAPI__RecentlyPlayedPlayer_1a395f9273ce1a6e5b49906cccc8762a9b"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a17c45ee53a3fd7a7c5b38f381f812295)`() const` <a id="structFRHAPI__RecentlyPlayedPlayer_1a17c45ee53a3fd7a7c5b38f381f812295"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1aa38b71b8212c256605e9ade91a905237)`() const` <a id="structFRHAPI__RecentlyPlayedPlayer_1aa38b71b8212c256605e9ade91a905237"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a2c2f9f15308a0d53c8bba60a08d3a041)`(const FGuid & NewValue)` <a id="structFRHAPI__RecentlyPlayedPlayer_1a2c2f9f15308a0d53c8bba60a08d3a041"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1ac85641e5e7bf731c0955b8cfd8af7743)`(const FGuid & NewValue)` <a id="structFRHAPI__RecentlyPlayedPlayer_1ac85641e5e7bf731c0955b8cfd8af7743"></a>
 
 Sets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a63b11755a9e13c988b5dec74bd81dbe3)`(FGuid && NewValue)` <a id="structFRHAPI__RecentlyPlayedPlayer_1a63b11755a9e13c988b5dec74bd81dbe3"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__RecentlyPlayedPlayer_1a6c853552caa8f5460f547018d2df624c)`(FGuid && NewValue)` <a id="structFRHAPI__RecentlyPlayedPlayer_1a6c853552caa8f5460f547018d2df624c"></a>
 
 Sets the value of PlayerUuid using move semantics.
 

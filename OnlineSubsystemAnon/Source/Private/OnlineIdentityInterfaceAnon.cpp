@@ -113,6 +113,13 @@ bool FOnlineIdentityAnon::Logout(int32 LocalUserNum)
 
 bool FOnlineIdentityAnon::AutoLogin(int32 LocalUserNum)
 {
+	auto& hrUser = Users.FindOrAdd(LocalUserNum);
+	if (hrUser.GetLoginStatus() == ELoginStatus::LoggedIn)
+	{
+		TriggerOnLoginCompleteDelegates(LocalUserNum, true, *hrUser.Id, FString());
+		return true;
+	}
+	
     FString TypeStr, LoginStr, PasswordStr;
     FParse::Value(FCommandLine::Get(), TEXT("AUTH_TYPE="), TypeStr);
     FParse::Value(FCommandLine::Get(), TEXT("AUTH_LOGIN="), LoginStr);
@@ -230,7 +237,7 @@ void FOnlineIdentityAnon::GetUserPrivilege(const FUniqueNetId& UserId, EUserPriv
 #else
 void FOnlineIdentityAnon::GetUserPrivilege(const FUniqueNetId& UserId, EUserPrivileges::Type Privilege, const FOnGetUserPrivilegeCompleteDelegate& Delegate)
 {
-	Delegate.ExecuteIfBound(UserId, Privilege, (uint32)EPrivilegeResults::NoFailures);
+    Delegate.ExecuteIfBound(UserId, Privilege, (uint32)EPrivilegeResults::NoFailures);
 }
 #endif
 

@@ -9,6 +9,8 @@
 #include "RH_Properties.h"
 #include "RH_CatalogSubsystem.h"
 #include "RH_GameInstanceSessionSubsystem.h"
+#include "RH_EntitlementSubsystem.h"
+#include "RH_LocalPlayerSubsystem.h"
 #include "Misc/Optional.h"
 #include "RH_Polling.h"
 
@@ -418,6 +420,36 @@ public:
 	*/
 	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
 	TMap<FString, FString> CustomData;
+	/**
+	 * @brief For the CustomLoot fill type, what inventory will be selected for modification?
+	 */
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	ERHAPI_InventorySelector Selector;
+	/**
+	 * @brief For the CustomLoot fill type, what operation will be used to modify selected inventory?
+	 */
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	ERHAPI_InventoryOperation Operation;
+	/**
+	 * @brief For the CustomLoot fill type, how should the quantity be transformed?
+	 */
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	ERHAPI_XpQuantityTransform XpQuantityTransform;
+	/**
+	 * @brief For the CustomLoot fill type, what is the hard upper limit of the quantity (after all other calculations)?
+	 */
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	int32 HardQuantityMaximum;
+	/**
+	 * @brief For the CustomLoot fill type, what existing item id should the quantity be multiplied by?  (i.e. find all existing items the player owns of this item id and multiply that number by the quantity when calculating how much to grant)
+	 */
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	int32 QuantityMultInvItemId;
+	/**
+	 * @brief For the CustomLoot fill type, what time frame should be used? (only relevant for the RentTimeframeLocked selector)
+	 */
+	UPROPERTY(Transient, EditDefaultsOnly, Category = "Inventory Subsystem | Player Order Entry")
+	int32 TimeFrameId;
 };
 
 /**
@@ -749,6 +781,8 @@ public:
 	 */
 	void SetPlayerInfo(URH_PlayerInfo* InPlayerInfo) { PlayerInfo = InPlayerInfo; }
 
+	bool TryGetInventoryCount(const int32& ItemId, int32& OutCount) const;
+
 	/**
 	* @brief Gets the Players Inventory Count of the item for the connected platform, async pulls needed item data if it isn't already cached.
 	* @param [in] ItemId The id of the item requesting count of.
@@ -900,10 +934,12 @@ public:
 	* @param [in] ItemIds The Item Ids of inventory requested, if empty all inventory will be returned.
 	* @param [in] Delegate Callback delegate for getting the inventory.
 	*/
-	void GetInventory(TArray<int32> ItemIds = TArray<int32>(), const FRH_OnInventoryUpdateDelegateBlock& Delegate = FRH_OnInventoryUpdateDelegate());
+	void GetInventory(const FTimespan& StaleThresold = FTimespan(), bool bForce = false, TArray<int32> ItemIds = TArray<int32>(), const FRH_OnInventoryUpdateDelegateBlock& Delegate = FRH_OnInventoryUpdateDelegate());
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Inventory", AutoCreateRefTerm = "ItemIds,Delegate"))
-	void BLUEPRINT_GetInventory(TArray<int32> ItemIds, const FRH_OnInventoryUpdateDynamicDelegate& Delegate) { return GetInventory(ItemIds, Delegate); };
+	void BLUEPRINT_GetInventory(const FTimespan& StaleThresold, bool bForce, TArray<int32> ItemIds, const FRH_OnInventoryUpdateDynamicDelegate& Delegate) { return GetInventory(StaleThresold, bForce, ItemIds, Delegate); };
+	
+	bool IsAnyInventoryStale(const FTimespan& StaleThreshold) const;
 
 	/**
 	* @brief Creates an order for the player, used for purchasing and other loot related actions
@@ -1078,6 +1114,8 @@ public:
 	*/
 	void ParseOrderResult(const FRHAPI_PlayerOrder& Content);
 
+	bool HasRecievedPlayerInventory() const { return LastAnyInventoryTime.IsSet(); }
+
 	/**
 	* @brief Delegate to listen to changes to the players cached inventory.
 	*/
@@ -1119,6 +1157,9 @@ protected:
 	/** @brief Tracking of Pending Inventory Notifications. */
 	UPROPERTY(transient)
 	bool bReceivedPendingInventoryNotification;
+	/** @brief Flag that gets set to true if the player inventory has been successfully loaded. */
+	TOptional<FDateTime> LastAnyInventoryTime;
+
 	/** @brief Gets if the inventory should be polled due to an active watch. */
 	bool ShouldPollInventory() const
 	{
@@ -1265,6 +1306,16 @@ protected:
 	 * @brief Helper function to get Catalog Subsystem.
 	 */
 	URH_CatalogSubsystem* GetCatalogSubsystem() const;
+	/**
+	 * @brief Helper function to get Entitlement Subsystem.
+	 */
+	URH_EntitlementSubsystem* GetEntitlementSubsystem() const;
+	/**
+	 * @brief Helper function to get game instance
+	 */
+	UGameInstance* GetGameInstance() const;
+
+	void SendGamesightExternalPurchaseEvent(const FRHAPI_PlayerOrderEntry& Entry, TArray<FOnlineStoreOfferRef>& StoreOffers);
 
 	friend class URH_PlayerOrderWatch;
 };

@@ -35,66 +35,60 @@ A request body to update the instance resource in a session.
 `public bool `[`MatchId_IsSet`](#structFRHAPI__InstanceInfoUpdate_1a9c5ec15fbe8189b275753df72d85866e) | true if MatchId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InstanceInfoUpdate_1a893ac9eabb30b799bb1abccfb8701659)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceInfoUpdate_1a526a4fd1b4983e172afe49440e6b4c12)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a00bd0b771676b3ef884d048e911e7721)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a3966f1faa6f21f494190d909b02e7f4f)`() const` | Gets the value of AllocationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a090c9a74a28373a550f2061a3bc1ad82)`(const FString & DefaultValue) const` | Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a07994c6bfe221b0139396d35ea2524bd)`(FString & OutValue) const` | Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1acb6e7517aa419a05f843332b6da714a7)`()` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1aa58d18eacfa04836eb45e4f8a3634e23)`() const` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a6bf339e8d46f18ba5b673c2149884b3a)`(const FString & NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true.
-`public inline void `[`SetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a4e9eee588b6a2abe7f773f213fd9fd84)`(FString && NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a6497c0956fc25f8412692caae1fc7a7f)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a093fd5951a724cb7f5d6f3510a3cba9a)`() const` | Gets the value of AllocationId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1aa444f7153ce71610694716a93ef394b6)`(const FString & DefaultValue) const` | Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a1b44c9c6a3cedb978aeced7a01aee2e0)`(FString & OutValue) const` | Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1aa1fcf9dcbf854ae46a53e22d8b9b663a)`()` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1a62efd98bd731430e5558c81bef4aabac)`() const` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a1319c1e84b3e741ba2f4e89aa7c4f43b)`(const FString & NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true.
+`public inline FORCEINLINE void `[`SetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a54977cda32d44e36dbbd7ed32bb7bdd6)`(FString && NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics.
 `public inline void `[`ClearAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a1ce0fdb8b13b7f7419efa864dfa511fd)`()` | Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false.
-`public inline bool `[`IsAllocationIdSet`](#structFRHAPI__InstanceInfoUpdate_1a3bb6a09b8ee48d0013320d6715007e17)`() const` | Checks whether AllocationId_Optional has been set.
-`public inline ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a639400f06fde9fb3c5ae37a0fb2584d1)`()` | Gets the value of JoinStatus_Optional, regardless of it having been set.
-`public inline const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a9b8d901083c9a2dedfa7ae9d36cb56b6)`() const` | Gets the value of JoinStatus_Optional, regardless of it having been set.
-`public inline const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1afa89f1f8ec964fce2e750bf5ea6fb1f3)`(const ERHAPI_InstanceJoinableStatus & DefaultValue) const` | Gets the value of JoinStatus_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a5e50e7754bc22d5df480bd2a9f0ac069)`(ERHAPI_InstanceJoinableStatus & OutValue) const` | Fills OutValue with the value of JoinStatus_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__InstanceInfoUpdate_1a0c8cf95a17a13531523052659b57692e)`()` | Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__InstanceInfoUpdate_1a7039184bc722c194d36eb67f13c020c8)`() const` | Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a7ad8b9e903e89a95911cb669257f1508)`(const ERHAPI_InstanceJoinableStatus & NewValue)` | Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true.
-`public inline void `[`SetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1af0797adb7b7f53187e11fdc96c520a63)`(ERHAPI_InstanceJoinableStatus && NewValue)` | Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a388e7d7a6ea1be84fdf71fefa6bbe2e5)`()` | Gets the value of JoinStatus_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1abcc78efd4fd8b2b458814c6af2c18855)`() const` | Gets the value of JoinStatus_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a402e609430a39279e2f68477901c057f)`(const ERHAPI_InstanceJoinableStatus & DefaultValue) const` | Gets the value of JoinStatus_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1af5b23bfa6ad6b6be1b25c024699435ad)`(ERHAPI_InstanceJoinableStatus & OutValue) const` | Fills OutValue with the value of JoinStatus_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__InstanceInfoUpdate_1a9a016fd0bfef645fdfadabe49d11d91e)`()` | Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__InstanceInfoUpdate_1a1ecbafc84e2b1b7e6f14689e69760be9)`() const` | Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a73a899462240881b9903e9de59d32488)`(const ERHAPI_InstanceJoinableStatus & NewValue)` | Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true.
+`public inline FORCEINLINE void `[`SetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a4ecd64a5a318d0371a5c1783135c3bc4)`(ERHAPI_InstanceJoinableStatus && NewValue)` | Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics.
 `public inline void `[`ClearJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a08d153a486e719dd86f7272688d3fd6f)`()` | Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false.
-`public inline bool `[`IsJoinStatusSet`](#structFRHAPI__InstanceInfoUpdate_1aa46fb48ae3de3e833dff972643bf1d6c)`() const` | Checks whether JoinStatus_Optional has been set.
-`public inline `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1ae663c598fbc8efaecd829c234d731d0c)`()` | Gets the value of JoinParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1aec300579032d8ff5c356ae6c6214ef50)`() const` | Gets the value of JoinParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1aee503dc4ca3282c7c418c079b634b44c)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & DefaultValue) const` | Gets the value of JoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a466aafbad25fa684d1e299f58b1da2dc)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & OutValue) const` | Fills OutValue with the value of JoinParams_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__InstanceInfoUpdate_1abe4bc071d2a33669bc27135593fef17c)`()` | Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__InstanceInfoUpdate_1a695d676b4ca12e4d6782d2006addff89)`() const` | Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a552df2042d3519375ac9646bbe9cfac5)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & NewValue)` | Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true.
-`public inline void `[`SetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1af8e1688dffd0ac86b40af44dc2e2ff8b)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` && NewValue)` | Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a213731a8b889e66650918023aeba5e2d)`()` | Gets the value of JoinParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1ae3749b7b841720b35f936c5c18a922f6)`() const` | Gets the value of JoinParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a61a2e5a25a7c9139d2cb60ac4da605ac)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & DefaultValue) const` | Gets the value of JoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a2f619b4c11c76602329b544d9802bd9d)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & OutValue) const` | Fills OutValue with the value of JoinParams_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__InstanceInfoUpdate_1a5380e0a54eb8d7ce4229e20730595583)`()` | Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__InstanceInfoUpdate_1adf10677c7ff5ee03d8db11f80812f232)`() const` | Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a33e4059739ffa3c9ccbd1ef688f7954d)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & NewValue)` | Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true.
+`public inline FORCEINLINE void `[`SetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1ad1774f3320972a4d2a64b2502ebda040)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` && NewValue)` | Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics.
 `public inline void `[`ClearJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a8fb8d668734c8ac5966d242b3c45898d)`()` | Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false.
-`public inline bool `[`IsJoinParamsSet`](#structFRHAPI__InstanceInfoUpdate_1ae4050c037210ac88757b29fdb5b7c148)`() const` | Checks whether JoinParams_Optional has been set.
-`public inline FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1aed0062cd3418b2fef2326ae8c0acbd34)`()` | Gets the value of Version_Optional, regardless of it having been set.
-`public inline const FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a697bf1c9fca24ab28c3aaae64252ac27)`() const` | Gets the value of Version_Optional, regardless of it having been set.
-`public inline const FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a836c5d3a552f1e2419ed942889d41c27)`(const FString & DefaultValue) const` | Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1af28a6083f3cc2ad98e633593379626c1)`(FString & OutValue) const` | Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetVersionOrNull`](#structFRHAPI__InstanceInfoUpdate_1ab765888c656373b43190403c445cbb13)`()` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__InstanceInfoUpdate_1aea7bbdbebd60bbc061b7bb2cbc35e9eb)`() const` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetVersion`](#structFRHAPI__InstanceInfoUpdate_1af7185ee10727878518083ecbd1675725)`(const FString & NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true.
-`public inline void `[`SetVersion`](#structFRHAPI__InstanceInfoUpdate_1aabb7b0e54012006bdba72b04d637618a)`(FString && NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a8798f65b16fe47a751b74cb0d02ea029)`()` | Gets the value of Version_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a3c3014f00f9ecb46d4ec196fa0f1b198)`() const` | Gets the value of Version_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a58f1bee82f8bee6fd0f7f9135b5fb9a9)`(const FString & DefaultValue) const` | Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1ae6daedfb843675d900525fbcb468f945)`(FString & OutValue) const` | Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetVersionOrNull`](#structFRHAPI__InstanceInfoUpdate_1ad4e23bab35d82db92b983160b29beac5)`()` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetVersionOrNull`](#structFRHAPI__InstanceInfoUpdate_1a8808b0c90eee118116e3a0149107fefb)`() const` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetVersion`](#structFRHAPI__InstanceInfoUpdate_1ab960324a613170cfe011550913f9f7b9)`(const FString & NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true.
+`public inline FORCEINLINE void `[`SetVersion`](#structFRHAPI__InstanceInfoUpdate_1af126960e8035bbb10a6f08941722b6be)`(FString && NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
 `public inline void `[`ClearVersion`](#structFRHAPI__InstanceInfoUpdate_1a38e9c831413bc30e6d00a4c6ce9930e9)`()` | Clears the value of Version_Optional and sets Version_IsSet to false.
-`public inline bool `[`IsVersionSet`](#structFRHAPI__InstanceInfoUpdate_1a4134c681df96ccb0e80b485413931da5)`() const` | Checks whether Version_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a5d35f10c46eed6f12ae68264e59102dd)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1ad92f8d43f21557edc2c3a183c22cdddc)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a7c510aefcfa1d83ec2d2a3e7d3f0dfa9)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1af24b253e7a5c9609319c6bfd9e647e4e)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfoUpdate_1a62374b90442a6fbc13cf09f502688536)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfoUpdate_1a2b69989b86ad6050ed65a41a90ba7cde)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a33d87db27e9916c173599ecc165332f1)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a243f181f6c2bd769af1ef568ad1df916)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a6a773850b9d12663e1cfb03a67d75fc0)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1acc84a5abb6bfbc8cd3ae92be02ecbffb)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a1d58807211ee1fccb4c0d3d5b9a2bf92)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a62dd41d976494e2fd71b056d8d879f49)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfoUpdate_1aaccda437227e89e9a0dbdfdbc0ca7c46)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfoUpdate_1aeaeb0ebde7e19e3143d5e148a0f105fd)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1ab824e6b926e16bc3984cb2bb7c2fa32a)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a9a8375a22ae0bc76bb16245141f87ee9)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceInfoUpdate_1a9b87f305257195c6b1f5f2e407e94ff4)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__InstanceInfoUpdate_1afdbbaaff1ff3baad334a3ca549a2fb4b)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a657e7c6d174cfec2fdd460f78a604745)`()` | Gets the value of MatchId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a18d38f41304084d5018e67eadee2b6c1)`() const` | Gets the value of MatchId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a23f0723f1e80904f7c970667eead398b)`(const FString & DefaultValue) const` | Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a4b05bb7d21b15f726a913d8dc07f140f)`(FString & OutValue) const` | Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1a5eeb4e31747ce1d8a72da7832bf4f954)`()` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1ac6b344813ff8a3d813cf73737a478ac7)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMatchId`](#structFRHAPI__InstanceInfoUpdate_1aae4ccc6ab85ef352c42d01e09be0d53f)`(const FString & NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
-`public inline void `[`SetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a4bfe3531556bb8786cb2d4179bcc02fe)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1adc12280cf289c58feef18bbb46497837)`()` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a4136bfbba6067014ce4ff85dc45636ae)`() const` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a24e57a334d948cc72bb34db3c92f2e2d)`(const FString & DefaultValue) const` | Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a64fca92c152a74ffdc00e110b5a6f686)`(FString & OutValue) const` | Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1a82aca676f8af02774f6ea194c99c1907)`()` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1a0970fe86bc1f763a6c5ec3441a4d0d8b)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a90a62d9752dbd1ae9769a06a9f808b55)`(const FString & NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
+`public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a92edc9d3d46bd112a216f93f67d9b3ff)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchId`](#structFRHAPI__InstanceInfoUpdate_1a3c0613c760b638002bda9e24e1defc32)`()` | Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
-`public inline bool `[`IsMatchIdSet`](#structFRHAPI__InstanceInfoUpdate_1abaf0fe9c8d8f453698c3d1235e9e679f)`() const` | Checks whether MatchId_Optional has been set.
 
 ### Members
 
@@ -163,35 +157,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a00bd0b771676b3ef884d048e911e7721)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a00bd0b771676b3ef884d048e911e7721"></a>
+#### `public inline FORCEINLINE FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a6497c0956fc25f8412692caae1fc7a7f)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a6497c0956fc25f8412692caae1fc7a7f"></a>
 
 Gets the value of AllocationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a3966f1faa6f21f494190d909b02e7f4f)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a3966f1faa6f21f494190d909b02e7f4f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a093fd5951a724cb7f5d6f3510a3cba9a)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a093fd5951a724cb7f5d6f3510a3cba9a"></a>
 
 Gets the value of AllocationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a090c9a74a28373a550f2061a3bc1ad82)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a090c9a74a28373a550f2061a3bc1ad82"></a>
+#### `public inline FORCEINLINE const FString & `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1aa444f7153ce71610694716a93ef394b6)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1aa444f7153ce71610694716a93ef394b6"></a>
 
 Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a07994c6bfe221b0139396d35ea2524bd)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a07994c6bfe221b0139396d35ea2524bd"></a>
+#### `public inline FORCEINLINE bool `[`GetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a1b44c9c6a3cedb978aeced7a01aee2e0)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a1b44c9c6a3cedb978aeced7a01aee2e0"></a>
 
 Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1acb6e7517aa419a05f843332b6da714a7)`()` <a id="structFRHAPI__InstanceInfoUpdate_1acb6e7517aa419a05f843332b6da714a7"></a>
+#### `public inline FORCEINLINE FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1aa1fcf9dcbf854ae46a53e22d8b9b663a)`()` <a id="structFRHAPI__InstanceInfoUpdate_1aa1fcf9dcbf854ae46a53e22d8b9b663a"></a>
 
 Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1aa58d18eacfa04836eb45e4f8a3634e23)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1aa58d18eacfa04836eb45e4f8a3634e23"></a>
+#### `public inline FORCEINLINE const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1a62efd98bd731430e5558c81bef4aabac)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a62efd98bd731430e5558c81bef4aabac"></a>
 
 Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a6bf339e8d46f18ba5b673c2149884b3a)`(const FString & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a6bf339e8d46f18ba5b673c2149884b3a"></a>
+#### `public inline FORCEINLINE void `[`SetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a1319c1e84b3e741ba2f4e89aa7c4f43b)`(const FString & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a1319c1e84b3e741ba2f4e89aa7c4f43b"></a>
 
 Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true.
 
-#### `public inline void `[`SetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a4e9eee588b6a2abe7f773f213fd9fd84)`(FString && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a4e9eee588b6a2abe7f773f213fd9fd84"></a>
+#### `public inline FORCEINLINE void `[`SetAllocationId`](#structFRHAPI__InstanceInfoUpdate_1a54977cda32d44e36dbbd7ed32bb7bdd6)`(FString && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a54977cda32d44e36dbbd7ed32bb7bdd6"></a>
 
 Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics.
 
@@ -199,39 +193,35 @@ Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true
 
 Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false.
 
-#### `public inline bool `[`IsAllocationIdSet`](#structFRHAPI__InstanceInfoUpdate_1a3bb6a09b8ee48d0013320d6715007e17)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a3bb6a09b8ee48d0013320d6715007e17"></a>
-
-Checks whether AllocationId_Optional has been set.
-
-#### `public inline ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a639400f06fde9fb3c5ae37a0fb2584d1)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a639400f06fde9fb3c5ae37a0fb2584d1"></a>
+#### `public inline FORCEINLINE ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a388e7d7a6ea1be84fdf71fefa6bbe2e5)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a388e7d7a6ea1be84fdf71fefa6bbe2e5"></a>
 
 Gets the value of JoinStatus_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a9b8d901083c9a2dedfa7ae9d36cb56b6)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a9b8d901083c9a2dedfa7ae9d36cb56b6"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1abcc78efd4fd8b2b458814c6af2c18855)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1abcc78efd4fd8b2b458814c6af2c18855"></a>
 
 Gets the value of JoinStatus_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1afa89f1f8ec964fce2e750bf5ea6fb1f3)`(const ERHAPI_InstanceJoinableStatus & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1afa89f1f8ec964fce2e750bf5ea6fb1f3"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a402e609430a39279e2f68477901c057f)`(const ERHAPI_InstanceJoinableStatus & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a402e609430a39279e2f68477901c057f"></a>
 
 Gets the value of JoinStatus_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a5e50e7754bc22d5df480bd2a9f0ac069)`(ERHAPI_InstanceJoinableStatus & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a5e50e7754bc22d5df480bd2a9f0ac069"></a>
+#### `public inline FORCEINLINE bool `[`GetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1af5b23bfa6ad6b6be1b25c024699435ad)`(ERHAPI_InstanceJoinableStatus & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1af5b23bfa6ad6b6be1b25c024699435ad"></a>
 
 Fills OutValue with the value of JoinStatus_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__InstanceInfoUpdate_1a0c8cf95a17a13531523052659b57692e)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a0c8cf95a17a13531523052659b57692e"></a>
+#### `public inline FORCEINLINE ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__InstanceInfoUpdate_1a9a016fd0bfef645fdfadabe49d11d91e)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a9a016fd0bfef645fdfadabe49d11d91e"></a>
 
 Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__InstanceInfoUpdate_1a7039184bc722c194d36eb67f13c020c8)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a7039184bc722c194d36eb67f13c020c8"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__InstanceInfoUpdate_1a1ecbafc84e2b1b7e6f14689e69760be9)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a1ecbafc84e2b1b7e6f14689e69760be9"></a>
 
 Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a7ad8b9e903e89a95911cb669257f1508)`(const ERHAPI_InstanceJoinableStatus & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a7ad8b9e903e89a95911cb669257f1508"></a>
+#### `public inline FORCEINLINE void `[`SetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a73a899462240881b9903e9de59d32488)`(const ERHAPI_InstanceJoinableStatus & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a73a899462240881b9903e9de59d32488"></a>
 
 Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true.
 
-#### `public inline void `[`SetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1af0797adb7b7f53187e11fdc96c520a63)`(ERHAPI_InstanceJoinableStatus && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1af0797adb7b7f53187e11fdc96c520a63"></a>
+#### `public inline FORCEINLINE void `[`SetJoinStatus`](#structFRHAPI__InstanceInfoUpdate_1a4ecd64a5a318d0371a5c1783135c3bc4)`(ERHAPI_InstanceJoinableStatus && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a4ecd64a5a318d0371a5c1783135c3bc4"></a>
 
 Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics.
 
@@ -239,39 +229,35 @@ Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true usi
 
 Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false.
 
-#### `public inline bool `[`IsJoinStatusSet`](#structFRHAPI__InstanceInfoUpdate_1aa46fb48ae3de3e833dff972643bf1d6c)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1aa46fb48ae3de3e833dff972643bf1d6c"></a>
-
-Checks whether JoinStatus_Optional has been set.
-
-#### `public inline `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1ae663c598fbc8efaecd829c234d731d0c)`()` <a id="structFRHAPI__InstanceInfoUpdate_1ae663c598fbc8efaecd829c234d731d0c"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a213731a8b889e66650918023aeba5e2d)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a213731a8b889e66650918023aeba5e2d"></a>
 
 Gets the value of JoinParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1aec300579032d8ff5c356ae6c6214ef50)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1aec300579032d8ff5c356ae6c6214ef50"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1ae3749b7b841720b35f936c5c18a922f6)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1ae3749b7b841720b35f936c5c18a922f6"></a>
 
 Gets the value of JoinParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1aee503dc4ca3282c7c418c079b634b44c)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1aee503dc4ca3282c7c418c079b634b44c"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a61a2e5a25a7c9139d2cb60ac4da605ac)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a61a2e5a25a7c9139d2cb60ac4da605ac"></a>
 
 Gets the value of JoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a466aafbad25fa684d1e299f58b1da2dc)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a466aafbad25fa684d1e299f58b1da2dc"></a>
+#### `public inline FORCEINLINE bool `[`GetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a2f619b4c11c76602329b544d9802bd9d)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a2f619b4c11c76602329b544d9802bd9d"></a>
 
 Fills OutValue with the value of JoinParams_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__InstanceInfoUpdate_1abe4bc071d2a33669bc27135593fef17c)`()` <a id="structFRHAPI__InstanceInfoUpdate_1abe4bc071d2a33669bc27135593fef17c"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__InstanceInfoUpdate_1a5380e0a54eb8d7ce4229e20730595583)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a5380e0a54eb8d7ce4229e20730595583"></a>
 
 Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__InstanceInfoUpdate_1a695d676b4ca12e4d6782d2006addff89)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a695d676b4ca12e4d6782d2006addff89"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__InstanceInfoUpdate_1adf10677c7ff5ee03d8db11f80812f232)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1adf10677c7ff5ee03d8db11f80812f232"></a>
 
 Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a552df2042d3519375ac9646bbe9cfac5)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a552df2042d3519375ac9646bbe9cfac5"></a>
+#### `public inline FORCEINLINE void `[`SetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1a33e4059739ffa3c9ccbd1ef688f7954d)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a33e4059739ffa3c9ccbd1ef688f7954d"></a>
 
 Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true.
 
-#### `public inline void `[`SetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1af8e1688dffd0ac86b40af44dc2e2ff8b)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1af8e1688dffd0ac86b40af44dc2e2ff8b"></a>
+#### `public inline FORCEINLINE void `[`SetJoinParams`](#structFRHAPI__InstanceInfoUpdate_1ad1774f3320972a4d2a64b2502ebda040)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1ad1774f3320972a4d2a64b2502ebda040"></a>
 
 Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics.
 
@@ -279,39 +265,35 @@ Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true usi
 
 Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false.
 
-#### `public inline bool `[`IsJoinParamsSet`](#structFRHAPI__InstanceInfoUpdate_1ae4050c037210ac88757b29fdb5b7c148)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1ae4050c037210ac88757b29fdb5b7c148"></a>
-
-Checks whether JoinParams_Optional has been set.
-
-#### `public inline FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1aed0062cd3418b2fef2326ae8c0acbd34)`()` <a id="structFRHAPI__InstanceInfoUpdate_1aed0062cd3418b2fef2326ae8c0acbd34"></a>
+#### `public inline FORCEINLINE FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a8798f65b16fe47a751b74cb0d02ea029)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a8798f65b16fe47a751b74cb0d02ea029"></a>
 
 Gets the value of Version_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a697bf1c9fca24ab28c3aaae64252ac27)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a697bf1c9fca24ab28c3aaae64252ac27"></a>
+#### `public inline FORCEINLINE const FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a3c3014f00f9ecb46d4ec196fa0f1b198)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a3c3014f00f9ecb46d4ec196fa0f1b198"></a>
 
 Gets the value of Version_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a836c5d3a552f1e2419ed942889d41c27)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a836c5d3a552f1e2419ed942889d41c27"></a>
+#### `public inline FORCEINLINE const FString & `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1a58f1bee82f8bee6fd0f7f9135b5fb9a9)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a58f1bee82f8bee6fd0f7f9135b5fb9a9"></a>
 
 Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1af28a6083f3cc2ad98e633593379626c1)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1af28a6083f3cc2ad98e633593379626c1"></a>
+#### `public inline FORCEINLINE bool `[`GetVersion`](#structFRHAPI__InstanceInfoUpdate_1ae6daedfb843675d900525fbcb468f945)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1ae6daedfb843675d900525fbcb468f945"></a>
 
 Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetVersionOrNull`](#structFRHAPI__InstanceInfoUpdate_1ab765888c656373b43190403c445cbb13)`()` <a id="structFRHAPI__InstanceInfoUpdate_1ab765888c656373b43190403c445cbb13"></a>
+#### `public inline FORCEINLINE FString * `[`GetVersionOrNull`](#structFRHAPI__InstanceInfoUpdate_1ad4e23bab35d82db92b983160b29beac5)`()` <a id="structFRHAPI__InstanceInfoUpdate_1ad4e23bab35d82db92b983160b29beac5"></a>
 
 Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__InstanceInfoUpdate_1aea7bbdbebd60bbc061b7bb2cbc35e9eb)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1aea7bbdbebd60bbc061b7bb2cbc35e9eb"></a>
+#### `public inline FORCEINLINE const FString * `[`GetVersionOrNull`](#structFRHAPI__InstanceInfoUpdate_1a8808b0c90eee118116e3a0149107fefb)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a8808b0c90eee118116e3a0149107fefb"></a>
 
 Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetVersion`](#structFRHAPI__InstanceInfoUpdate_1af7185ee10727878518083ecbd1675725)`(const FString & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1af7185ee10727878518083ecbd1675725"></a>
+#### `public inline FORCEINLINE void `[`SetVersion`](#structFRHAPI__InstanceInfoUpdate_1ab960324a613170cfe011550913f9f7b9)`(const FString & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1ab960324a613170cfe011550913f9f7b9"></a>
 
 Sets the value of Version_Optional and also sets Version_IsSet to true.
 
-#### `public inline void `[`SetVersion`](#structFRHAPI__InstanceInfoUpdate_1aabb7b0e54012006bdba72b04d637618a)`(FString && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1aabb7b0e54012006bdba72b04d637618a"></a>
+#### `public inline FORCEINLINE void `[`SetVersion`](#structFRHAPI__InstanceInfoUpdate_1af126960e8035bbb10a6f08941722b6be)`(FString && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1af126960e8035bbb10a6f08941722b6be"></a>
 
 Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
 
@@ -319,39 +301,35 @@ Sets the value of Version_Optional and also sets Version_IsSet to true using mov
 
 Clears the value of Version_Optional and sets Version_IsSet to false.
 
-#### `public inline bool `[`IsVersionSet`](#structFRHAPI__InstanceInfoUpdate_1a4134c681df96ccb0e80b485413931da5)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a4134c681df96ccb0e80b485413931da5"></a>
-
-Checks whether Version_Optional has been set.
-
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a5d35f10c46eed6f12ae68264e59102dd)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a5d35f10c46eed6f12ae68264e59102dd"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a6a773850b9d12663e1cfb03a67d75fc0)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a6a773850b9d12663e1cfb03a67d75fc0"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1ad92f8d43f21557edc2c3a183c22cdddc)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1ad92f8d43f21557edc2c3a183c22cdddc"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1acc84a5abb6bfbc8cd3ae92be02ecbffb)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1acc84a5abb6bfbc8cd3ae92be02ecbffb"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a7c510aefcfa1d83ec2d2a3e7d3f0dfa9)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a7c510aefcfa1d83ec2d2a3e7d3f0dfa9"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a1d58807211ee1fccb4c0d3d5b9a2bf92)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a1d58807211ee1fccb4c0d3d5b9a2bf92"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1af24b253e7a5c9609319c6bfd9e647e4e)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1af24b253e7a5c9609319c6bfd9e647e4e"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a62dd41d976494e2fd71b056d8d879f49)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a62dd41d976494e2fd71b056d8d879f49"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfoUpdate_1a62374b90442a6fbc13cf09f502688536)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a62374b90442a6fbc13cf09f502688536"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfoUpdate_1aaccda437227e89e9a0dbdfdbc0ca7c46)`()` <a id="structFRHAPI__InstanceInfoUpdate_1aaccda437227e89e9a0dbdfdbc0ca7c46"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfoUpdate_1a2b69989b86ad6050ed65a41a90ba7cde)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a2b69989b86ad6050ed65a41a90ba7cde"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceInfoUpdate_1aeaeb0ebde7e19e3143d5e148a0f105fd)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1aeaeb0ebde7e19e3143d5e148a0f105fd"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a33d87db27e9916c173599ecc165332f1)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a33d87db27e9916c173599ecc165332f1"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1ab824e6b926e16bc3984cb2bb7c2fa32a)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1ab824e6b926e16bc3984cb2bb7c2fa32a"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a243f181f6c2bd769af1ef568ad1df916)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a243f181f6c2bd769af1ef568ad1df916"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InstanceInfoUpdate_1a9a8375a22ae0bc76bb16245141f87ee9)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a9a8375a22ae0bc76bb16245141f87ee9"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -359,47 +337,39 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__InstanceInfoUpdate_1afdbbaaff1ff3baad334a3ca549a2fb4b)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1afdbbaaff1ff3baad334a3ca549a2fb4b"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a657e7c6d174cfec2fdd460f78a604745)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a657e7c6d174cfec2fdd460f78a604745"></a>
+#### `public inline FORCEINLINE FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1adc12280cf289c58feef18bbb46497837)`()` <a id="structFRHAPI__InstanceInfoUpdate_1adc12280cf289c58feef18bbb46497837"></a>
 
 Gets the value of MatchId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a18d38f41304084d5018e67eadee2b6c1)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a18d38f41304084d5018e67eadee2b6c1"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a4136bfbba6067014ce4ff85dc45636ae)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a4136bfbba6067014ce4ff85dc45636ae"></a>
 
 Gets the value of MatchId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a23f0723f1e80904f7c970667eead398b)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a23f0723f1e80904f7c970667eead398b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a24e57a334d948cc72bb34db3c92f2e2d)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a24e57a334d948cc72bb34db3c92f2e2d"></a>
 
 Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a4b05bb7d21b15f726a913d8dc07f140f)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a4b05bb7d21b15f726a913d8dc07f140f"></a>
+#### `public inline FORCEINLINE bool `[`GetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a64fca92c152a74ffdc00e110b5a6f686)`(FString & OutValue) const` <a id="structFRHAPI__InstanceInfoUpdate_1a64fca92c152a74ffdc00e110b5a6f686"></a>
 
 Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1a5eeb4e31747ce1d8a72da7832bf4f954)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a5eeb4e31747ce1d8a72da7832bf4f954"></a>
+#### `public inline FORCEINLINE FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1a82aca676f8af02774f6ea194c99c1907)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a82aca676f8af02774f6ea194c99c1907"></a>
 
 Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1ac6b344813ff8a3d813cf73737a478ac7)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1ac6b344813ff8a3d813cf73737a478ac7"></a>
+#### `public inline FORCEINLINE const FString * `[`GetMatchIdOrNull`](#structFRHAPI__InstanceInfoUpdate_1a0970fe86bc1f763a6c5ec3441a4d0d8b)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1a0970fe86bc1f763a6c5ec3441a4d0d8b"></a>
 
 Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMatchId`](#structFRHAPI__InstanceInfoUpdate_1aae4ccc6ab85ef352c42d01e09be0d53f)`(const FString & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1aae4ccc6ab85ef352c42d01e09be0d53f"></a>
+#### `public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a90a62d9752dbd1ae9769a06a9f808b55)`(const FString & NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a90a62d9752dbd1ae9769a06a9f808b55"></a>
 
 Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
 
-#### `public inline void `[`SetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a4bfe3531556bb8786cb2d4179bcc02fe)`(FString && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a4bfe3531556bb8786cb2d4179bcc02fe"></a>
+#### `public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__InstanceInfoUpdate_1a92edc9d3d46bd112a216f93f67d9b3ff)`(FString && NewValue)` <a id="structFRHAPI__InstanceInfoUpdate_1a92edc9d3d46bd112a216f93f67d9b3ff"></a>
 
 Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearMatchId`](#structFRHAPI__InstanceInfoUpdate_1a3c0613c760b638002bda9e24e1defc32)`()` <a id="structFRHAPI__InstanceInfoUpdate_1a3c0613c760b638002bda9e24e1defc32"></a>
 
 Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
-
-#### `public inline bool `[`IsMatchIdSet`](#structFRHAPI__InstanceInfoUpdate_1abaf0fe9c8d8f453698c3d1235e9e679f)`() const` <a id="structFRHAPI__InstanceInfoUpdate_1abaf0fe9c8d8f453698c3d1235e9e679f"></a>
-
-Checks whether MatchId_Optional has been set.
 

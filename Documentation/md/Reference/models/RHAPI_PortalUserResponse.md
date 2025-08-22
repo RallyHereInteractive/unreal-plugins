@@ -29,46 +29,42 @@ struct FRHAPI_PortalUserResponse
 `public FGuid `[`PlayerUuid`](#structFRHAPI__PortalUserResponse_1a66933b04170b4adc512d07ccf09d0ddf) | Player UUID.
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalUserResponse_1afaef0cb3b0e9eb074dfd1989b82567f8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PortalUserResponse_1a6cf2cea2759638d67b5352bdce4fba20)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1ab6fdd2b4c9dee1b955115259f5258925)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1aeb8f375d6e8fd9c5f40b93460f358144)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1abc8bf3236f1dec94814f2fea3bf39122)`(const FString & DefaultValue) const` | Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1a877ac3c4cf9bf2c8e9e7ab41b438cfb8)`(FString & OutValue) const` | Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PortalUserResponse_1aca1d753695aba5627fd500ada130577f)`()` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PortalUserResponse_1a590ac5e54c3911bc7b6507ca6e4a78aa)`() const` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1ad6fdc58828c183424840b570aa9d28e6)`(const FString & NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
-`public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1a6d73122f1ae011b7b7f4e38e0654bbb1)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1a20c606736a1abc1278cb3ac46c0d768f)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1ab5bcea492254988a681a528d525fb295)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1ab9e7a24ea030b7f37f2b0995b2543b05)`(const FString & DefaultValue) const` | Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1a9e700e11a237dc5f122b4440515ff0b0)`(FString & OutValue) const` | Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PortalUserResponse_1ae3229ba0d37d11776a38fa63fad16c22)`()` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PortalUserResponse_1a55b57649e0baa6e835a69a9fe895baa8)`() const` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1a5fa94e9f4bb492727fd5185097b5c250)`(const FString & NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1a39a8c3262a13a473c9a3d8f3177e1ac1)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalUserId`](#structFRHAPI__PortalUserResponse_1aad55dab5c2f1d56b26e86181c1d70db8)`()` | Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
-`public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__PortalUserResponse_1a434609ce6c94d3a3426e376bf7572496)`() const` | Checks whether PortalUserId_Optional has been set.
-`public inline int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1a4862ca7289105044a5eb34f1b19db754)`()` | Gets the value of PortalId.
-`public inline const int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1ac076371af48f788d054ccda11295f3c9)`() const` | Gets the value of PortalId.
-`public inline void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a1ec1d1cd0b9b691a1ed96e58132ab109)`(const int32 & NewValue)` | Sets the value of PortalId.
-`public inline void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a1a741727afaf51decd48354649b6b98e)`(int32 && NewValue)` | Sets the value of PortalId using move semantics.
-`public inline bool `[`IsPortalIdDefaultValue`](#structFRHAPI__PortalUserResponse_1a8d2829c973692004a603fd7299fa7c4d)`() const` | Returns true if PortalId matches the default value.
-`public inline void `[`SetPortalIdToDefault`](#structFRHAPI__PortalUserResponse_1ae9cb2b9863c716b32ed5ca3a96a51119)`()` | Sets the value of PortalId to its default
-`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserResponse_1a8fc852139d61ca406832b4585882526b)`()` | Gets the value of Platform.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserResponse_1aa6dde3ebcc18cce15e82634d7074a624)`() const` | Gets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__PortalUserResponse_1a1c444841c69fc02cd3498cca7b483a4b)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__PortalUserResponse_1a12c07caac3231bf453cd35e31b129c0b)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform using move semantics.
-`public inline FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1a425e7af7c1d38d0eba146cc9a4ec9604)`()` | Gets the value of DisplayName_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1afb3e47fff587218bdc404ef1c4487994)`() const` | Gets the value of DisplayName_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1a16a95b4651c98030dc8bdedccbe5dfa9)`(const FString & DefaultValue) const` | Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1a940d3cae990ce7a780051795c6f0d1e8)`(FString & OutValue) const` | Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PortalUserResponse_1a06823eafc914999d8693b29675d850a1)`()` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PortalUserResponse_1ac12f716724635aafd30b515106d0e60e)`() const` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a59e660e6cfed61d0053287d5d5fdc767)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
-`public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a31be206bd1e6920254f7efbd692950c4)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1a29d611fb0d76cf8f498d9b88fea4fa46)`()` | Gets the value of PortalId.
+`public inline FORCEINLINE const int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1a2c7aaf914bcbca5be54adde5c8168499)`() const` | Gets the value of PortalId.
+`public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a60394aaf751e5aae0e2de9a4bfd042e5)`(const int32 & NewValue)` | Sets the value of PortalId.
+`public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a989d930491fec670fd3a37b039a9f5de)`(int32 && NewValue)` | Sets the value of PortalId using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PortalId`](#structFRHAPI__PortalUserResponse_1ae237fd4287e41b138a39e8d837f8c188)`()` | Returns the default value of PortalId.
+`public inline FORCEINLINE ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserResponse_1adf27be8f25af723ce88ceaeb71ed7b2a)`()` | Gets the value of Platform.
+`public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserResponse_1ad606bc744cb613222c9c58ed380dd40b)`() const` | Gets the value of Platform.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PortalUserResponse_1a8b7f34d4db3da21deec5838319c54f89)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PortalUserResponse_1a39e1140f4238ed70d03c40af480cec26)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform using move semantics.
+`public inline FORCEINLINE FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1af0a1890796f9dbc15fdc4cf6e2473883)`()` | Gets the value of DisplayName_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1a8bbad692cb4cc449eb09b2ea41d9d45a)`() const` | Gets the value of DisplayName_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1aa76f8a73904c65ff86c87bfcff2d8d2c)`(const FString & DefaultValue) const` | Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1ad6abffd2f8781b37bfcc600ad8e316c4)`(FString & OutValue) const` | Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PortalUserResponse_1a429ab50a5e485ec5c1a32f610c7f351e)`()` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PortalUserResponse_1aa426ad7c5da02ae1d7fd212c43177bde)`() const` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a53fad6742eed713fb4458b8a76b97215)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
+`public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a48b46ec33a229c32a820758b215a0b6f)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__PortalUserResponse_1af3483949dd8f34604018d03fe5d13d06)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
-`public inline bool `[`IsDisplayNameSet`](#structFRHAPI__PortalUserResponse_1a3dd504143f64417f4ef5b9b2a441d614)`() const` | Checks whether DisplayName_Optional has been set.
-`public inline int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1a055655ec616f69c3a2c85e2bed7d32a2)`()` | Gets the value of PlayerId.
-`public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1adb9b0d493362d083af69342c9de18fba)`() const` | Gets the value of PlayerId.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a95f1f44abbce2195f1bd52db1b499e6d)`(const int32 & NewValue)` | Sets the value of PlayerId.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a855b97caf1ca17a717f9005541e73139)`(int32 && NewValue)` | Sets the value of PlayerId using move semantics.
-`public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PortalUserResponse_1a2f80c742ea5fa5322befd7dba2231e3b)`() const` | Returns true if PlayerId matches the default value.
-`public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PortalUserResponse_1a01b5af0434b8222fbe1dac080c09ba0b)`()` | Sets the value of PlayerId to its default
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a9bf267a60d1a34a0c4fb39665ea37860)`()` | Gets the value of PlayerUuid.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a70caec7c98f9ace50f232d8b317e672c)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a247e7bb7dc08da7c0cf5c42310fcb3a0)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a58f911fcdd0d5ebf88a622a47c28bc53)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
+`public inline FORCEINLINE int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1a94155aa9f2aa014a2c724ba0c1b0d906)`()` | Gets the value of PlayerId.
+`public inline FORCEINLINE const int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1af7fe0c81147d63e9ab7c438ca697ca8d)`() const` | Gets the value of PlayerId.
+`public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a7a945a064716130f8dc37cc1cd1e8adb)`(const int32 & NewValue)` | Sets the value of PlayerId.
+`public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a71d3e6d0fb14b8333618570de9dc2ec3)`(int32 && NewValue)` | Sets the value of PlayerId using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PlayerId`](#structFRHAPI__PortalUserResponse_1a78f0781f939a8ff25c57338125a17a80)`()` | Returns the default value of PlayerId.
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1aac40243b2ba1cf89c1aeafcb4d388e27)`()` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a10caf8ae95f9ac845c582d12c107b852)`() const` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a614661d502b7f253f1d77052e4c0d4a9)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1ae133b67500274058899f468764a6b49b)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 
 ### Members
 
@@ -121,35 +117,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1ab6fdd2b4c9dee1b955115259f5258925)`()` <a id="structFRHAPI__PortalUserResponse_1ab6fdd2b4c9dee1b955115259f5258925"></a>
+#### `public inline FORCEINLINE FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1a20c606736a1abc1278cb3ac46c0d768f)`()` <a id="structFRHAPI__PortalUserResponse_1a20c606736a1abc1278cb3ac46c0d768f"></a>
 
 Gets the value of PortalUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1aeb8f375d6e8fd9c5f40b93460f358144)`() const` <a id="structFRHAPI__PortalUserResponse_1aeb8f375d6e8fd9c5f40b93460f358144"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1ab5bcea492254988a681a528d525fb295)`() const` <a id="structFRHAPI__PortalUserResponse_1ab5bcea492254988a681a528d525fb295"></a>
 
 Gets the value of PortalUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1abc8bf3236f1dec94814f2fea3bf39122)`(const FString & DefaultValue) const` <a id="structFRHAPI__PortalUserResponse_1abc8bf3236f1dec94814f2fea3bf39122"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1ab9e7a24ea030b7f37f2b0995b2543b05)`(const FString & DefaultValue) const` <a id="structFRHAPI__PortalUserResponse_1ab9e7a24ea030b7f37f2b0995b2543b05"></a>
 
 Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1a877ac3c4cf9bf2c8e9e7ab41b438cfb8)`(FString & OutValue) const` <a id="structFRHAPI__PortalUserResponse_1a877ac3c4cf9bf2c8e9e7ab41b438cfb8"></a>
+#### `public inline FORCEINLINE bool `[`GetPortalUserId`](#structFRHAPI__PortalUserResponse_1a9e700e11a237dc5f122b4440515ff0b0)`(FString & OutValue) const` <a id="structFRHAPI__PortalUserResponse_1a9e700e11a237dc5f122b4440515ff0b0"></a>
 
 Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PortalUserResponse_1aca1d753695aba5627fd500ada130577f)`()` <a id="structFRHAPI__PortalUserResponse_1aca1d753695aba5627fd500ada130577f"></a>
+#### `public inline FORCEINLINE FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PortalUserResponse_1ae3229ba0d37d11776a38fa63fad16c22)`()` <a id="structFRHAPI__PortalUserResponse_1ae3229ba0d37d11776a38fa63fad16c22"></a>
 
 Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PortalUserResponse_1a590ac5e54c3911bc7b6507ca6e4a78aa)`() const` <a id="structFRHAPI__PortalUserResponse_1a590ac5e54c3911bc7b6507ca6e4a78aa"></a>
+#### `public inline FORCEINLINE const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PortalUserResponse_1a55b57649e0baa6e835a69a9fe895baa8)`() const` <a id="structFRHAPI__PortalUserResponse_1a55b57649e0baa6e835a69a9fe895baa8"></a>
 
 Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1ad6fdc58828c183424840b570aa9d28e6)`(const FString & NewValue)` <a id="structFRHAPI__PortalUserResponse_1ad6fdc58828c183424840b570aa9d28e6"></a>
+#### `public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1a5fa94e9f4bb492727fd5185097b5c250)`(const FString & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a5fa94e9f4bb492727fd5185097b5c250"></a>
 
 Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
 
-#### `public inline void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1a6d73122f1ae011b7b7f4e38e0654bbb1)`(FString && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a6d73122f1ae011b7b7f4e38e0654bbb1"></a>
+#### `public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__PortalUserResponse_1a39a8c3262a13a473c9a3d8f3177e1ac1)`(FString && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a39a8c3262a13a473c9a3d8f3177e1ac1"></a>
 
 Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 
@@ -157,79 +153,71 @@ Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true
 
 Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
 
-#### `public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__PortalUserResponse_1a434609ce6c94d3a3426e376bf7572496)`() const` <a id="structFRHAPI__PortalUserResponse_1a434609ce6c94d3a3426e376bf7572496"></a>
-
-Checks whether PortalUserId_Optional has been set.
-
-#### `public inline int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1a4862ca7289105044a5eb34f1b19db754)`()` <a id="structFRHAPI__PortalUserResponse_1a4862ca7289105044a5eb34f1b19db754"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1a29d611fb0d76cf8f498d9b88fea4fa46)`()` <a id="structFRHAPI__PortalUserResponse_1a29d611fb0d76cf8f498d9b88fea4fa46"></a>
 
 Gets the value of PortalId.
 
-#### `public inline const int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1ac076371af48f788d054ccda11295f3c9)`() const` <a id="structFRHAPI__PortalUserResponse_1ac076371af48f788d054ccda11295f3c9"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPortalId`](#structFRHAPI__PortalUserResponse_1a2c7aaf914bcbca5be54adde5c8168499)`() const` <a id="structFRHAPI__PortalUserResponse_1a2c7aaf914bcbca5be54adde5c8168499"></a>
 
 Gets the value of PortalId.
 
-#### `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a1ec1d1cd0b9b691a1ed96e58132ab109)`(const int32 & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a1ec1d1cd0b9b691a1ed96e58132ab109"></a>
+#### `public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a60394aaf751e5aae0e2de9a4bfd042e5)`(const int32 & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a60394aaf751e5aae0e2de9a4bfd042e5"></a>
 
 Sets the value of PortalId.
 
-#### `public inline void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a1a741727afaf51decd48354649b6b98e)`(int32 && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a1a741727afaf51decd48354649b6b98e"></a>
+#### `public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__PortalUserResponse_1a989d930491fec670fd3a37b039a9f5de)`(int32 && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a989d930491fec670fd3a37b039a9f5de"></a>
 
 Sets the value of PortalId using move semantics.
 
-#### `public inline bool `[`IsPortalIdDefaultValue`](#structFRHAPI__PortalUserResponse_1a8d2829c973692004a603fd7299fa7c4d)`() const` <a id="structFRHAPI__PortalUserResponse_1a8d2829c973692004a603fd7299fa7c4d"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PortalId`](#structFRHAPI__PortalUserResponse_1ae237fd4287e41b138a39e8d837f8c188)`()` <a id="structFRHAPI__PortalUserResponse_1ae237fd4287e41b138a39e8d837f8c188"></a>
 
-Returns true if PortalId matches the default value.
+Returns the default value of PortalId.
 
-#### `public inline void `[`SetPortalIdToDefault`](#structFRHAPI__PortalUserResponse_1ae9cb2b9863c716b32ed5ca3a96a51119)`()` <a id="structFRHAPI__PortalUserResponse_1ae9cb2b9863c716b32ed5ca3a96a51119"></a>
-
-Sets the value of PortalId to its default
-
-#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserResponse_1a8fc852139d61ca406832b4585882526b)`()` <a id="structFRHAPI__PortalUserResponse_1a8fc852139d61ca406832b4585882526b"></a>
+#### `public inline FORCEINLINE ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserResponse_1adf27be8f25af723ce88ceaeb71ed7b2a)`()` <a id="structFRHAPI__PortalUserResponse_1adf27be8f25af723ce88ceaeb71ed7b2a"></a>
 
 Gets the value of Platform.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserResponse_1aa6dde3ebcc18cce15e82634d7074a624)`() const` <a id="structFRHAPI__PortalUserResponse_1aa6dde3ebcc18cce15e82634d7074a624"></a>
+#### `public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__PortalUserResponse_1ad606bc744cb613222c9c58ed380dd40b)`() const` <a id="structFRHAPI__PortalUserResponse_1ad606bc744cb613222c9c58ed380dd40b"></a>
 
 Gets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PortalUserResponse_1a1c444841c69fc02cd3498cca7b483a4b)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a1c444841c69fc02cd3498cca7b483a4b"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PortalUserResponse_1a8b7f34d4db3da21deec5838319c54f89)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a8b7f34d4db3da21deec5838319c54f89"></a>
 
 Sets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PortalUserResponse_1a12c07caac3231bf453cd35e31b129c0b)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a12c07caac3231bf453cd35e31b129c0b"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PortalUserResponse_1a39e1140f4238ed70d03c40af480cec26)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a39e1140f4238ed70d03c40af480cec26"></a>
 
 Sets the value of Platform using move semantics.
 
-#### `public inline FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1a425e7af7c1d38d0eba146cc9a4ec9604)`()` <a id="structFRHAPI__PortalUserResponse_1a425e7af7c1d38d0eba146cc9a4ec9604"></a>
+#### `public inline FORCEINLINE FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1af0a1890796f9dbc15fdc4cf6e2473883)`()` <a id="structFRHAPI__PortalUserResponse_1af0a1890796f9dbc15fdc4cf6e2473883"></a>
 
 Gets the value of DisplayName_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1afb3e47fff587218bdc404ef1c4487994)`() const` <a id="structFRHAPI__PortalUserResponse_1afb3e47fff587218bdc404ef1c4487994"></a>
+#### `public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1a8bbad692cb4cc449eb09b2ea41d9d45a)`() const` <a id="structFRHAPI__PortalUserResponse_1a8bbad692cb4cc449eb09b2ea41d9d45a"></a>
 
 Gets the value of DisplayName_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1a16a95b4651c98030dc8bdedccbe5dfa9)`(const FString & DefaultValue) const` <a id="structFRHAPI__PortalUserResponse_1a16a95b4651c98030dc8bdedccbe5dfa9"></a>
+#### `public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1aa76f8a73904c65ff86c87bfcff2d8d2c)`(const FString & DefaultValue) const` <a id="structFRHAPI__PortalUserResponse_1aa76f8a73904c65ff86c87bfcff2d8d2c"></a>
 
 Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1a940d3cae990ce7a780051795c6f0d1e8)`(FString & OutValue) const` <a id="structFRHAPI__PortalUserResponse_1a940d3cae990ce7a780051795c6f0d1e8"></a>
+#### `public inline FORCEINLINE bool `[`GetDisplayName`](#structFRHAPI__PortalUserResponse_1ad6abffd2f8781b37bfcc600ad8e316c4)`(FString & OutValue) const` <a id="structFRHAPI__PortalUserResponse_1ad6abffd2f8781b37bfcc600ad8e316c4"></a>
 
 Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PortalUserResponse_1a06823eafc914999d8693b29675d850a1)`()` <a id="structFRHAPI__PortalUserResponse_1a06823eafc914999d8693b29675d850a1"></a>
+#### `public inline FORCEINLINE FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PortalUserResponse_1a429ab50a5e485ec5c1a32f610c7f351e)`()` <a id="structFRHAPI__PortalUserResponse_1a429ab50a5e485ec5c1a32f610c7f351e"></a>
 
 Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PortalUserResponse_1ac12f716724635aafd30b515106d0e60e)`() const` <a id="structFRHAPI__PortalUserResponse_1ac12f716724635aafd30b515106d0e60e"></a>
+#### `public inline FORCEINLINE const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PortalUserResponse_1aa426ad7c5da02ae1d7fd212c43177bde)`() const` <a id="structFRHAPI__PortalUserResponse_1aa426ad7c5da02ae1d7fd212c43177bde"></a>
 
 Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a59e660e6cfed61d0053287d5d5fdc767)`(const FString & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a59e660e6cfed61d0053287d5d5fdc767"></a>
+#### `public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a53fad6742eed713fb4458b8a76b97215)`(const FString & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a53fad6742eed713fb4458b8a76b97215"></a>
 
 Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
 
-#### `public inline void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a31be206bd1e6920254f7efbd692950c4)`(FString && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a31be206bd1e6920254f7efbd692950c4"></a>
+#### `public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PortalUserResponse_1a48b46ec33a229c32a820758b215a0b6f)`(FString && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a48b46ec33a229c32a820758b215a0b6f"></a>
 
 Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 
@@ -237,47 +225,39 @@ Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true u
 
 Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
 
-#### `public inline bool `[`IsDisplayNameSet`](#structFRHAPI__PortalUserResponse_1a3dd504143f64417f4ef5b9b2a441d614)`() const` <a id="structFRHAPI__PortalUserResponse_1a3dd504143f64417f4ef5b9b2a441d614"></a>
-
-Checks whether DisplayName_Optional has been set.
-
-#### `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1a055655ec616f69c3a2c85e2bed7d32a2)`()` <a id="structFRHAPI__PortalUserResponse_1a055655ec616f69c3a2c85e2bed7d32a2"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1a94155aa9f2aa014a2c724ba0c1b0d906)`()` <a id="structFRHAPI__PortalUserResponse_1a94155aa9f2aa014a2c724ba0c1b0d906"></a>
 
 Gets the value of PlayerId.
 
-#### `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1adb9b0d493362d083af69342c9de18fba)`() const` <a id="structFRHAPI__PortalUserResponse_1adb9b0d493362d083af69342c9de18fba"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPlayerId`](#structFRHAPI__PortalUserResponse_1af7fe0c81147d63e9ab7c438ca697ca8d)`() const` <a id="structFRHAPI__PortalUserResponse_1af7fe0c81147d63e9ab7c438ca697ca8d"></a>
 
 Gets the value of PlayerId.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a95f1f44abbce2195f1bd52db1b499e6d)`(const int32 & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a95f1f44abbce2195f1bd52db1b499e6d"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a7a945a064716130f8dc37cc1cd1e8adb)`(const int32 & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a7a945a064716130f8dc37cc1cd1e8adb"></a>
 
 Sets the value of PlayerId.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a855b97caf1ca17a717f9005541e73139)`(int32 && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a855b97caf1ca17a717f9005541e73139"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PortalUserResponse_1a71d3e6d0fb14b8333618570de9dc2ec3)`(int32 && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a71d3e6d0fb14b8333618570de9dc2ec3"></a>
 
 Sets the value of PlayerId using move semantics.
 
-#### `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PortalUserResponse_1a2f80c742ea5fa5322befd7dba2231e3b)`() const` <a id="structFRHAPI__PortalUserResponse_1a2f80c742ea5fa5322befd7dba2231e3b"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PlayerId`](#structFRHAPI__PortalUserResponse_1a78f0781f939a8ff25c57338125a17a80)`()` <a id="structFRHAPI__PortalUserResponse_1a78f0781f939a8ff25c57338125a17a80"></a>
 
-Returns true if PlayerId matches the default value.
+Returns the default value of PlayerId.
 
-#### `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PortalUserResponse_1a01b5af0434b8222fbe1dac080c09ba0b)`()` <a id="structFRHAPI__PortalUserResponse_1a01b5af0434b8222fbe1dac080c09ba0b"></a>
-
-Sets the value of PlayerId to its default
-
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a9bf267a60d1a34a0c4fb39665ea37860)`()` <a id="structFRHAPI__PortalUserResponse_1a9bf267a60d1a34a0c4fb39665ea37860"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1aac40243b2ba1cf89c1aeafcb4d388e27)`()` <a id="structFRHAPI__PortalUserResponse_1aac40243b2ba1cf89c1aeafcb4d388e27"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a70caec7c98f9ace50f232d8b317e672c)`() const` <a id="structFRHAPI__PortalUserResponse_1a70caec7c98f9ace50f232d8b317e672c"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a10caf8ae95f9ac845c582d12c107b852)`() const` <a id="structFRHAPI__PortalUserResponse_1a10caf8ae95f9ac845c582d12c107b852"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a247e7bb7dc08da7c0cf5c42310fcb3a0)`(const FGuid & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a247e7bb7dc08da7c0cf5c42310fcb3a0"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a614661d502b7f253f1d77052e4c0d4a9)`(const FGuid & NewValue)` <a id="structFRHAPI__PortalUserResponse_1a614661d502b7f253f1d77052e4c0d4a9"></a>
 
 Sets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1a58f911fcdd0d5ebf88a622a47c28bc53)`(FGuid && NewValue)` <a id="structFRHAPI__PortalUserResponse_1a58f911fcdd0d5ebf88a622a47c28bc53"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PortalUserResponse_1ae133b67500274058899f468764a6b49b)`(FGuid && NewValue)` <a id="structFRHAPI__PortalUserResponse_1ae133b67500274058899f468764a6b49b"></a>
 
 Sets the value of PlayerUuid using move semantics.
 

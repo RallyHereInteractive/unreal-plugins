@@ -373,6 +373,9 @@ public:
 	/** @brief Sets the request priority of Get Catalog Item calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Catalog API Priority", AdvancedDisplay)
 	int32 GetCatalogItemPriority;
+	/** @brief Sets the request priority of Get Catalog Loot calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Catalog API Priority", AdvancedDisplay)
+	int32 GetCatalogLootPriority;
 	/** @brief Sets the request priority of Get Catalog Inventory Bucket Use Rulesets All calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Catalog API Priority", AdvancedDisplay)
 	int32 GetCatalogInventoryBucketUseRuleSetsAllPriority;
@@ -499,6 +502,9 @@ public:
 	/** @brief Sets the request priority of Session Joining calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionJoinPriority;
+	/** @brief Sets the request priority of Session generating short code calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
+	int32 SessionGenerateShortCodePriority;
 	/** @brief Sets the request priority of Session Leave calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Session API Priority", AdvancedDisplay)
 	int32 SessionLeavePriority;
@@ -619,6 +625,12 @@ public:
 	/** @brief Sets the request priority of Match Update Player calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
 	int32 MatchesUpdatePlayerPriority;
+	/** @brief Sets the request priority of Get MatchTimeline calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchTimelineGetPriority;
+	/** @brief Sets the request priority of Upload MatchTimeline calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchTimelineUploadPriority;
 	/** @brief Sets the request priority of Player Experience Report calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
 	int32 PexReportPriority;

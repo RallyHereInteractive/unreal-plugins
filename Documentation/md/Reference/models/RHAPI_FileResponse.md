@@ -25,24 +25,23 @@ struct FRHAPI_FileResponse
 `public FDateTime `[`CreatedTimestamp`](#structFRHAPI__FileResponse_1ae862f97e31ca9b769a5b3b1c1e104fdd) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public virtual bool `[`FromJson`](#structFRHAPI__FileResponse_1a0e24bb57749f3c550d17c9711324bd93)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__FileResponse_1a34592519bfb52c8c3cb0181c03b88247)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetName`](#structFRHAPI__FileResponse_1a3a5a461a83b31999dc55e806f77ab988)`()` | Gets the value of Name.
-`public inline const FString & `[`GetName`](#structFRHAPI__FileResponse_1a631f8d2e583304c4fd10fead29438067)`() const` | Gets the value of Name.
-`public inline void `[`SetName`](#structFRHAPI__FileResponse_1a9c5ee25fd63e4b1a0ba51845038c8371)`(const FString & NewValue)` | Sets the value of Name.
-`public inline void `[`SetName`](#structFRHAPI__FileResponse_1a6f7330d622cbec795398d357a3bae33b)`(FString && NewValue)` | Sets the value of Name using move semantics.
-`public inline int32 & `[`GetSize`](#structFRHAPI__FileResponse_1aabbe39b3935609604ae0c62af677533d)`()` | Gets the value of Size.
-`public inline const int32 & `[`GetSize`](#structFRHAPI__FileResponse_1a4114719798bad22f2bbab2b513f66943)`() const` | Gets the value of Size.
-`public inline void `[`SetSize`](#structFRHAPI__FileResponse_1a56bf6d6c7f130023bc5817d37faf8420)`(const int32 & NewValue)` | Sets the value of Size.
-`public inline void `[`SetSize`](#structFRHAPI__FileResponse_1aeadb4a3b15058253e148fbbc3cfaf8f0)`(int32 && NewValue)` | Sets the value of Size using move semantics.
-`public inline bool `[`IsSizeDefaultValue`](#structFRHAPI__FileResponse_1a53731a77c1b7fafb991b976576e34bdb)`() const` | Returns true if Size matches the default value.
-`public inline void `[`SetSizeToDefault`](#structFRHAPI__FileResponse_1a197e08b0f788382c8078833a9fd7e470)`()` | Sets the value of Size to its default
-`public inline FString & `[`GetContentType`](#structFRHAPI__FileResponse_1a2853328008d0951135e39e443454e576)`()` | Gets the value of ContentType.
-`public inline const FString & `[`GetContentType`](#structFRHAPI__FileResponse_1a7dc1bb1a4b779f94cecda8aab7606771)`() const` | Gets the value of ContentType.
-`public inline void `[`SetContentType`](#structFRHAPI__FileResponse_1a964013e8c8681bb566f2666cbd9208b9)`(const FString & NewValue)` | Sets the value of ContentType.
-`public inline void `[`SetContentType`](#structFRHAPI__FileResponse_1abef9d54c6f5c63f3d55a10c2dc2954dc)`(FString && NewValue)` | Sets the value of ContentType using move semantics.
-`public inline FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1a4180018bd5ff5c28151640b9387c3505)`()` | Gets the value of CreatedTimestamp.
-`public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1a4ba3c19e4396d4b86e124b926e0f2747)`() const` | Gets the value of CreatedTimestamp.
-`public inline void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1a1731b5be88a1b4baa844af74490fac48)`(const FDateTime & NewValue)` | Sets the value of CreatedTimestamp.
-`public inline void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1aceef407f09b876099521a93eb91fa3d4)`(FDateTime && NewValue)` | Sets the value of CreatedTimestamp using move semantics.
+`public inline FORCEINLINE FString & `[`GetName`](#structFRHAPI__FileResponse_1afa4e6b7522acec77a711707b650e4ca5)`()` | Gets the value of Name.
+`public inline FORCEINLINE const FString & `[`GetName`](#structFRHAPI__FileResponse_1a1a946df10aa6428e6ec9c868aee2b6ed)`() const` | Gets the value of Name.
+`public inline FORCEINLINE void `[`SetName`](#structFRHAPI__FileResponse_1a3cc1a8b3cc6b550c1f215c729ca8397a)`(const FString & NewValue)` | Sets the value of Name.
+`public inline FORCEINLINE void `[`SetName`](#structFRHAPI__FileResponse_1ad1fb028b465e25e310ed719db6ff5a39)`(FString && NewValue)` | Sets the value of Name using move semantics.
+`public inline FORCEINLINE int32 & `[`GetSize`](#structFRHAPI__FileResponse_1a7976f6987a87f301771aba81a7bf6584)`()` | Gets the value of Size.
+`public inline FORCEINLINE const int32 & `[`GetSize`](#structFRHAPI__FileResponse_1a95cadfdc27dd0cef8d3a03da06990629)`() const` | Gets the value of Size.
+`public inline FORCEINLINE void `[`SetSize`](#structFRHAPI__FileResponse_1a5124a19f8b94825247c9315d3660fc4f)`(const int32 & NewValue)` | Sets the value of Size.
+`public inline FORCEINLINE void `[`SetSize`](#structFRHAPI__FileResponse_1adcbc0f15d6148ba09afbdf8b4654cb78)`(int32 && NewValue)` | Sets the value of Size using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Size`](#structFRHAPI__FileResponse_1a9b1456c916d859e19b81f4c2f2acf454)`()` | Returns the default value of Size.
+`public inline FORCEINLINE FString & `[`GetContentType`](#structFRHAPI__FileResponse_1a3a427f4523a5a12270c9aa5b0c20a10a)`()` | Gets the value of ContentType.
+`public inline FORCEINLINE const FString & `[`GetContentType`](#structFRHAPI__FileResponse_1a656c3b475963d6a33192b0b303985458)`() const` | Gets the value of ContentType.
+`public inline FORCEINLINE void `[`SetContentType`](#structFRHAPI__FileResponse_1aa4c0b9a9e9cffd73898ca1dabc7201de)`(const FString & NewValue)` | Sets the value of ContentType.
+`public inline FORCEINLINE void `[`SetContentType`](#structFRHAPI__FileResponse_1aaaebb04dac18c1f838692d2cbe95e617)`(FString && NewValue)` | Sets the value of ContentType using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1aeaa3cd2c11af688e1d52a7b99ec533c0)`()` | Gets the value of CreatedTimestamp.
+`public inline FORCEINLINE const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1a09b5bc6c50498f99cdae12df30ae4d83)`() const` | Gets the value of CreatedTimestamp.
+`public inline FORCEINLINE void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1acaf263e855f946baabf768128deb62dc)`(const FDateTime & NewValue)` | Sets the value of CreatedTimestamp.
+`public inline FORCEINLINE void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1a9e47445784a1bf6176bf87947f09f547)`(FDateTime && NewValue)` | Sets the value of CreatedTimestamp using move semantics.
 
 ### Members
 
@@ -73,75 +72,71 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetName`](#structFRHAPI__FileResponse_1a3a5a461a83b31999dc55e806f77ab988)`()` <a id="structFRHAPI__FileResponse_1a3a5a461a83b31999dc55e806f77ab988"></a>
+#### `public inline FORCEINLINE FString & `[`GetName`](#structFRHAPI__FileResponse_1afa4e6b7522acec77a711707b650e4ca5)`()` <a id="structFRHAPI__FileResponse_1afa4e6b7522acec77a711707b650e4ca5"></a>
 
 Gets the value of Name.
 
-#### `public inline const FString & `[`GetName`](#structFRHAPI__FileResponse_1a631f8d2e583304c4fd10fead29438067)`() const` <a id="structFRHAPI__FileResponse_1a631f8d2e583304c4fd10fead29438067"></a>
+#### `public inline FORCEINLINE const FString & `[`GetName`](#structFRHAPI__FileResponse_1a1a946df10aa6428e6ec9c868aee2b6ed)`() const` <a id="structFRHAPI__FileResponse_1a1a946df10aa6428e6ec9c868aee2b6ed"></a>
 
 Gets the value of Name.
 
-#### `public inline void `[`SetName`](#structFRHAPI__FileResponse_1a9c5ee25fd63e4b1a0ba51845038c8371)`(const FString & NewValue)` <a id="structFRHAPI__FileResponse_1a9c5ee25fd63e4b1a0ba51845038c8371"></a>
+#### `public inline FORCEINLINE void `[`SetName`](#structFRHAPI__FileResponse_1a3cc1a8b3cc6b550c1f215c729ca8397a)`(const FString & NewValue)` <a id="structFRHAPI__FileResponse_1a3cc1a8b3cc6b550c1f215c729ca8397a"></a>
 
 Sets the value of Name.
 
-#### `public inline void `[`SetName`](#structFRHAPI__FileResponse_1a6f7330d622cbec795398d357a3bae33b)`(FString && NewValue)` <a id="structFRHAPI__FileResponse_1a6f7330d622cbec795398d357a3bae33b"></a>
+#### `public inline FORCEINLINE void `[`SetName`](#structFRHAPI__FileResponse_1ad1fb028b465e25e310ed719db6ff5a39)`(FString && NewValue)` <a id="structFRHAPI__FileResponse_1ad1fb028b465e25e310ed719db6ff5a39"></a>
 
 Sets the value of Name using move semantics.
 
-#### `public inline int32 & `[`GetSize`](#structFRHAPI__FileResponse_1aabbe39b3935609604ae0c62af677533d)`()` <a id="structFRHAPI__FileResponse_1aabbe39b3935609604ae0c62af677533d"></a>
+#### `public inline FORCEINLINE int32 & `[`GetSize`](#structFRHAPI__FileResponse_1a7976f6987a87f301771aba81a7bf6584)`()` <a id="structFRHAPI__FileResponse_1a7976f6987a87f301771aba81a7bf6584"></a>
 
 Gets the value of Size.
 
-#### `public inline const int32 & `[`GetSize`](#structFRHAPI__FileResponse_1a4114719798bad22f2bbab2b513f66943)`() const` <a id="structFRHAPI__FileResponse_1a4114719798bad22f2bbab2b513f66943"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetSize`](#structFRHAPI__FileResponse_1a95cadfdc27dd0cef8d3a03da06990629)`() const` <a id="structFRHAPI__FileResponse_1a95cadfdc27dd0cef8d3a03da06990629"></a>
 
 Gets the value of Size.
 
-#### `public inline void `[`SetSize`](#structFRHAPI__FileResponse_1a56bf6d6c7f130023bc5817d37faf8420)`(const int32 & NewValue)` <a id="structFRHAPI__FileResponse_1a56bf6d6c7f130023bc5817d37faf8420"></a>
+#### `public inline FORCEINLINE void `[`SetSize`](#structFRHAPI__FileResponse_1a5124a19f8b94825247c9315d3660fc4f)`(const int32 & NewValue)` <a id="structFRHAPI__FileResponse_1a5124a19f8b94825247c9315d3660fc4f"></a>
 
 Sets the value of Size.
 
-#### `public inline void `[`SetSize`](#structFRHAPI__FileResponse_1aeadb4a3b15058253e148fbbc3cfaf8f0)`(int32 && NewValue)` <a id="structFRHAPI__FileResponse_1aeadb4a3b15058253e148fbbc3cfaf8f0"></a>
+#### `public inline FORCEINLINE void `[`SetSize`](#structFRHAPI__FileResponse_1adcbc0f15d6148ba09afbdf8b4654cb78)`(int32 && NewValue)` <a id="structFRHAPI__FileResponse_1adcbc0f15d6148ba09afbdf8b4654cb78"></a>
 
 Sets the value of Size using move semantics.
 
-#### `public inline bool `[`IsSizeDefaultValue`](#structFRHAPI__FileResponse_1a53731a77c1b7fafb991b976576e34bdb)`() const` <a id="structFRHAPI__FileResponse_1a53731a77c1b7fafb991b976576e34bdb"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Size`](#structFRHAPI__FileResponse_1a9b1456c916d859e19b81f4c2f2acf454)`()` <a id="structFRHAPI__FileResponse_1a9b1456c916d859e19b81f4c2f2acf454"></a>
 
-Returns true if Size matches the default value.
+Returns the default value of Size.
 
-#### `public inline void `[`SetSizeToDefault`](#structFRHAPI__FileResponse_1a197e08b0f788382c8078833a9fd7e470)`()` <a id="structFRHAPI__FileResponse_1a197e08b0f788382c8078833a9fd7e470"></a>
-
-Sets the value of Size to its default
-
-#### `public inline FString & `[`GetContentType`](#structFRHAPI__FileResponse_1a2853328008d0951135e39e443454e576)`()` <a id="structFRHAPI__FileResponse_1a2853328008d0951135e39e443454e576"></a>
+#### `public inline FORCEINLINE FString & `[`GetContentType`](#structFRHAPI__FileResponse_1a3a427f4523a5a12270c9aa5b0c20a10a)`()` <a id="structFRHAPI__FileResponse_1a3a427f4523a5a12270c9aa5b0c20a10a"></a>
 
 Gets the value of ContentType.
 
-#### `public inline const FString & `[`GetContentType`](#structFRHAPI__FileResponse_1a7dc1bb1a4b779f94cecda8aab7606771)`() const` <a id="structFRHAPI__FileResponse_1a7dc1bb1a4b779f94cecda8aab7606771"></a>
+#### `public inline FORCEINLINE const FString & `[`GetContentType`](#structFRHAPI__FileResponse_1a656c3b475963d6a33192b0b303985458)`() const` <a id="structFRHAPI__FileResponse_1a656c3b475963d6a33192b0b303985458"></a>
 
 Gets the value of ContentType.
 
-#### `public inline void `[`SetContentType`](#structFRHAPI__FileResponse_1a964013e8c8681bb566f2666cbd9208b9)`(const FString & NewValue)` <a id="structFRHAPI__FileResponse_1a964013e8c8681bb566f2666cbd9208b9"></a>
+#### `public inline FORCEINLINE void `[`SetContentType`](#structFRHAPI__FileResponse_1aa4c0b9a9e9cffd73898ca1dabc7201de)`(const FString & NewValue)` <a id="structFRHAPI__FileResponse_1aa4c0b9a9e9cffd73898ca1dabc7201de"></a>
 
 Sets the value of ContentType.
 
-#### `public inline void `[`SetContentType`](#structFRHAPI__FileResponse_1abef9d54c6f5c63f3d55a10c2dc2954dc)`(FString && NewValue)` <a id="structFRHAPI__FileResponse_1abef9d54c6f5c63f3d55a10c2dc2954dc"></a>
+#### `public inline FORCEINLINE void `[`SetContentType`](#structFRHAPI__FileResponse_1aaaebb04dac18c1f838692d2cbe95e617)`(FString && NewValue)` <a id="structFRHAPI__FileResponse_1aaaebb04dac18c1f838692d2cbe95e617"></a>
 
 Sets the value of ContentType using move semantics.
 
-#### `public inline FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1a4180018bd5ff5c28151640b9387c3505)`()` <a id="structFRHAPI__FileResponse_1a4180018bd5ff5c28151640b9387c3505"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1aeaa3cd2c11af688e1d52a7b99ec533c0)`()` <a id="structFRHAPI__FileResponse_1aeaa3cd2c11af688e1d52a7b99ec533c0"></a>
 
 Gets the value of CreatedTimestamp.
 
-#### `public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1a4ba3c19e4396d4b86e124b926e0f2747)`() const` <a id="structFRHAPI__FileResponse_1a4ba3c19e4396d4b86e124b926e0f2747"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__FileResponse_1a09b5bc6c50498f99cdae12df30ae4d83)`() const` <a id="structFRHAPI__FileResponse_1a09b5bc6c50498f99cdae12df30ae4d83"></a>
 
 Gets the value of CreatedTimestamp.
 
-#### `public inline void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1a1731b5be88a1b4baa844af74490fac48)`(const FDateTime & NewValue)` <a id="structFRHAPI__FileResponse_1a1731b5be88a1b4baa844af74490fac48"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1acaf263e855f946baabf768128deb62dc)`(const FDateTime & NewValue)` <a id="structFRHAPI__FileResponse_1acaf263e855f946baabf768128deb62dc"></a>
 
 Sets the value of CreatedTimestamp.
 
-#### `public inline void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1aceef407f09b876099521a93eb91fa3d4)`(FDateTime && NewValue)` <a id="structFRHAPI__FileResponse_1aceef407f09b876099521a93eb91fa3d4"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedTimestamp`](#structFRHAPI__FileResponse_1a9e47445784a1bf6176bf87947f09f547)`(FDateTime && NewValue)` <a id="structFRHAPI__FileResponse_1a9e47445784a1bf6176bf87947f09f547"></a>
 
 Sets the value of CreatedTimestamp using move semantics.
 

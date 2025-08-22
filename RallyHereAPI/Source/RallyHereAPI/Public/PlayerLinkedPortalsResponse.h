@@ -45,25 +45,25 @@ struct RALLYHEREAPI_API FRHAPI_PlayerLinkedPortalsResponse : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PlayerPersonResponse Player{  };
 	/** @brief Gets the value of Player */
-	FRHAPI_PlayerPersonResponse& GetPlayer() { return Player; }
+	FORCEINLINE FRHAPI_PlayerPersonResponse& GetPlayer() { return Player; }
 	/** @brief Gets the value of Player */
-	const FRHAPI_PlayerPersonResponse& GetPlayer() const { return Player; }
+	FORCEINLINE const FRHAPI_PlayerPersonResponse& GetPlayer() const { return Player; }
 	/** @brief Sets the value of Player */
-	void SetPlayer(const FRHAPI_PlayerPersonResponse& NewValue) { Player = NewValue;   }
+	FORCEINLINE void SetPlayer(const FRHAPI_PlayerPersonResponse& NewValue) { Player = NewValue;   }
 	/** @brief Sets the value of Player using move semantics */
-	void SetPlayer(FRHAPI_PlayerPersonResponse&& NewValue) { Player = NewValue;   }
+	FORCEINLINE void SetPlayer(FRHAPI_PlayerPersonResponse&& NewValue) { Player = NewValue;   }
 
 	/** @brief List of linked portals */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PortalUserResponse> LinkedPortals{  };
 	/** @brief Gets the value of LinkedPortals */
-	TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() { return LinkedPortals; }
+	FORCEINLINE TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() { return LinkedPortals; }
 	/** @brief Gets the value of LinkedPortals */
-	const TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() const { return LinkedPortals; }
+	FORCEINLINE const TArray<FRHAPI_PortalUserResponse>& GetLinkedPortals() const { return LinkedPortals; }
 	/** @brief Sets the value of LinkedPortals */
-	void SetLinkedPortals(const TArray<FRHAPI_PortalUserResponse>& NewValue) { LinkedPortals = NewValue;   }
+	FORCEINLINE void SetLinkedPortals(const TArray<FRHAPI_PortalUserResponse>& NewValue) { LinkedPortals = NewValue;   }
 	/** @brief Sets the value of LinkedPortals using move semantics */
-	void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse>&& NewValue) { LinkedPortals = NewValue;   }
+	FORCEINLINE void SetLinkedPortals(TArray<FRHAPI_PortalUserResponse>&& NewValue) { LinkedPortals = NewValue;   }
 };
 
 /** @} */

@@ -44,35 +44,35 @@ struct RALLYHEREAPI_API FRHAPI_FriendsList : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PlayerUuid{  };
 	/** @brief Gets the value of PlayerUuid */
-	FGuid& GetPlayerUuid() { return PlayerUuid; }
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
 	/** @brief Gets the value of PlayerUuid */
-	const FGuid& GetPlayerUuid() const { return PlayerUuid; }
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
 	/** @brief Sets the value of PlayerUuid */
-	void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
 	/** @brief Sets the value of PlayerUuid using move semantics */
-	void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_FriendRelationship> Friends{  };
 	/** @brief Gets the value of Friends */
-	TArray<FRHAPI_FriendRelationship>& GetFriends() { return Friends; }
+	FORCEINLINE TArray<FRHAPI_FriendRelationship>& GetFriends() { return Friends; }
 	/** @brief Gets the value of Friends */
-	const TArray<FRHAPI_FriendRelationship>& GetFriends() const { return Friends; }
+	FORCEINLINE const TArray<FRHAPI_FriendRelationship>& GetFriends() const { return Friends; }
 	/** @brief Sets the value of Friends */
-	void SetFriends(const TArray<FRHAPI_FriendRelationship>& NewValue) { Friends = NewValue;   }
+	FORCEINLINE void SetFriends(const TArray<FRHAPI_FriendRelationship>& NewValue) { Friends = NewValue;   }
 	/** @brief Sets the value of Friends using move semantics */
-	void SetFriends(TArray<FRHAPI_FriendRelationship>&& NewValue) { Friends = NewValue;   }
+	FORCEINLINE void SetFriends(TArray<FRHAPI_FriendRelationship>&& NewValue) { Friends = NewValue;   }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_PageMeta Page{  };
 	/** @brief Gets the value of Page */
-	FRHAPI_PageMeta& GetPage() { return Page; }
+	FORCEINLINE FRHAPI_PageMeta& GetPage() { return Page; }
 	/** @brief Gets the value of Page */
-	const FRHAPI_PageMeta& GetPage() const { return Page; }
+	FORCEINLINE const FRHAPI_PageMeta& GetPage() const { return Page; }
 	/** @brief Sets the value of Page */
-	void SetPage(const FRHAPI_PageMeta& NewValue) { Page = NewValue;   }
+	FORCEINLINE void SetPage(const FRHAPI_PageMeta& NewValue) { Page = NewValue;   }
 	/** @brief Sets the value of Page using move semantics */
-	void SetPage(FRHAPI_PageMeta&& NewValue) { Page = NewValue;   }
+	FORCEINLINE void SetPage(FRHAPI_PageMeta&& NewValue) { Page = NewValue;   }
 };
 
 /** @} */

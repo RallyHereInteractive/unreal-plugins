@@ -24,10 +24,10 @@ Response to a request to update a session cohort.
 `public TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > `[`Players`](#structFRHAPI__SessionInviteResponse_1a54175b9a9824d8ad9049525d36f6d928) | List of players that were updated.
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionInviteResponse_1ada00a7b57a6e5f50351ce4b9b88ef697)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionInviteResponse_1abd6a6e933739c4d78da65e30a4c3e0df)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a617e68f043e506849657a717f97fa635)`()` | Gets the value of Players.
-`public inline const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1ac9a438bf465d49478330836b9f5898b5)`() const` | Gets the value of Players.
-`public inline void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1a3782ffb56de3077103b48c53df3c6200)`(const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & NewValue)` | Sets the value of Players.
-`public inline void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1aef1838cdd0275dd80670886a4688780b)`(TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > && NewValue)` | Sets the value of Players using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a49cdb76e5cca91eb65974eb1e293bad7)`()` | Gets the value of Players.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a5e661f6d9a536cc9e469c63ebbd7da1c)`() const` | Gets the value of Players.
+`public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1a68754b387d17139d2d339367ec5884bf)`(const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & NewValue)` | Sets the value of Players.
+`public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1a52f41114f00fdfbb9dd717d0f098c7d5)`(TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > && NewValue)` | Sets the value of Players using move semantics.
 
 ### Members
 
@@ -52,19 +52,19 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a617e68f043e506849657a717f97fa635)`()` <a id="structFRHAPI__SessionInviteResponse_1a617e68f043e506849657a717f97fa635"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a49cdb76e5cca91eb65974eb1e293bad7)`()` <a id="structFRHAPI__SessionInviteResponse_1a49cdb76e5cca91eb65974eb1e293bad7"></a>
 
 Gets the value of Players.
 
-#### `public inline const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1ac9a438bf465d49478330836b9f5898b5)`() const` <a id="structFRHAPI__SessionInviteResponse_1ac9a438bf465d49478330836b9f5898b5"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & `[`GetPlayers`](#structFRHAPI__SessionInviteResponse_1a5e661f6d9a536cc9e469c63ebbd7da1c)`() const` <a id="structFRHAPI__SessionInviteResponse_1a5e661f6d9a536cc9e469c63ebbd7da1c"></a>
 
 Gets the value of Players.
 
-#### `public inline void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1a3782ffb56de3077103b48c53df3c6200)`(const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & NewValue)` <a id="structFRHAPI__SessionInviteResponse_1a3782ffb56de3077103b48c53df3c6200"></a>
+#### `public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1a68754b387d17139d2d339367ec5884bf)`(const TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > & NewValue)` <a id="structFRHAPI__SessionInviteResponse_1a68754b387d17139d2d339367ec5884bf"></a>
 
 Sets the value of Players.
 
-#### `public inline void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1aef1838cdd0275dd80670886a4688780b)`(TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > && NewValue)` <a id="structFRHAPI__SessionInviteResponse_1aef1838cdd0275dd80670886a4688780b"></a>
+#### `public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__SessionInviteResponse_1a52f41114f00fdfbb9dd717d0f098c7d5)`(TArray< `[`FRHAPI_SessionPlayerUpdateResponse`](RHAPI_SessionPlayerUpdateResponse.md#structFRHAPI__SessionPlayerUpdateResponse)` > && NewValue)` <a id="structFRHAPI__SessionInviteResponse_1a52f41114f00fdfbb9dd717d0f098c7d5"></a>
 
 Sets the value of Players using move semantics.
 

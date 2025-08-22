@@ -24,10 +24,10 @@ Logout request.
 `public FString `[`RefreshToken`](#structFRHAPI__LogoutRequest_1abc7366e4cbef7e9714bad37ee03609ff) | Refresh token to be invalidated.
 `public virtual bool `[`FromJson`](#structFRHAPI__LogoutRequest_1a04508049d11bf756abfdb93d850a13d2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LogoutRequest_1af81f02fcf851b9af74ec9472a6eb6745)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1a4164f3d279010ad374fb92606a373536)`()` | Gets the value of RefreshToken.
-`public inline const FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1ad1218bd3609efe74242d45f6076bc609)`() const` | Gets the value of RefreshToken.
-`public inline void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1a906473df51492d591b0996bc599e346b)`(const FString & NewValue)` | Sets the value of RefreshToken.
-`public inline void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1ad589c35d8652a9f7b17a295dd28da9dd)`(FString && NewValue)` | Sets the value of RefreshToken using move semantics.
+`public inline FORCEINLINE FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1a5c691a595f594556bff22034cbee026c)`()` | Gets the value of RefreshToken.
+`public inline FORCEINLINE const FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1a14e3242f54b83c0abb8c56d9d1c7ce2d)`() const` | Gets the value of RefreshToken.
+`public inline FORCEINLINE void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1ab3b9eb55fef20fcfbeef8eac3f092c85)`(const FString & NewValue)` | Sets the value of RefreshToken.
+`public inline FORCEINLINE void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1a9a7d781c4973ed7c177b5db52fd24acb)`(FString && NewValue)` | Sets the value of RefreshToken using move semantics.
 
 ### Members
 
@@ -52,19 +52,19 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1a4164f3d279010ad374fb92606a373536)`()` <a id="structFRHAPI__LogoutRequest_1a4164f3d279010ad374fb92606a373536"></a>
+#### `public inline FORCEINLINE FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1a5c691a595f594556bff22034cbee026c)`()` <a id="structFRHAPI__LogoutRequest_1a5c691a595f594556bff22034cbee026c"></a>
 
 Gets the value of RefreshToken.
 
-#### `public inline const FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1ad1218bd3609efe74242d45f6076bc609)`() const` <a id="structFRHAPI__LogoutRequest_1ad1218bd3609efe74242d45f6076bc609"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRefreshToken`](#structFRHAPI__LogoutRequest_1a14e3242f54b83c0abb8c56d9d1c7ce2d)`() const` <a id="structFRHAPI__LogoutRequest_1a14e3242f54b83c0abb8c56d9d1c7ce2d"></a>
 
 Gets the value of RefreshToken.
 
-#### `public inline void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1a906473df51492d591b0996bc599e346b)`(const FString & NewValue)` <a id="structFRHAPI__LogoutRequest_1a906473df51492d591b0996bc599e346b"></a>
+#### `public inline FORCEINLINE void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1ab3b9eb55fef20fcfbeef8eac3f092c85)`(const FString & NewValue)` <a id="structFRHAPI__LogoutRequest_1ab3b9eb55fef20fcfbeef8eac3f092c85"></a>
 
 Sets the value of RefreshToken.
 
-#### `public inline void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1ad589c35d8652a9f7b17a295dd28da9dd)`(FString && NewValue)` <a id="structFRHAPI__LogoutRequest_1ad589c35d8652a9f7b17a295dd28da9dd"></a>
+#### `public inline FORCEINLINE void `[`SetRefreshToken`](#structFRHAPI__LogoutRequest_1a9a7d781c4973ed7c177b5db52fd24acb)`(FString && NewValue)` <a id="structFRHAPI__LogoutRequest_1a9a7d781c4973ed7c177b5db52fd24acb"></a>
 
 Sets the value of RefreshToken using move semantics.
 

@@ -223,7 +223,10 @@ public:
 	FRequest()
 	{
 		// default to enabling retry
-		SetShouldRetry();
+		auto NewRetryParams = FHttpRetryParams();
+		NewRetryParams.RetryResponseCodes.Add(EHttpResponseCodes::TooManyRequests);
+		NewRetryParams.RetryResponseCodes.Add(EHttpResponseCodes::ServiceUnavail);
+		SetShouldRetry(NewRetryParams);
 	}
 	virtual ~FRequest() = default;
 	virtual bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const = 0;

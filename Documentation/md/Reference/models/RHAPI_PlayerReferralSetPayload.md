@@ -27,26 +27,24 @@ Represents a payload for setting a player&#39;s referrer.
 `public bool `[`ReferralCode_IsSet`](#structFRHAPI__PlayerReferralSetPayload_1a0b56dd009b445b00df756595bd207422) | true if ReferralCode_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerReferralSetPayload_1a5c313fe9a28fab5e108efef8045867f7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerReferralSetPayload_1a499a96a5267ad8cbc416efba59a84080)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a1ff3ce792c7ae11e7ed1516ec0065023)`()` | Gets the value of ReferrerPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a333d0be74010c975a67b5627663bec4f)`() const` | Gets the value of ReferrerPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a7ebb8ccfe38f2d9466bde74667bfb463)`(const FGuid & DefaultValue) const` | Gets the value of ReferrerPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a471dd343f15076a6f65888134dcaf8b2)`(FGuid & OutValue) const` | Fills OutValue with the value of ReferrerPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetReferrerPlayerUuidOrNull`](#structFRHAPI__PlayerReferralSetPayload_1a71577c69c2c4203f32b6f813957f3891)`()` | Returns a pointer to ReferrerPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetReferrerPlayerUuidOrNull`](#structFRHAPI__PlayerReferralSetPayload_1a5acd9334ddc143db0f0b74bf2c073c44)`() const` | Returns a pointer to ReferrerPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1ad0cda78ca21403648653a7a427840ceb)`(const FGuid & NewValue)` | Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_IsSet to true.
-`public inline void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a60cb8737b3321de6dea7ecc754505d03)`(FGuid && NewValue)` | Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a9762d55c622b033016fd14c8850a105d)`()` | Gets the value of ReferrerPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1aaf3ad4e63ebf778e655170a6386a4148)`() const` | Gets the value of ReferrerPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1aecb79d79928e6ae0e66d97e15c6398a6)`(const FGuid & DefaultValue) const` | Gets the value of ReferrerPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1ae0278e050500f518b71a40645194361f)`(FGuid & OutValue) const` | Fills OutValue with the value of ReferrerPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetReferrerPlayerUuidOrNull`](#structFRHAPI__PlayerReferralSetPayload_1aaabd02c3ec857fa7881ae7d67de05e62)`()` | Returns a pointer to ReferrerPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetReferrerPlayerUuidOrNull`](#structFRHAPI__PlayerReferralSetPayload_1a87147368fa5fc6a2855aad3bf3e30e0c)`() const` | Returns a pointer to ReferrerPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1aa6750b546509c54aa395407121bf3d9a)`(const FGuid & NewValue)` | Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a75f28f5602c2514ffc55a431cb706db6)`(FGuid && NewValue)` | Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a05e7b44a0c4e008dc7344eb3050a05f7)`()` | Clears the value of ReferrerPlayerUuid_Optional and sets ReferrerPlayerUuid_IsSet to false.
-`public inline bool `[`IsReferrerPlayerUuidSet`](#structFRHAPI__PlayerReferralSetPayload_1afd02de8aeac9cc4205b45417bd3f9c02)`() const` | Checks whether ReferrerPlayerUuid_Optional has been set.
-`public inline FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a80ca60f9f74e49f1964c2bbbd0a6f427)`()` | Gets the value of ReferralCode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1ae7abe051c5e426d646acde2bc3fce173)`() const` | Gets the value of ReferralCode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1add85773ccae041aee1bb24654f16c79b)`(const FString & DefaultValue) const` | Gets the value of ReferralCode_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a7c44d103589f6a71ed7b46b841d2189d)`(FString & OutValue) const` | Fills OutValue with the value of ReferralCode_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetReferralCodeOrNull`](#structFRHAPI__PlayerReferralSetPayload_1ae778e64237ff53e525c889262ce844aa)`()` | Returns a pointer to ReferralCode_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetReferralCodeOrNull`](#structFRHAPI__PlayerReferralSetPayload_1acfab246667f32c26d195371845575c04)`() const` | Returns a pointer to ReferralCode_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1ab1e692c716a41e28afd6c6f70901a14a)`(const FString & NewValue)` | Sets the value of ReferralCode_Optional and also sets ReferralCode_IsSet to true.
-`public inline void `[`SetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a5551a09fb9930caf6af263da3ff95534)`(FString && NewValue)` | Sets the value of ReferralCode_Optional and also sets ReferralCode_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a32069839067ad79477c63b18a5dcacd7)`()` | Gets the value of ReferralCode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1afc66887bbf7aa66f1ce1fbd0ae9167af)`() const` | Gets the value of ReferralCode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a38ab887103afe528754df7de12a5ca3e)`(const FString & DefaultValue) const` | Gets the value of ReferralCode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a3e8ccbf96b2e651b47155e1e91f53c1c)`(FString & OutValue) const` | Fills OutValue with the value of ReferralCode_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetReferralCodeOrNull`](#structFRHAPI__PlayerReferralSetPayload_1afb1e62a0dbb4ca8022ae50a89fe01328)`()` | Returns a pointer to ReferralCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetReferralCodeOrNull`](#structFRHAPI__PlayerReferralSetPayload_1a7a8f0dae15e036601b2a9d2baaf33dfb)`() const` | Returns a pointer to ReferralCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a13a0aae4a18a4a94227dadacb8ac9ad6)`(const FString & NewValue)` | Sets the value of ReferralCode_Optional and also sets ReferralCode_IsSet to true.
+`public inline FORCEINLINE void `[`SetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1ac20808f767ec724238fe42cd47ea8188)`(FString && NewValue)` | Sets the value of ReferralCode_Optional and also sets ReferralCode_IsSet to true using move semantics.
 `public inline void `[`ClearReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1ac3be6c5fe62a93c64eca0b05e9be6029)`()` | Clears the value of ReferralCode_Optional and sets ReferralCode_IsSet to false.
-`public inline bool `[`IsReferralCodeSet`](#structFRHAPI__PlayerReferralSetPayload_1a1ba146184f7b82062bf3f32e15428096)`() const` | Checks whether ReferralCode_Optional has been set.
 
 ### Members
 
@@ -79,35 +77,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a1ff3ce792c7ae11e7ed1516ec0065023)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1a1ff3ce792c7ae11e7ed1516ec0065023"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a9762d55c622b033016fd14c8850a105d)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1a9762d55c622b033016fd14c8850a105d"></a>
 
 Gets the value of ReferrerPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a333d0be74010c975a67b5627663bec4f)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1a333d0be74010c975a67b5627663bec4f"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1aaf3ad4e63ebf778e655170a6386a4148)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1aaf3ad4e63ebf778e655170a6386a4148"></a>
 
 Gets the value of ReferrerPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a7ebb8ccfe38f2d9466bde74667bfb463)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PlayerReferralSetPayload_1a7ebb8ccfe38f2d9466bde74667bfb463"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1aecb79d79928e6ae0e66d97e15c6398a6)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PlayerReferralSetPayload_1aecb79d79928e6ae0e66d97e15c6398a6"></a>
 
 Gets the value of ReferrerPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a471dd343f15076a6f65888134dcaf8b2)`(FGuid & OutValue) const` <a id="structFRHAPI__PlayerReferralSetPayload_1a471dd343f15076a6f65888134dcaf8b2"></a>
+#### `public inline FORCEINLINE bool `[`GetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1ae0278e050500f518b71a40645194361f)`(FGuid & OutValue) const` <a id="structFRHAPI__PlayerReferralSetPayload_1ae0278e050500f518b71a40645194361f"></a>
 
 Fills OutValue with the value of ReferrerPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetReferrerPlayerUuidOrNull`](#structFRHAPI__PlayerReferralSetPayload_1a71577c69c2c4203f32b6f813957f3891)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1a71577c69c2c4203f32b6f813957f3891"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetReferrerPlayerUuidOrNull`](#structFRHAPI__PlayerReferralSetPayload_1aaabd02c3ec857fa7881ae7d67de05e62)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1aaabd02c3ec857fa7881ae7d67de05e62"></a>
 
 Returns a pointer to ReferrerPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetReferrerPlayerUuidOrNull`](#structFRHAPI__PlayerReferralSetPayload_1a5acd9334ddc143db0f0b74bf2c073c44)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1a5acd9334ddc143db0f0b74bf2c073c44"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetReferrerPlayerUuidOrNull`](#structFRHAPI__PlayerReferralSetPayload_1a87147368fa5fc6a2855aad3bf3e30e0c)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1a87147368fa5fc6a2855aad3bf3e30e0c"></a>
 
 Returns a pointer to ReferrerPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1ad0cda78ca21403648653a7a427840ceb)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerReferralSetPayload_1ad0cda78ca21403648653a7a427840ceb"></a>
+#### `public inline FORCEINLINE void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1aa6750b546509c54aa395407121bf3d9a)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerReferralSetPayload_1aa6750b546509c54aa395407121bf3d9a"></a>
 
 Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a60cb8737b3321de6dea7ecc754505d03)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerReferralSetPayload_1a60cb8737b3321de6dea7ecc754505d03"></a>
+#### `public inline FORCEINLINE void `[`SetReferrerPlayerUuid`](#structFRHAPI__PlayerReferralSetPayload_1a75f28f5602c2514ffc55a431cb706db6)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerReferralSetPayload_1a75f28f5602c2514ffc55a431cb706db6"></a>
 
 Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_IsSet to true using move semantics.
 
@@ -115,47 +113,39 @@ Sets the value of ReferrerPlayerUuid_Optional and also sets ReferrerPlayerUuid_I
 
 Clears the value of ReferrerPlayerUuid_Optional and sets ReferrerPlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsReferrerPlayerUuidSet`](#structFRHAPI__PlayerReferralSetPayload_1afd02de8aeac9cc4205b45417bd3f9c02)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1afd02de8aeac9cc4205b45417bd3f9c02"></a>
-
-Checks whether ReferrerPlayerUuid_Optional has been set.
-
-#### `public inline FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a80ca60f9f74e49f1964c2bbbd0a6f427)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1a80ca60f9f74e49f1964c2bbbd0a6f427"></a>
+#### `public inline FORCEINLINE FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a32069839067ad79477c63b18a5dcacd7)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1a32069839067ad79477c63b18a5dcacd7"></a>
 
 Gets the value of ReferralCode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1ae7abe051c5e426d646acde2bc3fce173)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1ae7abe051c5e426d646acde2bc3fce173"></a>
+#### `public inline FORCEINLINE const FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1afc66887bbf7aa66f1ce1fbd0ae9167af)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1afc66887bbf7aa66f1ce1fbd0ae9167af"></a>
 
 Gets the value of ReferralCode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1add85773ccae041aee1bb24654f16c79b)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerReferralSetPayload_1add85773ccae041aee1bb24654f16c79b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a38ab887103afe528754df7de12a5ca3e)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerReferralSetPayload_1a38ab887103afe528754df7de12a5ca3e"></a>
 
 Gets the value of ReferralCode_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a7c44d103589f6a71ed7b46b841d2189d)`(FString & OutValue) const` <a id="structFRHAPI__PlayerReferralSetPayload_1a7c44d103589f6a71ed7b46b841d2189d"></a>
+#### `public inline FORCEINLINE bool `[`GetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a3e8ccbf96b2e651b47155e1e91f53c1c)`(FString & OutValue) const` <a id="structFRHAPI__PlayerReferralSetPayload_1a3e8ccbf96b2e651b47155e1e91f53c1c"></a>
 
 Fills OutValue with the value of ReferralCode_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetReferralCodeOrNull`](#structFRHAPI__PlayerReferralSetPayload_1ae778e64237ff53e525c889262ce844aa)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1ae778e64237ff53e525c889262ce844aa"></a>
+#### `public inline FORCEINLINE FString * `[`GetReferralCodeOrNull`](#structFRHAPI__PlayerReferralSetPayload_1afb1e62a0dbb4ca8022ae50a89fe01328)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1afb1e62a0dbb4ca8022ae50a89fe01328"></a>
 
 Returns a pointer to ReferralCode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetReferralCodeOrNull`](#structFRHAPI__PlayerReferralSetPayload_1acfab246667f32c26d195371845575c04)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1acfab246667f32c26d195371845575c04"></a>
+#### `public inline FORCEINLINE const FString * `[`GetReferralCodeOrNull`](#structFRHAPI__PlayerReferralSetPayload_1a7a8f0dae15e036601b2a9d2baaf33dfb)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1a7a8f0dae15e036601b2a9d2baaf33dfb"></a>
 
 Returns a pointer to ReferralCode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1ab1e692c716a41e28afd6c6f70901a14a)`(const FString & NewValue)` <a id="structFRHAPI__PlayerReferralSetPayload_1ab1e692c716a41e28afd6c6f70901a14a"></a>
+#### `public inline FORCEINLINE void `[`SetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a13a0aae4a18a4a94227dadacb8ac9ad6)`(const FString & NewValue)` <a id="structFRHAPI__PlayerReferralSetPayload_1a13a0aae4a18a4a94227dadacb8ac9ad6"></a>
 
 Sets the value of ReferralCode_Optional and also sets ReferralCode_IsSet to true.
 
-#### `public inline void `[`SetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1a5551a09fb9930caf6af263da3ff95534)`(FString && NewValue)` <a id="structFRHAPI__PlayerReferralSetPayload_1a5551a09fb9930caf6af263da3ff95534"></a>
+#### `public inline FORCEINLINE void `[`SetReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1ac20808f767ec724238fe42cd47ea8188)`(FString && NewValue)` <a id="structFRHAPI__PlayerReferralSetPayload_1ac20808f767ec724238fe42cd47ea8188"></a>
 
 Sets the value of ReferralCode_Optional and also sets ReferralCode_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearReferralCode`](#structFRHAPI__PlayerReferralSetPayload_1ac3be6c5fe62a93c64eca0b05e9be6029)`()` <a id="structFRHAPI__PlayerReferralSetPayload_1ac3be6c5fe62a93c64eca0b05e9be6029"></a>
 
 Clears the value of ReferralCode_Optional and sets ReferralCode_IsSet to false.
-
-#### `public inline bool `[`IsReferralCodeSet`](#structFRHAPI__PlayerReferralSetPayload_1a1ba146184f7b82062bf3f32e15428096)`() const` <a id="structFRHAPI__PlayerReferralSetPayload_1a1ba146184f7b82062bf3f32e15428096"></a>
-
-Checks whether ReferralCode_Optional has been set.
 

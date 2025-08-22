@@ -43,121 +43,109 @@ struct RALLYHEREAPI_API FRHAPI_QueueConfig : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString QueueId{  };
 	/** @brief Gets the value of QueueId */
-	FString& GetQueueId() { return QueueId; }
+	FORCEINLINE FString& GetQueueId() { return QueueId; }
 	/** @brief Gets the value of QueueId */
-	const FString& GetQueueId() const { return QueueId; }
+	FORCEINLINE const FString& GetQueueId() const { return QueueId; }
 	/** @brief Sets the value of QueueId */
-	void SetQueueId(const FString& NewValue) { QueueId = NewValue;   }
+	FORCEINLINE void SetQueueId(const FString& NewValue) { QueueId = NewValue;   }
 	/** @brief Sets the value of QueueId using move semantics */
-	void SetQueueId(FString&& NewValue) { QueueId = NewValue;   }
+	FORCEINLINE void SetQueueId(FString&& NewValue) { QueueId = NewValue;   }
 
 	/** @brief Flag for whether or not the queue is active, and can be joined or sessions created from it */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Active{ false };
 	/** @brief Gets the value of Active */
-	bool& GetActive() { return Active; }
+	FORCEINLINE bool& GetActive() { return Active; }
 	/** @brief Gets the value of Active */
-	const bool& GetActive() const { return Active; }
+	FORCEINLINE const bool& GetActive() const { return Active; }
 	/** @brief Sets the value of Active */
-	void SetActive(const bool& NewValue) { Active = NewValue;   }
+	FORCEINLINE void SetActive(const bool& NewValue) { Active = NewValue;   }
 	/** @brief Sets the value of Active using move semantics */
-	void SetActive(bool&& NewValue) { Active = NewValue;   }
-	/** @brief Returns true if Active matches the default value */
-	bool IsActiveDefaultValue() const { return Active == false; }
-	/** @brief Sets the value of Active to its default  */
-	void SetActiveToDefault() { SetActive(false); }
+	FORCEINLINE void SetActive(bool&& NewValue) { Active = NewValue;   }
+	/** @brief Returns the default value of Active */
+	FORCEINLINE bool GetDefaultValue_Active() { return false; }
 
 	/** @brief Which rank this queue should use MMR from to make matches from, and update at the end of match (1v1 MMR or 2v2 MMR for example) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 RankingType{ 0 };
 	/** @brief Gets the value of RankingType */
-	int32& GetRankingType() { return RankingType; }
+	FORCEINLINE int32& GetRankingType() { return RankingType; }
 	/** @brief Gets the value of RankingType */
-	const int32& GetRankingType() const { return RankingType; }
+	FORCEINLINE const int32& GetRankingType() const { return RankingType; }
 	/** @brief Sets the value of RankingType */
-	void SetRankingType(const int32& NewValue) { RankingType = NewValue;   }
+	FORCEINLINE void SetRankingType(const int32& NewValue) { RankingType = NewValue;   }
 	/** @brief Sets the value of RankingType using move semantics */
-	void SetRankingType(int32&& NewValue) { RankingType = NewValue;   }
-	/** @brief Returns true if RankingType matches the default value */
-	bool IsRankingTypeDefaultValue() const { return RankingType == 0; }
-	/** @brief Sets the value of RankingType to its default  */
-	void SetRankingTypeToDefault() { SetRankingType(0); }
+	FORCEINLINE void SetRankingType(int32&& NewValue) { RankingType = NewValue;   }
+	/** @brief Returns the default value of RankingType */
+	FORCEINLINE int32 GetDefaultValue_RankingType() { return 0; }
 
 	/** @brief The number of sides a game in this queue will have (2 in a 1v1 and 3 in a 1v1v1 for example */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 NumSides{ 0 };
 	/** @brief Gets the value of NumSides */
-	int32& GetNumSides() { return NumSides; }
+	FORCEINLINE int32& GetNumSides() { return NumSides; }
 	/** @brief Gets the value of NumSides */
-	const int32& GetNumSides() const { return NumSides; }
+	FORCEINLINE const int32& GetNumSides() const { return NumSides; }
 	/** @brief Sets the value of NumSides */
-	void SetNumSides(const int32& NewValue) { NumSides = NewValue;   }
+	FORCEINLINE void SetNumSides(const int32& NewValue) { NumSides = NewValue;   }
 	/** @brief Sets the value of NumSides using move semantics */
-	void SetNumSides(int32&& NewValue) { NumSides = NewValue;   }
-	/** @brief Returns true if NumSides matches the default value */
-	bool IsNumSidesDefaultValue() const { return NumSides == 0; }
-	/** @brief Sets the value of NumSides to its default  */
-	void SetNumSidesToDefault() { SetNumSides(0); }
+	FORCEINLINE void SetNumSides(int32&& NewValue) { NumSides = NewValue;   }
+	/** @brief Returns the default value of NumSides */
+	FORCEINLINE int32 GetDefaultValue_NumSides() { return 0; }
 
 	/** @brief The maximum number of players that can be on each team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 MaxPlayersPerSide{ 0 };
 	/** @brief Gets the value of MaxPlayersPerSide */
-	int32& GetMaxPlayersPerSide() { return MaxPlayersPerSide; }
+	FORCEINLINE int32& GetMaxPlayersPerSide() { return MaxPlayersPerSide; }
 	/** @brief Gets the value of MaxPlayersPerSide */
-	const int32& GetMaxPlayersPerSide() const { return MaxPlayersPerSide; }
+	FORCEINLINE const int32& GetMaxPlayersPerSide() const { return MaxPlayersPerSide; }
 	/** @brief Sets the value of MaxPlayersPerSide */
-	void SetMaxPlayersPerSide(const int32& NewValue) { MaxPlayersPerSide = NewValue;   }
+	FORCEINLINE void SetMaxPlayersPerSide(const int32& NewValue) { MaxPlayersPerSide = NewValue;   }
 	/** @brief Sets the value of MaxPlayersPerSide using move semantics */
-	void SetMaxPlayersPerSide(int32&& NewValue) { MaxPlayersPerSide = NewValue;   }
-	/** @brief Returns true if MaxPlayersPerSide matches the default value */
-	bool IsMaxPlayersPerSideDefaultValue() const { return MaxPlayersPerSide == 0; }
-	/** @brief Sets the value of MaxPlayersPerSide to its default  */
-	void SetMaxPlayersPerSideToDefault() { SetMaxPlayersPerSide(0); }
+	FORCEINLINE void SetMaxPlayersPerSide(int32&& NewValue) { MaxPlayersPerSide = NewValue;   }
+	/** @brief Returns the default value of MaxPlayersPerSide */
+	FORCEINLINE int32 GetDefaultValue_MaxPlayersPerSide() { return 0; }
 
 	/** @brief The minimum number of players that can be on each team */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 MinPlayersPerSide{ 0 };
 	/** @brief Gets the value of MinPlayersPerSide */
-	int32& GetMinPlayersPerSide() { return MinPlayersPerSide; }
+	FORCEINLINE int32& GetMinPlayersPerSide() { return MinPlayersPerSide; }
 	/** @brief Gets the value of MinPlayersPerSide */
-	const int32& GetMinPlayersPerSide() const { return MinPlayersPerSide; }
+	FORCEINLINE const int32& GetMinPlayersPerSide() const { return MinPlayersPerSide; }
 	/** @brief Sets the value of MinPlayersPerSide */
-	void SetMinPlayersPerSide(const int32& NewValue) { MinPlayersPerSide = NewValue;   }
+	FORCEINLINE void SetMinPlayersPerSide(const int32& NewValue) { MinPlayersPerSide = NewValue;   }
 	/** @brief Sets the value of MinPlayersPerSide using move semantics */
-	void SetMinPlayersPerSide(int32&& NewValue) { MinPlayersPerSide = NewValue;   }
-	/** @brief Returns true if MinPlayersPerSide matches the default value */
-	bool IsMinPlayersPerSideDefaultValue() const { return MinPlayersPerSide == 0; }
-	/** @brief Sets the value of MinPlayersPerSide to its default  */
-	void SetMinPlayersPerSideToDefault() { SetMinPlayersPerSide(0); }
+	FORCEINLINE void SetMinPlayersPerSide(int32&& NewValue) { MinPlayersPerSide = NewValue;   }
+	/** @brief Returns the default value of MinPlayersPerSide */
+	FORCEINLINE int32 GetDefaultValue_MinPlayersPerSide() { return 0; }
 
 	/** @brief The maximum size of a group that can join this queue */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 MaxQueueGroupSize{ 0 };
 	/** @brief Gets the value of MaxQueueGroupSize */
-	int32& GetMaxQueueGroupSize() { return MaxQueueGroupSize; }
+	FORCEINLINE int32& GetMaxQueueGroupSize() { return MaxQueueGroupSize; }
 	/** @brief Gets the value of MaxQueueGroupSize */
-	const int32& GetMaxQueueGroupSize() const { return MaxQueueGroupSize; }
+	FORCEINLINE const int32& GetMaxQueueGroupSize() const { return MaxQueueGroupSize; }
 	/** @brief Sets the value of MaxQueueGroupSize */
-	void SetMaxQueueGroupSize(const int32& NewValue) { MaxQueueGroupSize = NewValue;   }
+	FORCEINLINE void SetMaxQueueGroupSize(const int32& NewValue) { MaxQueueGroupSize = NewValue;   }
 	/** @brief Sets the value of MaxQueueGroupSize using move semantics */
-	void SetMaxQueueGroupSize(int32&& NewValue) { MaxQueueGroupSize = NewValue;   }
-	/** @brief Returns true if MaxQueueGroupSize matches the default value */
-	bool IsMaxQueueGroupSizeDefaultValue() const { return MaxQueueGroupSize == 0; }
-	/** @brief Sets the value of MaxQueueGroupSize to its default  */
-	void SetMaxQueueGroupSizeToDefault() { SetMaxQueueGroupSize(0); }
+	FORCEINLINE void SetMaxQueueGroupSize(int32&& NewValue) { MaxQueueGroupSize = NewValue;   }
+	/** @brief Returns the default value of MaxQueueGroupSize */
+	FORCEINLINE int32 GetDefaultValue_MaxQueueGroupSize() { return 0; }
 
 	/** @brief ID for which group of matchmaking templates/rules will be used when joining this queue */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid MatchMakingTemplateGroupId{  };
 	/** @brief Gets the value of MatchMakingTemplateGroupId */
-	FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }
+	FORCEINLINE FGuid& GetMatchMakingTemplateGroupId() { return MatchMakingTemplateGroupId; }
 	/** @brief Gets the value of MatchMakingTemplateGroupId */
-	const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
+	FORCEINLINE const FGuid& GetMatchMakingTemplateGroupId() const { return MatchMakingTemplateGroupId; }
 	/** @brief Sets the value of MatchMakingTemplateGroupId */
-	void SetMatchMakingTemplateGroupId(const FGuid& NewValue) { MatchMakingTemplateGroupId = NewValue;   }
+	FORCEINLINE void SetMatchMakingTemplateGroupId(const FGuid& NewValue) { MatchMakingTemplateGroupId = NewValue;   }
 	/** @brief Sets the value of MatchMakingTemplateGroupId using move semantics */
-	void SetMatchMakingTemplateGroupId(FGuid&& NewValue) { MatchMakingTemplateGroupId = NewValue;   }
+	FORCEINLINE void SetMatchMakingTemplateGroupId(FGuid&& NewValue) { MatchMakingTemplateGroupId = NewValue;   }
 };
 
 /** @} */

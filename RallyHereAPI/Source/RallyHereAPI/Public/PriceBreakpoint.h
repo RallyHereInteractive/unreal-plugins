@@ -49,29 +49,27 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PriceItemUuid_IsNull{ false };
 	/** @brief Gets the value of PriceItemUuid_Optional, regardless of it having been set */
-	FGuid& GetPriceItemUuid() { return PriceItemUuid_Optional; }
+	FORCEINLINE FGuid& GetPriceItemUuid() { return PriceItemUuid_Optional; }
 	/** @brief Gets the value of PriceItemUuid_Optional, regardless of it having been set */
-	const FGuid& GetPriceItemUuid() const { return PriceItemUuid_Optional; }
+	FORCEINLINE const FGuid& GetPriceItemUuid() const { return PriceItemUuid_Optional; }
 	/** @brief Gets the value of PriceItemUuid_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetPriceItemUuid(const FGuid& DefaultValue) const { if (PriceItemUuid_IsSet) return PriceItemUuid_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetPriceItemUuid(const FGuid& DefaultValue) const { if (PriceItemUuid_IsSet) return PriceItemUuid_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PriceItemUuid_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPriceItemUuid(FGuid& OutValue) const { if (PriceItemUuid_IsSet && !PriceItemUuid_IsNull) OutValue = PriceItemUuid_Optional; return PriceItemUuid_IsSet; }
+	FORCEINLINE bool GetPriceItemUuid(FGuid& OutValue) const { if (PriceItemUuid_IsSet && !PriceItemUuid_IsNull) OutValue = PriceItemUuid_Optional; return PriceItemUuid_IsSet; }
 	/** @brief Returns a pointer to PriceItemUuid_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetPriceItemUuidOrNull() { if (PriceItemUuid_IsSet) return (PriceItemUuid_IsNull ? nullptr : &PriceItemUuid_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetPriceItemUuidOrNull() { if (PriceItemUuid_IsSet) return (PriceItemUuid_IsNull ? nullptr : &PriceItemUuid_Optional); return nullptr; }
 	/** @brief Returns a pointer to PriceItemUuid_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetPriceItemUuidOrNull() const { if (PriceItemUuid_IsSet) return (PriceItemUuid_IsNull ? nullptr : &PriceItemUuid_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetPriceItemUuidOrNull() const { if (PriceItemUuid_IsSet) return (PriceItemUuid_IsNull ? nullptr : &PriceItemUuid_Optional); return nullptr; }
 	/** @brief Sets the value of PriceItemUuid_Optional and also sets PriceItemUuid_IsSet to true */
-	void SetPriceItemUuid(const FGuid& NewValue) { PriceItemUuid_Optional = NewValue; PriceItemUuid_IsSet = true; PriceItemUuid_IsNull = false; }
+	FORCEINLINE void SetPriceItemUuid(const FGuid& NewValue) { PriceItemUuid_Optional = NewValue; PriceItemUuid_IsSet = true; PriceItemUuid_IsNull = false; }
 	/** @brief Sets the value of PriceItemUuid_Optional and also sets PriceItemUuid_IsSet to true using move semantics */
-	void SetPriceItemUuid(FGuid&& NewValue) { PriceItemUuid_Optional = NewValue; PriceItemUuid_IsSet = true; PriceItemUuid_IsNull = false; }
+	FORCEINLINE void SetPriceItemUuid(FGuid&& NewValue) { PriceItemUuid_Optional = NewValue; PriceItemUuid_IsSet = true; PriceItemUuid_IsNull = false; }
 	/** @brief Clears the value of PriceItemUuid_Optional and sets PriceItemUuid_IsSet to false */
 	void ClearPriceItemUuid() { PriceItemUuid_IsSet = false; PriceItemUuid_IsNull = false; }
-	/** @brief Checks whether PriceItemUuid_Optional has been set */
-	bool IsPriceItemUuidSet() const { return PriceItemUuid_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPriceItemUuidToNull() { PriceItemUuid_IsSet = true; PriceItemUuid_IsNull = true; }
+	FORCEINLINE void SetPriceItemUuidToNull() { PriceItemUuid_IsSet = true; PriceItemUuid_IsNull = true; }
 	/** @brief Checks whether PriceItemUuid_Optional is set to null */
-	bool IsPriceItemUuidNull() const { return PriceItemUuid_IsSet && PriceItemUuid_IsNull; }
+	FORCEINLINE bool IsPriceItemUuidNull() const { return PriceItemUuid_IsSet && PriceItemUuid_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 PriceItemId_Optional{ 0 };
@@ -82,48 +80,42 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PriceItemId_IsNull{ false };
 	/** @brief Gets the value of PriceItemId_Optional, regardless of it having been set */
-	int32& GetPriceItemId() { return PriceItemId_Optional; }
+	FORCEINLINE int32& GetPriceItemId() { return PriceItemId_Optional; }
 	/** @brief Gets the value of PriceItemId_Optional, regardless of it having been set */
-	const int32& GetPriceItemId() const { return PriceItemId_Optional; }
+	FORCEINLINE const int32& GetPriceItemId() const { return PriceItemId_Optional; }
 	/** @brief Gets the value of PriceItemId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetPriceItemId(const int32& DefaultValue) const { if (PriceItemId_IsSet) return PriceItemId_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetPriceItemId(const int32& DefaultValue) const { if (PriceItemId_IsSet) return PriceItemId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PriceItemId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPriceItemId(int32& OutValue) const { if (PriceItemId_IsSet && !PriceItemId_IsNull) OutValue = PriceItemId_Optional; return PriceItemId_IsSet; }
+	FORCEINLINE bool GetPriceItemId(int32& OutValue) const { if (PriceItemId_IsSet && !PriceItemId_IsNull) OutValue = PriceItemId_Optional; return PriceItemId_IsSet; }
 	/** @brief Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPriceItemIdOrNull() { if (PriceItemId_IsSet) return (PriceItemId_IsNull ? nullptr : &PriceItemId_Optional); return nullptr; }
+	FORCEINLINE int32* GetPriceItemIdOrNull() { if (PriceItemId_IsSet) return (PriceItemId_IsNull ? nullptr : &PriceItemId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PriceItemId_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPriceItemIdOrNull() const { if (PriceItemId_IsSet) return (PriceItemId_IsNull ? nullptr : &PriceItemId_Optional); return nullptr; }
+	FORCEINLINE const int32* GetPriceItemIdOrNull() const { if (PriceItemId_IsSet) return (PriceItemId_IsNull ? nullptr : &PriceItemId_Optional); return nullptr; }
 	/** @brief Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true */
-	void SetPriceItemId(const int32& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; PriceItemId_IsNull = false; }
+	FORCEINLINE void SetPriceItemId(const int32& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; PriceItemId_IsNull = false; }
 	/** @brief Sets the value of PriceItemId_Optional and also sets PriceItemId_IsSet to true using move semantics */
-	void SetPriceItemId(int32&& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; PriceItemId_IsNull = false; }
+	FORCEINLINE void SetPriceItemId(int32&& NewValue) { PriceItemId_Optional = NewValue; PriceItemId_IsSet = true; PriceItemId_IsNull = false; }
 	/** @brief Clears the value of PriceItemId_Optional and sets PriceItemId_IsSet to false */
 	void ClearPriceItemId() { PriceItemId_Optional = 0; PriceItemId_IsSet = false; PriceItemId_IsNull = false; }
-	/** @brief Checks whether PriceItemId_Optional has been set */
-	bool IsPriceItemIdSet() const { return PriceItemId_IsSet; }
-	/** @brief Returns true if PriceItemId_Optional is set and matches the default value */
-	bool IsPriceItemIdDefaultValue() const { return PriceItemId_IsSet && PriceItemId_Optional == 0; }
-	/** @brief Sets the value of PriceItemId_Optional to its default and also sets PriceItemId_IsSet to true */
-	void SetPriceItemIdToDefault() { SetPriceItemId(0); }
+	/** @brief Returns the default value of PriceItemId */
+	FORCEINLINE int32 GetDefaultValue_PriceItemId() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPriceItemIdToNull() { PriceItemId_IsSet = true; PriceItemId_IsNull = true; }
+	FORCEINLINE void SetPriceItemIdToNull() { PriceItemId_IsSet = true; PriceItemId_IsNull = true; }
 	/** @brief Checks whether PriceItemId_Optional is set to null */
-	bool IsPriceItemIdNull() const { return PriceItemId_IsSet && PriceItemId_IsNull; }
+	FORCEINLINE bool IsPriceItemIdNull() const { return PriceItemId_IsSet && PriceItemId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Quantity{ 0 };
 	/** @brief Gets the value of Quantity */
-	int32& GetQuantity() { return Quantity; }
+	FORCEINLINE int32& GetQuantity() { return Quantity; }
 	/** @brief Gets the value of Quantity */
-	const int32& GetQuantity() const { return Quantity; }
+	FORCEINLINE const int32& GetQuantity() const { return Quantity; }
 	/** @brief Sets the value of Quantity */
-	void SetQuantity(const int32& NewValue) { Quantity = NewValue;   }
+	FORCEINLINE void SetQuantity(const int32& NewValue) { Quantity = NewValue;   }
 	/** @brief Sets the value of Quantity using move semantics */
-	void SetQuantity(int32&& NewValue) { Quantity = NewValue;   }
-	/** @brief Returns true if Quantity matches the default value */
-	bool IsQuantityDefaultValue() const { return Quantity == 0; }
-	/** @brief Sets the value of Quantity to its default  */
-	void SetQuantityToDefault() { SetQuantity(0); }
+	FORCEINLINE void SetQuantity(int32&& NewValue) { Quantity = NewValue;   }
+	/** @brief Returns the default value of Quantity */
+	FORCEINLINE int32 GetDefaultValue_Quantity() { return 0; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Price_Optional{ 0 };
@@ -134,33 +126,29 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Price_IsNull{ false };
 	/** @brief Gets the value of Price_Optional, regardless of it having been set */
-	int32& GetPrice() { return Price_Optional; }
+	FORCEINLINE int32& GetPrice() { return Price_Optional; }
 	/** @brief Gets the value of Price_Optional, regardless of it having been set */
-	const int32& GetPrice() const { return Price_Optional; }
+	FORCEINLINE const int32& GetPrice() const { return Price_Optional; }
 	/** @brief Gets the value of Price_Optional, if it has been set, otherwise it returns DefaultValue */
-	const int32& GetPrice(const int32& DefaultValue) const { if (Price_IsSet) return Price_Optional; return DefaultValue; }
+	FORCEINLINE const int32& GetPrice(const int32& DefaultValue) const { if (Price_IsSet) return Price_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Price_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPrice(int32& OutValue) const { if (Price_IsSet && !Price_IsNull) OutValue = Price_Optional; return Price_IsSet; }
+	FORCEINLINE bool GetPrice(int32& OutValue) const { if (Price_IsSet && !Price_IsNull) OutValue = Price_Optional; return Price_IsSet; }
 	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
-	int32* GetPriceOrNull() { if (Price_IsSet) return (Price_IsNull ? nullptr : &Price_Optional); return nullptr; }
+	FORCEINLINE int32* GetPriceOrNull() { if (Price_IsSet) return (Price_IsNull ? nullptr : &Price_Optional); return nullptr; }
 	/** @brief Returns a pointer to Price_Optional, if it has been set, otherwise returns nullptr */
-	const int32* GetPriceOrNull() const { if (Price_IsSet) return (Price_IsNull ? nullptr : &Price_Optional); return nullptr; }
+	FORCEINLINE const int32* GetPriceOrNull() const { if (Price_IsSet) return (Price_IsNull ? nullptr : &Price_Optional); return nullptr; }
 	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true */
-	void SetPrice(const int32& NewValue) { Price_Optional = NewValue; Price_IsSet = true; Price_IsNull = false; }
+	FORCEINLINE void SetPrice(const int32& NewValue) { Price_Optional = NewValue; Price_IsSet = true; Price_IsNull = false; }
 	/** @brief Sets the value of Price_Optional and also sets Price_IsSet to true using move semantics */
-	void SetPrice(int32&& NewValue) { Price_Optional = NewValue; Price_IsSet = true; Price_IsNull = false; }
+	FORCEINLINE void SetPrice(int32&& NewValue) { Price_Optional = NewValue; Price_IsSet = true; Price_IsNull = false; }
 	/** @brief Clears the value of Price_Optional and sets Price_IsSet to false */
 	void ClearPrice() { Price_Optional = 0; Price_IsSet = false; Price_IsNull = false; }
-	/** @brief Checks whether Price_Optional has been set */
-	bool IsPriceSet() const { return Price_IsSet; }
-	/** @brief Returns true if Price_Optional is set and matches the default value */
-	bool IsPriceDefaultValue() const { return Price_IsSet && Price_Optional == 0; }
-	/** @brief Sets the value of Price_Optional to its default and also sets Price_IsSet to true */
-	void SetPriceToDefault() { SetPrice(0); }
+	/** @brief Returns the default value of Price */
+	FORCEINLINE int32 GetDefaultValue_Price() { return 0; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPriceToNull() { Price_IsSet = true; Price_IsNull = true; }
+	FORCEINLINE void SetPriceToNull() { Price_IsSet = true; Price_IsNull = true; }
 	/** @brief Checks whether Price_Optional is set to null */
-	bool IsPriceNull() const { return Price_IsSet && Price_IsNull; }
+	FORCEINLINE bool IsPriceNull() const { return Price_IsSet && Price_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PriceBreakPointCurrency> Currencies_Optional{  };
@@ -171,29 +159,27 @@ struct RALLYHEREAPI_API FRHAPI_PriceBreakpoint : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Currencies_IsNull{ false };
 	/** @brief Gets the value of Currencies_Optional, regardless of it having been set */
-	TArray<FRHAPI_PriceBreakPointCurrency>& GetCurrencies() { return Currencies_Optional; }
+	FORCEINLINE TArray<FRHAPI_PriceBreakPointCurrency>& GetCurrencies() { return Currencies_Optional; }
 	/** @brief Gets the value of Currencies_Optional, regardless of it having been set */
-	const TArray<FRHAPI_PriceBreakPointCurrency>& GetCurrencies() const { return Currencies_Optional; }
+	FORCEINLINE const TArray<FRHAPI_PriceBreakPointCurrency>& GetCurrencies() const { return Currencies_Optional; }
 	/** @brief Gets the value of Currencies_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_PriceBreakPointCurrency>& GetCurrencies(const TArray<FRHAPI_PriceBreakPointCurrency>& DefaultValue) const { if (Currencies_IsSet) return Currencies_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_PriceBreakPointCurrency>& GetCurrencies(const TArray<FRHAPI_PriceBreakPointCurrency>& DefaultValue) const { if (Currencies_IsSet) return Currencies_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Currencies_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCurrencies(TArray<FRHAPI_PriceBreakPointCurrency>& OutValue) const { if (Currencies_IsSet && !Currencies_IsNull) OutValue = Currencies_Optional; return Currencies_IsSet; }
+	FORCEINLINE bool GetCurrencies(TArray<FRHAPI_PriceBreakPointCurrency>& OutValue) const { if (Currencies_IsSet && !Currencies_IsNull) OutValue = Currencies_Optional; return Currencies_IsSet; }
 	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PriceBreakPointCurrency>* GetCurrenciesOrNull() { if (Currencies_IsSet) return (Currencies_IsNull ? nullptr : &Currencies_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_PriceBreakPointCurrency>* GetCurrenciesOrNull() { if (Currencies_IsSet) return (Currencies_IsNull ? nullptr : &Currencies_Optional); return nullptr; }
 	/** @brief Returns a pointer to Currencies_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PriceBreakPointCurrency>* GetCurrenciesOrNull() const { if (Currencies_IsSet) return (Currencies_IsNull ? nullptr : &Currencies_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_PriceBreakPointCurrency>* GetCurrenciesOrNull() const { if (Currencies_IsSet) return (Currencies_IsNull ? nullptr : &Currencies_Optional); return nullptr; }
 	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true */
-	void SetCurrencies(const TArray<FRHAPI_PriceBreakPointCurrency>& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; Currencies_IsNull = false; }
+	FORCEINLINE void SetCurrencies(const TArray<FRHAPI_PriceBreakPointCurrency>& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; Currencies_IsNull = false; }
 	/** @brief Sets the value of Currencies_Optional and also sets Currencies_IsSet to true using move semantics */
-	void SetCurrencies(TArray<FRHAPI_PriceBreakPointCurrency>&& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; Currencies_IsNull = false; }
+	FORCEINLINE void SetCurrencies(TArray<FRHAPI_PriceBreakPointCurrency>&& NewValue) { Currencies_Optional = NewValue; Currencies_IsSet = true; Currencies_IsNull = false; }
 	/** @brief Clears the value of Currencies_Optional and sets Currencies_IsSet to false */
 	void ClearCurrencies() { Currencies_IsSet = false; Currencies_IsNull = false; }
-	/** @brief Checks whether Currencies_Optional has been set */
-	bool IsCurrenciesSet() const { return Currencies_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetCurrenciesToNull() { Currencies_IsSet = true; Currencies_IsNull = true; }
+	FORCEINLINE void SetCurrenciesToNull() { Currencies_IsSet = true; Currencies_IsNull = true; }
 	/** @brief Checks whether Currencies_Optional is set to null */
-	bool IsCurrenciesNull() const { return Currencies_IsSet && Currencies_IsNull; }
+	FORCEINLINE bool IsCurrenciesNull() const { return Currencies_IsSet && Currencies_IsNull; }
 };
 
 /** @} */

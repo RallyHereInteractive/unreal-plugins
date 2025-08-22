@@ -44,37 +44,37 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardPage : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString LeaderboardId{  };
 	/** @brief Gets the value of LeaderboardId */
-	FString& GetLeaderboardId() { return LeaderboardId; }
+	FORCEINLINE FString& GetLeaderboardId() { return LeaderboardId; }
 	/** @brief Gets the value of LeaderboardId */
-	const FString& GetLeaderboardId() const { return LeaderboardId; }
+	FORCEINLINE const FString& GetLeaderboardId() const { return LeaderboardId; }
 	/** @brief Sets the value of LeaderboardId */
-	void SetLeaderboardId(const FString& NewValue) { LeaderboardId = NewValue;   }
+	FORCEINLINE void SetLeaderboardId(const FString& NewValue) { LeaderboardId = NewValue;   }
 	/** @brief Sets the value of LeaderboardId using move semantics */
-	void SetLeaderboardId(FString&& NewValue) { LeaderboardId = NewValue;   }
+	FORCEINLINE void SetLeaderboardId(FString&& NewValue) { LeaderboardId = NewValue;   }
 
 	/** @brief The cursor for the next page of results. 0 means there are no more */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Cursor{  };
 	/** @brief Gets the value of Cursor */
-	FString& GetCursor() { return Cursor; }
+	FORCEINLINE FString& GetCursor() { return Cursor; }
 	/** @brief Gets the value of Cursor */
-	const FString& GetCursor() const { return Cursor; }
+	FORCEINLINE const FString& GetCursor() const { return Cursor; }
 	/** @brief Sets the value of Cursor */
-	void SetCursor(const FString& NewValue) { Cursor = NewValue;   }
+	FORCEINLINE void SetCursor(const FString& NewValue) { Cursor = NewValue;   }
 	/** @brief Sets the value of Cursor using move semantics */
-	void SetCursor(FString&& NewValue) { Cursor = NewValue;   }
+	FORCEINLINE void SetCursor(FString&& NewValue) { Cursor = NewValue;   }
 
 	/** @brief List of leaderboard entries */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_LeaderboardEntry> Entries{  };
 	/** @brief Gets the value of Entries */
-	TArray<FRHAPI_LeaderboardEntry>& GetEntries() { return Entries; }
+	FORCEINLINE TArray<FRHAPI_LeaderboardEntry>& GetEntries() { return Entries; }
 	/** @brief Gets the value of Entries */
-	const TArray<FRHAPI_LeaderboardEntry>& GetEntries() const { return Entries; }
+	FORCEINLINE const TArray<FRHAPI_LeaderboardEntry>& GetEntries() const { return Entries; }
 	/** @brief Sets the value of Entries */
-	void SetEntries(const TArray<FRHAPI_LeaderboardEntry>& NewValue) { Entries = NewValue;   }
+	FORCEINLINE void SetEntries(const TArray<FRHAPI_LeaderboardEntry>& NewValue) { Entries = NewValue;   }
 	/** @brief Sets the value of Entries using move semantics */
-	void SetEntries(TArray<FRHAPI_LeaderboardEntry>&& NewValue) { Entries = NewValue;   }
+	FORCEINLINE void SetEntries(TArray<FRHAPI_LeaderboardEntry>&& NewValue) { Entries = NewValue;   }
 };
 
 /** @} */

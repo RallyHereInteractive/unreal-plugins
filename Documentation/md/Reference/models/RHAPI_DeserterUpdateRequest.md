@@ -27,36 +27,33 @@ struct FRHAPI_DeserterUpdateRequest
 `public bool `[`CustomData_IsSet`](#structFRHAPI__DeserterUpdateRequest_1ad18fdc843a868e4dfe59153c294d1ec5) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__DeserterUpdateRequest_1a28c8fc915ef9169844490fd6f6b25a12)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__DeserterUpdateRequest_1a8ee2253147ff34b3fced82c1b0179cbb)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a2ee7188e20d142de3c29a551b2794d8f)`()` | Gets the value of DeserterExpiration.
-`public inline const FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a4efdc98de6503a2dc6310d20cf4ae54e)`() const` | Gets the value of DeserterExpiration.
-`public inline void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a40498a8ddd61dab1f042ef765f2e886e)`(const FDateTime & NewValue)` | Sets the value of DeserterExpiration.
-`public inline void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a68aa25df89df4c30fde3371f670b0200)`(FDateTime && NewValue)` | Sets the value of DeserterExpiration using move semantics.
-`public inline FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1ab3415b7140478d052a78e8c2fef70fa0)`()` | Gets the value of DeserterReset_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a76674128a2af16b5284a2e683dc5bd67)`() const` | Gets the value of DeserterReset_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1ab6bb719d6a55063c14cb10ddc60f2cf6)`(const FDateTime & DefaultValue) const` | Gets the value of DeserterReset_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1aeae624ec9534bd64f61501c721837b41)`(FDateTime & OutValue) const` | Fills OutValue with the value of DeserterReset_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__DeserterUpdateRequest_1a494c8ca5e41a9608f3e6f4f38f3d02ce)`()` | Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__DeserterUpdateRequest_1a7ec8a6b96e672004004c9fbf7b51cfe2)`() const` | Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1aae31c8028363ac1ebe18ba44c76003de)`(const FDateTime & NewValue)` | Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true.
-`public inline void `[`SetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a9c99a8840750a2c01215af0ffe2f348a)`(FDateTime && NewValue)` | Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a56a14179a9ec48b3294fb6589bb4aeeb)`()` | Gets the value of DeserterExpiration.
+`public inline FORCEINLINE const FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a942a159f01868c3795382726c31d88b4)`() const` | Gets the value of DeserterExpiration.
+`public inline FORCEINLINE void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a284feb8a86cfc7135dae16b2e2348c94)`(const FDateTime & NewValue)` | Sets the value of DeserterExpiration.
+`public inline FORCEINLINE void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a48c2639b33cdb1e55bee401a67351fa9)`(FDateTime && NewValue)` | Sets the value of DeserterExpiration using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1ac04319a7292b03a56f65204aa1341b41)`()` | Gets the value of DeserterReset_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a823ce77a26de49c3f19ccde9b493c39c)`() const` | Gets the value of DeserterReset_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1add6eeab0c2aa0efb005d1b8902ea0f2d)`(const FDateTime & DefaultValue) const` | Gets the value of DeserterReset_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a4a49afd29f86ffb27e00a52b7996e980)`(FDateTime & OutValue) const` | Fills OutValue with the value of DeserterReset_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__DeserterUpdateRequest_1a1f72dbf9fd28395092b0f8c88dd618a4)`()` | Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__DeserterUpdateRequest_1ab449813807e8dab1f14f793ce68e7191)`() const` | Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a29f83e1b20f09d385471a194fede590c)`(const FDateTime & NewValue)` | Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true.
+`public inline FORCEINLINE void `[`SetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1abc4ae004ea05d08e81ccec4bac64d6f6)`(FDateTime && NewValue)` | Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true using move semantics.
 `public inline void `[`ClearDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a512c11d4217a0f82e1d0e79e1bd0fa6a)`()` | Clears the value of DeserterReset_Optional and sets DeserterReset_IsSet to false.
-`public inline bool `[`IsDeserterResetSet`](#structFRHAPI__DeserterUpdateRequest_1a3f0a43bfdf14352be03d6911a907f76a)`() const` | Checks whether DeserterReset_Optional has been set.
-`public inline int32 & `[`GetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1a56c4fc24eaeed0bacca4d48e5b17417a)`()` | Gets the value of DeserterCount.
-`public inline const int32 & `[`GetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1ae760a6d77f7cd34981b9677c4b90a2b8)`() const` | Gets the value of DeserterCount.
-`public inline void `[`SetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1ab76ae6905d3e80cebcddb8db142477e0)`(const int32 & NewValue)` | Sets the value of DeserterCount.
-`public inline void `[`SetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1a53b1365663b095b5a260336b90bbeae4)`(int32 && NewValue)` | Sets the value of DeserterCount using move semantics.
-`public inline bool `[`IsDeserterCountDefaultValue`](#structFRHAPI__DeserterUpdateRequest_1a8456762aa88a7fca3e7a16f2ef063a1b)`() const` | Returns true if DeserterCount matches the default value.
-`public inline void `[`SetDeserterCountToDefault`](#structFRHAPI__DeserterUpdateRequest_1a7bc74864258e13cbf17ed269c6d150be)`()` | Sets the value of DeserterCount to its default
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a56101aeadeea326f3c3757725968c92f)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1acb0ffbd93deaa318743a548c633a29fc)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1ad5a0596ad0f19e831e3fda4a449422a4)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a33ffec908a48eadac90bba9bfdf22ce9)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__DeserterUpdateRequest_1af859c67d7507f72512a0546304fc5c9c)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__DeserterUpdateRequest_1a7ea278ab0c9c296557db5a910629444f)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a30f9399f7db13b0c0587f35388b14f7e)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a660f3f2dec0b37be51e06c1b5eb6f65b)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1a28c665a5de34b30b8e7407ca4a8dba80)`()` | Gets the value of DeserterCount.
+`public inline FORCEINLINE const int32 & `[`GetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1add98d0618f96ea9099597955a5c8e2d1)`() const` | Gets the value of DeserterCount.
+`public inline FORCEINLINE void `[`SetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1a20fb2b2ed2c664e52588b1fc48a5b2ca)`(const int32 & NewValue)` | Sets the value of DeserterCount.
+`public inline FORCEINLINE void `[`SetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1afbccdad16cdabcc8f5e6e32dc74f1da7)`(int32 && NewValue)` | Sets the value of DeserterCount using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_DeserterCount`](#structFRHAPI__DeserterUpdateRequest_1adc5ba18b4913fb7eaec0aca754e2c4b5)`()` | Returns the default value of DeserterCount.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a20bd24a8c98a3def4c03a38c45898d6b)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a31eecdfc5b86b1504a76c4dac56c52b3)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a9f130161aea5d4b46c3c2689b9d7755e)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1aa5aa35d4dde5f674564ae75d779e9583)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__DeserterUpdateRequest_1a74738e2661ed0d59c840e87c3ae26361)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__DeserterUpdateRequest_1ae6ade91031fa24658fc011cc7cc828e5)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a3a17c505758f70b4245a1e514e3eba25)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a5967663cf572159e30ed640b600a1b44)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__DeserterUpdateRequest_1aaa49a77e8a5df6f2321b8d1fca196c4a)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__DeserterUpdateRequest_1a1adf1430f406588bffef1bdfa550bc96)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -101,51 +98,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a2ee7188e20d142de3c29a551b2794d8f)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a2ee7188e20d142de3c29a551b2794d8f"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a56a14179a9ec48b3294fb6589bb4aeeb)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a56a14179a9ec48b3294fb6589bb4aeeb"></a>
 
 Gets the value of DeserterExpiration.
 
-#### `public inline const FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a4efdc98de6503a2dc6310d20cf4ae54e)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a4efdc98de6503a2dc6310d20cf4ae54e"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a942a159f01868c3795382726c31d88b4)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a942a159f01868c3795382726c31d88b4"></a>
 
 Gets the value of DeserterExpiration.
 
-#### `public inline void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a40498a8ddd61dab1f042ef765f2e886e)`(const FDateTime & NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a40498a8ddd61dab1f042ef765f2e886e"></a>
+#### `public inline FORCEINLINE void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a284feb8a86cfc7135dae16b2e2348c94)`(const FDateTime & NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a284feb8a86cfc7135dae16b2e2348c94"></a>
 
 Sets the value of DeserterExpiration.
 
-#### `public inline void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a68aa25df89df4c30fde3371f670b0200)`(FDateTime && NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a68aa25df89df4c30fde3371f670b0200"></a>
+#### `public inline FORCEINLINE void `[`SetDeserterExpiration`](#structFRHAPI__DeserterUpdateRequest_1a48c2639b33cdb1e55bee401a67351fa9)`(FDateTime && NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a48c2639b33cdb1e55bee401a67351fa9"></a>
 
 Sets the value of DeserterExpiration using move semantics.
 
-#### `public inline FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1ab3415b7140478d052a78e8c2fef70fa0)`()` <a id="structFRHAPI__DeserterUpdateRequest_1ab3415b7140478d052a78e8c2fef70fa0"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1ac04319a7292b03a56f65204aa1341b41)`()` <a id="structFRHAPI__DeserterUpdateRequest_1ac04319a7292b03a56f65204aa1341b41"></a>
 
 Gets the value of DeserterReset_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a76674128a2af16b5284a2e683dc5bd67)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a76674128a2af16b5284a2e683dc5bd67"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a823ce77a26de49c3f19ccde9b493c39c)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a823ce77a26de49c3f19ccde9b493c39c"></a>
 
 Gets the value of DeserterReset_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1ab6bb719d6a55063c14cb10ddc60f2cf6)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__DeserterUpdateRequest_1ab6bb719d6a55063c14cb10ddc60f2cf6"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1add6eeab0c2aa0efb005d1b8902ea0f2d)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__DeserterUpdateRequest_1add6eeab0c2aa0efb005d1b8902ea0f2d"></a>
 
 Gets the value of DeserterReset_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1aeae624ec9534bd64f61501c721837b41)`(FDateTime & OutValue) const` <a id="structFRHAPI__DeserterUpdateRequest_1aeae624ec9534bd64f61501c721837b41"></a>
+#### `public inline FORCEINLINE bool `[`GetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a4a49afd29f86ffb27e00a52b7996e980)`(FDateTime & OutValue) const` <a id="structFRHAPI__DeserterUpdateRequest_1a4a49afd29f86ffb27e00a52b7996e980"></a>
 
 Fills OutValue with the value of DeserterReset_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__DeserterUpdateRequest_1a494c8ca5e41a9608f3e6f4f38f3d02ce)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a494c8ca5e41a9608f3e6f4f38f3d02ce"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__DeserterUpdateRequest_1a1f72dbf9fd28395092b0f8c88dd618a4)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a1f72dbf9fd28395092b0f8c88dd618a4"></a>
 
 Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__DeserterUpdateRequest_1a7ec8a6b96e672004004c9fbf7b51cfe2)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a7ec8a6b96e672004004c9fbf7b51cfe2"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetDeserterResetOrNull`](#structFRHAPI__DeserterUpdateRequest_1ab449813807e8dab1f14f793ce68e7191)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1ab449813807e8dab1f14f793ce68e7191"></a>
 
 Returns a pointer to DeserterReset_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1aae31c8028363ac1ebe18ba44c76003de)`(const FDateTime & NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1aae31c8028363ac1ebe18ba44c76003de"></a>
+#### `public inline FORCEINLINE void `[`SetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a29f83e1b20f09d385471a194fede590c)`(const FDateTime & NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a29f83e1b20f09d385471a194fede590c"></a>
 
 Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true.
 
-#### `public inline void `[`SetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1a9c99a8840750a2c01215af0ffe2f348a)`(FDateTime && NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a9c99a8840750a2c01215af0ffe2f348a"></a>
+#### `public inline FORCEINLINE void `[`SetDeserterReset`](#structFRHAPI__DeserterUpdateRequest_1abc4ae004ea05d08e81ccec4bac64d6f6)`(FDateTime && NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1abc4ae004ea05d08e81ccec4bac64d6f6"></a>
 
 Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to true using move semantics.
 
@@ -153,71 +150,59 @@ Sets the value of DeserterReset_Optional and also sets DeserterReset_IsSet to tr
 
 Clears the value of DeserterReset_Optional and sets DeserterReset_IsSet to false.
 
-#### `public inline bool `[`IsDeserterResetSet`](#structFRHAPI__DeserterUpdateRequest_1a3f0a43bfdf14352be03d6911a907f76a)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a3f0a43bfdf14352be03d6911a907f76a"></a>
-
-Checks whether DeserterReset_Optional has been set.
-
-#### `public inline int32 & `[`GetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1a56c4fc24eaeed0bacca4d48e5b17417a)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a56c4fc24eaeed0bacca4d48e5b17417a"></a>
+#### `public inline FORCEINLINE int32 & `[`GetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1a28c665a5de34b30b8e7407ca4a8dba80)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a28c665a5de34b30b8e7407ca4a8dba80"></a>
 
 Gets the value of DeserterCount.
 
-#### `public inline const int32 & `[`GetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1ae760a6d77f7cd34981b9677c4b90a2b8)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1ae760a6d77f7cd34981b9677c4b90a2b8"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1add98d0618f96ea9099597955a5c8e2d1)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1add98d0618f96ea9099597955a5c8e2d1"></a>
 
 Gets the value of DeserterCount.
 
-#### `public inline void `[`SetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1ab76ae6905d3e80cebcddb8db142477e0)`(const int32 & NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1ab76ae6905d3e80cebcddb8db142477e0"></a>
+#### `public inline FORCEINLINE void `[`SetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1a20fb2b2ed2c664e52588b1fc48a5b2ca)`(const int32 & NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a20fb2b2ed2c664e52588b1fc48a5b2ca"></a>
 
 Sets the value of DeserterCount.
 
-#### `public inline void `[`SetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1a53b1365663b095b5a260336b90bbeae4)`(int32 && NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a53b1365663b095b5a260336b90bbeae4"></a>
+#### `public inline FORCEINLINE void `[`SetDeserterCount`](#structFRHAPI__DeserterUpdateRequest_1afbccdad16cdabcc8f5e6e32dc74f1da7)`(int32 && NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1afbccdad16cdabcc8f5e6e32dc74f1da7"></a>
 
 Sets the value of DeserterCount using move semantics.
 
-#### `public inline bool `[`IsDeserterCountDefaultValue`](#structFRHAPI__DeserterUpdateRequest_1a8456762aa88a7fca3e7a16f2ef063a1b)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a8456762aa88a7fca3e7a16f2ef063a1b"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_DeserterCount`](#structFRHAPI__DeserterUpdateRequest_1adc5ba18b4913fb7eaec0aca754e2c4b5)`()` <a id="structFRHAPI__DeserterUpdateRequest_1adc5ba18b4913fb7eaec0aca754e2c4b5"></a>
 
-Returns true if DeserterCount matches the default value.
+Returns the default value of DeserterCount.
 
-#### `public inline void `[`SetDeserterCountToDefault`](#structFRHAPI__DeserterUpdateRequest_1a7bc74864258e13cbf17ed269c6d150be)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a7bc74864258e13cbf17ed269c6d150be"></a>
-
-Sets the value of DeserterCount to its default
-
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a56101aeadeea326f3c3757725968c92f)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a56101aeadeea326f3c3757725968c92f"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a20bd24a8c98a3def4c03a38c45898d6b)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a20bd24a8c98a3def4c03a38c45898d6b"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1acb0ffbd93deaa318743a548c633a29fc)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1acb0ffbd93deaa318743a548c633a29fc"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a31eecdfc5b86b1504a76c4dac56c52b3)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a31eecdfc5b86b1504a76c4dac56c52b3"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1ad5a0596ad0f19e831e3fda4a449422a4)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__DeserterUpdateRequest_1ad5a0596ad0f19e831e3fda4a449422a4"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a9f130161aea5d4b46c3c2689b9d7755e)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__DeserterUpdateRequest_1a9f130161aea5d4b46c3c2689b9d7755e"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a33ffec908a48eadac90bba9bfdf22ce9)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__DeserterUpdateRequest_1a33ffec908a48eadac90bba9bfdf22ce9"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__DeserterUpdateRequest_1aa5aa35d4dde5f674564ae75d779e9583)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__DeserterUpdateRequest_1aa5aa35d4dde5f674564ae75d779e9583"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__DeserterUpdateRequest_1af859c67d7507f72512a0546304fc5c9c)`()` <a id="structFRHAPI__DeserterUpdateRequest_1af859c67d7507f72512a0546304fc5c9c"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__DeserterUpdateRequest_1a74738e2661ed0d59c840e87c3ae26361)`()` <a id="structFRHAPI__DeserterUpdateRequest_1a74738e2661ed0d59c840e87c3ae26361"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__DeserterUpdateRequest_1a7ea278ab0c9c296557db5a910629444f)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a7ea278ab0c9c296557db5a910629444f"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__DeserterUpdateRequest_1ae6ade91031fa24658fc011cc7cc828e5)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1ae6ade91031fa24658fc011cc7cc828e5"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a30f9399f7db13b0c0587f35388b14f7e)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a30f9399f7db13b0c0587f35388b14f7e"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a3a17c505758f70b4245a1e514e3eba25)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a3a17c505758f70b4245a1e514e3eba25"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a660f3f2dec0b37be51e06c1b5eb6f65b)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a660f3f2dec0b37be51e06c1b5eb6f65b"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__DeserterUpdateRequest_1a5967663cf572159e30ed640b600a1b44)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__DeserterUpdateRequest_1a5967663cf572159e30ed640b600a1b44"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__DeserterUpdateRequest_1aaa49a77e8a5df6f2321b8d1fca196c4a)`()` <a id="structFRHAPI__DeserterUpdateRequest_1aaa49a77e8a5df6f2321b8d1fca196c4a"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__DeserterUpdateRequest_1a1adf1430f406588bffef1bdfa550bc96)`() const` <a id="structFRHAPI__DeserterUpdateRequest_1a1adf1430f406588bffef1bdfa550bc96"></a>
-
-Checks whether CustomData_Optional has been set.
 

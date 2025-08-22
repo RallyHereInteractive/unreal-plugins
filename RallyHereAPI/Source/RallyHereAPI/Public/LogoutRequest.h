@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_LogoutRequest : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString RefreshToken{  };
 	/** @brief Gets the value of RefreshToken */
-	FString& GetRefreshToken() { return RefreshToken; }
+	FORCEINLINE FString& GetRefreshToken() { return RefreshToken; }
 	/** @brief Gets the value of RefreshToken */
-	const FString& GetRefreshToken() const { return RefreshToken; }
+	FORCEINLINE const FString& GetRefreshToken() const { return RefreshToken; }
 	/** @brief Sets the value of RefreshToken */
-	void SetRefreshToken(const FString& NewValue) { RefreshToken = NewValue;   }
+	FORCEINLINE void SetRefreshToken(const FString& NewValue) { RefreshToken = NewValue;   }
 	/** @brief Sets the value of RefreshToken using move semantics */
-	void SetRefreshToken(FString&& NewValue) { RefreshToken = NewValue;   }
+	FORCEINLINE void SetRefreshToken(FString&& NewValue) { RefreshToken = NewValue;   }
 };
 
 /** @} */

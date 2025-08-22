@@ -42,28 +42,26 @@ struct RALLYHEREAPI_API FRHAPI_UnionCCU : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 Count{ 0 };
 	/** @brief Gets the value of Count */
-	int32& GetCount() { return Count; }
+	FORCEINLINE int32& GetCount() { return Count; }
 	/** @brief Gets the value of Count */
-	const int32& GetCount() const { return Count; }
+	FORCEINLINE const int32& GetCount() const { return Count; }
 	/** @brief Sets the value of Count */
-	void SetCount(const int32& NewValue) { Count = NewValue;   }
+	FORCEINLINE void SetCount(const int32& NewValue) { Count = NewValue;   }
 	/** @brief Sets the value of Count using move semantics */
-	void SetCount(int32&& NewValue) { Count = NewValue;   }
-	/** @brief Returns true if Count matches the default value */
-	bool IsCountDefaultValue() const { return Count == 0; }
-	/** @brief Sets the value of Count to its default  */
-	void SetCountToDefault() { SetCount(0); }
+	FORCEINLINE void SetCount(int32&& NewValue) { Count = NewValue;   }
+	/** @brief Returns the default value of Count */
+	FORCEINLINE int32 GetDefaultValue_Count() { return 0; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FDateTime> Timestamps{  };
 	/** @brief Gets the value of Timestamps */
-	TArray<FDateTime>& GetTimestamps() { return Timestamps; }
+	FORCEINLINE TArray<FDateTime>& GetTimestamps() { return Timestamps; }
 	/** @brief Gets the value of Timestamps */
-	const TArray<FDateTime>& GetTimestamps() const { return Timestamps; }
+	FORCEINLINE const TArray<FDateTime>& GetTimestamps() const { return Timestamps; }
 	/** @brief Sets the value of Timestamps */
-	void SetTimestamps(const TArray<FDateTime>& NewValue) { Timestamps = NewValue;   }
+	FORCEINLINE void SetTimestamps(const TArray<FDateTime>& NewValue) { Timestamps = NewValue;   }
 	/** @brief Sets the value of Timestamps using move semantics */
-	void SetTimestamps(TArray<FDateTime>&& NewValue) { Timestamps = NewValue;   }
+	FORCEINLINE void SetTimestamps(TArray<FDateTime>&& NewValue) { Timestamps = NewValue;   }
 };
 
 /** @} */

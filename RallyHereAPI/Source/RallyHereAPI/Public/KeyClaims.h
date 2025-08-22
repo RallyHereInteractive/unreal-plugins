@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_KeyClaims : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_KeyClaim> Claims{  };
 	/** @brief Gets the value of Claims */
-	TArray<FRHAPI_KeyClaim>& GetClaims() { return Claims; }
+	FORCEINLINE TArray<FRHAPI_KeyClaim>& GetClaims() { return Claims; }
 	/** @brief Gets the value of Claims */
-	const TArray<FRHAPI_KeyClaim>& GetClaims() const { return Claims; }
+	FORCEINLINE const TArray<FRHAPI_KeyClaim>& GetClaims() const { return Claims; }
 	/** @brief Sets the value of Claims */
-	void SetClaims(const TArray<FRHAPI_KeyClaim>& NewValue) { Claims = NewValue;   }
+	FORCEINLINE void SetClaims(const TArray<FRHAPI_KeyClaim>& NewValue) { Claims = NewValue;   }
 	/** @brief Sets the value of Claims using move semantics */
-	void SetClaims(TArray<FRHAPI_KeyClaim>&& NewValue) { Claims = NewValue;   }
+	FORCEINLINE void SetClaims(TArray<FRHAPI_KeyClaim>&& NewValue) { Claims = NewValue;   }
 };
 
 /** @} */

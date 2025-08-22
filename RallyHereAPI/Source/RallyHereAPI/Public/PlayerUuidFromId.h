@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_PlayerUuidFromId : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid Uuid{  };
 	/** @brief Gets the value of Uuid */
-	FGuid& GetUuid() { return Uuid; }
+	FORCEINLINE FGuid& GetUuid() { return Uuid; }
 	/** @brief Gets the value of Uuid */
-	const FGuid& GetUuid() const { return Uuid; }
+	FORCEINLINE const FGuid& GetUuid() const { return Uuid; }
 	/** @brief Sets the value of Uuid */
-	void SetUuid(const FGuid& NewValue) { Uuid = NewValue;   }
+	FORCEINLINE void SetUuid(const FGuid& NewValue) { Uuid = NewValue;   }
 	/** @brief Sets the value of Uuid using move semantics */
-	void SetUuid(FGuid&& NewValue) { Uuid = NewValue;   }
+	FORCEINLINE void SetUuid(FGuid&& NewValue) { Uuid = NewValue;   }
 };
 
 /** @} */

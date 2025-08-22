@@ -48,25 +48,23 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Source_IsSet{ false };
 	/** @brief Gets the value of Source_Optional, regardless of it having been set */
-	ERHAPI_Source& GetSource() { return Source_Optional; }
+	FORCEINLINE ERHAPI_Source& GetSource() { return Source_Optional; }
 	/** @brief Gets the value of Source_Optional, regardless of it having been set */
-	const ERHAPI_Source& GetSource() const { return Source_Optional; }
+	FORCEINLINE const ERHAPI_Source& GetSource() const { return Source_Optional; }
 	/** @brief Gets the value of Source_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_Source& GetSource(const ERHAPI_Source& DefaultValue) const { if (Source_IsSet) return Source_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_Source& GetSource(const ERHAPI_Source& DefaultValue) const { if (Source_IsSet) return Source_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false */
-	bool GetSource(ERHAPI_Source& OutValue) const { if (Source_IsSet) OutValue = Source_Optional; return Source_IsSet; }
+	FORCEINLINE bool GetSource(ERHAPI_Source& OutValue) const { if (Source_IsSet) OutValue = Source_Optional; return Source_IsSet; }
 	/** @brief Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Source* GetSourceOrNull() { if (Source_IsSet) return (&Source_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_Source* GetSourceOrNull() { if (Source_IsSet) return (&Source_Optional); return nullptr; }
 	/** @brief Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Source* GetSourceOrNull() const { if (Source_IsSet) return (&Source_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_Source* GetSourceOrNull() const { if (Source_IsSet) return (&Source_Optional); return nullptr; }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true */
-	void SetSource(const ERHAPI_Source& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
+	FORCEINLINE void SetSource(const ERHAPI_Source& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
 	/** @brief Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics */
-	void SetSource(ERHAPI_Source&& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
+	FORCEINLINE void SetSource(ERHAPI_Source&& NewValue) { Source_Optional = NewValue; Source_IsSet = true;  }
 	/** @brief Clears the value of Source_Optional and sets Source_IsSet to false */
 	void ClearSource() { Source_IsSet = false;  }
-	/** @brief Checks whether Source_Optional has been set */
-	bool IsSourceSet() const { return Source_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid ClientOrderRefId_Optional{  };
@@ -77,29 +75,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ClientOrderRefId_IsNull{ false };
 	/** @brief Gets the value of ClientOrderRefId_Optional, regardless of it having been set */
-	FGuid& GetClientOrderRefId() { return ClientOrderRefId_Optional; }
+	FORCEINLINE FGuid& GetClientOrderRefId() { return ClientOrderRefId_Optional; }
 	/** @brief Gets the value of ClientOrderRefId_Optional, regardless of it having been set */
-	const FGuid& GetClientOrderRefId() const { return ClientOrderRefId_Optional; }
+	FORCEINLINE const FGuid& GetClientOrderRefId() const { return ClientOrderRefId_Optional; }
 	/** @brief Gets the value of ClientOrderRefId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FGuid& GetClientOrderRefId(const FGuid& DefaultValue) const { if (ClientOrderRefId_IsSet) return ClientOrderRefId_Optional; return DefaultValue; }
+	FORCEINLINE const FGuid& GetClientOrderRefId(const FGuid& DefaultValue) const { if (ClientOrderRefId_IsSet) return ClientOrderRefId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ClientOrderRefId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetClientOrderRefId(FGuid& OutValue) const { if (ClientOrderRefId_IsSet && !ClientOrderRefId_IsNull) OutValue = ClientOrderRefId_Optional; return ClientOrderRefId_IsSet; }
+	FORCEINLINE bool GetClientOrderRefId(FGuid& OutValue) const { if (ClientOrderRefId_IsSet && !ClientOrderRefId_IsNull) OutValue = ClientOrderRefId_Optional; return ClientOrderRefId_IsSet; }
 	/** @brief Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr */
-	FGuid* GetClientOrderRefIdOrNull() { if (ClientOrderRefId_IsSet) return (ClientOrderRefId_IsNull ? nullptr : &ClientOrderRefId_Optional); return nullptr; }
+	FORCEINLINE FGuid* GetClientOrderRefIdOrNull() { if (ClientOrderRefId_IsSet) return (ClientOrderRefId_IsNull ? nullptr : &ClientOrderRefId_Optional); return nullptr; }
 	/** @brief Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr */
-	const FGuid* GetClientOrderRefIdOrNull() const { if (ClientOrderRefId_IsSet) return (ClientOrderRefId_IsNull ? nullptr : &ClientOrderRefId_Optional); return nullptr; }
+	FORCEINLINE const FGuid* GetClientOrderRefIdOrNull() const { if (ClientOrderRefId_IsSet) return (ClientOrderRefId_IsNull ? nullptr : &ClientOrderRefId_Optional); return nullptr; }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true */
-	void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = false; }
+	FORCEINLINE void SetClientOrderRefId(const FGuid& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = false; }
 	/** @brief Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics */
-	void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = false; }
+	FORCEINLINE void SetClientOrderRefId(FGuid&& NewValue) { ClientOrderRefId_Optional = NewValue; ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = false; }
 	/** @brief Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false */
 	void ClearClientOrderRefId() { ClientOrderRefId_IsSet = false; ClientOrderRefId_IsNull = false; }
-	/** @brief Checks whether ClientOrderRefId_Optional has been set */
-	bool IsClientOrderRefIdSet() const { return ClientOrderRefId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetClientOrderRefIdToNull() { ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = true; }
+	FORCEINLINE void SetClientOrderRefIdToNull() { ClientOrderRefId_IsSet = true; ClientOrderRefId_IsNull = true; }
 	/** @brief Checks whether ClientOrderRefId_Optional is set to null */
-	bool IsClientOrderRefIdNull() const { return ClientOrderRefId_IsSet && ClientOrderRefId_IsNull; }
+	FORCEINLINE bool IsClientOrderRefIdNull() const { return ClientOrderRefId_IsSet && ClientOrderRefId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_Portal PortalId_Optional{  };
@@ -110,29 +106,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalId_IsNull{ false };
 	/** @brief Gets the value of PortalId_Optional, regardless of it having been set */
-	ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
+	FORCEINLINE ERHAPI_Portal& GetPortalId() { return PortalId_Optional; }
 	/** @brief Gets the value of PortalId_Optional, regardless of it having been set */
-	const ERHAPI_Portal& GetPortalId() const { return PortalId_Optional; }
+	FORCEINLINE const ERHAPI_Portal& GetPortalId() const { return PortalId_Optional; }
 	/** @brief Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const ERHAPI_Portal& GetPortalId(const ERHAPI_Portal& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
+	FORCEINLINE const ERHAPI_Portal& GetPortalId(const ERHAPI_Portal& DefaultValue) const { if (PortalId_IsSet) return PortalId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalId(ERHAPI_Portal& OutValue) const { if (PortalId_IsSet && !PortalId_IsNull) OutValue = PortalId_Optional; return PortalId_IsSet; }
+	FORCEINLINE bool GetPortalId(ERHAPI_Portal& OutValue) const { if (PortalId_IsSet && !PortalId_IsNull) OutValue = PortalId_Optional; return PortalId_IsSet; }
 	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
-	ERHAPI_Portal* GetPortalIdOrNull() { if (PortalId_IsSet) return (PortalId_IsNull ? nullptr : &PortalId_Optional); return nullptr; }
+	FORCEINLINE ERHAPI_Portal* GetPortalIdOrNull() { if (PortalId_IsSet) return (PortalId_IsNull ? nullptr : &PortalId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr */
-	const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return (PortalId_IsNull ? nullptr : &PortalId_Optional); return nullptr; }
+	FORCEINLINE const ERHAPI_Portal* GetPortalIdOrNull() const { if (PortalId_IsSet) return (PortalId_IsNull ? nullptr : &PortalId_Optional); return nullptr; }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true */
-	void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; PortalId_IsNull = false; }
+	FORCEINLINE void SetPortalId(const ERHAPI_Portal& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; PortalId_IsNull = false; }
 	/** @brief Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics */
-	void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; PortalId_IsNull = false; }
+	FORCEINLINE void SetPortalId(ERHAPI_Portal&& NewValue) { PortalId_Optional = NewValue; PortalId_IsSet = true; PortalId_IsNull = false; }
 	/** @brief Clears the value of PortalId_Optional and sets PortalId_IsSet to false */
 	void ClearPortalId() { PortalId_IsSet = false; PortalId_IsNull = false; }
-	/** @brief Checks whether PortalId_Optional has been set */
-	bool IsPortalIdSet() const { return PortalId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPortalIdToNull() { PortalId_IsSet = true; PortalId_IsNull = true; }
+	FORCEINLINE void SetPortalIdToNull() { PortalId_IsSet = true; PortalId_IsNull = true; }
 	/** @brief Checks whether PortalId_Optional is set to null */
-	bool IsPortalIdNull() const { return PortalId_IsSet && PortalId_IsNull; }
+	FORCEINLINE bool IsPortalIdNull() const { return PortalId_IsSet && PortalId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString PortalUserId_Optional{  };
@@ -143,29 +137,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PortalUserId_IsNull{ false };
 	/** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
-	FString& GetPortalUserId() { return PortalUserId_Optional; }
+	FORCEINLINE FString& GetPortalUserId() { return PortalUserId_Optional; }
 	/** @brief Gets the value of PortalUserId_Optional, regardless of it having been set */
-	const FString& GetPortalUserId() const { return PortalUserId_Optional; }
+	FORCEINLINE const FString& GetPortalUserId() const { return PortalUserId_Optional; }
 	/** @brief Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetPortalUserId(const FString& DefaultValue) const { if (PortalUserId_IsSet) return PortalUserId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetPortalUserId(const FString& DefaultValue) const { if (PortalUserId_IsSet) return PortalUserId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPortalUserId(FString& OutValue) const { if (PortalUserId_IsSet && !PortalUserId_IsNull) OutValue = PortalUserId_Optional; return PortalUserId_IsSet; }
+	FORCEINLINE bool GetPortalUserId(FString& OutValue) const { if (PortalUserId_IsSet && !PortalUserId_IsNull) OutValue = PortalUserId_Optional; return PortalUserId_IsSet; }
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return (PortalUserId_IsNull ? nullptr : &PortalUserId_Optional); return nullptr; }
+	FORCEINLINE FString* GetPortalUserIdOrNull() { if (PortalUserId_IsSet) return (PortalUserId_IsNull ? nullptr : &PortalUserId_Optional); return nullptr; }
 	/** @brief Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return (PortalUserId_IsNull ? nullptr : &PortalUserId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetPortalUserIdOrNull() const { if (PortalUserId_IsSet) return (PortalUserId_IsNull ? nullptr : &PortalUserId_Optional); return nullptr; }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true */
-	void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; PortalUserId_IsNull = false; }
+	FORCEINLINE void SetPortalUserId(const FString& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; PortalUserId_IsNull = false; }
 	/** @brief Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics */
-	void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; PortalUserId_IsNull = false; }
+	FORCEINLINE void SetPortalUserId(FString&& NewValue) { PortalUserId_Optional = NewValue; PortalUserId_IsSet = true; PortalUserId_IsNull = false; }
 	/** @brief Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false */
 	void ClearPortalUserId() { PortalUserId_IsSet = false; PortalUserId_IsNull = false; }
-	/** @brief Checks whether PortalUserId_Optional has been set */
-	bool IsPortalUserIdSet() const { return PortalUserId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetPortalUserIdToNull() { PortalUserId_IsSet = true; PortalUserId_IsNull = true; }
+	FORCEINLINE void SetPortalUserIdToNull() { PortalUserId_IsSet = true; PortalUserId_IsNull = true; }
 	/** @brief Checks whether PortalUserId_Optional is set to null */
-	bool IsPortalUserIdNull() const { return PortalUserId_IsSet && PortalUserId_IsNull; }
+	FORCEINLINE bool IsPortalUserIdNull() const { return PortalUserId_IsSet && PortalUserId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString InstanceId_Optional{  };
@@ -176,29 +168,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool InstanceId_IsNull{ false };
 	/** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
-	FString& GetInstanceId() { return InstanceId_Optional; }
+	FORCEINLINE FString& GetInstanceId() { return InstanceId_Optional; }
 	/** @brief Gets the value of InstanceId_Optional, regardless of it having been set */
-	const FString& GetInstanceId() const { return InstanceId_Optional; }
+	FORCEINLINE const FString& GetInstanceId() const { return InstanceId_Optional; }
 	/** @brief Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetInstanceId(const FString& DefaultValue) const { if (InstanceId_IsSet) return InstanceId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetInstanceId(const FString& DefaultValue) const { if (InstanceId_IsSet) return InstanceId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInstanceId(FString& OutValue) const { if (InstanceId_IsSet && !InstanceId_IsNull) OutValue = InstanceId_Optional; return InstanceId_IsSet; }
+	FORCEINLINE bool GetInstanceId(FString& OutValue) const { if (InstanceId_IsSet && !InstanceId_IsNull) OutValue = InstanceId_Optional; return InstanceId_IsSet; }
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return (InstanceId_IsNull ? nullptr : &InstanceId_Optional); return nullptr; }
+	FORCEINLINE FString* GetInstanceIdOrNull() { if (InstanceId_IsSet) return (InstanceId_IsNull ? nullptr : &InstanceId_Optional); return nullptr; }
 	/** @brief Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return (InstanceId_IsNull ? nullptr : &InstanceId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetInstanceIdOrNull() const { if (InstanceId_IsSet) return (InstanceId_IsNull ? nullptr : &InstanceId_Optional); return nullptr; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true */
-	void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; InstanceId_IsNull = false; }
+	FORCEINLINE void SetInstanceId(const FString& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; InstanceId_IsNull = false; }
 	/** @brief Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics */
-	void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; InstanceId_IsNull = false; }
+	FORCEINLINE void SetInstanceId(FString&& NewValue) { InstanceId_Optional = NewValue; InstanceId_IsSet = true; InstanceId_IsNull = false; }
 	/** @brief Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false */
 	void ClearInstanceId() { InstanceId_IsSet = false; InstanceId_IsNull = false; }
-	/** @brief Checks whether InstanceId_Optional has been set */
-	bool IsInstanceIdSet() const { return InstanceId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetInstanceIdToNull() { InstanceId_IsSet = true; InstanceId_IsNull = true; }
+	FORCEINLINE void SetInstanceIdToNull() { InstanceId_IsSet = true; InstanceId_IsNull = true; }
 	/** @brief Checks whether InstanceId_Optional is set to null */
-	bool IsInstanceIdNull() const { return InstanceId_IsSet && InstanceId_IsNull; }
+	FORCEINLINE bool IsInstanceIdNull() const { return InstanceId_IsSet && InstanceId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString MatchId_Optional{  };
@@ -209,29 +199,27 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MatchId_IsNull{ false };
 	/** @brief Gets the value of MatchId_Optional, regardless of it having been set */
-	FString& GetMatchId() { return MatchId_Optional; }
+	FORCEINLINE FString& GetMatchId() { return MatchId_Optional; }
 	/** @brief Gets the value of MatchId_Optional, regardless of it having been set */
-	const FString& GetMatchId() const { return MatchId_Optional; }
+	FORCEINLINE const FString& GetMatchId() const { return MatchId_Optional; }
 	/** @brief Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetMatchId(const FString& DefaultValue) const { if (MatchId_IsSet) return MatchId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetMatchId(const FString& DefaultValue) const { if (MatchId_IsSet) return MatchId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMatchId(FString& OutValue) const { if (MatchId_IsSet && !MatchId_IsNull) OutValue = MatchId_Optional; return MatchId_IsSet; }
+	FORCEINLINE bool GetMatchId(FString& OutValue) const { if (MatchId_IsSet && !MatchId_IsNull) OutValue = MatchId_Optional; return MatchId_IsSet; }
 	/** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetMatchIdOrNull() { if (MatchId_IsSet) return (MatchId_IsNull ? nullptr : &MatchId_Optional); return nullptr; }
+	FORCEINLINE FString* GetMatchIdOrNull() { if (MatchId_IsSet) return (MatchId_IsNull ? nullptr : &MatchId_Optional); return nullptr; }
 	/** @brief Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetMatchIdOrNull() const { if (MatchId_IsSet) return (MatchId_IsNull ? nullptr : &MatchId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetMatchIdOrNull() const { if (MatchId_IsSet) return (MatchId_IsNull ? nullptr : &MatchId_Optional); return nullptr; }
 	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true */
-	void SetMatchId(const FString& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; MatchId_IsNull = false; }
+	FORCEINLINE void SetMatchId(const FString& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; MatchId_IsNull = false; }
 	/** @brief Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics */
-	void SetMatchId(FString&& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; MatchId_IsNull = false; }
+	FORCEINLINE void SetMatchId(FString&& NewValue) { MatchId_Optional = NewValue; MatchId_IsSet = true; MatchId_IsNull = false; }
 	/** @brief Clears the value of MatchId_Optional and sets MatchId_IsSet to false */
 	void ClearMatchId() { MatchId_IsSet = false; MatchId_IsNull = false; }
-	/** @brief Checks whether MatchId_Optional has been set */
-	bool IsMatchIdSet() const { return MatchId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetMatchIdToNull() { MatchId_IsSet = true; MatchId_IsNull = true; }
+	FORCEINLINE void SetMatchIdToNull() { MatchId_IsSet = true; MatchId_IsNull = true; }
 	/** @brief Checks whether MatchId_Optional is set to null */
-	bool IsMatchIdNull() const { return MatchId_IsSet && MatchId_IsNull; }
+	FORCEINLINE bool IsMatchIdNull() const { return MatchId_IsSet && MatchId_IsNull; }
 
 	/** @brief If an order is a transaction, any failed entries will roll back changes from all other entries. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -240,29 +228,25 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool IsTransaction_IsSet{ false };
 	/** @brief Gets the value of IsTransaction_Optional, regardless of it having been set */
-	bool& GetIsTransaction() { return IsTransaction_Optional; }
+	FORCEINLINE bool& GetIsTransaction() { return IsTransaction_Optional; }
 	/** @brief Gets the value of IsTransaction_Optional, regardless of it having been set */
-	const bool& GetIsTransaction() const { return IsTransaction_Optional; }
+	FORCEINLINE const bool& GetIsTransaction() const { return IsTransaction_Optional; }
 	/** @brief Gets the value of IsTransaction_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetIsTransaction(const bool& DefaultValue) const { if (IsTransaction_IsSet) return IsTransaction_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetIsTransaction(const bool& DefaultValue) const { if (IsTransaction_IsSet) return IsTransaction_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of IsTransaction_Optional and returns true if it has been set, otherwise returns false */
-	bool GetIsTransaction(bool& OutValue) const { if (IsTransaction_IsSet) OutValue = IsTransaction_Optional; return IsTransaction_IsSet; }
+	FORCEINLINE bool GetIsTransaction(bool& OutValue) const { if (IsTransaction_IsSet) OutValue = IsTransaction_Optional; return IsTransaction_IsSet; }
 	/** @brief Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetIsTransactionOrNull() { if (IsTransaction_IsSet) return (&IsTransaction_Optional); return nullptr; }
+	FORCEINLINE bool* GetIsTransactionOrNull() { if (IsTransaction_IsSet) return (&IsTransaction_Optional); return nullptr; }
 	/** @brief Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetIsTransactionOrNull() const { if (IsTransaction_IsSet) return (&IsTransaction_Optional); return nullptr; }
+	FORCEINLINE const bool* GetIsTransactionOrNull() const { if (IsTransaction_IsSet) return (&IsTransaction_Optional); return nullptr; }
 	/** @brief Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true */
-	void SetIsTransaction(const bool& NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true;  }
+	FORCEINLINE void SetIsTransaction(const bool& NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true;  }
 	/** @brief Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true using move semantics */
-	void SetIsTransaction(bool&& NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true;  }
+	FORCEINLINE void SetIsTransaction(bool&& NewValue) { IsTransaction_Optional = NewValue; IsTransaction_IsSet = true;  }
 	/** @brief Clears the value of IsTransaction_Optional and sets IsTransaction_IsSet to false */
 	void ClearIsTransaction() { IsTransaction_Optional = false; IsTransaction_IsSet = false;  }
-	/** @brief Checks whether IsTransaction_Optional has been set */
-	bool IsIsTransactionSet() const { return IsTransaction_IsSet; }
-	/** @brief Returns true if IsTransaction_Optional is set and matches the default value */
-	bool IsIsTransactionDefaultValue() const { return IsTransaction_IsSet && IsTransaction_Optional == false; }
-	/** @brief Sets the value of IsTransaction_Optional to its default and also sets IsTransaction_IsSet to true */
-	void SetIsTransactionToDefault() { SetIsTransaction(false); }
+	/** @brief Returns the default value of IsTransaction */
+	FORCEINLINE bool GetDefaultValue_IsTransaction() { return false; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString OrderId_Optional{  };
@@ -273,41 +257,39 @@ struct RALLYHEREAPI_API FRHAPI_PlayerOrderCreateInput : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool OrderId_IsNull{ false };
 	/** @brief Gets the value of OrderId_Optional, regardless of it having been set */
-	FString& GetOrderId() { return OrderId_Optional; }
+	FORCEINLINE FString& GetOrderId() { return OrderId_Optional; }
 	/** @brief Gets the value of OrderId_Optional, regardless of it having been set */
-	const FString& GetOrderId() const { return OrderId_Optional; }
+	FORCEINLINE const FString& GetOrderId() const { return OrderId_Optional; }
 	/** @brief Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetOrderId(const FString& DefaultValue) const { if (OrderId_IsSet) return OrderId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetOrderId(const FString& DefaultValue) const { if (OrderId_IsSet) return OrderId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetOrderId(FString& OutValue) const { if (OrderId_IsSet && !OrderId_IsNull) OutValue = OrderId_Optional; return OrderId_IsSet; }
+	FORCEINLINE bool GetOrderId(FString& OutValue) const { if (OrderId_IsSet && !OrderId_IsNull) OutValue = OrderId_Optional; return OrderId_IsSet; }
 	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetOrderIdOrNull() { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
+	FORCEINLINE FString* GetOrderIdOrNull() { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
 	/** @brief Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetOrderIdOrNull() const { if (OrderId_IsSet) return (OrderId_IsNull ? nullptr : &OrderId_Optional); return nullptr; }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true */
-	void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
+	FORCEINLINE void SetOrderId(const FString& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
 	/** @brief Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics */
-	void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
+	FORCEINLINE void SetOrderId(FString&& NewValue) { OrderId_Optional = NewValue; OrderId_IsSet = true; OrderId_IsNull = false; }
 	/** @brief Clears the value of OrderId_Optional and sets OrderId_IsSet to false */
 	void ClearOrderId() { OrderId_IsSet = false; OrderId_IsNull = false; }
-	/** @brief Checks whether OrderId_Optional has been set */
-	bool IsOrderIdSet() const { return OrderId_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetOrderIdToNull() { OrderId_IsSet = true; OrderId_IsNull = true; }
+	FORCEINLINE void SetOrderIdToNull() { OrderId_IsSet = true; OrderId_IsNull = true; }
 	/** @brief Checks whether OrderId_Optional is set to null */
-	bool IsOrderIdNull() const { return OrderId_IsSet && OrderId_IsNull; }
+	FORCEINLINE bool IsOrderIdNull() const { return OrderId_IsSet && OrderId_IsNull; }
 
 	/** @brief List of Player Order Entries for the Player Order. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_PlayerOrderEntryCreateInput> Entries{  };
 	/** @brief Gets the value of Entries */
-	TArray<FRHAPI_PlayerOrderEntryCreateInput>& GetEntries() { return Entries; }
+	FORCEINLINE TArray<FRHAPI_PlayerOrderEntryCreateInput>& GetEntries() { return Entries; }
 	/** @brief Gets the value of Entries */
-	const TArray<FRHAPI_PlayerOrderEntryCreateInput>& GetEntries() const { return Entries; }
+	FORCEINLINE const TArray<FRHAPI_PlayerOrderEntryCreateInput>& GetEntries() const { return Entries; }
 	/** @brief Sets the value of Entries */
-	void SetEntries(const TArray<FRHAPI_PlayerOrderEntryCreateInput>& NewValue) { Entries = NewValue;   }
+	FORCEINLINE void SetEntries(const TArray<FRHAPI_PlayerOrderEntryCreateInput>& NewValue) { Entries = NewValue;   }
 	/** @brief Sets the value of Entries using move semantics */
-	void SetEntries(TArray<FRHAPI_PlayerOrderEntryCreateInput>&& NewValue) { Entries = NewValue;   }
+	FORCEINLINE void SetEntries(TArray<FRHAPI_PlayerOrderEntryCreateInput>&& NewValue) { Entries = NewValue;   }
 };
 
 /** @} */

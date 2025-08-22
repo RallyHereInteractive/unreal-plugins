@@ -46,41 +46,37 @@ struct RALLYHEREAPI_API FRHAPI_LoginLootReward : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool LootId_IsSet{ false };
 	/** @brief Gets the value of LootId_Optional, regardless of it having been set */
-	FString& GetLootId() { return LootId_Optional; }
+	FORCEINLINE FString& GetLootId() { return LootId_Optional; }
 	/** @brief Gets the value of LootId_Optional, regardless of it having been set */
-	const FString& GetLootId() const { return LootId_Optional; }
+	FORCEINLINE const FString& GetLootId() const { return LootId_Optional; }
 	/** @brief Gets the value of LootId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetLootId(const FString& DefaultValue) const { if (LootId_IsSet) return LootId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetLootId(const FString& DefaultValue) const { if (LootId_IsSet) return LootId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of LootId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetLootId(FString& OutValue) const { if (LootId_IsSet) OutValue = LootId_Optional; return LootId_IsSet; }
+	FORCEINLINE bool GetLootId(FString& OutValue) const { if (LootId_IsSet) OutValue = LootId_Optional; return LootId_IsSet; }
 	/** @brief Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetLootIdOrNull() { if (LootId_IsSet) return (&LootId_Optional); return nullptr; }
+	FORCEINLINE FString* GetLootIdOrNull() { if (LootId_IsSet) return (&LootId_Optional); return nullptr; }
 	/** @brief Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetLootIdOrNull() const { if (LootId_IsSet) return (&LootId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetLootIdOrNull() const { if (LootId_IsSet) return (&LootId_Optional); return nullptr; }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true */
-	void SetLootId(const FString& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
+	FORCEINLINE void SetLootId(const FString& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
 	/** @brief Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics */
-	void SetLootId(FString&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
+	FORCEINLINE void SetLootId(FString&& NewValue) { LootId_Optional = NewValue; LootId_IsSet = true;  }
 	/** @brief Clears the value of LootId_Optional and sets LootId_IsSet to false */
 	void ClearLootId() { LootId_IsSet = false;  }
-	/** @brief Checks whether LootId_Optional has been set */
-	bool IsLootIdSet() const { return LootId_IsSet; }
 
 	/** @brief Legacy Loot ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	int32 LegacyLootId{ 0 };
 	/** @brief Gets the value of LegacyLootId */
-	int32& GetLegacyLootId() { return LegacyLootId; }
+	FORCEINLINE int32& GetLegacyLootId() { return LegacyLootId; }
 	/** @brief Gets the value of LegacyLootId */
-	const int32& GetLegacyLootId() const { return LegacyLootId; }
+	FORCEINLINE const int32& GetLegacyLootId() const { return LegacyLootId; }
 	/** @brief Sets the value of LegacyLootId */
-	void SetLegacyLootId(const int32& NewValue) { LegacyLootId = NewValue;   }
+	FORCEINLINE void SetLegacyLootId(const int32& NewValue) { LegacyLootId = NewValue;   }
 	/** @brief Sets the value of LegacyLootId using move semantics */
-	void SetLegacyLootId(int32&& NewValue) { LegacyLootId = NewValue;   }
-	/** @brief Returns true if LegacyLootId matches the default value */
-	bool IsLegacyLootIdDefaultValue() const { return LegacyLootId == 0; }
-	/** @brief Sets the value of LegacyLootId to its default  */
-	void SetLegacyLootIdToDefault() { SetLegacyLootId(0); }
+	FORCEINLINE void SetLegacyLootId(int32&& NewValue) { LegacyLootId = NewValue;   }
+	/** @brief Returns the default value of LegacyLootId */
+	FORCEINLINE int32 GetDefaultValue_LegacyLootId() { return 0; }
 };
 
 /** @} */

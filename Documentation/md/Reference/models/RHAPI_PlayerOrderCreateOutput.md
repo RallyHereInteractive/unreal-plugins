@@ -46,104 +46,95 @@ Create a new Player Order. <b>Note: &#x60;use_inventory_bucket&#x60; will be ign
 `public TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > `[`Entries`](#structFRHAPI__PlayerOrderCreateOutput_1a6df0a243454429e388a36e0f080aab53) | List of Player Order Entries for the Player Order.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrderCreateOutput_1a04f675ff9569891ebb5726f12e7e7338)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrderCreateOutput_1ac6cac933e06ab6d00c98359509b41115)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a7a94bd89955914526c6a97b6700b7629)`()` | Gets the value of Source_Optional, regardless of it having been set.
-`public inline const ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ae042479373a9d163804da1ee4e54850e)`() const` | Gets the value of Source_Optional, regardless of it having been set.
-`public inline const ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a0546ca062da2f89ed4f82ed8891c770e)`(const ERHAPI_Source & DefaultValue) const` | Gets the value of Source_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1afb44780cdda43d4dd01594bd5a170920)`(ERHAPI_Source & OutValue) const` | Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1abd3c397e94fd9c0d4cc38c070d958611)`()` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1af6aa18f9255a6aff2f1d32623525cc55)`() const` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ade744cefd298c1cb868fb4bce650cd88)`(const ERHAPI_Source & NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true.
-`public inline void `[`SetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a96786a310211e6c1c308ea550cbf1857)`(ERHAPI_Source && NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a157faf02a1f0002645e18373e53350df)`()` | Gets the value of Source_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a1c2fc0728f85d033c51b1536bbb5d25b)`() const` | Gets the value of Source_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a503f91c9c2c279ba1054d701c25cf147)`(const ERHAPI_Source & DefaultValue) const` | Gets the value of Source_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ad11f22a7efd5f11f87e741ff4394ee62)`(ERHAPI_Source & OutValue) const` | Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ab08c6f44fbd9ea7d935e9749dad489ea)`()` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ac6b9f50f0e810626ceb9174a25ec6454)`() const` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ad1290c1ac3aaaed73e0d31819e32b40a)`(const ERHAPI_Source & NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true.
+`public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ab6d7abbf45413ae465f928931cec58d5)`(ERHAPI_Source && NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
 `public inline void `[`ClearSource`](#structFRHAPI__PlayerOrderCreateOutput_1a4ad8a74b52130724bc37906879f24de8)`()` | Clears the value of Source_Optional and sets Source_IsSet to false.
-`public inline bool `[`IsSourceSet`](#structFRHAPI__PlayerOrderCreateOutput_1a38fbc767b6e5c4608dac6547bad89e34)`() const` | Checks whether Source_Optional has been set.
-`public inline FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a83607d55df7933aa538401bf11a41252)`()` | Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1aa1c3fd8b4c21c362bd28e6789904ab2d)`() const` | Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1aad1c45f8511861b430056b438b33d27b)`(const FGuid & DefaultValue) const` | Gets the value of ClientOrderRefId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1ad3e622dea6c7c870e871fb0276872f9d)`(FGuid & OutValue) const` | Fills OutValue with the value of ClientOrderRefId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a9827e221c2bc93c1c1d34967339e2271)`()` | Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a6e814b06abba7db0af649a49dcac9e93)`() const` | Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a7880df8401092bd0a0f18dcdcc3eea47)`(const FGuid & NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true.
-`public inline void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a4c4a5d496cbaccc97f5a09e05922a0f8)`(FGuid && NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1ab822acc1062406415848895bee370675)`()` | Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a90c870406acec3f745baa86470d8944e)`() const` | Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1af537f4cf136bda3dcb5d2d0499855db2)`(const FGuid & DefaultValue) const` | Gets the value of ClientOrderRefId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a2d23ee11ee22b609a60bf493d5dd9546)`(FGuid & OutValue) const` | Fills OutValue with the value of ClientOrderRefId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a8b689315081b53ffe4db0069e9bc3304)`()` | Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a9b9bcea0826164541c47ec7272e5b030)`() const` | Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1ae740a32ab73d03849470270694d11e51)`(const FGuid & NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true.
+`public inline FORCEINLINE void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1ae2e59faafdf13261bfb92dead5935d16)`(FGuid && NewValue)` | Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics.
 `public inline void `[`ClearClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a99f2806eeb0e83d14b41a622ad20e924)`()` | Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
-`public inline bool `[`IsClientOrderRefIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a11c6a46523db1a9626f6a0467d37a4d6)`() const` | Checks whether ClientOrderRefId_Optional has been set.
-`public inline void `[`SetClientOrderRefIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1a990b482248ae5ee4c3d06a06fb295875)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsClientOrderRefIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a692f87ecdb4a69eed664b6426c3da826)`() const` | Checks whether ClientOrderRefId_Optional is set to null.
-`public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a4e37637bfc8d6714e28ffbef22c2266c)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1ad188b3582d7228bc8c6246e4f2d956d2)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a3494e61958a441e43aa8572b12ec80db)`(const ERHAPI_Portal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a55a1ad11cbb83993807105792057a685)`(ERHAPI_Portal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a194fac63c7ca4bf7e695193370c2c5be)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1abda7b4378f67bcc40d94d88d406217a3)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1ad3c5a0f7dadfa9d67b65c3eecbc7c181)`(const ERHAPI_Portal & NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
-`public inline void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a45581fd81ac904f59ba1cbc938de7f51)`(ERHAPI_Portal && NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetClientOrderRefIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1a866f32bc2cc35622ee234e6da449b6f2)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsClientOrderRefIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1ae6fa74e411e1ce81f1273543af6ee150)`() const` | Checks whether ClientOrderRefId_Optional is set to null.
+`public inline FORCEINLINE ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a1a9e2197b2f246933c15f1a5558ed571)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1ac0139be8ee837663e00af36d988326de)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a1fa23644dfbbf3a67c8c581394c837fe)`(const ERHAPI_Portal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a6c4d505ff7f36071f49ed70d209544c6)`(ERHAPI_Portal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a4c4f2fd045fac0337dfce3b5f31fd2f9)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a309614b28d6f4c8fd2eb940009f2988b)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a2e5c92976d5d13e02fc55419810c12d5)`(const ERHAPI_Portal & NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a4313e4d857025794add74588d15413b4)`(ERHAPI_Portal && NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a030ef38e2ec2764eea65c49f15d2ec06)`()` | Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
-`public inline bool `[`IsPortalIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a536bf57302855ad71c3992e89309f85e)`() const` | Checks whether PortalId_Optional has been set.
-`public inline void `[`SetPortalIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1a0248cd190a535cb56b16d91d7b20b625)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPortalIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a28b1da72a58bd74dcee4e5cf16d27cd9)`() const` | Checks whether PortalId_Optional is set to null.
-`public inline FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a570e82eb25251f7001e5cefa079d2997)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a447220e79e0fc95a1cb1b3c82e8499c5)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a4bf5b9468c663fb3b1cfba19a4b1463e)`(const FString & DefaultValue) const` | Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a7d2f05f0ea804093e2cfc211fa5d7a00)`(FString & OutValue) const` | Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a9e93432bee10e3d3bd8373b45c0a07a9)`()` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a1a927d93ca8639d844172aefb9c3654a)`() const` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a63748fbb96c354959beec2ea941739fa)`(const FString & NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
-`public inline void `[`SetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a0faf244f71d897a950c1eb48018b4729)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetPortalIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1a1d59e77500ef905ce56303be472c75c6)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPortalIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a663a952d178e681ef9d9926c0800068a)`() const` | Checks whether PortalId_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a75b462befc5b3b131bb45c75bf91429c)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a21ba4d0803317f00d1a1d05f0f1f882f)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a25f25c417d62bc1826cc01daf51701a4)`(const FString & DefaultValue) const` | Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1ac0498ecffe54b6fb49926f7b7c87e582)`(FString & OutValue) const` | Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a4cd7a6bff64ebdd8be15cad044c84d9e)`()` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a01d8516be8a9d645b0b917da8c049bfc)`() const` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a582406ec546661e462d0bad08ea35a16)`(const FString & NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1aef6c900194f6b8fc0902c74d5459f55c)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1ae15e58d848d19e579fe02bc369bb8371)`()` | Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
-`public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a6e954c11273e1df592af4876b7b813ae)`() const` | Checks whether PortalUserId_Optional has been set.
-`public inline void `[`SetPortalUserIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1af32086498cae00a9fabad67da4aa4b28)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPortalUserIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a650761bbe3096b083451afefb90e2582)`() const` | Checks whether PortalUserId_Optional is set to null.
-`public inline FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1ad06b5d6585ffc5da9d442d22a636daed)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a8041559ce86a4fca678577a7b84add29)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a3d1fc45ab31b876d9289c5dbd37d2129)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a07145c8fa78cc6509d0d5c12aee1ca05)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a6cd9d6c85b29f4bb3d0660236d587b55)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1acd4268b43b17906b27042341f64d4e32)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a44bae4de01981841b3253f3d5fdb6a72)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
-`public inline void `[`SetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1abbabd0b8d769ea52495509e23df45f76)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetPortalUserIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1af4a209b5eef5e7f411ef3b7bff513323)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPortalUserIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1aabd6cd0249188838b7f2430ba024ced5)`() const` | Checks whether PortalUserId_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1ac8a9a193149731c642266224669328c4)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a2a665209de034734ced309319576138d)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a9c37c64914b84ce66398597d4d9510a5)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a4d2183c0ebbe093854db78ca79b70ea8)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a84ba3b04d9776a6938facce9367361de)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ad8e88281493293b529efafcd5ae918c7)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a0cd1d19a12b1ebba37a8cbfe18f7272f)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a2d289bc8f59537747006f4442a1288c3)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1ae31ba082e5e028560128df80c8d394a0)`()` | Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
-`public inline bool `[`IsInstanceIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a8f9e1e3c1ec4f52345d65a1aee0a0d34)`() const` | Checks whether InstanceId_Optional has been set.
-`public inline void `[`SetInstanceIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1ac8d0fa336a83dfe33c09534f8dfa287d)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsInstanceIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1af759236cd6f66a1c509661c35f0fe605)`() const` | Checks whether InstanceId_Optional is set to null.
-`public inline FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a0dfcc7de13eae22ac4f9b9d104329065)`()` | Gets the value of MatchId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a9f089f960ba177eda6259cb972d72ef0)`() const` | Gets the value of MatchId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1ac76251a049c97c38dea3aab96a06eba9)`(const FString & DefaultValue) const` | Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1afa2138d52c32431ae0148897782ded48)`(FString & OutValue) const` | Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ac78fa746e5c12e149a5638f0de53da50)`()` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ade8223491b34e042d9f2ee5cf91c83e3)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1aa959d2a22a75d455a0ccff39c138ca11)`(const FString & NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
-`public inline void `[`SetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1ae5e2bc66e0515054158241a02cbacce7)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetInstanceIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1af2a5801a8a01e21ae4ce20f5037f0b03)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsInstanceIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a0e71163ed13cce575c5ea5ff475b37cf)`() const` | Checks whether InstanceId_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a9e8cdd11848725f7e76a3bff94684fc1)`()` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1af200b46cc78bf6a30d5702181b6f8b21)`() const` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a90674d4433e37db9db8809ce5d64994e)`(const FString & DefaultValue) const` | Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1aef422e240e25b66a71cb51372889ebe3)`(FString & OutValue) const` | Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1aa76ba910528027ddca4d93993a0040b6)`()` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ad13f58cfe1bc20705b1cbf66f513a90e)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a7c4fcdc3c78e3f5ec4221d5c1161afc1)`(const FString & NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
+`public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1afd5bba6b6a6226897b84f618875898b3)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1aff477ae3ab9bd609f7a7c00c3e38eb6a)`()` | Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
-`public inline bool `[`IsMatchIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a8a4095800f4280cb1a017cfa2981e8ee)`() const` | Checks whether MatchId_Optional has been set.
-`public inline void `[`SetMatchIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1ae365f4314d2e398a49a5396a9a59733f)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsMatchIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a24e771d4ecc850bd57a268a0a544b960)`() const` | Checks whether MatchId_Optional is set to null.
-`public inline bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a2744f058315324a3b11496ef837a7c56)`()` | Gets the value of IsTransaction_Optional, regardless of it having been set.
-`public inline const bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1af09b93357ec5e3eb8d35a7c198449bae)`() const` | Gets the value of IsTransaction_Optional, regardless of it having been set.
-`public inline const bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a44dd50422f916f13c01e77b32c540ff2)`(const bool & DefaultValue) const` | Gets the value of IsTransaction_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a40eeb9d7e4688cb9c46a87827838c7b3)`(bool & OutValue) const` | Fills OutValue with the value of IsTransaction_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetIsTransactionOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a8f161f44f29852093ad61c05784f9d9b)`()` | Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetIsTransactionOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1adf7cbc5347b2514ce705bb9f7fb436fa)`() const` | Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a00eb84bd55fe81aa6115a9d437946d09)`(const bool & NewValue)` | Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true.
-`public inline void `[`SetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a1a3fa9e566d15598d6c792c703c052d1)`(bool && NewValue)` | Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetMatchIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1acb1a1956d78960857fb92a959be8edbc)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsMatchIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1ab43da82021d1c9e5448855e9ff9a38fe)`() const` | Checks whether MatchId_Optional is set to null.
+`public inline FORCEINLINE bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a9c26e9431262725f50a1be7b23d98e0d)`()` | Gets the value of IsTransaction_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1adf37c579f1fe8b569ad8426f77348a6e)`() const` | Gets the value of IsTransaction_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1ab401fec253ef99b15e98d264ba62a9fd)`(const bool & DefaultValue) const` | Gets the value of IsTransaction_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a77ea89fc1e6a61700972584281a5f255)`(bool & OutValue) const` | Fills OutValue with the value of IsTransaction_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetIsTransactionOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a2165682efc77ca0c7522cfad589e83d9)`()` | Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetIsTransactionOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a9aad02586e9970d062a36aff440f8dec)`() const` | Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1ada83fb08f3b7b9d504d8b185447a4f17)`(const bool & NewValue)` | Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true.
+`public inline FORCEINLINE void `[`SetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a4477548c5ccc4d9b784328c50038a536)`(bool && NewValue)` | Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true using move semantics.
 `public inline void `[`ClearIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1ae711d796890d7e8f2f994198c0540907)`()` | Clears the value of IsTransaction_Optional and sets IsTransaction_IsSet to false.
-`public inline bool `[`IsIsTransactionSet`](#structFRHAPI__PlayerOrderCreateOutput_1a549537a6bfb25646b5196f64e1aff3ca)`() const` | Checks whether IsTransaction_Optional has been set.
-`public inline bool `[`IsIsTransactionDefaultValue`](#structFRHAPI__PlayerOrderCreateOutput_1aa7be04af9ba4f214ae6fc0f03e91ebe6)`() const` | Returns true if IsTransaction_Optional is set and matches the default value.
-`public inline void `[`SetIsTransactionToDefault`](#structFRHAPI__PlayerOrderCreateOutput_1aed76c623fabe4fff60dc7ba7421ff7cb)`()` | Sets the value of IsTransaction_Optional to its default and also sets IsTransaction_IsSet to true.
-`public inline FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a884ffc5cf04c3192fe1aef3c4da3dec3)`()` | Gets the value of OrderId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1ab5b1720056d29af9740350d27b33b483)`() const` | Gets the value of OrderId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a6173e9bb3eaed88ba5e8ec773ff2ec6c)`(const FString & DefaultValue) const` | Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a50e729ff5d75e898b4ea15f8c6f81618)`(FString & OutValue) const` | Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a607359c2e3387259f4c5eac00d1d6996)`()` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a3b7eef9ed3233e18aa1369d4e4487012)`() const` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a3ed802dc074af5ec04fbaf3e52850cba)`(const FString & NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
-`public inline void `[`SetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a451e0582d4383cd85ee4a1a1a5233ff2)`(FString && NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_IsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a50d1b4fcc0cd171dfb3283e03055eb8f)`()` | Returns the default value of IsTransaction.
+`public inline FORCEINLINE FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a661a28504c6cf431cc6a048deaf66704)`()` | Gets the value of OrderId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1ac96a77b86175ac28a0229e59491743e3)`() const` | Gets the value of OrderId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a307ebe1f8d09cd4945d6fe14b4ae0dae)`(const FString & DefaultValue) const` | Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a80bb7f4a46ae109de8e31241d6684414)`(FString & OutValue) const` | Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a4f6b3b8cfb2d866f6b7d93b11127d02b)`()` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a144cf9e6a365660c9628afe6ccdba725)`() const` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1aef2d6ecc980dcf3df9586a2bd1bed5e9)`(const FString & NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
+`public inline FORCEINLINE void `[`SetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1afea849987005beebb7304227e8a35286)`(FString && NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 `public inline void `[`ClearOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a41202ebab97b96a576ccb3710c486d5c)`()` | Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
-`public inline bool `[`IsOrderIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a94abcba6056420df80c9317b5a01cf69)`() const` | Checks whether OrderId_Optional has been set.
-`public inline void `[`SetOrderIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1adadbbe5cbccac30d8013376ceae3192c)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsOrderIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1aa7947093aff7284eb506184c8a6d1c5e)`() const` | Checks whether OrderId_Optional is set to null.
-`public inline TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1a689fbe6caca0a3113b51682953dd3f58)`()` | Gets the value of Entries.
-`public inline const TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1ae51b84cac2a41741fa2be4947b593580)`() const` | Gets the value of Entries.
-`public inline void `[`SetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1a52dfbabf30d98bf4ddd7e33558eb596f)`(const TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & NewValue)` | Sets the value of Entries.
-`public inline void `[`SetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1aeaa32653fa927183d2035ebfd50058a1)`(TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > && NewValue)` | Sets the value of Entries using move semantics.
+`public inline FORCEINLINE void `[`SetOrderIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1aa0a15b6542b106d1f232aad403bfd684)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsOrderIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a4fa9b35cf9164c9a6b37a3eeaf0b8068)`() const` | Checks whether OrderId_Optional is set to null.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1a52016272ad9f595922b3f37a7b731bb3)`()` | Gets the value of Entries.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1ad85f63077494184470510a4e7dbb2db9)`() const` | Gets the value of Entries.
+`public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1ab4f840f51211d490e6685276df5bf31d)`(const TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & NewValue)` | Sets the value of Entries.
+`public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1ad27f2aa6a7965fdf828292ada947ee5c)`(TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > && NewValue)` | Sets the value of Entries using move semantics.
 
 ### Members
 
@@ -242,35 +233,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a7a94bd89955914526c6a97b6700b7629)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a7a94bd89955914526c6a97b6700b7629"></a>
+#### `public inline FORCEINLINE ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a157faf02a1f0002645e18373e53350df)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a157faf02a1f0002645e18373e53350df"></a>
 
 Gets the value of Source_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ae042479373a9d163804da1ee4e54850e)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ae042479373a9d163804da1ee4e54850e"></a>
+#### `public inline FORCEINLINE const ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a1c2fc0728f85d033c51b1536bbb5d25b)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a1c2fc0728f85d033c51b1536bbb5d25b"></a>
 
 Gets the value of Source_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a0546ca062da2f89ed4f82ed8891c770e)`(const ERHAPI_Source & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a0546ca062da2f89ed4f82ed8891c770e"></a>
+#### `public inline FORCEINLINE const ERHAPI_Source & `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a503f91c9c2c279ba1054d701c25cf147)`(const ERHAPI_Source & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a503f91c9c2c279ba1054d701c25cf147"></a>
 
 Gets the value of Source_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1afb44780cdda43d4dd01594bd5a170920)`(ERHAPI_Source & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1afb44780cdda43d4dd01594bd5a170920"></a>
+#### `public inline FORCEINLINE bool `[`GetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ad11f22a7efd5f11f87e741ff4394ee62)`(ERHAPI_Source & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad11f22a7efd5f11f87e741ff4394ee62"></a>
 
 Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1abd3c397e94fd9c0d4cc38c070d958611)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1abd3c397e94fd9c0d4cc38c070d958611"></a>
+#### `public inline FORCEINLINE ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ab08c6f44fbd9ea7d935e9749dad489ea)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1ab08c6f44fbd9ea7d935e9749dad489ea"></a>
 
 Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1af6aa18f9255a6aff2f1d32623525cc55)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1af6aa18f9255a6aff2f1d32623525cc55"></a>
+#### `public inline FORCEINLINE const ERHAPI_Source * `[`GetSourceOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ac6b9f50f0e810626ceb9174a25ec6454)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ac6b9f50f0e810626ceb9174a25ec6454"></a>
 
 Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ade744cefd298c1cb868fb4bce650cd88)`(const ERHAPI_Source & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ade744cefd298c1cb868fb4bce650cd88"></a>
+#### `public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ad1290c1ac3aaaed73e0d31819e32b40a)`(const ERHAPI_Source & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad1290c1ac3aaaed73e0d31819e32b40a"></a>
 
 Sets the value of Source_Optional and also sets Source_IsSet to true.
 
-#### `public inline void `[`SetSource`](#structFRHAPI__PlayerOrderCreateOutput_1a96786a310211e6c1c308ea550cbf1857)`(ERHAPI_Source && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a96786a310211e6c1c308ea550cbf1857"></a>
+#### `public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__PlayerOrderCreateOutput_1ab6d7abbf45413ae465f928931cec58d5)`(ERHAPI_Source && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ab6d7abbf45413ae465f928931cec58d5"></a>
 
 Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
 
@@ -278,39 +269,35 @@ Sets the value of Source_Optional and also sets Source_IsSet to true using move 
 
 Clears the value of Source_Optional and sets Source_IsSet to false.
 
-#### `public inline bool `[`IsSourceSet`](#structFRHAPI__PlayerOrderCreateOutput_1a38fbc767b6e5c4608dac6547bad89e34)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a38fbc767b6e5c4608dac6547bad89e34"></a>
-
-Checks whether Source_Optional has been set.
-
-#### `public inline FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a83607d55df7933aa538401bf11a41252)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a83607d55df7933aa538401bf11a41252"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1ab822acc1062406415848895bee370675)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1ab822acc1062406415848895bee370675"></a>
 
 Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1aa1c3fd8b4c21c362bd28e6789904ab2d)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1aa1c3fd8b4c21c362bd28e6789904ab2d"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a90c870406acec3f745baa86470d8944e)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a90c870406acec3f745baa86470d8944e"></a>
 
 Gets the value of ClientOrderRefId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1aad1c45f8511861b430056b438b33d27b)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1aad1c45f8511861b430056b438b33d27b"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1af537f4cf136bda3dcb5d2d0499855db2)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1af537f4cf136bda3dcb5d2d0499855db2"></a>
 
 Gets the value of ClientOrderRefId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1ad3e622dea6c7c870e871fb0276872f9d)`(FGuid & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad3e622dea6c7c870e871fb0276872f9d"></a>
+#### `public inline FORCEINLINE bool `[`GetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a2d23ee11ee22b609a60bf493d5dd9546)`(FGuid & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a2d23ee11ee22b609a60bf493d5dd9546"></a>
 
 Fills OutValue with the value of ClientOrderRefId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a9827e221c2bc93c1c1d34967339e2271)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a9827e221c2bc93c1c1d34967339e2271"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a8b689315081b53ffe4db0069e9bc3304)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a8b689315081b53ffe4db0069e9bc3304"></a>
 
 Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a6e814b06abba7db0af649a49dcac9e93)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a6e814b06abba7db0af649a49dcac9e93"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetClientOrderRefIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a9b9bcea0826164541c47ec7272e5b030)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a9b9bcea0826164541c47ec7272e5b030"></a>
 
 Returns a pointer to ClientOrderRefId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a7880df8401092bd0a0f18dcdcc3eea47)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a7880df8401092bd0a0f18dcdcc3eea47"></a>
+#### `public inline FORCEINLINE void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1ae740a32ab73d03849470270694d11e51)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ae740a32ab73d03849470270694d11e51"></a>
 
 Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true.
 
-#### `public inline void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1a4c4a5d496cbaccc97f5a09e05922a0f8)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4c4a5d496cbaccc97f5a09e05922a0f8"></a>
+#### `public inline FORCEINLINE void `[`SetClientOrderRefId`](#structFRHAPI__PlayerOrderCreateOutput_1ae2e59faafdf13261bfb92dead5935d16)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ae2e59faafdf13261bfb92dead5935d16"></a>
 
 Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet to true using move semantics.
 
@@ -318,47 +305,43 @@ Sets the value of ClientOrderRefId_Optional and also sets ClientOrderRefId_IsSet
 
 Clears the value of ClientOrderRefId_Optional and sets ClientOrderRefId_IsSet to false.
 
-#### `public inline bool `[`IsClientOrderRefIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a11c6a46523db1a9626f6a0467d37a4d6)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a11c6a46523db1a9626f6a0467d37a4d6"></a>
-
-Checks whether ClientOrderRefId_Optional has been set.
-
-#### `public inline void `[`SetClientOrderRefIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1a990b482248ae5ee4c3d06a06fb295875)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a990b482248ae5ee4c3d06a06fb295875"></a>
+#### `public inline FORCEINLINE void `[`SetClientOrderRefIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1a866f32bc2cc35622ee234e6da449b6f2)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a866f32bc2cc35622ee234e6da449b6f2"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsClientOrderRefIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a692f87ecdb4a69eed664b6426c3da826)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a692f87ecdb4a69eed664b6426c3da826"></a>
+#### `public inline FORCEINLINE bool `[`IsClientOrderRefIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1ae6fa74e411e1ce81f1273543af6ee150)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ae6fa74e411e1ce81f1273543af6ee150"></a>
 
 Checks whether ClientOrderRefId_Optional is set to null.
 
-#### `public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a4e37637bfc8d6714e28ffbef22c2266c)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4e37637bfc8d6714e28ffbef22c2266c"></a>
+#### `public inline FORCEINLINE ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a1a9e2197b2f246933c15f1a5558ed571)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a1a9e2197b2f246933c15f1a5558ed571"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1ad188b3582d7228bc8c6246e4f2d956d2)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad188b3582d7228bc8c6246e4f2d956d2"></a>
+#### `public inline FORCEINLINE const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1ac0139be8ee837663e00af36d988326de)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ac0139be8ee837663e00af36d988326de"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a3494e61958a441e43aa8572b12ec80db)`(const ERHAPI_Portal & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a3494e61958a441e43aa8572b12ec80db"></a>
+#### `public inline FORCEINLINE const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a1fa23644dfbbf3a67c8c581394c837fe)`(const ERHAPI_Portal & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a1fa23644dfbbf3a67c8c581394c837fe"></a>
 
 Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a55a1ad11cbb83993807105792057a685)`(ERHAPI_Portal & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a55a1ad11cbb83993807105792057a685"></a>
+#### `public inline FORCEINLINE bool `[`GetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a6c4d505ff7f36071f49ed70d209544c6)`(ERHAPI_Portal & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a6c4d505ff7f36071f49ed70d209544c6"></a>
 
 Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a194fac63c7ca4bf7e695193370c2c5be)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a194fac63c7ca4bf7e695193370c2c5be"></a>
+#### `public inline FORCEINLINE ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a4c4f2fd045fac0337dfce3b5f31fd2f9)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4c4f2fd045fac0337dfce3b5f31fd2f9"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1abda7b4378f67bcc40d94d88d406217a3)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1abda7b4378f67bcc40d94d88d406217a3"></a>
+#### `public inline FORCEINLINE const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a309614b28d6f4c8fd2eb940009f2988b)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a309614b28d6f4c8fd2eb940009f2988b"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1ad3c5a0f7dadfa9d67b65c3eecbc7c181)`(const ERHAPI_Portal & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad3c5a0f7dadfa9d67b65c3eecbc7c181"></a>
+#### `public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a2e5c92976d5d13e02fc55419810c12d5)`(const ERHAPI_Portal & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a2e5c92976d5d13e02fc55419810c12d5"></a>
 
 Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 
-#### `public inline void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a45581fd81ac904f59ba1cbc938de7f51)`(ERHAPI_Portal && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a45581fd81ac904f59ba1cbc938de7f51"></a>
+#### `public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__PlayerOrderCreateOutput_1a4313e4d857025794add74588d15413b4)`(ERHAPI_Portal && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4313e4d857025794add74588d15413b4"></a>
 
 Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
 
@@ -366,47 +349,43 @@ Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using m
 
 Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
 
-#### `public inline bool `[`IsPortalIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a536bf57302855ad71c3992e89309f85e)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a536bf57302855ad71c3992e89309f85e"></a>
-
-Checks whether PortalId_Optional has been set.
-
-#### `public inline void `[`SetPortalIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1a0248cd190a535cb56b16d91d7b20b625)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a0248cd190a535cb56b16d91d7b20b625"></a>
+#### `public inline FORCEINLINE void `[`SetPortalIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1a1d59e77500ef905ce56303be472c75c6)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a1d59e77500ef905ce56303be472c75c6"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPortalIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a28b1da72a58bd74dcee4e5cf16d27cd9)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a28b1da72a58bd74dcee4e5cf16d27cd9"></a>
+#### `public inline FORCEINLINE bool `[`IsPortalIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a663a952d178e681ef9d9926c0800068a)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a663a952d178e681ef9d9926c0800068a"></a>
 
 Checks whether PortalId_Optional is set to null.
 
-#### `public inline FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a570e82eb25251f7001e5cefa079d2997)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a570e82eb25251f7001e5cefa079d2997"></a>
+#### `public inline FORCEINLINE FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a75b462befc5b3b131bb45c75bf91429c)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a75b462befc5b3b131bb45c75bf91429c"></a>
 
 Gets the value of PortalUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a447220e79e0fc95a1cb1b3c82e8499c5)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a447220e79e0fc95a1cb1b3c82e8499c5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a21ba4d0803317f00d1a1d05f0f1f882f)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a21ba4d0803317f00d1a1d05f0f1f882f"></a>
 
 Gets the value of PortalUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a4bf5b9468c663fb3b1cfba19a4b1463e)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4bf5b9468c663fb3b1cfba19a4b1463e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a25f25c417d62bc1826cc01daf51701a4)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a25f25c417d62bc1826cc01daf51701a4"></a>
 
 Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a7d2f05f0ea804093e2cfc211fa5d7a00)`(FString & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a7d2f05f0ea804093e2cfc211fa5d7a00"></a>
+#### `public inline FORCEINLINE bool `[`GetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1ac0498ecffe54b6fb49926f7b7c87e582)`(FString & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ac0498ecffe54b6fb49926f7b7c87e582"></a>
 
 Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a9e93432bee10e3d3bd8373b45c0a07a9)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a9e93432bee10e3d3bd8373b45c0a07a9"></a>
+#### `public inline FORCEINLINE FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a4cd7a6bff64ebdd8be15cad044c84d9e)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4cd7a6bff64ebdd8be15cad044c84d9e"></a>
 
 Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a1a927d93ca8639d844172aefb9c3654a)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a1a927d93ca8639d844172aefb9c3654a"></a>
+#### `public inline FORCEINLINE const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a01d8516be8a9d645b0b917da8c049bfc)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a01d8516be8a9d645b0b917da8c049bfc"></a>
 
 Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a63748fbb96c354959beec2ea941739fa)`(const FString & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a63748fbb96c354959beec2ea941739fa"></a>
+#### `public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a582406ec546661e462d0bad08ea35a16)`(const FString & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a582406ec546661e462d0bad08ea35a16"></a>
 
 Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
 
-#### `public inline void `[`SetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1a0faf244f71d897a950c1eb48018b4729)`(FString && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a0faf244f71d897a950c1eb48018b4729"></a>
+#### `public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__PlayerOrderCreateOutput_1aef6c900194f6b8fc0902c74d5459f55c)`(FString && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1aef6c900194f6b8fc0902c74d5459f55c"></a>
 
 Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 
@@ -414,47 +393,43 @@ Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true
 
 Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
 
-#### `public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a6e954c11273e1df592af4876b7b813ae)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a6e954c11273e1df592af4876b7b813ae"></a>
-
-Checks whether PortalUserId_Optional has been set.
-
-#### `public inline void `[`SetPortalUserIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1af32086498cae00a9fabad67da4aa4b28)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1af32086498cae00a9fabad67da4aa4b28"></a>
+#### `public inline FORCEINLINE void `[`SetPortalUserIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1af4a209b5eef5e7f411ef3b7bff513323)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1af4a209b5eef5e7f411ef3b7bff513323"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPortalUserIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a650761bbe3096b083451afefb90e2582)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a650761bbe3096b083451afefb90e2582"></a>
+#### `public inline FORCEINLINE bool `[`IsPortalUserIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1aabd6cd0249188838b7f2430ba024ced5)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1aabd6cd0249188838b7f2430ba024ced5"></a>
 
 Checks whether PortalUserId_Optional is set to null.
 
-#### `public inline FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1ad06b5d6585ffc5da9d442d22a636daed)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad06b5d6585ffc5da9d442d22a636daed"></a>
+#### `public inline FORCEINLINE FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1ac8a9a193149731c642266224669328c4)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1ac8a9a193149731c642266224669328c4"></a>
 
 Gets the value of InstanceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a8041559ce86a4fca678577a7b84add29)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a8041559ce86a4fca678577a7b84add29"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a2a665209de034734ced309319576138d)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a2a665209de034734ced309319576138d"></a>
 
 Gets the value of InstanceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a3d1fc45ab31b876d9289c5dbd37d2129)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a3d1fc45ab31b876d9289c5dbd37d2129"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a9c37c64914b84ce66398597d4d9510a5)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a9c37c64914b84ce66398597d4d9510a5"></a>
 
 Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a07145c8fa78cc6509d0d5c12aee1ca05)`(FString & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a07145c8fa78cc6509d0d5c12aee1ca05"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a4d2183c0ebbe093854db78ca79b70ea8)`(FString & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4d2183c0ebbe093854db78ca79b70ea8"></a>
 
 Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a6cd9d6c85b29f4bb3d0660236d587b55)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a6cd9d6c85b29f4bb3d0660236d587b55"></a>
+#### `public inline FORCEINLINE FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a84ba3b04d9776a6938facce9367361de)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a84ba3b04d9776a6938facce9367361de"></a>
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1acd4268b43b17906b27042341f64d4e32)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1acd4268b43b17906b27042341f64d4e32"></a>
+#### `public inline FORCEINLINE const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ad8e88281493293b529efafcd5ae918c7)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad8e88281493293b529efafcd5ae918c7"></a>
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a44bae4de01981841b3253f3d5fdb6a72)`(const FString & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a44bae4de01981841b3253f3d5fdb6a72"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a0cd1d19a12b1ebba37a8cbfe18f7272f)`(const FString & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a0cd1d19a12b1ebba37a8cbfe18f7272f"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1abbabd0b8d769ea52495509e23df45f76)`(FString && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1abbabd0b8d769ea52495509e23df45f76"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__PlayerOrderCreateOutput_1a2d289bc8f59537747006f4442a1288c3)`(FString && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a2d289bc8f59537747006f4442a1288c3"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 
@@ -462,47 +437,43 @@ Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true usi
 
 Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
 
-#### `public inline bool `[`IsInstanceIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a8f9e1e3c1ec4f52345d65a1aee0a0d34)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a8f9e1e3c1ec4f52345d65a1aee0a0d34"></a>
-
-Checks whether InstanceId_Optional has been set.
-
-#### `public inline void `[`SetInstanceIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1ac8d0fa336a83dfe33c09534f8dfa287d)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1ac8d0fa336a83dfe33c09534f8dfa287d"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1af2a5801a8a01e21ae4ce20f5037f0b03)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1af2a5801a8a01e21ae4ce20f5037f0b03"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsInstanceIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1af759236cd6f66a1c509661c35f0fe605)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1af759236cd6f66a1c509661c35f0fe605"></a>
+#### `public inline FORCEINLINE bool `[`IsInstanceIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a0e71163ed13cce575c5ea5ff475b37cf)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a0e71163ed13cce575c5ea5ff475b37cf"></a>
 
 Checks whether InstanceId_Optional is set to null.
 
-#### `public inline FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a0dfcc7de13eae22ac4f9b9d104329065)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a0dfcc7de13eae22ac4f9b9d104329065"></a>
+#### `public inline FORCEINLINE FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a9e8cdd11848725f7e76a3bff94684fc1)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a9e8cdd11848725f7e76a3bff94684fc1"></a>
 
 Gets the value of MatchId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a9f089f960ba177eda6259cb972d72ef0)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a9f089f960ba177eda6259cb972d72ef0"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1af200b46cc78bf6a30d5702181b6f8b21)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1af200b46cc78bf6a30d5702181b6f8b21"></a>
 
 Gets the value of MatchId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1ac76251a049c97c38dea3aab96a06eba9)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ac76251a049c97c38dea3aab96a06eba9"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a90674d4433e37db9db8809ce5d64994e)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a90674d4433e37db9db8809ce5d64994e"></a>
 
 Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1afa2138d52c32431ae0148897782ded48)`(FString & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1afa2138d52c32431ae0148897782ded48"></a>
+#### `public inline FORCEINLINE bool `[`GetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1aef422e240e25b66a71cb51372889ebe3)`(FString & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1aef422e240e25b66a71cb51372889ebe3"></a>
 
 Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ac78fa746e5c12e149a5638f0de53da50)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1ac78fa746e5c12e149a5638f0de53da50"></a>
+#### `public inline FORCEINLINE FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1aa76ba910528027ddca4d93993a0040b6)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1aa76ba910528027ddca4d93993a0040b6"></a>
 
 Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ade8223491b34e042d9f2ee5cf91c83e3)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ade8223491b34e042d9f2ee5cf91c83e3"></a>
+#### `public inline FORCEINLINE const FString * `[`GetMatchIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1ad13f58cfe1bc20705b1cbf66f513a90e)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad13f58cfe1bc20705b1cbf66f513a90e"></a>
 
 Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1aa959d2a22a75d455a0ccff39c138ca11)`(const FString & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1aa959d2a22a75d455a0ccff39c138ca11"></a>
+#### `public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1a7c4fcdc3c78e3f5ec4221d5c1161afc1)`(const FString & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a7c4fcdc3c78e3f5ec4221d5c1161afc1"></a>
 
 Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
 
-#### `public inline void `[`SetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1ae5e2bc66e0515054158241a02cbacce7)`(FString && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ae5e2bc66e0515054158241a02cbacce7"></a>
+#### `public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__PlayerOrderCreateOutput_1afd5bba6b6a6226897b84f618875898b3)`(FString && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1afd5bba6b6a6226897b84f618875898b3"></a>
 
 Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
 
@@ -510,47 +481,43 @@ Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using mov
 
 Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 
-#### `public inline bool `[`IsMatchIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a8a4095800f4280cb1a017cfa2981e8ee)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a8a4095800f4280cb1a017cfa2981e8ee"></a>
-
-Checks whether MatchId_Optional has been set.
-
-#### `public inline void `[`SetMatchIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1ae365f4314d2e398a49a5396a9a59733f)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1ae365f4314d2e398a49a5396a9a59733f"></a>
+#### `public inline FORCEINLINE void `[`SetMatchIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1acb1a1956d78960857fb92a959be8edbc)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1acb1a1956d78960857fb92a959be8edbc"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsMatchIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a24e771d4ecc850bd57a268a0a544b960)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a24e771d4ecc850bd57a268a0a544b960"></a>
+#### `public inline FORCEINLINE bool `[`IsMatchIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1ab43da82021d1c9e5448855e9ff9a38fe)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ab43da82021d1c9e5448855e9ff9a38fe"></a>
 
 Checks whether MatchId_Optional is set to null.
 
-#### `public inline bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a2744f058315324a3b11496ef837a7c56)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a2744f058315324a3b11496ef837a7c56"></a>
+#### `public inline FORCEINLINE bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a9c26e9431262725f50a1be7b23d98e0d)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a9c26e9431262725f50a1be7b23d98e0d"></a>
 
 Gets the value of IsTransaction_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1af09b93357ec5e3eb8d35a7c198449bae)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1af09b93357ec5e3eb8d35a7c198449bae"></a>
+#### `public inline FORCEINLINE const bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1adf37c579f1fe8b569ad8426f77348a6e)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1adf37c579f1fe8b569ad8426f77348a6e"></a>
 
 Gets the value of IsTransaction_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a44dd50422f916f13c01e77b32c540ff2)`(const bool & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a44dd50422f916f13c01e77b32c540ff2"></a>
+#### `public inline FORCEINLINE const bool & `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1ab401fec253ef99b15e98d264ba62a9fd)`(const bool & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ab401fec253ef99b15e98d264ba62a9fd"></a>
 
 Gets the value of IsTransaction_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a40eeb9d7e4688cb9c46a87827838c7b3)`(bool & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a40eeb9d7e4688cb9c46a87827838c7b3"></a>
+#### `public inline FORCEINLINE bool `[`GetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a77ea89fc1e6a61700972584281a5f255)`(bool & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a77ea89fc1e6a61700972584281a5f255"></a>
 
 Fills OutValue with the value of IsTransaction_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetIsTransactionOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a8f161f44f29852093ad61c05784f9d9b)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a8f161f44f29852093ad61c05784f9d9b"></a>
+#### `public inline FORCEINLINE bool * `[`GetIsTransactionOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a2165682efc77ca0c7522cfad589e83d9)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a2165682efc77ca0c7522cfad589e83d9"></a>
 
 Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetIsTransactionOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1adf7cbc5347b2514ce705bb9f7fb436fa)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1adf7cbc5347b2514ce705bb9f7fb436fa"></a>
+#### `public inline FORCEINLINE const bool * `[`GetIsTransactionOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a9aad02586e9970d062a36aff440f8dec)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a9aad02586e9970d062a36aff440f8dec"></a>
 
 Returns a pointer to IsTransaction_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a00eb84bd55fe81aa6115a9d437946d09)`(const bool & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a00eb84bd55fe81aa6115a9d437946d09"></a>
+#### `public inline FORCEINLINE void `[`SetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1ada83fb08f3b7b9d504d8b185447a4f17)`(const bool & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ada83fb08f3b7b9d504d8b185447a4f17"></a>
 
 Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true.
 
-#### `public inline void `[`SetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a1a3fa9e566d15598d6c792c703c052d1)`(bool && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a1a3fa9e566d15598d6c792c703c052d1"></a>
+#### `public inline FORCEINLINE void `[`SetIsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a4477548c5ccc4d9b784328c50038a536)`(bool && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4477548c5ccc4d9b784328c50038a536"></a>
 
 Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to true using move semantics.
 
@@ -558,47 +525,39 @@ Sets the value of IsTransaction_Optional and also sets IsTransaction_IsSet to tr
 
 Clears the value of IsTransaction_Optional and sets IsTransaction_IsSet to false.
 
-#### `public inline bool `[`IsIsTransactionSet`](#structFRHAPI__PlayerOrderCreateOutput_1a549537a6bfb25646b5196f64e1aff3ca)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a549537a6bfb25646b5196f64e1aff3ca"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_IsTransaction`](#structFRHAPI__PlayerOrderCreateOutput_1a50d1b4fcc0cd171dfb3283e03055eb8f)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a50d1b4fcc0cd171dfb3283e03055eb8f"></a>
 
-Checks whether IsTransaction_Optional has been set.
+Returns the default value of IsTransaction.
 
-#### `public inline bool `[`IsIsTransactionDefaultValue`](#structFRHAPI__PlayerOrderCreateOutput_1aa7be04af9ba4f214ae6fc0f03e91ebe6)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1aa7be04af9ba4f214ae6fc0f03e91ebe6"></a>
-
-Returns true if IsTransaction_Optional is set and matches the default value.
-
-#### `public inline void `[`SetIsTransactionToDefault`](#structFRHAPI__PlayerOrderCreateOutput_1aed76c623fabe4fff60dc7ba7421ff7cb)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1aed76c623fabe4fff60dc7ba7421ff7cb"></a>
-
-Sets the value of IsTransaction_Optional to its default and also sets IsTransaction_IsSet to true.
-
-#### `public inline FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a884ffc5cf04c3192fe1aef3c4da3dec3)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a884ffc5cf04c3192fe1aef3c4da3dec3"></a>
+#### `public inline FORCEINLINE FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a661a28504c6cf431cc6a048deaf66704)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a661a28504c6cf431cc6a048deaf66704"></a>
 
 Gets the value of OrderId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1ab5b1720056d29af9740350d27b33b483)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ab5b1720056d29af9740350d27b33b483"></a>
+#### `public inline FORCEINLINE const FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1ac96a77b86175ac28a0229e59491743e3)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ac96a77b86175ac28a0229e59491743e3"></a>
 
 Gets the value of OrderId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a6173e9bb3eaed88ba5e8ec773ff2ec6c)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a6173e9bb3eaed88ba5e8ec773ff2ec6c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a307ebe1f8d09cd4945d6fe14b4ae0dae)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a307ebe1f8d09cd4945d6fe14b4ae0dae"></a>
 
 Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a50e729ff5d75e898b4ea15f8c6f81618)`(FString & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a50e729ff5d75e898b4ea15f8c6f81618"></a>
+#### `public inline FORCEINLINE bool `[`GetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a80bb7f4a46ae109de8e31241d6684414)`(FString & OutValue) const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a80bb7f4a46ae109de8e31241d6684414"></a>
 
 Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a607359c2e3387259f4c5eac00d1d6996)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a607359c2e3387259f4c5eac00d1d6996"></a>
+#### `public inline FORCEINLINE FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a4f6b3b8cfb2d866f6b7d93b11127d02b)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4f6b3b8cfb2d866f6b7d93b11127d02b"></a>
 
 Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a3b7eef9ed3233e18aa1369d4e4487012)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a3b7eef9ed3233e18aa1369d4e4487012"></a>
+#### `public inline FORCEINLINE const FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlayerOrderCreateOutput_1a144cf9e6a365660c9628afe6ccdba725)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a144cf9e6a365660c9628afe6ccdba725"></a>
 
 Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a3ed802dc074af5ec04fbaf3e52850cba)`(const FString & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a3ed802dc074af5ec04fbaf3e52850cba"></a>
+#### `public inline FORCEINLINE void `[`SetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1aef2d6ecc980dcf3df9586a2bd1bed5e9)`(const FString & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1aef2d6ecc980dcf3df9586a2bd1bed5e9"></a>
 
 Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
 
-#### `public inline void `[`SetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1a451e0582d4383cd85ee4a1a1a5233ff2)`(FString && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a451e0582d4383cd85ee4a1a1a5233ff2"></a>
+#### `public inline FORCEINLINE void `[`SetOrderId`](#structFRHAPI__PlayerOrderCreateOutput_1afea849987005beebb7304227e8a35286)`(FString && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1afea849987005beebb7304227e8a35286"></a>
 
 Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 
@@ -606,31 +565,27 @@ Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using mov
 
 Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
 
-#### `public inline bool `[`IsOrderIdSet`](#structFRHAPI__PlayerOrderCreateOutput_1a94abcba6056420df80c9317b5a01cf69)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a94abcba6056420df80c9317b5a01cf69"></a>
-
-Checks whether OrderId_Optional has been set.
-
-#### `public inline void `[`SetOrderIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1adadbbe5cbccac30d8013376ceae3192c)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1adadbbe5cbccac30d8013376ceae3192c"></a>
+#### `public inline FORCEINLINE void `[`SetOrderIdToNull`](#structFRHAPI__PlayerOrderCreateOutput_1aa0a15b6542b106d1f232aad403bfd684)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1aa0a15b6542b106d1f232aad403bfd684"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsOrderIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1aa7947093aff7284eb506184c8a6d1c5e)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1aa7947093aff7284eb506184c8a6d1c5e"></a>
+#### `public inline FORCEINLINE bool `[`IsOrderIdNull`](#structFRHAPI__PlayerOrderCreateOutput_1a4fa9b35cf9164c9a6b37a3eeaf0b8068)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1a4fa9b35cf9164c9a6b37a3eeaf0b8068"></a>
 
 Checks whether OrderId_Optional is set to null.
 
-#### `public inline TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1a689fbe6caca0a3113b51682953dd3f58)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a689fbe6caca0a3113b51682953dd3f58"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1a52016272ad9f595922b3f37a7b731bb3)`()` <a id="structFRHAPI__PlayerOrderCreateOutput_1a52016272ad9f595922b3f37a7b731bb3"></a>
 
 Gets the value of Entries.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1ae51b84cac2a41741fa2be4947b593580)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ae51b84cac2a41741fa2be4947b593580"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & `[`GetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1ad85f63077494184470510a4e7dbb2db9)`() const` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad85f63077494184470510a4e7dbb2db9"></a>
 
 Gets the value of Entries.
 
-#### `public inline void `[`SetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1a52dfbabf30d98bf4ddd7e33558eb596f)`(const TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1a52dfbabf30d98bf4ddd7e33558eb596f"></a>
+#### `public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1ab4f840f51211d490e6685276df5bf31d)`(const TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > & NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ab4f840f51211d490e6685276df5bf31d"></a>
 
 Sets the value of Entries.
 
-#### `public inline void `[`SetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1aeaa32653fa927183d2035ebfd50058a1)`(TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1aeaa32653fa927183d2035ebfd50058a1"></a>
+#### `public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__PlayerOrderCreateOutput_1ad27f2aa6a7965fdf828292ada947ee5c)`(TArray< `[`FRHAPI_PlayerOrderEntryCreateOutput`](RHAPI_PlayerOrderEntryCreateOutput.md#structFRHAPI__PlayerOrderEntryCreateOutput)` > && NewValue)` <a id="structFRHAPI__PlayerOrderCreateOutput_1ad27f2aa6a7965fdf828292ada947ee5c"></a>
 
 Sets the value of Entries using move semantics.
 

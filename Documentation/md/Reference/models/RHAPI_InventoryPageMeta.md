@@ -34,54 +34,49 @@ Metadata about the page of results.
 `public bool `[`Limit_IsSet`](#structFRHAPI__InventoryPageMeta_1a4f868e55bc1bbd8ad8d27291b0915c3f) | true if Limit_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InventoryPageMeta_1a4603a99487ac0381e1b93544eb43ef34)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InventoryPageMeta_1a4a62823b068c8da7cae64fef50d78af8)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a011b95746516d1789968186a157cfae7)`()` | Gets the value of StartingPosition_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ab81c345008fd8291ccb25a52c7073b2a)`() const` | Gets the value of StartingPosition_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ac54e686bfc12e56cea4b02d0c8bcafc7)`(const FDateTime & DefaultValue) const` | Gets the value of StartingPosition_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a393af4453b04315df0cf6056b116d3e5)`(FDateTime & OutValue) const` | Fills OutValue with the value of StartingPosition_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetStartingPositionOrNull`](#structFRHAPI__InventoryPageMeta_1ae28d3f98e3fe728f0742c979e1812c1b)`()` | Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetStartingPositionOrNull`](#structFRHAPI__InventoryPageMeta_1a157cb306457e24417e76e8b6068030b0)`() const` | Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ab1a283ce630bd943d58da3c886f8228c)`(const FDateTime & NewValue)` | Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true.
-`public inline void `[`SetStartingPosition`](#structFRHAPI__InventoryPageMeta_1afa4c29ce11d07622cbdfb3afe801ad6d)`(FDateTime && NewValue)` | Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ad4dfd839880b3aaf6cc18a3846aa408f)`()` | Gets the value of StartingPosition_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a95aa25e6bd979364c164655e8e03f23f)`() const` | Gets the value of StartingPosition_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ae9af69f3fd24b7aaa9e5dace99333c12)`(const FDateTime & DefaultValue) const` | Gets the value of StartingPosition_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a3624093e346e0f4b2d05e35390d486f1)`(FDateTime & OutValue) const` | Fills OutValue with the value of StartingPosition_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetStartingPositionOrNull`](#structFRHAPI__InventoryPageMeta_1a688bb03b079144b2c6e696d0b3661e69)`()` | Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetStartingPositionOrNull`](#structFRHAPI__InventoryPageMeta_1a85360d9c8a668dc7d688152e658b65f4)`() const` | Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetStartingPosition`](#structFRHAPI__InventoryPageMeta_1adc22d041a95d86245644aba3da500201)`(const FDateTime & NewValue)` | Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true.
+`public inline FORCEINLINE void `[`SetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a144201eb8a316d998ba7167eb8fbf20c)`(FDateTime && NewValue)` | Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true using move semantics.
 `public inline void `[`ClearStartingPosition`](#structFRHAPI__InventoryPageMeta_1abfb03b02e3c6c7f02615855e59118477)`()` | Clears the value of StartingPosition_Optional and sets StartingPosition_IsSet to false.
-`public inline bool `[`IsStartingPositionSet`](#structFRHAPI__InventoryPageMeta_1a65d40cdcf7e8016dff6eb38111f0444d)`() const` | Checks whether StartingPosition_Optional has been set.
-`public inline void `[`SetStartingPositionToNull`](#structFRHAPI__InventoryPageMeta_1a7edff61431aa81bea189c6215c41c96b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsStartingPositionNull`](#structFRHAPI__InventoryPageMeta_1a19515bef3d67f5748522adc3dbb2a569)`() const` | Checks whether StartingPosition_Optional is set to null.
-`public inline FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1aa9409be6ce2b3b6b975d18eb206b9dcc)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1a777b9a47b4dd0cba78fadd1a2c3d500e)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1a6e0a22b035d0d236f74817c3b799a531)`(const FString & DefaultValue) const` | Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1ad94c8e9662fb0b77a3704b4dbabd8b3b)`(FString & OutValue) const` | Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetCursorOrNull`](#structFRHAPI__InventoryPageMeta_1acfb3a4539fdcd30674533551a9dff564)`()` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetCursorOrNull`](#structFRHAPI__InventoryPageMeta_1ad836798f6325e59277e878393fcdadee)`() const` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCursor`](#structFRHAPI__InventoryPageMeta_1a86851f55d0ed96232212f21fea94aae2)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
-`public inline void `[`SetCursor`](#structFRHAPI__InventoryPageMeta_1a23b9b4272a337d5ea8cac6706329c5fe)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetStartingPositionToNull`](#structFRHAPI__InventoryPageMeta_1aa31a50bb0ba4021adddbd719ca44521e)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsStartingPositionNull`](#structFRHAPI__InventoryPageMeta_1a7904a49586a6ac0163f9f4a529d8e742)`() const` | Checks whether StartingPosition_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1ae481b7b987d44f9b17d02f1df898385b)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1a4f06993990ad92cb65d7dab02844e133)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1a6df3006b0ebae891b0b6784b5aceedd5)`(const FString & DefaultValue) const` | Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1ad59cd6c883a19957aa55fc791ff963c3)`(FString & OutValue) const` | Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetCursorOrNull`](#structFRHAPI__InventoryPageMeta_1aa2bbba1d64be6378103700d9a956c6e5)`()` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetCursorOrNull`](#structFRHAPI__InventoryPageMeta_1a18b5023e1bd7ce4296d3f71f5a6c80db)`() const` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__InventoryPageMeta_1ab88b78f4718efe2ffe6ba8f34565c1db)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__InventoryPageMeta_1a62c5ab3eac1b44f69d878e938d1ea8c6)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 `public inline void `[`ClearCursor`](#structFRHAPI__InventoryPageMeta_1a5056003deeea2bf42834292fea815dc2)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
-`public inline bool `[`IsCursorSet`](#structFRHAPI__InventoryPageMeta_1abc36b2c80f5218fb88b9ee232f41013f)`() const` | Checks whether Cursor_Optional has been set.
-`public inline void `[`SetCursorToNull`](#structFRHAPI__InventoryPageMeta_1ab3cd730d0b8d1b08a504ed77bc87a47e)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCursorNull`](#structFRHAPI__InventoryPageMeta_1aaece1e0aef3cb4a8df91a4e50545794f)`() const` | Checks whether Cursor_Optional is set to null.
-`public inline ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a9550c7b103595e9a237a9bdadc7382e2)`()` | Gets the value of Sort_Optional, regardless of it having been set.
-`public inline const ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1addf6ec80d3d73296473da21100c07e21)`() const` | Gets the value of Sort_Optional, regardless of it having been set.
-`public inline const ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1abdfc53784978e51ac31663c92cf233bf)`(const ERHAPI_SortOrder & DefaultValue) const` | Gets the value of Sort_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a5d70b32be762609e2458024e3f4304a3)`(ERHAPI_SortOrder & OutValue) const` | Fills OutValue with the value of Sort_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_SortOrder * `[`GetSortOrNull`](#structFRHAPI__InventoryPageMeta_1ab46b9f486eeb0674bb957b179e05d973)`()` | Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_SortOrder * `[`GetSortOrNull`](#structFRHAPI__InventoryPageMeta_1ad17bc10c6ebf306fc47dccf222f26fce)`() const` | Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSort`](#structFRHAPI__InventoryPageMeta_1a3522714731282927592b8ec996a0f629)`(const ERHAPI_SortOrder & NewValue)` | Sets the value of Sort_Optional and also sets Sort_IsSet to true.
-`public inline void `[`SetSort`](#structFRHAPI__InventoryPageMeta_1a3f716ea913e3fd751b109cfa24d13330)`(ERHAPI_SortOrder && NewValue)` | Sets the value of Sort_Optional and also sets Sort_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetCursorToNull`](#structFRHAPI__InventoryPageMeta_1abcef7db1e45e741aca7d6fa0f4c4a7d2)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCursorNull`](#structFRHAPI__InventoryPageMeta_1a7a39a51f280f1c327bb1470a618f6130)`() const` | Checks whether Cursor_Optional is set to null.
+`public inline FORCEINLINE ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a341fb829d6513428d42830b2929ca619)`()` | Gets the value of Sort_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a45941e833eaa0b787edfa0f943a71a09)`() const` | Gets the value of Sort_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a67716e80b7521a9a3a4aca5ddc4f28d1)`(const ERHAPI_SortOrder & DefaultValue) const` | Gets the value of Sort_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a2474c5cec9fadb802238015067bbcad9)`(ERHAPI_SortOrder & OutValue) const` | Fills OutValue with the value of Sort_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_SortOrder * `[`GetSortOrNull`](#structFRHAPI__InventoryPageMeta_1a388f90b884f5121becf45b1b65aa960f)`()` | Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_SortOrder * `[`GetSortOrNull`](#structFRHAPI__InventoryPageMeta_1a8b99921aaac54f947ba6e964384194e8)`() const` | Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSort`](#structFRHAPI__InventoryPageMeta_1adf36a9b484d0e6ceb34245eb6b690732)`(const ERHAPI_SortOrder & NewValue)` | Sets the value of Sort_Optional and also sets Sort_IsSet to true.
+`public inline FORCEINLINE void `[`SetSort`](#structFRHAPI__InventoryPageMeta_1ab616a75f5deaef0373aa15ff5cd50bdf)`(ERHAPI_SortOrder && NewValue)` | Sets the value of Sort_Optional and also sets Sort_IsSet to true using move semantics.
 `public inline void `[`ClearSort`](#structFRHAPI__InventoryPageMeta_1a9029662a8c55316d0971c5f259cc2b9f)`()` | Clears the value of Sort_Optional and sets Sort_IsSet to false.
-`public inline bool `[`IsSortSet`](#structFRHAPI__InventoryPageMeta_1a9febeeddc554678c523dc3240fbdbb07)`() const` | Checks whether Sort_Optional has been set.
-`public inline void `[`SetSortToNull`](#structFRHAPI__InventoryPageMeta_1a121f987de6c515f96b5049236f9df9f6)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsSortNull`](#structFRHAPI__InventoryPageMeta_1a96498c25b768790a70e868b2c55135d7)`() const` | Checks whether Sort_Optional is set to null.
-`public inline int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a3e2c53416dd001d4dfd2e25a6b21ee86)`()` | Gets the value of Limit_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a8befe049cc17bcf7ddeff8e51fb6b6db)`() const` | Gets the value of Limit_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a46df727afc0375e1ed275db6f26acec4)`(const int32 & DefaultValue) const` | Gets the value of Limit_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1af5cd327e6b96ec65c8e24b6d9695cc64)`(int32 & OutValue) const` | Fills OutValue with the value of Limit_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetLimitOrNull`](#structFRHAPI__InventoryPageMeta_1a0d28bedae488e8ecac925adc4f4a7f31)`()` | Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetLimitOrNull`](#structFRHAPI__InventoryPageMeta_1a85a509076534c4006857cd1b2f542a0d)`() const` | Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLimit`](#structFRHAPI__InventoryPageMeta_1a61698daa87518ee9dc89d80d45929b37)`(const int32 & NewValue)` | Sets the value of Limit_Optional and also sets Limit_IsSet to true.
-`public inline void `[`SetLimit`](#structFRHAPI__InventoryPageMeta_1a76d69b65ad461898beb65c8bc983d173)`(int32 && NewValue)` | Sets the value of Limit_Optional and also sets Limit_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetSortToNull`](#structFRHAPI__InventoryPageMeta_1a43d18ca3270dc1ec5e366872890e71ed)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsSortNull`](#structFRHAPI__InventoryPageMeta_1aeb295f6acb1f8ea80d73f778238796e3)`() const` | Checks whether Sort_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a764fe2ba12451aa8322380e571ae9b98)`()` | Gets the value of Limit_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1ae3382065b389668bba0dca0f956bc368)`() const` | Gets the value of Limit_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a0dd1254a6fd1c0edecf2421f5b355e3f)`(const int32 & DefaultValue) const` | Gets the value of Limit_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a1440c41c22b5d6d855d6a1b34f71a733)`(int32 & OutValue) const` | Fills OutValue with the value of Limit_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetLimitOrNull`](#structFRHAPI__InventoryPageMeta_1a07b54330507be23bfe2ea8f8ffec6357)`()` | Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetLimitOrNull`](#structFRHAPI__InventoryPageMeta_1a9af491c9bd75a39c1a25f7a428414ade)`() const` | Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLimit`](#structFRHAPI__InventoryPageMeta_1a3aeaf708ae267f5fa7f2e1cac47bb898)`(const int32 & NewValue)` | Sets the value of Limit_Optional and also sets Limit_IsSet to true.
+`public inline FORCEINLINE void `[`SetLimit`](#structFRHAPI__InventoryPageMeta_1a558e3950da9d3635114c48bac1aa2ac7)`(int32 && NewValue)` | Sets the value of Limit_Optional and also sets Limit_IsSet to true using move semantics.
 `public inline void `[`ClearLimit`](#structFRHAPI__InventoryPageMeta_1a2d163a9240ab964f999f5194a2ec6488)`()` | Clears the value of Limit_Optional and sets Limit_IsSet to false.
-`public inline bool `[`IsLimitSet`](#structFRHAPI__InventoryPageMeta_1ae50cf1447efb391c005d245c5c1f764c)`() const` | Checks whether Limit_Optional has been set.
-`public inline bool `[`IsLimitDefaultValue`](#structFRHAPI__InventoryPageMeta_1a529f359142657cfc2dce6b0abf17667c)`() const` | Returns true if Limit_Optional is set and matches the default value.
-`public inline void `[`SetLimitToDefault`](#structFRHAPI__InventoryPageMeta_1a45a9cf3b2aa4fe2d80eb0d41c0a913d8)`()` | Sets the value of Limit_Optional to its default and also sets Limit_IsSet to true.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Limit`](#structFRHAPI__InventoryPageMeta_1ac68975bc4df09a62999d28350fab0b60)`()` | Returns the default value of Limit.
 
 ### Members
 
@@ -142,35 +137,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a011b95746516d1789968186a157cfae7)`()` <a id="structFRHAPI__InventoryPageMeta_1a011b95746516d1789968186a157cfae7"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ad4dfd839880b3aaf6cc18a3846aa408f)`()` <a id="structFRHAPI__InventoryPageMeta_1ad4dfd839880b3aaf6cc18a3846aa408f"></a>
 
 Gets the value of StartingPosition_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ab81c345008fd8291ccb25a52c7073b2a)`() const` <a id="structFRHAPI__InventoryPageMeta_1ab81c345008fd8291ccb25a52c7073b2a"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a95aa25e6bd979364c164655e8e03f23f)`() const` <a id="structFRHAPI__InventoryPageMeta_1a95aa25e6bd979364c164655e8e03f23f"></a>
 
 Gets the value of StartingPosition_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ac54e686bfc12e56cea4b02d0c8bcafc7)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__InventoryPageMeta_1ac54e686bfc12e56cea4b02d0c8bcafc7"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ae9af69f3fd24b7aaa9e5dace99333c12)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__InventoryPageMeta_1ae9af69f3fd24b7aaa9e5dace99333c12"></a>
 
 Gets the value of StartingPosition_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a393af4453b04315df0cf6056b116d3e5)`(FDateTime & OutValue) const` <a id="structFRHAPI__InventoryPageMeta_1a393af4453b04315df0cf6056b116d3e5"></a>
+#### `public inline FORCEINLINE bool `[`GetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a3624093e346e0f4b2d05e35390d486f1)`(FDateTime & OutValue) const` <a id="structFRHAPI__InventoryPageMeta_1a3624093e346e0f4b2d05e35390d486f1"></a>
 
 Fills OutValue with the value of StartingPosition_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetStartingPositionOrNull`](#structFRHAPI__InventoryPageMeta_1ae28d3f98e3fe728f0742c979e1812c1b)`()` <a id="structFRHAPI__InventoryPageMeta_1ae28d3f98e3fe728f0742c979e1812c1b"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetStartingPositionOrNull`](#structFRHAPI__InventoryPageMeta_1a688bb03b079144b2c6e696d0b3661e69)`()` <a id="structFRHAPI__InventoryPageMeta_1a688bb03b079144b2c6e696d0b3661e69"></a>
 
 Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetStartingPositionOrNull`](#structFRHAPI__InventoryPageMeta_1a157cb306457e24417e76e8b6068030b0)`() const` <a id="structFRHAPI__InventoryPageMeta_1a157cb306457e24417e76e8b6068030b0"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetStartingPositionOrNull`](#structFRHAPI__InventoryPageMeta_1a85360d9c8a668dc7d688152e658b65f4)`() const` <a id="structFRHAPI__InventoryPageMeta_1a85360d9c8a668dc7d688152e658b65f4"></a>
 
 Returns a pointer to StartingPosition_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetStartingPosition`](#structFRHAPI__InventoryPageMeta_1ab1a283ce630bd943d58da3c886f8228c)`(const FDateTime & NewValue)` <a id="structFRHAPI__InventoryPageMeta_1ab1a283ce630bd943d58da3c886f8228c"></a>
+#### `public inline FORCEINLINE void `[`SetStartingPosition`](#structFRHAPI__InventoryPageMeta_1adc22d041a95d86245644aba3da500201)`(const FDateTime & NewValue)` <a id="structFRHAPI__InventoryPageMeta_1adc22d041a95d86245644aba3da500201"></a>
 
 Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true.
 
-#### `public inline void `[`SetStartingPosition`](#structFRHAPI__InventoryPageMeta_1afa4c29ce11d07622cbdfb3afe801ad6d)`(FDateTime && NewValue)` <a id="structFRHAPI__InventoryPageMeta_1afa4c29ce11d07622cbdfb3afe801ad6d"></a>
+#### `public inline FORCEINLINE void `[`SetStartingPosition`](#structFRHAPI__InventoryPageMeta_1a144201eb8a316d998ba7167eb8fbf20c)`(FDateTime && NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a144201eb8a316d998ba7167eb8fbf20c"></a>
 
 Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet to true using move semantics.
 
@@ -178,47 +173,43 @@ Sets the value of StartingPosition_Optional and also sets StartingPosition_IsSet
 
 Clears the value of StartingPosition_Optional and sets StartingPosition_IsSet to false.
 
-#### `public inline bool `[`IsStartingPositionSet`](#structFRHAPI__InventoryPageMeta_1a65d40cdcf7e8016dff6eb38111f0444d)`() const` <a id="structFRHAPI__InventoryPageMeta_1a65d40cdcf7e8016dff6eb38111f0444d"></a>
-
-Checks whether StartingPosition_Optional has been set.
-
-#### `public inline void `[`SetStartingPositionToNull`](#structFRHAPI__InventoryPageMeta_1a7edff61431aa81bea189c6215c41c96b)`()` <a id="structFRHAPI__InventoryPageMeta_1a7edff61431aa81bea189c6215c41c96b"></a>
+#### `public inline FORCEINLINE void `[`SetStartingPositionToNull`](#structFRHAPI__InventoryPageMeta_1aa31a50bb0ba4021adddbd719ca44521e)`()` <a id="structFRHAPI__InventoryPageMeta_1aa31a50bb0ba4021adddbd719ca44521e"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsStartingPositionNull`](#structFRHAPI__InventoryPageMeta_1a19515bef3d67f5748522adc3dbb2a569)`() const` <a id="structFRHAPI__InventoryPageMeta_1a19515bef3d67f5748522adc3dbb2a569"></a>
+#### `public inline FORCEINLINE bool `[`IsStartingPositionNull`](#structFRHAPI__InventoryPageMeta_1a7904a49586a6ac0163f9f4a529d8e742)`() const` <a id="structFRHAPI__InventoryPageMeta_1a7904a49586a6ac0163f9f4a529d8e742"></a>
 
 Checks whether StartingPosition_Optional is set to null.
 
-#### `public inline FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1aa9409be6ce2b3b6b975d18eb206b9dcc)`()` <a id="structFRHAPI__InventoryPageMeta_1aa9409be6ce2b3b6b975d18eb206b9dcc"></a>
+#### `public inline FORCEINLINE FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1ae481b7b987d44f9b17d02f1df898385b)`()` <a id="structFRHAPI__InventoryPageMeta_1ae481b7b987d44f9b17d02f1df898385b"></a>
 
 Gets the value of Cursor_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1a777b9a47b4dd0cba78fadd1a2c3d500e)`() const` <a id="structFRHAPI__InventoryPageMeta_1a777b9a47b4dd0cba78fadd1a2c3d500e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1a4f06993990ad92cb65d7dab02844e133)`() const` <a id="structFRHAPI__InventoryPageMeta_1a4f06993990ad92cb65d7dab02844e133"></a>
 
 Gets the value of Cursor_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1a6e0a22b035d0d236f74817c3b799a531)`(const FString & DefaultValue) const` <a id="structFRHAPI__InventoryPageMeta_1a6e0a22b035d0d236f74817c3b799a531"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1a6df3006b0ebae891b0b6784b5aceedd5)`(const FString & DefaultValue) const` <a id="structFRHAPI__InventoryPageMeta_1a6df3006b0ebae891b0b6784b5aceedd5"></a>
 
 Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1ad94c8e9662fb0b77a3704b4dbabd8b3b)`(FString & OutValue) const` <a id="structFRHAPI__InventoryPageMeta_1ad94c8e9662fb0b77a3704b4dbabd8b3b"></a>
+#### `public inline FORCEINLINE bool `[`GetCursor`](#structFRHAPI__InventoryPageMeta_1ad59cd6c883a19957aa55fc791ff963c3)`(FString & OutValue) const` <a id="structFRHAPI__InventoryPageMeta_1ad59cd6c883a19957aa55fc791ff963c3"></a>
 
 Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetCursorOrNull`](#structFRHAPI__InventoryPageMeta_1acfb3a4539fdcd30674533551a9dff564)`()` <a id="structFRHAPI__InventoryPageMeta_1acfb3a4539fdcd30674533551a9dff564"></a>
+#### `public inline FORCEINLINE FString * `[`GetCursorOrNull`](#structFRHAPI__InventoryPageMeta_1aa2bbba1d64be6378103700d9a956c6e5)`()` <a id="structFRHAPI__InventoryPageMeta_1aa2bbba1d64be6378103700d9a956c6e5"></a>
 
 Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetCursorOrNull`](#structFRHAPI__InventoryPageMeta_1ad836798f6325e59277e878393fcdadee)`() const` <a id="structFRHAPI__InventoryPageMeta_1ad836798f6325e59277e878393fcdadee"></a>
+#### `public inline FORCEINLINE const FString * `[`GetCursorOrNull`](#structFRHAPI__InventoryPageMeta_1a18b5023e1bd7ce4296d3f71f5a6c80db)`() const` <a id="structFRHAPI__InventoryPageMeta_1a18b5023e1bd7ce4296d3f71f5a6c80db"></a>
 
 Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__InventoryPageMeta_1a86851f55d0ed96232212f21fea94aae2)`(const FString & NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a86851f55d0ed96232212f21fea94aae2"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__InventoryPageMeta_1ab88b78f4718efe2ffe6ba8f34565c1db)`(const FString & NewValue)` <a id="structFRHAPI__InventoryPageMeta_1ab88b78f4718efe2ffe6ba8f34565c1db"></a>
 
 Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__InventoryPageMeta_1a23b9b4272a337d5ea8cac6706329c5fe)`(FString && NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a23b9b4272a337d5ea8cac6706329c5fe"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__InventoryPageMeta_1a62c5ab3eac1b44f69d878e938d1ea8c6)`(FString && NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a62c5ab3eac1b44f69d878e938d1ea8c6"></a>
 
 Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 
@@ -226,47 +217,43 @@ Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move 
 
 Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 
-#### `public inline bool `[`IsCursorSet`](#structFRHAPI__InventoryPageMeta_1abc36b2c80f5218fb88b9ee232f41013f)`() const` <a id="structFRHAPI__InventoryPageMeta_1abc36b2c80f5218fb88b9ee232f41013f"></a>
-
-Checks whether Cursor_Optional has been set.
-
-#### `public inline void `[`SetCursorToNull`](#structFRHAPI__InventoryPageMeta_1ab3cd730d0b8d1b08a504ed77bc87a47e)`()` <a id="structFRHAPI__InventoryPageMeta_1ab3cd730d0b8d1b08a504ed77bc87a47e"></a>
+#### `public inline FORCEINLINE void `[`SetCursorToNull`](#structFRHAPI__InventoryPageMeta_1abcef7db1e45e741aca7d6fa0f4c4a7d2)`()` <a id="structFRHAPI__InventoryPageMeta_1abcef7db1e45e741aca7d6fa0f4c4a7d2"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCursorNull`](#structFRHAPI__InventoryPageMeta_1aaece1e0aef3cb4a8df91a4e50545794f)`() const` <a id="structFRHAPI__InventoryPageMeta_1aaece1e0aef3cb4a8df91a4e50545794f"></a>
+#### `public inline FORCEINLINE bool `[`IsCursorNull`](#structFRHAPI__InventoryPageMeta_1a7a39a51f280f1c327bb1470a618f6130)`() const` <a id="structFRHAPI__InventoryPageMeta_1a7a39a51f280f1c327bb1470a618f6130"></a>
 
 Checks whether Cursor_Optional is set to null.
 
-#### `public inline ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a9550c7b103595e9a237a9bdadc7382e2)`()` <a id="structFRHAPI__InventoryPageMeta_1a9550c7b103595e9a237a9bdadc7382e2"></a>
+#### `public inline FORCEINLINE ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a341fb829d6513428d42830b2929ca619)`()` <a id="structFRHAPI__InventoryPageMeta_1a341fb829d6513428d42830b2929ca619"></a>
 
 Gets the value of Sort_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1addf6ec80d3d73296473da21100c07e21)`() const` <a id="structFRHAPI__InventoryPageMeta_1addf6ec80d3d73296473da21100c07e21"></a>
+#### `public inline FORCEINLINE const ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a45941e833eaa0b787edfa0f943a71a09)`() const` <a id="structFRHAPI__InventoryPageMeta_1a45941e833eaa0b787edfa0f943a71a09"></a>
 
 Gets the value of Sort_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1abdfc53784978e51ac31663c92cf233bf)`(const ERHAPI_SortOrder & DefaultValue) const` <a id="structFRHAPI__InventoryPageMeta_1abdfc53784978e51ac31663c92cf233bf"></a>
+#### `public inline FORCEINLINE const ERHAPI_SortOrder & `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a67716e80b7521a9a3a4aca5ddc4f28d1)`(const ERHAPI_SortOrder & DefaultValue) const` <a id="structFRHAPI__InventoryPageMeta_1a67716e80b7521a9a3a4aca5ddc4f28d1"></a>
 
 Gets the value of Sort_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a5d70b32be762609e2458024e3f4304a3)`(ERHAPI_SortOrder & OutValue) const` <a id="structFRHAPI__InventoryPageMeta_1a5d70b32be762609e2458024e3f4304a3"></a>
+#### `public inline FORCEINLINE bool `[`GetSort`](#structFRHAPI__InventoryPageMeta_1a2474c5cec9fadb802238015067bbcad9)`(ERHAPI_SortOrder & OutValue) const` <a id="structFRHAPI__InventoryPageMeta_1a2474c5cec9fadb802238015067bbcad9"></a>
 
 Fills OutValue with the value of Sort_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_SortOrder * `[`GetSortOrNull`](#structFRHAPI__InventoryPageMeta_1ab46b9f486eeb0674bb957b179e05d973)`()` <a id="structFRHAPI__InventoryPageMeta_1ab46b9f486eeb0674bb957b179e05d973"></a>
+#### `public inline FORCEINLINE ERHAPI_SortOrder * `[`GetSortOrNull`](#structFRHAPI__InventoryPageMeta_1a388f90b884f5121becf45b1b65aa960f)`()` <a id="structFRHAPI__InventoryPageMeta_1a388f90b884f5121becf45b1b65aa960f"></a>
 
 Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_SortOrder * `[`GetSortOrNull`](#structFRHAPI__InventoryPageMeta_1ad17bc10c6ebf306fc47dccf222f26fce)`() const` <a id="structFRHAPI__InventoryPageMeta_1ad17bc10c6ebf306fc47dccf222f26fce"></a>
+#### `public inline FORCEINLINE const ERHAPI_SortOrder * `[`GetSortOrNull`](#structFRHAPI__InventoryPageMeta_1a8b99921aaac54f947ba6e964384194e8)`() const` <a id="structFRHAPI__InventoryPageMeta_1a8b99921aaac54f947ba6e964384194e8"></a>
 
 Returns a pointer to Sort_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSort`](#structFRHAPI__InventoryPageMeta_1a3522714731282927592b8ec996a0f629)`(const ERHAPI_SortOrder & NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a3522714731282927592b8ec996a0f629"></a>
+#### `public inline FORCEINLINE void `[`SetSort`](#structFRHAPI__InventoryPageMeta_1adf36a9b484d0e6ceb34245eb6b690732)`(const ERHAPI_SortOrder & NewValue)` <a id="structFRHAPI__InventoryPageMeta_1adf36a9b484d0e6ceb34245eb6b690732"></a>
 
 Sets the value of Sort_Optional and also sets Sort_IsSet to true.
 
-#### `public inline void `[`SetSort`](#structFRHAPI__InventoryPageMeta_1a3f716ea913e3fd751b109cfa24d13330)`(ERHAPI_SortOrder && NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a3f716ea913e3fd751b109cfa24d13330"></a>
+#### `public inline FORCEINLINE void `[`SetSort`](#structFRHAPI__InventoryPageMeta_1ab616a75f5deaef0373aa15ff5cd50bdf)`(ERHAPI_SortOrder && NewValue)` <a id="structFRHAPI__InventoryPageMeta_1ab616a75f5deaef0373aa15ff5cd50bdf"></a>
 
 Sets the value of Sort_Optional and also sets Sort_IsSet to true using move semantics.
 
@@ -274,47 +261,43 @@ Sets the value of Sort_Optional and also sets Sort_IsSet to true using move sema
 
 Clears the value of Sort_Optional and sets Sort_IsSet to false.
 
-#### `public inline bool `[`IsSortSet`](#structFRHAPI__InventoryPageMeta_1a9febeeddc554678c523dc3240fbdbb07)`() const` <a id="structFRHAPI__InventoryPageMeta_1a9febeeddc554678c523dc3240fbdbb07"></a>
-
-Checks whether Sort_Optional has been set.
-
-#### `public inline void `[`SetSortToNull`](#structFRHAPI__InventoryPageMeta_1a121f987de6c515f96b5049236f9df9f6)`()` <a id="structFRHAPI__InventoryPageMeta_1a121f987de6c515f96b5049236f9df9f6"></a>
+#### `public inline FORCEINLINE void `[`SetSortToNull`](#structFRHAPI__InventoryPageMeta_1a43d18ca3270dc1ec5e366872890e71ed)`()` <a id="structFRHAPI__InventoryPageMeta_1a43d18ca3270dc1ec5e366872890e71ed"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsSortNull`](#structFRHAPI__InventoryPageMeta_1a96498c25b768790a70e868b2c55135d7)`() const` <a id="structFRHAPI__InventoryPageMeta_1a96498c25b768790a70e868b2c55135d7"></a>
+#### `public inline FORCEINLINE bool `[`IsSortNull`](#structFRHAPI__InventoryPageMeta_1aeb295f6acb1f8ea80d73f778238796e3)`() const` <a id="structFRHAPI__InventoryPageMeta_1aeb295f6acb1f8ea80d73f778238796e3"></a>
 
 Checks whether Sort_Optional is set to null.
 
-#### `public inline int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a3e2c53416dd001d4dfd2e25a6b21ee86)`()` <a id="structFRHAPI__InventoryPageMeta_1a3e2c53416dd001d4dfd2e25a6b21ee86"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a764fe2ba12451aa8322380e571ae9b98)`()` <a id="structFRHAPI__InventoryPageMeta_1a764fe2ba12451aa8322380e571ae9b98"></a>
 
 Gets the value of Limit_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a8befe049cc17bcf7ddeff8e51fb6b6db)`() const` <a id="structFRHAPI__InventoryPageMeta_1a8befe049cc17bcf7ddeff8e51fb6b6db"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1ae3382065b389668bba0dca0f956bc368)`() const` <a id="structFRHAPI__InventoryPageMeta_1ae3382065b389668bba0dca0f956bc368"></a>
 
 Gets the value of Limit_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a46df727afc0375e1ed275db6f26acec4)`(const int32 & DefaultValue) const` <a id="structFRHAPI__InventoryPageMeta_1a46df727afc0375e1ed275db6f26acec4"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a0dd1254a6fd1c0edecf2421f5b355e3f)`(const int32 & DefaultValue) const` <a id="structFRHAPI__InventoryPageMeta_1a0dd1254a6fd1c0edecf2421f5b355e3f"></a>
 
 Gets the value of Limit_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1af5cd327e6b96ec65c8e24b6d9695cc64)`(int32 & OutValue) const` <a id="structFRHAPI__InventoryPageMeta_1af5cd327e6b96ec65c8e24b6d9695cc64"></a>
+#### `public inline FORCEINLINE bool `[`GetLimit`](#structFRHAPI__InventoryPageMeta_1a1440c41c22b5d6d855d6a1b34f71a733)`(int32 & OutValue) const` <a id="structFRHAPI__InventoryPageMeta_1a1440c41c22b5d6d855d6a1b34f71a733"></a>
 
 Fills OutValue with the value of Limit_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetLimitOrNull`](#structFRHAPI__InventoryPageMeta_1a0d28bedae488e8ecac925adc4f4a7f31)`()` <a id="structFRHAPI__InventoryPageMeta_1a0d28bedae488e8ecac925adc4f4a7f31"></a>
+#### `public inline FORCEINLINE int32 * `[`GetLimitOrNull`](#structFRHAPI__InventoryPageMeta_1a07b54330507be23bfe2ea8f8ffec6357)`()` <a id="structFRHAPI__InventoryPageMeta_1a07b54330507be23bfe2ea8f8ffec6357"></a>
 
 Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetLimitOrNull`](#structFRHAPI__InventoryPageMeta_1a85a509076534c4006857cd1b2f542a0d)`() const` <a id="structFRHAPI__InventoryPageMeta_1a85a509076534c4006857cd1b2f542a0d"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetLimitOrNull`](#structFRHAPI__InventoryPageMeta_1a9af491c9bd75a39c1a25f7a428414ade)`() const` <a id="structFRHAPI__InventoryPageMeta_1a9af491c9bd75a39c1a25f7a428414ade"></a>
 
 Returns a pointer to Limit_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLimit`](#structFRHAPI__InventoryPageMeta_1a61698daa87518ee9dc89d80d45929b37)`(const int32 & NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a61698daa87518ee9dc89d80d45929b37"></a>
+#### `public inline FORCEINLINE void `[`SetLimit`](#structFRHAPI__InventoryPageMeta_1a3aeaf708ae267f5fa7f2e1cac47bb898)`(const int32 & NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a3aeaf708ae267f5fa7f2e1cac47bb898"></a>
 
 Sets the value of Limit_Optional and also sets Limit_IsSet to true.
 
-#### `public inline void `[`SetLimit`](#structFRHAPI__InventoryPageMeta_1a76d69b65ad461898beb65c8bc983d173)`(int32 && NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a76d69b65ad461898beb65c8bc983d173"></a>
+#### `public inline FORCEINLINE void `[`SetLimit`](#structFRHAPI__InventoryPageMeta_1a558e3950da9d3635114c48bac1aa2ac7)`(int32 && NewValue)` <a id="structFRHAPI__InventoryPageMeta_1a558e3950da9d3635114c48bac1aa2ac7"></a>
 
 Sets the value of Limit_Optional and also sets Limit_IsSet to true using move semantics.
 
@@ -322,15 +305,7 @@ Sets the value of Limit_Optional and also sets Limit_IsSet to true using move se
 
 Clears the value of Limit_Optional and sets Limit_IsSet to false.
 
-#### `public inline bool `[`IsLimitSet`](#structFRHAPI__InventoryPageMeta_1ae50cf1447efb391c005d245c5c1f764c)`() const` <a id="structFRHAPI__InventoryPageMeta_1ae50cf1447efb391c005d245c5c1f764c"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Limit`](#structFRHAPI__InventoryPageMeta_1ac68975bc4df09a62999d28350fab0b60)`()` <a id="structFRHAPI__InventoryPageMeta_1ac68975bc4df09a62999d28350fab0b60"></a>
 
-Checks whether Limit_Optional has been set.
-
-#### `public inline bool `[`IsLimitDefaultValue`](#structFRHAPI__InventoryPageMeta_1a529f359142657cfc2dce6b0abf17667c)`() const` <a id="structFRHAPI__InventoryPageMeta_1a529f359142657cfc2dce6b0abf17667c"></a>
-
-Returns true if Limit_Optional is set and matches the default value.
-
-#### `public inline void `[`SetLimitToDefault`](#structFRHAPI__InventoryPageMeta_1a45a9cf3b2aa4fe2d80eb0d41c0a913d8)`()` <a id="structFRHAPI__InventoryPageMeta_1a45a9cf3b2aa4fe2d80eb0d41c0a913d8"></a>
-
-Sets the value of Limit_Optional to its default and also sets Limit_IsSet to true.
+Returns the default value of Limit.
 

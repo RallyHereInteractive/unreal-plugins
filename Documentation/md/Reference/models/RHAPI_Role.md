@@ -32,52 +32,47 @@ Role object that is used to define a role for a player.
 `public bool `[`LoginLootRewards_IsSet`](#structFRHAPI__Role_1a6e132dc93f9582659561567ad17f151c) | true if LoginLootRewards_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Role_1a4b5e65cf0b50898cc108867d2ae12b0a)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Role_1a85c8c61e186c0b26352073bf93607dcb)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetRoleId`](#structFRHAPI__Role_1ad75587fe81b61e9cdb56425ca9020fdd)`()` | Gets the value of RoleId.
-`public inline const FString & `[`GetRoleId`](#structFRHAPI__Role_1aff04a52f2af29d92616929df45fbdc64)`() const` | Gets the value of RoleId.
-`public inline void `[`SetRoleId`](#structFRHAPI__Role_1ae4b2e528fcbf901b946c58cae3982a27)`(const FString & NewValue)` | Sets the value of RoleId.
-`public inline void `[`SetRoleId`](#structFRHAPI__Role_1ad032c152ad0db245805da556d52e55d7)`(FString && NewValue)` | Sets the value of RoleId using move semantics.
-`public inline int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1a3e042e96bb95da970ecd97c41edec2e9)`()` | Gets the value of LegacyRoleId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1a3fd3e98afd54ed16bc29c60fb1c37d45)`() const` | Gets the value of LegacyRoleId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1ac7b4743f06960e5cccfec0264a0a37fa)`(const int32 & DefaultValue) const` | Gets the value of LegacyRoleId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLegacyRoleId`](#structFRHAPI__Role_1aaa13e90a1eb377ae654aa98c335b0d8e)`(int32 & OutValue) const` | Fills OutValue with the value of LegacyRoleId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetLegacyRoleIdOrNull`](#structFRHAPI__Role_1af74dc1d167d98c2ebc68d9e119c01512)`()` | Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetLegacyRoleIdOrNull`](#structFRHAPI__Role_1ad415eca7e421c7ec2e4d09b59e598520)`() const` | Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLegacyRoleId`](#structFRHAPI__Role_1abe1a5927061258288037e217926d5b6a)`(const int32 & NewValue)` | Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true.
-`public inline void `[`SetLegacyRoleId`](#structFRHAPI__Role_1a01395ed3fb1f18f5ca7de1efa92b1898)`(int32 && NewValue)` | Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetRoleId`](#structFRHAPI__Role_1aac9cccdaf699a83be0190925be9d308a)`()` | Gets the value of RoleId.
+`public inline FORCEINLINE const FString & `[`GetRoleId`](#structFRHAPI__Role_1a8b60ce4882d93b83997ce1e50e6151bd)`() const` | Gets the value of RoleId.
+`public inline FORCEINLINE void `[`SetRoleId`](#structFRHAPI__Role_1adecaea8cc09c5adf2942aec13b0dad73)`(const FString & NewValue)` | Sets the value of RoleId.
+`public inline FORCEINLINE void `[`SetRoleId`](#structFRHAPI__Role_1a3d38fe4e9c3cee3db21bf9b75f7ab7cf)`(FString && NewValue)` | Sets the value of RoleId using move semantics.
+`public inline FORCEINLINE int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1ae8ee5c8e835c1309b915b8db0e214bb0)`()` | Gets the value of LegacyRoleId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1ad8c0a65544aa3ad6820e7c16d182e65a)`() const` | Gets the value of LegacyRoleId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1aceae540731d4610910b0e893d4614229)`(const int32 & DefaultValue) const` | Gets the value of LegacyRoleId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLegacyRoleId`](#structFRHAPI__Role_1a3436d8040f7b75e4f0431da874184dce)`(int32 & OutValue) const` | Fills OutValue with the value of LegacyRoleId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetLegacyRoleIdOrNull`](#structFRHAPI__Role_1ae6fa5cf274f6b12d5a772c872da7b44f)`()` | Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetLegacyRoleIdOrNull`](#structFRHAPI__Role_1abeefa13e69c52e73b524ae909d876051)`() const` | Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLegacyRoleId`](#structFRHAPI__Role_1a61533d1a6875ac51e5c63f26b08b5ec3)`(const int32 & NewValue)` | Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true.
+`public inline FORCEINLINE void `[`SetLegacyRoleId`](#structFRHAPI__Role_1ad4a742c53efcc82ae9175882dd2411f2)`(int32 && NewValue)` | Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyRoleId`](#structFRHAPI__Role_1a9cb12ab94b578441cf50b075f6f0078c)`()` | Clears the value of LegacyRoleId_Optional and sets LegacyRoleId_IsSet to false.
-`public inline bool `[`IsLegacyRoleIdSet`](#structFRHAPI__Role_1ac104d3d9ae72ebd6f4acf58c894f294e)`() const` | Checks whether LegacyRoleId_Optional has been set.
-`public inline bool `[`IsLegacyRoleIdDefaultValue`](#structFRHAPI__Role_1aef383ffe94891ed9193cc74582df277f)`() const` | Returns true if LegacyRoleId_Optional is set and matches the default value.
-`public inline void `[`SetLegacyRoleIdToDefault`](#structFRHAPI__Role_1a92a947734678e4bb8bba0aee49b34012)`()` | Sets the value of LegacyRoleId_Optional to its default and also sets LegacyRoleId_IsSet to true.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1a9704ee45353865cbe1925386dafb6d6e)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1a1e0ca18c4ffe9ab37a871a90903abe98)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1a569e66c16578e730c1333a6827be4ff0)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__Role_1abb29df8d12a7138ea24fb4eb2846eec8)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__Role_1a4ce167cc4ebfa39e82aea7f18238af74)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__Role_1a25936de426ca441ffcb15119bc910e41)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__Role_1a8aea3ff061fc436639626c68a8a9705b)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__Role_1ace70ad0698497d4473f6ad7bf7496def)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_LegacyRoleId`](#structFRHAPI__Role_1a3af701f7e17e18cf5c4a3224886e5204)`()` | Returns the default value of LegacyRoleId.
+`public inline FORCEINLINE `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1ab3ec1ce06e9883ca7f86287b61033284)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1a43bba279527962d44d23bf55b67b2d96)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1aae2b2e0293e6bb651b80317637257b6d)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__Role_1a38aaf0eccad753a01e738b2ddf46447c)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__Role_1a6928f677f4fbd27be3f025e116a7c5db)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__Role_1ae42e355dd07c637747b62e789faf52d0)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Role_1ac18ff0558123cf5dc96565b929387c5a)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Role_1a305511a45e35af12c38c4e4be347aa06)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__Role_1ad396c9bca677e071fe8d14d0e7ec2c72)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__Role_1ab10b12ddfa7e1398fa3fd381bcc4a1fa)`() const` | Checks whether CustomData_Optional has been set.
-`public inline ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a41e11db7782025a39aa3070affa82552)`()` | Gets the value of AuthBypass_Optional, regardless of it having been set.
-`public inline const ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a648df6145123ced1244aa01f501dcafb)`() const` | Gets the value of AuthBypass_Optional, regardless of it having been set.
-`public inline const ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1ad5afefba28f239b461f615519ff704d6)`(const ERHAPI_RoleAuthBypass & DefaultValue) const` | Gets the value of AuthBypass_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAuthBypass`](#structFRHAPI__Role_1a8c7e8e6738df06e4828df0fbde8ee0f1)`(ERHAPI_RoleAuthBypass & OutValue) const` | Fills OutValue with the value of AuthBypass_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_RoleAuthBypass * `[`GetAuthBypassOrNull`](#structFRHAPI__Role_1af5ac734f09ad0df99ee0ad8d2f2f4a3b)`()` | Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_RoleAuthBypass * `[`GetAuthBypassOrNull`](#structFRHAPI__Role_1acae656cb3723dfd3a1e5cef7e72702bf)`() const` | Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAuthBypass`](#structFRHAPI__Role_1a38a135ed36e9e19a287b6b8bf3e841d0)`(const ERHAPI_RoleAuthBypass & NewValue)` | Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true.
-`public inline void `[`SetAuthBypass`](#structFRHAPI__Role_1a0b679a8b8910c6a8c4d83617ea849b5d)`(ERHAPI_RoleAuthBypass && NewValue)` | Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a0d60bb9c95c9b0ce945ec98dc14393b3)`()` | Gets the value of AuthBypass_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a06b039c98329ce7a2432fa65ec48e0cf)`() const` | Gets the value of AuthBypass_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a96559404de3738d5893fb1e716fae78a)`(const ERHAPI_RoleAuthBypass & DefaultValue) const` | Gets the value of AuthBypass_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAuthBypass`](#structFRHAPI__Role_1a7e39a483c7ee32e8f5f95b8ee8b68bda)`(ERHAPI_RoleAuthBypass & OutValue) const` | Fills OutValue with the value of AuthBypass_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_RoleAuthBypass * `[`GetAuthBypassOrNull`](#structFRHAPI__Role_1a1b83a0e12a484555da615cbb0743dc6e)`()` | Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_RoleAuthBypass * `[`GetAuthBypassOrNull`](#structFRHAPI__Role_1a9198b3986a04755e66686a2619b7060a)`() const` | Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAuthBypass`](#structFRHAPI__Role_1ac31c8323d1d231ecd2d3759cc16e1b80)`(const ERHAPI_RoleAuthBypass & NewValue)` | Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true.
+`public inline FORCEINLINE void `[`SetAuthBypass`](#structFRHAPI__Role_1a53e3a56ae5791b5fe217b74a4e77385f)`(ERHAPI_RoleAuthBypass && NewValue)` | Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true using move semantics.
 `public inline void `[`ClearAuthBypass`](#structFRHAPI__Role_1a9385618ce915da9fa5f1fea764d32026)`()` | Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false.
-`public inline bool `[`IsAuthBypassSet`](#structFRHAPI__Role_1ad5b7a3bea5498473d734d10f55da91d6)`() const` | Checks whether AuthBypass_Optional has been set.
-`public inline TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a2119af14df00e3d5d329d0ab7c90d54e)`()` | Gets the value of LoginLootRewards_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a15464583bd7c00ec991a8afd5b901681)`() const` | Gets the value of LoginLootRewards_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1ad4e92e98f1ad2ab16ca192be14a316aa)`(const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & DefaultValue) const` | Gets the value of LoginLootRewards_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLoginLootRewards`](#structFRHAPI__Role_1a998822f05fb00274a284efc474ea5d86)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & OutValue) const` | Fills OutValue with the value of LoginLootRewards_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > * `[`GetLoginLootRewardsOrNull`](#structFRHAPI__Role_1ae2f83846611eb5ac2632b7433db28c54)`()` | Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > * `[`GetLoginLootRewardsOrNull`](#structFRHAPI__Role_1a805e8fa981b3156fe191c7ccc127c38d)`() const` | Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLoginLootRewards`](#structFRHAPI__Role_1a6a0b2d094e7c9eda60fedf8c45b32e3b)`(const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & NewValue)` | Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true.
-`public inline void `[`SetLoginLootRewards`](#structFRHAPI__Role_1a50cb6a350a9914f3a5709a20b082d24e)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > && NewValue)` | Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a2db7d2451995736820067bcf10d4d8ed)`()` | Gets the value of LoginLootRewards_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a7b8d404c7e1aaf1813cf3d06631e138e)`() const` | Gets the value of LoginLootRewards_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a3a9f2228dce8c0a580b1784b7325eadb)`(const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & DefaultValue) const` | Gets the value of LoginLootRewards_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLoginLootRewards`](#structFRHAPI__Role_1a9e02f4a09b25eb4ec38e846f3c8cd552)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & OutValue) const` | Fills OutValue with the value of LoginLootRewards_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > * `[`GetLoginLootRewardsOrNull`](#structFRHAPI__Role_1ad1c0ca7ac3a342333c388eca95876436)`()` | Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > * `[`GetLoginLootRewardsOrNull`](#structFRHAPI__Role_1ae061576a3708f21a0a63a6534a27f254)`() const` | Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLoginLootRewards`](#structFRHAPI__Role_1a02e6efff56d2fdcee9ed9f7459c7e3d2)`(const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & NewValue)` | Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true.
+`public inline FORCEINLINE void `[`SetLoginLootRewards`](#structFRHAPI__Role_1a429616b8f16fcdce66b1b73230a83f1c)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > && NewValue)` | Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true using move semantics.
 `public inline void `[`ClearLoginLootRewards`](#structFRHAPI__Role_1aa842b6af31f9b729dc3d1783c58a143d)`()` | Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false.
-`public inline bool `[`IsLoginLootRewardsSet`](#structFRHAPI__Role_1a621379dbfe910df7b8358bd32d99952b)`() const` | Checks whether LoginLootRewards_Optional has been set.
 
 ### Members
 
@@ -134,51 +129,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetRoleId`](#structFRHAPI__Role_1ad75587fe81b61e9cdb56425ca9020fdd)`()` <a id="structFRHAPI__Role_1ad75587fe81b61e9cdb56425ca9020fdd"></a>
+#### `public inline FORCEINLINE FString & `[`GetRoleId`](#structFRHAPI__Role_1aac9cccdaf699a83be0190925be9d308a)`()` <a id="structFRHAPI__Role_1aac9cccdaf699a83be0190925be9d308a"></a>
 
 Gets the value of RoleId.
 
-#### `public inline const FString & `[`GetRoleId`](#structFRHAPI__Role_1aff04a52f2af29d92616929df45fbdc64)`() const` <a id="structFRHAPI__Role_1aff04a52f2af29d92616929df45fbdc64"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRoleId`](#structFRHAPI__Role_1a8b60ce4882d93b83997ce1e50e6151bd)`() const` <a id="structFRHAPI__Role_1a8b60ce4882d93b83997ce1e50e6151bd"></a>
 
 Gets the value of RoleId.
 
-#### `public inline void `[`SetRoleId`](#structFRHAPI__Role_1ae4b2e528fcbf901b946c58cae3982a27)`(const FString & NewValue)` <a id="structFRHAPI__Role_1ae4b2e528fcbf901b946c58cae3982a27"></a>
+#### `public inline FORCEINLINE void `[`SetRoleId`](#structFRHAPI__Role_1adecaea8cc09c5adf2942aec13b0dad73)`(const FString & NewValue)` <a id="structFRHAPI__Role_1adecaea8cc09c5adf2942aec13b0dad73"></a>
 
 Sets the value of RoleId.
 
-#### `public inline void `[`SetRoleId`](#structFRHAPI__Role_1ad032c152ad0db245805da556d52e55d7)`(FString && NewValue)` <a id="structFRHAPI__Role_1ad032c152ad0db245805da556d52e55d7"></a>
+#### `public inline FORCEINLINE void `[`SetRoleId`](#structFRHAPI__Role_1a3d38fe4e9c3cee3db21bf9b75f7ab7cf)`(FString && NewValue)` <a id="structFRHAPI__Role_1a3d38fe4e9c3cee3db21bf9b75f7ab7cf"></a>
 
 Sets the value of RoleId using move semantics.
 
-#### `public inline int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1a3e042e96bb95da970ecd97c41edec2e9)`()` <a id="structFRHAPI__Role_1a3e042e96bb95da970ecd97c41edec2e9"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1ae8ee5c8e835c1309b915b8db0e214bb0)`()` <a id="structFRHAPI__Role_1ae8ee5c8e835c1309b915b8db0e214bb0"></a>
 
 Gets the value of LegacyRoleId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1a3fd3e98afd54ed16bc29c60fb1c37d45)`() const` <a id="structFRHAPI__Role_1a3fd3e98afd54ed16bc29c60fb1c37d45"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1ad8c0a65544aa3ad6820e7c16d182e65a)`() const` <a id="structFRHAPI__Role_1ad8c0a65544aa3ad6820e7c16d182e65a"></a>
 
 Gets the value of LegacyRoleId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1ac7b4743f06960e5cccfec0264a0a37fa)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Role_1ac7b4743f06960e5cccfec0264a0a37fa"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLegacyRoleId`](#structFRHAPI__Role_1aceae540731d4610910b0e893d4614229)`(const int32 & DefaultValue) const` <a id="structFRHAPI__Role_1aceae540731d4610910b0e893d4614229"></a>
 
 Gets the value of LegacyRoleId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLegacyRoleId`](#structFRHAPI__Role_1aaa13e90a1eb377ae654aa98c335b0d8e)`(int32 & OutValue) const` <a id="structFRHAPI__Role_1aaa13e90a1eb377ae654aa98c335b0d8e"></a>
+#### `public inline FORCEINLINE bool `[`GetLegacyRoleId`](#structFRHAPI__Role_1a3436d8040f7b75e4f0431da874184dce)`(int32 & OutValue) const` <a id="structFRHAPI__Role_1a3436d8040f7b75e4f0431da874184dce"></a>
 
 Fills OutValue with the value of LegacyRoleId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetLegacyRoleIdOrNull`](#structFRHAPI__Role_1af74dc1d167d98c2ebc68d9e119c01512)`()` <a id="structFRHAPI__Role_1af74dc1d167d98c2ebc68d9e119c01512"></a>
+#### `public inline FORCEINLINE int32 * `[`GetLegacyRoleIdOrNull`](#structFRHAPI__Role_1ae6fa5cf274f6b12d5a772c872da7b44f)`()` <a id="structFRHAPI__Role_1ae6fa5cf274f6b12d5a772c872da7b44f"></a>
 
 Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetLegacyRoleIdOrNull`](#structFRHAPI__Role_1ad415eca7e421c7ec2e4d09b59e598520)`() const` <a id="structFRHAPI__Role_1ad415eca7e421c7ec2e4d09b59e598520"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetLegacyRoleIdOrNull`](#structFRHAPI__Role_1abeefa13e69c52e73b524ae909d876051)`() const` <a id="structFRHAPI__Role_1abeefa13e69c52e73b524ae909d876051"></a>
 
 Returns a pointer to LegacyRoleId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLegacyRoleId`](#structFRHAPI__Role_1abe1a5927061258288037e217926d5b6a)`(const int32 & NewValue)` <a id="structFRHAPI__Role_1abe1a5927061258288037e217926d5b6a"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyRoleId`](#structFRHAPI__Role_1a61533d1a6875ac51e5c63f26b08b5ec3)`(const int32 & NewValue)` <a id="structFRHAPI__Role_1a61533d1a6875ac51e5c63f26b08b5ec3"></a>
 
 Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true.
 
-#### `public inline void `[`SetLegacyRoleId`](#structFRHAPI__Role_1a01395ed3fb1f18f5ca7de1efa92b1898)`(int32 && NewValue)` <a id="structFRHAPI__Role_1a01395ed3fb1f18f5ca7de1efa92b1898"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyRoleId`](#structFRHAPI__Role_1ad4a742c53efcc82ae9175882dd2411f2)`(int32 && NewValue)` <a id="structFRHAPI__Role_1ad4a742c53efcc82ae9175882dd2411f2"></a>
 
 Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true using move semantics.
 
@@ -186,47 +181,39 @@ Sets the value of LegacyRoleId_Optional and also sets LegacyRoleId_IsSet to true
 
 Clears the value of LegacyRoleId_Optional and sets LegacyRoleId_IsSet to false.
 
-#### `public inline bool `[`IsLegacyRoleIdSet`](#structFRHAPI__Role_1ac104d3d9ae72ebd6f4acf58c894f294e)`() const` <a id="structFRHAPI__Role_1ac104d3d9ae72ebd6f4acf58c894f294e"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_LegacyRoleId`](#structFRHAPI__Role_1a3af701f7e17e18cf5c4a3224886e5204)`()` <a id="structFRHAPI__Role_1a3af701f7e17e18cf5c4a3224886e5204"></a>
 
-Checks whether LegacyRoleId_Optional has been set.
+Returns the default value of LegacyRoleId.
 
-#### `public inline bool `[`IsLegacyRoleIdDefaultValue`](#structFRHAPI__Role_1aef383ffe94891ed9193cc74582df277f)`() const` <a id="structFRHAPI__Role_1aef383ffe94891ed9193cc74582df277f"></a>
-
-Returns true if LegacyRoleId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetLegacyRoleIdToDefault`](#structFRHAPI__Role_1a92a947734678e4bb8bba0aee49b34012)`()` <a id="structFRHAPI__Role_1a92a947734678e4bb8bba0aee49b34012"></a>
-
-Sets the value of LegacyRoleId_Optional to its default and also sets LegacyRoleId_IsSet to true.
-
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1a9704ee45353865cbe1925386dafb6d6e)`()` <a id="structFRHAPI__Role_1a9704ee45353865cbe1925386dafb6d6e"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1ab3ec1ce06e9883ca7f86287b61033284)`()` <a id="structFRHAPI__Role_1ab3ec1ce06e9883ca7f86287b61033284"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1a1e0ca18c4ffe9ab37a871a90903abe98)`() const` <a id="structFRHAPI__Role_1a1e0ca18c4ffe9ab37a871a90903abe98"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1a43bba279527962d44d23bf55b67b2d96)`() const` <a id="structFRHAPI__Role_1a43bba279527962d44d23bf55b67b2d96"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1a569e66c16578e730c1333a6827be4ff0)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` <a id="structFRHAPI__Role_1a569e66c16578e730c1333a6827be4ff0"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & `[`GetCustomData`](#structFRHAPI__Role_1aae2b2e0293e6bb651b80317637257b6d)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & DefaultValue) const` <a id="structFRHAPI__Role_1aae2b2e0293e6bb651b80317637257b6d"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__Role_1abb29df8d12a7138ea24fb4eb2846eec8)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` <a id="structFRHAPI__Role_1abb29df8d12a7138ea24fb4eb2846eec8"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__Role_1a38aaf0eccad753a01e738b2ddf46447c)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & OutValue) const` <a id="structFRHAPI__Role_1a38aaf0eccad753a01e738b2ddf46447c"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__Role_1a4ce167cc4ebfa39e82aea7f18238af74)`()` <a id="structFRHAPI__Role_1a4ce167cc4ebfa39e82aea7f18238af74"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__Role_1a6928f677f4fbd27be3f025e116a7c5db)`()` <a id="structFRHAPI__Role_1a6928f677f4fbd27be3f025e116a7c5db"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__Role_1a25936de426ca441ffcb15119bc910e41)`() const` <a id="structFRHAPI__Role_1a25936de426ca441ffcb15119bc910e41"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` * `[`GetCustomDataOrNull`](#structFRHAPI__Role_1ae42e355dd07c637747b62e789faf52d0)`() const` <a id="structFRHAPI__Role_1ae42e355dd07c637747b62e789faf52d0"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__Role_1a8aea3ff061fc436639626c68a8a9705b)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` <a id="structFRHAPI__Role_1a8aea3ff061fc436639626c68a8a9705b"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Role_1ac18ff0558123cf5dc96565b929387c5a)`(const `[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` & NewValue)` <a id="structFRHAPI__Role_1ac18ff0558123cf5dc96565b929387c5a"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__Role_1ace70ad0698497d4473f6ad7bf7496def)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` <a id="structFRHAPI__Role_1ace70ad0698497d4473f6ad7bf7496def"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Role_1a305511a45e35af12c38c4e4be347aa06)`(`[`FRHAPI_JsonObject`](undefined.md#structFRHAPI__JsonObject)` && NewValue)` <a id="structFRHAPI__Role_1a305511a45e35af12c38c4e4be347aa06"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -234,39 +221,35 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__Role_1ab10b12ddfa7e1398fa3fd381bcc4a1fa)`() const` <a id="structFRHAPI__Role_1ab10b12ddfa7e1398fa3fd381bcc4a1fa"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a41e11db7782025a39aa3070affa82552)`()` <a id="structFRHAPI__Role_1a41e11db7782025a39aa3070affa82552"></a>
+#### `public inline FORCEINLINE ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a0d60bb9c95c9b0ce945ec98dc14393b3)`()` <a id="structFRHAPI__Role_1a0d60bb9c95c9b0ce945ec98dc14393b3"></a>
 
 Gets the value of AuthBypass_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a648df6145123ced1244aa01f501dcafb)`() const` <a id="structFRHAPI__Role_1a648df6145123ced1244aa01f501dcafb"></a>
+#### `public inline FORCEINLINE const ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a06b039c98329ce7a2432fa65ec48e0cf)`() const` <a id="structFRHAPI__Role_1a06b039c98329ce7a2432fa65ec48e0cf"></a>
 
 Gets the value of AuthBypass_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1ad5afefba28f239b461f615519ff704d6)`(const ERHAPI_RoleAuthBypass & DefaultValue) const` <a id="structFRHAPI__Role_1ad5afefba28f239b461f615519ff704d6"></a>
+#### `public inline FORCEINLINE const ERHAPI_RoleAuthBypass & `[`GetAuthBypass`](#structFRHAPI__Role_1a96559404de3738d5893fb1e716fae78a)`(const ERHAPI_RoleAuthBypass & DefaultValue) const` <a id="structFRHAPI__Role_1a96559404de3738d5893fb1e716fae78a"></a>
 
 Gets the value of AuthBypass_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAuthBypass`](#structFRHAPI__Role_1a8c7e8e6738df06e4828df0fbde8ee0f1)`(ERHAPI_RoleAuthBypass & OutValue) const` <a id="structFRHAPI__Role_1a8c7e8e6738df06e4828df0fbde8ee0f1"></a>
+#### `public inline FORCEINLINE bool `[`GetAuthBypass`](#structFRHAPI__Role_1a7e39a483c7ee32e8f5f95b8ee8b68bda)`(ERHAPI_RoleAuthBypass & OutValue) const` <a id="structFRHAPI__Role_1a7e39a483c7ee32e8f5f95b8ee8b68bda"></a>
 
 Fills OutValue with the value of AuthBypass_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_RoleAuthBypass * `[`GetAuthBypassOrNull`](#structFRHAPI__Role_1af5ac734f09ad0df99ee0ad8d2f2f4a3b)`()` <a id="structFRHAPI__Role_1af5ac734f09ad0df99ee0ad8d2f2f4a3b"></a>
+#### `public inline FORCEINLINE ERHAPI_RoleAuthBypass * `[`GetAuthBypassOrNull`](#structFRHAPI__Role_1a1b83a0e12a484555da615cbb0743dc6e)`()` <a id="structFRHAPI__Role_1a1b83a0e12a484555da615cbb0743dc6e"></a>
 
 Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_RoleAuthBypass * `[`GetAuthBypassOrNull`](#structFRHAPI__Role_1acae656cb3723dfd3a1e5cef7e72702bf)`() const` <a id="structFRHAPI__Role_1acae656cb3723dfd3a1e5cef7e72702bf"></a>
+#### `public inline FORCEINLINE const ERHAPI_RoleAuthBypass * `[`GetAuthBypassOrNull`](#structFRHAPI__Role_1a9198b3986a04755e66686a2619b7060a)`() const` <a id="structFRHAPI__Role_1a9198b3986a04755e66686a2619b7060a"></a>
 
 Returns a pointer to AuthBypass_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAuthBypass`](#structFRHAPI__Role_1a38a135ed36e9e19a287b6b8bf3e841d0)`(const ERHAPI_RoleAuthBypass & NewValue)` <a id="structFRHAPI__Role_1a38a135ed36e9e19a287b6b8bf3e841d0"></a>
+#### `public inline FORCEINLINE void `[`SetAuthBypass`](#structFRHAPI__Role_1ac31c8323d1d231ecd2d3759cc16e1b80)`(const ERHAPI_RoleAuthBypass & NewValue)` <a id="structFRHAPI__Role_1ac31c8323d1d231ecd2d3759cc16e1b80"></a>
 
 Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true.
 
-#### `public inline void `[`SetAuthBypass`](#structFRHAPI__Role_1a0b679a8b8910c6a8c4d83617ea849b5d)`(ERHAPI_RoleAuthBypass && NewValue)` <a id="structFRHAPI__Role_1a0b679a8b8910c6a8c4d83617ea849b5d"></a>
+#### `public inline FORCEINLINE void `[`SetAuthBypass`](#structFRHAPI__Role_1a53e3a56ae5791b5fe217b74a4e77385f)`(ERHAPI_RoleAuthBypass && NewValue)` <a id="structFRHAPI__Role_1a53e3a56ae5791b5fe217b74a4e77385f"></a>
 
 Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true using move semantics.
 
@@ -274,47 +257,39 @@ Sets the value of AuthBypass_Optional and also sets AuthBypass_IsSet to true usi
 
 Clears the value of AuthBypass_Optional and sets AuthBypass_IsSet to false.
 
-#### `public inline bool `[`IsAuthBypassSet`](#structFRHAPI__Role_1ad5b7a3bea5498473d734d10f55da91d6)`() const` <a id="structFRHAPI__Role_1ad5b7a3bea5498473d734d10f55da91d6"></a>
-
-Checks whether AuthBypass_Optional has been set.
-
-#### `public inline TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a2119af14df00e3d5d329d0ab7c90d54e)`()` <a id="structFRHAPI__Role_1a2119af14df00e3d5d329d0ab7c90d54e"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a2db7d2451995736820067bcf10d4d8ed)`()` <a id="structFRHAPI__Role_1a2db7d2451995736820067bcf10d4d8ed"></a>
 
 Gets the value of LoginLootRewards_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a15464583bd7c00ec991a8afd5b901681)`() const` <a id="structFRHAPI__Role_1a15464583bd7c00ec991a8afd5b901681"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a7b8d404c7e1aaf1813cf3d06631e138e)`() const` <a id="structFRHAPI__Role_1a7b8d404c7e1aaf1813cf3d06631e138e"></a>
 
 Gets the value of LoginLootRewards_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1ad4e92e98f1ad2ab16ca192be14a316aa)`(const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & DefaultValue) const` <a id="structFRHAPI__Role_1ad4e92e98f1ad2ab16ca192be14a316aa"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & `[`GetLoginLootRewards`](#structFRHAPI__Role_1a3a9f2228dce8c0a580b1784b7325eadb)`(const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & DefaultValue) const` <a id="structFRHAPI__Role_1a3a9f2228dce8c0a580b1784b7325eadb"></a>
 
 Gets the value of LoginLootRewards_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLoginLootRewards`](#structFRHAPI__Role_1a998822f05fb00274a284efc474ea5d86)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & OutValue) const` <a id="structFRHAPI__Role_1a998822f05fb00274a284efc474ea5d86"></a>
+#### `public inline FORCEINLINE bool `[`GetLoginLootRewards`](#structFRHAPI__Role_1a9e02f4a09b25eb4ec38e846f3c8cd552)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & OutValue) const` <a id="structFRHAPI__Role_1a9e02f4a09b25eb4ec38e846f3c8cd552"></a>
 
 Fills OutValue with the value of LoginLootRewards_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > * `[`GetLoginLootRewardsOrNull`](#structFRHAPI__Role_1ae2f83846611eb5ac2632b7433db28c54)`()` <a id="structFRHAPI__Role_1ae2f83846611eb5ac2632b7433db28c54"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > * `[`GetLoginLootRewardsOrNull`](#structFRHAPI__Role_1ad1c0ca7ac3a342333c388eca95876436)`()` <a id="structFRHAPI__Role_1ad1c0ca7ac3a342333c388eca95876436"></a>
 
 Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > * `[`GetLoginLootRewardsOrNull`](#structFRHAPI__Role_1a805e8fa981b3156fe191c7ccc127c38d)`() const` <a id="structFRHAPI__Role_1a805e8fa981b3156fe191c7ccc127c38d"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > * `[`GetLoginLootRewardsOrNull`](#structFRHAPI__Role_1ae061576a3708f21a0a63a6534a27f254)`() const` <a id="structFRHAPI__Role_1ae061576a3708f21a0a63a6534a27f254"></a>
 
 Returns a pointer to LoginLootRewards_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLoginLootRewards`](#structFRHAPI__Role_1a6a0b2d094e7c9eda60fedf8c45b32e3b)`(const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & NewValue)` <a id="structFRHAPI__Role_1a6a0b2d094e7c9eda60fedf8c45b32e3b"></a>
+#### `public inline FORCEINLINE void `[`SetLoginLootRewards`](#structFRHAPI__Role_1a02e6efff56d2fdcee9ed9f7459c7e3d2)`(const TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > & NewValue)` <a id="structFRHAPI__Role_1a02e6efff56d2fdcee9ed9f7459c7e3d2"></a>
 
 Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true.
 
-#### `public inline void `[`SetLoginLootRewards`](#structFRHAPI__Role_1a50cb6a350a9914f3a5709a20b082d24e)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > && NewValue)` <a id="structFRHAPI__Role_1a50cb6a350a9914f3a5709a20b082d24e"></a>
+#### `public inline FORCEINLINE void `[`SetLoginLootRewards`](#structFRHAPI__Role_1a429616b8f16fcdce66b1b73230a83f1c)`(TArray< `[`FRHAPI_LoginLootReward`](RHAPI_LoginLootReward.md#structFRHAPI__LoginLootReward)` > && NewValue)` <a id="structFRHAPI__Role_1a429616b8f16fcdce66b1b73230a83f1c"></a>
 
 Sets the value of LoginLootRewards_Optional and also sets LoginLootRewards_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLoginLootRewards`](#structFRHAPI__Role_1aa842b6af31f9b729dc3d1783c58a143d)`()` <a id="structFRHAPI__Role_1aa842b6af31f9b729dc3d1783c58a143d"></a>
 
 Clears the value of LoginLootRewards_Optional and sets LoginLootRewards_IsSet to false.
-
-#### `public inline bool `[`IsLoginLootRewardsSet`](#structFRHAPI__Role_1a621379dbfe910df7b8358bd32d99952b)`() const` <a id="structFRHAPI__Role_1a621379dbfe910df7b8358bd32d99952b"></a>
-
-Checks whether LoginLootRewards_Optional has been set.
 

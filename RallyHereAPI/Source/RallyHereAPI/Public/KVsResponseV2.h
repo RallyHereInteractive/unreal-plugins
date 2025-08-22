@@ -46,25 +46,23 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV2 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Kvs_IsSet{ false };
 	/** @brief Gets the value of Kvs_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetKvs() { return Kvs_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetKvs() { return Kvs_Optional; }
 	/** @brief Gets the value of Kvs_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetKvs() const { return Kvs_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetKvs() const { return Kvs_Optional; }
 	/** @brief Gets the value of Kvs_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetKvs(const TMap<FString, FString>& DefaultValue) const { if (Kvs_IsSet) return Kvs_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetKvs(const TMap<FString, FString>& DefaultValue) const { if (Kvs_IsSet) return Kvs_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Kvs_Optional and returns true if it has been set, otherwise returns false */
-	bool GetKvs(TMap<FString, FString>& OutValue) const { if (Kvs_IsSet) OutValue = Kvs_Optional; return Kvs_IsSet; }
+	FORCEINLINE bool GetKvs(TMap<FString, FString>& OutValue) const { if (Kvs_IsSet) OutValue = Kvs_Optional; return Kvs_IsSet; }
 	/** @brief Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetKvsOrNull() { if (Kvs_IsSet) return (&Kvs_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetKvsOrNull() { if (Kvs_IsSet) return (&Kvs_Optional); return nullptr; }
 	/** @brief Returns a pointer to Kvs_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetKvsOrNull() const { if (Kvs_IsSet) return (&Kvs_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetKvsOrNull() const { if (Kvs_IsSet) return (&Kvs_Optional); return nullptr; }
 	/** @brief Sets the value of Kvs_Optional and also sets Kvs_IsSet to true */
-	void SetKvs(const TMap<FString, FString>& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true;  }
+	FORCEINLINE void SetKvs(const TMap<FString, FString>& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true;  }
 	/** @brief Sets the value of Kvs_Optional and also sets Kvs_IsSet to true using move semantics */
-	void SetKvs(TMap<FString, FString>&& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true;  }
+	FORCEINLINE void SetKvs(TMap<FString, FString>&& NewValue) { Kvs_Optional = NewValue; Kvs_IsSet = true;  }
 	/** @brief Clears the value of Kvs_Optional and sets Kvs_IsSet to false */
 	void ClearKvs() { Kvs_IsSet = false;  }
-	/** @brief Checks whether Kvs_Optional has been set */
-	bool IsKvsSet() const { return Kvs_IsSet; }
 
 	/** @brief *DEPRECATED* The list of permissioned key/value pairs */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -73,25 +71,23 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV2 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool SecretKvs_IsSet{ false };
 	/** @brief Gets the value of SecretKvs_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetSecretKvs() { return SecretKvs_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetSecretKvs() { return SecretKvs_Optional; }
 	/** @brief Gets the value of SecretKvs_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetSecretKvs() const { return SecretKvs_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetSecretKvs() const { return SecretKvs_Optional; }
 	/** @brief Gets the value of SecretKvs_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetSecretKvs(const TMap<FString, FString>& DefaultValue) const { if (SecretKvs_IsSet) return SecretKvs_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetSecretKvs(const TMap<FString, FString>& DefaultValue) const { if (SecretKvs_IsSet) return SecretKvs_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of SecretKvs_Optional and returns true if it has been set, otherwise returns false */
-	bool GetSecretKvs(TMap<FString, FString>& OutValue) const { if (SecretKvs_IsSet) OutValue = SecretKvs_Optional; return SecretKvs_IsSet; }
+	FORCEINLINE bool GetSecretKvs(TMap<FString, FString>& OutValue) const { if (SecretKvs_IsSet) OutValue = SecretKvs_Optional; return SecretKvs_IsSet; }
 	/** @brief Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetSecretKvsOrNull() { if (SecretKvs_IsSet) return (&SecretKvs_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetSecretKvsOrNull() { if (SecretKvs_IsSet) return (&SecretKvs_Optional); return nullptr; }
 	/** @brief Returns a pointer to SecretKvs_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetSecretKvsOrNull() const { if (SecretKvs_IsSet) return (&SecretKvs_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetSecretKvsOrNull() const { if (SecretKvs_IsSet) return (&SecretKvs_Optional); return nullptr; }
 	/** @brief Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true */
-	void SetSecretKvs(const TMap<FString, FString>& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true;  }
+	FORCEINLINE void SetSecretKvs(const TMap<FString, FString>& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true;  }
 	/** @brief Sets the value of SecretKvs_Optional and also sets SecretKvs_IsSet to true using move semantics */
-	void SetSecretKvs(TMap<FString, FString>&& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true;  }
+	FORCEINLINE void SetSecretKvs(TMap<FString, FString>&& NewValue) { SecretKvs_Optional = NewValue; SecretKvs_IsSet = true;  }
 	/** @brief Clears the value of SecretKvs_Optional and sets SecretKvs_IsSet to false */
 	void ClearSecretKvs() { SecretKvs_IsSet = false;  }
-	/** @brief Checks whether SecretKvs_Optional has been set */
-	bool IsSecretKvsSet() const { return SecretKvs_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -103,29 +99,27 @@ struct RALLYHEREAPI_API FRHAPI_KVsResponseV2 : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool KickBeforeHint_IsNull{ false };
 	/** @brief Gets the value of KickBeforeHint_Optional, regardless of it having been set */
-	FDateTime& GetKickBeforeHint() { return KickBeforeHint_Optional; }
+	FORCEINLINE FDateTime& GetKickBeforeHint() { return KickBeforeHint_Optional; }
 	/** @brief Gets the value of KickBeforeHint_Optional, regardless of it having been set */
-	const FDateTime& GetKickBeforeHint() const { return KickBeforeHint_Optional; }
+	FORCEINLINE const FDateTime& GetKickBeforeHint() const { return KickBeforeHint_Optional; }
 	/** @brief Gets the value of KickBeforeHint_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FDateTime& GetKickBeforeHint(const FDateTime& DefaultValue) const { if (KickBeforeHint_IsSet) return KickBeforeHint_Optional; return DefaultValue; }
+	FORCEINLINE const FDateTime& GetKickBeforeHint(const FDateTime& DefaultValue) const { if (KickBeforeHint_IsSet) return KickBeforeHint_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of KickBeforeHint_Optional and returns true if it has been set, otherwise returns false */
-	bool GetKickBeforeHint(FDateTime& OutValue) const { if (KickBeforeHint_IsSet && !KickBeforeHint_IsNull) OutValue = KickBeforeHint_Optional; return KickBeforeHint_IsSet; }
+	FORCEINLINE bool GetKickBeforeHint(FDateTime& OutValue) const { if (KickBeforeHint_IsSet && !KickBeforeHint_IsNull) OutValue = KickBeforeHint_Optional; return KickBeforeHint_IsSet; }
 	/** @brief Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr */
-	FDateTime* GetKickBeforeHintOrNull() { if (KickBeforeHint_IsSet) return (KickBeforeHint_IsNull ? nullptr : &KickBeforeHint_Optional); return nullptr; }
+	FORCEINLINE FDateTime* GetKickBeforeHintOrNull() { if (KickBeforeHint_IsSet) return (KickBeforeHint_IsNull ? nullptr : &KickBeforeHint_Optional); return nullptr; }
 	/** @brief Returns a pointer to KickBeforeHint_Optional, if it has been set, otherwise returns nullptr */
-	const FDateTime* GetKickBeforeHintOrNull() const { if (KickBeforeHint_IsSet) return (KickBeforeHint_IsNull ? nullptr : &KickBeforeHint_Optional); return nullptr; }
+	FORCEINLINE const FDateTime* GetKickBeforeHintOrNull() const { if (KickBeforeHint_IsSet) return (KickBeforeHint_IsNull ? nullptr : &KickBeforeHint_Optional); return nullptr; }
 	/** @brief Sets the value of KickBeforeHint_Optional and also sets KickBeforeHint_IsSet to true */
-	void SetKickBeforeHint(const FDateTime& NewValue) { KickBeforeHint_Optional = NewValue; KickBeforeHint_IsSet = true; KickBeforeHint_IsNull = false; }
+	FORCEINLINE void SetKickBeforeHint(const FDateTime& NewValue) { KickBeforeHint_Optional = NewValue; KickBeforeHint_IsSet = true; KickBeforeHint_IsNull = false; }
 	/** @brief Sets the value of KickBeforeHint_Optional and also sets KickBeforeHint_IsSet to true using move semantics */
-	void SetKickBeforeHint(FDateTime&& NewValue) { KickBeforeHint_Optional = NewValue; KickBeforeHint_IsSet = true; KickBeforeHint_IsNull = false; }
+	FORCEINLINE void SetKickBeforeHint(FDateTime&& NewValue) { KickBeforeHint_Optional = NewValue; KickBeforeHint_IsSet = true; KickBeforeHint_IsNull = false; }
 	/** @brief Clears the value of KickBeforeHint_Optional and sets KickBeforeHint_IsSet to false */
 	void ClearKickBeforeHint() { KickBeforeHint_IsSet = false; KickBeforeHint_IsNull = false; }
-	/** @brief Checks whether KickBeforeHint_Optional has been set */
-	bool IsKickBeforeHintSet() const { return KickBeforeHint_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetKickBeforeHintToNull() { KickBeforeHint_IsSet = true; KickBeforeHint_IsNull = true; }
+	FORCEINLINE void SetKickBeforeHintToNull() { KickBeforeHint_IsSet = true; KickBeforeHint_IsNull = true; }
 	/** @brief Checks whether KickBeforeHint_Optional is set to null */
-	bool IsKickBeforeHintNull() const { return KickBeforeHint_IsSet && KickBeforeHint_IsNull; }
+	FORCEINLINE bool IsKickBeforeHintNull() const { return KickBeforeHint_IsSet && KickBeforeHint_IsNull; }
 };
 
 /** @} */

@@ -172,6 +172,11 @@ public:
 	virtual bool IsCleanupComplete() const { return CurrentSyncActionState == ESyncActionState::CleanupComplete; }
 
 	/**
+	* @brief Whether we're actively joining a platform session
+	*/
+	static bool IsJoiningSession() { return bJoiningSession; }
+
+	/**
 	* @brief Determines if the specified player in this session is blocked by the local player on their current platform
 	*/
 	static void IsSessionPlayerBlockedOnPlatformAsync(FRH_SessionOwnerPtr SessionOwnerPtr, FGuid PlayerUuid, FRH_OnSessionPlayerIsBlockedDelegateBlock Delegate);
@@ -355,6 +360,11 @@ protected:
 	* @brief whether cleanup is deferred until the end of the current action
 	*/
 	bool bDeferCleanup = false;
+
+	/**
+	* @brief whether we're actively joining a platform session
+	*/
+	static bool bJoiningSession;
 };
 
 /** @} */

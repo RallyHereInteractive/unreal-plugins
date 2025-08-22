@@ -31,6 +31,7 @@ Config Subsystem used for interfacing with configuration coming from the core se
 `public void `[`PollKVs`](#classURH__ConfigSubsystem_1aac6461308740848ec368388c5793f5c8)`(const FRH_PollCompleteFunc & Delegate)` | Pulses a FetchKVs call for the polling of KVs.
 `public inline const TMap< FString, FString > & `[`GetKVs`](#classURH__ConfigSubsystem_1ac780e0e841c5313768d1ed1f17809ce2)`() const` | Gets the map of all the Public KVs and their values.
 `public inline bool `[`GetKV`](#classURH__ConfigSubsystem_1aa1248874924178b0be7b383b09fb095b)`(const FString & Key,FString & Value) const` | Gets the value of a specific Publc KV.
+`public inline bool `[`GetKVBool`](#classURH__ConfigSubsystem_1ab02cd94ade9433e4b971f09e91a6da00)`(const FString & Key,bool defaultValue) const` | 
 `public inline bool `[`GetAnyKV`](#classURH__ConfigSubsystem_1ac5caaee0e2aa29122861d5b45ee3d41c)`(const FString & Key,FString & Value) const` | Gets the value of a specific KV (wrapper for if multiple KV sources are present).
 `public inline FDateTime `[`GetKickBeforeHint`](#classURH__ConfigSubsystem_1a5051253a4523c1d2b76c0a3fe53d5e3a)`() const` | Time for which any player logins older than should log out (staggered kick all players support).
 `public inline void `[`FetchAppSettings`](#classURH__ConfigSubsystem_1ad403c4ca8a27ea7c655e90a284dc78d5)`(const FRH_GenericSuccessWithErrorBlock & Delegate)` | Requests the server for the latest App Settings.
@@ -109,6 +110,8 @@ Gets the value of a specific Publc KV.
 
 #### Returns
 if true, a Value was found for the Key.
+
+#### `public inline bool `[`GetKVBool`](#classURH__ConfigSubsystem_1ab02cd94ade9433e4b971f09e91a6da00)`(const FString & Key,bool defaultValue) const` <a id="classURH__ConfigSubsystem_1ab02cd94ade9433e4b971f09e91a6da00"></a>
 
 #### `public inline bool `[`GetAnyKV`](#classURH__ConfigSubsystem_1ac5caaee0e2aa29122861d5b45ee3d41c)`(const FString & Key,FString & Value) const` <a id="classURH__ConfigSubsystem_1ac5caaee0e2aa29122861d5b45ee3d41c"></a>
 

@@ -37,70 +37,63 @@ Request to Update Inventory by an existing Inventory ID. If the Inventory entry 
 `public FGuid `[`InventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a2e4d3a8ca23b5b42fb25a19ccb38ee1a) | Inventory ID for this Inventory Operation.
 `public virtual bool `[`FromJson`](#structFRHAPI__UpdateInventoryRequestById_1a83b0e83f3e601542ad8111897c08c3ae)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__UpdateInventoryRequestById_1a1820a3b246d128429937f0af5095d97b)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1aa915948c5e949fe50bf3c8cd955a4196)`()` | Gets the value of Bucket_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a7e5430f11d7dcfd816c1de1166ea6859)`() const` | Gets the value of Bucket_Optional, regardless of it having been set.
-`public inline const ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1ac57c782186a33f3f70edac5ff3fde27a)`(const ERHAPI_InventoryBucket & DefaultValue) const` | Gets the value of Bucket_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a9dea35372560f239b64f704a0831f4ec)`(ERHAPI_InventoryBucket & OutValue) const` | Fills OutValue with the value of Bucket_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InventoryBucket * `[`GetBucketOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a715da062a6401bd876e4fcd51901dfb8)`()` | Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InventoryBucket * `[`GetBucketOrNull`](#structFRHAPI__UpdateInventoryRequestById_1ab3b8f96d1db86a8411734b241eedb03a)`() const` | Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetBucket`](#structFRHAPI__UpdateInventoryRequestById_1af45e3ed3fb4b34167f40a23bb0d25209)`(const ERHAPI_InventoryBucket & NewValue)` | Sets the value of Bucket_Optional and also sets Bucket_IsSet to true.
-`public inline void `[`SetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a51f9c2bb8ee96d0e7dfe8c6c52e4b1c6)`(ERHAPI_InventoryBucket && NewValue)` | Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a25af0d2cf786ee392322643a0e61ef97)`()` | Gets the value of Bucket_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a30dfd8af4822bfb5118fa67f696743be)`() const` | Gets the value of Bucket_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a1f384ee7fa4a53ce3ef5e75793e36e79)`(const ERHAPI_InventoryBucket & DefaultValue) const` | Gets the value of Bucket_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a862585f772c3743fbb6584cf06c2e4aa)`(ERHAPI_InventoryBucket & OutValue) const` | Fills OutValue with the value of Bucket_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_InventoryBucket * `[`GetBucketOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a59d81e46e1a00bd583d2bde70c8aeb43)`()` | Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_InventoryBucket * `[`GetBucketOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a57554d46ee0037b058d007d581edeb56)`() const` | Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a5450b8c565840680e9dd21f6a11937cf)`(const ERHAPI_InventoryBucket & NewValue)` | Sets the value of Bucket_Optional and also sets Bucket_IsSet to true.
+`public inline FORCEINLINE void `[`SetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a9b996de6ce426a950dee56855a591205)`(ERHAPI_InventoryBucket && NewValue)` | Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move semantics.
 `public inline void `[`ClearBucket`](#structFRHAPI__UpdateInventoryRequestById_1ad14f798244ea05e8654e6e4cde09b9c5)`()` | Clears the value of Bucket_Optional and sets Bucket_IsSet to false.
-`public inline bool `[`IsBucketSet`](#structFRHAPI__UpdateInventoryRequestById_1adcc291701648c78c2bbb137f64e225cd)`() const` | Checks whether Bucket_Optional has been set.
-`public inline int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1ab8c60ae075eaa2f42cca82150eb79198)`()` | Gets the value of Count_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1ad2ee2101e4636da8a574a2c1654883a2)`() const` | Gets the value of Count_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1a8d04943d408568e481f322a11594e323)`(const int32 & DefaultValue) const` | Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1a4f8325eb8c2b059b8a8fbf6fde474e51)`(int32 & OutValue) const` | Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetCountOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a50930e7222f9857b141e8085a2b63a74)`()` | Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetCountOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a4b5281914e3f3211b5367f9dc71d6d61)`() const` | Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCount`](#structFRHAPI__UpdateInventoryRequestById_1aa8f0dfca39530b9e6cad636a967174c5)`(const int32 & NewValue)` | Sets the value of Count_Optional and also sets Count_IsSet to true.
-`public inline void `[`SetCount`](#structFRHAPI__UpdateInventoryRequestById_1afb8c30fae56a9afdb8b816ee2e1e60f9)`(int32 && NewValue)` | Sets the value of Count_Optional and also sets Count_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1ad87616395bfef942aa82abeecd1d8f00)`()` | Gets the value of Count_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1a68e668ece137a7db3780c3f7df0c65dd)`() const` | Gets the value of Count_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1abb4bad8d8ba32893674c4f1d3784a3df)`(const int32 & DefaultValue) const` | Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1a769ece188ef5511980967c4a13b601b6)`(int32 & OutValue) const` | Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetCountOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a2dfdbfc45e4006c99f6e86d49335a04f)`()` | Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetCountOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a794161a74b9284a74f70f27d59a79ec0)`() const` | Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCount`](#structFRHAPI__UpdateInventoryRequestById_1a938f558872c0f84456f6eb0998e5f819)`(const int32 & NewValue)` | Sets the value of Count_Optional and also sets Count_IsSet to true.
+`public inline FORCEINLINE void `[`SetCount`](#structFRHAPI__UpdateInventoryRequestById_1a977b1e0506048e3c2abd48d958db89a5)`(int32 && NewValue)` | Sets the value of Count_Optional and also sets Count_IsSet to true using move semantics.
 `public inline void `[`ClearCount`](#structFRHAPI__UpdateInventoryRequestById_1a4ba546d925732f3b22e323beca7b9ec0)`()` | Clears the value of Count_Optional and sets Count_IsSet to false.
-`public inline bool `[`IsCountSet`](#structFRHAPI__UpdateInventoryRequestById_1aeabbda8bd184f86149b248d25a579c0a)`() const` | Checks whether Count_Optional has been set.
-`public inline bool `[`IsCountDefaultValue`](#structFRHAPI__UpdateInventoryRequestById_1a90101fd151d48e7c46e9d9953aa24a1b)`() const` | Returns true if Count_Optional is set and matches the default value.
-`public inline void `[`SetCountToDefault`](#structFRHAPI__UpdateInventoryRequestById_1a04e649028a20de8491d255c0f7c0385d)`()` | Sets the value of Count_Optional to its default and also sets Count_IsSet to true.
-`public inline FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a9c0688ee3a42f3d793313c2c112868ae)`()` | Gets the value of Expires_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1aaeb7f00747e8ddab55c3c083b7659b8f)`() const` | Gets the value of Expires_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a84c45038bc06b1fb828bdddf89f63a1d)`(const FDateTime & DefaultValue) const` | Gets the value of Expires_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a4e61374be0f9a4d5bee7f8bb34180c1a)`(FDateTime & OutValue) const` | Fills OutValue with the value of Expires_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetExpiresOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a477de52036ad9ea31f28e1b1e9f09f9b)`()` | Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetExpiresOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a8bcd4cdfb804336e44510f1283f6350e)`() const` | Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a019f49d2649934f4675a2988078685b9)`(const FDateTime & NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true.
-`public inline void `[`SetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a251c5c5c2a89c1dd06c19d58b3ff2d1f)`(FDateTime && NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Count`](#structFRHAPI__UpdateInventoryRequestById_1aee51f6a935aa0b226abf9bbcbb105755)`()` | Returns the default value of Count.
+`public inline FORCEINLINE FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1ab534c417ba43ce85ebd62eb3259c7526)`()` | Gets the value of Expires_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1ae6e0c81ed7487adc2a23f5601205beca)`() const` | Gets the value of Expires_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a4d0dd6320729c040d7e25cb69801759c)`(const FDateTime & DefaultValue) const` | Gets the value of Expires_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a97b6abf995a19bf3aec59bea2180bea8)`(FDateTime & OutValue) const` | Fills OutValue with the value of Expires_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetExpiresOrNull`](#structFRHAPI__UpdateInventoryRequestById_1ad0bb6bf7984d294fa5be260eb1ddc828)`()` | Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetExpiresOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a5c611a5e7d28b45039bc0e58d6b7ecd1)`() const` | Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetExpires`](#structFRHAPI__UpdateInventoryRequestById_1adf0dbf7ddec0b5cb074c756434f39b70)`(const FDateTime & NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true.
+`public inline FORCEINLINE void `[`SetExpires`](#structFRHAPI__UpdateInventoryRequestById_1aa3221609d24808bf3702ee212b01cd9b)`(FDateTime && NewValue)` | Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics.
 `public inline void `[`ClearExpires`](#structFRHAPI__UpdateInventoryRequestById_1a100dee7b13d8b702376d702ae8b0b324)`()` | Clears the value of Expires_Optional and sets Expires_IsSet to false.
-`public inline bool `[`IsExpiresSet`](#structFRHAPI__UpdateInventoryRequestById_1a78ff0969ba26d815839e7a03b20e7e66)`() const` | Checks whether Expires_Optional has been set.
-`public inline void `[`SetExpiresToNull`](#structFRHAPI__UpdateInventoryRequestById_1a542dc82fa6cfeadb63127e37bd149a1b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsExpiresNull`](#structFRHAPI__UpdateInventoryRequestById_1a78a019925f3af52f2cab4e09a2691747)`() const` | Checks whether Expires_Optional is set to null.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1adebb83f1d42c4c53f54524f1ad3394d5)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a227099b27862bb034b3b2d25d9b722fe)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a3925d82248709a680db619c0722e66f6)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1aa86e4244165e0073b66dbda18617e98d)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a99cfa4469a9329c57acf6a82b938b341)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__UpdateInventoryRequestById_1acdbde8062cd1ab91b9afe33b64cf8ab2)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a908455d7727e30a4c11435fd4aab49b9)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a56a2d88d02d36fa9ae5afbae1b985337)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetExpiresToNull`](#structFRHAPI__UpdateInventoryRequestById_1add8f10d2dd9ceed916bdf8734a242be6)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsExpiresNull`](#structFRHAPI__UpdateInventoryRequestById_1a5e73c10ca1990b6b651b9080b7ef2b14)`() const` | Checks whether Expires_Optional is set to null.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a8824f11c6e69f41ba87faddded9732e0)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a28a5c88322d7541358386971a445859d)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1aba9b5e47893c0985ec3279f24e5e0d46)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a80ead03b3ebc70fb837eacd4c7666e83)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__UpdateInventoryRequestById_1abfb46df9137df583460034af77cc528a)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a20ee3068fd27775b48729de6c7824637)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a0ded0ae1a44f45a95c4fc3b5100c32bd)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1abf6a1961dc9c5737e876766ecdda4926)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a71e04e0947013cc2eca04cfd9c3f451f)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__UpdateInventoryRequestById_1ab67d68eed0a40d12076834f70d04235a)`() const` | Checks whether CustomData_Optional has been set.
-`public inline void `[`SetCustomDataToNull`](#structFRHAPI__UpdateInventoryRequestById_1ae3451a378a0ecac61ca39997b6952e37)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCustomDataNull`](#structFRHAPI__UpdateInventoryRequestById_1a1291fc04895388ec8176ab927ec39dbe)`() const` | Checks whether CustomData_Optional is set to null.
-`public inline int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1acafddf3dee9450a57197a9ff410d8236)`()` | Gets the value of ItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1abd56ae1b8c70af0f964038b3615c4018)`() const` | Gets the value of ItemId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a72c80767061e8eac146b03e251efb60a)`(const int32 & DefaultValue) const` | Gets the value of ItemId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a6f8a2bf06a0dcf82469b313ef3c0b8e3)`(int32 & OutValue) const` | Fills OutValue with the value of ItemId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetItemIdOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a4e0a544976eb187047655bb23de81c2f)`()` | Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetItemIdOrNull`](#structFRHAPI__UpdateInventoryRequestById_1ad4934fd5f6a93033a2bcd50f06b50b9a)`() const` | Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetItemId`](#structFRHAPI__UpdateInventoryRequestById_1aaaccbc0c0bab0acd8181449052e27745)`(const int32 & NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true.
-`public inline void `[`SetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a0f8879d4e59e039ecf35926923f84d10)`(int32 && NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetCustomDataToNull`](#structFRHAPI__UpdateInventoryRequestById_1adc65a599bea17d78b8656f2a2f68a8d8)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCustomDataNull`](#structFRHAPI__UpdateInventoryRequestById_1a100bff2cf04b5d78f3347afabc20e467)`() const` | Checks whether CustomData_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a713de5cf392f4fdc25b6322e7b89ae31)`()` | Gets the value of ItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a7cf61d5703ecc2b2fb67bed9c2167100)`() const` | Gets the value of ItemId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1ab756758b9a4e71b2b016294a71693df9)`(const int32 & DefaultValue) const` | Gets the value of ItemId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1aefb0bb237456c65b35959fb28178c197)`(int32 & OutValue) const` | Fills OutValue with the value of ItemId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetItemIdOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a2ce0ff96175bfdb3326339022c49810d)`()` | Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetItemIdOrNull`](#structFRHAPI__UpdateInventoryRequestById_1af61d46a550b20167416c2e92e4029195)`() const` | Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetItemId`](#structFRHAPI__UpdateInventoryRequestById_1afc8c81b193702693e3dbbd0c3f6d57f9)`(const int32 & NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true.
+`public inline FORCEINLINE void `[`SetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a2a9b2487b3281ed9ffffe4d3bd3e1e91)`(int32 && NewValue)` | Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics.
 `public inline void `[`ClearItemId`](#structFRHAPI__UpdateInventoryRequestById_1aa6e412766bdf2095a1d98d458806d8cf)`()` | Clears the value of ItemId_Optional and sets ItemId_IsSet to false.
-`public inline bool `[`IsItemIdSet`](#structFRHAPI__UpdateInventoryRequestById_1a133431fee7a92d207ede7484182c1a33)`() const` | Checks whether ItemId_Optional has been set.
-`public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__UpdateInventoryRequestById_1a56a421d6eafe28d3a53c8650e0d28623)`() const` | Returns true if ItemId_Optional is set and matches the default value.
-`public inline void `[`SetItemIdToDefault`](#structFRHAPI__UpdateInventoryRequestById_1abec149f819d14ecba1cb51c3390d7eab)`()` | Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true.
-`public inline void `[`SetItemIdToNull`](#structFRHAPI__UpdateInventoryRequestById_1a86b15d0f0c3954e3c355b8039039e5ee)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsItemIdNull`](#structFRHAPI__UpdateInventoryRequestById_1a3b68e5b6f3cc59c4c7a06edc19512131)`() const` | Checks whether ItemId_Optional is set to null.
-`public inline FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a049fbfd49f50388f3b5d2db6a86bef25)`()` | Gets the value of InventoryId.
-`public inline const FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a9cf135dc19c5b77ac5845fb9bb3ece78)`() const` | Gets the value of InventoryId.
-`public inline void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a7399dc71b17ebbb591560782cc99ee75)`(const FGuid & NewValue)` | Sets the value of InventoryId.
-`public inline void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a6645c3a16c4add10e1e9d9efc8193d10)`(FGuid && NewValue)` | Sets the value of InventoryId using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_ItemId`](#structFRHAPI__UpdateInventoryRequestById_1a1079490a176cb778e06686814b2e553d)`()` | Returns the default value of ItemId.
+`public inline FORCEINLINE void `[`SetItemIdToNull`](#structFRHAPI__UpdateInventoryRequestById_1a4a0a2cbc1158ad73f1f11ce431634485)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsItemIdNull`](#structFRHAPI__UpdateInventoryRequestById_1abba3d27481f2b7dc0e300aa65a629f9c)`() const` | Checks whether ItemId_Optional is set to null.
+`public inline FORCEINLINE FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1ad3cbf7be5c37a5d5bbb3d8d7abf382e5)`()` | Gets the value of InventoryId.
+`public inline FORCEINLINE const FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1aa457e08f3dc2bfa9113b76fc228623b0)`() const` | Gets the value of InventoryId.
+`public inline FORCEINLINE void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1af66a0391058c850e65199c23b7cc4085)`(const FGuid & NewValue)` | Sets the value of InventoryId.
+`public inline FORCEINLINE void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a6012de7ebe0cd48e85a512285f93e9e6)`(FGuid && NewValue)` | Sets the value of InventoryId using move semantics.
 
 ### Members
 
@@ -171,35 +164,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1aa915948c5e949fe50bf3c8cd955a4196)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1aa915948c5e949fe50bf3c8cd955a4196"></a>
+#### `public inline FORCEINLINE ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a25af0d2cf786ee392322643a0e61ef97)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a25af0d2cf786ee392322643a0e61ef97"></a>
 
 Gets the value of Bucket_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a7e5430f11d7dcfd816c1de1166ea6859)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a7e5430f11d7dcfd816c1de1166ea6859"></a>
+#### `public inline FORCEINLINE const ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a30dfd8af4822bfb5118fa67f696743be)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a30dfd8af4822bfb5118fa67f696743be"></a>
 
 Gets the value of Bucket_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1ac57c782186a33f3f70edac5ff3fde27a)`(const ERHAPI_InventoryBucket & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1ac57c782186a33f3f70edac5ff3fde27a"></a>
+#### `public inline FORCEINLINE const ERHAPI_InventoryBucket & `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a1f384ee7fa4a53ce3ef5e75793e36e79)`(const ERHAPI_InventoryBucket & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a1f384ee7fa4a53ce3ef5e75793e36e79"></a>
 
 Gets the value of Bucket_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a9dea35372560f239b64f704a0831f4ec)`(ERHAPI_InventoryBucket & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a9dea35372560f239b64f704a0831f4ec"></a>
+#### `public inline FORCEINLINE bool `[`GetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a862585f772c3743fbb6584cf06c2e4aa)`(ERHAPI_InventoryBucket & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a862585f772c3743fbb6584cf06c2e4aa"></a>
 
 Fills OutValue with the value of Bucket_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_InventoryBucket * `[`GetBucketOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a715da062a6401bd876e4fcd51901dfb8)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a715da062a6401bd876e4fcd51901dfb8"></a>
+#### `public inline FORCEINLINE ERHAPI_InventoryBucket * `[`GetBucketOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a59d81e46e1a00bd583d2bde70c8aeb43)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a59d81e46e1a00bd583d2bde70c8aeb43"></a>
 
 Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_InventoryBucket * `[`GetBucketOrNull`](#structFRHAPI__UpdateInventoryRequestById_1ab3b8f96d1db86a8411734b241eedb03a)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1ab3b8f96d1db86a8411734b241eedb03a"></a>
+#### `public inline FORCEINLINE const ERHAPI_InventoryBucket * `[`GetBucketOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a57554d46ee0037b058d007d581edeb56)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a57554d46ee0037b058d007d581edeb56"></a>
 
 Returns a pointer to Bucket_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetBucket`](#structFRHAPI__UpdateInventoryRequestById_1af45e3ed3fb4b34167f40a23bb0d25209)`(const ERHAPI_InventoryBucket & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1af45e3ed3fb4b34167f40a23bb0d25209"></a>
+#### `public inline FORCEINLINE void `[`SetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a5450b8c565840680e9dd21f6a11937cf)`(const ERHAPI_InventoryBucket & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a5450b8c565840680e9dd21f6a11937cf"></a>
 
 Sets the value of Bucket_Optional and also sets Bucket_IsSet to true.
 
-#### `public inline void `[`SetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a51f9c2bb8ee96d0e7dfe8c6c52e4b1c6)`(ERHAPI_InventoryBucket && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a51f9c2bb8ee96d0e7dfe8c6c52e4b1c6"></a>
+#### `public inline FORCEINLINE void `[`SetBucket`](#structFRHAPI__UpdateInventoryRequestById_1a9b996de6ce426a950dee56855a591205)`(ERHAPI_InventoryBucket && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a9b996de6ce426a950dee56855a591205"></a>
 
 Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move semantics.
 
@@ -207,39 +200,35 @@ Sets the value of Bucket_Optional and also sets Bucket_IsSet to true using move 
 
 Clears the value of Bucket_Optional and sets Bucket_IsSet to false.
 
-#### `public inline bool `[`IsBucketSet`](#structFRHAPI__UpdateInventoryRequestById_1adcc291701648c78c2bbb137f64e225cd)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1adcc291701648c78c2bbb137f64e225cd"></a>
-
-Checks whether Bucket_Optional has been set.
-
-#### `public inline int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1ab8c60ae075eaa2f42cca82150eb79198)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1ab8c60ae075eaa2f42cca82150eb79198"></a>
+#### `public inline FORCEINLINE int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1ad87616395bfef942aa82abeecd1d8f00)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1ad87616395bfef942aa82abeecd1d8f00"></a>
 
 Gets the value of Count_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1ad2ee2101e4636da8a574a2c1654883a2)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1ad2ee2101e4636da8a574a2c1654883a2"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1a68e668ece137a7db3780c3f7df0c65dd)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a68e668ece137a7db3780c3f7df0c65dd"></a>
 
 Gets the value of Count_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1a8d04943d408568e481f322a11594e323)`(const int32 & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a8d04943d408568e481f322a11594e323"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1abb4bad8d8ba32893674c4f1d3784a3df)`(const int32 & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1abb4bad8d8ba32893674c4f1d3784a3df"></a>
 
 Gets the value of Count_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1a4f8325eb8c2b059b8a8fbf6fde474e51)`(int32 & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a4f8325eb8c2b059b8a8fbf6fde474e51"></a>
+#### `public inline FORCEINLINE bool `[`GetCount`](#structFRHAPI__UpdateInventoryRequestById_1a769ece188ef5511980967c4a13b601b6)`(int32 & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a769ece188ef5511980967c4a13b601b6"></a>
 
 Fills OutValue with the value of Count_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetCountOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a50930e7222f9857b141e8085a2b63a74)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a50930e7222f9857b141e8085a2b63a74"></a>
+#### `public inline FORCEINLINE int32 * `[`GetCountOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a2dfdbfc45e4006c99f6e86d49335a04f)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a2dfdbfc45e4006c99f6e86d49335a04f"></a>
 
 Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetCountOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a4b5281914e3f3211b5367f9dc71d6d61)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a4b5281914e3f3211b5367f9dc71d6d61"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetCountOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a794161a74b9284a74f70f27d59a79ec0)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a794161a74b9284a74f70f27d59a79ec0"></a>
 
 Returns a pointer to Count_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCount`](#structFRHAPI__UpdateInventoryRequestById_1aa8f0dfca39530b9e6cad636a967174c5)`(const int32 & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1aa8f0dfca39530b9e6cad636a967174c5"></a>
+#### `public inline FORCEINLINE void `[`SetCount`](#structFRHAPI__UpdateInventoryRequestById_1a938f558872c0f84456f6eb0998e5f819)`(const int32 & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a938f558872c0f84456f6eb0998e5f819"></a>
 
 Sets the value of Count_Optional and also sets Count_IsSet to true.
 
-#### `public inline void `[`SetCount`](#structFRHAPI__UpdateInventoryRequestById_1afb8c30fae56a9afdb8b816ee2e1e60f9)`(int32 && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1afb8c30fae56a9afdb8b816ee2e1e60f9"></a>
+#### `public inline FORCEINLINE void `[`SetCount`](#structFRHAPI__UpdateInventoryRequestById_1a977b1e0506048e3c2abd48d958db89a5)`(int32 && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a977b1e0506048e3c2abd48d958db89a5"></a>
 
 Sets the value of Count_Optional and also sets Count_IsSet to true using move semantics.
 
@@ -247,47 +236,39 @@ Sets the value of Count_Optional and also sets Count_IsSet to true using move se
 
 Clears the value of Count_Optional and sets Count_IsSet to false.
 
-#### `public inline bool `[`IsCountSet`](#structFRHAPI__UpdateInventoryRequestById_1aeabbda8bd184f86149b248d25a579c0a)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1aeabbda8bd184f86149b248d25a579c0a"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Count`](#structFRHAPI__UpdateInventoryRequestById_1aee51f6a935aa0b226abf9bbcbb105755)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1aee51f6a935aa0b226abf9bbcbb105755"></a>
 
-Checks whether Count_Optional has been set.
+Returns the default value of Count.
 
-#### `public inline bool `[`IsCountDefaultValue`](#structFRHAPI__UpdateInventoryRequestById_1a90101fd151d48e7c46e9d9953aa24a1b)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a90101fd151d48e7c46e9d9953aa24a1b"></a>
-
-Returns true if Count_Optional is set and matches the default value.
-
-#### `public inline void `[`SetCountToDefault`](#structFRHAPI__UpdateInventoryRequestById_1a04e649028a20de8491d255c0f7c0385d)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a04e649028a20de8491d255c0f7c0385d"></a>
-
-Sets the value of Count_Optional to its default and also sets Count_IsSet to true.
-
-#### `public inline FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a9c0688ee3a42f3d793313c2c112868ae)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a9c0688ee3a42f3d793313c2c112868ae"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1ab534c417ba43ce85ebd62eb3259c7526)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1ab534c417ba43ce85ebd62eb3259c7526"></a>
 
 Gets the value of Expires_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1aaeb7f00747e8ddab55c3c083b7659b8f)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1aaeb7f00747e8ddab55c3c083b7659b8f"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1ae6e0c81ed7487adc2a23f5601205beca)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1ae6e0c81ed7487adc2a23f5601205beca"></a>
 
 Gets the value of Expires_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a84c45038bc06b1fb828bdddf89f63a1d)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a84c45038bc06b1fb828bdddf89f63a1d"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a4d0dd6320729c040d7e25cb69801759c)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a4d0dd6320729c040d7e25cb69801759c"></a>
 
 Gets the value of Expires_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a4e61374be0f9a4d5bee7f8bb34180c1a)`(FDateTime & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a4e61374be0f9a4d5bee7f8bb34180c1a"></a>
+#### `public inline FORCEINLINE bool `[`GetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a97b6abf995a19bf3aec59bea2180bea8)`(FDateTime & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a97b6abf995a19bf3aec59bea2180bea8"></a>
 
 Fills OutValue with the value of Expires_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetExpiresOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a477de52036ad9ea31f28e1b1e9f09f9b)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a477de52036ad9ea31f28e1b1e9f09f9b"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetExpiresOrNull`](#structFRHAPI__UpdateInventoryRequestById_1ad0bb6bf7984d294fa5be260eb1ddc828)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1ad0bb6bf7984d294fa5be260eb1ddc828"></a>
 
 Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetExpiresOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a8bcd4cdfb804336e44510f1283f6350e)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a8bcd4cdfb804336e44510f1283f6350e"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetExpiresOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a5c611a5e7d28b45039bc0e58d6b7ecd1)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a5c611a5e7d28b45039bc0e58d6b7ecd1"></a>
 
 Returns a pointer to Expires_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a019f49d2649934f4675a2988078685b9)`(const FDateTime & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a019f49d2649934f4675a2988078685b9"></a>
+#### `public inline FORCEINLINE void `[`SetExpires`](#structFRHAPI__UpdateInventoryRequestById_1adf0dbf7ddec0b5cb074c756434f39b70)`(const FDateTime & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1adf0dbf7ddec0b5cb074c756434f39b70"></a>
 
 Sets the value of Expires_Optional and also sets Expires_IsSet to true.
 
-#### `public inline void `[`SetExpires`](#structFRHAPI__UpdateInventoryRequestById_1a251c5c5c2a89c1dd06c19d58b3ff2d1f)`(FDateTime && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a251c5c5c2a89c1dd06c19d58b3ff2d1f"></a>
+#### `public inline FORCEINLINE void `[`SetExpires`](#structFRHAPI__UpdateInventoryRequestById_1aa3221609d24808bf3702ee212b01cd9b)`(FDateTime && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1aa3221609d24808bf3702ee212b01cd9b"></a>
 
 Sets the value of Expires_Optional and also sets Expires_IsSet to true using move semantics.
 
@@ -295,47 +276,43 @@ Sets the value of Expires_Optional and also sets Expires_IsSet to true using mov
 
 Clears the value of Expires_Optional and sets Expires_IsSet to false.
 
-#### `public inline bool `[`IsExpiresSet`](#structFRHAPI__UpdateInventoryRequestById_1a78ff0969ba26d815839e7a03b20e7e66)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a78ff0969ba26d815839e7a03b20e7e66"></a>
-
-Checks whether Expires_Optional has been set.
-
-#### `public inline void `[`SetExpiresToNull`](#structFRHAPI__UpdateInventoryRequestById_1a542dc82fa6cfeadb63127e37bd149a1b)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a542dc82fa6cfeadb63127e37bd149a1b"></a>
+#### `public inline FORCEINLINE void `[`SetExpiresToNull`](#structFRHAPI__UpdateInventoryRequestById_1add8f10d2dd9ceed916bdf8734a242be6)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1add8f10d2dd9ceed916bdf8734a242be6"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsExpiresNull`](#structFRHAPI__UpdateInventoryRequestById_1a78a019925f3af52f2cab4e09a2691747)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a78a019925f3af52f2cab4e09a2691747"></a>
+#### `public inline FORCEINLINE bool `[`IsExpiresNull`](#structFRHAPI__UpdateInventoryRequestById_1a5e73c10ca1990b6b651b9080b7ef2b14)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a5e73c10ca1990b6b651b9080b7ef2b14"></a>
 
 Checks whether Expires_Optional is set to null.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1adebb83f1d42c4c53f54524f1ad3394d5)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1adebb83f1d42c4c53f54524f1ad3394d5"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a8824f11c6e69f41ba87faddded9732e0)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a8824f11c6e69f41ba87faddded9732e0"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a227099b27862bb034b3b2d25d9b722fe)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a227099b27862bb034b3b2d25d9b722fe"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a28a5c88322d7541358386971a445859d)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a28a5c88322d7541358386971a445859d"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a3925d82248709a680db619c0722e66f6)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a3925d82248709a680db619c0722e66f6"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1aba9b5e47893c0985ec3279f24e5e0d46)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1aba9b5e47893c0985ec3279f24e5e0d46"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1aa86e4244165e0073b66dbda18617e98d)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1aa86e4244165e0073b66dbda18617e98d"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a80ead03b3ebc70fb837eacd4c7666e83)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a80ead03b3ebc70fb837eacd4c7666e83"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a99cfa4469a9329c57acf6a82b938b341)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a99cfa4469a9329c57acf6a82b938b341"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__UpdateInventoryRequestById_1abfb46df9137df583460034af77cc528a)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1abfb46df9137df583460034af77cc528a"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__UpdateInventoryRequestById_1acdbde8062cd1ab91b9afe33b64cf8ab2)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1acdbde8062cd1ab91b9afe33b64cf8ab2"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a20ee3068fd27775b48729de6c7824637)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a20ee3068fd27775b48729de6c7824637"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a908455d7727e30a4c11435fd4aab49b9)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a908455d7727e30a4c11435fd4aab49b9"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a0ded0ae1a44f45a95c4fc3b5100c32bd)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a0ded0ae1a44f45a95c4fc3b5100c32bd"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1a56a2d88d02d36fa9ae5afbae1b985337)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a56a2d88d02d36fa9ae5afbae1b985337"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__UpdateInventoryRequestById_1abf6a1961dc9c5737e876766ecdda4926)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1abf6a1961dc9c5737e876766ecdda4926"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -343,47 +320,43 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__UpdateInventoryRequestById_1ab67d68eed0a40d12076834f70d04235a)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1ab67d68eed0a40d12076834f70d04235a"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline void `[`SetCustomDataToNull`](#structFRHAPI__UpdateInventoryRequestById_1ae3451a378a0ecac61ca39997b6952e37)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1ae3451a378a0ecac61ca39997b6952e37"></a>
+#### `public inline FORCEINLINE void `[`SetCustomDataToNull`](#structFRHAPI__UpdateInventoryRequestById_1adc65a599bea17d78b8656f2a2f68a8d8)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1adc65a599bea17d78b8656f2a2f68a8d8"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCustomDataNull`](#structFRHAPI__UpdateInventoryRequestById_1a1291fc04895388ec8176ab927ec39dbe)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a1291fc04895388ec8176ab927ec39dbe"></a>
+#### `public inline FORCEINLINE bool `[`IsCustomDataNull`](#structFRHAPI__UpdateInventoryRequestById_1a100bff2cf04b5d78f3347afabc20e467)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a100bff2cf04b5d78f3347afabc20e467"></a>
 
 Checks whether CustomData_Optional is set to null.
 
-#### `public inline int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1acafddf3dee9450a57197a9ff410d8236)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1acafddf3dee9450a57197a9ff410d8236"></a>
+#### `public inline FORCEINLINE int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a713de5cf392f4fdc25b6322e7b89ae31)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a713de5cf392f4fdc25b6322e7b89ae31"></a>
 
 Gets the value of ItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1abd56ae1b8c70af0f964038b3615c4018)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1abd56ae1b8c70af0f964038b3615c4018"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a7cf61d5703ecc2b2fb67bed9c2167100)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a7cf61d5703ecc2b2fb67bed9c2167100"></a>
 
 Gets the value of ItemId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a72c80767061e8eac146b03e251efb60a)`(const int32 & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a72c80767061e8eac146b03e251efb60a"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1ab756758b9a4e71b2b016294a71693df9)`(const int32 & DefaultValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1ab756758b9a4e71b2b016294a71693df9"></a>
 
 Gets the value of ItemId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a6f8a2bf06a0dcf82469b313ef3c0b8e3)`(int32 & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1a6f8a2bf06a0dcf82469b313ef3c0b8e3"></a>
+#### `public inline FORCEINLINE bool `[`GetItemId`](#structFRHAPI__UpdateInventoryRequestById_1aefb0bb237456c65b35959fb28178c197)`(int32 & OutValue) const` <a id="structFRHAPI__UpdateInventoryRequestById_1aefb0bb237456c65b35959fb28178c197"></a>
 
 Fills OutValue with the value of ItemId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetItemIdOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a4e0a544976eb187047655bb23de81c2f)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a4e0a544976eb187047655bb23de81c2f"></a>
+#### `public inline FORCEINLINE int32 * `[`GetItemIdOrNull`](#structFRHAPI__UpdateInventoryRequestById_1a2ce0ff96175bfdb3326339022c49810d)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a2ce0ff96175bfdb3326339022c49810d"></a>
 
 Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetItemIdOrNull`](#structFRHAPI__UpdateInventoryRequestById_1ad4934fd5f6a93033a2bcd50f06b50b9a)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1ad4934fd5f6a93033a2bcd50f06b50b9a"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetItemIdOrNull`](#structFRHAPI__UpdateInventoryRequestById_1af61d46a550b20167416c2e92e4029195)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1af61d46a550b20167416c2e92e4029195"></a>
 
 Returns a pointer to ItemId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetItemId`](#structFRHAPI__UpdateInventoryRequestById_1aaaccbc0c0bab0acd8181449052e27745)`(const int32 & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1aaaccbc0c0bab0acd8181449052e27745"></a>
+#### `public inline FORCEINLINE void `[`SetItemId`](#structFRHAPI__UpdateInventoryRequestById_1afc8c81b193702693e3dbbd0c3f6d57f9)`(const int32 & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1afc8c81b193702693e3dbbd0c3f6d57f9"></a>
 
 Sets the value of ItemId_Optional and also sets ItemId_IsSet to true.
 
-#### `public inline void `[`SetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a0f8879d4e59e039ecf35926923f84d10)`(int32 && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a0f8879d4e59e039ecf35926923f84d10"></a>
+#### `public inline FORCEINLINE void `[`SetItemId`](#structFRHAPI__UpdateInventoryRequestById_1a2a9b2487b3281ed9ffffe4d3bd3e1e91)`(int32 && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a2a9b2487b3281ed9ffffe4d3bd3e1e91"></a>
 
 Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move semantics.
 
@@ -391,39 +364,31 @@ Sets the value of ItemId_Optional and also sets ItemId_IsSet to true using move 
 
 Clears the value of ItemId_Optional and sets ItemId_IsSet to false.
 
-#### `public inline bool `[`IsItemIdSet`](#structFRHAPI__UpdateInventoryRequestById_1a133431fee7a92d207ede7484182c1a33)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a133431fee7a92d207ede7484182c1a33"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_ItemId`](#structFRHAPI__UpdateInventoryRequestById_1a1079490a176cb778e06686814b2e553d)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a1079490a176cb778e06686814b2e553d"></a>
 
-Checks whether ItemId_Optional has been set.
+Returns the default value of ItemId.
 
-#### `public inline bool `[`IsItemIdDefaultValue`](#structFRHAPI__UpdateInventoryRequestById_1a56a421d6eafe28d3a53c8650e0d28623)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a56a421d6eafe28d3a53c8650e0d28623"></a>
-
-Returns true if ItemId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetItemIdToDefault`](#structFRHAPI__UpdateInventoryRequestById_1abec149f819d14ecba1cb51c3390d7eab)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1abec149f819d14ecba1cb51c3390d7eab"></a>
-
-Sets the value of ItemId_Optional to its default and also sets ItemId_IsSet to true.
-
-#### `public inline void `[`SetItemIdToNull`](#structFRHAPI__UpdateInventoryRequestById_1a86b15d0f0c3954e3c355b8039039e5ee)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a86b15d0f0c3954e3c355b8039039e5ee"></a>
+#### `public inline FORCEINLINE void `[`SetItemIdToNull`](#structFRHAPI__UpdateInventoryRequestById_1a4a0a2cbc1158ad73f1f11ce431634485)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a4a0a2cbc1158ad73f1f11ce431634485"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsItemIdNull`](#structFRHAPI__UpdateInventoryRequestById_1a3b68e5b6f3cc59c4c7a06edc19512131)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a3b68e5b6f3cc59c4c7a06edc19512131"></a>
+#### `public inline FORCEINLINE bool `[`IsItemIdNull`](#structFRHAPI__UpdateInventoryRequestById_1abba3d27481f2b7dc0e300aa65a629f9c)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1abba3d27481f2b7dc0e300aa65a629f9c"></a>
 
 Checks whether ItemId_Optional is set to null.
 
-#### `public inline FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a049fbfd49f50388f3b5d2db6a86bef25)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1a049fbfd49f50388f3b5d2db6a86bef25"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1ad3cbf7be5c37a5d5bbb3d8d7abf382e5)`()` <a id="structFRHAPI__UpdateInventoryRequestById_1ad3cbf7be5c37a5d5bbb3d8d7abf382e5"></a>
 
 Gets the value of InventoryId.
 
-#### `public inline const FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a9cf135dc19c5b77ac5845fb9bb3ece78)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1a9cf135dc19c5b77ac5845fb9bb3ece78"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1aa457e08f3dc2bfa9113b76fc228623b0)`() const` <a id="structFRHAPI__UpdateInventoryRequestById_1aa457e08f3dc2bfa9113b76fc228623b0"></a>
 
 Gets the value of InventoryId.
 
-#### `public inline void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a7399dc71b17ebbb591560782cc99ee75)`(const FGuid & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a7399dc71b17ebbb591560782cc99ee75"></a>
+#### `public inline FORCEINLINE void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1af66a0391058c850e65199c23b7cc4085)`(const FGuid & NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1af66a0391058c850e65199c23b7cc4085"></a>
 
 Sets the value of InventoryId.
 
-#### `public inline void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a6645c3a16c4add10e1e9d9efc8193d10)`(FGuid && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a6645c3a16c4add10e1e9d9efc8193d10"></a>
+#### `public inline FORCEINLINE void `[`SetInventoryId`](#structFRHAPI__UpdateInventoryRequestById_1a6012de7ebe0cd48e85a512285f93e9e6)`(FGuid && NewValue)` <a id="structFRHAPI__UpdateInventoryRequestById_1a6012de7ebe0cd48e85a512285f93e9e6"></a>
 
 Sets the value of InventoryId using move semantics.
 

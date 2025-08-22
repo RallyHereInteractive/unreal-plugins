@@ -44,13 +44,13 @@ struct RALLYHEREAPI_API FRHAPI_InstanceHealthStatusResponse : public FRHAPI_Mode
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	ERHAPI_InstanceHealthStatus UpdatedInstanceHealth{  };
 	/** @brief Gets the value of UpdatedInstanceHealth */
-	ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() { return UpdatedInstanceHealth; }
+	FORCEINLINE ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() { return UpdatedInstanceHealth; }
 	/** @brief Gets the value of UpdatedInstanceHealth */
-	const ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() const { return UpdatedInstanceHealth; }
+	FORCEINLINE const ERHAPI_InstanceHealthStatus& GetUpdatedInstanceHealth() const { return UpdatedInstanceHealth; }
 	/** @brief Sets the value of UpdatedInstanceHealth */
-	void SetUpdatedInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { UpdatedInstanceHealth = NewValue;   }
+	FORCEINLINE void SetUpdatedInstanceHealth(const ERHAPI_InstanceHealthStatus& NewValue) { UpdatedInstanceHealth = NewValue;   }
 	/** @brief Sets the value of UpdatedInstanceHealth using move semantics */
-	void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { UpdatedInstanceHealth = NewValue;   }
+	FORCEINLINE void SetUpdatedInstanceHealth(ERHAPI_InstanceHealthStatus&& NewValue) { UpdatedInstanceHealth = NewValue;   }
 };
 
 /** @} */

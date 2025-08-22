@@ -46,25 +46,23 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementsPrepared : public FRHAPI_Mode
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Entitlements_IsSet{ false };
 	/** @brief Gets the value of Entitlements_Optional, regardless of it having been set */
-	TArray<FRHAPI_PlatformEntitlementPrepared>& GetEntitlements() { return Entitlements_Optional; }
+	FORCEINLINE TArray<FRHAPI_PlatformEntitlementPrepared>& GetEntitlements() { return Entitlements_Optional; }
 	/** @brief Gets the value of Entitlements_Optional, regardless of it having been set */
-	const TArray<FRHAPI_PlatformEntitlementPrepared>& GetEntitlements() const { return Entitlements_Optional; }
+	FORCEINLINE const TArray<FRHAPI_PlatformEntitlementPrepared>& GetEntitlements() const { return Entitlements_Optional; }
 	/** @brief Gets the value of Entitlements_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_PlatformEntitlementPrepared>& GetEntitlements(const TArray<FRHAPI_PlatformEntitlementPrepared>& DefaultValue) const { if (Entitlements_IsSet) return Entitlements_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_PlatformEntitlementPrepared>& GetEntitlements(const TArray<FRHAPI_PlatformEntitlementPrepared>& DefaultValue) const { if (Entitlements_IsSet) return Entitlements_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Entitlements_Optional and returns true if it has been set, otherwise returns false */
-	bool GetEntitlements(TArray<FRHAPI_PlatformEntitlementPrepared>& OutValue) const { if (Entitlements_IsSet) OutValue = Entitlements_Optional; return Entitlements_IsSet; }
+	FORCEINLINE bool GetEntitlements(TArray<FRHAPI_PlatformEntitlementPrepared>& OutValue) const { if (Entitlements_IsSet) OutValue = Entitlements_Optional; return Entitlements_IsSet; }
 	/** @brief Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlatformEntitlementPrepared>* GetEntitlementsOrNull() { if (Entitlements_IsSet) return (&Entitlements_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_PlatformEntitlementPrepared>* GetEntitlementsOrNull() { if (Entitlements_IsSet) return (&Entitlements_Optional); return nullptr; }
 	/** @brief Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlatformEntitlementPrepared>* GetEntitlementsOrNull() const { if (Entitlements_IsSet) return (&Entitlements_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_PlatformEntitlementPrepared>* GetEntitlementsOrNull() const { if (Entitlements_IsSet) return (&Entitlements_Optional); return nullptr; }
 	/** @brief Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true */
-	void SetEntitlements(const TArray<FRHAPI_PlatformEntitlementPrepared>& NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true;  }
+	FORCEINLINE void SetEntitlements(const TArray<FRHAPI_PlatformEntitlementPrepared>& NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true;  }
 	/** @brief Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics */
-	void SetEntitlements(TArray<FRHAPI_PlatformEntitlementPrepared>&& NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true;  }
+	FORCEINLINE void SetEntitlements(TArray<FRHAPI_PlatformEntitlementPrepared>&& NewValue) { Entitlements_Optional = NewValue; Entitlements_IsSet = true;  }
 	/** @brief Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false */
 	void ClearEntitlements() { Entitlements_IsSet = false;  }
-	/** @brief Checks whether Entitlements_Optional has been set */
-	bool IsEntitlementsSet() const { return Entitlements_IsSet; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString ErrorCode_Optional{  };
@@ -75,29 +73,27 @@ struct RALLYHEREAPI_API FRHAPI_PlatformEntitlementsPrepared : public FRHAPI_Mode
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ErrorCode_IsNull{ false };
 	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
-	FString& GetErrorCode() { return ErrorCode_Optional; }
+	FORCEINLINE FString& GetErrorCode() { return ErrorCode_Optional; }
 	/** @brief Gets the value of ErrorCode_Optional, regardless of it having been set */
-	const FString& GetErrorCode() const { return ErrorCode_Optional; }
+	FORCEINLINE const FString& GetErrorCode() const { return ErrorCode_Optional; }
 	/** @brief Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetErrorCode(const FString& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetErrorCode(const FString& DefaultValue) const { if (ErrorCode_IsSet) return ErrorCode_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false */
-	bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet && !ErrorCode_IsNull) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
+	FORCEINLINE bool GetErrorCode(FString& OutValue) const { if (ErrorCode_IsSet && !ErrorCode_IsNull) OutValue = ErrorCode_Optional; return ErrorCode_IsSet; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
+	FORCEINLINE FString* GetErrorCodeOrNull() { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
 	/** @brief Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
+	FORCEINLINE const FString* GetErrorCodeOrNull() const { if (ErrorCode_IsSet) return (ErrorCode_IsNull ? nullptr : &ErrorCode_Optional); return nullptr; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true */
-	void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
+	FORCEINLINE void SetErrorCode(const FString& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
 	/** @brief Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics */
-	void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
+	FORCEINLINE void SetErrorCode(FString&& NewValue) { ErrorCode_Optional = NewValue; ErrorCode_IsSet = true; ErrorCode_IsNull = false; }
 	/** @brief Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false */
 	void ClearErrorCode() { ErrorCode_IsSet = false; ErrorCode_IsNull = false; }
-	/** @brief Checks whether ErrorCode_Optional has been set */
-	bool IsErrorCodeSet() const { return ErrorCode_IsSet; }
 	/** @brief Sets the value explicitly to be treated as null */
-	void SetErrorCodeToNull() { ErrorCode_IsSet = true; ErrorCode_IsNull = true; }
+	FORCEINLINE void SetErrorCodeToNull() { ErrorCode_IsSet = true; ErrorCode_IsNull = true; }
 	/** @brief Checks whether ErrorCode_Optional is set to null */
-	bool IsErrorCodeNull() const { return ErrorCode_IsSet && ErrorCode_IsNull; }
+	FORCEINLINE bool IsErrorCodeNull() const { return ErrorCode_IsSet && ErrorCode_IsNull; }
 };
 
 /** @} */

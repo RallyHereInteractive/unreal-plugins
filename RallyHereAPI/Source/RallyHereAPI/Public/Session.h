@@ -53,25 +53,25 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Type{  };
 	/** @brief Gets the value of Type */
-	FString& GetType() { return Type; }
+	FORCEINLINE FString& GetType() { return Type; }
 	/** @brief Gets the value of Type */
-	const FString& GetType() const { return Type; }
+	FORCEINLINE const FString& GetType() const { return Type; }
 	/** @brief Sets the value of Type */
-	void SetType(const FString& NewValue) { Type = NewValue;   }
+	FORCEINLINE void SetType(const FString& NewValue) { Type = NewValue;   }
 	/** @brief Sets the value of Type using move semantics */
-	void SetType(FString&& NewValue) { Type = NewValue;   }
+	FORCEINLINE void SetType(FString&& NewValue) { Type = NewValue;   }
 
 	/** @brief unique ID for this session within its type */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString SessionId{  };
 	/** @brief Gets the value of SessionId */
-	FString& GetSessionId() { return SessionId; }
+	FORCEINLINE FString& GetSessionId() { return SessionId; }
 	/** @brief Gets the value of SessionId */
-	const FString& GetSessionId() const { return SessionId; }
+	FORCEINLINE const FString& GetSessionId() const { return SessionId; }
 	/** @brief Sets the value of SessionId */
-	void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
+	FORCEINLINE void SetSessionId(const FString& NewValue) { SessionId = NewValue;   }
 	/** @brief Sets the value of SessionId using move semantics */
-	void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
+	FORCEINLINE void SetSessionId(FString&& NewValue) { SessionId = NewValue;   }
 
 	/** @brief Info about the current active instance for the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -80,25 +80,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Instance_IsSet{ false };
 	/** @brief Gets the value of Instance_Optional, regardless of it having been set */
-	FRHAPI_InstanceInfo& GetInstance() { return Instance_Optional; }
+	FORCEINLINE FRHAPI_InstanceInfo& GetInstance() { return Instance_Optional; }
 	/** @brief Gets the value of Instance_Optional, regardless of it having been set */
-	const FRHAPI_InstanceInfo& GetInstance() const { return Instance_Optional; }
+	FORCEINLINE const FRHAPI_InstanceInfo& GetInstance() const { return Instance_Optional; }
 	/** @brief Gets the value of Instance_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_InstanceInfo& GetInstance(const FRHAPI_InstanceInfo& DefaultValue) const { if (Instance_IsSet) return Instance_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_InstanceInfo& GetInstance(const FRHAPI_InstanceInfo& DefaultValue) const { if (Instance_IsSet) return Instance_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Instance_Optional and returns true if it has been set, otherwise returns false */
-	bool GetInstance(FRHAPI_InstanceInfo& OutValue) const { if (Instance_IsSet) OutValue = Instance_Optional; return Instance_IsSet; }
+	FORCEINLINE bool GetInstance(FRHAPI_InstanceInfo& OutValue) const { if (Instance_IsSet) OutValue = Instance_Optional; return Instance_IsSet; }
 	/** @brief Returns a pointer to Instance_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_InstanceInfo* GetInstanceOrNull() { if (Instance_IsSet) return (&Instance_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_InstanceInfo* GetInstanceOrNull() { if (Instance_IsSet) return (&Instance_Optional); return nullptr; }
 	/** @brief Returns a pointer to Instance_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_InstanceInfo* GetInstanceOrNull() const { if (Instance_IsSet) return (&Instance_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_InstanceInfo* GetInstanceOrNull() const { if (Instance_IsSet) return (&Instance_Optional); return nullptr; }
 	/** @brief Sets the value of Instance_Optional and also sets Instance_IsSet to true */
-	void SetInstance(const FRHAPI_InstanceInfo& NewValue) { Instance_Optional = NewValue; Instance_IsSet = true;  }
+	FORCEINLINE void SetInstance(const FRHAPI_InstanceInfo& NewValue) { Instance_Optional = NewValue; Instance_IsSet = true;  }
 	/** @brief Sets the value of Instance_Optional and also sets Instance_IsSet to true using move semantics */
-	void SetInstance(FRHAPI_InstanceInfo&& NewValue) { Instance_Optional = NewValue; Instance_IsSet = true;  }
+	FORCEINLINE void SetInstance(FRHAPI_InstanceInfo&& NewValue) { Instance_Optional = NewValue; Instance_IsSet = true;  }
 	/** @brief Clears the value of Instance_Optional and sets Instance_IsSet to false */
 	void ClearInstance() { Instance_IsSet = false;  }
-	/** @brief Checks whether Instance_Optional has been set */
-	bool IsInstanceSet() const { return Instance_IsSet; }
 
 	/** @brief DEPRECATED Info about the current match in the instance */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -107,25 +105,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Match_IsSet{ false };
 	/** @brief Gets the value of Match_Optional, regardless of it having been set */
-	FRHAPI_MatchInfo& GetMatch() { return Match_Optional; }
+	FORCEINLINE FRHAPI_MatchInfo& GetMatch() { return Match_Optional; }
 	/** @brief Gets the value of Match_Optional, regardless of it having been set */
-	const FRHAPI_MatchInfo& GetMatch() const { return Match_Optional; }
+	FORCEINLINE const FRHAPI_MatchInfo& GetMatch() const { return Match_Optional; }
 	/** @brief Gets the value of Match_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_MatchInfo& GetMatch(const FRHAPI_MatchInfo& DefaultValue) const { if (Match_IsSet) return Match_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_MatchInfo& GetMatch(const FRHAPI_MatchInfo& DefaultValue) const { if (Match_IsSet) return Match_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Match_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMatch(FRHAPI_MatchInfo& OutValue) const { if (Match_IsSet) OutValue = Match_Optional; return Match_IsSet; }
+	FORCEINLINE bool GetMatch(FRHAPI_MatchInfo& OutValue) const { if (Match_IsSet) OutValue = Match_Optional; return Match_IsSet; }
 	/** @brief Returns a pointer to Match_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_MatchInfo* GetMatchOrNull() { if (Match_IsSet) return (&Match_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_MatchInfo* GetMatchOrNull() { if (Match_IsSet) return (&Match_Optional); return nullptr; }
 	/** @brief Returns a pointer to Match_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_MatchInfo* GetMatchOrNull() const { if (Match_IsSet) return (&Match_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_MatchInfo* GetMatchOrNull() const { if (Match_IsSet) return (&Match_Optional); return nullptr; }
 	/** @brief Sets the value of Match_Optional and also sets Match_IsSet to true */
-	void SetMatch(const FRHAPI_MatchInfo& NewValue) { Match_Optional = NewValue; Match_IsSet = true;  }
+	FORCEINLINE void SetMatch(const FRHAPI_MatchInfo& NewValue) { Match_Optional = NewValue; Match_IsSet = true;  }
 	/** @brief Sets the value of Match_Optional and also sets Match_IsSet to true using move semantics */
-	void SetMatch(FRHAPI_MatchInfo&& NewValue) { Match_Optional = NewValue; Match_IsSet = true;  }
+	FORCEINLINE void SetMatch(FRHAPI_MatchInfo&& NewValue) { Match_Optional = NewValue; Match_IsSet = true;  }
 	/** @brief Clears the value of Match_Optional and sets Match_IsSet to false */
 	void ClearMatch() { Match_IsSet = false;  }
-	/** @brief Checks whether Match_Optional has been set */
-	bool IsMatchSet() const { return Match_IsSet; }
 
 	/** @brief Info about the matchmaking results that resulted in this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -134,25 +130,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool MatchmakingResults_IsSet{ false };
 	/** @brief Gets the value of MatchmakingResults_Optional, regardless of it having been set */
-	FRHAPI_MatchmakingResults& GetMatchmakingResults() { return MatchmakingResults_Optional; }
+	FORCEINLINE FRHAPI_MatchmakingResults& GetMatchmakingResults() { return MatchmakingResults_Optional; }
 	/** @brief Gets the value of MatchmakingResults_Optional, regardless of it having been set */
-	const FRHAPI_MatchmakingResults& GetMatchmakingResults() const { return MatchmakingResults_Optional; }
+	FORCEINLINE const FRHAPI_MatchmakingResults& GetMatchmakingResults() const { return MatchmakingResults_Optional; }
 	/** @brief Gets the value of MatchmakingResults_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_MatchmakingResults& GetMatchmakingResults(const FRHAPI_MatchmakingResults& DefaultValue) const { if (MatchmakingResults_IsSet) return MatchmakingResults_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_MatchmakingResults& GetMatchmakingResults(const FRHAPI_MatchmakingResults& DefaultValue) const { if (MatchmakingResults_IsSet) return MatchmakingResults_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of MatchmakingResults_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMatchmakingResults(FRHAPI_MatchmakingResults& OutValue) const { if (MatchmakingResults_IsSet) OutValue = MatchmakingResults_Optional; return MatchmakingResults_IsSet; }
+	FORCEINLINE bool GetMatchmakingResults(FRHAPI_MatchmakingResults& OutValue) const { if (MatchmakingResults_IsSet) OutValue = MatchmakingResults_Optional; return MatchmakingResults_IsSet; }
 	/** @brief Returns a pointer to MatchmakingResults_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_MatchmakingResults* GetMatchmakingResultsOrNull() { if (MatchmakingResults_IsSet) return (&MatchmakingResults_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_MatchmakingResults* GetMatchmakingResultsOrNull() { if (MatchmakingResults_IsSet) return (&MatchmakingResults_Optional); return nullptr; }
 	/** @brief Returns a pointer to MatchmakingResults_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_MatchmakingResults* GetMatchmakingResultsOrNull() const { if (MatchmakingResults_IsSet) return (&MatchmakingResults_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_MatchmakingResults* GetMatchmakingResultsOrNull() const { if (MatchmakingResults_IsSet) return (&MatchmakingResults_Optional); return nullptr; }
 	/** @brief Sets the value of MatchmakingResults_Optional and also sets MatchmakingResults_IsSet to true */
-	void SetMatchmakingResults(const FRHAPI_MatchmakingResults& NewValue) { MatchmakingResults_Optional = NewValue; MatchmakingResults_IsSet = true;  }
+	FORCEINLINE void SetMatchmakingResults(const FRHAPI_MatchmakingResults& NewValue) { MatchmakingResults_Optional = NewValue; MatchmakingResults_IsSet = true;  }
 	/** @brief Sets the value of MatchmakingResults_Optional and also sets MatchmakingResults_IsSet to true using move semantics */
-	void SetMatchmakingResults(FRHAPI_MatchmakingResults&& NewValue) { MatchmakingResults_Optional = NewValue; MatchmakingResults_IsSet = true;  }
+	FORCEINLINE void SetMatchmakingResults(FRHAPI_MatchmakingResults&& NewValue) { MatchmakingResults_Optional = NewValue; MatchmakingResults_IsSet = true;  }
 	/** @brief Clears the value of MatchmakingResults_Optional and sets MatchmakingResults_IsSet to false */
 	void ClearMatchmakingResults() { MatchmakingResults_IsSet = false;  }
-	/** @brief Checks whether MatchmakingResults_Optional has been set */
-	bool IsMatchmakingResultsSet() const { return MatchmakingResults_IsSet; }
 
 	/** @brief Info about the matchmaking state of the session, if it is in the process of matchmaking */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -161,25 +155,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Matchmaking_IsSet{ false };
 	/** @brief Gets the value of Matchmaking_Optional, regardless of it having been set */
-	FRHAPI_MatchmakingInfo& GetMatchmaking() { return Matchmaking_Optional; }
+	FORCEINLINE FRHAPI_MatchmakingInfo& GetMatchmaking() { return Matchmaking_Optional; }
 	/** @brief Gets the value of Matchmaking_Optional, regardless of it having been set */
-	const FRHAPI_MatchmakingInfo& GetMatchmaking() const { return Matchmaking_Optional; }
+	FORCEINLINE const FRHAPI_MatchmakingInfo& GetMatchmaking() const { return Matchmaking_Optional; }
 	/** @brief Gets the value of Matchmaking_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_MatchmakingInfo& GetMatchmaking(const FRHAPI_MatchmakingInfo& DefaultValue) const { if (Matchmaking_IsSet) return Matchmaking_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_MatchmakingInfo& GetMatchmaking(const FRHAPI_MatchmakingInfo& DefaultValue) const { if (Matchmaking_IsSet) return Matchmaking_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Matchmaking_Optional and returns true if it has been set, otherwise returns false */
-	bool GetMatchmaking(FRHAPI_MatchmakingInfo& OutValue) const { if (Matchmaking_IsSet) OutValue = Matchmaking_Optional; return Matchmaking_IsSet; }
+	FORCEINLINE bool GetMatchmaking(FRHAPI_MatchmakingInfo& OutValue) const { if (Matchmaking_IsSet) OutValue = Matchmaking_Optional; return Matchmaking_IsSet; }
 	/** @brief Returns a pointer to Matchmaking_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_MatchmakingInfo* GetMatchmakingOrNull() { if (Matchmaking_IsSet) return (&Matchmaking_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_MatchmakingInfo* GetMatchmakingOrNull() { if (Matchmaking_IsSet) return (&Matchmaking_Optional); return nullptr; }
 	/** @brief Returns a pointer to Matchmaking_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_MatchmakingInfo* GetMatchmakingOrNull() const { if (Matchmaking_IsSet) return (&Matchmaking_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_MatchmakingInfo* GetMatchmakingOrNull() const { if (Matchmaking_IsSet) return (&Matchmaking_Optional); return nullptr; }
 	/** @brief Sets the value of Matchmaking_Optional and also sets Matchmaking_IsSet to true */
-	void SetMatchmaking(const FRHAPI_MatchmakingInfo& NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true;  }
+	FORCEINLINE void SetMatchmaking(const FRHAPI_MatchmakingInfo& NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true;  }
 	/** @brief Sets the value of Matchmaking_Optional and also sets Matchmaking_IsSet to true using move semantics */
-	void SetMatchmaking(FRHAPI_MatchmakingInfo&& NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true;  }
+	FORCEINLINE void SetMatchmaking(FRHAPI_MatchmakingInfo&& NewValue) { Matchmaking_Optional = NewValue; Matchmaking_IsSet = true;  }
 	/** @brief Clears the value of Matchmaking_Optional and sets Matchmaking_IsSet to false */
 	void ClearMatchmaking() { Matchmaking_IsSet = false;  }
-	/** @brief Checks whether Matchmaking_Optional has been set */
-	bool IsMatchmakingSet() const { return Matchmaking_IsSet; }
 
 	/** @brief Info about the open-match backfill object for the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -188,25 +180,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Backfill_IsSet{ false };
 	/** @brief Gets the value of Backfill_Optional, regardless of it having been set */
-	FRHAPI_BackfillInfo& GetBackfill() { return Backfill_Optional; }
+	FORCEINLINE FRHAPI_BackfillInfo& GetBackfill() { return Backfill_Optional; }
 	/** @brief Gets the value of Backfill_Optional, regardless of it having been set */
-	const FRHAPI_BackfillInfo& GetBackfill() const { return Backfill_Optional; }
+	FORCEINLINE const FRHAPI_BackfillInfo& GetBackfill() const { return Backfill_Optional; }
 	/** @brief Gets the value of Backfill_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_BackfillInfo& GetBackfill(const FRHAPI_BackfillInfo& DefaultValue) const { if (Backfill_IsSet) return Backfill_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_BackfillInfo& GetBackfill(const FRHAPI_BackfillInfo& DefaultValue) const { if (Backfill_IsSet) return Backfill_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Backfill_Optional and returns true if it has been set, otherwise returns false */
-	bool GetBackfill(FRHAPI_BackfillInfo& OutValue) const { if (Backfill_IsSet) OutValue = Backfill_Optional; return Backfill_IsSet; }
+	FORCEINLINE bool GetBackfill(FRHAPI_BackfillInfo& OutValue) const { if (Backfill_IsSet) OutValue = Backfill_Optional; return Backfill_IsSet; }
 	/** @brief Returns a pointer to Backfill_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_BackfillInfo* GetBackfillOrNull() { if (Backfill_IsSet) return (&Backfill_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_BackfillInfo* GetBackfillOrNull() { if (Backfill_IsSet) return (&Backfill_Optional); return nullptr; }
 	/** @brief Returns a pointer to Backfill_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_BackfillInfo* GetBackfillOrNull() const { if (Backfill_IsSet) return (&Backfill_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_BackfillInfo* GetBackfillOrNull() const { if (Backfill_IsSet) return (&Backfill_Optional); return nullptr; }
 	/** @brief Sets the value of Backfill_Optional and also sets Backfill_IsSet to true */
-	void SetBackfill(const FRHAPI_BackfillInfo& NewValue) { Backfill_Optional = NewValue; Backfill_IsSet = true;  }
+	FORCEINLINE void SetBackfill(const FRHAPI_BackfillInfo& NewValue) { Backfill_Optional = NewValue; Backfill_IsSet = true;  }
 	/** @brief Sets the value of Backfill_Optional and also sets Backfill_IsSet to true using move semantics */
-	void SetBackfill(FRHAPI_BackfillInfo&& NewValue) { Backfill_Optional = NewValue; Backfill_IsSet = true;  }
+	FORCEINLINE void SetBackfill(FRHAPI_BackfillInfo&& NewValue) { Backfill_Optional = NewValue; Backfill_IsSet = true;  }
 	/** @brief Clears the value of Backfill_Optional and sets Backfill_IsSet to false */
 	void ClearBackfill() { Backfill_IsSet = false;  }
-	/** @brief Checks whether Backfill_Optional has been set */
-	bool IsBackfillSet() const { return Backfill_IsSet; }
 
 	/** @brief Info about the browser state of the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -215,41 +205,37 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Browser_IsSet{ false };
 	/** @brief Gets the value of Browser_Optional, regardless of it having been set */
-	FRHAPI_BrowserInfo& GetBrowser() { return Browser_Optional; }
+	FORCEINLINE FRHAPI_BrowserInfo& GetBrowser() { return Browser_Optional; }
 	/** @brief Gets the value of Browser_Optional, regardless of it having been set */
-	const FRHAPI_BrowserInfo& GetBrowser() const { return Browser_Optional; }
+	FORCEINLINE const FRHAPI_BrowserInfo& GetBrowser() const { return Browser_Optional; }
 	/** @brief Gets the value of Browser_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_BrowserInfo& GetBrowser(const FRHAPI_BrowserInfo& DefaultValue) const { if (Browser_IsSet) return Browser_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_BrowserInfo& GetBrowser(const FRHAPI_BrowserInfo& DefaultValue) const { if (Browser_IsSet) return Browser_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Browser_Optional and returns true if it has been set, otherwise returns false */
-	bool GetBrowser(FRHAPI_BrowserInfo& OutValue) const { if (Browser_IsSet) OutValue = Browser_Optional; return Browser_IsSet; }
+	FORCEINLINE bool GetBrowser(FRHAPI_BrowserInfo& OutValue) const { if (Browser_IsSet) OutValue = Browser_Optional; return Browser_IsSet; }
 	/** @brief Returns a pointer to Browser_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_BrowserInfo* GetBrowserOrNull() { if (Browser_IsSet) return (&Browser_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_BrowserInfo* GetBrowserOrNull() { if (Browser_IsSet) return (&Browser_Optional); return nullptr; }
 	/** @brief Returns a pointer to Browser_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_BrowserInfo* GetBrowserOrNull() const { if (Browser_IsSet) return (&Browser_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_BrowserInfo* GetBrowserOrNull() const { if (Browser_IsSet) return (&Browser_Optional); return nullptr; }
 	/** @brief Sets the value of Browser_Optional and also sets Browser_IsSet to true */
-	void SetBrowser(const FRHAPI_BrowserInfo& NewValue) { Browser_Optional = NewValue; Browser_IsSet = true;  }
+	FORCEINLINE void SetBrowser(const FRHAPI_BrowserInfo& NewValue) { Browser_Optional = NewValue; Browser_IsSet = true;  }
 	/** @brief Sets the value of Browser_Optional and also sets Browser_IsSet to true using move semantics */
-	void SetBrowser(FRHAPI_BrowserInfo&& NewValue) { Browser_Optional = NewValue; Browser_IsSet = true;  }
+	FORCEINLINE void SetBrowser(FRHAPI_BrowserInfo&& NewValue) { Browser_Optional = NewValue; Browser_IsSet = true;  }
 	/** @brief Clears the value of Browser_Optional and sets Browser_IsSet to false */
 	void ClearBrowser() { Browser_IsSet = false;  }
-	/** @brief Checks whether Browser_Optional has been set */
-	bool IsBrowserSet() const { return Browser_IsSet; }
 
 	/** @brief DEPRECATED. Use Joinability object instead. Is this session freely joinable by players without an invite? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Joinable{ false };
 	/** @brief Gets the value of Joinable */
-	bool& GetJoinable() { return Joinable; }
+	FORCEINLINE bool& GetJoinable() { return Joinable; }
 	/** @brief Gets the value of Joinable */
-	const bool& GetJoinable() const { return Joinable; }
+	FORCEINLINE const bool& GetJoinable() const { return Joinable; }
 	/** @brief Sets the value of Joinable */
-	void SetJoinable(const bool& NewValue) { Joinable = NewValue;   }
+	FORCEINLINE void SetJoinable(const bool& NewValue) { Joinable = NewValue;   }
 	/** @brief Sets the value of Joinable using move semantics */
-	void SetJoinable(bool&& NewValue) { Joinable = NewValue;   }
-	/** @brief Returns true if Joinable matches the default value */
-	bool IsJoinableDefaultValue() const { return Joinable == false; }
-	/** @brief Sets the value of Joinable to its default  */
-	void SetJoinableToDefault() { SetJoinable(false); }
+	FORCEINLINE void SetJoinable(bool&& NewValue) { Joinable = NewValue;   }
+	/** @brief Returns the default value of Joinable */
+	FORCEINLINE bool GetDefaultValue_Joinable() { return false; }
 
 	/** @brief Flags regarding the joinability of this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -258,37 +244,35 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool Joinability_IsSet{ false };
 	/** @brief Gets the value of Joinability_Optional, regardless of it having been set */
-	FRHAPI_SessionJoinability& GetJoinability() { return Joinability_Optional; }
+	FORCEINLINE FRHAPI_SessionJoinability& GetJoinability() { return Joinability_Optional; }
 	/** @brief Gets the value of Joinability_Optional, regardless of it having been set */
-	const FRHAPI_SessionJoinability& GetJoinability() const { return Joinability_Optional; }
+	FORCEINLINE const FRHAPI_SessionJoinability& GetJoinability() const { return Joinability_Optional; }
 	/** @brief Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FRHAPI_SessionJoinability& GetJoinability(const FRHAPI_SessionJoinability& DefaultValue) const { if (Joinability_IsSet) return Joinability_Optional; return DefaultValue; }
+	FORCEINLINE const FRHAPI_SessionJoinability& GetJoinability(const FRHAPI_SessionJoinability& DefaultValue) const { if (Joinability_IsSet) return Joinability_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false */
-	bool GetJoinability(FRHAPI_SessionJoinability& OutValue) const { if (Joinability_IsSet) OutValue = Joinability_Optional; return Joinability_IsSet; }
+	FORCEINLINE bool GetJoinability(FRHAPI_SessionJoinability& OutValue) const { if (Joinability_IsSet) OutValue = Joinability_Optional; return Joinability_IsSet; }
 	/** @brief Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr */
-	FRHAPI_SessionJoinability* GetJoinabilityOrNull() { if (Joinability_IsSet) return (&Joinability_Optional); return nullptr; }
+	FORCEINLINE FRHAPI_SessionJoinability* GetJoinabilityOrNull() { if (Joinability_IsSet) return (&Joinability_Optional); return nullptr; }
 	/** @brief Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr */
-	const FRHAPI_SessionJoinability* GetJoinabilityOrNull() const { if (Joinability_IsSet) return (&Joinability_Optional); return nullptr; }
+	FORCEINLINE const FRHAPI_SessionJoinability* GetJoinabilityOrNull() const { if (Joinability_IsSet) return (&Joinability_Optional); return nullptr; }
 	/** @brief Sets the value of Joinability_Optional and also sets Joinability_IsSet to true */
-	void SetJoinability(const FRHAPI_SessionJoinability& NewValue) { Joinability_Optional = NewValue; Joinability_IsSet = true;  }
+	FORCEINLINE void SetJoinability(const FRHAPI_SessionJoinability& NewValue) { Joinability_Optional = NewValue; Joinability_IsSet = true;  }
 	/** @brief Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics */
-	void SetJoinability(FRHAPI_SessionJoinability&& NewValue) { Joinability_Optional = NewValue; Joinability_IsSet = true;  }
+	FORCEINLINE void SetJoinability(FRHAPI_SessionJoinability&& NewValue) { Joinability_Optional = NewValue; Joinability_IsSet = true;  }
 	/** @brief Clears the value of Joinability_Optional and sets Joinability_IsSet to false */
 	void ClearJoinability() { Joinability_IsSet = false;  }
-	/** @brief Checks whether Joinability_Optional has been set */
-	bool IsJoinabilitySet() const { return Joinability_IsSet; }
 
 	/** @brief List of teams of players currently in the session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<FRHAPI_SessionTeam> Teams{  };
 	/** @brief Gets the value of Teams */
-	TArray<FRHAPI_SessionTeam>& GetTeams() { return Teams; }
+	FORCEINLINE TArray<FRHAPI_SessionTeam>& GetTeams() { return Teams; }
 	/** @brief Gets the value of Teams */
-	const TArray<FRHAPI_SessionTeam>& GetTeams() const { return Teams; }
+	FORCEINLINE const TArray<FRHAPI_SessionTeam>& GetTeams() const { return Teams; }
 	/** @brief Sets the value of Teams */
-	void SetTeams(const TArray<FRHAPI_SessionTeam>& NewValue) { Teams = NewValue;   }
+	FORCEINLINE void SetTeams(const TArray<FRHAPI_SessionTeam>& NewValue) { Teams = NewValue;   }
 	/** @brief Sets the value of Teams using move semantics */
-	void SetTeams(TArray<FRHAPI_SessionTeam>&& NewValue) { Teams = NewValue;   }
+	FORCEINLINE void SetTeams(TArray<FRHAPI_SessionTeam>&& NewValue) { Teams = NewValue;   }
 
 	/** @brief Flag showing if the list of players has been automatically suppressed due to its size. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -297,29 +281,25 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool TeamsSuppressed_IsSet{ false };
 	/** @brief Gets the value of TeamsSuppressed_Optional, regardless of it having been set */
-	bool& GetTeamsSuppressed() { return TeamsSuppressed_Optional; }
+	FORCEINLINE bool& GetTeamsSuppressed() { return TeamsSuppressed_Optional; }
 	/** @brief Gets the value of TeamsSuppressed_Optional, regardless of it having been set */
-	const bool& GetTeamsSuppressed() const { return TeamsSuppressed_Optional; }
+	FORCEINLINE const bool& GetTeamsSuppressed() const { return TeamsSuppressed_Optional; }
 	/** @brief Gets the value of TeamsSuppressed_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetTeamsSuppressed(const bool& DefaultValue) const { if (TeamsSuppressed_IsSet) return TeamsSuppressed_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetTeamsSuppressed(const bool& DefaultValue) const { if (TeamsSuppressed_IsSet) return TeamsSuppressed_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of TeamsSuppressed_Optional and returns true if it has been set, otherwise returns false */
-	bool GetTeamsSuppressed(bool& OutValue) const { if (TeamsSuppressed_IsSet) OutValue = TeamsSuppressed_Optional; return TeamsSuppressed_IsSet; }
+	FORCEINLINE bool GetTeamsSuppressed(bool& OutValue) const { if (TeamsSuppressed_IsSet) OutValue = TeamsSuppressed_Optional; return TeamsSuppressed_IsSet; }
 	/** @brief Returns a pointer to TeamsSuppressed_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetTeamsSuppressedOrNull() { if (TeamsSuppressed_IsSet) return (&TeamsSuppressed_Optional); return nullptr; }
+	FORCEINLINE bool* GetTeamsSuppressedOrNull() { if (TeamsSuppressed_IsSet) return (&TeamsSuppressed_Optional); return nullptr; }
 	/** @brief Returns a pointer to TeamsSuppressed_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetTeamsSuppressedOrNull() const { if (TeamsSuppressed_IsSet) return (&TeamsSuppressed_Optional); return nullptr; }
+	FORCEINLINE const bool* GetTeamsSuppressedOrNull() const { if (TeamsSuppressed_IsSet) return (&TeamsSuppressed_Optional); return nullptr; }
 	/** @brief Sets the value of TeamsSuppressed_Optional and also sets TeamsSuppressed_IsSet to true */
-	void SetTeamsSuppressed(const bool& NewValue) { TeamsSuppressed_Optional = NewValue; TeamsSuppressed_IsSet = true;  }
+	FORCEINLINE void SetTeamsSuppressed(const bool& NewValue) { TeamsSuppressed_Optional = NewValue; TeamsSuppressed_IsSet = true;  }
 	/** @brief Sets the value of TeamsSuppressed_Optional and also sets TeamsSuppressed_IsSet to true using move semantics */
-	void SetTeamsSuppressed(bool&& NewValue) { TeamsSuppressed_Optional = NewValue; TeamsSuppressed_IsSet = true;  }
+	FORCEINLINE void SetTeamsSuppressed(bool&& NewValue) { TeamsSuppressed_Optional = NewValue; TeamsSuppressed_IsSet = true;  }
 	/** @brief Clears the value of TeamsSuppressed_Optional and sets TeamsSuppressed_IsSet to false */
 	void ClearTeamsSuppressed() { TeamsSuppressed_Optional = false; TeamsSuppressed_IsSet = false;  }
-	/** @brief Checks whether TeamsSuppressed_Optional has been set */
-	bool IsTeamsSuppressedSet() const { return TeamsSuppressed_IsSet; }
-	/** @brief Returns true if TeamsSuppressed_Optional is set and matches the default value */
-	bool IsTeamsSuppressedDefaultValue() const { return TeamsSuppressed_IsSet && TeamsSuppressed_Optional == false; }
-	/** @brief Sets the value of TeamsSuppressed_Optional to its default and also sets TeamsSuppressed_IsSet to true */
-	void SetTeamsSuppressedToDefault() { SetTeamsSuppressed(false); }
+	/** @brief Returns the default value of TeamsSuppressed */
+	FORCEINLINE bool GetDefaultValue_TeamsSuppressed() { return false; }
 
 	/** @brief Child Platform Sessions for this session.  A player joining one of the child platform sessions implicitly joins the parent session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -328,25 +308,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformSession_IsSet{ false };
 	/** @brief Gets the value of PlatformSession_Optional, regardless of it having been set */
-	TArray<FRHAPI_PlatformSession>& GetPlatformSession() { return PlatformSession_Optional; }
+	FORCEINLINE TArray<FRHAPI_PlatformSession>& GetPlatformSession() { return PlatformSession_Optional; }
 	/** @brief Gets the value of PlatformSession_Optional, regardless of it having been set */
-	const TArray<FRHAPI_PlatformSession>& GetPlatformSession() const { return PlatformSession_Optional; }
+	FORCEINLINE const TArray<FRHAPI_PlatformSession>& GetPlatformSession() const { return PlatformSession_Optional; }
 	/** @brief Gets the value of PlatformSession_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TArray<FRHAPI_PlatformSession>& GetPlatformSession(const TArray<FRHAPI_PlatformSession>& DefaultValue) const { if (PlatformSession_IsSet) return PlatformSession_Optional; return DefaultValue; }
+	FORCEINLINE const TArray<FRHAPI_PlatformSession>& GetPlatformSession(const TArray<FRHAPI_PlatformSession>& DefaultValue) const { if (PlatformSession_IsSet) return PlatformSession_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformSession_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformSession(TArray<FRHAPI_PlatformSession>& OutValue) const { if (PlatformSession_IsSet) OutValue = PlatformSession_Optional; return PlatformSession_IsSet; }
+	FORCEINLINE bool GetPlatformSession(TArray<FRHAPI_PlatformSession>& OutValue) const { if (PlatformSession_IsSet) OutValue = PlatformSession_Optional; return PlatformSession_IsSet; }
 	/** @brief Returns a pointer to PlatformSession_Optional, if it has been set, otherwise returns nullptr */
-	TArray<FRHAPI_PlatformSession>* GetPlatformSessionOrNull() { if (PlatformSession_IsSet) return (&PlatformSession_Optional); return nullptr; }
+	FORCEINLINE TArray<FRHAPI_PlatformSession>* GetPlatformSessionOrNull() { if (PlatformSession_IsSet) return (&PlatformSession_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformSession_Optional, if it has been set, otherwise returns nullptr */
-	const TArray<FRHAPI_PlatformSession>* GetPlatformSessionOrNull() const { if (PlatformSession_IsSet) return (&PlatformSession_Optional); return nullptr; }
+	FORCEINLINE const TArray<FRHAPI_PlatformSession>* GetPlatformSessionOrNull() const { if (PlatformSession_IsSet) return (&PlatformSession_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformSession_Optional and also sets PlatformSession_IsSet to true */
-	void SetPlatformSession(const TArray<FRHAPI_PlatformSession>& NewValue) { PlatformSession_Optional = NewValue; PlatformSession_IsSet = true;  }
+	FORCEINLINE void SetPlatformSession(const TArray<FRHAPI_PlatformSession>& NewValue) { PlatformSession_Optional = NewValue; PlatformSession_IsSet = true;  }
 	/** @brief Sets the value of PlatformSession_Optional and also sets PlatformSession_IsSet to true using move semantics */
-	void SetPlatformSession(TArray<FRHAPI_PlatformSession>&& NewValue) { PlatformSession_Optional = NewValue; PlatformSession_IsSet = true;  }
+	FORCEINLINE void SetPlatformSession(TArray<FRHAPI_PlatformSession>&& NewValue) { PlatformSession_Optional = NewValue; PlatformSession_IsSet = true;  }
 	/** @brief Clears the value of PlatformSession_Optional and sets PlatformSession_IsSet to false */
 	void ClearPlatformSession() { PlatformSession_IsSet = false;  }
-	/** @brief Checks whether PlatformSession_Optional has been set */
-	bool IsPlatformSessionSet() const { return PlatformSession_IsSet; }
 
 	/** @brief List of platform scouts for this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -355,25 +333,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool PlatformScouts_IsSet{ false };
 	/** @brief Gets the value of PlatformScouts_Optional, regardless of it having been set */
-	TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts() { return PlatformScouts_Optional; }
+	FORCEINLINE TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts() { return PlatformScouts_Optional; }
 	/** @brief Gets the value of PlatformScouts_Optional, regardless of it having been set */
-	const TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts() const { return PlatformScouts_Optional; }
+	FORCEINLINE const TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts() const { return PlatformScouts_Optional; }
 	/** @brief Gets the value of PlatformScouts_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts(const TMap<FString, FRHAPI_PlatformScout>& DefaultValue) const { if (PlatformScouts_IsSet) return PlatformScouts_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FRHAPI_PlatformScout>& GetPlatformScouts(const TMap<FString, FRHAPI_PlatformScout>& DefaultValue) const { if (PlatformScouts_IsSet) return PlatformScouts_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of PlatformScouts_Optional and returns true if it has been set, otherwise returns false */
-	bool GetPlatformScouts(TMap<FString, FRHAPI_PlatformScout>& OutValue) const { if (PlatformScouts_IsSet) OutValue = PlatformScouts_Optional; return PlatformScouts_IsSet; }
+	FORCEINLINE bool GetPlatformScouts(TMap<FString, FRHAPI_PlatformScout>& OutValue) const { if (PlatformScouts_IsSet) OutValue = PlatformScouts_Optional; return PlatformScouts_IsSet; }
 	/** @brief Returns a pointer to PlatformScouts_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FRHAPI_PlatformScout>* GetPlatformScoutsOrNull() { if (PlatformScouts_IsSet) return (&PlatformScouts_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FRHAPI_PlatformScout>* GetPlatformScoutsOrNull() { if (PlatformScouts_IsSet) return (&PlatformScouts_Optional); return nullptr; }
 	/** @brief Returns a pointer to PlatformScouts_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FRHAPI_PlatformScout>* GetPlatformScoutsOrNull() const { if (PlatformScouts_IsSet) return (&PlatformScouts_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FRHAPI_PlatformScout>* GetPlatformScoutsOrNull() const { if (PlatformScouts_IsSet) return (&PlatformScouts_Optional); return nullptr; }
 	/** @brief Sets the value of PlatformScouts_Optional and also sets PlatformScouts_IsSet to true */
-	void SetPlatformScouts(const TMap<FString, FRHAPI_PlatformScout>& NewValue) { PlatformScouts_Optional = NewValue; PlatformScouts_IsSet = true;  }
+	FORCEINLINE void SetPlatformScouts(const TMap<FString, FRHAPI_PlatformScout>& NewValue) { PlatformScouts_Optional = NewValue; PlatformScouts_IsSet = true;  }
 	/** @brief Sets the value of PlatformScouts_Optional and also sets PlatformScouts_IsSet to true using move semantics */
-	void SetPlatformScouts(TMap<FString, FRHAPI_PlatformScout>&& NewValue) { PlatformScouts_Optional = NewValue; PlatformScouts_IsSet = true;  }
+	FORCEINLINE void SetPlatformScouts(TMap<FString, FRHAPI_PlatformScout>&& NewValue) { PlatformScouts_Optional = NewValue; PlatformScouts_IsSet = true;  }
 	/** @brief Clears the value of PlatformScouts_Optional and sets PlatformScouts_IsSet to false */
 	void ClearPlatformScouts() { PlatformScouts_IsSet = false;  }
-	/** @brief Checks whether PlatformScouts_Optional has been set */
-	bool IsPlatformScoutsSet() const { return PlatformScouts_IsSet; }
 
 	/** @brief Leader Player or instance defined custom data about this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -382,37 +358,35 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CustomData_IsSet{ false };
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
+	FORCEINLINE TMap<FString, FString>& GetCustomData() { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, regardless of it having been set */
-	const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData() const { return CustomData_Optional; }
 	/** @brief Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue */
-	const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
+	FORCEINLINE const TMap<FString, FString>& GetCustomData(const TMap<FString, FString>& DefaultValue) const { if (CustomData_IsSet) return CustomData_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
+	FORCEINLINE bool GetCustomData(TMap<FString, FString>& OutValue) const { if (CustomData_IsSet) OutValue = CustomData_Optional; return CustomData_IsSet; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE TMap<FString, FString>* GetCustomDataOrNull() { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr */
-	const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
+	FORCEINLINE const TMap<FString, FString>* GetCustomDataOrNull() const { if (CustomData_IsSet) return (&CustomData_Optional); return nullptr; }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true */
-	void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(const TMap<FString, FString>& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics */
-	void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
+	FORCEINLINE void SetCustomData(TMap<FString, FString>&& NewValue) { CustomData_Optional = NewValue; CustomData_IsSet = true;  }
 	/** @brief Clears the value of CustomData_Optional and sets CustomData_IsSet to false */
 	void ClearCustomData() { CustomData_IsSet = false;  }
-	/** @brief Checks whether CustomData_Optional has been set */
-	bool IsCustomDataSet() const { return CustomData_IsSet; }
 
 	/** @brief Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Created{  };
 	/** @brief Gets the value of Created */
-	FDateTime& GetCreated() { return Created; }
+	FORCEINLINE FDateTime& GetCreated() { return Created; }
 	/** @brief Gets the value of Created */
-	const FDateTime& GetCreated() const { return Created; }
+	FORCEINLINE const FDateTime& GetCreated() const { return Created; }
 	/** @brief Sets the value of Created */
-	void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
+	FORCEINLINE void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
 	/** @brief Sets the value of Created using move semantics */
-	void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
+	FORCEINLINE void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
 
 	/** @brief Preferred region for the instance and match to take place in */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -421,25 +395,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool RegionId_IsSet{ false };
 	/** @brief Gets the value of RegionId_Optional, regardless of it having been set */
-	FString& GetRegionId() { return RegionId_Optional; }
+	FORCEINLINE FString& GetRegionId() { return RegionId_Optional; }
 	/** @brief Gets the value of RegionId_Optional, regardless of it having been set */
-	const FString& GetRegionId() const { return RegionId_Optional; }
+	FORCEINLINE const FString& GetRegionId() const { return RegionId_Optional; }
 	/** @brief Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetRegionId(const FString& DefaultValue) const { if (RegionId_IsSet) return RegionId_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetRegionId(const FString& DefaultValue) const { if (RegionId_IsSet) return RegionId_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false */
-	bool GetRegionId(FString& OutValue) const { if (RegionId_IsSet) OutValue = RegionId_Optional; return RegionId_IsSet; }
+	FORCEINLINE bool GetRegionId(FString& OutValue) const { if (RegionId_IsSet) OutValue = RegionId_Optional; return RegionId_IsSet; }
 	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetRegionIdOrNull() { if (RegionId_IsSet) return (&RegionId_Optional); return nullptr; }
+	FORCEINLINE FString* GetRegionIdOrNull() { if (RegionId_IsSet) return (&RegionId_Optional); return nullptr; }
 	/** @brief Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return (&RegionId_Optional); return nullptr; }
+	FORCEINLINE const FString* GetRegionIdOrNull() const { if (RegionId_IsSet) return (&RegionId_Optional); return nullptr; }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true */
-	void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
+	FORCEINLINE void SetRegionId(const FString& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
 	/** @brief Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics */
-	void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
+	FORCEINLINE void SetRegionId(FString&& NewValue) { RegionId_Optional = NewValue; RegionId_IsSet = true;  }
 	/** @brief Clears the value of RegionId_Optional and sets RegionId_IsSet to false */
 	void ClearRegionId() { RegionId_IsSet = false;  }
-	/** @brief Checks whether RegionId_Optional has been set */
-	bool IsRegionIdSet() const { return RegionId_IsSet; }
 
 	/** @brief Flag of whether or not this session was created by matchmaking or not */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -448,29 +420,25 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool CreatedByMatchmaking_IsSet{ false };
 	/** @brief Gets the value of CreatedByMatchmaking_Optional, regardless of it having been set */
-	bool& GetCreatedByMatchmaking() { return CreatedByMatchmaking_Optional; }
+	FORCEINLINE bool& GetCreatedByMatchmaking() { return CreatedByMatchmaking_Optional; }
 	/** @brief Gets the value of CreatedByMatchmaking_Optional, regardless of it having been set */
-	const bool& GetCreatedByMatchmaking() const { return CreatedByMatchmaking_Optional; }
+	FORCEINLINE const bool& GetCreatedByMatchmaking() const { return CreatedByMatchmaking_Optional; }
 	/** @brief Gets the value of CreatedByMatchmaking_Optional, if it has been set, otherwise it returns DefaultValue */
-	const bool& GetCreatedByMatchmaking(const bool& DefaultValue) const { if (CreatedByMatchmaking_IsSet) return CreatedByMatchmaking_Optional; return DefaultValue; }
+	FORCEINLINE const bool& GetCreatedByMatchmaking(const bool& DefaultValue) const { if (CreatedByMatchmaking_IsSet) return CreatedByMatchmaking_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of CreatedByMatchmaking_Optional and returns true if it has been set, otherwise returns false */
-	bool GetCreatedByMatchmaking(bool& OutValue) const { if (CreatedByMatchmaking_IsSet) OutValue = CreatedByMatchmaking_Optional; return CreatedByMatchmaking_IsSet; }
+	FORCEINLINE bool GetCreatedByMatchmaking(bool& OutValue) const { if (CreatedByMatchmaking_IsSet) OutValue = CreatedByMatchmaking_Optional; return CreatedByMatchmaking_IsSet; }
 	/** @brief Returns a pointer to CreatedByMatchmaking_Optional, if it has been set, otherwise returns nullptr */
-	bool* GetCreatedByMatchmakingOrNull() { if (CreatedByMatchmaking_IsSet) return (&CreatedByMatchmaking_Optional); return nullptr; }
+	FORCEINLINE bool* GetCreatedByMatchmakingOrNull() { if (CreatedByMatchmaking_IsSet) return (&CreatedByMatchmaking_Optional); return nullptr; }
 	/** @brief Returns a pointer to CreatedByMatchmaking_Optional, if it has been set, otherwise returns nullptr */
-	const bool* GetCreatedByMatchmakingOrNull() const { if (CreatedByMatchmaking_IsSet) return (&CreatedByMatchmaking_Optional); return nullptr; }
+	FORCEINLINE const bool* GetCreatedByMatchmakingOrNull() const { if (CreatedByMatchmaking_IsSet) return (&CreatedByMatchmaking_Optional); return nullptr; }
 	/** @brief Sets the value of CreatedByMatchmaking_Optional and also sets CreatedByMatchmaking_IsSet to true */
-	void SetCreatedByMatchmaking(const bool& NewValue) { CreatedByMatchmaking_Optional = NewValue; CreatedByMatchmaking_IsSet = true;  }
+	FORCEINLINE void SetCreatedByMatchmaking(const bool& NewValue) { CreatedByMatchmaking_Optional = NewValue; CreatedByMatchmaking_IsSet = true;  }
 	/** @brief Sets the value of CreatedByMatchmaking_Optional and also sets CreatedByMatchmaking_IsSet to true using move semantics */
-	void SetCreatedByMatchmaking(bool&& NewValue) { CreatedByMatchmaking_Optional = NewValue; CreatedByMatchmaking_IsSet = true;  }
+	FORCEINLINE void SetCreatedByMatchmaking(bool&& NewValue) { CreatedByMatchmaking_Optional = NewValue; CreatedByMatchmaking_IsSet = true;  }
 	/** @brief Clears the value of CreatedByMatchmaking_Optional and sets CreatedByMatchmaking_IsSet to false */
 	void ClearCreatedByMatchmaking() { CreatedByMatchmaking_Optional = false; CreatedByMatchmaking_IsSet = false;  }
-	/** @brief Checks whether CreatedByMatchmaking_Optional has been set */
-	bool IsCreatedByMatchmakingSet() const { return CreatedByMatchmaking_IsSet; }
-	/** @brief Returns true if CreatedByMatchmaking_Optional is set and matches the default value */
-	bool IsCreatedByMatchmakingDefaultValue() const { return CreatedByMatchmaking_IsSet && CreatedByMatchmaking_Optional == false; }
-	/** @brief Sets the value of CreatedByMatchmaking_Optional to its default and also sets CreatedByMatchmaking_IsSet to true */
-	void SetCreatedByMatchmakingToDefault() { SetCreatedByMatchmaking(false); }
+	/** @brief Returns the default value of CreatedByMatchmaking */
+	FORCEINLINE bool GetDefaultValue_CreatedByMatchmaking() { return false; }
 
 	/** @brief Shortened join code associated with this session */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -479,25 +447,23 @@ struct RALLYHEREAPI_API FRHAPI_Session : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	bool ShortCode_IsSet{ false };
 	/** @brief Gets the value of ShortCode_Optional, regardless of it having been set */
-	FString& GetShortCode() { return ShortCode_Optional; }
+	FORCEINLINE FString& GetShortCode() { return ShortCode_Optional; }
 	/** @brief Gets the value of ShortCode_Optional, regardless of it having been set */
-	const FString& GetShortCode() const { return ShortCode_Optional; }
+	FORCEINLINE const FString& GetShortCode() const { return ShortCode_Optional; }
 	/** @brief Gets the value of ShortCode_Optional, if it has been set, otherwise it returns DefaultValue */
-	const FString& GetShortCode(const FString& DefaultValue) const { if (ShortCode_IsSet) return ShortCode_Optional; return DefaultValue; }
+	FORCEINLINE const FString& GetShortCode(const FString& DefaultValue) const { if (ShortCode_IsSet) return ShortCode_Optional; return DefaultValue; }
 	/** @brief Fills OutValue with the value of ShortCode_Optional and returns true if it has been set, otherwise returns false */
-	bool GetShortCode(FString& OutValue) const { if (ShortCode_IsSet) OutValue = ShortCode_Optional; return ShortCode_IsSet; }
+	FORCEINLINE bool GetShortCode(FString& OutValue) const { if (ShortCode_IsSet) OutValue = ShortCode_Optional; return ShortCode_IsSet; }
 	/** @brief Returns a pointer to ShortCode_Optional, if it has been set, otherwise returns nullptr */
-	FString* GetShortCodeOrNull() { if (ShortCode_IsSet) return (&ShortCode_Optional); return nullptr; }
+	FORCEINLINE FString* GetShortCodeOrNull() { if (ShortCode_IsSet) return (&ShortCode_Optional); return nullptr; }
 	/** @brief Returns a pointer to ShortCode_Optional, if it has been set, otherwise returns nullptr */
-	const FString* GetShortCodeOrNull() const { if (ShortCode_IsSet) return (&ShortCode_Optional); return nullptr; }
+	FORCEINLINE const FString* GetShortCodeOrNull() const { if (ShortCode_IsSet) return (&ShortCode_Optional); return nullptr; }
 	/** @brief Sets the value of ShortCode_Optional and also sets ShortCode_IsSet to true */
-	void SetShortCode(const FString& NewValue) { ShortCode_Optional = NewValue; ShortCode_IsSet = true;  }
+	FORCEINLINE void SetShortCode(const FString& NewValue) { ShortCode_Optional = NewValue; ShortCode_IsSet = true;  }
 	/** @brief Sets the value of ShortCode_Optional and also sets ShortCode_IsSet to true using move semantics */
-	void SetShortCode(FString&& NewValue) { ShortCode_Optional = NewValue; ShortCode_IsSet = true;  }
+	FORCEINLINE void SetShortCode(FString&& NewValue) { ShortCode_Optional = NewValue; ShortCode_IsSet = true;  }
 	/** @brief Clears the value of ShortCode_Optional and sets ShortCode_IsSet to false */
 	void ClearShortCode() { ShortCode_IsSet = false;  }
-	/** @brief Checks whether ShortCode_Optional has been set */
-	bool IsShortCodeSet() const { return ShortCode_IsSet; }
 };
 
 /** @} */

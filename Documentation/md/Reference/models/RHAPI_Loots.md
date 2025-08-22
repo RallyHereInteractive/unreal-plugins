@@ -28,28 +28,26 @@ A collection of Loot by Loot ID.
 `public bool `[`CacheInfo_IsNull`](#structFRHAPI__Loots_1a07727ba89c62503567d165bc8f528983) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__Loots_1a9ac2821309e9fcc06b800d1aa0009584)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Loots_1aceb6fd14d810831adae96bd7364fc5f6)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a4a10dd00d92186318ccfb7b7d9254322)`()` | Gets the value of Loot_Optional, regardless of it having been set.
-`public inline const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a9248b731172ee16a8bb10417c5bbadad)`() const` | Gets the value of Loot_Optional, regardless of it having been set.
-`public inline const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1aead2359aab62e584a62af3961c561f0c)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & DefaultValue) const` | Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLoot`](#structFRHAPI__Loots_1a50e60dc08952498a65312a97e9721136)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & OutValue) const` | Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Loots_1a365b2bc94bcad8f7b69b9c3e710c50c7)`()` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Loots_1a654d1e931bdf149c9ea4aeeb842f3361)`() const` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLoot`](#structFRHAPI__Loots_1a347cd569d3c27eabc079273336ed49ea)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true.
-`public inline void `[`SetLoot`](#structFRHAPI__Loots_1a2dccb22032cf05f244071ba8e5971772)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > && NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a4544402b44dbce837c096aac906118a0)`()` | Gets the value of Loot_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a4676f5b93390cd2dcf3f4c00bb4dafa3)`() const` | Gets the value of Loot_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1aff40b0a0372fc3a5e22d9de897374ae9)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & DefaultValue) const` | Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLoot`](#structFRHAPI__Loots_1ad0da0aa176315a009c020bee50504418)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & OutValue) const` | Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Loots_1a58d58ad79cfb4f596580d6e03a5a674f)`()` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Loots_1a49304068c18c58502a50d53c21690035)`() const` | Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLoot`](#structFRHAPI__Loots_1ab45e5e604fcfd2d8e774414b04912f09)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true.
+`public inline FORCEINLINE void `[`SetLoot`](#structFRHAPI__Loots_1abdae89cbe770f8a772902fa05573d76d)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > && NewValue)` | Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics.
 `public inline void `[`ClearLoot`](#structFRHAPI__Loots_1a6e29a6b9f404f4f51dff7ce78ff39163)`()` | Clears the value of Loot_Optional and sets Loot_IsSet to false.
-`public inline bool `[`IsLootSet`](#structFRHAPI__Loots_1ab8f7912b1db91ccaa46c1b32514da9a8)`() const` | Checks whether Loot_Optional has been set.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1a8f486caae88188283317fc444f9d1d96)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1ac43178fe80f5afd35f9049237a9050e6)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1ab4231dbdec9732375a32eab0f7e3609e)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCacheInfo`](#structFRHAPI__Loots_1ad04543b8d670e0a2fc8c13a931286140)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Loots_1acc35f566c7428e470fe44ee8ff20908c)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Loots_1a53a823f4fc344434013c3589f5aeb092)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Loots_1aaebf02a37645c8ecb54498fe03709903)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Loots_1ab8d2bf1fce096833f34b121301166b48)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1a2677a254f04dcb4f448696a401d70e60)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1a75bbe6c70e90776e16acae06b9ff339b)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1ac9b974c695b9aecb7b3decc29c4714de)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCacheInfo`](#structFRHAPI__Loots_1a9c728a6bc8419d270f9f15df23fadcad)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Loots_1a90a0ccb97945426f21f6167c4cd1e9d4)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Loots_1abe9ccfd821529ca2ce7e042211075c0e)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Loots_1ab7393817fa57f9849ab2f45dd18dc60f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Loots_1af21bc8d272fff600ed362e1a8ea73f04)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Loots_1ab10398ad09e903163371c6cb2f3ad18d)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
-`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Loots_1ad839bbaf202df749e589a61bcbe1f895)`() const` | Checks whether CacheInfo_Optional has been set.
-`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Loots_1abe8040ea760dee6131343a35634fd1ee)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Loots_1a1ccb173745e1cc99209c598b05eea796)`() const` | Checks whether CacheInfo_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCacheInfoToNull`](#structFRHAPI__Loots_1a39e3801292e42b594fd6c05090c0c9e7)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCacheInfoNull`](#structFRHAPI__Loots_1a7fdbbe33adea10b245ecd367f9896b13)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -86,35 +84,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a4a10dd00d92186318ccfb7b7d9254322)`()` <a id="structFRHAPI__Loots_1a4a10dd00d92186318ccfb7b7d9254322"></a>
+#### `public inline FORCEINLINE TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a4544402b44dbce837c096aac906118a0)`()` <a id="structFRHAPI__Loots_1a4544402b44dbce837c096aac906118a0"></a>
 
 Gets the value of Loot_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a9248b731172ee16a8bb10417c5bbadad)`() const` <a id="structFRHAPI__Loots_1a9248b731172ee16a8bb10417c5bbadad"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1a4676f5b93390cd2dcf3f4c00bb4dafa3)`() const` <a id="structFRHAPI__Loots_1a4676f5b93390cd2dcf3f4c00bb4dafa3"></a>
 
 Gets the value of Loot_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1aead2359aab62e584a62af3961c561f0c)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & DefaultValue) const` <a id="structFRHAPI__Loots_1aead2359aab62e584a62af3961c561f0c"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & `[`GetLoot`](#structFRHAPI__Loots_1aff40b0a0372fc3a5e22d9de897374ae9)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & DefaultValue) const` <a id="structFRHAPI__Loots_1aff40b0a0372fc3a5e22d9de897374ae9"></a>
 
 Gets the value of Loot_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLoot`](#structFRHAPI__Loots_1a50e60dc08952498a65312a97e9721136)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & OutValue) const` <a id="structFRHAPI__Loots_1a50e60dc08952498a65312a97e9721136"></a>
+#### `public inline FORCEINLINE bool `[`GetLoot`](#structFRHAPI__Loots_1ad0da0aa176315a009c020bee50504418)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & OutValue) const` <a id="structFRHAPI__Loots_1ad0da0aa176315a009c020bee50504418"></a>
 
 Fills OutValue with the value of Loot_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Loots_1a365b2bc94bcad8f7b69b9c3e710c50c7)`()` <a id="structFRHAPI__Loots_1a365b2bc94bcad8f7b69b9c3e710c50c7"></a>
+#### `public inline FORCEINLINE TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Loots_1a58d58ad79cfb4f596580d6e03a5a674f)`()` <a id="structFRHAPI__Loots_1a58d58ad79cfb4f596580d6e03a5a674f"></a>
 
 Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Loots_1a654d1e931bdf149c9ea4aeeb842f3361)`() const` <a id="structFRHAPI__Loots_1a654d1e931bdf149c9ea4aeeb842f3361"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > * `[`GetLootOrNull`](#structFRHAPI__Loots_1a49304068c18c58502a50d53c21690035)`() const` <a id="structFRHAPI__Loots_1a49304068c18c58502a50d53c21690035"></a>
 
 Returns a pointer to Loot_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLoot`](#structFRHAPI__Loots_1a347cd569d3c27eabc079273336ed49ea)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & NewValue)` <a id="structFRHAPI__Loots_1a347cd569d3c27eabc079273336ed49ea"></a>
+#### `public inline FORCEINLINE void `[`SetLoot`](#structFRHAPI__Loots_1ab45e5e604fcfd2d8e774414b04912f09)`(const TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > & NewValue)` <a id="structFRHAPI__Loots_1ab45e5e604fcfd2d8e774414b04912f09"></a>
 
 Sets the value of Loot_Optional and also sets Loot_IsSet to true.
 
-#### `public inline void `[`SetLoot`](#structFRHAPI__Loots_1a2dccb22032cf05f244071ba8e5971772)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > && NewValue)` <a id="structFRHAPI__Loots_1a2dccb22032cf05f244071ba8e5971772"></a>
+#### `public inline FORCEINLINE void `[`SetLoot`](#structFRHAPI__Loots_1abdae89cbe770f8a772902fa05573d76d)`(TMap< FString, `[`FRHAPI_Loot`](RHAPI_Loot.md#structFRHAPI__Loot)` > && NewValue)` <a id="structFRHAPI__Loots_1abdae89cbe770f8a772902fa05573d76d"></a>
 
 Sets the value of Loot_Optional and also sets Loot_IsSet to true using move semantics.
 
@@ -122,39 +120,35 @@ Sets the value of Loot_Optional and also sets Loot_IsSet to true using move sema
 
 Clears the value of Loot_Optional and sets Loot_IsSet to false.
 
-#### `public inline bool `[`IsLootSet`](#structFRHAPI__Loots_1ab8f7912b1db91ccaa46c1b32514da9a8)`() const` <a id="structFRHAPI__Loots_1ab8f7912b1db91ccaa46c1b32514da9a8"></a>
-
-Checks whether Loot_Optional has been set.
-
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1a8f486caae88188283317fc444f9d1d96)`()` <a id="structFRHAPI__Loots_1a8f486caae88188283317fc444f9d1d96"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1a2677a254f04dcb4f448696a401d70e60)`()` <a id="structFRHAPI__Loots_1a2677a254f04dcb4f448696a401d70e60"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1ac43178fe80f5afd35f9049237a9050e6)`() const` <a id="structFRHAPI__Loots_1ac43178fe80f5afd35f9049237a9050e6"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1a75bbe6c70e90776e16acae06b9ff339b)`() const` <a id="structFRHAPI__Loots_1a75bbe6c70e90776e16acae06b9ff339b"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1ab4231dbdec9732375a32eab0f7e3609e)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__Loots_1ab4231dbdec9732375a32eab0f7e3609e"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Loots_1ac9b974c695b9aecb7b3decc29c4714de)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__Loots_1ac9b974c695b9aecb7b3decc29c4714de"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCacheInfo`](#structFRHAPI__Loots_1ad04543b8d670e0a2fc8c13a931286140)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__Loots_1ad04543b8d670e0a2fc8c13a931286140"></a>
+#### `public inline FORCEINLINE bool `[`GetCacheInfo`](#structFRHAPI__Loots_1a9c728a6bc8419d270f9f15df23fadcad)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__Loots_1a9c728a6bc8419d270f9f15df23fadcad"></a>
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Loots_1acc35f566c7428e470fe44ee8ff20908c)`()` <a id="structFRHAPI__Loots_1acc35f566c7428e470fe44ee8ff20908c"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Loots_1a90a0ccb97945426f21f6167c4cd1e9d4)`()` <a id="structFRHAPI__Loots_1a90a0ccb97945426f21f6167c4cd1e9d4"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Loots_1a53a823f4fc344434013c3589f5aeb092)`() const` <a id="structFRHAPI__Loots_1a53a823f4fc344434013c3589f5aeb092"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Loots_1abe9ccfd821529ca2ce7e042211075c0e)`() const` <a id="structFRHAPI__Loots_1abe9ccfd821529ca2ce7e042211075c0e"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Loots_1aaebf02a37645c8ecb54498fe03709903)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Loots_1aaebf02a37645c8ecb54498fe03709903"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Loots_1ab7393817fa57f9849ab2f45dd18dc60f)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Loots_1ab7393817fa57f9849ab2f45dd18dc60f"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Loots_1ab8d2bf1fce096833f34b121301166b48)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Loots_1ab8d2bf1fce096833f34b121301166b48"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Loots_1af21bc8d272fff600ed362e1a8ea73f04)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Loots_1af21bc8d272fff600ed362e1a8ea73f04"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
@@ -162,15 +156,11 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Loots_1ad839bbaf202df749e589a61bcbe1f895)`() const` <a id="structFRHAPI__Loots_1ad839bbaf202df749e589a61bcbe1f895"></a>
-
-Checks whether CacheInfo_Optional has been set.
-
-#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Loots_1abe8040ea760dee6131343a35634fd1ee)`()` <a id="structFRHAPI__Loots_1abe8040ea760dee6131343a35634fd1ee"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfoToNull`](#structFRHAPI__Loots_1a39e3801292e42b594fd6c05090c0c9e7)`()` <a id="structFRHAPI__Loots_1a39e3801292e42b594fd6c05090c0c9e7"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Loots_1a1ccb173745e1cc99209c598b05eea796)`() const` <a id="structFRHAPI__Loots_1a1ccb173745e1cc99209c598b05eea796"></a>
+#### `public inline FORCEINLINE bool `[`IsCacheInfoNull`](#structFRHAPI__Loots_1a7fdbbe33adea10b245ecd367f9896b13)`() const` <a id="structFRHAPI__Loots_1a7fdbbe33adea10b245ecd367f9896b13"></a>
 
 Checks whether CacheInfo_Optional is set to null.
 

@@ -43,13 +43,13 @@ struct RALLYHEREAPI_API FRHAPI_PlatformIndividualCCUs : public FRHAPI_Model
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TMap<FString, FRHAPI_IndividualCCUs> PlatformCcus{  };
 	/** @brief Gets the value of PlatformCcus */
-	TMap<FString, FRHAPI_IndividualCCUs>& GetPlatformCcus() { return PlatformCcus; }
+	FORCEINLINE TMap<FString, FRHAPI_IndividualCCUs>& GetPlatformCcus() { return PlatformCcus; }
 	/** @brief Gets the value of PlatformCcus */
-	const TMap<FString, FRHAPI_IndividualCCUs>& GetPlatformCcus() const { return PlatformCcus; }
+	FORCEINLINE const TMap<FString, FRHAPI_IndividualCCUs>& GetPlatformCcus() const { return PlatformCcus; }
 	/** @brief Sets the value of PlatformCcus */
-	void SetPlatformCcus(const TMap<FString, FRHAPI_IndividualCCUs>& NewValue) { PlatformCcus = NewValue;   }
+	FORCEINLINE void SetPlatformCcus(const TMap<FString, FRHAPI_IndividualCCUs>& NewValue) { PlatformCcus = NewValue;   }
 	/** @brief Sets the value of PlatformCcus using move semantics */
-	void SetPlatformCcus(TMap<FString, FRHAPI_IndividualCCUs>&& NewValue) { PlatformCcus = NewValue;   }
+	FORCEINLINE void SetPlatformCcus(TMap<FString, FRHAPI_IndividualCCUs>&& NewValue) { PlatformCcus = NewValue;   }
 };
 
 /** @} */
