@@ -24,10 +24,10 @@ Request to update a person&#39;s info.
 `public FString `[`Email`](#structFRHAPI__UpdatePersonInfoRequest_1af5a820fdad3bb4e59df07be959c7858e) | Email address to update to.
 `public virtual bool `[`FromJson`](#structFRHAPI__UpdatePersonInfoRequest_1ab271bcfd365918be206355786350fdf7)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__UpdatePersonInfoRequest_1a63f485505325becbcb55927a87c0f332)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1ad0f247fd3b03dad68056712f909b3cb2)`()` | Gets the value of Email.
-`public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a0f1f5961a87ff49397de63847ca339a4)`() const` | Gets the value of Email.
-`public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a645433b72c507ec2fe0e716b643527cb)`(const FString & NewValue)` | Sets the value of Email.
-`public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a029fb9fdd039ad651f3afb5856dbd27f)`(FString && NewValue)` | Sets the value of Email using move semantics.
+`public inline FORCEINLINE FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a7c424be555959105cea4ed636f35a14f)`()` | Gets the value of Email.
+`public inline FORCEINLINE const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a4c3e5a1babb80660aeb2a0e4782ce606)`() const` | Gets the value of Email.
+`public inline FORCEINLINE void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1ab36607b027654da0e1c9d75c1060a928)`(const FString & NewValue)` | Sets the value of Email.
+`public inline FORCEINLINE void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a99da38a0e5753f54586d922f83f3f647)`(FString && NewValue)` | Sets the value of Email using move semantics.
 
 ### Members
 
@@ -52,19 +52,19 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1ad0f247fd3b03dad68056712f909b3cb2)`()` <a id="structFRHAPI__UpdatePersonInfoRequest_1ad0f247fd3b03dad68056712f909b3cb2"></a>
+#### `public inline FORCEINLINE FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a7c424be555959105cea4ed636f35a14f)`()` <a id="structFRHAPI__UpdatePersonInfoRequest_1a7c424be555959105cea4ed636f35a14f"></a>
 
 Gets the value of Email.
 
-#### `public inline const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a0f1f5961a87ff49397de63847ca339a4)`() const` <a id="structFRHAPI__UpdatePersonInfoRequest_1a0f1f5961a87ff49397de63847ca339a4"></a>
+#### `public inline FORCEINLINE const FString & `[`GetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a4c3e5a1babb80660aeb2a0e4782ce606)`() const` <a id="structFRHAPI__UpdatePersonInfoRequest_1a4c3e5a1babb80660aeb2a0e4782ce606"></a>
 
 Gets the value of Email.
 
-#### `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a645433b72c507ec2fe0e716b643527cb)`(const FString & NewValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1a645433b72c507ec2fe0e716b643527cb"></a>
+#### `public inline FORCEINLINE void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1ab36607b027654da0e1c9d75c1060a928)`(const FString & NewValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1ab36607b027654da0e1c9d75c1060a928"></a>
 
 Sets the value of Email.
 
-#### `public inline void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a029fb9fdd039ad651f3afb5856dbd27f)`(FString && NewValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1a029fb9fdd039ad651f3afb5856dbd27f"></a>
+#### `public inline FORCEINLINE void `[`SetEmail`](#structFRHAPI__UpdatePersonInfoRequest_1a99da38a0e5753f54586d922f83f3f647)`(FString && NewValue)` <a id="structFRHAPI__UpdatePersonInfoRequest_1a99da38a0e5753f54586d922f83f3f647"></a>
 
 Sets the value of Email using move semantics.
 

@@ -28,28 +28,26 @@ A collection of Vendors by Vendor ID.
 `public bool `[`CacheInfo_IsNull`](#structFRHAPI__Vendors_1a7ce8bd7a0a04a24b75afc56787821708) | true if CacheInfo_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__Vendors_1a478fd25380182393b2547a4b9ffcc806)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Vendors_1a3b89a6865d85c56c322e3e9f7e36ff0d)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1ad05ca4319f3cf8574bd6a9d965110687)`()` | Gets the value of Vendors_Optional, regardless of it having been set.
-`public inline const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1a5fc61724f6ea0d9a29157d5bea5eaa4e)`() const` | Gets the value of Vendors_Optional, regardless of it having been set.
-`public inline const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1aa8a6fc08970c65ef9c6bc63a504ff98c)`(const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & DefaultValue) const` | Gets the value of Vendors_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetVendors`](#structFRHAPI__Vendors_1a21ae98705597d7efaad06c370782b488)`(TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & OutValue) const` | Fills OutValue with the value of Vendors_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > * `[`GetVendorsOrNull`](#structFRHAPI__Vendors_1ab70c709484b85c7deb58f5f598eab5f7)`()` | Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > * `[`GetVendorsOrNull`](#structFRHAPI__Vendors_1a21a9b897228b473e2133bbdc34548bd2)`() const` | Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetVendors`](#structFRHAPI__Vendors_1a8bdca23e7a0ced78140c8f72c3049209)`(const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & NewValue)` | Sets the value of Vendors_Optional and also sets Vendors_IsSet to true.
-`public inline void `[`SetVendors`](#structFRHAPI__Vendors_1a0478ad525bf0c0da2639d6b2fe5247e8)`(TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > && NewValue)` | Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1a3190f9fb97b26acabf5c40e7b5878d4e)`()` | Gets the value of Vendors_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1a69635c8254582f79b8882503900a5c32)`() const` | Gets the value of Vendors_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1aa841738641a1f748cfcf4e9118d988c3)`(const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & DefaultValue) const` | Gets the value of Vendors_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetVendors`](#structFRHAPI__Vendors_1a0e92dd84b924dff2a416ad21d931fb0b)`(TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & OutValue) const` | Fills OutValue with the value of Vendors_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > * `[`GetVendorsOrNull`](#structFRHAPI__Vendors_1a64a606f1c85b2e16f0fbec8ea1e5f937)`()` | Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > * `[`GetVendorsOrNull`](#structFRHAPI__Vendors_1a19d631f0cc672476d44bf2f0f9b5484b)`() const` | Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetVendors`](#structFRHAPI__Vendors_1a7df33ea15251bd0fb4eea8c8dd1f36e7)`(const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & NewValue)` | Sets the value of Vendors_Optional and also sets Vendors_IsSet to true.
+`public inline FORCEINLINE void `[`SetVendors`](#structFRHAPI__Vendors_1aedd0ccc44612b34c4b29d1d3e18e6a6d)`(TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > && NewValue)` | Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics.
 `public inline void `[`ClearVendors`](#structFRHAPI__Vendors_1aba0ed2732c70584fa05e8abb0eb14855)`()` | Clears the value of Vendors_Optional and sets Vendors_IsSet to false.
-`public inline bool `[`IsVendorsSet`](#structFRHAPI__Vendors_1a13df8f57ff533ea92ad16bee5d0b1b47)`() const` | Checks whether Vendors_Optional has been set.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1ac0bc2f1150f4bfd30e32b019f77797b2)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1af00851ca1e4ee4b432004e60b969c29c)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1a4f8cf5ee185cc55d71f621cc65ef50ee)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCacheInfo`](#structFRHAPI__Vendors_1a566ae446763cd8784d96daadfd0d8693)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendors_1a68f87c3ba9e36f564a40adada2e153fe)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendors_1aade22d1185797c23ba0eb3861f24ab09)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Vendors_1aa3bf7d9f93b6c703f27ea549b948303e)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
-`public inline void `[`SetCacheInfo`](#structFRHAPI__Vendors_1aba10303b3e5b18cda189db7e83ecd125)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1ab29894dc805a70d0621cceefd5b21368)`()` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1a6049e044ee3f52bee247bdd710feacfa)`() const` | Gets the value of CacheInfo_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1ac59610401786e5f62b3833060d3537a1)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` | Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCacheInfo`](#structFRHAPI__Vendors_1a64808b8bacb61852985011efb9c16287)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` | Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendors_1abdba623f5b2e3de926e4ca5e838af6e1)`()` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendors_1ae1347ba720fe8bc094038aa90b8a328a)`() const` | Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Vendors_1a085dcad9709f5549fa99295eaab0a258)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
+`public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Vendors_1a2e960f3b2e14608972c4831476ec7581)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` | Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 `public inline void `[`ClearCacheInfo`](#structFRHAPI__Vendors_1ae62d7b93e3f17f45b54c1d61b666a0c7)`()` | Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
-`public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Vendors_1a2ddafe285c25e26f4b00c24462eacde2)`() const` | Checks whether CacheInfo_Optional has been set.
-`public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Vendors_1a0640d192422bf13a80b069a36aa69b29)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Vendors_1a83a5c987fc7ea548455ea87a41b47bab)`() const` | Checks whether CacheInfo_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCacheInfoToNull`](#structFRHAPI__Vendors_1a7276095f02ac65f1f8bb559f2a849f66)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCacheInfoNull`](#structFRHAPI__Vendors_1a3e0c832c62f9c1a2991d8696b30d3de4)`() const` | Checks whether CacheInfo_Optional is set to null.
 
 ### Members
 
@@ -86,35 +84,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1ad05ca4319f3cf8574bd6a9d965110687)`()` <a id="structFRHAPI__Vendors_1ad05ca4319f3cf8574bd6a9d965110687"></a>
+#### `public inline FORCEINLINE TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1a3190f9fb97b26acabf5c40e7b5878d4e)`()` <a id="structFRHAPI__Vendors_1a3190f9fb97b26acabf5c40e7b5878d4e"></a>
 
 Gets the value of Vendors_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1a5fc61724f6ea0d9a29157d5bea5eaa4e)`() const` <a id="structFRHAPI__Vendors_1a5fc61724f6ea0d9a29157d5bea5eaa4e"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1a69635c8254582f79b8882503900a5c32)`() const` <a id="structFRHAPI__Vendors_1a69635c8254582f79b8882503900a5c32"></a>
 
 Gets the value of Vendors_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1aa8a6fc08970c65ef9c6bc63a504ff98c)`(const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & DefaultValue) const` <a id="structFRHAPI__Vendors_1aa8a6fc08970c65ef9c6bc63a504ff98c"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & `[`GetVendors`](#structFRHAPI__Vendors_1aa841738641a1f748cfcf4e9118d988c3)`(const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & DefaultValue) const` <a id="structFRHAPI__Vendors_1aa841738641a1f748cfcf4e9118d988c3"></a>
 
 Gets the value of Vendors_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetVendors`](#structFRHAPI__Vendors_1a21ae98705597d7efaad06c370782b488)`(TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & OutValue) const` <a id="structFRHAPI__Vendors_1a21ae98705597d7efaad06c370782b488"></a>
+#### `public inline FORCEINLINE bool `[`GetVendors`](#structFRHAPI__Vendors_1a0e92dd84b924dff2a416ad21d931fb0b)`(TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & OutValue) const` <a id="structFRHAPI__Vendors_1a0e92dd84b924dff2a416ad21d931fb0b"></a>
 
 Fills OutValue with the value of Vendors_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > * `[`GetVendorsOrNull`](#structFRHAPI__Vendors_1ab70c709484b85c7deb58f5f598eab5f7)`()` <a id="structFRHAPI__Vendors_1ab70c709484b85c7deb58f5f598eab5f7"></a>
+#### `public inline FORCEINLINE TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > * `[`GetVendorsOrNull`](#structFRHAPI__Vendors_1a64a606f1c85b2e16f0fbec8ea1e5f937)`()` <a id="structFRHAPI__Vendors_1a64a606f1c85b2e16f0fbec8ea1e5f937"></a>
 
 Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > * `[`GetVendorsOrNull`](#structFRHAPI__Vendors_1a21a9b897228b473e2133bbdc34548bd2)`() const` <a id="structFRHAPI__Vendors_1a21a9b897228b473e2133bbdc34548bd2"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > * `[`GetVendorsOrNull`](#structFRHAPI__Vendors_1a19d631f0cc672476d44bf2f0f9b5484b)`() const` <a id="structFRHAPI__Vendors_1a19d631f0cc672476d44bf2f0f9b5484b"></a>
 
 Returns a pointer to Vendors_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetVendors`](#structFRHAPI__Vendors_1a8bdca23e7a0ced78140c8f72c3049209)`(const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & NewValue)` <a id="structFRHAPI__Vendors_1a8bdca23e7a0ced78140c8f72c3049209"></a>
+#### `public inline FORCEINLINE void `[`SetVendors`](#structFRHAPI__Vendors_1a7df33ea15251bd0fb4eea8c8dd1f36e7)`(const TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > & NewValue)` <a id="structFRHAPI__Vendors_1a7df33ea15251bd0fb4eea8c8dd1f36e7"></a>
 
 Sets the value of Vendors_Optional and also sets Vendors_IsSet to true.
 
-#### `public inline void `[`SetVendors`](#structFRHAPI__Vendors_1a0478ad525bf0c0da2639d6b2fe5247e8)`(TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > && NewValue)` <a id="structFRHAPI__Vendors_1a0478ad525bf0c0da2639d6b2fe5247e8"></a>
+#### `public inline FORCEINLINE void `[`SetVendors`](#structFRHAPI__Vendors_1aedd0ccc44612b34c4b29d1d3e18e6a6d)`(TMap< FString, `[`FRHAPI_Vendor`](RHAPI_Vendor.md#structFRHAPI__Vendor)` > && NewValue)` <a id="structFRHAPI__Vendors_1aedd0ccc44612b34c4b29d1d3e18e6a6d"></a>
 
 Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using move semantics.
 
@@ -122,39 +120,35 @@ Sets the value of Vendors_Optional and also sets Vendors_IsSet to true using mov
 
 Clears the value of Vendors_Optional and sets Vendors_IsSet to false.
 
-#### `public inline bool `[`IsVendorsSet`](#structFRHAPI__Vendors_1a13df8f57ff533ea92ad16bee5d0b1b47)`() const` <a id="structFRHAPI__Vendors_1a13df8f57ff533ea92ad16bee5d0b1b47"></a>
-
-Checks whether Vendors_Optional has been set.
-
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1ac0bc2f1150f4bfd30e32b019f77797b2)`()` <a id="structFRHAPI__Vendors_1ac0bc2f1150f4bfd30e32b019f77797b2"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1ab29894dc805a70d0621cceefd5b21368)`()` <a id="structFRHAPI__Vendors_1ab29894dc805a70d0621cceefd5b21368"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1af00851ca1e4ee4b432004e60b969c29c)`() const` <a id="structFRHAPI__Vendors_1af00851ca1e4ee4b432004e60b969c29c"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1a6049e044ee3f52bee247bdd710feacfa)`() const` <a id="structFRHAPI__Vendors_1a6049e044ee3f52bee247bdd710feacfa"></a>
 
 Gets the value of CacheInfo_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1a4f8cf5ee185cc55d71f621cc65ef50ee)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__Vendors_1a4f8cf5ee185cc55d71f621cc65ef50ee"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & `[`GetCacheInfo`](#structFRHAPI__Vendors_1ac59610401786e5f62b3833060d3537a1)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & DefaultValue) const` <a id="structFRHAPI__Vendors_1ac59610401786e5f62b3833060d3537a1"></a>
 
 Gets the value of CacheInfo_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCacheInfo`](#structFRHAPI__Vendors_1a566ae446763cd8784d96daadfd0d8693)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__Vendors_1a566ae446763cd8784d96daadfd0d8693"></a>
+#### `public inline FORCEINLINE bool `[`GetCacheInfo`](#structFRHAPI__Vendors_1a64808b8bacb61852985011efb9c16287)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & OutValue) const` <a id="structFRHAPI__Vendors_1a64808b8bacb61852985011efb9c16287"></a>
 
 Fills OutValue with the value of CacheInfo_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendors_1a68f87c3ba9e36f564a40adada2e153fe)`()` <a id="structFRHAPI__Vendors_1a68f87c3ba9e36f564a40adada2e153fe"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendors_1abdba623f5b2e3de926e4ca5e838af6e1)`()` <a id="structFRHAPI__Vendors_1abdba623f5b2e3de926e4ca5e838af6e1"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendors_1aade22d1185797c23ba0eb3861f24ab09)`() const` <a id="structFRHAPI__Vendors_1aade22d1185797c23ba0eb3861f24ab09"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` * `[`GetCacheInfoOrNull`](#structFRHAPI__Vendors_1ae1347ba720fe8bc094038aa90b8a328a)`() const` <a id="structFRHAPI__Vendors_1ae1347ba720fe8bc094038aa90b8a328a"></a>
 
 Returns a pointer to CacheInfo_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendors_1aa3bf7d9f93b6c703f27ea549b948303e)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Vendors_1aa3bf7d9f93b6c703f27ea549b948303e"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Vendors_1a085dcad9709f5549fa99295eaab0a258)`(const `[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` & NewValue)` <a id="structFRHAPI__Vendors_1a085dcad9709f5549fa99295eaab0a258"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true.
 
-#### `public inline void `[`SetCacheInfo`](#structFRHAPI__Vendors_1aba10303b3e5b18cda189db7e83ecd125)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Vendors_1aba10303b3e5b18cda189db7e83ecd125"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfo`](#structFRHAPI__Vendors_1a2e960f3b2e14608972c4831476ec7581)`(`[`FRHAPI_CacheInfo`](RHAPI_CacheInfo.md#structFRHAPI__CacheInfo)` && NewValue)` <a id="structFRHAPI__Vendors_1a2e960f3b2e14608972c4831476ec7581"></a>
 
 Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using move semantics.
 
@@ -162,15 +156,11 @@ Sets the value of CacheInfo_Optional and also sets CacheInfo_IsSet to true using
 
 Clears the value of CacheInfo_Optional and sets CacheInfo_IsSet to false.
 
-#### `public inline bool `[`IsCacheInfoSet`](#structFRHAPI__Vendors_1a2ddafe285c25e26f4b00c24462eacde2)`() const` <a id="structFRHAPI__Vendors_1a2ddafe285c25e26f4b00c24462eacde2"></a>
-
-Checks whether CacheInfo_Optional has been set.
-
-#### `public inline void `[`SetCacheInfoToNull`](#structFRHAPI__Vendors_1a0640d192422bf13a80b069a36aa69b29)`()` <a id="structFRHAPI__Vendors_1a0640d192422bf13a80b069a36aa69b29"></a>
+#### `public inline FORCEINLINE void `[`SetCacheInfoToNull`](#structFRHAPI__Vendors_1a7276095f02ac65f1f8bb559f2a849f66)`()` <a id="structFRHAPI__Vendors_1a7276095f02ac65f1f8bb559f2a849f66"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCacheInfoNull`](#structFRHAPI__Vendors_1a83a5c987fc7ea548455ea87a41b47bab)`() const` <a id="structFRHAPI__Vendors_1a83a5c987fc7ea548455ea87a41b47bab"></a>
+#### `public inline FORCEINLINE bool `[`IsCacheInfoNull`](#structFRHAPI__Vendors_1a3e0c832c62f9c1a2991d8696b30d3de4)`() const` <a id="structFRHAPI__Vendors_1a3e0c832c62f9c1a2991d8696b30d3de4"></a>
 
 Checks whether CacheInfo_Optional is set to null.
 

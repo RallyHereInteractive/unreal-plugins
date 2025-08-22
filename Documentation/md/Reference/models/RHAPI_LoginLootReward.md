@@ -26,22 +26,20 @@ Login loot reward.
 `public int32 `[`LegacyLootId`](#structFRHAPI__LoginLootReward_1a7ab376e7657f818e5d5abf6d6558b23c) | Legacy Loot ID.
 `public virtual bool `[`FromJson`](#structFRHAPI__LoginLootReward_1a111983aef9ed55934b367e0a217ab245)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LoginLootReward_1a8fd1abcf8588b29eec7e86468394be27)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1aa5d55737ab6b498e5d169037cfda1461)`()` | Gets the value of LootId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1aba9c55822961cfcb9d51012134bbc882)`() const` | Gets the value of LootId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1ab449c0724065e4d306da2fb1c84e2153)`(const FString & DefaultValue) const` | Gets the value of LootId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLootId`](#structFRHAPI__LoginLootReward_1ae54a4264625caecbbd21b37fc250de4b)`(FString & OutValue) const` | Fills OutValue with the value of LootId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetLootIdOrNull`](#structFRHAPI__LoginLootReward_1afa2cd897d26cdddc1599b99a208ec343)`()` | Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetLootIdOrNull`](#structFRHAPI__LoginLootReward_1a0f489d34a5f682ecff22c41dac99b46d)`() const` | Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLootId`](#structFRHAPI__LoginLootReward_1a2c74628775622824442d43b14a8323e0)`(const FString & NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true.
-`public inline void `[`SetLootId`](#structFRHAPI__LoginLootReward_1a31799f251da9efc5e249bbdc584ad7f7)`(FString && NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1adc614155fef3ea009a41a03fff9fbfdf)`()` | Gets the value of LootId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1a2fa607481ee54b851bd0a307e24e8e6e)`() const` | Gets the value of LootId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1a303fadefb6e411edb00c7179a6271c38)`(const FString & DefaultValue) const` | Gets the value of LootId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLootId`](#structFRHAPI__LoginLootReward_1a06c86c30d4e610b75c7c7955c9c8ff86)`(FString & OutValue) const` | Fills OutValue with the value of LootId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetLootIdOrNull`](#structFRHAPI__LoginLootReward_1ade5ea82817b3be4599e34799a272f35e)`()` | Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetLootIdOrNull`](#structFRHAPI__LoginLootReward_1a3bfbdc12aed52f6d42afa4b7693a8aad)`() const` | Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLootId`](#structFRHAPI__LoginLootReward_1a510b1e2bccab5b3c436dee3e9c20d38d)`(const FString & NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true.
+`public inline FORCEINLINE void `[`SetLootId`](#structFRHAPI__LoginLootReward_1abc0a8d02b6559aefad64e8103a7dae51)`(FString && NewValue)` | Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics.
 `public inline void `[`ClearLootId`](#structFRHAPI__LoginLootReward_1a599ca6fce01c2ff467e8f87d54826046)`()` | Clears the value of LootId_Optional and sets LootId_IsSet to false.
-`public inline bool `[`IsLootIdSet`](#structFRHAPI__LoginLootReward_1ac48dde4cbe606123df68fc4de4856d00)`() const` | Checks whether LootId_Optional has been set.
-`public inline int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1ae302870e9caa9105031467adc8bae8ff)`()` | Gets the value of LegacyLootId.
-`public inline const int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1ae2d9341eb57cef97116fe3e540b77618)`() const` | Gets the value of LegacyLootId.
-`public inline void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1ac149a32f1007e60a1387fbd375bd20ef)`(const int32 & NewValue)` | Sets the value of LegacyLootId.
-`public inline void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1a9d14468d66edf9e5f6b072184f47ac41)`(int32 && NewValue)` | Sets the value of LegacyLootId using move semantics.
-`public inline bool `[`IsLegacyLootIdDefaultValue`](#structFRHAPI__LoginLootReward_1a99d9388054b1d602c2ef9bcd3d622bc1)`() const` | Returns true if LegacyLootId matches the default value.
-`public inline void `[`SetLegacyLootIdToDefault`](#structFRHAPI__LoginLootReward_1a40a3b736b38673701743f9da9423f553)`()` | Sets the value of LegacyLootId to its default
+`public inline FORCEINLINE int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1a0a55e4a6085e24b4a92a31085028fd2f)`()` | Gets the value of LegacyLootId.
+`public inline FORCEINLINE const int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1a07e34bd06367e27a9943191d0e456cf2)`() const` | Gets the value of LegacyLootId.
+`public inline FORCEINLINE void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1ac17f8bd2685543b7a3b9240c6a8e98cb)`(const int32 & NewValue)` | Sets the value of LegacyLootId.
+`public inline FORCEINLINE void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1a5aad4903f797dc57f5f87f8a73b8b2bb)`(int32 && NewValue)` | Sets the value of LegacyLootId using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_LegacyLootId`](#structFRHAPI__LoginLootReward_1a48e6c38f470c42d4552d06233f770f64)`()` | Returns the default value of LegacyLootId.
 
 ### Members
 
@@ -74,35 +72,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1aa5d55737ab6b498e5d169037cfda1461)`()` <a id="structFRHAPI__LoginLootReward_1aa5d55737ab6b498e5d169037cfda1461"></a>
+#### `public inline FORCEINLINE FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1adc614155fef3ea009a41a03fff9fbfdf)`()` <a id="structFRHAPI__LoginLootReward_1adc614155fef3ea009a41a03fff9fbfdf"></a>
 
 Gets the value of LootId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1aba9c55822961cfcb9d51012134bbc882)`() const` <a id="structFRHAPI__LoginLootReward_1aba9c55822961cfcb9d51012134bbc882"></a>
+#### `public inline FORCEINLINE const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1a2fa607481ee54b851bd0a307e24e8e6e)`() const` <a id="structFRHAPI__LoginLootReward_1a2fa607481ee54b851bd0a307e24e8e6e"></a>
 
 Gets the value of LootId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1ab449c0724065e4d306da2fb1c84e2153)`(const FString & DefaultValue) const` <a id="structFRHAPI__LoginLootReward_1ab449c0724065e4d306da2fb1c84e2153"></a>
+#### `public inline FORCEINLINE const FString & `[`GetLootId`](#structFRHAPI__LoginLootReward_1a303fadefb6e411edb00c7179a6271c38)`(const FString & DefaultValue) const` <a id="structFRHAPI__LoginLootReward_1a303fadefb6e411edb00c7179a6271c38"></a>
 
 Gets the value of LootId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLootId`](#structFRHAPI__LoginLootReward_1ae54a4264625caecbbd21b37fc250de4b)`(FString & OutValue) const` <a id="structFRHAPI__LoginLootReward_1ae54a4264625caecbbd21b37fc250de4b"></a>
+#### `public inline FORCEINLINE bool `[`GetLootId`](#structFRHAPI__LoginLootReward_1a06c86c30d4e610b75c7c7955c9c8ff86)`(FString & OutValue) const` <a id="structFRHAPI__LoginLootReward_1a06c86c30d4e610b75c7c7955c9c8ff86"></a>
 
 Fills OutValue with the value of LootId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetLootIdOrNull`](#structFRHAPI__LoginLootReward_1afa2cd897d26cdddc1599b99a208ec343)`()` <a id="structFRHAPI__LoginLootReward_1afa2cd897d26cdddc1599b99a208ec343"></a>
+#### `public inline FORCEINLINE FString * `[`GetLootIdOrNull`](#structFRHAPI__LoginLootReward_1ade5ea82817b3be4599e34799a272f35e)`()` <a id="structFRHAPI__LoginLootReward_1ade5ea82817b3be4599e34799a272f35e"></a>
 
 Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetLootIdOrNull`](#structFRHAPI__LoginLootReward_1a0f489d34a5f682ecff22c41dac99b46d)`() const` <a id="structFRHAPI__LoginLootReward_1a0f489d34a5f682ecff22c41dac99b46d"></a>
+#### `public inline FORCEINLINE const FString * `[`GetLootIdOrNull`](#structFRHAPI__LoginLootReward_1a3bfbdc12aed52f6d42afa4b7693a8aad)`() const` <a id="structFRHAPI__LoginLootReward_1a3bfbdc12aed52f6d42afa4b7693a8aad"></a>
 
 Returns a pointer to LootId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLootId`](#structFRHAPI__LoginLootReward_1a2c74628775622824442d43b14a8323e0)`(const FString & NewValue)` <a id="structFRHAPI__LoginLootReward_1a2c74628775622824442d43b14a8323e0"></a>
+#### `public inline FORCEINLINE void `[`SetLootId`](#structFRHAPI__LoginLootReward_1a510b1e2bccab5b3c436dee3e9c20d38d)`(const FString & NewValue)` <a id="structFRHAPI__LoginLootReward_1a510b1e2bccab5b3c436dee3e9c20d38d"></a>
 
 Sets the value of LootId_Optional and also sets LootId_IsSet to true.
 
-#### `public inline void `[`SetLootId`](#structFRHAPI__LoginLootReward_1a31799f251da9efc5e249bbdc584ad7f7)`(FString && NewValue)` <a id="structFRHAPI__LoginLootReward_1a31799f251da9efc5e249bbdc584ad7f7"></a>
+#### `public inline FORCEINLINE void `[`SetLootId`](#structFRHAPI__LoginLootReward_1abc0a8d02b6559aefad64e8103a7dae51)`(FString && NewValue)` <a id="structFRHAPI__LoginLootReward_1abc0a8d02b6559aefad64e8103a7dae51"></a>
 
 Sets the value of LootId_Optional and also sets LootId_IsSet to true using move semantics.
 
@@ -110,31 +108,23 @@ Sets the value of LootId_Optional and also sets LootId_IsSet to true using move 
 
 Clears the value of LootId_Optional and sets LootId_IsSet to false.
 
-#### `public inline bool `[`IsLootIdSet`](#structFRHAPI__LoginLootReward_1ac48dde4cbe606123df68fc4de4856d00)`() const` <a id="structFRHAPI__LoginLootReward_1ac48dde4cbe606123df68fc4de4856d00"></a>
-
-Checks whether LootId_Optional has been set.
-
-#### `public inline int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1ae302870e9caa9105031467adc8bae8ff)`()` <a id="structFRHAPI__LoginLootReward_1ae302870e9caa9105031467adc8bae8ff"></a>
+#### `public inline FORCEINLINE int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1a0a55e4a6085e24b4a92a31085028fd2f)`()` <a id="structFRHAPI__LoginLootReward_1a0a55e4a6085e24b4a92a31085028fd2f"></a>
 
 Gets the value of LegacyLootId.
 
-#### `public inline const int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1ae2d9341eb57cef97116fe3e540b77618)`() const` <a id="structFRHAPI__LoginLootReward_1ae2d9341eb57cef97116fe3e540b77618"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetLegacyLootId`](#structFRHAPI__LoginLootReward_1a07e34bd06367e27a9943191d0e456cf2)`() const` <a id="structFRHAPI__LoginLootReward_1a07e34bd06367e27a9943191d0e456cf2"></a>
 
 Gets the value of LegacyLootId.
 
-#### `public inline void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1ac149a32f1007e60a1387fbd375bd20ef)`(const int32 & NewValue)` <a id="structFRHAPI__LoginLootReward_1ac149a32f1007e60a1387fbd375bd20ef"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1ac17f8bd2685543b7a3b9240c6a8e98cb)`(const int32 & NewValue)` <a id="structFRHAPI__LoginLootReward_1ac17f8bd2685543b7a3b9240c6a8e98cb"></a>
 
 Sets the value of LegacyLootId.
 
-#### `public inline void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1a9d14468d66edf9e5f6b072184f47ac41)`(int32 && NewValue)` <a id="structFRHAPI__LoginLootReward_1a9d14468d66edf9e5f6b072184f47ac41"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyLootId`](#structFRHAPI__LoginLootReward_1a5aad4903f797dc57f5f87f8a73b8b2bb)`(int32 && NewValue)` <a id="structFRHAPI__LoginLootReward_1a5aad4903f797dc57f5f87f8a73b8b2bb"></a>
 
 Sets the value of LegacyLootId using move semantics.
 
-#### `public inline bool `[`IsLegacyLootIdDefaultValue`](#structFRHAPI__LoginLootReward_1a99d9388054b1d602c2ef9bcd3d622bc1)`() const` <a id="structFRHAPI__LoginLootReward_1a99d9388054b1d602c2ef9bcd3d622bc1"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_LegacyLootId`](#structFRHAPI__LoginLootReward_1a48e6c38f470c42d4552d06233f770f64)`()` <a id="structFRHAPI__LoginLootReward_1a48e6c38f470c42d4552d06233f770f64"></a>
 
-Returns true if LegacyLootId matches the default value.
-
-#### `public inline void `[`SetLegacyLootIdToDefault`](#structFRHAPI__LoginLootReward_1a40a3b736b38673701743f9da9423f553)`()` <a id="structFRHAPI__LoginLootReward_1a40a3b736b38673701743f9da9423f553"></a>
-
-Sets the value of LegacyLootId to its default
+Returns the default value of LegacyLootId.
 

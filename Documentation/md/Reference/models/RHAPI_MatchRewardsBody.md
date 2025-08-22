@@ -23,16 +23,15 @@ struct FRHAPI_MatchRewardsBody
 `public bool `[`PlayerRewards_IsSet`](#structFRHAPI__MatchRewardsBody_1a8084ac73bc0fdcdf4b8d22970d4c990a) | true if PlayerRewards_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchRewardsBody_1a2075fca813bc2a94f42e3f088cb236ce)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchRewardsBody_1adc0babdfbe019e3bcd3d5452e7554ecf)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1ad5c6dcd39961a855c3908166d4f8b010)`()` | Gets the value of PlayerRewards_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a2d861288ae5574c803ac8aeaca3cc84f)`() const` | Gets the value of PlayerRewards_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1aa1a6ba451307b73d5af99034f29b0637)`(const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & DefaultValue) const` | Gets the value of PlayerRewards_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1aaeab9217392e25a4f556e6ed2da0d4d4)`(TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & OutValue) const` | Fills OutValue with the value of PlayerRewards_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > * `[`GetPlayerRewardsOrNull`](#structFRHAPI__MatchRewardsBody_1a807d9cdcdf150f2282d922bc0371421f)`()` | Returns a pointer to PlayerRewards_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > * `[`GetPlayerRewardsOrNull`](#structFRHAPI__MatchRewardsBody_1a992e2dc9d473d7720c37272102fd86b8)`() const` | Returns a pointer to PlayerRewards_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1adecdf79ad7ab735445ceba0a15d75985)`(const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & NewValue)` | Sets the value of PlayerRewards_Optional and also sets PlayerRewards_IsSet to true.
-`public inline void `[`SetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1aa03ff0eb0bb93a403bec6243a0a8984b)`(TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > && NewValue)` | Sets the value of PlayerRewards_Optional and also sets PlayerRewards_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a9aa9f96ad0eca943819f6f89a6d4a266)`()` | Gets the value of PlayerRewards_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a97052ed85f853754aad0d26f495eb491)`() const` | Gets the value of PlayerRewards_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a1247a0eb06197a47393c1f9eee417d2d)`(const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & DefaultValue) const` | Gets the value of PlayerRewards_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a8dffc7713f6ebb330a50a2778e3a79c8)`(TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & OutValue) const` | Fills OutValue with the value of PlayerRewards_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > * `[`GetPlayerRewardsOrNull`](#structFRHAPI__MatchRewardsBody_1af5d341cf9f145d08d41ee4c69954b72f)`()` | Returns a pointer to PlayerRewards_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > * `[`GetPlayerRewardsOrNull`](#structFRHAPI__MatchRewardsBody_1a80d1df99b1beaf31d49c840b658ff2cb)`() const` | Returns a pointer to PlayerRewards_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1ae21722bf795e52da4273ceb73d100f38)`(const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & NewValue)` | Sets the value of PlayerRewards_Optional and also sets PlayerRewards_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a3803d2a59563541e4640d5f768781a95)`(TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > && NewValue)` | Sets the value of PlayerRewards_Optional and also sets PlayerRewards_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerRewards`](#structFRHAPI__MatchRewardsBody_1ae3da2eeb31cec2801aa17c08f2ad3de7)`()` | Clears the value of PlayerRewards_Optional and sets PlayerRewards_IsSet to false.
-`public inline bool `[`IsPlayerRewardsSet`](#structFRHAPI__MatchRewardsBody_1aa05ed2e34ea67e13200db4bebe9326b4)`() const` | Checks whether PlayerRewards_Optional has been set.
 
 ### Members
 
@@ -61,43 +60,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1ad5c6dcd39961a855c3908166d4f8b010)`()` <a id="structFRHAPI__MatchRewardsBody_1ad5c6dcd39961a855c3908166d4f8b010"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a9aa9f96ad0eca943819f6f89a6d4a266)`()` <a id="structFRHAPI__MatchRewardsBody_1a9aa9f96ad0eca943819f6f89a6d4a266"></a>
 
 Gets the value of PlayerRewards_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a2d861288ae5574c803ac8aeaca3cc84f)`() const` <a id="structFRHAPI__MatchRewardsBody_1a2d861288ae5574c803ac8aeaca3cc84f"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a97052ed85f853754aad0d26f495eb491)`() const` <a id="structFRHAPI__MatchRewardsBody_1a97052ed85f853754aad0d26f495eb491"></a>
 
 Gets the value of PlayerRewards_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1aa1a6ba451307b73d5af99034f29b0637)`(const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & DefaultValue) const` <a id="structFRHAPI__MatchRewardsBody_1aa1a6ba451307b73d5af99034f29b0637"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a1247a0eb06197a47393c1f9eee417d2d)`(const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & DefaultValue) const` <a id="structFRHAPI__MatchRewardsBody_1a1247a0eb06197a47393c1f9eee417d2d"></a>
 
 Gets the value of PlayerRewards_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1aaeab9217392e25a4f556e6ed2da0d4d4)`(TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & OutValue) const` <a id="structFRHAPI__MatchRewardsBody_1aaeab9217392e25a4f556e6ed2da0d4d4"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a8dffc7713f6ebb330a50a2778e3a79c8)`(TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & OutValue) const` <a id="structFRHAPI__MatchRewardsBody_1a8dffc7713f6ebb330a50a2778e3a79c8"></a>
 
 Fills OutValue with the value of PlayerRewards_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > * `[`GetPlayerRewardsOrNull`](#structFRHAPI__MatchRewardsBody_1a807d9cdcdf150f2282d922bc0371421f)`()` <a id="structFRHAPI__MatchRewardsBody_1a807d9cdcdf150f2282d922bc0371421f"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > * `[`GetPlayerRewardsOrNull`](#structFRHAPI__MatchRewardsBody_1af5d341cf9f145d08d41ee4c69954b72f)`()` <a id="structFRHAPI__MatchRewardsBody_1af5d341cf9f145d08d41ee4c69954b72f"></a>
 
 Returns a pointer to PlayerRewards_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > * `[`GetPlayerRewardsOrNull`](#structFRHAPI__MatchRewardsBody_1a992e2dc9d473d7720c37272102fd86b8)`() const` <a id="structFRHAPI__MatchRewardsBody_1a992e2dc9d473d7720c37272102fd86b8"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > * `[`GetPlayerRewardsOrNull`](#structFRHAPI__MatchRewardsBody_1a80d1df99b1beaf31d49c840b658ff2cb)`() const` <a id="structFRHAPI__MatchRewardsBody_1a80d1df99b1beaf31d49c840b658ff2cb"></a>
 
 Returns a pointer to PlayerRewards_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1adecdf79ad7ab735445ceba0a15d75985)`(const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & NewValue)` <a id="structFRHAPI__MatchRewardsBody_1adecdf79ad7ab735445ceba0a15d75985"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1ae21722bf795e52da4273ceb73d100f38)`(const TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > & NewValue)` <a id="structFRHAPI__MatchRewardsBody_1ae21722bf795e52da4273ceb73d100f38"></a>
 
 Sets the value of PlayerRewards_Optional and also sets PlayerRewards_IsSet to true.
 
-#### `public inline void `[`SetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1aa03ff0eb0bb93a403bec6243a0a8984b)`(TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > && NewValue)` <a id="structFRHAPI__MatchRewardsBody_1aa03ff0eb0bb93a403bec6243a0a8984b"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerRewards`](#structFRHAPI__MatchRewardsBody_1a3803d2a59563541e4640d5f768781a95)`(TArray< `[`FRHAPI_PlayerMatchReward`](RHAPI_PlayerMatchReward.md#structFRHAPI__PlayerMatchReward)` > && NewValue)` <a id="structFRHAPI__MatchRewardsBody_1a3803d2a59563541e4640d5f768781a95"></a>
 
 Sets the value of PlayerRewards_Optional and also sets PlayerRewards_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearPlayerRewards`](#structFRHAPI__MatchRewardsBody_1ae3da2eeb31cec2801aa17c08f2ad3de7)`()` <a id="structFRHAPI__MatchRewardsBody_1ae3da2eeb31cec2801aa17c08f2ad3de7"></a>
 
 Clears the value of PlayerRewards_Optional and sets PlayerRewards_IsSet to false.
-
-#### `public inline bool `[`IsPlayerRewardsSet`](#structFRHAPI__MatchRewardsBody_1aa05ed2e34ea67e13200db4bebe9326b4)`() const` <a id="structFRHAPI__MatchRewardsBody_1aa05ed2e34ea67e13200db4bebe9326b4"></a>
-
-Checks whether PlayerRewards_Optional has been set.
 

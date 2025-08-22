@@ -25,16 +25,15 @@ One team of players from a match along with their placement in the match, and pr
 `public int32 `[`TeamRank`](#structFRHAPI__RankedTeam_1a350d4eb07e1820adb0dc652d69bcacb3) | What rank this team came in. 1 indicates victory, and higher values are placements. Matching ranks indicate draws.
 `public virtual bool `[`FromJson`](#structFRHAPI__RankedTeam_1a0b18ac4b37703eefccc47dbc6a89944c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__RankedTeam_1a61d9f7d5befafb0ecd9aba495dea90a8)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1ac19d342e6c71737f7a22e96a6a787eb7)`()` | Gets the value of Players.
-`public inline const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1a4a311642f64dfee0245455ca46657448)`() const` | Gets the value of Players.
-`public inline void `[`SetPlayers`](#structFRHAPI__RankedTeam_1a1b91806d20a0847a24e43cc24011b405)`(const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & NewValue)` | Sets the value of Players.
-`public inline void `[`SetPlayers`](#structFRHAPI__RankedTeam_1a1bb893b3ece77732db85b571eefd2c42)`(TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > && NewValue)` | Sets the value of Players using move semantics.
-`public inline int32 & `[`GetTeamRank`](#structFRHAPI__RankedTeam_1abdb8490262bbd4a3a2b57753e7a6be62)`()` | Gets the value of TeamRank.
-`public inline const int32 & `[`GetTeamRank`](#structFRHAPI__RankedTeam_1a8787dd25ff266c56e486e48cbb2bd56a)`() const` | Gets the value of TeamRank.
-`public inline void `[`SetTeamRank`](#structFRHAPI__RankedTeam_1ad19b86c260a33c4d5a179894ad5cf1ab)`(const int32 & NewValue)` | Sets the value of TeamRank.
-`public inline void `[`SetTeamRank`](#structFRHAPI__RankedTeam_1a195db06bbbd0af84c9c618372cbed777)`(int32 && NewValue)` | Sets the value of TeamRank using move semantics.
-`public inline bool `[`IsTeamRankDefaultValue`](#structFRHAPI__RankedTeam_1a81c6e9168a4af88040ede0753bf266db)`() const` | Returns true if TeamRank matches the default value.
-`public inline void `[`SetTeamRankToDefault`](#structFRHAPI__RankedTeam_1a4a1cdb05a5c8edbcb41d60ba86b2c872)`()` | Sets the value of TeamRank to its default
+`public inline FORCEINLINE TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1ac4b6c8730e83a00e2959a31954e478c4)`()` | Gets the value of Players.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1a88f9bf282302464e366ebd24def989df)`() const` | Gets the value of Players.
+`public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__RankedTeam_1a7e0a1ec603c1921d736279ce66e91e00)`(const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & NewValue)` | Sets the value of Players.
+`public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__RankedTeam_1ab55ca2de0d76b8ca0a2bbc7fae1f38fd)`(TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > && NewValue)` | Sets the value of Players using move semantics.
+`public inline FORCEINLINE int32 & `[`GetTeamRank`](#structFRHAPI__RankedTeam_1a4f41ed3eeb7acd05f92257c3db2e4d60)`()` | Gets the value of TeamRank.
+`public inline FORCEINLINE const int32 & `[`GetTeamRank`](#structFRHAPI__RankedTeam_1a7b24f4a0ade4f88ecef8f94b596d078a)`() const` | Gets the value of TeamRank.
+`public inline FORCEINLINE void `[`SetTeamRank`](#structFRHAPI__RankedTeam_1a7eafde724d9c42bdf967cb7c249ea5a3)`(const int32 & NewValue)` | Sets the value of TeamRank.
+`public inline FORCEINLINE void `[`SetTeamRank`](#structFRHAPI__RankedTeam_1a14fb89cd70fc48cbe89626757c63c8a2)`(int32 && NewValue)` | Sets the value of TeamRank using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TeamRank`](#structFRHAPI__RankedTeam_1a336bfab77a180f44b4ce4abfd6ff84c2)`()` | Returns the default value of TeamRank.
 
 ### Members
 
@@ -63,43 +62,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1ac19d342e6c71737f7a22e96a6a787eb7)`()` <a id="structFRHAPI__RankedTeam_1ac19d342e6c71737f7a22e96a6a787eb7"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1ac4b6c8730e83a00e2959a31954e478c4)`()` <a id="structFRHAPI__RankedTeam_1ac4b6c8730e83a00e2959a31954e478c4"></a>
 
 Gets the value of Players.
 
-#### `public inline const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1a4a311642f64dfee0245455ca46657448)`() const` <a id="structFRHAPI__RankedTeam_1a4a311642f64dfee0245455ca46657448"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & `[`GetPlayers`](#structFRHAPI__RankedTeam_1a88f9bf282302464e366ebd24def989df)`() const` <a id="structFRHAPI__RankedTeam_1a88f9bf282302464e366ebd24def989df"></a>
 
 Gets the value of Players.
 
-#### `public inline void `[`SetPlayers`](#structFRHAPI__RankedTeam_1a1b91806d20a0847a24e43cc24011b405)`(const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & NewValue)` <a id="structFRHAPI__RankedTeam_1a1b91806d20a0847a24e43cc24011b405"></a>
+#### `public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__RankedTeam_1a7e0a1ec603c1921d736279ce66e91e00)`(const TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > & NewValue)` <a id="structFRHAPI__RankedTeam_1a7e0a1ec603c1921d736279ce66e91e00"></a>
 
 Sets the value of Players.
 
-#### `public inline void `[`SetPlayers`](#structFRHAPI__RankedTeam_1a1bb893b3ece77732db85b571eefd2c42)`(TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > && NewValue)` <a id="structFRHAPI__RankedTeam_1a1bb893b3ece77732db85b571eefd2c42"></a>
+#### `public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__RankedTeam_1ab55ca2de0d76b8ca0a2bbc7fae1f38fd)`(TArray< `[`FRHAPI_CalculatedRank`](RHAPI_CalculatedRank.md#structFRHAPI__CalculatedRank)` > && NewValue)` <a id="structFRHAPI__RankedTeam_1ab55ca2de0d76b8ca0a2bbc7fae1f38fd"></a>
 
 Sets the value of Players using move semantics.
 
-#### `public inline int32 & `[`GetTeamRank`](#structFRHAPI__RankedTeam_1abdb8490262bbd4a3a2b57753e7a6be62)`()` <a id="structFRHAPI__RankedTeam_1abdb8490262bbd4a3a2b57753e7a6be62"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTeamRank`](#structFRHAPI__RankedTeam_1a4f41ed3eeb7acd05f92257c3db2e4d60)`()` <a id="structFRHAPI__RankedTeam_1a4f41ed3eeb7acd05f92257c3db2e4d60"></a>
 
 Gets the value of TeamRank.
 
-#### `public inline const int32 & `[`GetTeamRank`](#structFRHAPI__RankedTeam_1a8787dd25ff266c56e486e48cbb2bd56a)`() const` <a id="structFRHAPI__RankedTeam_1a8787dd25ff266c56e486e48cbb2bd56a"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTeamRank`](#structFRHAPI__RankedTeam_1a7b24f4a0ade4f88ecef8f94b596d078a)`() const` <a id="structFRHAPI__RankedTeam_1a7b24f4a0ade4f88ecef8f94b596d078a"></a>
 
 Gets the value of TeamRank.
 
-#### `public inline void `[`SetTeamRank`](#structFRHAPI__RankedTeam_1ad19b86c260a33c4d5a179894ad5cf1ab)`(const int32 & NewValue)` <a id="structFRHAPI__RankedTeam_1ad19b86c260a33c4d5a179894ad5cf1ab"></a>
+#### `public inline FORCEINLINE void `[`SetTeamRank`](#structFRHAPI__RankedTeam_1a7eafde724d9c42bdf967cb7c249ea5a3)`(const int32 & NewValue)` <a id="structFRHAPI__RankedTeam_1a7eafde724d9c42bdf967cb7c249ea5a3"></a>
 
 Sets the value of TeamRank.
 
-#### `public inline void `[`SetTeamRank`](#structFRHAPI__RankedTeam_1a195db06bbbd0af84c9c618372cbed777)`(int32 && NewValue)` <a id="structFRHAPI__RankedTeam_1a195db06bbbd0af84c9c618372cbed777"></a>
+#### `public inline FORCEINLINE void `[`SetTeamRank`](#structFRHAPI__RankedTeam_1a14fb89cd70fc48cbe89626757c63c8a2)`(int32 && NewValue)` <a id="structFRHAPI__RankedTeam_1a14fb89cd70fc48cbe89626757c63c8a2"></a>
 
 Sets the value of TeamRank using move semantics.
 
-#### `public inline bool `[`IsTeamRankDefaultValue`](#structFRHAPI__RankedTeam_1a81c6e9168a4af88040ede0753bf266db)`() const` <a id="structFRHAPI__RankedTeam_1a81c6e9168a4af88040ede0753bf266db"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TeamRank`](#structFRHAPI__RankedTeam_1a336bfab77a180f44b4ce4abfd6ff84c2)`()` <a id="structFRHAPI__RankedTeam_1a336bfab77a180f44b4ce4abfd6ff84c2"></a>
 
-Returns true if TeamRank matches the default value.
-
-#### `public inline void `[`SetTeamRankToDefault`](#structFRHAPI__RankedTeam_1a4a1cdb05a5c8edbcb41d60ba86b2c872)`()` <a id="structFRHAPI__RankedTeam_1a4a1cdb05a5c8edbcb41d60ba86b2c872"></a>
-
-Sets the value of TeamRank to its default
+Returns the default value of TeamRank.
 

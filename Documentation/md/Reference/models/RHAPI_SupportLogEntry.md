@@ -39,82 +39,76 @@ Support log entry details.
 `public FDateTime `[`Created`](#structFRHAPI__SupportLogEntry_1a2cfd9785470365a98b2060569901099b) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public virtual bool `[`FromJson`](#structFRHAPI__SupportLogEntry_1abcaba3800c0b3aa54a2bcf75f784e818)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SupportLogEntry_1a9ce3d925ec0b01400056412f00424a23)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1aecef3f258c05510f091fd5db0ee94108)`()` | Gets the value of SupportActionLogId.
-`public inline const FString & `[`GetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1ad15a591e93a43f2eb08ef7c509f62b21)`() const` | Gets the value of SupportActionLogId.
-`public inline void `[`SetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1abcc17d889d7fc97e3f338be07d4364cf)`(const FString & NewValue)` | Sets the value of SupportActionLogId.
-`public inline void `[`SetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1a808dd37f0a08498cddae49270871f090)`(FString && NewValue)` | Sets the value of SupportActionLogId using move semantics.
-`public inline FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1a920fb335e430c451cb167d9c2cd2894b)`()` | Gets the value of PersonId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1a89b843c0bcbf007b30ba40928675935b)`() const` | Gets the value of PersonId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1ad67ac1f6fe590fd4d0158d3d5e61894a)`(const FGuid & DefaultValue) const` | Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1a23f5da2ce79c171bc803d6e7f7888a0b)`(FGuid & OutValue) const` | Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__SupportLogEntry_1abbd62d18dfbb5728639214b5a3e69d67)`()` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__SupportLogEntry_1abd100e2c69d6da5966d2ac0a8c896626)`() const` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPersonId`](#structFRHAPI__SupportLogEntry_1a33c5b450cfcd6ca89d6a7e7b60ce85c7)`(const FGuid & NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
-`public inline void `[`SetPersonId`](#structFRHAPI__SupportLogEntry_1afc3aa47cb2cb62b30fd02d4ff82abb72)`(FGuid && NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1a1e1df371695008273ddf54f7d08ca00e)`()` | Gets the value of SupportActionLogId.
+`public inline FORCEINLINE const FString & `[`GetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1aa827d8e3c5a376ec8eb718bbc5b73001)`() const` | Gets the value of SupportActionLogId.
+`public inline FORCEINLINE void `[`SetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1ab931ab820ce38da5d0368a8f926cad4f)`(const FString & NewValue)` | Sets the value of SupportActionLogId.
+`public inline FORCEINLINE void `[`SetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1a3434f3566ed2ec44a1f8ad634b7aa059)`(FString && NewValue)` | Sets the value of SupportActionLogId using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1ab4e2c9287aec10702651f364f36380d5)`()` | Gets the value of PersonId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1ad7f3e58d8cba647fde0a5d06a32c5a38)`() const` | Gets the value of PersonId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1a992cace66e0185a9f4bce37a8c47bdd3)`(const FGuid & DefaultValue) const` | Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1ab4f4b30f1a486ffffe504c822405f0f5)`(FGuid & OutValue) const` | Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__SupportLogEntry_1a0aeaf5b7b6c1eaab6d927ad695cf3c90)`()` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__SupportLogEntry_1a6010977d1a5d6be8bbc3fb1cd7105e4c)`() const` | Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPersonId`](#structFRHAPI__SupportLogEntry_1a8188383d9dcbe33dc145564f1b7db2ca)`(const FGuid & NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPersonId`](#structFRHAPI__SupportLogEntry_1aa99407219ae95e3c193eb6e8b77e4648)`(FGuid && NewValue)` | Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics.
 `public inline void `[`ClearPersonId`](#structFRHAPI__SupportLogEntry_1a78e155ebe2b6c2407bfad41c5216f1c4)`()` | Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
-`public inline bool `[`IsPersonIdSet`](#structFRHAPI__SupportLogEntry_1abf02abd7dd975848c8849109d2cafb5f)`() const` | Checks whether PersonId_Optional has been set.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a4880b5afde5aab64f3ec7b01d719bdc8)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1afd2eadc4409a229354105c8efc85bfed)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a06b65e53e2d8aba71dda7ec4695c265e)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1ac35a291f56824859f5381b657b6002cc)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__SupportLogEntry_1a1cc5c704e47f38d99be6883897ab0d92)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__SupportLogEntry_1a64e7782a32de773b5a16864e75294b5a)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a7331a5573f5114314c396e0bef8f4d4c)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__SupportLogEntry_1ac605bf68c71c21a7368c41344e23cc9a)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a65bb2e7e3696b1ea15de6d8f1259c947)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1acf1ca7b6398587d498cbca9965883d93)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a537cdaf405377e479d49ad69c19d493c)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a7c62efbb5e7505b7507b4d19413f1884)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__SupportLogEntry_1a69bd6f4f913dc045e36c6cac58d15ad3)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__SupportLogEntry_1af24cfe51fa245f7e89992de8b75b7232)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a2adcc079eaeae4f0e3d76a12ec15e3d8)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__SupportLogEntry_1adc6b014a0fb1a974f2acd28e3e686110)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerUuid`](#structFRHAPI__SupportLogEntry_1aaa0f4053264bc927df9dd561e4e06cb8)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
-`public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__SupportLogEntry_1a571493d90c59509c783a131a81143aa7)`() const` | Checks whether PlayerUuid_Optional has been set.
-`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1af1e6f9e1436b8c55b70e2f5f793f361a)`()` | Gets the value of Platform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a468f2873db5b6c9fc5dd9c10d8859593)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a1e03afdf4cbdefa099736eff9aa81526)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a503ad3a6549e3aafab874f2b0db97e5d)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__SupportLogEntry_1a1b1f258bc6dd3f48cb2962d369641342)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__SupportLogEntry_1acde03f27e33950f6f30004f0140a0c57)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatform`](#structFRHAPI__SupportLogEntry_1a34af158d27c3f8a7b3adbb2a70c193a3)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
-`public inline void `[`SetPlatform`](#structFRHAPI__SupportLogEntry_1a8296ea5ba5b282bc108c205a4c672803)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a37a40d9ae68c203e1e135943f71e8a19)`()` | Gets the value of Platform_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1aac39ba755fcdb1ef37d6d8be1a2fed01)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a9d7f4e5151e2f9ce2ffd33460abf2d8e)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a67b43aaa6354cf582d535b8dc2a06ad7)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__SupportLogEntry_1a7e75eb2c2bda55c5174a207dcd0e1bea)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__SupportLogEntry_1ad5c4cc5206a020e65c0974a29c5dfbcc)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__SupportLogEntry_1a3ee72ed8e4359dd4c3b33277800e2925)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__SupportLogEntry_1acef89fb0bc16b69add56a91c6a808c20)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 `public inline void `[`ClearPlatform`](#structFRHAPI__SupportLogEntry_1add0b80aae70960f66b25ec0f6f6aaa7e)`()` | Clears the value of Platform_Optional and sets Platform_IsSet to false.
-`public inline bool `[`IsPlatformSet`](#structFRHAPI__SupportLogEntry_1a621601315f0c52ad7cf80925a9c43cb7)`() const` | Checks whether Platform_Optional has been set.
-`public inline FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a0be34123681e91605cc093a377e8c054)`()` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1aec3965e31172548630727cb5d59f4be9)`() const` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1ac0b5c60c6f8a31c44f5962efef1650c5)`(const FString & DefaultValue) const` | Gets the value of PlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a5ceabd1e700a45754ebcc37139b9a06c)`(FString & OutValue) const` | Fills OutValue with the value of PlatformUserId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__SupportLogEntry_1a78bb08c182204e00fa4e62b81877e109)`()` | Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__SupportLogEntry_1a4b7f78c506839dc2f40e3bdd1f6fd5e7)`() const` | Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatformUserId`](#structFRHAPI__SupportLogEntry_1ad4db4e775f81c86bb7f774ad71e7f024)`(const FString & NewValue)` | Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true.
-`public inline void `[`SetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a4f9c2fd7cb6bfc6672569025d53a0db8)`(FString && NewValue)` | Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a2ea6166b901b2b3ee70b89101e46dc49)`()` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a0d927438de6938b7c3b481e57d3210c7)`() const` | Gets the value of PlatformUserId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a0ae8db864ddc4d921ce8d4b928e328b1)`(const FString & DefaultValue) const` | Gets the value of PlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1aba78d6c7781f788cc880050e63ae4ec2)`(FString & OutValue) const` | Fills OutValue with the value of PlatformUserId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__SupportLogEntry_1a603efce2fba61d082099407197caf700)`()` | Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__SupportLogEntry_1a867938f7a7c91fa8c621244a61b2e229)`() const` | Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a12e2d9e72b2206add5099bc4023df866)`(const FString & NewValue)` | Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a6e52818ddd9efa16b0c841447c41eb18)`(FString && NewValue)` | Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformUserId`](#structFRHAPI__SupportLogEntry_1abb31ffc71926874ad89aee17898599c6)`()` | Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false.
-`public inline bool `[`IsPlatformUserIdSet`](#structFRHAPI__SupportLogEntry_1a1c62833f0350dd8be6e6553c417dfd7f)`() const` | Checks whether PlatformUserId_Optional has been set.
-`public inline FString & `[`GetEventName`](#structFRHAPI__SupportLogEntry_1a521643b91c069a750aef3033097cb1cd)`()` | Gets the value of EventName.
-`public inline const FString & `[`GetEventName`](#structFRHAPI__SupportLogEntry_1a1b8a10f2e19ae237de1da4ae79e1823e)`() const` | Gets the value of EventName.
-`public inline void `[`SetEventName`](#structFRHAPI__SupportLogEntry_1ad48a882809b68c946ad2043ae320ece0)`(const FString & NewValue)` | Sets the value of EventName.
-`public inline void `[`SetEventName`](#structFRHAPI__SupportLogEntry_1a5d6dde905728d4c8483b9b7066220d1f)`(FString && NewValue)` | Sets the value of EventName using move semantics.
-`public inline FString & `[`GetEventDescription`](#structFRHAPI__SupportLogEntry_1a1d7281ec4e4d1473d6217c9e205f94bd)`()` | Gets the value of EventDescription.
-`public inline const FString & `[`GetEventDescription`](#structFRHAPI__SupportLogEntry_1ac7580b09631c16bca8b70bc729689078)`() const` | Gets the value of EventDescription.
-`public inline void `[`SetEventDescription`](#structFRHAPI__SupportLogEntry_1afd9b287ed7e47f0e11e016bfdb07ecd3)`(const FString & NewValue)` | Sets the value of EventDescription.
-`public inline void `[`SetEventDescription`](#structFRHAPI__SupportLogEntry_1a371f671ba35c1e69e13ef88fdbc6e57e)`(FString && NewValue)` | Sets the value of EventDescription using move semantics.
-`public inline FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a890dda05f37bc9f98e2eb7211644453b)`()` | Gets the value of Ip_Optional, regardless of it having been set.
-`public inline const FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a85afd3ec48a4a768b34ca3fa2a251096)`() const` | Gets the value of Ip_Optional, regardless of it having been set.
-`public inline const FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1af02b1a968191f66e7be39efc7a30b873)`(const FString & DefaultValue) const` | Gets the value of Ip_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetIp`](#structFRHAPI__SupportLogEntry_1a56675fe0da8e7c723d16c77f40260c03)`(FString & OutValue) const` | Fills OutValue with the value of Ip_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetIpOrNull`](#structFRHAPI__SupportLogEntry_1a4e0a5567517a5a143ddebdf6d773584b)`()` | Returns a pointer to Ip_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetIpOrNull`](#structFRHAPI__SupportLogEntry_1abd54683c14f2c7e6d6efaa3a0f6d631c)`() const` | Returns a pointer to Ip_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetIp`](#structFRHAPI__SupportLogEntry_1afc09b25b4b1b2de609e75d408f1ffbe2)`(const FString & NewValue)` | Sets the value of Ip_Optional and also sets Ip_IsSet to true.
-`public inline void `[`SetIp`](#structFRHAPI__SupportLogEntry_1a86184c37eaec51541ec35a4a2b05c2d2)`(FString && NewValue)` | Sets the value of Ip_Optional and also sets Ip_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetEventName`](#structFRHAPI__SupportLogEntry_1a11ddabd351e2408ff8e458b838fd7b2c)`()` | Gets the value of EventName.
+`public inline FORCEINLINE const FString & `[`GetEventName`](#structFRHAPI__SupportLogEntry_1a1821f592b3b85a9550c29dd394a8fc1a)`() const` | Gets the value of EventName.
+`public inline FORCEINLINE void `[`SetEventName`](#structFRHAPI__SupportLogEntry_1aa1cc267949aebfaf860c145138e0d4cb)`(const FString & NewValue)` | Sets the value of EventName.
+`public inline FORCEINLINE void `[`SetEventName`](#structFRHAPI__SupportLogEntry_1ad7b91f3819d8d0af85ae6171063e61cc)`(FString && NewValue)` | Sets the value of EventName using move semantics.
+`public inline FORCEINLINE FString & `[`GetEventDescription`](#structFRHAPI__SupportLogEntry_1aef8a07f9f903b910133fb6d71d292617)`()` | Gets the value of EventDescription.
+`public inline FORCEINLINE const FString & `[`GetEventDescription`](#structFRHAPI__SupportLogEntry_1a11103e9efee598cc23ecc43d1c5cf723)`() const` | Gets the value of EventDescription.
+`public inline FORCEINLINE void `[`SetEventDescription`](#structFRHAPI__SupportLogEntry_1a93938094570dd94545c03cc3d559a760)`(const FString & NewValue)` | Sets the value of EventDescription.
+`public inline FORCEINLINE void `[`SetEventDescription`](#structFRHAPI__SupportLogEntry_1a367cfb1620317c2131f33adbd8069074)`(FString && NewValue)` | Sets the value of EventDescription using move semantics.
+`public inline FORCEINLINE FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a101743b7bd4ea8cf8ca263caa28b4ef5)`()` | Gets the value of Ip_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a7e4ff53d4f9a0f542654cd3b68aaa9f8)`() const` | Gets the value of Ip_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a9131c536f6b32a957c2df16ea5b5a643)`(const FString & DefaultValue) const` | Gets the value of Ip_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetIp`](#structFRHAPI__SupportLogEntry_1a76b86f9891fe16359769b241a9bca3ef)`(FString & OutValue) const` | Fills OutValue with the value of Ip_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetIpOrNull`](#structFRHAPI__SupportLogEntry_1a80981f6a688dea382beb38b904b1f170)`()` | Returns a pointer to Ip_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetIpOrNull`](#structFRHAPI__SupportLogEntry_1a95b1bc50564588e2207cf9362203d2fa)`() const` | Returns a pointer to Ip_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetIp`](#structFRHAPI__SupportLogEntry_1a89a3f7fb0648c28820479f5f0bab203d)`(const FString & NewValue)` | Sets the value of Ip_Optional and also sets Ip_IsSet to true.
+`public inline FORCEINLINE void `[`SetIp`](#structFRHAPI__SupportLogEntry_1a83ecdcd3217e027a3de352314ea5abe3)`(FString && NewValue)` | Sets the value of Ip_Optional and also sets Ip_IsSet to true using move semantics.
 `public inline void `[`ClearIp`](#structFRHAPI__SupportLogEntry_1af70ef8a6920465af1cff423083aafef5)`()` | Clears the value of Ip_Optional and sets Ip_IsSet to false.
-`public inline bool `[`IsIpSet`](#structFRHAPI__SupportLogEntry_1ac337adcb69e5946cf3be06edb08306c6)`() const` | Checks whether Ip_Optional has been set.
-`public inline FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1a5911dc7ea4d7e48f4048b9c0bad08427)`()` | Gets the value of SupportUsername_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1ad31f69a6c0b5bd1967e14546dc919f10)`() const` | Gets the value of SupportUsername_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1af1d07eea1317b143b269bece41da958b)`(const FString & DefaultValue) const` | Gets the value of SupportUsername_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1a825ecd1ca21d73f9e8a3f692c0b1c45c)`(FString & OutValue) const` | Fills OutValue with the value of SupportUsername_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetSupportUsernameOrNull`](#structFRHAPI__SupportLogEntry_1af2fc58a6aa31d40e5ee5312e38017b5f)`()` | Returns a pointer to SupportUsername_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetSupportUsernameOrNull`](#structFRHAPI__SupportLogEntry_1a32ff29bafe647ac450ef0dd38e46a42a)`() const` | Returns a pointer to SupportUsername_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSupportUsername`](#structFRHAPI__SupportLogEntry_1a5adeb3f9d8b530607aa4cc366a8cc079)`(const FString & NewValue)` | Sets the value of SupportUsername_Optional and also sets SupportUsername_IsSet to true.
-`public inline void `[`SetSupportUsername`](#structFRHAPI__SupportLogEntry_1aa49040983df33dfcf89595393fabc641)`(FString && NewValue)` | Sets the value of SupportUsername_Optional and also sets SupportUsername_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1ab8e71740efe32262cb2c276d5eb89436)`()` | Gets the value of SupportUsername_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1a4464b2d1613c87cc91cc71d39933a35a)`() const` | Gets the value of SupportUsername_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1a9be6bc61d0b1e1581300bc7d0e1bd306)`(const FString & DefaultValue) const` | Gets the value of SupportUsername_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1aa664579267d643a1006953878a5386d8)`(FString & OutValue) const` | Fills OutValue with the value of SupportUsername_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetSupportUsernameOrNull`](#structFRHAPI__SupportLogEntry_1a0164c6798e1795b525ec82faeef07381)`()` | Returns a pointer to SupportUsername_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetSupportUsernameOrNull`](#structFRHAPI__SupportLogEntry_1a701f5ebb2df69361ce2e8a42e1098c0f)`() const` | Returns a pointer to SupportUsername_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSupportUsername`](#structFRHAPI__SupportLogEntry_1a6223965c9fbadbebc78713b64829e029)`(const FString & NewValue)` | Sets the value of SupportUsername_Optional and also sets SupportUsername_IsSet to true.
+`public inline FORCEINLINE void `[`SetSupportUsername`](#structFRHAPI__SupportLogEntry_1a94ef0de304ac64d157baaec7e5cc5e6c)`(FString && NewValue)` | Sets the value of SupportUsername_Optional and also sets SupportUsername_IsSet to true using move semantics.
 `public inline void `[`ClearSupportUsername`](#structFRHAPI__SupportLogEntry_1a8abb6a809eed01c61ada12c3ac87029c)`()` | Clears the value of SupportUsername_Optional and sets SupportUsername_IsSet to false.
-`public inline bool `[`IsSupportUsernameSet`](#structFRHAPI__SupportLogEntry_1a145bd532b4a4dd0f7bb8a9913482aaec)`() const` | Checks whether SupportUsername_Optional has been set.
-`public inline FDateTime & `[`GetCreated`](#structFRHAPI__SupportLogEntry_1aeb270b698a3e32761e97c09f302eaf9b)`()` | Gets the value of Created.
-`public inline const FDateTime & `[`GetCreated`](#structFRHAPI__SupportLogEntry_1ad01f8b36219822cbaf9665b344b4eb64)`() const` | Gets the value of Created.
-`public inline void `[`SetCreated`](#structFRHAPI__SupportLogEntry_1ac719095125c820384d49a4490b151fbf)`(const FDateTime & NewValue)` | Sets the value of Created.
-`public inline void `[`SetCreated`](#structFRHAPI__SupportLogEntry_1a1c74dfd4d5eab0b4bf39139f2a8bfe91)`(FDateTime && NewValue)` | Sets the value of Created using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetCreated`](#structFRHAPI__SupportLogEntry_1a60b47f2b292c9ad9fc264773d8d382c4)`()` | Gets the value of Created.
+`public inline FORCEINLINE const FDateTime & `[`GetCreated`](#structFRHAPI__SupportLogEntry_1a1a89cceee8a5a2c1b9eee6337399a973)`() const` | Gets the value of Created.
+`public inline FORCEINLINE void `[`SetCreated`](#structFRHAPI__SupportLogEntry_1a69bbf690c4d97056934097bb3b83bfe1)`(const FDateTime & NewValue)` | Sets the value of Created.
+`public inline FORCEINLINE void `[`SetCreated`](#structFRHAPI__SupportLogEntry_1aa3b398f7e80650cf53cbe4513c1e96ff)`(FDateTime && NewValue)` | Sets the value of Created using move semantics.
 
 ### Members
 
@@ -199,51 +193,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1aecef3f258c05510f091fd5db0ee94108)`()` <a id="structFRHAPI__SupportLogEntry_1aecef3f258c05510f091fd5db0ee94108"></a>
+#### `public inline FORCEINLINE FString & `[`GetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1a1e1df371695008273ddf54f7d08ca00e)`()` <a id="structFRHAPI__SupportLogEntry_1a1e1df371695008273ddf54f7d08ca00e"></a>
 
 Gets the value of SupportActionLogId.
 
-#### `public inline const FString & `[`GetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1ad15a591e93a43f2eb08ef7c509f62b21)`() const` <a id="structFRHAPI__SupportLogEntry_1ad15a591e93a43f2eb08ef7c509f62b21"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1aa827d8e3c5a376ec8eb718bbc5b73001)`() const` <a id="structFRHAPI__SupportLogEntry_1aa827d8e3c5a376ec8eb718bbc5b73001"></a>
 
 Gets the value of SupportActionLogId.
 
-#### `public inline void `[`SetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1abcc17d889d7fc97e3f338be07d4364cf)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1abcc17d889d7fc97e3f338be07d4364cf"></a>
+#### `public inline FORCEINLINE void `[`SetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1ab931ab820ce38da5d0368a8f926cad4f)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1ab931ab820ce38da5d0368a8f926cad4f"></a>
 
 Sets the value of SupportActionLogId.
 
-#### `public inline void `[`SetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1a808dd37f0a08498cddae49270871f090)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a808dd37f0a08498cddae49270871f090"></a>
+#### `public inline FORCEINLINE void `[`SetSupportActionLogId`](#structFRHAPI__SupportLogEntry_1a3434f3566ed2ec44a1f8ad634b7aa059)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a3434f3566ed2ec44a1f8ad634b7aa059"></a>
 
 Sets the value of SupportActionLogId using move semantics.
 
-#### `public inline FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1a920fb335e430c451cb167d9c2cd2894b)`()` <a id="structFRHAPI__SupportLogEntry_1a920fb335e430c451cb167d9c2cd2894b"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1ab4e2c9287aec10702651f364f36380d5)`()` <a id="structFRHAPI__SupportLogEntry_1ab4e2c9287aec10702651f364f36380d5"></a>
 
 Gets the value of PersonId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1a89b843c0bcbf007b30ba40928675935b)`() const` <a id="structFRHAPI__SupportLogEntry_1a89b843c0bcbf007b30ba40928675935b"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1ad7f3e58d8cba647fde0a5d06a32c5a38)`() const` <a id="structFRHAPI__SupportLogEntry_1ad7f3e58d8cba647fde0a5d06a32c5a38"></a>
 
 Gets the value of PersonId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1ad67ac1f6fe590fd4d0158d3d5e61894a)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1ad67ac1f6fe590fd4d0158d3d5e61894a"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1a992cace66e0185a9f4bce37a8c47bdd3)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1a992cace66e0185a9f4bce37a8c47bdd3"></a>
 
 Gets the value of PersonId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1a23f5da2ce79c171bc803d6e7f7888a0b)`(FGuid & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1a23f5da2ce79c171bc803d6e7f7888a0b"></a>
+#### `public inline FORCEINLINE bool `[`GetPersonId`](#structFRHAPI__SupportLogEntry_1ab4f4b30f1a486ffffe504c822405f0f5)`(FGuid & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1ab4f4b30f1a486ffffe504c822405f0f5"></a>
 
 Fills OutValue with the value of PersonId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__SupportLogEntry_1abbd62d18dfbb5728639214b5a3e69d67)`()` <a id="structFRHAPI__SupportLogEntry_1abbd62d18dfbb5728639214b5a3e69d67"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__SupportLogEntry_1a0aeaf5b7b6c1eaab6d927ad695cf3c90)`()` <a id="structFRHAPI__SupportLogEntry_1a0aeaf5b7b6c1eaab6d927ad695cf3c90"></a>
 
 Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__SupportLogEntry_1abd100e2c69d6da5966d2ac0a8c896626)`() const` <a id="structFRHAPI__SupportLogEntry_1abd100e2c69d6da5966d2ac0a8c896626"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetPersonIdOrNull`](#structFRHAPI__SupportLogEntry_1a6010977d1a5d6be8bbc3fb1cd7105e4c)`() const` <a id="structFRHAPI__SupportLogEntry_1a6010977d1a5d6be8bbc3fb1cd7105e4c"></a>
 
 Returns a pointer to PersonId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPersonId`](#structFRHAPI__SupportLogEntry_1a33c5b450cfcd6ca89d6a7e7b60ce85c7)`(const FGuid & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a33c5b450cfcd6ca89d6a7e7b60ce85c7"></a>
+#### `public inline FORCEINLINE void `[`SetPersonId`](#structFRHAPI__SupportLogEntry_1a8188383d9dcbe33dc145564f1b7db2ca)`(const FGuid & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a8188383d9dcbe33dc145564f1b7db2ca"></a>
 
 Sets the value of PersonId_Optional and also sets PersonId_IsSet to true.
 
-#### `public inline void `[`SetPersonId`](#structFRHAPI__SupportLogEntry_1afc3aa47cb2cb62b30fd02d4ff82abb72)`(FGuid && NewValue)` <a id="structFRHAPI__SupportLogEntry_1afc3aa47cb2cb62b30fd02d4ff82abb72"></a>
+#### `public inline FORCEINLINE void `[`SetPersonId`](#structFRHAPI__SupportLogEntry_1aa99407219ae95e3c193eb6e8b77e4648)`(FGuid && NewValue)` <a id="structFRHAPI__SupportLogEntry_1aa99407219ae95e3c193eb6e8b77e4648"></a>
 
 Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using move semantics.
 
@@ -251,39 +245,35 @@ Sets the value of PersonId_Optional and also sets PersonId_IsSet to true using m
 
 Clears the value of PersonId_Optional and sets PersonId_IsSet to false.
 
-#### `public inline bool `[`IsPersonIdSet`](#structFRHAPI__SupportLogEntry_1abf02abd7dd975848c8849109d2cafb5f)`() const` <a id="structFRHAPI__SupportLogEntry_1abf02abd7dd975848c8849109d2cafb5f"></a>
-
-Checks whether PersonId_Optional has been set.
-
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a4880b5afde5aab64f3ec7b01d719bdc8)`()` <a id="structFRHAPI__SupportLogEntry_1a4880b5afde5aab64f3ec7b01d719bdc8"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a65bb2e7e3696b1ea15de6d8f1259c947)`()` <a id="structFRHAPI__SupportLogEntry_1a65bb2e7e3696b1ea15de6d8f1259c947"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1afd2eadc4409a229354105c8efc85bfed)`() const` <a id="structFRHAPI__SupportLogEntry_1afd2eadc4409a229354105c8efc85bfed"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1acf1ca7b6398587d498cbca9965883d93)`() const` <a id="structFRHAPI__SupportLogEntry_1acf1ca7b6398587d498cbca9965883d93"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a06b65e53e2d8aba71dda7ec4695c265e)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1a06b65e53e2d8aba71dda7ec4695c265e"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a537cdaf405377e479d49ad69c19d493c)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1a537cdaf405377e479d49ad69c19d493c"></a>
 
 Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1ac35a291f56824859f5381b657b6002cc)`(FGuid & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1ac35a291f56824859f5381b657b6002cc"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a7c62efbb5e7505b7507b4d19413f1884)`(FGuid & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1a7c62efbb5e7505b7507b4d19413f1884"></a>
 
 Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__SupportLogEntry_1a1cc5c704e47f38d99be6883897ab0d92)`()` <a id="structFRHAPI__SupportLogEntry_1a1cc5c704e47f38d99be6883897ab0d92"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__SupportLogEntry_1a69bd6f4f913dc045e36c6cac58d15ad3)`()` <a id="structFRHAPI__SupportLogEntry_1a69bd6f4f913dc045e36c6cac58d15ad3"></a>
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__SupportLogEntry_1a64e7782a32de773b5a16864e75294b5a)`() const` <a id="structFRHAPI__SupportLogEntry_1a64e7782a32de773b5a16864e75294b5a"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__SupportLogEntry_1af24cfe51fa245f7e89992de8b75b7232)`() const` <a id="structFRHAPI__SupportLogEntry_1af24cfe51fa245f7e89992de8b75b7232"></a>
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a7331a5573f5114314c396e0bef8f4d4c)`(const FGuid & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a7331a5573f5114314c396e0bef8f4d4c"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__SupportLogEntry_1a2adcc079eaeae4f0e3d76a12ec15e3d8)`(const FGuid & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a2adcc079eaeae4f0e3d76a12ec15e3d8"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__SupportLogEntry_1ac605bf68c71c21a7368c41344e23cc9a)`(FGuid && NewValue)` <a id="structFRHAPI__SupportLogEntry_1ac605bf68c71c21a7368c41344e23cc9a"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__SupportLogEntry_1adc6b014a0fb1a974f2acd28e3e686110)`(FGuid && NewValue)` <a id="structFRHAPI__SupportLogEntry_1adc6b014a0fb1a974f2acd28e3e686110"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 
@@ -291,39 +281,35 @@ Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true usi
 
 Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__SupportLogEntry_1a571493d90c59509c783a131a81143aa7)`() const` <a id="structFRHAPI__SupportLogEntry_1a571493d90c59509c783a131a81143aa7"></a>
-
-Checks whether PlayerUuid_Optional has been set.
-
-#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1af1e6f9e1436b8c55b70e2f5f793f361a)`()` <a id="structFRHAPI__SupportLogEntry_1af1e6f9e1436b8c55b70e2f5f793f361a"></a>
+#### `public inline FORCEINLINE ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a37a40d9ae68c203e1e135943f71e8a19)`()` <a id="structFRHAPI__SupportLogEntry_1a37a40d9ae68c203e1e135943f71e8a19"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a468f2873db5b6c9fc5dd9c10d8859593)`() const` <a id="structFRHAPI__SupportLogEntry_1a468f2873db5b6c9fc5dd9c10d8859593"></a>
+#### `public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1aac39ba755fcdb1ef37d6d8be1a2fed01)`() const` <a id="structFRHAPI__SupportLogEntry_1aac39ba755fcdb1ef37d6d8be1a2fed01"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a1e03afdf4cbdefa099736eff9aa81526)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1a1e03afdf4cbdefa099736eff9aa81526"></a>
+#### `public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a9d7f4e5151e2f9ce2ffd33460abf2d8e)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1a9d7f4e5151e2f9ce2ffd33460abf2d8e"></a>
 
 Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a503ad3a6549e3aafab874f2b0db97e5d)`(ERHAPI_Platform & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1a503ad3a6549e3aafab874f2b0db97e5d"></a>
+#### `public inline FORCEINLINE bool `[`GetPlatform`](#structFRHAPI__SupportLogEntry_1a67b43aaa6354cf582d535b8dc2a06ad7)`(ERHAPI_Platform & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1a67b43aaa6354cf582d535b8dc2a06ad7"></a>
 
 Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__SupportLogEntry_1a1b1f258bc6dd3f48cb2962d369641342)`()` <a id="structFRHAPI__SupportLogEntry_1a1b1f258bc6dd3f48cb2962d369641342"></a>
+#### `public inline FORCEINLINE ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__SupportLogEntry_1a7e75eb2c2bda55c5174a207dcd0e1bea)`()` <a id="structFRHAPI__SupportLogEntry_1a7e75eb2c2bda55c5174a207dcd0e1bea"></a>
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__SupportLogEntry_1acde03f27e33950f6f30004f0140a0c57)`() const` <a id="structFRHAPI__SupportLogEntry_1acde03f27e33950f6f30004f0140a0c57"></a>
+#### `public inline FORCEINLINE const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__SupportLogEntry_1ad5c4cc5206a020e65c0974a29c5dfbcc)`() const` <a id="structFRHAPI__SupportLogEntry_1ad5c4cc5206a020e65c0974a29c5dfbcc"></a>
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__SupportLogEntry_1a34af158d27c3f8a7b3adbb2a70c193a3)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a34af158d27c3f8a7b3adbb2a70c193a3"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__SupportLogEntry_1a3ee72ed8e4359dd4c3b33277800e2925)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a3ee72ed8e4359dd4c3b33277800e2925"></a>
 
 Sets the value of Platform_Optional and also sets Platform_IsSet to true.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__SupportLogEntry_1a8296ea5ba5b282bc108c205a4c672803)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a8296ea5ba5b282bc108c205a4c672803"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__SupportLogEntry_1acef89fb0bc16b69add56a91c6a808c20)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__SupportLogEntry_1acef89fb0bc16b69add56a91c6a808c20"></a>
 
 Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 
@@ -331,39 +317,35 @@ Sets the value of Platform_Optional and also sets Platform_IsSet to true using m
 
 Clears the value of Platform_Optional and sets Platform_IsSet to false.
 
-#### `public inline bool `[`IsPlatformSet`](#structFRHAPI__SupportLogEntry_1a621601315f0c52ad7cf80925a9c43cb7)`() const` <a id="structFRHAPI__SupportLogEntry_1a621601315f0c52ad7cf80925a9c43cb7"></a>
-
-Checks whether Platform_Optional has been set.
-
-#### `public inline FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a0be34123681e91605cc093a377e8c054)`()` <a id="structFRHAPI__SupportLogEntry_1a0be34123681e91605cc093a377e8c054"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a2ea6166b901b2b3ee70b89101e46dc49)`()` <a id="structFRHAPI__SupportLogEntry_1a2ea6166b901b2b3ee70b89101e46dc49"></a>
 
 Gets the value of PlatformUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1aec3965e31172548630727cb5d59f4be9)`() const` <a id="structFRHAPI__SupportLogEntry_1aec3965e31172548630727cb5d59f4be9"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a0d927438de6938b7c3b481e57d3210c7)`() const` <a id="structFRHAPI__SupportLogEntry_1a0d927438de6938b7c3b481e57d3210c7"></a>
 
 Gets the value of PlatformUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1ac0b5c60c6f8a31c44f5962efef1650c5)`(const FString & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1ac0b5c60c6f8a31c44f5962efef1650c5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a0ae8db864ddc4d921ce8d4b928e328b1)`(const FString & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1a0ae8db864ddc4d921ce8d4b928e328b1"></a>
 
 Gets the value of PlatformUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a5ceabd1e700a45754ebcc37139b9a06c)`(FString & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1a5ceabd1e700a45754ebcc37139b9a06c"></a>
+#### `public inline FORCEINLINE bool `[`GetPlatformUserId`](#structFRHAPI__SupportLogEntry_1aba78d6c7781f788cc880050e63ae4ec2)`(FString & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1aba78d6c7781f788cc880050e63ae4ec2"></a>
 
 Fills OutValue with the value of PlatformUserId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__SupportLogEntry_1a78bb08c182204e00fa4e62b81877e109)`()` <a id="structFRHAPI__SupportLogEntry_1a78bb08c182204e00fa4e62b81877e109"></a>
+#### `public inline FORCEINLINE FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__SupportLogEntry_1a603efce2fba61d082099407197caf700)`()` <a id="structFRHAPI__SupportLogEntry_1a603efce2fba61d082099407197caf700"></a>
 
 Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__SupportLogEntry_1a4b7f78c506839dc2f40e3bdd1f6fd5e7)`() const` <a id="structFRHAPI__SupportLogEntry_1a4b7f78c506839dc2f40e3bdd1f6fd5e7"></a>
+#### `public inline FORCEINLINE const FString * `[`GetPlatformUserIdOrNull`](#structFRHAPI__SupportLogEntry_1a867938f7a7c91fa8c621244a61b2e229)`() const` <a id="structFRHAPI__SupportLogEntry_1a867938f7a7c91fa8c621244a61b2e229"></a>
 
 Returns a pointer to PlatformUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatformUserId`](#structFRHAPI__SupportLogEntry_1ad4db4e775f81c86bb7f774ad71e7f024)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1ad4db4e775f81c86bb7f774ad71e7f024"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a12e2d9e72b2206add5099bc4023df866)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a12e2d9e72b2206add5099bc4023df866"></a>
 
 Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true.
 
-#### `public inline void `[`SetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a4f9c2fd7cb6bfc6672569025d53a0db8)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a4f9c2fd7cb6bfc6672569025d53a0db8"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformUserId`](#structFRHAPI__SupportLogEntry_1a6e52818ddd9efa16b0c841447c41eb18)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a6e52818ddd9efa16b0c841447c41eb18"></a>
 
 Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to true using move semantics.
 
@@ -371,71 +353,67 @@ Sets the value of PlatformUserId_Optional and also sets PlatformUserId_IsSet to 
 
 Clears the value of PlatformUserId_Optional and sets PlatformUserId_IsSet to false.
 
-#### `public inline bool `[`IsPlatformUserIdSet`](#structFRHAPI__SupportLogEntry_1a1c62833f0350dd8be6e6553c417dfd7f)`() const` <a id="structFRHAPI__SupportLogEntry_1a1c62833f0350dd8be6e6553c417dfd7f"></a>
-
-Checks whether PlatformUserId_Optional has been set.
-
-#### `public inline FString & `[`GetEventName`](#structFRHAPI__SupportLogEntry_1a521643b91c069a750aef3033097cb1cd)`()` <a id="structFRHAPI__SupportLogEntry_1a521643b91c069a750aef3033097cb1cd"></a>
+#### `public inline FORCEINLINE FString & `[`GetEventName`](#structFRHAPI__SupportLogEntry_1a11ddabd351e2408ff8e458b838fd7b2c)`()` <a id="structFRHAPI__SupportLogEntry_1a11ddabd351e2408ff8e458b838fd7b2c"></a>
 
 Gets the value of EventName.
 
-#### `public inline const FString & `[`GetEventName`](#structFRHAPI__SupportLogEntry_1a1b8a10f2e19ae237de1da4ae79e1823e)`() const` <a id="structFRHAPI__SupportLogEntry_1a1b8a10f2e19ae237de1da4ae79e1823e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetEventName`](#structFRHAPI__SupportLogEntry_1a1821f592b3b85a9550c29dd394a8fc1a)`() const` <a id="structFRHAPI__SupportLogEntry_1a1821f592b3b85a9550c29dd394a8fc1a"></a>
 
 Gets the value of EventName.
 
-#### `public inline void `[`SetEventName`](#structFRHAPI__SupportLogEntry_1ad48a882809b68c946ad2043ae320ece0)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1ad48a882809b68c946ad2043ae320ece0"></a>
+#### `public inline FORCEINLINE void `[`SetEventName`](#structFRHAPI__SupportLogEntry_1aa1cc267949aebfaf860c145138e0d4cb)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1aa1cc267949aebfaf860c145138e0d4cb"></a>
 
 Sets the value of EventName.
 
-#### `public inline void `[`SetEventName`](#structFRHAPI__SupportLogEntry_1a5d6dde905728d4c8483b9b7066220d1f)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a5d6dde905728d4c8483b9b7066220d1f"></a>
+#### `public inline FORCEINLINE void `[`SetEventName`](#structFRHAPI__SupportLogEntry_1ad7b91f3819d8d0af85ae6171063e61cc)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1ad7b91f3819d8d0af85ae6171063e61cc"></a>
 
 Sets the value of EventName using move semantics.
 
-#### `public inline FString & `[`GetEventDescription`](#structFRHAPI__SupportLogEntry_1a1d7281ec4e4d1473d6217c9e205f94bd)`()` <a id="structFRHAPI__SupportLogEntry_1a1d7281ec4e4d1473d6217c9e205f94bd"></a>
+#### `public inline FORCEINLINE FString & `[`GetEventDescription`](#structFRHAPI__SupportLogEntry_1aef8a07f9f903b910133fb6d71d292617)`()` <a id="structFRHAPI__SupportLogEntry_1aef8a07f9f903b910133fb6d71d292617"></a>
 
 Gets the value of EventDescription.
 
-#### `public inline const FString & `[`GetEventDescription`](#structFRHAPI__SupportLogEntry_1ac7580b09631c16bca8b70bc729689078)`() const` <a id="structFRHAPI__SupportLogEntry_1ac7580b09631c16bca8b70bc729689078"></a>
+#### `public inline FORCEINLINE const FString & `[`GetEventDescription`](#structFRHAPI__SupportLogEntry_1a11103e9efee598cc23ecc43d1c5cf723)`() const` <a id="structFRHAPI__SupportLogEntry_1a11103e9efee598cc23ecc43d1c5cf723"></a>
 
 Gets the value of EventDescription.
 
-#### `public inline void `[`SetEventDescription`](#structFRHAPI__SupportLogEntry_1afd9b287ed7e47f0e11e016bfdb07ecd3)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1afd9b287ed7e47f0e11e016bfdb07ecd3"></a>
+#### `public inline FORCEINLINE void `[`SetEventDescription`](#structFRHAPI__SupportLogEntry_1a93938094570dd94545c03cc3d559a760)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a93938094570dd94545c03cc3d559a760"></a>
 
 Sets the value of EventDescription.
 
-#### `public inline void `[`SetEventDescription`](#structFRHAPI__SupportLogEntry_1a371f671ba35c1e69e13ef88fdbc6e57e)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a371f671ba35c1e69e13ef88fdbc6e57e"></a>
+#### `public inline FORCEINLINE void `[`SetEventDescription`](#structFRHAPI__SupportLogEntry_1a367cfb1620317c2131f33adbd8069074)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a367cfb1620317c2131f33adbd8069074"></a>
 
 Sets the value of EventDescription using move semantics.
 
-#### `public inline FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a890dda05f37bc9f98e2eb7211644453b)`()` <a id="structFRHAPI__SupportLogEntry_1a890dda05f37bc9f98e2eb7211644453b"></a>
+#### `public inline FORCEINLINE FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a101743b7bd4ea8cf8ca263caa28b4ef5)`()` <a id="structFRHAPI__SupportLogEntry_1a101743b7bd4ea8cf8ca263caa28b4ef5"></a>
 
 Gets the value of Ip_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a85afd3ec48a4a768b34ca3fa2a251096)`() const` <a id="structFRHAPI__SupportLogEntry_1a85afd3ec48a4a768b34ca3fa2a251096"></a>
+#### `public inline FORCEINLINE const FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a7e4ff53d4f9a0f542654cd3b68aaa9f8)`() const` <a id="structFRHAPI__SupportLogEntry_1a7e4ff53d4f9a0f542654cd3b68aaa9f8"></a>
 
 Gets the value of Ip_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1af02b1a968191f66e7be39efc7a30b873)`(const FString & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1af02b1a968191f66e7be39efc7a30b873"></a>
+#### `public inline FORCEINLINE const FString & `[`GetIp`](#structFRHAPI__SupportLogEntry_1a9131c536f6b32a957c2df16ea5b5a643)`(const FString & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1a9131c536f6b32a957c2df16ea5b5a643"></a>
 
 Gets the value of Ip_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetIp`](#structFRHAPI__SupportLogEntry_1a56675fe0da8e7c723d16c77f40260c03)`(FString & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1a56675fe0da8e7c723d16c77f40260c03"></a>
+#### `public inline FORCEINLINE bool `[`GetIp`](#structFRHAPI__SupportLogEntry_1a76b86f9891fe16359769b241a9bca3ef)`(FString & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1a76b86f9891fe16359769b241a9bca3ef"></a>
 
 Fills OutValue with the value of Ip_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetIpOrNull`](#structFRHAPI__SupportLogEntry_1a4e0a5567517a5a143ddebdf6d773584b)`()` <a id="structFRHAPI__SupportLogEntry_1a4e0a5567517a5a143ddebdf6d773584b"></a>
+#### `public inline FORCEINLINE FString * `[`GetIpOrNull`](#structFRHAPI__SupportLogEntry_1a80981f6a688dea382beb38b904b1f170)`()` <a id="structFRHAPI__SupportLogEntry_1a80981f6a688dea382beb38b904b1f170"></a>
 
 Returns a pointer to Ip_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetIpOrNull`](#structFRHAPI__SupportLogEntry_1abd54683c14f2c7e6d6efaa3a0f6d631c)`() const` <a id="structFRHAPI__SupportLogEntry_1abd54683c14f2c7e6d6efaa3a0f6d631c"></a>
+#### `public inline FORCEINLINE const FString * `[`GetIpOrNull`](#structFRHAPI__SupportLogEntry_1a95b1bc50564588e2207cf9362203d2fa)`() const` <a id="structFRHAPI__SupportLogEntry_1a95b1bc50564588e2207cf9362203d2fa"></a>
 
 Returns a pointer to Ip_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetIp`](#structFRHAPI__SupportLogEntry_1afc09b25b4b1b2de609e75d408f1ffbe2)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1afc09b25b4b1b2de609e75d408f1ffbe2"></a>
+#### `public inline FORCEINLINE void `[`SetIp`](#structFRHAPI__SupportLogEntry_1a89a3f7fb0648c28820479f5f0bab203d)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a89a3f7fb0648c28820479f5f0bab203d"></a>
 
 Sets the value of Ip_Optional and also sets Ip_IsSet to true.
 
-#### `public inline void `[`SetIp`](#structFRHAPI__SupportLogEntry_1a86184c37eaec51541ec35a4a2b05c2d2)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a86184c37eaec51541ec35a4a2b05c2d2"></a>
+#### `public inline FORCEINLINE void `[`SetIp`](#structFRHAPI__SupportLogEntry_1a83ecdcd3217e027a3de352314ea5abe3)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a83ecdcd3217e027a3de352314ea5abe3"></a>
 
 Sets the value of Ip_Optional and also sets Ip_IsSet to true using move semantics.
 
@@ -443,39 +421,35 @@ Sets the value of Ip_Optional and also sets Ip_IsSet to true using move semantic
 
 Clears the value of Ip_Optional and sets Ip_IsSet to false.
 
-#### `public inline bool `[`IsIpSet`](#structFRHAPI__SupportLogEntry_1ac337adcb69e5946cf3be06edb08306c6)`() const` <a id="structFRHAPI__SupportLogEntry_1ac337adcb69e5946cf3be06edb08306c6"></a>
-
-Checks whether Ip_Optional has been set.
-
-#### `public inline FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1a5911dc7ea4d7e48f4048b9c0bad08427)`()` <a id="structFRHAPI__SupportLogEntry_1a5911dc7ea4d7e48f4048b9c0bad08427"></a>
+#### `public inline FORCEINLINE FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1ab8e71740efe32262cb2c276d5eb89436)`()` <a id="structFRHAPI__SupportLogEntry_1ab8e71740efe32262cb2c276d5eb89436"></a>
 
 Gets the value of SupportUsername_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1ad31f69a6c0b5bd1967e14546dc919f10)`() const` <a id="structFRHAPI__SupportLogEntry_1ad31f69a6c0b5bd1967e14546dc919f10"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1a4464b2d1613c87cc91cc71d39933a35a)`() const` <a id="structFRHAPI__SupportLogEntry_1a4464b2d1613c87cc91cc71d39933a35a"></a>
 
 Gets the value of SupportUsername_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1af1d07eea1317b143b269bece41da958b)`(const FString & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1af1d07eea1317b143b269bece41da958b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1a9be6bc61d0b1e1581300bc7d0e1bd306)`(const FString & DefaultValue) const` <a id="structFRHAPI__SupportLogEntry_1a9be6bc61d0b1e1581300bc7d0e1bd306"></a>
 
 Gets the value of SupportUsername_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1a825ecd1ca21d73f9e8a3f692c0b1c45c)`(FString & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1a825ecd1ca21d73f9e8a3f692c0b1c45c"></a>
+#### `public inline FORCEINLINE bool `[`GetSupportUsername`](#structFRHAPI__SupportLogEntry_1aa664579267d643a1006953878a5386d8)`(FString & OutValue) const` <a id="structFRHAPI__SupportLogEntry_1aa664579267d643a1006953878a5386d8"></a>
 
 Fills OutValue with the value of SupportUsername_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetSupportUsernameOrNull`](#structFRHAPI__SupportLogEntry_1af2fc58a6aa31d40e5ee5312e38017b5f)`()` <a id="structFRHAPI__SupportLogEntry_1af2fc58a6aa31d40e5ee5312e38017b5f"></a>
+#### `public inline FORCEINLINE FString * `[`GetSupportUsernameOrNull`](#structFRHAPI__SupportLogEntry_1a0164c6798e1795b525ec82faeef07381)`()` <a id="structFRHAPI__SupportLogEntry_1a0164c6798e1795b525ec82faeef07381"></a>
 
 Returns a pointer to SupportUsername_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetSupportUsernameOrNull`](#structFRHAPI__SupportLogEntry_1a32ff29bafe647ac450ef0dd38e46a42a)`() const` <a id="structFRHAPI__SupportLogEntry_1a32ff29bafe647ac450ef0dd38e46a42a"></a>
+#### `public inline FORCEINLINE const FString * `[`GetSupportUsernameOrNull`](#structFRHAPI__SupportLogEntry_1a701f5ebb2df69361ce2e8a42e1098c0f)`() const` <a id="structFRHAPI__SupportLogEntry_1a701f5ebb2df69361ce2e8a42e1098c0f"></a>
 
 Returns a pointer to SupportUsername_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSupportUsername`](#structFRHAPI__SupportLogEntry_1a5adeb3f9d8b530607aa4cc366a8cc079)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a5adeb3f9d8b530607aa4cc366a8cc079"></a>
+#### `public inline FORCEINLINE void `[`SetSupportUsername`](#structFRHAPI__SupportLogEntry_1a6223965c9fbadbebc78713b64829e029)`(const FString & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a6223965c9fbadbebc78713b64829e029"></a>
 
 Sets the value of SupportUsername_Optional and also sets SupportUsername_IsSet to true.
 
-#### `public inline void `[`SetSupportUsername`](#structFRHAPI__SupportLogEntry_1aa49040983df33dfcf89595393fabc641)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1aa49040983df33dfcf89595393fabc641"></a>
+#### `public inline FORCEINLINE void `[`SetSupportUsername`](#structFRHAPI__SupportLogEntry_1a94ef0de304ac64d157baaec7e5cc5e6c)`(FString && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a94ef0de304ac64d157baaec7e5cc5e6c"></a>
 
 Sets the value of SupportUsername_Optional and also sets SupportUsername_IsSet to true using move semantics.
 
@@ -483,23 +457,19 @@ Sets the value of SupportUsername_Optional and also sets SupportUsername_IsSet t
 
 Clears the value of SupportUsername_Optional and sets SupportUsername_IsSet to false.
 
-#### `public inline bool `[`IsSupportUsernameSet`](#structFRHAPI__SupportLogEntry_1a145bd532b4a4dd0f7bb8a9913482aaec)`() const` <a id="structFRHAPI__SupportLogEntry_1a145bd532b4a4dd0f7bb8a9913482aaec"></a>
-
-Checks whether SupportUsername_Optional has been set.
-
-#### `public inline FDateTime & `[`GetCreated`](#structFRHAPI__SupportLogEntry_1aeb270b698a3e32761e97c09f302eaf9b)`()` <a id="structFRHAPI__SupportLogEntry_1aeb270b698a3e32761e97c09f302eaf9b"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetCreated`](#structFRHAPI__SupportLogEntry_1a60b47f2b292c9ad9fc264773d8d382c4)`()` <a id="structFRHAPI__SupportLogEntry_1a60b47f2b292c9ad9fc264773d8d382c4"></a>
 
 Gets the value of Created.
 
-#### `public inline const FDateTime & `[`GetCreated`](#structFRHAPI__SupportLogEntry_1ad01f8b36219822cbaf9665b344b4eb64)`() const` <a id="structFRHAPI__SupportLogEntry_1ad01f8b36219822cbaf9665b344b4eb64"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreated`](#structFRHAPI__SupportLogEntry_1a1a89cceee8a5a2c1b9eee6337399a973)`() const` <a id="structFRHAPI__SupportLogEntry_1a1a89cceee8a5a2c1b9eee6337399a973"></a>
 
 Gets the value of Created.
 
-#### `public inline void `[`SetCreated`](#structFRHAPI__SupportLogEntry_1ac719095125c820384d49a4490b151fbf)`(const FDateTime & NewValue)` <a id="structFRHAPI__SupportLogEntry_1ac719095125c820384d49a4490b151fbf"></a>
+#### `public inline FORCEINLINE void `[`SetCreated`](#structFRHAPI__SupportLogEntry_1a69bbf690c4d97056934097bb3b83bfe1)`(const FDateTime & NewValue)` <a id="structFRHAPI__SupportLogEntry_1a69bbf690c4d97056934097bb3b83bfe1"></a>
 
 Sets the value of Created.
 
-#### `public inline void `[`SetCreated`](#structFRHAPI__SupportLogEntry_1a1c74dfd4d5eab0b4bf39139f2a8bfe91)`(FDateTime && NewValue)` <a id="structFRHAPI__SupportLogEntry_1a1c74dfd4d5eab0b4bf39139f2a8bfe91"></a>
+#### `public inline FORCEINLINE void `[`SetCreated`](#structFRHAPI__SupportLogEntry_1aa3b398f7e80650cf53cbe4513c1e96ff)`(FDateTime && NewValue)` <a id="structFRHAPI__SupportLogEntry_1aa3b398f7e80650cf53cbe4513c1e96ff"></a>
 
 Sets the value of Created using move semantics.
 

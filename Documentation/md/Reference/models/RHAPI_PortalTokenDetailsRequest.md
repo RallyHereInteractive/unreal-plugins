@@ -23,14 +23,14 @@ struct FRHAPI_PortalTokenDetailsRequest
 `public FString `[`PortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a5f955bb90686ea2875c2fe02ea524a98) | Token or secret used to authenticate the provided grant type.
 `public virtual bool `[`FromJson`](#structFRHAPI__PortalTokenDetailsRequest_1a19d4549a8b5e8247a9211a483b8b82da)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PortalTokenDetailsRequest_1a5c59dadf4f3d6a428fad912c853e9657)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a3288088d30488fec6977a5c49e65852e)`()` | Gets the value of GrantType.
-`public inline const ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1aa7bcdb1c408aade1f84ed9b152fbdffb)`() const` | Gets the value of GrantType.
-`public inline void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a6a742769dc62a4b77c63fc4dcb8d6ece)`(const ERHAPI_PortalTokenDetailsGrantType & NewValue)` | Sets the value of GrantType.
-`public inline void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a026dca8a423de9cb90d5f9ed7652d238)`(ERHAPI_PortalTokenDetailsGrantType && NewValue)` | Sets the value of GrantType using move semantics.
-`public inline FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a72ef5b98cae8e362389b4f1942ffab7d)`()` | Gets the value of PortalAccessToken.
-`public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a6e8f63fe8761ed620b1ff42fc0e85fb6)`() const` | Gets the value of PortalAccessToken.
-`public inline void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a23dddfeacb87b7f85290d6616685bb1c)`(const FString & NewValue)` | Sets the value of PortalAccessToken.
-`public inline void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a8b736356761517291a986bc56b7f34e3)`(FString && NewValue)` | Sets the value of PortalAccessToken using move semantics.
+`public inline FORCEINLINE ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a0cceb363420e68ce38f6ffcdc2c3639d)`()` | Gets the value of GrantType.
+`public inline FORCEINLINE const ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a0b8f95bdb0ba57b0fa0c928926b9fbc2)`() const` | Gets the value of GrantType.
+`public inline FORCEINLINE void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1aacc8ddfcdef74bc188791419d8707fea)`(const ERHAPI_PortalTokenDetailsGrantType & NewValue)` | Sets the value of GrantType.
+`public inline FORCEINLINE void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a3c63afbc698278a00a7ae6223b0cb74a)`(ERHAPI_PortalTokenDetailsGrantType && NewValue)` | Sets the value of GrantType using move semantics.
+`public inline FORCEINLINE FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1aae1135d30316e32fd43521aa0c188a53)`()` | Gets the value of PortalAccessToken.
+`public inline FORCEINLINE const FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1ab9b04b25331be0e7e4d7e73d1dbba979)`() const` | Gets the value of PortalAccessToken.
+`public inline FORCEINLINE void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1afe1b33941ad35a2a80a43b0662419896)`(const FString & NewValue)` | Sets the value of PortalAccessToken.
+`public inline FORCEINLINE void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1ae33bf67c3d9b6990ffc19f27da75e70b)`(FString && NewValue)` | Sets the value of PortalAccessToken using move semantics.
 
 ### Members
 
@@ -57,35 +57,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a3288088d30488fec6977a5c49e65852e)`()` <a id="structFRHAPI__PortalTokenDetailsRequest_1a3288088d30488fec6977a5c49e65852e"></a>
+#### `public inline FORCEINLINE ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a0cceb363420e68ce38f6ffcdc2c3639d)`()` <a id="structFRHAPI__PortalTokenDetailsRequest_1a0cceb363420e68ce38f6ffcdc2c3639d"></a>
 
 Gets the value of GrantType.
 
-#### `public inline const ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1aa7bcdb1c408aade1f84ed9b152fbdffb)`() const` <a id="structFRHAPI__PortalTokenDetailsRequest_1aa7bcdb1c408aade1f84ed9b152fbdffb"></a>
+#### `public inline FORCEINLINE const ERHAPI_PortalTokenDetailsGrantType & `[`GetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a0b8f95bdb0ba57b0fa0c928926b9fbc2)`() const` <a id="structFRHAPI__PortalTokenDetailsRequest_1a0b8f95bdb0ba57b0fa0c928926b9fbc2"></a>
 
 Gets the value of GrantType.
 
-#### `public inline void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a6a742769dc62a4b77c63fc4dcb8d6ece)`(const ERHAPI_PortalTokenDetailsGrantType & NewValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1a6a742769dc62a4b77c63fc4dcb8d6ece"></a>
+#### `public inline FORCEINLINE void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1aacc8ddfcdef74bc188791419d8707fea)`(const ERHAPI_PortalTokenDetailsGrantType & NewValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1aacc8ddfcdef74bc188791419d8707fea"></a>
 
 Sets the value of GrantType.
 
-#### `public inline void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a026dca8a423de9cb90d5f9ed7652d238)`(ERHAPI_PortalTokenDetailsGrantType && NewValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1a026dca8a423de9cb90d5f9ed7652d238"></a>
+#### `public inline FORCEINLINE void `[`SetGrantType`](#structFRHAPI__PortalTokenDetailsRequest_1a3c63afbc698278a00a7ae6223b0cb74a)`(ERHAPI_PortalTokenDetailsGrantType && NewValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1a3c63afbc698278a00a7ae6223b0cb74a"></a>
 
 Sets the value of GrantType using move semantics.
 
-#### `public inline FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a72ef5b98cae8e362389b4f1942ffab7d)`()` <a id="structFRHAPI__PortalTokenDetailsRequest_1a72ef5b98cae8e362389b4f1942ffab7d"></a>
+#### `public inline FORCEINLINE FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1aae1135d30316e32fd43521aa0c188a53)`()` <a id="structFRHAPI__PortalTokenDetailsRequest_1aae1135d30316e32fd43521aa0c188a53"></a>
 
 Gets the value of PortalAccessToken.
 
-#### `public inline const FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a6e8f63fe8761ed620b1ff42fc0e85fb6)`() const` <a id="structFRHAPI__PortalTokenDetailsRequest_1a6e8f63fe8761ed620b1ff42fc0e85fb6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1ab9b04b25331be0e7e4d7e73d1dbba979)`() const` <a id="structFRHAPI__PortalTokenDetailsRequest_1ab9b04b25331be0e7e4d7e73d1dbba979"></a>
 
 Gets the value of PortalAccessToken.
 
-#### `public inline void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a23dddfeacb87b7f85290d6616685bb1c)`(const FString & NewValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1a23dddfeacb87b7f85290d6616685bb1c"></a>
+#### `public inline FORCEINLINE void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1afe1b33941ad35a2a80a43b0662419896)`(const FString & NewValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1afe1b33941ad35a2a80a43b0662419896"></a>
 
 Sets the value of PortalAccessToken.
 
-#### `public inline void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1a8b736356761517291a986bc56b7f34e3)`(FString && NewValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1a8b736356761517291a986bc56b7f34e3"></a>
+#### `public inline FORCEINLINE void `[`SetPortalAccessToken`](#structFRHAPI__PortalTokenDetailsRequest_1ae33bf67c3d9b6990ffc19f27da75e70b)`(FString && NewValue)` <a id="structFRHAPI__PortalTokenDetailsRequest_1ae33bf67c3d9b6990ffc19f27da75e70b"></a>
 
 Sets the value of PortalAccessToken using move semantics.
 

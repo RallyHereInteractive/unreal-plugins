@@ -39,90 +39,81 @@ struct FRHAPI_PlayerPresence
 `public bool `[`LastSeen_IsNull`](#structFRHAPI__PlayerPresence_1aa4185112f6a3966a7888402616558ac9) | true if LastSeen_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerPresence_1a00e8a5741df12c0df5f0cf888d1b99eb)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerPresence_1ac5aaf1c341d4d93f8dabf240bb815269)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a448df4aa36ca7d0d3931630ee5d375eb)`()` | Gets the value of Status_Optional, regardless of it having been set.
-`public inline const ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a55dae24edbbd347a3d52ea66bf3fa7e9)`() const` | Gets the value of Status_Optional, regardless of it having been set.
-`public inline const ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a47bbd0306411e8e4a1578fc34aa98ca0)`(const ERHAPI_OnlineStatus & DefaultValue) const` | Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetStatus`](#structFRHAPI__PlayerPresence_1adea031eb81aec6f7043520c4c586bca0)`(ERHAPI_OnlineStatus & OutValue) const` | Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_OnlineStatus * `[`GetStatusOrNull`](#structFRHAPI__PlayerPresence_1a7dad11425a419af3d8fee35ba4a9d46e)`()` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_OnlineStatus * `[`GetStatusOrNull`](#structFRHAPI__PlayerPresence_1a70294cbb0128a3fa8c2d76247b2a3ea5)`() const` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetStatus`](#structFRHAPI__PlayerPresence_1a0860bbb3eb296319093ac400b4ebf497)`(const ERHAPI_OnlineStatus & NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
-`public inline void `[`SetStatus`](#structFRHAPI__PlayerPresence_1ac313238029a3d47d1a7f797122a50bd1)`(ERHAPI_OnlineStatus && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a254e009e34d91d30ac3236eadc917cca)`()` | Gets the value of Status_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a6b8a3522d3203c22d1c53a7b8f7e9191)`() const` | Gets the value of Status_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1af1842dff8b3654a5df4d503a82f82fde)`(const ERHAPI_OnlineStatus & DefaultValue) const` | Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetStatus`](#structFRHAPI__PlayerPresence_1a48724c51a989f6f5a3883add23556aa3)`(ERHAPI_OnlineStatus & OutValue) const` | Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_OnlineStatus * `[`GetStatusOrNull`](#structFRHAPI__PlayerPresence_1afdef46a013951cf1fa88ced799e1fdb3)`()` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_OnlineStatus * `[`GetStatusOrNull`](#structFRHAPI__PlayerPresence_1a79d0700bb85a6303284793a493942bf1)`() const` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PlayerPresence_1ac3580962642d1e8a56f5bd047d4e229c)`(const ERHAPI_OnlineStatus & NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
+`public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PlayerPresence_1a9739f807b4875592fb443c920be00de4)`(ERHAPI_OnlineStatus && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 `public inline void `[`ClearStatus`](#structFRHAPI__PlayerPresence_1a166438c0a297bbbff8314b1addc758fc)`()` | Clears the value of Status_Optional and sets Status_IsSet to false.
-`public inline bool `[`IsStatusSet`](#structFRHAPI__PlayerPresence_1ae3b195f32538fc2579f66535dc51112f)`() const` | Checks whether Status_Optional has been set.
-`public inline FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1a5f86a6381bfed15cf7ae83bfdb5e5592)`()` | Gets the value of Message_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1ad4fc0d8294415893837fdc88f0f87b77)`() const` | Gets the value of Message_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1a5fddf3c817b7377df852d560d5a8a241)`(const FString & DefaultValue) const` | Gets the value of Message_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMessage`](#structFRHAPI__PlayerPresence_1ada4f2e295049f1e30151516903f3ab6f)`(FString & OutValue) const` | Fills OutValue with the value of Message_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMessageOrNull`](#structFRHAPI__PlayerPresence_1a8c2344e474646e8124b3628851b8d6c3)`()` | Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMessageOrNull`](#structFRHAPI__PlayerPresence_1a2aa1aa76a0b9a3d5e7ea9415da7f5a90)`() const` | Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMessage`](#structFRHAPI__PlayerPresence_1a3284447eb557ff297cf877326d9dc731)`(const FString & NewValue)` | Sets the value of Message_Optional and also sets Message_IsSet to true.
-`public inline void `[`SetMessage`](#structFRHAPI__PlayerPresence_1a726025f39cc18421ab6ba0aa20ac33fa)`(FString && NewValue)` | Sets the value of Message_Optional and also sets Message_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1a73421d48ad320484445d58fd4fd4ef7e)`()` | Gets the value of Message_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1aacb78c62b1f994a426eec63200a9d0cd)`() const` | Gets the value of Message_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1a3d5dbe68f7a321b17036f74963eb98c3)`(const FString & DefaultValue) const` | Gets the value of Message_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMessage`](#structFRHAPI__PlayerPresence_1abffeb44a19e5185a5957bb43165d44ec)`(FString & OutValue) const` | Fills OutValue with the value of Message_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetMessageOrNull`](#structFRHAPI__PlayerPresence_1a162964b0b78d09bb2bec19d1cd926b22)`()` | Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetMessageOrNull`](#structFRHAPI__PlayerPresence_1a03ebda4c6d500f0d1a7640fa32f5d18b)`() const` | Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMessage`](#structFRHAPI__PlayerPresence_1a77c6d1409ed999a20475267d5800ac74)`(const FString & NewValue)` | Sets the value of Message_Optional and also sets Message_IsSet to true.
+`public inline FORCEINLINE void `[`SetMessage`](#structFRHAPI__PlayerPresence_1a02273fff31f66e028503b6147be5a3d2)`(FString && NewValue)` | Sets the value of Message_Optional and also sets Message_IsSet to true using move semantics.
 `public inline void `[`ClearMessage`](#structFRHAPI__PlayerPresence_1acf817a77014a4a059af05409ccd9dab0)`()` | Clears the value of Message_Optional and sets Message_IsSet to false.
-`public inline bool `[`IsMessageSet`](#structFRHAPI__PlayerPresence_1a16508f2679e2e41d44269fafdd79a349)`() const` | Checks whether Message_Optional has been set.
-`public inline bool `[`IsMessageDefaultValue`](#structFRHAPI__PlayerPresence_1a5a3d667ba5ef3d3130efdb69e6a51155)`() const` | Returns true if Message_Optional is set and matches the default value.
-`public inline void `[`SetMessageToDefault`](#structFRHAPI__PlayerPresence_1a078a7a0fb3f082514bdef5358853bcea)`()` | Sets the value of Message_Optional to its default and also sets Message_IsSet to true.
-`public inline FString & `[`GetPlatform`](#structFRHAPI__PlayerPresence_1ae79533b3eb7091c03c86045386dd41a1)`()` | Gets the value of Platform.
-`public inline const FString & `[`GetPlatform`](#structFRHAPI__PlayerPresence_1ac12b97f58146ae515e41c5fdb04fc72d)`() const` | Gets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__PlayerPresence_1affae32ef40b78443c5414f6e918fbda5)`(const FString & NewValue)` | Sets the value of Platform.
-`public inline void `[`SetPlatform`](#structFRHAPI__PlayerPresence_1ae5ab710d259a31d75a70e9bbfb29d15a)`(FString && NewValue)` | Sets the value of Platform using move semantics.
-`public inline FString & `[`GetDisplayName`](#structFRHAPI__PlayerPresence_1a996c0c9081a4ade8f3eeaade6638453e)`()` | Gets the value of DisplayName.
-`public inline const FString & `[`GetDisplayName`](#structFRHAPI__PlayerPresence_1a2e33ba6c0e945940de6a87f3722baa6c)`() const` | Gets the value of DisplayName.
-`public inline void `[`SetDisplayName`](#structFRHAPI__PlayerPresence_1aeb8913c97dccab3131db1100ccba3fef)`(const FString & NewValue)` | Sets the value of DisplayName.
-`public inline void `[`SetDisplayName`](#structFRHAPI__PlayerPresence_1a7dcd6c6337d626fc59c793ae54bafac9)`(FString && NewValue)` | Sets the value of DisplayName using move semantics.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a39134b8742f9cabb0f2ba845773e1fe8)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a9ab58a72298387f7562faf1e999ac640)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1ab9f28733702484dbf1d04395542d66d7)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a896aea88f0ec3676b8afad170912f59a)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresence_1a7169c8499b1669f088f4c38c482d8b87)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresence_1a085ec3e01718521d608f47c1a079fa24)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresence_1a25f5e0f9fd0c0cc15d9a2f2aad4448ee)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresence_1af2f84983ccce51cf195d7fbfaeebabbf)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE FString `[`GetDefaultValue_Message`](#structFRHAPI__PlayerPresence_1a8b1100d75cb9b908714b4252b4e0ef42)`()` | Returns the default value of Message.
+`public inline FORCEINLINE FString & `[`GetPlatform`](#structFRHAPI__PlayerPresence_1a20135edfe93f4d456bf5be01d42fcc3f)`()` | Gets the value of Platform.
+`public inline FORCEINLINE const FString & `[`GetPlatform`](#structFRHAPI__PlayerPresence_1adebcb5ace7809398dd0261d91ac52c3a)`() const` | Gets the value of Platform.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PlayerPresence_1ad56186fe1e540b08cc52f7ebaa5b33d1)`(const FString & NewValue)` | Sets the value of Platform.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PlayerPresence_1a4f3632f9f37fcf69f62c1705224d892d)`(FString && NewValue)` | Sets the value of Platform using move semantics.
+`public inline FORCEINLINE FString & `[`GetDisplayName`](#structFRHAPI__PlayerPresence_1a50d8ed051482d314587fc6fff419ba18)`()` | Gets the value of DisplayName.
+`public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PlayerPresence_1afa0fd0c3140c5695353e80aa72666c90)`() const` | Gets the value of DisplayName.
+`public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PlayerPresence_1a6283e353e650e6e9c5ad4f3ec07fd95b)`(const FString & NewValue)` | Sets the value of DisplayName.
+`public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PlayerPresence_1acd8e5bc6db3cf43c0384a898eb3b8640)`(FString && NewValue)` | Sets the value of DisplayName using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a27936c4f0761f7485f067c0a84d4464b)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a9fb92ebd0cc5ef267abf0ac438dac2af)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a8420a6484e9b276d5aeb090728343205)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a0dba03315015194877fc65ba3d472151)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresence_1adb5fa6c36b478e3e56ef524872f023a0)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresence_1a5d0046d0857d3585e1763bdee9f62346)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__PlayerPresence_1a1ab31a290da7526259dd27fe7f694591)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__PlayerPresence_1a12e92d933c5aa6c0ab2d35e5b1005f00)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__PlayerPresence_1a69de7a9b1c25befec0af2b403d89400d)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerPresence_1a40aacdacc0dbb560412ef5c7db5776e8)`() const` | Checks whether CustomData_Optional has been set.
-`public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1ab4428bdcef248cff79274575e794bfc7)`()` | Gets the value of PlayerId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1ad0f8374064c62342e88c92f8519dda98)`() const` | Gets the value of PlayerId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1a51e5d78c1c9621ad3a92a6d71f3dcc3a)`(const int32 & DefaultValue) const` | Gets the value of PlayerId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1a7f68f8b7f151ac2afb8f17da9436c0a1)`(int32 & OutValue) const` | Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlayerPresence_1a36af00ea12cd84be9fa34e3ac1b72cf7)`()` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlayerPresence_1aaa6cdf02c90238bd15026f1431ee8289)`() const` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPresence_1a6e8154571e6ee546f12fdd2ee81bd1d6)`(const int32 & NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPresence_1a78292c69b971a0d912ea1318807ba78e)`(int32 && NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1ad685feb10d3e50e50c3ca94c5e011f00)`()` | Gets the value of PlayerId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1ad8282c50621e03be38fadfbd3ac8438a)`() const` | Gets the value of PlayerId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1a1ff4279a1a5ebbed6c78f7e33ac5f6f5)`(const int32 & DefaultValue) const` | Gets the value of PlayerId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1acefeb42f1ee12705eaacf5f44cc2a6b1)`(int32 & OutValue) const` | Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlayerPresence_1a26d9a2cd0b57be5f699c65e53088e379)`()` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlayerPresence_1a8edf7909b11345e3cc55ca3d94200202)`() const` | Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PlayerPresence_1a34717a225f620c186a055449e94f20dd)`(const int32 & NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PlayerPresence_1a2994c7cf98878c89a9c6a01d016b200c)`(int32 && NewValue)` | Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerId`](#structFRHAPI__PlayerPresence_1a7e8c5f0e7a959ff0bfc6d46409083472)`()` | Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false.
-`public inline bool `[`IsPlayerIdSet`](#structFRHAPI__PlayerPresence_1ab0fd5d77c41b6d218f745b96cb6214c2)`() const` | Checks whether PlayerId_Optional has been set.
-`public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerPresence_1a5b3dd414fe5c6d32baa1127a75ffed39)`() const` | Returns true if PlayerId_Optional is set and matches the default value.
-`public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlayerPresence_1a84700c474f339d6330b4686549a35544)`()` | Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true.
-`public inline void `[`SetPlayerIdToNull`](#structFRHAPI__PlayerPresence_1a0b8283fb916fe5292624c3539d68496d)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPlayerIdNull`](#structFRHAPI__PlayerPresence_1a6cf0f3954eb1ec5da3f666e88e3f4ddb)`() const` | Checks whether PlayerId_Optional is set to null.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPresence_1a045f6f734c8920ea4d543c4349294195)`()` | Gets the value of PlayerUuid.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPresence_1a15d2df39ed6b36295953de0b8178f1b5)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPresence_1ae6694892d8bf9f029c0f30a533002904)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPresence_1a3f8e515fe0f9fb57c91e66ad655f5190)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
-`public inline bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1adab47117d2b732ba08bb4d3c0e49581b)`()` | Gets the value of DoNotDisturb_Optional, regardless of it having been set.
-`public inline const bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a99e3c84965c6b2f2455ab39a6294e8e1)`() const` | Gets the value of DoNotDisturb_Optional, regardless of it having been set.
-`public inline const bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a70d67c1ec609065dfb04211deeaee5b2)`(const bool & DefaultValue) const` | Gets the value of DoNotDisturb_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a5b75719ef4431ed80c4266eb4241e0a1)`(bool & OutValue) const` | Fills OutValue with the value of DoNotDisturb_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetDoNotDisturbOrNull`](#structFRHAPI__PlayerPresence_1a9196a3d937fa8e1a0f8e29670f9b304e)`()` | Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetDoNotDisturbOrNull`](#structFRHAPI__PlayerPresence_1afa4c4115e89d6d95c929ef4ae0bfb235)`() const` | Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a4e30e217ef50b9cb1e6b513563deccf7)`(const bool & NewValue)` | Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true.
-`public inline void `[`SetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a6fa2fe3cb84e8568baa020c2871a3125)`(bool && NewValue)` | Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PlayerId`](#structFRHAPI__PlayerPresence_1a9d5200715be2c4c302152334328ddb94)`()` | Returns the default value of PlayerId.
+`public inline FORCEINLINE void `[`SetPlayerIdToNull`](#structFRHAPI__PlayerPresence_1aebffaaec0e5bc13b584ca5051071657f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPlayerIdNull`](#structFRHAPI__PlayerPresence_1aa7dd7334433780b0bcc0e47deb851f9a)`() const` | Checks whether PlayerId_Optional is set to null.
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPresence_1aff7a86b8ba77ee64c0929301daad961e)`()` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPresence_1ac3669c93f879833399fb57e7a0c1463f)`() const` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PlayerPresence_1a8fdc52e632d1e38b2652fa6d12a4c049)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PlayerPresence_1a6cfe712ffd9197c8cf41a1de63607685)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
+`public inline FORCEINLINE bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a5bb47e8118fafe04caad409868331700)`()` | Gets the value of DoNotDisturb_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1aebf2091226ba0e534b64c7ce099298a0)`() const` | Gets the value of DoNotDisturb_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a8a34714fdef364cbec2d5f13a89d2085)`(const bool & DefaultValue) const` | Gets the value of DoNotDisturb_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a30f64501fedca332c21da124d2343138)`(bool & OutValue) const` | Fills OutValue with the value of DoNotDisturb_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetDoNotDisturbOrNull`](#structFRHAPI__PlayerPresence_1a0a264be258db03e467c94fe4958dc97b)`()` | Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetDoNotDisturbOrNull`](#structFRHAPI__PlayerPresence_1a099580fa1526f242d56a6eb80f4105d4)`() const` | Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a255c444b032d1741ad2bf1393161f0f6)`(const bool & NewValue)` | Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true.
+`public inline FORCEINLINE void `[`SetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a2efdc2dac0d01dcac0cdac69b32ddc0e)`(bool && NewValue)` | Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true using move semantics.
 `public inline void `[`ClearDoNotDisturb`](#structFRHAPI__PlayerPresence_1a03ce5218c874780e1c3d04fd68d48d61)`()` | Clears the value of DoNotDisturb_Optional and sets DoNotDisturb_IsSet to false.
-`public inline bool `[`IsDoNotDisturbSet`](#structFRHAPI__PlayerPresence_1a57fe942e77bb45a4fbc98a8c34221671)`() const` | Checks whether DoNotDisturb_Optional has been set.
-`public inline bool `[`IsDoNotDisturbDefaultValue`](#structFRHAPI__PlayerPresence_1a56d37e6ea10b4fa8a5c3560ff60addbd)`() const` | Returns true if DoNotDisturb_Optional is set and matches the default value.
-`public inline void `[`SetDoNotDisturbToDefault`](#structFRHAPI__PlayerPresence_1ac87c1590c6b65784ca85545477e3f03b)`()` | Sets the value of DoNotDisturb_Optional to its default and also sets DoNotDisturb_IsSet to true.
-`public inline void `[`SetDoNotDisturbToNull`](#structFRHAPI__PlayerPresence_1a0096e8bfe58afe2edbb86cef0b30d398)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsDoNotDisturbNull`](#structFRHAPI__PlayerPresence_1a7537a4c6bb978fcb034635f9c607b6ae)`() const` | Checks whether DoNotDisturb_Optional is set to null.
-`public inline FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1ad9102e8dbb89d79e390b6c872db2ba42)`()` | Gets the value of LastSeen_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1ab60f45a8d8325932eeb6230c7d13fc01)`() const` | Gets the value of LastSeen_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1a16a9f25046654e86db428f814ab0198d)`(const FDateTime & DefaultValue) const` | Gets the value of LastSeen_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1a6d87af0eee94b42e0031cc0dbdc74c5f)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastSeen_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetLastSeenOrNull`](#structFRHAPI__PlayerPresence_1a9d5c7b667179a92136b72daf4032f74d)`()` | Returns a pointer to LastSeen_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetLastSeenOrNull`](#structFRHAPI__PlayerPresence_1a7d6c60479dc1f827fb856aca6b39cab8)`() const` | Returns a pointer to LastSeen_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1a01235f6f22957660f31fb4e830eb8bcd)`(const FDateTime & NewValue)` | Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true.
-`public inline void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1afcbde717af9201a11fdbe3cc922acf83)`(FDateTime && NewValue)` | Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_DoNotDisturb`](#structFRHAPI__PlayerPresence_1a800c604fc1c80730b3009a32039538db)`()` | Returns the default value of DoNotDisturb.
+`public inline FORCEINLINE void `[`SetDoNotDisturbToNull`](#structFRHAPI__PlayerPresence_1a7baa6d4e378eaf0648ba9e99d24601b1)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsDoNotDisturbNull`](#structFRHAPI__PlayerPresence_1a91f23154c16d4734c62efa58610f781a)`() const` | Checks whether DoNotDisturb_Optional is set to null.
+`public inline FORCEINLINE FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1a87373c0ad5e1e97d5935b943ce45a74d)`()` | Gets the value of LastSeen_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1a503434131645b105d660527c73da6751)`() const` | Gets the value of LastSeen_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1acbcfb090af10134822b125bc6a4cff18)`(const FDateTime & DefaultValue) const` | Gets the value of LastSeen_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1ae91699d189a5c06c887488a2abc4bf53)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastSeen_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetLastSeenOrNull`](#structFRHAPI__PlayerPresence_1af431b0be3a76b99812072cf1dca31d18)`()` | Returns a pointer to LastSeen_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetLastSeenOrNull`](#structFRHAPI__PlayerPresence_1a29d60c0469f83bdcbc5695be280b910d)`() const` | Returns a pointer to LastSeen_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1a201ea18696018ba07420c6c5b99eaa8a)`(const FDateTime & NewValue)` | Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true.
+`public inline FORCEINLINE void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1a6de13a8987ee5d0ee65f6ddbc5d2e354)`(FDateTime && NewValue)` | Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true using move semantics.
 `public inline void `[`ClearLastSeen`](#structFRHAPI__PlayerPresence_1af3e5ba70c9564dadedcb60029e464844)`()` | Clears the value of LastSeen_Optional and sets LastSeen_IsSet to false.
-`public inline bool `[`IsLastSeenSet`](#structFRHAPI__PlayerPresence_1a558155162704396502529911b31c4d55)`() const` | Checks whether LastSeen_Optional has been set.
-`public inline void `[`SetLastSeenToNull`](#structFRHAPI__PlayerPresence_1a0ccb8ed55277bb74f0d8280e07056f80)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLastSeenNull`](#structFRHAPI__PlayerPresence_1a9ac405ed7c50f35742b562be3ddfe6a8)`() const` | Checks whether LastSeen_Optional is set to null.
+`public inline FORCEINLINE void `[`SetLastSeenToNull`](#structFRHAPI__PlayerPresence_1ac6956f92180e7c814c83a0d0820d73b3)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLastSeenNull`](#structFRHAPI__PlayerPresence_1a6661439639a01b4f5704d9013d323f04)`() const` | Checks whether LastSeen_Optional is set to null.
 
 ### Members
 
@@ -207,35 +198,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a448df4aa36ca7d0d3931630ee5d375eb)`()` <a id="structFRHAPI__PlayerPresence_1a448df4aa36ca7d0d3931630ee5d375eb"></a>
+#### `public inline FORCEINLINE ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a254e009e34d91d30ac3236eadc917cca)`()` <a id="structFRHAPI__PlayerPresence_1a254e009e34d91d30ac3236eadc917cca"></a>
 
 Gets the value of Status_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a55dae24edbbd347a3d52ea66bf3fa7e9)`() const` <a id="structFRHAPI__PlayerPresence_1a55dae24edbbd347a3d52ea66bf3fa7e9"></a>
+#### `public inline FORCEINLINE const ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a6b8a3522d3203c22d1c53a7b8f7e9191)`() const` <a id="structFRHAPI__PlayerPresence_1a6b8a3522d3203c22d1c53a7b8f7e9191"></a>
 
 Gets the value of Status_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1a47bbd0306411e8e4a1578fc34aa98ca0)`(const ERHAPI_OnlineStatus & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a47bbd0306411e8e4a1578fc34aa98ca0"></a>
+#### `public inline FORCEINLINE const ERHAPI_OnlineStatus & `[`GetStatus`](#structFRHAPI__PlayerPresence_1af1842dff8b3654a5df4d503a82f82fde)`(const ERHAPI_OnlineStatus & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1af1842dff8b3654a5df4d503a82f82fde"></a>
 
 Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetStatus`](#structFRHAPI__PlayerPresence_1adea031eb81aec6f7043520c4c586bca0)`(ERHAPI_OnlineStatus & OutValue) const` <a id="structFRHAPI__PlayerPresence_1adea031eb81aec6f7043520c4c586bca0"></a>
+#### `public inline FORCEINLINE bool `[`GetStatus`](#structFRHAPI__PlayerPresence_1a48724c51a989f6f5a3883add23556aa3)`(ERHAPI_OnlineStatus & OutValue) const` <a id="structFRHAPI__PlayerPresence_1a48724c51a989f6f5a3883add23556aa3"></a>
 
 Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_OnlineStatus * `[`GetStatusOrNull`](#structFRHAPI__PlayerPresence_1a7dad11425a419af3d8fee35ba4a9d46e)`()` <a id="structFRHAPI__PlayerPresence_1a7dad11425a419af3d8fee35ba4a9d46e"></a>
+#### `public inline FORCEINLINE ERHAPI_OnlineStatus * `[`GetStatusOrNull`](#structFRHAPI__PlayerPresence_1afdef46a013951cf1fa88ced799e1fdb3)`()` <a id="structFRHAPI__PlayerPresence_1afdef46a013951cf1fa88ced799e1fdb3"></a>
 
 Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_OnlineStatus * `[`GetStatusOrNull`](#structFRHAPI__PlayerPresence_1a70294cbb0128a3fa8c2d76247b2a3ea5)`() const` <a id="structFRHAPI__PlayerPresence_1a70294cbb0128a3fa8c2d76247b2a3ea5"></a>
+#### `public inline FORCEINLINE const ERHAPI_OnlineStatus * `[`GetStatusOrNull`](#structFRHAPI__PlayerPresence_1a79d0700bb85a6303284793a493942bf1)`() const` <a id="structFRHAPI__PlayerPresence_1a79d0700bb85a6303284793a493942bf1"></a>
 
 Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__PlayerPresence_1a0860bbb3eb296319093ac400b4ebf497)`(const ERHAPI_OnlineStatus & NewValue)` <a id="structFRHAPI__PlayerPresence_1a0860bbb3eb296319093ac400b4ebf497"></a>
+#### `public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PlayerPresence_1ac3580962642d1e8a56f5bd047d4e229c)`(const ERHAPI_OnlineStatus & NewValue)` <a id="structFRHAPI__PlayerPresence_1ac3580962642d1e8a56f5bd047d4e229c"></a>
 
 Sets the value of Status_Optional and also sets Status_IsSet to true.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__PlayerPresence_1ac313238029a3d47d1a7f797122a50bd1)`(ERHAPI_OnlineStatus && NewValue)` <a id="structFRHAPI__PlayerPresence_1ac313238029a3d47d1a7f797122a50bd1"></a>
+#### `public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PlayerPresence_1a9739f807b4875592fb443c920be00de4)`(ERHAPI_OnlineStatus && NewValue)` <a id="structFRHAPI__PlayerPresence_1a9739f807b4875592fb443c920be00de4"></a>
 
 Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 
@@ -243,39 +234,35 @@ Sets the value of Status_Optional and also sets Status_IsSet to true using move 
 
 Clears the value of Status_Optional and sets Status_IsSet to false.
 
-#### `public inline bool `[`IsStatusSet`](#structFRHAPI__PlayerPresence_1ae3b195f32538fc2579f66535dc51112f)`() const` <a id="structFRHAPI__PlayerPresence_1ae3b195f32538fc2579f66535dc51112f"></a>
-
-Checks whether Status_Optional has been set.
-
-#### `public inline FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1a5f86a6381bfed15cf7ae83bfdb5e5592)`()` <a id="structFRHAPI__PlayerPresence_1a5f86a6381bfed15cf7ae83bfdb5e5592"></a>
+#### `public inline FORCEINLINE FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1a73421d48ad320484445d58fd4fd4ef7e)`()` <a id="structFRHAPI__PlayerPresence_1a73421d48ad320484445d58fd4fd4ef7e"></a>
 
 Gets the value of Message_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1ad4fc0d8294415893837fdc88f0f87b77)`() const` <a id="structFRHAPI__PlayerPresence_1ad4fc0d8294415893837fdc88f0f87b77"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1aacb78c62b1f994a426eec63200a9d0cd)`() const` <a id="structFRHAPI__PlayerPresence_1aacb78c62b1f994a426eec63200a9d0cd"></a>
 
 Gets the value of Message_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1a5fddf3c817b7377df852d560d5a8a241)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a5fddf3c817b7377df852d560d5a8a241"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMessage`](#structFRHAPI__PlayerPresence_1a3d5dbe68f7a321b17036f74963eb98c3)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a3d5dbe68f7a321b17036f74963eb98c3"></a>
 
 Gets the value of Message_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMessage`](#structFRHAPI__PlayerPresence_1ada4f2e295049f1e30151516903f3ab6f)`(FString & OutValue) const` <a id="structFRHAPI__PlayerPresence_1ada4f2e295049f1e30151516903f3ab6f"></a>
+#### `public inline FORCEINLINE bool `[`GetMessage`](#structFRHAPI__PlayerPresence_1abffeb44a19e5185a5957bb43165d44ec)`(FString & OutValue) const` <a id="structFRHAPI__PlayerPresence_1abffeb44a19e5185a5957bb43165d44ec"></a>
 
 Fills OutValue with the value of Message_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMessageOrNull`](#structFRHAPI__PlayerPresence_1a8c2344e474646e8124b3628851b8d6c3)`()` <a id="structFRHAPI__PlayerPresence_1a8c2344e474646e8124b3628851b8d6c3"></a>
+#### `public inline FORCEINLINE FString * `[`GetMessageOrNull`](#structFRHAPI__PlayerPresence_1a162964b0b78d09bb2bec19d1cd926b22)`()` <a id="structFRHAPI__PlayerPresence_1a162964b0b78d09bb2bec19d1cd926b22"></a>
 
 Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMessageOrNull`](#structFRHAPI__PlayerPresence_1a2aa1aa76a0b9a3d5e7ea9415da7f5a90)`() const` <a id="structFRHAPI__PlayerPresence_1a2aa1aa76a0b9a3d5e7ea9415da7f5a90"></a>
+#### `public inline FORCEINLINE const FString * `[`GetMessageOrNull`](#structFRHAPI__PlayerPresence_1a03ebda4c6d500f0d1a7640fa32f5d18b)`() const` <a id="structFRHAPI__PlayerPresence_1a03ebda4c6d500f0d1a7640fa32f5d18b"></a>
 
 Returns a pointer to Message_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMessage`](#structFRHAPI__PlayerPresence_1a3284447eb557ff297cf877326d9dc731)`(const FString & NewValue)` <a id="structFRHAPI__PlayerPresence_1a3284447eb557ff297cf877326d9dc731"></a>
+#### `public inline FORCEINLINE void `[`SetMessage`](#structFRHAPI__PlayerPresence_1a77c6d1409ed999a20475267d5800ac74)`(const FString & NewValue)` <a id="structFRHAPI__PlayerPresence_1a77c6d1409ed999a20475267d5800ac74"></a>
 
 Sets the value of Message_Optional and also sets Message_IsSet to true.
 
-#### `public inline void `[`SetMessage`](#structFRHAPI__PlayerPresence_1a726025f39cc18421ab6ba0aa20ac33fa)`(FString && NewValue)` <a id="structFRHAPI__PlayerPresence_1a726025f39cc18421ab6ba0aa20ac33fa"></a>
+#### `public inline FORCEINLINE void `[`SetMessage`](#structFRHAPI__PlayerPresence_1a02273fff31f66e028503b6147be5a3d2)`(FString && NewValue)` <a id="structFRHAPI__PlayerPresence_1a02273fff31f66e028503b6147be5a3d2"></a>
 
 Sets the value of Message_Optional and also sets Message_IsSet to true using move semantics.
 
@@ -283,79 +270,71 @@ Sets the value of Message_Optional and also sets Message_IsSet to true using mov
 
 Clears the value of Message_Optional and sets Message_IsSet to false.
 
-#### `public inline bool `[`IsMessageSet`](#structFRHAPI__PlayerPresence_1a16508f2679e2e41d44269fafdd79a349)`() const` <a id="structFRHAPI__PlayerPresence_1a16508f2679e2e41d44269fafdd79a349"></a>
+#### `public inline FORCEINLINE FString `[`GetDefaultValue_Message`](#structFRHAPI__PlayerPresence_1a8b1100d75cb9b908714b4252b4e0ef42)`()` <a id="structFRHAPI__PlayerPresence_1a8b1100d75cb9b908714b4252b4e0ef42"></a>
 
-Checks whether Message_Optional has been set.
+Returns the default value of Message.
 
-#### `public inline bool `[`IsMessageDefaultValue`](#structFRHAPI__PlayerPresence_1a5a3d667ba5ef3d3130efdb69e6a51155)`() const` <a id="structFRHAPI__PlayerPresence_1a5a3d667ba5ef3d3130efdb69e6a51155"></a>
-
-Returns true if Message_Optional is set and matches the default value.
-
-#### `public inline void `[`SetMessageToDefault`](#structFRHAPI__PlayerPresence_1a078a7a0fb3f082514bdef5358853bcea)`()` <a id="structFRHAPI__PlayerPresence_1a078a7a0fb3f082514bdef5358853bcea"></a>
-
-Sets the value of Message_Optional to its default and also sets Message_IsSet to true.
-
-#### `public inline FString & `[`GetPlatform`](#structFRHAPI__PlayerPresence_1ae79533b3eb7091c03c86045386dd41a1)`()` <a id="structFRHAPI__PlayerPresence_1ae79533b3eb7091c03c86045386dd41a1"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatform`](#structFRHAPI__PlayerPresence_1a20135edfe93f4d456bf5be01d42fcc3f)`()` <a id="structFRHAPI__PlayerPresence_1a20135edfe93f4d456bf5be01d42fcc3f"></a>
 
 Gets the value of Platform.
 
-#### `public inline const FString & `[`GetPlatform`](#structFRHAPI__PlayerPresence_1ac12b97f58146ae515e41c5fdb04fc72d)`() const` <a id="structFRHAPI__PlayerPresence_1ac12b97f58146ae515e41c5fdb04fc72d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatform`](#structFRHAPI__PlayerPresence_1adebcb5ace7809398dd0261d91ac52c3a)`() const` <a id="structFRHAPI__PlayerPresence_1adebcb5ace7809398dd0261d91ac52c3a"></a>
 
 Gets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PlayerPresence_1affae32ef40b78443c5414f6e918fbda5)`(const FString & NewValue)` <a id="structFRHAPI__PlayerPresence_1affae32ef40b78443c5414f6e918fbda5"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PlayerPresence_1ad56186fe1e540b08cc52f7ebaa5b33d1)`(const FString & NewValue)` <a id="structFRHAPI__PlayerPresence_1ad56186fe1e540b08cc52f7ebaa5b33d1"></a>
 
 Sets the value of Platform.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PlayerPresence_1ae5ab710d259a31d75a70e9bbfb29d15a)`(FString && NewValue)` <a id="structFRHAPI__PlayerPresence_1ae5ab710d259a31d75a70e9bbfb29d15a"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PlayerPresence_1a4f3632f9f37fcf69f62c1705224d892d)`(FString && NewValue)` <a id="structFRHAPI__PlayerPresence_1a4f3632f9f37fcf69f62c1705224d892d"></a>
 
 Sets the value of Platform using move semantics.
 
-#### `public inline FString & `[`GetDisplayName`](#structFRHAPI__PlayerPresence_1a996c0c9081a4ade8f3eeaade6638453e)`()` <a id="structFRHAPI__PlayerPresence_1a996c0c9081a4ade8f3eeaade6638453e"></a>
+#### `public inline FORCEINLINE FString & `[`GetDisplayName`](#structFRHAPI__PlayerPresence_1a50d8ed051482d314587fc6fff419ba18)`()` <a id="structFRHAPI__PlayerPresence_1a50d8ed051482d314587fc6fff419ba18"></a>
 
 Gets the value of DisplayName.
 
-#### `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PlayerPresence_1a2e33ba6c0e945940de6a87f3722baa6c)`() const` <a id="structFRHAPI__PlayerPresence_1a2e33ba6c0e945940de6a87f3722baa6c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PlayerPresence_1afa0fd0c3140c5695353e80aa72666c90)`() const` <a id="structFRHAPI__PlayerPresence_1afa0fd0c3140c5695353e80aa72666c90"></a>
 
 Gets the value of DisplayName.
 
-#### `public inline void `[`SetDisplayName`](#structFRHAPI__PlayerPresence_1aeb8913c97dccab3131db1100ccba3fef)`(const FString & NewValue)` <a id="structFRHAPI__PlayerPresence_1aeb8913c97dccab3131db1100ccba3fef"></a>
+#### `public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PlayerPresence_1a6283e353e650e6e9c5ad4f3ec07fd95b)`(const FString & NewValue)` <a id="structFRHAPI__PlayerPresence_1a6283e353e650e6e9c5ad4f3ec07fd95b"></a>
 
 Sets the value of DisplayName.
 
-#### `public inline void `[`SetDisplayName`](#structFRHAPI__PlayerPresence_1a7dcd6c6337d626fc59c793ae54bafac9)`(FString && NewValue)` <a id="structFRHAPI__PlayerPresence_1a7dcd6c6337d626fc59c793ae54bafac9"></a>
+#### `public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PlayerPresence_1acd8e5bc6db3cf43c0384a898eb3b8640)`(FString && NewValue)` <a id="structFRHAPI__PlayerPresence_1acd8e5bc6db3cf43c0384a898eb3b8640"></a>
 
 Sets the value of DisplayName using move semantics.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a39134b8742f9cabb0f2ba845773e1fe8)`()` <a id="structFRHAPI__PlayerPresence_1a39134b8742f9cabb0f2ba845773e1fe8"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a27936c4f0761f7485f067c0a84d4464b)`()` <a id="structFRHAPI__PlayerPresence_1a27936c4f0761f7485f067c0a84d4464b"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a9ab58a72298387f7562faf1e999ac640)`() const` <a id="structFRHAPI__PlayerPresence_1a9ab58a72298387f7562faf1e999ac640"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a9fb92ebd0cc5ef267abf0ac438dac2af)`() const` <a id="structFRHAPI__PlayerPresence_1a9fb92ebd0cc5ef267abf0ac438dac2af"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1ab9f28733702484dbf1d04395542d66d7)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1ab9f28733702484dbf1d04395542d66d7"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a8420a6484e9b276d5aeb090728343205)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a8420a6484e9b276d5aeb090728343205"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a896aea88f0ec3676b8afad170912f59a)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PlayerPresence_1a896aea88f0ec3676b8afad170912f59a"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__PlayerPresence_1a0dba03315015194877fc65ba3d472151)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__PlayerPresence_1a0dba03315015194877fc65ba3d472151"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresence_1a7169c8499b1669f088f4c38c482d8b87)`()` <a id="structFRHAPI__PlayerPresence_1a7169c8499b1669f088f4c38c482d8b87"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresence_1adb5fa6c36b478e3e56ef524872f023a0)`()` <a id="structFRHAPI__PlayerPresence_1adb5fa6c36b478e3e56ef524872f023a0"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresence_1a085ec3e01718521d608f47c1a079fa24)`() const` <a id="structFRHAPI__PlayerPresence_1a085ec3e01718521d608f47c1a079fa24"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__PlayerPresence_1a5d0046d0857d3585e1763bdee9f62346)`() const` <a id="structFRHAPI__PlayerPresence_1a5d0046d0857d3585e1763bdee9f62346"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresence_1a25f5e0f9fd0c0cc15d9a2f2aad4448ee)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__PlayerPresence_1a25f5e0f9fd0c0cc15d9a2f2aad4448ee"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__PlayerPresence_1a1ab31a290da7526259dd27fe7f694591)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__PlayerPresence_1a1ab31a290da7526259dd27fe7f694591"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__PlayerPresence_1af2f84983ccce51cf195d7fbfaeebabbf)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__PlayerPresence_1af2f84983ccce51cf195d7fbfaeebabbf"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__PlayerPresence_1a12e92d933c5aa6c0ab2d35e5b1005f00)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__PlayerPresence_1a12e92d933c5aa6c0ab2d35e5b1005f00"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -363,39 +342,35 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__PlayerPresence_1a40aacdacc0dbb560412ef5c7db5776e8)`() const` <a id="structFRHAPI__PlayerPresence_1a40aacdacc0dbb560412ef5c7db5776e8"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1ab4428bdcef248cff79274575e794bfc7)`()` <a id="structFRHAPI__PlayerPresence_1ab4428bdcef248cff79274575e794bfc7"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1ad685feb10d3e50e50c3ca94c5e011f00)`()` <a id="structFRHAPI__PlayerPresence_1ad685feb10d3e50e50c3ca94c5e011f00"></a>
 
 Gets the value of PlayerId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1ad0f8374064c62342e88c92f8519dda98)`() const` <a id="structFRHAPI__PlayerPresence_1ad0f8374064c62342e88c92f8519dda98"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1ad8282c50621e03be38fadfbd3ac8438a)`() const` <a id="structFRHAPI__PlayerPresence_1ad8282c50621e03be38fadfbd3ac8438a"></a>
 
 Gets the value of PlayerId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1a51e5d78c1c9621ad3a92a6d71f3dcc3a)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a51e5d78c1c9621ad3a92a6d71f3dcc3a"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1a1ff4279a1a5ebbed6c78f7e33ac5f6f5)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a1ff4279a1a5ebbed6c78f7e33ac5f6f5"></a>
 
 Gets the value of PlayerId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1a7f68f8b7f151ac2afb8f17da9436c0a1)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerPresence_1a7f68f8b7f151ac2afb8f17da9436c0a1"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayerId`](#structFRHAPI__PlayerPresence_1acefeb42f1ee12705eaacf5f44cc2a6b1)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerPresence_1acefeb42f1ee12705eaacf5f44cc2a6b1"></a>
 
 Fills OutValue with the value of PlayerId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlayerPresence_1a36af00ea12cd84be9fa34e3ac1b72cf7)`()` <a id="structFRHAPI__PlayerPresence_1a36af00ea12cd84be9fa34e3ac1b72cf7"></a>
+#### `public inline FORCEINLINE int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlayerPresence_1a26d9a2cd0b57be5f699c65e53088e379)`()` <a id="structFRHAPI__PlayerPresence_1a26d9a2cd0b57be5f699c65e53088e379"></a>
 
 Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlayerPresence_1aaa6cdf02c90238bd15026f1431ee8289)`() const` <a id="structFRHAPI__PlayerPresence_1aaa6cdf02c90238bd15026f1431ee8289"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetPlayerIdOrNull`](#structFRHAPI__PlayerPresence_1a8edf7909b11345e3cc55ca3d94200202)`() const` <a id="structFRHAPI__PlayerPresence_1a8edf7909b11345e3cc55ca3d94200202"></a>
 
 Returns a pointer to PlayerId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPresence_1a6e8154571e6ee546f12fdd2ee81bd1d6)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerPresence_1a6e8154571e6ee546f12fdd2ee81bd1d6"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PlayerPresence_1a34717a225f620c186a055449e94f20dd)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerPresence_1a34717a225f620c186a055449e94f20dd"></a>
 
 Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerPresence_1a78292c69b971a0d912ea1318807ba78e)`(int32 && NewValue)` <a id="structFRHAPI__PlayerPresence_1a78292c69b971a0d912ea1318807ba78e"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PlayerPresence_1a2994c7cf98878c89a9c6a01d016b200c)`(int32 && NewValue)` <a id="structFRHAPI__PlayerPresence_1a2994c7cf98878c89a9c6a01d016b200c"></a>
 
 Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using move semantics.
 
@@ -403,71 +378,63 @@ Sets the value of PlayerId_Optional and also sets PlayerId_IsSet to true using m
 
 Clears the value of PlayerId_Optional and sets PlayerId_IsSet to false.
 
-#### `public inline bool `[`IsPlayerIdSet`](#structFRHAPI__PlayerPresence_1ab0fd5d77c41b6d218f745b96cb6214c2)`() const` <a id="structFRHAPI__PlayerPresence_1ab0fd5d77c41b6d218f745b96cb6214c2"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PlayerId`](#structFRHAPI__PlayerPresence_1a9d5200715be2c4c302152334328ddb94)`()` <a id="structFRHAPI__PlayerPresence_1a9d5200715be2c4c302152334328ddb94"></a>
 
-Checks whether PlayerId_Optional has been set.
+Returns the default value of PlayerId.
 
-#### `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerPresence_1a5b3dd414fe5c6d32baa1127a75ffed39)`() const` <a id="structFRHAPI__PlayerPresence_1a5b3dd414fe5c6d32baa1127a75ffed39"></a>
-
-Returns true if PlayerId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlayerPresence_1a84700c474f339d6330b4686549a35544)`()` <a id="structFRHAPI__PlayerPresence_1a84700c474f339d6330b4686549a35544"></a>
-
-Sets the value of PlayerId_Optional to its default and also sets PlayerId_IsSet to true.
-
-#### `public inline void `[`SetPlayerIdToNull`](#structFRHAPI__PlayerPresence_1a0b8283fb916fe5292624c3539d68496d)`()` <a id="structFRHAPI__PlayerPresence_1a0b8283fb916fe5292624c3539d68496d"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerIdToNull`](#structFRHAPI__PlayerPresence_1aebffaaec0e5bc13b584ca5051071657f)`()` <a id="structFRHAPI__PlayerPresence_1aebffaaec0e5bc13b584ca5051071657f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPlayerIdNull`](#structFRHAPI__PlayerPresence_1a6cf0f3954eb1ec5da3f666e88e3f4ddb)`() const` <a id="structFRHAPI__PlayerPresence_1a6cf0f3954eb1ec5da3f666e88e3f4ddb"></a>
+#### `public inline FORCEINLINE bool `[`IsPlayerIdNull`](#structFRHAPI__PlayerPresence_1aa7dd7334433780b0bcc0e47deb851f9a)`() const` <a id="structFRHAPI__PlayerPresence_1aa7dd7334433780b0bcc0e47deb851f9a"></a>
 
 Checks whether PlayerId_Optional is set to null.
 
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPresence_1a045f6f734c8920ea4d543c4349294195)`()` <a id="structFRHAPI__PlayerPresence_1a045f6f734c8920ea4d543c4349294195"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPresence_1aff7a86b8ba77ee64c0929301daad961e)`()` <a id="structFRHAPI__PlayerPresence_1aff7a86b8ba77ee64c0929301daad961e"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPresence_1a15d2df39ed6b36295953de0b8178f1b5)`() const` <a id="structFRHAPI__PlayerPresence_1a15d2df39ed6b36295953de0b8178f1b5"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerPresence_1ac3669c93f879833399fb57e7a0c1463f)`() const` <a id="structFRHAPI__PlayerPresence_1ac3669c93f879833399fb57e7a0c1463f"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPresence_1ae6694892d8bf9f029c0f30a533002904)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerPresence_1ae6694892d8bf9f029c0f30a533002904"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PlayerPresence_1a8fdc52e632d1e38b2652fa6d12a4c049)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerPresence_1a8fdc52e632d1e38b2652fa6d12a4c049"></a>
 
 Sets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerPresence_1a3f8e515fe0f9fb57c91e66ad655f5190)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerPresence_1a3f8e515fe0f9fb57c91e66ad655f5190"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PlayerPresence_1a6cfe712ffd9197c8cf41a1de63607685)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerPresence_1a6cfe712ffd9197c8cf41a1de63607685"></a>
 
 Sets the value of PlayerUuid using move semantics.
 
-#### `public inline bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1adab47117d2b732ba08bb4d3c0e49581b)`()` <a id="structFRHAPI__PlayerPresence_1adab47117d2b732ba08bb4d3c0e49581b"></a>
+#### `public inline FORCEINLINE bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a5bb47e8118fafe04caad409868331700)`()` <a id="structFRHAPI__PlayerPresence_1a5bb47e8118fafe04caad409868331700"></a>
 
 Gets the value of DoNotDisturb_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a99e3c84965c6b2f2455ab39a6294e8e1)`() const` <a id="structFRHAPI__PlayerPresence_1a99e3c84965c6b2f2455ab39a6294e8e1"></a>
+#### `public inline FORCEINLINE const bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1aebf2091226ba0e534b64c7ce099298a0)`() const` <a id="structFRHAPI__PlayerPresence_1aebf2091226ba0e534b64c7ce099298a0"></a>
 
 Gets the value of DoNotDisturb_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a70d67c1ec609065dfb04211deeaee5b2)`(const bool & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a70d67c1ec609065dfb04211deeaee5b2"></a>
+#### `public inline FORCEINLINE const bool & `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a8a34714fdef364cbec2d5f13a89d2085)`(const bool & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a8a34714fdef364cbec2d5f13a89d2085"></a>
 
 Gets the value of DoNotDisturb_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a5b75719ef4431ed80c4266eb4241e0a1)`(bool & OutValue) const` <a id="structFRHAPI__PlayerPresence_1a5b75719ef4431ed80c4266eb4241e0a1"></a>
+#### `public inline FORCEINLINE bool `[`GetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a30f64501fedca332c21da124d2343138)`(bool & OutValue) const` <a id="structFRHAPI__PlayerPresence_1a30f64501fedca332c21da124d2343138"></a>
 
 Fills OutValue with the value of DoNotDisturb_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetDoNotDisturbOrNull`](#structFRHAPI__PlayerPresence_1a9196a3d937fa8e1a0f8e29670f9b304e)`()` <a id="structFRHAPI__PlayerPresence_1a9196a3d937fa8e1a0f8e29670f9b304e"></a>
+#### `public inline FORCEINLINE bool * `[`GetDoNotDisturbOrNull`](#structFRHAPI__PlayerPresence_1a0a264be258db03e467c94fe4958dc97b)`()` <a id="structFRHAPI__PlayerPresence_1a0a264be258db03e467c94fe4958dc97b"></a>
 
 Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetDoNotDisturbOrNull`](#structFRHAPI__PlayerPresence_1afa4c4115e89d6d95c929ef4ae0bfb235)`() const` <a id="structFRHAPI__PlayerPresence_1afa4c4115e89d6d95c929ef4ae0bfb235"></a>
+#### `public inline FORCEINLINE const bool * `[`GetDoNotDisturbOrNull`](#structFRHAPI__PlayerPresence_1a099580fa1526f242d56a6eb80f4105d4)`() const` <a id="structFRHAPI__PlayerPresence_1a099580fa1526f242d56a6eb80f4105d4"></a>
 
 Returns a pointer to DoNotDisturb_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a4e30e217ef50b9cb1e6b513563deccf7)`(const bool & NewValue)` <a id="structFRHAPI__PlayerPresence_1a4e30e217ef50b9cb1e6b513563deccf7"></a>
+#### `public inline FORCEINLINE void `[`SetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a255c444b032d1741ad2bf1393161f0f6)`(const bool & NewValue)` <a id="structFRHAPI__PlayerPresence_1a255c444b032d1741ad2bf1393161f0f6"></a>
 
 Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true.
 
-#### `public inline void `[`SetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a6fa2fe3cb84e8568baa020c2871a3125)`(bool && NewValue)` <a id="structFRHAPI__PlayerPresence_1a6fa2fe3cb84e8568baa020c2871a3125"></a>
+#### `public inline FORCEINLINE void `[`SetDoNotDisturb`](#structFRHAPI__PlayerPresence_1a2efdc2dac0d01dcac0cdac69b32ddc0e)`(bool && NewValue)` <a id="structFRHAPI__PlayerPresence_1a2efdc2dac0d01dcac0cdac69b32ddc0e"></a>
 
 Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true using move semantics.
 
@@ -475,55 +442,47 @@ Sets the value of DoNotDisturb_Optional and also sets DoNotDisturb_IsSet to true
 
 Clears the value of DoNotDisturb_Optional and sets DoNotDisturb_IsSet to false.
 
-#### `public inline bool `[`IsDoNotDisturbSet`](#structFRHAPI__PlayerPresence_1a57fe942e77bb45a4fbc98a8c34221671)`() const` <a id="structFRHAPI__PlayerPresence_1a57fe942e77bb45a4fbc98a8c34221671"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_DoNotDisturb`](#structFRHAPI__PlayerPresence_1a800c604fc1c80730b3009a32039538db)`()` <a id="structFRHAPI__PlayerPresence_1a800c604fc1c80730b3009a32039538db"></a>
 
-Checks whether DoNotDisturb_Optional has been set.
+Returns the default value of DoNotDisturb.
 
-#### `public inline bool `[`IsDoNotDisturbDefaultValue`](#structFRHAPI__PlayerPresence_1a56d37e6ea10b4fa8a5c3560ff60addbd)`() const` <a id="structFRHAPI__PlayerPresence_1a56d37e6ea10b4fa8a5c3560ff60addbd"></a>
-
-Returns true if DoNotDisturb_Optional is set and matches the default value.
-
-#### `public inline void `[`SetDoNotDisturbToDefault`](#structFRHAPI__PlayerPresence_1ac87c1590c6b65784ca85545477e3f03b)`()` <a id="structFRHAPI__PlayerPresence_1ac87c1590c6b65784ca85545477e3f03b"></a>
-
-Sets the value of DoNotDisturb_Optional to its default and also sets DoNotDisturb_IsSet to true.
-
-#### `public inline void `[`SetDoNotDisturbToNull`](#structFRHAPI__PlayerPresence_1a0096e8bfe58afe2edbb86cef0b30d398)`()` <a id="structFRHAPI__PlayerPresence_1a0096e8bfe58afe2edbb86cef0b30d398"></a>
+#### `public inline FORCEINLINE void `[`SetDoNotDisturbToNull`](#structFRHAPI__PlayerPresence_1a7baa6d4e378eaf0648ba9e99d24601b1)`()` <a id="structFRHAPI__PlayerPresence_1a7baa6d4e378eaf0648ba9e99d24601b1"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsDoNotDisturbNull`](#structFRHAPI__PlayerPresence_1a7537a4c6bb978fcb034635f9c607b6ae)`() const` <a id="structFRHAPI__PlayerPresence_1a7537a4c6bb978fcb034635f9c607b6ae"></a>
+#### `public inline FORCEINLINE bool `[`IsDoNotDisturbNull`](#structFRHAPI__PlayerPresence_1a91f23154c16d4734c62efa58610f781a)`() const` <a id="structFRHAPI__PlayerPresence_1a91f23154c16d4734c62efa58610f781a"></a>
 
 Checks whether DoNotDisturb_Optional is set to null.
 
-#### `public inline FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1ad9102e8dbb89d79e390b6c872db2ba42)`()` <a id="structFRHAPI__PlayerPresence_1ad9102e8dbb89d79e390b6c872db2ba42"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1a87373c0ad5e1e97d5935b943ce45a74d)`()` <a id="structFRHAPI__PlayerPresence_1a87373c0ad5e1e97d5935b943ce45a74d"></a>
 
 Gets the value of LastSeen_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1ab60f45a8d8325932eeb6230c7d13fc01)`() const` <a id="structFRHAPI__PlayerPresence_1ab60f45a8d8325932eeb6230c7d13fc01"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1a503434131645b105d660527c73da6751)`() const` <a id="structFRHAPI__PlayerPresence_1a503434131645b105d660527c73da6751"></a>
 
 Gets the value of LastSeen_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1a16a9f25046654e86db428f814ab0198d)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1a16a9f25046654e86db428f814ab0198d"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1acbcfb090af10134822b125bc6a4cff18)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__PlayerPresence_1acbcfb090af10134822b125bc6a4cff18"></a>
 
 Gets the value of LastSeen_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1a6d87af0eee94b42e0031cc0dbdc74c5f)`(FDateTime & OutValue) const` <a id="structFRHAPI__PlayerPresence_1a6d87af0eee94b42e0031cc0dbdc74c5f"></a>
+#### `public inline FORCEINLINE bool `[`GetLastSeen`](#structFRHAPI__PlayerPresence_1ae91699d189a5c06c887488a2abc4bf53)`(FDateTime & OutValue) const` <a id="structFRHAPI__PlayerPresence_1ae91699d189a5c06c887488a2abc4bf53"></a>
 
 Fills OutValue with the value of LastSeen_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetLastSeenOrNull`](#structFRHAPI__PlayerPresence_1a9d5c7b667179a92136b72daf4032f74d)`()` <a id="structFRHAPI__PlayerPresence_1a9d5c7b667179a92136b72daf4032f74d"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetLastSeenOrNull`](#structFRHAPI__PlayerPresence_1af431b0be3a76b99812072cf1dca31d18)`()` <a id="structFRHAPI__PlayerPresence_1af431b0be3a76b99812072cf1dca31d18"></a>
 
 Returns a pointer to LastSeen_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetLastSeenOrNull`](#structFRHAPI__PlayerPresence_1a7d6c60479dc1f827fb856aca6b39cab8)`() const` <a id="structFRHAPI__PlayerPresence_1a7d6c60479dc1f827fb856aca6b39cab8"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetLastSeenOrNull`](#structFRHAPI__PlayerPresence_1a29d60c0469f83bdcbc5695be280b910d)`() const` <a id="structFRHAPI__PlayerPresence_1a29d60c0469f83bdcbc5695be280b910d"></a>
 
 Returns a pointer to LastSeen_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1a01235f6f22957660f31fb4e830eb8bcd)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerPresence_1a01235f6f22957660f31fb4e830eb8bcd"></a>
+#### `public inline FORCEINLINE void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1a201ea18696018ba07420c6c5b99eaa8a)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerPresence_1a201ea18696018ba07420c6c5b99eaa8a"></a>
 
 Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true.
 
-#### `public inline void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1afcbde717af9201a11fdbe3cc922acf83)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerPresence_1afcbde717af9201a11fdbe3cc922acf83"></a>
+#### `public inline FORCEINLINE void `[`SetLastSeen`](#structFRHAPI__PlayerPresence_1a6de13a8987ee5d0ee65f6ddbc5d2e354)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerPresence_1a6de13a8987ee5d0ee65f6ddbc5d2e354"></a>
 
 Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true using move semantics.
 
@@ -531,15 +490,11 @@ Sets the value of LastSeen_Optional and also sets LastSeen_IsSet to true using m
 
 Clears the value of LastSeen_Optional and sets LastSeen_IsSet to false.
 
-#### `public inline bool `[`IsLastSeenSet`](#structFRHAPI__PlayerPresence_1a558155162704396502529911b31c4d55)`() const` <a id="structFRHAPI__PlayerPresence_1a558155162704396502529911b31c4d55"></a>
-
-Checks whether LastSeen_Optional has been set.
-
-#### `public inline void `[`SetLastSeenToNull`](#structFRHAPI__PlayerPresence_1a0ccb8ed55277bb74f0d8280e07056f80)`()` <a id="structFRHAPI__PlayerPresence_1a0ccb8ed55277bb74f0d8280e07056f80"></a>
+#### `public inline FORCEINLINE void `[`SetLastSeenToNull`](#structFRHAPI__PlayerPresence_1ac6956f92180e7c814c83a0d0820d73b3)`()` <a id="structFRHAPI__PlayerPresence_1ac6956f92180e7c814c83a0d0820d73b3"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLastSeenNull`](#structFRHAPI__PlayerPresence_1a9ac405ed7c50f35742b562be3ddfe6a8)`() const` <a id="structFRHAPI__PlayerPresence_1a9ac405ed7c50f35742b562be3ddfe6a8"></a>
+#### `public inline FORCEINLINE bool `[`IsLastSeenNull`](#structFRHAPI__PlayerPresence_1a6661439639a01b4f5704d9013d323f04)`() const` <a id="structFRHAPI__PlayerPresence_1a6661439639a01b4f5704d9013d323f04"></a>
 
 Checks whether LastSeen_Optional is set to null.
 

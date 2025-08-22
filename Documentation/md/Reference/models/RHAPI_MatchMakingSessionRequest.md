@@ -48,126 +48,116 @@ A request body for a new matchmade session to be created.
 `public bool `[`TicketAddedUnixTime_IsSet`](#structFRHAPI__MatchMakingSessionRequest_1ae198a78eaf51d23f5e001f4d190783ee) | true if TicketAddedUnixTime_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingSessionRequest_1a1c4d78c2ff5a8def1bd8d5978ac1ec3c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingSessionRequest_1a89ce9dfc3016a35170d0ea6a769120b7)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1a49bf0f7601abe0c89244095e781fd029)`()` | Gets the value of Teams.
-`public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1acc3d856d4527ead182f40ce422f2f571)`() const` | Gets the value of Teams.
-`public inline void `[`SetTeams`](#structFRHAPI__MatchMakingSessionRequest_1aa190bcc848e9998970642062d47c0246)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` | Sets the value of Teams.
-`public inline void `[`SetTeams`](#structFRHAPI__MatchMakingSessionRequest_1af71a889c1fd1f9991512ce1a7932f962)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` | Sets the value of Teams using move semantics.
-`public inline TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1ac89c3e752ac8ab79f0b781273a3f9879)`()` | Gets the value of SessionTickets_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a47569bc215e6d4a9ca30326a71b6db0a)`() const` | Gets the value of SessionTickets_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1ab8cac8620d3ab28637745ccb44f72c57)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of SessionTickets_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a7c5a361d389fe8a3144f3d106b8175d0)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of SessionTickets_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetSessionTicketsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a18facc346a0e8fa0cc27f09d6efcb515)`()` | Returns a pointer to SessionTickets_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetSessionTicketsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a369516400a02081f92b3d1ef63f4c129)`() const` | Returns a pointer to SessionTickets_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a94844593195dbc16314ea8d1a2c2b2dc)`(const TMap< FString, FString > & NewValue)` | Sets the value of SessionTickets_Optional and also sets SessionTickets_IsSet to true.
-`public inline void `[`SetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a750894c9acb3c9b120e0ca2c0ae6fbe8)`(TMap< FString, FString > && NewValue)` | Sets the value of SessionTickets_Optional and also sets SessionTickets_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1a0dc67ed214204e4820aff6abba69560e)`()` | Gets the value of Teams.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1ab6c0a485a5b7d3813e11a5f9aa7de1b7)`() const` | Gets the value of Teams.
+`public inline FORCEINLINE void `[`SetTeams`](#structFRHAPI__MatchMakingSessionRequest_1a73be0953053f73ddd75575bd1a0a0b17)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` | Sets the value of Teams.
+`public inline FORCEINLINE void `[`SetTeams`](#structFRHAPI__MatchMakingSessionRequest_1acd8d5e84a92bee8a4b5e3c5bef761d0d)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` | Sets the value of Teams using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1af6c422cfd86de577a2cd4d33b497584a)`()` | Gets the value of SessionTickets_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a7ad9485430c3f8ebf098b1419f12ca3c)`() const` | Gets the value of SessionTickets_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1ac3e13523c501523e3d952bd757bd0197)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of SessionTickets_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a9b6178aad4b495603081d390c32075cd)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of SessionTickets_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetSessionTicketsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ad530fee41743c506ce37b7e6e4f66b4a)`()` | Returns a pointer to SessionTickets_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetSessionTicketsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1aeff996475bf97af44e69ed84387b40f8)`() const` | Returns a pointer to SessionTickets_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1ab1cbe12cacc18f0801d0c3c0ff2e5913)`(const TMap< FString, FString > & NewValue)` | Sets the value of SessionTickets_Optional and also sets SessionTickets_IsSet to true.
+`public inline FORCEINLINE void `[`SetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1aac21e338f0089416e744d03193c99216)`(TMap< FString, FString > && NewValue)` | Sets the value of SessionTickets_Optional and also sets SessionTickets_IsSet to true using move semantics.
 `public inline void `[`ClearSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a67991e1a5346dd7ee431ac3c95fae103)`()` | Clears the value of SessionTickets_Optional and sets SessionTickets_IsSet to false.
-`public inline bool `[`IsSessionTicketsSet`](#structFRHAPI__MatchMakingSessionRequest_1a9736c3f2468e11ccf86bb5dbea1fec5f)`() const` | Checks whether SessionTickets_Optional has been set.
-`public inline TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a02c3ac6e21d946c172ae7fe97cc3a801)`()` | Gets the value of Sessions_Optional, regardless of it having been set.
-`public inline const TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1aae40b5fbad0898b1b8a84dec9440a00a)`() const` | Gets the value of Sessions_Optional, regardless of it having been set.
-`public inline const TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a98d7f4bf312ac932cb465de8fe2a6876)`(const TArray< FString > & DefaultValue) const` | Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1aec2cfe21efa2f6ab64f194ae28cb4b1e)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< FString > * `[`GetSessionsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ade68954c2f1333c14439de6113ba43c6)`()` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< FString > * `[`GetSessionsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a01f61a52acce696caf67a38bfe25a2d7)`() const` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a8f51d0c150193d0ec5d24b23969460bf)`(const TArray< FString > & NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
-`public inline void `[`SetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a534bdec08d0a0cbc55e85836e43d0b60)`(TArray< FString > && NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a6d21bee9ed5692814bab7c34b96cfa7f)`()` | Gets the value of Sessions_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a5c581f44dc7ae87da7e1c8be98a0ee51)`() const` | Gets the value of Sessions_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a282ee524ae7a9b1ff2ab2828bb133823)`(const TArray< FString > & DefaultValue) const` | Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a03ef883b9b502a1551b86ae3a53a563c)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< FString > * `[`GetSessionsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a604c3aaf83a3d04df9f298c9eaf8e06f)`()` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< FString > * `[`GetSessionsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ae363adbc4f2a591ce3492105642b7ae0)`() const` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a78ca5e30a86a9e179060f08239fc6935)`(const TArray< FString > & NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
+`public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a475e3bcfa83f683bac873674cad5b5d3)`(TArray< FString > && NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
 `public inline void `[`ClearSessions`](#structFRHAPI__MatchMakingSessionRequest_1adebdd1ee3e1ee275131abc42bc143446)`()` | Clears the value of Sessions_Optional and sets Sessions_IsSet to false.
-`public inline bool `[`IsSessionsSet`](#structFRHAPI__MatchMakingSessionRequest_1a58098576bdc0b55a150d49744409d74a)`() const` | Checks whether Sessions_Optional has been set.
-`public inline FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a3ae073f49ce9a2783db9c22dc958f477)`()` | Gets the value of InstanceLaunchTemplateId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a63a5145129fea802787c145a5816388f)`() const` | Gets the value of InstanceLaunchTemplateId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ae272e441019574a702fd2d1e4ff4d8bd)`(const FGuid & DefaultValue) const` | Gets the value of InstanceLaunchTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ac50153c32345b189dba6829c454c886c)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceLaunchTemplateId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetInstanceLaunchTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a4df97124f7c3c49b13b407d41f649d7b)`()` | Returns a pointer to InstanceLaunchTemplateId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetInstanceLaunchTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a2fc618ba4c796f4e951bf9549a2e6f93)`() const` | Returns a pointer to InstanceLaunchTemplateId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aa98a00a35a2f60e9ee0c02b18236aed3)`(const FGuid & NewValue)` | Sets the value of InstanceLaunchTemplateId_Optional and also sets InstanceLaunchTemplateId_IsSet to true.
-`public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a2833f16ecc18ba36b24460f74b6d66e8)`(FGuid && NewValue)` | Sets the value of InstanceLaunchTemplateId_Optional and also sets InstanceLaunchTemplateId_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a1e107c7abde8719667d988e3aae2d233)`()` | Gets the value of InstanceLaunchTemplateId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a1919da9f390eaddca3ced4efaf94c73d)`() const` | Gets the value of InstanceLaunchTemplateId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ad9322a172f9118535bc9beb5f1ed2e5f)`(const FGuid & DefaultValue) const` | Gets the value of InstanceLaunchTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a368facd890cae8d1428590df34193d26)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceLaunchTemplateId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetInstanceLaunchTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1afc891b0a474a494eb0e70eee482f9d69)`()` | Returns a pointer to InstanceLaunchTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetInstanceLaunchTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a613da27a4f2374e5f2ba8c601bce9de9)`() const` | Returns a pointer to InstanceLaunchTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a6b1772aca7d6056000d2d830bceaa815)`(const FGuid & NewValue)` | Sets the value of InstanceLaunchTemplateId_Optional and also sets InstanceLaunchTemplateId_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ad26d3290da0d28d238853397d14319a2)`(FGuid && NewValue)` | Sets the value of InstanceLaunchTemplateId_Optional and also sets InstanceLaunchTemplateId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a562cc24bffffbe5275439d90a065df58)`()` | Clears the value of InstanceLaunchTemplateId_Optional and sets InstanceLaunchTemplateId_IsSet to false.
-`public inline bool `[`IsInstanceLaunchTemplateIdSet`](#structFRHAPI__MatchMakingSessionRequest_1acac90d2c47aa95a5460da0449c9a36d5)`() const` | Checks whether InstanceLaunchTemplateId_Optional has been set.
-`public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a93632121d3adb5cd8a196e2632cc807b)`()` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ad26125edd8f7ed817e68b4742a4674bd)`() const` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a3ece18ca6fab568ed49c774d0a0c20f3)`(const FGuid & DefaultValue) const` | Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a64e3088267cee5936a06c76ea1991ec1)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ad6658a45d0140d693207939d0aea2fe6)`()` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ac0b7d29c5d92e4d8a2491a487618c142)`() const` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1abb962d7a7f2d4bcf87b2482399861d96)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aeddef582cfa0cc7199406697395c5ab0)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ac7b87a9451c6c1e79765cf6df958f13c)`()` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aaf21df96a6f5c3edaba809f7b6e34b7b)`() const` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a28b07fe1c9107ebd5036bdeaacea71b0)`(const FGuid & DefaultValue) const` | Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a93cbe2fcae98555fdf74ca65ebda01a0)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a2206cd22a2509bbc8bdfd71ab1895535)`()` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a4f738e5d5b35cd3cef54016285e53d29)`() const` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aed0e049d522064b71cd7c4b42bacb8d7)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a506850e3c5a87f9b7153faa8b038d3ff)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aa2b8778acecfd439f666216d0a8dc928)`()` | Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false.
-`public inline bool `[`IsInstanceRequestTemplateIdSet`](#structFRHAPI__MatchMakingSessionRequest_1aac81ad9bbd8e341313a3217e85de5ec7)`() const` | Checks whether InstanceRequestTemplateId_Optional has been set.
-`public inline FString & `[`GetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a4118ea702f478eb6678a5d7e2cb336d9)`()` | Gets the value of RegionId.
-`public inline const FString & `[`GetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a1850ec5c5016880d78c1d72a5b27c02d)`() const` | Gets the value of RegionId.
-`public inline void `[`SetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a05b2f5c951811885077085ddf58df59c)`(const FString & NewValue)` | Sets the value of RegionId.
-`public inline void `[`SetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a4accc158106897d84d2c210166abcd7a)`(FString && NewValue)` | Sets the value of RegionId using move semantics.
-`public inline FString & `[`GetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1a63bb5a935084273f5f9ad5339c906ada)`()` | Gets the value of MatchId.
-`public inline const FString & `[`GetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1acdeae20d8552a35662c2b631e430ac18)`() const` | Gets the value of MatchId.
-`public inline void `[`SetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1aa5461fb722d8a6841e51e71daa3e2e13)`(const FString & NewValue)` | Sets the value of MatchId.
-`public inline void `[`SetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1a2a950c8478fc56464bf23df3357e618c)`(FString && NewValue)` | Sets the value of MatchId using move semantics.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a99de2fc10650c07602c60ac28dc42f94)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a9f78ba369fa4e02ddf16cac02747aa82)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a79353b8703be06c15b75c445e90ff408)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a16ef7662ab55741f488ffbd9416fd284)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ae5a8689d0bbf8a5013e073b3e76a2590)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a1648bb43365b079e1689abe17a3c7821)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a5058d4f29a0886e0fe65b833b8604c02)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1aa297d043a0dded32c011a03110cf23eb)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a945deb28e9ab1f87bd8435f81768fe21)`()` | Gets the value of RegionId.
+`public inline FORCEINLINE const FString & `[`GetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a4172825b5110745f0b1e4f9d3e7c47c0)`() const` | Gets the value of RegionId.
+`public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1af11c2e862796cbdb24b09a7512725b2d)`(const FString & NewValue)` | Sets the value of RegionId.
+`public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a35b2aa355269db06b6ed9d3dc2d6c2e8)`(FString && NewValue)` | Sets the value of RegionId using move semantics.
+`public inline FORCEINLINE FString & `[`GetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1afe7a575c1b3b56cac59e98d5fa6c2009)`()` | Gets the value of MatchId.
+`public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1a7883dd877948dc2bbe9d793095f0533b)`() const` | Gets the value of MatchId.
+`public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1aa4299d1def9e9bf7480657d0ef4f0f8a)`(const FString & NewValue)` | Sets the value of MatchId.
+`public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1ac8da56c51084b0ff45dba11eb6d880ab)`(FString && NewValue)` | Sets the value of MatchId using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1ae431e57cb97fb2c6eeeb7f2e38995d01)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1abeaceb6472aba0bd1f4e8beb2375a335)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a3136338d7148174f60ca901914873884)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1ad45892bb819c4e48dc94feb727056334)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a3495ad2b8d6f5ee5a43a8d1063849363)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a375349e667a3903357c52527e2577972)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1af293c81a6d99c032dc5bd8bc001986c1)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a3fa12afacecbd6c1f31d970e39c9297b)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a90c976d1677596abcbc2becfbe0c0b08)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchMakingSessionRequest_1aa9948d120ae0e04c84605b40c1b4a930)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1adf5814a26f577991064394ce794c0a61)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1ab617375c2f56d2c1a0c19c365cd09bfe)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a429bb7b29a35a76ee595aa492b5490a3)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a8292a9a49abd8bd5721787cd007527e6)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchMakingSessionRequest_1afa7fe15ee5deffaad4ae3df4a1a9c335)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a8d1e70f5347d75a84ee0cf2115e2ea4f)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1ae5738cbed18f8a6cc097a9213d2a74b3)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1ae2811ea2cbffe8d6f521c856b5d43935)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a0fea05dd18cdb50d6042d083466ffe02)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a91da54487696c50acb60b005c75a103d)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1afe1083ecc398a0bed57d7ed3fc9163a2)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a7815041daf4853e87ca8ac1e4aeae589)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a03a9caa572163ffb5a84ce0ae4991b45)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchMakingSessionRequest_1aef0861ed8e17bc34c2ba284a2a747cce)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a0c811f384151ffc420ea40db71aa6801)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a6f2881eb49a5c4dc77381d7637c2b541)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a53517d5bc4ecb34f4f08b6aaf1fc899a)`()` | Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
-`public inline bool `[`IsHostPlayerUuidSet`](#structFRHAPI__MatchMakingSessionRequest_1a20b78b6c9763cb4db33c7472c08c8fa1)`() const` | Checks whether HostPlayerUuid_Optional has been set.
-`public inline FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a852fe60cd1c9ec68f420659cf7aefca3)`()` | Gets the value of BackfillId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1ab10c405c35e628d29dac2794e2cdfd1b)`() const` | Gets the value of BackfillId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a3ab98aed1b010798ad89763cef3510f7)`(const FString & DefaultValue) const` | Gets the value of BackfillId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a93a933a715e48d8566e7f759ccffc2ec)`(FString & OutValue) const` | Fills OutValue with the value of BackfillId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetBackfillIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a7bccbc26cd42c9df53f6f466da912597)`()` | Returns a pointer to BackfillId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetBackfillIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1af2d585999327d1709caebf996f5d8d6d)`() const` | Returns a pointer to BackfillId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a534c15a232b2c252a801daaba8b846f7)`(const FString & NewValue)` | Sets the value of BackfillId_Optional and also sets BackfillId_IsSet to true.
-`public inline void `[`SetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a2a202101e81bc5b59a471ae314c632ee)`(FString && NewValue)` | Sets the value of BackfillId_Optional and also sets BackfillId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a188f940f01fc3e37b5e6dcbab1a3f362)`()` | Gets the value of BackfillId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a553cc434e4e0a4e2cd52da698db44b91)`() const` | Gets the value of BackfillId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1abcf17f46ed22f12d00bc90a4a260d2ec)`(const FString & DefaultValue) const` | Gets the value of BackfillId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a8a14dbab528844e72b9eed660e776fa2)`(FString & OutValue) const` | Fills OutValue with the value of BackfillId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetBackfillIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1acb0b0e7680a8e6763926afe16adfe94b)`()` | Returns a pointer to BackfillId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetBackfillIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a1eb0409da7d552bdc14c035cd1bed6f7)`() const` | Returns a pointer to BackfillId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a0f23c302c20b18ed5164ae5c097ab102)`(const FString & NewValue)` | Sets the value of BackfillId_Optional and also sets BackfillId_IsSet to true.
+`public inline FORCEINLINE void `[`SetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a23d32644b8b48b8e0c33ecf939c8b33d)`(FString && NewValue)` | Sets the value of BackfillId_Optional and also sets BackfillId_IsSet to true using move semantics.
 `public inline void `[`ClearBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a9374d75956bcacf1c6bc25b5e6e748f2)`()` | Clears the value of BackfillId_Optional and sets BackfillId_IsSet to false.
-`public inline bool `[`IsBackfillIdSet`](#structFRHAPI__MatchMakingSessionRequest_1ab93cfaf5e808416421f76c917d8c0e41)`() const` | Checks whether BackfillId_Optional has been set.
-`public inline FDateTime & `[`GetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a43d75bbdc4533375fc98f4c5cc2a553a)`()` | Gets the value of MatchCreateRequestTime.
-`public inline const FDateTime & `[`GetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1acab309f2b715cccf176f063fa0dda376)`() const` | Gets the value of MatchCreateRequestTime.
-`public inline void `[`SetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a1cd348b21339fe4c8e81bc19064f3ab7)`(const FDateTime & NewValue)` | Sets the value of MatchCreateRequestTime.
-`public inline void `[`SetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1aba2d48e108378fe91ebe4ebf1b29dc0f)`(FDateTime && NewValue)` | Sets the value of MatchCreateRequestTime using move semantics.
-`public inline float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a3d51c8ca312f6ebcd7cd6e9bc590ee09)`()` | Gets the value of EvaluationScore_Optional, regardless of it having been set.
-`public inline const float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1ac03c7a42ae57c92084eb8c6dcb53e450)`() const` | Gets the value of EvaluationScore_Optional, regardless of it having been set.
-`public inline const float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a800bcf6d262ded777dbc7755ccb07c28)`(const float & DefaultValue) const` | Gets the value of EvaluationScore_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a9928fd3509e876315856db87f44e924c)`(float & OutValue) const` | Fills OutValue with the value of EvaluationScore_Optional and returns true if it has been set, otherwise returns false.
-`public inline float * `[`GetEvaluationScoreOrNull`](#structFRHAPI__MatchMakingSessionRequest_1aaa05fbf9e3fa2e23cb2f310afe648a98)`()` | Returns a pointer to EvaluationScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline const float * `[`GetEvaluationScoreOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ae2034bdf382b451a57272e0503b2073f)`() const` | Returns a pointer to EvaluationScore_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a7844668abd03425aec51ee98df60f6d2)`(const float & NewValue)` | Sets the value of EvaluationScore_Optional and also sets EvaluationScore_IsSet to true.
-`public inline void `[`SetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a3e8ece21d36a7acafca9154caa358d2a)`(float && NewValue)` | Sets the value of EvaluationScore_Optional and also sets EvaluationScore_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a7dba7cde19b4f896330214cc9f8bfdb1)`()` | Gets the value of MatchCreateRequestTime.
+`public inline FORCEINLINE const FDateTime & `[`GetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a20629713b7cc92e9af1f4d215cfee33e)`() const` | Gets the value of MatchCreateRequestTime.
+`public inline FORCEINLINE void `[`SetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a39fe894a65af648148c6b3d0cd8cfc66)`(const FDateTime & NewValue)` | Sets the value of MatchCreateRequestTime.
+`public inline FORCEINLINE void `[`SetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a41c81dd088681e05f8bb6efa0e3da8af)`(FDateTime && NewValue)` | Sets the value of MatchCreateRequestTime using move semantics.
+`public inline FORCEINLINE float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a874dcb4abad991af4d23915c5ca04c76)`()` | Gets the value of EvaluationScore_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a536d10dd385f3e628db609ffaf017171)`() const` | Gets the value of EvaluationScore_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a39f784f533ad5a74e3f13e5fba8601b6)`(const float & DefaultValue) const` | Gets the value of EvaluationScore_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a3faa311f338f42e5acd3f8d78f503963)`(float & OutValue) const` | Fills OutValue with the value of EvaluationScore_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE float * `[`GetEvaluationScoreOrNull`](#structFRHAPI__MatchMakingSessionRequest_1af6ed9ef5a4518265bb850e9f57ced13c)`()` | Returns a pointer to EvaluationScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const float * `[`GetEvaluationScoreOrNull`](#structFRHAPI__MatchMakingSessionRequest_1aee1080bb78ce3eceabebfd46108e2a5f)`() const` | Returns a pointer to EvaluationScore_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1ac6a0294462b4fa6ae8de22c3f7ead640)`(const float & NewValue)` | Sets the value of EvaluationScore_Optional and also sets EvaluationScore_IsSet to true.
+`public inline FORCEINLINE void `[`SetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1ac0de6168106ae114e5d479c25098b2e2)`(float && NewValue)` | Sets the value of EvaluationScore_Optional and also sets EvaluationScore_IsSet to true using move semantics.
 `public inline void `[`ClearEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1af8ff1f96e8e0bd1f1284147f42897310)`()` | Clears the value of EvaluationScore_Optional and sets EvaluationScore_IsSet to false.
-`public inline bool `[`IsEvaluationScoreSet`](#structFRHAPI__MatchMakingSessionRequest_1a5ee322e928632699ad19669b46139fd0)`() const` | Checks whether EvaluationScore_Optional has been set.
-`public inline float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a6926a666634fe9f694c45efc2a1daa97)`()` | Gets the value of RankQuality_Optional, regardless of it having been set.
-`public inline const float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a2ee747ce314361bbab6d8c0ce15c63b8)`() const` | Gets the value of RankQuality_Optional, regardless of it having been set.
-`public inline const float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1afa632dcbf45c1c0a3d0611c67803af3f)`(const float & DefaultValue) const` | Gets the value of RankQuality_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1adffb5f49c667cf7a949fa78ccd771530)`(float & OutValue) const` | Fills OutValue with the value of RankQuality_Optional and returns true if it has been set, otherwise returns false.
-`public inline float * `[`GetRankQualityOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a8d21c9c5994eb54c334635f6be53bb26)`()` | Returns a pointer to RankQuality_Optional, if it has been set, otherwise returns nullptr.
-`public inline const float * `[`GetRankQualityOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a6676b83e0975efc3b7ac02fd2fe33153)`() const` | Returns a pointer to RankQuality_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a23e527131822e2602c64b28fbc420ce1)`(const float & NewValue)` | Sets the value of RankQuality_Optional and also sets RankQuality_IsSet to true.
-`public inline void `[`SetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1af1751ba6b293d96a916e822962c9bd94)`(float && NewValue)` | Sets the value of RankQuality_Optional and also sets RankQuality_IsSet to true using move semantics.
+`public inline FORCEINLINE float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a85fd2ad3cc9a6f07bbda31f0c128fb2e)`()` | Gets the value of RankQuality_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1acdb574e0a227ce76aff0e902f9b8a0b0)`() const` | Gets the value of RankQuality_Optional, regardless of it having been set.
+`public inline FORCEINLINE const float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1ad5c21ffc7747b547826352294ce7d7ff)`(const float & DefaultValue) const` | Gets the value of RankQuality_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1ac70f36c462513aef5abc061688f2c7e9)`(float & OutValue) const` | Fills OutValue with the value of RankQuality_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE float * `[`GetRankQualityOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ac3712a9a6a1d7de5b8561c0ca5662968)`()` | Returns a pointer to RankQuality_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const float * `[`GetRankQualityOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a4803171029bb07c396e60ca1c1b64987)`() const` | Returns a pointer to RankQuality_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1ac657962242ac92008389d2dd7330af78)`(const float & NewValue)` | Sets the value of RankQuality_Optional and also sets RankQuality_IsSet to true.
+`public inline FORCEINLINE void `[`SetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a29ee2be539a2b3ddd88e44274a7ae27e)`(float && NewValue)` | Sets the value of RankQuality_Optional and also sets RankQuality_IsSet to true using move semantics.
 `public inline void `[`ClearRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a0d63bc170644071a10420bea40c79f34)`()` | Clears the value of RankQuality_Optional and sets RankQuality_IsSet to false.
-`public inline bool `[`IsRankQualitySet`](#structFRHAPI__MatchMakingSessionRequest_1a0f7b6eb2c97256f2097c3ca8bb664eba)`() const` | Checks whether RankQuality_Optional has been set.
-`public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1ad26ef7c31dfd11b41128ae7c94116019)`()` | Gets the value of MatchMakingProfileId.
-`public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1ae542a9ff2d789192876b24e41b6ff3c4)`() const` | Gets the value of MatchMakingProfileId.
-`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1ae14c7b08a3da9bf8c40739e31f24a5df)`(const FString & NewValue)` | Sets the value of MatchMakingProfileId.
-`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1a551ce0590b83a1340b21fe80356967e3)`(FString && NewValue)` | Sets the value of MatchMakingProfileId using move semantics.
-`public inline TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a068d46b6ab8cf6734ec5d4e9175720dc)`()` | Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
-`public inline const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a2db2992542d630ee3cee2bdee7b33018)`() const` | Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
-`public inline const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a625f413766aabc438a536ea1ef32677c)`(const TMap< FString, float > & DefaultValue) const` | Gets the value of TicketAddedUnixTime_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1abed8e3874b239baae2adf51aedcbd85b)`(TMap< FString, float > & OutValue) const` | Fills OutValue with the value of TicketAddedUnixTime_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a615d253b2b16ee8bb561d47e3afadf68)`()` | Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1af6df7b611a31a4fafb250b91d734a921)`() const` | Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a80674bc91f8b34edc8731197a8e61ca5)`(const TMap< FString, float > & NewValue)` | Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true.
-`public inline void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a3d6bc6d6263acf29e1dc7052810c0fc6)`(TMap< FString, float > && NewValue)` | Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1a9078b8d6d776512477735c3c7660e190)`()` | Gets the value of MatchMakingProfileId.
+`public inline FORCEINLINE const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1aaf6d7d84667f25858b24d267019606e3)`() const` | Gets the value of MatchMakingProfileId.
+`public inline FORCEINLINE void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1a23b6f4458a17cef853d7bf9ecaad95cc)`(const FString & NewValue)` | Sets the value of MatchMakingProfileId.
+`public inline FORCEINLINE void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1aaf0eff387e4c40e61c9fe0af427a10a3)`(FString && NewValue)` | Sets the value of MatchMakingProfileId using move semantics.
+`public inline FORCEINLINE TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1ab86469bfb813368f2cc803fd1bdfbd58)`()` | Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a834911d79a3049dac12af47e9bd5464d)`() const` | Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a47a6171ce776b0b77a28a8de8f10360a)`(const TMap< FString, float > & DefaultValue) const` | Gets the value of TicketAddedUnixTime_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1aa27b23e56797a1aca6f9bc502bfbe8e9)`(TMap< FString, float > & OutValue) const` | Fills OutValue with the value of TicketAddedUnixTime_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a57cfb60fb2bdf7b5570b537f4ffef11e)`()` | Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a572b8020ae8f2124d53a3637589e2ad1)`() const` | Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1af781b679fc0c88078b2402df60667655)`(const TMap< FString, float > & NewValue)` | Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true.
+`public inline FORCEINLINE void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1aa444fb8a1cf2c396c2cb80b2272aece8)`(TMap< FString, float > && NewValue)` | Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true using move semantics.
 `public inline void `[`ClearTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a152d74c039fc4b34035d8a96a463e503)`()` | Clears the value of TicketAddedUnixTime_Optional and sets TicketAddedUnixTime_IsSet to false.
-`public inline bool `[`IsTicketAddedUnixTimeSet`](#structFRHAPI__MatchMakingSessionRequest_1a9201153680848714a455773b2b4f2551)`() const` | Checks whether TicketAddedUnixTime_Optional has been set.
 
 ### Members
 
@@ -288,51 +278,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1a49bf0f7601abe0c89244095e781fd029)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a49bf0f7601abe0c89244095e781fd029"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1a0dc67ed214204e4820aff6abba69560e)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a0dc67ed214204e4820aff6abba69560e"></a>
 
 Gets the value of Teams.
 
-#### `public inline const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1acc3d856d4527ead182f40ce422f2f571)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1acc3d856d4527ead182f40ce422f2f571"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & `[`GetTeams`](#structFRHAPI__MatchMakingSessionRequest_1ab6c0a485a5b7d3813e11a5f9aa7de1b7)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ab6c0a485a5b7d3813e11a5f9aa7de1b7"></a>
 
 Gets the value of Teams.
 
-#### `public inline void `[`SetTeams`](#structFRHAPI__MatchMakingSessionRequest_1aa190bcc848e9998970642062d47c0246)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aa190bcc848e9998970642062d47c0246"></a>
+#### `public inline FORCEINLINE void `[`SetTeams`](#structFRHAPI__MatchMakingSessionRequest_1a73be0953053f73ddd75575bd1a0a0b17)`(const TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a73be0953053f73ddd75575bd1a0a0b17"></a>
 
 Sets the value of Teams.
 
-#### `public inline void `[`SetTeams`](#structFRHAPI__MatchMakingSessionRequest_1af71a889c1fd1f9991512ce1a7932f962)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1af71a889c1fd1f9991512ce1a7932f962"></a>
+#### `public inline FORCEINLINE void `[`SetTeams`](#structFRHAPI__MatchMakingSessionRequest_1acd8d5e84a92bee8a4b5e3c5bef761d0d)`(TArray< `[`FRHAPI_SessionTeam`](RHAPI_SessionTeam.md#structFRHAPI__SessionTeam)` > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1acd8d5e84a92bee8a4b5e3c5bef761d0d"></a>
 
 Sets the value of Teams using move semantics.
 
-#### `public inline TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1ac89c3e752ac8ab79f0b781273a3f9879)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ac89c3e752ac8ab79f0b781273a3f9879"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1af6c422cfd86de577a2cd4d33b497584a)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1af6c422cfd86de577a2cd4d33b497584a"></a>
 
 Gets the value of SessionTickets_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a47569bc215e6d4a9ca30326a71b6db0a)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a47569bc215e6d4a9ca30326a71b6db0a"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a7ad9485430c3f8ebf098b1419f12ca3c)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a7ad9485430c3f8ebf098b1419f12ca3c"></a>
 
 Gets the value of SessionTickets_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1ab8cac8620d3ab28637745ccb44f72c57)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1ab8cac8620d3ab28637745ccb44f72c57"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1ac3e13523c501523e3d952bd757bd0197)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1ac3e13523c501523e3d952bd757bd0197"></a>
 
 Gets the value of SessionTickets_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a7c5a361d389fe8a3144f3d106b8175d0)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a7c5a361d389fe8a3144f3d106b8175d0"></a>
+#### `public inline FORCEINLINE bool `[`GetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a9b6178aad4b495603081d390c32075cd)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a9b6178aad4b495603081d390c32075cd"></a>
 
 Fills OutValue with the value of SessionTickets_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetSessionTicketsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a18facc346a0e8fa0cc27f09d6efcb515)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a18facc346a0e8fa0cc27f09d6efcb515"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetSessionTicketsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ad530fee41743c506ce37b7e6e4f66b4a)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ad530fee41743c506ce37b7e6e4f66b4a"></a>
 
 Returns a pointer to SessionTickets_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetSessionTicketsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a369516400a02081f92b3d1ef63f4c129)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a369516400a02081f92b3d1ef63f4c129"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetSessionTicketsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1aeff996475bf97af44e69ed84387b40f8)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1aeff996475bf97af44e69ed84387b40f8"></a>
 
 Returns a pointer to SessionTickets_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a94844593195dbc16314ea8d1a2c2b2dc)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a94844593195dbc16314ea8d1a2c2b2dc"></a>
+#### `public inline FORCEINLINE void `[`SetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1ab1cbe12cacc18f0801d0c3c0ff2e5913)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ab1cbe12cacc18f0801d0c3c0ff2e5913"></a>
 
 Sets the value of SessionTickets_Optional and also sets SessionTickets_IsSet to true.
 
-#### `public inline void `[`SetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1a750894c9acb3c9b120e0ca2c0ae6fbe8)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a750894c9acb3c9b120e0ca2c0ae6fbe8"></a>
+#### `public inline FORCEINLINE void `[`SetSessionTickets`](#structFRHAPI__MatchMakingSessionRequest_1aac21e338f0089416e744d03193c99216)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aac21e338f0089416e744d03193c99216"></a>
 
 Sets the value of SessionTickets_Optional and also sets SessionTickets_IsSet to true using move semantics.
 
@@ -340,39 +330,35 @@ Sets the value of SessionTickets_Optional and also sets SessionTickets_IsSet to 
 
 Clears the value of SessionTickets_Optional and sets SessionTickets_IsSet to false.
 
-#### `public inline bool `[`IsSessionTicketsSet`](#structFRHAPI__MatchMakingSessionRequest_1a9736c3f2468e11ccf86bb5dbea1fec5f)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a9736c3f2468e11ccf86bb5dbea1fec5f"></a>
-
-Checks whether SessionTickets_Optional has been set.
-
-#### `public inline TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a02c3ac6e21d946c172ae7fe97cc3a801)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a02c3ac6e21d946c172ae7fe97cc3a801"></a>
+#### `public inline FORCEINLINE TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a6d21bee9ed5692814bab7c34b96cfa7f)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a6d21bee9ed5692814bab7c34b96cfa7f"></a>
 
 Gets the value of Sessions_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1aae40b5fbad0898b1b8a84dec9440a00a)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1aae40b5fbad0898b1b8a84dec9440a00a"></a>
+#### `public inline FORCEINLINE const TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a5c581f44dc7ae87da7e1c8be98a0ee51)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a5c581f44dc7ae87da7e1c8be98a0ee51"></a>
 
 Gets the value of Sessions_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a98d7f4bf312ac932cb465de8fe2a6876)`(const TArray< FString > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a98d7f4bf312ac932cb465de8fe2a6876"></a>
+#### `public inline FORCEINLINE const TArray< FString > & `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a282ee524ae7a9b1ff2ab2828bb133823)`(const TArray< FString > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a282ee524ae7a9b1ff2ab2828bb133823"></a>
 
 Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1aec2cfe21efa2f6ab64f194ae28cb4b1e)`(TArray< FString > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1aec2cfe21efa2f6ab64f194ae28cb4b1e"></a>
+#### `public inline FORCEINLINE bool `[`GetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a03ef883b9b502a1551b86ae3a53a563c)`(TArray< FString > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a03ef883b9b502a1551b86ae3a53a563c"></a>
 
 Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< FString > * `[`GetSessionsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ade68954c2f1333c14439de6113ba43c6)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ade68954c2f1333c14439de6113ba43c6"></a>
+#### `public inline FORCEINLINE TArray< FString > * `[`GetSessionsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a604c3aaf83a3d04df9f298c9eaf8e06f)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a604c3aaf83a3d04df9f298c9eaf8e06f"></a>
 
 Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< FString > * `[`GetSessionsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a01f61a52acce696caf67a38bfe25a2d7)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a01f61a52acce696caf67a38bfe25a2d7"></a>
+#### `public inline FORCEINLINE const TArray< FString > * `[`GetSessionsOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ae363adbc4f2a591ce3492105642b7ae0)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ae363adbc4f2a591ce3492105642b7ae0"></a>
 
 Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a8f51d0c150193d0ec5d24b23969460bf)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a8f51d0c150193d0ec5d24b23969460bf"></a>
+#### `public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a78ca5e30a86a9e179060f08239fc6935)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a78ca5e30a86a9e179060f08239fc6935"></a>
 
 Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
 
-#### `public inline void `[`SetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a534bdec08d0a0cbc55e85836e43d0b60)`(TArray< FString > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a534bdec08d0a0cbc55e85836e43d0b60"></a>
+#### `public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__MatchMakingSessionRequest_1a475e3bcfa83f683bac873674cad5b5d3)`(TArray< FString > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a475e3bcfa83f683bac873674cad5b5d3"></a>
 
 Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
 
@@ -380,39 +366,35 @@ Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using m
 
 Clears the value of Sessions_Optional and sets Sessions_IsSet to false.
 
-#### `public inline bool `[`IsSessionsSet`](#structFRHAPI__MatchMakingSessionRequest_1a58098576bdc0b55a150d49744409d74a)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a58098576bdc0b55a150d49744409d74a"></a>
-
-Checks whether Sessions_Optional has been set.
-
-#### `public inline FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a3ae073f49ce9a2783db9c22dc958f477)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a3ae073f49ce9a2783db9c22dc958f477"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a1e107c7abde8719667d988e3aae2d233)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a1e107c7abde8719667d988e3aae2d233"></a>
 
 Gets the value of InstanceLaunchTemplateId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a63a5145129fea802787c145a5816388f)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a63a5145129fea802787c145a5816388f"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a1919da9f390eaddca3ced4efaf94c73d)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a1919da9f390eaddca3ced4efaf94c73d"></a>
 
 Gets the value of InstanceLaunchTemplateId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ae272e441019574a702fd2d1e4ff4d8bd)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1ae272e441019574a702fd2d1e4ff4d8bd"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ad9322a172f9118535bc9beb5f1ed2e5f)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1ad9322a172f9118535bc9beb5f1ed2e5f"></a>
 
 Gets the value of InstanceLaunchTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ac50153c32345b189dba6829c454c886c)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1ac50153c32345b189dba6829c454c886c"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a368facd890cae8d1428590df34193d26)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a368facd890cae8d1428590df34193d26"></a>
 
 Fills OutValue with the value of InstanceLaunchTemplateId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetInstanceLaunchTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a4df97124f7c3c49b13b407d41f649d7b)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a4df97124f7c3c49b13b407d41f649d7b"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetInstanceLaunchTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1afc891b0a474a494eb0e70eee482f9d69)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1afc891b0a474a494eb0e70eee482f9d69"></a>
 
 Returns a pointer to InstanceLaunchTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetInstanceLaunchTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a2fc618ba4c796f4e951bf9549a2e6f93)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a2fc618ba4c796f4e951bf9549a2e6f93"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetInstanceLaunchTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a613da27a4f2374e5f2ba8c601bce9de9)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a613da27a4f2374e5f2ba8c601bce9de9"></a>
 
 Returns a pointer to InstanceLaunchTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aa98a00a35a2f60e9ee0c02b18236aed3)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aa98a00a35a2f60e9ee0c02b18236aed3"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a6b1772aca7d6056000d2d830bceaa815)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a6b1772aca7d6056000d2d830bceaa815"></a>
 
 Sets the value of InstanceLaunchTemplateId_Optional and also sets InstanceLaunchTemplateId_IsSet to true.
 
-#### `public inline void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a2833f16ecc18ba36b24460f74b6d66e8)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a2833f16ecc18ba36b24460f74b6d66e8"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceLaunchTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ad26d3290da0d28d238853397d14319a2)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ad26d3290da0d28d238853397d14319a2"></a>
 
 Sets the value of InstanceLaunchTemplateId_Optional and also sets InstanceLaunchTemplateId_IsSet to true using move semantics.
 
@@ -420,39 +402,35 @@ Sets the value of InstanceLaunchTemplateId_Optional and also sets InstanceLaunch
 
 Clears the value of InstanceLaunchTemplateId_Optional and sets InstanceLaunchTemplateId_IsSet to false.
 
-#### `public inline bool `[`IsInstanceLaunchTemplateIdSet`](#structFRHAPI__MatchMakingSessionRequest_1acac90d2c47aa95a5460da0449c9a36d5)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1acac90d2c47aa95a5460da0449c9a36d5"></a>
-
-Checks whether InstanceLaunchTemplateId_Optional has been set.
-
-#### `public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a93632121d3adb5cd8a196e2632cc807b)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a93632121d3adb5cd8a196e2632cc807b"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ac7b87a9451c6c1e79765cf6df958f13c)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ac7b87a9451c6c1e79765cf6df958f13c"></a>
 
 Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1ad26125edd8f7ed817e68b4742a4674bd)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ad26125edd8f7ed817e68b4742a4674bd"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aaf21df96a6f5c3edaba809f7b6e34b7b)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1aaf21df96a6f5c3edaba809f7b6e34b7b"></a>
 
 Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a3ece18ca6fab568ed49c774d0a0c20f3)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a3ece18ca6fab568ed49c774d0a0c20f3"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a28b07fe1c9107ebd5036bdeaacea71b0)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a28b07fe1c9107ebd5036bdeaacea71b0"></a>
 
 Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a64e3088267cee5936a06c76ea1991ec1)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a64e3088267cee5936a06c76ea1991ec1"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a93cbe2fcae98555fdf74ca65ebda01a0)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a93cbe2fcae98555fdf74ca65ebda01a0"></a>
 
 Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ad6658a45d0140d693207939d0aea2fe6)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ad6658a45d0140d693207939d0aea2fe6"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a2206cd22a2509bbc8bdfd71ab1895535)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a2206cd22a2509bbc8bdfd71ab1895535"></a>
 
 Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ac0b7d29c5d92e4d8a2491a487618c142)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ac0b7d29c5d92e4d8a2491a487618c142"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a4f738e5d5b35cd3cef54016285e53d29)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a4f738e5d5b35cd3cef54016285e53d29"></a>
 
 Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1abb962d7a7f2d4bcf87b2482399861d96)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1abb962d7a7f2d4bcf87b2482399861d96"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aed0e049d522064b71cd7c4b42bacb8d7)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aed0e049d522064b71cd7c4b42bacb8d7"></a>
 
 Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
 
-#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1aeddef582cfa0cc7199406697395c5ab0)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aeddef582cfa0cc7199406697395c5ab0"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceRequestTemplateId`](#structFRHAPI__MatchMakingSessionRequest_1a506850e3c5a87f9b7153faa8b038d3ff)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a506850e3c5a87f9b7153faa8b038d3ff"></a>
 
 Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
 
@@ -460,71 +438,67 @@ Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceReque
 
 Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false.
 
-#### `public inline bool `[`IsInstanceRequestTemplateIdSet`](#structFRHAPI__MatchMakingSessionRequest_1aac81ad9bbd8e341313a3217e85de5ec7)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1aac81ad9bbd8e341313a3217e85de5ec7"></a>
-
-Checks whether InstanceRequestTemplateId_Optional has been set.
-
-#### `public inline FString & `[`GetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a4118ea702f478eb6678a5d7e2cb336d9)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a4118ea702f478eb6678a5d7e2cb336d9"></a>
+#### `public inline FORCEINLINE FString & `[`GetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a945deb28e9ab1f87bd8435f81768fe21)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a945deb28e9ab1f87bd8435f81768fe21"></a>
 
 Gets the value of RegionId.
 
-#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a1850ec5c5016880d78c1d72a5b27c02d)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a1850ec5c5016880d78c1d72a5b27c02d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a4172825b5110745f0b1e4f9d3e7c47c0)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a4172825b5110745f0b1e4f9d3e7c47c0"></a>
 
 Gets the value of RegionId.
 
-#### `public inline void `[`SetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a05b2f5c951811885077085ddf58df59c)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a05b2f5c951811885077085ddf58df59c"></a>
+#### `public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1af11c2e862796cbdb24b09a7512725b2d)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1af11c2e862796cbdb24b09a7512725b2d"></a>
 
 Sets the value of RegionId.
 
-#### `public inline void `[`SetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a4accc158106897d84d2c210166abcd7a)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a4accc158106897d84d2c210166abcd7a"></a>
+#### `public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__MatchMakingSessionRequest_1a35b2aa355269db06b6ed9d3dc2d6c2e8)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a35b2aa355269db06b6ed9d3dc2d6c2e8"></a>
 
 Sets the value of RegionId using move semantics.
 
-#### `public inline FString & `[`GetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1a63bb5a935084273f5f9ad5339c906ada)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a63bb5a935084273f5f9ad5339c906ada"></a>
+#### `public inline FORCEINLINE FString & `[`GetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1afe7a575c1b3b56cac59e98d5fa6c2009)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1afe7a575c1b3b56cac59e98d5fa6c2009"></a>
 
 Gets the value of MatchId.
 
-#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1acdeae20d8552a35662c2b631e430ac18)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1acdeae20d8552a35662c2b631e430ac18"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1a7883dd877948dc2bbe9d793095f0533b)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a7883dd877948dc2bbe9d793095f0533b"></a>
 
 Gets the value of MatchId.
 
-#### `public inline void `[`SetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1aa5461fb722d8a6841e51e71daa3e2e13)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aa5461fb722d8a6841e51e71daa3e2e13"></a>
+#### `public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1aa4299d1def9e9bf7480657d0ef4f0f8a)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aa4299d1def9e9bf7480657d0ef4f0f8a"></a>
 
 Sets the value of MatchId.
 
-#### `public inline void `[`SetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1a2a950c8478fc56464bf23df3357e618c)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a2a950c8478fc56464bf23df3357e618c"></a>
+#### `public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__MatchMakingSessionRequest_1ac8da56c51084b0ff45dba11eb6d880ab)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ac8da56c51084b0ff45dba11eb6d880ab"></a>
 
 Sets the value of MatchId using move semantics.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a99de2fc10650c07602c60ac28dc42f94)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a99de2fc10650c07602c60ac28dc42f94"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1ae431e57cb97fb2c6eeeb7f2e38995d01)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ae431e57cb97fb2c6eeeb7f2e38995d01"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a9f78ba369fa4e02ddf16cac02747aa82)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a9f78ba369fa4e02ddf16cac02747aa82"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1abeaceb6472aba0bd1f4e8beb2375a335)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1abeaceb6472aba0bd1f4e8beb2375a335"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a79353b8703be06c15b75c445e90ff408)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a79353b8703be06c15b75c445e90ff408"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a3136338d7148174f60ca901914873884)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a3136338d7148174f60ca901914873884"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a16ef7662ab55741f488ffbd9416fd284)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a16ef7662ab55741f488ffbd9416fd284"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1ad45892bb819c4e48dc94feb727056334)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1ad45892bb819c4e48dc94feb727056334"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ae5a8689d0bbf8a5013e073b3e76a2590)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ae5a8689d0bbf8a5013e073b3e76a2590"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a3495ad2b8d6f5ee5a43a8d1063849363)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a3495ad2b8d6f5ee5a43a8d1063849363"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a1648bb43365b079e1689abe17a3c7821)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a1648bb43365b079e1689abe17a3c7821"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a375349e667a3903357c52527e2577972)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a375349e667a3903357c52527e2577972"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a5058d4f29a0886e0fe65b833b8604c02)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a5058d4f29a0886e0fe65b833b8604c02"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1af293c81a6d99c032dc5bd8bc001986c1)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1af293c81a6d99c032dc5bd8bc001986c1"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1aa297d043a0dded32c011a03110cf23eb)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aa297d043a0dded32c011a03110cf23eb"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchMakingSessionRequest_1a3fa12afacecbd6c1f31d970e39c9297b)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a3fa12afacecbd6c1f31d970e39c9297b"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -532,39 +506,35 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchMakingSessionRequest_1aa9948d120ae0e04c84605b40c1b4a930)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1aa9948d120ae0e04c84605b40c1b4a930"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1adf5814a26f577991064394ce794c0a61)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1adf5814a26f577991064394ce794c0a61"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a0fea05dd18cdb50d6042d083466ffe02)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a0fea05dd18cdb50d6042d083466ffe02"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1ab617375c2f56d2c1a0c19c365cd09bfe)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ab617375c2f56d2c1a0c19c365cd09bfe"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a91da54487696c50acb60b005c75a103d)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a91da54487696c50acb60b005c75a103d"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a429bb7b29a35a76ee595aa492b5490a3)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a429bb7b29a35a76ee595aa492b5490a3"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1afe1083ecc398a0bed57d7ed3fc9163a2)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1afe1083ecc398a0bed57d7ed3fc9163a2"></a>
 
 Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a8292a9a49abd8bd5721787cd007527e6)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a8292a9a49abd8bd5721787cd007527e6"></a>
+#### `public inline FORCEINLINE bool `[`GetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a7815041daf4853e87ca8ac1e4aeae589)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a7815041daf4853e87ca8ac1e4aeae589"></a>
 
 Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchMakingSessionRequest_1afa7fe15ee5deffaad4ae3df4a1a9c335)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1afa7fe15ee5deffaad4ae3df4a1a9c335"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a03a9caa572163ffb5a84ce0ae4991b45)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a03a9caa572163ffb5a84ce0ae4991b45"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a8d1e70f5347d75a84ee0cf2115e2ea4f)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a8d1e70f5347d75a84ee0cf2115e2ea4f"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__MatchMakingSessionRequest_1aef0861ed8e17bc34c2ba284a2a747cce)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1aef0861ed8e17bc34c2ba284a2a747cce"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1ae5738cbed18f8a6cc097a9213d2a74b3)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ae5738cbed18f8a6cc097a9213d2a74b3"></a>
+#### `public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a0c811f384151ffc420ea40db71aa6801)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a0c811f384151ffc420ea40db71aa6801"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1ae2811ea2cbffe8d6f521c856b5d43935)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ae2811ea2cbffe8d6f521c856b5d43935"></a>
+#### `public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__MatchMakingSessionRequest_1a6f2881eb49a5c4dc77381d7637c2b541)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a6f2881eb49a5c4dc77381d7637c2b541"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 
@@ -572,39 +542,35 @@ Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to 
 
 Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsHostPlayerUuidSet`](#structFRHAPI__MatchMakingSessionRequest_1a20b78b6c9763cb4db33c7472c08c8fa1)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a20b78b6c9763cb4db33c7472c08c8fa1"></a>
-
-Checks whether HostPlayerUuid_Optional has been set.
-
-#### `public inline FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a852fe60cd1c9ec68f420659cf7aefca3)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a852fe60cd1c9ec68f420659cf7aefca3"></a>
+#### `public inline FORCEINLINE FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a188f940f01fc3e37b5e6dcbab1a3f362)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a188f940f01fc3e37b5e6dcbab1a3f362"></a>
 
 Gets the value of BackfillId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1ab10c405c35e628d29dac2794e2cdfd1b)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ab10c405c35e628d29dac2794e2cdfd1b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a553cc434e4e0a4e2cd52da698db44b91)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a553cc434e4e0a4e2cd52da698db44b91"></a>
 
 Gets the value of BackfillId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a3ab98aed1b010798ad89763cef3510f7)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a3ab98aed1b010798ad89763cef3510f7"></a>
+#### `public inline FORCEINLINE const FString & `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1abcf17f46ed22f12d00bc90a4a260d2ec)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1abcf17f46ed22f12d00bc90a4a260d2ec"></a>
 
 Gets the value of BackfillId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a93a933a715e48d8566e7f759ccffc2ec)`(FString & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a93a933a715e48d8566e7f759ccffc2ec"></a>
+#### `public inline FORCEINLINE bool `[`GetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a8a14dbab528844e72b9eed660e776fa2)`(FString & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a8a14dbab528844e72b9eed660e776fa2"></a>
 
 Fills OutValue with the value of BackfillId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetBackfillIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a7bccbc26cd42c9df53f6f466da912597)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a7bccbc26cd42c9df53f6f466da912597"></a>
+#### `public inline FORCEINLINE FString * `[`GetBackfillIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1acb0b0e7680a8e6763926afe16adfe94b)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1acb0b0e7680a8e6763926afe16adfe94b"></a>
 
 Returns a pointer to BackfillId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetBackfillIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1af2d585999327d1709caebf996f5d8d6d)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1af2d585999327d1709caebf996f5d8d6d"></a>
+#### `public inline FORCEINLINE const FString * `[`GetBackfillIdOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a1eb0409da7d552bdc14c035cd1bed6f7)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a1eb0409da7d552bdc14c035cd1bed6f7"></a>
 
 Returns a pointer to BackfillId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a534c15a232b2c252a801daaba8b846f7)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a534c15a232b2c252a801daaba8b846f7"></a>
+#### `public inline FORCEINLINE void `[`SetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a0f23c302c20b18ed5164ae5c097ab102)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a0f23c302c20b18ed5164ae5c097ab102"></a>
 
 Sets the value of BackfillId_Optional and also sets BackfillId_IsSet to true.
 
-#### `public inline void `[`SetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a2a202101e81bc5b59a471ae314c632ee)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a2a202101e81bc5b59a471ae314c632ee"></a>
+#### `public inline FORCEINLINE void `[`SetBackfillId`](#structFRHAPI__MatchMakingSessionRequest_1a23d32644b8b48b8e0c33ecf939c8b33d)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a23d32644b8b48b8e0c33ecf939c8b33d"></a>
 
 Sets the value of BackfillId_Optional and also sets BackfillId_IsSet to true using move semantics.
 
@@ -612,55 +578,51 @@ Sets the value of BackfillId_Optional and also sets BackfillId_IsSet to true usi
 
 Clears the value of BackfillId_Optional and sets BackfillId_IsSet to false.
 
-#### `public inline bool `[`IsBackfillIdSet`](#structFRHAPI__MatchMakingSessionRequest_1ab93cfaf5e808416421f76c917d8c0e41)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ab93cfaf5e808416421f76c917d8c0e41"></a>
-
-Checks whether BackfillId_Optional has been set.
-
-#### `public inline FDateTime & `[`GetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a43d75bbdc4533375fc98f4c5cc2a553a)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a43d75bbdc4533375fc98f4c5cc2a553a"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a7dba7cde19b4f896330214cc9f8bfdb1)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a7dba7cde19b4f896330214cc9f8bfdb1"></a>
 
 Gets the value of MatchCreateRequestTime.
 
-#### `public inline const FDateTime & `[`GetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1acab309f2b715cccf176f063fa0dda376)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1acab309f2b715cccf176f063fa0dda376"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a20629713b7cc92e9af1f4d215cfee33e)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a20629713b7cc92e9af1f4d215cfee33e"></a>
 
 Gets the value of MatchCreateRequestTime.
 
-#### `public inline void `[`SetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a1cd348b21339fe4c8e81bc19064f3ab7)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a1cd348b21339fe4c8e81bc19064f3ab7"></a>
+#### `public inline FORCEINLINE void `[`SetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a39fe894a65af648148c6b3d0cd8cfc66)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a39fe894a65af648148c6b3d0cd8cfc66"></a>
 
 Sets the value of MatchCreateRequestTime.
 
-#### `public inline void `[`SetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1aba2d48e108378fe91ebe4ebf1b29dc0f)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aba2d48e108378fe91ebe4ebf1b29dc0f"></a>
+#### `public inline FORCEINLINE void `[`SetMatchCreateRequestTime`](#structFRHAPI__MatchMakingSessionRequest_1a41c81dd088681e05f8bb6efa0e3da8af)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a41c81dd088681e05f8bb6efa0e3da8af"></a>
 
 Sets the value of MatchCreateRequestTime using move semantics.
 
-#### `public inline float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a3d51c8ca312f6ebcd7cd6e9bc590ee09)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a3d51c8ca312f6ebcd7cd6e9bc590ee09"></a>
+#### `public inline FORCEINLINE float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a874dcb4abad991af4d23915c5ca04c76)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a874dcb4abad991af4d23915c5ca04c76"></a>
 
 Gets the value of EvaluationScore_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1ac03c7a42ae57c92084eb8c6dcb53e450)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ac03c7a42ae57c92084eb8c6dcb53e450"></a>
+#### `public inline FORCEINLINE const float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a536d10dd385f3e628db609ffaf017171)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a536d10dd385f3e628db609ffaf017171"></a>
 
 Gets the value of EvaluationScore_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a800bcf6d262ded777dbc7755ccb07c28)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a800bcf6d262ded777dbc7755ccb07c28"></a>
+#### `public inline FORCEINLINE const float & `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a39f784f533ad5a74e3f13e5fba8601b6)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a39f784f533ad5a74e3f13e5fba8601b6"></a>
 
 Gets the value of EvaluationScore_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a9928fd3509e876315856db87f44e924c)`(float & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a9928fd3509e876315856db87f44e924c"></a>
+#### `public inline FORCEINLINE bool `[`GetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a3faa311f338f42e5acd3f8d78f503963)`(float & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a3faa311f338f42e5acd3f8d78f503963"></a>
 
 Fills OutValue with the value of EvaluationScore_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline float * `[`GetEvaluationScoreOrNull`](#structFRHAPI__MatchMakingSessionRequest_1aaa05fbf9e3fa2e23cb2f310afe648a98)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1aaa05fbf9e3fa2e23cb2f310afe648a98"></a>
+#### `public inline FORCEINLINE float * `[`GetEvaluationScoreOrNull`](#structFRHAPI__MatchMakingSessionRequest_1af6ed9ef5a4518265bb850e9f57ced13c)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1af6ed9ef5a4518265bb850e9f57ced13c"></a>
 
 Returns a pointer to EvaluationScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const float * `[`GetEvaluationScoreOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ae2034bdf382b451a57272e0503b2073f)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ae2034bdf382b451a57272e0503b2073f"></a>
+#### `public inline FORCEINLINE const float * `[`GetEvaluationScoreOrNull`](#structFRHAPI__MatchMakingSessionRequest_1aee1080bb78ce3eceabebfd46108e2a5f)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1aee1080bb78ce3eceabebfd46108e2a5f"></a>
 
 Returns a pointer to EvaluationScore_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a7844668abd03425aec51ee98df60f6d2)`(const float & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a7844668abd03425aec51ee98df60f6d2"></a>
+#### `public inline FORCEINLINE void `[`SetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1ac6a0294462b4fa6ae8de22c3f7ead640)`(const float & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ac6a0294462b4fa6ae8de22c3f7ead640"></a>
 
 Sets the value of EvaluationScore_Optional and also sets EvaluationScore_IsSet to true.
 
-#### `public inline void `[`SetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1a3e8ece21d36a7acafca9154caa358d2a)`(float && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a3e8ece21d36a7acafca9154caa358d2a"></a>
+#### `public inline FORCEINLINE void `[`SetEvaluationScore`](#structFRHAPI__MatchMakingSessionRequest_1ac0de6168106ae114e5d479c25098b2e2)`(float && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ac0de6168106ae114e5d479c25098b2e2"></a>
 
 Sets the value of EvaluationScore_Optional and also sets EvaluationScore_IsSet to true using move semantics.
 
@@ -668,39 +630,35 @@ Sets the value of EvaluationScore_Optional and also sets EvaluationScore_IsSet t
 
 Clears the value of EvaluationScore_Optional and sets EvaluationScore_IsSet to false.
 
-#### `public inline bool `[`IsEvaluationScoreSet`](#structFRHAPI__MatchMakingSessionRequest_1a5ee322e928632699ad19669b46139fd0)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a5ee322e928632699ad19669b46139fd0"></a>
-
-Checks whether EvaluationScore_Optional has been set.
-
-#### `public inline float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a6926a666634fe9f694c45efc2a1daa97)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a6926a666634fe9f694c45efc2a1daa97"></a>
+#### `public inline FORCEINLINE float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a85fd2ad3cc9a6f07bbda31f0c128fb2e)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a85fd2ad3cc9a6f07bbda31f0c128fb2e"></a>
 
 Gets the value of RankQuality_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a2ee747ce314361bbab6d8c0ce15c63b8)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a2ee747ce314361bbab6d8c0ce15c63b8"></a>
+#### `public inline FORCEINLINE const float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1acdb574e0a227ce76aff0e902f9b8a0b0)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1acdb574e0a227ce76aff0e902f9b8a0b0"></a>
 
 Gets the value of RankQuality_Optional, regardless of it having been set.
 
-#### `public inline const float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1afa632dcbf45c1c0a3d0611c67803af3f)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1afa632dcbf45c1c0a3d0611c67803af3f"></a>
+#### `public inline FORCEINLINE const float & `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1ad5c21ffc7747b547826352294ce7d7ff)`(const float & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1ad5c21ffc7747b547826352294ce7d7ff"></a>
 
 Gets the value of RankQuality_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1adffb5f49c667cf7a949fa78ccd771530)`(float & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1adffb5f49c667cf7a949fa78ccd771530"></a>
+#### `public inline FORCEINLINE bool `[`GetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1ac70f36c462513aef5abc061688f2c7e9)`(float & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1ac70f36c462513aef5abc061688f2c7e9"></a>
 
 Fills OutValue with the value of RankQuality_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline float * `[`GetRankQualityOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a8d21c9c5994eb54c334635f6be53bb26)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a8d21c9c5994eb54c334635f6be53bb26"></a>
+#### `public inline FORCEINLINE float * `[`GetRankQualityOrNull`](#structFRHAPI__MatchMakingSessionRequest_1ac3712a9a6a1d7de5b8561c0ca5662968)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ac3712a9a6a1d7de5b8561c0ca5662968"></a>
 
 Returns a pointer to RankQuality_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const float * `[`GetRankQualityOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a6676b83e0975efc3b7ac02fd2fe33153)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a6676b83e0975efc3b7ac02fd2fe33153"></a>
+#### `public inline FORCEINLINE const float * `[`GetRankQualityOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a4803171029bb07c396e60ca1c1b64987)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a4803171029bb07c396e60ca1c1b64987"></a>
 
 Returns a pointer to RankQuality_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a23e527131822e2602c64b28fbc420ce1)`(const float & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a23e527131822e2602c64b28fbc420ce1"></a>
+#### `public inline FORCEINLINE void `[`SetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1ac657962242ac92008389d2dd7330af78)`(const float & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ac657962242ac92008389d2dd7330af78"></a>
 
 Sets the value of RankQuality_Optional and also sets RankQuality_IsSet to true.
 
-#### `public inline void `[`SetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1af1751ba6b293d96a916e822962c9bd94)`(float && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1af1751ba6b293d96a916e822962c9bd94"></a>
+#### `public inline FORCEINLINE void `[`SetRankQuality`](#structFRHAPI__MatchMakingSessionRequest_1a29ee2be539a2b3ddd88e44274a7ae27e)`(float && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a29ee2be539a2b3ddd88e44274a7ae27e"></a>
 
 Sets the value of RankQuality_Optional and also sets RankQuality_IsSet to true using move semantics.
 
@@ -708,63 +666,55 @@ Sets the value of RankQuality_Optional and also sets RankQuality_IsSet to true u
 
 Clears the value of RankQuality_Optional and sets RankQuality_IsSet to false.
 
-#### `public inline bool `[`IsRankQualitySet`](#structFRHAPI__MatchMakingSessionRequest_1a0f7b6eb2c97256f2097c3ca8bb664eba)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a0f7b6eb2c97256f2097c3ca8bb664eba"></a>
-
-Checks whether RankQuality_Optional has been set.
-
-#### `public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1ad26ef7c31dfd11b41128ae7c94116019)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ad26ef7c31dfd11b41128ae7c94116019"></a>
+#### `public inline FORCEINLINE FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1a9078b8d6d776512477735c3c7660e190)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a9078b8d6d776512477735c3c7660e190"></a>
 
 Gets the value of MatchMakingProfileId.
 
-#### `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1ae542a9ff2d789192876b24e41b6ff3c4)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1ae542a9ff2d789192876b24e41b6ff3c4"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1aaf6d7d84667f25858b24d267019606e3)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1aaf6d7d84667f25858b24d267019606e3"></a>
 
 Gets the value of MatchMakingProfileId.
 
-#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1ae14c7b08a3da9bf8c40739e31f24a5df)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1ae14c7b08a3da9bf8c40739e31f24a5df"></a>
+#### `public inline FORCEINLINE void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1a23b6f4458a17cef853d7bf9ecaad95cc)`(const FString & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a23b6f4458a17cef853d7bf9ecaad95cc"></a>
 
 Sets the value of MatchMakingProfileId.
 
-#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1a551ce0590b83a1340b21fe80356967e3)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a551ce0590b83a1340b21fe80356967e3"></a>
+#### `public inline FORCEINLINE void `[`SetMatchMakingProfileId`](#structFRHAPI__MatchMakingSessionRequest_1aaf0eff387e4c40e61c9fe0af427a10a3)`(FString && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aaf0eff387e4c40e61c9fe0af427a10a3"></a>
 
 Sets the value of MatchMakingProfileId using move semantics.
 
-#### `public inline TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a068d46b6ab8cf6734ec5d4e9175720dc)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a068d46b6ab8cf6734ec5d4e9175720dc"></a>
+#### `public inline FORCEINLINE TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1ab86469bfb813368f2cc803fd1bdfbd58)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1ab86469bfb813368f2cc803fd1bdfbd58"></a>
 
 Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a2db2992542d630ee3cee2bdee7b33018)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a2db2992542d630ee3cee2bdee7b33018"></a>
+#### `public inline FORCEINLINE const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a834911d79a3049dac12af47e9bd5464d)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a834911d79a3049dac12af47e9bd5464d"></a>
 
 Gets the value of TicketAddedUnixTime_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a625f413766aabc438a536ea1ef32677c)`(const TMap< FString, float > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a625f413766aabc438a536ea1ef32677c"></a>
+#### `public inline FORCEINLINE const TMap< FString, float > & `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a47a6171ce776b0b77a28a8de8f10360a)`(const TMap< FString, float > & DefaultValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1a47a6171ce776b0b77a28a8de8f10360a"></a>
 
 Gets the value of TicketAddedUnixTime_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1abed8e3874b239baae2adf51aedcbd85b)`(TMap< FString, float > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1abed8e3874b239baae2adf51aedcbd85b"></a>
+#### `public inline FORCEINLINE bool `[`GetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1aa27b23e56797a1aca6f9bc502bfbe8e9)`(TMap< FString, float > & OutValue) const` <a id="structFRHAPI__MatchMakingSessionRequest_1aa27b23e56797a1aca6f9bc502bfbe8e9"></a>
 
 Fills OutValue with the value of TicketAddedUnixTime_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a615d253b2b16ee8bb561d47e3afadf68)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a615d253b2b16ee8bb561d47e3afadf68"></a>
+#### `public inline FORCEINLINE TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a57cfb60fb2bdf7b5570b537f4ffef11e)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a57cfb60fb2bdf7b5570b537f4ffef11e"></a>
 
 Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1af6df7b611a31a4fafb250b91d734a921)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1af6df7b611a31a4fafb250b91d734a921"></a>
+#### `public inline FORCEINLINE const TMap< FString, float > * `[`GetTicketAddedUnixTimeOrNull`](#structFRHAPI__MatchMakingSessionRequest_1a572b8020ae8f2124d53a3637589e2ad1)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a572b8020ae8f2124d53a3637589e2ad1"></a>
 
 Returns a pointer to TicketAddedUnixTime_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a80674bc91f8b34edc8731197a8e61ca5)`(const TMap< FString, float > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a80674bc91f8b34edc8731197a8e61ca5"></a>
+#### `public inline FORCEINLINE void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1af781b679fc0c88078b2402df60667655)`(const TMap< FString, float > & NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1af781b679fc0c88078b2402df60667655"></a>
 
 Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true.
 
-#### `public inline void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a3d6bc6d6263acf29e1dc7052810c0fc6)`(TMap< FString, float > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1a3d6bc6d6263acf29e1dc7052810c0fc6"></a>
+#### `public inline FORCEINLINE void `[`SetTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1aa444fb8a1cf2c396c2cb80b2272aece8)`(TMap< FString, float > && NewValue)` <a id="structFRHAPI__MatchMakingSessionRequest_1aa444fb8a1cf2c396c2cb80b2272aece8"></a>
 
 Sets the value of TicketAddedUnixTime_Optional and also sets TicketAddedUnixTime_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearTicketAddedUnixTime`](#structFRHAPI__MatchMakingSessionRequest_1a152d74c039fc4b34035d8a96a463e503)`()` <a id="structFRHAPI__MatchMakingSessionRequest_1a152d74c039fc4b34035d8a96a463e503"></a>
 
 Clears the value of TicketAddedUnixTime_Optional and sets TicketAddedUnixTime_IsSet to false.
-
-#### `public inline bool `[`IsTicketAddedUnixTimeSet`](#structFRHAPI__MatchMakingSessionRequest_1a9201153680848714a455773b2b4f2551)`() const` <a id="structFRHAPI__MatchMakingSessionRequest_1a9201153680848714a455773b2b4f2551"></a>
-
-Checks whether TicketAddedUnixTime_Optional has been set.
 

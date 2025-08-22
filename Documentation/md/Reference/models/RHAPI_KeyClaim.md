@@ -48,108 +48,99 @@ A KeyClaim is a reward a player for fulfilling requirements of an eternal market
 `public bool `[`LastModifiedOn_IsNull`](#structFRHAPI__KeyClaim_1a46b773728c92b60cfef353f98aea3e16) | true if LastModifiedOn_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__KeyClaim_1ab1ce1f1d226bcb5120b8a20c8bcd46a5)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__KeyClaim_1a707e2269fd0a389df18c7f269e031684)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1acf224d149ecf640713c53ded28b757b9)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a5979c95efa327d6b71fcbc2dc64d0949)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
-`public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a5031bef8ccaae81b2eead95868a5ca3d)`(const ERHAPI_Portal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPortalId`](#structFRHAPI__KeyClaim_1ab02963a36020a78db711b6280a6e06f4)`(ERHAPI_Portal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1a5633316325355439f35bfd98d13ab37e)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1a09f4e0dfd72291ca4a30de9ec6f3330c)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalId`](#structFRHAPI__KeyClaim_1ad153a78da3fa327716ec7937afc4b279)`(const ERHAPI_Portal & NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
-`public inline void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a1430f5a468f106af77f7328a9608b46a)`(ERHAPI_Portal && NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a07c0e4a822edd88866789be4812a3a4e)`()` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1ac96d5d168b0273ede375ab35e0968c3b)`() const` | Gets the value of PortalId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1ac2b8ca942ec68e5a916de57e1d1b2b53)`(const ERHAPI_Portal & DefaultValue) const` | Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPortalId`](#structFRHAPI__KeyClaim_1ac3d9b05aae9d8e607ffda779a6d5c666)`(ERHAPI_Portal & OutValue) const` | Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1afb15ed418276633a2c6792e0577731da)`()` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1aae89bbdca1547c14698cac36c6929391)`() const` | Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a82bf6d4f15fec18398f008f6796d2793)`(const ERHAPI_Portal & NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a8310e478b2dab0be875f9a9e26fa6208)`(ERHAPI_Portal && NewValue)` | Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalId`](#structFRHAPI__KeyClaim_1aa84223198e5d8c855734ff8f6c594708)`()` | Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
-`public inline bool `[`IsPortalIdSet`](#structFRHAPI__KeyClaim_1aa989fc7b2cdbc5f122e0dc8fa4601d94)`() const` | Checks whether PortalId_Optional has been set.
-`public inline void `[`SetPortalIdToNull`](#structFRHAPI__KeyClaim_1a169f29fbbbb216d51fd09787e9f360b4)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPortalIdNull`](#structFRHAPI__KeyClaim_1a84121236b572d7fcf498dc20fc7f8049)`() const` | Checks whether PortalId_Optional is set to null.
-`public inline FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1a4b5978e18f63e8f394cd0759605018ac)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1ae065420601a133b54693a6631f185ebc)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1af3f7cd0989567a22f62c3250d57f2013)`(const FString & DefaultValue) const` | Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1adf598e63631c372e207ea18862b42614)`(FString & OutValue) const` | Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__KeyClaim_1a58bef64d08587a0f0a3191dfd1c2e738)`()` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__KeyClaim_1a1f29834c899084d8403f219fd9f1ed7b)`() const` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPortalUserId`](#structFRHAPI__KeyClaim_1a1dda732cfde6215a0c684eeb66074eeb)`(const FString & NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
-`public inline void `[`SetPortalUserId`](#structFRHAPI__KeyClaim_1ab6b1d3f642d6eb67b9d059b172b2db00)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetPortalIdToNull`](#structFRHAPI__KeyClaim_1adc4fecde464060199784e1cee0283382)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPortalIdNull`](#structFRHAPI__KeyClaim_1a6fcfe7fc27f13fc93690aaeff6fc5739)`() const` | Checks whether PortalId_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1a8d4b0fd327764596cb3a526f4c20b7e1)`()` | Gets the value of PortalUserId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1ae73d1c016805ec61bdcbeadecee56feb)`() const` | Gets the value of PortalUserId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1a97139bc37562e7d4660bd1d4c4154cde)`(const FString & DefaultValue) const` | Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1a00d3f04c62fa9e286a2456f64105114f)`(FString & OutValue) const` | Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__KeyClaim_1abe88f3e2177001bebdc3e8afe00a02dc)`()` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__KeyClaim_1a68157595c19d3b292f3eba8cf00582b9)`() const` | Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__KeyClaim_1a74162ef05596eeca09bbd87a1a3392a5)`(const FString & NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__KeyClaim_1a1e0158f20e59d18f4227c625ff2ed99c)`(FString && NewValue)` | Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 `public inline void `[`ClearPortalUserId`](#structFRHAPI__KeyClaim_1a5f789757b654c1ca096bd1692f2ac66c)`()` | Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
-`public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__KeyClaim_1a74302d02d85979611e64f2485487aff1)`() const` | Checks whether PortalUserId_Optional has been set.
-`public inline void `[`SetPortalUserIdToNull`](#structFRHAPI__KeyClaim_1a68bfc4a4553fbd5359b042838232be31)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPortalUserIdNull`](#structFRHAPI__KeyClaim_1a2cde8a035a9139ba93fbff51006acdc5)`() const` | Checks whether PortalUserId_Optional is set to null.
-`public inline FGuid & `[`GetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a2929034c2368c72a6ace04fcd7c029dc)`()` | Gets the value of KeyClaimUuid.
-`public inline const FGuid & `[`GetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a66c4c290a6fdfa09fa7bbce29794dfc7)`() const` | Gets the value of KeyClaimUuid.
-`public inline void `[`SetKeyClaimUuid`](#structFRHAPI__KeyClaim_1aef79975bd03283a1b4bdcabab6c0d675)`(const FGuid & NewValue)` | Sets the value of KeyClaimUuid.
-`public inline void `[`SetKeyClaimUuid`](#structFRHAPI__KeyClaim_1ae4e64466cedd79bf16fdddc2e19cc1fe)`(FGuid && NewValue)` | Sets the value of KeyClaimUuid using move semantics.
-`public inline bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1a7f245737d70b599f6180f9d1b188da8c)`()` | Gets the value of Claimed_Optional, regardless of it having been set.
-`public inline const bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1a43a9645ec4e2543ce4664c4984232b02)`() const` | Gets the value of Claimed_Optional, regardless of it having been set.
-`public inline const bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1a2678903fbf838f7b8028f07750957bb9)`(const bool & DefaultValue) const` | Gets the value of Claimed_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetClaimed`](#structFRHAPI__KeyClaim_1a1c40f4da0c52fff68499cad035e73e72)`(bool & OutValue) const` | Fills OutValue with the value of Claimed_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetClaimedOrNull`](#structFRHAPI__KeyClaim_1ace0f14b1d3f1978b57a24c1cc665785c)`()` | Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetClaimedOrNull`](#structFRHAPI__KeyClaim_1a5b28767311cdafa9c73e14edc01728ce)`() const` | Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetClaimed`](#structFRHAPI__KeyClaim_1a1f040f165ca27a052c7d2024b6372bf6)`(const bool & NewValue)` | Sets the value of Claimed_Optional and also sets Claimed_IsSet to true.
-`public inline void `[`SetClaimed`](#structFRHAPI__KeyClaim_1ab3873b4cd8d53e204c42023c3a7cec5b)`(bool && NewValue)` | Sets the value of Claimed_Optional and also sets Claimed_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetPortalUserIdToNull`](#structFRHAPI__KeyClaim_1a136bc49e8a503a80fa5a763b4df8d334)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPortalUserIdNull`](#structFRHAPI__KeyClaim_1aa766e7dfd96fe415f15b0a2289296e7e)`() const` | Checks whether PortalUserId_Optional is set to null.
+`public inline FORCEINLINE FGuid & `[`GetKeyClaimUuid`](#structFRHAPI__KeyClaim_1ab6fb641a20b7f83b163b77ee8a41b163)`()` | Gets the value of KeyClaimUuid.
+`public inline FORCEINLINE const FGuid & `[`GetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a0bd8e9968bb428d51a0df47f1591341b)`() const` | Gets the value of KeyClaimUuid.
+`public inline FORCEINLINE void `[`SetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a9ffcf96150a8b40f09198865ba0334f9)`(const FGuid & NewValue)` | Sets the value of KeyClaimUuid.
+`public inline FORCEINLINE void `[`SetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a88fc757824c2e0172ea0a6c79354f457)`(FGuid && NewValue)` | Sets the value of KeyClaimUuid using move semantics.
+`public inline FORCEINLINE bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1a6f573abc601ace9dd01b6e02cd474865)`()` | Gets the value of Claimed_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1acf1b0e271c76d5d81de788f7c81ea5c9)`() const` | Gets the value of Claimed_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1aca074e57079aec07e1c8e586a04b11d7)`(const bool & DefaultValue) const` | Gets the value of Claimed_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetClaimed`](#structFRHAPI__KeyClaim_1a0b0f80e3fe0b41cc0ebe87334af778ee)`(bool & OutValue) const` | Fills OutValue with the value of Claimed_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetClaimedOrNull`](#structFRHAPI__KeyClaim_1aebff1d3651f7d877dc0d90d52e5f2559)`()` | Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetClaimedOrNull`](#structFRHAPI__KeyClaim_1a4c9aed46e174e18ae437f0ba7d1e99e6)`() const` | Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetClaimed`](#structFRHAPI__KeyClaim_1a7648abbf68c98583323fa80cdc23c841)`(const bool & NewValue)` | Sets the value of Claimed_Optional and also sets Claimed_IsSet to true.
+`public inline FORCEINLINE void `[`SetClaimed`](#structFRHAPI__KeyClaim_1a2814a149c669358519cf589031267b4e)`(bool && NewValue)` | Sets the value of Claimed_Optional and also sets Claimed_IsSet to true using move semantics.
 `public inline void `[`ClearClaimed`](#structFRHAPI__KeyClaim_1a038eb19cbad2ef8265c0fa40a3e497a0)`()` | Clears the value of Claimed_Optional and sets Claimed_IsSet to false.
-`public inline bool `[`IsClaimedSet`](#structFRHAPI__KeyClaim_1a232a3b9aa5b3fa932ab97fee06549d91)`() const` | Checks whether Claimed_Optional has been set.
-`public inline bool `[`IsClaimedDefaultValue`](#structFRHAPI__KeyClaim_1acf01a79ae95e4eada108381792c9918f)`() const` | Returns true if Claimed_Optional is set and matches the default value.
-`public inline void `[`SetClaimedToDefault`](#structFRHAPI__KeyClaim_1a6eca578c2f62b6a3871c7caeaa63b989)`()` | Sets the value of Claimed_Optional to its default and also sets Claimed_IsSet to true.
-`public inline void `[`SetClaimedToNull`](#structFRHAPI__KeyClaim_1a4cf72f85ad4968622c6c48ef4e41be18)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsClaimedNull`](#structFRHAPI__KeyClaim_1aa68c0a702f49118026028fdcc78b8bf7)`() const` | Checks whether Claimed_Optional is set to null.
-`public inline FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a0b50d2760097b35718e8b1e7c21241c5)`()` | Gets the value of ExternalKey_Optional, regardless of it having been set.
-`public inline const FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a036a67299453334b89fb280e8a71abd2)`() const` | Gets the value of ExternalKey_Optional, regardless of it having been set.
-`public inline const FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1aa656274c3d17e96e5495faf68b740d27)`(const FString & DefaultValue) const` | Gets the value of ExternalKey_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetExternalKey`](#structFRHAPI__KeyClaim_1ae48064039c3b32a01b5b4e03351a10b0)`(FString & OutValue) const` | Fills OutValue with the value of ExternalKey_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetExternalKeyOrNull`](#structFRHAPI__KeyClaim_1aa1d3580651878a9be15a7d3edf35961c)`()` | Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetExternalKeyOrNull`](#structFRHAPI__KeyClaim_1ab55ec1d6d98235e3745ed176851e72de)`() const` | Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetExternalKey`](#structFRHAPI__KeyClaim_1a522907eefee6e622926cf40b1ced839a)`(const FString & NewValue)` | Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true.
-`public inline void `[`SetExternalKey`](#structFRHAPI__KeyClaim_1a82b475fa057a0ef9b888593b0c056d95)`(FString && NewValue)` | Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_Claimed`](#structFRHAPI__KeyClaim_1a5ba867fd184d0aa311a0cf3f66793330)`()` | Returns the default value of Claimed.
+`public inline FORCEINLINE void `[`SetClaimedToNull`](#structFRHAPI__KeyClaim_1a10fa172bfa0ea5252c4116a70283802a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsClaimedNull`](#structFRHAPI__KeyClaim_1af26935054fdcd2cbee953b223bc0bd2b)`() const` | Checks whether Claimed_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a3a6d21856d0e2365c72d59dac740b954)`()` | Gets the value of ExternalKey_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a006249a815c9826098f68fffa2ebbbb5)`() const` | Gets the value of ExternalKey_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a1401765e028367e2b5af55a3d4a2e1e9)`(const FString & DefaultValue) const` | Gets the value of ExternalKey_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetExternalKey`](#structFRHAPI__KeyClaim_1aae6f444364b2982646942c55c4b4850f)`(FString & OutValue) const` | Fills OutValue with the value of ExternalKey_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetExternalKeyOrNull`](#structFRHAPI__KeyClaim_1a0ebaef6a6fff9eaecfb0e0908ab5a8b0)`()` | Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetExternalKeyOrNull`](#structFRHAPI__KeyClaim_1ae0ae056e965d8468553674770705e1f1)`() const` | Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetExternalKey`](#structFRHAPI__KeyClaim_1a196a0af70f8f664abf1b4af8b0e1482d)`(const FString & NewValue)` | Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true.
+`public inline FORCEINLINE void `[`SetExternalKey`](#structFRHAPI__KeyClaim_1a6323b5020fa56a0a64a04294ce7d4df4)`(FString && NewValue)` | Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true using move semantics.
 `public inline void `[`ClearExternalKey`](#structFRHAPI__KeyClaim_1ac2969b171baf02d250bb332fc9b20e03)`()` | Clears the value of ExternalKey_Optional and sets ExternalKey_IsSet to false.
-`public inline bool `[`IsExternalKeySet`](#structFRHAPI__KeyClaim_1a3744d0542ab9b26e3b4d688c74353922)`() const` | Checks whether ExternalKey_Optional has been set.
-`public inline void `[`SetExternalKeyToNull`](#structFRHAPI__KeyClaim_1a09a8aa346e174025d23e6c1d52daf0bf)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsExternalKeyNull`](#structFRHAPI__KeyClaim_1a75ecaf34ea02d24701cf97aa88c8362a)`() const` | Checks whether ExternalKey_Optional is set to null.
-`public inline FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1ad72613c56bfb7423439a59ced91fae3d)`()` | Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a85e713189b2758906a3db5c59ae14ad8)`() const` | Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a88adbd0d2beb06553ed0cad4fdfc7cb6)`(const FGuid & DefaultValue) const` | Gets the value of ExternalKeyCampaignUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1abdb1ac75b51055086d77ba3c4f0aa354)`(FGuid & OutValue) const` | Fills OutValue with the value of ExternalKeyCampaignUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetExternalKeyCampaignUuidOrNull`](#structFRHAPI__KeyClaim_1a36fd81fbc743032c107306f23532f45e)`()` | Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetExternalKeyCampaignUuidOrNull`](#structFRHAPI__KeyClaim_1a8f4ff641ea73834dce74652f15973fe2)`() const` | Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a3b0f2b848840dce199f42ce2a23b3d3f)`(const FGuid & NewValue)` | Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true.
-`public inline void `[`SetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a6b15fd836f4fa5d2a35695daa5080338)`(FGuid && NewValue)` | Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetExternalKeyToNull`](#structFRHAPI__KeyClaim_1a634831a93b52c34f48f0070cb27ee69e)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsExternalKeyNull`](#structFRHAPI__KeyClaim_1a9436693307c40baeb14ff684e4efd404)`() const` | Checks whether ExternalKey_Optional is set to null.
+`public inline FORCEINLINE FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a9606d9a3e8fdd90d889d1f277a4117c1)`()` | Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1ac487f327101c867093d4b88678a30cf6)`() const` | Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1acaa6f662e7128c3ce6dd848f50e10cfe)`(const FGuid & DefaultValue) const` | Gets the value of ExternalKeyCampaignUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a9443b26026b3ac8b6b65cab198dd494d)`(FGuid & OutValue) const` | Fills OutValue with the value of ExternalKeyCampaignUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetExternalKeyCampaignUuidOrNull`](#structFRHAPI__KeyClaim_1a1fa1c1c530f1765707179e375f55aaf8)`()` | Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetExternalKeyCampaignUuidOrNull`](#structFRHAPI__KeyClaim_1a3d9ef0d1aca67a8438f3bcce9c0c278e)`() const` | Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a0f2c6a6627beceafb33f19c48f98fd30)`(const FGuid & NewValue)` | Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a5e31c5c92c5435dcd999d7ee2adbd637)`(FGuid && NewValue)` | Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true using move semantics.
 `public inline void `[`ClearExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a1abb370dbb5d37a357cfc6ba7cfdcaa5)`()` | Clears the value of ExternalKeyCampaignUuid_Optional and sets ExternalKeyCampaignUuid_IsSet to false.
-`public inline bool `[`IsExternalKeyCampaignUuidSet`](#structFRHAPI__KeyClaim_1aa3438d5294eb79b7ed82cef1c118be6b)`() const` | Checks whether ExternalKeyCampaignUuid_Optional has been set.
-`public inline void `[`SetExternalKeyCampaignUuidToNull`](#structFRHAPI__KeyClaim_1ae64db1ed1b46e06e98f161d3b83e0e9f)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsExternalKeyCampaignUuidNull`](#structFRHAPI__KeyClaim_1a822dae170ca89cc3b42a87cfe7a60b7a)`() const` | Checks whether ExternalKeyCampaignUuid_Optional is set to null.
-`public inline FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a0e5fb367d7b1422b922ff8c144c78620)`()` | Gets the value of ExternalKeyType_Optional, regardless of it having been set.
-`public inline const FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a4a08fc27a8056586dc486b8825a55b80)`() const` | Gets the value of ExternalKeyType_Optional, regardless of it having been set.
-`public inline const FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a1c7d0fb3212e18675792ca2372db6e99)`(const FString & DefaultValue) const` | Gets the value of ExternalKeyType_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a8e5e9754a38ff40a0344b9fd6dfba8c5)`(FString & OutValue) const` | Fills OutValue with the value of ExternalKeyType_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__KeyClaim_1a01bc954ba6c1b8d0b97e06254ce81b4f)`()` | Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__KeyClaim_1ab981cc3afb90eab0756a37ad542a5c3c)`() const` | Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetExternalKeyType`](#structFRHAPI__KeyClaim_1ab91d6ccaae164793c1e936867d276ea6)`(const FString & NewValue)` | Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true.
-`public inline void `[`SetExternalKeyType`](#structFRHAPI__KeyClaim_1a1c28342396ad9da7bb6979beb81dbb4b)`(FString && NewValue)` | Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetExternalKeyCampaignUuidToNull`](#structFRHAPI__KeyClaim_1a19d058cd0de941e1acc2c682a1a2f339)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsExternalKeyCampaignUuidNull`](#structFRHAPI__KeyClaim_1ab4ecd531bc0efdc9e16aa2a5b7ab49c8)`() const` | Checks whether ExternalKeyCampaignUuid_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1ae5e7ad37a845609158fb82b0d146cb6a)`()` | Gets the value of ExternalKeyType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a991fa23ed72ba1a5ee011089a864d5d9)`() const` | Gets the value of ExternalKeyType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1afd84ca14508efa51e70d98c3b57dc468)`(const FString & DefaultValue) const` | Gets the value of ExternalKeyType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1ad887e7d74416b11e98e6d1fefe79b8f7)`(FString & OutValue) const` | Fills OutValue with the value of ExternalKeyType_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__KeyClaim_1a5379876459ae92cba2086fab4a7c3de9)`()` | Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__KeyClaim_1a7b12e64ee379c94403cfb8e0a7a746c4)`() const` | Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetExternalKeyType`](#structFRHAPI__KeyClaim_1af4c7f722c6ba7abdde5fefbdc7f2241f)`(const FString & NewValue)` | Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true.
+`public inline FORCEINLINE void `[`SetExternalKeyType`](#structFRHAPI__KeyClaim_1a4e06a429502b1973a969c8affcdc9da4)`(FString && NewValue)` | Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics.
 `public inline void `[`ClearExternalKeyType`](#structFRHAPI__KeyClaim_1a36662bed3d100b99436208c7b86127b4)`()` | Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false.
-`public inline bool `[`IsExternalKeyTypeSet`](#structFRHAPI__KeyClaim_1a0ae04f80177c6febc14a2fb82a38eea8)`() const` | Checks whether ExternalKeyType_Optional has been set.
-`public inline void `[`SetExternalKeyTypeToNull`](#structFRHAPI__KeyClaim_1ad182dba466d25de5604540781447305f)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsExternalKeyTypeNull`](#structFRHAPI__KeyClaim_1a7a295e90bb5da246669a104093f803e3)`() const` | Checks whether ExternalKeyType_Optional is set to null.
-`public inline FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a136c42d9a7714129fd98f8d2dbaf9d3e)`()` | Gets the value of CreatedOn_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1abda5cd5934e6837dc749c676e38ff249)`() const` | Gets the value of CreatedOn_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1abdfa7a035092264bad0e2e35f5ced393)`(const FString & DefaultValue) const` | Gets the value of CreatedOn_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a99109f99db3004f930a9d3ebff6f5a43)`(FString & OutValue) const` | Fills OutValue with the value of CreatedOn_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetCreatedOnOrNull`](#structFRHAPI__KeyClaim_1a470dd65fb6bd5d8fc69c622ec98ecbd9)`()` | Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetCreatedOnOrNull`](#structFRHAPI__KeyClaim_1aff8b6e51133a15f51ee5dfd900b1a867)`() const` | Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCreatedOn`](#structFRHAPI__KeyClaim_1aaea6b49417e3e061a1328286bc47d9d7)`(const FString & NewValue)` | Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true.
-`public inline void `[`SetCreatedOn`](#structFRHAPI__KeyClaim_1a7b8a6ec4ece2585c570a2983dfc075c3)`(FString && NewValue)` | Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetExternalKeyTypeToNull`](#structFRHAPI__KeyClaim_1a61f94381bab11b2c1679ba46de439eae)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsExternalKeyTypeNull`](#structFRHAPI__KeyClaim_1af9bb58461b4ad8eec3978a3394dbe71d)`() const` | Checks whether ExternalKeyType_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a78cbcdfc34f73d4e4bf02470e10c6667)`()` | Gets the value of CreatedOn_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a3d33628279408bd972fa94b323c149df)`() const` | Gets the value of CreatedOn_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1adaa2cce133a502d87465937ce4bc8990)`(const FString & DefaultValue) const` | Gets the value of CreatedOn_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a1916eb4910d8a20f663b4c8a47851011)`(FString & OutValue) const` | Fills OutValue with the value of CreatedOn_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetCreatedOnOrNull`](#structFRHAPI__KeyClaim_1ab423b85a0d4ee666cadde728d846793f)`()` | Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetCreatedOnOrNull`](#structFRHAPI__KeyClaim_1a488db64e62f50a2f78b3e9ebf4efaa99)`() const` | Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCreatedOn`](#structFRHAPI__KeyClaim_1a01c7d4b8d64c34cc72863c3e1d800d96)`(const FString & NewValue)` | Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true.
+`public inline FORCEINLINE void `[`SetCreatedOn`](#structFRHAPI__KeyClaim_1a56bafa906bbe3dca12c66866f632623d)`(FString && NewValue)` | Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics.
 `public inline void `[`ClearCreatedOn`](#structFRHAPI__KeyClaim_1af269f620cf927b1fabb63529d7c9a52b)`()` | Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false.
-`public inline bool `[`IsCreatedOnSet`](#structFRHAPI__KeyClaim_1aace9dc18bab14634f027c6ffcab2e2b3)`() const` | Checks whether CreatedOn_Optional has been set.
-`public inline void `[`SetCreatedOnToNull`](#structFRHAPI__KeyClaim_1abbe3bf70e9357c361ff304d6360c4342)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCreatedOnNull`](#structFRHAPI__KeyClaim_1a7c576b967543d8807301950f38b812d0)`() const` | Checks whether CreatedOn_Optional is set to null.
-`public inline FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1ac1216aa013dad734e5e95793ec818f13)`()` | Gets the value of LastModifiedOn_Optional, regardless of it having been set.
-`public inline const FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1a83f2edcbad70d90c9b27db7d595b3aa9)`() const` | Gets the value of LastModifiedOn_Optional, regardless of it having been set.
-`public inline const FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1a18d2fe0cfcd5bfdb0a7ac654b72456d5)`(const FString & DefaultValue) const` | Gets the value of LastModifiedOn_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1a9f13642df89e3f5239d06601165c0904)`(FString & OutValue) const` | Fills OutValue with the value of LastModifiedOn_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__KeyClaim_1ad2672939ecb2e82ceac54991a3171c73)`()` | Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__KeyClaim_1ac42724ec6daff301e45fde94ac1d2aba)`() const` | Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1afd88bbec04902b58aed09f2cb6fe6f81)`(const FString & NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true.
-`public inline void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1ae2a3b4c8008c400bc0bb310592dadd44)`(FString && NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetCreatedOnToNull`](#structFRHAPI__KeyClaim_1a2c4773e98a4081149fa7589970196852)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCreatedOnNull`](#structFRHAPI__KeyClaim_1a09cd9734d30d969ef8b581f00cf39195)`() const` | Checks whether CreatedOn_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1ad2b434b526f974ed7cb06711e1285c13)`()` | Gets the value of LastModifiedOn_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1a4c48059aef96c4e2f018cbba99661df1)`() const` | Gets the value of LastModifiedOn_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1abae98c3a2faf9cac70b245d7a664aa1a)`(const FString & DefaultValue) const` | Gets the value of LastModifiedOn_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1ae220bc4128347a886ec843bb97ff78bf)`(FString & OutValue) const` | Fills OutValue with the value of LastModifiedOn_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__KeyClaim_1a20f9a15985c1142b9d02b614746d5c77)`()` | Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__KeyClaim_1a336f57304f2cad29faa9bffc2d6d0a98)`() const` | Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1aeee135bac6516473aef6344ce4b64bf1)`(const FString & NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true.
+`public inline FORCEINLINE void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1a230f5bb90ac5b993f6bc710430cb830a)`(FString && NewValue)` | Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics.
 `public inline void `[`ClearLastModifiedOn`](#structFRHAPI__KeyClaim_1a64310c25854349e6598803fdbc697908)`()` | Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false.
-`public inline bool `[`IsLastModifiedOnSet`](#structFRHAPI__KeyClaim_1a6c8d83b50ca71fa30eef047935e1e856)`() const` | Checks whether LastModifiedOn_Optional has been set.
-`public inline void `[`SetLastModifiedOnToNull`](#structFRHAPI__KeyClaim_1a5ae79e043c28300f288a319e463a28c2)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLastModifiedOnNull`](#structFRHAPI__KeyClaim_1a7880a8c9c5decacfdc575afd8140a148)`() const` | Checks whether LastModifiedOn_Optional is set to null.
+`public inline FORCEINLINE void `[`SetLastModifiedOnToNull`](#structFRHAPI__KeyClaim_1a5d4e6bf206f922c0171bff3f197f706f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLastModifiedOnNull`](#structFRHAPI__KeyClaim_1a76176b7c4f64ad11423f20f5f55c3985)`() const` | Checks whether LastModifiedOn_Optional is set to null.
 
 ### Members
 
@@ -254,35 +245,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1acf224d149ecf640713c53ded28b757b9)`()` <a id="structFRHAPI__KeyClaim_1acf224d149ecf640713c53ded28b757b9"></a>
+#### `public inline FORCEINLINE ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a07c0e4a822edd88866789be4812a3a4e)`()` <a id="structFRHAPI__KeyClaim_1a07c0e4a822edd88866789be4812a3a4e"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a5979c95efa327d6b71fcbc2dc64d0949)`() const` <a id="structFRHAPI__KeyClaim_1a5979c95efa327d6b71fcbc2dc64d0949"></a>
+#### `public inline FORCEINLINE const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1ac96d5d168b0273ede375ab35e0968c3b)`() const` <a id="structFRHAPI__KeyClaim_1ac96d5d168b0273ede375ab35e0968c3b"></a>
 
 Gets the value of PortalId_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1a5031bef8ccaae81b2eead95868a5ca3d)`(const ERHAPI_Portal & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a5031bef8ccaae81b2eead95868a5ca3d"></a>
+#### `public inline FORCEINLINE const ERHAPI_Portal & `[`GetPortalId`](#structFRHAPI__KeyClaim_1ac2b8ca942ec68e5a916de57e1d1b2b53)`(const ERHAPI_Portal & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1ac2b8ca942ec68e5a916de57e1d1b2b53"></a>
 
 Gets the value of PortalId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPortalId`](#structFRHAPI__KeyClaim_1ab02963a36020a78db711b6280a6e06f4)`(ERHAPI_Portal & OutValue) const` <a id="structFRHAPI__KeyClaim_1ab02963a36020a78db711b6280a6e06f4"></a>
+#### `public inline FORCEINLINE bool `[`GetPortalId`](#structFRHAPI__KeyClaim_1ac3d9b05aae9d8e607ffda779a6d5c666)`(ERHAPI_Portal & OutValue) const` <a id="structFRHAPI__KeyClaim_1ac3d9b05aae9d8e607ffda779a6d5c666"></a>
 
 Fills OutValue with the value of PortalId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1a5633316325355439f35bfd98d13ab37e)`()` <a id="structFRHAPI__KeyClaim_1a5633316325355439f35bfd98d13ab37e"></a>
+#### `public inline FORCEINLINE ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1afb15ed418276633a2c6792e0577731da)`()` <a id="structFRHAPI__KeyClaim_1afb15ed418276633a2c6792e0577731da"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1a09f4e0dfd72291ca4a30de9ec6f3330c)`() const` <a id="structFRHAPI__KeyClaim_1a09f4e0dfd72291ca4a30de9ec6f3330c"></a>
+#### `public inline FORCEINLINE const ERHAPI_Portal * `[`GetPortalIdOrNull`](#structFRHAPI__KeyClaim_1aae89bbdca1547c14698cac36c6929391)`() const` <a id="structFRHAPI__KeyClaim_1aae89bbdca1547c14698cac36c6929391"></a>
 
 Returns a pointer to PortalId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalId`](#structFRHAPI__KeyClaim_1ad153a78da3fa327716ec7937afc4b279)`(const ERHAPI_Portal & NewValue)` <a id="structFRHAPI__KeyClaim_1ad153a78da3fa327716ec7937afc4b279"></a>
+#### `public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a82bf6d4f15fec18398f008f6796d2793)`(const ERHAPI_Portal & NewValue)` <a id="structFRHAPI__KeyClaim_1a82bf6d4f15fec18398f008f6796d2793"></a>
 
 Sets the value of PortalId_Optional and also sets PortalId_IsSet to true.
 
-#### `public inline void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a1430f5a468f106af77f7328a9608b46a)`(ERHAPI_Portal && NewValue)` <a id="structFRHAPI__KeyClaim_1a1430f5a468f106af77f7328a9608b46a"></a>
+#### `public inline FORCEINLINE void `[`SetPortalId`](#structFRHAPI__KeyClaim_1a8310e478b2dab0be875f9a9e26fa6208)`(ERHAPI_Portal && NewValue)` <a id="structFRHAPI__KeyClaim_1a8310e478b2dab0be875f9a9e26fa6208"></a>
 
 Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using move semantics.
 
@@ -290,47 +281,43 @@ Sets the value of PortalId_Optional and also sets PortalId_IsSet to true using m
 
 Clears the value of PortalId_Optional and sets PortalId_IsSet to false.
 
-#### `public inline bool `[`IsPortalIdSet`](#structFRHAPI__KeyClaim_1aa989fc7b2cdbc5f122e0dc8fa4601d94)`() const` <a id="structFRHAPI__KeyClaim_1aa989fc7b2cdbc5f122e0dc8fa4601d94"></a>
-
-Checks whether PortalId_Optional has been set.
-
-#### `public inline void `[`SetPortalIdToNull`](#structFRHAPI__KeyClaim_1a169f29fbbbb216d51fd09787e9f360b4)`()` <a id="structFRHAPI__KeyClaim_1a169f29fbbbb216d51fd09787e9f360b4"></a>
+#### `public inline FORCEINLINE void `[`SetPortalIdToNull`](#structFRHAPI__KeyClaim_1adc4fecde464060199784e1cee0283382)`()` <a id="structFRHAPI__KeyClaim_1adc4fecde464060199784e1cee0283382"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPortalIdNull`](#structFRHAPI__KeyClaim_1a84121236b572d7fcf498dc20fc7f8049)`() const` <a id="structFRHAPI__KeyClaim_1a84121236b572d7fcf498dc20fc7f8049"></a>
+#### `public inline FORCEINLINE bool `[`IsPortalIdNull`](#structFRHAPI__KeyClaim_1a6fcfe7fc27f13fc93690aaeff6fc5739)`() const` <a id="structFRHAPI__KeyClaim_1a6fcfe7fc27f13fc93690aaeff6fc5739"></a>
 
 Checks whether PortalId_Optional is set to null.
 
-#### `public inline FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1a4b5978e18f63e8f394cd0759605018ac)`()` <a id="structFRHAPI__KeyClaim_1a4b5978e18f63e8f394cd0759605018ac"></a>
+#### `public inline FORCEINLINE FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1a8d4b0fd327764596cb3a526f4c20b7e1)`()` <a id="structFRHAPI__KeyClaim_1a8d4b0fd327764596cb3a526f4c20b7e1"></a>
 
 Gets the value of PortalUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1ae065420601a133b54693a6631f185ebc)`() const` <a id="structFRHAPI__KeyClaim_1ae065420601a133b54693a6631f185ebc"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1ae73d1c016805ec61bdcbeadecee56feb)`() const` <a id="structFRHAPI__KeyClaim_1ae73d1c016805ec61bdcbeadecee56feb"></a>
 
 Gets the value of PortalUserId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1af3f7cd0989567a22f62c3250d57f2013)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1af3f7cd0989567a22f62c3250d57f2013"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1a97139bc37562e7d4660bd1d4c4154cde)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a97139bc37562e7d4660bd1d4c4154cde"></a>
 
 Gets the value of PortalUserId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1adf598e63631c372e207ea18862b42614)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1adf598e63631c372e207ea18862b42614"></a>
+#### `public inline FORCEINLINE bool `[`GetPortalUserId`](#structFRHAPI__KeyClaim_1a00d3f04c62fa9e286a2456f64105114f)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1a00d3f04c62fa9e286a2456f64105114f"></a>
 
 Fills OutValue with the value of PortalUserId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__KeyClaim_1a58bef64d08587a0f0a3191dfd1c2e738)`()` <a id="structFRHAPI__KeyClaim_1a58bef64d08587a0f0a3191dfd1c2e738"></a>
+#### `public inline FORCEINLINE FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__KeyClaim_1abe88f3e2177001bebdc3e8afe00a02dc)`()` <a id="structFRHAPI__KeyClaim_1abe88f3e2177001bebdc3e8afe00a02dc"></a>
 
 Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__KeyClaim_1a1f29834c899084d8403f219fd9f1ed7b)`() const` <a id="structFRHAPI__KeyClaim_1a1f29834c899084d8403f219fd9f1ed7b"></a>
+#### `public inline FORCEINLINE const FString * `[`GetPortalUserIdOrNull`](#structFRHAPI__KeyClaim_1a68157595c19d3b292f3eba8cf00582b9)`() const` <a id="structFRHAPI__KeyClaim_1a68157595c19d3b292f3eba8cf00582b9"></a>
 
 Returns a pointer to PortalUserId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPortalUserId`](#structFRHAPI__KeyClaim_1a1dda732cfde6215a0c684eeb66074eeb)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1a1dda732cfde6215a0c684eeb66074eeb"></a>
+#### `public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__KeyClaim_1a74162ef05596eeca09bbd87a1a3392a5)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1a74162ef05596eeca09bbd87a1a3392a5"></a>
 
 Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true.
 
-#### `public inline void `[`SetPortalUserId`](#structFRHAPI__KeyClaim_1ab6b1d3f642d6eb67b9d059b172b2db00)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1ab6b1d3f642d6eb67b9d059b172b2db00"></a>
+#### `public inline FORCEINLINE void `[`SetPortalUserId`](#structFRHAPI__KeyClaim_1a1e0158f20e59d18f4227c625ff2ed99c)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1a1e0158f20e59d18f4227c625ff2ed99c"></a>
 
 Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true using move semantics.
 
@@ -338,63 +325,59 @@ Sets the value of PortalUserId_Optional and also sets PortalUserId_IsSet to true
 
 Clears the value of PortalUserId_Optional and sets PortalUserId_IsSet to false.
 
-#### `public inline bool `[`IsPortalUserIdSet`](#structFRHAPI__KeyClaim_1a74302d02d85979611e64f2485487aff1)`() const` <a id="structFRHAPI__KeyClaim_1a74302d02d85979611e64f2485487aff1"></a>
-
-Checks whether PortalUserId_Optional has been set.
-
-#### `public inline void `[`SetPortalUserIdToNull`](#structFRHAPI__KeyClaim_1a68bfc4a4553fbd5359b042838232be31)`()` <a id="structFRHAPI__KeyClaim_1a68bfc4a4553fbd5359b042838232be31"></a>
+#### `public inline FORCEINLINE void `[`SetPortalUserIdToNull`](#structFRHAPI__KeyClaim_1a136bc49e8a503a80fa5a763b4df8d334)`()` <a id="structFRHAPI__KeyClaim_1a136bc49e8a503a80fa5a763b4df8d334"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPortalUserIdNull`](#structFRHAPI__KeyClaim_1a2cde8a035a9139ba93fbff51006acdc5)`() const` <a id="structFRHAPI__KeyClaim_1a2cde8a035a9139ba93fbff51006acdc5"></a>
+#### `public inline FORCEINLINE bool `[`IsPortalUserIdNull`](#structFRHAPI__KeyClaim_1aa766e7dfd96fe415f15b0a2289296e7e)`() const` <a id="structFRHAPI__KeyClaim_1aa766e7dfd96fe415f15b0a2289296e7e"></a>
 
 Checks whether PortalUserId_Optional is set to null.
 
-#### `public inline FGuid & `[`GetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a2929034c2368c72a6ace04fcd7c029dc)`()` <a id="structFRHAPI__KeyClaim_1a2929034c2368c72a6ace04fcd7c029dc"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetKeyClaimUuid`](#structFRHAPI__KeyClaim_1ab6fb641a20b7f83b163b77ee8a41b163)`()` <a id="structFRHAPI__KeyClaim_1ab6fb641a20b7f83b163b77ee8a41b163"></a>
 
 Gets the value of KeyClaimUuid.
 
-#### `public inline const FGuid & `[`GetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a66c4c290a6fdfa09fa7bbce29794dfc7)`() const` <a id="structFRHAPI__KeyClaim_1a66c4c290a6fdfa09fa7bbce29794dfc7"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a0bd8e9968bb428d51a0df47f1591341b)`() const` <a id="structFRHAPI__KeyClaim_1a0bd8e9968bb428d51a0df47f1591341b"></a>
 
 Gets the value of KeyClaimUuid.
 
-#### `public inline void `[`SetKeyClaimUuid`](#structFRHAPI__KeyClaim_1aef79975bd03283a1b4bdcabab6c0d675)`(const FGuid & NewValue)` <a id="structFRHAPI__KeyClaim_1aef79975bd03283a1b4bdcabab6c0d675"></a>
+#### `public inline FORCEINLINE void `[`SetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a9ffcf96150a8b40f09198865ba0334f9)`(const FGuid & NewValue)` <a id="structFRHAPI__KeyClaim_1a9ffcf96150a8b40f09198865ba0334f9"></a>
 
 Sets the value of KeyClaimUuid.
 
-#### `public inline void `[`SetKeyClaimUuid`](#structFRHAPI__KeyClaim_1ae4e64466cedd79bf16fdddc2e19cc1fe)`(FGuid && NewValue)` <a id="structFRHAPI__KeyClaim_1ae4e64466cedd79bf16fdddc2e19cc1fe"></a>
+#### `public inline FORCEINLINE void `[`SetKeyClaimUuid`](#structFRHAPI__KeyClaim_1a88fc757824c2e0172ea0a6c79354f457)`(FGuid && NewValue)` <a id="structFRHAPI__KeyClaim_1a88fc757824c2e0172ea0a6c79354f457"></a>
 
 Sets the value of KeyClaimUuid using move semantics.
 
-#### `public inline bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1a7f245737d70b599f6180f9d1b188da8c)`()` <a id="structFRHAPI__KeyClaim_1a7f245737d70b599f6180f9d1b188da8c"></a>
+#### `public inline FORCEINLINE bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1a6f573abc601ace9dd01b6e02cd474865)`()` <a id="structFRHAPI__KeyClaim_1a6f573abc601ace9dd01b6e02cd474865"></a>
 
 Gets the value of Claimed_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1a43a9645ec4e2543ce4664c4984232b02)`() const` <a id="structFRHAPI__KeyClaim_1a43a9645ec4e2543ce4664c4984232b02"></a>
+#### `public inline FORCEINLINE const bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1acf1b0e271c76d5d81de788f7c81ea5c9)`() const` <a id="structFRHAPI__KeyClaim_1acf1b0e271c76d5d81de788f7c81ea5c9"></a>
 
 Gets the value of Claimed_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1a2678903fbf838f7b8028f07750957bb9)`(const bool & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a2678903fbf838f7b8028f07750957bb9"></a>
+#### `public inline FORCEINLINE const bool & `[`GetClaimed`](#structFRHAPI__KeyClaim_1aca074e57079aec07e1c8e586a04b11d7)`(const bool & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1aca074e57079aec07e1c8e586a04b11d7"></a>
 
 Gets the value of Claimed_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetClaimed`](#structFRHAPI__KeyClaim_1a1c40f4da0c52fff68499cad035e73e72)`(bool & OutValue) const` <a id="structFRHAPI__KeyClaim_1a1c40f4da0c52fff68499cad035e73e72"></a>
+#### `public inline FORCEINLINE bool `[`GetClaimed`](#structFRHAPI__KeyClaim_1a0b0f80e3fe0b41cc0ebe87334af778ee)`(bool & OutValue) const` <a id="structFRHAPI__KeyClaim_1a0b0f80e3fe0b41cc0ebe87334af778ee"></a>
 
 Fills OutValue with the value of Claimed_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetClaimedOrNull`](#structFRHAPI__KeyClaim_1ace0f14b1d3f1978b57a24c1cc665785c)`()` <a id="structFRHAPI__KeyClaim_1ace0f14b1d3f1978b57a24c1cc665785c"></a>
+#### `public inline FORCEINLINE bool * `[`GetClaimedOrNull`](#structFRHAPI__KeyClaim_1aebff1d3651f7d877dc0d90d52e5f2559)`()` <a id="structFRHAPI__KeyClaim_1aebff1d3651f7d877dc0d90d52e5f2559"></a>
 
 Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetClaimedOrNull`](#structFRHAPI__KeyClaim_1a5b28767311cdafa9c73e14edc01728ce)`() const` <a id="structFRHAPI__KeyClaim_1a5b28767311cdafa9c73e14edc01728ce"></a>
+#### `public inline FORCEINLINE const bool * `[`GetClaimedOrNull`](#structFRHAPI__KeyClaim_1a4c9aed46e174e18ae437f0ba7d1e99e6)`() const` <a id="structFRHAPI__KeyClaim_1a4c9aed46e174e18ae437f0ba7d1e99e6"></a>
 
 Returns a pointer to Claimed_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetClaimed`](#structFRHAPI__KeyClaim_1a1f040f165ca27a052c7d2024b6372bf6)`(const bool & NewValue)` <a id="structFRHAPI__KeyClaim_1a1f040f165ca27a052c7d2024b6372bf6"></a>
+#### `public inline FORCEINLINE void `[`SetClaimed`](#structFRHAPI__KeyClaim_1a7648abbf68c98583323fa80cdc23c841)`(const bool & NewValue)` <a id="structFRHAPI__KeyClaim_1a7648abbf68c98583323fa80cdc23c841"></a>
 
 Sets the value of Claimed_Optional and also sets Claimed_IsSet to true.
 
-#### `public inline void `[`SetClaimed`](#structFRHAPI__KeyClaim_1ab3873b4cd8d53e204c42023c3a7cec5b)`(bool && NewValue)` <a id="structFRHAPI__KeyClaim_1ab3873b4cd8d53e204c42023c3a7cec5b"></a>
+#### `public inline FORCEINLINE void `[`SetClaimed`](#structFRHAPI__KeyClaim_1a2814a149c669358519cf589031267b4e)`(bool && NewValue)` <a id="structFRHAPI__KeyClaim_1a2814a149c669358519cf589031267b4e"></a>
 
 Sets the value of Claimed_Optional and also sets Claimed_IsSet to true using move semantics.
 
@@ -402,55 +385,47 @@ Sets the value of Claimed_Optional and also sets Claimed_IsSet to true using mov
 
 Clears the value of Claimed_Optional and sets Claimed_IsSet to false.
 
-#### `public inline bool `[`IsClaimedSet`](#structFRHAPI__KeyClaim_1a232a3b9aa5b3fa932ab97fee06549d91)`() const` <a id="structFRHAPI__KeyClaim_1a232a3b9aa5b3fa932ab97fee06549d91"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_Claimed`](#structFRHAPI__KeyClaim_1a5ba867fd184d0aa311a0cf3f66793330)`()` <a id="structFRHAPI__KeyClaim_1a5ba867fd184d0aa311a0cf3f66793330"></a>
 
-Checks whether Claimed_Optional has been set.
+Returns the default value of Claimed.
 
-#### `public inline bool `[`IsClaimedDefaultValue`](#structFRHAPI__KeyClaim_1acf01a79ae95e4eada108381792c9918f)`() const` <a id="structFRHAPI__KeyClaim_1acf01a79ae95e4eada108381792c9918f"></a>
-
-Returns true if Claimed_Optional is set and matches the default value.
-
-#### `public inline void `[`SetClaimedToDefault`](#structFRHAPI__KeyClaim_1a6eca578c2f62b6a3871c7caeaa63b989)`()` <a id="structFRHAPI__KeyClaim_1a6eca578c2f62b6a3871c7caeaa63b989"></a>
-
-Sets the value of Claimed_Optional to its default and also sets Claimed_IsSet to true.
-
-#### `public inline void `[`SetClaimedToNull`](#structFRHAPI__KeyClaim_1a4cf72f85ad4968622c6c48ef4e41be18)`()` <a id="structFRHAPI__KeyClaim_1a4cf72f85ad4968622c6c48ef4e41be18"></a>
+#### `public inline FORCEINLINE void `[`SetClaimedToNull`](#structFRHAPI__KeyClaim_1a10fa172bfa0ea5252c4116a70283802a)`()` <a id="structFRHAPI__KeyClaim_1a10fa172bfa0ea5252c4116a70283802a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsClaimedNull`](#structFRHAPI__KeyClaim_1aa68c0a702f49118026028fdcc78b8bf7)`() const` <a id="structFRHAPI__KeyClaim_1aa68c0a702f49118026028fdcc78b8bf7"></a>
+#### `public inline FORCEINLINE bool `[`IsClaimedNull`](#structFRHAPI__KeyClaim_1af26935054fdcd2cbee953b223bc0bd2b)`() const` <a id="structFRHAPI__KeyClaim_1af26935054fdcd2cbee953b223bc0bd2b"></a>
 
 Checks whether Claimed_Optional is set to null.
 
-#### `public inline FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a0b50d2760097b35718e8b1e7c21241c5)`()` <a id="structFRHAPI__KeyClaim_1a0b50d2760097b35718e8b1e7c21241c5"></a>
+#### `public inline FORCEINLINE FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a3a6d21856d0e2365c72d59dac740b954)`()` <a id="structFRHAPI__KeyClaim_1a3a6d21856d0e2365c72d59dac740b954"></a>
 
 Gets the value of ExternalKey_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a036a67299453334b89fb280e8a71abd2)`() const` <a id="structFRHAPI__KeyClaim_1a036a67299453334b89fb280e8a71abd2"></a>
+#### `public inline FORCEINLINE const FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a006249a815c9826098f68fffa2ebbbb5)`() const` <a id="structFRHAPI__KeyClaim_1a006249a815c9826098f68fffa2ebbbb5"></a>
 
 Gets the value of ExternalKey_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1aa656274c3d17e96e5495faf68b740d27)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1aa656274c3d17e96e5495faf68b740d27"></a>
+#### `public inline FORCEINLINE const FString & `[`GetExternalKey`](#structFRHAPI__KeyClaim_1a1401765e028367e2b5af55a3d4a2e1e9)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a1401765e028367e2b5af55a3d4a2e1e9"></a>
 
 Gets the value of ExternalKey_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetExternalKey`](#structFRHAPI__KeyClaim_1ae48064039c3b32a01b5b4e03351a10b0)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1ae48064039c3b32a01b5b4e03351a10b0"></a>
+#### `public inline FORCEINLINE bool `[`GetExternalKey`](#structFRHAPI__KeyClaim_1aae6f444364b2982646942c55c4b4850f)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1aae6f444364b2982646942c55c4b4850f"></a>
 
 Fills OutValue with the value of ExternalKey_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetExternalKeyOrNull`](#structFRHAPI__KeyClaim_1aa1d3580651878a9be15a7d3edf35961c)`()` <a id="structFRHAPI__KeyClaim_1aa1d3580651878a9be15a7d3edf35961c"></a>
+#### `public inline FORCEINLINE FString * `[`GetExternalKeyOrNull`](#structFRHAPI__KeyClaim_1a0ebaef6a6fff9eaecfb0e0908ab5a8b0)`()` <a id="structFRHAPI__KeyClaim_1a0ebaef6a6fff9eaecfb0e0908ab5a8b0"></a>
 
 Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetExternalKeyOrNull`](#structFRHAPI__KeyClaim_1ab55ec1d6d98235e3745ed176851e72de)`() const` <a id="structFRHAPI__KeyClaim_1ab55ec1d6d98235e3745ed176851e72de"></a>
+#### `public inline FORCEINLINE const FString * `[`GetExternalKeyOrNull`](#structFRHAPI__KeyClaim_1ae0ae056e965d8468553674770705e1f1)`() const` <a id="structFRHAPI__KeyClaim_1ae0ae056e965d8468553674770705e1f1"></a>
 
 Returns a pointer to ExternalKey_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetExternalKey`](#structFRHAPI__KeyClaim_1a522907eefee6e622926cf40b1ced839a)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1a522907eefee6e622926cf40b1ced839a"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKey`](#structFRHAPI__KeyClaim_1a196a0af70f8f664abf1b4af8b0e1482d)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1a196a0af70f8f664abf1b4af8b0e1482d"></a>
 
 Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true.
 
-#### `public inline void `[`SetExternalKey`](#structFRHAPI__KeyClaim_1a82b475fa057a0ef9b888593b0c056d95)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1a82b475fa057a0ef9b888593b0c056d95"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKey`](#structFRHAPI__KeyClaim_1a6323b5020fa56a0a64a04294ce7d4df4)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1a6323b5020fa56a0a64a04294ce7d4df4"></a>
 
 Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true using move semantics.
 
@@ -458,47 +433,43 @@ Sets the value of ExternalKey_Optional and also sets ExternalKey_IsSet to true u
 
 Clears the value of ExternalKey_Optional and sets ExternalKey_IsSet to false.
 
-#### `public inline bool `[`IsExternalKeySet`](#structFRHAPI__KeyClaim_1a3744d0542ab9b26e3b4d688c74353922)`() const` <a id="structFRHAPI__KeyClaim_1a3744d0542ab9b26e3b4d688c74353922"></a>
-
-Checks whether ExternalKey_Optional has been set.
-
-#### `public inline void `[`SetExternalKeyToNull`](#structFRHAPI__KeyClaim_1a09a8aa346e174025d23e6c1d52daf0bf)`()` <a id="structFRHAPI__KeyClaim_1a09a8aa346e174025d23e6c1d52daf0bf"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyToNull`](#structFRHAPI__KeyClaim_1a634831a93b52c34f48f0070cb27ee69e)`()` <a id="structFRHAPI__KeyClaim_1a634831a93b52c34f48f0070cb27ee69e"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsExternalKeyNull`](#structFRHAPI__KeyClaim_1a75ecaf34ea02d24701cf97aa88c8362a)`() const` <a id="structFRHAPI__KeyClaim_1a75ecaf34ea02d24701cf97aa88c8362a"></a>
+#### `public inline FORCEINLINE bool `[`IsExternalKeyNull`](#structFRHAPI__KeyClaim_1a9436693307c40baeb14ff684e4efd404)`() const` <a id="structFRHAPI__KeyClaim_1a9436693307c40baeb14ff684e4efd404"></a>
 
 Checks whether ExternalKey_Optional is set to null.
 
-#### `public inline FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1ad72613c56bfb7423439a59ced91fae3d)`()` <a id="structFRHAPI__KeyClaim_1ad72613c56bfb7423439a59ced91fae3d"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a9606d9a3e8fdd90d889d1f277a4117c1)`()` <a id="structFRHAPI__KeyClaim_1a9606d9a3e8fdd90d889d1f277a4117c1"></a>
 
 Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a85e713189b2758906a3db5c59ae14ad8)`() const` <a id="structFRHAPI__KeyClaim_1a85e713189b2758906a3db5c59ae14ad8"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1ac487f327101c867093d4b88678a30cf6)`() const` <a id="structFRHAPI__KeyClaim_1ac487f327101c867093d4b88678a30cf6"></a>
 
 Gets the value of ExternalKeyCampaignUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a88adbd0d2beb06553ed0cad4fdfc7cb6)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a88adbd0d2beb06553ed0cad4fdfc7cb6"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1acaa6f662e7128c3ce6dd848f50e10cfe)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1acaa6f662e7128c3ce6dd848f50e10cfe"></a>
 
 Gets the value of ExternalKeyCampaignUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1abdb1ac75b51055086d77ba3c4f0aa354)`(FGuid & OutValue) const` <a id="structFRHAPI__KeyClaim_1abdb1ac75b51055086d77ba3c4f0aa354"></a>
+#### `public inline FORCEINLINE bool `[`GetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a9443b26026b3ac8b6b65cab198dd494d)`(FGuid & OutValue) const` <a id="structFRHAPI__KeyClaim_1a9443b26026b3ac8b6b65cab198dd494d"></a>
 
 Fills OutValue with the value of ExternalKeyCampaignUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetExternalKeyCampaignUuidOrNull`](#structFRHAPI__KeyClaim_1a36fd81fbc743032c107306f23532f45e)`()` <a id="structFRHAPI__KeyClaim_1a36fd81fbc743032c107306f23532f45e"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetExternalKeyCampaignUuidOrNull`](#structFRHAPI__KeyClaim_1a1fa1c1c530f1765707179e375f55aaf8)`()` <a id="structFRHAPI__KeyClaim_1a1fa1c1c530f1765707179e375f55aaf8"></a>
 
 Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetExternalKeyCampaignUuidOrNull`](#structFRHAPI__KeyClaim_1a8f4ff641ea73834dce74652f15973fe2)`() const` <a id="structFRHAPI__KeyClaim_1a8f4ff641ea73834dce74652f15973fe2"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetExternalKeyCampaignUuidOrNull`](#structFRHAPI__KeyClaim_1a3d9ef0d1aca67a8438f3bcce9c0c278e)`() const` <a id="structFRHAPI__KeyClaim_1a3d9ef0d1aca67a8438f3bcce9c0c278e"></a>
 
 Returns a pointer to ExternalKeyCampaignUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a3b0f2b848840dce199f42ce2a23b3d3f)`(const FGuid & NewValue)` <a id="structFRHAPI__KeyClaim_1a3b0f2b848840dce199f42ce2a23b3d3f"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a0f2c6a6627beceafb33f19c48f98fd30)`(const FGuid & NewValue)` <a id="structFRHAPI__KeyClaim_1a0f2c6a6627beceafb33f19c48f98fd30"></a>
 
 Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true.
 
-#### `public inline void `[`SetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a6b15fd836f4fa5d2a35695daa5080338)`(FGuid && NewValue)` <a id="structFRHAPI__KeyClaim_1a6b15fd836f4fa5d2a35695daa5080338"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyCampaignUuid`](#structFRHAPI__KeyClaim_1a5e31c5c92c5435dcd999d7ee2adbd637)`(FGuid && NewValue)` <a id="structFRHAPI__KeyClaim_1a5e31c5c92c5435dcd999d7ee2adbd637"></a>
 
 Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCampaignUuid_IsSet to true using move semantics.
 
@@ -506,47 +477,43 @@ Sets the value of ExternalKeyCampaignUuid_Optional and also sets ExternalKeyCamp
 
 Clears the value of ExternalKeyCampaignUuid_Optional and sets ExternalKeyCampaignUuid_IsSet to false.
 
-#### `public inline bool `[`IsExternalKeyCampaignUuidSet`](#structFRHAPI__KeyClaim_1aa3438d5294eb79b7ed82cef1c118be6b)`() const` <a id="structFRHAPI__KeyClaim_1aa3438d5294eb79b7ed82cef1c118be6b"></a>
-
-Checks whether ExternalKeyCampaignUuid_Optional has been set.
-
-#### `public inline void `[`SetExternalKeyCampaignUuidToNull`](#structFRHAPI__KeyClaim_1ae64db1ed1b46e06e98f161d3b83e0e9f)`()` <a id="structFRHAPI__KeyClaim_1ae64db1ed1b46e06e98f161d3b83e0e9f"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyCampaignUuidToNull`](#structFRHAPI__KeyClaim_1a19d058cd0de941e1acc2c682a1a2f339)`()` <a id="structFRHAPI__KeyClaim_1a19d058cd0de941e1acc2c682a1a2f339"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsExternalKeyCampaignUuidNull`](#structFRHAPI__KeyClaim_1a822dae170ca89cc3b42a87cfe7a60b7a)`() const` <a id="structFRHAPI__KeyClaim_1a822dae170ca89cc3b42a87cfe7a60b7a"></a>
+#### `public inline FORCEINLINE bool `[`IsExternalKeyCampaignUuidNull`](#structFRHAPI__KeyClaim_1ab4ecd531bc0efdc9e16aa2a5b7ab49c8)`() const` <a id="structFRHAPI__KeyClaim_1ab4ecd531bc0efdc9e16aa2a5b7ab49c8"></a>
 
 Checks whether ExternalKeyCampaignUuid_Optional is set to null.
 
-#### `public inline FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a0e5fb367d7b1422b922ff8c144c78620)`()` <a id="structFRHAPI__KeyClaim_1a0e5fb367d7b1422b922ff8c144c78620"></a>
+#### `public inline FORCEINLINE FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1ae5e7ad37a845609158fb82b0d146cb6a)`()` <a id="structFRHAPI__KeyClaim_1ae5e7ad37a845609158fb82b0d146cb6a"></a>
 
 Gets the value of ExternalKeyType_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a4a08fc27a8056586dc486b8825a55b80)`() const` <a id="structFRHAPI__KeyClaim_1a4a08fc27a8056586dc486b8825a55b80"></a>
+#### `public inline FORCEINLINE const FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a991fa23ed72ba1a5ee011089a864d5d9)`() const` <a id="structFRHAPI__KeyClaim_1a991fa23ed72ba1a5ee011089a864d5d9"></a>
 
 Gets the value of ExternalKeyType_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a1c7d0fb3212e18675792ca2372db6e99)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a1c7d0fb3212e18675792ca2372db6e99"></a>
+#### `public inline FORCEINLINE const FString & `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1afd84ca14508efa51e70d98c3b57dc468)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1afd84ca14508efa51e70d98c3b57dc468"></a>
 
 Gets the value of ExternalKeyType_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1a8e5e9754a38ff40a0344b9fd6dfba8c5)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1a8e5e9754a38ff40a0344b9fd6dfba8c5"></a>
+#### `public inline FORCEINLINE bool `[`GetExternalKeyType`](#structFRHAPI__KeyClaim_1ad887e7d74416b11e98e6d1fefe79b8f7)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1ad887e7d74416b11e98e6d1fefe79b8f7"></a>
 
 Fills OutValue with the value of ExternalKeyType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__KeyClaim_1a01bc954ba6c1b8d0b97e06254ce81b4f)`()` <a id="structFRHAPI__KeyClaim_1a01bc954ba6c1b8d0b97e06254ce81b4f"></a>
+#### `public inline FORCEINLINE FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__KeyClaim_1a5379876459ae92cba2086fab4a7c3de9)`()` <a id="structFRHAPI__KeyClaim_1a5379876459ae92cba2086fab4a7c3de9"></a>
 
 Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__KeyClaim_1ab981cc3afb90eab0756a37ad542a5c3c)`() const` <a id="structFRHAPI__KeyClaim_1ab981cc3afb90eab0756a37ad542a5c3c"></a>
+#### `public inline FORCEINLINE const FString * `[`GetExternalKeyTypeOrNull`](#structFRHAPI__KeyClaim_1a7b12e64ee379c94403cfb8e0a7a746c4)`() const` <a id="structFRHAPI__KeyClaim_1a7b12e64ee379c94403cfb8e0a7a746c4"></a>
 
 Returns a pointer to ExternalKeyType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetExternalKeyType`](#structFRHAPI__KeyClaim_1ab91d6ccaae164793c1e936867d276ea6)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1ab91d6ccaae164793c1e936867d276ea6"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyType`](#structFRHAPI__KeyClaim_1af4c7f722c6ba7abdde5fefbdc7f2241f)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1af4c7f722c6ba7abdde5fefbdc7f2241f"></a>
 
 Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true.
 
-#### `public inline void `[`SetExternalKeyType`](#structFRHAPI__KeyClaim_1a1c28342396ad9da7bb6979beb81dbb4b)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1a1c28342396ad9da7bb6979beb81dbb4b"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyType`](#structFRHAPI__KeyClaim_1a4e06a429502b1973a969c8affcdc9da4)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1a4e06a429502b1973a969c8affcdc9da4"></a>
 
 Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet to true using move semantics.
 
@@ -554,47 +521,43 @@ Sets the value of ExternalKeyType_Optional and also sets ExternalKeyType_IsSet t
 
 Clears the value of ExternalKeyType_Optional and sets ExternalKeyType_IsSet to false.
 
-#### `public inline bool `[`IsExternalKeyTypeSet`](#structFRHAPI__KeyClaim_1a0ae04f80177c6febc14a2fb82a38eea8)`() const` <a id="structFRHAPI__KeyClaim_1a0ae04f80177c6febc14a2fb82a38eea8"></a>
-
-Checks whether ExternalKeyType_Optional has been set.
-
-#### `public inline void `[`SetExternalKeyTypeToNull`](#structFRHAPI__KeyClaim_1ad182dba466d25de5604540781447305f)`()` <a id="structFRHAPI__KeyClaim_1ad182dba466d25de5604540781447305f"></a>
+#### `public inline FORCEINLINE void `[`SetExternalKeyTypeToNull`](#structFRHAPI__KeyClaim_1a61f94381bab11b2c1679ba46de439eae)`()` <a id="structFRHAPI__KeyClaim_1a61f94381bab11b2c1679ba46de439eae"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsExternalKeyTypeNull`](#structFRHAPI__KeyClaim_1a7a295e90bb5da246669a104093f803e3)`() const` <a id="structFRHAPI__KeyClaim_1a7a295e90bb5da246669a104093f803e3"></a>
+#### `public inline FORCEINLINE bool `[`IsExternalKeyTypeNull`](#structFRHAPI__KeyClaim_1af9bb58461b4ad8eec3978a3394dbe71d)`() const` <a id="structFRHAPI__KeyClaim_1af9bb58461b4ad8eec3978a3394dbe71d"></a>
 
 Checks whether ExternalKeyType_Optional is set to null.
 
-#### `public inline FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a136c42d9a7714129fd98f8d2dbaf9d3e)`()` <a id="structFRHAPI__KeyClaim_1a136c42d9a7714129fd98f8d2dbaf9d3e"></a>
+#### `public inline FORCEINLINE FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a78cbcdfc34f73d4e4bf02470e10c6667)`()` <a id="structFRHAPI__KeyClaim_1a78cbcdfc34f73d4e4bf02470e10c6667"></a>
 
 Gets the value of CreatedOn_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1abda5cd5934e6837dc749c676e38ff249)`() const` <a id="structFRHAPI__KeyClaim_1abda5cd5934e6837dc749c676e38ff249"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a3d33628279408bd972fa94b323c149df)`() const` <a id="structFRHAPI__KeyClaim_1a3d33628279408bd972fa94b323c149df"></a>
 
 Gets the value of CreatedOn_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1abdfa7a035092264bad0e2e35f5ced393)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1abdfa7a035092264bad0e2e35f5ced393"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1adaa2cce133a502d87465937ce4bc8990)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1adaa2cce133a502d87465937ce4bc8990"></a>
 
 Gets the value of CreatedOn_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a99109f99db3004f930a9d3ebff6f5a43)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1a99109f99db3004f930a9d3ebff6f5a43"></a>
+#### `public inline FORCEINLINE bool `[`GetCreatedOn`](#structFRHAPI__KeyClaim_1a1916eb4910d8a20f663b4c8a47851011)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1a1916eb4910d8a20f663b4c8a47851011"></a>
 
 Fills OutValue with the value of CreatedOn_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetCreatedOnOrNull`](#structFRHAPI__KeyClaim_1a470dd65fb6bd5d8fc69c622ec98ecbd9)`()` <a id="structFRHAPI__KeyClaim_1a470dd65fb6bd5d8fc69c622ec98ecbd9"></a>
+#### `public inline FORCEINLINE FString * `[`GetCreatedOnOrNull`](#structFRHAPI__KeyClaim_1ab423b85a0d4ee666cadde728d846793f)`()` <a id="structFRHAPI__KeyClaim_1ab423b85a0d4ee666cadde728d846793f"></a>
 
 Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetCreatedOnOrNull`](#structFRHAPI__KeyClaim_1aff8b6e51133a15f51ee5dfd900b1a867)`() const` <a id="structFRHAPI__KeyClaim_1aff8b6e51133a15f51ee5dfd900b1a867"></a>
+#### `public inline FORCEINLINE const FString * `[`GetCreatedOnOrNull`](#structFRHAPI__KeyClaim_1a488db64e62f50a2f78b3e9ebf4efaa99)`() const` <a id="structFRHAPI__KeyClaim_1a488db64e62f50a2f78b3e9ebf4efaa99"></a>
 
 Returns a pointer to CreatedOn_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCreatedOn`](#structFRHAPI__KeyClaim_1aaea6b49417e3e061a1328286bc47d9d7)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1aaea6b49417e3e061a1328286bc47d9d7"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedOn`](#structFRHAPI__KeyClaim_1a01c7d4b8d64c34cc72863c3e1d800d96)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1a01c7d4b8d64c34cc72863c3e1d800d96"></a>
 
 Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true.
 
-#### `public inline void `[`SetCreatedOn`](#structFRHAPI__KeyClaim_1a7b8a6ec4ece2585c570a2983dfc075c3)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1a7b8a6ec4ece2585c570a2983dfc075c3"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedOn`](#structFRHAPI__KeyClaim_1a56bafa906bbe3dca12c66866f632623d)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1a56bafa906bbe3dca12c66866f632623d"></a>
 
 Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using move semantics.
 
@@ -602,47 +565,43 @@ Sets the value of CreatedOn_Optional and also sets CreatedOn_IsSet to true using
 
 Clears the value of CreatedOn_Optional and sets CreatedOn_IsSet to false.
 
-#### `public inline bool `[`IsCreatedOnSet`](#structFRHAPI__KeyClaim_1aace9dc18bab14634f027c6ffcab2e2b3)`() const` <a id="structFRHAPI__KeyClaim_1aace9dc18bab14634f027c6ffcab2e2b3"></a>
-
-Checks whether CreatedOn_Optional has been set.
-
-#### `public inline void `[`SetCreatedOnToNull`](#structFRHAPI__KeyClaim_1abbe3bf70e9357c361ff304d6360c4342)`()` <a id="structFRHAPI__KeyClaim_1abbe3bf70e9357c361ff304d6360c4342"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedOnToNull`](#structFRHAPI__KeyClaim_1a2c4773e98a4081149fa7589970196852)`()` <a id="structFRHAPI__KeyClaim_1a2c4773e98a4081149fa7589970196852"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCreatedOnNull`](#structFRHAPI__KeyClaim_1a7c576b967543d8807301950f38b812d0)`() const` <a id="structFRHAPI__KeyClaim_1a7c576b967543d8807301950f38b812d0"></a>
+#### `public inline FORCEINLINE bool `[`IsCreatedOnNull`](#structFRHAPI__KeyClaim_1a09cd9734d30d969ef8b581f00cf39195)`() const` <a id="structFRHAPI__KeyClaim_1a09cd9734d30d969ef8b581f00cf39195"></a>
 
 Checks whether CreatedOn_Optional is set to null.
 
-#### `public inline FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1ac1216aa013dad734e5e95793ec818f13)`()` <a id="structFRHAPI__KeyClaim_1ac1216aa013dad734e5e95793ec818f13"></a>
+#### `public inline FORCEINLINE FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1ad2b434b526f974ed7cb06711e1285c13)`()` <a id="structFRHAPI__KeyClaim_1ad2b434b526f974ed7cb06711e1285c13"></a>
 
 Gets the value of LastModifiedOn_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1a83f2edcbad70d90c9b27db7d595b3aa9)`() const` <a id="structFRHAPI__KeyClaim_1a83f2edcbad70d90c9b27db7d595b3aa9"></a>
+#### `public inline FORCEINLINE const FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1a4c48059aef96c4e2f018cbba99661df1)`() const` <a id="structFRHAPI__KeyClaim_1a4c48059aef96c4e2f018cbba99661df1"></a>
 
 Gets the value of LastModifiedOn_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1a18d2fe0cfcd5bfdb0a7ac654b72456d5)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1a18d2fe0cfcd5bfdb0a7ac654b72456d5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1abae98c3a2faf9cac70b245d7a664aa1a)`(const FString & DefaultValue) const` <a id="structFRHAPI__KeyClaim_1abae98c3a2faf9cac70b245d7a664aa1a"></a>
 
 Gets the value of LastModifiedOn_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1a9f13642df89e3f5239d06601165c0904)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1a9f13642df89e3f5239d06601165c0904"></a>
+#### `public inline FORCEINLINE bool `[`GetLastModifiedOn`](#structFRHAPI__KeyClaim_1ae220bc4128347a886ec843bb97ff78bf)`(FString & OutValue) const` <a id="structFRHAPI__KeyClaim_1ae220bc4128347a886ec843bb97ff78bf"></a>
 
 Fills OutValue with the value of LastModifiedOn_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__KeyClaim_1ad2672939ecb2e82ceac54991a3171c73)`()` <a id="structFRHAPI__KeyClaim_1ad2672939ecb2e82ceac54991a3171c73"></a>
+#### `public inline FORCEINLINE FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__KeyClaim_1a20f9a15985c1142b9d02b614746d5c77)`()` <a id="structFRHAPI__KeyClaim_1a20f9a15985c1142b9d02b614746d5c77"></a>
 
 Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__KeyClaim_1ac42724ec6daff301e45fde94ac1d2aba)`() const` <a id="structFRHAPI__KeyClaim_1ac42724ec6daff301e45fde94ac1d2aba"></a>
+#### `public inline FORCEINLINE const FString * `[`GetLastModifiedOnOrNull`](#structFRHAPI__KeyClaim_1a336f57304f2cad29faa9bffc2d6d0a98)`() const` <a id="structFRHAPI__KeyClaim_1a336f57304f2cad29faa9bffc2d6d0a98"></a>
 
 Returns a pointer to LastModifiedOn_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1afd88bbec04902b58aed09f2cb6fe6f81)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1afd88bbec04902b58aed09f2cb6fe6f81"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1aeee135bac6516473aef6344ce4b64bf1)`(const FString & NewValue)` <a id="structFRHAPI__KeyClaim_1aeee135bac6516473aef6344ce4b64bf1"></a>
 
 Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true.
 
-#### `public inline void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1ae2a3b4c8008c400bc0bb310592dadd44)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1ae2a3b4c8008c400bc0bb310592dadd44"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedOn`](#structFRHAPI__KeyClaim_1a230f5bb90ac5b993f6bc710430cb830a)`(FString && NewValue)` <a id="structFRHAPI__KeyClaim_1a230f5bb90ac5b993f6bc710430cb830a"></a>
 
 Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to true using move semantics.
 
@@ -650,15 +609,11 @@ Sets the value of LastModifiedOn_Optional and also sets LastModifiedOn_IsSet to 
 
 Clears the value of LastModifiedOn_Optional and sets LastModifiedOn_IsSet to false.
 
-#### `public inline bool `[`IsLastModifiedOnSet`](#structFRHAPI__KeyClaim_1a6c8d83b50ca71fa30eef047935e1e856)`() const` <a id="structFRHAPI__KeyClaim_1a6c8d83b50ca71fa30eef047935e1e856"></a>
-
-Checks whether LastModifiedOn_Optional has been set.
-
-#### `public inline void `[`SetLastModifiedOnToNull`](#structFRHAPI__KeyClaim_1a5ae79e043c28300f288a319e463a28c2)`()` <a id="structFRHAPI__KeyClaim_1a5ae79e043c28300f288a319e463a28c2"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedOnToNull`](#structFRHAPI__KeyClaim_1a5d4e6bf206f922c0171bff3f197f706f)`()` <a id="structFRHAPI__KeyClaim_1a5d4e6bf206f922c0171bff3f197f706f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLastModifiedOnNull`](#structFRHAPI__KeyClaim_1a7880a8c9c5decacfdc575afd8140a148)`() const` <a id="structFRHAPI__KeyClaim_1a7880a8c9c5decacfdc575afd8140a148"></a>
+#### `public inline FORCEINLINE bool `[`IsLastModifiedOnNull`](#structFRHAPI__KeyClaim_1a76176b7c4f64ad11423f20f5f55c3985)`() const` <a id="structFRHAPI__KeyClaim_1a76176b7c4f64ad11423f20f5f55c3985"></a>
 
 Checks whether LastModifiedOn_Optional is set to null.
 

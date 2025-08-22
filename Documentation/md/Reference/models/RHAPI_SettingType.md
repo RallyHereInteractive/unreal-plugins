@@ -22,10 +22,10 @@ struct FRHAPI_SettingType
 `public TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > `[`Versions`](#structFRHAPI__SettingType_1ab890cf6c935d2cd691a9b5c4caac7cc1) | Map of setting type version ids to the version.
 `public virtual bool `[`FromJson`](#structFRHAPI__SettingType_1a8ff93dadfeb17aa6a6cdec4e751d4de4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SettingType_1ab70b1113b55483dcc62b0f2937bf2075)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1aa2bd87ae14ca9d3104c10729b8d067d2)`()` | Gets the value of Versions.
-`public inline const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1ad920c23d65e650cf20403c7441f3b598)`() const` | Gets the value of Versions.
-`public inline void `[`SetVersions`](#structFRHAPI__SettingType_1a39ed1d4f0efb9d3bb1b199caab1a36f1)`(const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & NewValue)` | Sets the value of Versions.
-`public inline void `[`SetVersions`](#structFRHAPI__SettingType_1adc70ab21def081402fbe59dbfc21f057)`(TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > && NewValue)` | Sets the value of Versions using move semantics.
+`public inline FORCEINLINE TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1ae1cc3612f2d7d04873a2c8649c9f60c7)`()` | Gets the value of Versions.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1a4e5c7d1e2f2e39dafad3eebb88668af2)`() const` | Gets the value of Versions.
+`public inline FORCEINLINE void `[`SetVersions`](#structFRHAPI__SettingType_1acae2ba6bc21a6360f20ccd35ce1fde80)`(const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & NewValue)` | Sets the value of Versions.
+`public inline FORCEINLINE void `[`SetVersions`](#structFRHAPI__SettingType_1ad2eae645340d5ae9d5a6f96859454034)`(TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > && NewValue)` | Sets the value of Versions using move semantics.
 
 ### Members
 
@@ -50,19 +50,19 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1aa2bd87ae14ca9d3104c10729b8d067d2)`()` <a id="structFRHAPI__SettingType_1aa2bd87ae14ca9d3104c10729b8d067d2"></a>
+#### `public inline FORCEINLINE TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1ae1cc3612f2d7d04873a2c8649c9f60c7)`()` <a id="structFRHAPI__SettingType_1ae1cc3612f2d7d04873a2c8649c9f60c7"></a>
 
 Gets the value of Versions.
 
-#### `public inline const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1ad920c23d65e650cf20403c7441f3b598)`() const` <a id="structFRHAPI__SettingType_1ad920c23d65e650cf20403c7441f3b598"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & `[`GetVersions`](#structFRHAPI__SettingType_1a4e5c7d1e2f2e39dafad3eebb88668af2)`() const` <a id="structFRHAPI__SettingType_1a4e5c7d1e2f2e39dafad3eebb88668af2"></a>
 
 Gets the value of Versions.
 
-#### `public inline void `[`SetVersions`](#structFRHAPI__SettingType_1a39ed1d4f0efb9d3bb1b199caab1a36f1)`(const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & NewValue)` <a id="structFRHAPI__SettingType_1a39ed1d4f0efb9d3bb1b199caab1a36f1"></a>
+#### `public inline FORCEINLINE void `[`SetVersions`](#structFRHAPI__SettingType_1acae2ba6bc21a6360f20ccd35ce1fde80)`(const TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > & NewValue)` <a id="structFRHAPI__SettingType_1acae2ba6bc21a6360f20ccd35ce1fde80"></a>
 
 Sets the value of Versions.
 
-#### `public inline void `[`SetVersions`](#structFRHAPI__SettingType_1adc70ab21def081402fbe59dbfc21f057)`(TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > && NewValue)` <a id="structFRHAPI__SettingType_1adc70ab21def081402fbe59dbfc21f057"></a>
+#### `public inline FORCEINLINE void `[`SetVersions`](#structFRHAPI__SettingType_1ad2eae645340d5ae9d5a6f96859454034)`(TMap< FString, `[`FRHAPI_SettingTypeVersion`](RHAPI_SettingTypeVersion.md#structFRHAPI__SettingTypeVersion)` > && NewValue)` <a id="structFRHAPI__SettingType_1ad2eae645340d5ae9d5a6f96859454034"></a>
 
 Sets the value of Versions using move semantics.
 

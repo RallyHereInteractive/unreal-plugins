@@ -139,488 +139,447 @@ struct FRHAPI_GuideCreateRequest
 `public bool `[`Sections_IsSet`](#structFRHAPI__GuideCreateRequest_1ae26342c95e7c635466aeb1c290c6897d) | true if Sections_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__GuideCreateRequest_1a5dbe6a6bfc3a648f8740619654a7be49)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__GuideCreateRequest_1aca0e0807afd3877a23ce4de502aa1fcd)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetGuideType`](#structFRHAPI__GuideCreateRequest_1a756309913f6ac0437a4c1b8654a7442d)`()` | Gets the value of GuideType.
-`public inline const FString & `[`GetGuideType`](#structFRHAPI__GuideCreateRequest_1ac358d5717010874215cd47d13c3eac05)`() const` | Gets the value of GuideType.
-`public inline void `[`SetGuideType`](#structFRHAPI__GuideCreateRequest_1ac140cb9dc6b30b5bf07f3360dcae592b)`(const FString & NewValue)` | Sets the value of GuideType.
-`public inline void `[`SetGuideType`](#structFRHAPI__GuideCreateRequest_1af3d67dbcc35ed78cedb6e5e3607f297a)`(FString && NewValue)` | Sets the value of GuideType using move semantics.
-`public inline FString & `[`GetLanguage`](#structFRHAPI__GuideCreateRequest_1a1d44e50fcc261e81d698c3adc9dcafee)`()` | Gets the value of Language.
-`public inline const FString & `[`GetLanguage`](#structFRHAPI__GuideCreateRequest_1a0a2eab8cc05b193a4ca13f7338b9a1bb)`() const` | Gets the value of Language.
-`public inline void `[`SetLanguage`](#structFRHAPI__GuideCreateRequest_1a6e1e7e69044ed102f2eeafe3a68f0486)`(const FString & NewValue)` | Sets the value of Language.
-`public inline void `[`SetLanguage`](#structFRHAPI__GuideCreateRequest_1a0b5aec4450ba5b726a70c61f6d879895)`(FString && NewValue)` | Sets the value of Language using move semantics.
-`public inline FString & `[`GetGameVersion`](#structFRHAPI__GuideCreateRequest_1acf7553aadc20b85a7568d5447f6add14)`()` | Gets the value of GameVersion.
-`public inline const FString & `[`GetGameVersion`](#structFRHAPI__GuideCreateRequest_1ab1f5d26158e4cbe4094079dddc232eec)`() const` | Gets the value of GameVersion.
-`public inline void `[`SetGameVersion`](#structFRHAPI__GuideCreateRequest_1a56788c5d1b97cf58256a8b8b395f788b)`(const FString & NewValue)` | Sets the value of GameVersion.
-`public inline void `[`SetGameVersion`](#structFRHAPI__GuideCreateRequest_1aab9a4cd57da3b3cb32de60cae05b0d08)`(FString && NewValue)` | Sets the value of GameVersion using move semantics.
-`public inline FString & `[`GetName`](#structFRHAPI__GuideCreateRequest_1af7d8fddc5c14e518722d3228174562a7)`()` | Gets the value of Name.
-`public inline const FString & `[`GetName`](#structFRHAPI__GuideCreateRequest_1a7faf4dc69cb686ac470f6fe9e60ff35d)`() const` | Gets the value of Name.
-`public inline void `[`SetName`](#structFRHAPI__GuideCreateRequest_1a9878316c7d557557f433fbb621af8417)`(const FString & NewValue)` | Sets the value of Name.
-`public inline void `[`SetName`](#structFRHAPI__GuideCreateRequest_1a4ef01727675d1e4a15b2459a36f3af6d)`(FString && NewValue)` | Sets the value of Name using move semantics.
-`public inline FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a363f795333895e6a807567dd8ee9a737)`()` | Gets the value of ShortDesc_Optional, regardless of it having been set.
-`public inline const FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a91bd9a1a8ee83570ccd2aab4d14d94b3)`() const` | Gets the value of ShortDesc_Optional, regardless of it having been set.
-`public inline const FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a66fc56d70d7ab1f68e70464a0cc80506)`(const FString & DefaultValue) const` | Gets the value of ShortDesc_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1ae42c707312493ca269829574f1b7edc5)`(FString & OutValue) const` | Fills OutValue with the value of ShortDesc_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetShortDescOrNull`](#structFRHAPI__GuideCreateRequest_1a1d88f30ace23185de98cf352568fd1fd)`()` | Returns a pointer to ShortDesc_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetShortDescOrNull`](#structFRHAPI__GuideCreateRequest_1ae6b6243f2ea12f18aaca13f7d2158c0a)`() const` | Returns a pointer to ShortDesc_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetShortDesc`](#structFRHAPI__GuideCreateRequest_1a20c9a7ff94b6fc2cc683cc0137d567a1)`(const FString & NewValue)` | Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true.
-`public inline void `[`SetShortDesc`](#structFRHAPI__GuideCreateRequest_1af49c3fb3b429e81d8481ba7763daf465)`(FString && NewValue)` | Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetGuideType`](#structFRHAPI__GuideCreateRequest_1a0c866cd3f0d76d1e7477a6f5c1547178)`()` | Gets the value of GuideType.
+`public inline FORCEINLINE const FString & `[`GetGuideType`](#structFRHAPI__GuideCreateRequest_1ab5bcf473b3ea8901581fc3fb7d358831)`() const` | Gets the value of GuideType.
+`public inline FORCEINLINE void `[`SetGuideType`](#structFRHAPI__GuideCreateRequest_1a8b5eb1bf42c16652fcf867ba7742e46b)`(const FString & NewValue)` | Sets the value of GuideType.
+`public inline FORCEINLINE void `[`SetGuideType`](#structFRHAPI__GuideCreateRequest_1a5f66dbb2b51d79fff65553daedf349e8)`(FString && NewValue)` | Sets the value of GuideType using move semantics.
+`public inline FORCEINLINE FString & `[`GetLanguage`](#structFRHAPI__GuideCreateRequest_1a6d2fe119ac20a5f73bd1e67bf3543894)`()` | Gets the value of Language.
+`public inline FORCEINLINE const FString & `[`GetLanguage`](#structFRHAPI__GuideCreateRequest_1af176317a6893c5a79520132fb3f035cf)`() const` | Gets the value of Language.
+`public inline FORCEINLINE void `[`SetLanguage`](#structFRHAPI__GuideCreateRequest_1ae8e710f5094b5896a7f025c052e01353)`(const FString & NewValue)` | Sets the value of Language.
+`public inline FORCEINLINE void `[`SetLanguage`](#structFRHAPI__GuideCreateRequest_1a26f3303c2717a4bdc9ada43f77865a22)`(FString && NewValue)` | Sets the value of Language using move semantics.
+`public inline FORCEINLINE FString & `[`GetGameVersion`](#structFRHAPI__GuideCreateRequest_1a68808049a090a78261485565984d6eb3)`()` | Gets the value of GameVersion.
+`public inline FORCEINLINE const FString & `[`GetGameVersion`](#structFRHAPI__GuideCreateRequest_1aa46564c9fbfe12d7ec31e5f870491938)`() const` | Gets the value of GameVersion.
+`public inline FORCEINLINE void `[`SetGameVersion`](#structFRHAPI__GuideCreateRequest_1a0cebcc5ff4da925f650402ea1d033196)`(const FString & NewValue)` | Sets the value of GameVersion.
+`public inline FORCEINLINE void `[`SetGameVersion`](#structFRHAPI__GuideCreateRequest_1aa1daee814adf44cde0d8b8de030e1488)`(FString && NewValue)` | Sets the value of GameVersion using move semantics.
+`public inline FORCEINLINE FString & `[`GetName`](#structFRHAPI__GuideCreateRequest_1a15874a7f4df6235d52a0ea6d3f1fc922)`()` | Gets the value of Name.
+`public inline FORCEINLINE const FString & `[`GetName`](#structFRHAPI__GuideCreateRequest_1a5eccc330965ada620ccfa6efc2ec76eb)`() const` | Gets the value of Name.
+`public inline FORCEINLINE void `[`SetName`](#structFRHAPI__GuideCreateRequest_1aeae1c236abf7db1ac4901beb86534ebd)`(const FString & NewValue)` | Sets the value of Name.
+`public inline FORCEINLINE void `[`SetName`](#structFRHAPI__GuideCreateRequest_1ab4d266876035d110d0918643437b7617)`(FString && NewValue)` | Sets the value of Name using move semantics.
+`public inline FORCEINLINE FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a0a9adfb1ff7437acac615124ef8c702a)`()` | Gets the value of ShortDesc_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a6ef65510b31aa004c58811c60ea92d72)`() const` | Gets the value of ShortDesc_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a0d15cb9798b69db55f94991f7c347b40)`(const FString & DefaultValue) const` | Gets the value of ShortDesc_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a977d172cb50bb353f7bf9bcbf7eafd81)`(FString & OutValue) const` | Fills OutValue with the value of ShortDesc_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetShortDescOrNull`](#structFRHAPI__GuideCreateRequest_1a3df1b19974550484a23a50810a59dafe)`()` | Returns a pointer to ShortDesc_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetShortDescOrNull`](#structFRHAPI__GuideCreateRequest_1a45c5a057ada80f4dff359847d263e3dd)`() const` | Returns a pointer to ShortDesc_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetShortDesc`](#structFRHAPI__GuideCreateRequest_1a4bf152b95b8ce6f5e1c8d0fc124b6307)`(const FString & NewValue)` | Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true.
+`public inline FORCEINLINE void `[`SetShortDesc`](#structFRHAPI__GuideCreateRequest_1a7f722d6509dc7622d76f2e7a01f57e76)`(FString && NewValue)` | Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true using move semantics.
 `public inline void `[`ClearShortDesc`](#structFRHAPI__GuideCreateRequest_1abb2dcbba06cb661d752fd1d55c23e886)`()` | Clears the value of ShortDesc_Optional and sets ShortDesc_IsSet to false.
-`public inline bool `[`IsShortDescSet`](#structFRHAPI__GuideCreateRequest_1a667d972860ab4a49ec64556e39aae75b)`() const` | Checks whether ShortDesc_Optional has been set.
-`public inline void `[`SetShortDescToNull`](#structFRHAPI__GuideCreateRequest_1a94c66e240754ef1bd3a0a262d89822ae)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsShortDescNull`](#structFRHAPI__GuideCreateRequest_1ad91a6bb2af815f51d174472bbfd8d9fd)`() const` | Checks whether ShortDesc_Optional is set to null.
-`public inline int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a27d961c7001a03db0cc33fbae0b7b43b)`()` | Gets the value of V_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a844659cc65bc6bfa2c6b449842071f3a)`() const` | Gets the value of V_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1ada7b011f7247cd5f3a1a376fffc075c8)`(const int32 & DefaultValue) const` | Gets the value of V_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetV`](#structFRHAPI__GuideCreateRequest_1adb87141affd2f4794a5c52aad89f6304)`(int32 & OutValue) const` | Fills OutValue with the value of V_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetVOrNull`](#structFRHAPI__GuideCreateRequest_1a1ae801278714abaa5179e26c0d012e72)`()` | Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetVOrNull`](#structFRHAPI__GuideCreateRequest_1a1bc72d6b5ed080ae33562cc4a465217a)`() const` | Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetV`](#structFRHAPI__GuideCreateRequest_1a8a97c25917b43af1eec3bd515eeb77a8)`(const int32 & NewValue)` | Sets the value of V_Optional and also sets V_IsSet to true.
-`public inline void `[`SetV`](#structFRHAPI__GuideCreateRequest_1a6a565a41bbba63ebdd1063f42b7a2495)`(int32 && NewValue)` | Sets the value of V_Optional and also sets V_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetShortDescToNull`](#structFRHAPI__GuideCreateRequest_1a8c80cbe05d91b6a13f426bddb18142a2)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsShortDescNull`](#structFRHAPI__GuideCreateRequest_1af2ec04ace7419cc049f0cd5e4b9035b4)`() const` | Checks whether ShortDesc_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a2a536ec7f053192156a7affc122b3e45)`()` | Gets the value of V_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a022ee74b8e39733cb6bd0b31a8f57a90)`() const` | Gets the value of V_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a1ad4c72b224148ab161b45a9dcc35a91)`(const int32 & DefaultValue) const` | Gets the value of V_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetV`](#structFRHAPI__GuideCreateRequest_1a289f7ecf3dd17a059c5ada7381cc0872)`(int32 & OutValue) const` | Fills OutValue with the value of V_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetVOrNull`](#structFRHAPI__GuideCreateRequest_1a2c006c6cdba8c293ae4fbd686d5a09df)`()` | Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetVOrNull`](#structFRHAPI__GuideCreateRequest_1aec36020ec04ed56b2f948733a3eebcd8)`() const` | Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetV`](#structFRHAPI__GuideCreateRequest_1a921a610078d44b84ea67d2877286c698)`(const int32 & NewValue)` | Sets the value of V_Optional and also sets V_IsSet to true.
+`public inline FORCEINLINE void `[`SetV`](#structFRHAPI__GuideCreateRequest_1afc9cce39c49283b324c6849516309adc)`(int32 && NewValue)` | Sets the value of V_Optional and also sets V_IsSet to true using move semantics.
 `public inline void `[`ClearV`](#structFRHAPI__GuideCreateRequest_1a0c3a1ff7787f482fa10ad60ddde3ea38)`()` | Clears the value of V_Optional and sets V_IsSet to false.
-`public inline bool `[`IsVSet`](#structFRHAPI__GuideCreateRequest_1a8df4a526c0b9e7b8e5aa009ad3f75e57)`() const` | Checks whether V_Optional has been set.
-`public inline bool `[`IsVDefaultValue`](#structFRHAPI__GuideCreateRequest_1ae057ff78b9b280b11b95030da5ba8ead)`() const` | Returns true if V_Optional is set and matches the default value.
-`public inline void `[`SetVToDefault`](#structFRHAPI__GuideCreateRequest_1a54137ca128b783c5ab522346b85caa1d)`()` | Sets the value of V_Optional to its default and also sets V_IsSet to true.
-`public inline int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a063b4b27f21ef68f727a70bd2736a8cd)`()` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a5d3acf2b747d88fdd400d6a663093130)`() const` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1af0581b743c6b7dd0cacc1b61ec7d7401)`(const int32 & DefaultValue) const` | Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a58a0bcd2aa97eca092ac98b4a9f0b85c)`(int32 & OutValue) const` | Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1aaf8f383ef8f57d0ebb7b65b60272f676)`()` | Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1abd6eb8342d9ee296de9a1733a5b1976e)`() const` | Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a0ea0030ca6890651664849fa18489b56)`(const int32 & NewValue)` | Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true.
-`public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1abc46a603640001adb9a870a26618357e)`(int32 && NewValue)` | Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_V`](#structFRHAPI__GuideCreateRequest_1a4ef3a835c6393e2cdd8b918df5d69d93)`()` | Returns the default value of V.
+`public inline FORCEINLINE int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a4e65366801b70ed51107ca4fef9d4f2d)`()` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a644a8d09e3b964d654d63d7518ba8499)`() const` | Gets the value of PromotionPriority_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a8b89f0c0efd183a77eafc5f22011898a)`(const int32 & DefaultValue) const` | Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1ada52523a1e758cc6154c8f5515c6368d)`(int32 & OutValue) const` | Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1a8fd62f50957fb0aebb897df4dee29830)`()` | Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1a99cedae572592954c45ef78b19abff89)`() const` | Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a74c6e6efad827bc0b47195ea5f8142f4)`(const int32 & NewValue)` | Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true.
+`public inline FORCEINLINE void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a7c424595f6676b945980bf0f32c4715f)`(int32 && NewValue)` | Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics.
 `public inline void `[`ClearPromotionPriority`](#structFRHAPI__GuideCreateRequest_1ac6c1f7f982ca9f5e2ea5f18c51b64c71)`()` | Clears the value of PromotionPriority_Optional and sets PromotionPriority_IsSet to false.
-`public inline bool `[`IsPromotionPrioritySet`](#structFRHAPI__GuideCreateRequest_1aaa8db84c9285fffb61d8cc37664e3d5f)`() const` | Checks whether PromotionPriority_Optional has been set.
-`public inline bool `[`IsPromotionPriorityDefaultValue`](#structFRHAPI__GuideCreateRequest_1a7a17d8c3843b4e63ed648f09fcb871b3)`() const` | Returns true if PromotionPriority_Optional is set and matches the default value.
-`public inline void `[`SetPromotionPriorityToDefault`](#structFRHAPI__GuideCreateRequest_1a30320ea46c8c5b6a1a943f170c6319ab)`()` | Sets the value of PromotionPriority_Optional to its default and also sets PromotionPriority_IsSet to true.
-`public inline FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a936c0390be75690b48af415faab88fad)`()` | Gets the value of Ref1_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a1a000fb4716a92afa5a60af875141ba4)`() const` | Gets the value of Ref1_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1ab4047aa3c2416c2b6129aad9ccfc1c5c)`(const FString & DefaultValue) const` | Gets the value of Ref1_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a23ceb598923deec38ff7828ce12bbe75)`(FString & OutValue) const` | Fills OutValue with the value of Ref1_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef1OrNull`](#structFRHAPI__GuideCreateRequest_1a1df2b00ef481e4ca9e8679b74ac2e6e1)`()` | Returns a pointer to Ref1_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef1OrNull`](#structFRHAPI__GuideCreateRequest_1ac846db0537420e46bf926bf8ef6d5557)`() const` | Returns a pointer to Ref1_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef1`](#structFRHAPI__GuideCreateRequest_1a023c7a11d310e22a6730a517290f5b65)`(const FString & NewValue)` | Sets the value of Ref1_Optional and also sets Ref1_IsSet to true.
-`public inline void `[`SetRef1`](#structFRHAPI__GuideCreateRequest_1a48f2b6f4ca500f061770729b966aa649)`(FString && NewValue)` | Sets the value of Ref1_Optional and also sets Ref1_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PromotionPriority`](#structFRHAPI__GuideCreateRequest_1adb97633768deb0abc101b67c1ae8c3e6)`()` | Returns the default value of PromotionPriority.
+`public inline FORCEINLINE FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1ae7aeea0c0e7929df8b125ac069166f83)`()` | Gets the value of Ref1_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1abde50b9dce2ae8c8edde4c2b6a8129ff)`() const` | Gets the value of Ref1_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a75ade097618d5ef01dd532c8024ae4ec)`(const FString & DefaultValue) const` | Gets the value of Ref1_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1aab851e5535c90c1e0fd454ce0350e056)`(FString & OutValue) const` | Fills OutValue with the value of Ref1_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef1OrNull`](#structFRHAPI__GuideCreateRequest_1af184cc0465c15e1af83079c818605b17)`()` | Returns a pointer to Ref1_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef1OrNull`](#structFRHAPI__GuideCreateRequest_1a574255a50a95be3f736c93f85b8d8983)`() const` | Returns a pointer to Ref1_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef1`](#structFRHAPI__GuideCreateRequest_1aa9266fbf23a55ba35ada24ba636c96ea)`(const FString & NewValue)` | Sets the value of Ref1_Optional and also sets Ref1_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef1`](#structFRHAPI__GuideCreateRequest_1a4ff5a59be81c56389a6a9336ce0a8eac)`(FString && NewValue)` | Sets the value of Ref1_Optional and also sets Ref1_IsSet to true using move semantics.
 `public inline void `[`ClearRef1`](#structFRHAPI__GuideCreateRequest_1a863d330e30ef472c25008c77a0c3ec60)`()` | Clears the value of Ref1_Optional and sets Ref1_IsSet to false.
-`public inline bool `[`IsRef1Set`](#structFRHAPI__GuideCreateRequest_1a19b3016cc858c5857897f02110159bcc)`() const` | Checks whether Ref1_Optional has been set.
-`public inline void `[`SetRef1ToNull`](#structFRHAPI__GuideCreateRequest_1a965eedd18158c1c32b507e0508e0652d)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef1Null`](#structFRHAPI__GuideCreateRequest_1a8300059c0a846246a84ed1ad15b1e601)`() const` | Checks whether Ref1_Optional is set to null.
-`public inline FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1a2fe77de07bead596ddb1d608a908bb44)`()` | Gets the value of Ref2_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1ac89c04b81dcd85665b96f3ac2b5e03be)`() const` | Gets the value of Ref2_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1aa280b65a8004ffc5316e712a957c06e0)`(const FString & DefaultValue) const` | Gets the value of Ref2_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1ab5528b4d3142484ad4f57fee9e50e757)`(FString & OutValue) const` | Fills OutValue with the value of Ref2_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef2OrNull`](#structFRHAPI__GuideCreateRequest_1a2fc5a86bd3858bba42c5b606a86161fc)`()` | Returns a pointer to Ref2_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef2OrNull`](#structFRHAPI__GuideCreateRequest_1a1ce0c966f8852fc2b7b6365e73a298f7)`() const` | Returns a pointer to Ref2_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef2`](#structFRHAPI__GuideCreateRequest_1a5520a580d347da7f7f8322fae0de9899)`(const FString & NewValue)` | Sets the value of Ref2_Optional and also sets Ref2_IsSet to true.
-`public inline void `[`SetRef2`](#structFRHAPI__GuideCreateRequest_1a2a9d347a4ed537df6feab13370cccebf)`(FString && NewValue)` | Sets the value of Ref2_Optional and also sets Ref2_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef1ToNull`](#structFRHAPI__GuideCreateRequest_1a281fb3c22c8c113513fd0636eec0cd9f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef1Null`](#structFRHAPI__GuideCreateRequest_1a8957293d7c1ab03f674a06fa74bf0046)`() const` | Checks whether Ref1_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1aba3f8f2e314c01e6ee490dbe1ecc5b4b)`()` | Gets the value of Ref2_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1aa75e0f4e71d96e46d3cf7886e46184eb)`() const` | Gets the value of Ref2_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1a1cf8870ccdb2f6b50345628911dd8adf)`(const FString & DefaultValue) const` | Gets the value of Ref2_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1a0b3eb50687f8f07de00120df683b70ba)`(FString & OutValue) const` | Fills OutValue with the value of Ref2_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef2OrNull`](#structFRHAPI__GuideCreateRequest_1a4f95d167cdd527017d3907c542530e04)`()` | Returns a pointer to Ref2_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef2OrNull`](#structFRHAPI__GuideCreateRequest_1a90710aa1b289085cdb49346d9238b7ec)`() const` | Returns a pointer to Ref2_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef2`](#structFRHAPI__GuideCreateRequest_1aebe7b7e6b476dfb472219873ea2e860c)`(const FString & NewValue)` | Sets the value of Ref2_Optional and also sets Ref2_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef2`](#structFRHAPI__GuideCreateRequest_1adc55409c6c1e3a3db9940122790df44a)`(FString && NewValue)` | Sets the value of Ref2_Optional and also sets Ref2_IsSet to true using move semantics.
 `public inline void `[`ClearRef2`](#structFRHAPI__GuideCreateRequest_1ac51dd28e44c83d288483780cf5fafb58)`()` | Clears the value of Ref2_Optional and sets Ref2_IsSet to false.
-`public inline bool `[`IsRef2Set`](#structFRHAPI__GuideCreateRequest_1ad1e5fd93a83b32ca4a01d1ad62cdb420)`() const` | Checks whether Ref2_Optional has been set.
-`public inline void `[`SetRef2ToNull`](#structFRHAPI__GuideCreateRequest_1ab61ee45f7434b7946fca7c10fc85f23c)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef2Null`](#structFRHAPI__GuideCreateRequest_1aa128e08af8f29659ddb0fdfae8915e2f)`() const` | Checks whether Ref2_Optional is set to null.
-`public inline FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a9711944438b3dc3849c577e50be4f8bd)`()` | Gets the value of Ref3_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a87ccf93bfb7080f3ba1dfbb34d911cdb)`() const` | Gets the value of Ref3_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a00b737fa749a92b89085c2a14b46383c)`(const FString & DefaultValue) const` | Gets the value of Ref3_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a89ddeb57df2f618cf6a2768a9a54f581)`(FString & OutValue) const` | Fills OutValue with the value of Ref3_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef3OrNull`](#structFRHAPI__GuideCreateRequest_1a0e1af6df89728c428d4c5fca2e07ed85)`()` | Returns a pointer to Ref3_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef3OrNull`](#structFRHAPI__GuideCreateRequest_1a42f2498a2d74382b215a8ce201f19524)`() const` | Returns a pointer to Ref3_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef3`](#structFRHAPI__GuideCreateRequest_1ad73358ed86604e14a544c7dffbea2e49)`(const FString & NewValue)` | Sets the value of Ref3_Optional and also sets Ref3_IsSet to true.
-`public inline void `[`SetRef3`](#structFRHAPI__GuideCreateRequest_1a6636fe91294fdc7698ab3b4a23fce1e3)`(FString && NewValue)` | Sets the value of Ref3_Optional and also sets Ref3_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef2ToNull`](#structFRHAPI__GuideCreateRequest_1a065909223cf0d3ddcfdbf25f0fcf4225)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef2Null`](#structFRHAPI__GuideCreateRequest_1a16b68ea94a6e747a1c1931ae82106bd5)`() const` | Checks whether Ref2_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1af22b53ecb8bd8f617417506d63425f08)`()` | Gets the value of Ref3_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a07fd39703b5260ef26da7b4ee9033c13)`() const` | Gets the value of Ref3_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a44965d6428a7596702e1150e63269e19)`(const FString & DefaultValue) const` | Gets the value of Ref3_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a4e4e66ce3ff5381439eccf179fe68b40)`(FString & OutValue) const` | Fills OutValue with the value of Ref3_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef3OrNull`](#structFRHAPI__GuideCreateRequest_1a071e9934b651e7d8d586e93047ef9b65)`()` | Returns a pointer to Ref3_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef3OrNull`](#structFRHAPI__GuideCreateRequest_1a0877c488b733b69f6840055696a7ef0f)`() const` | Returns a pointer to Ref3_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef3`](#structFRHAPI__GuideCreateRequest_1a82c9dd9bd1de3e6b1f8b11652ad58806)`(const FString & NewValue)` | Sets the value of Ref3_Optional and also sets Ref3_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef3`](#structFRHAPI__GuideCreateRequest_1a95c78e1bcb5b010d2d2f260ce21b94fe)`(FString && NewValue)` | Sets the value of Ref3_Optional and also sets Ref3_IsSet to true using move semantics.
 `public inline void `[`ClearRef3`](#structFRHAPI__GuideCreateRequest_1a73c21d912368793b5a00251e54dd9f43)`()` | Clears the value of Ref3_Optional and sets Ref3_IsSet to false.
-`public inline bool `[`IsRef3Set`](#structFRHAPI__GuideCreateRequest_1a264f6efc1fc671340353290579af9e87)`() const` | Checks whether Ref3_Optional has been set.
-`public inline void `[`SetRef3ToNull`](#structFRHAPI__GuideCreateRequest_1ab1102560183e78fb17fb402ba1e3cbea)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef3Null`](#structFRHAPI__GuideCreateRequest_1a8f84896fd4882ce11b7bf31fa85093e3)`() const` | Checks whether Ref3_Optional is set to null.
-`public inline FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1aa65a30fdac0e42035f1ef2c930288276)`()` | Gets the value of Ref4_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1ad0e5c296e2b3cb00433dc9bc6fb271cb)`() const` | Gets the value of Ref4_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1afa6ab39c992e882b047132babb1a9296)`(const FString & DefaultValue) const` | Gets the value of Ref4_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1a8eed4fd8fa13893d2eb8df51e44e4714)`(FString & OutValue) const` | Fills OutValue with the value of Ref4_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef4OrNull`](#structFRHAPI__GuideCreateRequest_1a8ac65dd4a69b40220ade83b6591d2b1e)`()` | Returns a pointer to Ref4_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef4OrNull`](#structFRHAPI__GuideCreateRequest_1a4e5a37c775330ae8e8fa70259bd96420)`() const` | Returns a pointer to Ref4_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef4`](#structFRHAPI__GuideCreateRequest_1a3cbfd1e6f55442f72254733b77609022)`(const FString & NewValue)` | Sets the value of Ref4_Optional and also sets Ref4_IsSet to true.
-`public inline void `[`SetRef4`](#structFRHAPI__GuideCreateRequest_1a8393457c43b4428d6e820472162a1344)`(FString && NewValue)` | Sets the value of Ref4_Optional and also sets Ref4_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef3ToNull`](#structFRHAPI__GuideCreateRequest_1a477b3e2f1794c3f644f61e9011ae5fba)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef3Null`](#structFRHAPI__GuideCreateRequest_1a96e8aa9acdad5c17527e2364d04e1f14)`() const` | Checks whether Ref3_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1aa4c67d7f956717c58399510e2568477f)`()` | Gets the value of Ref4_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1a698d1600e44dd7392e333fa146f6a0f5)`() const` | Gets the value of Ref4_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1ad16dbbdd60d299c3f3d4b112b2314e94)`(const FString & DefaultValue) const` | Gets the value of Ref4_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1a28a3359bde897b6d22e2d9007fbb5315)`(FString & OutValue) const` | Fills OutValue with the value of Ref4_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef4OrNull`](#structFRHAPI__GuideCreateRequest_1a963ffdc111a5b67a41274915dfd7b4c7)`()` | Returns a pointer to Ref4_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef4OrNull`](#structFRHAPI__GuideCreateRequest_1ab2c82b0cecaf7b20c54bc5801e5312ce)`() const` | Returns a pointer to Ref4_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef4`](#structFRHAPI__GuideCreateRequest_1a5302f502c8c71d2fc1a0b8a403a9e621)`(const FString & NewValue)` | Sets the value of Ref4_Optional and also sets Ref4_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef4`](#structFRHAPI__GuideCreateRequest_1ad57b4dc0f22479e6cf9cca641a9111d2)`(FString && NewValue)` | Sets the value of Ref4_Optional and also sets Ref4_IsSet to true using move semantics.
 `public inline void `[`ClearRef4`](#structFRHAPI__GuideCreateRequest_1a9b310d9eb62c602d98c6e7453bf24efc)`()` | Clears the value of Ref4_Optional and sets Ref4_IsSet to false.
-`public inline bool `[`IsRef4Set`](#structFRHAPI__GuideCreateRequest_1a5be2f7be0a45c12213c16bf014ddbef6)`() const` | Checks whether Ref4_Optional has been set.
-`public inline void `[`SetRef4ToNull`](#structFRHAPI__GuideCreateRequest_1a338185c983bf9c64291406f1824b88b3)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef4Null`](#structFRHAPI__GuideCreateRequest_1a83726f27af411b254aaed358f3772e59)`() const` | Checks whether Ref4_Optional is set to null.
-`public inline FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a33c87c450faddfe0335ea25c8c152dd6)`()` | Gets the value of Ref5_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a80c138e619c5d013e612c375b8962bc6)`() const` | Gets the value of Ref5_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1ac4adc46ab0ab68b4b2f3636f60be0523)`(const FString & DefaultValue) const` | Gets the value of Ref5_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1adee7dab0632ed7194ce15f396b0ad77d)`(FString & OutValue) const` | Fills OutValue with the value of Ref5_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef5OrNull`](#structFRHAPI__GuideCreateRequest_1a40d008f77a208fa4c45b10ecd9b124e2)`()` | Returns a pointer to Ref5_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef5OrNull`](#structFRHAPI__GuideCreateRequest_1a087bda225bf963994b068853888bd26d)`() const` | Returns a pointer to Ref5_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef5`](#structFRHAPI__GuideCreateRequest_1a6c35432e355167d074376ba1bd78b6ee)`(const FString & NewValue)` | Sets the value of Ref5_Optional and also sets Ref5_IsSet to true.
-`public inline void `[`SetRef5`](#structFRHAPI__GuideCreateRequest_1a5204d8be825af3858de33be2989556b3)`(FString && NewValue)` | Sets the value of Ref5_Optional and also sets Ref5_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef4ToNull`](#structFRHAPI__GuideCreateRequest_1a22b754a21b789e9e33400f91fdddb70f)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef4Null`](#structFRHAPI__GuideCreateRequest_1aef369116f6762c72272e0e8ee7094ca8)`() const` | Checks whether Ref4_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a39953b5e22254b430929709415907525)`()` | Gets the value of Ref5_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a4281fe2bc8722e1bcbe585edbffee799)`() const` | Gets the value of Ref5_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a1664248d1f3aaec0471fa01e5c9bf074)`(const FString & DefaultValue) const` | Gets the value of Ref5_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a5519754c3752924f17a9295beec07631)`(FString & OutValue) const` | Fills OutValue with the value of Ref5_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef5OrNull`](#structFRHAPI__GuideCreateRequest_1a05b54649b560494ab164329bf2d445c6)`()` | Returns a pointer to Ref5_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef5OrNull`](#structFRHAPI__GuideCreateRequest_1afeb0fb9d989c4ac3c55098a9955b9ed8)`() const` | Returns a pointer to Ref5_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef5`](#structFRHAPI__GuideCreateRequest_1a947742e76e42d2ef50535d56ff4f03c4)`(const FString & NewValue)` | Sets the value of Ref5_Optional and also sets Ref5_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef5`](#structFRHAPI__GuideCreateRequest_1a5bfdf52c3106a0904ef4d73a7cfddf80)`(FString && NewValue)` | Sets the value of Ref5_Optional and also sets Ref5_IsSet to true using move semantics.
 `public inline void `[`ClearRef5`](#structFRHAPI__GuideCreateRequest_1a76119eb3c93851b05ef2fd80677448b3)`()` | Clears the value of Ref5_Optional and sets Ref5_IsSet to false.
-`public inline bool `[`IsRef5Set`](#structFRHAPI__GuideCreateRequest_1ad9c937759a77d88e053016f777965a7d)`() const` | Checks whether Ref5_Optional has been set.
-`public inline void `[`SetRef5ToNull`](#structFRHAPI__GuideCreateRequest_1a526f053e72c2c5f957adef86143f2917)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef5Null`](#structFRHAPI__GuideCreateRequest_1ad1e22563fe82beead2ac98bc3273ef9b)`() const` | Checks whether Ref5_Optional is set to null.
-`public inline FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a9b5e529b1439fde336bfd5f4e28172f6)`()` | Gets the value of Ref6_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a52aa6eaca3b20ba76944cf87672aca85)`() const` | Gets the value of Ref6_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1ae15c68a359707a6ae0d25c3cea9360d6)`(const FString & DefaultValue) const` | Gets the value of Ref6_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a2061357208ffd8a520e16421d8613033)`(FString & OutValue) const` | Fills OutValue with the value of Ref6_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef6OrNull`](#structFRHAPI__GuideCreateRequest_1a48507b2fd76c5547f3483e56c490b759)`()` | Returns a pointer to Ref6_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef6OrNull`](#structFRHAPI__GuideCreateRequest_1a252dbd5df843f1a5ad6a053f29f40d80)`() const` | Returns a pointer to Ref6_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef6`](#structFRHAPI__GuideCreateRequest_1a1e66c52a70afa2a5f97e040f2a851cca)`(const FString & NewValue)` | Sets the value of Ref6_Optional and also sets Ref6_IsSet to true.
-`public inline void `[`SetRef6`](#structFRHAPI__GuideCreateRequest_1aacbf5305457bc176c6574bf9cf622272)`(FString && NewValue)` | Sets the value of Ref6_Optional and also sets Ref6_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef5ToNull`](#structFRHAPI__GuideCreateRequest_1a142232c510641c3caaed45f6e6813ed9)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef5Null`](#structFRHAPI__GuideCreateRequest_1a87ac698e4940085881cb2db6ee541e33)`() const` | Checks whether Ref5_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a6ad5403033a1fe287a536b682e21d8bb)`()` | Gets the value of Ref6_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1ab9b890c0fca45c2f2ae0adff690677a2)`() const` | Gets the value of Ref6_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1ad36ac55cb8f13441968accf9698b0117)`(const FString & DefaultValue) const` | Gets the value of Ref6_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a45572c60c18f99c0b152fd2b605d76e5)`(FString & OutValue) const` | Fills OutValue with the value of Ref6_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef6OrNull`](#structFRHAPI__GuideCreateRequest_1ac53e745c25f533766b44b3fbe1cad1d5)`()` | Returns a pointer to Ref6_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef6OrNull`](#structFRHAPI__GuideCreateRequest_1abf6176216ced054d388f83ae1fe7e535)`() const` | Returns a pointer to Ref6_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef6`](#structFRHAPI__GuideCreateRequest_1a31934ec1aaa3eb8b91f2f64bf7487120)`(const FString & NewValue)` | Sets the value of Ref6_Optional and also sets Ref6_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef6`](#structFRHAPI__GuideCreateRequest_1a318a16d1d480eb1c746f94725cf59035)`(FString && NewValue)` | Sets the value of Ref6_Optional and also sets Ref6_IsSet to true using move semantics.
 `public inline void `[`ClearRef6`](#structFRHAPI__GuideCreateRequest_1a7cec06bebbde2eaed7b4c24212509069)`()` | Clears the value of Ref6_Optional and sets Ref6_IsSet to false.
-`public inline bool `[`IsRef6Set`](#structFRHAPI__GuideCreateRequest_1a890f941aa78a6229474a1cebd752c131)`() const` | Checks whether Ref6_Optional has been set.
-`public inline void `[`SetRef6ToNull`](#structFRHAPI__GuideCreateRequest_1a79cf322bba960b07e469d9e733dcc20c)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef6Null`](#structFRHAPI__GuideCreateRequest_1aabda48c2b4ea61d43e55215c413b479f)`() const` | Checks whether Ref6_Optional is set to null.
-`public inline FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1aefa49ca65412b732ddcf427c985345f6)`()` | Gets the value of Ref7_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1ac1f607efd915a64836e927087a2aff9f)`() const` | Gets the value of Ref7_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a7fe62900d871caba533a1e512fe31649)`(const FString & DefaultValue) const` | Gets the value of Ref7_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1ab2111bec5d241e5707c561ac0ae498cd)`(FString & OutValue) const` | Fills OutValue with the value of Ref7_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef7OrNull`](#structFRHAPI__GuideCreateRequest_1ad28033c61bffc8a7c737bd6b23f6e5ac)`()` | Returns a pointer to Ref7_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef7OrNull`](#structFRHAPI__GuideCreateRequest_1aaab3b36fb2079fdd8f93db450b47c1e7)`() const` | Returns a pointer to Ref7_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef7`](#structFRHAPI__GuideCreateRequest_1a99321973d6dd374ddd7cd0467fac58e5)`(const FString & NewValue)` | Sets the value of Ref7_Optional and also sets Ref7_IsSet to true.
-`public inline void `[`SetRef7`](#structFRHAPI__GuideCreateRequest_1a51a8d78c6eb70c10724d4fca4feac7dc)`(FString && NewValue)` | Sets the value of Ref7_Optional and also sets Ref7_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef6ToNull`](#structFRHAPI__GuideCreateRequest_1aaf2036c4d06d4622a4ef7c26e1c9c8ea)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef6Null`](#structFRHAPI__GuideCreateRequest_1a1fd557979f01b57181c800b91074fcde)`() const` | Checks whether Ref6_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a995b1e668ec31196608b5785f05fb161)`()` | Gets the value of Ref7_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a1ffcdec82cb28be612dd240b5dafe79e)`() const` | Gets the value of Ref7_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a4d6edec7f24e5d04ba2cbc82b45280e4)`(const FString & DefaultValue) const` | Gets the value of Ref7_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a6c38ba553ff2117688447139bb35f6ab)`(FString & OutValue) const` | Fills OutValue with the value of Ref7_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef7OrNull`](#structFRHAPI__GuideCreateRequest_1aca7842ea6daf3a87fc65b12b8bf6a170)`()` | Returns a pointer to Ref7_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef7OrNull`](#structFRHAPI__GuideCreateRequest_1af8c5c8f8fab2cdd676b2f8087cbdb3c4)`() const` | Returns a pointer to Ref7_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef7`](#structFRHAPI__GuideCreateRequest_1a0b8901a41cea71c95133823b9c6d1050)`(const FString & NewValue)` | Sets the value of Ref7_Optional and also sets Ref7_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef7`](#structFRHAPI__GuideCreateRequest_1a44cd2a9870bce32821b898a5d2695827)`(FString && NewValue)` | Sets the value of Ref7_Optional and also sets Ref7_IsSet to true using move semantics.
 `public inline void `[`ClearRef7`](#structFRHAPI__GuideCreateRequest_1ad524f548749d030382ffc4678d3b752a)`()` | Clears the value of Ref7_Optional and sets Ref7_IsSet to false.
-`public inline bool `[`IsRef7Set`](#structFRHAPI__GuideCreateRequest_1a6612e344699bbd5955f1e2b1d905c218)`() const` | Checks whether Ref7_Optional has been set.
-`public inline void `[`SetRef7ToNull`](#structFRHAPI__GuideCreateRequest_1ad9c7846bd2cd277955c9983cbf1f6df9)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef7Null`](#structFRHAPI__GuideCreateRequest_1a5b80c0dbdfbe1f6b2a40697b2bf0f9cf)`() const` | Checks whether Ref7_Optional is set to null.
-`public inline FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1aa0e670ff40d2e8cfd0005ae209ea829a)`()` | Gets the value of Ref8_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a882a54b8b6b3c40c2d10132cdabb8d85)`() const` | Gets the value of Ref8_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a2173d5a6f5c7df645bfb4403440b551f)`(const FString & DefaultValue) const` | Gets the value of Ref8_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a6ba4276b2f0c121bf87c8d0ded5eac04)`(FString & OutValue) const` | Fills OutValue with the value of Ref8_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef8OrNull`](#structFRHAPI__GuideCreateRequest_1a0241dcf350994a8f26187bf733c0ca20)`()` | Returns a pointer to Ref8_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef8OrNull`](#structFRHAPI__GuideCreateRequest_1ac93cbabe620f7150f1a958f0221f1f03)`() const` | Returns a pointer to Ref8_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef8`](#structFRHAPI__GuideCreateRequest_1aefef3e3d7702ea099700d3b509a57391)`(const FString & NewValue)` | Sets the value of Ref8_Optional and also sets Ref8_IsSet to true.
-`public inline void `[`SetRef8`](#structFRHAPI__GuideCreateRequest_1a5a22a1f58e070e08bf1d9bbfe3cc76d9)`(FString && NewValue)` | Sets the value of Ref8_Optional and also sets Ref8_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef7ToNull`](#structFRHAPI__GuideCreateRequest_1a9d7639a0ddd8015cdfe0569218b94d83)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef7Null`](#structFRHAPI__GuideCreateRequest_1ad26dd25af0ec4a4da29da3b9b1867332)`() const` | Checks whether Ref7_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a1ad2c675078c42f944c9e42c460718fc)`()` | Gets the value of Ref8_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a43ebed5ccaa1f6616d359f1f283b1629)`() const` | Gets the value of Ref8_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a5cbc462d7d35b15e1edd6b3fbcdd9f91)`(const FString & DefaultValue) const` | Gets the value of Ref8_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a6c05b299c6e510ddbcff1cf712588c2d)`(FString & OutValue) const` | Fills OutValue with the value of Ref8_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef8OrNull`](#structFRHAPI__GuideCreateRequest_1acb1f3f59cd25b6218f13a963ee39b2f6)`()` | Returns a pointer to Ref8_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef8OrNull`](#structFRHAPI__GuideCreateRequest_1ac489c0930b7ba458036007c542f0beb9)`() const` | Returns a pointer to Ref8_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef8`](#structFRHAPI__GuideCreateRequest_1ab4f7fb419815a7b2ec6b226846ad3d64)`(const FString & NewValue)` | Sets the value of Ref8_Optional and also sets Ref8_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef8`](#structFRHAPI__GuideCreateRequest_1aeb9eefb2b74e7673d1a0963f2b328b17)`(FString && NewValue)` | Sets the value of Ref8_Optional and also sets Ref8_IsSet to true using move semantics.
 `public inline void `[`ClearRef8`](#structFRHAPI__GuideCreateRequest_1ab216b6e96522ab5254be97a24c434791)`()` | Clears the value of Ref8_Optional and sets Ref8_IsSet to false.
-`public inline bool `[`IsRef8Set`](#structFRHAPI__GuideCreateRequest_1a31247629d485cc6301680a37a8c6e4f2)`() const` | Checks whether Ref8_Optional has been set.
-`public inline void `[`SetRef8ToNull`](#structFRHAPI__GuideCreateRequest_1a13c08d9d714af13ebb3b4d6efdd1c294)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef8Null`](#structFRHAPI__GuideCreateRequest_1ae656cb1fc403ec4cf38073a13ea25b2e)`() const` | Checks whether Ref8_Optional is set to null.
-`public inline FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1aa39d4ca53d5ddc15a3f950c3a8f6128c)`()` | Gets the value of Ref9_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1af0c03ca5f1fdaf59cc02e9dc56fc7293)`() const` | Gets the value of Ref9_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1a4b46d83d66878d1929213070d48aee92)`(const FString & DefaultValue) const` | Gets the value of Ref9_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1a72806d512e177b6b5d1d6ef3c01096a6)`(FString & OutValue) const` | Fills OutValue with the value of Ref9_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef9OrNull`](#structFRHAPI__GuideCreateRequest_1a1e52d4b16c9d8133d72d7a33013e8da7)`()` | Returns a pointer to Ref9_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef9OrNull`](#structFRHAPI__GuideCreateRequest_1ac6c29f03e7e30321ae9c043df871b266)`() const` | Returns a pointer to Ref9_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef9`](#structFRHAPI__GuideCreateRequest_1a6b3a78597a979b56e0ed71c207036f2e)`(const FString & NewValue)` | Sets the value of Ref9_Optional and also sets Ref9_IsSet to true.
-`public inline void `[`SetRef9`](#structFRHAPI__GuideCreateRequest_1ae943ed6926bfa27235f135666b404acb)`(FString && NewValue)` | Sets the value of Ref9_Optional and also sets Ref9_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef8ToNull`](#structFRHAPI__GuideCreateRequest_1a3fce21e60649e500d23eb843e1a07885)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef8Null`](#structFRHAPI__GuideCreateRequest_1a1cdaa09568ba2a3849c2c6f635a32116)`() const` | Checks whether Ref8_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1ae143fba67bb0325f3cc72a2e9dc2376f)`()` | Gets the value of Ref9_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1a686761cf749cd29b3f44724830176cae)`() const` | Gets the value of Ref9_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1a361695ab20e1a8e9083b840ae8b9065b)`(const FString & DefaultValue) const` | Gets the value of Ref9_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1ad79ced44e39d6ead89af8efe37f63d9f)`(FString & OutValue) const` | Fills OutValue with the value of Ref9_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef9OrNull`](#structFRHAPI__GuideCreateRequest_1a9df815f6f95ebd8e23f57a76391dc8eb)`()` | Returns a pointer to Ref9_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef9OrNull`](#structFRHAPI__GuideCreateRequest_1a22c53d9de75fbe1ba97e10729d3d7d20)`() const` | Returns a pointer to Ref9_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef9`](#structFRHAPI__GuideCreateRequest_1aaf46c1fe183e155f7beaaab6560af3dc)`(const FString & NewValue)` | Sets the value of Ref9_Optional and also sets Ref9_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef9`](#structFRHAPI__GuideCreateRequest_1a54e1af6cdafdf585149cb7931be35bf1)`(FString && NewValue)` | Sets the value of Ref9_Optional and also sets Ref9_IsSet to true using move semantics.
 `public inline void `[`ClearRef9`](#structFRHAPI__GuideCreateRequest_1a5fd01d34b1d10a0dbf28b1df8887ad87)`()` | Clears the value of Ref9_Optional and sets Ref9_IsSet to false.
-`public inline bool `[`IsRef9Set`](#structFRHAPI__GuideCreateRequest_1aa2001a0c14f0095151c2f0c4d1eb920d)`() const` | Checks whether Ref9_Optional has been set.
-`public inline void `[`SetRef9ToNull`](#structFRHAPI__GuideCreateRequest_1aafa822b899cd30fa800a1c2c1e9c898b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef9Null`](#structFRHAPI__GuideCreateRequest_1a4deb6de85dd3747b4225b7392cff196b)`() const` | Checks whether Ref9_Optional is set to null.
-`public inline FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a298e8d96cc9969b9dede5e2cfb632e22)`()` | Gets the value of Ref10_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1ac2467e3bb59a6b48f409f22787304ae6)`() const` | Gets the value of Ref10_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a798baccb458519464f3ae17731507518)`(const FString & DefaultValue) const` | Gets the value of Ref10_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a5c3fbbfef28e988dfd131e0e85060285)`(FString & OutValue) const` | Fills OutValue with the value of Ref10_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef10OrNull`](#structFRHAPI__GuideCreateRequest_1a2984fb87a430ee1622dbab1cdcd91ce6)`()` | Returns a pointer to Ref10_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef10OrNull`](#structFRHAPI__GuideCreateRequest_1a9d11d28867d48a336d9b55feb50f9c0e)`() const` | Returns a pointer to Ref10_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef10`](#structFRHAPI__GuideCreateRequest_1ab39f49382a17ca8ec6a18e83922dbd68)`(const FString & NewValue)` | Sets the value of Ref10_Optional and also sets Ref10_IsSet to true.
-`public inline void `[`SetRef10`](#structFRHAPI__GuideCreateRequest_1a0f2b00f34fd23b5d9c41f7aafd0f2e27)`(FString && NewValue)` | Sets the value of Ref10_Optional and also sets Ref10_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef9ToNull`](#structFRHAPI__GuideCreateRequest_1a3e8f3ba0d0269f52deab6f2d42adfc7a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef9Null`](#structFRHAPI__GuideCreateRequest_1a880b270a74762f229bccc76887d746bc)`() const` | Checks whether Ref9_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a968cd58a0326458961b5b37c666339ef)`()` | Gets the value of Ref10_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a1b8cd220505ef9859099c3846f78854c)`() const` | Gets the value of Ref10_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1acaffaa75c942efdfcd226272c507fa1f)`(const FString & DefaultValue) const` | Gets the value of Ref10_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a92bce578a8588f9aa5fea1bd7e719961)`(FString & OutValue) const` | Fills OutValue with the value of Ref10_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef10OrNull`](#structFRHAPI__GuideCreateRequest_1aec6eb16e370d86a1b050c1819257005e)`()` | Returns a pointer to Ref10_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef10OrNull`](#structFRHAPI__GuideCreateRequest_1ae6c15c0835e6b7064f62cf5cbae53977)`() const` | Returns a pointer to Ref10_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef10`](#structFRHAPI__GuideCreateRequest_1a265f05208872ae22f337dd38cf91a358)`(const FString & NewValue)` | Sets the value of Ref10_Optional and also sets Ref10_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef10`](#structFRHAPI__GuideCreateRequest_1acde5ace6b7e04e6721d3687839896fa0)`(FString && NewValue)` | Sets the value of Ref10_Optional and also sets Ref10_IsSet to true using move semantics.
 `public inline void `[`ClearRef10`](#structFRHAPI__GuideCreateRequest_1a3c8a350c82b2e08d1e1eef6769235f23)`()` | Clears the value of Ref10_Optional and sets Ref10_IsSet to false.
-`public inline bool `[`IsRef10Set`](#structFRHAPI__GuideCreateRequest_1aa2a326e1746e6db1227dbaf50887c81b)`() const` | Checks whether Ref10_Optional has been set.
-`public inline void `[`SetRef10ToNull`](#structFRHAPI__GuideCreateRequest_1a233802ce1c6a343fa9ab8fc4dda535ac)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef10Null`](#structFRHAPI__GuideCreateRequest_1ad0a1f5e32b533172fe805c44af62d6dd)`() const` | Checks whether Ref10_Optional is set to null.
-`public inline FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a9630d28c99927a8d02511ae2edfa8589)`()` | Gets the value of Ref11_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a5d24aa1d37db5d2dbb43fb5137360851)`() const` | Gets the value of Ref11_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a9cb5caed7a0f5aca58e7eaa37f106b64)`(const FString & DefaultValue) const` | Gets the value of Ref11_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1ab506b319b581486c686cfc562a8d92e1)`(FString & OutValue) const` | Fills OutValue with the value of Ref11_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef11OrNull`](#structFRHAPI__GuideCreateRequest_1a0ac25862187bdac0a3282ffdb58650ae)`()` | Returns a pointer to Ref11_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef11OrNull`](#structFRHAPI__GuideCreateRequest_1ab9187fd076c98b0c46a1df3c25a63265)`() const` | Returns a pointer to Ref11_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef11`](#structFRHAPI__GuideCreateRequest_1ab93f354f8fcd0ec54cad2a9df4a0633c)`(const FString & NewValue)` | Sets the value of Ref11_Optional and also sets Ref11_IsSet to true.
-`public inline void `[`SetRef11`](#structFRHAPI__GuideCreateRequest_1a58885d18ada82f4de4238259cf729c12)`(FString && NewValue)` | Sets the value of Ref11_Optional and also sets Ref11_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef10ToNull`](#structFRHAPI__GuideCreateRequest_1a116741ab6a61ef47772a71e03f25628a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef10Null`](#structFRHAPI__GuideCreateRequest_1a8ad16e31268ee87b898c5cdb9e508025)`() const` | Checks whether Ref10_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a47948689ea2ffba76f12e1025ddd8620)`()` | Gets the value of Ref11_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a9a15e796c35470ad9b81aa7117ea3ab8)`() const` | Gets the value of Ref11_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a6c33be9f34a74d31650d63d751653cd5)`(const FString & DefaultValue) const` | Gets the value of Ref11_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1ae13154350e17baf22160a0667acbf818)`(FString & OutValue) const` | Fills OutValue with the value of Ref11_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef11OrNull`](#structFRHAPI__GuideCreateRequest_1a833751758344c6941a9649b8414c724a)`()` | Returns a pointer to Ref11_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef11OrNull`](#structFRHAPI__GuideCreateRequest_1afa72fe01621620bd1c03c6c3f1bdd9c8)`() const` | Returns a pointer to Ref11_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef11`](#structFRHAPI__GuideCreateRequest_1ac255cecf9fb5ee2aa9b04daf4d119334)`(const FString & NewValue)` | Sets the value of Ref11_Optional and also sets Ref11_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef11`](#structFRHAPI__GuideCreateRequest_1a6c2d7add9d3882863a2e122a8c3fd883)`(FString && NewValue)` | Sets the value of Ref11_Optional and also sets Ref11_IsSet to true using move semantics.
 `public inline void `[`ClearRef11`](#structFRHAPI__GuideCreateRequest_1afa82348237f73ddb103b92239e2a9f3b)`()` | Clears the value of Ref11_Optional and sets Ref11_IsSet to false.
-`public inline bool `[`IsRef11Set`](#structFRHAPI__GuideCreateRequest_1a3d4556e5e3f49ca69a61046f4e48cee8)`() const` | Checks whether Ref11_Optional has been set.
-`public inline void `[`SetRef11ToNull`](#structFRHAPI__GuideCreateRequest_1a6bd1777a80a4fa585975c8db17e1c4e5)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef11Null`](#structFRHAPI__GuideCreateRequest_1a485ed7db959e6926a81b04be95cdeae9)`() const` | Checks whether Ref11_Optional is set to null.
-`public inline FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a5e2fd05d7df6189bdd0d91f0ea573716)`()` | Gets the value of Ref12_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a252a85f8238902e30e32a651aae42494)`() const` | Gets the value of Ref12_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a6536e050e22f9bac6e3ebc83a2804b27)`(const FString & DefaultValue) const` | Gets the value of Ref12_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1abf78c14e0b9abb54ba202d51944fdca8)`(FString & OutValue) const` | Fills OutValue with the value of Ref12_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef12OrNull`](#structFRHAPI__GuideCreateRequest_1aaa1c3388595394f7f117791f28e471ae)`()` | Returns a pointer to Ref12_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef12OrNull`](#structFRHAPI__GuideCreateRequest_1ad6d9139e75a6fc51a208a2046b0e70f7)`() const` | Returns a pointer to Ref12_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef12`](#structFRHAPI__GuideCreateRequest_1a30424ac2727b410deddaf721d02db2c0)`(const FString & NewValue)` | Sets the value of Ref12_Optional and also sets Ref12_IsSet to true.
-`public inline void `[`SetRef12`](#structFRHAPI__GuideCreateRequest_1abbab98dff8d76fbddc57c75eff280aa5)`(FString && NewValue)` | Sets the value of Ref12_Optional and also sets Ref12_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef11ToNull`](#structFRHAPI__GuideCreateRequest_1a961cefdec92eea2b58e2164071afc6f4)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef11Null`](#structFRHAPI__GuideCreateRequest_1a16fc2cdee09f78522f5e7a554bca786f)`() const` | Checks whether Ref11_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a368f00dac4c8b65557debcf2043c764e)`()` | Gets the value of Ref12_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a19c9d76df5f0d554196e3c667e94f64f)`() const` | Gets the value of Ref12_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1ae49bdff24f23543a5593682b0a5adac5)`(const FString & DefaultValue) const` | Gets the value of Ref12_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a1164316c4dc2025faada240c2fbef74e)`(FString & OutValue) const` | Fills OutValue with the value of Ref12_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef12OrNull`](#structFRHAPI__GuideCreateRequest_1a17fbeb029f4af2f335c74acd623ba940)`()` | Returns a pointer to Ref12_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef12OrNull`](#structFRHAPI__GuideCreateRequest_1a6171786b69dcf3a59c3c84648ad3d25c)`() const` | Returns a pointer to Ref12_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef12`](#structFRHAPI__GuideCreateRequest_1a34e65861250f69c7e1541faa98472051)`(const FString & NewValue)` | Sets the value of Ref12_Optional and also sets Ref12_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef12`](#structFRHAPI__GuideCreateRequest_1a36e698f7881c9315b3c478b236d2bba1)`(FString && NewValue)` | Sets the value of Ref12_Optional and also sets Ref12_IsSet to true using move semantics.
 `public inline void `[`ClearRef12`](#structFRHAPI__GuideCreateRequest_1a5e7118407253cdc3dbcf0dab6925560b)`()` | Clears the value of Ref12_Optional and sets Ref12_IsSet to false.
-`public inline bool `[`IsRef12Set`](#structFRHAPI__GuideCreateRequest_1a57e6854ece4fd61765095db15e4a6b7c)`() const` | Checks whether Ref12_Optional has been set.
-`public inline void `[`SetRef12ToNull`](#structFRHAPI__GuideCreateRequest_1af01cbed12317701e4b36dcbd3e61933c)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef12Null`](#structFRHAPI__GuideCreateRequest_1ad0e160c8e07923ea0b0efeb847eccdf9)`() const` | Checks whether Ref12_Optional is set to null.
-`public inline FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a0328256f51ed437d30337d95fd72f176)`()` | Gets the value of Ref13_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a688f447a85178b08e78009ba48f368f7)`() const` | Gets the value of Ref13_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a421983e414ff69e06af462d5fe9e6735)`(const FString & DefaultValue) const` | Gets the value of Ref13_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a64b32e6d0c66d245710b6e93fa956b22)`(FString & OutValue) const` | Fills OutValue with the value of Ref13_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef13OrNull`](#structFRHAPI__GuideCreateRequest_1afd9447a7429128ef5d9eba66a031ed6d)`()` | Returns a pointer to Ref13_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef13OrNull`](#structFRHAPI__GuideCreateRequest_1a2e416e19bff3558c6fb2c40f1a80ebe4)`() const` | Returns a pointer to Ref13_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef13`](#structFRHAPI__GuideCreateRequest_1a1fad99d10f34e8c95439f6fa90f1191e)`(const FString & NewValue)` | Sets the value of Ref13_Optional and also sets Ref13_IsSet to true.
-`public inline void `[`SetRef13`](#structFRHAPI__GuideCreateRequest_1a7b77c34a6a313dda77d873ed7841c7de)`(FString && NewValue)` | Sets the value of Ref13_Optional and also sets Ref13_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef12ToNull`](#structFRHAPI__GuideCreateRequest_1acd7c8e6d772473b526d63813a094ac9e)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef12Null`](#structFRHAPI__GuideCreateRequest_1a2f6a5a2183c3d08a9d97f36765ee2f18)`() const` | Checks whether Ref12_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a945049d8a9a4a000978d06b9c8237b9e)`()` | Gets the value of Ref13_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a2e1e2418d7d40c8b6a3cbc1fd53aa3e5)`() const` | Gets the value of Ref13_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1af0dd3963d5b97e1bc7656e998321cd57)`(const FString & DefaultValue) const` | Gets the value of Ref13_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a685d5e73bd678dbe9e184d1808a7e8cb)`(FString & OutValue) const` | Fills OutValue with the value of Ref13_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef13OrNull`](#structFRHAPI__GuideCreateRequest_1add3a89658949ff1017a405b76e7f5761)`()` | Returns a pointer to Ref13_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef13OrNull`](#structFRHAPI__GuideCreateRequest_1a036a8428db9010a0a8ab0371ebf2c34e)`() const` | Returns a pointer to Ref13_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef13`](#structFRHAPI__GuideCreateRequest_1a2fd3cdfc673e6f63332d83288032d25f)`(const FString & NewValue)` | Sets the value of Ref13_Optional and also sets Ref13_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef13`](#structFRHAPI__GuideCreateRequest_1a2295cb07f27bd8723f06172a84a013a4)`(FString && NewValue)` | Sets the value of Ref13_Optional and also sets Ref13_IsSet to true using move semantics.
 `public inline void `[`ClearRef13`](#structFRHAPI__GuideCreateRequest_1a3d2e63fe1fc774129b37b6b3319f3dd2)`()` | Clears the value of Ref13_Optional and sets Ref13_IsSet to false.
-`public inline bool `[`IsRef13Set`](#structFRHAPI__GuideCreateRequest_1a1d2110f568c6b7bf050eabe89d46e198)`() const` | Checks whether Ref13_Optional has been set.
-`public inline void `[`SetRef13ToNull`](#structFRHAPI__GuideCreateRequest_1ab0babfc14e88bbddc28f0e8694ccdf6a)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef13Null`](#structFRHAPI__GuideCreateRequest_1a120e7fc501516770104a35b5e1b6a522)`() const` | Checks whether Ref13_Optional is set to null.
-`public inline FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a5266b29c0a07717c9d959cd3fe266e7b)`()` | Gets the value of Ref14_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a074c50d9b4780ac367c4ce3b2feb0f4f)`() const` | Gets the value of Ref14_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1aefea0104bb5732f1721f430289834d3c)`(const FString & DefaultValue) const` | Gets the value of Ref14_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a3e27c70d7fa39c3f851c447cb5f67daf)`(FString & OutValue) const` | Fills OutValue with the value of Ref14_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef14OrNull`](#structFRHAPI__GuideCreateRequest_1a0d840fc130459525662b6229393ef0e6)`()` | Returns a pointer to Ref14_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef14OrNull`](#structFRHAPI__GuideCreateRequest_1af2c7144378b72e5d81b10d68c6d91ad8)`() const` | Returns a pointer to Ref14_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef14`](#structFRHAPI__GuideCreateRequest_1a0a619f933114f87fc29827ff0b56ba56)`(const FString & NewValue)` | Sets the value of Ref14_Optional and also sets Ref14_IsSet to true.
-`public inline void `[`SetRef14`](#structFRHAPI__GuideCreateRequest_1a22b310d3db37e2891ebea10df8e3e3f5)`(FString && NewValue)` | Sets the value of Ref14_Optional and also sets Ref14_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef13ToNull`](#structFRHAPI__GuideCreateRequest_1a14104e1ef033edee5483af5c66a835fb)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef13Null`](#structFRHAPI__GuideCreateRequest_1a3b443623f515f63c0d4d867834a2ebca)`() const` | Checks whether Ref13_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a2864d5ef1c0adb1dc4c9213f5146ce36)`()` | Gets the value of Ref14_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a534f226cb93211c41d03e9800213596a)`() const` | Gets the value of Ref14_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a89d74b9221f5c28b9a93d9f0c788c00d)`(const FString & DefaultValue) const` | Gets the value of Ref14_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1acca5ec9d431a8a534726e928efa134c5)`(FString & OutValue) const` | Fills OutValue with the value of Ref14_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef14OrNull`](#structFRHAPI__GuideCreateRequest_1abca38cd71ada03dcefa002bffbb9ee7e)`()` | Returns a pointer to Ref14_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef14OrNull`](#structFRHAPI__GuideCreateRequest_1a363f0ba2b82ddea348320c936ca3cffb)`() const` | Returns a pointer to Ref14_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef14`](#structFRHAPI__GuideCreateRequest_1aea58c843a1ffc8c6b3f05848365529de)`(const FString & NewValue)` | Sets the value of Ref14_Optional and also sets Ref14_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef14`](#structFRHAPI__GuideCreateRequest_1a26d70ee0ad270a1c016b216c3f2202e2)`(FString && NewValue)` | Sets the value of Ref14_Optional and also sets Ref14_IsSet to true using move semantics.
 `public inline void `[`ClearRef14`](#structFRHAPI__GuideCreateRequest_1acd9f9317a369ed4d448798792b058f4c)`()` | Clears the value of Ref14_Optional and sets Ref14_IsSet to false.
-`public inline bool `[`IsRef14Set`](#structFRHAPI__GuideCreateRequest_1a625afd6e8d4fa6f4e08a0808b3afd2f1)`() const` | Checks whether Ref14_Optional has been set.
-`public inline void `[`SetRef14ToNull`](#structFRHAPI__GuideCreateRequest_1ac60e5096a7babc7378df857eed527414)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef14Null`](#structFRHAPI__GuideCreateRequest_1a81ada39904ae2f705eea640feaa6b7cb)`() const` | Checks whether Ref14_Optional is set to null.
-`public inline FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a90f9e924f61def6c7977a2d97c541101)`()` | Gets the value of Ref15_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a3363768d469add80446a86ea38b4f4fb)`() const` | Gets the value of Ref15_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a395ed0e24adbe807f7f79f1e55b1dd20)`(const FString & DefaultValue) const` | Gets the value of Ref15_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1ad5def6b5e6c1b818e1e46796643bb44f)`(FString & OutValue) const` | Fills OutValue with the value of Ref15_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef15OrNull`](#structFRHAPI__GuideCreateRequest_1ab33b5151fd8d10a05886c847383e2df5)`()` | Returns a pointer to Ref15_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef15OrNull`](#structFRHAPI__GuideCreateRequest_1a6a4a193aa7bdb24bf284dff1c90103d3)`() const` | Returns a pointer to Ref15_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef15`](#structFRHAPI__GuideCreateRequest_1aaab242cfd7775a9ba63661a6b56f6038)`(const FString & NewValue)` | Sets the value of Ref15_Optional and also sets Ref15_IsSet to true.
-`public inline void `[`SetRef15`](#structFRHAPI__GuideCreateRequest_1a0b2aa7eb930c0c327951ef3923d70074)`(FString && NewValue)` | Sets the value of Ref15_Optional and also sets Ref15_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef14ToNull`](#structFRHAPI__GuideCreateRequest_1a6a7ed0aa25a5f74fbfe330dd3c85a41b)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef14Null`](#structFRHAPI__GuideCreateRequest_1a38d7b5e0ad7b410f85893a0086c2d314)`() const` | Checks whether Ref14_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a86ac14c283c1429011b65078769f3d71)`()` | Gets the value of Ref15_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a5f328d3af0d8ed0d669aea6d67f1e47d)`() const` | Gets the value of Ref15_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1aaf25c75eaf2b6d82cf6c555732adbe44)`(const FString & DefaultValue) const` | Gets the value of Ref15_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1acd89249a8c4334f10fb07ddfac19fd9b)`(FString & OutValue) const` | Fills OutValue with the value of Ref15_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef15OrNull`](#structFRHAPI__GuideCreateRequest_1a975425012c765b221507c8e97c2f5455)`()` | Returns a pointer to Ref15_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef15OrNull`](#structFRHAPI__GuideCreateRequest_1a119b21d243980e530317effb8d772158)`() const` | Returns a pointer to Ref15_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef15`](#structFRHAPI__GuideCreateRequest_1a4a90d2478000497c5a291d041683afc2)`(const FString & NewValue)` | Sets the value of Ref15_Optional and also sets Ref15_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef15`](#structFRHAPI__GuideCreateRequest_1a4950f1fadaf649461d27fcd831c4ff4f)`(FString && NewValue)` | Sets the value of Ref15_Optional and also sets Ref15_IsSet to true using move semantics.
 `public inline void `[`ClearRef15`](#structFRHAPI__GuideCreateRequest_1a05939d5de6250797b4b210adbffd5d0a)`()` | Clears the value of Ref15_Optional and sets Ref15_IsSet to false.
-`public inline bool `[`IsRef15Set`](#structFRHAPI__GuideCreateRequest_1aee1024581fb880636c25f8b115bd2964)`() const` | Checks whether Ref15_Optional has been set.
-`public inline void `[`SetRef15ToNull`](#structFRHAPI__GuideCreateRequest_1aebfadcbd08063ffe9e0a2ae2de12067b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef15Null`](#structFRHAPI__GuideCreateRequest_1a0777976c1cba768333498e1c6f646625)`() const` | Checks whether Ref15_Optional is set to null.
-`public inline FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1ade1324285659a785173418b0394ac514)`()` | Gets the value of Ref16_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a9d97dcfff8788aacfab41c0acfd25f8b)`() const` | Gets the value of Ref16_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1af8b87324f9adece356103e44929943dc)`(const FString & DefaultValue) const` | Gets the value of Ref16_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a11681cbaeddd4e4a8e50e3824115b077)`(FString & OutValue) const` | Fills OutValue with the value of Ref16_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef16OrNull`](#structFRHAPI__GuideCreateRequest_1a673a88b62a6cfcb1be7f54b1063693af)`()` | Returns a pointer to Ref16_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef16OrNull`](#structFRHAPI__GuideCreateRequest_1a1f8aadff668614a884cc3a9622d56d4b)`() const` | Returns a pointer to Ref16_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef16`](#structFRHAPI__GuideCreateRequest_1a3f6da94809ac593e9c0517d1da2a740b)`(const FString & NewValue)` | Sets the value of Ref16_Optional and also sets Ref16_IsSet to true.
-`public inline void `[`SetRef16`](#structFRHAPI__GuideCreateRequest_1ac9c8ea6d7862c164a464adf1563e7bff)`(FString && NewValue)` | Sets the value of Ref16_Optional and also sets Ref16_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef15ToNull`](#structFRHAPI__GuideCreateRequest_1acf0bf3a25462187075dd9791922c4117)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef15Null`](#structFRHAPI__GuideCreateRequest_1a44b349cfda84893c5e44fbf815fda2d5)`() const` | Checks whether Ref15_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a10538d2e1595211abe68b39ee522785d)`()` | Gets the value of Ref16_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a33ab6260c40dec2e72336fb78d67a5c6)`() const` | Gets the value of Ref16_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a5561317c5d4a877f3fc5ee2b50115c24)`(const FString & DefaultValue) const` | Gets the value of Ref16_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a189384d98897404163ffce2a520372a7)`(FString & OutValue) const` | Fills OutValue with the value of Ref16_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef16OrNull`](#structFRHAPI__GuideCreateRequest_1aed3a4d0199a3938e5420d20ae498d2fd)`()` | Returns a pointer to Ref16_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef16OrNull`](#structFRHAPI__GuideCreateRequest_1a4b39aa49f446567dc742dc1251d6c222)`() const` | Returns a pointer to Ref16_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef16`](#structFRHAPI__GuideCreateRequest_1a3f1e7d198f2e61f623a832db92a87af5)`(const FString & NewValue)` | Sets the value of Ref16_Optional and also sets Ref16_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef16`](#structFRHAPI__GuideCreateRequest_1a177d8b0cb88663a96ff0fe9bf0d726b1)`(FString && NewValue)` | Sets the value of Ref16_Optional and also sets Ref16_IsSet to true using move semantics.
 `public inline void `[`ClearRef16`](#structFRHAPI__GuideCreateRequest_1a6bdc5b737644f5044babe9953e815f94)`()` | Clears the value of Ref16_Optional and sets Ref16_IsSet to false.
-`public inline bool `[`IsRef16Set`](#structFRHAPI__GuideCreateRequest_1a323e4529215bdb0090063fdc95e77c4c)`() const` | Checks whether Ref16_Optional has been set.
-`public inline void `[`SetRef16ToNull`](#structFRHAPI__GuideCreateRequest_1a83b53302debc071863c15a63e696f7b0)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef16Null`](#structFRHAPI__GuideCreateRequest_1a97dc60b6707c2ab71f5bdfe799b05d98)`() const` | Checks whether Ref16_Optional is set to null.
-`public inline FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a7d286cccb7c95c6cfb4bf2ec80d14b14)`()` | Gets the value of Ref17_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a07542914d63bbac4bd550438f3f06a69)`() const` | Gets the value of Ref17_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a2b08d05cc10128ec64bd0964d9de80df)`(const FString & DefaultValue) const` | Gets the value of Ref17_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1aec15d2e78ba4749e34b01d970579867a)`(FString & OutValue) const` | Fills OutValue with the value of Ref17_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef17OrNull`](#structFRHAPI__GuideCreateRequest_1a516825378e3a9874ef692f459f77ed00)`()` | Returns a pointer to Ref17_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef17OrNull`](#structFRHAPI__GuideCreateRequest_1a1e758ce88640939a6a6c4623fbfb0158)`() const` | Returns a pointer to Ref17_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef17`](#structFRHAPI__GuideCreateRequest_1ae465ad670630b720f2bb69d17abc912c)`(const FString & NewValue)` | Sets the value of Ref17_Optional and also sets Ref17_IsSet to true.
-`public inline void `[`SetRef17`](#structFRHAPI__GuideCreateRequest_1a3c0d3c487a98e409e9fde929be614f4c)`(FString && NewValue)` | Sets the value of Ref17_Optional and also sets Ref17_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef16ToNull`](#structFRHAPI__GuideCreateRequest_1a128d74713f91d3d253b6d8611f6e4cd0)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef16Null`](#structFRHAPI__GuideCreateRequest_1ade1c2004d178635dde6fde955e3dfeae)`() const` | Checks whether Ref16_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a2461959069b3003d34a2be59ef370fdd)`()` | Gets the value of Ref17_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1add7a10e0d145ef92e7db85a71829c5d8)`() const` | Gets the value of Ref17_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a416b8839777ccb73b2a6eef7a20fd796)`(const FString & DefaultValue) const` | Gets the value of Ref17_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a95b517c5034073b3e75c65f3dbbf2dae)`(FString & OutValue) const` | Fills OutValue with the value of Ref17_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef17OrNull`](#structFRHAPI__GuideCreateRequest_1aa3ac902f26d97383f53bc85120d7eaa3)`()` | Returns a pointer to Ref17_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef17OrNull`](#structFRHAPI__GuideCreateRequest_1a214e93a4f29a026d7f5197f3fdf846a3)`() const` | Returns a pointer to Ref17_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef17`](#structFRHAPI__GuideCreateRequest_1ad031936bfe52d61140a1638cc21cb79b)`(const FString & NewValue)` | Sets the value of Ref17_Optional and also sets Ref17_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef17`](#structFRHAPI__GuideCreateRequest_1a5ed6327298b5b93a4e7efd44c8fea9f0)`(FString && NewValue)` | Sets the value of Ref17_Optional and also sets Ref17_IsSet to true using move semantics.
 `public inline void `[`ClearRef17`](#structFRHAPI__GuideCreateRequest_1a05e3d6a430a9f480ec9e9a06b1e8a962)`()` | Clears the value of Ref17_Optional and sets Ref17_IsSet to false.
-`public inline bool `[`IsRef17Set`](#structFRHAPI__GuideCreateRequest_1a002ba0ccfd6b93481981dd0815c774d5)`() const` | Checks whether Ref17_Optional has been set.
-`public inline void `[`SetRef17ToNull`](#structFRHAPI__GuideCreateRequest_1a138d1c40da9893da45b33012b3c76714)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef17Null`](#structFRHAPI__GuideCreateRequest_1a5d30ef3df07f953f9b8ca59012966c46)`() const` | Checks whether Ref17_Optional is set to null.
-`public inline FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a38cf7904a2085476f0f02794c7cfd4f7)`()` | Gets the value of Ref18_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a64bdf9ca4fd632d84815bf3ef24f1c87)`() const` | Gets the value of Ref18_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1ab67d8cee858b8e419cb3d4ee2bcab99b)`(const FString & DefaultValue) const` | Gets the value of Ref18_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a5f6ca39a4393d1cdbdb6101354821ce9)`(FString & OutValue) const` | Fills OutValue with the value of Ref18_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef18OrNull`](#structFRHAPI__GuideCreateRequest_1aa898968e465acfb9570eeedc8cfabe51)`()` | Returns a pointer to Ref18_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef18OrNull`](#structFRHAPI__GuideCreateRequest_1af00a15de3cd45adbcb3c6b57ef18b9b0)`() const` | Returns a pointer to Ref18_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef18`](#structFRHAPI__GuideCreateRequest_1a5c815c672391a1ee6751b11a56964527)`(const FString & NewValue)` | Sets the value of Ref18_Optional and also sets Ref18_IsSet to true.
-`public inline void `[`SetRef18`](#structFRHAPI__GuideCreateRequest_1a93df463f8ed556729b5d3ba525b70cfa)`(FString && NewValue)` | Sets the value of Ref18_Optional and also sets Ref18_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef17ToNull`](#structFRHAPI__GuideCreateRequest_1a826ff7dac46737b6d13cb7c1c83ddb61)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef17Null`](#structFRHAPI__GuideCreateRequest_1ad4e0f105a5dc607e4ac121c4cdee3240)`() const` | Checks whether Ref17_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a0adc3a74c8613121838616d4e617ab9c)`()` | Gets the value of Ref18_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1acf880cbbe20a01c20d10ced645d45a39)`() const` | Gets the value of Ref18_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a3443cc731bbf009bedf1c107d67e9a72)`(const FString & DefaultValue) const` | Gets the value of Ref18_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a7cd970e80565084a206f6baadbb34048)`(FString & OutValue) const` | Fills OutValue with the value of Ref18_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef18OrNull`](#structFRHAPI__GuideCreateRequest_1a2a6283ed73fa1e873dbd9bfc92d9b66d)`()` | Returns a pointer to Ref18_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef18OrNull`](#structFRHAPI__GuideCreateRequest_1adf953454bbab67488edf259ca64f62dc)`() const` | Returns a pointer to Ref18_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef18`](#structFRHAPI__GuideCreateRequest_1a5c81b69031ad754b65344f5794b8c5c2)`(const FString & NewValue)` | Sets the value of Ref18_Optional and also sets Ref18_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef18`](#structFRHAPI__GuideCreateRequest_1a78cb655c5c12cdd5220f3d2959c40aab)`(FString && NewValue)` | Sets the value of Ref18_Optional and also sets Ref18_IsSet to true using move semantics.
 `public inline void `[`ClearRef18`](#structFRHAPI__GuideCreateRequest_1a933a2e0359070d2eb50bc65cd8f49396)`()` | Clears the value of Ref18_Optional and sets Ref18_IsSet to false.
-`public inline bool `[`IsRef18Set`](#structFRHAPI__GuideCreateRequest_1a91767c9e2f2220fd062969f5c5556fe7)`() const` | Checks whether Ref18_Optional has been set.
-`public inline void `[`SetRef18ToNull`](#structFRHAPI__GuideCreateRequest_1af4311a5d21ff07866ecd09639f8c25b6)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef18Null`](#structFRHAPI__GuideCreateRequest_1a600a6a65d2bbb87b2f9bbd1b3eb4a805)`() const` | Checks whether Ref18_Optional is set to null.
-`public inline FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1ae2c549a2167e8ecf9abf35c3c10fd0ea)`()` | Gets the value of Ref19_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a7e422aeb0b728977be3a217c154c4573)`() const` | Gets the value of Ref19_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a3594b2a00353b0a7be27e33957b108d2)`(const FString & DefaultValue) const` | Gets the value of Ref19_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a7b4fa0a021326f283811bd3b665fb967)`(FString & OutValue) const` | Fills OutValue with the value of Ref19_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef19OrNull`](#structFRHAPI__GuideCreateRequest_1a79d0eaadc4b7ff611ebd1de761b79709)`()` | Returns a pointer to Ref19_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef19OrNull`](#structFRHAPI__GuideCreateRequest_1a66d7418fd6789b61c8cc1969ff0e8d79)`() const` | Returns a pointer to Ref19_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef19`](#structFRHAPI__GuideCreateRequest_1a82a8a0706cf436c8d92739e42b15f4e5)`(const FString & NewValue)` | Sets the value of Ref19_Optional and also sets Ref19_IsSet to true.
-`public inline void `[`SetRef19`](#structFRHAPI__GuideCreateRequest_1a9a519c872d59a8e8815187ba1e35d156)`(FString && NewValue)` | Sets the value of Ref19_Optional and also sets Ref19_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef18ToNull`](#structFRHAPI__GuideCreateRequest_1aeaef7663eed3365fd478440e86ac7650)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef18Null`](#structFRHAPI__GuideCreateRequest_1ac609b0b2b96a1c2c2f86c460ec000404)`() const` | Checks whether Ref18_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a9ff6ddc54d4538c8013c7cbf4fa011d7)`()` | Gets the value of Ref19_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1ab8ee367aa29cc2aa2144e68afe9ce23b)`() const` | Gets the value of Ref19_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a8f86f9ba4f80733357b7ad75006ec917)`(const FString & DefaultValue) const` | Gets the value of Ref19_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a59bb052eea09c31527d052bccdc423fb)`(FString & OutValue) const` | Fills OutValue with the value of Ref19_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef19OrNull`](#structFRHAPI__GuideCreateRequest_1a42ca3b554d1c5e5e6109c10fe12e0f82)`()` | Returns a pointer to Ref19_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef19OrNull`](#structFRHAPI__GuideCreateRequest_1a1ede0567b7636141d249a576749d9a50)`() const` | Returns a pointer to Ref19_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef19`](#structFRHAPI__GuideCreateRequest_1a556315d7c8b19c15c8b587ce4ac26472)`(const FString & NewValue)` | Sets the value of Ref19_Optional and also sets Ref19_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef19`](#structFRHAPI__GuideCreateRequest_1a1c7c871c20ed700de8a75a36a08b1c4f)`(FString && NewValue)` | Sets the value of Ref19_Optional and also sets Ref19_IsSet to true using move semantics.
 `public inline void `[`ClearRef19`](#structFRHAPI__GuideCreateRequest_1a7d67c219a57c3a69ab8b1d259971c2ae)`()` | Clears the value of Ref19_Optional and sets Ref19_IsSet to false.
-`public inline bool `[`IsRef19Set`](#structFRHAPI__GuideCreateRequest_1a0f76436c4e09b11a59caec3f8859dc38)`() const` | Checks whether Ref19_Optional has been set.
-`public inline void `[`SetRef19ToNull`](#structFRHAPI__GuideCreateRequest_1ac2e56af9f6c0b5e24d59ba93a6d645d5)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef19Null`](#structFRHAPI__GuideCreateRequest_1a46e312f3dc9868dd508ea9bf8ba2a4ed)`() const` | Checks whether Ref19_Optional is set to null.
-`public inline FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a34d0d5615e0d871a150ccd894178c799)`()` | Gets the value of Ref20_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a2164b352fa857495277bd65853b9e3ad)`() const` | Gets the value of Ref20_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a5ef84d63ec0e364cc8cf88ecb5697c50)`(const FString & DefaultValue) const` | Gets the value of Ref20_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a5576b8919f218ea01d39f90c375d4876)`(FString & OutValue) const` | Fills OutValue with the value of Ref20_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef20OrNull`](#structFRHAPI__GuideCreateRequest_1afcd526ec9a31fd8cf519aa689c5af1f9)`()` | Returns a pointer to Ref20_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef20OrNull`](#structFRHAPI__GuideCreateRequest_1a2f301e0ebf9b8b8de231a3da6edc2840)`() const` | Returns a pointer to Ref20_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef20`](#structFRHAPI__GuideCreateRequest_1a7c064648a0075546bbdd4125ae5a06fa)`(const FString & NewValue)` | Sets the value of Ref20_Optional and also sets Ref20_IsSet to true.
-`public inline void `[`SetRef20`](#structFRHAPI__GuideCreateRequest_1a8cea0e8d1fd0d43d3b83222b413a6103)`(FString && NewValue)` | Sets the value of Ref20_Optional and also sets Ref20_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef19ToNull`](#structFRHAPI__GuideCreateRequest_1aa20f4e6359eaa42f9c3653ba7b385f51)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef19Null`](#structFRHAPI__GuideCreateRequest_1a48e195fa830b7011b77e5696ec3619b2)`() const` | Checks whether Ref19_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1aa5127046360b7d7ac0733ea4ad42a82a)`()` | Gets the value of Ref20_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a9c17e33470d01585d7b92c4a1fe3e829)`() const` | Gets the value of Ref20_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a64a5b0143ca3592b8d8bf1fa6b042be9)`(const FString & DefaultValue) const` | Gets the value of Ref20_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a72312fd00cbfc2e2da491201cc6b3294)`(FString & OutValue) const` | Fills OutValue with the value of Ref20_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef20OrNull`](#structFRHAPI__GuideCreateRequest_1aabfef322bf4cb1080d7d7318dab7cbf8)`()` | Returns a pointer to Ref20_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef20OrNull`](#structFRHAPI__GuideCreateRequest_1a4bda9585a59273ae2f6122512e35409a)`() const` | Returns a pointer to Ref20_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef20`](#structFRHAPI__GuideCreateRequest_1a6ae0b4ce02f5db8af67b4a97c1ac045f)`(const FString & NewValue)` | Sets the value of Ref20_Optional and also sets Ref20_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef20`](#structFRHAPI__GuideCreateRequest_1a6422842aa13233dd7835212c6ea59d7c)`(FString && NewValue)` | Sets the value of Ref20_Optional and also sets Ref20_IsSet to true using move semantics.
 `public inline void `[`ClearRef20`](#structFRHAPI__GuideCreateRequest_1afc9241612aa41f4fed73f76e290c3051)`()` | Clears the value of Ref20_Optional and sets Ref20_IsSet to false.
-`public inline bool `[`IsRef20Set`](#structFRHAPI__GuideCreateRequest_1a2d1aec761b517b05eca6a5d4aa7ac143)`() const` | Checks whether Ref20_Optional has been set.
-`public inline void `[`SetRef20ToNull`](#structFRHAPI__GuideCreateRequest_1ae936287f33efee9eef3534af25c7c56b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef20Null`](#structFRHAPI__GuideCreateRequest_1a9a2fbe2b7d99e62b185f820e19ca4c18)`() const` | Checks whether Ref20_Optional is set to null.
-`public inline FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1afe5851ca42ecf71d8857d149a6e86eb6)`()` | Gets the value of Ref21_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a4cd8bd84118a7a4ff39bdcc9f7f9fa85)`() const` | Gets the value of Ref21_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a62e854ea5c58382c29e666bc9cfa240c)`(const FString & DefaultValue) const` | Gets the value of Ref21_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1ae0b6806d162ad9ddbcc076853bacdbbc)`(FString & OutValue) const` | Fills OutValue with the value of Ref21_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef21OrNull`](#structFRHAPI__GuideCreateRequest_1a2b486f4a439f2ab87713661291c401ba)`()` | Returns a pointer to Ref21_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef21OrNull`](#structFRHAPI__GuideCreateRequest_1a3e45613bc78e41a417ea475b44263ed5)`() const` | Returns a pointer to Ref21_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef21`](#structFRHAPI__GuideCreateRequest_1ab8492920d41a9b1f8a4c5675f2654722)`(const FString & NewValue)` | Sets the value of Ref21_Optional and also sets Ref21_IsSet to true.
-`public inline void `[`SetRef21`](#structFRHAPI__GuideCreateRequest_1ab1424d450d422e13fc91e2b6f985db2f)`(FString && NewValue)` | Sets the value of Ref21_Optional and also sets Ref21_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef20ToNull`](#structFRHAPI__GuideCreateRequest_1a9b22c33f310a7def8058f22163b1c583)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef20Null`](#structFRHAPI__GuideCreateRequest_1aec08f5463404c44230f7bf76eba116c5)`() const` | Checks whether Ref20_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a6a0c1a01a4f1fac9052779fd80481e74)`()` | Gets the value of Ref21_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a9a73d5899a901b1f96a7bf4bd6c8de3c)`() const` | Gets the value of Ref21_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1ab59acf5cf4a97eb93b3e1674e99c7789)`(const FString & DefaultValue) const` | Gets the value of Ref21_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a2b6d86997c6da5ddbe7f7143f3ac43ad)`(FString & OutValue) const` | Fills OutValue with the value of Ref21_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef21OrNull`](#structFRHAPI__GuideCreateRequest_1ad21d8abd4bd7d116ccf2a05ca87a563a)`()` | Returns a pointer to Ref21_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef21OrNull`](#structFRHAPI__GuideCreateRequest_1a355ac79789757d19963062333eb93065)`() const` | Returns a pointer to Ref21_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef21`](#structFRHAPI__GuideCreateRequest_1a91aaa9f59f1dcf9846160b83a2b083c7)`(const FString & NewValue)` | Sets the value of Ref21_Optional and also sets Ref21_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef21`](#structFRHAPI__GuideCreateRequest_1a9ce0687bbde4598d535ebb2fe3fca56e)`(FString && NewValue)` | Sets the value of Ref21_Optional and also sets Ref21_IsSet to true using move semantics.
 `public inline void `[`ClearRef21`](#structFRHAPI__GuideCreateRequest_1ae092694d87e5afca8e062b1093c7fc1d)`()` | Clears the value of Ref21_Optional and sets Ref21_IsSet to false.
-`public inline bool `[`IsRef21Set`](#structFRHAPI__GuideCreateRequest_1a84c04be1008f2f5a268f25771df2a24f)`() const` | Checks whether Ref21_Optional has been set.
-`public inline void `[`SetRef21ToNull`](#structFRHAPI__GuideCreateRequest_1aa90e84c7b0039cd481fa972974c3fc3f)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef21Null`](#structFRHAPI__GuideCreateRequest_1a1d0845c9da4f76245cb150e3410615f4)`() const` | Checks whether Ref21_Optional is set to null.
-`public inline FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1af4e4b0ec80e41615ec6cfd2643012f07)`()` | Gets the value of Ref22_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1a631d1ccc654cce59222d08a44fb73a83)`() const` | Gets the value of Ref22_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1a03aecfedef4a2ee3cf7909673899cbb6)`(const FString & DefaultValue) const` | Gets the value of Ref22_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1afaa6769fa3362b2e9f814d3b51c46578)`(FString & OutValue) const` | Fills OutValue with the value of Ref22_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef22OrNull`](#structFRHAPI__GuideCreateRequest_1a87b86c7e3dba2a03407359051167c63f)`()` | Returns a pointer to Ref22_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef22OrNull`](#structFRHAPI__GuideCreateRequest_1abb58ba9472698e52076ae86b837d7b7b)`() const` | Returns a pointer to Ref22_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef22`](#structFRHAPI__GuideCreateRequest_1a0a45d9e4388757cdba2a594d9afec94c)`(const FString & NewValue)` | Sets the value of Ref22_Optional and also sets Ref22_IsSet to true.
-`public inline void `[`SetRef22`](#structFRHAPI__GuideCreateRequest_1af30d3e7d9882a7604257428e0f070644)`(FString && NewValue)` | Sets the value of Ref22_Optional and also sets Ref22_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef21ToNull`](#structFRHAPI__GuideCreateRequest_1a85489822d0d8e8e31b7d8879c1355936)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef21Null`](#structFRHAPI__GuideCreateRequest_1a0c074dc8452fe8eb86d2735d6078145b)`() const` | Checks whether Ref21_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1a195fef2b5cf9399f466af6607161137c)`()` | Gets the value of Ref22_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1aa5dbf14ffd97a432d3ac89a2b49d86a4)`() const` | Gets the value of Ref22_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1aa5d01b6af619d6655e7d1ec50e1ba80d)`(const FString & DefaultValue) const` | Gets the value of Ref22_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1a169c6416ad73fce3289af21dddbd9ebd)`(FString & OutValue) const` | Fills OutValue with the value of Ref22_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef22OrNull`](#structFRHAPI__GuideCreateRequest_1a796956eafb730746d6f874f56e05890f)`()` | Returns a pointer to Ref22_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef22OrNull`](#structFRHAPI__GuideCreateRequest_1ab1ebb476ff9ac5630aee6b6a00d0f412)`() const` | Returns a pointer to Ref22_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef22`](#structFRHAPI__GuideCreateRequest_1a961225dadee8740972b8c6e18d6c8807)`(const FString & NewValue)` | Sets the value of Ref22_Optional and also sets Ref22_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef22`](#structFRHAPI__GuideCreateRequest_1a6a5ed4914a06dd35a77cd09819b42298)`(FString && NewValue)` | Sets the value of Ref22_Optional and also sets Ref22_IsSet to true using move semantics.
 `public inline void `[`ClearRef22`](#structFRHAPI__GuideCreateRequest_1ad3ef5de86ffcfb56ec9e044a50b7d954)`()` | Clears the value of Ref22_Optional and sets Ref22_IsSet to false.
-`public inline bool `[`IsRef22Set`](#structFRHAPI__GuideCreateRequest_1ab49adac282a783456b38bf52e58067c0)`() const` | Checks whether Ref22_Optional has been set.
-`public inline void `[`SetRef22ToNull`](#structFRHAPI__GuideCreateRequest_1a021b5dc48180935661f9fe2eea5e4b7a)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef22Null`](#structFRHAPI__GuideCreateRequest_1a2cd6ca8e7ce04093b1966cd88e7d448e)`() const` | Checks whether Ref22_Optional is set to null.
-`public inline FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1af42ccf8328b199c35830150554d44891)`()` | Gets the value of Ref23_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1ae05a910886bf33c82f3b676836d2058f)`() const` | Gets the value of Ref23_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1ac3a457c929fc0466f246297099ae456f)`(const FString & DefaultValue) const` | Gets the value of Ref23_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1a4fb26561eb5421a82a936cb393a47caa)`(FString & OutValue) const` | Fills OutValue with the value of Ref23_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef23OrNull`](#structFRHAPI__GuideCreateRequest_1af6037b086eaf3d239f96af5317c21957)`()` | Returns a pointer to Ref23_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef23OrNull`](#structFRHAPI__GuideCreateRequest_1acf06cd86ce5794c31c4f06e253ecdb34)`() const` | Returns a pointer to Ref23_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef23`](#structFRHAPI__GuideCreateRequest_1a58c2c49e37b75caa3df5dbc428f320e9)`(const FString & NewValue)` | Sets the value of Ref23_Optional and also sets Ref23_IsSet to true.
-`public inline void `[`SetRef23`](#structFRHAPI__GuideCreateRequest_1a10e838a233790ddb35cdc341d4e5b108)`(FString && NewValue)` | Sets the value of Ref23_Optional and also sets Ref23_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef22ToNull`](#structFRHAPI__GuideCreateRequest_1a36970dce59e90389fdfa41bcb07ca5d6)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef22Null`](#structFRHAPI__GuideCreateRequest_1ae0ef78dcc47f1cf5ee64c315be225538)`() const` | Checks whether Ref22_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1a95386222d0b814a8a74a543f8d2cc5ed)`()` | Gets the value of Ref23_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1a1d3abde2d8133fbb3ed269a63cea47f9)`() const` | Gets the value of Ref23_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1a191c4519286be7ff72cb0ee40c2b582d)`(const FString & DefaultValue) const` | Gets the value of Ref23_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1afa0d2c5ae2e46323c8d9859d5b983928)`(FString & OutValue) const` | Fills OutValue with the value of Ref23_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef23OrNull`](#structFRHAPI__GuideCreateRequest_1a74e85efc8797b1be8dbdd5c35015b94e)`()` | Returns a pointer to Ref23_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef23OrNull`](#structFRHAPI__GuideCreateRequest_1a551bf59f1a935371ffbf759a6b5e6caf)`() const` | Returns a pointer to Ref23_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef23`](#structFRHAPI__GuideCreateRequest_1ab504c218921436ae399a6d6b995d1a05)`(const FString & NewValue)` | Sets the value of Ref23_Optional and also sets Ref23_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef23`](#structFRHAPI__GuideCreateRequest_1a2ab8d1f437e73f4c819d8de78a63ee97)`(FString && NewValue)` | Sets the value of Ref23_Optional and also sets Ref23_IsSet to true using move semantics.
 `public inline void `[`ClearRef23`](#structFRHAPI__GuideCreateRequest_1ab4a7977a29464f79d456f6f36b091a2f)`()` | Clears the value of Ref23_Optional and sets Ref23_IsSet to false.
-`public inline bool `[`IsRef23Set`](#structFRHAPI__GuideCreateRequest_1a255be7f458d48f58c60bf815b85e2aa1)`() const` | Checks whether Ref23_Optional has been set.
-`public inline void `[`SetRef23ToNull`](#structFRHAPI__GuideCreateRequest_1a2ad67033841deb78eaf97555140cd3e5)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef23Null`](#structFRHAPI__GuideCreateRequest_1acf82f3fe95637fdc7350c6e8ecc852c1)`() const` | Checks whether Ref23_Optional is set to null.
-`public inline FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a4bca4e18a4ba529c3e68d4aa3cd7073f)`()` | Gets the value of Ref24_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a6555e90c5634008d30a4cfb607206457)`() const` | Gets the value of Ref24_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a3d31b7489f5c051818a78ccf7f9072d0)`(const FString & DefaultValue) const` | Gets the value of Ref24_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1aa4be23ba13e33c936b45a1ec5f024dcb)`(FString & OutValue) const` | Fills OutValue with the value of Ref24_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef24OrNull`](#structFRHAPI__GuideCreateRequest_1a804bb1d3ed02b582aac13947d17191d8)`()` | Returns a pointer to Ref24_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef24OrNull`](#structFRHAPI__GuideCreateRequest_1adc09242522f1184b502d5e1345e272d0)`() const` | Returns a pointer to Ref24_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef24`](#structFRHAPI__GuideCreateRequest_1a9f45f8e3ff23715e144e68e1277dd857)`(const FString & NewValue)` | Sets the value of Ref24_Optional and also sets Ref24_IsSet to true.
-`public inline void `[`SetRef24`](#structFRHAPI__GuideCreateRequest_1ac9f93c37f38807e5f12e030e121f8567)`(FString && NewValue)` | Sets the value of Ref24_Optional and also sets Ref24_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef23ToNull`](#structFRHAPI__GuideCreateRequest_1a82bdb594b753bd807f3acf92afbe9885)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef23Null`](#structFRHAPI__GuideCreateRequest_1a9d193eaa1cccddcf046dbe805ae7fbf4)`() const` | Checks whether Ref23_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a136e7c48cfc01d1311e7b601977d6311)`()` | Gets the value of Ref24_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a45b17b0fef0eefc00ae962073f2b7be6)`() const` | Gets the value of Ref24_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a2935a0cea853006e2d1392d19ef009a8)`(const FString & DefaultValue) const` | Gets the value of Ref24_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1ac944d2ad9911e8af6c39c76ed48c9b36)`(FString & OutValue) const` | Fills OutValue with the value of Ref24_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef24OrNull`](#structFRHAPI__GuideCreateRequest_1a603740d19036c4ead5c964c193fbe147)`()` | Returns a pointer to Ref24_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef24OrNull`](#structFRHAPI__GuideCreateRequest_1a906d7ac0da09fb290f74974bc3842eac)`() const` | Returns a pointer to Ref24_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef24`](#structFRHAPI__GuideCreateRequest_1a1f243c8ac560e21e6cb242a06710d3ca)`(const FString & NewValue)` | Sets the value of Ref24_Optional and also sets Ref24_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef24`](#structFRHAPI__GuideCreateRequest_1a1391fd36cb6999a193ca185002cb2d56)`(FString && NewValue)` | Sets the value of Ref24_Optional and also sets Ref24_IsSet to true using move semantics.
 `public inline void `[`ClearRef24`](#structFRHAPI__GuideCreateRequest_1a309ae2ee65782d4b2f3bb5e4720a9eb9)`()` | Clears the value of Ref24_Optional and sets Ref24_IsSet to false.
-`public inline bool `[`IsRef24Set`](#structFRHAPI__GuideCreateRequest_1a1f12684dbd8ed4ae72c9b41b8c8fed24)`() const` | Checks whether Ref24_Optional has been set.
-`public inline void `[`SetRef24ToNull`](#structFRHAPI__GuideCreateRequest_1a573d5c131459999dfd3558a08b9b1755)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef24Null`](#structFRHAPI__GuideCreateRequest_1afd0470a0db3fb4daa08be4cbbf6d342f)`() const` | Checks whether Ref24_Optional is set to null.
-`public inline FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1ad5028722eba4853b729b747f7a27eb41)`()` | Gets the value of Ref25_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1af4c5b3204c829a1423f7fe2168bd84c1)`() const` | Gets the value of Ref25_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1afef8ff9dccb8533d65361b753707748e)`(const FString & DefaultValue) const` | Gets the value of Ref25_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1ae87ef41dff8a27b1391a3552909a6546)`(FString & OutValue) const` | Fills OutValue with the value of Ref25_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef25OrNull`](#structFRHAPI__GuideCreateRequest_1a9b3f3c99ce1deb137f75a32cab7e5bef)`()` | Returns a pointer to Ref25_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef25OrNull`](#structFRHAPI__GuideCreateRequest_1afe8bdc83c5701873118512972b4eceb4)`() const` | Returns a pointer to Ref25_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef25`](#structFRHAPI__GuideCreateRequest_1aea68ae97e77c61d2564c5453ec1a1fa3)`(const FString & NewValue)` | Sets the value of Ref25_Optional and also sets Ref25_IsSet to true.
-`public inline void `[`SetRef25`](#structFRHAPI__GuideCreateRequest_1a5993c9fc1d17d10fe7fa033c41c98bb8)`(FString && NewValue)` | Sets the value of Ref25_Optional and also sets Ref25_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef24ToNull`](#structFRHAPI__GuideCreateRequest_1ac01a1a4aecfed461d59042b7e6f5de65)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef24Null`](#structFRHAPI__GuideCreateRequest_1a2cbf948f4b188e8bd55f96ec42d7760f)`() const` | Checks whether Ref24_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1a92b47d45db85b486bc91b0934c35679a)`()` | Gets the value of Ref25_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1a977fea97c91d70e6d2df03f3eed1414a)`() const` | Gets the value of Ref25_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1a9f55188efcedc924f35e0ce33ecf0930)`(const FString & DefaultValue) const` | Gets the value of Ref25_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1a19290585ad4b04e142635aae5cdadb7d)`(FString & OutValue) const` | Fills OutValue with the value of Ref25_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef25OrNull`](#structFRHAPI__GuideCreateRequest_1ab5aaee7bef9bf10d9349419f1ffca71a)`()` | Returns a pointer to Ref25_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef25OrNull`](#structFRHAPI__GuideCreateRequest_1ab03cfc19f8d986a8f02bf879f20b9d49)`() const` | Returns a pointer to Ref25_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef25`](#structFRHAPI__GuideCreateRequest_1a39124ff0b792c615d159b9284e133f9f)`(const FString & NewValue)` | Sets the value of Ref25_Optional and also sets Ref25_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef25`](#structFRHAPI__GuideCreateRequest_1a9a06d9c63dad620dc19b0badf61c7f56)`(FString && NewValue)` | Sets the value of Ref25_Optional and also sets Ref25_IsSet to true using move semantics.
 `public inline void `[`ClearRef25`](#structFRHAPI__GuideCreateRequest_1a6a53b870e5cdfc61ffd40ac99b3af8d6)`()` | Clears the value of Ref25_Optional and sets Ref25_IsSet to false.
-`public inline bool `[`IsRef25Set`](#structFRHAPI__GuideCreateRequest_1a005776c7cce23d0cc2db41ec30f820ee)`() const` | Checks whether Ref25_Optional has been set.
-`public inline void `[`SetRef25ToNull`](#structFRHAPI__GuideCreateRequest_1ad0a6c66166029e8a2ed4bcaacee47985)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef25Null`](#structFRHAPI__GuideCreateRequest_1a4ba2f756b31ccd2822a9c984d140b6e4)`() const` | Checks whether Ref25_Optional is set to null.
-`public inline FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1af6e18648bdcfc1d460afc55a6eff49e5)`()` | Gets the value of Ref26_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a68570e28a429b6915e2da0a5dda40fe2)`() const` | Gets the value of Ref26_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a27d10866acbed7ff592f4a27792baa4a)`(const FString & DefaultValue) const` | Gets the value of Ref26_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a9e40ac831c1f8a141c7614c2c53c0172)`(FString & OutValue) const` | Fills OutValue with the value of Ref26_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef26OrNull`](#structFRHAPI__GuideCreateRequest_1a3e3767b204ee2cfb7c24235f89fdbcb6)`()` | Returns a pointer to Ref26_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef26OrNull`](#structFRHAPI__GuideCreateRequest_1a46be382e12662f25e3e042198b2e00d4)`() const` | Returns a pointer to Ref26_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef26`](#structFRHAPI__GuideCreateRequest_1a7b22e7d0c52959362b369e01b19357e1)`(const FString & NewValue)` | Sets the value of Ref26_Optional and also sets Ref26_IsSet to true.
-`public inline void `[`SetRef26`](#structFRHAPI__GuideCreateRequest_1a23170083c14d7d2d5c39cec4fe59e453)`(FString && NewValue)` | Sets the value of Ref26_Optional and also sets Ref26_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef25ToNull`](#structFRHAPI__GuideCreateRequest_1a467ac2014e0c8655cc0105b65fb8c67a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef25Null`](#structFRHAPI__GuideCreateRequest_1a8d20a9332d41d4e8f645d73dac73766f)`() const` | Checks whether Ref25_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a21c3fdfaff12e511fcfb8d396abedd7d)`()` | Gets the value of Ref26_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1ac8f33bee2b209a913ff4eab1e4f80287)`() const` | Gets the value of Ref26_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1ae5dc657524b096f6aeb0124d3166d55b)`(const FString & DefaultValue) const` | Gets the value of Ref26_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a4b955ff189ca37f73c643003b1530cc8)`(FString & OutValue) const` | Fills OutValue with the value of Ref26_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef26OrNull`](#structFRHAPI__GuideCreateRequest_1afdeb8676c2e58bd08b4e7de4e4ea14ba)`()` | Returns a pointer to Ref26_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef26OrNull`](#structFRHAPI__GuideCreateRequest_1ac8110187709a847e90667eb5719264d9)`() const` | Returns a pointer to Ref26_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef26`](#structFRHAPI__GuideCreateRequest_1ac0d339cb7c7889ba14cc1b7386c57ea1)`(const FString & NewValue)` | Sets the value of Ref26_Optional and also sets Ref26_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef26`](#structFRHAPI__GuideCreateRequest_1a39b2997a6ea0cff8b71da1dce47c2f34)`(FString && NewValue)` | Sets the value of Ref26_Optional and also sets Ref26_IsSet to true using move semantics.
 `public inline void `[`ClearRef26`](#structFRHAPI__GuideCreateRequest_1a71658eb35d971b62d3f28208670a9417)`()` | Clears the value of Ref26_Optional and sets Ref26_IsSet to false.
-`public inline bool `[`IsRef26Set`](#structFRHAPI__GuideCreateRequest_1a0aff9e603557927ccad71027c60016db)`() const` | Checks whether Ref26_Optional has been set.
-`public inline void `[`SetRef26ToNull`](#structFRHAPI__GuideCreateRequest_1aea573854e1d02311fcc85435784dde2b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef26Null`](#structFRHAPI__GuideCreateRequest_1a12b600bbd131c7caf1d4663a1d63d53b)`() const` | Checks whether Ref26_Optional is set to null.
-`public inline FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1a59c851d1b124c7987c0655cbad8d616b)`()` | Gets the value of Ref27_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1aa7c968f126f9b4104904842e2ebf1239)`() const` | Gets the value of Ref27_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1ad101a0952398bc475de1c1a456b2da7a)`(const FString & DefaultValue) const` | Gets the value of Ref27_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1a6b0c20b9204f6d18e6f39b45f4049178)`(FString & OutValue) const` | Fills OutValue with the value of Ref27_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef27OrNull`](#structFRHAPI__GuideCreateRequest_1a92d4765e3b13a9c463a7b86875bcd111)`()` | Returns a pointer to Ref27_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef27OrNull`](#structFRHAPI__GuideCreateRequest_1a458de5fa80fc9e4a7694593da64b7684)`() const` | Returns a pointer to Ref27_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef27`](#structFRHAPI__GuideCreateRequest_1ab284b79883ac86028908d7afa70fe355)`(const FString & NewValue)` | Sets the value of Ref27_Optional and also sets Ref27_IsSet to true.
-`public inline void `[`SetRef27`](#structFRHAPI__GuideCreateRequest_1aaa51eefed80d0b90dcfe883e918aef7a)`(FString && NewValue)` | Sets the value of Ref27_Optional and also sets Ref27_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef26ToNull`](#structFRHAPI__GuideCreateRequest_1a06bce88a6ceafaeb13655e60f802d835)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef26Null`](#structFRHAPI__GuideCreateRequest_1aea5690eea4e4f94d9296d6a88003e6a0)`() const` | Checks whether Ref26_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1a90fa757516b33065473a63fe6257e917)`()` | Gets the value of Ref27_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1ae517f80cac0a931d8a2b8f872663c30d)`() const` | Gets the value of Ref27_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1af884da248befe187b6538a5724cf33d8)`(const FString & DefaultValue) const` | Gets the value of Ref27_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1a9e13c1e111811d8099dcc1a39e8758d0)`(FString & OutValue) const` | Fills OutValue with the value of Ref27_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef27OrNull`](#structFRHAPI__GuideCreateRequest_1a282777f96a5a32e6cfdb2b28ed2d071e)`()` | Returns a pointer to Ref27_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef27OrNull`](#structFRHAPI__GuideCreateRequest_1ab4233d0779830e6df2e41dd775e1e5f8)`() const` | Returns a pointer to Ref27_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef27`](#structFRHAPI__GuideCreateRequest_1af665202e4dbf08a5d5d02944c8e1d926)`(const FString & NewValue)` | Sets the value of Ref27_Optional and also sets Ref27_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef27`](#structFRHAPI__GuideCreateRequest_1a33c37ff3cee588245b1c54059ebd60b4)`(FString && NewValue)` | Sets the value of Ref27_Optional and also sets Ref27_IsSet to true using move semantics.
 `public inline void `[`ClearRef27`](#structFRHAPI__GuideCreateRequest_1a4421b3996d95385aca2d739d96dcca1d)`()` | Clears the value of Ref27_Optional and sets Ref27_IsSet to false.
-`public inline bool `[`IsRef27Set`](#structFRHAPI__GuideCreateRequest_1a5409eb1e934de5a0165d149b55458280)`() const` | Checks whether Ref27_Optional has been set.
-`public inline void `[`SetRef27ToNull`](#structFRHAPI__GuideCreateRequest_1a3df4f6337392303652c52cdafb787d05)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef27Null`](#structFRHAPI__GuideCreateRequest_1a3c7c5e3fd17458608afa649b59377232)`() const` | Checks whether Ref27_Optional is set to null.
-`public inline FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a4fce4225045a3abf830e43c92fb1419b)`()` | Gets the value of Ref28_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1aba860426435334fdf50e75c3b33d6e1e)`() const` | Gets the value of Ref28_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a825bbfeb8796c0bab69b77f49e600eff)`(const FString & DefaultValue) const` | Gets the value of Ref28_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a710ae6e264abd05b86836de0c46b8a3b)`(FString & OutValue) const` | Fills OutValue with the value of Ref28_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef28OrNull`](#structFRHAPI__GuideCreateRequest_1affd5df778c9f4625ebad28ec902069db)`()` | Returns a pointer to Ref28_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef28OrNull`](#structFRHAPI__GuideCreateRequest_1ac9eee8322baa9d5f1065eb41cc87a3f2)`() const` | Returns a pointer to Ref28_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef28`](#structFRHAPI__GuideCreateRequest_1aa167a62083254fb33103b3442059f2de)`(const FString & NewValue)` | Sets the value of Ref28_Optional and also sets Ref28_IsSet to true.
-`public inline void `[`SetRef28`](#structFRHAPI__GuideCreateRequest_1a15a1e0f2240ada47641dc690a1908a5f)`(FString && NewValue)` | Sets the value of Ref28_Optional and also sets Ref28_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef27ToNull`](#structFRHAPI__GuideCreateRequest_1a4dc5bcbb975b5bbde46b5afbc68a0e92)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef27Null`](#structFRHAPI__GuideCreateRequest_1a98fbe14f8d8c4a701996cc54d9aeaf2b)`() const` | Checks whether Ref27_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a9d37a27b676eb0d0e08e4a53e530795e)`()` | Gets the value of Ref28_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a3e5179b310db7b24d1a888b0d87225f0)`() const` | Gets the value of Ref28_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1adeb6b93e17ccee739f2ac3981b372f0e)`(const FString & DefaultValue) const` | Gets the value of Ref28_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1abd423baa18547385e6d8886bd3fd1b62)`(FString & OutValue) const` | Fills OutValue with the value of Ref28_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef28OrNull`](#structFRHAPI__GuideCreateRequest_1a9564c25f0d9adfcdcf9723673cecd181)`()` | Returns a pointer to Ref28_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef28OrNull`](#structFRHAPI__GuideCreateRequest_1a09eb23886c41b634e2ff0d161bdde5cf)`() const` | Returns a pointer to Ref28_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef28`](#structFRHAPI__GuideCreateRequest_1a12329b06184121f5616377d66a00f039)`(const FString & NewValue)` | Sets the value of Ref28_Optional and also sets Ref28_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef28`](#structFRHAPI__GuideCreateRequest_1a5a2c4f7e75fabdf441f4b3122e03e789)`(FString && NewValue)` | Sets the value of Ref28_Optional and also sets Ref28_IsSet to true using move semantics.
 `public inline void `[`ClearRef28`](#structFRHAPI__GuideCreateRequest_1a7adb4986ee45d8f911eddd734390bd3d)`()` | Clears the value of Ref28_Optional and sets Ref28_IsSet to false.
-`public inline bool `[`IsRef28Set`](#structFRHAPI__GuideCreateRequest_1a98e938000d622f90f7db2850fc070977)`() const` | Checks whether Ref28_Optional has been set.
-`public inline void `[`SetRef28ToNull`](#structFRHAPI__GuideCreateRequest_1afe4f0294df1e5da6e6f6196bac58018b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef28Null`](#structFRHAPI__GuideCreateRequest_1af67d840a8bc1459d87e64e5041a54489)`() const` | Checks whether Ref28_Optional is set to null.
-`public inline FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1aa5553ccbfdf8072bd85a1941a2af7e88)`()` | Gets the value of Ref29_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1af2bedc7c5c22635d155287df46a33957)`() const` | Gets the value of Ref29_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1abec4a7019e97e99b3e173529ef9ea9fc)`(const FString & DefaultValue) const` | Gets the value of Ref29_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1aa5b342189231bdf1287ce4d6bd500b7d)`(FString & OutValue) const` | Fills OutValue with the value of Ref29_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef29OrNull`](#structFRHAPI__GuideCreateRequest_1ae4674d4439f97bf42084b095aa93dbff)`()` | Returns a pointer to Ref29_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef29OrNull`](#structFRHAPI__GuideCreateRequest_1a418d0bff796eef8dd44be815f7712350)`() const` | Returns a pointer to Ref29_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef29`](#structFRHAPI__GuideCreateRequest_1a1121aeebd604deaa53d31818c88bd1a6)`(const FString & NewValue)` | Sets the value of Ref29_Optional and also sets Ref29_IsSet to true.
-`public inline void `[`SetRef29`](#structFRHAPI__GuideCreateRequest_1a3adbce3de67ad65632f22bb4f8cec408)`(FString && NewValue)` | Sets the value of Ref29_Optional and also sets Ref29_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef28ToNull`](#structFRHAPI__GuideCreateRequest_1a4c3789970035eb58965bc7cad2ddf02c)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef28Null`](#structFRHAPI__GuideCreateRequest_1a1ba17dc47dbf5ffe05d9de762f41bc55)`() const` | Checks whether Ref28_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1ab23490a5253b4d1a4206162cb785ab79)`()` | Gets the value of Ref29_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1a0e71a4bd8c54b7efa8535ff9e6e5cba1)`() const` | Gets the value of Ref29_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1a75126a8ec18a6a8c6aca2948d0e8b691)`(const FString & DefaultValue) const` | Gets the value of Ref29_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1a166f016bb5e64c4f513c491fac03583a)`(FString & OutValue) const` | Fills OutValue with the value of Ref29_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef29OrNull`](#structFRHAPI__GuideCreateRequest_1a66dfa358f749e0c6abb145f11e941e66)`()` | Returns a pointer to Ref29_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef29OrNull`](#structFRHAPI__GuideCreateRequest_1a612c50a6dbb7c22a483527297286ccae)`() const` | Returns a pointer to Ref29_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef29`](#structFRHAPI__GuideCreateRequest_1a00e7f99e5275325a986b7d94c2c81767)`(const FString & NewValue)` | Sets the value of Ref29_Optional and also sets Ref29_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef29`](#structFRHAPI__GuideCreateRequest_1abdde5010266f9f136968c110e932b958)`(FString && NewValue)` | Sets the value of Ref29_Optional and also sets Ref29_IsSet to true using move semantics.
 `public inline void `[`ClearRef29`](#structFRHAPI__GuideCreateRequest_1ac3d9a10ff42d498ee058bcdb5765b359)`()` | Clears the value of Ref29_Optional and sets Ref29_IsSet to false.
-`public inline bool `[`IsRef29Set`](#structFRHAPI__GuideCreateRequest_1ae8cac6f075c089c1c62d24f7ee2fb149)`() const` | Checks whether Ref29_Optional has been set.
-`public inline void `[`SetRef29ToNull`](#structFRHAPI__GuideCreateRequest_1a0b6c0e221fddc27d300320de070deb6b)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef29Null`](#structFRHAPI__GuideCreateRequest_1a0757af66cc65bf6825f757d461768fac)`() const` | Checks whether Ref29_Optional is set to null.
-`public inline FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a3943165b8741ae77d11ef1a04d288eef)`()` | Gets the value of Ref30_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a6809b186cf57f0806edbb5c935423d89)`() const` | Gets the value of Ref30_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1af11657821c3690cab391249576822d86)`(const FString & DefaultValue) const` | Gets the value of Ref30_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a4f41e37da7fc37d859343c1a910b1085)`(FString & OutValue) const` | Fills OutValue with the value of Ref30_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef30OrNull`](#structFRHAPI__GuideCreateRequest_1a98a80f649e03c2d53dda213bc8a55d75)`()` | Returns a pointer to Ref30_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef30OrNull`](#structFRHAPI__GuideCreateRequest_1a12933fe4f80955bcd30382af8b161397)`() const` | Returns a pointer to Ref30_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef30`](#structFRHAPI__GuideCreateRequest_1a4e1262bbe634a596dba34dd4277cd864)`(const FString & NewValue)` | Sets the value of Ref30_Optional and also sets Ref30_IsSet to true.
-`public inline void `[`SetRef30`](#structFRHAPI__GuideCreateRequest_1a474c67abee690e7cad63abf5e84d7bb9)`(FString && NewValue)` | Sets the value of Ref30_Optional and also sets Ref30_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef29ToNull`](#structFRHAPI__GuideCreateRequest_1ae236c379043030458dbc26b5f88f87ed)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef29Null`](#structFRHAPI__GuideCreateRequest_1a6431719bfdaaec325153c8292f3af5d2)`() const` | Checks whether Ref29_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1ac597072a7ea439a2549a2fe4e470d906)`()` | Gets the value of Ref30_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1ae802bddf199edc6faf8456cd9840ddf8)`() const` | Gets the value of Ref30_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a97ca4f71c622513f55018e1df3706882)`(const FString & DefaultValue) const` | Gets the value of Ref30_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a4b21b132ac0afc2e09dd8d85ebe98c1d)`(FString & OutValue) const` | Fills OutValue with the value of Ref30_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef30OrNull`](#structFRHAPI__GuideCreateRequest_1a72e69e5fa81ca47bee6cd60c7dd8971b)`()` | Returns a pointer to Ref30_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef30OrNull`](#structFRHAPI__GuideCreateRequest_1a1ec6464c7b699916b493034376196d67)`() const` | Returns a pointer to Ref30_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef30`](#structFRHAPI__GuideCreateRequest_1adfd50702be684e3d1a23add32c61750e)`(const FString & NewValue)` | Sets the value of Ref30_Optional and also sets Ref30_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef30`](#structFRHAPI__GuideCreateRequest_1ababb9bc57666c6c9fe420bb030e37c44)`(FString && NewValue)` | Sets the value of Ref30_Optional and also sets Ref30_IsSet to true using move semantics.
 `public inline void `[`ClearRef30`](#structFRHAPI__GuideCreateRequest_1ae1dc353c7df90d6ffceca6c5e565a49e)`()` | Clears the value of Ref30_Optional and sets Ref30_IsSet to false.
-`public inline bool `[`IsRef30Set`](#structFRHAPI__GuideCreateRequest_1ad16860d098f32efd74a74d7ab96b7ed7)`() const` | Checks whether Ref30_Optional has been set.
-`public inline void `[`SetRef30ToNull`](#structFRHAPI__GuideCreateRequest_1aa1f06e9fb39f06c8509d6300344d957a)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef30Null`](#structFRHAPI__GuideCreateRequest_1a53028048b59e02731c93688db0b5275d)`() const` | Checks whether Ref30_Optional is set to null.
-`public inline FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1a73978e21993ad3ea5ea202b99ec4001b)`()` | Gets the value of Ref31_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1a145f0b77be6a901a98de3a750fa860b3)`() const` | Gets the value of Ref31_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1af6b67e8e7ddab8b044121dc46688bc2d)`(const FString & DefaultValue) const` | Gets the value of Ref31_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1a7a3b9df3d3205ff665fe2de3d24a6ea9)`(FString & OutValue) const` | Fills OutValue with the value of Ref31_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef31OrNull`](#structFRHAPI__GuideCreateRequest_1a9b8d9979a1fad3107d16bcc64ce4ec7c)`()` | Returns a pointer to Ref31_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef31OrNull`](#structFRHAPI__GuideCreateRequest_1af82fb7198bf7727cd06381158bcee962)`() const` | Returns a pointer to Ref31_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef31`](#structFRHAPI__GuideCreateRequest_1ae94231114cf3adf9ffa231b826dd7717)`(const FString & NewValue)` | Sets the value of Ref31_Optional and also sets Ref31_IsSet to true.
-`public inline void `[`SetRef31`](#structFRHAPI__GuideCreateRequest_1ae256c08c653cdd1a4f2e4ec3296b7385)`(FString && NewValue)` | Sets the value of Ref31_Optional and also sets Ref31_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef30ToNull`](#structFRHAPI__GuideCreateRequest_1a3609ab6b960f125e1abbf27cabce23dd)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef30Null`](#structFRHAPI__GuideCreateRequest_1aae2148048d96c3a421853ad97491b8f4)`() const` | Checks whether Ref30_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1af5e9cdf0180840c1bfc8619a96a1f957)`()` | Gets the value of Ref31_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1a4d7a8b5f83223e04a879ebdacdce4f35)`() const` | Gets the value of Ref31_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1ab596140093281a2760d9e40fb2561bc8)`(const FString & DefaultValue) const` | Gets the value of Ref31_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1afc97a7e5cc958655af75d8e7d7e66ea4)`(FString & OutValue) const` | Fills OutValue with the value of Ref31_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef31OrNull`](#structFRHAPI__GuideCreateRequest_1a813a57a1b0ceb7cf0a694fcfda254327)`()` | Returns a pointer to Ref31_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef31OrNull`](#structFRHAPI__GuideCreateRequest_1a29496a91255151a574893688729f3568)`() const` | Returns a pointer to Ref31_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef31`](#structFRHAPI__GuideCreateRequest_1a52a7be422b18c6ee4dafbd17bcd5e544)`(const FString & NewValue)` | Sets the value of Ref31_Optional and also sets Ref31_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef31`](#structFRHAPI__GuideCreateRequest_1af0ec5214ff8b6f4db114d0b676a7c1a5)`(FString && NewValue)` | Sets the value of Ref31_Optional and also sets Ref31_IsSet to true using move semantics.
 `public inline void `[`ClearRef31`](#structFRHAPI__GuideCreateRequest_1a74aca5e1cd67ff516f7284bbbffb3fbd)`()` | Clears the value of Ref31_Optional and sets Ref31_IsSet to false.
-`public inline bool `[`IsRef31Set`](#structFRHAPI__GuideCreateRequest_1ae1226b92826970893a288606b9179b13)`() const` | Checks whether Ref31_Optional has been set.
-`public inline void `[`SetRef31ToNull`](#structFRHAPI__GuideCreateRequest_1a145d548a4e715d30416b12596eb8a85d)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef31Null`](#structFRHAPI__GuideCreateRequest_1ae4193c2dda1b279d813ea02f636edfd3)`() const` | Checks whether Ref31_Optional is set to null.
-`public inline FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1afe9932b34d06a006b358d58afcee744b)`()` | Gets the value of Ref32_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1addd098b2c00dbc91c47db6d30be8ead3)`() const` | Gets the value of Ref32_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1a537d68b67910c3a25ddbd27d0d8576aa)`(const FString & DefaultValue) const` | Gets the value of Ref32_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1ab8a4156eb174fc72e4a0c2cc22ae54f9)`(FString & OutValue) const` | Fills OutValue with the value of Ref32_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRef32OrNull`](#structFRHAPI__GuideCreateRequest_1a7d9aa9717b11eeec701c018c33e95458)`()` | Returns a pointer to Ref32_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRef32OrNull`](#structFRHAPI__GuideCreateRequest_1ad556eefc6f83bd1cfb595f8da93d2baa)`() const` | Returns a pointer to Ref32_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRef32`](#structFRHAPI__GuideCreateRequest_1acae93492faa8f298effedeff9aeb3a80)`(const FString & NewValue)` | Sets the value of Ref32_Optional and also sets Ref32_IsSet to true.
-`public inline void `[`SetRef32`](#structFRHAPI__GuideCreateRequest_1acdc7cbad4746a1a27db0793a2468ba4d)`(FString && NewValue)` | Sets the value of Ref32_Optional and also sets Ref32_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef31ToNull`](#structFRHAPI__GuideCreateRequest_1a318f03ca11693979fed1de67039fa8ff)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef31Null`](#structFRHAPI__GuideCreateRequest_1ac5b7aa9dbd274857dcf137184685a727)`() const` | Checks whether Ref31_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1ac5981228e0b6e08a048ade313959c6eb)`()` | Gets the value of Ref32_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1a359c71f9e6440dca98da2cb748c70028)`() const` | Gets the value of Ref32_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1a7289639c2eedc754a29bcd344076bfdd)`(const FString & DefaultValue) const` | Gets the value of Ref32_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1a8d978388021a20ac5429535f3a67ed6a)`(FString & OutValue) const` | Fills OutValue with the value of Ref32_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRef32OrNull`](#structFRHAPI__GuideCreateRequest_1a27350808507bab8202a6be7d4179d341)`()` | Returns a pointer to Ref32_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRef32OrNull`](#structFRHAPI__GuideCreateRequest_1a6a0c9253aa1ff9f7df4d34296113bbf0)`() const` | Returns a pointer to Ref32_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRef32`](#structFRHAPI__GuideCreateRequest_1a73332ae6ffc3fd5fac76b51c7fc773d4)`(const FString & NewValue)` | Sets the value of Ref32_Optional and also sets Ref32_IsSet to true.
+`public inline FORCEINLINE void `[`SetRef32`](#structFRHAPI__GuideCreateRequest_1a8dcfdff3284e3c58dc1d8faf9a55975d)`(FString && NewValue)` | Sets the value of Ref32_Optional and also sets Ref32_IsSet to true using move semantics.
 `public inline void `[`ClearRef32`](#structFRHAPI__GuideCreateRequest_1ac5e80cb563d46ae1d08f11be0935c1b1)`()` | Clears the value of Ref32_Optional and sets Ref32_IsSet to false.
-`public inline bool `[`IsRef32Set`](#structFRHAPI__GuideCreateRequest_1a8d31360799eb74d18c97a24515e6f539)`() const` | Checks whether Ref32_Optional has been set.
-`public inline void `[`SetRef32ToNull`](#structFRHAPI__GuideCreateRequest_1aa62c94c6386004e532dd34a8aeee66e5)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsRef32Null`](#structFRHAPI__GuideCreateRequest_1ae9c997318221e754823c79689d23289b)`() const` | Checks whether Ref32_Optional is set to null.
-`public inline ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ab69a6548c94c0cb36e329a196ecf0530)`()` | Gets the value of OwnerEntityType_Optional, regardless of it having been set.
-`public inline const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ab85f1cdc7b51a09c5ba889d520c6183b)`() const` | Gets the value of OwnerEntityType_Optional, regardless of it having been set.
-`public inline const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a5d6090d1ea9bc272d63d454b7ed77bd1)`(const ERHAPI_GuideEntityType & DefaultValue) const` | Gets the value of OwnerEntityType_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a6f10471bc0637b8345c0af2369979f2b)`(ERHAPI_GuideEntityType & OutValue) const` | Fills OutValue with the value of OwnerEntityType_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1aefb76a691574d7d611ff995748da8d82)`()` | Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1a0e370dd0462385301286d7687c279035)`() const` | Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a21e9aa5cbf2659813505eff66cdf5846)`(const ERHAPI_GuideEntityType & NewValue)` | Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true.
-`public inline void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a7592d9211182a14b97cf6086a7bac3ad)`(ERHAPI_GuideEntityType && NewValue)` | Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetRef32ToNull`](#structFRHAPI__GuideCreateRequest_1ae909021d66371b8d330e3d35c12971c8)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsRef32Null`](#structFRHAPI__GuideCreateRequest_1a26ee3793cbbff9639bf788dc1066aaf1)`() const` | Checks whether Ref32_Optional is set to null.
+`public inline FORCEINLINE ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a2ed2375f957e3a28a124e0a47d737ad0)`()` | Gets the value of OwnerEntityType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a309449e39d856ff27e38faa08da74cea)`() const` | Gets the value of OwnerEntityType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a3db4672d0dde5aeb122a37a674ec38b0)`(const ERHAPI_GuideEntityType & DefaultValue) const` | Gets the value of OwnerEntityType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ae35bcc2c6697e8df4dc13376ff0b7c7e)`(ERHAPI_GuideEntityType & OutValue) const` | Fills OutValue with the value of OwnerEntityType_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1ae1033470afee5b0a5d63c65cff5c7a19)`()` | Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1ade0b76ee59b1c422d56b6c3e7b11b89f)`() const` | Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ad8596ef963e239d7c66bfe82e3b07575)`(const ERHAPI_GuideEntityType & NewValue)` | Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true.
+`public inline FORCEINLINE void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a89efde0c6cb94fd08a5d58941c735248)`(ERHAPI_GuideEntityType && NewValue)` | Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true using move semantics.
 `public inline void `[`ClearOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a90b64c42f70bd95a58404b80e5af50a8)`()` | Clears the value of OwnerEntityType_Optional and sets OwnerEntityType_IsSet to false.
-`public inline bool `[`IsOwnerEntityTypeSet`](#structFRHAPI__GuideCreateRequest_1adad69b0e55b5d28d2f65b7df5a5cd2bb)`() const` | Checks whether OwnerEntityType_Optional has been set.
-`public inline void `[`SetOwnerEntityTypeToNull`](#structFRHAPI__GuideCreateRequest_1a402b965ba0a60f8462f608189d8c2d75)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsOwnerEntityTypeNull`](#structFRHAPI__GuideCreateRequest_1ab214262edf5183f6ad9c1da8edb07b91)`() const` | Checks whether OwnerEntityType_Optional is set to null.
-`public inline FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a4e40d42b48731ac10ce7238723f63a55)`()` | Gets the value of OwnerEntityId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a624ea822793f5bd761f66b29f3a4e4c6)`() const` | Gets the value of OwnerEntityId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aec6c92114a059d9ef873acb406bb4506)`(const FString & DefaultValue) const` | Gets the value of OwnerEntityId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aa0c9ba565714f460ba650c922912587a)`(FString & OutValue) const` | Fills OutValue with the value of OwnerEntityId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1ae63d4875a00ca91439ce3c57c51ccc0a)`()` | Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1a0f7be31db07c21a9776133a1748dddf6)`() const` | Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a8d5f1b6952ce4e4450fd8ff3b3583c0b)`(const FString & NewValue)` | Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true.
-`public inline void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ae1fa189bee8c6f84050909f32e1c069d)`(FString && NewValue)` | Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetOwnerEntityTypeToNull`](#structFRHAPI__GuideCreateRequest_1ac4388d66d525ba1458a0e91cb336c8dd)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsOwnerEntityTypeNull`](#structFRHAPI__GuideCreateRequest_1a2f22e24ceca7e85753675001d4047e02)`() const` | Checks whether OwnerEntityType_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ac0e3dbe65493ae1db5145ef5ad752a1d)`()` | Gets the value of OwnerEntityId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a47a0ff6a2279f50137dff1bd4ce41c78)`() const` | Gets the value of OwnerEntityId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aba5973663b6ce9fd9efb7eb37a22a3ae)`(const FString & DefaultValue) const` | Gets the value of OwnerEntityId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a04991800f0d8126ee6463cb25fa45b02)`(FString & OutValue) const` | Fills OutValue with the value of OwnerEntityId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1aac88ebe68ea5f9ac64d7591afe54c4dc)`()` | Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1a88a9d6009eacc5350ebd9aed8faaefd1)`() const` | Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1afd9b64bbdf2056babb4c954dfec9b2ae)`(const FString & NewValue)` | Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true.
+`public inline FORCEINLINE void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a93f37884665bddd6ae4cd5bb4ffcf8b0)`(FString && NewValue)` | Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true using move semantics.
 `public inline void `[`ClearOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ac2e91ef60aea7a665e42d3a4ed773dae)`()` | Clears the value of OwnerEntityId_Optional and sets OwnerEntityId_IsSet to false.
-`public inline bool `[`IsOwnerEntityIdSet`](#structFRHAPI__GuideCreateRequest_1a94429cbc56c8d6e91cea76ef7e585fc7)`() const` | Checks whether OwnerEntityId_Optional has been set.
-`public inline void `[`SetOwnerEntityIdToNull`](#structFRHAPI__GuideCreateRequest_1aa8b78978e650921690358e5cbe0b5f03)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsOwnerEntityIdNull`](#structFRHAPI__GuideCreateRequest_1a696b6c1967c94d2320a25b86c5f08a27)`() const` | Checks whether OwnerEntityId_Optional is set to null.
-`public inline FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1aba682504d7bc01f379a25b8b4bb6ef83)`()` | Gets the value of Content_Optional, regardless of it having been set.
-`public inline const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a76aefeb082deb30f37209149f7b5d422)`() const` | Gets the value of Content_Optional, regardless of it having been set.
-`public inline const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a60e401284b1a0541597c94fc76947ed0)`(const FString & DefaultValue) const` | Gets the value of Content_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a3378b881d054ccbc023d3f56e1b8fedb)`(FString & OutValue) const` | Fills OutValue with the value of Content_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetContentOrNull`](#structFRHAPI__GuideCreateRequest_1af93535881f645dec8544dc8167330221)`()` | Returns a pointer to Content_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetContentOrNull`](#structFRHAPI__GuideCreateRequest_1acee5c43f24e1db765b6cf124b743a426)`() const` | Returns a pointer to Content_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetContent`](#structFRHAPI__GuideCreateRequest_1a3d0f2d0b55f01527080dd62ebe009663)`(const FString & NewValue)` | Sets the value of Content_Optional and also sets Content_IsSet to true.
-`public inline void `[`SetContent`](#structFRHAPI__GuideCreateRequest_1a5021e7a7353435a7eea614df57a4e6a4)`(FString && NewValue)` | Sets the value of Content_Optional and also sets Content_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetOwnerEntityIdToNull`](#structFRHAPI__GuideCreateRequest_1a72deec495daabf2b8283f727347bb405)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsOwnerEntityIdNull`](#structFRHAPI__GuideCreateRequest_1a1549bba293d57973d51cc9289f38902c)`() const` | Checks whether OwnerEntityId_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1ab21fbe4982ae845d299c9e28c4bc81b5)`()` | Gets the value of Content_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1aebb2ad10d611263d42a52d0e02878557)`() const` | Gets the value of Content_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a949375cdba8f1f2f13d35c38aa9ae6df)`(const FString & DefaultValue) const` | Gets the value of Content_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a053552de751f816b68ba07e621d13860)`(FString & OutValue) const` | Fills OutValue with the value of Content_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetContentOrNull`](#structFRHAPI__GuideCreateRequest_1a321605a48619a8ae7fd43ba5711ab90a)`()` | Returns a pointer to Content_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetContentOrNull`](#structFRHAPI__GuideCreateRequest_1a71e02fde6d96468af4286fb9c8fa85a7)`() const` | Returns a pointer to Content_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetContent`](#structFRHAPI__GuideCreateRequest_1adf598b3e30e06207aca647df087f083e)`(const FString & NewValue)` | Sets the value of Content_Optional and also sets Content_IsSet to true.
+`public inline FORCEINLINE void `[`SetContent`](#structFRHAPI__GuideCreateRequest_1a429b7f29999ba3aefbca8f4f99ecdb85)`(FString && NewValue)` | Sets the value of Content_Optional and also sets Content_IsSet to true using move semantics.
 `public inline void `[`ClearContent`](#structFRHAPI__GuideCreateRequest_1a56f9d94c43a7efe13fa66135a6431a95)`()` | Clears the value of Content_Optional and sets Content_IsSet to false.
-`public inline bool `[`IsContentSet`](#structFRHAPI__GuideCreateRequest_1a3beef9693e17390b84e4b6aec144c6e7)`() const` | Checks whether Content_Optional has been set.
-`public inline void `[`SetContentToNull`](#structFRHAPI__GuideCreateRequest_1a06adbe8c7352e809eb7365330bfda662)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsContentNull`](#structFRHAPI__GuideCreateRequest_1aa2b98169860f3ffb952d1509b2ea2214)`() const` | Checks whether Content_Optional is set to null.
-`public inline TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1ab3afddefc37868c53cc355d065236d88)`()` | Gets the value of Sections_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1addd829f5fa1782b9eaad5d50714d96d4)`() const` | Gets the value of Sections_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1ae2232834638d245338e517f6ffb7e9da)`(const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & DefaultValue) const` | Gets the value of Sections_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a68d6cb30ac4f39f5149c34f216e57038)`(TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & OutValue) const` | Fills OutValue with the value of Sections_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > * `[`GetSectionsOrNull`](#structFRHAPI__GuideCreateRequest_1a415af1b209eeaed39fa8fd08c05cd699)`()` | Returns a pointer to Sections_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > * `[`GetSectionsOrNull`](#structFRHAPI__GuideCreateRequest_1ae133277dedfe7c095864753ddc71c28d)`() const` | Returns a pointer to Sections_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSections`](#structFRHAPI__GuideCreateRequest_1a27e4c682691fe563520128645ac7454a)`(const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & NewValue)` | Sets the value of Sections_Optional and also sets Sections_IsSet to true.
-`public inline void `[`SetSections`](#structFRHAPI__GuideCreateRequest_1a6e16c0a108a8f65e5c603f92ec7ccc7d)`(TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > && NewValue)` | Sets the value of Sections_Optional and also sets Sections_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetContentToNull`](#structFRHAPI__GuideCreateRequest_1a488867c37247ce131a9df8e9f1a9813a)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsContentNull`](#structFRHAPI__GuideCreateRequest_1a22101e94647e32ee24bf07851690e3d6)`() const` | Checks whether Content_Optional is set to null.
+`public inline FORCEINLINE TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a3ee9346ec13cb74aea629c7a4979be47)`()` | Gets the value of Sections_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a4b72098c8b4502c8910e6ff1c7cbc189)`() const` | Gets the value of Sections_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a65419929e316bc5d3e4b4bd2c1e71576)`(const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & DefaultValue) const` | Gets the value of Sections_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a774bfa09fa1f90df8e6d10fb6c837af3)`(TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & OutValue) const` | Fills OutValue with the value of Sections_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > * `[`GetSectionsOrNull`](#structFRHAPI__GuideCreateRequest_1a0aa6928e6723837add7ef99629d1828e)`()` | Returns a pointer to Sections_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > * `[`GetSectionsOrNull`](#structFRHAPI__GuideCreateRequest_1a6f83a89e9ff3ca913449fd3365a05108)`() const` | Returns a pointer to Sections_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSections`](#structFRHAPI__GuideCreateRequest_1a63d387da93b146f02ee67918a9e5f470)`(const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & NewValue)` | Sets the value of Sections_Optional and also sets Sections_IsSet to true.
+`public inline FORCEINLINE void `[`SetSections`](#structFRHAPI__GuideCreateRequest_1ad86a35a02493d12a92e51f9aa7b29259)`(TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > && NewValue)` | Sets the value of Sections_Optional and also sets Sections_IsSet to true using move semantics.
 `public inline void `[`ClearSections`](#structFRHAPI__GuideCreateRequest_1a23dcb4f40f3dcd8ed029216f13710475)`()` | Clears the value of Sections_Optional and sets Sections_IsSet to false.
-`public inline bool `[`IsSectionsSet`](#structFRHAPI__GuideCreateRequest_1ae50c8c8c88e09127706605aa4ef50dce)`() const` | Checks whether Sections_Optional has been set.
 
 ### Members
 
@@ -1033,99 +992,99 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetGuideType`](#structFRHAPI__GuideCreateRequest_1a756309913f6ac0437a4c1b8654a7442d)`()` <a id="structFRHAPI__GuideCreateRequest_1a756309913f6ac0437a4c1b8654a7442d"></a>
+#### `public inline FORCEINLINE FString & `[`GetGuideType`](#structFRHAPI__GuideCreateRequest_1a0c866cd3f0d76d1e7477a6f5c1547178)`()` <a id="structFRHAPI__GuideCreateRequest_1a0c866cd3f0d76d1e7477a6f5c1547178"></a>
 
 Gets the value of GuideType.
 
-#### `public inline const FString & `[`GetGuideType`](#structFRHAPI__GuideCreateRequest_1ac358d5717010874215cd47d13c3eac05)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac358d5717010874215cd47d13c3eac05"></a>
+#### `public inline FORCEINLINE const FString & `[`GetGuideType`](#structFRHAPI__GuideCreateRequest_1ab5bcf473b3ea8901581fc3fb7d358831)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab5bcf473b3ea8901581fc3fb7d358831"></a>
 
 Gets the value of GuideType.
 
-#### `public inline void `[`SetGuideType`](#structFRHAPI__GuideCreateRequest_1ac140cb9dc6b30b5bf07f3360dcae592b)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ac140cb9dc6b30b5bf07f3360dcae592b"></a>
+#### `public inline FORCEINLINE void `[`SetGuideType`](#structFRHAPI__GuideCreateRequest_1a8b5eb1bf42c16652fcf867ba7742e46b)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a8b5eb1bf42c16652fcf867ba7742e46b"></a>
 
 Sets the value of GuideType.
 
-#### `public inline void `[`SetGuideType`](#structFRHAPI__GuideCreateRequest_1af3d67dbcc35ed78cedb6e5e3607f297a)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1af3d67dbcc35ed78cedb6e5e3607f297a"></a>
+#### `public inline FORCEINLINE void `[`SetGuideType`](#structFRHAPI__GuideCreateRequest_1a5f66dbb2b51d79fff65553daedf349e8)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5f66dbb2b51d79fff65553daedf349e8"></a>
 
 Sets the value of GuideType using move semantics.
 
-#### `public inline FString & `[`GetLanguage`](#structFRHAPI__GuideCreateRequest_1a1d44e50fcc261e81d698c3adc9dcafee)`()` <a id="structFRHAPI__GuideCreateRequest_1a1d44e50fcc261e81d698c3adc9dcafee"></a>
+#### `public inline FORCEINLINE FString & `[`GetLanguage`](#structFRHAPI__GuideCreateRequest_1a6d2fe119ac20a5f73bd1e67bf3543894)`()` <a id="structFRHAPI__GuideCreateRequest_1a6d2fe119ac20a5f73bd1e67bf3543894"></a>
 
 Gets the value of Language.
 
-#### `public inline const FString & `[`GetLanguage`](#structFRHAPI__GuideCreateRequest_1a0a2eab8cc05b193a4ca13f7338b9a1bb)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0a2eab8cc05b193a4ca13f7338b9a1bb"></a>
+#### `public inline FORCEINLINE const FString & `[`GetLanguage`](#structFRHAPI__GuideCreateRequest_1af176317a6893c5a79520132fb3f035cf)`() const` <a id="structFRHAPI__GuideCreateRequest_1af176317a6893c5a79520132fb3f035cf"></a>
 
 Gets the value of Language.
 
-#### `public inline void `[`SetLanguage`](#structFRHAPI__GuideCreateRequest_1a6e1e7e69044ed102f2eeafe3a68f0486)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6e1e7e69044ed102f2eeafe3a68f0486"></a>
+#### `public inline FORCEINLINE void `[`SetLanguage`](#structFRHAPI__GuideCreateRequest_1ae8e710f5094b5896a7f025c052e01353)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ae8e710f5094b5896a7f025c052e01353"></a>
 
 Sets the value of Language.
 
-#### `public inline void `[`SetLanguage`](#structFRHAPI__GuideCreateRequest_1a0b5aec4450ba5b726a70c61f6d879895)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0b5aec4450ba5b726a70c61f6d879895"></a>
+#### `public inline FORCEINLINE void `[`SetLanguage`](#structFRHAPI__GuideCreateRequest_1a26f3303c2717a4bdc9ada43f77865a22)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a26f3303c2717a4bdc9ada43f77865a22"></a>
 
 Sets the value of Language using move semantics.
 
-#### `public inline FString & `[`GetGameVersion`](#structFRHAPI__GuideCreateRequest_1acf7553aadc20b85a7568d5447f6add14)`()` <a id="structFRHAPI__GuideCreateRequest_1acf7553aadc20b85a7568d5447f6add14"></a>
+#### `public inline FORCEINLINE FString & `[`GetGameVersion`](#structFRHAPI__GuideCreateRequest_1a68808049a090a78261485565984d6eb3)`()` <a id="structFRHAPI__GuideCreateRequest_1a68808049a090a78261485565984d6eb3"></a>
 
 Gets the value of GameVersion.
 
-#### `public inline const FString & `[`GetGameVersion`](#structFRHAPI__GuideCreateRequest_1ab1f5d26158e4cbe4094079dddc232eec)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab1f5d26158e4cbe4094079dddc232eec"></a>
+#### `public inline FORCEINLINE const FString & `[`GetGameVersion`](#structFRHAPI__GuideCreateRequest_1aa46564c9fbfe12d7ec31e5f870491938)`() const` <a id="structFRHAPI__GuideCreateRequest_1aa46564c9fbfe12d7ec31e5f870491938"></a>
 
 Gets the value of GameVersion.
 
-#### `public inline void `[`SetGameVersion`](#structFRHAPI__GuideCreateRequest_1a56788c5d1b97cf58256a8b8b395f788b)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a56788c5d1b97cf58256a8b8b395f788b"></a>
+#### `public inline FORCEINLINE void `[`SetGameVersion`](#structFRHAPI__GuideCreateRequest_1a0cebcc5ff4da925f650402ea1d033196)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0cebcc5ff4da925f650402ea1d033196"></a>
 
 Sets the value of GameVersion.
 
-#### `public inline void `[`SetGameVersion`](#structFRHAPI__GuideCreateRequest_1aab9a4cd57da3b3cb32de60cae05b0d08)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aab9a4cd57da3b3cb32de60cae05b0d08"></a>
+#### `public inline FORCEINLINE void `[`SetGameVersion`](#structFRHAPI__GuideCreateRequest_1aa1daee814adf44cde0d8b8de030e1488)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aa1daee814adf44cde0d8b8de030e1488"></a>
 
 Sets the value of GameVersion using move semantics.
 
-#### `public inline FString & `[`GetName`](#structFRHAPI__GuideCreateRequest_1af7d8fddc5c14e518722d3228174562a7)`()` <a id="structFRHAPI__GuideCreateRequest_1af7d8fddc5c14e518722d3228174562a7"></a>
+#### `public inline FORCEINLINE FString & `[`GetName`](#structFRHAPI__GuideCreateRequest_1a15874a7f4df6235d52a0ea6d3f1fc922)`()` <a id="structFRHAPI__GuideCreateRequest_1a15874a7f4df6235d52a0ea6d3f1fc922"></a>
 
 Gets the value of Name.
 
-#### `public inline const FString & `[`GetName`](#structFRHAPI__GuideCreateRequest_1a7faf4dc69cb686ac470f6fe9e60ff35d)`() const` <a id="structFRHAPI__GuideCreateRequest_1a7faf4dc69cb686ac470f6fe9e60ff35d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetName`](#structFRHAPI__GuideCreateRequest_1a5eccc330965ada620ccfa6efc2ec76eb)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5eccc330965ada620ccfa6efc2ec76eb"></a>
 
 Gets the value of Name.
 
-#### `public inline void `[`SetName`](#structFRHAPI__GuideCreateRequest_1a9878316c7d557557f433fbb621af8417)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a9878316c7d557557f433fbb621af8417"></a>
+#### `public inline FORCEINLINE void `[`SetName`](#structFRHAPI__GuideCreateRequest_1aeae1c236abf7db1ac4901beb86534ebd)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aeae1c236abf7db1ac4901beb86534ebd"></a>
 
 Sets the value of Name.
 
-#### `public inline void `[`SetName`](#structFRHAPI__GuideCreateRequest_1a4ef01727675d1e4a15b2459a36f3af6d)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a4ef01727675d1e4a15b2459a36f3af6d"></a>
+#### `public inline FORCEINLINE void `[`SetName`](#structFRHAPI__GuideCreateRequest_1ab4d266876035d110d0918643437b7617)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ab4d266876035d110d0918643437b7617"></a>
 
 Sets the value of Name using move semantics.
 
-#### `public inline FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a363f795333895e6a807567dd8ee9a737)`()` <a id="structFRHAPI__GuideCreateRequest_1a363f795333895e6a807567dd8ee9a737"></a>
+#### `public inline FORCEINLINE FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a0a9adfb1ff7437acac615124ef8c702a)`()` <a id="structFRHAPI__GuideCreateRequest_1a0a9adfb1ff7437acac615124ef8c702a"></a>
 
 Gets the value of ShortDesc_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a91bd9a1a8ee83570ccd2aab4d14d94b3)`() const` <a id="structFRHAPI__GuideCreateRequest_1a91bd9a1a8ee83570ccd2aab4d14d94b3"></a>
+#### `public inline FORCEINLINE const FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a6ef65510b31aa004c58811c60ea92d72)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6ef65510b31aa004c58811c60ea92d72"></a>
 
 Gets the value of ShortDesc_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a66fc56d70d7ab1f68e70464a0cc80506)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a66fc56d70d7ab1f68e70464a0cc80506"></a>
+#### `public inline FORCEINLINE const FString & `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a0d15cb9798b69db55f94991f7c347b40)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a0d15cb9798b69db55f94991f7c347b40"></a>
 
 Gets the value of ShortDesc_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1ae42c707312493ca269829574f1b7edc5)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae42c707312493ca269829574f1b7edc5"></a>
+#### `public inline FORCEINLINE bool `[`GetShortDesc`](#structFRHAPI__GuideCreateRequest_1a977d172cb50bb353f7bf9bcbf7eafd81)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a977d172cb50bb353f7bf9bcbf7eafd81"></a>
 
 Fills OutValue with the value of ShortDesc_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetShortDescOrNull`](#structFRHAPI__GuideCreateRequest_1a1d88f30ace23185de98cf352568fd1fd)`()` <a id="structFRHAPI__GuideCreateRequest_1a1d88f30ace23185de98cf352568fd1fd"></a>
+#### `public inline FORCEINLINE FString * `[`GetShortDescOrNull`](#structFRHAPI__GuideCreateRequest_1a3df1b19974550484a23a50810a59dafe)`()` <a id="structFRHAPI__GuideCreateRequest_1a3df1b19974550484a23a50810a59dafe"></a>
 
 Returns a pointer to ShortDesc_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetShortDescOrNull`](#structFRHAPI__GuideCreateRequest_1ae6b6243f2ea12f18aaca13f7d2158c0a)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae6b6243f2ea12f18aaca13f7d2158c0a"></a>
+#### `public inline FORCEINLINE const FString * `[`GetShortDescOrNull`](#structFRHAPI__GuideCreateRequest_1a45c5a057ada80f4dff359847d263e3dd)`() const` <a id="structFRHAPI__GuideCreateRequest_1a45c5a057ada80f4dff359847d263e3dd"></a>
 
 Returns a pointer to ShortDesc_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetShortDesc`](#structFRHAPI__GuideCreateRequest_1a20c9a7ff94b6fc2cc683cc0137d567a1)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a20c9a7ff94b6fc2cc683cc0137d567a1"></a>
+#### `public inline FORCEINLINE void `[`SetShortDesc`](#structFRHAPI__GuideCreateRequest_1a4bf152b95b8ce6f5e1c8d0fc124b6307)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a4bf152b95b8ce6f5e1c8d0fc124b6307"></a>
 
 Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true.
 
-#### `public inline void `[`SetShortDesc`](#structFRHAPI__GuideCreateRequest_1af49c3fb3b429e81d8481ba7763daf465)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1af49c3fb3b429e81d8481ba7763daf465"></a>
+#### `public inline FORCEINLINE void `[`SetShortDesc`](#structFRHAPI__GuideCreateRequest_1a7f722d6509dc7622d76f2e7a01f57e76)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a7f722d6509dc7622d76f2e7a01f57e76"></a>
 
 Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true using move semantics.
 
@@ -1133,47 +1092,43 @@ Sets the value of ShortDesc_Optional and also sets ShortDesc_IsSet to true using
 
 Clears the value of ShortDesc_Optional and sets ShortDesc_IsSet to false.
 
-#### `public inline bool `[`IsShortDescSet`](#structFRHAPI__GuideCreateRequest_1a667d972860ab4a49ec64556e39aae75b)`() const` <a id="structFRHAPI__GuideCreateRequest_1a667d972860ab4a49ec64556e39aae75b"></a>
-
-Checks whether ShortDesc_Optional has been set.
-
-#### `public inline void `[`SetShortDescToNull`](#structFRHAPI__GuideCreateRequest_1a94c66e240754ef1bd3a0a262d89822ae)`()` <a id="structFRHAPI__GuideCreateRequest_1a94c66e240754ef1bd3a0a262d89822ae"></a>
+#### `public inline FORCEINLINE void `[`SetShortDescToNull`](#structFRHAPI__GuideCreateRequest_1a8c80cbe05d91b6a13f426bddb18142a2)`()` <a id="structFRHAPI__GuideCreateRequest_1a8c80cbe05d91b6a13f426bddb18142a2"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsShortDescNull`](#structFRHAPI__GuideCreateRequest_1ad91a6bb2af815f51d174472bbfd8d9fd)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad91a6bb2af815f51d174472bbfd8d9fd"></a>
+#### `public inline FORCEINLINE bool `[`IsShortDescNull`](#structFRHAPI__GuideCreateRequest_1af2ec04ace7419cc049f0cd5e4b9035b4)`() const` <a id="structFRHAPI__GuideCreateRequest_1af2ec04ace7419cc049f0cd5e4b9035b4"></a>
 
 Checks whether ShortDesc_Optional is set to null.
 
-#### `public inline int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a27d961c7001a03db0cc33fbae0b7b43b)`()` <a id="structFRHAPI__GuideCreateRequest_1a27d961c7001a03db0cc33fbae0b7b43b"></a>
+#### `public inline FORCEINLINE int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a2a536ec7f053192156a7affc122b3e45)`()` <a id="structFRHAPI__GuideCreateRequest_1a2a536ec7f053192156a7affc122b3e45"></a>
 
 Gets the value of V_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a844659cc65bc6bfa2c6b449842071f3a)`() const` <a id="structFRHAPI__GuideCreateRequest_1a844659cc65bc6bfa2c6b449842071f3a"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a022ee74b8e39733cb6bd0b31a8f57a90)`() const` <a id="structFRHAPI__GuideCreateRequest_1a022ee74b8e39733cb6bd0b31a8f57a90"></a>
 
 Gets the value of V_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1ada7b011f7247cd5f3a1a376fffc075c8)`(const int32 & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ada7b011f7247cd5f3a1a376fffc075c8"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetV`](#structFRHAPI__GuideCreateRequest_1a1ad4c72b224148ab161b45a9dcc35a91)`(const int32 & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a1ad4c72b224148ab161b45a9dcc35a91"></a>
 
 Gets the value of V_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetV`](#structFRHAPI__GuideCreateRequest_1adb87141affd2f4794a5c52aad89f6304)`(int32 & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1adb87141affd2f4794a5c52aad89f6304"></a>
+#### `public inline FORCEINLINE bool `[`GetV`](#structFRHAPI__GuideCreateRequest_1a289f7ecf3dd17a059c5ada7381cc0872)`(int32 & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a289f7ecf3dd17a059c5ada7381cc0872"></a>
 
 Fills OutValue with the value of V_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetVOrNull`](#structFRHAPI__GuideCreateRequest_1a1ae801278714abaa5179e26c0d012e72)`()` <a id="structFRHAPI__GuideCreateRequest_1a1ae801278714abaa5179e26c0d012e72"></a>
+#### `public inline FORCEINLINE int32 * `[`GetVOrNull`](#structFRHAPI__GuideCreateRequest_1a2c006c6cdba8c293ae4fbd686d5a09df)`()` <a id="structFRHAPI__GuideCreateRequest_1a2c006c6cdba8c293ae4fbd686d5a09df"></a>
 
 Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetVOrNull`](#structFRHAPI__GuideCreateRequest_1a1bc72d6b5ed080ae33562cc4a465217a)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1bc72d6b5ed080ae33562cc4a465217a"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetVOrNull`](#structFRHAPI__GuideCreateRequest_1aec36020ec04ed56b2f948733a3eebcd8)`() const` <a id="structFRHAPI__GuideCreateRequest_1aec36020ec04ed56b2f948733a3eebcd8"></a>
 
 Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetV`](#structFRHAPI__GuideCreateRequest_1a8a97c25917b43af1eec3bd515eeb77a8)`(const int32 & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a8a97c25917b43af1eec3bd515eeb77a8"></a>
+#### `public inline FORCEINLINE void `[`SetV`](#structFRHAPI__GuideCreateRequest_1a921a610078d44b84ea67d2877286c698)`(const int32 & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a921a610078d44b84ea67d2877286c698"></a>
 
 Sets the value of V_Optional and also sets V_IsSet to true.
 
-#### `public inline void `[`SetV`](#structFRHAPI__GuideCreateRequest_1a6a565a41bbba63ebdd1063f42b7a2495)`(int32 && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6a565a41bbba63ebdd1063f42b7a2495"></a>
+#### `public inline FORCEINLINE void `[`SetV`](#structFRHAPI__GuideCreateRequest_1afc9cce39c49283b324c6849516309adc)`(int32 && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1afc9cce39c49283b324c6849516309adc"></a>
 
 Sets the value of V_Optional and also sets V_IsSet to true using move semantics.
 
@@ -1181,47 +1136,39 @@ Sets the value of V_Optional and also sets V_IsSet to true using move semantics.
 
 Clears the value of V_Optional and sets V_IsSet to false.
 
-#### `public inline bool `[`IsVSet`](#structFRHAPI__GuideCreateRequest_1a8df4a526c0b9e7b8e5aa009ad3f75e57)`() const` <a id="structFRHAPI__GuideCreateRequest_1a8df4a526c0b9e7b8e5aa009ad3f75e57"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_V`](#structFRHAPI__GuideCreateRequest_1a4ef3a835c6393e2cdd8b918df5d69d93)`()` <a id="structFRHAPI__GuideCreateRequest_1a4ef3a835c6393e2cdd8b918df5d69d93"></a>
 
-Checks whether V_Optional has been set.
+Returns the default value of V.
 
-#### `public inline bool `[`IsVDefaultValue`](#structFRHAPI__GuideCreateRequest_1ae057ff78b9b280b11b95030da5ba8ead)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae057ff78b9b280b11b95030da5ba8ead"></a>
-
-Returns true if V_Optional is set and matches the default value.
-
-#### `public inline void `[`SetVToDefault`](#structFRHAPI__GuideCreateRequest_1a54137ca128b783c5ab522346b85caa1d)`()` <a id="structFRHAPI__GuideCreateRequest_1a54137ca128b783c5ab522346b85caa1d"></a>
-
-Sets the value of V_Optional to its default and also sets V_IsSet to true.
-
-#### `public inline int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a063b4b27f21ef68f727a70bd2736a8cd)`()` <a id="structFRHAPI__GuideCreateRequest_1a063b4b27f21ef68f727a70bd2736a8cd"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a4e65366801b70ed51107ca4fef9d4f2d)`()` <a id="structFRHAPI__GuideCreateRequest_1a4e65366801b70ed51107ca4fef9d4f2d"></a>
 
 Gets the value of PromotionPriority_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a5d3acf2b747d88fdd400d6a663093130)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5d3acf2b747d88fdd400d6a663093130"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a644a8d09e3b964d654d63d7518ba8499)`() const` <a id="structFRHAPI__GuideCreateRequest_1a644a8d09e3b964d654d63d7518ba8499"></a>
 
 Gets the value of PromotionPriority_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1af0581b743c6b7dd0cacc1b61ec7d7401)`(const int32 & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1af0581b743c6b7dd0cacc1b61ec7d7401"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a8b89f0c0efd183a77eafc5f22011898a)`(const int32 & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a8b89f0c0efd183a77eafc5f22011898a"></a>
 
 Gets the value of PromotionPriority_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a58a0bcd2aa97eca092ac98b4a9f0b85c)`(int32 & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a58a0bcd2aa97eca092ac98b4a9f0b85c"></a>
+#### `public inline FORCEINLINE bool `[`GetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1ada52523a1e758cc6154c8f5515c6368d)`(int32 & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ada52523a1e758cc6154c8f5515c6368d"></a>
 
 Fills OutValue with the value of PromotionPriority_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1aaf8f383ef8f57d0ebb7b65b60272f676)`()` <a id="structFRHAPI__GuideCreateRequest_1aaf8f383ef8f57d0ebb7b65b60272f676"></a>
+#### `public inline FORCEINLINE int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1a8fd62f50957fb0aebb897df4dee29830)`()` <a id="structFRHAPI__GuideCreateRequest_1a8fd62f50957fb0aebb897df4dee29830"></a>
 
 Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1abd6eb8342d9ee296de9a1733a5b1976e)`() const` <a id="structFRHAPI__GuideCreateRequest_1abd6eb8342d9ee296de9a1733a5b1976e"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetPromotionPriorityOrNull`](#structFRHAPI__GuideCreateRequest_1a99cedae572592954c45ef78b19abff89)`() const` <a id="structFRHAPI__GuideCreateRequest_1a99cedae572592954c45ef78b19abff89"></a>
 
 Returns a pointer to PromotionPriority_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a0ea0030ca6890651664849fa18489b56)`(const int32 & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0ea0030ca6890651664849fa18489b56"></a>
+#### `public inline FORCEINLINE void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a74c6e6efad827bc0b47195ea5f8142f4)`(const int32 & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a74c6e6efad827bc0b47195ea5f8142f4"></a>
 
 Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true.
 
-#### `public inline void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1abc46a603640001adb9a870a26618357e)`(int32 && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1abc46a603640001adb9a870a26618357e"></a>
+#### `public inline FORCEINLINE void `[`SetPromotionPriority`](#structFRHAPI__GuideCreateRequest_1a7c424595f6676b945980bf0f32c4715f)`(int32 && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a7c424595f6676b945980bf0f32c4715f"></a>
 
 Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsSet to true using move semantics.
 
@@ -1229,47 +1176,39 @@ Sets the value of PromotionPriority_Optional and also sets PromotionPriority_IsS
 
 Clears the value of PromotionPriority_Optional and sets PromotionPriority_IsSet to false.
 
-#### `public inline bool `[`IsPromotionPrioritySet`](#structFRHAPI__GuideCreateRequest_1aaa8db84c9285fffb61d8cc37664e3d5f)`() const` <a id="structFRHAPI__GuideCreateRequest_1aaa8db84c9285fffb61d8cc37664e3d5f"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PromotionPriority`](#structFRHAPI__GuideCreateRequest_1adb97633768deb0abc101b67c1ae8c3e6)`()` <a id="structFRHAPI__GuideCreateRequest_1adb97633768deb0abc101b67c1ae8c3e6"></a>
 
-Checks whether PromotionPriority_Optional has been set.
+Returns the default value of PromotionPriority.
 
-#### `public inline bool `[`IsPromotionPriorityDefaultValue`](#structFRHAPI__GuideCreateRequest_1a7a17d8c3843b4e63ed648f09fcb871b3)`() const` <a id="structFRHAPI__GuideCreateRequest_1a7a17d8c3843b4e63ed648f09fcb871b3"></a>
-
-Returns true if PromotionPriority_Optional is set and matches the default value.
-
-#### `public inline void `[`SetPromotionPriorityToDefault`](#structFRHAPI__GuideCreateRequest_1a30320ea46c8c5b6a1a943f170c6319ab)`()` <a id="structFRHAPI__GuideCreateRequest_1a30320ea46c8c5b6a1a943f170c6319ab"></a>
-
-Sets the value of PromotionPriority_Optional to its default and also sets PromotionPriority_IsSet to true.
-
-#### `public inline FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a936c0390be75690b48af415faab88fad)`()` <a id="structFRHAPI__GuideCreateRequest_1a936c0390be75690b48af415faab88fad"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1ae7aeea0c0e7929df8b125ac069166f83)`()` <a id="structFRHAPI__GuideCreateRequest_1ae7aeea0c0e7929df8b125ac069166f83"></a>
 
 Gets the value of Ref1_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a1a000fb4716a92afa5a60af875141ba4)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1a000fb4716a92afa5a60af875141ba4"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1abde50b9dce2ae8c8edde4c2b6a8129ff)`() const` <a id="structFRHAPI__GuideCreateRequest_1abde50b9dce2ae8c8edde4c2b6a8129ff"></a>
 
 Gets the value of Ref1_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1ab4047aa3c2416c2b6129aad9ccfc1c5c)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ab4047aa3c2416c2b6129aad9ccfc1c5c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a75ade097618d5ef01dd532c8024ae4ec)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a75ade097618d5ef01dd532c8024ae4ec"></a>
 
 Gets the value of Ref1_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1a23ceb598923deec38ff7828ce12bbe75)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a23ceb598923deec38ff7828ce12bbe75"></a>
+#### `public inline FORCEINLINE bool `[`GetRef1`](#structFRHAPI__GuideCreateRequest_1aab851e5535c90c1e0fd454ce0350e056)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1aab851e5535c90c1e0fd454ce0350e056"></a>
 
 Fills OutValue with the value of Ref1_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef1OrNull`](#structFRHAPI__GuideCreateRequest_1a1df2b00ef481e4ca9e8679b74ac2e6e1)`()` <a id="structFRHAPI__GuideCreateRequest_1a1df2b00ef481e4ca9e8679b74ac2e6e1"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef1OrNull`](#structFRHAPI__GuideCreateRequest_1af184cc0465c15e1af83079c818605b17)`()` <a id="structFRHAPI__GuideCreateRequest_1af184cc0465c15e1af83079c818605b17"></a>
 
 Returns a pointer to Ref1_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef1OrNull`](#structFRHAPI__GuideCreateRequest_1ac846db0537420e46bf926bf8ef6d5557)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac846db0537420e46bf926bf8ef6d5557"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef1OrNull`](#structFRHAPI__GuideCreateRequest_1a574255a50a95be3f736c93f85b8d8983)`() const` <a id="structFRHAPI__GuideCreateRequest_1a574255a50a95be3f736c93f85b8d8983"></a>
 
 Returns a pointer to Ref1_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef1`](#structFRHAPI__GuideCreateRequest_1a023c7a11d310e22a6730a517290f5b65)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a023c7a11d310e22a6730a517290f5b65"></a>
+#### `public inline FORCEINLINE void `[`SetRef1`](#structFRHAPI__GuideCreateRequest_1aa9266fbf23a55ba35ada24ba636c96ea)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aa9266fbf23a55ba35ada24ba636c96ea"></a>
 
 Sets the value of Ref1_Optional and also sets Ref1_IsSet to true.
 
-#### `public inline void `[`SetRef1`](#structFRHAPI__GuideCreateRequest_1a48f2b6f4ca500f061770729b966aa649)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a48f2b6f4ca500f061770729b966aa649"></a>
+#### `public inline FORCEINLINE void `[`SetRef1`](#structFRHAPI__GuideCreateRequest_1a4ff5a59be81c56389a6a9336ce0a8eac)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a4ff5a59be81c56389a6a9336ce0a8eac"></a>
 
 Sets the value of Ref1_Optional and also sets Ref1_IsSet to true using move semantics.
 
@@ -1277,47 +1216,43 @@ Sets the value of Ref1_Optional and also sets Ref1_IsSet to true using move sema
 
 Clears the value of Ref1_Optional and sets Ref1_IsSet to false.
 
-#### `public inline bool `[`IsRef1Set`](#structFRHAPI__GuideCreateRequest_1a19b3016cc858c5857897f02110159bcc)`() const` <a id="structFRHAPI__GuideCreateRequest_1a19b3016cc858c5857897f02110159bcc"></a>
-
-Checks whether Ref1_Optional has been set.
-
-#### `public inline void `[`SetRef1ToNull`](#structFRHAPI__GuideCreateRequest_1a965eedd18158c1c32b507e0508e0652d)`()` <a id="structFRHAPI__GuideCreateRequest_1a965eedd18158c1c32b507e0508e0652d"></a>
+#### `public inline FORCEINLINE void `[`SetRef1ToNull`](#structFRHAPI__GuideCreateRequest_1a281fb3c22c8c113513fd0636eec0cd9f)`()` <a id="structFRHAPI__GuideCreateRequest_1a281fb3c22c8c113513fd0636eec0cd9f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef1Null`](#structFRHAPI__GuideCreateRequest_1a8300059c0a846246a84ed1ad15b1e601)`() const` <a id="structFRHAPI__GuideCreateRequest_1a8300059c0a846246a84ed1ad15b1e601"></a>
+#### `public inline FORCEINLINE bool `[`IsRef1Null`](#structFRHAPI__GuideCreateRequest_1a8957293d7c1ab03f674a06fa74bf0046)`() const` <a id="structFRHAPI__GuideCreateRequest_1a8957293d7c1ab03f674a06fa74bf0046"></a>
 
 Checks whether Ref1_Optional is set to null.
 
-#### `public inline FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1a2fe77de07bead596ddb1d608a908bb44)`()` <a id="structFRHAPI__GuideCreateRequest_1a2fe77de07bead596ddb1d608a908bb44"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1aba3f8f2e314c01e6ee490dbe1ecc5b4b)`()` <a id="structFRHAPI__GuideCreateRequest_1aba3f8f2e314c01e6ee490dbe1ecc5b4b"></a>
 
 Gets the value of Ref2_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1ac89c04b81dcd85665b96f3ac2b5e03be)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac89c04b81dcd85665b96f3ac2b5e03be"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1aa75e0f4e71d96e46d3cf7886e46184eb)`() const` <a id="structFRHAPI__GuideCreateRequest_1aa75e0f4e71d96e46d3cf7886e46184eb"></a>
 
 Gets the value of Ref2_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1aa280b65a8004ffc5316e712a957c06e0)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1aa280b65a8004ffc5316e712a957c06e0"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1a1cf8870ccdb2f6b50345628911dd8adf)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a1cf8870ccdb2f6b50345628911dd8adf"></a>
 
 Gets the value of Ref2_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1ab5528b4d3142484ad4f57fee9e50e757)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ab5528b4d3142484ad4f57fee9e50e757"></a>
+#### `public inline FORCEINLINE bool `[`GetRef2`](#structFRHAPI__GuideCreateRequest_1a0b3eb50687f8f07de00120df683b70ba)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a0b3eb50687f8f07de00120df683b70ba"></a>
 
 Fills OutValue with the value of Ref2_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef2OrNull`](#structFRHAPI__GuideCreateRequest_1a2fc5a86bd3858bba42c5b606a86161fc)`()` <a id="structFRHAPI__GuideCreateRequest_1a2fc5a86bd3858bba42c5b606a86161fc"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef2OrNull`](#structFRHAPI__GuideCreateRequest_1a4f95d167cdd527017d3907c542530e04)`()` <a id="structFRHAPI__GuideCreateRequest_1a4f95d167cdd527017d3907c542530e04"></a>
 
 Returns a pointer to Ref2_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef2OrNull`](#structFRHAPI__GuideCreateRequest_1a1ce0c966f8852fc2b7b6365e73a298f7)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1ce0c966f8852fc2b7b6365e73a298f7"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef2OrNull`](#structFRHAPI__GuideCreateRequest_1a90710aa1b289085cdb49346d9238b7ec)`() const` <a id="structFRHAPI__GuideCreateRequest_1a90710aa1b289085cdb49346d9238b7ec"></a>
 
 Returns a pointer to Ref2_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef2`](#structFRHAPI__GuideCreateRequest_1a5520a580d347da7f7f8322fae0de9899)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5520a580d347da7f7f8322fae0de9899"></a>
+#### `public inline FORCEINLINE void `[`SetRef2`](#structFRHAPI__GuideCreateRequest_1aebe7b7e6b476dfb472219873ea2e860c)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aebe7b7e6b476dfb472219873ea2e860c"></a>
 
 Sets the value of Ref2_Optional and also sets Ref2_IsSet to true.
 
-#### `public inline void `[`SetRef2`](#structFRHAPI__GuideCreateRequest_1a2a9d347a4ed537df6feab13370cccebf)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a2a9d347a4ed537df6feab13370cccebf"></a>
+#### `public inline FORCEINLINE void `[`SetRef2`](#structFRHAPI__GuideCreateRequest_1adc55409c6c1e3a3db9940122790df44a)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1adc55409c6c1e3a3db9940122790df44a"></a>
 
 Sets the value of Ref2_Optional and also sets Ref2_IsSet to true using move semantics.
 
@@ -1325,47 +1260,43 @@ Sets the value of Ref2_Optional and also sets Ref2_IsSet to true using move sema
 
 Clears the value of Ref2_Optional and sets Ref2_IsSet to false.
 
-#### `public inline bool `[`IsRef2Set`](#structFRHAPI__GuideCreateRequest_1ad1e5fd93a83b32ca4a01d1ad62cdb420)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad1e5fd93a83b32ca4a01d1ad62cdb420"></a>
-
-Checks whether Ref2_Optional has been set.
-
-#### `public inline void `[`SetRef2ToNull`](#structFRHAPI__GuideCreateRequest_1ab61ee45f7434b7946fca7c10fc85f23c)`()` <a id="structFRHAPI__GuideCreateRequest_1ab61ee45f7434b7946fca7c10fc85f23c"></a>
+#### `public inline FORCEINLINE void `[`SetRef2ToNull`](#structFRHAPI__GuideCreateRequest_1a065909223cf0d3ddcfdbf25f0fcf4225)`()` <a id="structFRHAPI__GuideCreateRequest_1a065909223cf0d3ddcfdbf25f0fcf4225"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef2Null`](#structFRHAPI__GuideCreateRequest_1aa128e08af8f29659ddb0fdfae8915e2f)`() const` <a id="structFRHAPI__GuideCreateRequest_1aa128e08af8f29659ddb0fdfae8915e2f"></a>
+#### `public inline FORCEINLINE bool `[`IsRef2Null`](#structFRHAPI__GuideCreateRequest_1a16b68ea94a6e747a1c1931ae82106bd5)`() const` <a id="structFRHAPI__GuideCreateRequest_1a16b68ea94a6e747a1c1931ae82106bd5"></a>
 
 Checks whether Ref2_Optional is set to null.
 
-#### `public inline FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a9711944438b3dc3849c577e50be4f8bd)`()` <a id="structFRHAPI__GuideCreateRequest_1a9711944438b3dc3849c577e50be4f8bd"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1af22b53ecb8bd8f617417506d63425f08)`()` <a id="structFRHAPI__GuideCreateRequest_1af22b53ecb8bd8f617417506d63425f08"></a>
 
 Gets the value of Ref3_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a87ccf93bfb7080f3ba1dfbb34d911cdb)`() const` <a id="structFRHAPI__GuideCreateRequest_1a87ccf93bfb7080f3ba1dfbb34d911cdb"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a07fd39703b5260ef26da7b4ee9033c13)`() const` <a id="structFRHAPI__GuideCreateRequest_1a07fd39703b5260ef26da7b4ee9033c13"></a>
 
 Gets the value of Ref3_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a00b737fa749a92b89085c2a14b46383c)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a00b737fa749a92b89085c2a14b46383c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a44965d6428a7596702e1150e63269e19)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a44965d6428a7596702e1150e63269e19"></a>
 
 Gets the value of Ref3_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a89ddeb57df2f618cf6a2768a9a54f581)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a89ddeb57df2f618cf6a2768a9a54f581"></a>
+#### `public inline FORCEINLINE bool `[`GetRef3`](#structFRHAPI__GuideCreateRequest_1a4e4e66ce3ff5381439eccf179fe68b40)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a4e4e66ce3ff5381439eccf179fe68b40"></a>
 
 Fills OutValue with the value of Ref3_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef3OrNull`](#structFRHAPI__GuideCreateRequest_1a0e1af6df89728c428d4c5fca2e07ed85)`()` <a id="structFRHAPI__GuideCreateRequest_1a0e1af6df89728c428d4c5fca2e07ed85"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef3OrNull`](#structFRHAPI__GuideCreateRequest_1a071e9934b651e7d8d586e93047ef9b65)`()` <a id="structFRHAPI__GuideCreateRequest_1a071e9934b651e7d8d586e93047ef9b65"></a>
 
 Returns a pointer to Ref3_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef3OrNull`](#structFRHAPI__GuideCreateRequest_1a42f2498a2d74382b215a8ce201f19524)`() const` <a id="structFRHAPI__GuideCreateRequest_1a42f2498a2d74382b215a8ce201f19524"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef3OrNull`](#structFRHAPI__GuideCreateRequest_1a0877c488b733b69f6840055696a7ef0f)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0877c488b733b69f6840055696a7ef0f"></a>
 
 Returns a pointer to Ref3_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef3`](#structFRHAPI__GuideCreateRequest_1ad73358ed86604e14a544c7dffbea2e49)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ad73358ed86604e14a544c7dffbea2e49"></a>
+#### `public inline FORCEINLINE void `[`SetRef3`](#structFRHAPI__GuideCreateRequest_1a82c9dd9bd1de3e6b1f8b11652ad58806)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a82c9dd9bd1de3e6b1f8b11652ad58806"></a>
 
 Sets the value of Ref3_Optional and also sets Ref3_IsSet to true.
 
-#### `public inline void `[`SetRef3`](#structFRHAPI__GuideCreateRequest_1a6636fe91294fdc7698ab3b4a23fce1e3)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6636fe91294fdc7698ab3b4a23fce1e3"></a>
+#### `public inline FORCEINLINE void `[`SetRef3`](#structFRHAPI__GuideCreateRequest_1a95c78e1bcb5b010d2d2f260ce21b94fe)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a95c78e1bcb5b010d2d2f260ce21b94fe"></a>
 
 Sets the value of Ref3_Optional and also sets Ref3_IsSet to true using move semantics.
 
@@ -1373,47 +1304,43 @@ Sets the value of Ref3_Optional and also sets Ref3_IsSet to true using move sema
 
 Clears the value of Ref3_Optional and sets Ref3_IsSet to false.
 
-#### `public inline bool `[`IsRef3Set`](#structFRHAPI__GuideCreateRequest_1a264f6efc1fc671340353290579af9e87)`() const` <a id="structFRHAPI__GuideCreateRequest_1a264f6efc1fc671340353290579af9e87"></a>
-
-Checks whether Ref3_Optional has been set.
-
-#### `public inline void `[`SetRef3ToNull`](#structFRHAPI__GuideCreateRequest_1ab1102560183e78fb17fb402ba1e3cbea)`()` <a id="structFRHAPI__GuideCreateRequest_1ab1102560183e78fb17fb402ba1e3cbea"></a>
+#### `public inline FORCEINLINE void `[`SetRef3ToNull`](#structFRHAPI__GuideCreateRequest_1a477b3e2f1794c3f644f61e9011ae5fba)`()` <a id="structFRHAPI__GuideCreateRequest_1a477b3e2f1794c3f644f61e9011ae5fba"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef3Null`](#structFRHAPI__GuideCreateRequest_1a8f84896fd4882ce11b7bf31fa85093e3)`() const` <a id="structFRHAPI__GuideCreateRequest_1a8f84896fd4882ce11b7bf31fa85093e3"></a>
+#### `public inline FORCEINLINE bool `[`IsRef3Null`](#structFRHAPI__GuideCreateRequest_1a96e8aa9acdad5c17527e2364d04e1f14)`() const` <a id="structFRHAPI__GuideCreateRequest_1a96e8aa9acdad5c17527e2364d04e1f14"></a>
 
 Checks whether Ref3_Optional is set to null.
 
-#### `public inline FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1aa65a30fdac0e42035f1ef2c930288276)`()` <a id="structFRHAPI__GuideCreateRequest_1aa65a30fdac0e42035f1ef2c930288276"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1aa4c67d7f956717c58399510e2568477f)`()` <a id="structFRHAPI__GuideCreateRequest_1aa4c67d7f956717c58399510e2568477f"></a>
 
 Gets the value of Ref4_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1ad0e5c296e2b3cb00433dc9bc6fb271cb)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad0e5c296e2b3cb00433dc9bc6fb271cb"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1a698d1600e44dd7392e333fa146f6a0f5)`() const` <a id="structFRHAPI__GuideCreateRequest_1a698d1600e44dd7392e333fa146f6a0f5"></a>
 
 Gets the value of Ref4_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1afa6ab39c992e882b047132babb1a9296)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1afa6ab39c992e882b047132babb1a9296"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1ad16dbbdd60d299c3f3d4b112b2314e94)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ad16dbbdd60d299c3f3d4b112b2314e94"></a>
 
 Gets the value of Ref4_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1a8eed4fd8fa13893d2eb8df51e44e4714)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a8eed4fd8fa13893d2eb8df51e44e4714"></a>
+#### `public inline FORCEINLINE bool `[`GetRef4`](#structFRHAPI__GuideCreateRequest_1a28a3359bde897b6d22e2d9007fbb5315)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a28a3359bde897b6d22e2d9007fbb5315"></a>
 
 Fills OutValue with the value of Ref4_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef4OrNull`](#structFRHAPI__GuideCreateRequest_1a8ac65dd4a69b40220ade83b6591d2b1e)`()` <a id="structFRHAPI__GuideCreateRequest_1a8ac65dd4a69b40220ade83b6591d2b1e"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef4OrNull`](#structFRHAPI__GuideCreateRequest_1a963ffdc111a5b67a41274915dfd7b4c7)`()` <a id="structFRHAPI__GuideCreateRequest_1a963ffdc111a5b67a41274915dfd7b4c7"></a>
 
 Returns a pointer to Ref4_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef4OrNull`](#structFRHAPI__GuideCreateRequest_1a4e5a37c775330ae8e8fa70259bd96420)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4e5a37c775330ae8e8fa70259bd96420"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef4OrNull`](#structFRHAPI__GuideCreateRequest_1ab2c82b0cecaf7b20c54bc5801e5312ce)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab2c82b0cecaf7b20c54bc5801e5312ce"></a>
 
 Returns a pointer to Ref4_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef4`](#structFRHAPI__GuideCreateRequest_1a3cbfd1e6f55442f72254733b77609022)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a3cbfd1e6f55442f72254733b77609022"></a>
+#### `public inline FORCEINLINE void `[`SetRef4`](#structFRHAPI__GuideCreateRequest_1a5302f502c8c71d2fc1a0b8a403a9e621)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5302f502c8c71d2fc1a0b8a403a9e621"></a>
 
 Sets the value of Ref4_Optional and also sets Ref4_IsSet to true.
 
-#### `public inline void `[`SetRef4`](#structFRHAPI__GuideCreateRequest_1a8393457c43b4428d6e820472162a1344)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a8393457c43b4428d6e820472162a1344"></a>
+#### `public inline FORCEINLINE void `[`SetRef4`](#structFRHAPI__GuideCreateRequest_1ad57b4dc0f22479e6cf9cca641a9111d2)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ad57b4dc0f22479e6cf9cca641a9111d2"></a>
 
 Sets the value of Ref4_Optional and also sets Ref4_IsSet to true using move semantics.
 
@@ -1421,47 +1348,43 @@ Sets the value of Ref4_Optional and also sets Ref4_IsSet to true using move sema
 
 Clears the value of Ref4_Optional and sets Ref4_IsSet to false.
 
-#### `public inline bool `[`IsRef4Set`](#structFRHAPI__GuideCreateRequest_1a5be2f7be0a45c12213c16bf014ddbef6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5be2f7be0a45c12213c16bf014ddbef6"></a>
-
-Checks whether Ref4_Optional has been set.
-
-#### `public inline void `[`SetRef4ToNull`](#structFRHAPI__GuideCreateRequest_1a338185c983bf9c64291406f1824b88b3)`()` <a id="structFRHAPI__GuideCreateRequest_1a338185c983bf9c64291406f1824b88b3"></a>
+#### `public inline FORCEINLINE void `[`SetRef4ToNull`](#structFRHAPI__GuideCreateRequest_1a22b754a21b789e9e33400f91fdddb70f)`()` <a id="structFRHAPI__GuideCreateRequest_1a22b754a21b789e9e33400f91fdddb70f"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef4Null`](#structFRHAPI__GuideCreateRequest_1a83726f27af411b254aaed358f3772e59)`() const` <a id="structFRHAPI__GuideCreateRequest_1a83726f27af411b254aaed358f3772e59"></a>
+#### `public inline FORCEINLINE bool `[`IsRef4Null`](#structFRHAPI__GuideCreateRequest_1aef369116f6762c72272e0e8ee7094ca8)`() const` <a id="structFRHAPI__GuideCreateRequest_1aef369116f6762c72272e0e8ee7094ca8"></a>
 
 Checks whether Ref4_Optional is set to null.
 
-#### `public inline FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a33c87c450faddfe0335ea25c8c152dd6)`()` <a id="structFRHAPI__GuideCreateRequest_1a33c87c450faddfe0335ea25c8c152dd6"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a39953b5e22254b430929709415907525)`()` <a id="structFRHAPI__GuideCreateRequest_1a39953b5e22254b430929709415907525"></a>
 
 Gets the value of Ref5_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a80c138e619c5d013e612c375b8962bc6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a80c138e619c5d013e612c375b8962bc6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a4281fe2bc8722e1bcbe585edbffee799)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4281fe2bc8722e1bcbe585edbffee799"></a>
 
 Gets the value of Ref5_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1ac4adc46ab0ab68b4b2f3636f60be0523)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ac4adc46ab0ab68b4b2f3636f60be0523"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a1664248d1f3aaec0471fa01e5c9bf074)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a1664248d1f3aaec0471fa01e5c9bf074"></a>
 
 Gets the value of Ref5_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1adee7dab0632ed7194ce15f396b0ad77d)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1adee7dab0632ed7194ce15f396b0ad77d"></a>
+#### `public inline FORCEINLINE bool `[`GetRef5`](#structFRHAPI__GuideCreateRequest_1a5519754c3752924f17a9295beec07631)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5519754c3752924f17a9295beec07631"></a>
 
 Fills OutValue with the value of Ref5_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef5OrNull`](#structFRHAPI__GuideCreateRequest_1a40d008f77a208fa4c45b10ecd9b124e2)`()` <a id="structFRHAPI__GuideCreateRequest_1a40d008f77a208fa4c45b10ecd9b124e2"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef5OrNull`](#structFRHAPI__GuideCreateRequest_1a05b54649b560494ab164329bf2d445c6)`()` <a id="structFRHAPI__GuideCreateRequest_1a05b54649b560494ab164329bf2d445c6"></a>
 
 Returns a pointer to Ref5_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef5OrNull`](#structFRHAPI__GuideCreateRequest_1a087bda225bf963994b068853888bd26d)`() const` <a id="structFRHAPI__GuideCreateRequest_1a087bda225bf963994b068853888bd26d"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef5OrNull`](#structFRHAPI__GuideCreateRequest_1afeb0fb9d989c4ac3c55098a9955b9ed8)`() const` <a id="structFRHAPI__GuideCreateRequest_1afeb0fb9d989c4ac3c55098a9955b9ed8"></a>
 
 Returns a pointer to Ref5_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef5`](#structFRHAPI__GuideCreateRequest_1a6c35432e355167d074376ba1bd78b6ee)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6c35432e355167d074376ba1bd78b6ee"></a>
+#### `public inline FORCEINLINE void `[`SetRef5`](#structFRHAPI__GuideCreateRequest_1a947742e76e42d2ef50535d56ff4f03c4)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a947742e76e42d2ef50535d56ff4f03c4"></a>
 
 Sets the value of Ref5_Optional and also sets Ref5_IsSet to true.
 
-#### `public inline void `[`SetRef5`](#structFRHAPI__GuideCreateRequest_1a5204d8be825af3858de33be2989556b3)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5204d8be825af3858de33be2989556b3"></a>
+#### `public inline FORCEINLINE void `[`SetRef5`](#structFRHAPI__GuideCreateRequest_1a5bfdf52c3106a0904ef4d73a7cfddf80)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5bfdf52c3106a0904ef4d73a7cfddf80"></a>
 
 Sets the value of Ref5_Optional and also sets Ref5_IsSet to true using move semantics.
 
@@ -1469,47 +1392,43 @@ Sets the value of Ref5_Optional and also sets Ref5_IsSet to true using move sema
 
 Clears the value of Ref5_Optional and sets Ref5_IsSet to false.
 
-#### `public inline bool `[`IsRef5Set`](#structFRHAPI__GuideCreateRequest_1ad9c937759a77d88e053016f777965a7d)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad9c937759a77d88e053016f777965a7d"></a>
-
-Checks whether Ref5_Optional has been set.
-
-#### `public inline void `[`SetRef5ToNull`](#structFRHAPI__GuideCreateRequest_1a526f053e72c2c5f957adef86143f2917)`()` <a id="structFRHAPI__GuideCreateRequest_1a526f053e72c2c5f957adef86143f2917"></a>
+#### `public inline FORCEINLINE void `[`SetRef5ToNull`](#structFRHAPI__GuideCreateRequest_1a142232c510641c3caaed45f6e6813ed9)`()` <a id="structFRHAPI__GuideCreateRequest_1a142232c510641c3caaed45f6e6813ed9"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef5Null`](#structFRHAPI__GuideCreateRequest_1ad1e22563fe82beead2ac98bc3273ef9b)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad1e22563fe82beead2ac98bc3273ef9b"></a>
+#### `public inline FORCEINLINE bool `[`IsRef5Null`](#structFRHAPI__GuideCreateRequest_1a87ac698e4940085881cb2db6ee541e33)`() const` <a id="structFRHAPI__GuideCreateRequest_1a87ac698e4940085881cb2db6ee541e33"></a>
 
 Checks whether Ref5_Optional is set to null.
 
-#### `public inline FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a9b5e529b1439fde336bfd5f4e28172f6)`()` <a id="structFRHAPI__GuideCreateRequest_1a9b5e529b1439fde336bfd5f4e28172f6"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a6ad5403033a1fe287a536b682e21d8bb)`()` <a id="structFRHAPI__GuideCreateRequest_1a6ad5403033a1fe287a536b682e21d8bb"></a>
 
 Gets the value of Ref6_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a52aa6eaca3b20ba76944cf87672aca85)`() const` <a id="structFRHAPI__GuideCreateRequest_1a52aa6eaca3b20ba76944cf87672aca85"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1ab9b890c0fca45c2f2ae0adff690677a2)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab9b890c0fca45c2f2ae0adff690677a2"></a>
 
 Gets the value of Ref6_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1ae15c68a359707a6ae0d25c3cea9360d6)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae15c68a359707a6ae0d25c3cea9360d6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1ad36ac55cb8f13441968accf9698b0117)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ad36ac55cb8f13441968accf9698b0117"></a>
 
 Gets the value of Ref6_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a2061357208ffd8a520e16421d8613033)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a2061357208ffd8a520e16421d8613033"></a>
+#### `public inline FORCEINLINE bool `[`GetRef6`](#structFRHAPI__GuideCreateRequest_1a45572c60c18f99c0b152fd2b605d76e5)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a45572c60c18f99c0b152fd2b605d76e5"></a>
 
 Fills OutValue with the value of Ref6_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef6OrNull`](#structFRHAPI__GuideCreateRequest_1a48507b2fd76c5547f3483e56c490b759)`()` <a id="structFRHAPI__GuideCreateRequest_1a48507b2fd76c5547f3483e56c490b759"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef6OrNull`](#structFRHAPI__GuideCreateRequest_1ac53e745c25f533766b44b3fbe1cad1d5)`()` <a id="structFRHAPI__GuideCreateRequest_1ac53e745c25f533766b44b3fbe1cad1d5"></a>
 
 Returns a pointer to Ref6_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef6OrNull`](#structFRHAPI__GuideCreateRequest_1a252dbd5df843f1a5ad6a053f29f40d80)`() const` <a id="structFRHAPI__GuideCreateRequest_1a252dbd5df843f1a5ad6a053f29f40d80"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef6OrNull`](#structFRHAPI__GuideCreateRequest_1abf6176216ced054d388f83ae1fe7e535)`() const` <a id="structFRHAPI__GuideCreateRequest_1abf6176216ced054d388f83ae1fe7e535"></a>
 
 Returns a pointer to Ref6_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef6`](#structFRHAPI__GuideCreateRequest_1a1e66c52a70afa2a5f97e040f2a851cca)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a1e66c52a70afa2a5f97e040f2a851cca"></a>
+#### `public inline FORCEINLINE void `[`SetRef6`](#structFRHAPI__GuideCreateRequest_1a31934ec1aaa3eb8b91f2f64bf7487120)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a31934ec1aaa3eb8b91f2f64bf7487120"></a>
 
 Sets the value of Ref6_Optional and also sets Ref6_IsSet to true.
 
-#### `public inline void `[`SetRef6`](#structFRHAPI__GuideCreateRequest_1aacbf5305457bc176c6574bf9cf622272)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aacbf5305457bc176c6574bf9cf622272"></a>
+#### `public inline FORCEINLINE void `[`SetRef6`](#structFRHAPI__GuideCreateRequest_1a318a16d1d480eb1c746f94725cf59035)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a318a16d1d480eb1c746f94725cf59035"></a>
 
 Sets the value of Ref6_Optional and also sets Ref6_IsSet to true using move semantics.
 
@@ -1517,47 +1436,43 @@ Sets the value of Ref6_Optional and also sets Ref6_IsSet to true using move sema
 
 Clears the value of Ref6_Optional and sets Ref6_IsSet to false.
 
-#### `public inline bool `[`IsRef6Set`](#structFRHAPI__GuideCreateRequest_1a890f941aa78a6229474a1cebd752c131)`() const` <a id="structFRHAPI__GuideCreateRequest_1a890f941aa78a6229474a1cebd752c131"></a>
-
-Checks whether Ref6_Optional has been set.
-
-#### `public inline void `[`SetRef6ToNull`](#structFRHAPI__GuideCreateRequest_1a79cf322bba960b07e469d9e733dcc20c)`()` <a id="structFRHAPI__GuideCreateRequest_1a79cf322bba960b07e469d9e733dcc20c"></a>
+#### `public inline FORCEINLINE void `[`SetRef6ToNull`](#structFRHAPI__GuideCreateRequest_1aaf2036c4d06d4622a4ef7c26e1c9c8ea)`()` <a id="structFRHAPI__GuideCreateRequest_1aaf2036c4d06d4622a4ef7c26e1c9c8ea"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef6Null`](#structFRHAPI__GuideCreateRequest_1aabda48c2b4ea61d43e55215c413b479f)`() const` <a id="structFRHAPI__GuideCreateRequest_1aabda48c2b4ea61d43e55215c413b479f"></a>
+#### `public inline FORCEINLINE bool `[`IsRef6Null`](#structFRHAPI__GuideCreateRequest_1a1fd557979f01b57181c800b91074fcde)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1fd557979f01b57181c800b91074fcde"></a>
 
 Checks whether Ref6_Optional is set to null.
 
-#### `public inline FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1aefa49ca65412b732ddcf427c985345f6)`()` <a id="structFRHAPI__GuideCreateRequest_1aefa49ca65412b732ddcf427c985345f6"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a995b1e668ec31196608b5785f05fb161)`()` <a id="structFRHAPI__GuideCreateRequest_1a995b1e668ec31196608b5785f05fb161"></a>
 
 Gets the value of Ref7_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1ac1f607efd915a64836e927087a2aff9f)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac1f607efd915a64836e927087a2aff9f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a1ffcdec82cb28be612dd240b5dafe79e)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1ffcdec82cb28be612dd240b5dafe79e"></a>
 
 Gets the value of Ref7_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a7fe62900d871caba533a1e512fe31649)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a7fe62900d871caba533a1e512fe31649"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a4d6edec7f24e5d04ba2cbc82b45280e4)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a4d6edec7f24e5d04ba2cbc82b45280e4"></a>
 
 Gets the value of Ref7_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1ab2111bec5d241e5707c561ac0ae498cd)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ab2111bec5d241e5707c561ac0ae498cd"></a>
+#### `public inline FORCEINLINE bool `[`GetRef7`](#structFRHAPI__GuideCreateRequest_1a6c38ba553ff2117688447139bb35f6ab)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a6c38ba553ff2117688447139bb35f6ab"></a>
 
 Fills OutValue with the value of Ref7_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef7OrNull`](#structFRHAPI__GuideCreateRequest_1ad28033c61bffc8a7c737bd6b23f6e5ac)`()` <a id="structFRHAPI__GuideCreateRequest_1ad28033c61bffc8a7c737bd6b23f6e5ac"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef7OrNull`](#structFRHAPI__GuideCreateRequest_1aca7842ea6daf3a87fc65b12b8bf6a170)`()` <a id="structFRHAPI__GuideCreateRequest_1aca7842ea6daf3a87fc65b12b8bf6a170"></a>
 
 Returns a pointer to Ref7_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef7OrNull`](#structFRHAPI__GuideCreateRequest_1aaab3b36fb2079fdd8f93db450b47c1e7)`() const` <a id="structFRHAPI__GuideCreateRequest_1aaab3b36fb2079fdd8f93db450b47c1e7"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef7OrNull`](#structFRHAPI__GuideCreateRequest_1af8c5c8f8fab2cdd676b2f8087cbdb3c4)`() const` <a id="structFRHAPI__GuideCreateRequest_1af8c5c8f8fab2cdd676b2f8087cbdb3c4"></a>
 
 Returns a pointer to Ref7_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef7`](#structFRHAPI__GuideCreateRequest_1a99321973d6dd374ddd7cd0467fac58e5)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a99321973d6dd374ddd7cd0467fac58e5"></a>
+#### `public inline FORCEINLINE void `[`SetRef7`](#structFRHAPI__GuideCreateRequest_1a0b8901a41cea71c95133823b9c6d1050)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0b8901a41cea71c95133823b9c6d1050"></a>
 
 Sets the value of Ref7_Optional and also sets Ref7_IsSet to true.
 
-#### `public inline void `[`SetRef7`](#structFRHAPI__GuideCreateRequest_1a51a8d78c6eb70c10724d4fca4feac7dc)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a51a8d78c6eb70c10724d4fca4feac7dc"></a>
+#### `public inline FORCEINLINE void `[`SetRef7`](#structFRHAPI__GuideCreateRequest_1a44cd2a9870bce32821b898a5d2695827)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a44cd2a9870bce32821b898a5d2695827"></a>
 
 Sets the value of Ref7_Optional and also sets Ref7_IsSet to true using move semantics.
 
@@ -1565,47 +1480,43 @@ Sets the value of Ref7_Optional and also sets Ref7_IsSet to true using move sema
 
 Clears the value of Ref7_Optional and sets Ref7_IsSet to false.
 
-#### `public inline bool `[`IsRef7Set`](#structFRHAPI__GuideCreateRequest_1a6612e344699bbd5955f1e2b1d905c218)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6612e344699bbd5955f1e2b1d905c218"></a>
-
-Checks whether Ref7_Optional has been set.
-
-#### `public inline void `[`SetRef7ToNull`](#structFRHAPI__GuideCreateRequest_1ad9c7846bd2cd277955c9983cbf1f6df9)`()` <a id="structFRHAPI__GuideCreateRequest_1ad9c7846bd2cd277955c9983cbf1f6df9"></a>
+#### `public inline FORCEINLINE void `[`SetRef7ToNull`](#structFRHAPI__GuideCreateRequest_1a9d7639a0ddd8015cdfe0569218b94d83)`()` <a id="structFRHAPI__GuideCreateRequest_1a9d7639a0ddd8015cdfe0569218b94d83"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef7Null`](#structFRHAPI__GuideCreateRequest_1a5b80c0dbdfbe1f6b2a40697b2bf0f9cf)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5b80c0dbdfbe1f6b2a40697b2bf0f9cf"></a>
+#### `public inline FORCEINLINE bool `[`IsRef7Null`](#structFRHAPI__GuideCreateRequest_1ad26dd25af0ec4a4da29da3b9b1867332)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad26dd25af0ec4a4da29da3b9b1867332"></a>
 
 Checks whether Ref7_Optional is set to null.
 
-#### `public inline FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1aa0e670ff40d2e8cfd0005ae209ea829a)`()` <a id="structFRHAPI__GuideCreateRequest_1aa0e670ff40d2e8cfd0005ae209ea829a"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a1ad2c675078c42f944c9e42c460718fc)`()` <a id="structFRHAPI__GuideCreateRequest_1a1ad2c675078c42f944c9e42c460718fc"></a>
 
 Gets the value of Ref8_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a882a54b8b6b3c40c2d10132cdabb8d85)`() const` <a id="structFRHAPI__GuideCreateRequest_1a882a54b8b6b3c40c2d10132cdabb8d85"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a43ebed5ccaa1f6616d359f1f283b1629)`() const` <a id="structFRHAPI__GuideCreateRequest_1a43ebed5ccaa1f6616d359f1f283b1629"></a>
 
 Gets the value of Ref8_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a2173d5a6f5c7df645bfb4403440b551f)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a2173d5a6f5c7df645bfb4403440b551f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a5cbc462d7d35b15e1edd6b3fbcdd9f91)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5cbc462d7d35b15e1edd6b3fbcdd9f91"></a>
 
 Gets the value of Ref8_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a6ba4276b2f0c121bf87c8d0ded5eac04)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a6ba4276b2f0c121bf87c8d0ded5eac04"></a>
+#### `public inline FORCEINLINE bool `[`GetRef8`](#structFRHAPI__GuideCreateRequest_1a6c05b299c6e510ddbcff1cf712588c2d)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a6c05b299c6e510ddbcff1cf712588c2d"></a>
 
 Fills OutValue with the value of Ref8_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef8OrNull`](#structFRHAPI__GuideCreateRequest_1a0241dcf350994a8f26187bf733c0ca20)`()` <a id="structFRHAPI__GuideCreateRequest_1a0241dcf350994a8f26187bf733c0ca20"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef8OrNull`](#structFRHAPI__GuideCreateRequest_1acb1f3f59cd25b6218f13a963ee39b2f6)`()` <a id="structFRHAPI__GuideCreateRequest_1acb1f3f59cd25b6218f13a963ee39b2f6"></a>
 
 Returns a pointer to Ref8_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef8OrNull`](#structFRHAPI__GuideCreateRequest_1ac93cbabe620f7150f1a958f0221f1f03)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac93cbabe620f7150f1a958f0221f1f03"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef8OrNull`](#structFRHAPI__GuideCreateRequest_1ac489c0930b7ba458036007c542f0beb9)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac489c0930b7ba458036007c542f0beb9"></a>
 
 Returns a pointer to Ref8_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef8`](#structFRHAPI__GuideCreateRequest_1aefef3e3d7702ea099700d3b509a57391)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aefef3e3d7702ea099700d3b509a57391"></a>
+#### `public inline FORCEINLINE void `[`SetRef8`](#structFRHAPI__GuideCreateRequest_1ab4f7fb419815a7b2ec6b226846ad3d64)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ab4f7fb419815a7b2ec6b226846ad3d64"></a>
 
 Sets the value of Ref8_Optional and also sets Ref8_IsSet to true.
 
-#### `public inline void `[`SetRef8`](#structFRHAPI__GuideCreateRequest_1a5a22a1f58e070e08bf1d9bbfe3cc76d9)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5a22a1f58e070e08bf1d9bbfe3cc76d9"></a>
+#### `public inline FORCEINLINE void `[`SetRef8`](#structFRHAPI__GuideCreateRequest_1aeb9eefb2b74e7673d1a0963f2b328b17)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aeb9eefb2b74e7673d1a0963f2b328b17"></a>
 
 Sets the value of Ref8_Optional and also sets Ref8_IsSet to true using move semantics.
 
@@ -1613,47 +1524,43 @@ Sets the value of Ref8_Optional and also sets Ref8_IsSet to true using move sema
 
 Clears the value of Ref8_Optional and sets Ref8_IsSet to false.
 
-#### `public inline bool `[`IsRef8Set`](#structFRHAPI__GuideCreateRequest_1a31247629d485cc6301680a37a8c6e4f2)`() const` <a id="structFRHAPI__GuideCreateRequest_1a31247629d485cc6301680a37a8c6e4f2"></a>
-
-Checks whether Ref8_Optional has been set.
-
-#### `public inline void `[`SetRef8ToNull`](#structFRHAPI__GuideCreateRequest_1a13c08d9d714af13ebb3b4d6efdd1c294)`()` <a id="structFRHAPI__GuideCreateRequest_1a13c08d9d714af13ebb3b4d6efdd1c294"></a>
+#### `public inline FORCEINLINE void `[`SetRef8ToNull`](#structFRHAPI__GuideCreateRequest_1a3fce21e60649e500d23eb843e1a07885)`()` <a id="structFRHAPI__GuideCreateRequest_1a3fce21e60649e500d23eb843e1a07885"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef8Null`](#structFRHAPI__GuideCreateRequest_1ae656cb1fc403ec4cf38073a13ea25b2e)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae656cb1fc403ec4cf38073a13ea25b2e"></a>
+#### `public inline FORCEINLINE bool `[`IsRef8Null`](#structFRHAPI__GuideCreateRequest_1a1cdaa09568ba2a3849c2c6f635a32116)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1cdaa09568ba2a3849c2c6f635a32116"></a>
 
 Checks whether Ref8_Optional is set to null.
 
-#### `public inline FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1aa39d4ca53d5ddc15a3f950c3a8f6128c)`()` <a id="structFRHAPI__GuideCreateRequest_1aa39d4ca53d5ddc15a3f950c3a8f6128c"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1ae143fba67bb0325f3cc72a2e9dc2376f)`()` <a id="structFRHAPI__GuideCreateRequest_1ae143fba67bb0325f3cc72a2e9dc2376f"></a>
 
 Gets the value of Ref9_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1af0c03ca5f1fdaf59cc02e9dc56fc7293)`() const` <a id="structFRHAPI__GuideCreateRequest_1af0c03ca5f1fdaf59cc02e9dc56fc7293"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1a686761cf749cd29b3f44724830176cae)`() const` <a id="structFRHAPI__GuideCreateRequest_1a686761cf749cd29b3f44724830176cae"></a>
 
 Gets the value of Ref9_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1a4b46d83d66878d1929213070d48aee92)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a4b46d83d66878d1929213070d48aee92"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1a361695ab20e1a8e9083b840ae8b9065b)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a361695ab20e1a8e9083b840ae8b9065b"></a>
 
 Gets the value of Ref9_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1a72806d512e177b6b5d1d6ef3c01096a6)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a72806d512e177b6b5d1d6ef3c01096a6"></a>
+#### `public inline FORCEINLINE bool `[`GetRef9`](#structFRHAPI__GuideCreateRequest_1ad79ced44e39d6ead89af8efe37f63d9f)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ad79ced44e39d6ead89af8efe37f63d9f"></a>
 
 Fills OutValue with the value of Ref9_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef9OrNull`](#structFRHAPI__GuideCreateRequest_1a1e52d4b16c9d8133d72d7a33013e8da7)`()` <a id="structFRHAPI__GuideCreateRequest_1a1e52d4b16c9d8133d72d7a33013e8da7"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef9OrNull`](#structFRHAPI__GuideCreateRequest_1a9df815f6f95ebd8e23f57a76391dc8eb)`()` <a id="structFRHAPI__GuideCreateRequest_1a9df815f6f95ebd8e23f57a76391dc8eb"></a>
 
 Returns a pointer to Ref9_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef9OrNull`](#structFRHAPI__GuideCreateRequest_1ac6c29f03e7e30321ae9c043df871b266)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac6c29f03e7e30321ae9c043df871b266"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef9OrNull`](#structFRHAPI__GuideCreateRequest_1a22c53d9de75fbe1ba97e10729d3d7d20)`() const` <a id="structFRHAPI__GuideCreateRequest_1a22c53d9de75fbe1ba97e10729d3d7d20"></a>
 
 Returns a pointer to Ref9_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef9`](#structFRHAPI__GuideCreateRequest_1a6b3a78597a979b56e0ed71c207036f2e)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6b3a78597a979b56e0ed71c207036f2e"></a>
+#### `public inline FORCEINLINE void `[`SetRef9`](#structFRHAPI__GuideCreateRequest_1aaf46c1fe183e155f7beaaab6560af3dc)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aaf46c1fe183e155f7beaaab6560af3dc"></a>
 
 Sets the value of Ref9_Optional and also sets Ref9_IsSet to true.
 
-#### `public inline void `[`SetRef9`](#structFRHAPI__GuideCreateRequest_1ae943ed6926bfa27235f135666b404acb)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ae943ed6926bfa27235f135666b404acb"></a>
+#### `public inline FORCEINLINE void `[`SetRef9`](#structFRHAPI__GuideCreateRequest_1a54e1af6cdafdf585149cb7931be35bf1)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a54e1af6cdafdf585149cb7931be35bf1"></a>
 
 Sets the value of Ref9_Optional and also sets Ref9_IsSet to true using move semantics.
 
@@ -1661,47 +1568,43 @@ Sets the value of Ref9_Optional and also sets Ref9_IsSet to true using move sema
 
 Clears the value of Ref9_Optional and sets Ref9_IsSet to false.
 
-#### `public inline bool `[`IsRef9Set`](#structFRHAPI__GuideCreateRequest_1aa2001a0c14f0095151c2f0c4d1eb920d)`() const` <a id="structFRHAPI__GuideCreateRequest_1aa2001a0c14f0095151c2f0c4d1eb920d"></a>
-
-Checks whether Ref9_Optional has been set.
-
-#### `public inline void `[`SetRef9ToNull`](#structFRHAPI__GuideCreateRequest_1aafa822b899cd30fa800a1c2c1e9c898b)`()` <a id="structFRHAPI__GuideCreateRequest_1aafa822b899cd30fa800a1c2c1e9c898b"></a>
+#### `public inline FORCEINLINE void `[`SetRef9ToNull`](#structFRHAPI__GuideCreateRequest_1a3e8f3ba0d0269f52deab6f2d42adfc7a)`()` <a id="structFRHAPI__GuideCreateRequest_1a3e8f3ba0d0269f52deab6f2d42adfc7a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef9Null`](#structFRHAPI__GuideCreateRequest_1a4deb6de85dd3747b4225b7392cff196b)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4deb6de85dd3747b4225b7392cff196b"></a>
+#### `public inline FORCEINLINE bool `[`IsRef9Null`](#structFRHAPI__GuideCreateRequest_1a880b270a74762f229bccc76887d746bc)`() const` <a id="structFRHAPI__GuideCreateRequest_1a880b270a74762f229bccc76887d746bc"></a>
 
 Checks whether Ref9_Optional is set to null.
 
-#### `public inline FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a298e8d96cc9969b9dede5e2cfb632e22)`()` <a id="structFRHAPI__GuideCreateRequest_1a298e8d96cc9969b9dede5e2cfb632e22"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a968cd58a0326458961b5b37c666339ef)`()` <a id="structFRHAPI__GuideCreateRequest_1a968cd58a0326458961b5b37c666339ef"></a>
 
 Gets the value of Ref10_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1ac2467e3bb59a6b48f409f22787304ae6)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac2467e3bb59a6b48f409f22787304ae6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a1b8cd220505ef9859099c3846f78854c)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1b8cd220505ef9859099c3846f78854c"></a>
 
 Gets the value of Ref10_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a798baccb458519464f3ae17731507518)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a798baccb458519464f3ae17731507518"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1acaffaa75c942efdfcd226272c507fa1f)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1acaffaa75c942efdfcd226272c507fa1f"></a>
 
 Gets the value of Ref10_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a5c3fbbfef28e988dfd131e0e85060285)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5c3fbbfef28e988dfd131e0e85060285"></a>
+#### `public inline FORCEINLINE bool `[`GetRef10`](#structFRHAPI__GuideCreateRequest_1a92bce578a8588f9aa5fea1bd7e719961)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a92bce578a8588f9aa5fea1bd7e719961"></a>
 
 Fills OutValue with the value of Ref10_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef10OrNull`](#structFRHAPI__GuideCreateRequest_1a2984fb87a430ee1622dbab1cdcd91ce6)`()` <a id="structFRHAPI__GuideCreateRequest_1a2984fb87a430ee1622dbab1cdcd91ce6"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef10OrNull`](#structFRHAPI__GuideCreateRequest_1aec6eb16e370d86a1b050c1819257005e)`()` <a id="structFRHAPI__GuideCreateRequest_1aec6eb16e370d86a1b050c1819257005e"></a>
 
 Returns a pointer to Ref10_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef10OrNull`](#structFRHAPI__GuideCreateRequest_1a9d11d28867d48a336d9b55feb50f9c0e)`() const` <a id="structFRHAPI__GuideCreateRequest_1a9d11d28867d48a336d9b55feb50f9c0e"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef10OrNull`](#structFRHAPI__GuideCreateRequest_1ae6c15c0835e6b7064f62cf5cbae53977)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae6c15c0835e6b7064f62cf5cbae53977"></a>
 
 Returns a pointer to Ref10_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef10`](#structFRHAPI__GuideCreateRequest_1ab39f49382a17ca8ec6a18e83922dbd68)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ab39f49382a17ca8ec6a18e83922dbd68"></a>
+#### `public inline FORCEINLINE void `[`SetRef10`](#structFRHAPI__GuideCreateRequest_1a265f05208872ae22f337dd38cf91a358)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a265f05208872ae22f337dd38cf91a358"></a>
 
 Sets the value of Ref10_Optional and also sets Ref10_IsSet to true.
 
-#### `public inline void `[`SetRef10`](#structFRHAPI__GuideCreateRequest_1a0f2b00f34fd23b5d9c41f7aafd0f2e27)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0f2b00f34fd23b5d9c41f7aafd0f2e27"></a>
+#### `public inline FORCEINLINE void `[`SetRef10`](#structFRHAPI__GuideCreateRequest_1acde5ace6b7e04e6721d3687839896fa0)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1acde5ace6b7e04e6721d3687839896fa0"></a>
 
 Sets the value of Ref10_Optional and also sets Ref10_IsSet to true using move semantics.
 
@@ -1709,47 +1612,43 @@ Sets the value of Ref10_Optional and also sets Ref10_IsSet to true using move se
 
 Clears the value of Ref10_Optional and sets Ref10_IsSet to false.
 
-#### `public inline bool `[`IsRef10Set`](#structFRHAPI__GuideCreateRequest_1aa2a326e1746e6db1227dbaf50887c81b)`() const` <a id="structFRHAPI__GuideCreateRequest_1aa2a326e1746e6db1227dbaf50887c81b"></a>
-
-Checks whether Ref10_Optional has been set.
-
-#### `public inline void `[`SetRef10ToNull`](#structFRHAPI__GuideCreateRequest_1a233802ce1c6a343fa9ab8fc4dda535ac)`()` <a id="structFRHAPI__GuideCreateRequest_1a233802ce1c6a343fa9ab8fc4dda535ac"></a>
+#### `public inline FORCEINLINE void `[`SetRef10ToNull`](#structFRHAPI__GuideCreateRequest_1a116741ab6a61ef47772a71e03f25628a)`()` <a id="structFRHAPI__GuideCreateRequest_1a116741ab6a61ef47772a71e03f25628a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef10Null`](#structFRHAPI__GuideCreateRequest_1ad0a1f5e32b533172fe805c44af62d6dd)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad0a1f5e32b533172fe805c44af62d6dd"></a>
+#### `public inline FORCEINLINE bool `[`IsRef10Null`](#structFRHAPI__GuideCreateRequest_1a8ad16e31268ee87b898c5cdb9e508025)`() const` <a id="structFRHAPI__GuideCreateRequest_1a8ad16e31268ee87b898c5cdb9e508025"></a>
 
 Checks whether Ref10_Optional is set to null.
 
-#### `public inline FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a9630d28c99927a8d02511ae2edfa8589)`()` <a id="structFRHAPI__GuideCreateRequest_1a9630d28c99927a8d02511ae2edfa8589"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a47948689ea2ffba76f12e1025ddd8620)`()` <a id="structFRHAPI__GuideCreateRequest_1a47948689ea2ffba76f12e1025ddd8620"></a>
 
 Gets the value of Ref11_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a5d24aa1d37db5d2dbb43fb5137360851)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5d24aa1d37db5d2dbb43fb5137360851"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a9a15e796c35470ad9b81aa7117ea3ab8)`() const` <a id="structFRHAPI__GuideCreateRequest_1a9a15e796c35470ad9b81aa7117ea3ab8"></a>
 
 Gets the value of Ref11_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a9cb5caed7a0f5aca58e7eaa37f106b64)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a9cb5caed7a0f5aca58e7eaa37f106b64"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1a6c33be9f34a74d31650d63d751653cd5)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a6c33be9f34a74d31650d63d751653cd5"></a>
 
 Gets the value of Ref11_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1ab506b319b581486c686cfc562a8d92e1)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ab506b319b581486c686cfc562a8d92e1"></a>
+#### `public inline FORCEINLINE bool `[`GetRef11`](#structFRHAPI__GuideCreateRequest_1ae13154350e17baf22160a0667acbf818)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae13154350e17baf22160a0667acbf818"></a>
 
 Fills OutValue with the value of Ref11_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef11OrNull`](#structFRHAPI__GuideCreateRequest_1a0ac25862187bdac0a3282ffdb58650ae)`()` <a id="structFRHAPI__GuideCreateRequest_1a0ac25862187bdac0a3282ffdb58650ae"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef11OrNull`](#structFRHAPI__GuideCreateRequest_1a833751758344c6941a9649b8414c724a)`()` <a id="structFRHAPI__GuideCreateRequest_1a833751758344c6941a9649b8414c724a"></a>
 
 Returns a pointer to Ref11_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef11OrNull`](#structFRHAPI__GuideCreateRequest_1ab9187fd076c98b0c46a1df3c25a63265)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab9187fd076c98b0c46a1df3c25a63265"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef11OrNull`](#structFRHAPI__GuideCreateRequest_1afa72fe01621620bd1c03c6c3f1bdd9c8)`() const` <a id="structFRHAPI__GuideCreateRequest_1afa72fe01621620bd1c03c6c3f1bdd9c8"></a>
 
 Returns a pointer to Ref11_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef11`](#structFRHAPI__GuideCreateRequest_1ab93f354f8fcd0ec54cad2a9df4a0633c)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ab93f354f8fcd0ec54cad2a9df4a0633c"></a>
+#### `public inline FORCEINLINE void `[`SetRef11`](#structFRHAPI__GuideCreateRequest_1ac255cecf9fb5ee2aa9b04daf4d119334)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ac255cecf9fb5ee2aa9b04daf4d119334"></a>
 
 Sets the value of Ref11_Optional and also sets Ref11_IsSet to true.
 
-#### `public inline void `[`SetRef11`](#structFRHAPI__GuideCreateRequest_1a58885d18ada82f4de4238259cf729c12)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a58885d18ada82f4de4238259cf729c12"></a>
+#### `public inline FORCEINLINE void `[`SetRef11`](#structFRHAPI__GuideCreateRequest_1a6c2d7add9d3882863a2e122a8c3fd883)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6c2d7add9d3882863a2e122a8c3fd883"></a>
 
 Sets the value of Ref11_Optional and also sets Ref11_IsSet to true using move semantics.
 
@@ -1757,47 +1656,43 @@ Sets the value of Ref11_Optional and also sets Ref11_IsSet to true using move se
 
 Clears the value of Ref11_Optional and sets Ref11_IsSet to false.
 
-#### `public inline bool `[`IsRef11Set`](#structFRHAPI__GuideCreateRequest_1a3d4556e5e3f49ca69a61046f4e48cee8)`() const` <a id="structFRHAPI__GuideCreateRequest_1a3d4556e5e3f49ca69a61046f4e48cee8"></a>
-
-Checks whether Ref11_Optional has been set.
-
-#### `public inline void `[`SetRef11ToNull`](#structFRHAPI__GuideCreateRequest_1a6bd1777a80a4fa585975c8db17e1c4e5)`()` <a id="structFRHAPI__GuideCreateRequest_1a6bd1777a80a4fa585975c8db17e1c4e5"></a>
+#### `public inline FORCEINLINE void `[`SetRef11ToNull`](#structFRHAPI__GuideCreateRequest_1a961cefdec92eea2b58e2164071afc6f4)`()` <a id="structFRHAPI__GuideCreateRequest_1a961cefdec92eea2b58e2164071afc6f4"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef11Null`](#structFRHAPI__GuideCreateRequest_1a485ed7db959e6926a81b04be95cdeae9)`() const` <a id="structFRHAPI__GuideCreateRequest_1a485ed7db959e6926a81b04be95cdeae9"></a>
+#### `public inline FORCEINLINE bool `[`IsRef11Null`](#structFRHAPI__GuideCreateRequest_1a16fc2cdee09f78522f5e7a554bca786f)`() const` <a id="structFRHAPI__GuideCreateRequest_1a16fc2cdee09f78522f5e7a554bca786f"></a>
 
 Checks whether Ref11_Optional is set to null.
 
-#### `public inline FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a5e2fd05d7df6189bdd0d91f0ea573716)`()` <a id="structFRHAPI__GuideCreateRequest_1a5e2fd05d7df6189bdd0d91f0ea573716"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a368f00dac4c8b65557debcf2043c764e)`()` <a id="structFRHAPI__GuideCreateRequest_1a368f00dac4c8b65557debcf2043c764e"></a>
 
 Gets the value of Ref12_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a252a85f8238902e30e32a651aae42494)`() const` <a id="structFRHAPI__GuideCreateRequest_1a252a85f8238902e30e32a651aae42494"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a19c9d76df5f0d554196e3c667e94f64f)`() const` <a id="structFRHAPI__GuideCreateRequest_1a19c9d76df5f0d554196e3c667e94f64f"></a>
 
 Gets the value of Ref12_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a6536e050e22f9bac6e3ebc83a2804b27)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a6536e050e22f9bac6e3ebc83a2804b27"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1ae49bdff24f23543a5593682b0a5adac5)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae49bdff24f23543a5593682b0a5adac5"></a>
 
 Gets the value of Ref12_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1abf78c14e0b9abb54ba202d51944fdca8)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1abf78c14e0b9abb54ba202d51944fdca8"></a>
+#### `public inline FORCEINLINE bool `[`GetRef12`](#structFRHAPI__GuideCreateRequest_1a1164316c4dc2025faada240c2fbef74e)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a1164316c4dc2025faada240c2fbef74e"></a>
 
 Fills OutValue with the value of Ref12_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef12OrNull`](#structFRHAPI__GuideCreateRequest_1aaa1c3388595394f7f117791f28e471ae)`()` <a id="structFRHAPI__GuideCreateRequest_1aaa1c3388595394f7f117791f28e471ae"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef12OrNull`](#structFRHAPI__GuideCreateRequest_1a17fbeb029f4af2f335c74acd623ba940)`()` <a id="structFRHAPI__GuideCreateRequest_1a17fbeb029f4af2f335c74acd623ba940"></a>
 
 Returns a pointer to Ref12_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef12OrNull`](#structFRHAPI__GuideCreateRequest_1ad6d9139e75a6fc51a208a2046b0e70f7)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad6d9139e75a6fc51a208a2046b0e70f7"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef12OrNull`](#structFRHAPI__GuideCreateRequest_1a6171786b69dcf3a59c3c84648ad3d25c)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6171786b69dcf3a59c3c84648ad3d25c"></a>
 
 Returns a pointer to Ref12_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef12`](#structFRHAPI__GuideCreateRequest_1a30424ac2727b410deddaf721d02db2c0)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a30424ac2727b410deddaf721d02db2c0"></a>
+#### `public inline FORCEINLINE void `[`SetRef12`](#structFRHAPI__GuideCreateRequest_1a34e65861250f69c7e1541faa98472051)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a34e65861250f69c7e1541faa98472051"></a>
 
 Sets the value of Ref12_Optional and also sets Ref12_IsSet to true.
 
-#### `public inline void `[`SetRef12`](#structFRHAPI__GuideCreateRequest_1abbab98dff8d76fbddc57c75eff280aa5)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1abbab98dff8d76fbddc57c75eff280aa5"></a>
+#### `public inline FORCEINLINE void `[`SetRef12`](#structFRHAPI__GuideCreateRequest_1a36e698f7881c9315b3c478b236d2bba1)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a36e698f7881c9315b3c478b236d2bba1"></a>
 
 Sets the value of Ref12_Optional and also sets Ref12_IsSet to true using move semantics.
 
@@ -1805,47 +1700,43 @@ Sets the value of Ref12_Optional and also sets Ref12_IsSet to true using move se
 
 Clears the value of Ref12_Optional and sets Ref12_IsSet to false.
 
-#### `public inline bool `[`IsRef12Set`](#structFRHAPI__GuideCreateRequest_1a57e6854ece4fd61765095db15e4a6b7c)`() const` <a id="structFRHAPI__GuideCreateRequest_1a57e6854ece4fd61765095db15e4a6b7c"></a>
-
-Checks whether Ref12_Optional has been set.
-
-#### `public inline void `[`SetRef12ToNull`](#structFRHAPI__GuideCreateRequest_1af01cbed12317701e4b36dcbd3e61933c)`()` <a id="structFRHAPI__GuideCreateRequest_1af01cbed12317701e4b36dcbd3e61933c"></a>
+#### `public inline FORCEINLINE void `[`SetRef12ToNull`](#structFRHAPI__GuideCreateRequest_1acd7c8e6d772473b526d63813a094ac9e)`()` <a id="structFRHAPI__GuideCreateRequest_1acd7c8e6d772473b526d63813a094ac9e"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef12Null`](#structFRHAPI__GuideCreateRequest_1ad0e160c8e07923ea0b0efeb847eccdf9)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad0e160c8e07923ea0b0efeb847eccdf9"></a>
+#### `public inline FORCEINLINE bool `[`IsRef12Null`](#structFRHAPI__GuideCreateRequest_1a2f6a5a2183c3d08a9d97f36765ee2f18)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2f6a5a2183c3d08a9d97f36765ee2f18"></a>
 
 Checks whether Ref12_Optional is set to null.
 
-#### `public inline FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a0328256f51ed437d30337d95fd72f176)`()` <a id="structFRHAPI__GuideCreateRequest_1a0328256f51ed437d30337d95fd72f176"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a945049d8a9a4a000978d06b9c8237b9e)`()` <a id="structFRHAPI__GuideCreateRequest_1a945049d8a9a4a000978d06b9c8237b9e"></a>
 
 Gets the value of Ref13_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a688f447a85178b08e78009ba48f368f7)`() const` <a id="structFRHAPI__GuideCreateRequest_1a688f447a85178b08e78009ba48f368f7"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a2e1e2418d7d40c8b6a3cbc1fd53aa3e5)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2e1e2418d7d40c8b6a3cbc1fd53aa3e5"></a>
 
 Gets the value of Ref13_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a421983e414ff69e06af462d5fe9e6735)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a421983e414ff69e06af462d5fe9e6735"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1af0dd3963d5b97e1bc7656e998321cd57)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1af0dd3963d5b97e1bc7656e998321cd57"></a>
 
 Gets the value of Ref13_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a64b32e6d0c66d245710b6e93fa956b22)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a64b32e6d0c66d245710b6e93fa956b22"></a>
+#### `public inline FORCEINLINE bool `[`GetRef13`](#structFRHAPI__GuideCreateRequest_1a685d5e73bd678dbe9e184d1808a7e8cb)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a685d5e73bd678dbe9e184d1808a7e8cb"></a>
 
 Fills OutValue with the value of Ref13_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef13OrNull`](#structFRHAPI__GuideCreateRequest_1afd9447a7429128ef5d9eba66a031ed6d)`()` <a id="structFRHAPI__GuideCreateRequest_1afd9447a7429128ef5d9eba66a031ed6d"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef13OrNull`](#structFRHAPI__GuideCreateRequest_1add3a89658949ff1017a405b76e7f5761)`()` <a id="structFRHAPI__GuideCreateRequest_1add3a89658949ff1017a405b76e7f5761"></a>
 
 Returns a pointer to Ref13_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef13OrNull`](#structFRHAPI__GuideCreateRequest_1a2e416e19bff3558c6fb2c40f1a80ebe4)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2e416e19bff3558c6fb2c40f1a80ebe4"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef13OrNull`](#structFRHAPI__GuideCreateRequest_1a036a8428db9010a0a8ab0371ebf2c34e)`() const` <a id="structFRHAPI__GuideCreateRequest_1a036a8428db9010a0a8ab0371ebf2c34e"></a>
 
 Returns a pointer to Ref13_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef13`](#structFRHAPI__GuideCreateRequest_1a1fad99d10f34e8c95439f6fa90f1191e)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a1fad99d10f34e8c95439f6fa90f1191e"></a>
+#### `public inline FORCEINLINE void `[`SetRef13`](#structFRHAPI__GuideCreateRequest_1a2fd3cdfc673e6f63332d83288032d25f)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a2fd3cdfc673e6f63332d83288032d25f"></a>
 
 Sets the value of Ref13_Optional and also sets Ref13_IsSet to true.
 
-#### `public inline void `[`SetRef13`](#structFRHAPI__GuideCreateRequest_1a7b77c34a6a313dda77d873ed7841c7de)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a7b77c34a6a313dda77d873ed7841c7de"></a>
+#### `public inline FORCEINLINE void `[`SetRef13`](#structFRHAPI__GuideCreateRequest_1a2295cb07f27bd8723f06172a84a013a4)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a2295cb07f27bd8723f06172a84a013a4"></a>
 
 Sets the value of Ref13_Optional and also sets Ref13_IsSet to true using move semantics.
 
@@ -1853,47 +1744,43 @@ Sets the value of Ref13_Optional and also sets Ref13_IsSet to true using move se
 
 Clears the value of Ref13_Optional and sets Ref13_IsSet to false.
 
-#### `public inline bool `[`IsRef13Set`](#structFRHAPI__GuideCreateRequest_1a1d2110f568c6b7bf050eabe89d46e198)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1d2110f568c6b7bf050eabe89d46e198"></a>
-
-Checks whether Ref13_Optional has been set.
-
-#### `public inline void `[`SetRef13ToNull`](#structFRHAPI__GuideCreateRequest_1ab0babfc14e88bbddc28f0e8694ccdf6a)`()` <a id="structFRHAPI__GuideCreateRequest_1ab0babfc14e88bbddc28f0e8694ccdf6a"></a>
+#### `public inline FORCEINLINE void `[`SetRef13ToNull`](#structFRHAPI__GuideCreateRequest_1a14104e1ef033edee5483af5c66a835fb)`()` <a id="structFRHAPI__GuideCreateRequest_1a14104e1ef033edee5483af5c66a835fb"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef13Null`](#structFRHAPI__GuideCreateRequest_1a120e7fc501516770104a35b5e1b6a522)`() const` <a id="structFRHAPI__GuideCreateRequest_1a120e7fc501516770104a35b5e1b6a522"></a>
+#### `public inline FORCEINLINE bool `[`IsRef13Null`](#structFRHAPI__GuideCreateRequest_1a3b443623f515f63c0d4d867834a2ebca)`() const` <a id="structFRHAPI__GuideCreateRequest_1a3b443623f515f63c0d4d867834a2ebca"></a>
 
 Checks whether Ref13_Optional is set to null.
 
-#### `public inline FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a5266b29c0a07717c9d959cd3fe266e7b)`()` <a id="structFRHAPI__GuideCreateRequest_1a5266b29c0a07717c9d959cd3fe266e7b"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a2864d5ef1c0adb1dc4c9213f5146ce36)`()` <a id="structFRHAPI__GuideCreateRequest_1a2864d5ef1c0adb1dc4c9213f5146ce36"></a>
 
 Gets the value of Ref14_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a074c50d9b4780ac367c4ce3b2feb0f4f)`() const` <a id="structFRHAPI__GuideCreateRequest_1a074c50d9b4780ac367c4ce3b2feb0f4f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a534f226cb93211c41d03e9800213596a)`() const` <a id="structFRHAPI__GuideCreateRequest_1a534f226cb93211c41d03e9800213596a"></a>
 
 Gets the value of Ref14_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1aefea0104bb5732f1721f430289834d3c)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1aefea0104bb5732f1721f430289834d3c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a89d74b9221f5c28b9a93d9f0c788c00d)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a89d74b9221f5c28b9a93d9f0c788c00d"></a>
 
 Gets the value of Ref14_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1a3e27c70d7fa39c3f851c447cb5f67daf)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a3e27c70d7fa39c3f851c447cb5f67daf"></a>
+#### `public inline FORCEINLINE bool `[`GetRef14`](#structFRHAPI__GuideCreateRequest_1acca5ec9d431a8a534726e928efa134c5)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1acca5ec9d431a8a534726e928efa134c5"></a>
 
 Fills OutValue with the value of Ref14_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef14OrNull`](#structFRHAPI__GuideCreateRequest_1a0d840fc130459525662b6229393ef0e6)`()` <a id="structFRHAPI__GuideCreateRequest_1a0d840fc130459525662b6229393ef0e6"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef14OrNull`](#structFRHAPI__GuideCreateRequest_1abca38cd71ada03dcefa002bffbb9ee7e)`()` <a id="structFRHAPI__GuideCreateRequest_1abca38cd71ada03dcefa002bffbb9ee7e"></a>
 
 Returns a pointer to Ref14_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef14OrNull`](#structFRHAPI__GuideCreateRequest_1af2c7144378b72e5d81b10d68c6d91ad8)`() const` <a id="structFRHAPI__GuideCreateRequest_1af2c7144378b72e5d81b10d68c6d91ad8"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef14OrNull`](#structFRHAPI__GuideCreateRequest_1a363f0ba2b82ddea348320c936ca3cffb)`() const` <a id="structFRHAPI__GuideCreateRequest_1a363f0ba2b82ddea348320c936ca3cffb"></a>
 
 Returns a pointer to Ref14_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef14`](#structFRHAPI__GuideCreateRequest_1a0a619f933114f87fc29827ff0b56ba56)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0a619f933114f87fc29827ff0b56ba56"></a>
+#### `public inline FORCEINLINE void `[`SetRef14`](#structFRHAPI__GuideCreateRequest_1aea58c843a1ffc8c6b3f05848365529de)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aea58c843a1ffc8c6b3f05848365529de"></a>
 
 Sets the value of Ref14_Optional and also sets Ref14_IsSet to true.
 
-#### `public inline void `[`SetRef14`](#structFRHAPI__GuideCreateRequest_1a22b310d3db37e2891ebea10df8e3e3f5)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a22b310d3db37e2891ebea10df8e3e3f5"></a>
+#### `public inline FORCEINLINE void `[`SetRef14`](#structFRHAPI__GuideCreateRequest_1a26d70ee0ad270a1c016b216c3f2202e2)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a26d70ee0ad270a1c016b216c3f2202e2"></a>
 
 Sets the value of Ref14_Optional and also sets Ref14_IsSet to true using move semantics.
 
@@ -1901,47 +1788,43 @@ Sets the value of Ref14_Optional and also sets Ref14_IsSet to true using move se
 
 Clears the value of Ref14_Optional and sets Ref14_IsSet to false.
 
-#### `public inline bool `[`IsRef14Set`](#structFRHAPI__GuideCreateRequest_1a625afd6e8d4fa6f4e08a0808b3afd2f1)`() const` <a id="structFRHAPI__GuideCreateRequest_1a625afd6e8d4fa6f4e08a0808b3afd2f1"></a>
-
-Checks whether Ref14_Optional has been set.
-
-#### `public inline void `[`SetRef14ToNull`](#structFRHAPI__GuideCreateRequest_1ac60e5096a7babc7378df857eed527414)`()` <a id="structFRHAPI__GuideCreateRequest_1ac60e5096a7babc7378df857eed527414"></a>
+#### `public inline FORCEINLINE void `[`SetRef14ToNull`](#structFRHAPI__GuideCreateRequest_1a6a7ed0aa25a5f74fbfe330dd3c85a41b)`()` <a id="structFRHAPI__GuideCreateRequest_1a6a7ed0aa25a5f74fbfe330dd3c85a41b"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef14Null`](#structFRHAPI__GuideCreateRequest_1a81ada39904ae2f705eea640feaa6b7cb)`() const` <a id="structFRHAPI__GuideCreateRequest_1a81ada39904ae2f705eea640feaa6b7cb"></a>
+#### `public inline FORCEINLINE bool `[`IsRef14Null`](#structFRHAPI__GuideCreateRequest_1a38d7b5e0ad7b410f85893a0086c2d314)`() const` <a id="structFRHAPI__GuideCreateRequest_1a38d7b5e0ad7b410f85893a0086c2d314"></a>
 
 Checks whether Ref14_Optional is set to null.
 
-#### `public inline FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a90f9e924f61def6c7977a2d97c541101)`()` <a id="structFRHAPI__GuideCreateRequest_1a90f9e924f61def6c7977a2d97c541101"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a86ac14c283c1429011b65078769f3d71)`()` <a id="structFRHAPI__GuideCreateRequest_1a86ac14c283c1429011b65078769f3d71"></a>
 
 Gets the value of Ref15_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a3363768d469add80446a86ea38b4f4fb)`() const` <a id="structFRHAPI__GuideCreateRequest_1a3363768d469add80446a86ea38b4f4fb"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a5f328d3af0d8ed0d669aea6d67f1e47d)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5f328d3af0d8ed0d669aea6d67f1e47d"></a>
 
 Gets the value of Ref15_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1a395ed0e24adbe807f7f79f1e55b1dd20)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a395ed0e24adbe807f7f79f1e55b1dd20"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1aaf25c75eaf2b6d82cf6c555732adbe44)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1aaf25c75eaf2b6d82cf6c555732adbe44"></a>
 
 Gets the value of Ref15_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1ad5def6b5e6c1b818e1e46796643bb44f)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ad5def6b5e6c1b818e1e46796643bb44f"></a>
+#### `public inline FORCEINLINE bool `[`GetRef15`](#structFRHAPI__GuideCreateRequest_1acd89249a8c4334f10fb07ddfac19fd9b)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1acd89249a8c4334f10fb07ddfac19fd9b"></a>
 
 Fills OutValue with the value of Ref15_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef15OrNull`](#structFRHAPI__GuideCreateRequest_1ab33b5151fd8d10a05886c847383e2df5)`()` <a id="structFRHAPI__GuideCreateRequest_1ab33b5151fd8d10a05886c847383e2df5"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef15OrNull`](#structFRHAPI__GuideCreateRequest_1a975425012c765b221507c8e97c2f5455)`()` <a id="structFRHAPI__GuideCreateRequest_1a975425012c765b221507c8e97c2f5455"></a>
 
 Returns a pointer to Ref15_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef15OrNull`](#structFRHAPI__GuideCreateRequest_1a6a4a193aa7bdb24bf284dff1c90103d3)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6a4a193aa7bdb24bf284dff1c90103d3"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef15OrNull`](#structFRHAPI__GuideCreateRequest_1a119b21d243980e530317effb8d772158)`() const` <a id="structFRHAPI__GuideCreateRequest_1a119b21d243980e530317effb8d772158"></a>
 
 Returns a pointer to Ref15_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef15`](#structFRHAPI__GuideCreateRequest_1aaab242cfd7775a9ba63661a6b56f6038)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aaab242cfd7775a9ba63661a6b56f6038"></a>
+#### `public inline FORCEINLINE void `[`SetRef15`](#structFRHAPI__GuideCreateRequest_1a4a90d2478000497c5a291d041683afc2)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a4a90d2478000497c5a291d041683afc2"></a>
 
 Sets the value of Ref15_Optional and also sets Ref15_IsSet to true.
 
-#### `public inline void `[`SetRef15`](#structFRHAPI__GuideCreateRequest_1a0b2aa7eb930c0c327951ef3923d70074)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0b2aa7eb930c0c327951ef3923d70074"></a>
+#### `public inline FORCEINLINE void `[`SetRef15`](#structFRHAPI__GuideCreateRequest_1a4950f1fadaf649461d27fcd831c4ff4f)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a4950f1fadaf649461d27fcd831c4ff4f"></a>
 
 Sets the value of Ref15_Optional and also sets Ref15_IsSet to true using move semantics.
 
@@ -1949,47 +1832,43 @@ Sets the value of Ref15_Optional and also sets Ref15_IsSet to true using move se
 
 Clears the value of Ref15_Optional and sets Ref15_IsSet to false.
 
-#### `public inline bool `[`IsRef15Set`](#structFRHAPI__GuideCreateRequest_1aee1024581fb880636c25f8b115bd2964)`() const` <a id="structFRHAPI__GuideCreateRequest_1aee1024581fb880636c25f8b115bd2964"></a>
-
-Checks whether Ref15_Optional has been set.
-
-#### `public inline void `[`SetRef15ToNull`](#structFRHAPI__GuideCreateRequest_1aebfadcbd08063ffe9e0a2ae2de12067b)`()` <a id="structFRHAPI__GuideCreateRequest_1aebfadcbd08063ffe9e0a2ae2de12067b"></a>
+#### `public inline FORCEINLINE void `[`SetRef15ToNull`](#structFRHAPI__GuideCreateRequest_1acf0bf3a25462187075dd9791922c4117)`()` <a id="structFRHAPI__GuideCreateRequest_1acf0bf3a25462187075dd9791922c4117"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef15Null`](#structFRHAPI__GuideCreateRequest_1a0777976c1cba768333498e1c6f646625)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0777976c1cba768333498e1c6f646625"></a>
+#### `public inline FORCEINLINE bool `[`IsRef15Null`](#structFRHAPI__GuideCreateRequest_1a44b349cfda84893c5e44fbf815fda2d5)`() const` <a id="structFRHAPI__GuideCreateRequest_1a44b349cfda84893c5e44fbf815fda2d5"></a>
 
 Checks whether Ref15_Optional is set to null.
 
-#### `public inline FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1ade1324285659a785173418b0394ac514)`()` <a id="structFRHAPI__GuideCreateRequest_1ade1324285659a785173418b0394ac514"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a10538d2e1595211abe68b39ee522785d)`()` <a id="structFRHAPI__GuideCreateRequest_1a10538d2e1595211abe68b39ee522785d"></a>
 
 Gets the value of Ref16_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a9d97dcfff8788aacfab41c0acfd25f8b)`() const` <a id="structFRHAPI__GuideCreateRequest_1a9d97dcfff8788aacfab41c0acfd25f8b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a33ab6260c40dec2e72336fb78d67a5c6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a33ab6260c40dec2e72336fb78d67a5c6"></a>
 
 Gets the value of Ref16_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1af8b87324f9adece356103e44929943dc)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1af8b87324f9adece356103e44929943dc"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a5561317c5d4a877f3fc5ee2b50115c24)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5561317c5d4a877f3fc5ee2b50115c24"></a>
 
 Gets the value of Ref16_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a11681cbaeddd4e4a8e50e3824115b077)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a11681cbaeddd4e4a8e50e3824115b077"></a>
+#### `public inline FORCEINLINE bool `[`GetRef16`](#structFRHAPI__GuideCreateRequest_1a189384d98897404163ffce2a520372a7)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a189384d98897404163ffce2a520372a7"></a>
 
 Fills OutValue with the value of Ref16_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef16OrNull`](#structFRHAPI__GuideCreateRequest_1a673a88b62a6cfcb1be7f54b1063693af)`()` <a id="structFRHAPI__GuideCreateRequest_1a673a88b62a6cfcb1be7f54b1063693af"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef16OrNull`](#structFRHAPI__GuideCreateRequest_1aed3a4d0199a3938e5420d20ae498d2fd)`()` <a id="structFRHAPI__GuideCreateRequest_1aed3a4d0199a3938e5420d20ae498d2fd"></a>
 
 Returns a pointer to Ref16_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef16OrNull`](#structFRHAPI__GuideCreateRequest_1a1f8aadff668614a884cc3a9622d56d4b)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1f8aadff668614a884cc3a9622d56d4b"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef16OrNull`](#structFRHAPI__GuideCreateRequest_1a4b39aa49f446567dc742dc1251d6c222)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4b39aa49f446567dc742dc1251d6c222"></a>
 
 Returns a pointer to Ref16_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef16`](#structFRHAPI__GuideCreateRequest_1a3f6da94809ac593e9c0517d1da2a740b)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a3f6da94809ac593e9c0517d1da2a740b"></a>
+#### `public inline FORCEINLINE void `[`SetRef16`](#structFRHAPI__GuideCreateRequest_1a3f1e7d198f2e61f623a832db92a87af5)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a3f1e7d198f2e61f623a832db92a87af5"></a>
 
 Sets the value of Ref16_Optional and also sets Ref16_IsSet to true.
 
-#### `public inline void `[`SetRef16`](#structFRHAPI__GuideCreateRequest_1ac9c8ea6d7862c164a464adf1563e7bff)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ac9c8ea6d7862c164a464adf1563e7bff"></a>
+#### `public inline FORCEINLINE void `[`SetRef16`](#structFRHAPI__GuideCreateRequest_1a177d8b0cb88663a96ff0fe9bf0d726b1)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a177d8b0cb88663a96ff0fe9bf0d726b1"></a>
 
 Sets the value of Ref16_Optional and also sets Ref16_IsSet to true using move semantics.
 
@@ -1997,47 +1876,43 @@ Sets the value of Ref16_Optional and also sets Ref16_IsSet to true using move se
 
 Clears the value of Ref16_Optional and sets Ref16_IsSet to false.
 
-#### `public inline bool `[`IsRef16Set`](#structFRHAPI__GuideCreateRequest_1a323e4529215bdb0090063fdc95e77c4c)`() const` <a id="structFRHAPI__GuideCreateRequest_1a323e4529215bdb0090063fdc95e77c4c"></a>
-
-Checks whether Ref16_Optional has been set.
-
-#### `public inline void `[`SetRef16ToNull`](#structFRHAPI__GuideCreateRequest_1a83b53302debc071863c15a63e696f7b0)`()` <a id="structFRHAPI__GuideCreateRequest_1a83b53302debc071863c15a63e696f7b0"></a>
+#### `public inline FORCEINLINE void `[`SetRef16ToNull`](#structFRHAPI__GuideCreateRequest_1a128d74713f91d3d253b6d8611f6e4cd0)`()` <a id="structFRHAPI__GuideCreateRequest_1a128d74713f91d3d253b6d8611f6e4cd0"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef16Null`](#structFRHAPI__GuideCreateRequest_1a97dc60b6707c2ab71f5bdfe799b05d98)`() const` <a id="structFRHAPI__GuideCreateRequest_1a97dc60b6707c2ab71f5bdfe799b05d98"></a>
+#### `public inline FORCEINLINE bool `[`IsRef16Null`](#structFRHAPI__GuideCreateRequest_1ade1c2004d178635dde6fde955e3dfeae)`() const` <a id="structFRHAPI__GuideCreateRequest_1ade1c2004d178635dde6fde955e3dfeae"></a>
 
 Checks whether Ref16_Optional is set to null.
 
-#### `public inline FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a7d286cccb7c95c6cfb4bf2ec80d14b14)`()` <a id="structFRHAPI__GuideCreateRequest_1a7d286cccb7c95c6cfb4bf2ec80d14b14"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a2461959069b3003d34a2be59ef370fdd)`()` <a id="structFRHAPI__GuideCreateRequest_1a2461959069b3003d34a2be59ef370fdd"></a>
 
 Gets the value of Ref17_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a07542914d63bbac4bd550438f3f06a69)`() const` <a id="structFRHAPI__GuideCreateRequest_1a07542914d63bbac4bd550438f3f06a69"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1add7a10e0d145ef92e7db85a71829c5d8)`() const` <a id="structFRHAPI__GuideCreateRequest_1add7a10e0d145ef92e7db85a71829c5d8"></a>
 
 Gets the value of Ref17_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a2b08d05cc10128ec64bd0964d9de80df)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a2b08d05cc10128ec64bd0964d9de80df"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a416b8839777ccb73b2a6eef7a20fd796)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a416b8839777ccb73b2a6eef7a20fd796"></a>
 
 Gets the value of Ref17_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1aec15d2e78ba4749e34b01d970579867a)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1aec15d2e78ba4749e34b01d970579867a"></a>
+#### `public inline FORCEINLINE bool `[`GetRef17`](#structFRHAPI__GuideCreateRequest_1a95b517c5034073b3e75c65f3dbbf2dae)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a95b517c5034073b3e75c65f3dbbf2dae"></a>
 
 Fills OutValue with the value of Ref17_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef17OrNull`](#structFRHAPI__GuideCreateRequest_1a516825378e3a9874ef692f459f77ed00)`()` <a id="structFRHAPI__GuideCreateRequest_1a516825378e3a9874ef692f459f77ed00"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef17OrNull`](#structFRHAPI__GuideCreateRequest_1aa3ac902f26d97383f53bc85120d7eaa3)`()` <a id="structFRHAPI__GuideCreateRequest_1aa3ac902f26d97383f53bc85120d7eaa3"></a>
 
 Returns a pointer to Ref17_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef17OrNull`](#structFRHAPI__GuideCreateRequest_1a1e758ce88640939a6a6c4623fbfb0158)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1e758ce88640939a6a6c4623fbfb0158"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef17OrNull`](#structFRHAPI__GuideCreateRequest_1a214e93a4f29a026d7f5197f3fdf846a3)`() const` <a id="structFRHAPI__GuideCreateRequest_1a214e93a4f29a026d7f5197f3fdf846a3"></a>
 
 Returns a pointer to Ref17_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef17`](#structFRHAPI__GuideCreateRequest_1ae465ad670630b720f2bb69d17abc912c)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ae465ad670630b720f2bb69d17abc912c"></a>
+#### `public inline FORCEINLINE void `[`SetRef17`](#structFRHAPI__GuideCreateRequest_1ad031936bfe52d61140a1638cc21cb79b)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ad031936bfe52d61140a1638cc21cb79b"></a>
 
 Sets the value of Ref17_Optional and also sets Ref17_IsSet to true.
 
-#### `public inline void `[`SetRef17`](#structFRHAPI__GuideCreateRequest_1a3c0d3c487a98e409e9fde929be614f4c)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a3c0d3c487a98e409e9fde929be614f4c"></a>
+#### `public inline FORCEINLINE void `[`SetRef17`](#structFRHAPI__GuideCreateRequest_1a5ed6327298b5b93a4e7efd44c8fea9f0)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5ed6327298b5b93a4e7efd44c8fea9f0"></a>
 
 Sets the value of Ref17_Optional and also sets Ref17_IsSet to true using move semantics.
 
@@ -2045,47 +1920,43 @@ Sets the value of Ref17_Optional and also sets Ref17_IsSet to true using move se
 
 Clears the value of Ref17_Optional and sets Ref17_IsSet to false.
 
-#### `public inline bool `[`IsRef17Set`](#structFRHAPI__GuideCreateRequest_1a002ba0ccfd6b93481981dd0815c774d5)`() const` <a id="structFRHAPI__GuideCreateRequest_1a002ba0ccfd6b93481981dd0815c774d5"></a>
-
-Checks whether Ref17_Optional has been set.
-
-#### `public inline void `[`SetRef17ToNull`](#structFRHAPI__GuideCreateRequest_1a138d1c40da9893da45b33012b3c76714)`()` <a id="structFRHAPI__GuideCreateRequest_1a138d1c40da9893da45b33012b3c76714"></a>
+#### `public inline FORCEINLINE void `[`SetRef17ToNull`](#structFRHAPI__GuideCreateRequest_1a826ff7dac46737b6d13cb7c1c83ddb61)`()` <a id="structFRHAPI__GuideCreateRequest_1a826ff7dac46737b6d13cb7c1c83ddb61"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef17Null`](#structFRHAPI__GuideCreateRequest_1a5d30ef3df07f953f9b8ca59012966c46)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5d30ef3df07f953f9b8ca59012966c46"></a>
+#### `public inline FORCEINLINE bool `[`IsRef17Null`](#structFRHAPI__GuideCreateRequest_1ad4e0f105a5dc607e4ac121c4cdee3240)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad4e0f105a5dc607e4ac121c4cdee3240"></a>
 
 Checks whether Ref17_Optional is set to null.
 
-#### `public inline FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a38cf7904a2085476f0f02794c7cfd4f7)`()` <a id="structFRHAPI__GuideCreateRequest_1a38cf7904a2085476f0f02794c7cfd4f7"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a0adc3a74c8613121838616d4e617ab9c)`()` <a id="structFRHAPI__GuideCreateRequest_1a0adc3a74c8613121838616d4e617ab9c"></a>
 
 Gets the value of Ref18_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a64bdf9ca4fd632d84815bf3ef24f1c87)`() const` <a id="structFRHAPI__GuideCreateRequest_1a64bdf9ca4fd632d84815bf3ef24f1c87"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1acf880cbbe20a01c20d10ced645d45a39)`() const` <a id="structFRHAPI__GuideCreateRequest_1acf880cbbe20a01c20d10ced645d45a39"></a>
 
 Gets the value of Ref18_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1ab67d8cee858b8e419cb3d4ee2bcab99b)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ab67d8cee858b8e419cb3d4ee2bcab99b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a3443cc731bbf009bedf1c107d67e9a72)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a3443cc731bbf009bedf1c107d67e9a72"></a>
 
 Gets the value of Ref18_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a5f6ca39a4393d1cdbdb6101354821ce9)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5f6ca39a4393d1cdbdb6101354821ce9"></a>
+#### `public inline FORCEINLINE bool `[`GetRef18`](#structFRHAPI__GuideCreateRequest_1a7cd970e80565084a206f6baadbb34048)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a7cd970e80565084a206f6baadbb34048"></a>
 
 Fills OutValue with the value of Ref18_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef18OrNull`](#structFRHAPI__GuideCreateRequest_1aa898968e465acfb9570eeedc8cfabe51)`()` <a id="structFRHAPI__GuideCreateRequest_1aa898968e465acfb9570eeedc8cfabe51"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef18OrNull`](#structFRHAPI__GuideCreateRequest_1a2a6283ed73fa1e873dbd9bfc92d9b66d)`()` <a id="structFRHAPI__GuideCreateRequest_1a2a6283ed73fa1e873dbd9bfc92d9b66d"></a>
 
 Returns a pointer to Ref18_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef18OrNull`](#structFRHAPI__GuideCreateRequest_1af00a15de3cd45adbcb3c6b57ef18b9b0)`() const` <a id="structFRHAPI__GuideCreateRequest_1af00a15de3cd45adbcb3c6b57ef18b9b0"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef18OrNull`](#structFRHAPI__GuideCreateRequest_1adf953454bbab67488edf259ca64f62dc)`() const` <a id="structFRHAPI__GuideCreateRequest_1adf953454bbab67488edf259ca64f62dc"></a>
 
 Returns a pointer to Ref18_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef18`](#structFRHAPI__GuideCreateRequest_1a5c815c672391a1ee6751b11a56964527)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5c815c672391a1ee6751b11a56964527"></a>
+#### `public inline FORCEINLINE void `[`SetRef18`](#structFRHAPI__GuideCreateRequest_1a5c81b69031ad754b65344f5794b8c5c2)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5c81b69031ad754b65344f5794b8c5c2"></a>
 
 Sets the value of Ref18_Optional and also sets Ref18_IsSet to true.
 
-#### `public inline void `[`SetRef18`](#structFRHAPI__GuideCreateRequest_1a93df463f8ed556729b5d3ba525b70cfa)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a93df463f8ed556729b5d3ba525b70cfa"></a>
+#### `public inline FORCEINLINE void `[`SetRef18`](#structFRHAPI__GuideCreateRequest_1a78cb655c5c12cdd5220f3d2959c40aab)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a78cb655c5c12cdd5220f3d2959c40aab"></a>
 
 Sets the value of Ref18_Optional and also sets Ref18_IsSet to true using move semantics.
 
@@ -2093,47 +1964,43 @@ Sets the value of Ref18_Optional and also sets Ref18_IsSet to true using move se
 
 Clears the value of Ref18_Optional and sets Ref18_IsSet to false.
 
-#### `public inline bool `[`IsRef18Set`](#structFRHAPI__GuideCreateRequest_1a91767c9e2f2220fd062969f5c5556fe7)`() const` <a id="structFRHAPI__GuideCreateRequest_1a91767c9e2f2220fd062969f5c5556fe7"></a>
-
-Checks whether Ref18_Optional has been set.
-
-#### `public inline void `[`SetRef18ToNull`](#structFRHAPI__GuideCreateRequest_1af4311a5d21ff07866ecd09639f8c25b6)`()` <a id="structFRHAPI__GuideCreateRequest_1af4311a5d21ff07866ecd09639f8c25b6"></a>
+#### `public inline FORCEINLINE void `[`SetRef18ToNull`](#structFRHAPI__GuideCreateRequest_1aeaef7663eed3365fd478440e86ac7650)`()` <a id="structFRHAPI__GuideCreateRequest_1aeaef7663eed3365fd478440e86ac7650"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef18Null`](#structFRHAPI__GuideCreateRequest_1a600a6a65d2bbb87b2f9bbd1b3eb4a805)`() const` <a id="structFRHAPI__GuideCreateRequest_1a600a6a65d2bbb87b2f9bbd1b3eb4a805"></a>
+#### `public inline FORCEINLINE bool `[`IsRef18Null`](#structFRHAPI__GuideCreateRequest_1ac609b0b2b96a1c2c2f86c460ec000404)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac609b0b2b96a1c2c2f86c460ec000404"></a>
 
 Checks whether Ref18_Optional is set to null.
 
-#### `public inline FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1ae2c549a2167e8ecf9abf35c3c10fd0ea)`()` <a id="structFRHAPI__GuideCreateRequest_1ae2c549a2167e8ecf9abf35c3c10fd0ea"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a9ff6ddc54d4538c8013c7cbf4fa011d7)`()` <a id="structFRHAPI__GuideCreateRequest_1a9ff6ddc54d4538c8013c7cbf4fa011d7"></a>
 
 Gets the value of Ref19_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a7e422aeb0b728977be3a217c154c4573)`() const` <a id="structFRHAPI__GuideCreateRequest_1a7e422aeb0b728977be3a217c154c4573"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1ab8ee367aa29cc2aa2144e68afe9ce23b)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab8ee367aa29cc2aa2144e68afe9ce23b"></a>
 
 Gets the value of Ref19_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a3594b2a00353b0a7be27e33957b108d2)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a3594b2a00353b0a7be27e33957b108d2"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a8f86f9ba4f80733357b7ad75006ec917)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a8f86f9ba4f80733357b7ad75006ec917"></a>
 
 Gets the value of Ref19_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a7b4fa0a021326f283811bd3b665fb967)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a7b4fa0a021326f283811bd3b665fb967"></a>
+#### `public inline FORCEINLINE bool `[`GetRef19`](#structFRHAPI__GuideCreateRequest_1a59bb052eea09c31527d052bccdc423fb)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a59bb052eea09c31527d052bccdc423fb"></a>
 
 Fills OutValue with the value of Ref19_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef19OrNull`](#structFRHAPI__GuideCreateRequest_1a79d0eaadc4b7ff611ebd1de761b79709)`()` <a id="structFRHAPI__GuideCreateRequest_1a79d0eaadc4b7ff611ebd1de761b79709"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef19OrNull`](#structFRHAPI__GuideCreateRequest_1a42ca3b554d1c5e5e6109c10fe12e0f82)`()` <a id="structFRHAPI__GuideCreateRequest_1a42ca3b554d1c5e5e6109c10fe12e0f82"></a>
 
 Returns a pointer to Ref19_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef19OrNull`](#structFRHAPI__GuideCreateRequest_1a66d7418fd6789b61c8cc1969ff0e8d79)`() const` <a id="structFRHAPI__GuideCreateRequest_1a66d7418fd6789b61c8cc1969ff0e8d79"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef19OrNull`](#structFRHAPI__GuideCreateRequest_1a1ede0567b7636141d249a576749d9a50)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1ede0567b7636141d249a576749d9a50"></a>
 
 Returns a pointer to Ref19_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef19`](#structFRHAPI__GuideCreateRequest_1a82a8a0706cf436c8d92739e42b15f4e5)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a82a8a0706cf436c8d92739e42b15f4e5"></a>
+#### `public inline FORCEINLINE void `[`SetRef19`](#structFRHAPI__GuideCreateRequest_1a556315d7c8b19c15c8b587ce4ac26472)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a556315d7c8b19c15c8b587ce4ac26472"></a>
 
 Sets the value of Ref19_Optional and also sets Ref19_IsSet to true.
 
-#### `public inline void `[`SetRef19`](#structFRHAPI__GuideCreateRequest_1a9a519c872d59a8e8815187ba1e35d156)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a9a519c872d59a8e8815187ba1e35d156"></a>
+#### `public inline FORCEINLINE void `[`SetRef19`](#structFRHAPI__GuideCreateRequest_1a1c7c871c20ed700de8a75a36a08b1c4f)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a1c7c871c20ed700de8a75a36a08b1c4f"></a>
 
 Sets the value of Ref19_Optional and also sets Ref19_IsSet to true using move semantics.
 
@@ -2141,47 +2008,43 @@ Sets the value of Ref19_Optional and also sets Ref19_IsSet to true using move se
 
 Clears the value of Ref19_Optional and sets Ref19_IsSet to false.
 
-#### `public inline bool `[`IsRef19Set`](#structFRHAPI__GuideCreateRequest_1a0f76436c4e09b11a59caec3f8859dc38)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0f76436c4e09b11a59caec3f8859dc38"></a>
-
-Checks whether Ref19_Optional has been set.
-
-#### `public inline void `[`SetRef19ToNull`](#structFRHAPI__GuideCreateRequest_1ac2e56af9f6c0b5e24d59ba93a6d645d5)`()` <a id="structFRHAPI__GuideCreateRequest_1ac2e56af9f6c0b5e24d59ba93a6d645d5"></a>
+#### `public inline FORCEINLINE void `[`SetRef19ToNull`](#structFRHAPI__GuideCreateRequest_1aa20f4e6359eaa42f9c3653ba7b385f51)`()` <a id="structFRHAPI__GuideCreateRequest_1aa20f4e6359eaa42f9c3653ba7b385f51"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef19Null`](#structFRHAPI__GuideCreateRequest_1a46e312f3dc9868dd508ea9bf8ba2a4ed)`() const` <a id="structFRHAPI__GuideCreateRequest_1a46e312f3dc9868dd508ea9bf8ba2a4ed"></a>
+#### `public inline FORCEINLINE bool `[`IsRef19Null`](#structFRHAPI__GuideCreateRequest_1a48e195fa830b7011b77e5696ec3619b2)`() const` <a id="structFRHAPI__GuideCreateRequest_1a48e195fa830b7011b77e5696ec3619b2"></a>
 
 Checks whether Ref19_Optional is set to null.
 
-#### `public inline FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a34d0d5615e0d871a150ccd894178c799)`()` <a id="structFRHAPI__GuideCreateRequest_1a34d0d5615e0d871a150ccd894178c799"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1aa5127046360b7d7ac0733ea4ad42a82a)`()` <a id="structFRHAPI__GuideCreateRequest_1aa5127046360b7d7ac0733ea4ad42a82a"></a>
 
 Gets the value of Ref20_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a2164b352fa857495277bd65853b9e3ad)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2164b352fa857495277bd65853b9e3ad"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a9c17e33470d01585d7b92c4a1fe3e829)`() const` <a id="structFRHAPI__GuideCreateRequest_1a9c17e33470d01585d7b92c4a1fe3e829"></a>
 
 Gets the value of Ref20_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a5ef84d63ec0e364cc8cf88ecb5697c50)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5ef84d63ec0e364cc8cf88ecb5697c50"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a64a5b0143ca3592b8d8bf1fa6b042be9)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a64a5b0143ca3592b8d8bf1fa6b042be9"></a>
 
 Gets the value of Ref20_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a5576b8919f218ea01d39f90c375d4876)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5576b8919f218ea01d39f90c375d4876"></a>
+#### `public inline FORCEINLINE bool `[`GetRef20`](#structFRHAPI__GuideCreateRequest_1a72312fd00cbfc2e2da491201cc6b3294)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a72312fd00cbfc2e2da491201cc6b3294"></a>
 
 Fills OutValue with the value of Ref20_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef20OrNull`](#structFRHAPI__GuideCreateRequest_1afcd526ec9a31fd8cf519aa689c5af1f9)`()` <a id="structFRHAPI__GuideCreateRequest_1afcd526ec9a31fd8cf519aa689c5af1f9"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef20OrNull`](#structFRHAPI__GuideCreateRequest_1aabfef322bf4cb1080d7d7318dab7cbf8)`()` <a id="structFRHAPI__GuideCreateRequest_1aabfef322bf4cb1080d7d7318dab7cbf8"></a>
 
 Returns a pointer to Ref20_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef20OrNull`](#structFRHAPI__GuideCreateRequest_1a2f301e0ebf9b8b8de231a3da6edc2840)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2f301e0ebf9b8b8de231a3da6edc2840"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef20OrNull`](#structFRHAPI__GuideCreateRequest_1a4bda9585a59273ae2f6122512e35409a)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4bda9585a59273ae2f6122512e35409a"></a>
 
 Returns a pointer to Ref20_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef20`](#structFRHAPI__GuideCreateRequest_1a7c064648a0075546bbdd4125ae5a06fa)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a7c064648a0075546bbdd4125ae5a06fa"></a>
+#### `public inline FORCEINLINE void `[`SetRef20`](#structFRHAPI__GuideCreateRequest_1a6ae0b4ce02f5db8af67b4a97c1ac045f)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6ae0b4ce02f5db8af67b4a97c1ac045f"></a>
 
 Sets the value of Ref20_Optional and also sets Ref20_IsSet to true.
 
-#### `public inline void `[`SetRef20`](#structFRHAPI__GuideCreateRequest_1a8cea0e8d1fd0d43d3b83222b413a6103)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a8cea0e8d1fd0d43d3b83222b413a6103"></a>
+#### `public inline FORCEINLINE void `[`SetRef20`](#structFRHAPI__GuideCreateRequest_1a6422842aa13233dd7835212c6ea59d7c)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6422842aa13233dd7835212c6ea59d7c"></a>
 
 Sets the value of Ref20_Optional and also sets Ref20_IsSet to true using move semantics.
 
@@ -2189,47 +2052,43 @@ Sets the value of Ref20_Optional and also sets Ref20_IsSet to true using move se
 
 Clears the value of Ref20_Optional and sets Ref20_IsSet to false.
 
-#### `public inline bool `[`IsRef20Set`](#structFRHAPI__GuideCreateRequest_1a2d1aec761b517b05eca6a5d4aa7ac143)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2d1aec761b517b05eca6a5d4aa7ac143"></a>
-
-Checks whether Ref20_Optional has been set.
-
-#### `public inline void `[`SetRef20ToNull`](#structFRHAPI__GuideCreateRequest_1ae936287f33efee9eef3534af25c7c56b)`()` <a id="structFRHAPI__GuideCreateRequest_1ae936287f33efee9eef3534af25c7c56b"></a>
+#### `public inline FORCEINLINE void `[`SetRef20ToNull`](#structFRHAPI__GuideCreateRequest_1a9b22c33f310a7def8058f22163b1c583)`()` <a id="structFRHAPI__GuideCreateRequest_1a9b22c33f310a7def8058f22163b1c583"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef20Null`](#structFRHAPI__GuideCreateRequest_1a9a2fbe2b7d99e62b185f820e19ca4c18)`() const` <a id="structFRHAPI__GuideCreateRequest_1a9a2fbe2b7d99e62b185f820e19ca4c18"></a>
+#### `public inline FORCEINLINE bool `[`IsRef20Null`](#structFRHAPI__GuideCreateRequest_1aec08f5463404c44230f7bf76eba116c5)`() const` <a id="structFRHAPI__GuideCreateRequest_1aec08f5463404c44230f7bf76eba116c5"></a>
 
 Checks whether Ref20_Optional is set to null.
 
-#### `public inline FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1afe5851ca42ecf71d8857d149a6e86eb6)`()` <a id="structFRHAPI__GuideCreateRequest_1afe5851ca42ecf71d8857d149a6e86eb6"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a6a0c1a01a4f1fac9052779fd80481e74)`()` <a id="structFRHAPI__GuideCreateRequest_1a6a0c1a01a4f1fac9052779fd80481e74"></a>
 
 Gets the value of Ref21_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a4cd8bd84118a7a4ff39bdcc9f7f9fa85)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4cd8bd84118a7a4ff39bdcc9f7f9fa85"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a9a73d5899a901b1f96a7bf4bd6c8de3c)`() const` <a id="structFRHAPI__GuideCreateRequest_1a9a73d5899a901b1f96a7bf4bd6c8de3c"></a>
 
 Gets the value of Ref21_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a62e854ea5c58382c29e666bc9cfa240c)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a62e854ea5c58382c29e666bc9cfa240c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1ab59acf5cf4a97eb93b3e1674e99c7789)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ab59acf5cf4a97eb93b3e1674e99c7789"></a>
 
 Gets the value of Ref21_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1ae0b6806d162ad9ddbcc076853bacdbbc)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae0b6806d162ad9ddbcc076853bacdbbc"></a>
+#### `public inline FORCEINLINE bool `[`GetRef21`](#structFRHAPI__GuideCreateRequest_1a2b6d86997c6da5ddbe7f7143f3ac43ad)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a2b6d86997c6da5ddbe7f7143f3ac43ad"></a>
 
 Fills OutValue with the value of Ref21_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef21OrNull`](#structFRHAPI__GuideCreateRequest_1a2b486f4a439f2ab87713661291c401ba)`()` <a id="structFRHAPI__GuideCreateRequest_1a2b486f4a439f2ab87713661291c401ba"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef21OrNull`](#structFRHAPI__GuideCreateRequest_1ad21d8abd4bd7d116ccf2a05ca87a563a)`()` <a id="structFRHAPI__GuideCreateRequest_1ad21d8abd4bd7d116ccf2a05ca87a563a"></a>
 
 Returns a pointer to Ref21_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef21OrNull`](#structFRHAPI__GuideCreateRequest_1a3e45613bc78e41a417ea475b44263ed5)`() const` <a id="structFRHAPI__GuideCreateRequest_1a3e45613bc78e41a417ea475b44263ed5"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef21OrNull`](#structFRHAPI__GuideCreateRequest_1a355ac79789757d19963062333eb93065)`() const` <a id="structFRHAPI__GuideCreateRequest_1a355ac79789757d19963062333eb93065"></a>
 
 Returns a pointer to Ref21_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef21`](#structFRHAPI__GuideCreateRequest_1ab8492920d41a9b1f8a4c5675f2654722)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ab8492920d41a9b1f8a4c5675f2654722"></a>
+#### `public inline FORCEINLINE void `[`SetRef21`](#structFRHAPI__GuideCreateRequest_1a91aaa9f59f1dcf9846160b83a2b083c7)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a91aaa9f59f1dcf9846160b83a2b083c7"></a>
 
 Sets the value of Ref21_Optional and also sets Ref21_IsSet to true.
 
-#### `public inline void `[`SetRef21`](#structFRHAPI__GuideCreateRequest_1ab1424d450d422e13fc91e2b6f985db2f)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ab1424d450d422e13fc91e2b6f985db2f"></a>
+#### `public inline FORCEINLINE void `[`SetRef21`](#structFRHAPI__GuideCreateRequest_1a9ce0687bbde4598d535ebb2fe3fca56e)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a9ce0687bbde4598d535ebb2fe3fca56e"></a>
 
 Sets the value of Ref21_Optional and also sets Ref21_IsSet to true using move semantics.
 
@@ -2237,47 +2096,43 @@ Sets the value of Ref21_Optional and also sets Ref21_IsSet to true using move se
 
 Clears the value of Ref21_Optional and sets Ref21_IsSet to false.
 
-#### `public inline bool `[`IsRef21Set`](#structFRHAPI__GuideCreateRequest_1a84c04be1008f2f5a268f25771df2a24f)`() const` <a id="structFRHAPI__GuideCreateRequest_1a84c04be1008f2f5a268f25771df2a24f"></a>
-
-Checks whether Ref21_Optional has been set.
-
-#### `public inline void `[`SetRef21ToNull`](#structFRHAPI__GuideCreateRequest_1aa90e84c7b0039cd481fa972974c3fc3f)`()` <a id="structFRHAPI__GuideCreateRequest_1aa90e84c7b0039cd481fa972974c3fc3f"></a>
+#### `public inline FORCEINLINE void `[`SetRef21ToNull`](#structFRHAPI__GuideCreateRequest_1a85489822d0d8e8e31b7d8879c1355936)`()` <a id="structFRHAPI__GuideCreateRequest_1a85489822d0d8e8e31b7d8879c1355936"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef21Null`](#structFRHAPI__GuideCreateRequest_1a1d0845c9da4f76245cb150e3410615f4)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1d0845c9da4f76245cb150e3410615f4"></a>
+#### `public inline FORCEINLINE bool `[`IsRef21Null`](#structFRHAPI__GuideCreateRequest_1a0c074dc8452fe8eb86d2735d6078145b)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0c074dc8452fe8eb86d2735d6078145b"></a>
 
 Checks whether Ref21_Optional is set to null.
 
-#### `public inline FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1af4e4b0ec80e41615ec6cfd2643012f07)`()` <a id="structFRHAPI__GuideCreateRequest_1af4e4b0ec80e41615ec6cfd2643012f07"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1a195fef2b5cf9399f466af6607161137c)`()` <a id="structFRHAPI__GuideCreateRequest_1a195fef2b5cf9399f466af6607161137c"></a>
 
 Gets the value of Ref22_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1a631d1ccc654cce59222d08a44fb73a83)`() const` <a id="structFRHAPI__GuideCreateRequest_1a631d1ccc654cce59222d08a44fb73a83"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1aa5dbf14ffd97a432d3ac89a2b49d86a4)`() const` <a id="structFRHAPI__GuideCreateRequest_1aa5dbf14ffd97a432d3ac89a2b49d86a4"></a>
 
 Gets the value of Ref22_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1a03aecfedef4a2ee3cf7909673899cbb6)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a03aecfedef4a2ee3cf7909673899cbb6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1aa5d01b6af619d6655e7d1ec50e1ba80d)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1aa5d01b6af619d6655e7d1ec50e1ba80d"></a>
 
 Gets the value of Ref22_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1afaa6769fa3362b2e9f814d3b51c46578)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1afaa6769fa3362b2e9f814d3b51c46578"></a>
+#### `public inline FORCEINLINE bool `[`GetRef22`](#structFRHAPI__GuideCreateRequest_1a169c6416ad73fce3289af21dddbd9ebd)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a169c6416ad73fce3289af21dddbd9ebd"></a>
 
 Fills OutValue with the value of Ref22_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef22OrNull`](#structFRHAPI__GuideCreateRequest_1a87b86c7e3dba2a03407359051167c63f)`()` <a id="structFRHAPI__GuideCreateRequest_1a87b86c7e3dba2a03407359051167c63f"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef22OrNull`](#structFRHAPI__GuideCreateRequest_1a796956eafb730746d6f874f56e05890f)`()` <a id="structFRHAPI__GuideCreateRequest_1a796956eafb730746d6f874f56e05890f"></a>
 
 Returns a pointer to Ref22_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef22OrNull`](#structFRHAPI__GuideCreateRequest_1abb58ba9472698e52076ae86b837d7b7b)`() const` <a id="structFRHAPI__GuideCreateRequest_1abb58ba9472698e52076ae86b837d7b7b"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef22OrNull`](#structFRHAPI__GuideCreateRequest_1ab1ebb476ff9ac5630aee6b6a00d0f412)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab1ebb476ff9ac5630aee6b6a00d0f412"></a>
 
 Returns a pointer to Ref22_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef22`](#structFRHAPI__GuideCreateRequest_1a0a45d9e4388757cdba2a594d9afec94c)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a0a45d9e4388757cdba2a594d9afec94c"></a>
+#### `public inline FORCEINLINE void `[`SetRef22`](#structFRHAPI__GuideCreateRequest_1a961225dadee8740972b8c6e18d6c8807)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a961225dadee8740972b8c6e18d6c8807"></a>
 
 Sets the value of Ref22_Optional and also sets Ref22_IsSet to true.
 
-#### `public inline void `[`SetRef22`](#structFRHAPI__GuideCreateRequest_1af30d3e7d9882a7604257428e0f070644)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1af30d3e7d9882a7604257428e0f070644"></a>
+#### `public inline FORCEINLINE void `[`SetRef22`](#structFRHAPI__GuideCreateRequest_1a6a5ed4914a06dd35a77cd09819b42298)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6a5ed4914a06dd35a77cd09819b42298"></a>
 
 Sets the value of Ref22_Optional and also sets Ref22_IsSet to true using move semantics.
 
@@ -2285,47 +2140,43 @@ Sets the value of Ref22_Optional and also sets Ref22_IsSet to true using move se
 
 Clears the value of Ref22_Optional and sets Ref22_IsSet to false.
 
-#### `public inline bool `[`IsRef22Set`](#structFRHAPI__GuideCreateRequest_1ab49adac282a783456b38bf52e58067c0)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab49adac282a783456b38bf52e58067c0"></a>
-
-Checks whether Ref22_Optional has been set.
-
-#### `public inline void `[`SetRef22ToNull`](#structFRHAPI__GuideCreateRequest_1a021b5dc48180935661f9fe2eea5e4b7a)`()` <a id="structFRHAPI__GuideCreateRequest_1a021b5dc48180935661f9fe2eea5e4b7a"></a>
+#### `public inline FORCEINLINE void `[`SetRef22ToNull`](#structFRHAPI__GuideCreateRequest_1a36970dce59e90389fdfa41bcb07ca5d6)`()` <a id="structFRHAPI__GuideCreateRequest_1a36970dce59e90389fdfa41bcb07ca5d6"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef22Null`](#structFRHAPI__GuideCreateRequest_1a2cd6ca8e7ce04093b1966cd88e7d448e)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2cd6ca8e7ce04093b1966cd88e7d448e"></a>
+#### `public inline FORCEINLINE bool `[`IsRef22Null`](#structFRHAPI__GuideCreateRequest_1ae0ef78dcc47f1cf5ee64c315be225538)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae0ef78dcc47f1cf5ee64c315be225538"></a>
 
 Checks whether Ref22_Optional is set to null.
 
-#### `public inline FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1af42ccf8328b199c35830150554d44891)`()` <a id="structFRHAPI__GuideCreateRequest_1af42ccf8328b199c35830150554d44891"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1a95386222d0b814a8a74a543f8d2cc5ed)`()` <a id="structFRHAPI__GuideCreateRequest_1a95386222d0b814a8a74a543f8d2cc5ed"></a>
 
 Gets the value of Ref23_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1ae05a910886bf33c82f3b676836d2058f)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae05a910886bf33c82f3b676836d2058f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1a1d3abde2d8133fbb3ed269a63cea47f9)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1d3abde2d8133fbb3ed269a63cea47f9"></a>
 
 Gets the value of Ref23_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1ac3a457c929fc0466f246297099ae456f)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ac3a457c929fc0466f246297099ae456f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1a191c4519286be7ff72cb0ee40c2b582d)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a191c4519286be7ff72cb0ee40c2b582d"></a>
 
 Gets the value of Ref23_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1a4fb26561eb5421a82a936cb393a47caa)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a4fb26561eb5421a82a936cb393a47caa"></a>
+#### `public inline FORCEINLINE bool `[`GetRef23`](#structFRHAPI__GuideCreateRequest_1afa0d2c5ae2e46323c8d9859d5b983928)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1afa0d2c5ae2e46323c8d9859d5b983928"></a>
 
 Fills OutValue with the value of Ref23_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef23OrNull`](#structFRHAPI__GuideCreateRequest_1af6037b086eaf3d239f96af5317c21957)`()` <a id="structFRHAPI__GuideCreateRequest_1af6037b086eaf3d239f96af5317c21957"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef23OrNull`](#structFRHAPI__GuideCreateRequest_1a74e85efc8797b1be8dbdd5c35015b94e)`()` <a id="structFRHAPI__GuideCreateRequest_1a74e85efc8797b1be8dbdd5c35015b94e"></a>
 
 Returns a pointer to Ref23_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef23OrNull`](#structFRHAPI__GuideCreateRequest_1acf06cd86ce5794c31c4f06e253ecdb34)`() const` <a id="structFRHAPI__GuideCreateRequest_1acf06cd86ce5794c31c4f06e253ecdb34"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef23OrNull`](#structFRHAPI__GuideCreateRequest_1a551bf59f1a935371ffbf759a6b5e6caf)`() const` <a id="structFRHAPI__GuideCreateRequest_1a551bf59f1a935371ffbf759a6b5e6caf"></a>
 
 Returns a pointer to Ref23_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef23`](#structFRHAPI__GuideCreateRequest_1a58c2c49e37b75caa3df5dbc428f320e9)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a58c2c49e37b75caa3df5dbc428f320e9"></a>
+#### `public inline FORCEINLINE void `[`SetRef23`](#structFRHAPI__GuideCreateRequest_1ab504c218921436ae399a6d6b995d1a05)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ab504c218921436ae399a6d6b995d1a05"></a>
 
 Sets the value of Ref23_Optional and also sets Ref23_IsSet to true.
 
-#### `public inline void `[`SetRef23`](#structFRHAPI__GuideCreateRequest_1a10e838a233790ddb35cdc341d4e5b108)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a10e838a233790ddb35cdc341d4e5b108"></a>
+#### `public inline FORCEINLINE void `[`SetRef23`](#structFRHAPI__GuideCreateRequest_1a2ab8d1f437e73f4c819d8de78a63ee97)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a2ab8d1f437e73f4c819d8de78a63ee97"></a>
 
 Sets the value of Ref23_Optional and also sets Ref23_IsSet to true using move semantics.
 
@@ -2333,47 +2184,43 @@ Sets the value of Ref23_Optional and also sets Ref23_IsSet to true using move se
 
 Clears the value of Ref23_Optional and sets Ref23_IsSet to false.
 
-#### `public inline bool `[`IsRef23Set`](#structFRHAPI__GuideCreateRequest_1a255be7f458d48f58c60bf815b85e2aa1)`() const` <a id="structFRHAPI__GuideCreateRequest_1a255be7f458d48f58c60bf815b85e2aa1"></a>
-
-Checks whether Ref23_Optional has been set.
-
-#### `public inline void `[`SetRef23ToNull`](#structFRHAPI__GuideCreateRequest_1a2ad67033841deb78eaf97555140cd3e5)`()` <a id="structFRHAPI__GuideCreateRequest_1a2ad67033841deb78eaf97555140cd3e5"></a>
+#### `public inline FORCEINLINE void `[`SetRef23ToNull`](#structFRHAPI__GuideCreateRequest_1a82bdb594b753bd807f3acf92afbe9885)`()` <a id="structFRHAPI__GuideCreateRequest_1a82bdb594b753bd807f3acf92afbe9885"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef23Null`](#structFRHAPI__GuideCreateRequest_1acf82f3fe95637fdc7350c6e8ecc852c1)`() const` <a id="structFRHAPI__GuideCreateRequest_1acf82f3fe95637fdc7350c6e8ecc852c1"></a>
+#### `public inline FORCEINLINE bool `[`IsRef23Null`](#structFRHAPI__GuideCreateRequest_1a9d193eaa1cccddcf046dbe805ae7fbf4)`() const` <a id="structFRHAPI__GuideCreateRequest_1a9d193eaa1cccddcf046dbe805ae7fbf4"></a>
 
 Checks whether Ref23_Optional is set to null.
 
-#### `public inline FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a4bca4e18a4ba529c3e68d4aa3cd7073f)`()` <a id="structFRHAPI__GuideCreateRequest_1a4bca4e18a4ba529c3e68d4aa3cd7073f"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a136e7c48cfc01d1311e7b601977d6311)`()` <a id="structFRHAPI__GuideCreateRequest_1a136e7c48cfc01d1311e7b601977d6311"></a>
 
 Gets the value of Ref24_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a6555e90c5634008d30a4cfb607206457)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6555e90c5634008d30a4cfb607206457"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a45b17b0fef0eefc00ae962073f2b7be6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a45b17b0fef0eefc00ae962073f2b7be6"></a>
 
 Gets the value of Ref24_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a3d31b7489f5c051818a78ccf7f9072d0)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a3d31b7489f5c051818a78ccf7f9072d0"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1a2935a0cea853006e2d1392d19ef009a8)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a2935a0cea853006e2d1392d19ef009a8"></a>
 
 Gets the value of Ref24_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1aa4be23ba13e33c936b45a1ec5f024dcb)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1aa4be23ba13e33c936b45a1ec5f024dcb"></a>
+#### `public inline FORCEINLINE bool `[`GetRef24`](#structFRHAPI__GuideCreateRequest_1ac944d2ad9911e8af6c39c76ed48c9b36)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ac944d2ad9911e8af6c39c76ed48c9b36"></a>
 
 Fills OutValue with the value of Ref24_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef24OrNull`](#structFRHAPI__GuideCreateRequest_1a804bb1d3ed02b582aac13947d17191d8)`()` <a id="structFRHAPI__GuideCreateRequest_1a804bb1d3ed02b582aac13947d17191d8"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef24OrNull`](#structFRHAPI__GuideCreateRequest_1a603740d19036c4ead5c964c193fbe147)`()` <a id="structFRHAPI__GuideCreateRequest_1a603740d19036c4ead5c964c193fbe147"></a>
 
 Returns a pointer to Ref24_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef24OrNull`](#structFRHAPI__GuideCreateRequest_1adc09242522f1184b502d5e1345e272d0)`() const` <a id="structFRHAPI__GuideCreateRequest_1adc09242522f1184b502d5e1345e272d0"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef24OrNull`](#structFRHAPI__GuideCreateRequest_1a906d7ac0da09fb290f74974bc3842eac)`() const` <a id="structFRHAPI__GuideCreateRequest_1a906d7ac0da09fb290f74974bc3842eac"></a>
 
 Returns a pointer to Ref24_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef24`](#structFRHAPI__GuideCreateRequest_1a9f45f8e3ff23715e144e68e1277dd857)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a9f45f8e3ff23715e144e68e1277dd857"></a>
+#### `public inline FORCEINLINE void `[`SetRef24`](#structFRHAPI__GuideCreateRequest_1a1f243c8ac560e21e6cb242a06710d3ca)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a1f243c8ac560e21e6cb242a06710d3ca"></a>
 
 Sets the value of Ref24_Optional and also sets Ref24_IsSet to true.
 
-#### `public inline void `[`SetRef24`](#structFRHAPI__GuideCreateRequest_1ac9f93c37f38807e5f12e030e121f8567)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ac9f93c37f38807e5f12e030e121f8567"></a>
+#### `public inline FORCEINLINE void `[`SetRef24`](#structFRHAPI__GuideCreateRequest_1a1391fd36cb6999a193ca185002cb2d56)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a1391fd36cb6999a193ca185002cb2d56"></a>
 
 Sets the value of Ref24_Optional and also sets Ref24_IsSet to true using move semantics.
 
@@ -2381,47 +2228,43 @@ Sets the value of Ref24_Optional and also sets Ref24_IsSet to true using move se
 
 Clears the value of Ref24_Optional and sets Ref24_IsSet to false.
 
-#### `public inline bool `[`IsRef24Set`](#structFRHAPI__GuideCreateRequest_1a1f12684dbd8ed4ae72c9b41b8c8fed24)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1f12684dbd8ed4ae72c9b41b8c8fed24"></a>
-
-Checks whether Ref24_Optional has been set.
-
-#### `public inline void `[`SetRef24ToNull`](#structFRHAPI__GuideCreateRequest_1a573d5c131459999dfd3558a08b9b1755)`()` <a id="structFRHAPI__GuideCreateRequest_1a573d5c131459999dfd3558a08b9b1755"></a>
+#### `public inline FORCEINLINE void `[`SetRef24ToNull`](#structFRHAPI__GuideCreateRequest_1ac01a1a4aecfed461d59042b7e6f5de65)`()` <a id="structFRHAPI__GuideCreateRequest_1ac01a1a4aecfed461d59042b7e6f5de65"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef24Null`](#structFRHAPI__GuideCreateRequest_1afd0470a0db3fb4daa08be4cbbf6d342f)`() const` <a id="structFRHAPI__GuideCreateRequest_1afd0470a0db3fb4daa08be4cbbf6d342f"></a>
+#### `public inline FORCEINLINE bool `[`IsRef24Null`](#structFRHAPI__GuideCreateRequest_1a2cbf948f4b188e8bd55f96ec42d7760f)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2cbf948f4b188e8bd55f96ec42d7760f"></a>
 
 Checks whether Ref24_Optional is set to null.
 
-#### `public inline FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1ad5028722eba4853b729b747f7a27eb41)`()` <a id="structFRHAPI__GuideCreateRequest_1ad5028722eba4853b729b747f7a27eb41"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1a92b47d45db85b486bc91b0934c35679a)`()` <a id="structFRHAPI__GuideCreateRequest_1a92b47d45db85b486bc91b0934c35679a"></a>
 
 Gets the value of Ref25_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1af4c5b3204c829a1423f7fe2168bd84c1)`() const` <a id="structFRHAPI__GuideCreateRequest_1af4c5b3204c829a1423f7fe2168bd84c1"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1a977fea97c91d70e6d2df03f3eed1414a)`() const` <a id="structFRHAPI__GuideCreateRequest_1a977fea97c91d70e6d2df03f3eed1414a"></a>
 
 Gets the value of Ref25_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1afef8ff9dccb8533d65361b753707748e)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1afef8ff9dccb8533d65361b753707748e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1a9f55188efcedc924f35e0ce33ecf0930)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a9f55188efcedc924f35e0ce33ecf0930"></a>
 
 Gets the value of Ref25_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1ae87ef41dff8a27b1391a3552909a6546)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae87ef41dff8a27b1391a3552909a6546"></a>
+#### `public inline FORCEINLINE bool `[`GetRef25`](#structFRHAPI__GuideCreateRequest_1a19290585ad4b04e142635aae5cdadb7d)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a19290585ad4b04e142635aae5cdadb7d"></a>
 
 Fills OutValue with the value of Ref25_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef25OrNull`](#structFRHAPI__GuideCreateRequest_1a9b3f3c99ce1deb137f75a32cab7e5bef)`()` <a id="structFRHAPI__GuideCreateRequest_1a9b3f3c99ce1deb137f75a32cab7e5bef"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef25OrNull`](#structFRHAPI__GuideCreateRequest_1ab5aaee7bef9bf10d9349419f1ffca71a)`()` <a id="structFRHAPI__GuideCreateRequest_1ab5aaee7bef9bf10d9349419f1ffca71a"></a>
 
 Returns a pointer to Ref25_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef25OrNull`](#structFRHAPI__GuideCreateRequest_1afe8bdc83c5701873118512972b4eceb4)`() const` <a id="structFRHAPI__GuideCreateRequest_1afe8bdc83c5701873118512972b4eceb4"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef25OrNull`](#structFRHAPI__GuideCreateRequest_1ab03cfc19f8d986a8f02bf879f20b9d49)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab03cfc19f8d986a8f02bf879f20b9d49"></a>
 
 Returns a pointer to Ref25_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef25`](#structFRHAPI__GuideCreateRequest_1aea68ae97e77c61d2564c5453ec1a1fa3)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aea68ae97e77c61d2564c5453ec1a1fa3"></a>
+#### `public inline FORCEINLINE void `[`SetRef25`](#structFRHAPI__GuideCreateRequest_1a39124ff0b792c615d159b9284e133f9f)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a39124ff0b792c615d159b9284e133f9f"></a>
 
 Sets the value of Ref25_Optional and also sets Ref25_IsSet to true.
 
-#### `public inline void `[`SetRef25`](#structFRHAPI__GuideCreateRequest_1a5993c9fc1d17d10fe7fa033c41c98bb8)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5993c9fc1d17d10fe7fa033c41c98bb8"></a>
+#### `public inline FORCEINLINE void `[`SetRef25`](#structFRHAPI__GuideCreateRequest_1a9a06d9c63dad620dc19b0badf61c7f56)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a9a06d9c63dad620dc19b0badf61c7f56"></a>
 
 Sets the value of Ref25_Optional and also sets Ref25_IsSet to true using move semantics.
 
@@ -2429,47 +2272,43 @@ Sets the value of Ref25_Optional and also sets Ref25_IsSet to true using move se
 
 Clears the value of Ref25_Optional and sets Ref25_IsSet to false.
 
-#### `public inline bool `[`IsRef25Set`](#structFRHAPI__GuideCreateRequest_1a005776c7cce23d0cc2db41ec30f820ee)`() const` <a id="structFRHAPI__GuideCreateRequest_1a005776c7cce23d0cc2db41ec30f820ee"></a>
-
-Checks whether Ref25_Optional has been set.
-
-#### `public inline void `[`SetRef25ToNull`](#structFRHAPI__GuideCreateRequest_1ad0a6c66166029e8a2ed4bcaacee47985)`()` <a id="structFRHAPI__GuideCreateRequest_1ad0a6c66166029e8a2ed4bcaacee47985"></a>
+#### `public inline FORCEINLINE void `[`SetRef25ToNull`](#structFRHAPI__GuideCreateRequest_1a467ac2014e0c8655cc0105b65fb8c67a)`()` <a id="structFRHAPI__GuideCreateRequest_1a467ac2014e0c8655cc0105b65fb8c67a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef25Null`](#structFRHAPI__GuideCreateRequest_1a4ba2f756b31ccd2822a9c984d140b6e4)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4ba2f756b31ccd2822a9c984d140b6e4"></a>
+#### `public inline FORCEINLINE bool `[`IsRef25Null`](#structFRHAPI__GuideCreateRequest_1a8d20a9332d41d4e8f645d73dac73766f)`() const` <a id="structFRHAPI__GuideCreateRequest_1a8d20a9332d41d4e8f645d73dac73766f"></a>
 
 Checks whether Ref25_Optional is set to null.
 
-#### `public inline FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1af6e18648bdcfc1d460afc55a6eff49e5)`()` <a id="structFRHAPI__GuideCreateRequest_1af6e18648bdcfc1d460afc55a6eff49e5"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a21c3fdfaff12e511fcfb8d396abedd7d)`()` <a id="structFRHAPI__GuideCreateRequest_1a21c3fdfaff12e511fcfb8d396abedd7d"></a>
 
 Gets the value of Ref26_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a68570e28a429b6915e2da0a5dda40fe2)`() const` <a id="structFRHAPI__GuideCreateRequest_1a68570e28a429b6915e2da0a5dda40fe2"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1ac8f33bee2b209a913ff4eab1e4f80287)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac8f33bee2b209a913ff4eab1e4f80287"></a>
 
 Gets the value of Ref26_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a27d10866acbed7ff592f4a27792baa4a)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a27d10866acbed7ff592f4a27792baa4a"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1ae5dc657524b096f6aeb0124d3166d55b)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae5dc657524b096f6aeb0124d3166d55b"></a>
 
 Gets the value of Ref26_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a9e40ac831c1f8a141c7614c2c53c0172)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a9e40ac831c1f8a141c7614c2c53c0172"></a>
+#### `public inline FORCEINLINE bool `[`GetRef26`](#structFRHAPI__GuideCreateRequest_1a4b955ff189ca37f73c643003b1530cc8)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a4b955ff189ca37f73c643003b1530cc8"></a>
 
 Fills OutValue with the value of Ref26_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef26OrNull`](#structFRHAPI__GuideCreateRequest_1a3e3767b204ee2cfb7c24235f89fdbcb6)`()` <a id="structFRHAPI__GuideCreateRequest_1a3e3767b204ee2cfb7c24235f89fdbcb6"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef26OrNull`](#structFRHAPI__GuideCreateRequest_1afdeb8676c2e58bd08b4e7de4e4ea14ba)`()` <a id="structFRHAPI__GuideCreateRequest_1afdeb8676c2e58bd08b4e7de4e4ea14ba"></a>
 
 Returns a pointer to Ref26_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef26OrNull`](#structFRHAPI__GuideCreateRequest_1a46be382e12662f25e3e042198b2e00d4)`() const` <a id="structFRHAPI__GuideCreateRequest_1a46be382e12662f25e3e042198b2e00d4"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef26OrNull`](#structFRHAPI__GuideCreateRequest_1ac8110187709a847e90667eb5719264d9)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac8110187709a847e90667eb5719264d9"></a>
 
 Returns a pointer to Ref26_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef26`](#structFRHAPI__GuideCreateRequest_1a7b22e7d0c52959362b369e01b19357e1)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a7b22e7d0c52959362b369e01b19357e1"></a>
+#### `public inline FORCEINLINE void `[`SetRef26`](#structFRHAPI__GuideCreateRequest_1ac0d339cb7c7889ba14cc1b7386c57ea1)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ac0d339cb7c7889ba14cc1b7386c57ea1"></a>
 
 Sets the value of Ref26_Optional and also sets Ref26_IsSet to true.
 
-#### `public inline void `[`SetRef26`](#structFRHAPI__GuideCreateRequest_1a23170083c14d7d2d5c39cec4fe59e453)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a23170083c14d7d2d5c39cec4fe59e453"></a>
+#### `public inline FORCEINLINE void `[`SetRef26`](#structFRHAPI__GuideCreateRequest_1a39b2997a6ea0cff8b71da1dce47c2f34)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a39b2997a6ea0cff8b71da1dce47c2f34"></a>
 
 Sets the value of Ref26_Optional and also sets Ref26_IsSet to true using move semantics.
 
@@ -2477,47 +2316,43 @@ Sets the value of Ref26_Optional and also sets Ref26_IsSet to true using move se
 
 Clears the value of Ref26_Optional and sets Ref26_IsSet to false.
 
-#### `public inline bool `[`IsRef26Set`](#structFRHAPI__GuideCreateRequest_1a0aff9e603557927ccad71027c60016db)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0aff9e603557927ccad71027c60016db"></a>
-
-Checks whether Ref26_Optional has been set.
-
-#### `public inline void `[`SetRef26ToNull`](#structFRHAPI__GuideCreateRequest_1aea573854e1d02311fcc85435784dde2b)`()` <a id="structFRHAPI__GuideCreateRequest_1aea573854e1d02311fcc85435784dde2b"></a>
+#### `public inline FORCEINLINE void `[`SetRef26ToNull`](#structFRHAPI__GuideCreateRequest_1a06bce88a6ceafaeb13655e60f802d835)`()` <a id="structFRHAPI__GuideCreateRequest_1a06bce88a6ceafaeb13655e60f802d835"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef26Null`](#structFRHAPI__GuideCreateRequest_1a12b600bbd131c7caf1d4663a1d63d53b)`() const` <a id="structFRHAPI__GuideCreateRequest_1a12b600bbd131c7caf1d4663a1d63d53b"></a>
+#### `public inline FORCEINLINE bool `[`IsRef26Null`](#structFRHAPI__GuideCreateRequest_1aea5690eea4e4f94d9296d6a88003e6a0)`() const` <a id="structFRHAPI__GuideCreateRequest_1aea5690eea4e4f94d9296d6a88003e6a0"></a>
 
 Checks whether Ref26_Optional is set to null.
 
-#### `public inline FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1a59c851d1b124c7987c0655cbad8d616b)`()` <a id="structFRHAPI__GuideCreateRequest_1a59c851d1b124c7987c0655cbad8d616b"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1a90fa757516b33065473a63fe6257e917)`()` <a id="structFRHAPI__GuideCreateRequest_1a90fa757516b33065473a63fe6257e917"></a>
 
 Gets the value of Ref27_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1aa7c968f126f9b4104904842e2ebf1239)`() const` <a id="structFRHAPI__GuideCreateRequest_1aa7c968f126f9b4104904842e2ebf1239"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1ae517f80cac0a931d8a2b8f872663c30d)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae517f80cac0a931d8a2b8f872663c30d"></a>
 
 Gets the value of Ref27_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1ad101a0952398bc475de1c1a456b2da7a)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ad101a0952398bc475de1c1a456b2da7a"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1af884da248befe187b6538a5724cf33d8)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1af884da248befe187b6538a5724cf33d8"></a>
 
 Gets the value of Ref27_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1a6b0c20b9204f6d18e6f39b45f4049178)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a6b0c20b9204f6d18e6f39b45f4049178"></a>
+#### `public inline FORCEINLINE bool `[`GetRef27`](#structFRHAPI__GuideCreateRequest_1a9e13c1e111811d8099dcc1a39e8758d0)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a9e13c1e111811d8099dcc1a39e8758d0"></a>
 
 Fills OutValue with the value of Ref27_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef27OrNull`](#structFRHAPI__GuideCreateRequest_1a92d4765e3b13a9c463a7b86875bcd111)`()` <a id="structFRHAPI__GuideCreateRequest_1a92d4765e3b13a9c463a7b86875bcd111"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef27OrNull`](#structFRHAPI__GuideCreateRequest_1a282777f96a5a32e6cfdb2b28ed2d071e)`()` <a id="structFRHAPI__GuideCreateRequest_1a282777f96a5a32e6cfdb2b28ed2d071e"></a>
 
 Returns a pointer to Ref27_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef27OrNull`](#structFRHAPI__GuideCreateRequest_1a458de5fa80fc9e4a7694593da64b7684)`() const` <a id="structFRHAPI__GuideCreateRequest_1a458de5fa80fc9e4a7694593da64b7684"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef27OrNull`](#structFRHAPI__GuideCreateRequest_1ab4233d0779830e6df2e41dd775e1e5f8)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab4233d0779830e6df2e41dd775e1e5f8"></a>
 
 Returns a pointer to Ref27_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef27`](#structFRHAPI__GuideCreateRequest_1ab284b79883ac86028908d7afa70fe355)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ab284b79883ac86028908d7afa70fe355"></a>
+#### `public inline FORCEINLINE void `[`SetRef27`](#structFRHAPI__GuideCreateRequest_1af665202e4dbf08a5d5d02944c8e1d926)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1af665202e4dbf08a5d5d02944c8e1d926"></a>
 
 Sets the value of Ref27_Optional and also sets Ref27_IsSet to true.
 
-#### `public inline void `[`SetRef27`](#structFRHAPI__GuideCreateRequest_1aaa51eefed80d0b90dcfe883e918aef7a)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aaa51eefed80d0b90dcfe883e918aef7a"></a>
+#### `public inline FORCEINLINE void `[`SetRef27`](#structFRHAPI__GuideCreateRequest_1a33c37ff3cee588245b1c54059ebd60b4)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a33c37ff3cee588245b1c54059ebd60b4"></a>
 
 Sets the value of Ref27_Optional and also sets Ref27_IsSet to true using move semantics.
 
@@ -2525,47 +2360,43 @@ Sets the value of Ref27_Optional and also sets Ref27_IsSet to true using move se
 
 Clears the value of Ref27_Optional and sets Ref27_IsSet to false.
 
-#### `public inline bool `[`IsRef27Set`](#structFRHAPI__GuideCreateRequest_1a5409eb1e934de5a0165d149b55458280)`() const` <a id="structFRHAPI__GuideCreateRequest_1a5409eb1e934de5a0165d149b55458280"></a>
-
-Checks whether Ref27_Optional has been set.
-
-#### `public inline void `[`SetRef27ToNull`](#structFRHAPI__GuideCreateRequest_1a3df4f6337392303652c52cdafb787d05)`()` <a id="structFRHAPI__GuideCreateRequest_1a3df4f6337392303652c52cdafb787d05"></a>
+#### `public inline FORCEINLINE void `[`SetRef27ToNull`](#structFRHAPI__GuideCreateRequest_1a4dc5bcbb975b5bbde46b5afbc68a0e92)`()` <a id="structFRHAPI__GuideCreateRequest_1a4dc5bcbb975b5bbde46b5afbc68a0e92"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef27Null`](#structFRHAPI__GuideCreateRequest_1a3c7c5e3fd17458608afa649b59377232)`() const` <a id="structFRHAPI__GuideCreateRequest_1a3c7c5e3fd17458608afa649b59377232"></a>
+#### `public inline FORCEINLINE bool `[`IsRef27Null`](#structFRHAPI__GuideCreateRequest_1a98fbe14f8d8c4a701996cc54d9aeaf2b)`() const` <a id="structFRHAPI__GuideCreateRequest_1a98fbe14f8d8c4a701996cc54d9aeaf2b"></a>
 
 Checks whether Ref27_Optional is set to null.
 
-#### `public inline FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a4fce4225045a3abf830e43c92fb1419b)`()` <a id="structFRHAPI__GuideCreateRequest_1a4fce4225045a3abf830e43c92fb1419b"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a9d37a27b676eb0d0e08e4a53e530795e)`()` <a id="structFRHAPI__GuideCreateRequest_1a9d37a27b676eb0d0e08e4a53e530795e"></a>
 
 Gets the value of Ref28_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1aba860426435334fdf50e75c3b33d6e1e)`() const` <a id="structFRHAPI__GuideCreateRequest_1aba860426435334fdf50e75c3b33d6e1e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a3e5179b310db7b24d1a888b0d87225f0)`() const` <a id="structFRHAPI__GuideCreateRequest_1a3e5179b310db7b24d1a888b0d87225f0"></a>
 
 Gets the value of Ref28_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a825bbfeb8796c0bab69b77f49e600eff)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a825bbfeb8796c0bab69b77f49e600eff"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1adeb6b93e17ccee739f2ac3981b372f0e)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1adeb6b93e17ccee739f2ac3981b372f0e"></a>
 
 Gets the value of Ref28_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1a710ae6e264abd05b86836de0c46b8a3b)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a710ae6e264abd05b86836de0c46b8a3b"></a>
+#### `public inline FORCEINLINE bool `[`GetRef28`](#structFRHAPI__GuideCreateRequest_1abd423baa18547385e6d8886bd3fd1b62)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1abd423baa18547385e6d8886bd3fd1b62"></a>
 
 Fills OutValue with the value of Ref28_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef28OrNull`](#structFRHAPI__GuideCreateRequest_1affd5df778c9f4625ebad28ec902069db)`()` <a id="structFRHAPI__GuideCreateRequest_1affd5df778c9f4625ebad28ec902069db"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef28OrNull`](#structFRHAPI__GuideCreateRequest_1a9564c25f0d9adfcdcf9723673cecd181)`()` <a id="structFRHAPI__GuideCreateRequest_1a9564c25f0d9adfcdcf9723673cecd181"></a>
 
 Returns a pointer to Ref28_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef28OrNull`](#structFRHAPI__GuideCreateRequest_1ac9eee8322baa9d5f1065eb41cc87a3f2)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac9eee8322baa9d5f1065eb41cc87a3f2"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef28OrNull`](#structFRHAPI__GuideCreateRequest_1a09eb23886c41b634e2ff0d161bdde5cf)`() const` <a id="structFRHAPI__GuideCreateRequest_1a09eb23886c41b634e2ff0d161bdde5cf"></a>
 
 Returns a pointer to Ref28_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef28`](#structFRHAPI__GuideCreateRequest_1aa167a62083254fb33103b3442059f2de)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1aa167a62083254fb33103b3442059f2de"></a>
+#### `public inline FORCEINLINE void `[`SetRef28`](#structFRHAPI__GuideCreateRequest_1a12329b06184121f5616377d66a00f039)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a12329b06184121f5616377d66a00f039"></a>
 
 Sets the value of Ref28_Optional and also sets Ref28_IsSet to true.
 
-#### `public inline void `[`SetRef28`](#structFRHAPI__GuideCreateRequest_1a15a1e0f2240ada47641dc690a1908a5f)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a15a1e0f2240ada47641dc690a1908a5f"></a>
+#### `public inline FORCEINLINE void `[`SetRef28`](#structFRHAPI__GuideCreateRequest_1a5a2c4f7e75fabdf441f4b3122e03e789)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5a2c4f7e75fabdf441f4b3122e03e789"></a>
 
 Sets the value of Ref28_Optional and also sets Ref28_IsSet to true using move semantics.
 
@@ -2573,47 +2404,43 @@ Sets the value of Ref28_Optional and also sets Ref28_IsSet to true using move se
 
 Clears the value of Ref28_Optional and sets Ref28_IsSet to false.
 
-#### `public inline bool `[`IsRef28Set`](#structFRHAPI__GuideCreateRequest_1a98e938000d622f90f7db2850fc070977)`() const` <a id="structFRHAPI__GuideCreateRequest_1a98e938000d622f90f7db2850fc070977"></a>
-
-Checks whether Ref28_Optional has been set.
-
-#### `public inline void `[`SetRef28ToNull`](#structFRHAPI__GuideCreateRequest_1afe4f0294df1e5da6e6f6196bac58018b)`()` <a id="structFRHAPI__GuideCreateRequest_1afe4f0294df1e5da6e6f6196bac58018b"></a>
+#### `public inline FORCEINLINE void `[`SetRef28ToNull`](#structFRHAPI__GuideCreateRequest_1a4c3789970035eb58965bc7cad2ddf02c)`()` <a id="structFRHAPI__GuideCreateRequest_1a4c3789970035eb58965bc7cad2ddf02c"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef28Null`](#structFRHAPI__GuideCreateRequest_1af67d840a8bc1459d87e64e5041a54489)`() const` <a id="structFRHAPI__GuideCreateRequest_1af67d840a8bc1459d87e64e5041a54489"></a>
+#### `public inline FORCEINLINE bool `[`IsRef28Null`](#structFRHAPI__GuideCreateRequest_1a1ba17dc47dbf5ffe05d9de762f41bc55)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1ba17dc47dbf5ffe05d9de762f41bc55"></a>
 
 Checks whether Ref28_Optional is set to null.
 
-#### `public inline FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1aa5553ccbfdf8072bd85a1941a2af7e88)`()` <a id="structFRHAPI__GuideCreateRequest_1aa5553ccbfdf8072bd85a1941a2af7e88"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1ab23490a5253b4d1a4206162cb785ab79)`()` <a id="structFRHAPI__GuideCreateRequest_1ab23490a5253b4d1a4206162cb785ab79"></a>
 
 Gets the value of Ref29_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1af2bedc7c5c22635d155287df46a33957)`() const` <a id="structFRHAPI__GuideCreateRequest_1af2bedc7c5c22635d155287df46a33957"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1a0e71a4bd8c54b7efa8535ff9e6e5cba1)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0e71a4bd8c54b7efa8535ff9e6e5cba1"></a>
 
 Gets the value of Ref29_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1abec4a7019e97e99b3e173529ef9ea9fc)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1abec4a7019e97e99b3e173529ef9ea9fc"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1a75126a8ec18a6a8c6aca2948d0e8b691)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a75126a8ec18a6a8c6aca2948d0e8b691"></a>
 
 Gets the value of Ref29_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1aa5b342189231bdf1287ce4d6bd500b7d)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1aa5b342189231bdf1287ce4d6bd500b7d"></a>
+#### `public inline FORCEINLINE bool `[`GetRef29`](#structFRHAPI__GuideCreateRequest_1a166f016bb5e64c4f513c491fac03583a)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a166f016bb5e64c4f513c491fac03583a"></a>
 
 Fills OutValue with the value of Ref29_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef29OrNull`](#structFRHAPI__GuideCreateRequest_1ae4674d4439f97bf42084b095aa93dbff)`()` <a id="structFRHAPI__GuideCreateRequest_1ae4674d4439f97bf42084b095aa93dbff"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef29OrNull`](#structFRHAPI__GuideCreateRequest_1a66dfa358f749e0c6abb145f11e941e66)`()` <a id="structFRHAPI__GuideCreateRequest_1a66dfa358f749e0c6abb145f11e941e66"></a>
 
 Returns a pointer to Ref29_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef29OrNull`](#structFRHAPI__GuideCreateRequest_1a418d0bff796eef8dd44be815f7712350)`() const` <a id="structFRHAPI__GuideCreateRequest_1a418d0bff796eef8dd44be815f7712350"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef29OrNull`](#structFRHAPI__GuideCreateRequest_1a612c50a6dbb7c22a483527297286ccae)`() const` <a id="structFRHAPI__GuideCreateRequest_1a612c50a6dbb7c22a483527297286ccae"></a>
 
 Returns a pointer to Ref29_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef29`](#structFRHAPI__GuideCreateRequest_1a1121aeebd604deaa53d31818c88bd1a6)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a1121aeebd604deaa53d31818c88bd1a6"></a>
+#### `public inline FORCEINLINE void `[`SetRef29`](#structFRHAPI__GuideCreateRequest_1a00e7f99e5275325a986b7d94c2c81767)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a00e7f99e5275325a986b7d94c2c81767"></a>
 
 Sets the value of Ref29_Optional and also sets Ref29_IsSet to true.
 
-#### `public inline void `[`SetRef29`](#structFRHAPI__GuideCreateRequest_1a3adbce3de67ad65632f22bb4f8cec408)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a3adbce3de67ad65632f22bb4f8cec408"></a>
+#### `public inline FORCEINLINE void `[`SetRef29`](#structFRHAPI__GuideCreateRequest_1abdde5010266f9f136968c110e932b958)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1abdde5010266f9f136968c110e932b958"></a>
 
 Sets the value of Ref29_Optional and also sets Ref29_IsSet to true using move semantics.
 
@@ -2621,47 +2448,43 @@ Sets the value of Ref29_Optional and also sets Ref29_IsSet to true using move se
 
 Clears the value of Ref29_Optional and sets Ref29_IsSet to false.
 
-#### `public inline bool `[`IsRef29Set`](#structFRHAPI__GuideCreateRequest_1ae8cac6f075c089c1c62d24f7ee2fb149)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae8cac6f075c089c1c62d24f7ee2fb149"></a>
-
-Checks whether Ref29_Optional has been set.
-
-#### `public inline void `[`SetRef29ToNull`](#structFRHAPI__GuideCreateRequest_1a0b6c0e221fddc27d300320de070deb6b)`()` <a id="structFRHAPI__GuideCreateRequest_1a0b6c0e221fddc27d300320de070deb6b"></a>
+#### `public inline FORCEINLINE void `[`SetRef29ToNull`](#structFRHAPI__GuideCreateRequest_1ae236c379043030458dbc26b5f88f87ed)`()` <a id="structFRHAPI__GuideCreateRequest_1ae236c379043030458dbc26b5f88f87ed"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef29Null`](#structFRHAPI__GuideCreateRequest_1a0757af66cc65bf6825f757d461768fac)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0757af66cc65bf6825f757d461768fac"></a>
+#### `public inline FORCEINLINE bool `[`IsRef29Null`](#structFRHAPI__GuideCreateRequest_1a6431719bfdaaec325153c8292f3af5d2)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6431719bfdaaec325153c8292f3af5d2"></a>
 
 Checks whether Ref29_Optional is set to null.
 
-#### `public inline FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a3943165b8741ae77d11ef1a04d288eef)`()` <a id="structFRHAPI__GuideCreateRequest_1a3943165b8741ae77d11ef1a04d288eef"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1ac597072a7ea439a2549a2fe4e470d906)`()` <a id="structFRHAPI__GuideCreateRequest_1ac597072a7ea439a2549a2fe4e470d906"></a>
 
 Gets the value of Ref30_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a6809b186cf57f0806edbb5c935423d89)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6809b186cf57f0806edbb5c935423d89"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1ae802bddf199edc6faf8456cd9840ddf8)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae802bddf199edc6faf8456cd9840ddf8"></a>
 
 Gets the value of Ref30_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1af11657821c3690cab391249576822d86)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1af11657821c3690cab391249576822d86"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a97ca4f71c622513f55018e1df3706882)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a97ca4f71c622513f55018e1df3706882"></a>
 
 Gets the value of Ref30_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a4f41e37da7fc37d859343c1a910b1085)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a4f41e37da7fc37d859343c1a910b1085"></a>
+#### `public inline FORCEINLINE bool `[`GetRef30`](#structFRHAPI__GuideCreateRequest_1a4b21b132ac0afc2e09dd8d85ebe98c1d)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a4b21b132ac0afc2e09dd8d85ebe98c1d"></a>
 
 Fills OutValue with the value of Ref30_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef30OrNull`](#structFRHAPI__GuideCreateRequest_1a98a80f649e03c2d53dda213bc8a55d75)`()` <a id="structFRHAPI__GuideCreateRequest_1a98a80f649e03c2d53dda213bc8a55d75"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef30OrNull`](#structFRHAPI__GuideCreateRequest_1a72e69e5fa81ca47bee6cd60c7dd8971b)`()` <a id="structFRHAPI__GuideCreateRequest_1a72e69e5fa81ca47bee6cd60c7dd8971b"></a>
 
 Returns a pointer to Ref30_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef30OrNull`](#structFRHAPI__GuideCreateRequest_1a12933fe4f80955bcd30382af8b161397)`() const` <a id="structFRHAPI__GuideCreateRequest_1a12933fe4f80955bcd30382af8b161397"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef30OrNull`](#structFRHAPI__GuideCreateRequest_1a1ec6464c7b699916b493034376196d67)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1ec6464c7b699916b493034376196d67"></a>
 
 Returns a pointer to Ref30_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef30`](#structFRHAPI__GuideCreateRequest_1a4e1262bbe634a596dba34dd4277cd864)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a4e1262bbe634a596dba34dd4277cd864"></a>
+#### `public inline FORCEINLINE void `[`SetRef30`](#structFRHAPI__GuideCreateRequest_1adfd50702be684e3d1a23add32c61750e)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1adfd50702be684e3d1a23add32c61750e"></a>
 
 Sets the value of Ref30_Optional and also sets Ref30_IsSet to true.
 
-#### `public inline void `[`SetRef30`](#structFRHAPI__GuideCreateRequest_1a474c67abee690e7cad63abf5e84d7bb9)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a474c67abee690e7cad63abf5e84d7bb9"></a>
+#### `public inline FORCEINLINE void `[`SetRef30`](#structFRHAPI__GuideCreateRequest_1ababb9bc57666c6c9fe420bb030e37c44)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ababb9bc57666c6c9fe420bb030e37c44"></a>
 
 Sets the value of Ref30_Optional and also sets Ref30_IsSet to true using move semantics.
 
@@ -2669,47 +2492,43 @@ Sets the value of Ref30_Optional and also sets Ref30_IsSet to true using move se
 
 Clears the value of Ref30_Optional and sets Ref30_IsSet to false.
 
-#### `public inline bool `[`IsRef30Set`](#structFRHAPI__GuideCreateRequest_1ad16860d098f32efd74a74d7ab96b7ed7)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad16860d098f32efd74a74d7ab96b7ed7"></a>
-
-Checks whether Ref30_Optional has been set.
-
-#### `public inline void `[`SetRef30ToNull`](#structFRHAPI__GuideCreateRequest_1aa1f06e9fb39f06c8509d6300344d957a)`()` <a id="structFRHAPI__GuideCreateRequest_1aa1f06e9fb39f06c8509d6300344d957a"></a>
+#### `public inline FORCEINLINE void `[`SetRef30ToNull`](#structFRHAPI__GuideCreateRequest_1a3609ab6b960f125e1abbf27cabce23dd)`()` <a id="structFRHAPI__GuideCreateRequest_1a3609ab6b960f125e1abbf27cabce23dd"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef30Null`](#structFRHAPI__GuideCreateRequest_1a53028048b59e02731c93688db0b5275d)`() const` <a id="structFRHAPI__GuideCreateRequest_1a53028048b59e02731c93688db0b5275d"></a>
+#### `public inline FORCEINLINE bool `[`IsRef30Null`](#structFRHAPI__GuideCreateRequest_1aae2148048d96c3a421853ad97491b8f4)`() const` <a id="structFRHAPI__GuideCreateRequest_1aae2148048d96c3a421853ad97491b8f4"></a>
 
 Checks whether Ref30_Optional is set to null.
 
-#### `public inline FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1a73978e21993ad3ea5ea202b99ec4001b)`()` <a id="structFRHAPI__GuideCreateRequest_1a73978e21993ad3ea5ea202b99ec4001b"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1af5e9cdf0180840c1bfc8619a96a1f957)`()` <a id="structFRHAPI__GuideCreateRequest_1af5e9cdf0180840c1bfc8619a96a1f957"></a>
 
 Gets the value of Ref31_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1a145f0b77be6a901a98de3a750fa860b3)`() const` <a id="structFRHAPI__GuideCreateRequest_1a145f0b77be6a901a98de3a750fa860b3"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1a4d7a8b5f83223e04a879ebdacdce4f35)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4d7a8b5f83223e04a879ebdacdce4f35"></a>
 
 Gets the value of Ref31_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1af6b67e8e7ddab8b044121dc46688bc2d)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1af6b67e8e7ddab8b044121dc46688bc2d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1ab596140093281a2760d9e40fb2561bc8)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ab596140093281a2760d9e40fb2561bc8"></a>
 
 Gets the value of Ref31_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1a7a3b9df3d3205ff665fe2de3d24a6ea9)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a7a3b9df3d3205ff665fe2de3d24a6ea9"></a>
+#### `public inline FORCEINLINE bool `[`GetRef31`](#structFRHAPI__GuideCreateRequest_1afc97a7e5cc958655af75d8e7d7e66ea4)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1afc97a7e5cc958655af75d8e7d7e66ea4"></a>
 
 Fills OutValue with the value of Ref31_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef31OrNull`](#structFRHAPI__GuideCreateRequest_1a9b8d9979a1fad3107d16bcc64ce4ec7c)`()` <a id="structFRHAPI__GuideCreateRequest_1a9b8d9979a1fad3107d16bcc64ce4ec7c"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef31OrNull`](#structFRHAPI__GuideCreateRequest_1a813a57a1b0ceb7cf0a694fcfda254327)`()` <a id="structFRHAPI__GuideCreateRequest_1a813a57a1b0ceb7cf0a694fcfda254327"></a>
 
 Returns a pointer to Ref31_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef31OrNull`](#structFRHAPI__GuideCreateRequest_1af82fb7198bf7727cd06381158bcee962)`() const` <a id="structFRHAPI__GuideCreateRequest_1af82fb7198bf7727cd06381158bcee962"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef31OrNull`](#structFRHAPI__GuideCreateRequest_1a29496a91255151a574893688729f3568)`() const` <a id="structFRHAPI__GuideCreateRequest_1a29496a91255151a574893688729f3568"></a>
 
 Returns a pointer to Ref31_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef31`](#structFRHAPI__GuideCreateRequest_1ae94231114cf3adf9ffa231b826dd7717)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ae94231114cf3adf9ffa231b826dd7717"></a>
+#### `public inline FORCEINLINE void `[`SetRef31`](#structFRHAPI__GuideCreateRequest_1a52a7be422b18c6ee4dafbd17bcd5e544)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a52a7be422b18c6ee4dafbd17bcd5e544"></a>
 
 Sets the value of Ref31_Optional and also sets Ref31_IsSet to true.
 
-#### `public inline void `[`SetRef31`](#structFRHAPI__GuideCreateRequest_1ae256c08c653cdd1a4f2e4ec3296b7385)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ae256c08c653cdd1a4f2e4ec3296b7385"></a>
+#### `public inline FORCEINLINE void `[`SetRef31`](#structFRHAPI__GuideCreateRequest_1af0ec5214ff8b6f4db114d0b676a7c1a5)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1af0ec5214ff8b6f4db114d0b676a7c1a5"></a>
 
 Sets the value of Ref31_Optional and also sets Ref31_IsSet to true using move semantics.
 
@@ -2717,47 +2536,43 @@ Sets the value of Ref31_Optional and also sets Ref31_IsSet to true using move se
 
 Clears the value of Ref31_Optional and sets Ref31_IsSet to false.
 
-#### `public inline bool `[`IsRef31Set`](#structFRHAPI__GuideCreateRequest_1ae1226b92826970893a288606b9179b13)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae1226b92826970893a288606b9179b13"></a>
-
-Checks whether Ref31_Optional has been set.
-
-#### `public inline void `[`SetRef31ToNull`](#structFRHAPI__GuideCreateRequest_1a145d548a4e715d30416b12596eb8a85d)`()` <a id="structFRHAPI__GuideCreateRequest_1a145d548a4e715d30416b12596eb8a85d"></a>
+#### `public inline FORCEINLINE void `[`SetRef31ToNull`](#structFRHAPI__GuideCreateRequest_1a318f03ca11693979fed1de67039fa8ff)`()` <a id="structFRHAPI__GuideCreateRequest_1a318f03ca11693979fed1de67039fa8ff"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef31Null`](#structFRHAPI__GuideCreateRequest_1ae4193c2dda1b279d813ea02f636edfd3)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae4193c2dda1b279d813ea02f636edfd3"></a>
+#### `public inline FORCEINLINE bool `[`IsRef31Null`](#structFRHAPI__GuideCreateRequest_1ac5b7aa9dbd274857dcf137184685a727)`() const` <a id="structFRHAPI__GuideCreateRequest_1ac5b7aa9dbd274857dcf137184685a727"></a>
 
 Checks whether Ref31_Optional is set to null.
 
-#### `public inline FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1afe9932b34d06a006b358d58afcee744b)`()` <a id="structFRHAPI__GuideCreateRequest_1afe9932b34d06a006b358d58afcee744b"></a>
+#### `public inline FORCEINLINE FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1ac5981228e0b6e08a048ade313959c6eb)`()` <a id="structFRHAPI__GuideCreateRequest_1ac5981228e0b6e08a048ade313959c6eb"></a>
 
 Gets the value of Ref32_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1addd098b2c00dbc91c47db6d30be8ead3)`() const` <a id="structFRHAPI__GuideCreateRequest_1addd098b2c00dbc91c47db6d30be8ead3"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1a359c71f9e6440dca98da2cb748c70028)`() const` <a id="structFRHAPI__GuideCreateRequest_1a359c71f9e6440dca98da2cb748c70028"></a>
 
 Gets the value of Ref32_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1a537d68b67910c3a25ddbd27d0d8576aa)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a537d68b67910c3a25ddbd27d0d8576aa"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1a7289639c2eedc754a29bcd344076bfdd)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a7289639c2eedc754a29bcd344076bfdd"></a>
 
 Gets the value of Ref32_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1ab8a4156eb174fc72e4a0c2cc22ae54f9)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ab8a4156eb174fc72e4a0c2cc22ae54f9"></a>
+#### `public inline FORCEINLINE bool `[`GetRef32`](#structFRHAPI__GuideCreateRequest_1a8d978388021a20ac5429535f3a67ed6a)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a8d978388021a20ac5429535f3a67ed6a"></a>
 
 Fills OutValue with the value of Ref32_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRef32OrNull`](#structFRHAPI__GuideCreateRequest_1a7d9aa9717b11eeec701c018c33e95458)`()` <a id="structFRHAPI__GuideCreateRequest_1a7d9aa9717b11eeec701c018c33e95458"></a>
+#### `public inline FORCEINLINE FString * `[`GetRef32OrNull`](#structFRHAPI__GuideCreateRequest_1a27350808507bab8202a6be7d4179d341)`()` <a id="structFRHAPI__GuideCreateRequest_1a27350808507bab8202a6be7d4179d341"></a>
 
 Returns a pointer to Ref32_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRef32OrNull`](#structFRHAPI__GuideCreateRequest_1ad556eefc6f83bd1cfb595f8da93d2baa)`() const` <a id="structFRHAPI__GuideCreateRequest_1ad556eefc6f83bd1cfb595f8da93d2baa"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRef32OrNull`](#structFRHAPI__GuideCreateRequest_1a6a0c9253aa1ff9f7df4d34296113bbf0)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6a0c9253aa1ff9f7df4d34296113bbf0"></a>
 
 Returns a pointer to Ref32_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRef32`](#structFRHAPI__GuideCreateRequest_1acae93492faa8f298effedeff9aeb3a80)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1acae93492faa8f298effedeff9aeb3a80"></a>
+#### `public inline FORCEINLINE void `[`SetRef32`](#structFRHAPI__GuideCreateRequest_1a73332ae6ffc3fd5fac76b51c7fc773d4)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a73332ae6ffc3fd5fac76b51c7fc773d4"></a>
 
 Sets the value of Ref32_Optional and also sets Ref32_IsSet to true.
 
-#### `public inline void `[`SetRef32`](#structFRHAPI__GuideCreateRequest_1acdc7cbad4746a1a27db0793a2468ba4d)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1acdc7cbad4746a1a27db0793a2468ba4d"></a>
+#### `public inline FORCEINLINE void `[`SetRef32`](#structFRHAPI__GuideCreateRequest_1a8dcfdff3284e3c58dc1d8faf9a55975d)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a8dcfdff3284e3c58dc1d8faf9a55975d"></a>
 
 Sets the value of Ref32_Optional and also sets Ref32_IsSet to true using move semantics.
 
@@ -2765,47 +2580,43 @@ Sets the value of Ref32_Optional and also sets Ref32_IsSet to true using move se
 
 Clears the value of Ref32_Optional and sets Ref32_IsSet to false.
 
-#### `public inline bool `[`IsRef32Set`](#structFRHAPI__GuideCreateRequest_1a8d31360799eb74d18c97a24515e6f539)`() const` <a id="structFRHAPI__GuideCreateRequest_1a8d31360799eb74d18c97a24515e6f539"></a>
-
-Checks whether Ref32_Optional has been set.
-
-#### `public inline void `[`SetRef32ToNull`](#structFRHAPI__GuideCreateRequest_1aa62c94c6386004e532dd34a8aeee66e5)`()` <a id="structFRHAPI__GuideCreateRequest_1aa62c94c6386004e532dd34a8aeee66e5"></a>
+#### `public inline FORCEINLINE void `[`SetRef32ToNull`](#structFRHAPI__GuideCreateRequest_1ae909021d66371b8d330e3d35c12971c8)`()` <a id="structFRHAPI__GuideCreateRequest_1ae909021d66371b8d330e3d35c12971c8"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsRef32Null`](#structFRHAPI__GuideCreateRequest_1ae9c997318221e754823c79689d23289b)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae9c997318221e754823c79689d23289b"></a>
+#### `public inline FORCEINLINE bool `[`IsRef32Null`](#structFRHAPI__GuideCreateRequest_1a26ee3793cbbff9639bf788dc1066aaf1)`() const` <a id="structFRHAPI__GuideCreateRequest_1a26ee3793cbbff9639bf788dc1066aaf1"></a>
 
 Checks whether Ref32_Optional is set to null.
 
-#### `public inline ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ab69a6548c94c0cb36e329a196ecf0530)`()` <a id="structFRHAPI__GuideCreateRequest_1ab69a6548c94c0cb36e329a196ecf0530"></a>
+#### `public inline FORCEINLINE ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a2ed2375f957e3a28a124e0a47d737ad0)`()` <a id="structFRHAPI__GuideCreateRequest_1a2ed2375f957e3a28a124e0a47d737ad0"></a>
 
 Gets the value of OwnerEntityType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ab85f1cdc7b51a09c5ba889d520c6183b)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab85f1cdc7b51a09c5ba889d520c6183b"></a>
+#### `public inline FORCEINLINE const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a309449e39d856ff27e38faa08da74cea)`() const` <a id="structFRHAPI__GuideCreateRequest_1a309449e39d856ff27e38faa08da74cea"></a>
 
 Gets the value of OwnerEntityType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a5d6090d1ea9bc272d63d454b7ed77bd1)`(const ERHAPI_GuideEntityType & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a5d6090d1ea9bc272d63d454b7ed77bd1"></a>
+#### `public inline FORCEINLINE const ERHAPI_GuideEntityType & `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a3db4672d0dde5aeb122a37a674ec38b0)`(const ERHAPI_GuideEntityType & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a3db4672d0dde5aeb122a37a674ec38b0"></a>
 
 Gets the value of OwnerEntityType_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a6f10471bc0637b8345c0af2369979f2b)`(ERHAPI_GuideEntityType & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a6f10471bc0637b8345c0af2369979f2b"></a>
+#### `public inline FORCEINLINE bool `[`GetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ae35bcc2c6697e8df4dc13376ff0b7c7e)`(ERHAPI_GuideEntityType & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae35bcc2c6697e8df4dc13376ff0b7c7e"></a>
 
 Fills OutValue with the value of OwnerEntityType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1aefb76a691574d7d611ff995748da8d82)`()` <a id="structFRHAPI__GuideCreateRequest_1aefb76a691574d7d611ff995748da8d82"></a>
+#### `public inline FORCEINLINE ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1ae1033470afee5b0a5d63c65cff5c7a19)`()` <a id="structFRHAPI__GuideCreateRequest_1ae1033470afee5b0a5d63c65cff5c7a19"></a>
 
 Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1a0e370dd0462385301286d7687c279035)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0e370dd0462385301286d7687c279035"></a>
+#### `public inline FORCEINLINE const ERHAPI_GuideEntityType * `[`GetOwnerEntityTypeOrNull`](#structFRHAPI__GuideCreateRequest_1ade0b76ee59b1c422d56b6c3e7b11b89f)`() const` <a id="structFRHAPI__GuideCreateRequest_1ade0b76ee59b1c422d56b6c3e7b11b89f"></a>
 
 Returns a pointer to OwnerEntityType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a21e9aa5cbf2659813505eff66cdf5846)`(const ERHAPI_GuideEntityType & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a21e9aa5cbf2659813505eff66cdf5846"></a>
+#### `public inline FORCEINLINE void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1ad8596ef963e239d7c66bfe82e3b07575)`(const ERHAPI_GuideEntityType & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ad8596ef963e239d7c66bfe82e3b07575"></a>
 
 Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true.
 
-#### `public inline void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a7592d9211182a14b97cf6086a7bac3ad)`(ERHAPI_GuideEntityType && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a7592d9211182a14b97cf6086a7bac3ad"></a>
+#### `public inline FORCEINLINE void `[`SetOwnerEntityType`](#structFRHAPI__GuideCreateRequest_1a89efde0c6cb94fd08a5d58941c735248)`(ERHAPI_GuideEntityType && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a89efde0c6cb94fd08a5d58941c735248"></a>
 
 Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet to true using move semantics.
 
@@ -2813,47 +2624,43 @@ Sets the value of OwnerEntityType_Optional and also sets OwnerEntityType_IsSet t
 
 Clears the value of OwnerEntityType_Optional and sets OwnerEntityType_IsSet to false.
 
-#### `public inline bool `[`IsOwnerEntityTypeSet`](#structFRHAPI__GuideCreateRequest_1adad69b0e55b5d28d2f65b7df5a5cd2bb)`() const` <a id="structFRHAPI__GuideCreateRequest_1adad69b0e55b5d28d2f65b7df5a5cd2bb"></a>
-
-Checks whether OwnerEntityType_Optional has been set.
-
-#### `public inline void `[`SetOwnerEntityTypeToNull`](#structFRHAPI__GuideCreateRequest_1a402b965ba0a60f8462f608189d8c2d75)`()` <a id="structFRHAPI__GuideCreateRequest_1a402b965ba0a60f8462f608189d8c2d75"></a>
+#### `public inline FORCEINLINE void `[`SetOwnerEntityTypeToNull`](#structFRHAPI__GuideCreateRequest_1ac4388d66d525ba1458a0e91cb336c8dd)`()` <a id="structFRHAPI__GuideCreateRequest_1ac4388d66d525ba1458a0e91cb336c8dd"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsOwnerEntityTypeNull`](#structFRHAPI__GuideCreateRequest_1ab214262edf5183f6ad9c1da8edb07b91)`() const` <a id="structFRHAPI__GuideCreateRequest_1ab214262edf5183f6ad9c1da8edb07b91"></a>
+#### `public inline FORCEINLINE bool `[`IsOwnerEntityTypeNull`](#structFRHAPI__GuideCreateRequest_1a2f22e24ceca7e85753675001d4047e02)`() const` <a id="structFRHAPI__GuideCreateRequest_1a2f22e24ceca7e85753675001d4047e02"></a>
 
 Checks whether OwnerEntityType_Optional is set to null.
 
-#### `public inline FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a4e40d42b48731ac10ce7238723f63a55)`()` <a id="structFRHAPI__GuideCreateRequest_1a4e40d42b48731ac10ce7238723f63a55"></a>
+#### `public inline FORCEINLINE FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ac0e3dbe65493ae1db5145ef5ad752a1d)`()` <a id="structFRHAPI__GuideCreateRequest_1ac0e3dbe65493ae1db5145ef5ad752a1d"></a>
 
 Gets the value of OwnerEntityId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a624ea822793f5bd761f66b29f3a4e4c6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a624ea822793f5bd761f66b29f3a4e4c6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a47a0ff6a2279f50137dff1bd4ce41c78)`() const` <a id="structFRHAPI__GuideCreateRequest_1a47a0ff6a2279f50137dff1bd4ce41c78"></a>
 
 Gets the value of OwnerEntityId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aec6c92114a059d9ef873acb406bb4506)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1aec6c92114a059d9ef873acb406bb4506"></a>
+#### `public inline FORCEINLINE const FString & `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aba5973663b6ce9fd9efb7eb37a22a3ae)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1aba5973663b6ce9fd9efb7eb37a22a3ae"></a>
 
 Gets the value of OwnerEntityId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1aa0c9ba565714f460ba650c922912587a)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1aa0c9ba565714f460ba650c922912587a"></a>
+#### `public inline FORCEINLINE bool `[`GetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a04991800f0d8126ee6463cb25fa45b02)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a04991800f0d8126ee6463cb25fa45b02"></a>
 
 Fills OutValue with the value of OwnerEntityId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1ae63d4875a00ca91439ce3c57c51ccc0a)`()` <a id="structFRHAPI__GuideCreateRequest_1ae63d4875a00ca91439ce3c57c51ccc0a"></a>
+#### `public inline FORCEINLINE FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1aac88ebe68ea5f9ac64d7591afe54c4dc)`()` <a id="structFRHAPI__GuideCreateRequest_1aac88ebe68ea5f9ac64d7591afe54c4dc"></a>
 
 Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1a0f7be31db07c21a9776133a1748dddf6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a0f7be31db07c21a9776133a1748dddf6"></a>
+#### `public inline FORCEINLINE const FString * `[`GetOwnerEntityIdOrNull`](#structFRHAPI__GuideCreateRequest_1a88a9d6009eacc5350ebd9aed8faaefd1)`() const` <a id="structFRHAPI__GuideCreateRequest_1a88a9d6009eacc5350ebd9aed8faaefd1"></a>
 
 Returns a pointer to OwnerEntityId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a8d5f1b6952ce4e4450fd8ff3b3583c0b)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a8d5f1b6952ce4e4450fd8ff3b3583c0b"></a>
+#### `public inline FORCEINLINE void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1afd9b64bbdf2056babb4c954dfec9b2ae)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1afd9b64bbdf2056babb4c954dfec9b2ae"></a>
 
 Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true.
 
-#### `public inline void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1ae1fa189bee8c6f84050909f32e1c069d)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ae1fa189bee8c6f84050909f32e1c069d"></a>
+#### `public inline FORCEINLINE void `[`SetOwnerEntityId`](#structFRHAPI__GuideCreateRequest_1a93f37884665bddd6ae4cd5bb4ffcf8b0)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a93f37884665bddd6ae4cd5bb4ffcf8b0"></a>
 
 Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to true using move semantics.
 
@@ -2861,47 +2668,43 @@ Sets the value of OwnerEntityId_Optional and also sets OwnerEntityId_IsSet to tr
 
 Clears the value of OwnerEntityId_Optional and sets OwnerEntityId_IsSet to false.
 
-#### `public inline bool `[`IsOwnerEntityIdSet`](#structFRHAPI__GuideCreateRequest_1a94429cbc56c8d6e91cea76ef7e585fc7)`() const` <a id="structFRHAPI__GuideCreateRequest_1a94429cbc56c8d6e91cea76ef7e585fc7"></a>
-
-Checks whether OwnerEntityId_Optional has been set.
-
-#### `public inline void `[`SetOwnerEntityIdToNull`](#structFRHAPI__GuideCreateRequest_1aa8b78978e650921690358e5cbe0b5f03)`()` <a id="structFRHAPI__GuideCreateRequest_1aa8b78978e650921690358e5cbe0b5f03"></a>
+#### `public inline FORCEINLINE void `[`SetOwnerEntityIdToNull`](#structFRHAPI__GuideCreateRequest_1a72deec495daabf2b8283f727347bb405)`()` <a id="structFRHAPI__GuideCreateRequest_1a72deec495daabf2b8283f727347bb405"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsOwnerEntityIdNull`](#structFRHAPI__GuideCreateRequest_1a696b6c1967c94d2320a25b86c5f08a27)`() const` <a id="structFRHAPI__GuideCreateRequest_1a696b6c1967c94d2320a25b86c5f08a27"></a>
+#### `public inline FORCEINLINE bool `[`IsOwnerEntityIdNull`](#structFRHAPI__GuideCreateRequest_1a1549bba293d57973d51cc9289f38902c)`() const` <a id="structFRHAPI__GuideCreateRequest_1a1549bba293d57973d51cc9289f38902c"></a>
 
 Checks whether OwnerEntityId_Optional is set to null.
 
-#### `public inline FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1aba682504d7bc01f379a25b8b4bb6ef83)`()` <a id="structFRHAPI__GuideCreateRequest_1aba682504d7bc01f379a25b8b4bb6ef83"></a>
+#### `public inline FORCEINLINE FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1ab21fbe4982ae845d299c9e28c4bc81b5)`()` <a id="structFRHAPI__GuideCreateRequest_1ab21fbe4982ae845d299c9e28c4bc81b5"></a>
 
 Gets the value of Content_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a76aefeb082deb30f37209149f7b5d422)`() const` <a id="structFRHAPI__GuideCreateRequest_1a76aefeb082deb30f37209149f7b5d422"></a>
+#### `public inline FORCEINLINE const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1aebb2ad10d611263d42a52d0e02878557)`() const` <a id="structFRHAPI__GuideCreateRequest_1aebb2ad10d611263d42a52d0e02878557"></a>
 
 Gets the value of Content_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a60e401284b1a0541597c94fc76947ed0)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a60e401284b1a0541597c94fc76947ed0"></a>
+#### `public inline FORCEINLINE const FString & `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a949375cdba8f1f2f13d35c38aa9ae6df)`(const FString & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a949375cdba8f1f2f13d35c38aa9ae6df"></a>
 
 Gets the value of Content_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a3378b881d054ccbc023d3f56e1b8fedb)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a3378b881d054ccbc023d3f56e1b8fedb"></a>
+#### `public inline FORCEINLINE bool `[`GetContent`](#structFRHAPI__GuideCreateRequest_1a053552de751f816b68ba07e621d13860)`(FString & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a053552de751f816b68ba07e621d13860"></a>
 
 Fills OutValue with the value of Content_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetContentOrNull`](#structFRHAPI__GuideCreateRequest_1af93535881f645dec8544dc8167330221)`()` <a id="structFRHAPI__GuideCreateRequest_1af93535881f645dec8544dc8167330221"></a>
+#### `public inline FORCEINLINE FString * `[`GetContentOrNull`](#structFRHAPI__GuideCreateRequest_1a321605a48619a8ae7fd43ba5711ab90a)`()` <a id="structFRHAPI__GuideCreateRequest_1a321605a48619a8ae7fd43ba5711ab90a"></a>
 
 Returns a pointer to Content_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetContentOrNull`](#structFRHAPI__GuideCreateRequest_1acee5c43f24e1db765b6cf124b743a426)`() const` <a id="structFRHAPI__GuideCreateRequest_1acee5c43f24e1db765b6cf124b743a426"></a>
+#### `public inline FORCEINLINE const FString * `[`GetContentOrNull`](#structFRHAPI__GuideCreateRequest_1a71e02fde6d96468af4286fb9c8fa85a7)`() const` <a id="structFRHAPI__GuideCreateRequest_1a71e02fde6d96468af4286fb9c8fa85a7"></a>
 
 Returns a pointer to Content_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetContent`](#structFRHAPI__GuideCreateRequest_1a3d0f2d0b55f01527080dd62ebe009663)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a3d0f2d0b55f01527080dd62ebe009663"></a>
+#### `public inline FORCEINLINE void `[`SetContent`](#structFRHAPI__GuideCreateRequest_1adf598b3e30e06207aca647df087f083e)`(const FString & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1adf598b3e30e06207aca647df087f083e"></a>
 
 Sets the value of Content_Optional and also sets Content_IsSet to true.
 
-#### `public inline void `[`SetContent`](#structFRHAPI__GuideCreateRequest_1a5021e7a7353435a7eea614df57a4e6a4)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a5021e7a7353435a7eea614df57a4e6a4"></a>
+#### `public inline FORCEINLINE void `[`SetContent`](#structFRHAPI__GuideCreateRequest_1a429b7f29999ba3aefbca8f4f99ecdb85)`(FString && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a429b7f29999ba3aefbca8f4f99ecdb85"></a>
 
 Sets the value of Content_Optional and also sets Content_IsSet to true using move semantics.
 
@@ -2909,55 +2712,47 @@ Sets the value of Content_Optional and also sets Content_IsSet to true using mov
 
 Clears the value of Content_Optional and sets Content_IsSet to false.
 
-#### `public inline bool `[`IsContentSet`](#structFRHAPI__GuideCreateRequest_1a3beef9693e17390b84e4b6aec144c6e7)`() const` <a id="structFRHAPI__GuideCreateRequest_1a3beef9693e17390b84e4b6aec144c6e7"></a>
-
-Checks whether Content_Optional has been set.
-
-#### `public inline void `[`SetContentToNull`](#structFRHAPI__GuideCreateRequest_1a06adbe8c7352e809eb7365330bfda662)`()` <a id="structFRHAPI__GuideCreateRequest_1a06adbe8c7352e809eb7365330bfda662"></a>
+#### `public inline FORCEINLINE void `[`SetContentToNull`](#structFRHAPI__GuideCreateRequest_1a488867c37247ce131a9df8e9f1a9813a)`()` <a id="structFRHAPI__GuideCreateRequest_1a488867c37247ce131a9df8e9f1a9813a"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsContentNull`](#structFRHAPI__GuideCreateRequest_1aa2b98169860f3ffb952d1509b2ea2214)`() const` <a id="structFRHAPI__GuideCreateRequest_1aa2b98169860f3ffb952d1509b2ea2214"></a>
+#### `public inline FORCEINLINE bool `[`IsContentNull`](#structFRHAPI__GuideCreateRequest_1a22101e94647e32ee24bf07851690e3d6)`() const` <a id="structFRHAPI__GuideCreateRequest_1a22101e94647e32ee24bf07851690e3d6"></a>
 
 Checks whether Content_Optional is set to null.
 
-#### `public inline TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1ab3afddefc37868c53cc355d065236d88)`()` <a id="structFRHAPI__GuideCreateRequest_1ab3afddefc37868c53cc355d065236d88"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a3ee9346ec13cb74aea629c7a4979be47)`()` <a id="structFRHAPI__GuideCreateRequest_1a3ee9346ec13cb74aea629c7a4979be47"></a>
 
 Gets the value of Sections_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1addd829f5fa1782b9eaad5d50714d96d4)`() const` <a id="structFRHAPI__GuideCreateRequest_1addd829f5fa1782b9eaad5d50714d96d4"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a4b72098c8b4502c8910e6ff1c7cbc189)`() const` <a id="structFRHAPI__GuideCreateRequest_1a4b72098c8b4502c8910e6ff1c7cbc189"></a>
 
 Gets the value of Sections_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1ae2232834638d245338e517f6ffb7e9da)`(const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1ae2232834638d245338e517f6ffb7e9da"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a65419929e316bc5d3e4b4bd2c1e71576)`(const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & DefaultValue) const` <a id="structFRHAPI__GuideCreateRequest_1a65419929e316bc5d3e4b4bd2c1e71576"></a>
 
 Gets the value of Sections_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a68d6cb30ac4f39f5149c34f216e57038)`(TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a68d6cb30ac4f39f5149c34f216e57038"></a>
+#### `public inline FORCEINLINE bool `[`GetSections`](#structFRHAPI__GuideCreateRequest_1a774bfa09fa1f90df8e6d10fb6c837af3)`(TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & OutValue) const` <a id="structFRHAPI__GuideCreateRequest_1a774bfa09fa1f90df8e6d10fb6c837af3"></a>
 
 Fills OutValue with the value of Sections_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > * `[`GetSectionsOrNull`](#structFRHAPI__GuideCreateRequest_1a415af1b209eeaed39fa8fd08c05cd699)`()` <a id="structFRHAPI__GuideCreateRequest_1a415af1b209eeaed39fa8fd08c05cd699"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > * `[`GetSectionsOrNull`](#structFRHAPI__GuideCreateRequest_1a0aa6928e6723837add7ef99629d1828e)`()` <a id="structFRHAPI__GuideCreateRequest_1a0aa6928e6723837add7ef99629d1828e"></a>
 
 Returns a pointer to Sections_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > * `[`GetSectionsOrNull`](#structFRHAPI__GuideCreateRequest_1ae133277dedfe7c095864753ddc71c28d)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae133277dedfe7c095864753ddc71c28d"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > * `[`GetSectionsOrNull`](#structFRHAPI__GuideCreateRequest_1a6f83a89e9ff3ca913449fd3365a05108)`() const` <a id="structFRHAPI__GuideCreateRequest_1a6f83a89e9ff3ca913449fd3365a05108"></a>
 
 Returns a pointer to Sections_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSections`](#structFRHAPI__GuideCreateRequest_1a27e4c682691fe563520128645ac7454a)`(const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a27e4c682691fe563520128645ac7454a"></a>
+#### `public inline FORCEINLINE void `[`SetSections`](#structFRHAPI__GuideCreateRequest_1a63d387da93b146f02ee67918a9e5f470)`(const TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > & NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a63d387da93b146f02ee67918a9e5f470"></a>
 
 Sets the value of Sections_Optional and also sets Sections_IsSet to true.
 
-#### `public inline void `[`SetSections`](#structFRHAPI__GuideCreateRequest_1a6e16c0a108a8f65e5c603f92ec7ccc7d)`(TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1a6e16c0a108a8f65e5c603f92ec7ccc7d"></a>
+#### `public inline FORCEINLINE void `[`SetSections`](#structFRHAPI__GuideCreateRequest_1ad86a35a02493d12a92e51f9aa7b29259)`(TArray< `[`FRHAPI_GuideSectionCreate`](RHAPI_GuideSectionCreate.md#structFRHAPI__GuideSectionCreate)` > && NewValue)` <a id="structFRHAPI__GuideCreateRequest_1ad86a35a02493d12a92e51f9aa7b29259"></a>
 
 Sets the value of Sections_Optional and also sets Sections_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearSections`](#structFRHAPI__GuideCreateRequest_1a23dcb4f40f3dcd8ed029216f13710475)`()` <a id="structFRHAPI__GuideCreateRequest_1a23dcb4f40f3dcd8ed029216f13710475"></a>
 
 Clears the value of Sections_Optional and sets Sections_IsSet to false.
-
-#### `public inline bool `[`IsSectionsSet`](#structFRHAPI__GuideCreateRequest_1ae50c8c8c88e09127706605aa4ef50dce)`() const` <a id="structFRHAPI__GuideCreateRequest_1ae50c8c8c88e09127706605aa4ef50dce"></a>
-
-Checks whether Sections_Optional has been set.
 

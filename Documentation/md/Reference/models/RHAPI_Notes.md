@@ -25,16 +25,15 @@ Notes to set for the Player&#39;s friend. If you don&#39;t want to modify notes,
 `public bool `[`Notes_IsSet`](#structFRHAPI__Notes_1a5f51571b830edca98b4fa43c993bbad1) | true if Notes_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__Notes_1a45ce8d3cecbffcfa0324adf0958ec2d4)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Notes_1a0b3090f974db09c9daf44ef1fc03893b)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetNotes`](#structFRHAPI__Notes_1a2e20eec6a4238ca976ec66dd7a4c98d8)`()` | Gets the value of Notes_Optional, regardless of it having been set.
-`public inline const FString & `[`GetNotes`](#structFRHAPI__Notes_1a389cdd875fbd7959ad89d97eef58419c)`() const` | Gets the value of Notes_Optional, regardless of it having been set.
-`public inline const FString & `[`GetNotes`](#structFRHAPI__Notes_1a83c652776c34584964fce74f40a7a6e2)`(const FString & DefaultValue) const` | Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetNotes`](#structFRHAPI__Notes_1a13701f221d08e09905879b05bebf8143)`(FString & OutValue) const` | Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetNotesOrNull`](#structFRHAPI__Notes_1a6d7d54804ae7235f864238bd6e662e0c)`()` | Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetNotesOrNull`](#structFRHAPI__Notes_1add68592c998425d1028cd78643860f52)`() const` | Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetNotes`](#structFRHAPI__Notes_1a812d5440cf0507daea77518312bddf12)`(const FString & NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true.
-`public inline void `[`SetNotes`](#structFRHAPI__Notes_1a9d68e7a02a2e6d2662eb3217a69b6da9)`(FString && NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetNotes`](#structFRHAPI__Notes_1a1ef3358ff0d080aedc3e1cd2d7e79c24)`()` | Gets the value of Notes_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetNotes`](#structFRHAPI__Notes_1a4830644a1c4f40ded623d384495cf1f7)`() const` | Gets the value of Notes_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetNotes`](#structFRHAPI__Notes_1a3d7f51efd9022212d1daeb4b1afc9389)`(const FString & DefaultValue) const` | Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetNotes`](#structFRHAPI__Notes_1a0227fe389acb0919a345d47f7d27f2fa)`(FString & OutValue) const` | Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetNotesOrNull`](#structFRHAPI__Notes_1a588cac0f22f68d859524ed46fc87fba8)`()` | Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetNotesOrNull`](#structFRHAPI__Notes_1a10fe689e9272e0dfe81c7aa9d41eeebc)`() const` | Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetNotes`](#structFRHAPI__Notes_1a9018691938e48a69c1552a19846811d5)`(const FString & NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true.
+`public inline FORCEINLINE void `[`SetNotes`](#structFRHAPI__Notes_1aa2081cc63eb648e084a225b0c2ffa607)`(FString && NewValue)` | Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics.
 `public inline void `[`ClearNotes`](#structFRHAPI__Notes_1ad4213f307363f5dbc56d292b16ef1b65)`()` | Clears the value of Notes_Optional and sets Notes_IsSet to false.
-`public inline bool `[`IsNotesSet`](#structFRHAPI__Notes_1a2f52044c526aa5b04c9f7315b2f3c53d)`() const` | Checks whether Notes_Optional has been set.
 
 ### Members
 
@@ -61,43 +60,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetNotes`](#structFRHAPI__Notes_1a2e20eec6a4238ca976ec66dd7a4c98d8)`()` <a id="structFRHAPI__Notes_1a2e20eec6a4238ca976ec66dd7a4c98d8"></a>
+#### `public inline FORCEINLINE FString & `[`GetNotes`](#structFRHAPI__Notes_1a1ef3358ff0d080aedc3e1cd2d7e79c24)`()` <a id="structFRHAPI__Notes_1a1ef3358ff0d080aedc3e1cd2d7e79c24"></a>
 
 Gets the value of Notes_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetNotes`](#structFRHAPI__Notes_1a389cdd875fbd7959ad89d97eef58419c)`() const` <a id="structFRHAPI__Notes_1a389cdd875fbd7959ad89d97eef58419c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetNotes`](#structFRHAPI__Notes_1a4830644a1c4f40ded623d384495cf1f7)`() const` <a id="structFRHAPI__Notes_1a4830644a1c4f40ded623d384495cf1f7"></a>
 
 Gets the value of Notes_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetNotes`](#structFRHAPI__Notes_1a83c652776c34584964fce74f40a7a6e2)`(const FString & DefaultValue) const` <a id="structFRHAPI__Notes_1a83c652776c34584964fce74f40a7a6e2"></a>
+#### `public inline FORCEINLINE const FString & `[`GetNotes`](#structFRHAPI__Notes_1a3d7f51efd9022212d1daeb4b1afc9389)`(const FString & DefaultValue) const` <a id="structFRHAPI__Notes_1a3d7f51efd9022212d1daeb4b1afc9389"></a>
 
 Gets the value of Notes_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetNotes`](#structFRHAPI__Notes_1a13701f221d08e09905879b05bebf8143)`(FString & OutValue) const` <a id="structFRHAPI__Notes_1a13701f221d08e09905879b05bebf8143"></a>
+#### `public inline FORCEINLINE bool `[`GetNotes`](#structFRHAPI__Notes_1a0227fe389acb0919a345d47f7d27f2fa)`(FString & OutValue) const` <a id="structFRHAPI__Notes_1a0227fe389acb0919a345d47f7d27f2fa"></a>
 
 Fills OutValue with the value of Notes_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetNotesOrNull`](#structFRHAPI__Notes_1a6d7d54804ae7235f864238bd6e662e0c)`()` <a id="structFRHAPI__Notes_1a6d7d54804ae7235f864238bd6e662e0c"></a>
+#### `public inline FORCEINLINE FString * `[`GetNotesOrNull`](#structFRHAPI__Notes_1a588cac0f22f68d859524ed46fc87fba8)`()` <a id="structFRHAPI__Notes_1a588cac0f22f68d859524ed46fc87fba8"></a>
 
 Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetNotesOrNull`](#structFRHAPI__Notes_1add68592c998425d1028cd78643860f52)`() const` <a id="structFRHAPI__Notes_1add68592c998425d1028cd78643860f52"></a>
+#### `public inline FORCEINLINE const FString * `[`GetNotesOrNull`](#structFRHAPI__Notes_1a10fe689e9272e0dfe81c7aa9d41eeebc)`() const` <a id="structFRHAPI__Notes_1a10fe689e9272e0dfe81c7aa9d41eeebc"></a>
 
 Returns a pointer to Notes_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetNotes`](#structFRHAPI__Notes_1a812d5440cf0507daea77518312bddf12)`(const FString & NewValue)` <a id="structFRHAPI__Notes_1a812d5440cf0507daea77518312bddf12"></a>
+#### `public inline FORCEINLINE void `[`SetNotes`](#structFRHAPI__Notes_1a9018691938e48a69c1552a19846811d5)`(const FString & NewValue)` <a id="structFRHAPI__Notes_1a9018691938e48a69c1552a19846811d5"></a>
 
 Sets the value of Notes_Optional and also sets Notes_IsSet to true.
 
-#### `public inline void `[`SetNotes`](#structFRHAPI__Notes_1a9d68e7a02a2e6d2662eb3217a69b6da9)`(FString && NewValue)` <a id="structFRHAPI__Notes_1a9d68e7a02a2e6d2662eb3217a69b6da9"></a>
+#### `public inline FORCEINLINE void `[`SetNotes`](#structFRHAPI__Notes_1aa2081cc63eb648e084a225b0c2ffa607)`(FString && NewValue)` <a id="structFRHAPI__Notes_1aa2081cc63eb648e084a225b0c2ffa607"></a>
 
 Sets the value of Notes_Optional and also sets Notes_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearNotes`](#structFRHAPI__Notes_1ad4213f307363f5dbc56d292b16ef1b65)`()` <a id="structFRHAPI__Notes_1ad4213f307363f5dbc56d292b16ef1b65"></a>
 
 Clears the value of Notes_Optional and sets Notes_IsSet to false.
-
-#### `public inline bool `[`IsNotesSet`](#structFRHAPI__Notes_1a2f52044c526aa5b04c9f7315b2f3c53d)`() const` <a id="structFRHAPI__Notes_1a2f52044c526aa5b04c9f7315b2f3c53d"></a>
-
-Checks whether Notes_Optional has been set.
 

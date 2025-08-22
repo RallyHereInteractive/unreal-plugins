@@ -98,394 +98,354 @@ struct FRHAPI_AuditEvent
 `public FDateTime `[`EventDatetime`](#structFRHAPI__AuditEvent_1abaade7e25cc8bbb04e5efe8ccb7f9800) | Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone.
 `public virtual bool `[`FromJson`](#structFRHAPI__AuditEvent_1a191062f32038349f94873cfb420d256c)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__AuditEvent_1a4198616996704e101d5d037edfcbac35)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetEventName`](#structFRHAPI__AuditEvent_1acca984325fb3a7d3412c2f302cffe519)`()` | Gets the value of EventName.
-`public inline const FString & `[`GetEventName`](#structFRHAPI__AuditEvent_1a0f11c00e9301287f03b4fc0020484209)`() const` | Gets the value of EventName.
-`public inline void `[`SetEventName`](#structFRHAPI__AuditEvent_1a8087921386fdec5296aec7c5e6fea83e)`(const FString & NewValue)` | Sets the value of EventName.
-`public inline void `[`SetEventName`](#structFRHAPI__AuditEvent_1a7a159fa0f7311f41152411c263c7ccd2)`(FString && NewValue)` | Sets the value of EventName using move semantics.
-`public inline FString & `[`GetSessionId`](#structFRHAPI__AuditEvent_1ac889227260cb777638ee2fe0f4406d84)`()` | Gets the value of SessionId.
-`public inline const FString & `[`GetSessionId`](#structFRHAPI__AuditEvent_1a056f977f66692feccf4c31147c051dfa)`() const` | Gets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__AuditEvent_1a867836397739325b10321b484d3e5b45)`(const FString & NewValue)` | Sets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__AuditEvent_1a0ddb0d8e5c62d564d5e0ff926e7932e6)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
-`public inline FString & `[`GetReason`](#structFRHAPI__AuditEvent_1a74fb304f2cf2ea5696fd4190a687d6d4)`()` | Gets the value of Reason_Optional, regardless of it having been set.
-`public inline const FString & `[`GetReason`](#structFRHAPI__AuditEvent_1a73960ba26ce831ebf47f2b77bfef47fd)`() const` | Gets the value of Reason_Optional, regardless of it having been set.
-`public inline const FString & `[`GetReason`](#structFRHAPI__AuditEvent_1ae350385f7b7dc07b9b2ec1ac6dc44ff5)`(const FString & DefaultValue) const` | Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetReason`](#structFRHAPI__AuditEvent_1a0d8dcd2315b4e2875c2d70f0668a1d18)`(FString & OutValue) const` | Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetReasonOrNull`](#structFRHAPI__AuditEvent_1a33987a883e60d5856183396ce6a6437f)`()` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetReasonOrNull`](#structFRHAPI__AuditEvent_1ab7ed81802784e1a67659e8a6e710982e)`() const` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetReason`](#structFRHAPI__AuditEvent_1a6e36760dd639abb9554ff8eecc7a04e0)`(const FString & NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true.
-`public inline void `[`SetReason`](#structFRHAPI__AuditEvent_1a9396718a1a32d0e9f5f69fb2cdbe6edd)`(FString && NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetEventName`](#structFRHAPI__AuditEvent_1a42518679fcb1f9f4a30c3768c315db8a)`()` | Gets the value of EventName.
+`public inline FORCEINLINE const FString & `[`GetEventName`](#structFRHAPI__AuditEvent_1ae70f19a75f9f4beb2b3408e5ca7cf4f1)`() const` | Gets the value of EventName.
+`public inline FORCEINLINE void `[`SetEventName`](#structFRHAPI__AuditEvent_1adb97837b39bf09231f3a63c1e93248dc)`(const FString & NewValue)` | Sets the value of EventName.
+`public inline FORCEINLINE void `[`SetEventName`](#structFRHAPI__AuditEvent_1aeffd6494d1bca72fdda6f6de4d1eae51)`(FString && NewValue)` | Sets the value of EventName using move semantics.
+`public inline FORCEINLINE FString & `[`GetSessionId`](#structFRHAPI__AuditEvent_1aa159347d72eae2f4c806d577cae72fb2)`()` | Gets the value of SessionId.
+`public inline FORCEINLINE const FString & `[`GetSessionId`](#structFRHAPI__AuditEvent_1a620c20a4dea07988c3983f7cb7678ff6)`() const` | Gets the value of SessionId.
+`public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__AuditEvent_1acc26f919f5ca9499a117c557f1ee2647)`(const FString & NewValue)` | Sets the value of SessionId.
+`public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__AuditEvent_1aac29a4b85c2a907e397e4d151ce975c6)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
+`public inline FORCEINLINE FString & `[`GetReason`](#structFRHAPI__AuditEvent_1ae5b3a95f9d0ad09c011cbac4e1701d56)`()` | Gets the value of Reason_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetReason`](#structFRHAPI__AuditEvent_1a0e0b368e8e2c704f5a01945bfbd2e69e)`() const` | Gets the value of Reason_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetReason`](#structFRHAPI__AuditEvent_1aa64c931820a890e1652b6849edb8ca7f)`(const FString & DefaultValue) const` | Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetReason`](#structFRHAPI__AuditEvent_1a56b781112e4f50edcf31b3c3112f20da)`(FString & OutValue) const` | Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetReasonOrNull`](#structFRHAPI__AuditEvent_1a181ab560459b5c5fd0c940e37203ab7f)`()` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetReasonOrNull`](#structFRHAPI__AuditEvent_1af435bcf1600bebfad30911d2d742f219)`() const` | Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetReason`](#structFRHAPI__AuditEvent_1acd0df6eb344f62b8265cb88e22ff55a6)`(const FString & NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true.
+`public inline FORCEINLINE void `[`SetReason`](#structFRHAPI__AuditEvent_1a9a718771667bc99fbf0b78f045297ab4)`(FString && NewValue)` | Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
 `public inline void `[`ClearReason`](#structFRHAPI__AuditEvent_1a5b5a895bd7fe668e8295807cbf9c75c7)`()` | Clears the value of Reason_Optional and sets Reason_IsSet to false.
-`public inline bool `[`IsReasonSet`](#structFRHAPI__AuditEvent_1add7002cc97abaf8dd6e749f57a53e903)`() const` | Checks whether Reason_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1a72236ce82364b6d33606a35269d3bb3b)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1a2315ae2ac06f09beba329f38f9bf9d9c)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1a6c0ad3cdb14308c07e2b3686ed139a3d)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__AuditEvent_1a4960d694b25fbe1a5e4867d02faa918b)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__AuditEvent_1ac68e9d744ac298a3790555ba0a331cbf)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__AuditEvent_1acf37d409456cee705ffea658bcc3f38e)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__AuditEvent_1a4affedaaa8d6fa24ecfcf4212fd107ed)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__AuditEvent_1a2718da986bec260504cf9f1d0c7a7459)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1aab8f5bcbc036caa7808912f5e3981f2d)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1ad362f453b9b4c99eb9b27b8c8d68f75c)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1adc0bef00c52c09ef7d1cc37bc00ccb86)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__AuditEvent_1ad7fa83bd7a29f16e5f47456b7dedc400)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__AuditEvent_1ab9daf937464d0a77df948bc701195433)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__AuditEvent_1adbc978e4a8a07292870348662282e6b1)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__AuditEvent_1a8c79cd691b35bc3a32df57cecd6891e9)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__AuditEvent_1a562650f0546b9e3266308d26a42019e9)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__AuditEvent_1a5aaffe4f1be621a24ef6a07d08271ff7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__AuditEvent_1af3524cd9746aa75174ce89b878bb05f6)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1a1dbbd5789767c33e0f61e66ef0c6255d)`()` | Gets the value of SessionType_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1af9ceecfb37fca611a9219f405de3b6e5)`() const` | Gets the value of SessionType_Optional, regardless of it having been set.
-`public inline const FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1a067b7aa1a20118296a60d5eea532e646)`(const FString & DefaultValue) const` | Gets the value of SessionType_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSessionType`](#structFRHAPI__AuditEvent_1a0158e378b5f65a76e110981c2cb54f2c)`(FString & OutValue) const` | Fills OutValue with the value of SessionType_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetSessionTypeOrNull`](#structFRHAPI__AuditEvent_1a3daa85354c94d16d4696a1d9d09579ad)`()` | Returns a pointer to SessionType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetSessionTypeOrNull`](#structFRHAPI__AuditEvent_1aeab0859ec3cd64c0b6a7c0680addbdac)`() const` | Returns a pointer to SessionType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSessionType`](#structFRHAPI__AuditEvent_1a94d2c114d9c835b2978fb12cff5ac056)`(const FString & NewValue)` | Sets the value of SessionType_Optional and also sets SessionType_IsSet to true.
-`public inline void `[`SetSessionType`](#structFRHAPI__AuditEvent_1aa706a9efc4f4d0243a58d1e733774e55)`(FString && NewValue)` | Sets the value of SessionType_Optional and also sets SessionType_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1a2f1344e5d9bc5511100d9558586d34c4)`()` | Gets the value of SessionType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1afa4799998256c6e31019694478b9c922)`() const` | Gets the value of SessionType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1aa85a5612edd57ce3cd660b33767bdaee)`(const FString & DefaultValue) const` | Gets the value of SessionType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSessionType`](#structFRHAPI__AuditEvent_1aac0e8957716f612c396bcd3af47acec0)`(FString & OutValue) const` | Fills OutValue with the value of SessionType_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetSessionTypeOrNull`](#structFRHAPI__AuditEvent_1a50c9ae7546776dd63a2f1c0d253a5cd6)`()` | Returns a pointer to SessionType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetSessionTypeOrNull`](#structFRHAPI__AuditEvent_1a05047f0656feacd012cc639a10889971)`() const` | Returns a pointer to SessionType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSessionType`](#structFRHAPI__AuditEvent_1a4fe7e8cea70017a4e6f3fa78a723caaf)`(const FString & NewValue)` | Sets the value of SessionType_Optional and also sets SessionType_IsSet to true.
+`public inline FORCEINLINE void `[`SetSessionType`](#structFRHAPI__AuditEvent_1ab414be50e7b97cc18185876726e347d4)`(FString && NewValue)` | Sets the value of SessionType_Optional and also sets SessionType_IsSet to true using move semantics.
 `public inline void `[`ClearSessionType`](#structFRHAPI__AuditEvent_1af485efac1a25386828b114dfc87b5e77)`()` | Clears the value of SessionType_Optional and sets SessionType_IsSet to false.
-`public inline bool `[`IsSessionTypeSet`](#structFRHAPI__AuditEvent_1ab19c380b566c11f68c4372d971916dd0)`() const` | Checks whether SessionType_Optional has been set.
-`public inline FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1a3269e6eb0820c1ba7bf9941d32cac60c)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1ae1771e818767b1769460b73c040f69d4)`() const` | Gets the value of RegionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1aac1d2e8595facf849355f084199d519c)`(const FString & DefaultValue) const` | Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRegionId`](#structFRHAPI__AuditEvent_1a99798c97043aa39f5ff4ba032912861f)`(FString & OutValue) const` | Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__AuditEvent_1a396d62d9514ed46821a57ae323343525)`()` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__AuditEvent_1aceb991752feb24e741ac624c1902319f)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRegionId`](#structFRHAPI__AuditEvent_1a81d4143343793b2bc8772ea866b7ec6d)`(const FString & NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
-`public inline void `[`SetRegionId`](#structFRHAPI__AuditEvent_1a4f6cd87a8ce93a35108e94daf443fcfc)`(FString && NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1ab2188b12862eada7fdfea221e01f2c76)`()` | Gets the value of RegionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1ac0493413e9a1dc82365c24cd4fcd6532)`() const` | Gets the value of RegionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1a8f555daa1026a77e9b6e02c010b72dbb)`(const FString & DefaultValue) const` | Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRegionId`](#structFRHAPI__AuditEvent_1ab34c4b541f91e782461e1f056a3d323f)`(FString & OutValue) const` | Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRegionIdOrNull`](#structFRHAPI__AuditEvent_1a74845de9e84a5fa77951952054c86394)`()` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRegionIdOrNull`](#structFRHAPI__AuditEvent_1a902c59a4c5ac3ccfdc7c76e1bd724ffc)`() const` | Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__AuditEvent_1a6441d73cbd49b21f1d43f9698487e3e4)`(const FString & NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
+`public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__AuditEvent_1a40a79e1846c0468383f0be97b5490046)`(FString && NewValue)` | Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
 `public inline void `[`ClearRegionId`](#structFRHAPI__AuditEvent_1ade77c1e5c1364d10ccfd19e9fa122dff)`()` | Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
-`public inline bool `[`IsRegionIdSet`](#structFRHAPI__AuditEvent_1afb73e048e9334e0b154a2229fa452f6f)`() const` | Checks whether RegionId_Optional has been set.
-`public inline bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1a8974a9fbd86a1795adfb6d2b6a927518)`()` | Gets the value of Joinable_Optional, regardless of it having been set.
-`public inline const bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1a697508ba45e93a076719648aa32bc8f0)`() const` | Gets the value of Joinable_Optional, regardless of it having been set.
-`public inline const bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1a81b7883b971ffbe356e8e1e194399969)`(const bool & DefaultValue) const` | Gets the value of Joinable_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetJoinable`](#structFRHAPI__AuditEvent_1a2351f67f0c02c17a87a3fb826c72e1a9)`(bool & OutValue) const` | Fills OutValue with the value of Joinable_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetJoinableOrNull`](#structFRHAPI__AuditEvent_1aae9de79c193d554609d9ff35fb6abeff)`()` | Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetJoinableOrNull`](#structFRHAPI__AuditEvent_1ae104144d5f55149f6fe7411545e802b1)`() const` | Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinable`](#structFRHAPI__AuditEvent_1a8849a0e6c3f82d31677920efd479aead)`(const bool & NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true.
-`public inline void `[`SetJoinable`](#structFRHAPI__AuditEvent_1a42334e8677be8d3c0c71dc5b4014eca5)`(bool && NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics.
+`public inline FORCEINLINE bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1a2841f8539972e0b7105ddfe2df8d3b54)`()` | Gets the value of Joinable_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1ad5bf2a0f600d97886a9065eeaeb8c1f0)`() const` | Gets the value of Joinable_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1af3f5b279bac5b318efbe5935dd54a79b)`(const bool & DefaultValue) const` | Gets the value of Joinable_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetJoinable`](#structFRHAPI__AuditEvent_1a2f8ad3030338e3c2836b85cc5ab892b7)`(bool & OutValue) const` | Fills OutValue with the value of Joinable_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetJoinableOrNull`](#structFRHAPI__AuditEvent_1ab5cb91d1937f0d180719c2eb00230017)`()` | Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetJoinableOrNull`](#structFRHAPI__AuditEvent_1adef3ce64eb72882b7e4b9d97bf36be27)`() const` | Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetJoinable`](#structFRHAPI__AuditEvent_1a86266f39758217a9668e10a39fe68135)`(const bool & NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true.
+`public inline FORCEINLINE void `[`SetJoinable`](#structFRHAPI__AuditEvent_1ab53617bce87c9c41d4be4163e17a283e)`(bool && NewValue)` | Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics.
 `public inline void `[`ClearJoinable`](#structFRHAPI__AuditEvent_1a563363b7d70117df3e9dd9932903125f)`()` | Clears the value of Joinable_Optional and sets Joinable_IsSet to false.
-`public inline bool `[`IsJoinableSet`](#structFRHAPI__AuditEvent_1a43ba077bd0755667d6e877f8ae744f32)`() const` | Checks whether Joinable_Optional has been set.
-`public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__AuditEvent_1a062943023a7051996bb465b133bc5958)`() const` | Returns true if Joinable_Optional is set and matches the default value.
-`public inline void `[`SetJoinableToDefault`](#structFRHAPI__AuditEvent_1a39e7075fd253eeae1b073585358cf895)`()` | Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
-`public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1ab29776594ae5adf35c05690666bd0225)`()` | Gets the value of Joinability_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a2278ee347cba2c0b621e7a38e0408b69)`() const` | Gets the value of Joinability_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a4a4ccaa445fab0b6c72affa0e8fa3df9)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & DefaultValue) const` | Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetJoinability`](#structFRHAPI__AuditEvent_1a37a8a67aac1a5743a8e9cc3571736701)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & OutValue) const` | Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1a535a2b68f8e2f3d51d5ca45dbffa64e2)`()` | Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1ae377f809f334ec9bcb2517d71d3ba941)`() const` | Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinability`](#structFRHAPI__AuditEvent_1aa154d67561e52ffdccfebc0dd1740917)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & NewValue)` | Sets the value of Joinability_Optional and also sets Joinability_IsSet to true.
-`public inline void `[`SetJoinability`](#structFRHAPI__AuditEvent_1ac97de6acc90b3f4810086324e726f31a)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` && NewValue)` | Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_Joinable`](#structFRHAPI__AuditEvent_1a7bd65fce2f6f4c98728816050319e9cd)`()` | Returns the default value of Joinable.
+`public inline FORCEINLINE `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a9c9739f8f782248b2aad786366936b40)`()` | Gets the value of Joinability_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a97bf676f94dc24aac0f8a25d9faf6e00)`() const` | Gets the value of Joinability_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1ab057b46388e216398be33fe860f05fd0)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & DefaultValue) const` | Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetJoinability`](#structFRHAPI__AuditEvent_1acc6d1805d7f4d79db30914aca6db3f58)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & OutValue) const` | Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1a0ca26370c41b9e0cb29c40ca5ea91b9f)`()` | Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1ad1af9cd0cb48543dcd41a96d7c215e83)`() const` | Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetJoinability`](#structFRHAPI__AuditEvent_1a42fcf19a50ebbef6aabd81c6d48ea211)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & NewValue)` | Sets the value of Joinability_Optional and also sets Joinability_IsSet to true.
+`public inline FORCEINLINE void `[`SetJoinability`](#structFRHAPI__AuditEvent_1acf43aa29b190634b2d1bfc7d9435d2f0)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` && NewValue)` | Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics.
 `public inline void `[`ClearJoinability`](#structFRHAPI__AuditEvent_1a08826e9cd16abcb3f0e813fa32468e53)`()` | Clears the value of Joinability_Optional and sets Joinability_IsSet to false.
-`public inline bool `[`IsJoinabilitySet`](#structFRHAPI__AuditEvent_1a4da0d72a9169610e8e21d2b017ad2573)`() const` | Checks whether Joinability_Optional has been set.
-`public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ac700dbebcf2968bb67ff9cf0fc0823ed)`()` | Gets the value of UpdatedTeams_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a5c824ad3dd4a49348a82de17356c7ce2)`() const` | Gets the value of UpdatedTeams_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ab7571d1e4c48f53f904abe2b15f09a37)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & DefaultValue) const` | Gets the value of UpdatedTeams_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a673e28af1f69b21f6fe06ddd7073cd32)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & OutValue) const` | Fills OutValue with the value of UpdatedTeams_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetUpdatedTeamsOrNull`](#structFRHAPI__AuditEvent_1a532e1a5762df7147bf5b2680d729b19a)`()` | Returns a pointer to UpdatedTeams_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetUpdatedTeamsOrNull`](#structFRHAPI__AuditEvent_1a13f7974d0b9dcb9793f86b31adc40508)`() const` | Returns a pointer to UpdatedTeams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetUpdatedTeams`](#structFRHAPI__AuditEvent_1a8238fd52886db81696c362ba9459b0cc)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & NewValue)` | Sets the value of UpdatedTeams_Optional and also sets UpdatedTeams_IsSet to true.
-`public inline void `[`SetUpdatedTeams`](#structFRHAPI__AuditEvent_1a5ae33104490c12208b9c766a4e8b971b)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > && NewValue)` | Sets the value of UpdatedTeams_Optional and also sets UpdatedTeams_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a49a843f78adcf637d0d821fbd0a643a6)`()` | Gets the value of UpdatedTeams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ac383fc7e966d1c0ff5cac30b180c306b)`() const` | Gets the value of UpdatedTeams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a50a518eda482aaed6b8fc6b81612d4a6)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & DefaultValue) const` | Gets the value of UpdatedTeams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a7fa1ca4015328a10bc6753b94170310c)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & OutValue) const` | Fills OutValue with the value of UpdatedTeams_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetUpdatedTeamsOrNull`](#structFRHAPI__AuditEvent_1a6bf9a6280e685d2195f285091257c44a)`()` | Returns a pointer to UpdatedTeams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetUpdatedTeamsOrNull`](#structFRHAPI__AuditEvent_1a57664855d421cc57af0228bf2bd6e70f)`() const` | Returns a pointer to UpdatedTeams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetUpdatedTeams`](#structFRHAPI__AuditEvent_1a10799241aa7dc48e7d68c52557b1578f)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & NewValue)` | Sets the value of UpdatedTeams_Optional and also sets UpdatedTeams_IsSet to true.
+`public inline FORCEINLINE void `[`SetUpdatedTeams`](#structFRHAPI__AuditEvent_1ada71353cf70b7f03a271454490b3a886)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > && NewValue)` | Sets the value of UpdatedTeams_Optional and also sets UpdatedTeams_IsSet to true using move semantics.
 `public inline void `[`ClearUpdatedTeams`](#structFRHAPI__AuditEvent_1ae7fbb59c682cdadaa713c1cb50332e51)`()` | Clears the value of UpdatedTeams_Optional and sets UpdatedTeams_IsSet to false.
-`public inline bool `[`IsUpdatedTeamsSet`](#structFRHAPI__AuditEvent_1a80604a3d148ea36937ba7803a39ccbee)`() const` | Checks whether UpdatedTeams_Optional has been set.
-`public inline ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1a963be213fd911f28673375252c84c2d7)`()` | Gets the value of Source_Optional, regardless of it having been set.
-`public inline const ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1a2f905cce1f909dbf09db4525e2cfba1b)`() const` | Gets the value of Source_Optional, regardless of it having been set.
-`public inline const ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1ab0a8cf255f9167f2869c5f6a4e798d72)`(const ERHAPI_InviteSource & DefaultValue) const` | Gets the value of Source_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSource`](#structFRHAPI__AuditEvent_1a97c8b8996109ccfe3ef9914e516db3eb)`(ERHAPI_InviteSource & OutValue) const` | Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InviteSource * `[`GetSourceOrNull`](#structFRHAPI__AuditEvent_1a3cde6dffadc67d65a04376f3d5ca4516)`()` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InviteSource * `[`GetSourceOrNull`](#structFRHAPI__AuditEvent_1ac361620787d9d936c96accc8aeb43942)`() const` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSource`](#structFRHAPI__AuditEvent_1acc4da47740c855770e7394e5247f0c13)`(const ERHAPI_InviteSource & NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true.
-`public inline void `[`SetSource`](#structFRHAPI__AuditEvent_1aa77d6b7e7a75c222daf289cbc58edf29)`(ERHAPI_InviteSource && NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1ac8c9afe98acf9405de6a12cc236f76f7)`()` | Gets the value of Source_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1aa840aaf1ca5552124eeb9591c0bef1e2)`() const` | Gets the value of Source_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1ab85e22ee8dd828a2ed265a8114975335)`(const ERHAPI_InviteSource & DefaultValue) const` | Gets the value of Source_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSource`](#structFRHAPI__AuditEvent_1abf3e62f85c82787585674db1f54bfbd6)`(ERHAPI_InviteSource & OutValue) const` | Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_InviteSource * `[`GetSourceOrNull`](#structFRHAPI__AuditEvent_1ab79015b6709fdd67f78282b143946ecb)`()` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_InviteSource * `[`GetSourceOrNull`](#structFRHAPI__AuditEvent_1a859bff69cba1ffeee936b900c95b2e36)`() const` | Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__AuditEvent_1a932e1e08d4a400614ceaa302b94ca4fc)`(const ERHAPI_InviteSource & NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true.
+`public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__AuditEvent_1ac878b21f57be796adef53ca50d39b39d)`(ERHAPI_InviteSource && NewValue)` | Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
 `public inline void `[`ClearSource`](#structFRHAPI__AuditEvent_1ae289f75b711f546b5f66d324dce40ac8)`()` | Clears the value of Source_Optional and sets Source_IsSet to false.
-`public inline bool `[`IsSourceSet`](#structFRHAPI__AuditEvent_1a74018ed8ae1bfbfd9f45ce224b75c4ec)`() const` | Checks whether Source_Optional has been set.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a9dbd683a5981253cdac1fa1cbdf78abc)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a3bfaf62eee0c9fe3fb84cf0c1b120146)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a194fdda2902267aee20f2fefeb440d46)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1ac554d4e051febbe237753c638a4198c0)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a3f36db2be50e298ccbb738456e017251)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a26d5049e92e2db5736afb1ffa2103c5c)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__AuditEvent_1ae19715aea8b4871a0b72de04887c7ef8)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__AuditEvent_1a88e95b412063e1c90e1da710ab6880c7)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a4b21358faefc8da1754be734f23323ca)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1aa953e3920fec929697809bd15f15e552)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a82c28e24f94085b362356816b12732fc)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1adf46148bc425f47221220947c93b52ab)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a6005b776d5a958930fd3284e1513fca7)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a37ed42c0d1f93f524066fffa708bbae1)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__AuditEvent_1a984a55f708f6364d01d2fe5ea53c2c2a)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__AuditEvent_1a9a423c7ca9e3691f2ba0d9457a8d1884)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerUuid`](#structFRHAPI__AuditEvent_1a03c6f2362c235c7631ef36c4f3c42beb)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
-`public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__AuditEvent_1afec2260e0d9dd9b1721aa7c4214bd739)`() const` | Checks whether PlayerUuid_Optional has been set.
-`public inline int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1aab5ce68ba5a8801e810f2a529ba91bed)`()` | Gets the value of TeamId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1a804265f9d635db4ed1c1cac9ac72f594)`() const` | Gets the value of TeamId_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1a0da8b879f31f057e26e5e4da16a6a55b)`(const int32 & DefaultValue) const` | Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTeamId`](#structFRHAPI__AuditEvent_1a7344ad05cfbb1e0cc893b7f723eea816)`(int32 & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetTeamIdOrNull`](#structFRHAPI__AuditEvent_1a5bc53b49eab6cc95e293b0c8cc3c3427)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__AuditEvent_1afb2190201847c1ca31dbdf8950c9a24b)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTeamId`](#structFRHAPI__AuditEvent_1a47be0e8b4f61ba41766da5f9315959b5)`(const int32 & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
-`public inline void `[`SetTeamId`](#structFRHAPI__AuditEvent_1accabc99661aeab63afd01f33404c7ba9)`(int32 && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1a2b0fc83c296a9b53f3ef675a87a804cb)`()` | Gets the value of TeamId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1aa502d9f3471ba2f3d708a2da78feab82)`() const` | Gets the value of TeamId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1a1861c6b4d1be359385477278629d3e0b)`(const int32 & DefaultValue) const` | Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTeamId`](#structFRHAPI__AuditEvent_1a02b359bf07099e8bfb591a7aa83730f7)`(int32 & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetTeamIdOrNull`](#structFRHAPI__AuditEvent_1a89ab406b99d86034d14e01b40e39fc33)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__AuditEvent_1a7d0010b90149755c56f8e3a6cd59324a)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__AuditEvent_1abf1e0053a904f49213feac0ddaef7bd3)`(const int32 & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+`public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__AuditEvent_1a03cdfb9ada2f55ac2237b9bee820891e)`(int32 && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 `public inline void `[`ClearTeamId`](#structFRHAPI__AuditEvent_1a11aaafae2908f427aef5a5efb99382ea)`()` | Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
-`public inline bool `[`IsTeamIdSet`](#structFRHAPI__AuditEvent_1af2681fc55ee0b61827961f53302d914a)`() const` | Checks whether TeamId_Optional has been set.
-`public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__AuditEvent_1a77e8d1490e7d0bf2435960dcfb4a615a)`() const` | Returns true if TeamId_Optional is set and matches the default value.
-`public inline void `[`SetTeamIdToDefault`](#structFRHAPI__AuditEvent_1a27fd05b2636e3be453c92fed6643e5ac)`()` | Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true.
-`public inline FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1aabd0fcb746ed3dcf2b81a0d07b09e22b)`()` | Gets the value of InvitedSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1a9bc911d1fc22a5aebf9b88deae99a1df)`() const` | Gets the value of InvitedSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1a3a9f77609c3b677a0b16d4fbd0e0b2da)`(const FString & DefaultValue) const` | Gets the value of InvitedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1aabb4f44710178fd6e53b95cfdff6ae17)`(FString & OutValue) const` | Fills OutValue with the value of InvitedSessionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetInvitedSessionIdOrNull`](#structFRHAPI__AuditEvent_1af36fdb60b609d8eb370d75bc6ad6e1be)`()` | Returns a pointer to InvitedSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetInvitedSessionIdOrNull`](#structFRHAPI__AuditEvent_1ad5a3480fd8cd82c265156c1c2eff6fee)`() const` | Returns a pointer to InvitedSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInvitedSessionId`](#structFRHAPI__AuditEvent_1a3c32957fb9d0b5e1d7371c6a112b1cba)`(const FString & NewValue)` | Sets the value of InvitedSessionId_Optional and also sets InvitedSessionId_IsSet to true.
-`public inline void `[`SetInvitedSessionId`](#structFRHAPI__AuditEvent_1a7badce28c451a3ede11d27c75fcbae4b)`(FString && NewValue)` | Sets the value of InvitedSessionId_Optional and also sets InvitedSessionId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TeamId`](#structFRHAPI__AuditEvent_1adff154ac0a34c800a10dc0188283a331)`()` | Returns the default value of TeamId.
+`public inline FORCEINLINE FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1a5e6decc38db836a0de3caef6f3861046)`()` | Gets the value of InvitedSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1af77dc162efe8ce5dbc7aa78de168e645)`() const` | Gets the value of InvitedSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1a6c0a01fcd0a1a1431428ec0f36a4828a)`(const FString & DefaultValue) const` | Gets the value of InvitedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1abcd463eb7d26b4bd37a4c504d5be5e69)`(FString & OutValue) const` | Fills OutValue with the value of InvitedSessionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetInvitedSessionIdOrNull`](#structFRHAPI__AuditEvent_1abc4e393fb3f19f3f2e1ff41272a18a29)`()` | Returns a pointer to InvitedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetInvitedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a459e2118abae5705f6c99838fe236854)`() const` | Returns a pointer to InvitedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInvitedSessionId`](#structFRHAPI__AuditEvent_1a881d8fe30b648fc8b35f925defbc1387)`(const FString & NewValue)` | Sets the value of InvitedSessionId_Optional and also sets InvitedSessionId_IsSet to true.
+`public inline FORCEINLINE void `[`SetInvitedSessionId`](#structFRHAPI__AuditEvent_1ac412487d26c212b54a9dbbfb0d8f8654)`(FString && NewValue)` | Sets the value of InvitedSessionId_Optional and also sets InvitedSessionId_IsSet to true using move semantics.
 `public inline void `[`ClearInvitedSessionId`](#structFRHAPI__AuditEvent_1af5c9671893728a053fc0ed1c35cd54a0)`()` | Clears the value of InvitedSessionId_Optional and sets InvitedSessionId_IsSet to false.
-`public inline bool `[`IsInvitedSessionIdSet`](#structFRHAPI__AuditEvent_1aee80c206c407b9f83d4e466c399f0132)`() const` | Checks whether InvitedSessionId_Optional has been set.
-`public inline FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a54c85ad140785c445c4bfcb6314a3c0e)`()` | Gets the value of RemovedSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1aac5fbe426399173bba6d36e15ffd458b)`() const` | Gets the value of RemovedSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1ae13dbafa6a9ddd2e71cb6d385240f470)`(const FString & DefaultValue) const` | Gets the value of RemovedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1ade807e3b1634593e4e314a3cc12562ba)`(FString & OutValue) const` | Fills OutValue with the value of RemovedSessionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRemovedSessionIdOrNull`](#structFRHAPI__AuditEvent_1ab7e26a4fb21c388bc90d8a5529766951)`()` | Returns a pointer to RemovedSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRemovedSessionIdOrNull`](#structFRHAPI__AuditEvent_1ae997ddbed19967c4e4bf1164ffe4d5e9)`() const` | Returns a pointer to RemovedSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRemovedSessionId`](#structFRHAPI__AuditEvent_1af61362af9db9b687702930d07a978a9a)`(const FString & NewValue)` | Sets the value of RemovedSessionId_Optional and also sets RemovedSessionId_IsSet to true.
-`public inline void `[`SetRemovedSessionId`](#structFRHAPI__AuditEvent_1a9d61198748341944235b605422454e6e)`(FString && NewValue)` | Sets the value of RemovedSessionId_Optional and also sets RemovedSessionId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a3720070f938c6f18a933199ddcbccf33)`()` | Gets the value of RemovedSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a6f24f8d296b1689ff5f8c29dd151bc03)`() const` | Gets the value of RemovedSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a085752523fc33eb747acfa537571a6c9)`(const FString & DefaultValue) const` | Gets the value of RemovedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a6504e5ca6712fb06ab7f1b509583eea8)`(FString & OutValue) const` | Fills OutValue with the value of RemovedSessionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRemovedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a813c3f19e2e93324d3df04d7d0b0f8df)`()` | Returns a pointer to RemovedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRemovedSessionIdOrNull`](#structFRHAPI__AuditEvent_1acfaf0120256fae3988f74e7aa01ba41a)`() const` | Returns a pointer to RemovedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRemovedSessionId`](#structFRHAPI__AuditEvent_1a01abc3fbad6a0863fa80c9730e24bc29)`(const FString & NewValue)` | Sets the value of RemovedSessionId_Optional and also sets RemovedSessionId_IsSet to true.
+`public inline FORCEINLINE void `[`SetRemovedSessionId`](#structFRHAPI__AuditEvent_1a918599edffadb5fb601482645497dfd8)`(FString && NewValue)` | Sets the value of RemovedSessionId_Optional and also sets RemovedSessionId_IsSet to true using move semantics.
 `public inline void `[`ClearRemovedSessionId`](#structFRHAPI__AuditEvent_1aff216f70ad96469f84d59cace7f26a1a)`()` | Clears the value of RemovedSessionId_Optional and sets RemovedSessionId_IsSet to false.
-`public inline bool `[`IsRemovedSessionIdSet`](#structFRHAPI__AuditEvent_1a701a19c4cbd0f0dce6e8084988cae627)`() const` | Checks whether RemovedSessionId_Optional has been set.
-`public inline FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1ab23fad65a4f6e595ed00c55468c6256c)`()` | Gets the value of Version_Optional, regardless of it having been set.
-`public inline const FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a8929938aadae30cbc52121ff67721875)`() const` | Gets the value of Version_Optional, regardless of it having been set.
-`public inline const FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a1e47bbb44333cc6091464033ad502c28)`(const FString & DefaultValue) const` | Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetVersion`](#structFRHAPI__AuditEvent_1a7f3950a12da4cd1035e1894f0c714890)`(FString & OutValue) const` | Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetVersionOrNull`](#structFRHAPI__AuditEvent_1ab84e68a8eeb988df709a5efaff2ce2c7)`()` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__AuditEvent_1a5587d83a6b09f69300d4bb2d3611dbb3)`() const` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetVersion`](#structFRHAPI__AuditEvent_1a1c31b5321f12957b29cbb6fd27bc252c)`(const FString & NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true.
-`public inline void `[`SetVersion`](#structFRHAPI__AuditEvent_1a4a292c731f135f4bf042ed412da9a915)`(FString && NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a17849acb8399db0f08a96e93de254271)`()` | Gets the value of Version_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a466612805fb2529767617d3cf56fe5d9)`() const` | Gets the value of Version_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a7c2af47324e22a190c3f9b9909bac869)`(const FString & DefaultValue) const` | Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetVersion`](#structFRHAPI__AuditEvent_1ad843aeadf746c733b89771e81a96b429)`(FString & OutValue) const` | Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetVersionOrNull`](#structFRHAPI__AuditEvent_1a9d9b679ecd1a86381183a8b0b4e435c8)`()` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetVersionOrNull`](#structFRHAPI__AuditEvent_1a5e57dbb3769dd2179080d1a4f97bfa07)`() const` | Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetVersion`](#structFRHAPI__AuditEvent_1afb6eae66c42043e0350c69223c5240a9)`(const FString & NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true.
+`public inline FORCEINLINE void `[`SetVersion`](#structFRHAPI__AuditEvent_1a2e03b13b001c0ad356cba84c6d9c368a)`(FString && NewValue)` | Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
 `public inline void `[`ClearVersion`](#structFRHAPI__AuditEvent_1a7ceff8afbf6b5e1ace9ada4c055b1a66)`()` | Clears the value of Version_Optional and sets Version_IsSet to false.
-`public inline bool `[`IsVersionSet`](#structFRHAPI__AuditEvent_1a54a358e1b91e8639f82106c0c1b762d5)`() const` | Checks whether Version_Optional has been set.
-`public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1ab6e156633883485d2fb53414ecaa4474)`()` | Gets the value of ClientSettings_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a7815dfcab22ffae4063a9c218d3113b6)`() const` | Gets the value of ClientSettings_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1ad3c74afecaab787c07af5ea6b3c0344b)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & DefaultValue) const` | Gets the value of ClientSettings_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a05775d6ef1d3f110a990a843b113f980)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & OutValue) const` | Fills OutValue with the value of ClientSettings_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__AuditEvent_1a954e29e612ec6ce63072757d7e70aeb4)`()` | Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__AuditEvent_1a709914b261bf42e513ec3c59152db0ae)`() const` | Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetClientSettings`](#structFRHAPI__AuditEvent_1aa1287ead01588e4aa867d66bd36b76b7)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` | Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true.
-`public inline void `[`SetClientSettings`](#structFRHAPI__AuditEvent_1a18db16fb778956186aa2f39d260b1e69)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` | Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a631f939bd87f108594adfc9e1bf71091)`()` | Gets the value of ClientSettings_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a46da4775c5e96d8c604e528c091adaac)`() const` | Gets the value of ClientSettings_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a29c8658263b1550db89b440e5bf3ff65)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & DefaultValue) const` | Gets the value of ClientSettings_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a87576e709ab1568a50e9023517cd7bf6)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & OutValue) const` | Fills OutValue with the value of ClientSettings_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__AuditEvent_1aaf9c2fd965655a74b11059cf35ebde59)`()` | Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__AuditEvent_1af1013187951bb2c75896df20eb6c0bc4)`() const` | Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetClientSettings`](#structFRHAPI__AuditEvent_1a5d6fa0b0cae0cd46ce3072eab4c33d77)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` | Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true.
+`public inline FORCEINLINE void `[`SetClientSettings`](#structFRHAPI__AuditEvent_1ad9b79ac728f02df5193ac2cad0e5ecb0)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` | Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true using move semantics.
 `public inline void `[`ClearClientSettings`](#structFRHAPI__AuditEvent_1a94831c05e3986114c6f2a89b692196e9)`()` | Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false.
-`public inline bool `[`IsClientSettingsSet`](#structFRHAPI__AuditEvent_1aed553d016754f1f384bfded4f0cb4e86)`() const` | Checks whether ClientSettings_Optional has been set.
-`public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1ae538e2fea07c0aa6bc7aa7423bf903b7)`()` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a7e40df7b733196f54b2af3defbcf398d)`() const` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a46aaec23542f7772bc14d43f506704fe)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & DefaultValue) const` | Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a0e6ff85879b0cedbe7220a084ba75323)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & OutValue) const` | Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__AuditEvent_1a70c46614019e4b4f0dfe580d419a8ba7)`()` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__AuditEvent_1a383b3c4418be401c958162ab2b2e8e0f)`() const` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCrossplayPreferences`](#structFRHAPI__AuditEvent_1af3008c45b49c2eb889911d00ebe7ebf0)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
-`public inline void `[`SetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a7ff6b1395a4c8a8c27669dacbba62ea7)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a7e0f58b2174e8866602b0dd9f45348ef)`()` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1aeea31a5498262f3f36b6672c26e19f57)`() const` | Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a7f634dca968006833a7557f17e446b40)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & DefaultValue) const` | Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1ac2b8a06f2b7fc21763ac97b994e6cbb9)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & OutValue) const` | Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__AuditEvent_1af4f98be478d304f82fe7b019a7936b9b)`()` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__AuditEvent_1aa61b55df69fcce8c556d50f46f8ce751)`() const` | Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a65606a1af8b3121b3d3eac5e2073a5ac)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
+`public inline FORCEINLINE void `[`SetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a1dd6716652972e5402e7d15e32cc5284)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` | Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
 `public inline void `[`ClearCrossplayPreferences`](#structFRHAPI__AuditEvent_1af1899c1e5b5181b70c8778ae01c055c7)`()` | Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false.
-`public inline bool `[`IsCrossplayPreferencesSet`](#structFRHAPI__AuditEvent_1ad106f4fb3165db8eaf5a4f84c87be306)`() const` | Checks whether CrossplayPreferences_Optional has been set.
-`public inline ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1a991d0e034a0c40e9bb3902e8a5d646d1)`()` | Gets the value of PlayerStatus_Optional, regardless of it having been set.
-`public inline const ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1aca963d485b9bbf2e0dcdb06b90b01a18)`() const` | Gets the value of PlayerStatus_Optional, regardless of it having been set.
-`public inline const ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1ac5bbc52c80bd681b2ad90a11d3a72173)`(const ERHAPI_SessionPlayerStatus & DefaultValue) const` | Gets the value of PlayerStatus_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1a6a859a33a504f780c5cdac0dcad855de)`(ERHAPI_SessionPlayerStatus & OutValue) const` | Fills OutValue with the value of PlayerStatus_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_SessionPlayerStatus * `[`GetPlayerStatusOrNull`](#structFRHAPI__AuditEvent_1aa5ef2c93c6846b8a83bd458f26803c41)`()` | Returns a pointer to PlayerStatus_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_SessionPlayerStatus * `[`GetPlayerStatusOrNull`](#structFRHAPI__AuditEvent_1a035f3b8118e43b3411653483851b9160)`() const` | Returns a pointer to PlayerStatus_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerStatus`](#structFRHAPI__AuditEvent_1a1808222701b0c45c69bbbc1dd355f540)`(const ERHAPI_SessionPlayerStatus & NewValue)` | Sets the value of PlayerStatus_Optional and also sets PlayerStatus_IsSet to true.
-`public inline void `[`SetPlayerStatus`](#structFRHAPI__AuditEvent_1a8fdc03635bf2ac0aa85dadfd14bcc4b1)`(ERHAPI_SessionPlayerStatus && NewValue)` | Sets the value of PlayerStatus_Optional and also sets PlayerStatus_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1ada655b5627b8ed0fa104d0d99b6f48a9)`()` | Gets the value of PlayerStatus_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1a35286123ff39f93fa58269a373ccf78b)`() const` | Gets the value of PlayerStatus_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1afacda718f53ff7aa791b940ac89b430e)`(const ERHAPI_SessionPlayerStatus & DefaultValue) const` | Gets the value of PlayerStatus_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1a3b80cecc0b5fece430ccf3eee8df74eb)`(ERHAPI_SessionPlayerStatus & OutValue) const` | Fills OutValue with the value of PlayerStatus_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_SessionPlayerStatus * `[`GetPlayerStatusOrNull`](#structFRHAPI__AuditEvent_1ae30ef05eb75aeabe4199daf7632f03e0)`()` | Returns a pointer to PlayerStatus_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_SessionPlayerStatus * `[`GetPlayerStatusOrNull`](#structFRHAPI__AuditEvent_1aed73dc7f9e9a883bca11190a91a839eb)`() const` | Returns a pointer to PlayerStatus_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayerStatus`](#structFRHAPI__AuditEvent_1ac41ba0b2dd82c4a93e3b08bf87cc360c)`(const ERHAPI_SessionPlayerStatus & NewValue)` | Sets the value of PlayerStatus_Optional and also sets PlayerStatus_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayerStatus`](#structFRHAPI__AuditEvent_1a3a002aa07e49cc1ed93fa71e2a9ec1ed)`(ERHAPI_SessionPlayerStatus && NewValue)` | Sets the value of PlayerStatus_Optional and also sets PlayerStatus_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerStatus`](#structFRHAPI__AuditEvent_1aa6d6d3cf6091881b21f450168b45f4c8)`()` | Clears the value of PlayerStatus_Optional and sets PlayerStatus_IsSet to false.
-`public inline bool `[`IsPlayerStatusSet`](#structFRHAPI__AuditEvent_1ab8a02c50baa7a910cdddb0d16821f76e)`() const` | Checks whether PlayerStatus_Optional has been set.
-`public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1aabc4e741afef959011edeba1e322ed5f)`()` | Gets the value of Platform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1a8709c5798d7f4680442f5905a0b98ad2)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
-`public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1ac18e3c7dd670a1066cf615b3d0a48f9b)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlatform`](#structFRHAPI__AuditEvent_1a2fe237dcd924c666d499899ee49e36d0)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__AuditEvent_1a4b645d47024409c1330df75e63812afa)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__AuditEvent_1a03e96a3d3d369201d6657fe511caabcf)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatform`](#structFRHAPI__AuditEvent_1abbd1b1149c514a1526d84bbfac1df1cf)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
-`public inline void `[`SetPlatform`](#structFRHAPI__AuditEvent_1a1d7407c70e5958528911610f12794cd2)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1a27c279b9a1c59c9106ef1fc8f605254f)`()` | Gets the value of Platform_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1a2edfd8c13324c45ec00a910c0350d25e)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1a70be3370fba07ce40e3b189cded9b906)`(const ERHAPI_Platform & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlatform`](#structFRHAPI__AuditEvent_1ad24996370aa9bc721bbc1035934f9da4)`(ERHAPI_Platform & OutValue) const` | Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__AuditEvent_1a443f6ef1985703ca87fcce4fff3ea2ff)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__AuditEvent_1acdb35b32bc55c185ea7a4cbe82113d19)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__AuditEvent_1a10cacd41a1b8cb8cef6731e25db153d3)`(const ERHAPI_Platform & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__AuditEvent_1aca514847e7fa20b5df3309b23bdb894c)`(ERHAPI_Platform && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 `public inline void `[`ClearPlatform`](#structFRHAPI__AuditEvent_1aa09b2a730eadbccecf65f6491dd39461)`()` | Clears the value of Platform_Optional and sets Platform_IsSet to false.
-`public inline bool `[`IsPlatformSet`](#structFRHAPI__AuditEvent_1ae0374725fe376fb4276ea59474a0e783)`() const` | Checks whether Platform_Optional has been set.
-`public inline FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a974adc6364cea5eeb2e61710ab53cdf6)`()` | Gets the value of PlatformSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a371217125fdef7b21f87381bf7ae576c)`() const` | Gets the value of PlatformSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1aa22d3bd440c61d4081d72ab188a34227)`(const FString & DefaultValue) const` | Gets the value of PlatformSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a2813c6585a35e3684dc5803706fcd359)`(FString & OutValue) const` | Fills OutValue with the value of PlatformSessionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPlatformSessionIdOrNull`](#structFRHAPI__AuditEvent_1a8dd9f9235a468b1dfea40aed2c759f34)`()` | Returns a pointer to PlatformSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPlatformSessionIdOrNull`](#structFRHAPI__AuditEvent_1aa80d516e3369999fde09f8f64719bfa3)`() const` | Returns a pointer to PlatformSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatformSessionId`](#structFRHAPI__AuditEvent_1ac2eef0648ddb5613c03bfbd36af86360)`(const FString & NewValue)` | Sets the value of PlatformSessionId_Optional and also sets PlatformSessionId_IsSet to true.
-`public inline void `[`SetPlatformSessionId`](#structFRHAPI__AuditEvent_1a1e17878a603c771549c57fc5cb95da07)`(FString && NewValue)` | Sets the value of PlatformSessionId_Optional and also sets PlatformSessionId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1ac2f3a67016f72e94da6f366c17833f03)`()` | Gets the value of PlatformSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a9295689d9e5f2891e12becb5d3924ac0)`() const` | Gets the value of PlatformSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1ad8a105da3a9ba6c61edb9b720c59b42e)`(const FString & DefaultValue) const` | Gets the value of PlatformSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a35cad7ed82d211f7b1f732e1b8226190)`(FString & OutValue) const` | Fills OutValue with the value of PlatformSessionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetPlatformSessionIdOrNull`](#structFRHAPI__AuditEvent_1a1e8c2153fe4ac13e8394831afbada6a9)`()` | Returns a pointer to PlatformSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetPlatformSessionIdOrNull`](#structFRHAPI__AuditEvent_1ab107564dddd6001152560a433123374d)`() const` | Returns a pointer to PlatformSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlatformSessionId`](#structFRHAPI__AuditEvent_1a0b63a266c286d034681052d0847eaf8c)`(const FString & NewValue)` | Sets the value of PlatformSessionId_Optional and also sets PlatformSessionId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlatformSessionId`](#structFRHAPI__AuditEvent_1ae5c83aa29fb978b025b706ef67ccf8c7)`(FString && NewValue)` | Sets the value of PlatformSessionId_Optional and also sets PlatformSessionId_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformSessionId`](#structFRHAPI__AuditEvent_1a5fc4053f6b838a472fbe315133728400)`()` | Clears the value of PlatformSessionId_Optional and sets PlatformSessionId_IsSet to false.
-`public inline bool `[`IsPlatformSessionIdSet`](#structFRHAPI__AuditEvent_1a66f950e18c3943f421f566d3d96d8574)`() const` | Checks whether PlatformSessionId_Optional has been set.
-`public inline FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a6c52aaba3aa6f157438949df4e997393)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a95c584986de9559f5ef90be27ae5cf44)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a9c507ad419e5f0f85183685f32b09f27)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a22c9fb95a6d83f9f192bbd2e5903ae85)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__AuditEvent_1a3dc3c17828f2aac3ee575db3b20aa714)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__AuditEvent_1afeee9b72c3a65699e238e3121635917e)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceId`](#structFRHAPI__AuditEvent_1a4b6b15fe6bb2f8cc822c9da426c6745f)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
-`public inline void `[`SetInstanceId`](#structFRHAPI__AuditEvent_1a9a7fc2a6faab6778919a07a24220507e)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a9767a0215fc2902dbc9fcf094dcc0abe)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a8ea637adeb608b72dfdc678b02ca0418)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1aae8d37b8b34f0f4f8e838cc815c09883)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a9b535a11bd295988673142504eb973a5)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetInstanceIdOrNull`](#structFRHAPI__AuditEvent_1ae6910ddd9463485eb8bfa7b8f4455918)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__AuditEvent_1ac747e50365dd690212cfb805631285d8)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__AuditEvent_1a3fb12da1adc89716d5143adfd12cc663)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__AuditEvent_1a54470fd1a97360120309a25a1c3af1df)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceId`](#structFRHAPI__AuditEvent_1a22603a0b806c747218532f541db1638b)`()` | Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
-`public inline bool `[`IsInstanceIdSet`](#structFRHAPI__AuditEvent_1acc3a47b0824f678387ab3e2291e3c9a4)`() const` | Checks whether InstanceId_Optional has been set.
-`public inline ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1ad89ab1c0a0f645772ce78d27ed2f89b5)`()` | Gets the value of HostType_Optional, regardless of it having been set.
-`public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1a42374677ebd6e8b1e46e81de44f3514b)`() const` | Gets the value of HostType_Optional, regardless of it having been set.
-`public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1a6f9994ce760d7019a8c84b54210255ed)`(const ERHAPI_HostType & DefaultValue) const` | Gets the value of HostType_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetHostType`](#structFRHAPI__AuditEvent_1a3d7240abb4d60f56235c65c6ea077979)`(ERHAPI_HostType & OutValue) const` | Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__AuditEvent_1aa535e0737848b4f8511041bfd86005df)`()` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__AuditEvent_1a822aebccf8bebb0cfa60fb36aaa6bc37)`() const` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetHostType`](#structFRHAPI__AuditEvent_1a227a5d5ebab31508e083798da384a47c)`(const ERHAPI_HostType & NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true.
-`public inline void `[`SetHostType`](#structFRHAPI__AuditEvent_1ac75f49285f71d1ac1fcea3baf5b8ef4a)`(ERHAPI_HostType && NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1a386ac2eb9e17d95b76bd495d97bb80cc)`()` | Gets the value of HostType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1a35d0843da01040379a15556da6de530b)`() const` | Gets the value of HostType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1ac06ce4291fed312e21cc95425279317a)`(const ERHAPI_HostType & DefaultValue) const` | Gets the value of HostType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetHostType`](#structFRHAPI__AuditEvent_1a95197d70498b411795bd55d66c8586b9)`(ERHAPI_HostType & OutValue) const` | Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__AuditEvent_1a56ba39fc593b29da99b9b22795e27e96)`()` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__AuditEvent_1a42c719c0f0ab8d940c987357141feee1)`() const` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetHostType`](#structFRHAPI__AuditEvent_1aa5bad71ea033a61f46a1777a7a8edd07)`(const ERHAPI_HostType & NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true.
+`public inline FORCEINLINE void `[`SetHostType`](#structFRHAPI__AuditEvent_1aac8e3dd3176c5d4ca98eeac71266e00d)`(ERHAPI_HostType && NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics.
 `public inline void `[`ClearHostType`](#structFRHAPI__AuditEvent_1af2d3969a72d3de486e6730f174d54960)`()` | Clears the value of HostType_Optional and sets HostType_IsSet to false.
-`public inline bool `[`IsHostTypeSet`](#structFRHAPI__AuditEvent_1a6100cac42fb0561f9a4848569cf529bf)`() const` | Checks whether HostType_Optional has been set.
-`public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1aa5691aeaece583dffe9bc8943bd84c37)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1ae2f59ee7b85a3d8e2f9b5a9da6111daf)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a7797b348c4d7cae9df21394fbadd88e8)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a78914fb5273ca86ef9130daf01c0d299)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a68b2f715020706363d7242b8a4f1cdcc)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a5affa744845de1cbf2cf16ae43aee5f5)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__AuditEvent_1afe493a5cd3b78599642e2f372e75b9a0)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a6651e7be036259b5e2cbe048f74c154c)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1abdb5a506986706f05f34eeb9f0210f0d)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a2b6e5c79301b6508ec5abbd4c1deddec)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a53a19c353868c078065a30ce34ae05c6)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1ace488d313e0dbb6f8857e15d3b8840e4)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1ad3fff41d57b4bd0099f0ddced73ea49e)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a9f1c0590f096121f7e6e3f806e515a3b)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a2f06e2e1a8a369c5b9d526be34cac7b7)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a1a838b80addb82a5cf8d02e59e96574c)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearHostPlayerUuid`](#structFRHAPI__AuditEvent_1aacdcdb79e5bcac41ff75fc7946d361e9)`()` | Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
-`public inline bool `[`IsHostPlayerUuidSet`](#structFRHAPI__AuditEvent_1a1ee0aa13a2cbd42dc35764feb2da14da)`() const` | Checks whether HostPlayerUuid_Optional has been set.
-`public inline FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1ae23a654f9bc3cf73f3a99d071f5464b8)`()` | Gets the value of InstanceRequestTemplate_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a8d42f8f8601671ad9673a982aa62b287)`() const` | Gets the value of InstanceRequestTemplate_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1af1a399766a52e6e04476b72b43156a3b)`(const FGuid & DefaultValue) const` | Gets the value of InstanceRequestTemplate_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a92a8f742f19ffff30d7637eb0a422e26)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceRequestTemplate_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetInstanceRequestTemplateOrNull`](#structFRHAPI__AuditEvent_1a8317e0d9827eba8c30cfe674070e6b09)`()` | Returns a pointer to InstanceRequestTemplate_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetInstanceRequestTemplateOrNull`](#structFRHAPI__AuditEvent_1a202953ac712476f6401eb93360a94185)`() const` | Returns a pointer to InstanceRequestTemplate_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a5c57bc75cb577ee794c672cf55bae07b)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplate_Optional and also sets InstanceRequestTemplate_IsSet to true.
-`public inline void `[`SetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a76fc5a4577fdf7462180bb4a2979c54e)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplate_Optional and also sets InstanceRequestTemplate_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a27e6599db6430603c094299c0ce52816)`()` | Gets the value of InstanceRequestTemplate_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a5aae84adb4f2b622d39c05a52ed29778)`() const` | Gets the value of InstanceRequestTemplate_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1aa475de4a2f45bc068a616876d0e22e55)`(const FGuid & DefaultValue) const` | Gets the value of InstanceRequestTemplate_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a0e910250e802e4d43c895598348eee27)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceRequestTemplate_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetInstanceRequestTemplateOrNull`](#structFRHAPI__AuditEvent_1acd2b008f549ec2081bff36efff7eb87e)`()` | Returns a pointer to InstanceRequestTemplate_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetInstanceRequestTemplateOrNull`](#structFRHAPI__AuditEvent_1a32d9c7f1697faf23496e060951250674)`() const` | Returns a pointer to InstanceRequestTemplate_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1ad656d7b8a38a86f918936db5f9d1b903)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplate_Optional and also sets InstanceRequestTemplate_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1afafc79e052dff62d1fc32f0ce664c657)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplate_Optional and also sets InstanceRequestTemplate_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a524c77ab8b9f19d870035b5ca5882800)`()` | Clears the value of InstanceRequestTemplate_Optional and sets InstanceRequestTemplate_IsSet to false.
-`public inline bool `[`IsInstanceRequestTemplateSet`](#structFRHAPI__AuditEvent_1aeef6c3214922d53a11bacceb7e3cea68)`() const` | Checks whether InstanceRequestTemplate_Optional has been set.
-`public inline FString & `[`GetMap`](#structFRHAPI__AuditEvent_1a80e751d50d3b93ab4077a12b1e61da87)`()` | Gets the value of Map_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMap`](#structFRHAPI__AuditEvent_1a87d0a30f059cbbd967b14abdbf54c59e)`() const` | Gets the value of Map_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMap`](#structFRHAPI__AuditEvent_1ad01875a9c3ae376fb5c2bdcf98d04883)`(const FString & DefaultValue) const` | Gets the value of Map_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMap`](#structFRHAPI__AuditEvent_1aa3733fd2051cab50d2a2c5875f035bc5)`(FString & OutValue) const` | Fills OutValue with the value of Map_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMapOrNull`](#structFRHAPI__AuditEvent_1ac34ec183155bd05e5debe7cb4dc14baf)`()` | Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMapOrNull`](#structFRHAPI__AuditEvent_1a2e6dc6c083fad20a72415795ce6acf18)`() const` | Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMap`](#structFRHAPI__AuditEvent_1a8c12843b486e7c44895f91e3048c6c16)`(const FString & NewValue)` | Sets the value of Map_Optional and also sets Map_IsSet to true.
-`public inline void `[`SetMap`](#structFRHAPI__AuditEvent_1a26bb3a4f8c3a89e44e03fef02d5c0f4c)`(FString && NewValue)` | Sets the value of Map_Optional and also sets Map_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetMap`](#structFRHAPI__AuditEvent_1ae29304dfd2078fb9d58b39a5ddcc3c80)`()` | Gets the value of Map_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMap`](#structFRHAPI__AuditEvent_1a6b6b1d4e992a03988bddceac5212293e)`() const` | Gets the value of Map_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMap`](#structFRHAPI__AuditEvent_1aff99f512234c6aa63aaa07e87a7d0c84)`(const FString & DefaultValue) const` | Gets the value of Map_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMap`](#structFRHAPI__AuditEvent_1ab5caa6311a051f4e6f4b5a2cfb142475)`(FString & OutValue) const` | Fills OutValue with the value of Map_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetMapOrNull`](#structFRHAPI__AuditEvent_1ae3e5fdf30eda8508e67ff90611327909)`()` | Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetMapOrNull`](#structFRHAPI__AuditEvent_1a4fa483caddfa707d019b71f51f9e114d)`() const` | Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMap`](#structFRHAPI__AuditEvent_1a5862c75241083eef9e7f97bd13f80849)`(const FString & NewValue)` | Sets the value of Map_Optional and also sets Map_IsSet to true.
+`public inline FORCEINLINE void `[`SetMap`](#structFRHAPI__AuditEvent_1a4ba6f0bcdab30e569a855ae7dd0b2d59)`(FString && NewValue)` | Sets the value of Map_Optional and also sets Map_IsSet to true using move semantics.
 `public inline void `[`ClearMap`](#structFRHAPI__AuditEvent_1a6d6275509b146ad4eba918dbcb22d0ad)`()` | Clears the value of Map_Optional and sets Map_IsSet to false.
-`public inline bool `[`IsMapSet`](#structFRHAPI__AuditEvent_1abde78ff0c14f2822e4a94a7677b1c2f8)`() const` | Checks whether Map_Optional has been set.
-`public inline FString & `[`GetMode`](#structFRHAPI__AuditEvent_1adcf28618d9c36a083ab5c1a3df2874b0)`()` | Gets the value of Mode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMode`](#structFRHAPI__AuditEvent_1a8f59d78222ce45cf9221eed98e8f0c67)`() const` | Gets the value of Mode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMode`](#structFRHAPI__AuditEvent_1a51f7fa2042e7984522a5b7d06330e637)`(const FString & DefaultValue) const` | Gets the value of Mode_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMode`](#structFRHAPI__AuditEvent_1a3d2d06cc48d5c42680fde1952dacf915)`(FString & OutValue) const` | Fills OutValue with the value of Mode_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetModeOrNull`](#structFRHAPI__AuditEvent_1ac8ad52f0c48e256f0a7bcaa389093f58)`()` | Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetModeOrNull`](#structFRHAPI__AuditEvent_1acbce7e7f278e5d197afdb137fb2e7523)`() const` | Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMode`](#structFRHAPI__AuditEvent_1acdf423879d2e7c7dd44ad22aa8207c68)`(const FString & NewValue)` | Sets the value of Mode_Optional and also sets Mode_IsSet to true.
-`public inline void `[`SetMode`](#structFRHAPI__AuditEvent_1a648c4e548da4da4383dce888df33752b)`(FString && NewValue)` | Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetMode`](#structFRHAPI__AuditEvent_1add27453eb4ec38162568af4621fa8108)`()` | Gets the value of Mode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMode`](#structFRHAPI__AuditEvent_1ad7b254bed04fc625bca8217c2ca120ce)`() const` | Gets the value of Mode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMode`](#structFRHAPI__AuditEvent_1ab6c0faa0ff73fce7857e952ce7b044a2)`(const FString & DefaultValue) const` | Gets the value of Mode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMode`](#structFRHAPI__AuditEvent_1a7eaafb2f810d1c72db151eb13aa6df5a)`(FString & OutValue) const` | Fills OutValue with the value of Mode_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetModeOrNull`](#structFRHAPI__AuditEvent_1a5126cb50f56533feff14bc1cc5304798)`()` | Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetModeOrNull`](#structFRHAPI__AuditEvent_1aff2ca6d9f91971d7a56ca09c14588a88)`() const` | Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMode`](#structFRHAPI__AuditEvent_1aa2afba479bd7c405c1c0990dcecef905)`(const FString & NewValue)` | Sets the value of Mode_Optional and also sets Mode_IsSet to true.
+`public inline FORCEINLINE void `[`SetMode`](#structFRHAPI__AuditEvent_1afb742da8546b37fbedc147651a555637)`(FString && NewValue)` | Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics.
 `public inline void `[`ClearMode`](#structFRHAPI__AuditEvent_1a9ba2ddca1885eb21298dbb4b623759f8)`()` | Clears the value of Mode_Optional and sets Mode_IsSet to false.
-`public inline bool `[`IsModeSet`](#structFRHAPI__AuditEvent_1ab0ee7f51d48c7152d659dfa1eb26533d)`() const` | Checks whether Mode_Optional has been set.
-`public inline FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a00bbbc7432741772125a90b937d63cf5)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a70e119b3131c908a10ca9f89ce233bc3)`() const` | Gets the value of AllocationId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a596c69a41a6a66bde6b84791ae838c68)`(const FString & DefaultValue) const` | Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAllocationId`](#structFRHAPI__AuditEvent_1aca70562b5536641a9011b237a8747858)`(FString & OutValue) const` | Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetAllocationIdOrNull`](#structFRHAPI__AuditEvent_1a9d7844f488e7ffce72d12bea8d4a085e)`()` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__AuditEvent_1afbb3c872129c4e3ff18a4764cd9d6068)`() const` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAllocationId`](#structFRHAPI__AuditEvent_1a26ff30d159006de17d5f4eb37737ecd5)`(const FString & NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true.
-`public inline void `[`SetAllocationId`](#structFRHAPI__AuditEvent_1aa84df1132beaf5bb229a539f3dbb268d)`(FString && NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a43f1df0078ddcad4ea526ad9b83ea3c2)`()` | Gets the value of AllocationId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a1ca3c1bf2fd2619cdf165041cfc28eb5)`() const` | Gets the value of AllocationId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1af07323c069d63c94f8c053c03ddaa2be)`(const FString & DefaultValue) const` | Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAllocationId`](#structFRHAPI__AuditEvent_1af06177587ca74057c2780339e19e8a67)`(FString & OutValue) const` | Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetAllocationIdOrNull`](#structFRHAPI__AuditEvent_1ad3431f861a022e108d4f50e3f4ab53b5)`()` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__AuditEvent_1a2aa6318686b38991d882f4e23fb26646)`() const` | Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAllocationId`](#structFRHAPI__AuditEvent_1aea8413ec827237dce3fdcc0795397889)`(const FString & NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true.
+`public inline FORCEINLINE void `[`SetAllocationId`](#structFRHAPI__AuditEvent_1a38ae21677cd388c01f1299e54620a6bc)`(FString && NewValue)` | Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics.
 `public inline void `[`ClearAllocationId`](#structFRHAPI__AuditEvent_1ab04e25609ffcf65ec41946fec4c51f80)`()` | Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false.
-`public inline bool `[`IsAllocationIdSet`](#structFRHAPI__AuditEvent_1a8688ecf4ec4beef7f70b1b8eccb4f6fd)`() const` | Checks whether AllocationId_Optional has been set.
-`public inline ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1abbc75d3173a17443d93ebbd9bf48062e)`()` | Gets the value of JoinStatus_Optional, regardless of it having been set.
-`public inline const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1a965269ec0582b1e0dd86ff1c80769385)`() const` | Gets the value of JoinStatus_Optional, regardless of it having been set.
-`public inline const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1afcefdd3e1390ba511c7d5be3b85bc74a)`(const ERHAPI_InstanceJoinableStatus & DefaultValue) const` | Gets the value of JoinStatus_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1ad317d132732992d96bfa9c87769250d3)`(ERHAPI_InstanceJoinableStatus & OutValue) const` | Fills OutValue with the value of JoinStatus_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__AuditEvent_1aedfd3be86f904cd0be02a09d8e1613b4)`()` | Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__AuditEvent_1aed404f974e065db380252ab021f70e51)`() const` | Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinStatus`](#structFRHAPI__AuditEvent_1a9ad57b57c4338b2f4f43581d2e7ca6d6)`(const ERHAPI_InstanceJoinableStatus & NewValue)` | Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true.
-`public inline void `[`SetJoinStatus`](#structFRHAPI__AuditEvent_1a5490ddb4893256915a7ec8a49e0ce454)`(ERHAPI_InstanceJoinableStatus && NewValue)` | Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1a6536d31eaf5d64fd707ca3cbb5bf4e13)`()` | Gets the value of JoinStatus_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1ad40e3c769be936b5ca3221c67880535a)`() const` | Gets the value of JoinStatus_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1aa5cccd971c6bbec93d6553c6969f194a)`(const ERHAPI_InstanceJoinableStatus & DefaultValue) const` | Gets the value of JoinStatus_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1a13b232d79f8644f530025278058fb890)`(ERHAPI_InstanceJoinableStatus & OutValue) const` | Fills OutValue with the value of JoinStatus_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__AuditEvent_1a6502ccd8d2966bb451537c5b9ff25948)`()` | Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__AuditEvent_1a8e7f317dcc90dd08bfdff8ef82088ff7)`() const` | Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetJoinStatus`](#structFRHAPI__AuditEvent_1af12fe97d840b56ad1c138f1383718f83)`(const ERHAPI_InstanceJoinableStatus & NewValue)` | Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true.
+`public inline FORCEINLINE void `[`SetJoinStatus`](#structFRHAPI__AuditEvent_1afd6863cfe98fe4dd0a0fc1bf5fc6beee)`(ERHAPI_InstanceJoinableStatus && NewValue)` | Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics.
 `public inline void `[`ClearJoinStatus`](#structFRHAPI__AuditEvent_1aa2055e3edb743366349cb596e48c6dc9)`()` | Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false.
-`public inline bool `[`IsJoinStatusSet`](#structFRHAPI__AuditEvent_1ae5bce6fbd66439f134728541c4c8c429)`() const` | Checks whether JoinStatus_Optional has been set.
-`public inline `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1adef84f50fef0c37d28c1ed39818b24d8)`()` | Gets the value of JoinParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1af43f80174834843587dabc2949c5eacb)`() const` | Gets the value of JoinParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a607cdeb54df5e5bf8a7f2e6fc8480ac9)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & DefaultValue) const` | Gets the value of JoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a65fc71a298fad25ea455a43649d890bf)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & OutValue) const` | Fills OutValue with the value of JoinParams_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__AuditEvent_1a15b5d1aa3ec2fde0147eccbddcbb0364)`()` | Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__AuditEvent_1a0f76389308bc770fb8beb74415eb1f21)`() const` | Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinParams`](#structFRHAPI__AuditEvent_1af8a036b78938df2363a5297dd9b79703)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & NewValue)` | Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true.
-`public inline void `[`SetJoinParams`](#structFRHAPI__AuditEvent_1a7b9b2b722b6cd7a68a7aa747f7c438d0)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` && NewValue)` | Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1ac5c01487f2c78210eddb411ee2175911)`()` | Gets the value of JoinParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a89db963adc7ed928d30d843e089896b8)`() const` | Gets the value of JoinParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a109ce3e6b83566b301fcca1a711aa479)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & DefaultValue) const` | Gets the value of JoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a4593eac653e5f318493e003298bd0c4b)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & OutValue) const` | Fills OutValue with the value of JoinParams_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__AuditEvent_1a6e6925dc3584d170219edfa481fe567f)`()` | Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__AuditEvent_1a2b7a23230e85c09d81127d2f71fa0ab9)`() const` | Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetJoinParams`](#structFRHAPI__AuditEvent_1a608e224c4103dfd14d18ac38f5cd4530)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & NewValue)` | Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true.
+`public inline FORCEINLINE void `[`SetJoinParams`](#structFRHAPI__AuditEvent_1a237d4d7ab4becf4a03cf4d89d0e525da)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` && NewValue)` | Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics.
 `public inline void `[`ClearJoinParams`](#structFRHAPI__AuditEvent_1a4c60bb357f152966a362b08045e787be)`()` | Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false.
-`public inline bool `[`IsJoinParamsSet`](#structFRHAPI__AuditEvent_1ab2d765ade9bb9866bd5ad7d575e78b81)`() const` | Checks whether JoinParams_Optional has been set.
-`public inline ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1a0852c52893dc3099a0dc91d52adc609e)`()` | Gets the value of InstanceHealth_Optional, regardless of it having been set.
-`public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1ac0e00692e62131d9e1f07a7d87812ed3)`() const` | Gets the value of InstanceHealth_Optional, regardless of it having been set.
-`public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1abe695ac68030fdcf8a81ef1c6c78550e)`(const ERHAPI_InstanceHealthStatus & DefaultValue) const` | Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1adb0bc9aab3afcdcffd3ac2ed21dd6380)`(ERHAPI_InstanceHealthStatus & OutValue) const` | Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__AuditEvent_1aa17ce5aed4d637d5fe5d4fc666eea672)`()` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__AuditEvent_1abdcd0a2f5513398719b8b47b3eeed0e2)`() const` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceHealth`](#structFRHAPI__AuditEvent_1a16e475ad1256789f7bf0a16d21f38c75)`(const ERHAPI_InstanceHealthStatus & NewValue)` | Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true.
-`public inline void `[`SetInstanceHealth`](#structFRHAPI__AuditEvent_1a6f54c0cafe05dfa7a852d378988022dc)`(ERHAPI_InstanceHealthStatus && NewValue)` | Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1a8ef3aa72695fc3402086f45ab054885c)`()` | Gets the value of InstanceHealth_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1abea092387434db3b7f5a538e8f72e095)`() const` | Gets the value of InstanceHealth_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1a37a5641bd15e4a890de7554bbf427b0e)`(const ERHAPI_InstanceHealthStatus & DefaultValue) const` | Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1a9733a7f053e59c025aaba01ca89892be)`(ERHAPI_InstanceHealthStatus & OutValue) const` | Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__AuditEvent_1a5f4e6f66e6974f0bca6b58e7e362cb5d)`()` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__AuditEvent_1af3dfdabc5b3b911e627a29d48f57b163)`() const` | Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceHealth`](#structFRHAPI__AuditEvent_1a6d47969038d64b9db300f6f93220a56d)`(const ERHAPI_InstanceHealthStatus & NewValue)` | Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceHealth`](#structFRHAPI__AuditEvent_1a08c98e664563f654d885d50ae3826a17)`(ERHAPI_InstanceHealthStatus && NewValue)` | Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceHealth`](#structFRHAPI__AuditEvent_1af8b4b7b6a59f3d4bb4ba9529dc729d7c)`()` | Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false.
-`public inline bool `[`IsInstanceHealthSet`](#structFRHAPI__AuditEvent_1ae94e17ff4a1dd18d84cacda3accc4ce0)`() const` | Checks whether InstanceHealth_Optional has been set.
-`public inline FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1a97868618be09228a8b6bd5627b6ddabd)`()` | Gets the value of QueueId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1ac6b16b2e3b99db103cbf07d596186f8d)`() const` | Gets the value of QueueId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1a4009eb225a078a626b549d4722ba4c4c)`(const FString & DefaultValue) const` | Gets the value of QueueId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetQueueId`](#structFRHAPI__AuditEvent_1ad4f3eafb9ca60cef0f70d162bedeefef)`(FString & OutValue) const` | Fills OutValue with the value of QueueId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetQueueIdOrNull`](#structFRHAPI__AuditEvent_1a6af11b01f0f4d0d116fa72869dae2538)`()` | Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetQueueIdOrNull`](#structFRHAPI__AuditEvent_1aca1c806e592ba4111ea7ae1861198f6b)`() const` | Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetQueueId`](#structFRHAPI__AuditEvent_1a92e54b59fe88672a6e0515e0aab8a53c)`(const FString & NewValue)` | Sets the value of QueueId_Optional and also sets QueueId_IsSet to true.
-`public inline void `[`SetQueueId`](#structFRHAPI__AuditEvent_1ac0c803793dfbb5cd36a5570b964bc116)`(FString && NewValue)` | Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1a443ad0dee88ef3a02c7c124c64308378)`()` | Gets the value of QueueId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1aae54e0b4fbce4690131a0529b9b1d803)`() const` | Gets the value of QueueId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1ad35ebebc38b4cb09d6f8599a5f12b304)`(const FString & DefaultValue) const` | Gets the value of QueueId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetQueueId`](#structFRHAPI__AuditEvent_1aa2cc1f5aa990e71c91de9e31bab6630c)`(FString & OutValue) const` | Fills OutValue with the value of QueueId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetQueueIdOrNull`](#structFRHAPI__AuditEvent_1a8169fd1794171b9f493698d95654f6b2)`()` | Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetQueueIdOrNull`](#structFRHAPI__AuditEvent_1a371cc60ce34be339fdb49a6fc8adccdb)`() const` | Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__AuditEvent_1a40cd09d409535c379ad0da44f3ab3927)`(const FString & NewValue)` | Sets the value of QueueId_Optional and also sets QueueId_IsSet to true.
+`public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__AuditEvent_1a63b3dcd2bf0ecbc5d232d19f8cda8b36)`(FString && NewValue)` | Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using move semantics.
 `public inline void `[`ClearQueueId`](#structFRHAPI__AuditEvent_1a905562c31a2b45c0ade8bcfe9e0cbfdf)`()` | Clears the value of QueueId_Optional and sets QueueId_IsSet to false.
-`public inline bool `[`IsQueueIdSet`](#structFRHAPI__AuditEvent_1a75ba5ab01b9afe2f1701b68116937fd9)`() const` | Checks whether QueueId_Optional has been set.
-`public inline FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1ad29445385e8bc89961152e07fbcaf951)`()` | Gets the value of TicketId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1a2cba00dcd30ea914f9678d9d7fb53923)`() const` | Gets the value of TicketId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1a276dcaeab645409a8dd4eedef1fe4d22)`(const FString & DefaultValue) const` | Gets the value of TicketId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTicketId`](#structFRHAPI__AuditEvent_1ab2163ec45ace1d5da478d9a43aeb7f88)`(FString & OutValue) const` | Fills OutValue with the value of TicketId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTicketIdOrNull`](#structFRHAPI__AuditEvent_1a991daee78659a2c5ef46d7db511ec95e)`()` | Returns a pointer to TicketId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTicketIdOrNull`](#structFRHAPI__AuditEvent_1a689ce7f5d7864bd2c432608541e2956f)`() const` | Returns a pointer to TicketId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTicketId`](#structFRHAPI__AuditEvent_1a0ad577a0200e4c8f3ec0dc23762a6095)`(const FString & NewValue)` | Sets the value of TicketId_Optional and also sets TicketId_IsSet to true.
-`public inline void `[`SetTicketId`](#structFRHAPI__AuditEvent_1a84b357130e96b5131419b7bf391d8a4e)`(FString && NewValue)` | Sets the value of TicketId_Optional and also sets TicketId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1abec72192b75797baf855d4756f87afb4)`()` | Gets the value of TicketId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1a66911c6a979fb9514072fb0a2322beec)`() const` | Gets the value of TicketId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1a85cbf7d345a93f4458f4ae339961d5ce)`(const FString & DefaultValue) const` | Gets the value of TicketId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTicketId`](#structFRHAPI__AuditEvent_1a68c8343207cc2e545538b09741726060)`(FString & OutValue) const` | Fills OutValue with the value of TicketId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTicketIdOrNull`](#structFRHAPI__AuditEvent_1a5889d85349a4ef714abb4b12dd49f6da)`()` | Returns a pointer to TicketId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTicketIdOrNull`](#structFRHAPI__AuditEvent_1acda6e636dbaa19c34e5c658f75c2515c)`() const` | Returns a pointer to TicketId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTicketId`](#structFRHAPI__AuditEvent_1a8b3c5853df2ef06e9e39a647e3f7f1a7)`(const FString & NewValue)` | Sets the value of TicketId_Optional and also sets TicketId_IsSet to true.
+`public inline FORCEINLINE void `[`SetTicketId`](#structFRHAPI__AuditEvent_1ae754f3560bc916632414ae591deb5e14)`(FString && NewValue)` | Sets the value of TicketId_Optional and also sets TicketId_IsSet to true using move semantics.
 `public inline void `[`ClearTicketId`](#structFRHAPI__AuditEvent_1a3a95477a2909de1f2322a6dc33532dd5)`()` | Clears the value of TicketId_Optional and sets TicketId_IsSet to false.
-`public inline bool `[`IsTicketIdSet`](#structFRHAPI__AuditEvent_1a1638925762966feb0bd5564fd523c694)`() const` | Checks whether TicketId_Optional has been set.
-`public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1aec2674a2e1104f27399b472e16bdda9d)`()` | Gets the value of AdditionalParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1ae59e688681b3f71750b703425f3ffacb)`() const` | Gets the value of AdditionalParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1a644054bad40b674c004e8eb69cd3caf5)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` | Gets the value of AdditionalParams_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1ab3466dd7744e301ef79c215ccf45e1ca)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` | Fills OutValue with the value of AdditionalParams_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalParamsOrNull`](#structFRHAPI__AuditEvent_1ae7560ffac55842a93d2eaad3ff5cb94a)`()` | Returns a pointer to AdditionalParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalParamsOrNull`](#structFRHAPI__AuditEvent_1accf2ad1e4695de06b0077a47e9cf4160)`() const` | Returns a pointer to AdditionalParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAdditionalParams`](#structFRHAPI__AuditEvent_1a7c7a3b41818d9041f02d4f707d0c1b45)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` | Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet to true.
-`public inline void `[`SetAdditionalParams`](#structFRHAPI__AuditEvent_1a8e8fd0b1aecfd5302d00f1c16f1a324f)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` | Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1a3a305722ce164dec0572d9a9fe17357d)`()` | Gets the value of AdditionalParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1a9a3c794142657c97d5bc3a71f6899aa7)`() const` | Gets the value of AdditionalParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1ad62276a3a951cee521f893326f62d023)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` | Gets the value of AdditionalParams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1ad0fedff28d634dccb6e1c07c42cb1271)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` | Fills OutValue with the value of AdditionalParams_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalParamsOrNull`](#structFRHAPI__AuditEvent_1ad1844f7729bcc3816e495420e313f588)`()` | Returns a pointer to AdditionalParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalParamsOrNull`](#structFRHAPI__AuditEvent_1a120630b5bbf5c44124c574f3d03e67b4)`() const` | Returns a pointer to AdditionalParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAdditionalParams`](#structFRHAPI__AuditEvent_1ab7bd3042b17aeabf2f12a63251c9565e)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` | Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet to true.
+`public inline FORCEINLINE void `[`SetAdditionalParams`](#structFRHAPI__AuditEvent_1a6749539c425259648dfa86316a2816a6)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` | Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet to true using move semantics.
 `public inline void `[`ClearAdditionalParams`](#structFRHAPI__AuditEvent_1a576652cb7ff7d291a1235fe1116724c4)`()` | Clears the value of AdditionalParams_Optional and sets AdditionalParams_IsSet to false.
-`public inline bool `[`IsAdditionalParamsSet`](#structFRHAPI__AuditEvent_1a92e5f486e956608fb0dda188d73e003a)`() const` | Checks whether AdditionalParams_Optional has been set.
-`public inline TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1ae253594ea26f6224ff14ff4a543222d1)`()` | Gets the value of MapPreferences_Optional, regardless of it having been set.
-`public inline const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1af3e608a29918c34a316386164f4f1f2f)`() const` | Gets the value of MapPreferences_Optional, regardless of it having been set.
-`public inline const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a24af7249f980c81c95299051a73e7e99)`(const TArray< FString > & DefaultValue) const` | Gets the value of MapPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1af5102a96c848850e87d52973a585d314)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of MapPreferences_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__AuditEvent_1adbcbd1ac91053fccacd67a20fab02867)`()` | Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__AuditEvent_1aec5b5c80ad0a295678113321f7d38cd5)`() const` | Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMapPreferences`](#structFRHAPI__AuditEvent_1ac9fb953163a95ff99ea2ef834d19253f)`(const TArray< FString > & NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true.
-`public inline void `[`SetMapPreferences`](#structFRHAPI__AuditEvent_1a56f8ae31a8695e7531e9eb1d68dbfd76)`(TArray< FString > && NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a27443210868c7f4c06cf4d5a7b3a3626)`()` | Gets the value of MapPreferences_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a99347984b30a408f955bdc07623f599d)`() const` | Gets the value of MapPreferences_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a9260b6ccbc964a42c57685f2844ab599)`(const TArray< FString > & DefaultValue) const` | Gets the value of MapPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a521e3490d8d29a9356132c2649b8fbb9)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of MapPreferences_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__AuditEvent_1ab8caae08d146a5407d04b2377a16bf05)`()` | Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__AuditEvent_1acc004b7af034fb8d49dd9c56540220a4)`() const` | Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMapPreferences`](#structFRHAPI__AuditEvent_1a3dba1d1a3c388caba1447a0eac5a88ff)`(const TArray< FString > & NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true.
+`public inline FORCEINLINE void `[`SetMapPreferences`](#structFRHAPI__AuditEvent_1a0d339f5283318ee6ff56b807e02093b2)`(TArray< FString > && NewValue)` | Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics.
 `public inline void `[`ClearMapPreferences`](#structFRHAPI__AuditEvent_1a33c453410167253e097ed36c2ee93f44)`()` | Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false.
-`public inline bool `[`IsMapPreferencesSet`](#structFRHAPI__AuditEvent_1acfab0741719944600d85244c327c84d7)`() const` | Checks whether MapPreferences_Optional has been set.
-`public inline FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1a2bb30770b33c914dfdc26e7fb7369b85)`()` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1aa157884bfbb74ba7dba3d387f468e6d7)`() const` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1af59530ef11ac381c9f47da3ff3f94ad6)`(const FString & DefaultValue) const` | Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1aafda7af949c96b72808c666d0cbd29e3)`(FString & OutValue) const` | Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a2e34402e66eab8cfa933e9712ea25a0a)`()` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a2e4c444305cc7a19e5b2d2ea76da2df6)`() const` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetQueuedSessionId`](#structFRHAPI__AuditEvent_1ae9e67b72fec1cc3b3677be8d0fd19777)`(const FString & NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
-`public inline void `[`SetQueuedSessionId`](#structFRHAPI__AuditEvent_1a8ac88751a9d572b7c34c42542563e620)`(FString && NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1a6036364e49ec3e4778f10111f569f114)`()` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1a4219fadaf4bd4555b0b91bc67eab268c)`() const` | Gets the value of QueuedSessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1a3f82ab9a12945e073d626ec8e8023fec)`(const FString & DefaultValue) const` | Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1ab54c3afbd85d98741d4c1006e20fed29)`(FString & OutValue) const` | Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a880e274386cd4c1d2a795323c8088717)`()` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a65d5aeb12db371ffdf3193bfa6f925a4)`() const` | Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetQueuedSessionId`](#structFRHAPI__AuditEvent_1a618b2e5a9564cb47cf2363985ebe3b8a)`(const FString & NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
+`public inline FORCEINLINE void `[`SetQueuedSessionId`](#structFRHAPI__AuditEvent_1a6febba679409dcca1294838450f4570f)`(FString && NewValue)` | Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
 `public inline void `[`ClearQueuedSessionId`](#structFRHAPI__AuditEvent_1aba3557a10d63a3d8efba7904f34c1c92)`()` | Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false.
-`public inline bool `[`IsQueuedSessionIdSet`](#structFRHAPI__AuditEvent_1a363ffaafb8457ba77084ba3c813808b1)`() const` | Checks whether QueuedSessionId_Optional has been set.
-`public inline FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1a7e3f44d3ff3560cf41d0d1ceff40ef25)`()` | Gets the value of MatchId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1a8cd688b4e46b27904306740805be5f53)`() const` | Gets the value of MatchId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1aa1dc84fc44a16f477882d66d5bbc9d5a)`(const FString & DefaultValue) const` | Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMatchId`](#structFRHAPI__AuditEvent_1a7b6ded106eedb8fb15d3358e89dfd405)`(FString & OutValue) const` | Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__AuditEvent_1af4109dc4f4c954d1f9d298a7644864d1)`()` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__AuditEvent_1abddafcd4cf71b091e7bb67744679cac7)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a3153129f6b5b0d0b6eb327fe17612222)`(const FString & NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
-`public inline void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a1391a972d06c5729368c556d4071d865)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1ab03d4b0311287d906cc2a41aa218215d)`()` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1adc38ea95ad381f6660adac47f45a17b9)`() const` | Gets the value of MatchId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1a0a8d1b5aae48d0a461e47706247a2cd5)`(const FString & DefaultValue) const` | Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMatchId`](#structFRHAPI__AuditEvent_1aebcc73c8a057b01b3b7499fddb1d007c)`(FString & OutValue) const` | Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetMatchIdOrNull`](#structFRHAPI__AuditEvent_1af1492c8924e23b70d8a2724317b7c46e)`()` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetMatchIdOrNull`](#structFRHAPI__AuditEvent_1a4cdff2104e5408efbccf6c36f10fbac9)`() const` | Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a3160da921f388f9e9bb8af4eea0debae)`(const FString & NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
+`public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a86634460ed69bf9ebdf0880f4dddbb36)`(FString && NewValue)` | Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchId`](#structFRHAPI__AuditEvent_1abd7aede0da0d4e281062c95871342c64)`()` | Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
-`public inline bool `[`IsMatchIdSet`](#structFRHAPI__AuditEvent_1acf38bcadf9e3d05e939c9477bbfb9473)`() const` | Checks whether MatchId_Optional has been set.
-`public inline int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ad3d33b518432acdf4b99bff7df4978e4)`()` | Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a486e5e758d34b39767a58ead73c31438)`() const` | Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1abf560aec3fee3de593e17b623fcb92b5)`(const int32 & DefaultValue) const` | Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a54d18a2c205dd02d1d9c122c31f06ba0)`(int32 & OutValue) const` | Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a4bc693f393a509b00819116e304e4ff5)`()` | Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a0061f53a2454f57ed062e6deb4e6794a)`() const` | Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1aa02be7d3ae4c882aa7656d31c19eff8c)`(const int32 & NewValue)` | Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true.
-`public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ab63f8680973b2905c3218cfbe66c1367)`(int32 && NewValue)` | Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a47fffac728866f7c2f7812faaf8421f5)`()` | Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a5ff376fe82f1b70790ba667ba387cc79)`() const` | Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ad846f1e74e8df905e50f6d90c516096f)`(const int32 & DefaultValue) const` | Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a496024b3578c488382d8e616de1d1cdd)`(int32 & OutValue) const` | Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a873529affe489032379c97186db53da3)`()` | Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a32a3abc8aff639b71ea51a8c7bf619f8)`() const` | Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ad080308fb2f5599d7807859099b0e521)`(const int32 & NewValue)` | Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true.
+`public inline FORCEINLINE void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ae206533673eafbda4c66047e82586670)`(int32 && NewValue)` | Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics.
 `public inline void `[`ClearTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a3af20dcc3e27f27208426a7fea762903)`()` | Clears the value of TicketWaitSeconds_Optional and sets TicketWaitSeconds_IsSet to false.
-`public inline bool `[`IsTicketWaitSecondsSet`](#structFRHAPI__AuditEvent_1a02ab5fa4ddae185a3d6cf7dfa11a1820)`() const` | Checks whether TicketWaitSeconds_Optional has been set.
-`public inline bool `[`IsTicketWaitSecondsDefaultValue`](#structFRHAPI__AuditEvent_1addf11ae30eb6bef1716cf792b7cab53c)`() const` | Returns true if TicketWaitSeconds_Optional is set and matches the default value.
-`public inline void `[`SetTicketWaitSecondsToDefault`](#structFRHAPI__AuditEvent_1a9b771ccbad80ad6561e55a1c7a9face2)`()` | Sets the value of TicketWaitSeconds_Optional to its default and also sets TicketWaitSeconds_IsSet to true.
-`public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aafeacede13da3a0fae86b9499c2fbdd1)`()` | Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a8f1d7eccc2692b594fe27740dedf2472)`() const` | Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a2450dea9d9aaa0f54dc9731216da6956)`(const FString & DefaultValue) const` | Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a8d64d14b8a49cd3d54569edc92df2904)`(FString & OutValue) const` | Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1aaf9a207f7df898003360655b24f4cf99)`()` | Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1af8f68c0b847ed31f9ac3f106d117f775)`() const` | Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1ad8db2f347cb96ee609b4dd572f10f9ee)`(const FString & NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
-`public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a240b6ed82f00ff4e8bec365140ee9905)`(FString && NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TicketWaitSeconds`](#structFRHAPI__AuditEvent_1a6797f39e672315ad1358ba0895c92f78)`()` | Returns the default value of TicketWaitSeconds.
+`public inline FORCEINLINE FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1acb1600a4a6640ee9a27ee60303e2acd7)`()` | Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aa7195943da5814064ef074dcc5a9540c)`() const` | Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a88999dbc0894b901009f90d67641f4a9)`(const FString & DefaultValue) const` | Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a2f5350438cb0edaf803c82a3e1e1bc04)`(FString & OutValue) const` | Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1a35edb18190f7ebba96f523f98bf2d43c)`()` | Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1a04e4fb4c498802cb90b893e7260398ed)`() const` | Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a1eccd1f25d1c6957bb42b7a3658af5bd)`(const FString & NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
+`public inline FORCEINLINE void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a0ad99ab96e494ea3e56db97640b71bcb)`(FString && NewValue)` | Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true using move semantics.
 `public inline void `[`ClearMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aa7bfe9b037f73477af70134787142759)`()` | Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
-`public inline bool `[`IsMatchMakingProfileIdSet`](#structFRHAPI__AuditEvent_1a72f0bbaa28dacd3ef71ed18ddfd951f4)`() const` | Checks whether MatchMakingProfileId_Optional has been set.
-`public inline FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a609df074a0871796fe29aef9dbcbe1fa)`()` | Gets the value of RequestingUserUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a969bfc23d39269e7c1dc7c5fe59d458e)`() const` | Gets the value of RequestingUserUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a1af550c49bda3db684b4fdbe88865058)`(const FGuid & DefaultValue) const` | Gets the value of RequestingUserUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a2b54f7415fc9c2b73f037a6be257f393)`(FGuid & OutValue) const` | Fills OutValue with the value of RequestingUserUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetRequestingUserUuidOrNull`](#structFRHAPI__AuditEvent_1a8b224e01142ab731febfc7df3d5bd3af)`()` | Returns a pointer to RequestingUserUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetRequestingUserUuidOrNull`](#structFRHAPI__AuditEvent_1a395a9b87a2f363ef408aff0ece9b6c09)`() const` | Returns a pointer to RequestingUserUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a2c40640e2af1be4c876c2d8e8ac0de34)`(const FGuid & NewValue)` | Sets the value of RequestingUserUuid_Optional and also sets RequestingUserUuid_IsSet to true.
-`public inline void `[`SetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a72846483bb51daa209b4c862b7096e11)`(FGuid && NewValue)` | Sets the value of RequestingUserUuid_Optional and also sets RequestingUserUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a23d4805b96be652dd6a5929162030038)`()` | Gets the value of RequestingUserUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a6f98ded1cf1ad48822085fc425506e58)`() const` | Gets the value of RequestingUserUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a6deb70d1480d969d94b0ad7c86ca235b)`(const FGuid & DefaultValue) const` | Gets the value of RequestingUserUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1ac079ea122bd2835637c0883f12138fd7)`(FGuid & OutValue) const` | Fills OutValue with the value of RequestingUserUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetRequestingUserUuidOrNull`](#structFRHAPI__AuditEvent_1aa33adc865f5a707ed07e01a5380efa93)`()` | Returns a pointer to RequestingUserUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetRequestingUserUuidOrNull`](#structFRHAPI__AuditEvent_1a0d15be1ce59194381c9de81116e1972c)`() const` | Returns a pointer to RequestingUserUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRequestingUserUuid`](#structFRHAPI__AuditEvent_1afda425720a59f56242057ff12dc3e095)`(const FGuid & NewValue)` | Sets the value of RequestingUserUuid_Optional and also sets RequestingUserUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a9e4bc1b052ae7720373c1f5ff5bde56e)`(FGuid && NewValue)` | Sets the value of RequestingUserUuid_Optional and also sets RequestingUserUuid_IsSet to true using move semantics.
 `public inline void `[`ClearRequestingUserUuid`](#structFRHAPI__AuditEvent_1a75d20856ad2d8cccdcf2157a1238c0c1)`()` | Clears the value of RequestingUserUuid_Optional and sets RequestingUserUuid_IsSet to false.
-`public inline bool `[`IsRequestingUserUuidSet`](#structFRHAPI__AuditEvent_1ad62bfca13adf09b1ad8915ceb2c20d84)`() const` | Checks whether RequestingUserUuid_Optional has been set.
-`public inline FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1a3fdbb61c6b4d8c7182a1d0e4400b4d06)`()` | Gets the value of EventDatetime.
-`public inline const FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1a4a8bb05a3e3263b71f7c71f91b198d52)`() const` | Gets the value of EventDatetime.
-`public inline void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1ad4e8f68d0b4064c703124dba80dbfb87)`(const FDateTime & NewValue)` | Sets the value of EventDatetime.
-`public inline void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1a8738833f39eb52d322a8b43157aca869)`(FDateTime && NewValue)` | Sets the value of EventDatetime using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1aa1790c3091e5515eb672a6453167ab94)`()` | Gets the value of EventDatetime.
+`public inline FORCEINLINE const FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1af3ca003110a732421a9385db3cb72713)`() const` | Gets the value of EventDatetime.
+`public inline FORCEINLINE void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1a7f0acb4ac645f70d78eaac130fb823e9)`(const FDateTime & NewValue)` | Sets the value of EventDatetime.
+`public inline FORCEINLINE void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1a186bcef6876e53c8468f5f0981301fc0)`(FDateTime && NewValue)` | Sets the value of EventDatetime using move semantics.
 
 ### Members
 
@@ -812,67 +772,67 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetEventName`](#structFRHAPI__AuditEvent_1acca984325fb3a7d3412c2f302cffe519)`()` <a id="structFRHAPI__AuditEvent_1acca984325fb3a7d3412c2f302cffe519"></a>
+#### `public inline FORCEINLINE FString & `[`GetEventName`](#structFRHAPI__AuditEvent_1a42518679fcb1f9f4a30c3768c315db8a)`()` <a id="structFRHAPI__AuditEvent_1a42518679fcb1f9f4a30c3768c315db8a"></a>
 
 Gets the value of EventName.
 
-#### `public inline const FString & `[`GetEventName`](#structFRHAPI__AuditEvent_1a0f11c00e9301287f03b4fc0020484209)`() const` <a id="structFRHAPI__AuditEvent_1a0f11c00e9301287f03b4fc0020484209"></a>
+#### `public inline FORCEINLINE const FString & `[`GetEventName`](#structFRHAPI__AuditEvent_1ae70f19a75f9f4beb2b3408e5ca7cf4f1)`() const` <a id="structFRHAPI__AuditEvent_1ae70f19a75f9f4beb2b3408e5ca7cf4f1"></a>
 
 Gets the value of EventName.
 
-#### `public inline void `[`SetEventName`](#structFRHAPI__AuditEvent_1a8087921386fdec5296aec7c5e6fea83e)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a8087921386fdec5296aec7c5e6fea83e"></a>
+#### `public inline FORCEINLINE void `[`SetEventName`](#structFRHAPI__AuditEvent_1adb97837b39bf09231f3a63c1e93248dc)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1adb97837b39bf09231f3a63c1e93248dc"></a>
 
 Sets the value of EventName.
 
-#### `public inline void `[`SetEventName`](#structFRHAPI__AuditEvent_1a7a159fa0f7311f41152411c263c7ccd2)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a7a159fa0f7311f41152411c263c7ccd2"></a>
+#### `public inline FORCEINLINE void `[`SetEventName`](#structFRHAPI__AuditEvent_1aeffd6494d1bca72fdda6f6de4d1eae51)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1aeffd6494d1bca72fdda6f6de4d1eae51"></a>
 
 Sets the value of EventName using move semantics.
 
-#### `public inline FString & `[`GetSessionId`](#structFRHAPI__AuditEvent_1ac889227260cb777638ee2fe0f4406d84)`()` <a id="structFRHAPI__AuditEvent_1ac889227260cb777638ee2fe0f4406d84"></a>
+#### `public inline FORCEINLINE FString & `[`GetSessionId`](#structFRHAPI__AuditEvent_1aa159347d72eae2f4c806d577cae72fb2)`()` <a id="structFRHAPI__AuditEvent_1aa159347d72eae2f4c806d577cae72fb2"></a>
 
 Gets the value of SessionId.
 
-#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__AuditEvent_1a056f977f66692feccf4c31147c051dfa)`() const` <a id="structFRHAPI__AuditEvent_1a056f977f66692feccf4c31147c051dfa"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSessionId`](#structFRHAPI__AuditEvent_1a620c20a4dea07988c3983f7cb7678ff6)`() const` <a id="structFRHAPI__AuditEvent_1a620c20a4dea07988c3983f7cb7678ff6"></a>
 
 Gets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__AuditEvent_1a867836397739325b10321b484d3e5b45)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a867836397739325b10321b484d3e5b45"></a>
+#### `public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__AuditEvent_1acc26f919f5ca9499a117c557f1ee2647)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1acc26f919f5ca9499a117c557f1ee2647"></a>
 
 Sets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__AuditEvent_1a0ddb0d8e5c62d564d5e0ff926e7932e6)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a0ddb0d8e5c62d564d5e0ff926e7932e6"></a>
+#### `public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__AuditEvent_1aac29a4b85c2a907e397e4d151ce975c6)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1aac29a4b85c2a907e397e4d151ce975c6"></a>
 
 Sets the value of SessionId using move semantics.
 
-#### `public inline FString & `[`GetReason`](#structFRHAPI__AuditEvent_1a74fb304f2cf2ea5696fd4190a687d6d4)`()` <a id="structFRHAPI__AuditEvent_1a74fb304f2cf2ea5696fd4190a687d6d4"></a>
+#### `public inline FORCEINLINE FString & `[`GetReason`](#structFRHAPI__AuditEvent_1ae5b3a95f9d0ad09c011cbac4e1701d56)`()` <a id="structFRHAPI__AuditEvent_1ae5b3a95f9d0ad09c011cbac4e1701d56"></a>
 
 Gets the value of Reason_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetReason`](#structFRHAPI__AuditEvent_1a73960ba26ce831ebf47f2b77bfef47fd)`() const` <a id="structFRHAPI__AuditEvent_1a73960ba26ce831ebf47f2b77bfef47fd"></a>
+#### `public inline FORCEINLINE const FString & `[`GetReason`](#structFRHAPI__AuditEvent_1a0e0b368e8e2c704f5a01945bfbd2e69e)`() const` <a id="structFRHAPI__AuditEvent_1a0e0b368e8e2c704f5a01945bfbd2e69e"></a>
 
 Gets the value of Reason_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetReason`](#structFRHAPI__AuditEvent_1ae350385f7b7dc07b9b2ec1ac6dc44ff5)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ae350385f7b7dc07b9b2ec1ac6dc44ff5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetReason`](#structFRHAPI__AuditEvent_1aa64c931820a890e1652b6849edb8ca7f)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aa64c931820a890e1652b6849edb8ca7f"></a>
 
 Gets the value of Reason_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetReason`](#structFRHAPI__AuditEvent_1a0d8dcd2315b4e2875c2d70f0668a1d18)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a0d8dcd2315b4e2875c2d70f0668a1d18"></a>
+#### `public inline FORCEINLINE bool `[`GetReason`](#structFRHAPI__AuditEvent_1a56b781112e4f50edcf31b3c3112f20da)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a56b781112e4f50edcf31b3c3112f20da"></a>
 
 Fills OutValue with the value of Reason_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetReasonOrNull`](#structFRHAPI__AuditEvent_1a33987a883e60d5856183396ce6a6437f)`()` <a id="structFRHAPI__AuditEvent_1a33987a883e60d5856183396ce6a6437f"></a>
+#### `public inline FORCEINLINE FString * `[`GetReasonOrNull`](#structFRHAPI__AuditEvent_1a181ab560459b5c5fd0c940e37203ab7f)`()` <a id="structFRHAPI__AuditEvent_1a181ab560459b5c5fd0c940e37203ab7f"></a>
 
 Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetReasonOrNull`](#structFRHAPI__AuditEvent_1ab7ed81802784e1a67659e8a6e710982e)`() const` <a id="structFRHAPI__AuditEvent_1ab7ed81802784e1a67659e8a6e710982e"></a>
+#### `public inline FORCEINLINE const FString * `[`GetReasonOrNull`](#structFRHAPI__AuditEvent_1af435bcf1600bebfad30911d2d742f219)`() const` <a id="structFRHAPI__AuditEvent_1af435bcf1600bebfad30911d2d742f219"></a>
 
 Returns a pointer to Reason_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetReason`](#structFRHAPI__AuditEvent_1a6e36760dd639abb9554ff8eecc7a04e0)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a6e36760dd639abb9554ff8eecc7a04e0"></a>
+#### `public inline FORCEINLINE void `[`SetReason`](#structFRHAPI__AuditEvent_1acd0df6eb344f62b8265cb88e22ff55a6)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1acd0df6eb344f62b8265cb88e22ff55a6"></a>
 
 Sets the value of Reason_Optional and also sets Reason_IsSet to true.
 
-#### `public inline void `[`SetReason`](#structFRHAPI__AuditEvent_1a9396718a1a32d0e9f5f69fb2cdbe6edd)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a9396718a1a32d0e9f5f69fb2cdbe6edd"></a>
+#### `public inline FORCEINLINE void `[`SetReason`](#structFRHAPI__AuditEvent_1a9a718771667bc99fbf0b78f045297ab4)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a9a718771667bc99fbf0b78f045297ab4"></a>
 
 Sets the value of Reason_Optional and also sets Reason_IsSet to true using move semantics.
 
@@ -880,39 +840,35 @@ Sets the value of Reason_Optional and also sets Reason_IsSet to true using move 
 
 Clears the value of Reason_Optional and sets Reason_IsSet to false.
 
-#### `public inline bool `[`IsReasonSet`](#structFRHAPI__AuditEvent_1add7002cc97abaf8dd6e749f57a53e903)`() const` <a id="structFRHAPI__AuditEvent_1add7002cc97abaf8dd6e749f57a53e903"></a>
-
-Checks whether Reason_Optional has been set.
-
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1a72236ce82364b6d33606a35269d3bb3b)`()` <a id="structFRHAPI__AuditEvent_1a72236ce82364b6d33606a35269d3bb3b"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1aab8f5bcbc036caa7808912f5e3981f2d)`()` <a id="structFRHAPI__AuditEvent_1aab8f5bcbc036caa7808912f5e3981f2d"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1a2315ae2ac06f09beba329f38f9bf9d9c)`() const` <a id="structFRHAPI__AuditEvent_1a2315ae2ac06f09beba329f38f9bf9d9c"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1ad362f453b9b4c99eb9b27b8c8d68f75c)`() const` <a id="structFRHAPI__AuditEvent_1ad362f453b9b4c99eb9b27b8c8d68f75c"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1a6c0ad3cdb14308c07e2b3686ed139a3d)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a6c0ad3cdb14308c07e2b3686ed139a3d"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__AuditEvent_1adc0bef00c52c09ef7d1cc37bc00ccb86)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1adc0bef00c52c09ef7d1cc37bc00ccb86"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__AuditEvent_1a4960d694b25fbe1a5e4867d02faa918b)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__AuditEvent_1a4960d694b25fbe1a5e4867d02faa918b"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__AuditEvent_1ad7fa83bd7a29f16e5f47456b7dedc400)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__AuditEvent_1ad7fa83bd7a29f16e5f47456b7dedc400"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__AuditEvent_1ac68e9d744ac298a3790555ba0a331cbf)`()` <a id="structFRHAPI__AuditEvent_1ac68e9d744ac298a3790555ba0a331cbf"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__AuditEvent_1ab9daf937464d0a77df948bc701195433)`()` <a id="structFRHAPI__AuditEvent_1ab9daf937464d0a77df948bc701195433"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__AuditEvent_1acf37d409456cee705ffea658bcc3f38e)`() const` <a id="structFRHAPI__AuditEvent_1acf37d409456cee705ffea658bcc3f38e"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__AuditEvent_1adbc978e4a8a07292870348662282e6b1)`() const` <a id="structFRHAPI__AuditEvent_1adbc978e4a8a07292870348662282e6b1"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__AuditEvent_1a4affedaaa8d6fa24ecfcf4212fd107ed)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__AuditEvent_1a4affedaaa8d6fa24ecfcf4212fd107ed"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__AuditEvent_1a8c79cd691b35bc3a32df57cecd6891e9)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__AuditEvent_1a8c79cd691b35bc3a32df57cecd6891e9"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__AuditEvent_1a2718da986bec260504cf9f1d0c7a7459)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__AuditEvent_1a2718da986bec260504cf9f1d0c7a7459"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__AuditEvent_1a562650f0546b9e3266308d26a42019e9)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__AuditEvent_1a562650f0546b9e3266308d26a42019e9"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -920,39 +876,35 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__AuditEvent_1af3524cd9746aa75174ce89b878bb05f6)`() const` <a id="structFRHAPI__AuditEvent_1af3524cd9746aa75174ce89b878bb05f6"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1a1dbbd5789767c33e0f61e66ef0c6255d)`()` <a id="structFRHAPI__AuditEvent_1a1dbbd5789767c33e0f61e66ef0c6255d"></a>
+#### `public inline FORCEINLINE FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1a2f1344e5d9bc5511100d9558586d34c4)`()` <a id="structFRHAPI__AuditEvent_1a2f1344e5d9bc5511100d9558586d34c4"></a>
 
 Gets the value of SessionType_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1af9ceecfb37fca611a9219f405de3b6e5)`() const` <a id="structFRHAPI__AuditEvent_1af9ceecfb37fca611a9219f405de3b6e5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1afa4799998256c6e31019694478b9c922)`() const` <a id="structFRHAPI__AuditEvent_1afa4799998256c6e31019694478b9c922"></a>
 
 Gets the value of SessionType_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1a067b7aa1a20118296a60d5eea532e646)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a067b7aa1a20118296a60d5eea532e646"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSessionType`](#structFRHAPI__AuditEvent_1aa85a5612edd57ce3cd660b33767bdaee)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aa85a5612edd57ce3cd660b33767bdaee"></a>
 
 Gets the value of SessionType_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSessionType`](#structFRHAPI__AuditEvent_1a0158e378b5f65a76e110981c2cb54f2c)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a0158e378b5f65a76e110981c2cb54f2c"></a>
+#### `public inline FORCEINLINE bool `[`GetSessionType`](#structFRHAPI__AuditEvent_1aac0e8957716f612c396bcd3af47acec0)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1aac0e8957716f612c396bcd3af47acec0"></a>
 
 Fills OutValue with the value of SessionType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetSessionTypeOrNull`](#structFRHAPI__AuditEvent_1a3daa85354c94d16d4696a1d9d09579ad)`()` <a id="structFRHAPI__AuditEvent_1a3daa85354c94d16d4696a1d9d09579ad"></a>
+#### `public inline FORCEINLINE FString * `[`GetSessionTypeOrNull`](#structFRHAPI__AuditEvent_1a50c9ae7546776dd63a2f1c0d253a5cd6)`()` <a id="structFRHAPI__AuditEvent_1a50c9ae7546776dd63a2f1c0d253a5cd6"></a>
 
 Returns a pointer to SessionType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetSessionTypeOrNull`](#structFRHAPI__AuditEvent_1aeab0859ec3cd64c0b6a7c0680addbdac)`() const` <a id="structFRHAPI__AuditEvent_1aeab0859ec3cd64c0b6a7c0680addbdac"></a>
+#### `public inline FORCEINLINE const FString * `[`GetSessionTypeOrNull`](#structFRHAPI__AuditEvent_1a05047f0656feacd012cc639a10889971)`() const` <a id="structFRHAPI__AuditEvent_1a05047f0656feacd012cc639a10889971"></a>
 
 Returns a pointer to SessionType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSessionType`](#structFRHAPI__AuditEvent_1a94d2c114d9c835b2978fb12cff5ac056)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a94d2c114d9c835b2978fb12cff5ac056"></a>
+#### `public inline FORCEINLINE void `[`SetSessionType`](#structFRHAPI__AuditEvent_1a4fe7e8cea70017a4e6f3fa78a723caaf)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a4fe7e8cea70017a4e6f3fa78a723caaf"></a>
 
 Sets the value of SessionType_Optional and also sets SessionType_IsSet to true.
 
-#### `public inline void `[`SetSessionType`](#structFRHAPI__AuditEvent_1aa706a9efc4f4d0243a58d1e733774e55)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1aa706a9efc4f4d0243a58d1e733774e55"></a>
+#### `public inline FORCEINLINE void `[`SetSessionType`](#structFRHAPI__AuditEvent_1ab414be50e7b97cc18185876726e347d4)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1ab414be50e7b97cc18185876726e347d4"></a>
 
 Sets the value of SessionType_Optional and also sets SessionType_IsSet to true using move semantics.
 
@@ -960,39 +912,35 @@ Sets the value of SessionType_Optional and also sets SessionType_IsSet to true u
 
 Clears the value of SessionType_Optional and sets SessionType_IsSet to false.
 
-#### `public inline bool `[`IsSessionTypeSet`](#structFRHAPI__AuditEvent_1ab19c380b566c11f68c4372d971916dd0)`() const` <a id="structFRHAPI__AuditEvent_1ab19c380b566c11f68c4372d971916dd0"></a>
-
-Checks whether SessionType_Optional has been set.
-
-#### `public inline FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1a3269e6eb0820c1ba7bf9941d32cac60c)`()` <a id="structFRHAPI__AuditEvent_1a3269e6eb0820c1ba7bf9941d32cac60c"></a>
+#### `public inline FORCEINLINE FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1ab2188b12862eada7fdfea221e01f2c76)`()` <a id="structFRHAPI__AuditEvent_1ab2188b12862eada7fdfea221e01f2c76"></a>
 
 Gets the value of RegionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1ae1771e818767b1769460b73c040f69d4)`() const` <a id="structFRHAPI__AuditEvent_1ae1771e818767b1769460b73c040f69d4"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1ac0493413e9a1dc82365c24cd4fcd6532)`() const` <a id="structFRHAPI__AuditEvent_1ac0493413e9a1dc82365c24cd4fcd6532"></a>
 
 Gets the value of RegionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1aac1d2e8595facf849355f084199d519c)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aac1d2e8595facf849355f084199d519c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRegionId`](#structFRHAPI__AuditEvent_1a8f555daa1026a77e9b6e02c010b72dbb)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a8f555daa1026a77e9b6e02c010b72dbb"></a>
 
 Gets the value of RegionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRegionId`](#structFRHAPI__AuditEvent_1a99798c97043aa39f5ff4ba032912861f)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a99798c97043aa39f5ff4ba032912861f"></a>
+#### `public inline FORCEINLINE bool `[`GetRegionId`](#structFRHAPI__AuditEvent_1ab34c4b541f91e782461e1f056a3d323f)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1ab34c4b541f91e782461e1f056a3d323f"></a>
 
 Fills OutValue with the value of RegionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRegionIdOrNull`](#structFRHAPI__AuditEvent_1a396d62d9514ed46821a57ae323343525)`()` <a id="structFRHAPI__AuditEvent_1a396d62d9514ed46821a57ae323343525"></a>
+#### `public inline FORCEINLINE FString * `[`GetRegionIdOrNull`](#structFRHAPI__AuditEvent_1a74845de9e84a5fa77951952054c86394)`()` <a id="structFRHAPI__AuditEvent_1a74845de9e84a5fa77951952054c86394"></a>
 
 Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRegionIdOrNull`](#structFRHAPI__AuditEvent_1aceb991752feb24e741ac624c1902319f)`() const` <a id="structFRHAPI__AuditEvent_1aceb991752feb24e741ac624c1902319f"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRegionIdOrNull`](#structFRHAPI__AuditEvent_1a902c59a4c5ac3ccfdc7c76e1bd724ffc)`() const` <a id="structFRHAPI__AuditEvent_1a902c59a4c5ac3ccfdc7c76e1bd724ffc"></a>
 
 Returns a pointer to RegionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRegionId`](#structFRHAPI__AuditEvent_1a81d4143343793b2bc8772ea866b7ec6d)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a81d4143343793b2bc8772ea866b7ec6d"></a>
+#### `public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__AuditEvent_1a6441d73cbd49b21f1d43f9698487e3e4)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a6441d73cbd49b21f1d43f9698487e3e4"></a>
 
 Sets the value of RegionId_Optional and also sets RegionId_IsSet to true.
 
-#### `public inline void `[`SetRegionId`](#structFRHAPI__AuditEvent_1a4f6cd87a8ce93a35108e94daf443fcfc)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a4f6cd87a8ce93a35108e94daf443fcfc"></a>
+#### `public inline FORCEINLINE void `[`SetRegionId`](#structFRHAPI__AuditEvent_1a40a79e1846c0468383f0be97b5490046)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a40a79e1846c0468383f0be97b5490046"></a>
 
 Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using move semantics.
 
@@ -1000,39 +948,35 @@ Sets the value of RegionId_Optional and also sets RegionId_IsSet to true using m
 
 Clears the value of RegionId_Optional and sets RegionId_IsSet to false.
 
-#### `public inline bool `[`IsRegionIdSet`](#structFRHAPI__AuditEvent_1afb73e048e9334e0b154a2229fa452f6f)`() const` <a id="structFRHAPI__AuditEvent_1afb73e048e9334e0b154a2229fa452f6f"></a>
-
-Checks whether RegionId_Optional has been set.
-
-#### `public inline bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1a8974a9fbd86a1795adfb6d2b6a927518)`()` <a id="structFRHAPI__AuditEvent_1a8974a9fbd86a1795adfb6d2b6a927518"></a>
+#### `public inline FORCEINLINE bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1a2841f8539972e0b7105ddfe2df8d3b54)`()` <a id="structFRHAPI__AuditEvent_1a2841f8539972e0b7105ddfe2df8d3b54"></a>
 
 Gets the value of Joinable_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1a697508ba45e93a076719648aa32bc8f0)`() const` <a id="structFRHAPI__AuditEvent_1a697508ba45e93a076719648aa32bc8f0"></a>
+#### `public inline FORCEINLINE const bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1ad5bf2a0f600d97886a9065eeaeb8c1f0)`() const` <a id="structFRHAPI__AuditEvent_1ad5bf2a0f600d97886a9065eeaeb8c1f0"></a>
 
 Gets the value of Joinable_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1a81b7883b971ffbe356e8e1e194399969)`(const bool & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a81b7883b971ffbe356e8e1e194399969"></a>
+#### `public inline FORCEINLINE const bool & `[`GetJoinable`](#structFRHAPI__AuditEvent_1af3f5b279bac5b318efbe5935dd54a79b)`(const bool & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1af3f5b279bac5b318efbe5935dd54a79b"></a>
 
 Gets the value of Joinable_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetJoinable`](#structFRHAPI__AuditEvent_1a2351f67f0c02c17a87a3fb826c72e1a9)`(bool & OutValue) const` <a id="structFRHAPI__AuditEvent_1a2351f67f0c02c17a87a3fb826c72e1a9"></a>
+#### `public inline FORCEINLINE bool `[`GetJoinable`](#structFRHAPI__AuditEvent_1a2f8ad3030338e3c2836b85cc5ab892b7)`(bool & OutValue) const` <a id="structFRHAPI__AuditEvent_1a2f8ad3030338e3c2836b85cc5ab892b7"></a>
 
 Fills OutValue with the value of Joinable_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetJoinableOrNull`](#structFRHAPI__AuditEvent_1aae9de79c193d554609d9ff35fb6abeff)`()` <a id="structFRHAPI__AuditEvent_1aae9de79c193d554609d9ff35fb6abeff"></a>
+#### `public inline FORCEINLINE bool * `[`GetJoinableOrNull`](#structFRHAPI__AuditEvent_1ab5cb91d1937f0d180719c2eb00230017)`()` <a id="structFRHAPI__AuditEvent_1ab5cb91d1937f0d180719c2eb00230017"></a>
 
 Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetJoinableOrNull`](#structFRHAPI__AuditEvent_1ae104144d5f55149f6fe7411545e802b1)`() const` <a id="structFRHAPI__AuditEvent_1ae104144d5f55149f6fe7411545e802b1"></a>
+#### `public inline FORCEINLINE const bool * `[`GetJoinableOrNull`](#structFRHAPI__AuditEvent_1adef3ce64eb72882b7e4b9d97bf36be27)`() const` <a id="structFRHAPI__AuditEvent_1adef3ce64eb72882b7e4b9d97bf36be27"></a>
 
 Returns a pointer to Joinable_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinable`](#structFRHAPI__AuditEvent_1a8849a0e6c3f82d31677920efd479aead)`(const bool & NewValue)` <a id="structFRHAPI__AuditEvent_1a8849a0e6c3f82d31677920efd479aead"></a>
+#### `public inline FORCEINLINE void `[`SetJoinable`](#structFRHAPI__AuditEvent_1a86266f39758217a9668e10a39fe68135)`(const bool & NewValue)` <a id="structFRHAPI__AuditEvent_1a86266f39758217a9668e10a39fe68135"></a>
 
 Sets the value of Joinable_Optional and also sets Joinable_IsSet to true.
 
-#### `public inline void `[`SetJoinable`](#structFRHAPI__AuditEvent_1a42334e8677be8d3c0c71dc5b4014eca5)`(bool && NewValue)` <a id="structFRHAPI__AuditEvent_1a42334e8677be8d3c0c71dc5b4014eca5"></a>
+#### `public inline FORCEINLINE void `[`SetJoinable`](#structFRHAPI__AuditEvent_1ab53617bce87c9c41d4be4163e17a283e)`(bool && NewValue)` <a id="structFRHAPI__AuditEvent_1ab53617bce87c9c41d4be4163e17a283e"></a>
 
 Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using move semantics.
 
@@ -1040,47 +984,39 @@ Sets the value of Joinable_Optional and also sets Joinable_IsSet to true using m
 
 Clears the value of Joinable_Optional and sets Joinable_IsSet to false.
 
-#### `public inline bool `[`IsJoinableSet`](#structFRHAPI__AuditEvent_1a43ba077bd0755667d6e877f8ae744f32)`() const` <a id="structFRHAPI__AuditEvent_1a43ba077bd0755667d6e877f8ae744f32"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_Joinable`](#structFRHAPI__AuditEvent_1a7bd65fce2f6f4c98728816050319e9cd)`()` <a id="structFRHAPI__AuditEvent_1a7bd65fce2f6f4c98728816050319e9cd"></a>
 
-Checks whether Joinable_Optional has been set.
+Returns the default value of Joinable.
 
-#### `public inline bool `[`IsJoinableDefaultValue`](#structFRHAPI__AuditEvent_1a062943023a7051996bb465b133bc5958)`() const` <a id="structFRHAPI__AuditEvent_1a062943023a7051996bb465b133bc5958"></a>
-
-Returns true if Joinable_Optional is set and matches the default value.
-
-#### `public inline void `[`SetJoinableToDefault`](#structFRHAPI__AuditEvent_1a39e7075fd253eeae1b073585358cf895)`()` <a id="structFRHAPI__AuditEvent_1a39e7075fd253eeae1b073585358cf895"></a>
-
-Sets the value of Joinable_Optional to its default and also sets Joinable_IsSet to true.
-
-#### `public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1ab29776594ae5adf35c05690666bd0225)`()` <a id="structFRHAPI__AuditEvent_1ab29776594ae5adf35c05690666bd0225"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a9c9739f8f782248b2aad786366936b40)`()` <a id="structFRHAPI__AuditEvent_1a9c9739f8f782248b2aad786366936b40"></a>
 
 Gets the value of Joinability_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a2278ee347cba2c0b621e7a38e0408b69)`() const` <a id="structFRHAPI__AuditEvent_1a2278ee347cba2c0b621e7a38e0408b69"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a97bf676f94dc24aac0f8a25d9faf6e00)`() const` <a id="structFRHAPI__AuditEvent_1a97bf676f94dc24aac0f8a25d9faf6e00"></a>
 
 Gets the value of Joinability_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1a4a4ccaa445fab0b6c72affa0e8fa3df9)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a4a4ccaa445fab0b6c72affa0e8fa3df9"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & `[`GetJoinability`](#structFRHAPI__AuditEvent_1ab057b46388e216398be33fe860f05fd0)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ab057b46388e216398be33fe860f05fd0"></a>
 
 Gets the value of Joinability_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetJoinability`](#structFRHAPI__AuditEvent_1a37a8a67aac1a5743a8e9cc3571736701)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1a37a8a67aac1a5743a8e9cc3571736701"></a>
+#### `public inline FORCEINLINE bool `[`GetJoinability`](#structFRHAPI__AuditEvent_1acc6d1805d7f4d79db30914aca6db3f58)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1acc6d1805d7f4d79db30914aca6db3f58"></a>
 
 Fills OutValue with the value of Joinability_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1a535a2b68f8e2f3d51d5ca45dbffa64e2)`()` <a id="structFRHAPI__AuditEvent_1a535a2b68f8e2f3d51d5ca45dbffa64e2"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1a0ca26370c41b9e0cb29c40ca5ea91b9f)`()` <a id="structFRHAPI__AuditEvent_1a0ca26370c41b9e0cb29c40ca5ea91b9f"></a>
 
 Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1ae377f809f334ec9bcb2517d71d3ba941)`() const` <a id="structFRHAPI__AuditEvent_1ae377f809f334ec9bcb2517d71d3ba941"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` * `[`GetJoinabilityOrNull`](#structFRHAPI__AuditEvent_1ad1af9cd0cb48543dcd41a96d7c215e83)`() const` <a id="structFRHAPI__AuditEvent_1ad1af9cd0cb48543dcd41a96d7c215e83"></a>
 
 Returns a pointer to Joinability_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinability`](#structFRHAPI__AuditEvent_1aa154d67561e52ffdccfebc0dd1740917)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & NewValue)` <a id="structFRHAPI__AuditEvent_1aa154d67561e52ffdccfebc0dd1740917"></a>
+#### `public inline FORCEINLINE void `[`SetJoinability`](#structFRHAPI__AuditEvent_1a42fcf19a50ebbef6aabd81c6d48ea211)`(const `[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` & NewValue)` <a id="structFRHAPI__AuditEvent_1a42fcf19a50ebbef6aabd81c6d48ea211"></a>
 
 Sets the value of Joinability_Optional and also sets Joinability_IsSet to true.
 
-#### `public inline void `[`SetJoinability`](#structFRHAPI__AuditEvent_1ac97de6acc90b3f4810086324e726f31a)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` && NewValue)` <a id="structFRHAPI__AuditEvent_1ac97de6acc90b3f4810086324e726f31a"></a>
+#### `public inline FORCEINLINE void `[`SetJoinability`](#structFRHAPI__AuditEvent_1acf43aa29b190634b2d1bfc7d9435d2f0)`(`[`FRHAPI_SessionJoinability`](RHAPI_SessionJoinability.md#structFRHAPI__SessionJoinability)` && NewValue)` <a id="structFRHAPI__AuditEvent_1acf43aa29b190634b2d1bfc7d9435d2f0"></a>
 
 Sets the value of Joinability_Optional and also sets Joinability_IsSet to true using move semantics.
 
@@ -1088,39 +1024,35 @@ Sets the value of Joinability_Optional and also sets Joinability_IsSet to true u
 
 Clears the value of Joinability_Optional and sets Joinability_IsSet to false.
 
-#### `public inline bool `[`IsJoinabilitySet`](#structFRHAPI__AuditEvent_1a4da0d72a9169610e8e21d2b017ad2573)`() const` <a id="structFRHAPI__AuditEvent_1a4da0d72a9169610e8e21d2b017ad2573"></a>
-
-Checks whether Joinability_Optional has been set.
-
-#### `public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ac700dbebcf2968bb67ff9cf0fc0823ed)`()` <a id="structFRHAPI__AuditEvent_1ac700dbebcf2968bb67ff9cf0fc0823ed"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a49a843f78adcf637d0d821fbd0a643a6)`()` <a id="structFRHAPI__AuditEvent_1a49a843f78adcf637d0d821fbd0a643a6"></a>
 
 Gets the value of UpdatedTeams_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a5c824ad3dd4a49348a82de17356c7ce2)`() const` <a id="structFRHAPI__AuditEvent_1a5c824ad3dd4a49348a82de17356c7ce2"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ac383fc7e966d1c0ff5cac30b180c306b)`() const` <a id="structFRHAPI__AuditEvent_1ac383fc7e966d1c0ff5cac30b180c306b"></a>
 
 Gets the value of UpdatedTeams_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1ab7571d1e4c48f53f904abe2b15f09a37)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ab7571d1e4c48f53f904abe2b15f09a37"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a50a518eda482aaed6b8fc6b81612d4a6)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a50a518eda482aaed6b8fc6b81612d4a6"></a>
 
 Gets the value of UpdatedTeams_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a673e28af1f69b21f6fe06ddd7073cd32)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & OutValue) const` <a id="structFRHAPI__AuditEvent_1a673e28af1f69b21f6fe06ddd7073cd32"></a>
+#### `public inline FORCEINLINE bool `[`GetUpdatedTeams`](#structFRHAPI__AuditEvent_1a7fa1ca4015328a10bc6753b94170310c)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & OutValue) const` <a id="structFRHAPI__AuditEvent_1a7fa1ca4015328a10bc6753b94170310c"></a>
 
 Fills OutValue with the value of UpdatedTeams_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetUpdatedTeamsOrNull`](#structFRHAPI__AuditEvent_1a532e1a5762df7147bf5b2680d729b19a)`()` <a id="structFRHAPI__AuditEvent_1a532e1a5762df7147bf5b2680d729b19a"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetUpdatedTeamsOrNull`](#structFRHAPI__AuditEvent_1a6bf9a6280e685d2195f285091257c44a)`()` <a id="structFRHAPI__AuditEvent_1a6bf9a6280e685d2195f285091257c44a"></a>
 
 Returns a pointer to UpdatedTeams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetUpdatedTeamsOrNull`](#structFRHAPI__AuditEvent_1a13f7974d0b9dcb9793f86b31adc40508)`() const` <a id="structFRHAPI__AuditEvent_1a13f7974d0b9dcb9793f86b31adc40508"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > * `[`GetUpdatedTeamsOrNull`](#structFRHAPI__AuditEvent_1a57664855d421cc57af0228bf2bd6e70f)`() const` <a id="structFRHAPI__AuditEvent_1a57664855d421cc57af0228bf2bd6e70f"></a>
 
 Returns a pointer to UpdatedTeams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetUpdatedTeams`](#structFRHAPI__AuditEvent_1a8238fd52886db81696c362ba9459b0cc)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & NewValue)` <a id="structFRHAPI__AuditEvent_1a8238fd52886db81696c362ba9459b0cc"></a>
+#### `public inline FORCEINLINE void `[`SetUpdatedTeams`](#structFRHAPI__AuditEvent_1a10799241aa7dc48e7d68c52557b1578f)`(const TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > & NewValue)` <a id="structFRHAPI__AuditEvent_1a10799241aa7dc48e7d68c52557b1578f"></a>
 
 Sets the value of UpdatedTeams_Optional and also sets UpdatedTeams_IsSet to true.
 
-#### `public inline void `[`SetUpdatedTeams`](#structFRHAPI__AuditEvent_1a5ae33104490c12208b9c766a4e8b971b)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > && NewValue)` <a id="structFRHAPI__AuditEvent_1a5ae33104490c12208b9c766a4e8b971b"></a>
+#### `public inline FORCEINLINE void `[`SetUpdatedTeams`](#structFRHAPI__AuditEvent_1ada71353cf70b7f03a271454490b3a886)`(TArray< `[`FRHAPI_TeamUpdate`](RHAPI_TeamUpdate.md#structFRHAPI__TeamUpdate)` > && NewValue)` <a id="structFRHAPI__AuditEvent_1ada71353cf70b7f03a271454490b3a886"></a>
 
 Sets the value of UpdatedTeams_Optional and also sets UpdatedTeams_IsSet to true using move semantics.
 
@@ -1128,39 +1060,35 @@ Sets the value of UpdatedTeams_Optional and also sets UpdatedTeams_IsSet to true
 
 Clears the value of UpdatedTeams_Optional and sets UpdatedTeams_IsSet to false.
 
-#### `public inline bool `[`IsUpdatedTeamsSet`](#structFRHAPI__AuditEvent_1a80604a3d148ea36937ba7803a39ccbee)`() const` <a id="structFRHAPI__AuditEvent_1a80604a3d148ea36937ba7803a39ccbee"></a>
-
-Checks whether UpdatedTeams_Optional has been set.
-
-#### `public inline ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1a963be213fd911f28673375252c84c2d7)`()` <a id="structFRHAPI__AuditEvent_1a963be213fd911f28673375252c84c2d7"></a>
+#### `public inline FORCEINLINE ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1ac8c9afe98acf9405de6a12cc236f76f7)`()` <a id="structFRHAPI__AuditEvent_1ac8c9afe98acf9405de6a12cc236f76f7"></a>
 
 Gets the value of Source_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1a2f905cce1f909dbf09db4525e2cfba1b)`() const` <a id="structFRHAPI__AuditEvent_1a2f905cce1f909dbf09db4525e2cfba1b"></a>
+#### `public inline FORCEINLINE const ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1aa840aaf1ca5552124eeb9591c0bef1e2)`() const` <a id="structFRHAPI__AuditEvent_1aa840aaf1ca5552124eeb9591c0bef1e2"></a>
 
 Gets the value of Source_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1ab0a8cf255f9167f2869c5f6a4e798d72)`(const ERHAPI_InviteSource & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ab0a8cf255f9167f2869c5f6a4e798d72"></a>
+#### `public inline FORCEINLINE const ERHAPI_InviteSource & `[`GetSource`](#structFRHAPI__AuditEvent_1ab85e22ee8dd828a2ed265a8114975335)`(const ERHAPI_InviteSource & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ab85e22ee8dd828a2ed265a8114975335"></a>
 
 Gets the value of Source_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSource`](#structFRHAPI__AuditEvent_1a97c8b8996109ccfe3ef9914e516db3eb)`(ERHAPI_InviteSource & OutValue) const` <a id="structFRHAPI__AuditEvent_1a97c8b8996109ccfe3ef9914e516db3eb"></a>
+#### `public inline FORCEINLINE bool `[`GetSource`](#structFRHAPI__AuditEvent_1abf3e62f85c82787585674db1f54bfbd6)`(ERHAPI_InviteSource & OutValue) const` <a id="structFRHAPI__AuditEvent_1abf3e62f85c82787585674db1f54bfbd6"></a>
 
 Fills OutValue with the value of Source_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_InviteSource * `[`GetSourceOrNull`](#structFRHAPI__AuditEvent_1a3cde6dffadc67d65a04376f3d5ca4516)`()` <a id="structFRHAPI__AuditEvent_1a3cde6dffadc67d65a04376f3d5ca4516"></a>
+#### `public inline FORCEINLINE ERHAPI_InviteSource * `[`GetSourceOrNull`](#structFRHAPI__AuditEvent_1ab79015b6709fdd67f78282b143946ecb)`()` <a id="structFRHAPI__AuditEvent_1ab79015b6709fdd67f78282b143946ecb"></a>
 
 Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_InviteSource * `[`GetSourceOrNull`](#structFRHAPI__AuditEvent_1ac361620787d9d936c96accc8aeb43942)`() const` <a id="structFRHAPI__AuditEvent_1ac361620787d9d936c96accc8aeb43942"></a>
+#### `public inline FORCEINLINE const ERHAPI_InviteSource * `[`GetSourceOrNull`](#structFRHAPI__AuditEvent_1a859bff69cba1ffeee936b900c95b2e36)`() const` <a id="structFRHAPI__AuditEvent_1a859bff69cba1ffeee936b900c95b2e36"></a>
 
 Returns a pointer to Source_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSource`](#structFRHAPI__AuditEvent_1acc4da47740c855770e7394e5247f0c13)`(const ERHAPI_InviteSource & NewValue)` <a id="structFRHAPI__AuditEvent_1acc4da47740c855770e7394e5247f0c13"></a>
+#### `public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__AuditEvent_1a932e1e08d4a400614ceaa302b94ca4fc)`(const ERHAPI_InviteSource & NewValue)` <a id="structFRHAPI__AuditEvent_1a932e1e08d4a400614ceaa302b94ca4fc"></a>
 
 Sets the value of Source_Optional and also sets Source_IsSet to true.
 
-#### `public inline void `[`SetSource`](#structFRHAPI__AuditEvent_1aa77d6b7e7a75c222daf289cbc58edf29)`(ERHAPI_InviteSource && NewValue)` <a id="structFRHAPI__AuditEvent_1aa77d6b7e7a75c222daf289cbc58edf29"></a>
+#### `public inline FORCEINLINE void `[`SetSource`](#structFRHAPI__AuditEvent_1ac878b21f57be796adef53ca50d39b39d)`(ERHAPI_InviteSource && NewValue)` <a id="structFRHAPI__AuditEvent_1ac878b21f57be796adef53ca50d39b39d"></a>
 
 Sets the value of Source_Optional and also sets Source_IsSet to true using move semantics.
 
@@ -1168,39 +1096,35 @@ Sets the value of Source_Optional and also sets Source_IsSet to true using move 
 
 Clears the value of Source_Optional and sets Source_IsSet to false.
 
-#### `public inline bool `[`IsSourceSet`](#structFRHAPI__AuditEvent_1a74018ed8ae1bfbfd9f45ce224b75c4ec)`() const` <a id="structFRHAPI__AuditEvent_1a74018ed8ae1bfbfd9f45ce224b75c4ec"></a>
-
-Checks whether Source_Optional has been set.
-
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a9dbd683a5981253cdac1fa1cbdf78abc)`()` <a id="structFRHAPI__AuditEvent_1a9dbd683a5981253cdac1fa1cbdf78abc"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a4b21358faefc8da1754be734f23323ca)`()` <a id="structFRHAPI__AuditEvent_1a4b21358faefc8da1754be734f23323ca"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a3bfaf62eee0c9fe3fb84cf0c1b120146)`() const` <a id="structFRHAPI__AuditEvent_1a3bfaf62eee0c9fe3fb84cf0c1b120146"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1aa953e3920fec929697809bd15f15e552)`() const` <a id="structFRHAPI__AuditEvent_1aa953e3920fec929697809bd15f15e552"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a194fdda2902267aee20f2fefeb440d46)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a194fdda2902267aee20f2fefeb440d46"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1a82c28e24f94085b362356816b12732fc)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a82c28e24f94085b362356816b12732fc"></a>
 
 Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1ac554d4e051febbe237753c638a4198c0)`(FGuid & OutValue) const` <a id="structFRHAPI__AuditEvent_1ac554d4e051febbe237753c638a4198c0"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayerUuid`](#structFRHAPI__AuditEvent_1adf46148bc425f47221220947c93b52ab)`(FGuid & OutValue) const` <a id="structFRHAPI__AuditEvent_1adf46148bc425f47221220947c93b52ab"></a>
 
 Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a3f36db2be50e298ccbb738456e017251)`()` <a id="structFRHAPI__AuditEvent_1a3f36db2be50e298ccbb738456e017251"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a6005b776d5a958930fd3284e1513fca7)`()` <a id="structFRHAPI__AuditEvent_1a6005b776d5a958930fd3284e1513fca7"></a>
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a26d5049e92e2db5736afb1ffa2103c5c)`() const` <a id="structFRHAPI__AuditEvent_1a26d5049e92e2db5736afb1ffa2103c5c"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a37ed42c0d1f93f524066fffa708bbae1)`() const` <a id="structFRHAPI__AuditEvent_1a37ed42c0d1f93f524066fffa708bbae1"></a>
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__AuditEvent_1ae19715aea8b4871a0b72de04887c7ef8)`(const FGuid & NewValue)` <a id="structFRHAPI__AuditEvent_1ae19715aea8b4871a0b72de04887c7ef8"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__AuditEvent_1a984a55f708f6364d01d2fe5ea53c2c2a)`(const FGuid & NewValue)` <a id="structFRHAPI__AuditEvent_1a984a55f708f6364d01d2fe5ea53c2c2a"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__AuditEvent_1a88e95b412063e1c90e1da710ab6880c7)`(FGuid && NewValue)` <a id="structFRHAPI__AuditEvent_1a88e95b412063e1c90e1da710ab6880c7"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__AuditEvent_1a9a423c7ca9e3691f2ba0d9457a8d1884)`(FGuid && NewValue)` <a id="structFRHAPI__AuditEvent_1a9a423c7ca9e3691f2ba0d9457a8d1884"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 
@@ -1208,39 +1132,35 @@ Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true usi
 
 Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__AuditEvent_1afec2260e0d9dd9b1721aa7c4214bd739)`() const` <a id="structFRHAPI__AuditEvent_1afec2260e0d9dd9b1721aa7c4214bd739"></a>
-
-Checks whether PlayerUuid_Optional has been set.
-
-#### `public inline int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1aab5ce68ba5a8801e810f2a529ba91bed)`()` <a id="structFRHAPI__AuditEvent_1aab5ce68ba5a8801e810f2a529ba91bed"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1a2b0fc83c296a9b53f3ef675a87a804cb)`()` <a id="structFRHAPI__AuditEvent_1a2b0fc83c296a9b53f3ef675a87a804cb"></a>
 
 Gets the value of TeamId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1a804265f9d635db4ed1c1cac9ac72f594)`() const` <a id="structFRHAPI__AuditEvent_1a804265f9d635db4ed1c1cac9ac72f594"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1aa502d9f3471ba2f3d708a2da78feab82)`() const` <a id="structFRHAPI__AuditEvent_1aa502d9f3471ba2f3d708a2da78feab82"></a>
 
 Gets the value of TeamId_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1a0da8b879f31f057e26e5e4da16a6a55b)`(const int32 & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a0da8b879f31f057e26e5e4da16a6a55b"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTeamId`](#structFRHAPI__AuditEvent_1a1861c6b4d1be359385477278629d3e0b)`(const int32 & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a1861c6b4d1be359385477278629d3e0b"></a>
 
 Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTeamId`](#structFRHAPI__AuditEvent_1a7344ad05cfbb1e0cc893b7f723eea816)`(int32 & OutValue) const` <a id="structFRHAPI__AuditEvent_1a7344ad05cfbb1e0cc893b7f723eea816"></a>
+#### `public inline FORCEINLINE bool `[`GetTeamId`](#structFRHAPI__AuditEvent_1a02b359bf07099e8bfb591a7aa83730f7)`(int32 & OutValue) const` <a id="structFRHAPI__AuditEvent_1a02b359bf07099e8bfb591a7aa83730f7"></a>
 
 Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetTeamIdOrNull`](#structFRHAPI__AuditEvent_1a5bc53b49eab6cc95e293b0c8cc3c3427)`()` <a id="structFRHAPI__AuditEvent_1a5bc53b49eab6cc95e293b0c8cc3c3427"></a>
+#### `public inline FORCEINLINE int32 * `[`GetTeamIdOrNull`](#structFRHAPI__AuditEvent_1a89ab406b99d86034d14e01b40e39fc33)`()` <a id="structFRHAPI__AuditEvent_1a89ab406b99d86034d14e01b40e39fc33"></a>
 
 Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__AuditEvent_1afb2190201847c1ca31dbdf8950c9a24b)`() const` <a id="structFRHAPI__AuditEvent_1afb2190201847c1ca31dbdf8950c9a24b"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetTeamIdOrNull`](#structFRHAPI__AuditEvent_1a7d0010b90149755c56f8e3a6cd59324a)`() const` <a id="structFRHAPI__AuditEvent_1a7d0010b90149755c56f8e3a6cd59324a"></a>
 
 Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__AuditEvent_1a47be0e8b4f61ba41766da5f9315959b5)`(const int32 & NewValue)` <a id="structFRHAPI__AuditEvent_1a47be0e8b4f61ba41766da5f9315959b5"></a>
+#### `public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__AuditEvent_1abf1e0053a904f49213feac0ddaef7bd3)`(const int32 & NewValue)` <a id="structFRHAPI__AuditEvent_1abf1e0053a904f49213feac0ddaef7bd3"></a>
 
 Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__AuditEvent_1accabc99661aeab63afd01f33404c7ba9)`(int32 && NewValue)` <a id="structFRHAPI__AuditEvent_1accabc99661aeab63afd01f33404c7ba9"></a>
+#### `public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__AuditEvent_1a03cdfb9ada2f55ac2237b9bee820891e)`(int32 && NewValue)` <a id="structFRHAPI__AuditEvent_1a03cdfb9ada2f55ac2237b9bee820891e"></a>
 
 Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 
@@ -1248,47 +1168,39 @@ Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move 
 
 Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
 
-#### `public inline bool `[`IsTeamIdSet`](#structFRHAPI__AuditEvent_1af2681fc55ee0b61827961f53302d914a)`() const` <a id="structFRHAPI__AuditEvent_1af2681fc55ee0b61827961f53302d914a"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TeamId`](#structFRHAPI__AuditEvent_1adff154ac0a34c800a10dc0188283a331)`()` <a id="structFRHAPI__AuditEvent_1adff154ac0a34c800a10dc0188283a331"></a>
 
-Checks whether TeamId_Optional has been set.
+Returns the default value of TeamId.
 
-#### `public inline bool `[`IsTeamIdDefaultValue`](#structFRHAPI__AuditEvent_1a77e8d1490e7d0bf2435960dcfb4a615a)`() const` <a id="structFRHAPI__AuditEvent_1a77e8d1490e7d0bf2435960dcfb4a615a"></a>
-
-Returns true if TeamId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTeamIdToDefault`](#structFRHAPI__AuditEvent_1a27fd05b2636e3be453c92fed6643e5ac)`()` <a id="structFRHAPI__AuditEvent_1a27fd05b2636e3be453c92fed6643e5ac"></a>
-
-Sets the value of TeamId_Optional to its default and also sets TeamId_IsSet to true.
-
-#### `public inline FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1aabd0fcb746ed3dcf2b81a0d07b09e22b)`()` <a id="structFRHAPI__AuditEvent_1aabd0fcb746ed3dcf2b81a0d07b09e22b"></a>
+#### `public inline FORCEINLINE FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1a5e6decc38db836a0de3caef6f3861046)`()` <a id="structFRHAPI__AuditEvent_1a5e6decc38db836a0de3caef6f3861046"></a>
 
 Gets the value of InvitedSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1a9bc911d1fc22a5aebf9b88deae99a1df)`() const` <a id="structFRHAPI__AuditEvent_1a9bc911d1fc22a5aebf9b88deae99a1df"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1af77dc162efe8ce5dbc7aa78de168e645)`() const` <a id="structFRHAPI__AuditEvent_1af77dc162efe8ce5dbc7aa78de168e645"></a>
 
 Gets the value of InvitedSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1a3a9f77609c3b677a0b16d4fbd0e0b2da)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a3a9f77609c3b677a0b16d4fbd0e0b2da"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1a6c0a01fcd0a1a1431428ec0f36a4828a)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a6c0a01fcd0a1a1431428ec0f36a4828a"></a>
 
 Gets the value of InvitedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1aabb4f44710178fd6e53b95cfdff6ae17)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1aabb4f44710178fd6e53b95cfdff6ae17"></a>
+#### `public inline FORCEINLINE bool `[`GetInvitedSessionId`](#structFRHAPI__AuditEvent_1abcd463eb7d26b4bd37a4c504d5be5e69)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1abcd463eb7d26b4bd37a4c504d5be5e69"></a>
 
 Fills OutValue with the value of InvitedSessionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetInvitedSessionIdOrNull`](#structFRHAPI__AuditEvent_1af36fdb60b609d8eb370d75bc6ad6e1be)`()` <a id="structFRHAPI__AuditEvent_1af36fdb60b609d8eb370d75bc6ad6e1be"></a>
+#### `public inline FORCEINLINE FString * `[`GetInvitedSessionIdOrNull`](#structFRHAPI__AuditEvent_1abc4e393fb3f19f3f2e1ff41272a18a29)`()` <a id="structFRHAPI__AuditEvent_1abc4e393fb3f19f3f2e1ff41272a18a29"></a>
 
 Returns a pointer to InvitedSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetInvitedSessionIdOrNull`](#structFRHAPI__AuditEvent_1ad5a3480fd8cd82c265156c1c2eff6fee)`() const` <a id="structFRHAPI__AuditEvent_1ad5a3480fd8cd82c265156c1c2eff6fee"></a>
+#### `public inline FORCEINLINE const FString * `[`GetInvitedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a459e2118abae5705f6c99838fe236854)`() const` <a id="structFRHAPI__AuditEvent_1a459e2118abae5705f6c99838fe236854"></a>
 
 Returns a pointer to InvitedSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInvitedSessionId`](#structFRHAPI__AuditEvent_1a3c32957fb9d0b5e1d7371c6a112b1cba)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a3c32957fb9d0b5e1d7371c6a112b1cba"></a>
+#### `public inline FORCEINLINE void `[`SetInvitedSessionId`](#structFRHAPI__AuditEvent_1a881d8fe30b648fc8b35f925defbc1387)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a881d8fe30b648fc8b35f925defbc1387"></a>
 
 Sets the value of InvitedSessionId_Optional and also sets InvitedSessionId_IsSet to true.
 
-#### `public inline void `[`SetInvitedSessionId`](#structFRHAPI__AuditEvent_1a7badce28c451a3ede11d27c75fcbae4b)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a7badce28c451a3ede11d27c75fcbae4b"></a>
+#### `public inline FORCEINLINE void `[`SetInvitedSessionId`](#structFRHAPI__AuditEvent_1ac412487d26c212b54a9dbbfb0d8f8654)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1ac412487d26c212b54a9dbbfb0d8f8654"></a>
 
 Sets the value of InvitedSessionId_Optional and also sets InvitedSessionId_IsSet to true using move semantics.
 
@@ -1296,39 +1208,35 @@ Sets the value of InvitedSessionId_Optional and also sets InvitedSessionId_IsSet
 
 Clears the value of InvitedSessionId_Optional and sets InvitedSessionId_IsSet to false.
 
-#### `public inline bool `[`IsInvitedSessionIdSet`](#structFRHAPI__AuditEvent_1aee80c206c407b9f83d4e466c399f0132)`() const` <a id="structFRHAPI__AuditEvent_1aee80c206c407b9f83d4e466c399f0132"></a>
-
-Checks whether InvitedSessionId_Optional has been set.
-
-#### `public inline FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a54c85ad140785c445c4bfcb6314a3c0e)`()` <a id="structFRHAPI__AuditEvent_1a54c85ad140785c445c4bfcb6314a3c0e"></a>
+#### `public inline FORCEINLINE FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a3720070f938c6f18a933199ddcbccf33)`()` <a id="structFRHAPI__AuditEvent_1a3720070f938c6f18a933199ddcbccf33"></a>
 
 Gets the value of RemovedSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1aac5fbe426399173bba6d36e15ffd458b)`() const` <a id="structFRHAPI__AuditEvent_1aac5fbe426399173bba6d36e15ffd458b"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a6f24f8d296b1689ff5f8c29dd151bc03)`() const` <a id="structFRHAPI__AuditEvent_1a6f24f8d296b1689ff5f8c29dd151bc03"></a>
 
 Gets the value of RemovedSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1ae13dbafa6a9ddd2e71cb6d385240f470)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ae13dbafa6a9ddd2e71cb6d385240f470"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a085752523fc33eb747acfa537571a6c9)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a085752523fc33eb747acfa537571a6c9"></a>
 
 Gets the value of RemovedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1ade807e3b1634593e4e314a3cc12562ba)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1ade807e3b1634593e4e314a3cc12562ba"></a>
+#### `public inline FORCEINLINE bool `[`GetRemovedSessionId`](#structFRHAPI__AuditEvent_1a6504e5ca6712fb06ab7f1b509583eea8)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a6504e5ca6712fb06ab7f1b509583eea8"></a>
 
 Fills OutValue with the value of RemovedSessionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRemovedSessionIdOrNull`](#structFRHAPI__AuditEvent_1ab7e26a4fb21c388bc90d8a5529766951)`()` <a id="structFRHAPI__AuditEvent_1ab7e26a4fb21c388bc90d8a5529766951"></a>
+#### `public inline FORCEINLINE FString * `[`GetRemovedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a813c3f19e2e93324d3df04d7d0b0f8df)`()` <a id="structFRHAPI__AuditEvent_1a813c3f19e2e93324d3df04d7d0b0f8df"></a>
 
 Returns a pointer to RemovedSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRemovedSessionIdOrNull`](#structFRHAPI__AuditEvent_1ae997ddbed19967c4e4bf1164ffe4d5e9)`() const` <a id="structFRHAPI__AuditEvent_1ae997ddbed19967c4e4bf1164ffe4d5e9"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRemovedSessionIdOrNull`](#structFRHAPI__AuditEvent_1acfaf0120256fae3988f74e7aa01ba41a)`() const` <a id="structFRHAPI__AuditEvent_1acfaf0120256fae3988f74e7aa01ba41a"></a>
 
 Returns a pointer to RemovedSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRemovedSessionId`](#structFRHAPI__AuditEvent_1af61362af9db9b687702930d07a978a9a)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1af61362af9db9b687702930d07a978a9a"></a>
+#### `public inline FORCEINLINE void `[`SetRemovedSessionId`](#structFRHAPI__AuditEvent_1a01abc3fbad6a0863fa80c9730e24bc29)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a01abc3fbad6a0863fa80c9730e24bc29"></a>
 
 Sets the value of RemovedSessionId_Optional and also sets RemovedSessionId_IsSet to true.
 
-#### `public inline void `[`SetRemovedSessionId`](#structFRHAPI__AuditEvent_1a9d61198748341944235b605422454e6e)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a9d61198748341944235b605422454e6e"></a>
+#### `public inline FORCEINLINE void `[`SetRemovedSessionId`](#structFRHAPI__AuditEvent_1a918599edffadb5fb601482645497dfd8)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a918599edffadb5fb601482645497dfd8"></a>
 
 Sets the value of RemovedSessionId_Optional and also sets RemovedSessionId_IsSet to true using move semantics.
 
@@ -1336,39 +1244,35 @@ Sets the value of RemovedSessionId_Optional and also sets RemovedSessionId_IsSet
 
 Clears the value of RemovedSessionId_Optional and sets RemovedSessionId_IsSet to false.
 
-#### `public inline bool `[`IsRemovedSessionIdSet`](#structFRHAPI__AuditEvent_1a701a19c4cbd0f0dce6e8084988cae627)`() const` <a id="structFRHAPI__AuditEvent_1a701a19c4cbd0f0dce6e8084988cae627"></a>
-
-Checks whether RemovedSessionId_Optional has been set.
-
-#### `public inline FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1ab23fad65a4f6e595ed00c55468c6256c)`()` <a id="structFRHAPI__AuditEvent_1ab23fad65a4f6e595ed00c55468c6256c"></a>
+#### `public inline FORCEINLINE FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a17849acb8399db0f08a96e93de254271)`()` <a id="structFRHAPI__AuditEvent_1a17849acb8399db0f08a96e93de254271"></a>
 
 Gets the value of Version_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a8929938aadae30cbc52121ff67721875)`() const` <a id="structFRHAPI__AuditEvent_1a8929938aadae30cbc52121ff67721875"></a>
+#### `public inline FORCEINLINE const FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a466612805fb2529767617d3cf56fe5d9)`() const` <a id="structFRHAPI__AuditEvent_1a466612805fb2529767617d3cf56fe5d9"></a>
 
 Gets the value of Version_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a1e47bbb44333cc6091464033ad502c28)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a1e47bbb44333cc6091464033ad502c28"></a>
+#### `public inline FORCEINLINE const FString & `[`GetVersion`](#structFRHAPI__AuditEvent_1a7c2af47324e22a190c3f9b9909bac869)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a7c2af47324e22a190c3f9b9909bac869"></a>
 
 Gets the value of Version_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetVersion`](#structFRHAPI__AuditEvent_1a7f3950a12da4cd1035e1894f0c714890)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a7f3950a12da4cd1035e1894f0c714890"></a>
+#### `public inline FORCEINLINE bool `[`GetVersion`](#structFRHAPI__AuditEvent_1ad843aeadf746c733b89771e81a96b429)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1ad843aeadf746c733b89771e81a96b429"></a>
 
 Fills OutValue with the value of Version_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetVersionOrNull`](#structFRHAPI__AuditEvent_1ab84e68a8eeb988df709a5efaff2ce2c7)`()` <a id="structFRHAPI__AuditEvent_1ab84e68a8eeb988df709a5efaff2ce2c7"></a>
+#### `public inline FORCEINLINE FString * `[`GetVersionOrNull`](#structFRHAPI__AuditEvent_1a9d9b679ecd1a86381183a8b0b4e435c8)`()` <a id="structFRHAPI__AuditEvent_1a9d9b679ecd1a86381183a8b0b4e435c8"></a>
 
 Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetVersionOrNull`](#structFRHAPI__AuditEvent_1a5587d83a6b09f69300d4bb2d3611dbb3)`() const` <a id="structFRHAPI__AuditEvent_1a5587d83a6b09f69300d4bb2d3611dbb3"></a>
+#### `public inline FORCEINLINE const FString * `[`GetVersionOrNull`](#structFRHAPI__AuditEvent_1a5e57dbb3769dd2179080d1a4f97bfa07)`() const` <a id="structFRHAPI__AuditEvent_1a5e57dbb3769dd2179080d1a4f97bfa07"></a>
 
 Returns a pointer to Version_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetVersion`](#structFRHAPI__AuditEvent_1a1c31b5321f12957b29cbb6fd27bc252c)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a1c31b5321f12957b29cbb6fd27bc252c"></a>
+#### `public inline FORCEINLINE void `[`SetVersion`](#structFRHAPI__AuditEvent_1afb6eae66c42043e0350c69223c5240a9)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1afb6eae66c42043e0350c69223c5240a9"></a>
 
 Sets the value of Version_Optional and also sets Version_IsSet to true.
 
-#### `public inline void `[`SetVersion`](#structFRHAPI__AuditEvent_1a4a292c731f135f4bf042ed412da9a915)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a4a292c731f135f4bf042ed412da9a915"></a>
+#### `public inline FORCEINLINE void `[`SetVersion`](#structFRHAPI__AuditEvent_1a2e03b13b001c0ad356cba84c6d9c368a)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a2e03b13b001c0ad356cba84c6d9c368a"></a>
 
 Sets the value of Version_Optional and also sets Version_IsSet to true using move semantics.
 
@@ -1376,39 +1280,35 @@ Sets the value of Version_Optional and also sets Version_IsSet to true using mov
 
 Clears the value of Version_Optional and sets Version_IsSet to false.
 
-#### `public inline bool `[`IsVersionSet`](#structFRHAPI__AuditEvent_1a54a358e1b91e8639f82106c0c1b762d5)`() const` <a id="structFRHAPI__AuditEvent_1a54a358e1b91e8639f82106c0c1b762d5"></a>
-
-Checks whether Version_Optional has been set.
-
-#### `public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1ab6e156633883485d2fb53414ecaa4474)`()` <a id="structFRHAPI__AuditEvent_1ab6e156633883485d2fb53414ecaa4474"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a631f939bd87f108594adfc9e1bf71091)`()` <a id="structFRHAPI__AuditEvent_1a631f939bd87f108594adfc9e1bf71091"></a>
 
 Gets the value of ClientSettings_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a7815dfcab22ffae4063a9c218d3113b6)`() const` <a id="structFRHAPI__AuditEvent_1a7815dfcab22ffae4063a9c218d3113b6"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a46da4775c5e96d8c604e528c091adaac)`() const` <a id="structFRHAPI__AuditEvent_1a46da4775c5e96d8c604e528c091adaac"></a>
 
 Gets the value of ClientSettings_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1ad3c74afecaab787c07af5ea6b3c0344b)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ad3c74afecaab787c07af5ea6b3c0344b"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a29c8658263b1550db89b440e5bf3ff65)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a29c8658263b1550db89b440e5bf3ff65"></a>
 
 Gets the value of ClientSettings_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a05775d6ef1d3f110a990a843b113f980)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1a05775d6ef1d3f110a990a843b113f980"></a>
+#### `public inline FORCEINLINE bool `[`GetClientSettings`](#structFRHAPI__AuditEvent_1a87576e709ab1568a50e9023517cd7bf6)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1a87576e709ab1568a50e9023517cd7bf6"></a>
 
 Fills OutValue with the value of ClientSettings_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__AuditEvent_1a954e29e612ec6ce63072757d7e70aeb4)`()` <a id="structFRHAPI__AuditEvent_1a954e29e612ec6ce63072757d7e70aeb4"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__AuditEvent_1aaf9c2fd965655a74b11059cf35ebde59)`()` <a id="structFRHAPI__AuditEvent_1aaf9c2fd965655a74b11059cf35ebde59"></a>
 
 Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__AuditEvent_1a709914b261bf42e513ec3c59152db0ae)`() const` <a id="structFRHAPI__AuditEvent_1a709914b261bf42e513ec3c59152db0ae"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` * `[`GetClientSettingsOrNull`](#structFRHAPI__AuditEvent_1af1013187951bb2c75896df20eb6c0bc4)`() const` <a id="structFRHAPI__AuditEvent_1af1013187951bb2c75896df20eb6c0bc4"></a>
 
 Returns a pointer to ClientSettings_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetClientSettings`](#structFRHAPI__AuditEvent_1aa1287ead01588e4aa867d66bd36b76b7)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` <a id="structFRHAPI__AuditEvent_1aa1287ead01588e4aa867d66bd36b76b7"></a>
+#### `public inline FORCEINLINE void `[`SetClientSettings`](#structFRHAPI__AuditEvent_1a5d6fa0b0cae0cd46ce3072eab4c33d77)`(const `[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` & NewValue)` <a id="structFRHAPI__AuditEvent_1a5d6fa0b0cae0cd46ce3072eab4c33d77"></a>
 
 Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true.
 
-#### `public inline void `[`SetClientSettings`](#structFRHAPI__AuditEvent_1a18db16fb778956186aa2f39d260b1e69)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` <a id="structFRHAPI__AuditEvent_1a18db16fb778956186aa2f39d260b1e69"></a>
+#### `public inline FORCEINLINE void `[`SetClientSettings`](#structFRHAPI__AuditEvent_1ad9b79ac728f02df5193ac2cad0e5ecb0)`(`[`FRHAPI_ClientSettings`](RHAPI_ClientSettings.md#structFRHAPI__ClientSettings)` && NewValue)` <a id="structFRHAPI__AuditEvent_1ad9b79ac728f02df5193ac2cad0e5ecb0"></a>
 
 Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to true using move semantics.
 
@@ -1416,39 +1316,35 @@ Sets the value of ClientSettings_Optional and also sets ClientSettings_IsSet to 
 
 Clears the value of ClientSettings_Optional and sets ClientSettings_IsSet to false.
 
-#### `public inline bool `[`IsClientSettingsSet`](#structFRHAPI__AuditEvent_1aed553d016754f1f384bfded4f0cb4e86)`() const` <a id="structFRHAPI__AuditEvent_1aed553d016754f1f384bfded4f0cb4e86"></a>
-
-Checks whether ClientSettings_Optional has been set.
-
-#### `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1ae538e2fea07c0aa6bc7aa7423bf903b7)`()` <a id="structFRHAPI__AuditEvent_1ae538e2fea07c0aa6bc7aa7423bf903b7"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a7e0f58b2174e8866602b0dd9f45348ef)`()` <a id="structFRHAPI__AuditEvent_1a7e0f58b2174e8866602b0dd9f45348ef"></a>
 
 Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a7e40df7b733196f54b2af3defbcf398d)`() const` <a id="structFRHAPI__AuditEvent_1a7e40df7b733196f54b2af3defbcf398d"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1aeea31a5498262f3f36b6672c26e19f57)`() const` <a id="structFRHAPI__AuditEvent_1aeea31a5498262f3f36b6672c26e19f57"></a>
 
 Gets the value of CrossplayPreferences_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a46aaec23542f7772bc14d43f506704fe)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a46aaec23542f7772bc14d43f506704fe"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a7f634dca968006833a7557f17e446b40)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a7f634dca968006833a7557f17e446b40"></a>
 
 Gets the value of CrossplayPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a0e6ff85879b0cedbe7220a084ba75323)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1a0e6ff85879b0cedbe7220a084ba75323"></a>
+#### `public inline FORCEINLINE bool `[`GetCrossplayPreferences`](#structFRHAPI__AuditEvent_1ac2b8a06f2b7fc21763ac97b994e6cbb9)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1ac2b8a06f2b7fc21763ac97b994e6cbb9"></a>
 
 Fills OutValue with the value of CrossplayPreferences_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__AuditEvent_1a70c46614019e4b4f0dfe580d419a8ba7)`()` <a id="structFRHAPI__AuditEvent_1a70c46614019e4b4f0dfe580d419a8ba7"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__AuditEvent_1af4f98be478d304f82fe7b019a7936b9b)`()` <a id="structFRHAPI__AuditEvent_1af4f98be478d304f82fe7b019a7936b9b"></a>
 
 Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__AuditEvent_1a383b3c4418be401c958162ab2b2e8e0f)`() const` <a id="structFRHAPI__AuditEvent_1a383b3c4418be401c958162ab2b2e8e0f"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` * `[`GetCrossplayPreferencesOrNull`](#structFRHAPI__AuditEvent_1aa61b55df69fcce8c556d50f46f8ce751)`() const` <a id="structFRHAPI__AuditEvent_1aa61b55df69fcce8c556d50f46f8ce751"></a>
 
 Returns a pointer to CrossplayPreferences_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__AuditEvent_1af3008c45b49c2eb889911d00ebe7ebf0)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` <a id="structFRHAPI__AuditEvent_1af3008c45b49c2eb889911d00ebe7ebf0"></a>
+#### `public inline FORCEINLINE void `[`SetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a65606a1af8b3121b3d3eac5e2073a5ac)`(const `[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` & NewValue)` <a id="structFRHAPI__AuditEvent_1a65606a1af8b3121b3d3eac5e2073a5ac"></a>
 
 Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true.
 
-#### `public inline void `[`SetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a7ff6b1395a4c8a8c27669dacbba62ea7)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` <a id="structFRHAPI__AuditEvent_1a7ff6b1395a4c8a8c27669dacbba62ea7"></a>
+#### `public inline FORCEINLINE void `[`SetCrossplayPreferences`](#structFRHAPI__AuditEvent_1a1dd6716652972e5402e7d15e32cc5284)`(`[`FRHAPI_CrossplayPreferences`](RHAPI_CrossplayPreferences.md#structFRHAPI__CrossplayPreferences)` && NewValue)` <a id="structFRHAPI__AuditEvent_1a1dd6716652972e5402e7d15e32cc5284"></a>
 
 Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferences_IsSet to true using move semantics.
 
@@ -1456,39 +1352,35 @@ Sets the value of CrossplayPreferences_Optional and also sets CrossplayPreferenc
 
 Clears the value of CrossplayPreferences_Optional and sets CrossplayPreferences_IsSet to false.
 
-#### `public inline bool `[`IsCrossplayPreferencesSet`](#structFRHAPI__AuditEvent_1ad106f4fb3165db8eaf5a4f84c87be306)`() const` <a id="structFRHAPI__AuditEvent_1ad106f4fb3165db8eaf5a4f84c87be306"></a>
-
-Checks whether CrossplayPreferences_Optional has been set.
-
-#### `public inline ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1a991d0e034a0c40e9bb3902e8a5d646d1)`()` <a id="structFRHAPI__AuditEvent_1a991d0e034a0c40e9bb3902e8a5d646d1"></a>
+#### `public inline FORCEINLINE ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1ada655b5627b8ed0fa104d0d99b6f48a9)`()` <a id="structFRHAPI__AuditEvent_1ada655b5627b8ed0fa104d0d99b6f48a9"></a>
 
 Gets the value of PlayerStatus_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1aca963d485b9bbf2e0dcdb06b90b01a18)`() const` <a id="structFRHAPI__AuditEvent_1aca963d485b9bbf2e0dcdb06b90b01a18"></a>
+#### `public inline FORCEINLINE const ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1a35286123ff39f93fa58269a373ccf78b)`() const` <a id="structFRHAPI__AuditEvent_1a35286123ff39f93fa58269a373ccf78b"></a>
 
 Gets the value of PlayerStatus_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1ac5bbc52c80bd681b2ad90a11d3a72173)`(const ERHAPI_SessionPlayerStatus & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ac5bbc52c80bd681b2ad90a11d3a72173"></a>
+#### `public inline FORCEINLINE const ERHAPI_SessionPlayerStatus & `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1afacda718f53ff7aa791b940ac89b430e)`(const ERHAPI_SessionPlayerStatus & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1afacda718f53ff7aa791b940ac89b430e"></a>
 
 Gets the value of PlayerStatus_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1a6a859a33a504f780c5cdac0dcad855de)`(ERHAPI_SessionPlayerStatus & OutValue) const` <a id="structFRHAPI__AuditEvent_1a6a859a33a504f780c5cdac0dcad855de"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayerStatus`](#structFRHAPI__AuditEvent_1a3b80cecc0b5fece430ccf3eee8df74eb)`(ERHAPI_SessionPlayerStatus & OutValue) const` <a id="structFRHAPI__AuditEvent_1a3b80cecc0b5fece430ccf3eee8df74eb"></a>
 
 Fills OutValue with the value of PlayerStatus_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_SessionPlayerStatus * `[`GetPlayerStatusOrNull`](#structFRHAPI__AuditEvent_1aa5ef2c93c6846b8a83bd458f26803c41)`()` <a id="structFRHAPI__AuditEvent_1aa5ef2c93c6846b8a83bd458f26803c41"></a>
+#### `public inline FORCEINLINE ERHAPI_SessionPlayerStatus * `[`GetPlayerStatusOrNull`](#structFRHAPI__AuditEvent_1ae30ef05eb75aeabe4199daf7632f03e0)`()` <a id="structFRHAPI__AuditEvent_1ae30ef05eb75aeabe4199daf7632f03e0"></a>
 
 Returns a pointer to PlayerStatus_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_SessionPlayerStatus * `[`GetPlayerStatusOrNull`](#structFRHAPI__AuditEvent_1a035f3b8118e43b3411653483851b9160)`() const` <a id="structFRHAPI__AuditEvent_1a035f3b8118e43b3411653483851b9160"></a>
+#### `public inline FORCEINLINE const ERHAPI_SessionPlayerStatus * `[`GetPlayerStatusOrNull`](#structFRHAPI__AuditEvent_1aed73dc7f9e9a883bca11190a91a839eb)`() const` <a id="structFRHAPI__AuditEvent_1aed73dc7f9e9a883bca11190a91a839eb"></a>
 
 Returns a pointer to PlayerStatus_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerStatus`](#structFRHAPI__AuditEvent_1a1808222701b0c45c69bbbc1dd355f540)`(const ERHAPI_SessionPlayerStatus & NewValue)` <a id="structFRHAPI__AuditEvent_1a1808222701b0c45c69bbbc1dd355f540"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerStatus`](#structFRHAPI__AuditEvent_1ac41ba0b2dd82c4a93e3b08bf87cc360c)`(const ERHAPI_SessionPlayerStatus & NewValue)` <a id="structFRHAPI__AuditEvent_1ac41ba0b2dd82c4a93e3b08bf87cc360c"></a>
 
 Sets the value of PlayerStatus_Optional and also sets PlayerStatus_IsSet to true.
 
-#### `public inline void `[`SetPlayerStatus`](#structFRHAPI__AuditEvent_1a8fdc03635bf2ac0aa85dadfd14bcc4b1)`(ERHAPI_SessionPlayerStatus && NewValue)` <a id="structFRHAPI__AuditEvent_1a8fdc03635bf2ac0aa85dadfd14bcc4b1"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerStatus`](#structFRHAPI__AuditEvent_1a3a002aa07e49cc1ed93fa71e2a9ec1ed)`(ERHAPI_SessionPlayerStatus && NewValue)` <a id="structFRHAPI__AuditEvent_1a3a002aa07e49cc1ed93fa71e2a9ec1ed"></a>
 
 Sets the value of PlayerStatus_Optional and also sets PlayerStatus_IsSet to true using move semantics.
 
@@ -1496,39 +1388,35 @@ Sets the value of PlayerStatus_Optional and also sets PlayerStatus_IsSet to true
 
 Clears the value of PlayerStatus_Optional and sets PlayerStatus_IsSet to false.
 
-#### `public inline bool `[`IsPlayerStatusSet`](#structFRHAPI__AuditEvent_1ab8a02c50baa7a910cdddb0d16821f76e)`() const` <a id="structFRHAPI__AuditEvent_1ab8a02c50baa7a910cdddb0d16821f76e"></a>
-
-Checks whether PlayerStatus_Optional has been set.
-
-#### `public inline ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1aabc4e741afef959011edeba1e322ed5f)`()` <a id="structFRHAPI__AuditEvent_1aabc4e741afef959011edeba1e322ed5f"></a>
+#### `public inline FORCEINLINE ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1a27c279b9a1c59c9106ef1fc8f605254f)`()` <a id="structFRHAPI__AuditEvent_1a27c279b9a1c59c9106ef1fc8f605254f"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1a8709c5798d7f4680442f5905a0b98ad2)`() const` <a id="structFRHAPI__AuditEvent_1a8709c5798d7f4680442f5905a0b98ad2"></a>
+#### `public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1a2edfd8c13324c45ec00a910c0350d25e)`() const` <a id="structFRHAPI__AuditEvent_1a2edfd8c13324c45ec00a910c0350d25e"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1ac18e3c7dd670a1066cf615b3d0a48f9b)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ac18e3c7dd670a1066cf615b3d0a48f9b"></a>
+#### `public inline FORCEINLINE const ERHAPI_Platform & `[`GetPlatform`](#structFRHAPI__AuditEvent_1a70be3370fba07ce40e3b189cded9b906)`(const ERHAPI_Platform & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a70be3370fba07ce40e3b189cded9b906"></a>
 
 Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlatform`](#structFRHAPI__AuditEvent_1a2fe237dcd924c666d499899ee49e36d0)`(ERHAPI_Platform & OutValue) const` <a id="structFRHAPI__AuditEvent_1a2fe237dcd924c666d499899ee49e36d0"></a>
+#### `public inline FORCEINLINE bool `[`GetPlatform`](#structFRHAPI__AuditEvent_1ad24996370aa9bc721bbc1035934f9da4)`(ERHAPI_Platform & OutValue) const` <a id="structFRHAPI__AuditEvent_1ad24996370aa9bc721bbc1035934f9da4"></a>
 
 Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__AuditEvent_1a4b645d47024409c1330df75e63812afa)`()` <a id="structFRHAPI__AuditEvent_1a4b645d47024409c1330df75e63812afa"></a>
+#### `public inline FORCEINLINE ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__AuditEvent_1a443f6ef1985703ca87fcce4fff3ea2ff)`()` <a id="structFRHAPI__AuditEvent_1a443f6ef1985703ca87fcce4fff3ea2ff"></a>
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__AuditEvent_1a03e96a3d3d369201d6657fe511caabcf)`() const` <a id="structFRHAPI__AuditEvent_1a03e96a3d3d369201d6657fe511caabcf"></a>
+#### `public inline FORCEINLINE const ERHAPI_Platform * `[`GetPlatformOrNull`](#structFRHAPI__AuditEvent_1acdb35b32bc55c185ea7a4cbe82113d19)`() const` <a id="structFRHAPI__AuditEvent_1acdb35b32bc55c185ea7a4cbe82113d19"></a>
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__AuditEvent_1abbd1b1149c514a1526d84bbfac1df1cf)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__AuditEvent_1abbd1b1149c514a1526d84bbfac1df1cf"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__AuditEvent_1a10cacd41a1b8cb8cef6731e25db153d3)`(const ERHAPI_Platform & NewValue)` <a id="structFRHAPI__AuditEvent_1a10cacd41a1b8cb8cef6731e25db153d3"></a>
 
 Sets the value of Platform_Optional and also sets Platform_IsSet to true.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__AuditEvent_1a1d7407c70e5958528911610f12794cd2)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__AuditEvent_1a1d7407c70e5958528911610f12794cd2"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__AuditEvent_1aca514847e7fa20b5df3309b23bdb894c)`(ERHAPI_Platform && NewValue)` <a id="structFRHAPI__AuditEvent_1aca514847e7fa20b5df3309b23bdb894c"></a>
 
 Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 
@@ -1536,39 +1424,35 @@ Sets the value of Platform_Optional and also sets Platform_IsSet to true using m
 
 Clears the value of Platform_Optional and sets Platform_IsSet to false.
 
-#### `public inline bool `[`IsPlatformSet`](#structFRHAPI__AuditEvent_1ae0374725fe376fb4276ea59474a0e783)`() const` <a id="structFRHAPI__AuditEvent_1ae0374725fe376fb4276ea59474a0e783"></a>
-
-Checks whether Platform_Optional has been set.
-
-#### `public inline FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a974adc6364cea5eeb2e61710ab53cdf6)`()` <a id="structFRHAPI__AuditEvent_1a974adc6364cea5eeb2e61710ab53cdf6"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1ac2f3a67016f72e94da6f366c17833f03)`()` <a id="structFRHAPI__AuditEvent_1ac2f3a67016f72e94da6f366c17833f03"></a>
 
 Gets the value of PlatformSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a371217125fdef7b21f87381bf7ae576c)`() const` <a id="structFRHAPI__AuditEvent_1a371217125fdef7b21f87381bf7ae576c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a9295689d9e5f2891e12becb5d3924ac0)`() const` <a id="structFRHAPI__AuditEvent_1a9295689d9e5f2891e12becb5d3924ac0"></a>
 
 Gets the value of PlatformSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1aa22d3bd440c61d4081d72ab188a34227)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aa22d3bd440c61d4081d72ab188a34227"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1ad8a105da3a9ba6c61edb9b720c59b42e)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ad8a105da3a9ba6c61edb9b720c59b42e"></a>
 
 Gets the value of PlatformSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a2813c6585a35e3684dc5803706fcd359)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a2813c6585a35e3684dc5803706fcd359"></a>
+#### `public inline FORCEINLINE bool `[`GetPlatformSessionId`](#structFRHAPI__AuditEvent_1a35cad7ed82d211f7b1f732e1b8226190)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a35cad7ed82d211f7b1f732e1b8226190"></a>
 
 Fills OutValue with the value of PlatformSessionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPlatformSessionIdOrNull`](#structFRHAPI__AuditEvent_1a8dd9f9235a468b1dfea40aed2c759f34)`()` <a id="structFRHAPI__AuditEvent_1a8dd9f9235a468b1dfea40aed2c759f34"></a>
+#### `public inline FORCEINLINE FString * `[`GetPlatformSessionIdOrNull`](#structFRHAPI__AuditEvent_1a1e8c2153fe4ac13e8394831afbada6a9)`()` <a id="structFRHAPI__AuditEvent_1a1e8c2153fe4ac13e8394831afbada6a9"></a>
 
 Returns a pointer to PlatformSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPlatformSessionIdOrNull`](#structFRHAPI__AuditEvent_1aa80d516e3369999fde09f8f64719bfa3)`() const` <a id="structFRHAPI__AuditEvent_1aa80d516e3369999fde09f8f64719bfa3"></a>
+#### `public inline FORCEINLINE const FString * `[`GetPlatformSessionIdOrNull`](#structFRHAPI__AuditEvent_1ab107564dddd6001152560a433123374d)`() const` <a id="structFRHAPI__AuditEvent_1ab107564dddd6001152560a433123374d"></a>
 
 Returns a pointer to PlatformSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatformSessionId`](#structFRHAPI__AuditEvent_1ac2eef0648ddb5613c03bfbd36af86360)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1ac2eef0648ddb5613c03bfbd36af86360"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformSessionId`](#structFRHAPI__AuditEvent_1a0b63a266c286d034681052d0847eaf8c)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a0b63a266c286d034681052d0847eaf8c"></a>
 
 Sets the value of PlatformSessionId_Optional and also sets PlatformSessionId_IsSet to true.
 
-#### `public inline void `[`SetPlatformSessionId`](#structFRHAPI__AuditEvent_1a1e17878a603c771549c57fc5cb95da07)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a1e17878a603c771549c57fc5cb95da07"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformSessionId`](#structFRHAPI__AuditEvent_1ae5c83aa29fb978b025b706ef67ccf8c7)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1ae5c83aa29fb978b025b706ef67ccf8c7"></a>
 
 Sets the value of PlatformSessionId_Optional and also sets PlatformSessionId_IsSet to true using move semantics.
 
@@ -1576,39 +1460,35 @@ Sets the value of PlatformSessionId_Optional and also sets PlatformSessionId_IsS
 
 Clears the value of PlatformSessionId_Optional and sets PlatformSessionId_IsSet to false.
 
-#### `public inline bool `[`IsPlatformSessionIdSet`](#structFRHAPI__AuditEvent_1a66f950e18c3943f421f566d3d96d8574)`() const` <a id="structFRHAPI__AuditEvent_1a66f950e18c3943f421f566d3d96d8574"></a>
-
-Checks whether PlatformSessionId_Optional has been set.
-
-#### `public inline FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a6c52aaba3aa6f157438949df4e997393)`()` <a id="structFRHAPI__AuditEvent_1a6c52aaba3aa6f157438949df4e997393"></a>
+#### `public inline FORCEINLINE FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a9767a0215fc2902dbc9fcf094dcc0abe)`()` <a id="structFRHAPI__AuditEvent_1a9767a0215fc2902dbc9fcf094dcc0abe"></a>
 
 Gets the value of InstanceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a95c584986de9559f5ef90be27ae5cf44)`() const` <a id="structFRHAPI__AuditEvent_1a95c584986de9559f5ef90be27ae5cf44"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a8ea637adeb608b72dfdc678b02ca0418)`() const` <a id="structFRHAPI__AuditEvent_1a8ea637adeb608b72dfdc678b02ca0418"></a>
 
 Gets the value of InstanceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a9c507ad419e5f0f85183685f32b09f27)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a9c507ad419e5f0f85183685f32b09f27"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__AuditEvent_1aae8d37b8b34f0f4f8e838cc815c09883)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aae8d37b8b34f0f4f8e838cc815c09883"></a>
 
 Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a22c9fb95a6d83f9f192bbd2e5903ae85)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a22c9fb95a6d83f9f192bbd2e5903ae85"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceId`](#structFRHAPI__AuditEvent_1a9b535a11bd295988673142504eb973a5)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a9b535a11bd295988673142504eb973a5"></a>
 
 Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__AuditEvent_1a3dc3c17828f2aac3ee575db3b20aa714)`()` <a id="structFRHAPI__AuditEvent_1a3dc3c17828f2aac3ee575db3b20aa714"></a>
+#### `public inline FORCEINLINE FString * `[`GetInstanceIdOrNull`](#structFRHAPI__AuditEvent_1ae6910ddd9463485eb8bfa7b8f4455918)`()` <a id="structFRHAPI__AuditEvent_1ae6910ddd9463485eb8bfa7b8f4455918"></a>
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__AuditEvent_1afeee9b72c3a65699e238e3121635917e)`() const` <a id="structFRHAPI__AuditEvent_1afeee9b72c3a65699e238e3121635917e"></a>
+#### `public inline FORCEINLINE const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__AuditEvent_1ac747e50365dd690212cfb805631285d8)`() const` <a id="structFRHAPI__AuditEvent_1ac747e50365dd690212cfb805631285d8"></a>
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__AuditEvent_1a4b6b15fe6bb2f8cc822c9da426c6745f)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a4b6b15fe6bb2f8cc822c9da426c6745f"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__AuditEvent_1a3fb12da1adc89716d5143adfd12cc663)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a3fb12da1adc89716d5143adfd12cc663"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__AuditEvent_1a9a7fc2a6faab6778919a07a24220507e)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a9a7fc2a6faab6778919a07a24220507e"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__AuditEvent_1a54470fd1a97360120309a25a1c3af1df)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a54470fd1a97360120309a25a1c3af1df"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 
@@ -1616,39 +1496,35 @@ Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true usi
 
 Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
 
-#### `public inline bool `[`IsInstanceIdSet`](#structFRHAPI__AuditEvent_1acc3a47b0824f678387ab3e2291e3c9a4)`() const` <a id="structFRHAPI__AuditEvent_1acc3a47b0824f678387ab3e2291e3c9a4"></a>
-
-Checks whether InstanceId_Optional has been set.
-
-#### `public inline ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1ad89ab1c0a0f645772ce78d27ed2f89b5)`()` <a id="structFRHAPI__AuditEvent_1ad89ab1c0a0f645772ce78d27ed2f89b5"></a>
+#### `public inline FORCEINLINE ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1a386ac2eb9e17d95b76bd495d97bb80cc)`()` <a id="structFRHAPI__AuditEvent_1a386ac2eb9e17d95b76bd495d97bb80cc"></a>
 
 Gets the value of HostType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1a42374677ebd6e8b1e46e81de44f3514b)`() const` <a id="structFRHAPI__AuditEvent_1a42374677ebd6e8b1e46e81de44f3514b"></a>
+#### `public inline FORCEINLINE const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1a35d0843da01040379a15556da6de530b)`() const` <a id="structFRHAPI__AuditEvent_1a35d0843da01040379a15556da6de530b"></a>
 
 Gets the value of HostType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1a6f9994ce760d7019a8c84b54210255ed)`(const ERHAPI_HostType & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a6f9994ce760d7019a8c84b54210255ed"></a>
+#### `public inline FORCEINLINE const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__AuditEvent_1ac06ce4291fed312e21cc95425279317a)`(const ERHAPI_HostType & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ac06ce4291fed312e21cc95425279317a"></a>
 
 Gets the value of HostType_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetHostType`](#structFRHAPI__AuditEvent_1a3d7240abb4d60f56235c65c6ea077979)`(ERHAPI_HostType & OutValue) const` <a id="structFRHAPI__AuditEvent_1a3d7240abb4d60f56235c65c6ea077979"></a>
+#### `public inline FORCEINLINE bool `[`GetHostType`](#structFRHAPI__AuditEvent_1a95197d70498b411795bd55d66c8586b9)`(ERHAPI_HostType & OutValue) const` <a id="structFRHAPI__AuditEvent_1a95197d70498b411795bd55d66c8586b9"></a>
 
 Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__AuditEvent_1aa535e0737848b4f8511041bfd86005df)`()` <a id="structFRHAPI__AuditEvent_1aa535e0737848b4f8511041bfd86005df"></a>
+#### `public inline FORCEINLINE ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__AuditEvent_1a56ba39fc593b29da99b9b22795e27e96)`()` <a id="structFRHAPI__AuditEvent_1a56ba39fc593b29da99b9b22795e27e96"></a>
 
 Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__AuditEvent_1a822aebccf8bebb0cfa60fb36aaa6bc37)`() const` <a id="structFRHAPI__AuditEvent_1a822aebccf8bebb0cfa60fb36aaa6bc37"></a>
+#### `public inline FORCEINLINE const ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__AuditEvent_1a42c719c0f0ab8d940c987357141feee1)`() const` <a id="structFRHAPI__AuditEvent_1a42c719c0f0ab8d940c987357141feee1"></a>
 
 Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetHostType`](#structFRHAPI__AuditEvent_1a227a5d5ebab31508e083798da384a47c)`(const ERHAPI_HostType & NewValue)` <a id="structFRHAPI__AuditEvent_1a227a5d5ebab31508e083798da384a47c"></a>
+#### `public inline FORCEINLINE void `[`SetHostType`](#structFRHAPI__AuditEvent_1aa5bad71ea033a61f46a1777a7a8edd07)`(const ERHAPI_HostType & NewValue)` <a id="structFRHAPI__AuditEvent_1aa5bad71ea033a61f46a1777a7a8edd07"></a>
 
 Sets the value of HostType_Optional and also sets HostType_IsSet to true.
 
-#### `public inline void `[`SetHostType`](#structFRHAPI__AuditEvent_1ac75f49285f71d1ac1fcea3baf5b8ef4a)`(ERHAPI_HostType && NewValue)` <a id="structFRHAPI__AuditEvent_1ac75f49285f71d1ac1fcea3baf5b8ef4a"></a>
+#### `public inline FORCEINLINE void `[`SetHostType`](#structFRHAPI__AuditEvent_1aac8e3dd3176c5d4ca98eeac71266e00d)`(ERHAPI_HostType && NewValue)` <a id="structFRHAPI__AuditEvent_1aac8e3dd3176c5d4ca98eeac71266e00d"></a>
 
 Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics.
 
@@ -1656,39 +1532,35 @@ Sets the value of HostType_Optional and also sets HostType_IsSet to true using m
 
 Clears the value of HostType_Optional and sets HostType_IsSet to false.
 
-#### `public inline bool `[`IsHostTypeSet`](#structFRHAPI__AuditEvent_1a6100cac42fb0561f9a4848569cf529bf)`() const` <a id="structFRHAPI__AuditEvent_1a6100cac42fb0561f9a4848569cf529bf"></a>
-
-Checks whether HostType_Optional has been set.
-
-#### `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1aa5691aeaece583dffe9bc8943bd84c37)`()` <a id="structFRHAPI__AuditEvent_1aa5691aeaece583dffe9bc8943bd84c37"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1abdb5a506986706f05f34eeb9f0210f0d)`()` <a id="structFRHAPI__AuditEvent_1abdb5a506986706f05f34eeb9f0210f0d"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1ae2f59ee7b85a3d8e2f9b5a9da6111daf)`() const` <a id="structFRHAPI__AuditEvent_1ae2f59ee7b85a3d8e2f9b5a9da6111daf"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a2b6e5c79301b6508ec5abbd4c1deddec)`() const` <a id="structFRHAPI__AuditEvent_1a2b6e5c79301b6508ec5abbd4c1deddec"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a7797b348c4d7cae9df21394fbadd88e8)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a7797b348c4d7cae9df21394fbadd88e8"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a53a19c353868c078065a30ce34ae05c6)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a53a19c353868c078065a30ce34ae05c6"></a>
 
 Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a78914fb5273ca86ef9130daf01c0d299)`(FGuid & OutValue) const` <a id="structFRHAPI__AuditEvent_1a78914fb5273ca86ef9130daf01c0d299"></a>
+#### `public inline FORCEINLINE bool `[`GetHostPlayerUuid`](#structFRHAPI__AuditEvent_1ace488d313e0dbb6f8857e15d3b8840e4)`(FGuid & OutValue) const` <a id="structFRHAPI__AuditEvent_1ace488d313e0dbb6f8857e15d3b8840e4"></a>
 
 Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a68b2f715020706363d7242b8a4f1cdcc)`()` <a id="structFRHAPI__AuditEvent_1a68b2f715020706363d7242b8a4f1cdcc"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1ad3fff41d57b4bd0099f0ddced73ea49e)`()` <a id="structFRHAPI__AuditEvent_1ad3fff41d57b4bd0099f0ddced73ea49e"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a5affa744845de1cbf2cf16ae43aee5f5)`() const` <a id="structFRHAPI__AuditEvent_1a5affa744845de1cbf2cf16ae43aee5f5"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__AuditEvent_1a9f1c0590f096121f7e6e3f806e515a3b)`() const` <a id="structFRHAPI__AuditEvent_1a9f1c0590f096121f7e6e3f806e515a3b"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__AuditEvent_1afe493a5cd3b78599642e2f372e75b9a0)`(const FGuid & NewValue)` <a id="structFRHAPI__AuditEvent_1afe493a5cd3b78599642e2f372e75b9a0"></a>
+#### `public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a2f06e2e1a8a369c5b9d526be34cac7b7)`(const FGuid & NewValue)` <a id="structFRHAPI__AuditEvent_1a2f06e2e1a8a369c5b9d526be34cac7b7"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a6651e7be036259b5e2cbe048f74c154c)`(FGuid && NewValue)` <a id="structFRHAPI__AuditEvent_1a6651e7be036259b5e2cbe048f74c154c"></a>
+#### `public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__AuditEvent_1a1a838b80addb82a5cf8d02e59e96574c)`(FGuid && NewValue)` <a id="structFRHAPI__AuditEvent_1a1a838b80addb82a5cf8d02e59e96574c"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 
@@ -1696,39 +1568,35 @@ Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to 
 
 Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsHostPlayerUuidSet`](#structFRHAPI__AuditEvent_1a1ee0aa13a2cbd42dc35764feb2da14da)`() const` <a id="structFRHAPI__AuditEvent_1a1ee0aa13a2cbd42dc35764feb2da14da"></a>
-
-Checks whether HostPlayerUuid_Optional has been set.
-
-#### `public inline FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1ae23a654f9bc3cf73f3a99d071f5464b8)`()` <a id="structFRHAPI__AuditEvent_1ae23a654f9bc3cf73f3a99d071f5464b8"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a27e6599db6430603c094299c0ce52816)`()` <a id="structFRHAPI__AuditEvent_1a27e6599db6430603c094299c0ce52816"></a>
 
 Gets the value of InstanceRequestTemplate_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a8d42f8f8601671ad9673a982aa62b287)`() const` <a id="structFRHAPI__AuditEvent_1a8d42f8f8601671ad9673a982aa62b287"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a5aae84adb4f2b622d39c05a52ed29778)`() const` <a id="structFRHAPI__AuditEvent_1a5aae84adb4f2b622d39c05a52ed29778"></a>
 
 Gets the value of InstanceRequestTemplate_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1af1a399766a52e6e04476b72b43156a3b)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1af1a399766a52e6e04476b72b43156a3b"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1aa475de4a2f45bc068a616876d0e22e55)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aa475de4a2f45bc068a616876d0e22e55"></a>
 
 Gets the value of InstanceRequestTemplate_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a92a8f742f19ffff30d7637eb0a422e26)`(FGuid & OutValue) const` <a id="structFRHAPI__AuditEvent_1a92a8f742f19ffff30d7637eb0a422e26"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a0e910250e802e4d43c895598348eee27)`(FGuid & OutValue) const` <a id="structFRHAPI__AuditEvent_1a0e910250e802e4d43c895598348eee27"></a>
 
 Fills OutValue with the value of InstanceRequestTemplate_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetInstanceRequestTemplateOrNull`](#structFRHAPI__AuditEvent_1a8317e0d9827eba8c30cfe674070e6b09)`()` <a id="structFRHAPI__AuditEvent_1a8317e0d9827eba8c30cfe674070e6b09"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetInstanceRequestTemplateOrNull`](#structFRHAPI__AuditEvent_1acd2b008f549ec2081bff36efff7eb87e)`()` <a id="structFRHAPI__AuditEvent_1acd2b008f549ec2081bff36efff7eb87e"></a>
 
 Returns a pointer to InstanceRequestTemplate_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetInstanceRequestTemplateOrNull`](#structFRHAPI__AuditEvent_1a202953ac712476f6401eb93360a94185)`() const` <a id="structFRHAPI__AuditEvent_1a202953ac712476f6401eb93360a94185"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetInstanceRequestTemplateOrNull`](#structFRHAPI__AuditEvent_1a32d9c7f1697faf23496e060951250674)`() const` <a id="structFRHAPI__AuditEvent_1a32d9c7f1697faf23496e060951250674"></a>
 
 Returns a pointer to InstanceRequestTemplate_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a5c57bc75cb577ee794c672cf55bae07b)`(const FGuid & NewValue)` <a id="structFRHAPI__AuditEvent_1a5c57bc75cb577ee794c672cf55bae07b"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1ad656d7b8a38a86f918936db5f9d1b903)`(const FGuid & NewValue)` <a id="structFRHAPI__AuditEvent_1ad656d7b8a38a86f918936db5f9d1b903"></a>
 
 Sets the value of InstanceRequestTemplate_Optional and also sets InstanceRequestTemplate_IsSet to true.
 
-#### `public inline void `[`SetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1a76fc5a4577fdf7462180bb4a2979c54e)`(FGuid && NewValue)` <a id="structFRHAPI__AuditEvent_1a76fc5a4577fdf7462180bb4a2979c54e"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceRequestTemplate`](#structFRHAPI__AuditEvent_1afafc79e052dff62d1fc32f0ce664c657)`(FGuid && NewValue)` <a id="structFRHAPI__AuditEvent_1afafc79e052dff62d1fc32f0ce664c657"></a>
 
 Sets the value of InstanceRequestTemplate_Optional and also sets InstanceRequestTemplate_IsSet to true using move semantics.
 
@@ -1736,39 +1604,35 @@ Sets the value of InstanceRequestTemplate_Optional and also sets InstanceRequest
 
 Clears the value of InstanceRequestTemplate_Optional and sets InstanceRequestTemplate_IsSet to false.
 
-#### `public inline bool `[`IsInstanceRequestTemplateSet`](#structFRHAPI__AuditEvent_1aeef6c3214922d53a11bacceb7e3cea68)`() const` <a id="structFRHAPI__AuditEvent_1aeef6c3214922d53a11bacceb7e3cea68"></a>
-
-Checks whether InstanceRequestTemplate_Optional has been set.
-
-#### `public inline FString & `[`GetMap`](#structFRHAPI__AuditEvent_1a80e751d50d3b93ab4077a12b1e61da87)`()` <a id="structFRHAPI__AuditEvent_1a80e751d50d3b93ab4077a12b1e61da87"></a>
+#### `public inline FORCEINLINE FString & `[`GetMap`](#structFRHAPI__AuditEvent_1ae29304dfd2078fb9d58b39a5ddcc3c80)`()` <a id="structFRHAPI__AuditEvent_1ae29304dfd2078fb9d58b39a5ddcc3c80"></a>
 
 Gets the value of Map_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMap`](#structFRHAPI__AuditEvent_1a87d0a30f059cbbd967b14abdbf54c59e)`() const` <a id="structFRHAPI__AuditEvent_1a87d0a30f059cbbd967b14abdbf54c59e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMap`](#structFRHAPI__AuditEvent_1a6b6b1d4e992a03988bddceac5212293e)`() const` <a id="structFRHAPI__AuditEvent_1a6b6b1d4e992a03988bddceac5212293e"></a>
 
 Gets the value of Map_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMap`](#structFRHAPI__AuditEvent_1ad01875a9c3ae376fb5c2bdcf98d04883)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ad01875a9c3ae376fb5c2bdcf98d04883"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMap`](#structFRHAPI__AuditEvent_1aff99f512234c6aa63aaa07e87a7d0c84)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aff99f512234c6aa63aaa07e87a7d0c84"></a>
 
 Gets the value of Map_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMap`](#structFRHAPI__AuditEvent_1aa3733fd2051cab50d2a2c5875f035bc5)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1aa3733fd2051cab50d2a2c5875f035bc5"></a>
+#### `public inline FORCEINLINE bool `[`GetMap`](#structFRHAPI__AuditEvent_1ab5caa6311a051f4e6f4b5a2cfb142475)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1ab5caa6311a051f4e6f4b5a2cfb142475"></a>
 
 Fills OutValue with the value of Map_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMapOrNull`](#structFRHAPI__AuditEvent_1ac34ec183155bd05e5debe7cb4dc14baf)`()` <a id="structFRHAPI__AuditEvent_1ac34ec183155bd05e5debe7cb4dc14baf"></a>
+#### `public inline FORCEINLINE FString * `[`GetMapOrNull`](#structFRHAPI__AuditEvent_1ae3e5fdf30eda8508e67ff90611327909)`()` <a id="structFRHAPI__AuditEvent_1ae3e5fdf30eda8508e67ff90611327909"></a>
 
 Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMapOrNull`](#structFRHAPI__AuditEvent_1a2e6dc6c083fad20a72415795ce6acf18)`() const` <a id="structFRHAPI__AuditEvent_1a2e6dc6c083fad20a72415795ce6acf18"></a>
+#### `public inline FORCEINLINE const FString * `[`GetMapOrNull`](#structFRHAPI__AuditEvent_1a4fa483caddfa707d019b71f51f9e114d)`() const` <a id="structFRHAPI__AuditEvent_1a4fa483caddfa707d019b71f51f9e114d"></a>
 
 Returns a pointer to Map_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMap`](#structFRHAPI__AuditEvent_1a8c12843b486e7c44895f91e3048c6c16)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a8c12843b486e7c44895f91e3048c6c16"></a>
+#### `public inline FORCEINLINE void `[`SetMap`](#structFRHAPI__AuditEvent_1a5862c75241083eef9e7f97bd13f80849)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a5862c75241083eef9e7f97bd13f80849"></a>
 
 Sets the value of Map_Optional and also sets Map_IsSet to true.
 
-#### `public inline void `[`SetMap`](#structFRHAPI__AuditEvent_1a26bb3a4f8c3a89e44e03fef02d5c0f4c)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a26bb3a4f8c3a89e44e03fef02d5c0f4c"></a>
+#### `public inline FORCEINLINE void `[`SetMap`](#structFRHAPI__AuditEvent_1a4ba6f0bcdab30e569a855ae7dd0b2d59)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a4ba6f0bcdab30e569a855ae7dd0b2d59"></a>
 
 Sets the value of Map_Optional and also sets Map_IsSet to true using move semantics.
 
@@ -1776,39 +1640,35 @@ Sets the value of Map_Optional and also sets Map_IsSet to true using move semant
 
 Clears the value of Map_Optional and sets Map_IsSet to false.
 
-#### `public inline bool `[`IsMapSet`](#structFRHAPI__AuditEvent_1abde78ff0c14f2822e4a94a7677b1c2f8)`() const` <a id="structFRHAPI__AuditEvent_1abde78ff0c14f2822e4a94a7677b1c2f8"></a>
-
-Checks whether Map_Optional has been set.
-
-#### `public inline FString & `[`GetMode`](#structFRHAPI__AuditEvent_1adcf28618d9c36a083ab5c1a3df2874b0)`()` <a id="structFRHAPI__AuditEvent_1adcf28618d9c36a083ab5c1a3df2874b0"></a>
+#### `public inline FORCEINLINE FString & `[`GetMode`](#structFRHAPI__AuditEvent_1add27453eb4ec38162568af4621fa8108)`()` <a id="structFRHAPI__AuditEvent_1add27453eb4ec38162568af4621fa8108"></a>
 
 Gets the value of Mode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMode`](#structFRHAPI__AuditEvent_1a8f59d78222ce45cf9221eed98e8f0c67)`() const` <a id="structFRHAPI__AuditEvent_1a8f59d78222ce45cf9221eed98e8f0c67"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMode`](#structFRHAPI__AuditEvent_1ad7b254bed04fc625bca8217c2ca120ce)`() const` <a id="structFRHAPI__AuditEvent_1ad7b254bed04fc625bca8217c2ca120ce"></a>
 
 Gets the value of Mode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMode`](#structFRHAPI__AuditEvent_1a51f7fa2042e7984522a5b7d06330e637)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a51f7fa2042e7984522a5b7d06330e637"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMode`](#structFRHAPI__AuditEvent_1ab6c0faa0ff73fce7857e952ce7b044a2)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ab6c0faa0ff73fce7857e952ce7b044a2"></a>
 
 Gets the value of Mode_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMode`](#structFRHAPI__AuditEvent_1a3d2d06cc48d5c42680fde1952dacf915)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a3d2d06cc48d5c42680fde1952dacf915"></a>
+#### `public inline FORCEINLINE bool `[`GetMode`](#structFRHAPI__AuditEvent_1a7eaafb2f810d1c72db151eb13aa6df5a)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a7eaafb2f810d1c72db151eb13aa6df5a"></a>
 
 Fills OutValue with the value of Mode_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetModeOrNull`](#structFRHAPI__AuditEvent_1ac8ad52f0c48e256f0a7bcaa389093f58)`()` <a id="structFRHAPI__AuditEvent_1ac8ad52f0c48e256f0a7bcaa389093f58"></a>
+#### `public inline FORCEINLINE FString * `[`GetModeOrNull`](#structFRHAPI__AuditEvent_1a5126cb50f56533feff14bc1cc5304798)`()` <a id="structFRHAPI__AuditEvent_1a5126cb50f56533feff14bc1cc5304798"></a>
 
 Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetModeOrNull`](#structFRHAPI__AuditEvent_1acbce7e7f278e5d197afdb137fb2e7523)`() const` <a id="structFRHAPI__AuditEvent_1acbce7e7f278e5d197afdb137fb2e7523"></a>
+#### `public inline FORCEINLINE const FString * `[`GetModeOrNull`](#structFRHAPI__AuditEvent_1aff2ca6d9f91971d7a56ca09c14588a88)`() const` <a id="structFRHAPI__AuditEvent_1aff2ca6d9f91971d7a56ca09c14588a88"></a>
 
 Returns a pointer to Mode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMode`](#structFRHAPI__AuditEvent_1acdf423879d2e7c7dd44ad22aa8207c68)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1acdf423879d2e7c7dd44ad22aa8207c68"></a>
+#### `public inline FORCEINLINE void `[`SetMode`](#structFRHAPI__AuditEvent_1aa2afba479bd7c405c1c0990dcecef905)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1aa2afba479bd7c405c1c0990dcecef905"></a>
 
 Sets the value of Mode_Optional and also sets Mode_IsSet to true.
 
-#### `public inline void `[`SetMode`](#structFRHAPI__AuditEvent_1a648c4e548da4da4383dce888df33752b)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a648c4e548da4da4383dce888df33752b"></a>
+#### `public inline FORCEINLINE void `[`SetMode`](#structFRHAPI__AuditEvent_1afb742da8546b37fbedc147651a555637)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1afb742da8546b37fbedc147651a555637"></a>
 
 Sets the value of Mode_Optional and also sets Mode_IsSet to true using move semantics.
 
@@ -1816,39 +1676,35 @@ Sets the value of Mode_Optional and also sets Mode_IsSet to true using move sema
 
 Clears the value of Mode_Optional and sets Mode_IsSet to false.
 
-#### `public inline bool `[`IsModeSet`](#structFRHAPI__AuditEvent_1ab0ee7f51d48c7152d659dfa1eb26533d)`() const` <a id="structFRHAPI__AuditEvent_1ab0ee7f51d48c7152d659dfa1eb26533d"></a>
-
-Checks whether Mode_Optional has been set.
-
-#### `public inline FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a00bbbc7432741772125a90b937d63cf5)`()` <a id="structFRHAPI__AuditEvent_1a00bbbc7432741772125a90b937d63cf5"></a>
+#### `public inline FORCEINLINE FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a43f1df0078ddcad4ea526ad9b83ea3c2)`()` <a id="structFRHAPI__AuditEvent_1a43f1df0078ddcad4ea526ad9b83ea3c2"></a>
 
 Gets the value of AllocationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a70e119b3131c908a10ca9f89ce233bc3)`() const` <a id="structFRHAPI__AuditEvent_1a70e119b3131c908a10ca9f89ce233bc3"></a>
+#### `public inline FORCEINLINE const FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a1ca3c1bf2fd2619cdf165041cfc28eb5)`() const` <a id="structFRHAPI__AuditEvent_1a1ca3c1bf2fd2619cdf165041cfc28eb5"></a>
 
 Gets the value of AllocationId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1a596c69a41a6a66bde6b84791ae838c68)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a596c69a41a6a66bde6b84791ae838c68"></a>
+#### `public inline FORCEINLINE const FString & `[`GetAllocationId`](#structFRHAPI__AuditEvent_1af07323c069d63c94f8c053c03ddaa2be)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1af07323c069d63c94f8c053c03ddaa2be"></a>
 
 Gets the value of AllocationId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAllocationId`](#structFRHAPI__AuditEvent_1aca70562b5536641a9011b237a8747858)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1aca70562b5536641a9011b237a8747858"></a>
+#### `public inline FORCEINLINE bool `[`GetAllocationId`](#structFRHAPI__AuditEvent_1af06177587ca74057c2780339e19e8a67)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1af06177587ca74057c2780339e19e8a67"></a>
 
 Fills OutValue with the value of AllocationId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetAllocationIdOrNull`](#structFRHAPI__AuditEvent_1a9d7844f488e7ffce72d12bea8d4a085e)`()` <a id="structFRHAPI__AuditEvent_1a9d7844f488e7ffce72d12bea8d4a085e"></a>
+#### `public inline FORCEINLINE FString * `[`GetAllocationIdOrNull`](#structFRHAPI__AuditEvent_1ad3431f861a022e108d4f50e3f4ab53b5)`()` <a id="structFRHAPI__AuditEvent_1ad3431f861a022e108d4f50e3f4ab53b5"></a>
 
 Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__AuditEvent_1afbb3c872129c4e3ff18a4764cd9d6068)`() const` <a id="structFRHAPI__AuditEvent_1afbb3c872129c4e3ff18a4764cd9d6068"></a>
+#### `public inline FORCEINLINE const FString * `[`GetAllocationIdOrNull`](#structFRHAPI__AuditEvent_1a2aa6318686b38991d882f4e23fb26646)`() const` <a id="structFRHAPI__AuditEvent_1a2aa6318686b38991d882f4e23fb26646"></a>
 
 Returns a pointer to AllocationId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAllocationId`](#structFRHAPI__AuditEvent_1a26ff30d159006de17d5f4eb37737ecd5)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a26ff30d159006de17d5f4eb37737ecd5"></a>
+#### `public inline FORCEINLINE void `[`SetAllocationId`](#structFRHAPI__AuditEvent_1aea8413ec827237dce3fdcc0795397889)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1aea8413ec827237dce3fdcc0795397889"></a>
 
 Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true.
 
-#### `public inline void `[`SetAllocationId`](#structFRHAPI__AuditEvent_1aa84df1132beaf5bb229a539f3dbb268d)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1aa84df1132beaf5bb229a539f3dbb268d"></a>
+#### `public inline FORCEINLINE void `[`SetAllocationId`](#structFRHAPI__AuditEvent_1a38ae21677cd388c01f1299e54620a6bc)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a38ae21677cd388c01f1299e54620a6bc"></a>
 
 Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true using move semantics.
 
@@ -1856,39 +1712,35 @@ Sets the value of AllocationId_Optional and also sets AllocationId_IsSet to true
 
 Clears the value of AllocationId_Optional and sets AllocationId_IsSet to false.
 
-#### `public inline bool `[`IsAllocationIdSet`](#structFRHAPI__AuditEvent_1a8688ecf4ec4beef7f70b1b8eccb4f6fd)`() const` <a id="structFRHAPI__AuditEvent_1a8688ecf4ec4beef7f70b1b8eccb4f6fd"></a>
-
-Checks whether AllocationId_Optional has been set.
-
-#### `public inline ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1abbc75d3173a17443d93ebbd9bf48062e)`()` <a id="structFRHAPI__AuditEvent_1abbc75d3173a17443d93ebbd9bf48062e"></a>
+#### `public inline FORCEINLINE ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1a6536d31eaf5d64fd707ca3cbb5bf4e13)`()` <a id="structFRHAPI__AuditEvent_1a6536d31eaf5d64fd707ca3cbb5bf4e13"></a>
 
 Gets the value of JoinStatus_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1a965269ec0582b1e0dd86ff1c80769385)`() const` <a id="structFRHAPI__AuditEvent_1a965269ec0582b1e0dd86ff1c80769385"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1ad40e3c769be936b5ca3221c67880535a)`() const` <a id="structFRHAPI__AuditEvent_1ad40e3c769be936b5ca3221c67880535a"></a>
 
 Gets the value of JoinStatus_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1afcefdd3e1390ba511c7d5be3b85bc74a)`(const ERHAPI_InstanceJoinableStatus & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1afcefdd3e1390ba511c7d5be3b85bc74a"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus & `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1aa5cccd971c6bbec93d6553c6969f194a)`(const ERHAPI_InstanceJoinableStatus & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aa5cccd971c6bbec93d6553c6969f194a"></a>
 
 Gets the value of JoinStatus_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1ad317d132732992d96bfa9c87769250d3)`(ERHAPI_InstanceJoinableStatus & OutValue) const` <a id="structFRHAPI__AuditEvent_1ad317d132732992d96bfa9c87769250d3"></a>
+#### `public inline FORCEINLINE bool `[`GetJoinStatus`](#structFRHAPI__AuditEvent_1a13b232d79f8644f530025278058fb890)`(ERHAPI_InstanceJoinableStatus & OutValue) const` <a id="structFRHAPI__AuditEvent_1a13b232d79f8644f530025278058fb890"></a>
 
 Fills OutValue with the value of JoinStatus_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__AuditEvent_1aedfd3be86f904cd0be02a09d8e1613b4)`()` <a id="structFRHAPI__AuditEvent_1aedfd3be86f904cd0be02a09d8e1613b4"></a>
+#### `public inline FORCEINLINE ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__AuditEvent_1a6502ccd8d2966bb451537c5b9ff25948)`()` <a id="structFRHAPI__AuditEvent_1a6502ccd8d2966bb451537c5b9ff25948"></a>
 
 Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__AuditEvent_1aed404f974e065db380252ab021f70e51)`() const` <a id="structFRHAPI__AuditEvent_1aed404f974e065db380252ab021f70e51"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceJoinableStatus * `[`GetJoinStatusOrNull`](#structFRHAPI__AuditEvent_1a8e7f317dcc90dd08bfdff8ef82088ff7)`() const` <a id="structFRHAPI__AuditEvent_1a8e7f317dcc90dd08bfdff8ef82088ff7"></a>
 
 Returns a pointer to JoinStatus_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinStatus`](#structFRHAPI__AuditEvent_1a9ad57b57c4338b2f4f43581d2e7ca6d6)`(const ERHAPI_InstanceJoinableStatus & NewValue)` <a id="structFRHAPI__AuditEvent_1a9ad57b57c4338b2f4f43581d2e7ca6d6"></a>
+#### `public inline FORCEINLINE void `[`SetJoinStatus`](#structFRHAPI__AuditEvent_1af12fe97d840b56ad1c138f1383718f83)`(const ERHAPI_InstanceJoinableStatus & NewValue)` <a id="structFRHAPI__AuditEvent_1af12fe97d840b56ad1c138f1383718f83"></a>
 
 Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true.
 
-#### `public inline void `[`SetJoinStatus`](#structFRHAPI__AuditEvent_1a5490ddb4893256915a7ec8a49e0ce454)`(ERHAPI_InstanceJoinableStatus && NewValue)` <a id="structFRHAPI__AuditEvent_1a5490ddb4893256915a7ec8a49e0ce454"></a>
+#### `public inline FORCEINLINE void `[`SetJoinStatus`](#structFRHAPI__AuditEvent_1afd6863cfe98fe4dd0a0fc1bf5fc6beee)`(ERHAPI_InstanceJoinableStatus && NewValue)` <a id="structFRHAPI__AuditEvent_1afd6863cfe98fe4dd0a0fc1bf5fc6beee"></a>
 
 Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true using move semantics.
 
@@ -1896,39 +1748,35 @@ Sets the value of JoinStatus_Optional and also sets JoinStatus_IsSet to true usi
 
 Clears the value of JoinStatus_Optional and sets JoinStatus_IsSet to false.
 
-#### `public inline bool `[`IsJoinStatusSet`](#structFRHAPI__AuditEvent_1ae5bce6fbd66439f134728541c4c8c429)`() const` <a id="structFRHAPI__AuditEvent_1ae5bce6fbd66439f134728541c4c8c429"></a>
-
-Checks whether JoinStatus_Optional has been set.
-
-#### `public inline `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1adef84f50fef0c37d28c1ed39818b24d8)`()` <a id="structFRHAPI__AuditEvent_1adef84f50fef0c37d28c1ed39818b24d8"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1ac5c01487f2c78210eddb411ee2175911)`()` <a id="structFRHAPI__AuditEvent_1ac5c01487f2c78210eddb411ee2175911"></a>
 
 Gets the value of JoinParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1af43f80174834843587dabc2949c5eacb)`() const` <a id="structFRHAPI__AuditEvent_1af43f80174834843587dabc2949c5eacb"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a89db963adc7ed928d30d843e089896b8)`() const` <a id="structFRHAPI__AuditEvent_1a89db963adc7ed928d30d843e089896b8"></a>
 
 Gets the value of JoinParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a607cdeb54df5e5bf8a7f2e6fc8480ac9)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a607cdeb54df5e5bf8a7f2e6fc8480ac9"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a109ce3e6b83566b301fcca1a711aa479)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a109ce3e6b83566b301fcca1a711aa479"></a>
 
 Gets the value of JoinParams_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a65fc71a298fad25ea455a43649d890bf)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1a65fc71a298fad25ea455a43649d890bf"></a>
+#### `public inline FORCEINLINE bool `[`GetJoinParams`](#structFRHAPI__AuditEvent_1a4593eac653e5f318493e003298bd0c4b)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1a4593eac653e5f318493e003298bd0c4b"></a>
 
 Fills OutValue with the value of JoinParams_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__AuditEvent_1a15b5d1aa3ec2fde0147eccbddcbb0364)`()` <a id="structFRHAPI__AuditEvent_1a15b5d1aa3ec2fde0147eccbddcbb0364"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__AuditEvent_1a6e6925dc3584d170219edfa481fe567f)`()` <a id="structFRHAPI__AuditEvent_1a6e6925dc3584d170219edfa481fe567f"></a>
 
 Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__AuditEvent_1a0f76389308bc770fb8beb74415eb1f21)`() const` <a id="structFRHAPI__AuditEvent_1a0f76389308bc770fb8beb74415eb1f21"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` * `[`GetJoinParamsOrNull`](#structFRHAPI__AuditEvent_1a2b7a23230e85c09d81127d2f71fa0ab9)`() const` <a id="structFRHAPI__AuditEvent_1a2b7a23230e85c09d81127d2f71fa0ab9"></a>
 
 Returns a pointer to JoinParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinParams`](#structFRHAPI__AuditEvent_1af8a036b78938df2363a5297dd9b79703)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & NewValue)` <a id="structFRHAPI__AuditEvent_1af8a036b78938df2363a5297dd9b79703"></a>
+#### `public inline FORCEINLINE void `[`SetJoinParams`](#structFRHAPI__AuditEvent_1a608e224c4103dfd14d18ac38f5cd4530)`(const `[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` & NewValue)` <a id="structFRHAPI__AuditEvent_1a608e224c4103dfd14d18ac38f5cd4530"></a>
 
 Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true.
 
-#### `public inline void `[`SetJoinParams`](#structFRHAPI__AuditEvent_1a7b9b2b722b6cd7a68a7aa747f7c438d0)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` && NewValue)` <a id="structFRHAPI__AuditEvent_1a7b9b2b722b6cd7a68a7aa747f7c438d0"></a>
+#### `public inline FORCEINLINE void `[`SetJoinParams`](#structFRHAPI__AuditEvent_1a237d4d7ab4becf4a03cf4d89d0e525da)`(`[`FRHAPI_JoinParams`](RHAPI_JoinParams.md#structFRHAPI__JoinParams)` && NewValue)` <a id="structFRHAPI__AuditEvent_1a237d4d7ab4becf4a03cf4d89d0e525da"></a>
 
 Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true using move semantics.
 
@@ -1936,39 +1784,35 @@ Sets the value of JoinParams_Optional and also sets JoinParams_IsSet to true usi
 
 Clears the value of JoinParams_Optional and sets JoinParams_IsSet to false.
 
-#### `public inline bool `[`IsJoinParamsSet`](#structFRHAPI__AuditEvent_1ab2d765ade9bb9866bd5ad7d575e78b81)`() const` <a id="structFRHAPI__AuditEvent_1ab2d765ade9bb9866bd5ad7d575e78b81"></a>
-
-Checks whether JoinParams_Optional has been set.
-
-#### `public inline ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1a0852c52893dc3099a0dc91d52adc609e)`()` <a id="structFRHAPI__AuditEvent_1a0852c52893dc3099a0dc91d52adc609e"></a>
+#### `public inline FORCEINLINE ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1a8ef3aa72695fc3402086f45ab054885c)`()` <a id="structFRHAPI__AuditEvent_1a8ef3aa72695fc3402086f45ab054885c"></a>
 
 Gets the value of InstanceHealth_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1ac0e00692e62131d9e1f07a7d87812ed3)`() const` <a id="structFRHAPI__AuditEvent_1ac0e00692e62131d9e1f07a7d87812ed3"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1abea092387434db3b7f5a538e8f72e095)`() const` <a id="structFRHAPI__AuditEvent_1abea092387434db3b7f5a538e8f72e095"></a>
 
 Gets the value of InstanceHealth_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1abe695ac68030fdcf8a81ef1c6c78550e)`(const ERHAPI_InstanceHealthStatus & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1abe695ac68030fdcf8a81ef1c6c78550e"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceHealthStatus & `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1a37a5641bd15e4a890de7554bbf427b0e)`(const ERHAPI_InstanceHealthStatus & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a37a5641bd15e4a890de7554bbf427b0e"></a>
 
 Gets the value of InstanceHealth_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1adb0bc9aab3afcdcffd3ac2ed21dd6380)`(ERHAPI_InstanceHealthStatus & OutValue) const` <a id="structFRHAPI__AuditEvent_1adb0bc9aab3afcdcffd3ac2ed21dd6380"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceHealth`](#structFRHAPI__AuditEvent_1a9733a7f053e59c025aaba01ca89892be)`(ERHAPI_InstanceHealthStatus & OutValue) const` <a id="structFRHAPI__AuditEvent_1a9733a7f053e59c025aaba01ca89892be"></a>
 
 Fills OutValue with the value of InstanceHealth_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__AuditEvent_1aa17ce5aed4d637d5fe5d4fc666eea672)`()` <a id="structFRHAPI__AuditEvent_1aa17ce5aed4d637d5fe5d4fc666eea672"></a>
+#### `public inline FORCEINLINE ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__AuditEvent_1a5f4e6f66e6974f0bca6b58e7e362cb5d)`()` <a id="structFRHAPI__AuditEvent_1a5f4e6f66e6974f0bca6b58e7e362cb5d"></a>
 
 Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__AuditEvent_1abdcd0a2f5513398719b8b47b3eeed0e2)`() const` <a id="structFRHAPI__AuditEvent_1abdcd0a2f5513398719b8b47b3eeed0e2"></a>
+#### `public inline FORCEINLINE const ERHAPI_InstanceHealthStatus * `[`GetInstanceHealthOrNull`](#structFRHAPI__AuditEvent_1af3dfdabc5b3b911e627a29d48f57b163)`() const` <a id="structFRHAPI__AuditEvent_1af3dfdabc5b3b911e627a29d48f57b163"></a>
 
 Returns a pointer to InstanceHealth_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceHealth`](#structFRHAPI__AuditEvent_1a16e475ad1256789f7bf0a16d21f38c75)`(const ERHAPI_InstanceHealthStatus & NewValue)` <a id="structFRHAPI__AuditEvent_1a16e475ad1256789f7bf0a16d21f38c75"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceHealth`](#structFRHAPI__AuditEvent_1a6d47969038d64b9db300f6f93220a56d)`(const ERHAPI_InstanceHealthStatus & NewValue)` <a id="structFRHAPI__AuditEvent_1a6d47969038d64b9db300f6f93220a56d"></a>
 
 Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true.
 
-#### `public inline void `[`SetInstanceHealth`](#structFRHAPI__AuditEvent_1a6f54c0cafe05dfa7a852d378988022dc)`(ERHAPI_InstanceHealthStatus && NewValue)` <a id="structFRHAPI__AuditEvent_1a6f54c0cafe05dfa7a852d378988022dc"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceHealth`](#structFRHAPI__AuditEvent_1a08c98e664563f654d885d50ae3826a17)`(ERHAPI_InstanceHealthStatus && NewValue)` <a id="structFRHAPI__AuditEvent_1a08c98e664563f654d885d50ae3826a17"></a>
 
 Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to true using move semantics.
 
@@ -1976,39 +1820,35 @@ Sets the value of InstanceHealth_Optional and also sets InstanceHealth_IsSet to 
 
 Clears the value of InstanceHealth_Optional and sets InstanceHealth_IsSet to false.
 
-#### `public inline bool `[`IsInstanceHealthSet`](#structFRHAPI__AuditEvent_1ae94e17ff4a1dd18d84cacda3accc4ce0)`() const` <a id="structFRHAPI__AuditEvent_1ae94e17ff4a1dd18d84cacda3accc4ce0"></a>
-
-Checks whether InstanceHealth_Optional has been set.
-
-#### `public inline FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1a97868618be09228a8b6bd5627b6ddabd)`()` <a id="structFRHAPI__AuditEvent_1a97868618be09228a8b6bd5627b6ddabd"></a>
+#### `public inline FORCEINLINE FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1a443ad0dee88ef3a02c7c124c64308378)`()` <a id="structFRHAPI__AuditEvent_1a443ad0dee88ef3a02c7c124c64308378"></a>
 
 Gets the value of QueueId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1ac6b16b2e3b99db103cbf07d596186f8d)`() const` <a id="structFRHAPI__AuditEvent_1ac6b16b2e3b99db103cbf07d596186f8d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1aae54e0b4fbce4690131a0529b9b1d803)`() const` <a id="structFRHAPI__AuditEvent_1aae54e0b4fbce4690131a0529b9b1d803"></a>
 
 Gets the value of QueueId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1a4009eb225a078a626b549d4722ba4c4c)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a4009eb225a078a626b549d4722ba4c4c"></a>
+#### `public inline FORCEINLINE const FString & `[`GetQueueId`](#structFRHAPI__AuditEvent_1ad35ebebc38b4cb09d6f8599a5f12b304)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ad35ebebc38b4cb09d6f8599a5f12b304"></a>
 
 Gets the value of QueueId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetQueueId`](#structFRHAPI__AuditEvent_1ad4f3eafb9ca60cef0f70d162bedeefef)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1ad4f3eafb9ca60cef0f70d162bedeefef"></a>
+#### `public inline FORCEINLINE bool `[`GetQueueId`](#structFRHAPI__AuditEvent_1aa2cc1f5aa990e71c91de9e31bab6630c)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1aa2cc1f5aa990e71c91de9e31bab6630c"></a>
 
 Fills OutValue with the value of QueueId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetQueueIdOrNull`](#structFRHAPI__AuditEvent_1a6af11b01f0f4d0d116fa72869dae2538)`()` <a id="structFRHAPI__AuditEvent_1a6af11b01f0f4d0d116fa72869dae2538"></a>
+#### `public inline FORCEINLINE FString * `[`GetQueueIdOrNull`](#structFRHAPI__AuditEvent_1a8169fd1794171b9f493698d95654f6b2)`()` <a id="structFRHAPI__AuditEvent_1a8169fd1794171b9f493698d95654f6b2"></a>
 
 Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetQueueIdOrNull`](#structFRHAPI__AuditEvent_1aca1c806e592ba4111ea7ae1861198f6b)`() const` <a id="structFRHAPI__AuditEvent_1aca1c806e592ba4111ea7ae1861198f6b"></a>
+#### `public inline FORCEINLINE const FString * `[`GetQueueIdOrNull`](#structFRHAPI__AuditEvent_1a371cc60ce34be339fdb49a6fc8adccdb)`() const` <a id="structFRHAPI__AuditEvent_1a371cc60ce34be339fdb49a6fc8adccdb"></a>
 
 Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetQueueId`](#structFRHAPI__AuditEvent_1a92e54b59fe88672a6e0515e0aab8a53c)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a92e54b59fe88672a6e0515e0aab8a53c"></a>
+#### `public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__AuditEvent_1a40cd09d409535c379ad0da44f3ab3927)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a40cd09d409535c379ad0da44f3ab3927"></a>
 
 Sets the value of QueueId_Optional and also sets QueueId_IsSet to true.
 
-#### `public inline void `[`SetQueueId`](#structFRHAPI__AuditEvent_1ac0c803793dfbb5cd36a5570b964bc116)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1ac0c803793dfbb5cd36a5570b964bc116"></a>
+#### `public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__AuditEvent_1a63b3dcd2bf0ecbc5d232d19f8cda8b36)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a63b3dcd2bf0ecbc5d232d19f8cda8b36"></a>
 
 Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using move semantics.
 
@@ -2016,39 +1856,35 @@ Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using mov
 
 Clears the value of QueueId_Optional and sets QueueId_IsSet to false.
 
-#### `public inline bool `[`IsQueueIdSet`](#structFRHAPI__AuditEvent_1a75ba5ab01b9afe2f1701b68116937fd9)`() const` <a id="structFRHAPI__AuditEvent_1a75ba5ab01b9afe2f1701b68116937fd9"></a>
-
-Checks whether QueueId_Optional has been set.
-
-#### `public inline FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1ad29445385e8bc89961152e07fbcaf951)`()` <a id="structFRHAPI__AuditEvent_1ad29445385e8bc89961152e07fbcaf951"></a>
+#### `public inline FORCEINLINE FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1abec72192b75797baf855d4756f87afb4)`()` <a id="structFRHAPI__AuditEvent_1abec72192b75797baf855d4756f87afb4"></a>
 
 Gets the value of TicketId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1a2cba00dcd30ea914f9678d9d7fb53923)`() const` <a id="structFRHAPI__AuditEvent_1a2cba00dcd30ea914f9678d9d7fb53923"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1a66911c6a979fb9514072fb0a2322beec)`() const` <a id="structFRHAPI__AuditEvent_1a66911c6a979fb9514072fb0a2322beec"></a>
 
 Gets the value of TicketId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1a276dcaeab645409a8dd4eedef1fe4d22)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a276dcaeab645409a8dd4eedef1fe4d22"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTicketId`](#structFRHAPI__AuditEvent_1a85cbf7d345a93f4458f4ae339961d5ce)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a85cbf7d345a93f4458f4ae339961d5ce"></a>
 
 Gets the value of TicketId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTicketId`](#structFRHAPI__AuditEvent_1ab2163ec45ace1d5da478d9a43aeb7f88)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1ab2163ec45ace1d5da478d9a43aeb7f88"></a>
+#### `public inline FORCEINLINE bool `[`GetTicketId`](#structFRHAPI__AuditEvent_1a68c8343207cc2e545538b09741726060)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a68c8343207cc2e545538b09741726060"></a>
 
 Fills OutValue with the value of TicketId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTicketIdOrNull`](#structFRHAPI__AuditEvent_1a991daee78659a2c5ef46d7db511ec95e)`()` <a id="structFRHAPI__AuditEvent_1a991daee78659a2c5ef46d7db511ec95e"></a>
+#### `public inline FORCEINLINE FString * `[`GetTicketIdOrNull`](#structFRHAPI__AuditEvent_1a5889d85349a4ef714abb4b12dd49f6da)`()` <a id="structFRHAPI__AuditEvent_1a5889d85349a4ef714abb4b12dd49f6da"></a>
 
 Returns a pointer to TicketId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTicketIdOrNull`](#structFRHAPI__AuditEvent_1a689ce7f5d7864bd2c432608541e2956f)`() const` <a id="structFRHAPI__AuditEvent_1a689ce7f5d7864bd2c432608541e2956f"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTicketIdOrNull`](#structFRHAPI__AuditEvent_1acda6e636dbaa19c34e5c658f75c2515c)`() const` <a id="structFRHAPI__AuditEvent_1acda6e636dbaa19c34e5c658f75c2515c"></a>
 
 Returns a pointer to TicketId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTicketId`](#structFRHAPI__AuditEvent_1a0ad577a0200e4c8f3ec0dc23762a6095)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a0ad577a0200e4c8f3ec0dc23762a6095"></a>
+#### `public inline FORCEINLINE void `[`SetTicketId`](#structFRHAPI__AuditEvent_1a8b3c5853df2ef06e9e39a647e3f7f1a7)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a8b3c5853df2ef06e9e39a647e3f7f1a7"></a>
 
 Sets the value of TicketId_Optional and also sets TicketId_IsSet to true.
 
-#### `public inline void `[`SetTicketId`](#structFRHAPI__AuditEvent_1a84b357130e96b5131419b7bf391d8a4e)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a84b357130e96b5131419b7bf391d8a4e"></a>
+#### `public inline FORCEINLINE void `[`SetTicketId`](#structFRHAPI__AuditEvent_1ae754f3560bc916632414ae591deb5e14)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1ae754f3560bc916632414ae591deb5e14"></a>
 
 Sets the value of TicketId_Optional and also sets TicketId_IsSet to true using move semantics.
 
@@ -2056,39 +1892,35 @@ Sets the value of TicketId_Optional and also sets TicketId_IsSet to true using m
 
 Clears the value of TicketId_Optional and sets TicketId_IsSet to false.
 
-#### `public inline bool `[`IsTicketIdSet`](#structFRHAPI__AuditEvent_1a1638925762966feb0bd5564fd523c694)`() const` <a id="structFRHAPI__AuditEvent_1a1638925762966feb0bd5564fd523c694"></a>
-
-Checks whether TicketId_Optional has been set.
-
-#### `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1aec2674a2e1104f27399b472e16bdda9d)`()` <a id="structFRHAPI__AuditEvent_1aec2674a2e1104f27399b472e16bdda9d"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1a3a305722ce164dec0572d9a9fe17357d)`()` <a id="structFRHAPI__AuditEvent_1a3a305722ce164dec0572d9a9fe17357d"></a>
 
 Gets the value of AdditionalParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1ae59e688681b3f71750b703425f3ffacb)`() const` <a id="structFRHAPI__AuditEvent_1ae59e688681b3f71750b703425f3ffacb"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1a9a3c794142657c97d5bc3a71f6899aa7)`() const` <a id="structFRHAPI__AuditEvent_1a9a3c794142657c97d5bc3a71f6899aa7"></a>
 
 Gets the value of AdditionalParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1a644054bad40b674c004e8eb69cd3caf5)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a644054bad40b674c004e8eb69cd3caf5"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1ad62276a3a951cee521f893326f62d023)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ad62276a3a951cee521f893326f62d023"></a>
 
 Gets the value of AdditionalParams_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1ab3466dd7744e301ef79c215ccf45e1ca)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1ab3466dd7744e301ef79c215ccf45e1ca"></a>
+#### `public inline FORCEINLINE bool `[`GetAdditionalParams`](#structFRHAPI__AuditEvent_1ad0fedff28d634dccb6e1c07c42cb1271)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & OutValue) const` <a id="structFRHAPI__AuditEvent_1ad0fedff28d634dccb6e1c07c42cb1271"></a>
 
 Fills OutValue with the value of AdditionalParams_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalParamsOrNull`](#structFRHAPI__AuditEvent_1ae7560ffac55842a93d2eaad3ff5cb94a)`()` <a id="structFRHAPI__AuditEvent_1ae7560ffac55842a93d2eaad3ff5cb94a"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalParamsOrNull`](#structFRHAPI__AuditEvent_1ad1844f7729bcc3816e495420e313f588)`()` <a id="structFRHAPI__AuditEvent_1ad1844f7729bcc3816e495420e313f588"></a>
 
 Returns a pointer to AdditionalParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalParamsOrNull`](#structFRHAPI__AuditEvent_1accf2ad1e4695de06b0077a47e9cf4160)`() const` <a id="structFRHAPI__AuditEvent_1accf2ad1e4695de06b0077a47e9cf4160"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` * `[`GetAdditionalParamsOrNull`](#structFRHAPI__AuditEvent_1a120630b5bbf5c44124c574f3d03e67b4)`() const` <a id="structFRHAPI__AuditEvent_1a120630b5bbf5c44124c574f3d03e67b4"></a>
 
 Returns a pointer to AdditionalParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAdditionalParams`](#structFRHAPI__AuditEvent_1a7c7a3b41818d9041f02d4f707d0c1b45)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` <a id="structFRHAPI__AuditEvent_1a7c7a3b41818d9041f02d4f707d0c1b45"></a>
+#### `public inline FORCEINLINE void `[`SetAdditionalParams`](#structFRHAPI__AuditEvent_1ab7bd3042b17aeabf2f12a63251c9565e)`(const `[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` & NewValue)` <a id="structFRHAPI__AuditEvent_1ab7bd3042b17aeabf2f12a63251c9565e"></a>
 
 Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet to true.
 
-#### `public inline void `[`SetAdditionalParams`](#structFRHAPI__AuditEvent_1a8e8fd0b1aecfd5302d00f1c16f1a324f)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` <a id="structFRHAPI__AuditEvent_1a8e8fd0b1aecfd5302d00f1c16f1a324f"></a>
+#### `public inline FORCEINLINE void `[`SetAdditionalParams`](#structFRHAPI__AuditEvent_1a6749539c425259648dfa86316a2816a6)`(`[`FRHAPI_AdditionalJoinParams`](RHAPI_AdditionalJoinParams.md#structFRHAPI__AdditionalJoinParams)` && NewValue)` <a id="structFRHAPI__AuditEvent_1a6749539c425259648dfa86316a2816a6"></a>
 
 Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet to true using move semantics.
 
@@ -2096,39 +1928,35 @@ Sets the value of AdditionalParams_Optional and also sets AdditionalParams_IsSet
 
 Clears the value of AdditionalParams_Optional and sets AdditionalParams_IsSet to false.
 
-#### `public inline bool `[`IsAdditionalParamsSet`](#structFRHAPI__AuditEvent_1a92e5f486e956608fb0dda188d73e003a)`() const` <a id="structFRHAPI__AuditEvent_1a92e5f486e956608fb0dda188d73e003a"></a>
-
-Checks whether AdditionalParams_Optional has been set.
-
-#### `public inline TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1ae253594ea26f6224ff14ff4a543222d1)`()` <a id="structFRHAPI__AuditEvent_1ae253594ea26f6224ff14ff4a543222d1"></a>
+#### `public inline FORCEINLINE TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a27443210868c7f4c06cf4d5a7b3a3626)`()` <a id="structFRHAPI__AuditEvent_1a27443210868c7f4c06cf4d5a7b3a3626"></a>
 
 Gets the value of MapPreferences_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1af3e608a29918c34a316386164f4f1f2f)`() const` <a id="structFRHAPI__AuditEvent_1af3e608a29918c34a316386164f4f1f2f"></a>
+#### `public inline FORCEINLINE const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a99347984b30a408f955bdc07623f599d)`() const` <a id="structFRHAPI__AuditEvent_1a99347984b30a408f955bdc07623f599d"></a>
 
 Gets the value of MapPreferences_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a24af7249f980c81c95299051a73e7e99)`(const TArray< FString > & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a24af7249f980c81c95299051a73e7e99"></a>
+#### `public inline FORCEINLINE const TArray< FString > & `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a9260b6ccbc964a42c57685f2844ab599)`(const TArray< FString > & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a9260b6ccbc964a42c57685f2844ab599"></a>
 
 Gets the value of MapPreferences_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1af5102a96c848850e87d52973a585d314)`(TArray< FString > & OutValue) const` <a id="structFRHAPI__AuditEvent_1af5102a96c848850e87d52973a585d314"></a>
+#### `public inline FORCEINLINE bool `[`GetMapPreferences`](#structFRHAPI__AuditEvent_1a521e3490d8d29a9356132c2649b8fbb9)`(TArray< FString > & OutValue) const` <a id="structFRHAPI__AuditEvent_1a521e3490d8d29a9356132c2649b8fbb9"></a>
 
 Fills OutValue with the value of MapPreferences_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__AuditEvent_1adbcbd1ac91053fccacd67a20fab02867)`()` <a id="structFRHAPI__AuditEvent_1adbcbd1ac91053fccacd67a20fab02867"></a>
+#### `public inline FORCEINLINE TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__AuditEvent_1ab8caae08d146a5407d04b2377a16bf05)`()` <a id="structFRHAPI__AuditEvent_1ab8caae08d146a5407d04b2377a16bf05"></a>
 
 Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__AuditEvent_1aec5b5c80ad0a295678113321f7d38cd5)`() const` <a id="structFRHAPI__AuditEvent_1aec5b5c80ad0a295678113321f7d38cd5"></a>
+#### `public inline FORCEINLINE const TArray< FString > * `[`GetMapPreferencesOrNull`](#structFRHAPI__AuditEvent_1acc004b7af034fb8d49dd9c56540220a4)`() const` <a id="structFRHAPI__AuditEvent_1acc004b7af034fb8d49dd9c56540220a4"></a>
 
 Returns a pointer to MapPreferences_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMapPreferences`](#structFRHAPI__AuditEvent_1ac9fb953163a95ff99ea2ef834d19253f)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__AuditEvent_1ac9fb953163a95ff99ea2ef834d19253f"></a>
+#### `public inline FORCEINLINE void `[`SetMapPreferences`](#structFRHAPI__AuditEvent_1a3dba1d1a3c388caba1447a0eac5a88ff)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__AuditEvent_1a3dba1d1a3c388caba1447a0eac5a88ff"></a>
 
 Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true.
 
-#### `public inline void `[`SetMapPreferences`](#structFRHAPI__AuditEvent_1a56f8ae31a8695e7531e9eb1d68dbfd76)`(TArray< FString > && NewValue)` <a id="structFRHAPI__AuditEvent_1a56f8ae31a8695e7531e9eb1d68dbfd76"></a>
+#### `public inline FORCEINLINE void `[`SetMapPreferences`](#structFRHAPI__AuditEvent_1a0d339f5283318ee6ff56b807e02093b2)`(TArray< FString > && NewValue)` <a id="structFRHAPI__AuditEvent_1a0d339f5283318ee6ff56b807e02093b2"></a>
 
 Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to true using move semantics.
 
@@ -2136,39 +1964,35 @@ Sets the value of MapPreferences_Optional and also sets MapPreferences_IsSet to 
 
 Clears the value of MapPreferences_Optional and sets MapPreferences_IsSet to false.
 
-#### `public inline bool `[`IsMapPreferencesSet`](#structFRHAPI__AuditEvent_1acfab0741719944600d85244c327c84d7)`() const` <a id="structFRHAPI__AuditEvent_1acfab0741719944600d85244c327c84d7"></a>
-
-Checks whether MapPreferences_Optional has been set.
-
-#### `public inline FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1a2bb30770b33c914dfdc26e7fb7369b85)`()` <a id="structFRHAPI__AuditEvent_1a2bb30770b33c914dfdc26e7fb7369b85"></a>
+#### `public inline FORCEINLINE FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1a6036364e49ec3e4778f10111f569f114)`()` <a id="structFRHAPI__AuditEvent_1a6036364e49ec3e4778f10111f569f114"></a>
 
 Gets the value of QueuedSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1aa157884bfbb74ba7dba3d387f468e6d7)`() const` <a id="structFRHAPI__AuditEvent_1aa157884bfbb74ba7dba3d387f468e6d7"></a>
+#### `public inline FORCEINLINE const FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1a4219fadaf4bd4555b0b91bc67eab268c)`() const` <a id="structFRHAPI__AuditEvent_1a4219fadaf4bd4555b0b91bc67eab268c"></a>
 
 Gets the value of QueuedSessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1af59530ef11ac381c9f47da3ff3f94ad6)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1af59530ef11ac381c9f47da3ff3f94ad6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1a3f82ab9a12945e073d626ec8e8023fec)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a3f82ab9a12945e073d626ec8e8023fec"></a>
 
 Gets the value of QueuedSessionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1aafda7af949c96b72808c666d0cbd29e3)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1aafda7af949c96b72808c666d0cbd29e3"></a>
+#### `public inline FORCEINLINE bool `[`GetQueuedSessionId`](#structFRHAPI__AuditEvent_1ab54c3afbd85d98741d4c1006e20fed29)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1ab54c3afbd85d98741d4c1006e20fed29"></a>
 
 Fills OutValue with the value of QueuedSessionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a2e34402e66eab8cfa933e9712ea25a0a)`()` <a id="structFRHAPI__AuditEvent_1a2e34402e66eab8cfa933e9712ea25a0a"></a>
+#### `public inline FORCEINLINE FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a880e274386cd4c1d2a795323c8088717)`()` <a id="structFRHAPI__AuditEvent_1a880e274386cd4c1d2a795323c8088717"></a>
 
 Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a2e4c444305cc7a19e5b2d2ea76da2df6)`() const` <a id="structFRHAPI__AuditEvent_1a2e4c444305cc7a19e5b2d2ea76da2df6"></a>
+#### `public inline FORCEINLINE const FString * `[`GetQueuedSessionIdOrNull`](#structFRHAPI__AuditEvent_1a65d5aeb12db371ffdf3193bfa6f925a4)`() const` <a id="structFRHAPI__AuditEvent_1a65d5aeb12db371ffdf3193bfa6f925a4"></a>
 
 Returns a pointer to QueuedSessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetQueuedSessionId`](#structFRHAPI__AuditEvent_1ae9e67b72fec1cc3b3677be8d0fd19777)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1ae9e67b72fec1cc3b3677be8d0fd19777"></a>
+#### `public inline FORCEINLINE void `[`SetQueuedSessionId`](#structFRHAPI__AuditEvent_1a618b2e5a9564cb47cf2363985ebe3b8a)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a618b2e5a9564cb47cf2363985ebe3b8a"></a>
 
 Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true.
 
-#### `public inline void `[`SetQueuedSessionId`](#structFRHAPI__AuditEvent_1a8ac88751a9d572b7c34c42542563e620)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a8ac88751a9d572b7c34c42542563e620"></a>
+#### `public inline FORCEINLINE void `[`SetQueuedSessionId`](#structFRHAPI__AuditEvent_1a6febba679409dcca1294838450f4570f)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a6febba679409dcca1294838450f4570f"></a>
 
 Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet to true using move semantics.
 
@@ -2176,39 +2000,35 @@ Sets the value of QueuedSessionId_Optional and also sets QueuedSessionId_IsSet t
 
 Clears the value of QueuedSessionId_Optional and sets QueuedSessionId_IsSet to false.
 
-#### `public inline bool `[`IsQueuedSessionIdSet`](#structFRHAPI__AuditEvent_1a363ffaafb8457ba77084ba3c813808b1)`() const` <a id="structFRHAPI__AuditEvent_1a363ffaafb8457ba77084ba3c813808b1"></a>
-
-Checks whether QueuedSessionId_Optional has been set.
-
-#### `public inline FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1a7e3f44d3ff3560cf41d0d1ceff40ef25)`()` <a id="structFRHAPI__AuditEvent_1a7e3f44d3ff3560cf41d0d1ceff40ef25"></a>
+#### `public inline FORCEINLINE FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1ab03d4b0311287d906cc2a41aa218215d)`()` <a id="structFRHAPI__AuditEvent_1ab03d4b0311287d906cc2a41aa218215d"></a>
 
 Gets the value of MatchId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1a8cd688b4e46b27904306740805be5f53)`() const` <a id="structFRHAPI__AuditEvent_1a8cd688b4e46b27904306740805be5f53"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1adc38ea95ad381f6660adac47f45a17b9)`() const` <a id="structFRHAPI__AuditEvent_1adc38ea95ad381f6660adac47f45a17b9"></a>
 
 Gets the value of MatchId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1aa1dc84fc44a16f477882d66d5bbc9d5a)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1aa1dc84fc44a16f477882d66d5bbc9d5a"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchId`](#structFRHAPI__AuditEvent_1a0a8d1b5aae48d0a461e47706247a2cd5)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a0a8d1b5aae48d0a461e47706247a2cd5"></a>
 
 Gets the value of MatchId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMatchId`](#structFRHAPI__AuditEvent_1a7b6ded106eedb8fb15d3358e89dfd405)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a7b6ded106eedb8fb15d3358e89dfd405"></a>
+#### `public inline FORCEINLINE bool `[`GetMatchId`](#structFRHAPI__AuditEvent_1aebcc73c8a057b01b3b7499fddb1d007c)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1aebcc73c8a057b01b3b7499fddb1d007c"></a>
 
 Fills OutValue with the value of MatchId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMatchIdOrNull`](#structFRHAPI__AuditEvent_1af4109dc4f4c954d1f9d298a7644864d1)`()` <a id="structFRHAPI__AuditEvent_1af4109dc4f4c954d1f9d298a7644864d1"></a>
+#### `public inline FORCEINLINE FString * `[`GetMatchIdOrNull`](#structFRHAPI__AuditEvent_1af1492c8924e23b70d8a2724317b7c46e)`()` <a id="structFRHAPI__AuditEvent_1af1492c8924e23b70d8a2724317b7c46e"></a>
 
 Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMatchIdOrNull`](#structFRHAPI__AuditEvent_1abddafcd4cf71b091e7bb67744679cac7)`() const` <a id="structFRHAPI__AuditEvent_1abddafcd4cf71b091e7bb67744679cac7"></a>
+#### `public inline FORCEINLINE const FString * `[`GetMatchIdOrNull`](#structFRHAPI__AuditEvent_1a4cdff2104e5408efbccf6c36f10fbac9)`() const` <a id="structFRHAPI__AuditEvent_1a4cdff2104e5408efbccf6c36f10fbac9"></a>
 
 Returns a pointer to MatchId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a3153129f6b5b0d0b6eb327fe17612222)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a3153129f6b5b0d0b6eb327fe17612222"></a>
+#### `public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a3160da921f388f9e9bb8af4eea0debae)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a3160da921f388f9e9bb8af4eea0debae"></a>
 
 Sets the value of MatchId_Optional and also sets MatchId_IsSet to true.
 
-#### `public inline void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a1391a972d06c5729368c556d4071d865)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a1391a972d06c5729368c556d4071d865"></a>
+#### `public inline FORCEINLINE void `[`SetMatchId`](#structFRHAPI__AuditEvent_1a86634460ed69bf9ebdf0880f4dddbb36)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a86634460ed69bf9ebdf0880f4dddbb36"></a>
 
 Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using move semantics.
 
@@ -2216,39 +2036,35 @@ Sets the value of MatchId_Optional and also sets MatchId_IsSet to true using mov
 
 Clears the value of MatchId_Optional and sets MatchId_IsSet to false.
 
-#### `public inline bool `[`IsMatchIdSet`](#structFRHAPI__AuditEvent_1acf38bcadf9e3d05e939c9477bbfb9473)`() const` <a id="structFRHAPI__AuditEvent_1acf38bcadf9e3d05e939c9477bbfb9473"></a>
-
-Checks whether MatchId_Optional has been set.
-
-#### `public inline int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ad3d33b518432acdf4b99bff7df4978e4)`()` <a id="structFRHAPI__AuditEvent_1ad3d33b518432acdf4b99bff7df4978e4"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a47fffac728866f7c2f7812faaf8421f5)`()` <a id="structFRHAPI__AuditEvent_1a47fffac728866f7c2f7812faaf8421f5"></a>
 
 Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a486e5e758d34b39767a58ead73c31438)`() const` <a id="structFRHAPI__AuditEvent_1a486e5e758d34b39767a58ead73c31438"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a5ff376fe82f1b70790ba667ba387cc79)`() const` <a id="structFRHAPI__AuditEvent_1a5ff376fe82f1b70790ba667ba387cc79"></a>
 
 Gets the value of TicketWaitSeconds_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1abf560aec3fee3de593e17b623fcb92b5)`(const int32 & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1abf560aec3fee3de593e17b623fcb92b5"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ad846f1e74e8df905e50f6d90c516096f)`(const int32 & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1ad846f1e74e8df905e50f6d90c516096f"></a>
 
 Gets the value of TicketWaitSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a54d18a2c205dd02d1d9c122c31f06ba0)`(int32 & OutValue) const` <a id="structFRHAPI__AuditEvent_1a54d18a2c205dd02d1d9c122c31f06ba0"></a>
+#### `public inline FORCEINLINE bool `[`GetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1a496024b3578c488382d8e616de1d1cdd)`(int32 & OutValue) const` <a id="structFRHAPI__AuditEvent_1a496024b3578c488382d8e616de1d1cdd"></a>
 
 Fills OutValue with the value of TicketWaitSeconds_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a4bc693f393a509b00819116e304e4ff5)`()` <a id="structFRHAPI__AuditEvent_1a4bc693f393a509b00819116e304e4ff5"></a>
+#### `public inline FORCEINLINE int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a873529affe489032379c97186db53da3)`()` <a id="structFRHAPI__AuditEvent_1a873529affe489032379c97186db53da3"></a>
 
 Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a0061f53a2454f57ed062e6deb4e6794a)`() const` <a id="structFRHAPI__AuditEvent_1a0061f53a2454f57ed062e6deb4e6794a"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetTicketWaitSecondsOrNull`](#structFRHAPI__AuditEvent_1a32a3abc8aff639b71ea51a8c7bf619f8)`() const` <a id="structFRHAPI__AuditEvent_1a32a3abc8aff639b71ea51a8c7bf619f8"></a>
 
 Returns a pointer to TicketWaitSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1aa02be7d3ae4c882aa7656d31c19eff8c)`(const int32 & NewValue)` <a id="structFRHAPI__AuditEvent_1aa02be7d3ae4c882aa7656d31c19eff8c"></a>
+#### `public inline FORCEINLINE void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ad080308fb2f5599d7807859099b0e521)`(const int32 & NewValue)` <a id="structFRHAPI__AuditEvent_1ad080308fb2f5599d7807859099b0e521"></a>
 
 Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true.
 
-#### `public inline void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ab63f8680973b2905c3218cfbe66c1367)`(int32 && NewValue)` <a id="structFRHAPI__AuditEvent_1ab63f8680973b2905c3218cfbe66c1367"></a>
+#### `public inline FORCEINLINE void `[`SetTicketWaitSeconds`](#structFRHAPI__AuditEvent_1ae206533673eafbda4c66047e82586670)`(int32 && NewValue)` <a id="structFRHAPI__AuditEvent_1ae206533673eafbda4c66047e82586670"></a>
 
 Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsSet to true using move semantics.
 
@@ -2256,47 +2072,39 @@ Sets the value of TicketWaitSeconds_Optional and also sets TicketWaitSeconds_IsS
 
 Clears the value of TicketWaitSeconds_Optional and sets TicketWaitSeconds_IsSet to false.
 
-#### `public inline bool `[`IsTicketWaitSecondsSet`](#structFRHAPI__AuditEvent_1a02ab5fa4ddae185a3d6cf7dfa11a1820)`() const` <a id="structFRHAPI__AuditEvent_1a02ab5fa4ddae185a3d6cf7dfa11a1820"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TicketWaitSeconds`](#structFRHAPI__AuditEvent_1a6797f39e672315ad1358ba0895c92f78)`()` <a id="structFRHAPI__AuditEvent_1a6797f39e672315ad1358ba0895c92f78"></a>
 
-Checks whether TicketWaitSeconds_Optional has been set.
+Returns the default value of TicketWaitSeconds.
 
-#### `public inline bool `[`IsTicketWaitSecondsDefaultValue`](#structFRHAPI__AuditEvent_1addf11ae30eb6bef1716cf792b7cab53c)`() const` <a id="structFRHAPI__AuditEvent_1addf11ae30eb6bef1716cf792b7cab53c"></a>
-
-Returns true if TicketWaitSeconds_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTicketWaitSecondsToDefault`](#structFRHAPI__AuditEvent_1a9b771ccbad80ad6561e55a1c7a9face2)`()` <a id="structFRHAPI__AuditEvent_1a9b771ccbad80ad6561e55a1c7a9face2"></a>
-
-Sets the value of TicketWaitSeconds_Optional to its default and also sets TicketWaitSeconds_IsSet to true.
-
-#### `public inline FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aafeacede13da3a0fae86b9499c2fbdd1)`()` <a id="structFRHAPI__AuditEvent_1aafeacede13da3a0fae86b9499c2fbdd1"></a>
+#### `public inline FORCEINLINE FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1acb1600a4a6640ee9a27ee60303e2acd7)`()` <a id="structFRHAPI__AuditEvent_1acb1600a4a6640ee9a27ee60303e2acd7"></a>
 
 Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a8f1d7eccc2692b594fe27740dedf2472)`() const` <a id="structFRHAPI__AuditEvent_1a8f1d7eccc2692b594fe27740dedf2472"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1aa7195943da5814064ef074dcc5a9540c)`() const` <a id="structFRHAPI__AuditEvent_1aa7195943da5814064ef074dcc5a9540c"></a>
 
 Gets the value of MatchMakingProfileId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a2450dea9d9aaa0f54dc9731216da6956)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a2450dea9d9aaa0f54dc9731216da6956"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a88999dbc0894b901009f90d67641f4a9)`(const FString & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a88999dbc0894b901009f90d67641f4a9"></a>
 
 Gets the value of MatchMakingProfileId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a8d64d14b8a49cd3d54569edc92df2904)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a8d64d14b8a49cd3d54569edc92df2904"></a>
+#### `public inline FORCEINLINE bool `[`GetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a2f5350438cb0edaf803c82a3e1e1bc04)`(FString & OutValue) const` <a id="structFRHAPI__AuditEvent_1a2f5350438cb0edaf803c82a3e1e1bc04"></a>
 
 Fills OutValue with the value of MatchMakingProfileId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1aaf9a207f7df898003360655b24f4cf99)`()` <a id="structFRHAPI__AuditEvent_1aaf9a207f7df898003360655b24f4cf99"></a>
+#### `public inline FORCEINLINE FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1a35edb18190f7ebba96f523f98bf2d43c)`()` <a id="structFRHAPI__AuditEvent_1a35edb18190f7ebba96f523f98bf2d43c"></a>
 
 Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1af8f68c0b847ed31f9ac3f106d117f775)`() const` <a id="structFRHAPI__AuditEvent_1af8f68c0b847ed31f9ac3f106d117f775"></a>
+#### `public inline FORCEINLINE const FString * `[`GetMatchMakingProfileIdOrNull`](#structFRHAPI__AuditEvent_1a04e4fb4c498802cb90b893e7260398ed)`() const` <a id="structFRHAPI__AuditEvent_1a04e4fb4c498802cb90b893e7260398ed"></a>
 
 Returns a pointer to MatchMakingProfileId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1ad8db2f347cb96ee609b4dd572f10f9ee)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1ad8db2f347cb96ee609b4dd572f10f9ee"></a>
+#### `public inline FORCEINLINE void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a1eccd1f25d1c6957bb42b7a3658af5bd)`(const FString & NewValue)` <a id="structFRHAPI__AuditEvent_1a1eccd1f25d1c6957bb42b7a3658af5bd"></a>
 
 Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true.
 
-#### `public inline void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a240b6ed82f00ff4e8bec365140ee9905)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a240b6ed82f00ff4e8bec365140ee9905"></a>
+#### `public inline FORCEINLINE void `[`SetMatchMakingProfileId`](#structFRHAPI__AuditEvent_1a0ad99ab96e494ea3e56db97640b71bcb)`(FString && NewValue)` <a id="structFRHAPI__AuditEvent_1a0ad99ab96e494ea3e56db97640b71bcb"></a>
 
 Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfileId_IsSet to true using move semantics.
 
@@ -2304,39 +2112,35 @@ Sets the value of MatchMakingProfileId_Optional and also sets MatchMakingProfile
 
 Clears the value of MatchMakingProfileId_Optional and sets MatchMakingProfileId_IsSet to false.
 
-#### `public inline bool `[`IsMatchMakingProfileIdSet`](#structFRHAPI__AuditEvent_1a72f0bbaa28dacd3ef71ed18ddfd951f4)`() const` <a id="structFRHAPI__AuditEvent_1a72f0bbaa28dacd3ef71ed18ddfd951f4"></a>
-
-Checks whether MatchMakingProfileId_Optional has been set.
-
-#### `public inline FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a609df074a0871796fe29aef9dbcbe1fa)`()` <a id="structFRHAPI__AuditEvent_1a609df074a0871796fe29aef9dbcbe1fa"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a23d4805b96be652dd6a5929162030038)`()` <a id="structFRHAPI__AuditEvent_1a23d4805b96be652dd6a5929162030038"></a>
 
 Gets the value of RequestingUserUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a969bfc23d39269e7c1dc7c5fe59d458e)`() const` <a id="structFRHAPI__AuditEvent_1a969bfc23d39269e7c1dc7c5fe59d458e"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a6f98ded1cf1ad48822085fc425506e58)`() const` <a id="structFRHAPI__AuditEvent_1a6f98ded1cf1ad48822085fc425506e58"></a>
 
 Gets the value of RequestingUserUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a1af550c49bda3db684b4fdbe88865058)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a1af550c49bda3db684b4fdbe88865058"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a6deb70d1480d969d94b0ad7c86ca235b)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__AuditEvent_1a6deb70d1480d969d94b0ad7c86ca235b"></a>
 
 Gets the value of RequestingUserUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a2b54f7415fc9c2b73f037a6be257f393)`(FGuid & OutValue) const` <a id="structFRHAPI__AuditEvent_1a2b54f7415fc9c2b73f037a6be257f393"></a>
+#### `public inline FORCEINLINE bool `[`GetRequestingUserUuid`](#structFRHAPI__AuditEvent_1ac079ea122bd2835637c0883f12138fd7)`(FGuid & OutValue) const` <a id="structFRHAPI__AuditEvent_1ac079ea122bd2835637c0883f12138fd7"></a>
 
 Fills OutValue with the value of RequestingUserUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetRequestingUserUuidOrNull`](#structFRHAPI__AuditEvent_1a8b224e01142ab731febfc7df3d5bd3af)`()` <a id="structFRHAPI__AuditEvent_1a8b224e01142ab731febfc7df3d5bd3af"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetRequestingUserUuidOrNull`](#structFRHAPI__AuditEvent_1aa33adc865f5a707ed07e01a5380efa93)`()` <a id="structFRHAPI__AuditEvent_1aa33adc865f5a707ed07e01a5380efa93"></a>
 
 Returns a pointer to RequestingUserUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetRequestingUserUuidOrNull`](#structFRHAPI__AuditEvent_1a395a9b87a2f363ef408aff0ece9b6c09)`() const` <a id="structFRHAPI__AuditEvent_1a395a9b87a2f363ef408aff0ece9b6c09"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetRequestingUserUuidOrNull`](#structFRHAPI__AuditEvent_1a0d15be1ce59194381c9de81116e1972c)`() const` <a id="structFRHAPI__AuditEvent_1a0d15be1ce59194381c9de81116e1972c"></a>
 
 Returns a pointer to RequestingUserUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a2c40640e2af1be4c876c2d8e8ac0de34)`(const FGuid & NewValue)` <a id="structFRHAPI__AuditEvent_1a2c40640e2af1be4c876c2d8e8ac0de34"></a>
+#### `public inline FORCEINLINE void `[`SetRequestingUserUuid`](#structFRHAPI__AuditEvent_1afda425720a59f56242057ff12dc3e095)`(const FGuid & NewValue)` <a id="structFRHAPI__AuditEvent_1afda425720a59f56242057ff12dc3e095"></a>
 
 Sets the value of RequestingUserUuid_Optional and also sets RequestingUserUuid_IsSet to true.
 
-#### `public inline void `[`SetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a72846483bb51daa209b4c862b7096e11)`(FGuid && NewValue)` <a id="structFRHAPI__AuditEvent_1a72846483bb51daa209b4c862b7096e11"></a>
+#### `public inline FORCEINLINE void `[`SetRequestingUserUuid`](#structFRHAPI__AuditEvent_1a9e4bc1b052ae7720373c1f5ff5bde56e)`(FGuid && NewValue)` <a id="structFRHAPI__AuditEvent_1a9e4bc1b052ae7720373c1f5ff5bde56e"></a>
 
 Sets the value of RequestingUserUuid_Optional and also sets RequestingUserUuid_IsSet to true using move semantics.
 
@@ -2344,23 +2148,19 @@ Sets the value of RequestingUserUuid_Optional and also sets RequestingUserUuid_I
 
 Clears the value of RequestingUserUuid_Optional and sets RequestingUserUuid_IsSet to false.
 
-#### `public inline bool `[`IsRequestingUserUuidSet`](#structFRHAPI__AuditEvent_1ad62bfca13adf09b1ad8915ceb2c20d84)`() const` <a id="structFRHAPI__AuditEvent_1ad62bfca13adf09b1ad8915ceb2c20d84"></a>
-
-Checks whether RequestingUserUuid_Optional has been set.
-
-#### `public inline FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1a3fdbb61c6b4d8c7182a1d0e4400b4d06)`()` <a id="structFRHAPI__AuditEvent_1a3fdbb61c6b4d8c7182a1d0e4400b4d06"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1aa1790c3091e5515eb672a6453167ab94)`()` <a id="structFRHAPI__AuditEvent_1aa1790c3091e5515eb672a6453167ab94"></a>
 
 Gets the value of EventDatetime.
 
-#### `public inline const FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1a4a8bb05a3e3263b71f7c71f91b198d52)`() const` <a id="structFRHAPI__AuditEvent_1a4a8bb05a3e3263b71f7c71f91b198d52"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetEventDatetime`](#structFRHAPI__AuditEvent_1af3ca003110a732421a9385db3cb72713)`() const` <a id="structFRHAPI__AuditEvent_1af3ca003110a732421a9385db3cb72713"></a>
 
 Gets the value of EventDatetime.
 
-#### `public inline void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1ad4e8f68d0b4064c703124dba80dbfb87)`(const FDateTime & NewValue)` <a id="structFRHAPI__AuditEvent_1ad4e8f68d0b4064c703124dba80dbfb87"></a>
+#### `public inline FORCEINLINE void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1a7f0acb4ac645f70d78eaac130fb823e9)`(const FDateTime & NewValue)` <a id="structFRHAPI__AuditEvent_1a7f0acb4ac645f70d78eaac130fb823e9"></a>
 
 Sets the value of EventDatetime.
 
-#### `public inline void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1a8738833f39eb52d322a8b43157aca869)`(FDateTime && NewValue)` <a id="structFRHAPI__AuditEvent_1a8738833f39eb52d322a8b43157aca869"></a>
+#### `public inline FORCEINLINE void `[`SetEventDatetime`](#structFRHAPI__AuditEvent_1a186bcef6876e53c8468f5f0981301fc0)`(FDateTime && NewValue)` <a id="structFRHAPI__AuditEvent_1a186bcef6876e53c8468f5f0981301fc0"></a>
 
 Sets the value of EventDatetime using move semantics.
 

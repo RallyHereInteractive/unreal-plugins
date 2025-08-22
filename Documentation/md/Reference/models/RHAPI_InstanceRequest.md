@@ -35,66 +35,60 @@ A request body to create an instance resource in a session.
 `public bool `[`CustomData_IsSet`](#structFRHAPI__InstanceRequest_1aa293e408d987dc3ec8df6609d786c943) | true if CustomData_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InstanceRequest_1a118179f46525e116468fbb0d160fd98b)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InstanceRequest_1a3d9be446365be29fec80b4ef08ceddc9)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1af988c697d8f2bf35a64c7c7d287bb028)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1a4d4069f737847a9b13dd8bb72b2c65d6)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1a47c0d065d46c47b7cbecf27ee63277aa)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1ac0e4b0cab82917b1df3fa56f1104a5cc)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceRequest_1aeaa94fcc05e89ba722cad52c8550769e)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceRequest_1afea26652de5c17e97361242e30876d08)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceId`](#structFRHAPI__InstanceRequest_1a1e50e316dc5ed247270e3fd84a74983f)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
-`public inline void `[`SetInstanceId`](#structFRHAPI__InstanceRequest_1a803f49db9582c8a77b82c502c8e49abf)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1a2a648a2667ba84d4d4b7497dff281ae0)`()` | Gets the value of InstanceId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1aa3c8bd9f7001fc3af3b6562df4ca57bb)`() const` | Gets the value of InstanceId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1a26820a73d2c7dbdb4d66b2405923e515)`(const FString & DefaultValue) const` | Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1ae26981e5f444ad42de87c6001ff81511)`(FString & OutValue) const` | Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceRequest_1a335d9ebcfe9861a433f7cae19865ee83)`()` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceRequest_1a096562bb8c5d3447ecc72aff80086568)`() const` | Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__InstanceRequest_1aefef106097e5101bc964234a3379a050)`(const FString & NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__InstanceRequest_1aa08b05d2147ec154057ea916a85d9ffe)`(FString && NewValue)` | Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceId`](#structFRHAPI__InstanceRequest_1a8807721e52eb1a112dcbc1f3dfe40a37)`()` | Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
-`public inline bool `[`IsInstanceIdSet`](#structFRHAPI__InstanceRequest_1aa715646c4461cbd3b2645488a38c2f64)`() const` | Checks whether InstanceId_Optional has been set.
-`public inline `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a2e471612a0a28cf9e5863f13e04c8612)`()` | Gets the value of InstanceStartupParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a938f7192676dccced8a0506f74c98751)`() const` | Gets the value of InstanceStartupParams_Optional, regardless of it having been set.
-`public inline const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a4610e3ab53ad2b73baafe59545968758)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & DefaultValue) const` | Gets the value of InstanceStartupParams_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1ac3bd45ed219f2019d3e782feca55ee5c)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & OutValue) const` | Fills OutValue with the value of InstanceStartupParams_Optional and returns true if it has been set, otherwise returns false.
-`public inline `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` * `[`GetInstanceStartupParamsOrNull`](#structFRHAPI__InstanceRequest_1aa056a77fe33d4fceaf4ea4a7e6f1f13c)`()` | Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` * `[`GetInstanceStartupParamsOrNull`](#structFRHAPI__InstanceRequest_1a8f325b63bd202834426f40b2c10917be)`() const` | Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1ae9d50a4cd7268764cd37fedd8f55932f)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & NewValue)` | Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true.
-`public inline void `[`SetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a2e4ed0781477c1474ec6da97cdea711f)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` && NewValue)` | Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a138036c1a81a8541b8c5f71c236639ff)`()` | Gets the value of InstanceStartupParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a5ff7fe268ac869d752cb5032f9fb2360)`() const` | Gets the value of InstanceStartupParams_Optional, regardless of it having been set.
+`public inline FORCEINLINE const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a4f4b30a560f25b21d8e23ffbed78a31c)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & DefaultValue) const` | Gets the value of InstanceStartupParams_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a697240bb6ee90a5082acb42e41b78524)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & OutValue) const` | Fills OutValue with the value of InstanceStartupParams_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` * `[`GetInstanceStartupParamsOrNull`](#structFRHAPI__InstanceRequest_1a9adf535cd929449fd55bb5a2c6a31082)`()` | Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` * `[`GetInstanceStartupParamsOrNull`](#structFRHAPI__InstanceRequest_1a505ebd42cfb92cd29e6bd09ce99d4644)`() const` | Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a469d44e70d21c4418ccf205222969497)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & NewValue)` | Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1aec4f0b565e261539d98bca7c3b65aea3)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` && NewValue)` | Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a45fa6311989ae8b6c8e1784594faca03)`()` | Clears the value of InstanceStartupParams_Optional and sets InstanceStartupParams_IsSet to false.
-`public inline bool `[`IsInstanceStartupParamsSet`](#structFRHAPI__InstanceRequest_1a023d7c45a36c3f189d0df59977ba39c7)`() const` | Checks whether InstanceStartupParams_Optional has been set.
-`public inline ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1a2625b2cacd8abaca6f7d1a6a3c07caeb)`()` | Gets the value of HostType_Optional, regardless of it having been set.
-`public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1ad2b16349e90409bff5ff3613b1c03af7)`() const` | Gets the value of HostType_Optional, regardless of it having been set.
-`public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1a55112c22ecfe9b43098f403dfff952df)`(const ERHAPI_HostType & DefaultValue) const` | Gets the value of HostType_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetHostType`](#structFRHAPI__InstanceRequest_1a5d59bbe65758cdea98b366d2c642b1bc)`(ERHAPI_HostType & OutValue) const` | Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__InstanceRequest_1ae76e92b4cef80633345b938fa8221010)`()` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__InstanceRequest_1aa2c1fa903d001bea1696cdcee283bdc9)`() const` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetHostType`](#structFRHAPI__InstanceRequest_1aa85edcfb5f3d0a745d8934f514a6637e)`(const ERHAPI_HostType & NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true.
-`public inline void `[`SetHostType`](#structFRHAPI__InstanceRequest_1ac5461f89179f71ea6aa097a737f7620f)`(ERHAPI_HostType && NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1aa6c84fc41203fefe2c8063d110242fda)`()` | Gets the value of HostType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1afe4ae7c8ee5f3f54fe49332276e4aa49)`() const` | Gets the value of HostType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1a0dd64cd35bb54e135f65f79588bcfa8a)`(const ERHAPI_HostType & DefaultValue) const` | Gets the value of HostType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetHostType`](#structFRHAPI__InstanceRequest_1a7055f357b0a2f97800e53af6d8f37d2a)`(ERHAPI_HostType & OutValue) const` | Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__InstanceRequest_1a226b46ab421a1afe3f36c19c74adc688)`()` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__InstanceRequest_1aa5507210a42a8d9f8e99c774116ff970)`() const` | Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetHostType`](#structFRHAPI__InstanceRequest_1a290716ec3c22cb7d994d41217aa4aa99)`(const ERHAPI_HostType & NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true.
+`public inline FORCEINLINE void `[`SetHostType`](#structFRHAPI__InstanceRequest_1a9b0f51ebf6e62be3be349b87cd5fe480)`(ERHAPI_HostType && NewValue)` | Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics.
 `public inline void `[`ClearHostType`](#structFRHAPI__InstanceRequest_1a950f4a5ce36d9aa40cb8598a4efcebf5)`()` | Clears the value of HostType_Optional and sets HostType_IsSet to false.
-`public inline bool `[`IsHostTypeSet`](#structFRHAPI__InstanceRequest_1abacc0f32145fd27d8222344971cf6e9a)`() const` | Checks whether HostType_Optional has been set.
-`public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a73096ec7797657298e8869bec16432d0)`()` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1aa148e04d1923ee341f60c49d5944fd78)`() const` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1af0c64db74424f772a7464de464b54b55)`(const FGuid & DefaultValue) const` | Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1aa03b058c830cbe8ee206509230338e0c)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__InstanceRequest_1a2db7be8c731d081ba19c2f3415218257)`()` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__InstanceRequest_1afbb9b2ebf576c8153ed5db585b3a40cd)`() const` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1ae84772b1f06a5da7cee533b4f76815d5)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
-`public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a1983aebbe2c48ea4efa79f9367fedd9b)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1ae1224b22088818d6d64017f06002b0dd)`()` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a55e3c9b029861503802649efd1a6f823)`() const` | Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1affeae3868fe711ee02f1b3674add373a)`(const FGuid & DefaultValue) const` | Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a905f66c09e2961d0e752889cc4f34717)`(FGuid & OutValue) const` | Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__InstanceRequest_1ac5a14c379852280d64ff829c3dd44048)`()` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__InstanceRequest_1a464ad7f21fc9b64cf6b5b4bbb6a5bb39)`() const` | Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1afbb38d8987d9999b1601e4756337d454)`(const FGuid & NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
+`public inline FORCEINLINE void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1ac0169c3656d8211a3489ee94f1bf0eb8)`(FGuid && NewValue)` | Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
 `public inline void `[`ClearInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a7215adf9c4aa53d153b0bc4f024dfc94)`()` | Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false.
-`public inline bool `[`IsInstanceRequestTemplateIdSet`](#structFRHAPI__InstanceRequest_1a56b7acfa4cd7c3201a5482212fc9ff67)`() const` | Checks whether InstanceRequestTemplateId_Optional has been set.
-`public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1ab0f79db08fbe222cdc02f4994a81c979)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a70261c9f560b909d66b90f8639cc0961)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a1c836b29e60a25802b37fdbdb36d5a07)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1ab37ad6d7b9d29367d7f1f2e57278172e)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__InstanceRequest_1aaf6a3f3694113e508335cb1aa5567089)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__InstanceRequest_1ab0fe1526f796c278c56884be73ae4e05)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a9831435f69f1fa844bc6d5aa94f2742c)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
-`public inline void `[`SetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a0b83e50ceb9a14461ef862dc89dd46f3)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a9a48d287311450185e44d7efa9697d86)`()` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a9f6f04dc8cd68f977f8664b9e778aeca)`() const` | Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a90a813fdb0e88e8c684eb20c2630e9ba)`(const FGuid & DefaultValue) const` | Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1ad3ee7ad45ed3e4f59022d61c6aaa0880)`(FGuid & OutValue) const` | Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__InstanceRequest_1aa0621e9e42e3564d9696152213834ccf)`()` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__InstanceRequest_1a7a8f2bc6be9787b81c39a623a76f05ad)`() const` | Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a75f942d71ed80e183cff863caff06499)`(const FGuid & NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a1ad7d91f473be5d57af0435e4b1af529)`(FGuid && NewValue)` | Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearHostPlayerUuid`](#structFRHAPI__InstanceRequest_1ae6ee53368bb4ad87be06ee5973876c1a)`()` | Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
-`public inline bool `[`IsHostPlayerUuidSet`](#structFRHAPI__InstanceRequest_1af0e80cfe734515b6e06a6b7f5832c488)`() const` | Checks whether HostPlayerUuid_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a2a3ec2bf9aa2ce2bac161b747077d606)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a539b0e8476381f55465d80e238898ecb)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a20d0a931ba4b4692f4be517e8e594014)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__InstanceRequest_1aafe1e35919ac76db051c71308609e78d)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequest_1ad1f676cb1b039a5a7047c174d26c4e3d)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequest_1ac654d312549af3dd6ddfac27548b12f5)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1a64083b666670a3113fac740d5a2f376b)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1af508205472005a930282556f780c3e92)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a5534cad565d66249e23d4e72255e5093)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a4257db5821ba2113799aebac673d0b36)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1ae7b457da59d93007d331a5369dbe566a)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a43d8f64ea513870c864e32cbdc5c54b5)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequest_1ab3cf99f96e5ca94488e94a4fee201c40)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequest_1aa0ad7a5ba323b7fee51a04bd6caa060e)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1ac04b03b49d3366b9ba385337acd3c256)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1ae5efb336966374d4c7a43db510aee109)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceRequest_1a4121a0d0b10e936e6d0b4aae89f200fa)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__InstanceRequest_1a52a94c97b42d85c17dd58f5e57a59430)`() const` | Checks whether CustomData_Optional has been set.
 
 ### Members
 
@@ -163,35 +157,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1af988c697d8f2bf35a64c7c7d287bb028)`()` <a id="structFRHAPI__InstanceRequest_1af988c697d8f2bf35a64c7c7d287bb028"></a>
+#### `public inline FORCEINLINE FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1a2a648a2667ba84d4d4b7497dff281ae0)`()` <a id="structFRHAPI__InstanceRequest_1a2a648a2667ba84d4d4b7497dff281ae0"></a>
 
 Gets the value of InstanceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1a4d4069f737847a9b13dd8bb72b2c65d6)`() const` <a id="structFRHAPI__InstanceRequest_1a4d4069f737847a9b13dd8bb72b2c65d6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1aa3c8bd9f7001fc3af3b6562df4ca57bb)`() const` <a id="structFRHAPI__InstanceRequest_1aa3c8bd9f7001fc3af3b6562df4ca57bb"></a>
 
 Gets the value of InstanceId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1a47c0d065d46c47b7cbecf27ee63277aa)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a47c0d065d46c47b7cbecf27ee63277aa"></a>
+#### `public inline FORCEINLINE const FString & `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1a26820a73d2c7dbdb4d66b2405923e515)`(const FString & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a26820a73d2c7dbdb4d66b2405923e515"></a>
 
 Gets the value of InstanceId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1ac0e4b0cab82917b1df3fa56f1104a5cc)`(FString & OutValue) const` <a id="structFRHAPI__InstanceRequest_1ac0e4b0cab82917b1df3fa56f1104a5cc"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceId`](#structFRHAPI__InstanceRequest_1ae26981e5f444ad42de87c6001ff81511)`(FString & OutValue) const` <a id="structFRHAPI__InstanceRequest_1ae26981e5f444ad42de87c6001ff81511"></a>
 
 Fills OutValue with the value of InstanceId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceRequest_1aeaa94fcc05e89ba722cad52c8550769e)`()` <a id="structFRHAPI__InstanceRequest_1aeaa94fcc05e89ba722cad52c8550769e"></a>
+#### `public inline FORCEINLINE FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceRequest_1a335d9ebcfe9861a433f7cae19865ee83)`()` <a id="structFRHAPI__InstanceRequest_1a335d9ebcfe9861a433f7cae19865ee83"></a>
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceRequest_1afea26652de5c17e97361242e30876d08)`() const` <a id="structFRHAPI__InstanceRequest_1afea26652de5c17e97361242e30876d08"></a>
+#### `public inline FORCEINLINE const FString * `[`GetInstanceIdOrNull`](#structFRHAPI__InstanceRequest_1a096562bb8c5d3447ecc72aff80086568)`() const` <a id="structFRHAPI__InstanceRequest_1a096562bb8c5d3447ecc72aff80086568"></a>
 
 Returns a pointer to InstanceId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__InstanceRequest_1a1e50e316dc5ed247270e3fd84a74983f)`(const FString & NewValue)` <a id="structFRHAPI__InstanceRequest_1a1e50e316dc5ed247270e3fd84a74983f"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__InstanceRequest_1aefef106097e5101bc964234a3379a050)`(const FString & NewValue)` <a id="structFRHAPI__InstanceRequest_1aefef106097e5101bc964234a3379a050"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true.
 
-#### `public inline void `[`SetInstanceId`](#structFRHAPI__InstanceRequest_1a803f49db9582c8a77b82c502c8e49abf)`(FString && NewValue)` <a id="structFRHAPI__InstanceRequest_1a803f49db9582c8a77b82c502c8e49abf"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceId`](#structFRHAPI__InstanceRequest_1aa08b05d2147ec154057ea916a85d9ffe)`(FString && NewValue)` <a id="structFRHAPI__InstanceRequest_1aa08b05d2147ec154057ea916a85d9ffe"></a>
 
 Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true using move semantics.
 
@@ -199,39 +193,35 @@ Sets the value of InstanceId_Optional and also sets InstanceId_IsSet to true usi
 
 Clears the value of InstanceId_Optional and sets InstanceId_IsSet to false.
 
-#### `public inline bool `[`IsInstanceIdSet`](#structFRHAPI__InstanceRequest_1aa715646c4461cbd3b2645488a38c2f64)`() const` <a id="structFRHAPI__InstanceRequest_1aa715646c4461cbd3b2645488a38c2f64"></a>
-
-Checks whether InstanceId_Optional has been set.
-
-#### `public inline `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a2e471612a0a28cf9e5863f13e04c8612)`()` <a id="structFRHAPI__InstanceRequest_1a2e471612a0a28cf9e5863f13e04c8612"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a138036c1a81a8541b8c5f71c236639ff)`()` <a id="structFRHAPI__InstanceRequest_1a138036c1a81a8541b8c5f71c236639ff"></a>
 
 Gets the value of InstanceStartupParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a938f7192676dccced8a0506f74c98751)`() const` <a id="structFRHAPI__InstanceRequest_1a938f7192676dccced8a0506f74c98751"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a5ff7fe268ac869d752cb5032f9fb2360)`() const` <a id="structFRHAPI__InstanceRequest_1a5ff7fe268ac869d752cb5032f9fb2360"></a>
 
 Gets the value of InstanceStartupParams_Optional, regardless of it having been set.
 
-#### `public inline const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a4610e3ab53ad2b73baafe59545968758)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a4610e3ab53ad2b73baafe59545968758"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a4f4b30a560f25b21d8e23ffbed78a31c)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a4f4b30a560f25b21d8e23ffbed78a31c"></a>
 
 Gets the value of InstanceStartupParams_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1ac3bd45ed219f2019d3e782feca55ee5c)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & OutValue) const` <a id="structFRHAPI__InstanceRequest_1ac3bd45ed219f2019d3e782feca55ee5c"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a697240bb6ee90a5082acb42e41b78524)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & OutValue) const` <a id="structFRHAPI__InstanceRequest_1a697240bb6ee90a5082acb42e41b78524"></a>
 
 Fills OutValue with the value of InstanceStartupParams_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` * `[`GetInstanceStartupParamsOrNull`](#structFRHAPI__InstanceRequest_1aa056a77fe33d4fceaf4ea4a7e6f1f13c)`()` <a id="structFRHAPI__InstanceRequest_1aa056a77fe33d4fceaf4ea4a7e6f1f13c"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` * `[`GetInstanceStartupParamsOrNull`](#structFRHAPI__InstanceRequest_1a9adf535cd929449fd55bb5a2c6a31082)`()` <a id="structFRHAPI__InstanceRequest_1a9adf535cd929449fd55bb5a2c6a31082"></a>
 
 Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` * `[`GetInstanceStartupParamsOrNull`](#structFRHAPI__InstanceRequest_1a8f325b63bd202834426f40b2c10917be)`() const` <a id="structFRHAPI__InstanceRequest_1a8f325b63bd202834426f40b2c10917be"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` * `[`GetInstanceStartupParamsOrNull`](#structFRHAPI__InstanceRequest_1a505ebd42cfb92cd29e6bd09ce99d4644)`() const` <a id="structFRHAPI__InstanceRequest_1a505ebd42cfb92cd29e6bd09ce99d4644"></a>
 
 Returns a pointer to InstanceStartupParams_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1ae9d50a4cd7268764cd37fedd8f55932f)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & NewValue)` <a id="structFRHAPI__InstanceRequest_1ae9d50a4cd7268764cd37fedd8f55932f"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a469d44e70d21c4418ccf205222969497)`(const `[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` & NewValue)` <a id="structFRHAPI__InstanceRequest_1a469d44e70d21c4418ccf205222969497"></a>
 
 Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true.
 
-#### `public inline void `[`SetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1a2e4ed0781477c1474ec6da97cdea711f)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` && NewValue)` <a id="structFRHAPI__InstanceRequest_1a2e4ed0781477c1474ec6da97cdea711f"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceStartupParams`](#structFRHAPI__InstanceRequest_1aec4f0b565e261539d98bca7c3b65aea3)`(`[`FRHAPI_InstanceStartupParams`](RHAPI_InstanceStartupParams.md#structFRHAPI__InstanceStartupParams)` && NewValue)` <a id="structFRHAPI__InstanceRequest_1aec4f0b565e261539d98bca7c3b65aea3"></a>
 
 Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupParams_IsSet to true using move semantics.
 
@@ -239,39 +229,35 @@ Sets the value of InstanceStartupParams_Optional and also sets InstanceStartupPa
 
 Clears the value of InstanceStartupParams_Optional and sets InstanceStartupParams_IsSet to false.
 
-#### `public inline bool `[`IsInstanceStartupParamsSet`](#structFRHAPI__InstanceRequest_1a023d7c45a36c3f189d0df59977ba39c7)`() const` <a id="structFRHAPI__InstanceRequest_1a023d7c45a36c3f189d0df59977ba39c7"></a>
-
-Checks whether InstanceStartupParams_Optional has been set.
-
-#### `public inline ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1a2625b2cacd8abaca6f7d1a6a3c07caeb)`()` <a id="structFRHAPI__InstanceRequest_1a2625b2cacd8abaca6f7d1a6a3c07caeb"></a>
+#### `public inline FORCEINLINE ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1aa6c84fc41203fefe2c8063d110242fda)`()` <a id="structFRHAPI__InstanceRequest_1aa6c84fc41203fefe2c8063d110242fda"></a>
 
 Gets the value of HostType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1ad2b16349e90409bff5ff3613b1c03af7)`() const` <a id="structFRHAPI__InstanceRequest_1ad2b16349e90409bff5ff3613b1c03af7"></a>
+#### `public inline FORCEINLINE const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1afe4ae7c8ee5f3f54fe49332276e4aa49)`() const` <a id="structFRHAPI__InstanceRequest_1afe4ae7c8ee5f3f54fe49332276e4aa49"></a>
 
 Gets the value of HostType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1a55112c22ecfe9b43098f403dfff952df)`(const ERHAPI_HostType & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a55112c22ecfe9b43098f403dfff952df"></a>
+#### `public inline FORCEINLINE const ERHAPI_HostType & `[`GetHostType`](#structFRHAPI__InstanceRequest_1a0dd64cd35bb54e135f65f79588bcfa8a)`(const ERHAPI_HostType & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a0dd64cd35bb54e135f65f79588bcfa8a"></a>
 
 Gets the value of HostType_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetHostType`](#structFRHAPI__InstanceRequest_1a5d59bbe65758cdea98b366d2c642b1bc)`(ERHAPI_HostType & OutValue) const` <a id="structFRHAPI__InstanceRequest_1a5d59bbe65758cdea98b366d2c642b1bc"></a>
+#### `public inline FORCEINLINE bool `[`GetHostType`](#structFRHAPI__InstanceRequest_1a7055f357b0a2f97800e53af6d8f37d2a)`(ERHAPI_HostType & OutValue) const` <a id="structFRHAPI__InstanceRequest_1a7055f357b0a2f97800e53af6d8f37d2a"></a>
 
 Fills OutValue with the value of HostType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__InstanceRequest_1ae76e92b4cef80633345b938fa8221010)`()` <a id="structFRHAPI__InstanceRequest_1ae76e92b4cef80633345b938fa8221010"></a>
+#### `public inline FORCEINLINE ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__InstanceRequest_1a226b46ab421a1afe3f36c19c74adc688)`()` <a id="structFRHAPI__InstanceRequest_1a226b46ab421a1afe3f36c19c74adc688"></a>
 
 Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__InstanceRequest_1aa2c1fa903d001bea1696cdcee283bdc9)`() const` <a id="structFRHAPI__InstanceRequest_1aa2c1fa903d001bea1696cdcee283bdc9"></a>
+#### `public inline FORCEINLINE const ERHAPI_HostType * `[`GetHostTypeOrNull`](#structFRHAPI__InstanceRequest_1aa5507210a42a8d9f8e99c774116ff970)`() const` <a id="structFRHAPI__InstanceRequest_1aa5507210a42a8d9f8e99c774116ff970"></a>
 
 Returns a pointer to HostType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetHostType`](#structFRHAPI__InstanceRequest_1aa85edcfb5f3d0a745d8934f514a6637e)`(const ERHAPI_HostType & NewValue)` <a id="structFRHAPI__InstanceRequest_1aa85edcfb5f3d0a745d8934f514a6637e"></a>
+#### `public inline FORCEINLINE void `[`SetHostType`](#structFRHAPI__InstanceRequest_1a290716ec3c22cb7d994d41217aa4aa99)`(const ERHAPI_HostType & NewValue)` <a id="structFRHAPI__InstanceRequest_1a290716ec3c22cb7d994d41217aa4aa99"></a>
 
 Sets the value of HostType_Optional and also sets HostType_IsSet to true.
 
-#### `public inline void `[`SetHostType`](#structFRHAPI__InstanceRequest_1ac5461f89179f71ea6aa097a737f7620f)`(ERHAPI_HostType && NewValue)` <a id="structFRHAPI__InstanceRequest_1ac5461f89179f71ea6aa097a737f7620f"></a>
+#### `public inline FORCEINLINE void `[`SetHostType`](#structFRHAPI__InstanceRequest_1a9b0f51ebf6e62be3be349b87cd5fe480)`(ERHAPI_HostType && NewValue)` <a id="structFRHAPI__InstanceRequest_1a9b0f51ebf6e62be3be349b87cd5fe480"></a>
 
 Sets the value of HostType_Optional and also sets HostType_IsSet to true using move semantics.
 
@@ -279,39 +265,35 @@ Sets the value of HostType_Optional and also sets HostType_IsSet to true using m
 
 Clears the value of HostType_Optional and sets HostType_IsSet to false.
 
-#### `public inline bool `[`IsHostTypeSet`](#structFRHAPI__InstanceRequest_1abacc0f32145fd27d8222344971cf6e9a)`() const` <a id="structFRHAPI__InstanceRequest_1abacc0f32145fd27d8222344971cf6e9a"></a>
-
-Checks whether HostType_Optional has been set.
-
-#### `public inline FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a73096ec7797657298e8869bec16432d0)`()` <a id="structFRHAPI__InstanceRequest_1a73096ec7797657298e8869bec16432d0"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1ae1224b22088818d6d64017f06002b0dd)`()` <a id="structFRHAPI__InstanceRequest_1ae1224b22088818d6d64017f06002b0dd"></a>
 
 Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1aa148e04d1923ee341f60c49d5944fd78)`() const` <a id="structFRHAPI__InstanceRequest_1aa148e04d1923ee341f60c49d5944fd78"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a55e3c9b029861503802649efd1a6f823)`() const` <a id="structFRHAPI__InstanceRequest_1a55e3c9b029861503802649efd1a6f823"></a>
 
 Gets the value of InstanceRequestTemplateId_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1af0c64db74424f772a7464de464b54b55)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1af0c64db74424f772a7464de464b54b55"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1affeae3868fe711ee02f1b3674add373a)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1affeae3868fe711ee02f1b3674add373a"></a>
 
 Gets the value of InstanceRequestTemplateId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1aa03b058c830cbe8ee206509230338e0c)`(FGuid & OutValue) const` <a id="structFRHAPI__InstanceRequest_1aa03b058c830cbe8ee206509230338e0c"></a>
+#### `public inline FORCEINLINE bool `[`GetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a905f66c09e2961d0e752889cc4f34717)`(FGuid & OutValue) const` <a id="structFRHAPI__InstanceRequest_1a905f66c09e2961d0e752889cc4f34717"></a>
 
 Fills OutValue with the value of InstanceRequestTemplateId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__InstanceRequest_1a2db7be8c731d081ba19c2f3415218257)`()` <a id="structFRHAPI__InstanceRequest_1a2db7be8c731d081ba19c2f3415218257"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__InstanceRequest_1ac5a14c379852280d64ff829c3dd44048)`()` <a id="structFRHAPI__InstanceRequest_1ac5a14c379852280d64ff829c3dd44048"></a>
 
 Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__InstanceRequest_1afbb9b2ebf576c8153ed5db585b3a40cd)`() const` <a id="structFRHAPI__InstanceRequest_1afbb9b2ebf576c8153ed5db585b3a40cd"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetInstanceRequestTemplateIdOrNull`](#structFRHAPI__InstanceRequest_1a464ad7f21fc9b64cf6b5b4bbb6a5bb39)`() const` <a id="structFRHAPI__InstanceRequest_1a464ad7f21fc9b64cf6b5b4bbb6a5bb39"></a>
 
 Returns a pointer to InstanceRequestTemplateId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1ae84772b1f06a5da7cee533b4f76815d5)`(const FGuid & NewValue)` <a id="structFRHAPI__InstanceRequest_1ae84772b1f06a5da7cee533b4f76815d5"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1afbb38d8987d9999b1601e4756337d454)`(const FGuid & NewValue)` <a id="structFRHAPI__InstanceRequest_1afbb38d8987d9999b1601e4756337d454"></a>
 
 Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true.
 
-#### `public inline void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1a1983aebbe2c48ea4efa79f9367fedd9b)`(FGuid && NewValue)` <a id="structFRHAPI__InstanceRequest_1a1983aebbe2c48ea4efa79f9367fedd9b"></a>
+#### `public inline FORCEINLINE void `[`SetInstanceRequestTemplateId`](#structFRHAPI__InstanceRequest_1ac0169c3656d8211a3489ee94f1bf0eb8)`(FGuid && NewValue)` <a id="structFRHAPI__InstanceRequest_1ac0169c3656d8211a3489ee94f1bf0eb8"></a>
 
 Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceRequestTemplateId_IsSet to true using move semantics.
 
@@ -319,39 +301,35 @@ Sets the value of InstanceRequestTemplateId_Optional and also sets InstanceReque
 
 Clears the value of InstanceRequestTemplateId_Optional and sets InstanceRequestTemplateId_IsSet to false.
 
-#### `public inline bool `[`IsInstanceRequestTemplateIdSet`](#structFRHAPI__InstanceRequest_1a56b7acfa4cd7c3201a5482212fc9ff67)`() const` <a id="structFRHAPI__InstanceRequest_1a56b7acfa4cd7c3201a5482212fc9ff67"></a>
-
-Checks whether InstanceRequestTemplateId_Optional has been set.
-
-#### `public inline FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1ab0f79db08fbe222cdc02f4994a81c979)`()` <a id="structFRHAPI__InstanceRequest_1ab0f79db08fbe222cdc02f4994a81c979"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a9a48d287311450185e44d7efa9697d86)`()` <a id="structFRHAPI__InstanceRequest_1a9a48d287311450185e44d7efa9697d86"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a70261c9f560b909d66b90f8639cc0961)`() const` <a id="structFRHAPI__InstanceRequest_1a70261c9f560b909d66b90f8639cc0961"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a9f6f04dc8cd68f977f8664b9e778aeca)`() const` <a id="structFRHAPI__InstanceRequest_1a9f6f04dc8cd68f977f8664b9e778aeca"></a>
 
 Gets the value of HostPlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a1c836b29e60a25802b37fdbdb36d5a07)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a1c836b29e60a25802b37fdbdb36d5a07"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a90a813fdb0e88e8c684eb20c2630e9ba)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a90a813fdb0e88e8c684eb20c2630e9ba"></a>
 
 Gets the value of HostPlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1ab37ad6d7b9d29367d7f1f2e57278172e)`(FGuid & OutValue) const` <a id="structFRHAPI__InstanceRequest_1ab37ad6d7b9d29367d7f1f2e57278172e"></a>
+#### `public inline FORCEINLINE bool `[`GetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1ad3ee7ad45ed3e4f59022d61c6aaa0880)`(FGuid & OutValue) const` <a id="structFRHAPI__InstanceRequest_1ad3ee7ad45ed3e4f59022d61c6aaa0880"></a>
 
 Fills OutValue with the value of HostPlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__InstanceRequest_1aaf6a3f3694113e508335cb1aa5567089)`()` <a id="structFRHAPI__InstanceRequest_1aaf6a3f3694113e508335cb1aa5567089"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__InstanceRequest_1aa0621e9e42e3564d9696152213834ccf)`()` <a id="structFRHAPI__InstanceRequest_1aa0621e9e42e3564d9696152213834ccf"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__InstanceRequest_1ab0fe1526f796c278c56884be73ae4e05)`() const` <a id="structFRHAPI__InstanceRequest_1ab0fe1526f796c278c56884be73ae4e05"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetHostPlayerUuidOrNull`](#structFRHAPI__InstanceRequest_1a7a8f2bc6be9787b81c39a623a76f05ad)`() const` <a id="structFRHAPI__InstanceRequest_1a7a8f2bc6be9787b81c39a623a76f05ad"></a>
 
 Returns a pointer to HostPlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a9831435f69f1fa844bc6d5aa94f2742c)`(const FGuid & NewValue)` <a id="structFRHAPI__InstanceRequest_1a9831435f69f1fa844bc6d5aa94f2742c"></a>
+#### `public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a75f942d71ed80e183cff863caff06499)`(const FGuid & NewValue)` <a id="structFRHAPI__InstanceRequest_1a75f942d71ed80e183cff863caff06499"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a0b83e50ceb9a14461ef862dc89dd46f3)`(FGuid && NewValue)` <a id="structFRHAPI__InstanceRequest_1a0b83e50ceb9a14461ef862dc89dd46f3"></a>
+#### `public inline FORCEINLINE void `[`SetHostPlayerUuid`](#structFRHAPI__InstanceRequest_1a1ad7d91f473be5d57af0435e4b1af529)`(FGuid && NewValue)` <a id="structFRHAPI__InstanceRequest_1a1ad7d91f473be5d57af0435e4b1af529"></a>
 
 Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to true using move semantics.
 
@@ -359,47 +337,39 @@ Sets the value of HostPlayerUuid_Optional and also sets HostPlayerUuid_IsSet to 
 
 Clears the value of HostPlayerUuid_Optional and sets HostPlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsHostPlayerUuidSet`](#structFRHAPI__InstanceRequest_1af0e80cfe734515b6e06a6b7f5832c488)`() const` <a id="structFRHAPI__InstanceRequest_1af0e80cfe734515b6e06a6b7f5832c488"></a>
-
-Checks whether HostPlayerUuid_Optional has been set.
-
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a2a3ec2bf9aa2ce2bac161b747077d606)`()` <a id="structFRHAPI__InstanceRequest_1a2a3ec2bf9aa2ce2bac161b747077d606"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a5534cad565d66249e23d4e72255e5093)`()` <a id="structFRHAPI__InstanceRequest_1a5534cad565d66249e23d4e72255e5093"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a539b0e8476381f55465d80e238898ecb)`() const` <a id="structFRHAPI__InstanceRequest_1a539b0e8476381f55465d80e238898ecb"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a4257db5821ba2113799aebac673d0b36)`() const` <a id="structFRHAPI__InstanceRequest_1a4257db5821ba2113799aebac673d0b36"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a20d0a931ba4b4692f4be517e8e594014)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1a20d0a931ba4b4692f4be517e8e594014"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__InstanceRequest_1ae7b457da59d93007d331a5369dbe566a)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__InstanceRequest_1ae7b457da59d93007d331a5369dbe566a"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__InstanceRequest_1aafe1e35919ac76db051c71308609e78d)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__InstanceRequest_1aafe1e35919ac76db051c71308609e78d"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__InstanceRequest_1a43d8f64ea513870c864e32cbdc5c54b5)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__InstanceRequest_1a43d8f64ea513870c864e32cbdc5c54b5"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequest_1ad1f676cb1b039a5a7047c174d26c4e3d)`()` <a id="structFRHAPI__InstanceRequest_1ad1f676cb1b039a5a7047c174d26c4e3d"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequest_1ab3cf99f96e5ca94488e94a4fee201c40)`()` <a id="structFRHAPI__InstanceRequest_1ab3cf99f96e5ca94488e94a4fee201c40"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequest_1ac654d312549af3dd6ddfac27548b12f5)`() const` <a id="structFRHAPI__InstanceRequest_1ac654d312549af3dd6ddfac27548b12f5"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__InstanceRequest_1aa0ad7a5ba323b7fee51a04bd6caa060e)`() const` <a id="structFRHAPI__InstanceRequest_1aa0ad7a5ba323b7fee51a04bd6caa060e"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1a64083b666670a3113fac740d5a2f376b)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__InstanceRequest_1a64083b666670a3113fac740d5a2f376b"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1ac04b03b49d3366b9ba385337acd3c256)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__InstanceRequest_1ac04b03b49d3366b9ba385337acd3c256"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1af508205472005a930282556f780c3e92)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__InstanceRequest_1af508205472005a930282556f780c3e92"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__InstanceRequest_1ae5efb336966374d4c7a43db510aee109)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__InstanceRequest_1ae5efb336966374d4c7a43db510aee109"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearCustomData`](#structFRHAPI__InstanceRequest_1a4121a0d0b10e936e6d0b4aae89f200fa)`()` <a id="structFRHAPI__InstanceRequest_1a4121a0d0b10e936e6d0b4aae89f200fa"></a>
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__InstanceRequest_1a52a94c97b42d85c17dd58f5e57a59430)`() const` <a id="structFRHAPI__InstanceRequest_1a52a94c97b42d85c17dd58f5e57a59430"></a>
-
-Checks whether CustomData_Optional has been set.
 

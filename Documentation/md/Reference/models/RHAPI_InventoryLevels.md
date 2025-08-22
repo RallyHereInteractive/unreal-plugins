@@ -25,16 +25,15 @@ Inventory Levels for a Player.
 `public bool `[`Levels_IsSet`](#structFRHAPI__InventoryLevels_1ab3741adad43b0995591ccaea1d457b16) | true if Levels_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__InventoryLevels_1a6e435006a5dcbac40ebd0c654e9fc734)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__InventoryLevels_1a45e43c5c5626a29475a6a555ca1b1ae2)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1aee9e00af2075aded753a2720caefab8c)`()` | Gets the value of Levels_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1a1d2c9a1ccea2090c56a126cebb4cf0f5)`() const` | Gets the value of Levels_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1a3dda91170110edd6d3b6966a32b726fa)`(const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & DefaultValue) const` | Gets the value of Levels_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLevels`](#structFRHAPI__InventoryLevels_1adbfa2b3171b06adc722dec3348e89d66)`(TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & OutValue) const` | Fills OutValue with the value of Levels_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > * `[`GetLevelsOrNull`](#structFRHAPI__InventoryLevels_1ae5ef258b20d12acdae27dd747682138d)`()` | Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > * `[`GetLevelsOrNull`](#structFRHAPI__InventoryLevels_1a6695593b9596e02a247dc75c8f76b5e8)`() const` | Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLevels`](#structFRHAPI__InventoryLevels_1a86449146774d856b963f441d8fccaebd)`(const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & NewValue)` | Sets the value of Levels_Optional and also sets Levels_IsSet to true.
-`public inline void `[`SetLevels`](#structFRHAPI__InventoryLevels_1a0bff6cd84910a5ee09cccaf31f3a62ba)`(TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > && NewValue)` | Sets the value of Levels_Optional and also sets Levels_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1a946ae6c80934374cf83948a7bc3541e8)`()` | Gets the value of Levels_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1a321da68fd6ff3f045223c2c67d9c2b27)`() const` | Gets the value of Levels_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1af4a3391b72b38e925e7bc7b8686ce5f2)`(const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & DefaultValue) const` | Gets the value of Levels_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLevels`](#structFRHAPI__InventoryLevels_1add168362f7655cecf4efb5abffa8f7cc)`(TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & OutValue) const` | Fills OutValue with the value of Levels_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > * `[`GetLevelsOrNull`](#structFRHAPI__InventoryLevels_1a7c9a8dc1885065bc99f1b107445cd831)`()` | Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > * `[`GetLevelsOrNull`](#structFRHAPI__InventoryLevels_1ab615fbc18d1fc2baf1a644676fec4d61)`() const` | Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLevels`](#structFRHAPI__InventoryLevels_1a6a64c010aeb8c8b6f30c1bf5debc20f8)`(const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & NewValue)` | Sets the value of Levels_Optional and also sets Levels_IsSet to true.
+`public inline FORCEINLINE void `[`SetLevels`](#structFRHAPI__InventoryLevels_1a45c6477d1090520a735c374f6e79b275)`(TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > && NewValue)` | Sets the value of Levels_Optional and also sets Levels_IsSet to true using move semantics.
 `public inline void `[`ClearLevels`](#structFRHAPI__InventoryLevels_1acc3ec5ab42083d1d72cefedfe52cef67)`()` | Clears the value of Levels_Optional and sets Levels_IsSet to false.
-`public inline bool `[`IsLevelsSet`](#structFRHAPI__InventoryLevels_1a8ea9931990f43a82ba362a35ee1df31f)`() const` | Checks whether Levels_Optional has been set.
 
 ### Members
 
@@ -63,43 +62,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1aee9e00af2075aded753a2720caefab8c)`()` <a id="structFRHAPI__InventoryLevels_1aee9e00af2075aded753a2720caefab8c"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1a946ae6c80934374cf83948a7bc3541e8)`()` <a id="structFRHAPI__InventoryLevels_1a946ae6c80934374cf83948a7bc3541e8"></a>
 
 Gets the value of Levels_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1a1d2c9a1ccea2090c56a126cebb4cf0f5)`() const` <a id="structFRHAPI__InventoryLevels_1a1d2c9a1ccea2090c56a126cebb4cf0f5"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1a321da68fd6ff3f045223c2c67d9c2b27)`() const` <a id="structFRHAPI__InventoryLevels_1a321da68fd6ff3f045223c2c67d9c2b27"></a>
 
 Gets the value of Levels_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1a3dda91170110edd6d3b6966a32b726fa)`(const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & DefaultValue) const` <a id="structFRHAPI__InventoryLevels_1a3dda91170110edd6d3b6966a32b726fa"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & `[`GetLevels`](#structFRHAPI__InventoryLevels_1af4a3391b72b38e925e7bc7b8686ce5f2)`(const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & DefaultValue) const` <a id="structFRHAPI__InventoryLevels_1af4a3391b72b38e925e7bc7b8686ce5f2"></a>
 
 Gets the value of Levels_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLevels`](#structFRHAPI__InventoryLevels_1adbfa2b3171b06adc722dec3348e89d66)`(TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & OutValue) const` <a id="structFRHAPI__InventoryLevels_1adbfa2b3171b06adc722dec3348e89d66"></a>
+#### `public inline FORCEINLINE bool `[`GetLevels`](#structFRHAPI__InventoryLevels_1add168362f7655cecf4efb5abffa8f7cc)`(TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & OutValue) const` <a id="structFRHAPI__InventoryLevels_1add168362f7655cecf4efb5abffa8f7cc"></a>
 
 Fills OutValue with the value of Levels_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > * `[`GetLevelsOrNull`](#structFRHAPI__InventoryLevels_1ae5ef258b20d12acdae27dd747682138d)`()` <a id="structFRHAPI__InventoryLevels_1ae5ef258b20d12acdae27dd747682138d"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > * `[`GetLevelsOrNull`](#structFRHAPI__InventoryLevels_1a7c9a8dc1885065bc99f1b107445cd831)`()` <a id="structFRHAPI__InventoryLevels_1a7c9a8dc1885065bc99f1b107445cd831"></a>
 
 Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > * `[`GetLevelsOrNull`](#structFRHAPI__InventoryLevels_1a6695593b9596e02a247dc75c8f76b5e8)`() const` <a id="structFRHAPI__InventoryLevels_1a6695593b9596e02a247dc75c8f76b5e8"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > * `[`GetLevelsOrNull`](#structFRHAPI__InventoryLevels_1ab615fbc18d1fc2baf1a644676fec4d61)`() const` <a id="structFRHAPI__InventoryLevels_1ab615fbc18d1fc2baf1a644676fec4d61"></a>
 
 Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLevels`](#structFRHAPI__InventoryLevels_1a86449146774d856b963f441d8fccaebd)`(const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & NewValue)` <a id="structFRHAPI__InventoryLevels_1a86449146774d856b963f441d8fccaebd"></a>
+#### `public inline FORCEINLINE void `[`SetLevels`](#structFRHAPI__InventoryLevels_1a6a64c010aeb8c8b6f30c1bf5debc20f8)`(const TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > & NewValue)` <a id="structFRHAPI__InventoryLevels_1a6a64c010aeb8c8b6f30c1bf5debc20f8"></a>
 
 Sets the value of Levels_Optional and also sets Levels_IsSet to true.
 
-#### `public inline void `[`SetLevels`](#structFRHAPI__InventoryLevels_1a0bff6cd84910a5ee09cccaf31f3a62ba)`(TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > && NewValue)` <a id="structFRHAPI__InventoryLevels_1a0bff6cd84910a5ee09cccaf31f3a62ba"></a>
+#### `public inline FORCEINLINE void `[`SetLevels`](#structFRHAPI__InventoryLevels_1a45c6477d1090520a735c374f6e79b275)`(TArray< `[`FRHAPI_InventoryLevel`](RHAPI_InventoryLevel.md#structFRHAPI__InventoryLevel)` > && NewValue)` <a id="structFRHAPI__InventoryLevels_1a45c6477d1090520a735c374f6e79b275"></a>
 
 Sets the value of Levels_Optional and also sets Levels_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLevels`](#structFRHAPI__InventoryLevels_1acc3ec5ab42083d1d72cefedfe52cef67)`()` <a id="structFRHAPI__InventoryLevels_1acc3ec5ab42083d1d72cefedfe52cef67"></a>
 
 Clears the value of Levels_Optional and sets Levels_IsSet to false.
-
-#### `public inline bool `[`IsLevelsSet`](#structFRHAPI__InventoryLevels_1a8ea9931990f43a82ba362a35ee1df31f)`() const` <a id="structFRHAPI__InventoryLevels_1a8ea9931990f43a82ba362a35ee1df31f"></a>
-
-Checks whether Levels_Optional has been set.
 

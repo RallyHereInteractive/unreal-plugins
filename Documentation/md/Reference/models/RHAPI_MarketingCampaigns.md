@@ -24,10 +24,10 @@ List of external Marketing Campaigns.
 `public TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > `[`Campaigns`](#structFRHAPI__MarketingCampaigns_1a88d6c9da15ac877b420b90278678d505) | List of external Marketing Campaigns.
 `public virtual bool `[`FromJson`](#structFRHAPI__MarketingCampaigns_1adf5e03cc408468f73950966d8df368fd)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MarketingCampaigns_1adb86894187b504efa35aa91307161bf9)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1af688faef6a3aebd794b34c5de14d085c)`()` | Gets the value of Campaigns.
-`public inline const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1abc257053c5ef20f878c8725ee1e58a20)`() const` | Gets the value of Campaigns.
-`public inline void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1a2d930bf11e195ab35e13e504dbc59e7d)`(const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & NewValue)` | Sets the value of Campaigns.
-`public inline void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1af5f9a6777795b409c1c1416862a10eb3)`(TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > && NewValue)` | Sets the value of Campaigns using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1a8b7fb6d8f18de46d12a905baeb9be745)`()` | Gets the value of Campaigns.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1a0d13ebcd65ffba212059e493d2d7c6f5)`() const` | Gets the value of Campaigns.
+`public inline FORCEINLINE void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1a8a6643cd655ce20c61250c67ce11300b)`(const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & NewValue)` | Sets the value of Campaigns.
+`public inline FORCEINLINE void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1a50f4229fb995a02dbc9ee08485f2da42)`(TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > && NewValue)` | Sets the value of Campaigns using move semantics.
 
 ### Members
 
@@ -52,19 +52,19 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1af688faef6a3aebd794b34c5de14d085c)`()` <a id="structFRHAPI__MarketingCampaigns_1af688faef6a3aebd794b34c5de14d085c"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1a8b7fb6d8f18de46d12a905baeb9be745)`()` <a id="structFRHAPI__MarketingCampaigns_1a8b7fb6d8f18de46d12a905baeb9be745"></a>
 
 Gets the value of Campaigns.
 
-#### `public inline const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1abc257053c5ef20f878c8725ee1e58a20)`() const` <a id="structFRHAPI__MarketingCampaigns_1abc257053c5ef20f878c8725ee1e58a20"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & `[`GetCampaigns`](#structFRHAPI__MarketingCampaigns_1a0d13ebcd65ffba212059e493d2d7c6f5)`() const` <a id="structFRHAPI__MarketingCampaigns_1a0d13ebcd65ffba212059e493d2d7c6f5"></a>
 
 Gets the value of Campaigns.
 
-#### `public inline void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1a2d930bf11e195ab35e13e504dbc59e7d)`(const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & NewValue)` <a id="structFRHAPI__MarketingCampaigns_1a2d930bf11e195ab35e13e504dbc59e7d"></a>
+#### `public inline FORCEINLINE void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1a8a6643cd655ce20c61250c67ce11300b)`(const TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > & NewValue)` <a id="structFRHAPI__MarketingCampaigns_1a8a6643cd655ce20c61250c67ce11300b"></a>
 
 Sets the value of Campaigns.
 
-#### `public inline void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1af5f9a6777795b409c1c1416862a10eb3)`(TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > && NewValue)` <a id="structFRHAPI__MarketingCampaigns_1af5f9a6777795b409c1c1416862a10eb3"></a>
+#### `public inline FORCEINLINE void `[`SetCampaigns`](#structFRHAPI__MarketingCampaigns_1a50f4229fb995a02dbc9ee08485f2da42)`(TArray< `[`FRHAPI_MarketingCampaign`](RHAPI_MarketingCampaign.md#structFRHAPI__MarketingCampaign)` > && NewValue)` <a id="structFRHAPI__MarketingCampaigns_1a50f4229fb995a02dbc9ee08485f2da42"></a>
 
 Sets the value of Campaigns using move semantics.
 

@@ -26,20 +26,19 @@ A collection of Player Orders.
 `public `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` `[`Page`](#structFRHAPI__PlayerOrdersResponse_1a8a09919a81cb7fba37cf1166d9b60f2a) | 
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerOrdersResponse_1a9dc4eaa4b221602b7da012d3c5be0b30)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerOrdersResponse_1adb587156447ab4c9163ed9df3e4f7b22)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a022df809138801a378acb6b6dd14ac59)`()` | Gets the value of Data_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a638cf47a4407106c9a8b59f233eb2535)`() const` | Gets the value of Data_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a08a1013e01f278290678e20f7b35477e)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & DefaultValue) const` | Gets the value of Data_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a90d4b437c35f15baf0d835b7cd43c4d5)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & OutValue) const` | Fills OutValue with the value of Data_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1a5dfa1a0ba33fcd9ac89c275ba37dd441)`()` | Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1ab651aa0892ccd49e7dc2983da305a21c)`() const` | Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a66a42d4a23c5cbde2299206558d33734)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & NewValue)` | Sets the value of Data_Optional and also sets Data_IsSet to true.
-`public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a7302733f38c311b598919dc70c332312)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > && NewValue)` | Sets the value of Data_Optional and also sets Data_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1ab045213483afe73d019b530808e3a356)`()` | Gets the value of Data_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a71af1ce39ce924cdabfee9e61881892a)`() const` | Gets the value of Data_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a7d859c3a7660280f34d83157cc66fa8c)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & DefaultValue) const` | Gets the value of Data_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1ae189906187b2ec28bd3a1477edefd9b8)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & OutValue) const` | Fills OutValue with the value of Data_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1aafe3c4a857674cdf478ff0ce564bcd89)`()` | Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1a64b7532f4dfd64f8d41bdcea2f4db157)`() const` | Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1ae8577bc6652a1160378e17583a39ca19)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & NewValue)` | Sets the value of Data_Optional and also sets Data_IsSet to true.
+`public inline FORCEINLINE void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a0a303294b3e0d67b1c111ae7c7436e9a)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > && NewValue)` | Sets the value of Data_Optional and also sets Data_IsSet to true using move semantics.
 `public inline void `[`ClearData`](#structFRHAPI__PlayerOrdersResponse_1ad6f65b52067db43d4ee56fcd0c3154be)`()` | Clears the value of Data_Optional and sets Data_IsSet to false.
-`public inline bool `[`IsDataSet`](#structFRHAPI__PlayerOrdersResponse_1a665002cd15adbca0a0d8c74237a534ff)`() const` | Checks whether Data_Optional has been set.
-`public inline `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1ae29bec02139ee174a2272fe2e568bf14)`()` | Gets the value of Page.
-`public inline const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1ad9bd7563d1b71b519ca3e4213091809f)`() const` | Gets the value of Page.
-`public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1a7598e89fce3d10feee19c32f810f23d3)`(const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & NewValue)` | Sets the value of Page.
-`public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1ab7cac2374c84e2a7249e48a498831201)`(`[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` && NewValue)` | Sets the value of Page using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1ab1362e402edb52f4b86ca5786f49ee86)`()` | Gets the value of Page.
+`public inline FORCEINLINE const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1a6be3f635c446a9be03264065ab9ad956)`() const` | Gets the value of Page.
+`public inline FORCEINLINE void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1a25e43ccfe9b8d1378bb9eee92225c181)`(const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & NewValue)` | Sets the value of Page.
+`public inline FORCEINLINE void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1aa825f5011398e61418e897e5f61a277d)`(`[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` && NewValue)` | Sets the value of Page using move semantics.
 
 ### Members
 
@@ -70,35 +69,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a022df809138801a378acb6b6dd14ac59)`()` <a id="structFRHAPI__PlayerOrdersResponse_1a022df809138801a378acb6b6dd14ac59"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1ab045213483afe73d019b530808e3a356)`()` <a id="structFRHAPI__PlayerOrdersResponse_1ab045213483afe73d019b530808e3a356"></a>
 
 Gets the value of Data_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a638cf47a4407106c9a8b59f233eb2535)`() const` <a id="structFRHAPI__PlayerOrdersResponse_1a638cf47a4407106c9a8b59f233eb2535"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a71af1ce39ce924cdabfee9e61881892a)`() const` <a id="structFRHAPI__PlayerOrdersResponse_1a71af1ce39ce924cdabfee9e61881892a"></a>
 
 Gets the value of Data_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a08a1013e01f278290678e20f7b35477e)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & DefaultValue) const` <a id="structFRHAPI__PlayerOrdersResponse_1a08a1013e01f278290678e20f7b35477e"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a7d859c3a7660280f34d83157cc66fa8c)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & DefaultValue) const` <a id="structFRHAPI__PlayerOrdersResponse_1a7d859c3a7660280f34d83157cc66fa8c"></a>
 
 Gets the value of Data_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1a90d4b437c35f15baf0d835b7cd43c4d5)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & OutValue) const` <a id="structFRHAPI__PlayerOrdersResponse_1a90d4b437c35f15baf0d835b7cd43c4d5"></a>
+#### `public inline FORCEINLINE bool `[`GetData`](#structFRHAPI__PlayerOrdersResponse_1ae189906187b2ec28bd3a1477edefd9b8)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & OutValue) const` <a id="structFRHAPI__PlayerOrdersResponse_1ae189906187b2ec28bd3a1477edefd9b8"></a>
 
 Fills OutValue with the value of Data_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1a5dfa1a0ba33fcd9ac89c275ba37dd441)`()` <a id="structFRHAPI__PlayerOrdersResponse_1a5dfa1a0ba33fcd9ac89c275ba37dd441"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1aafe3c4a857674cdf478ff0ce564bcd89)`()` <a id="structFRHAPI__PlayerOrdersResponse_1aafe3c4a857674cdf478ff0ce564bcd89"></a>
 
 Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1ab651aa0892ccd49e7dc2983da305a21c)`() const` <a id="structFRHAPI__PlayerOrdersResponse_1ab651aa0892ccd49e7dc2983da305a21c"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > * `[`GetDataOrNull`](#structFRHAPI__PlayerOrdersResponse_1a64b7532f4dfd64f8d41bdcea2f4db157)`() const` <a id="structFRHAPI__PlayerOrdersResponse_1a64b7532f4dfd64f8d41bdcea2f4db157"></a>
 
 Returns a pointer to Data_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a66a42d4a23c5cbde2299206558d33734)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a66a42d4a23c5cbde2299206558d33734"></a>
+#### `public inline FORCEINLINE void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1ae8577bc6652a1160378e17583a39ca19)`(const TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > & NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1ae8577bc6652a1160378e17583a39ca19"></a>
 
 Sets the value of Data_Optional and also sets Data_IsSet to true.
 
-#### `public inline void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a7302733f38c311b598919dc70c332312)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > && NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a7302733f38c311b598919dc70c332312"></a>
+#### `public inline FORCEINLINE void `[`SetData`](#structFRHAPI__PlayerOrdersResponse_1a0a303294b3e0d67b1c111ae7c7436e9a)`(TArray< `[`FRHAPI_PlayerOrder`](RHAPI_PlayerOrder.md#structFRHAPI__PlayerOrder)` > && NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a0a303294b3e0d67b1c111ae7c7436e9a"></a>
 
 Sets the value of Data_Optional and also sets Data_IsSet to true using move semantics.
 
@@ -106,23 +105,19 @@ Sets the value of Data_Optional and also sets Data_IsSet to true using move sema
 
 Clears the value of Data_Optional and sets Data_IsSet to false.
 
-#### `public inline bool `[`IsDataSet`](#structFRHAPI__PlayerOrdersResponse_1a665002cd15adbca0a0d8c74237a534ff)`() const` <a id="structFRHAPI__PlayerOrdersResponse_1a665002cd15adbca0a0d8c74237a534ff"></a>
-
-Checks whether Data_Optional has been set.
-
-#### `public inline `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1ae29bec02139ee174a2272fe2e568bf14)`()` <a id="structFRHAPI__PlayerOrdersResponse_1ae29bec02139ee174a2272fe2e568bf14"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1ab1362e402edb52f4b86ca5786f49ee86)`()` <a id="structFRHAPI__PlayerOrdersResponse_1ab1362e402edb52f4b86ca5786f49ee86"></a>
 
 Gets the value of Page.
 
-#### `public inline const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1ad9bd7563d1b71b519ca3e4213091809f)`() const` <a id="structFRHAPI__PlayerOrdersResponse_1ad9bd7563d1b71b519ca3e4213091809f"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & `[`GetPage`](#structFRHAPI__PlayerOrdersResponse_1a6be3f635c446a9be03264065ab9ad956)`() const` <a id="structFRHAPI__PlayerOrdersResponse_1a6be3f635c446a9be03264065ab9ad956"></a>
 
 Gets the value of Page.
 
-#### `public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1a7598e89fce3d10feee19c32f810f23d3)`(const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a7598e89fce3d10feee19c32f810f23d3"></a>
+#### `public inline FORCEINLINE void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1a25e43ccfe9b8d1378bb9eee92225c181)`(const `[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` & NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1a25e43ccfe9b8d1378bb9eee92225c181"></a>
 
 Sets the value of Page.
 
-#### `public inline void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1ab7cac2374c84e2a7249e48a498831201)`(`[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` && NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1ab7cac2374c84e2a7249e48a498831201"></a>
+#### `public inline FORCEINLINE void `[`SetPage`](#structFRHAPI__PlayerOrdersResponse_1aa825f5011398e61418e897e5f61a277d)`(`[`FRHAPI_InventoryPageMeta`](RHAPI_InventoryPageMeta.md#structFRHAPI__InventoryPageMeta)` && NewValue)` <a id="structFRHAPI__PlayerOrdersResponse_1aa825f5011398e61418e897e5f61a277d"></a>
 
 Sets the value of Page using move semantics.
 

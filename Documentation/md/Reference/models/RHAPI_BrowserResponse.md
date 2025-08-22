@@ -25,16 +25,15 @@ A response with a list of browsers, and a cursor to continue iterating through t
 `public TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > `[`BrowserSessions`](#structFRHAPI__BrowserResponse_1aafc07faff636c79639a50b2ce433df50) | List of sessions in the browser.
 `public virtual bool `[`FromJson`](#structFRHAPI__BrowserResponse_1aca10a85fae0b44b1f8d21a5b8be5fac3)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__BrowserResponse_1aed7336881aa3584650ebfcf620e8b446)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1ac4812e169a611de479c56a682194b8bd)`()` | Gets the value of Cursor.
-`public inline const int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1af29415826db4247b0c5ddbc6b0b3ccf9)`() const` | Gets the value of Cursor.
-`public inline void `[`SetCursor`](#structFRHAPI__BrowserResponse_1adb8dd77d5fdcf18d702e3b35bf5efb87)`(const int32 & NewValue)` | Sets the value of Cursor.
-`public inline void `[`SetCursor`](#structFRHAPI__BrowserResponse_1adff8536baa3a99a64faae3ac2e1287a2)`(int32 && NewValue)` | Sets the value of Cursor using move semantics.
-`public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__BrowserResponse_1a078a72d3883533671f1c6ad61c482d92)`() const` | Returns true if Cursor matches the default value.
-`public inline void `[`SetCursorToDefault`](#structFRHAPI__BrowserResponse_1ac4037928781c1aff4d935a96804034a5)`()` | Sets the value of Cursor to its default
-`public inline TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a81708d6160084c57cf20171208efbd5b)`()` | Gets the value of BrowserSessions.
-`public inline const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a924d697caa401861bad30d8397d0db3b)`() const` | Gets the value of BrowserSessions.
-`public inline void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1a680999021796db5fb9655a53ee69db21)`(const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & NewValue)` | Sets the value of BrowserSessions.
-`public inline void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1a299e62b2122d515be95208b03961df6a)`(TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > && NewValue)` | Sets the value of BrowserSessions using move semantics.
+`public inline FORCEINLINE int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1af227a5f40d5052e6ebca437401e270bf)`()` | Gets the value of Cursor.
+`public inline FORCEINLINE const int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1a6dda283c3ef0d8de285811bc71384260)`() const` | Gets the value of Cursor.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__BrowserResponse_1a282e04391c0ea7f77f032ab07d803f5b)`(const int32 & NewValue)` | Sets the value of Cursor.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__BrowserResponse_1ad59444a962b1c7e70392d5620dbd437c)`(int32 && NewValue)` | Sets the value of Cursor using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Cursor`](#structFRHAPI__BrowserResponse_1a6ca83de920ed0db64fc76aef3158a866)`()` | Returns the default value of Cursor.
+`public inline FORCEINLINE TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a5702f2b724b3fa21892fbafd8b454c12)`()` | Gets the value of BrowserSessions.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a19f4147142f7e2a49aa3a99078925171)`() const` | Gets the value of BrowserSessions.
+`public inline FORCEINLINE void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1ac05af5f2ae1cb827ebcf5e0b9c8581b1)`(const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & NewValue)` | Sets the value of BrowserSessions.
+`public inline FORCEINLINE void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1a3696b0bb7d2e6dfb295647a9f4854437)`(TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > && NewValue)` | Sets the value of BrowserSessions using move semantics.
 
 ### Members
 
@@ -63,43 +62,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1ac4812e169a611de479c56a682194b8bd)`()` <a id="structFRHAPI__BrowserResponse_1ac4812e169a611de479c56a682194b8bd"></a>
+#### `public inline FORCEINLINE int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1af227a5f40d5052e6ebca437401e270bf)`()` <a id="structFRHAPI__BrowserResponse_1af227a5f40d5052e6ebca437401e270bf"></a>
 
 Gets the value of Cursor.
 
-#### `public inline const int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1af29415826db4247b0c5ddbc6b0b3ccf9)`() const` <a id="structFRHAPI__BrowserResponse_1af29415826db4247b0c5ddbc6b0b3ccf9"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetCursor`](#structFRHAPI__BrowserResponse_1a6dda283c3ef0d8de285811bc71384260)`() const` <a id="structFRHAPI__BrowserResponse_1a6dda283c3ef0d8de285811bc71384260"></a>
 
 Gets the value of Cursor.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__BrowserResponse_1adb8dd77d5fdcf18d702e3b35bf5efb87)`(const int32 & NewValue)` <a id="structFRHAPI__BrowserResponse_1adb8dd77d5fdcf18d702e3b35bf5efb87"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__BrowserResponse_1a282e04391c0ea7f77f032ab07d803f5b)`(const int32 & NewValue)` <a id="structFRHAPI__BrowserResponse_1a282e04391c0ea7f77f032ab07d803f5b"></a>
 
 Sets the value of Cursor.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__BrowserResponse_1adff8536baa3a99a64faae3ac2e1287a2)`(int32 && NewValue)` <a id="structFRHAPI__BrowserResponse_1adff8536baa3a99a64faae3ac2e1287a2"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__BrowserResponse_1ad59444a962b1c7e70392d5620dbd437c)`(int32 && NewValue)` <a id="structFRHAPI__BrowserResponse_1ad59444a962b1c7e70392d5620dbd437c"></a>
 
 Sets the value of Cursor using move semantics.
 
-#### `public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__BrowserResponse_1a078a72d3883533671f1c6ad61c482d92)`() const` <a id="structFRHAPI__BrowserResponse_1a078a72d3883533671f1c6ad61c482d92"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Cursor`](#structFRHAPI__BrowserResponse_1a6ca83de920ed0db64fc76aef3158a866)`()` <a id="structFRHAPI__BrowserResponse_1a6ca83de920ed0db64fc76aef3158a866"></a>
 
-Returns true if Cursor matches the default value.
+Returns the default value of Cursor.
 
-#### `public inline void `[`SetCursorToDefault`](#structFRHAPI__BrowserResponse_1ac4037928781c1aff4d935a96804034a5)`()` <a id="structFRHAPI__BrowserResponse_1ac4037928781c1aff4d935a96804034a5"></a>
-
-Sets the value of Cursor to its default
-
-#### `public inline TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a81708d6160084c57cf20171208efbd5b)`()` <a id="structFRHAPI__BrowserResponse_1a81708d6160084c57cf20171208efbd5b"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a5702f2b724b3fa21892fbafd8b454c12)`()` <a id="structFRHAPI__BrowserResponse_1a5702f2b724b3fa21892fbafd8b454c12"></a>
 
 Gets the value of BrowserSessions.
 
-#### `public inline const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a924d697caa401861bad30d8397d0db3b)`() const` <a id="structFRHAPI__BrowserResponse_1a924d697caa401861bad30d8397d0db3b"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & `[`GetBrowserSessions`](#structFRHAPI__BrowserResponse_1a19f4147142f7e2a49aa3a99078925171)`() const` <a id="structFRHAPI__BrowserResponse_1a19f4147142f7e2a49aa3a99078925171"></a>
 
 Gets the value of BrowserSessions.
 
-#### `public inline void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1a680999021796db5fb9655a53ee69db21)`(const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & NewValue)` <a id="structFRHAPI__BrowserResponse_1a680999021796db5fb9655a53ee69db21"></a>
+#### `public inline FORCEINLINE void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1ac05af5f2ae1cb827ebcf5e0b9c8581b1)`(const TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > & NewValue)` <a id="structFRHAPI__BrowserResponse_1ac05af5f2ae1cb827ebcf5e0b9c8581b1"></a>
 
 Sets the value of BrowserSessions.
 
-#### `public inline void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1a299e62b2122d515be95208b03961df6a)`(TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > && NewValue)` <a id="structFRHAPI__BrowserResponse_1a299e62b2122d515be95208b03961df6a"></a>
+#### `public inline FORCEINLINE void `[`SetBrowserSessions`](#structFRHAPI__BrowserResponse_1a3696b0bb7d2e6dfb295647a9f4854437)`(TArray< `[`FRHAPI_BrowserSessionInfo`](RHAPI_BrowserSessionInfo.md#structFRHAPI__BrowserSessionInfo)` > && NewValue)` <a id="structFRHAPI__BrowserResponse_1a3696b0bb7d2e6dfb295647a9f4854437"></a>
 
 Sets the value of BrowserSessions using move semantics.
 

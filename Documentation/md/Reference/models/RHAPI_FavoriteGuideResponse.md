@@ -25,22 +25,21 @@ struct FRHAPI_FavoriteGuideResponse
 `public bool `[`FavoritedAt_IsNull`](#structFRHAPI__FavoriteGuideResponse_1ac5076702811eabf7a4dcb0f5a1d40b16) | true if FavoritedAt_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__FavoriteGuideResponse_1af1b7de362a1cab5242e4aad3c8cb0ad3)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__FavoriteGuideResponse_1a970dd4d074bae653015e7fba66fe4cf0)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetGuideId`](#structFRHAPI__FavoriteGuideResponse_1adeb09cedc1331824b675e2bbed3ff681)`()` | Gets the value of GuideId.
-`public inline const FGuid & `[`GetGuideId`](#structFRHAPI__FavoriteGuideResponse_1a2d395f1a2337a3dbe5c773f0925e5c80)`() const` | Gets the value of GuideId.
-`public inline void `[`SetGuideId`](#structFRHAPI__FavoriteGuideResponse_1af5a7d2f5446de07385b87095b5f3337c)`(const FGuid & NewValue)` | Sets the value of GuideId.
-`public inline void `[`SetGuideId`](#structFRHAPI__FavoriteGuideResponse_1ab260ef936ca3a07a45fd15ede9093024)`(FGuid && NewValue)` | Sets the value of GuideId using move semantics.
-`public inline FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a979e995fd0acda9834e4eeb99127837a)`()` | Gets the value of FavoritedAt_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1aecc2479e9e35e7f7d67871e3c388e3eb)`() const` | Gets the value of FavoritedAt_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a97d503728c6684d805d9aaca9cd35091)`(const FDateTime & DefaultValue) const` | Gets the value of FavoritedAt_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a2927dfe0ab2a2e5a0163d69149826da6)`(FDateTime & OutValue) const` | Fills OutValue with the value of FavoritedAt_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetFavoritedAtOrNull`](#structFRHAPI__FavoriteGuideResponse_1a51fc78134832d5fad079b8373312b5b2)`()` | Returns a pointer to FavoritedAt_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetFavoritedAtOrNull`](#structFRHAPI__FavoriteGuideResponse_1a017336a66c9cf55c711f82746c563ffe)`() const` | Returns a pointer to FavoritedAt_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a310fc92d3386ae1d3e6d8f84459fa09b)`(const FDateTime & NewValue)` | Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true.
-`public inline void `[`SetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1ac2527893232b634ba4a2823982fe7c76)`(FDateTime && NewValue)` | Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetGuideId`](#structFRHAPI__FavoriteGuideResponse_1ad975f2ef2fb4ef1c8219a7f8dadc503e)`()` | Gets the value of GuideId.
+`public inline FORCEINLINE const FGuid & `[`GetGuideId`](#structFRHAPI__FavoriteGuideResponse_1a97ca0124bb506f294274fea8e82fa64b)`() const` | Gets the value of GuideId.
+`public inline FORCEINLINE void `[`SetGuideId`](#structFRHAPI__FavoriteGuideResponse_1ac7d4b3a89b7424f24cf1725f6c3b8634)`(const FGuid & NewValue)` | Sets the value of GuideId.
+`public inline FORCEINLINE void `[`SetGuideId`](#structFRHAPI__FavoriteGuideResponse_1a3ce325e056ae517f71ae41ab78bdeb29)`(FGuid && NewValue)` | Sets the value of GuideId using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a1909fa3dafd496ff4435af67b9f8a504)`()` | Gets the value of FavoritedAt_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a4f51ebf0589a74f4831209c32a67f1ef)`() const` | Gets the value of FavoritedAt_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a44bdd8387ed2ca6e6f77d3cf80715d30)`(const FDateTime & DefaultValue) const` | Gets the value of FavoritedAt_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a3d6a1446679f775b5240e04fcbada7d9)`(FDateTime & OutValue) const` | Fills OutValue with the value of FavoritedAt_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetFavoritedAtOrNull`](#structFRHAPI__FavoriteGuideResponse_1adbd871a642c70d829e776f0d2156bc31)`()` | Returns a pointer to FavoritedAt_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetFavoritedAtOrNull`](#structFRHAPI__FavoriteGuideResponse_1a983ee2d9e34a796794fa7103492e62a4)`() const` | Returns a pointer to FavoritedAt_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a14e50c5f587dab9b990859c2f7b51154)`(const FDateTime & NewValue)` | Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true.
+`public inline FORCEINLINE void `[`SetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a8969d5d7e3fa954b9446c189546170e7)`(FDateTime && NewValue)` | Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true using move semantics.
 `public inline void `[`ClearFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a161e976b0f90a8e4e8d073421e6308b3)`()` | Clears the value of FavoritedAt_Optional and sets FavoritedAt_IsSet to false.
-`public inline bool `[`IsFavoritedAtSet`](#structFRHAPI__FavoriteGuideResponse_1af384be3f3c8ef7bf5c81603c1be37efb)`() const` | Checks whether FavoritedAt_Optional has been set.
-`public inline void `[`SetFavoritedAtToNull`](#structFRHAPI__FavoriteGuideResponse_1ad24e087e14d3cb52942932acb4a3cab9)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsFavoritedAtNull`](#structFRHAPI__FavoriteGuideResponse_1af8418c65cc11e623715e4dcbf03c6391)`() const` | Checks whether FavoritedAt_Optional is set to null.
+`public inline FORCEINLINE void `[`SetFavoritedAtToNull`](#structFRHAPI__FavoriteGuideResponse_1adb0aa17b34f682a308806a0affec2baf)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsFavoritedAtNull`](#structFRHAPI__FavoriteGuideResponse_1aeb99bd3b8248a8a982a42ac7b1029134)`() const` | Checks whether FavoritedAt_Optional is set to null.
 
 ### Members
 
@@ -75,51 +74,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetGuideId`](#structFRHAPI__FavoriteGuideResponse_1adeb09cedc1331824b675e2bbed3ff681)`()` <a id="structFRHAPI__FavoriteGuideResponse_1adeb09cedc1331824b675e2bbed3ff681"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetGuideId`](#structFRHAPI__FavoriteGuideResponse_1ad975f2ef2fb4ef1c8219a7f8dadc503e)`()` <a id="structFRHAPI__FavoriteGuideResponse_1ad975f2ef2fb4ef1c8219a7f8dadc503e"></a>
 
 Gets the value of GuideId.
 
-#### `public inline const FGuid & `[`GetGuideId`](#structFRHAPI__FavoriteGuideResponse_1a2d395f1a2337a3dbe5c773f0925e5c80)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1a2d395f1a2337a3dbe5c773f0925e5c80"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetGuideId`](#structFRHAPI__FavoriteGuideResponse_1a97ca0124bb506f294274fea8e82fa64b)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1a97ca0124bb506f294274fea8e82fa64b"></a>
 
 Gets the value of GuideId.
 
-#### `public inline void `[`SetGuideId`](#structFRHAPI__FavoriteGuideResponse_1af5a7d2f5446de07385b87095b5f3337c)`(const FGuid & NewValue)` <a id="structFRHAPI__FavoriteGuideResponse_1af5a7d2f5446de07385b87095b5f3337c"></a>
+#### `public inline FORCEINLINE void `[`SetGuideId`](#structFRHAPI__FavoriteGuideResponse_1ac7d4b3a89b7424f24cf1725f6c3b8634)`(const FGuid & NewValue)` <a id="structFRHAPI__FavoriteGuideResponse_1ac7d4b3a89b7424f24cf1725f6c3b8634"></a>
 
 Sets the value of GuideId.
 
-#### `public inline void `[`SetGuideId`](#structFRHAPI__FavoriteGuideResponse_1ab260ef936ca3a07a45fd15ede9093024)`(FGuid && NewValue)` <a id="structFRHAPI__FavoriteGuideResponse_1ab260ef936ca3a07a45fd15ede9093024"></a>
+#### `public inline FORCEINLINE void `[`SetGuideId`](#structFRHAPI__FavoriteGuideResponse_1a3ce325e056ae517f71ae41ab78bdeb29)`(FGuid && NewValue)` <a id="structFRHAPI__FavoriteGuideResponse_1a3ce325e056ae517f71ae41ab78bdeb29"></a>
 
 Sets the value of GuideId using move semantics.
 
-#### `public inline FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a979e995fd0acda9834e4eeb99127837a)`()` <a id="structFRHAPI__FavoriteGuideResponse_1a979e995fd0acda9834e4eeb99127837a"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a1909fa3dafd496ff4435af67b9f8a504)`()` <a id="structFRHAPI__FavoriteGuideResponse_1a1909fa3dafd496ff4435af67b9f8a504"></a>
 
 Gets the value of FavoritedAt_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1aecc2479e9e35e7f7d67871e3c388e3eb)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1aecc2479e9e35e7f7d67871e3c388e3eb"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a4f51ebf0589a74f4831209c32a67f1ef)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1a4f51ebf0589a74f4831209c32a67f1ef"></a>
 
 Gets the value of FavoritedAt_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a97d503728c6684d805d9aaca9cd35091)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__FavoriteGuideResponse_1a97d503728c6684d805d9aaca9cd35091"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a44bdd8387ed2ca6e6f77d3cf80715d30)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__FavoriteGuideResponse_1a44bdd8387ed2ca6e6f77d3cf80715d30"></a>
 
 Gets the value of FavoritedAt_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a2927dfe0ab2a2e5a0163d69149826da6)`(FDateTime & OutValue) const` <a id="structFRHAPI__FavoriteGuideResponse_1a2927dfe0ab2a2e5a0163d69149826da6"></a>
+#### `public inline FORCEINLINE bool `[`GetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a3d6a1446679f775b5240e04fcbada7d9)`(FDateTime & OutValue) const` <a id="structFRHAPI__FavoriteGuideResponse_1a3d6a1446679f775b5240e04fcbada7d9"></a>
 
 Fills OutValue with the value of FavoritedAt_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetFavoritedAtOrNull`](#structFRHAPI__FavoriteGuideResponse_1a51fc78134832d5fad079b8373312b5b2)`()` <a id="structFRHAPI__FavoriteGuideResponse_1a51fc78134832d5fad079b8373312b5b2"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetFavoritedAtOrNull`](#structFRHAPI__FavoriteGuideResponse_1adbd871a642c70d829e776f0d2156bc31)`()` <a id="structFRHAPI__FavoriteGuideResponse_1adbd871a642c70d829e776f0d2156bc31"></a>
 
 Returns a pointer to FavoritedAt_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetFavoritedAtOrNull`](#structFRHAPI__FavoriteGuideResponse_1a017336a66c9cf55c711f82746c563ffe)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1a017336a66c9cf55c711f82746c563ffe"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetFavoritedAtOrNull`](#structFRHAPI__FavoriteGuideResponse_1a983ee2d9e34a796794fa7103492e62a4)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1a983ee2d9e34a796794fa7103492e62a4"></a>
 
 Returns a pointer to FavoritedAt_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a310fc92d3386ae1d3e6d8f84459fa09b)`(const FDateTime & NewValue)` <a id="structFRHAPI__FavoriteGuideResponse_1a310fc92d3386ae1d3e6d8f84459fa09b"></a>
+#### `public inline FORCEINLINE void `[`SetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a14e50c5f587dab9b990859c2f7b51154)`(const FDateTime & NewValue)` <a id="structFRHAPI__FavoriteGuideResponse_1a14e50c5f587dab9b990859c2f7b51154"></a>
 
 Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true.
 
-#### `public inline void `[`SetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1ac2527893232b634ba4a2823982fe7c76)`(FDateTime && NewValue)` <a id="structFRHAPI__FavoriteGuideResponse_1ac2527893232b634ba4a2823982fe7c76"></a>
+#### `public inline FORCEINLINE void `[`SetFavoritedAt`](#structFRHAPI__FavoriteGuideResponse_1a8969d5d7e3fa954b9446c189546170e7)`(FDateTime && NewValue)` <a id="structFRHAPI__FavoriteGuideResponse_1a8969d5d7e3fa954b9446c189546170e7"></a>
 
 Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true using move semantics.
 
@@ -127,15 +126,11 @@ Sets the value of FavoritedAt_Optional and also sets FavoritedAt_IsSet to true u
 
 Clears the value of FavoritedAt_Optional and sets FavoritedAt_IsSet to false.
 
-#### `public inline bool `[`IsFavoritedAtSet`](#structFRHAPI__FavoriteGuideResponse_1af384be3f3c8ef7bf5c81603c1be37efb)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1af384be3f3c8ef7bf5c81603c1be37efb"></a>
-
-Checks whether FavoritedAt_Optional has been set.
-
-#### `public inline void `[`SetFavoritedAtToNull`](#structFRHAPI__FavoriteGuideResponse_1ad24e087e14d3cb52942932acb4a3cab9)`()` <a id="structFRHAPI__FavoriteGuideResponse_1ad24e087e14d3cb52942932acb4a3cab9"></a>
+#### `public inline FORCEINLINE void `[`SetFavoritedAtToNull`](#structFRHAPI__FavoriteGuideResponse_1adb0aa17b34f682a308806a0affec2baf)`()` <a id="structFRHAPI__FavoriteGuideResponse_1adb0aa17b34f682a308806a0affec2baf"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsFavoritedAtNull`](#structFRHAPI__FavoriteGuideResponse_1af8418c65cc11e623715e4dcbf03c6391)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1af8418c65cc11e623715e4dcbf03c6391"></a>
+#### `public inline FORCEINLINE bool `[`IsFavoritedAtNull`](#structFRHAPI__FavoriteGuideResponse_1aeb99bd3b8248a8a982a42ac7b1029134)`() const` <a id="structFRHAPI__FavoriteGuideResponse_1aeb99bd3b8248a8a982a42ac7b1029134"></a>
 
 Checks whether FavoritedAt_Optional is set to null.
 

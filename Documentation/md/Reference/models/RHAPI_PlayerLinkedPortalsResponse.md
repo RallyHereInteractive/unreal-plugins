@@ -25,14 +25,14 @@ Response for getting a player&#39;s linked portals.
 `public TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > `[`LinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1ac1f8f019c04222056b61d97b54d8272f) | List of linked portals.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1ab764e0b7811ac62d2a24823d7e02837f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerLinkedPortalsResponse_1a7873d4dfd1e1c0bceaf084d9597f1526)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a30956252b3cdfe09a29c08f4a294ee80)`()` | Gets the value of Player.
-`public inline const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a88f057658023bf830204775d5abb1b52)`() const` | Gets the value of Player.
-`public inline void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a61e0919c31cfd378c94cc3b4b68d48b0)`(const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & NewValue)` | Sets the value of Player.
-`public inline void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a1ea214389b211d3febaacbd34dd4e56e)`(`[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` && NewValue)` | Sets the value of Player using move semantics.
-`public inline TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a6d27a2938e3b3ae14454c474f2b038fc)`()` | Gets the value of LinkedPortals.
-`public inline const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a8a0271d8fc0eee1b7bc208e8fb483a80)`() const` | Gets the value of LinkedPortals.
-`public inline void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a8d6278e838d019bee0007359dd0ad15f)`(const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & NewValue)` | Sets the value of LinkedPortals.
-`public inline void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a52038c68a28669f795dc240252448b76)`(TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > && NewValue)` | Sets the value of LinkedPortals using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a1abcb8c42308b2ae18808390cca258f0)`()` | Gets the value of Player.
+`public inline FORCEINLINE const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a377902d65bbcb43a6b78df72bd1bb27e)`() const` | Gets the value of Player.
+`public inline FORCEINLINE void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a563f21f39910cd7e01209ceb94d45c67)`(const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & NewValue)` | Sets the value of Player.
+`public inline FORCEINLINE void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a23db8081c182e0e5f88d4a19a65d6d05)`(`[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` && NewValue)` | Sets the value of Player using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a35cd9859698d3fa6a5ff62c205cf6378)`()` | Gets the value of LinkedPortals.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a99bc1cff11d12d188400ec5f60891721)`() const` | Gets the value of LinkedPortals.
+`public inline FORCEINLINE void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a34e8e9a69f21f87546b868b81af77b64)`(const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & NewValue)` | Sets the value of LinkedPortals.
+`public inline FORCEINLINE void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a98bd4b947b0b69e135a0a7bee1c45c60)`(TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > && NewValue)` | Sets the value of LinkedPortals using move semantics.
 
 ### Members
 
@@ -61,35 +61,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a30956252b3cdfe09a29c08f4a294ee80)`()` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a30956252b3cdfe09a29c08f4a294ee80"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a1abcb8c42308b2ae18808390cca258f0)`()` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a1abcb8c42308b2ae18808390cca258f0"></a>
 
 Gets the value of Player.
 
-#### `public inline const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a88f057658023bf830204775d5abb1b52)`() const` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a88f057658023bf830204775d5abb1b52"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & `[`GetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a377902d65bbcb43a6b78df72bd1bb27e)`() const` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a377902d65bbcb43a6b78df72bd1bb27e"></a>
 
 Gets the value of Player.
 
-#### `public inline void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a61e0919c31cfd378c94cc3b4b68d48b0)`(const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & NewValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a61e0919c31cfd378c94cc3b4b68d48b0"></a>
+#### `public inline FORCEINLINE void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a563f21f39910cd7e01209ceb94d45c67)`(const `[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` & NewValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a563f21f39910cd7e01209ceb94d45c67"></a>
 
 Sets the value of Player.
 
-#### `public inline void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a1ea214389b211d3febaacbd34dd4e56e)`(`[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` && NewValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a1ea214389b211d3febaacbd34dd4e56e"></a>
+#### `public inline FORCEINLINE void `[`SetPlayer`](#structFRHAPI__PlayerLinkedPortalsResponse_1a23db8081c182e0e5f88d4a19a65d6d05)`(`[`FRHAPI_PlayerPersonResponse`](RHAPI_PlayerPersonResponse.md#structFRHAPI__PlayerPersonResponse)` && NewValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a23db8081c182e0e5f88d4a19a65d6d05"></a>
 
 Sets the value of Player using move semantics.
 
-#### `public inline TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a6d27a2938e3b3ae14454c474f2b038fc)`()` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a6d27a2938e3b3ae14454c474f2b038fc"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a35cd9859698d3fa6a5ff62c205cf6378)`()` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a35cd9859698d3fa6a5ff62c205cf6378"></a>
 
 Gets the value of LinkedPortals.
 
-#### `public inline const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a8a0271d8fc0eee1b7bc208e8fb483a80)`() const` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a8a0271d8fc0eee1b7bc208e8fb483a80"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & `[`GetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a99bc1cff11d12d188400ec5f60891721)`() const` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a99bc1cff11d12d188400ec5f60891721"></a>
 
 Gets the value of LinkedPortals.
 
-#### `public inline void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a8d6278e838d019bee0007359dd0ad15f)`(const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & NewValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a8d6278e838d019bee0007359dd0ad15f"></a>
+#### `public inline FORCEINLINE void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a34e8e9a69f21f87546b868b81af77b64)`(const TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > & NewValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a34e8e9a69f21f87546b868b81af77b64"></a>
 
 Sets the value of LinkedPortals.
 
-#### `public inline void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a52038c68a28669f795dc240252448b76)`(TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > && NewValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a52038c68a28669f795dc240252448b76"></a>
+#### `public inline FORCEINLINE void `[`SetLinkedPortals`](#structFRHAPI__PlayerLinkedPortalsResponse_1a98bd4b947b0b69e135a0a7bee1c45c60)`(TArray< `[`FRHAPI_PortalUserResponse`](RHAPI_PortalUserResponse.md#structFRHAPI__PortalUserResponse)` > && NewValue)` <a id="structFRHAPI__PlayerLinkedPortalsResponse_1a98bd4b947b0b69e135a0a7bee1c45c60"></a>
 
 Sets the value of LinkedPortals using move semantics.
 

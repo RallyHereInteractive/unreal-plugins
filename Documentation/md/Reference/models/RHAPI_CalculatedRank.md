@@ -26,20 +26,19 @@ Additional data about a specific player&#39;s rank and previous match in order t
 `public int32 `[`SecondsInMatch`](#structFRHAPI__CalculatedRank_1ada5c0579a48d3d9c965490f8d3477cce) | How many seconds this player was in the match.
 `public virtual bool `[`FromJson`](#structFRHAPI__CalculatedRank_1a1de153b9241a13f3b0ed1fb4a124b690)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__CalculatedRank_1aa55781cbe5c2ee8366af59e9507f7a68)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__CalculatedRank_1a76eef26679989c4c94fcd4cd01752040)`()` | Gets the value of PlayerUuid.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__CalculatedRank_1acfba39f5e67941a9ab40afee7b9ffd69)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__CalculatedRank_1aa56c5dfd075679ba8b1c684bca4eea8a)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__CalculatedRank_1a0066dd8e93c29ebd1863625fe9d41649)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
-`public inline `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__CalculatedRank_1a45ebcd9b7b94df5ca0c714256365f34f)`()` | Gets the value of Rank.
-`public inline const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__CalculatedRank_1ab2629f0eccfd4b0bf2785d2b162a6dbb)`() const` | Gets the value of Rank.
-`public inline void `[`SetRank`](#structFRHAPI__CalculatedRank_1a5ccac5466c6c8ea12a1a79d10638328e)`(const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & NewValue)` | Sets the value of Rank.
-`public inline void `[`SetRank`](#structFRHAPI__CalculatedRank_1af2753646c628af8a8d68b37f24a57f1a)`(`[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` && NewValue)` | Sets the value of Rank using move semantics.
-`public inline int32 & `[`GetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a2e933f15a73e18a20c08f64b854df532)`()` | Gets the value of SecondsInMatch.
-`public inline const int32 & `[`GetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a6bf4c6866fe6a951c9735b070fad0890)`() const` | Gets the value of SecondsInMatch.
-`public inline void `[`SetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a8e54a27497f98dc342393cf73f8700c4)`(const int32 & NewValue)` | Sets the value of SecondsInMatch.
-`public inline void `[`SetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a9da3e3da3c35b0144dff99087c7231d1)`(int32 && NewValue)` | Sets the value of SecondsInMatch using move semantics.
-`public inline bool `[`IsSecondsInMatchDefaultValue`](#structFRHAPI__CalculatedRank_1a0420e2969a5244a9f0d698845ba1e8ac)`() const` | Returns true if SecondsInMatch matches the default value.
-`public inline void `[`SetSecondsInMatchToDefault`](#structFRHAPI__CalculatedRank_1a2e12a2273c581b7a43eaef6c5bb197d2)`()` | Sets the value of SecondsInMatch to its default
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__CalculatedRank_1a353a636f3562080ff48cffb2c9c557cd)`()` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__CalculatedRank_1a3a560d347379316d0d3510b3280de62f)`() const` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__CalculatedRank_1ad2dbbf156b4d40f4816ee55b25137a2e)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__CalculatedRank_1aeb05b551b7162c30866e1f834174f887)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
+`public inline FORCEINLINE `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__CalculatedRank_1a3af399185214bc95b6d85d7e15c33cb6)`()` | Gets the value of Rank.
+`public inline FORCEINLINE const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__CalculatedRank_1a3da9430b17ead5f5f12bd6116be6279a)`() const` | Gets the value of Rank.
+`public inline FORCEINLINE void `[`SetRank`](#structFRHAPI__CalculatedRank_1a4066844e94f8998d699af35055fd4fa3)`(const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & NewValue)` | Sets the value of Rank.
+`public inline FORCEINLINE void `[`SetRank`](#structFRHAPI__CalculatedRank_1a360f4a3a00384380606de039b36fd7dc)`(`[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` && NewValue)` | Sets the value of Rank using move semantics.
+`public inline FORCEINLINE int32 & `[`GetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a9d78b87cb4a77e47e6531811fd31b1bd)`()` | Gets the value of SecondsInMatch.
+`public inline FORCEINLINE const int32 & `[`GetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a997e0ec5f3063beebdc97f8d24e7ef03)`() const` | Gets the value of SecondsInMatch.
+`public inline FORCEINLINE void `[`SetSecondsInMatch`](#structFRHAPI__CalculatedRank_1ac6a10384d912732972a5d9b8acabd09c)`(const int32 & NewValue)` | Sets the value of SecondsInMatch.
+`public inline FORCEINLINE void `[`SetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a6a809ef3e0802663ce2e8636f0acae0a)`(int32 && NewValue)` | Sets the value of SecondsInMatch using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_SecondsInMatch`](#structFRHAPI__CalculatedRank_1acfea87128b22d0e74c696d22143f570b)`()` | Returns the default value of SecondsInMatch.
 
 ### Members
 
@@ -72,59 +71,55 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__CalculatedRank_1a76eef26679989c4c94fcd4cd01752040)`()` <a id="structFRHAPI__CalculatedRank_1a76eef26679989c4c94fcd4cd01752040"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__CalculatedRank_1a353a636f3562080ff48cffb2c9c557cd)`()` <a id="structFRHAPI__CalculatedRank_1a353a636f3562080ff48cffb2c9c557cd"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__CalculatedRank_1acfba39f5e67941a9ab40afee7b9ffd69)`() const` <a id="structFRHAPI__CalculatedRank_1acfba39f5e67941a9ab40afee7b9ffd69"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__CalculatedRank_1a3a560d347379316d0d3510b3280de62f)`() const` <a id="structFRHAPI__CalculatedRank_1a3a560d347379316d0d3510b3280de62f"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__CalculatedRank_1aa56c5dfd075679ba8b1c684bca4eea8a)`(const FGuid & NewValue)` <a id="structFRHAPI__CalculatedRank_1aa56c5dfd075679ba8b1c684bca4eea8a"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__CalculatedRank_1ad2dbbf156b4d40f4816ee55b25137a2e)`(const FGuid & NewValue)` <a id="structFRHAPI__CalculatedRank_1ad2dbbf156b4d40f4816ee55b25137a2e"></a>
 
 Sets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__CalculatedRank_1a0066dd8e93c29ebd1863625fe9d41649)`(FGuid && NewValue)` <a id="structFRHAPI__CalculatedRank_1a0066dd8e93c29ebd1863625fe9d41649"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__CalculatedRank_1aeb05b551b7162c30866e1f834174f887)`(FGuid && NewValue)` <a id="structFRHAPI__CalculatedRank_1aeb05b551b7162c30866e1f834174f887"></a>
 
 Sets the value of PlayerUuid using move semantics.
 
-#### `public inline `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__CalculatedRank_1a45ebcd9b7b94df5ca0c714256365f34f)`()` <a id="structFRHAPI__CalculatedRank_1a45ebcd9b7b94df5ca0c714256365f34f"></a>
+#### `public inline FORCEINLINE `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__CalculatedRank_1a3af399185214bc95b6d85d7e15c33cb6)`()` <a id="structFRHAPI__CalculatedRank_1a3af399185214bc95b6d85d7e15c33cb6"></a>
 
 Gets the value of Rank.
 
-#### `public inline const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__CalculatedRank_1ab2629f0eccfd4b0bf2785d2b162a6dbb)`() const` <a id="structFRHAPI__CalculatedRank_1ab2629f0eccfd4b0bf2785d2b162a6dbb"></a>
+#### `public inline FORCEINLINE const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & `[`GetRank`](#structFRHAPI__CalculatedRank_1a3da9430b17ead5f5f12bd6116be6279a)`() const` <a id="structFRHAPI__CalculatedRank_1a3da9430b17ead5f5f12bd6116be6279a"></a>
 
 Gets the value of Rank.
 
-#### `public inline void `[`SetRank`](#structFRHAPI__CalculatedRank_1a5ccac5466c6c8ea12a1a79d10638328e)`(const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & NewValue)` <a id="structFRHAPI__CalculatedRank_1a5ccac5466c6c8ea12a1a79d10638328e"></a>
+#### `public inline FORCEINLINE void `[`SetRank`](#structFRHAPI__CalculatedRank_1a4066844e94f8998d699af35055fd4fa3)`(const `[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` & NewValue)` <a id="structFRHAPI__CalculatedRank_1a4066844e94f8998d699af35055fd4fa3"></a>
 
 Sets the value of Rank.
 
-#### `public inline void `[`SetRank`](#structFRHAPI__CalculatedRank_1af2753646c628af8a8d68b37f24a57f1a)`(`[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` && NewValue)` <a id="structFRHAPI__CalculatedRank_1af2753646c628af8a8d68b37f24a57f1a"></a>
+#### `public inline FORCEINLINE void `[`SetRank`](#structFRHAPI__CalculatedRank_1a360f4a3a00384380606de039b36fd7dc)`(`[`FRHAPI_RankRankData`](RHAPI_RankRankData.md#structFRHAPI__RankRankData)` && NewValue)` <a id="structFRHAPI__CalculatedRank_1a360f4a3a00384380606de039b36fd7dc"></a>
 
 Sets the value of Rank using move semantics.
 
-#### `public inline int32 & `[`GetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a2e933f15a73e18a20c08f64b854df532)`()` <a id="structFRHAPI__CalculatedRank_1a2e933f15a73e18a20c08f64b854df532"></a>
+#### `public inline FORCEINLINE int32 & `[`GetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a9d78b87cb4a77e47e6531811fd31b1bd)`()` <a id="structFRHAPI__CalculatedRank_1a9d78b87cb4a77e47e6531811fd31b1bd"></a>
 
 Gets the value of SecondsInMatch.
 
-#### `public inline const int32 & `[`GetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a6bf4c6866fe6a951c9735b070fad0890)`() const` <a id="structFRHAPI__CalculatedRank_1a6bf4c6866fe6a951c9735b070fad0890"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a997e0ec5f3063beebdc97f8d24e7ef03)`() const` <a id="structFRHAPI__CalculatedRank_1a997e0ec5f3063beebdc97f8d24e7ef03"></a>
 
 Gets the value of SecondsInMatch.
 
-#### `public inline void `[`SetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a8e54a27497f98dc342393cf73f8700c4)`(const int32 & NewValue)` <a id="structFRHAPI__CalculatedRank_1a8e54a27497f98dc342393cf73f8700c4"></a>
+#### `public inline FORCEINLINE void `[`SetSecondsInMatch`](#structFRHAPI__CalculatedRank_1ac6a10384d912732972a5d9b8acabd09c)`(const int32 & NewValue)` <a id="structFRHAPI__CalculatedRank_1ac6a10384d912732972a5d9b8acabd09c"></a>
 
 Sets the value of SecondsInMatch.
 
-#### `public inline void `[`SetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a9da3e3da3c35b0144dff99087c7231d1)`(int32 && NewValue)` <a id="structFRHAPI__CalculatedRank_1a9da3e3da3c35b0144dff99087c7231d1"></a>
+#### `public inline FORCEINLINE void `[`SetSecondsInMatch`](#structFRHAPI__CalculatedRank_1a6a809ef3e0802663ce2e8636f0acae0a)`(int32 && NewValue)` <a id="structFRHAPI__CalculatedRank_1a6a809ef3e0802663ce2e8636f0acae0a"></a>
 
 Sets the value of SecondsInMatch using move semantics.
 
-#### `public inline bool `[`IsSecondsInMatchDefaultValue`](#structFRHAPI__CalculatedRank_1a0420e2969a5244a9f0d698845ba1e8ac)`() const` <a id="structFRHAPI__CalculatedRank_1a0420e2969a5244a9f0d698845ba1e8ac"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_SecondsInMatch`](#structFRHAPI__CalculatedRank_1acfea87128b22d0e74c696d22143f570b)`()` <a id="structFRHAPI__CalculatedRank_1acfea87128b22d0e74c696d22143f570b"></a>
 
-Returns true if SecondsInMatch matches the default value.
-
-#### `public inline void `[`SetSecondsInMatchToDefault`](#structFRHAPI__CalculatedRank_1a2e12a2273c581b7a43eaef6c5bb197d2)`()` <a id="structFRHAPI__CalculatedRank_1a2e12a2273c581b7a43eaef6c5bb197d2"></a>
-
-Sets the value of SecondsInMatch to its default
+Returns the default value of SecondsInMatch.
 

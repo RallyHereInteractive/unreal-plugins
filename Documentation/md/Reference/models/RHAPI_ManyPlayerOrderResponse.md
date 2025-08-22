@@ -25,16 +25,15 @@ Response listing order IDs for a bulk order request.
 `public bool `[`OrderIds_IsSet`](#structFRHAPI__ManyPlayerOrderResponse_1a4d8d90b7d725daeec9bc9fffe92f2412) | true if OrderIds_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__ManyPlayerOrderResponse_1ad55b99fcc8514cb1c03cd0e455f9bcd0)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__ManyPlayerOrderResponse_1a14672c2bc550d634a32a83df3f260fa6)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a9e52cc176830014671131d1dc9655f39)`()` | Gets the value of OrderIds_Optional, regardless of it having been set.
-`public inline const TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a8b45ba49556d36c67576e7120a1116e6)`() const` | Gets the value of OrderIds_Optional, regardless of it having been set.
-`public inline const TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1ad379578c3a6fa58d4f9bed912078eee0)`(const TArray< FString > & DefaultValue) const` | Gets the value of OrderIds_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a0db0a7f02a878519f6a0b77cdf66526e)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of OrderIds_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< FString > * `[`GetOrderIdsOrNull`](#structFRHAPI__ManyPlayerOrderResponse_1ae26b55bafb0a06bd06003127c886419e)`()` | Returns a pointer to OrderIds_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< FString > * `[`GetOrderIdsOrNull`](#structFRHAPI__ManyPlayerOrderResponse_1ad8bf352a735b8ea06369d77e450ef398)`() const` | Returns a pointer to OrderIds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a2f3efcdf9026ed79d30e0a7d4a44a2c4)`(const TArray< FString > & NewValue)` | Sets the value of OrderIds_Optional and also sets OrderIds_IsSet to true.
-`public inline void `[`SetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a060a025a50943cbae8b849384331ce1e)`(TArray< FString > && NewValue)` | Sets the value of OrderIds_Optional and also sets OrderIds_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1ad183e9c35ef3bb2d1c0ce4c3c65ba94a)`()` | Gets the value of OrderIds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a4b5989a13c157a9e88f4c14f4e85a408)`() const` | Gets the value of OrderIds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a0572ab0d33bf50b57613a1cf664ddd7a)`(const TArray< FString > & DefaultValue) const` | Gets the value of OrderIds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1adf1cb6e170d91c0e78190c06c19d6143)`(TArray< FString > & OutValue) const` | Fills OutValue with the value of OrderIds_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< FString > * `[`GetOrderIdsOrNull`](#structFRHAPI__ManyPlayerOrderResponse_1a231c7c7a90c782870a348801b85ea96f)`()` | Returns a pointer to OrderIds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< FString > * `[`GetOrderIdsOrNull`](#structFRHAPI__ManyPlayerOrderResponse_1a369755bb4e489a9c74e75726f9585af9)`() const` | Returns a pointer to OrderIds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a41f34e323dadf10f2ba06332d9ca157f)`(const TArray< FString > & NewValue)` | Sets the value of OrderIds_Optional and also sets OrderIds_IsSet to true.
+`public inline FORCEINLINE void `[`SetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a6b9cb00b7a632570a90e4e8a0766529d)`(TArray< FString > && NewValue)` | Sets the value of OrderIds_Optional and also sets OrderIds_IsSet to true using move semantics.
 `public inline void `[`ClearOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a972f2d1cdac042f5f23a55c1bb0125fb)`()` | Clears the value of OrderIds_Optional and sets OrderIds_IsSet to false.
-`public inline bool `[`IsOrderIdsSet`](#structFRHAPI__ManyPlayerOrderResponse_1a1905d2a4ba1db58094ff04767516c988)`() const` | Checks whether OrderIds_Optional has been set.
 
 ### Members
 
@@ -63,43 +62,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a9e52cc176830014671131d1dc9655f39)`()` <a id="structFRHAPI__ManyPlayerOrderResponse_1a9e52cc176830014671131d1dc9655f39"></a>
+#### `public inline FORCEINLINE TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1ad183e9c35ef3bb2d1c0ce4c3c65ba94a)`()` <a id="structFRHAPI__ManyPlayerOrderResponse_1ad183e9c35ef3bb2d1c0ce4c3c65ba94a"></a>
 
 Gets the value of OrderIds_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a8b45ba49556d36c67576e7120a1116e6)`() const` <a id="structFRHAPI__ManyPlayerOrderResponse_1a8b45ba49556d36c67576e7120a1116e6"></a>
+#### `public inline FORCEINLINE const TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a4b5989a13c157a9e88f4c14f4e85a408)`() const` <a id="structFRHAPI__ManyPlayerOrderResponse_1a4b5989a13c157a9e88f4c14f4e85a408"></a>
 
 Gets the value of OrderIds_Optional, regardless of it having been set.
 
-#### `public inline const TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1ad379578c3a6fa58d4f9bed912078eee0)`(const TArray< FString > & DefaultValue) const` <a id="structFRHAPI__ManyPlayerOrderResponse_1ad379578c3a6fa58d4f9bed912078eee0"></a>
+#### `public inline FORCEINLINE const TArray< FString > & `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a0572ab0d33bf50b57613a1cf664ddd7a)`(const TArray< FString > & DefaultValue) const` <a id="structFRHAPI__ManyPlayerOrderResponse_1a0572ab0d33bf50b57613a1cf664ddd7a"></a>
 
 Gets the value of OrderIds_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a0db0a7f02a878519f6a0b77cdf66526e)`(TArray< FString > & OutValue) const` <a id="structFRHAPI__ManyPlayerOrderResponse_1a0db0a7f02a878519f6a0b77cdf66526e"></a>
+#### `public inline FORCEINLINE bool `[`GetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1adf1cb6e170d91c0e78190c06c19d6143)`(TArray< FString > & OutValue) const` <a id="structFRHAPI__ManyPlayerOrderResponse_1adf1cb6e170d91c0e78190c06c19d6143"></a>
 
 Fills OutValue with the value of OrderIds_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< FString > * `[`GetOrderIdsOrNull`](#structFRHAPI__ManyPlayerOrderResponse_1ae26b55bafb0a06bd06003127c886419e)`()` <a id="structFRHAPI__ManyPlayerOrderResponse_1ae26b55bafb0a06bd06003127c886419e"></a>
+#### `public inline FORCEINLINE TArray< FString > * `[`GetOrderIdsOrNull`](#structFRHAPI__ManyPlayerOrderResponse_1a231c7c7a90c782870a348801b85ea96f)`()` <a id="structFRHAPI__ManyPlayerOrderResponse_1a231c7c7a90c782870a348801b85ea96f"></a>
 
 Returns a pointer to OrderIds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< FString > * `[`GetOrderIdsOrNull`](#structFRHAPI__ManyPlayerOrderResponse_1ad8bf352a735b8ea06369d77e450ef398)`() const` <a id="structFRHAPI__ManyPlayerOrderResponse_1ad8bf352a735b8ea06369d77e450ef398"></a>
+#### `public inline FORCEINLINE const TArray< FString > * `[`GetOrderIdsOrNull`](#structFRHAPI__ManyPlayerOrderResponse_1a369755bb4e489a9c74e75726f9585af9)`() const` <a id="structFRHAPI__ManyPlayerOrderResponse_1a369755bb4e489a9c74e75726f9585af9"></a>
 
 Returns a pointer to OrderIds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a2f3efcdf9026ed79d30e0a7d4a44a2c4)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__ManyPlayerOrderResponse_1a2f3efcdf9026ed79d30e0a7d4a44a2c4"></a>
+#### `public inline FORCEINLINE void `[`SetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a41f34e323dadf10f2ba06332d9ca157f)`(const TArray< FString > & NewValue)` <a id="structFRHAPI__ManyPlayerOrderResponse_1a41f34e323dadf10f2ba06332d9ca157f"></a>
 
 Sets the value of OrderIds_Optional and also sets OrderIds_IsSet to true.
 
-#### `public inline void `[`SetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a060a025a50943cbae8b849384331ce1e)`(TArray< FString > && NewValue)` <a id="structFRHAPI__ManyPlayerOrderResponse_1a060a025a50943cbae8b849384331ce1e"></a>
+#### `public inline FORCEINLINE void `[`SetOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a6b9cb00b7a632570a90e4e8a0766529d)`(TArray< FString > && NewValue)` <a id="structFRHAPI__ManyPlayerOrderResponse_1a6b9cb00b7a632570a90e4e8a0766529d"></a>
 
 Sets the value of OrderIds_Optional and also sets OrderIds_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearOrderIds`](#structFRHAPI__ManyPlayerOrderResponse_1a972f2d1cdac042f5f23a55c1bb0125fb)`()` <a id="structFRHAPI__ManyPlayerOrderResponse_1a972f2d1cdac042f5f23a55c1bb0125fb"></a>
 
 Clears the value of OrderIds_Optional and sets OrderIds_IsSet to false.
-
-#### `public inline bool `[`IsOrderIdsSet`](#structFRHAPI__ManyPlayerOrderResponse_1a1905d2a4ba1db58094ff04767516c988)`() const` <a id="structFRHAPI__ManyPlayerOrderResponse_1a1905d2a4ba1db58094ff04767516c988"></a>
-
-Checks whether OrderIds_Optional has been set.
 

@@ -54,148 +54,134 @@ struct FRHAPI_MatchPlayerResponse
 `public bool `[`CustomData_IsNull`](#structFRHAPI__MatchPlayerResponse_1aeee488b76cb86d67b3f88767f8085592) | true if CustomData_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchPlayerResponse_1a926ebf3b09aa21b9d03e7ea9e3d00d6e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchPlayerResponse_1aaffe78811906fdd8af467e5d8d849dcf)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a291748b142795b966d7d5035e67976f7)`()` | Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa92cd39546cba2f44940682364275657)`() const` | Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa3724a85690a5769df38d457d7a7b435)`(const FDateTime & DefaultValue) const` | Gets the value of LastModifiedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a0f50919f70e886d13c99b638d97bd503)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastModifiedTimestamp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a25427820bbd6dd50e00ed3d57b49c768)`()` | Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1ab0172d31f16fcf3635e6aa717259d99c)`() const` | Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1abc62c6fb75e54c5690d08a1fa9ee8124)`(const FDateTime & NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true.
-`public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1ac39e6c1c850bda5d7d4e7dc4b92566b0)`(FDateTime && NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a49c94fe300140efa53e6229ccd00eef7)`()` | Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a01b9ae039193ff7f52906f511a2f27f0)`() const` | Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a9f6ae461ba6e1230910524b08232fd0c)`(const FDateTime & DefaultValue) const` | Gets the value of LastModifiedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1ac8db90a349754b25e1e5e16fd9143189)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastModifiedTimestamp_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a83ab2ae3639c1f2c26ca66b7be0b31b9)`()` | Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a2c9482cc514e07e276af969907db159a)`() const` | Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a0256d5eb990715bb0df37738b8041e67)`(const FDateTime & NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true.
+`public inline FORCEINLINE void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1ad89e8556dd7def9e32256960753d1e29)`(FDateTime && NewValue)` | Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a0f14ebff923dd715e1a4d3a44fa42e62)`()` | Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false.
-`public inline bool `[`IsLastModifiedTimestampSet`](#structFRHAPI__MatchPlayerResponse_1a0684af7624a41a4b506c8a5f5a7b8c32)`() const` | Checks whether LastModifiedTimestamp_Optional has been set.
-`public inline FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a5e5461c27572214983cacc2f492197d2)`()` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a4b3bb33171218277d9cb9940d6489e56)`() const` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1abdca8b9d40f5f0c89a2b515cb01fe571)`(const FDateTime & DefaultValue) const` | Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a8fd17e404c9eb59756c279f457e518e0)`(FDateTime & OutValue) const` | Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1af889989dbc0620410a455155d08c9bf8)`()` | Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1aee7eb370b109a8b97526003ba90c4dff)`() const` | Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a19137861e64fe9c032b21b3ae0061b23)`(const FDateTime & NewValue)` | Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true.
-`public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa96a671eb5d77d1dbe7a55ea9d2ab95a)`(FDateTime && NewValue)` | Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1adf9268c9a9966a24fc83c090449e4b6a)`()` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a66855f21706c859d886bc54b3b77af39)`() const` | Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa57f360dd9a715de01e5c113941c54cd)`(const FDateTime & DefaultValue) const` | Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a0027e1a93725c614b3fcb08400393b47)`(FDateTime & OutValue) const` | Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a53d842b93cbd5c88944463f15a888ef1)`()` | Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a643328c46b205edd75b19a21347a5510)`() const` | Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a1830e1a7e014d9f2c95e4f2d66455e3d)`(const FDateTime & NewValue)` | Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true.
+`public inline FORCEINLINE void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1afbbacd8d376dcfdf52f7b415a0ad053c)`(FDateTime && NewValue)` | Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a76039a236d9eb88426084df19a41ba98)`()` | Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false.
-`public inline bool `[`IsCreatedTimestampSet`](#structFRHAPI__MatchPlayerResponse_1ab5b996a9f6986e89705d03a0a06ab8a3)`() const` | Checks whether CreatedTimestamp_Optional has been set.
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a1f1f670a0f624bb7e2081b1dcbf6edde)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a59b8dc02f77f7111441aa44042877705)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a0ae500aa8564f0cb7710f78e74dd3640)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a58fec54d4ab34734b6be8f88f384de57)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
-`public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerResponse_1aa6ade0360cad26d215d032ddf3f9b8c1)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerResponse_1ab10998b88822d3efd2b4f5841605bb01)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a92693dc6145bc98434b916efb57ba1d0)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1af2801efe844234932921a9861092b556)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1afb2454085499d72f956b7dc94f0f8e64)`()` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1aa6f2d03147648bef5be9f12a0204158c)`() const` | Gets the value of PlayerUuid_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a609dd4688150d05f971124fbbbb82cf9)`(const FGuid & DefaultValue) const` | Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a3fd6d740dca81953401fbe86ff5b2253)`(FGuid & OutValue) const` | Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerResponse_1a66d23b246b5fd36a602e79796a4a4f24)`()` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerResponse_1ab836aa38fead856403758e7c76db99d2)`() const` | Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a717fe42759d148b7b585a6757bc4dda3)`(const FGuid & NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a074158248be76b5bd197ee58bed5f784)`(FGuid && NewValue)` | Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 `public inline void `[`ClearPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a8484990b71c7101060572f5818ca3a86)`()` | Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
-`public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__MatchPlayerResponse_1af5c6eb23d8f0302158893974b95fe25d)`() const` | Checks whether PlayerUuid_Optional has been set.
-`public inline FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1aaecd9bb120ed45a078c68e07c4b98b3b)`()` | Gets the value of TeamId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a6b887330c4f96c025e0517a1ce76b613)`() const` | Gets the value of TeamId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a49138b9318cf3d97ccbd374b2717338f)`(const FString & DefaultValue) const` | Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a9f55f9b8087d1612d7852b5aadb0f78b)`(FString & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a7caade0aa7131f70b524aa7b5c075f7d)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a4506295dde09eaca0e19c5549f7c26ed)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerResponse_1afb0857616f9116d424a8289788f69400)`(const FString & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
-`public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerResponse_1a53906efdf5d07fa44c99a069030eec1b)`(FString && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a4e23c9023cba88e8a5993cadb92b3a63)`()` | Gets the value of TeamId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a6e4e42bd8c2958deb84a60cb19dc82ef)`() const` | Gets the value of TeamId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a77f71a23690c18bff634bad52787e21f)`(const FString & DefaultValue) const` | Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a876359dea6fa604beb072d3bad95c16a)`(FString & OutValue) const` | Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a6490e1fdfc8c05022aefe6cee0cc7a22)`()` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerResponse_1ae8bbabcf1f3796f80bd325431f6a83d0)`() const` | Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__MatchPlayerResponse_1a7cb13a2686f3c584582ee89904282160)`(const FString & NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
+`public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__MatchPlayerResponse_1a0e9ab40a9fb5c01d64631f03e16b0ba3)`(FString && NewValue)` | Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 `public inline void `[`ClearTeamId`](#structFRHAPI__MatchPlayerResponse_1ab408948bdafa1da264a78f7c3f8b5c30)`()` | Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
-`public inline bool `[`IsTeamIdSet`](#structFRHAPI__MatchPlayerResponse_1a9702d1d61805482fa1137b5e7fa9cb22)`() const` | Checks whether TeamId_Optional has been set.
-`public inline void `[`SetTeamIdToNull`](#structFRHAPI__MatchPlayerResponse_1a4459dc51da066d03875f764417e6b827)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsTeamIdNull`](#structFRHAPI__MatchPlayerResponse_1a6d2c9eb0bcb76aadb20bdc2223e0c2bb)`() const` | Checks whether TeamId_Optional is set to null.
-`public inline FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a93db48904afcad480fce93fc06955fac)`()` | Gets the value of PartySessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1aea73ea68b0dd47bb2a3613075ee6a986)`() const` | Gets the value of PartySessionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1ab5004735ef121baf9c16a73fd60e7caa)`(const FString & DefaultValue) const` | Gets the value of PartySessionId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a91c0351701c872b49633495f48a51064)`(FString & OutValue) const` | Fills OutValue with the value of PartySessionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a36eb5006caa8f04b40f569f84c80fedd)`()` | Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerResponse_1ae36752dd3955340c176419428fe545b8)`() const` | Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1acbdc3312630889d2c44cde14c2bb5f9f)`(const FString & NewValue)` | Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true.
-`public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1aa26f6e9c2c5805052f156faf5e678016)`(FString && NewValue)` | Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetTeamIdToNull`](#structFRHAPI__MatchPlayerResponse_1a1fbd9873d55b8c614f30bfe166e7cf96)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsTeamIdNull`](#structFRHAPI__MatchPlayerResponse_1a88d8f336eeea9ea177f8fda60986b12b)`() const` | Checks whether TeamId_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1ae4b6c993971da7aabbf2f398dfea4f7a)`()` | Gets the value of PartySessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a356f448d5609b8155665e7fb07faa81e)`() const` | Gets the value of PartySessionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a91814acbe99546489da4710c06240f0d)`(const FString & DefaultValue) const` | Gets the value of PartySessionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a41d7d6d32990037582046f4c865c01af)`(FString & OutValue) const` | Fills OutValue with the value of PartySessionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a8d5c2032c2fcdf0290b07e7cf2be649c)`()` | Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerResponse_1aaa0e5d32f6e836a6aa1b6934d49cec87)`() const` | Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1ae4a5a99cbf48406e5c6fa251c0d25eba)`(const FString & NewValue)` | Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true.
+`public inline FORCEINLINE void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a94f7a96f9a5ac42eab221ef22c2d378e)`(FString && NewValue)` | Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true using move semantics.
 `public inline void `[`ClearPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a7dd4998aec8bc75924fd7ed25f83eb00)`()` | Clears the value of PartySessionId_Optional and sets PartySessionId_IsSet to false.
-`public inline bool `[`IsPartySessionIdSet`](#structFRHAPI__MatchPlayerResponse_1ad661ae4a65f422d03436f4310f52e360)`() const` | Checks whether PartySessionId_Optional has been set.
-`public inline void `[`SetPartySessionIdToNull`](#structFRHAPI__MatchPlayerResponse_1aacd4c61b5a7904c6e0721fe88a1ade2a)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPartySessionIdNull`](#structFRHAPI__MatchPlayerResponse_1a367ecbf149cc6370b7e95903ba17d54d)`() const` | Checks whether PartySessionId_Optional is set to null.
-`public inline int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1abcb7c1296a97831d22f38cb36189c3ea)`()` | Gets the value of Placement_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1a7573dff1da2739568514a154f6c0ed09)`() const` | Gets the value of Placement_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1a35f28e44c5df9c33b29a20c50e70075a)`(const int32 & DefaultValue) const` | Gets the value of Placement_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1aa3f6490331e68b3024f0b86b578fbfab)`(int32 & OutValue) const` | Fills OutValue with the value of Placement_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerResponse_1ab67e09d103bc1c7b4fda550216d97b5a)`()` | Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerResponse_1a0331429d853c93b89077db5048d11634)`() const` | Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerResponse_1a7e0f1fdb22eca39e4f95cde4439dbc4d)`(const int32 & NewValue)` | Sets the value of Placement_Optional and also sets Placement_IsSet to true.
-`public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerResponse_1accc529ef5214845479dc6951d3a3430e)`(int32 && NewValue)` | Sets the value of Placement_Optional and also sets Placement_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetPartySessionIdToNull`](#structFRHAPI__MatchPlayerResponse_1aba749adfa3f7aa35c14cfaf46b02b6b4)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPartySessionIdNull`](#structFRHAPI__MatchPlayerResponse_1addfc99a8a6e5a6ea8ea4706e8bbdf976)`() const` | Checks whether PartySessionId_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1aa73dc0dda78735c9d75602619c84af0f)`()` | Gets the value of Placement_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1a55d9811a6ee41b969682ea3fc55a7b7d)`() const` | Gets the value of Placement_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1a9daa475b0dadcdfb864d5275f1d3ea33)`(const int32 & DefaultValue) const` | Gets the value of Placement_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1aae1e2793c1e8c7a040e272ff9d79a1f5)`(int32 & OutValue) const` | Fills OutValue with the value of Placement_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerResponse_1a0554ad415a7eeb6b1c7da70b2aa54ab4)`()` | Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerResponse_1a1e18d8b1b6472e0b6f7d8af072ef25d3)`() const` | Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlacement`](#structFRHAPI__MatchPlayerResponse_1accb3f2d3f77b6724f32547ae0f239b81)`(const int32 & NewValue)` | Sets the value of Placement_Optional and also sets Placement_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlacement`](#structFRHAPI__MatchPlayerResponse_1a13e9d7b3a9f94ad34da369a359adb4bd)`(int32 && NewValue)` | Sets the value of Placement_Optional and also sets Placement_IsSet to true using move semantics.
 `public inline void `[`ClearPlacement`](#structFRHAPI__MatchPlayerResponse_1af17f01916e8ae6719949d01fff147c80)`()` | Clears the value of Placement_Optional and sets Placement_IsSet to false.
-`public inline bool `[`IsPlacementSet`](#structFRHAPI__MatchPlayerResponse_1a6070519f6bac3ecaeefe0b0034cfa324)`() const` | Checks whether Placement_Optional has been set.
-`public inline bool `[`IsPlacementDefaultValue`](#structFRHAPI__MatchPlayerResponse_1a28528fa531eae3c5427784c16e7b60ba)`() const` | Returns true if Placement_Optional is set and matches the default value.
-`public inline void `[`SetPlacementToDefault`](#structFRHAPI__MatchPlayerResponse_1abea287d7aa6ceeb250e47aefd82fc185)`()` | Sets the value of Placement_Optional to its default and also sets Placement_IsSet to true.
-`public inline void `[`SetPlacementToNull`](#structFRHAPI__MatchPlayerResponse_1a0b1f00a583366f2d2c6677f7c52b534a)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPlacementNull`](#structFRHAPI__MatchPlayerResponse_1a66df7ba9ff95af5c7eec0c4361b10003)`() const` | Checks whether Placement_Optional is set to null.
-`public inline FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a622cc8fbb9613f89309c9ee58732be84)`()` | Gets the value of JoinedMatchTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a93b9836a9941c668c3ce3fa75e0fff92)`() const` | Gets the value of JoinedMatchTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a11bbcb02d779f4527931af9761dcd626)`(const FDateTime & DefaultValue) const` | Gets the value of JoinedMatchTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a7dfc9555a469d46191a20f2a4129632a)`(FDateTime & OutValue) const` | Fills OutValue with the value of JoinedMatchTimestamp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a760a32c718a7cfa08ff5c45de1bdc863)`()` | Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a3782d6afde1c70b30faff206dc630cfa)`() const` | Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa314ebe25a3d3853791b388a5c52a28c)`(const FDateTime & NewValue)` | Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true.
-`public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1aec799bdeb75e69b995f8ac60f6535503)`(FDateTime && NewValue)` | Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Placement`](#structFRHAPI__MatchPlayerResponse_1a12c19bc17a9740f693b3d95fff3f564c)`()` | Returns the default value of Placement.
+`public inline FORCEINLINE void `[`SetPlacementToNull`](#structFRHAPI__MatchPlayerResponse_1acc0343132e8748afdea7b5204baadaaf)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPlacementNull`](#structFRHAPI__MatchPlayerResponse_1a4ff3aedddafeba4c18f1ece16756400d)`() const` | Checks whether Placement_Optional is set to null.
+`public inline FORCEINLINE FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a814945d1f163052bb9e228989e0da526)`()` | Gets the value of JoinedMatchTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1ace80556e0eaaf8d592074b0a83283fee)`() const` | Gets the value of JoinedMatchTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a33ba0f62a375a1c973bbb2135758ed64)`(const FDateTime & DefaultValue) const` | Gets the value of JoinedMatchTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a5623092af01fe54587412e4cf6dcbe36)`(FDateTime & OutValue) const` | Fills OutValue with the value of JoinedMatchTimestamp_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1ac3104d8429fdcf6910a84c7d6ea28985)`()` | Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a32daebf2557db9c51589bf623723de20)`() const` | Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a048a731304aa0993a32853511502ef65)`(const FDateTime & NewValue)` | Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true.
+`public inline FORCEINLINE void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a7a57fc13855170c26bc9e565963da04c)`(FDateTime && NewValue)` | Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a714cc4de963e4dd7a8a4f620a44f473b)`()` | Clears the value of JoinedMatchTimestamp_Optional and sets JoinedMatchTimestamp_IsSet to false.
-`public inline bool `[`IsJoinedMatchTimestampSet`](#structFRHAPI__MatchPlayerResponse_1a16eead1eb53ed4418d294e8afccd381e)`() const` | Checks whether JoinedMatchTimestamp_Optional has been set.
-`public inline void `[`SetJoinedMatchTimestampToNull`](#structFRHAPI__MatchPlayerResponse_1a960a65cdb7240a42f2f3cbbfb6b0a1aa)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsJoinedMatchTimestampNull`](#structFRHAPI__MatchPlayerResponse_1a79e91553fe8a482834a19aa3ae5b37ad)`() const` | Checks whether JoinedMatchTimestamp_Optional is set to null.
-`public inline FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a8f0e9cd7b85a2b2967bb870a5db9e7db)`()` | Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a5672d18615d91471c5689fa54d8c5d8a)`() const` | Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1af5e710da55c039c321d585f7ec795a86)`(const FDateTime & DefaultValue) const` | Gets the value of LeftMatchTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a2119fee299a7500812adc92dbd7a68b7)`(FDateTime & OutValue) const` | Fills OutValue with the value of LeftMatchTimestamp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a2315cd5d9db273f9332198537ff77f28)`()` | Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1aec64d258bec2a4223fe5e52424dd60bb)`() const` | Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1ac9134e9c245d5fa86eafa99267cbe907)`(const FDateTime & NewValue)` | Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true.
-`public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa6a63fe8eb897a49ea5b6435d57eccf0)`(FDateTime && NewValue)` | Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetJoinedMatchTimestampToNull`](#structFRHAPI__MatchPlayerResponse_1a69229815cce0a02de95d0fd851462700)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsJoinedMatchTimestampNull`](#structFRHAPI__MatchPlayerResponse_1af603d0fc9a4ca2ab0d0efe7b5e4ff484)`() const` | Checks whether JoinedMatchTimestamp_Optional is set to null.
+`public inline FORCEINLINE FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a97ced73f4b48f1a223183f82626e1b18)`()` | Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa78d385712e51007fa1fdefe57189dd7)`() const` | Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a1707538ff41894c7947a9620feb894d2)`(const FDateTime & DefaultValue) const` | Gets the value of LeftMatchTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a8ade15dfb95c21804b35a8cef541ab56)`(FDateTime & OutValue) const` | Fills OutValue with the value of LeftMatchTimestamp_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1aac8eaa66e58fff91b7655ce293021827)`()` | Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1aa82b2e0f1015580b05b2b9ade8277998)`() const` | Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a72e2c7b551b0172b034c553258c52df6)`(const FDateTime & NewValue)` | Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true.
+`public inline FORCEINLINE void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1ae0f4c312bd99f71de6b1be9bed90c8dd)`(FDateTime && NewValue)` | Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1ad464648877f8dae5abacf94f29da4725)`()` | Clears the value of LeftMatchTimestamp_Optional and sets LeftMatchTimestamp_IsSet to false.
-`public inline bool `[`IsLeftMatchTimestampSet`](#structFRHAPI__MatchPlayerResponse_1a9eef36929eda6c26cff4dc0aa16ac30b)`() const` | Checks whether LeftMatchTimestamp_Optional has been set.
-`public inline void `[`SetLeftMatchTimestampToNull`](#structFRHAPI__MatchPlayerResponse_1ae329b63242d91c035f5f8f5a146d0819)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsLeftMatchTimestampNull`](#structFRHAPI__MatchPlayerResponse_1a89264377fd7891ee60fc7e7039b50285)`() const` | Checks whether LeftMatchTimestamp_Optional is set to null.
-`public inline int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1ac9bdf9c67724ce337a23481f0d17f239)`()` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a23df57b59e651c34e71e7a1f7758c5a5)`() const` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a3a8ceb227118e871016cb31ecb10d9a3)`(const int32 & DefaultValue) const` | Gets the value of DurationSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1aac6936555486e01d3a0f42a19ec181ab)`(int32 & OutValue) const` | Fills OutValue with the value of DurationSeconds_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerResponse_1a17ebe1a0106ab9573fbc2f94c3b10b5b)`()` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerResponse_1a3668f20d996ee8345bbe6f08dfd4e228)`() const` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a5343611a8958a47038796067c3818dd2)`(const int32 & NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
-`public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1abf434bc02a9705e3b159cefc06db5bcb)`(int32 && NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetLeftMatchTimestampToNull`](#structFRHAPI__MatchPlayerResponse_1ad60fbaf5cbea6c91ccc4d643d0a2f7d1)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsLeftMatchTimestampNull`](#structFRHAPI__MatchPlayerResponse_1a0c660577ff05ddf6b8125ef64d1d3ad4)`() const` | Checks whether LeftMatchTimestamp_Optional is set to null.
+`public inline FORCEINLINE int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a92b734302a4a02f8632a3a98f5feddf1)`()` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a05b4ef491dcba5e5c0192161952d27b0)`() const` | Gets the value of DurationSeconds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a8a238060d3d01ed13f0308c97c718210)`(const int32 & DefaultValue) const` | Gets the value of DurationSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a421bcfe88770c04f4b3e957802517188)`(int32 & OutValue) const` | Fills OutValue with the value of DurationSeconds_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerResponse_1ab66e355890774e1b6ba6ba32c9d453a7)`()` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerResponse_1a0f9c01755dd1730342e0d5bcf9d2e578)`() const` | Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1abcd341595912c239c54d00c1f4a9b014)`(const int32 & NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
+`public inline FORCEINLINE void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a5985e4baefa452623a1a0b0c84b4fcba)`(int32 && NewValue)` | Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics.
 `public inline void `[`ClearDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1addff4d7cea40283e439f4587fd8dd5f0)`()` | Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false.
-`public inline bool `[`IsDurationSecondsSet`](#structFRHAPI__MatchPlayerResponse_1a7de4f5e801ee7d195bdfadd46a9e8601)`() const` | Checks whether DurationSeconds_Optional has been set.
-`public inline bool `[`IsDurationSecondsDefaultValue`](#structFRHAPI__MatchPlayerResponse_1ab85eaadfcebeb5f27a16a8910745f152)`() const` | Returns true if DurationSeconds_Optional is set and matches the default value.
-`public inline void `[`SetDurationSecondsToDefault`](#structFRHAPI__MatchPlayerResponse_1af4fc0cde5efe6b7f2efefa650edbb089)`()` | Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
-`public inline void `[`SetDurationSecondsToNull`](#structFRHAPI__MatchPlayerResponse_1ae7808d220e7c336521653b99639c6bbb)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsDurationSecondsNull`](#structFRHAPI__MatchPlayerResponse_1a2a67edeb467866fb56528f214db0c3de)`() const` | Checks whether DurationSeconds_Optional is set to null.
-`public inline FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a0c08f28ed5ed0de77d1667bfa4da6e41)`()` | Gets the value of StartingRank_Optional, regardless of it having been set.
-`public inline const FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1ae73c84164ee61f24922c31a5c453db70)`() const` | Gets the value of StartingRank_Optional, regardless of it having been set.
-`public inline const FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a09f0f39ec67e96d9c534589c60ceb303)`(const FString & DefaultValue) const` | Gets the value of StartingRank_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a98ab7c5b0d8ca5124ba6305c2732eca3)`(FString & OutValue) const` | Fills OutValue with the value of StartingRank_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a89e6ff7281fb601099988b90c5c48c21)`()` | Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a5b39381eb27a445d92189c0cb2eb52e6)`() const` | Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a60a9343d88e5398abc3d641fc32d80b3)`(const FString & NewValue)` | Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true.
-`public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerResponse_1ab9b6ca32769b4c713b3b54b58194e275)`(FString && NewValue)` | Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_DurationSeconds`](#structFRHAPI__MatchPlayerResponse_1aa3f971653f4ada2d797e4a3aa36864b2)`()` | Returns the default value of DurationSeconds.
+`public inline FORCEINLINE void `[`SetDurationSecondsToNull`](#structFRHAPI__MatchPlayerResponse_1a1e05b34ea9f07c15e5e613b0cefbe214)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsDurationSecondsNull`](#structFRHAPI__MatchPlayerResponse_1a0fb327571361f4fea4d87741477aac8f)`() const` | Checks whether DurationSeconds_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a1eb29954f120d7edd0b7500c9ca609fc)`()` | Gets the value of StartingRank_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a8b2aa7b67d3d6ff7cd1b0ae7718f5d5d)`() const` | Gets the value of StartingRank_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a56a02763156065b031dabcde5004334e)`(const FString & DefaultValue) const` | Gets the value of StartingRank_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a0a4c2ed7ddb596d1ad11cb0dcf8f60f4)`(FString & OutValue) const` | Fills OutValue with the value of StartingRank_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a166922f5a918267fb2124966a91a325c)`()` | Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a5718f72ebd92c204f92aaa53208babfe)`() const` | Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a6f9869346f4bc3ff9a28c1442b74a97a)`(const FString & NewValue)` | Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true.
+`public inline FORCEINLINE void `[`SetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a6124286321d32401c141197cff665786)`(FString && NewValue)` | Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true using move semantics.
 `public inline void `[`ClearStartingRank`](#structFRHAPI__MatchPlayerResponse_1add83305f33427b1363ecab1178e979bc)`()` | Clears the value of StartingRank_Optional and sets StartingRank_IsSet to false.
-`public inline bool `[`IsStartingRankSet`](#structFRHAPI__MatchPlayerResponse_1a0827e05d0ac4e02954dfe5e45d2f3276)`() const` | Checks whether StartingRank_Optional has been set.
-`public inline void `[`SetStartingRankToNull`](#structFRHAPI__MatchPlayerResponse_1a9361815a097a2f79f26d014210f854c2)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsStartingRankNull`](#structFRHAPI__MatchPlayerResponse_1afde08bca2ad643b5da2837457319e2af)`() const` | Checks whether StartingRank_Optional is set to null.
-`public inline FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a98a8d84d7c56f819cd27ac793925766e)`()` | Gets the value of FinishingRank_Optional, regardless of it having been set.
-`public inline const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a750aea3c9b1e20609705023c7f46833f)`() const` | Gets the value of FinishingRank_Optional, regardless of it having been set.
-`public inline const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1ac84dfb4d8961c581e599e424e65846c9)`(const FString & DefaultValue) const` | Gets the value of FinishingRank_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a1c5702097747a055dbab3fb62b05f3f4)`(FString & OutValue) const` | Fills OutValue with the value of FinishingRank_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a861200669fc65d619cc9eb3c6692cabe)`()` | Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a222d1708ea659969957c7ce27bbc1e08)`() const` | Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1af9b4b2f54086dc0220c6c6c3fe1d2003)`(const FString & NewValue)` | Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true.
-`public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1aaf075ae2e6845f38c182d3c458be6216)`(FString && NewValue)` | Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetStartingRankToNull`](#structFRHAPI__MatchPlayerResponse_1af6395759deaf065864e852d63375174c)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsStartingRankNull`](#structFRHAPI__MatchPlayerResponse_1a04d762b7dd9ad96ebf82b1b4d4f1ee81)`() const` | Checks whether StartingRank_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a1f598d58d9ed9a4cf3c581bb5ba3b1b9)`()` | Gets the value of FinishingRank_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a7476aab8749a23bee23ec3a6adcfd271)`() const` | Gets the value of FinishingRank_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a3ca8fd1af5c6b7d3b6aff99916d5e7f2)`(const FString & DefaultValue) const` | Gets the value of FinishingRank_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a4e5502ed3f1da3addbf90ee9ddece4c4)`(FString & OutValue) const` | Fills OutValue with the value of FinishingRank_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a9f7d109ccf0ec9cc2a12494e8e1b4d2c)`()` | Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a6875d4d2d2eacc13b5a90ca27ef44ca9)`() const` | Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1adcd04060748aad289c33f752a259ce34)`(const FString & NewValue)` | Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true.
+`public inline FORCEINLINE void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a60e8fb6305a7ba349fbf3a6071c98993)`(FString && NewValue)` | Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true using move semantics.
 `public inline void `[`ClearFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a1891eddfe78c0798aca9b36b10d9d394)`()` | Clears the value of FinishingRank_Optional and sets FinishingRank_IsSet to false.
-`public inline bool `[`IsFinishingRankSet`](#structFRHAPI__MatchPlayerResponse_1a7ad6fecfed42aa8c2611b6a1fece4cd1)`() const` | Checks whether FinishingRank_Optional has been set.
-`public inline void `[`SetFinishingRankToNull`](#structFRHAPI__MatchPlayerResponse_1a01b71a2e6aca593d55e6a9e890940950)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsFinishingRankNull`](#structFRHAPI__MatchPlayerResponse_1aaca460d3c33163e4deb900a636b5283e)`() const` | Checks whether FinishingRank_Optional is set to null.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1aecb9d03b4e41c8df06dc736fe95197d7)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1abcf73feba0f5db6dde4a6975c5dbb3d9)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1ab2bdd87c4f2aadc6990c3115c9b153bf)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1aa4c2a91ba8545575b1d8a37c2f24a15b)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerResponse_1af074dabec0188954777445f738ff59f4)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerResponse_1a7e7162f70545c5d89266761944da42ca)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1ad3cd88a1dbf95ea268c270dfc7b5898d)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1a8da48ae39780af8516cf0550538dd85b)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetFinishingRankToNull`](#structFRHAPI__MatchPlayerResponse_1a38911f0693fdd6d4be16470ac55c5078)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsFinishingRankNull`](#structFRHAPI__MatchPlayerResponse_1adc8eb6bcfe0bc33d4217487a3dc31c1a)`() const` | Checks whether FinishingRank_Optional is set to null.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1a211306e5fcd1e145ae24daf6dc3481e3)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1a2a0e97b16e68cdb6e2a3f413e4e8eeab)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1a7e15fda200f5a35afc66f3488a712ff5)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1a8d3ea710d2c0cf85e78c06b88a5480ea)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerResponse_1afa11d3b0100d046eeeec617a0ee4f715)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerResponse_1a826fae960c36cfeeb607bd76f972f234)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1a0eea40f2654e4304f98d8262d52e94ab)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1ae4c214123762d68d628f2eafa481864c)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__MatchPlayerResponse_1a6e3f6713f85176398f037a160517bdf7)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchPlayerResponse_1aa9b5b38807512f1d16dc6b132527ebbc)`() const` | Checks whether CustomData_Optional has been set.
-`public inline void `[`SetCustomDataToNull`](#structFRHAPI__MatchPlayerResponse_1aa83d0f2f25e5ef7a3d21039174c37950)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsCustomDataNull`](#structFRHAPI__MatchPlayerResponse_1a0baffefecd769612a4be68b3a3faf2ba)`() const` | Checks whether CustomData_Optional is set to null.
+`public inline FORCEINLINE void `[`SetCustomDataToNull`](#structFRHAPI__MatchPlayerResponse_1a0192028bf3c9abcb5081b70ec0584482)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsCustomDataNull`](#structFRHAPI__MatchPlayerResponse_1a0df5903612a75795be23ccc63e87326f)`() const` | Checks whether CustomData_Optional is set to null.
 
 ### Members
 
@@ -332,35 +318,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a291748b142795b966d7d5035e67976f7)`()` <a id="structFRHAPI__MatchPlayerResponse_1a291748b142795b966d7d5035e67976f7"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a49c94fe300140efa53e6229ccd00eef7)`()` <a id="structFRHAPI__MatchPlayerResponse_1a49c94fe300140efa53e6229ccd00eef7"></a>
 
 Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa92cd39546cba2f44940682364275657)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aa92cd39546cba2f44940682364275657"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a01b9ae039193ff7f52906f511a2f27f0)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a01b9ae039193ff7f52906f511a2f27f0"></a>
 
 Gets the value of LastModifiedTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa3724a85690a5769df38d457d7a7b435)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1aa3724a85690a5769df38d457d7a7b435"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a9f6ae461ba6e1230910524b08232fd0c)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a9f6ae461ba6e1230910524b08232fd0c"></a>
 
 Gets the value of LastModifiedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a0f50919f70e886d13c99b638d97bd503)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a0f50919f70e886d13c99b638d97bd503"></a>
+#### `public inline FORCEINLINE bool `[`GetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1ac8db90a349754b25e1e5e16fd9143189)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1ac8db90a349754b25e1e5e16fd9143189"></a>
 
 Fills OutValue with the value of LastModifiedTimestamp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a25427820bbd6dd50e00ed3d57b49c768)`()` <a id="structFRHAPI__MatchPlayerResponse_1a25427820bbd6dd50e00ed3d57b49c768"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a83ab2ae3639c1f2c26ca66b7be0b31b9)`()` <a id="structFRHAPI__MatchPlayerResponse_1a83ab2ae3639c1f2c26ca66b7be0b31b9"></a>
 
 Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1ab0172d31f16fcf3635e6aa717259d99c)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ab0172d31f16fcf3635e6aa717259d99c"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetLastModifiedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a2c9482cc514e07e276af969907db159a)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a2c9482cc514e07e276af969907db159a"></a>
 
 Returns a pointer to LastModifiedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1abc62c6fb75e54c5690d08a1fa9ee8124)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1abc62c6fb75e54c5690d08a1fa9ee8124"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a0256d5eb990715bb0df37738b8041e67)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a0256d5eb990715bb0df37738b8041e67"></a>
 
 Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true.
 
-#### `public inline void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1ac39e6c1c850bda5d7d4e7dc4b92566b0)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1ac39e6c1c850bda5d7d4e7dc4b92566b0"></a>
+#### `public inline FORCEINLINE void `[`SetLastModifiedTimestamp`](#structFRHAPI__MatchPlayerResponse_1ad89e8556dd7def9e32256960753d1e29)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1ad89e8556dd7def9e32256960753d1e29"></a>
 
 Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimestamp_IsSet to true using move semantics.
 
@@ -368,39 +354,35 @@ Sets the value of LastModifiedTimestamp_Optional and also sets LastModifiedTimes
 
 Clears the value of LastModifiedTimestamp_Optional and sets LastModifiedTimestamp_IsSet to false.
 
-#### `public inline bool `[`IsLastModifiedTimestampSet`](#structFRHAPI__MatchPlayerResponse_1a0684af7624a41a4b506c8a5f5a7b8c32)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a0684af7624a41a4b506c8a5f5a7b8c32"></a>
-
-Checks whether LastModifiedTimestamp_Optional has been set.
-
-#### `public inline FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a5e5461c27572214983cacc2f492197d2)`()` <a id="structFRHAPI__MatchPlayerResponse_1a5e5461c27572214983cacc2f492197d2"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1adf9268c9a9966a24fc83c090449e4b6a)`()` <a id="structFRHAPI__MatchPlayerResponse_1adf9268c9a9966a24fc83c090449e4b6a"></a>
 
 Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a4b3bb33171218277d9cb9940d6489e56)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a4b3bb33171218277d9cb9940d6489e56"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a66855f21706c859d886bc54b3b77af39)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a66855f21706c859d886bc54b3b77af39"></a>
 
 Gets the value of CreatedTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1abdca8b9d40f5f0c89a2b515cb01fe571)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1abdca8b9d40f5f0c89a2b515cb01fe571"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa57f360dd9a715de01e5c113941c54cd)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1aa57f360dd9a715de01e5c113941c54cd"></a>
 
 Gets the value of CreatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a8fd17e404c9eb59756c279f457e518e0)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a8fd17e404c9eb59756c279f457e518e0"></a>
+#### `public inline FORCEINLINE bool `[`GetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a0027e1a93725c614b3fcb08400393b47)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a0027e1a93725c614b3fcb08400393b47"></a>
 
 Fills OutValue with the value of CreatedTimestamp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1af889989dbc0620410a455155d08c9bf8)`()` <a id="structFRHAPI__MatchPlayerResponse_1af889989dbc0620410a455155d08c9bf8"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a53d842b93cbd5c88944463f15a888ef1)`()` <a id="structFRHAPI__MatchPlayerResponse_1a53d842b93cbd5c88944463f15a888ef1"></a>
 
 Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1aee7eb370b109a8b97526003ba90c4dff)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aee7eb370b109a8b97526003ba90c4dff"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetCreatedTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a643328c46b205edd75b19a21347a5510)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a643328c46b205edd75b19a21347a5510"></a>
 
 Returns a pointer to CreatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a19137861e64fe9c032b21b3ae0061b23)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a19137861e64fe9c032b21b3ae0061b23"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1a1830e1a7e014d9f2c95e4f2d66455e3d)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a1830e1a7e014d9f2c95e4f2d66455e3d"></a>
 
 Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true.
 
-#### `public inline void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa96a671eb5d77d1dbe7a55ea9d2ab95a)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1aa96a671eb5d77d1dbe7a55ea9d2ab95a"></a>
+#### `public inline FORCEINLINE void `[`SetCreatedTimestamp`](#structFRHAPI__MatchPlayerResponse_1afbbacd8d376dcfdf52f7b415a0ad053c)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1afbbacd8d376dcfdf52f7b415a0ad053c"></a>
 
 Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet to true using move semantics.
 
@@ -408,39 +390,35 @@ Sets the value of CreatedTimestamp_Optional and also sets CreatedTimestamp_IsSet
 
 Clears the value of CreatedTimestamp_Optional and sets CreatedTimestamp_IsSet to false.
 
-#### `public inline bool `[`IsCreatedTimestampSet`](#structFRHAPI__MatchPlayerResponse_1ab5b996a9f6986e89705d03a0a06ab8a3)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ab5b996a9f6986e89705d03a0a06ab8a3"></a>
-
-Checks whether CreatedTimestamp_Optional has been set.
-
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a1f1f670a0f624bb7e2081b1dcbf6edde)`()` <a id="structFRHAPI__MatchPlayerResponse_1a1f1f670a0f624bb7e2081b1dcbf6edde"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1afb2454085499d72f956b7dc94f0f8e64)`()` <a id="structFRHAPI__MatchPlayerResponse_1afb2454085499d72f956b7dc94f0f8e64"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a59b8dc02f77f7111441aa44042877705)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a59b8dc02f77f7111441aa44042877705"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1aa6f2d03147648bef5be9f12a0204158c)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aa6f2d03147648bef5be9f12a0204158c"></a>
 
 Gets the value of PlayerUuid_Optional, regardless of it having been set.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a0ae500aa8564f0cb7710f78e74dd3640)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a0ae500aa8564f0cb7710f78e74dd3640"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a609dd4688150d05f971124fbbbb82cf9)`(const FGuid & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a609dd4688150d05f971124fbbbb82cf9"></a>
 
 Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a58fec54d4ab34734b6be8f88f384de57)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a58fec54d4ab34734b6be8f88f384de57"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a3fd6d740dca81953401fbe86ff5b2253)`(FGuid & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a3fd6d740dca81953401fbe86ff5b2253"></a>
 
 Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerResponse_1aa6ade0360cad26d215d032ddf3f9b8c1)`()` <a id="structFRHAPI__MatchPlayerResponse_1aa6ade0360cad26d215d032ddf3f9b8c1"></a>
+#### `public inline FORCEINLINE FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerResponse_1a66d23b246b5fd36a602e79796a4a4f24)`()` <a id="structFRHAPI__MatchPlayerResponse_1a66d23b246b5fd36a602e79796a4a4f24"></a>
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerResponse_1ab10998b88822d3efd2b4f5841605bb01)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ab10998b88822d3efd2b4f5841605bb01"></a>
+#### `public inline FORCEINLINE const FGuid * `[`GetPlayerUuidOrNull`](#structFRHAPI__MatchPlayerResponse_1ab836aa38fead856403758e7c76db99d2)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ab836aa38fead856403758e7c76db99d2"></a>
 
 Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a92693dc6145bc98434b916efb57ba1d0)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a92693dc6145bc98434b916efb57ba1d0"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a717fe42759d148b7b585a6757bc4dda3)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a717fe42759d148b7b585a6757bc4dda3"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1af2801efe844234932921a9861092b556)`(FGuid && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1af2801efe844234932921a9861092b556"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__MatchPlayerResponse_1a074158248be76b5bd197ee58bed5f784)`(FGuid && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a074158248be76b5bd197ee58bed5f784"></a>
 
 Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics.
 
@@ -448,39 +426,35 @@ Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true usi
 
 Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false.
 
-#### `public inline bool `[`IsPlayerUuidSet`](#structFRHAPI__MatchPlayerResponse_1af5c6eb23d8f0302158893974b95fe25d)`() const` <a id="structFRHAPI__MatchPlayerResponse_1af5c6eb23d8f0302158893974b95fe25d"></a>
-
-Checks whether PlayerUuid_Optional has been set.
-
-#### `public inline FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1aaecd9bb120ed45a078c68e07c4b98b3b)`()` <a id="structFRHAPI__MatchPlayerResponse_1aaecd9bb120ed45a078c68e07c4b98b3b"></a>
+#### `public inline FORCEINLINE FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a4e23c9023cba88e8a5993cadb92b3a63)`()` <a id="structFRHAPI__MatchPlayerResponse_1a4e23c9023cba88e8a5993cadb92b3a63"></a>
 
 Gets the value of TeamId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a6b887330c4f96c025e0517a1ce76b613)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a6b887330c4f96c025e0517a1ce76b613"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a6e4e42bd8c2958deb84a60cb19dc82ef)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a6e4e42bd8c2958deb84a60cb19dc82ef"></a>
 
 Gets the value of TeamId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a49138b9318cf3d97ccbd374b2717338f)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a49138b9318cf3d97ccbd374b2717338f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a77f71a23690c18bff634bad52787e21f)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a77f71a23690c18bff634bad52787e21f"></a>
 
 Gets the value of TeamId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a9f55f9b8087d1612d7852b5aadb0f78b)`(FString & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a9f55f9b8087d1612d7852b5aadb0f78b"></a>
+#### `public inline FORCEINLINE bool `[`GetTeamId`](#structFRHAPI__MatchPlayerResponse_1a876359dea6fa604beb072d3bad95c16a)`(FString & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a876359dea6fa604beb072d3bad95c16a"></a>
 
 Fills OutValue with the value of TeamId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a7caade0aa7131f70b524aa7b5c075f7d)`()` <a id="structFRHAPI__MatchPlayerResponse_1a7caade0aa7131f70b524aa7b5c075f7d"></a>
+#### `public inline FORCEINLINE FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a6490e1fdfc8c05022aefe6cee0cc7a22)`()` <a id="structFRHAPI__MatchPlayerResponse_1a6490e1fdfc8c05022aefe6cee0cc7a22"></a>
 
 Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a4506295dde09eaca0e19c5549f7c26ed)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a4506295dde09eaca0e19c5549f7c26ed"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTeamIdOrNull`](#structFRHAPI__MatchPlayerResponse_1ae8bbabcf1f3796f80bd325431f6a83d0)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ae8bbabcf1f3796f80bd325431f6a83d0"></a>
 
 Returns a pointer to TeamId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerResponse_1afb0857616f9116d424a8289788f69400)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1afb0857616f9116d424a8289788f69400"></a>
+#### `public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__MatchPlayerResponse_1a7cb13a2686f3c584582ee89904282160)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a7cb13a2686f3c584582ee89904282160"></a>
 
 Sets the value of TeamId_Optional and also sets TeamId_IsSet to true.
 
-#### `public inline void `[`SetTeamId`](#structFRHAPI__MatchPlayerResponse_1a53906efdf5d07fa44c99a069030eec1b)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a53906efdf5d07fa44c99a069030eec1b"></a>
+#### `public inline FORCEINLINE void `[`SetTeamId`](#structFRHAPI__MatchPlayerResponse_1a0e9ab40a9fb5c01d64631f03e16b0ba3)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a0e9ab40a9fb5c01d64631f03e16b0ba3"></a>
 
 Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move semantics.
 
@@ -488,47 +462,43 @@ Sets the value of TeamId_Optional and also sets TeamId_IsSet to true using move 
 
 Clears the value of TeamId_Optional and sets TeamId_IsSet to false.
 
-#### `public inline bool `[`IsTeamIdSet`](#structFRHAPI__MatchPlayerResponse_1a9702d1d61805482fa1137b5e7fa9cb22)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a9702d1d61805482fa1137b5e7fa9cb22"></a>
-
-Checks whether TeamId_Optional has been set.
-
-#### `public inline void `[`SetTeamIdToNull`](#structFRHAPI__MatchPlayerResponse_1a4459dc51da066d03875f764417e6b827)`()` <a id="structFRHAPI__MatchPlayerResponse_1a4459dc51da066d03875f764417e6b827"></a>
+#### `public inline FORCEINLINE void `[`SetTeamIdToNull`](#structFRHAPI__MatchPlayerResponse_1a1fbd9873d55b8c614f30bfe166e7cf96)`()` <a id="structFRHAPI__MatchPlayerResponse_1a1fbd9873d55b8c614f30bfe166e7cf96"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsTeamIdNull`](#structFRHAPI__MatchPlayerResponse_1a6d2c9eb0bcb76aadb20bdc2223e0c2bb)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a6d2c9eb0bcb76aadb20bdc2223e0c2bb"></a>
+#### `public inline FORCEINLINE bool `[`IsTeamIdNull`](#structFRHAPI__MatchPlayerResponse_1a88d8f336eeea9ea177f8fda60986b12b)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a88d8f336eeea9ea177f8fda60986b12b"></a>
 
 Checks whether TeamId_Optional is set to null.
 
-#### `public inline FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a93db48904afcad480fce93fc06955fac)`()` <a id="structFRHAPI__MatchPlayerResponse_1a93db48904afcad480fce93fc06955fac"></a>
+#### `public inline FORCEINLINE FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1ae4b6c993971da7aabbf2f398dfea4f7a)`()` <a id="structFRHAPI__MatchPlayerResponse_1ae4b6c993971da7aabbf2f398dfea4f7a"></a>
 
 Gets the value of PartySessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1aea73ea68b0dd47bb2a3613075ee6a986)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aea73ea68b0dd47bb2a3613075ee6a986"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a356f448d5609b8155665e7fb07faa81e)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a356f448d5609b8155665e7fb07faa81e"></a>
 
 Gets the value of PartySessionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1ab5004735ef121baf9c16a73fd60e7caa)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1ab5004735ef121baf9c16a73fd60e7caa"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a91814acbe99546489da4710c06240f0d)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a91814acbe99546489da4710c06240f0d"></a>
 
 Gets the value of PartySessionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a91c0351701c872b49633495f48a51064)`(FString & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a91c0351701c872b49633495f48a51064"></a>
+#### `public inline FORCEINLINE bool `[`GetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a41d7d6d32990037582046f4c865c01af)`(FString & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a41d7d6d32990037582046f4c865c01af"></a>
 
 Fills OutValue with the value of PartySessionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a36eb5006caa8f04b40f569f84c80fedd)`()` <a id="structFRHAPI__MatchPlayerResponse_1a36eb5006caa8f04b40f569f84c80fedd"></a>
+#### `public inline FORCEINLINE FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerResponse_1a8d5c2032c2fcdf0290b07e7cf2be649c)`()` <a id="structFRHAPI__MatchPlayerResponse_1a8d5c2032c2fcdf0290b07e7cf2be649c"></a>
 
 Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerResponse_1ae36752dd3955340c176419428fe545b8)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ae36752dd3955340c176419428fe545b8"></a>
+#### `public inline FORCEINLINE const FString * `[`GetPartySessionIdOrNull`](#structFRHAPI__MatchPlayerResponse_1aaa0e5d32f6e836a6aa1b6934d49cec87)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aaa0e5d32f6e836a6aa1b6934d49cec87"></a>
 
 Returns a pointer to PartySessionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1acbdc3312630889d2c44cde14c2bb5f9f)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1acbdc3312630889d2c44cde14c2bb5f9f"></a>
+#### `public inline FORCEINLINE void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1ae4a5a99cbf48406e5c6fa251c0d25eba)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1ae4a5a99cbf48406e5c6fa251c0d25eba"></a>
 
 Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true.
 
-#### `public inline void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1aa26f6e9c2c5805052f156faf5e678016)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1aa26f6e9c2c5805052f156faf5e678016"></a>
+#### `public inline FORCEINLINE void `[`SetPartySessionId`](#structFRHAPI__MatchPlayerResponse_1a94f7a96f9a5ac42eab221ef22c2d378e)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a94f7a96f9a5ac42eab221ef22c2d378e"></a>
 
 Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to true using move semantics.
 
@@ -536,47 +506,43 @@ Sets the value of PartySessionId_Optional and also sets PartySessionId_IsSet to 
 
 Clears the value of PartySessionId_Optional and sets PartySessionId_IsSet to false.
 
-#### `public inline bool `[`IsPartySessionIdSet`](#structFRHAPI__MatchPlayerResponse_1ad661ae4a65f422d03436f4310f52e360)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ad661ae4a65f422d03436f4310f52e360"></a>
-
-Checks whether PartySessionId_Optional has been set.
-
-#### `public inline void `[`SetPartySessionIdToNull`](#structFRHAPI__MatchPlayerResponse_1aacd4c61b5a7904c6e0721fe88a1ade2a)`()` <a id="structFRHAPI__MatchPlayerResponse_1aacd4c61b5a7904c6e0721fe88a1ade2a"></a>
+#### `public inline FORCEINLINE void `[`SetPartySessionIdToNull`](#structFRHAPI__MatchPlayerResponse_1aba749adfa3f7aa35c14cfaf46b02b6b4)`()` <a id="structFRHAPI__MatchPlayerResponse_1aba749adfa3f7aa35c14cfaf46b02b6b4"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPartySessionIdNull`](#structFRHAPI__MatchPlayerResponse_1a367ecbf149cc6370b7e95903ba17d54d)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a367ecbf149cc6370b7e95903ba17d54d"></a>
+#### `public inline FORCEINLINE bool `[`IsPartySessionIdNull`](#structFRHAPI__MatchPlayerResponse_1addfc99a8a6e5a6ea8ea4706e8bbdf976)`() const` <a id="structFRHAPI__MatchPlayerResponse_1addfc99a8a6e5a6ea8ea4706e8bbdf976"></a>
 
 Checks whether PartySessionId_Optional is set to null.
 
-#### `public inline int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1abcb7c1296a97831d22f38cb36189c3ea)`()` <a id="structFRHAPI__MatchPlayerResponse_1abcb7c1296a97831d22f38cb36189c3ea"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1aa73dc0dda78735c9d75602619c84af0f)`()` <a id="structFRHAPI__MatchPlayerResponse_1aa73dc0dda78735c9d75602619c84af0f"></a>
 
 Gets the value of Placement_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1a7573dff1da2739568514a154f6c0ed09)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a7573dff1da2739568514a154f6c0ed09"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1a55d9811a6ee41b969682ea3fc55a7b7d)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a55d9811a6ee41b969682ea3fc55a7b7d"></a>
 
 Gets the value of Placement_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1a35f28e44c5df9c33b29a20c50e70075a)`(const int32 & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a35f28e44c5df9c33b29a20c50e70075a"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1a9daa475b0dadcdfb864d5275f1d3ea33)`(const int32 & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a9daa475b0dadcdfb864d5275f1d3ea33"></a>
 
 Gets the value of Placement_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1aa3f6490331e68b3024f0b86b578fbfab)`(int32 & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1aa3f6490331e68b3024f0b86b578fbfab"></a>
+#### `public inline FORCEINLINE bool `[`GetPlacement`](#structFRHAPI__MatchPlayerResponse_1aae1e2793c1e8c7a040e272ff9d79a1f5)`(int32 & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1aae1e2793c1e8c7a040e272ff9d79a1f5"></a>
 
 Fills OutValue with the value of Placement_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerResponse_1ab67e09d103bc1c7b4fda550216d97b5a)`()` <a id="structFRHAPI__MatchPlayerResponse_1ab67e09d103bc1c7b4fda550216d97b5a"></a>
+#### `public inline FORCEINLINE int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerResponse_1a0554ad415a7eeb6b1c7da70b2aa54ab4)`()` <a id="structFRHAPI__MatchPlayerResponse_1a0554ad415a7eeb6b1c7da70b2aa54ab4"></a>
 
 Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerResponse_1a0331429d853c93b89077db5048d11634)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a0331429d853c93b89077db5048d11634"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetPlacementOrNull`](#structFRHAPI__MatchPlayerResponse_1a1e18d8b1b6472e0b6f7d8af072ef25d3)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a1e18d8b1b6472e0b6f7d8af072ef25d3"></a>
 
 Returns a pointer to Placement_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerResponse_1a7e0f1fdb22eca39e4f95cde4439dbc4d)`(const int32 & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a7e0f1fdb22eca39e4f95cde4439dbc4d"></a>
+#### `public inline FORCEINLINE void `[`SetPlacement`](#structFRHAPI__MatchPlayerResponse_1accb3f2d3f77b6724f32547ae0f239b81)`(const int32 & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1accb3f2d3f77b6724f32547ae0f239b81"></a>
 
 Sets the value of Placement_Optional and also sets Placement_IsSet to true.
 
-#### `public inline void `[`SetPlacement`](#structFRHAPI__MatchPlayerResponse_1accc529ef5214845479dc6951d3a3430e)`(int32 && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1accc529ef5214845479dc6951d3a3430e"></a>
+#### `public inline FORCEINLINE void `[`SetPlacement`](#structFRHAPI__MatchPlayerResponse_1a13e9d7b3a9f94ad34da369a359adb4bd)`(int32 && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a13e9d7b3a9f94ad34da369a359adb4bd"></a>
 
 Sets the value of Placement_Optional and also sets Placement_IsSet to true using move semantics.
 
@@ -584,55 +550,47 @@ Sets the value of Placement_Optional and also sets Placement_IsSet to true using
 
 Clears the value of Placement_Optional and sets Placement_IsSet to false.
 
-#### `public inline bool `[`IsPlacementSet`](#structFRHAPI__MatchPlayerResponse_1a6070519f6bac3ecaeefe0b0034cfa324)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a6070519f6bac3ecaeefe0b0034cfa324"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Placement`](#structFRHAPI__MatchPlayerResponse_1a12c19bc17a9740f693b3d95fff3f564c)`()` <a id="structFRHAPI__MatchPlayerResponse_1a12c19bc17a9740f693b3d95fff3f564c"></a>
 
-Checks whether Placement_Optional has been set.
+Returns the default value of Placement.
 
-#### `public inline bool `[`IsPlacementDefaultValue`](#structFRHAPI__MatchPlayerResponse_1a28528fa531eae3c5427784c16e7b60ba)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a28528fa531eae3c5427784c16e7b60ba"></a>
-
-Returns true if Placement_Optional is set and matches the default value.
-
-#### `public inline void `[`SetPlacementToDefault`](#structFRHAPI__MatchPlayerResponse_1abea287d7aa6ceeb250e47aefd82fc185)`()` <a id="structFRHAPI__MatchPlayerResponse_1abea287d7aa6ceeb250e47aefd82fc185"></a>
-
-Sets the value of Placement_Optional to its default and also sets Placement_IsSet to true.
-
-#### `public inline void `[`SetPlacementToNull`](#structFRHAPI__MatchPlayerResponse_1a0b1f00a583366f2d2c6677f7c52b534a)`()` <a id="structFRHAPI__MatchPlayerResponse_1a0b1f00a583366f2d2c6677f7c52b534a"></a>
+#### `public inline FORCEINLINE void `[`SetPlacementToNull`](#structFRHAPI__MatchPlayerResponse_1acc0343132e8748afdea7b5204baadaaf)`()` <a id="structFRHAPI__MatchPlayerResponse_1acc0343132e8748afdea7b5204baadaaf"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPlacementNull`](#structFRHAPI__MatchPlayerResponse_1a66df7ba9ff95af5c7eec0c4361b10003)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a66df7ba9ff95af5c7eec0c4361b10003"></a>
+#### `public inline FORCEINLINE bool `[`IsPlacementNull`](#structFRHAPI__MatchPlayerResponse_1a4ff3aedddafeba4c18f1ece16756400d)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a4ff3aedddafeba4c18f1ece16756400d"></a>
 
 Checks whether Placement_Optional is set to null.
 
-#### `public inline FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a622cc8fbb9613f89309c9ee58732be84)`()` <a id="structFRHAPI__MatchPlayerResponse_1a622cc8fbb9613f89309c9ee58732be84"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a814945d1f163052bb9e228989e0da526)`()` <a id="structFRHAPI__MatchPlayerResponse_1a814945d1f163052bb9e228989e0da526"></a>
 
 Gets the value of JoinedMatchTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a93b9836a9941c668c3ce3fa75e0fff92)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a93b9836a9941c668c3ce3fa75e0fff92"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1ace80556e0eaaf8d592074b0a83283fee)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ace80556e0eaaf8d592074b0a83283fee"></a>
 
 Gets the value of JoinedMatchTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a11bbcb02d779f4527931af9761dcd626)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a11bbcb02d779f4527931af9761dcd626"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a33ba0f62a375a1c973bbb2135758ed64)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a33ba0f62a375a1c973bbb2135758ed64"></a>
 
 Gets the value of JoinedMatchTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a7dfc9555a469d46191a20f2a4129632a)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a7dfc9555a469d46191a20f2a4129632a"></a>
+#### `public inline FORCEINLINE bool `[`GetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a5623092af01fe54587412e4cf6dcbe36)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a5623092af01fe54587412e4cf6dcbe36"></a>
 
 Fills OutValue with the value of JoinedMatchTimestamp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a760a32c718a7cfa08ff5c45de1bdc863)`()` <a id="structFRHAPI__MatchPlayerResponse_1a760a32c718a7cfa08ff5c45de1bdc863"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1ac3104d8429fdcf6910a84c7d6ea28985)`()` <a id="structFRHAPI__MatchPlayerResponse_1ac3104d8429fdcf6910a84c7d6ea28985"></a>
 
 Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a3782d6afde1c70b30faff206dc630cfa)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a3782d6afde1c70b30faff206dc630cfa"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetJoinedMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a32daebf2557db9c51589bf623723de20)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a32daebf2557db9c51589bf623723de20"></a>
 
 Returns a pointer to JoinedMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa314ebe25a3d3853791b388a5c52a28c)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1aa314ebe25a3d3853791b388a5c52a28c"></a>
+#### `public inline FORCEINLINE void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a048a731304aa0993a32853511502ef65)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a048a731304aa0993a32853511502ef65"></a>
 
 Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true.
 
-#### `public inline void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1aec799bdeb75e69b995f8ac60f6535503)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1aec799bdeb75e69b995f8ac60f6535503"></a>
+#### `public inline FORCEINLINE void `[`SetJoinedMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a7a57fc13855170c26bc9e565963da04c)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a7a57fc13855170c26bc9e565963da04c"></a>
 
 Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimestamp_IsSet to true using move semantics.
 
@@ -640,47 +598,43 @@ Sets the value of JoinedMatchTimestamp_Optional and also sets JoinedMatchTimesta
 
 Clears the value of JoinedMatchTimestamp_Optional and sets JoinedMatchTimestamp_IsSet to false.
 
-#### `public inline bool `[`IsJoinedMatchTimestampSet`](#structFRHAPI__MatchPlayerResponse_1a16eead1eb53ed4418d294e8afccd381e)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a16eead1eb53ed4418d294e8afccd381e"></a>
-
-Checks whether JoinedMatchTimestamp_Optional has been set.
-
-#### `public inline void `[`SetJoinedMatchTimestampToNull`](#structFRHAPI__MatchPlayerResponse_1a960a65cdb7240a42f2f3cbbfb6b0a1aa)`()` <a id="structFRHAPI__MatchPlayerResponse_1a960a65cdb7240a42f2f3cbbfb6b0a1aa"></a>
+#### `public inline FORCEINLINE void `[`SetJoinedMatchTimestampToNull`](#structFRHAPI__MatchPlayerResponse_1a69229815cce0a02de95d0fd851462700)`()` <a id="structFRHAPI__MatchPlayerResponse_1a69229815cce0a02de95d0fd851462700"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsJoinedMatchTimestampNull`](#structFRHAPI__MatchPlayerResponse_1a79e91553fe8a482834a19aa3ae5b37ad)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a79e91553fe8a482834a19aa3ae5b37ad"></a>
+#### `public inline FORCEINLINE bool `[`IsJoinedMatchTimestampNull`](#structFRHAPI__MatchPlayerResponse_1af603d0fc9a4ca2ab0d0efe7b5e4ff484)`() const` <a id="structFRHAPI__MatchPlayerResponse_1af603d0fc9a4ca2ab0d0efe7b5e4ff484"></a>
 
 Checks whether JoinedMatchTimestamp_Optional is set to null.
 
-#### `public inline FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a8f0e9cd7b85a2b2967bb870a5db9e7db)`()` <a id="structFRHAPI__MatchPlayerResponse_1a8f0e9cd7b85a2b2967bb870a5db9e7db"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a97ced73f4b48f1a223183f82626e1b18)`()` <a id="structFRHAPI__MatchPlayerResponse_1a97ced73f4b48f1a223183f82626e1b18"></a>
 
 Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a5672d18615d91471c5689fa54d8c5d8a)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a5672d18615d91471c5689fa54d8c5d8a"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa78d385712e51007fa1fdefe57189dd7)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aa78d385712e51007fa1fdefe57189dd7"></a>
 
 Gets the value of LeftMatchTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1af5e710da55c039c321d585f7ec795a86)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1af5e710da55c039c321d585f7ec795a86"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a1707538ff41894c7947a9620feb894d2)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a1707538ff41894c7947a9620feb894d2"></a>
 
 Gets the value of LeftMatchTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a2119fee299a7500812adc92dbd7a68b7)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a2119fee299a7500812adc92dbd7a68b7"></a>
+#### `public inline FORCEINLINE bool `[`GetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a8ade15dfb95c21804b35a8cef541ab56)`(FDateTime & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a8ade15dfb95c21804b35a8cef541ab56"></a>
 
 Fills OutValue with the value of LeftMatchTimestamp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1a2315cd5d9db273f9332198537ff77f28)`()` <a id="structFRHAPI__MatchPlayerResponse_1a2315cd5d9db273f9332198537ff77f28"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1aac8eaa66e58fff91b7655ce293021827)`()` <a id="structFRHAPI__MatchPlayerResponse_1aac8eaa66e58fff91b7655ce293021827"></a>
 
 Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1aec64d258bec2a4223fe5e52424dd60bb)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aec64d258bec2a4223fe5e52424dd60bb"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetLeftMatchTimestampOrNull`](#structFRHAPI__MatchPlayerResponse_1aa82b2e0f1015580b05b2b9ade8277998)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aa82b2e0f1015580b05b2b9ade8277998"></a>
 
 Returns a pointer to LeftMatchTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1ac9134e9c245d5fa86eafa99267cbe907)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1ac9134e9c245d5fa86eafa99267cbe907"></a>
+#### `public inline FORCEINLINE void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1a72e2c7b551b0172b034c553258c52df6)`(const FDateTime & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a72e2c7b551b0172b034c553258c52df6"></a>
 
 Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true.
 
-#### `public inline void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1aa6a63fe8eb897a49ea5b6435d57eccf0)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1aa6a63fe8eb897a49ea5b6435d57eccf0"></a>
+#### `public inline FORCEINLINE void `[`SetLeftMatchTimestamp`](#structFRHAPI__MatchPlayerResponse_1ae0f4c312bd99f71de6b1be9bed90c8dd)`(FDateTime && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1ae0f4c312bd99f71de6b1be9bed90c8dd"></a>
 
 Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_IsSet to true using move semantics.
 
@@ -688,47 +642,43 @@ Sets the value of LeftMatchTimestamp_Optional and also sets LeftMatchTimestamp_I
 
 Clears the value of LeftMatchTimestamp_Optional and sets LeftMatchTimestamp_IsSet to false.
 
-#### `public inline bool `[`IsLeftMatchTimestampSet`](#structFRHAPI__MatchPlayerResponse_1a9eef36929eda6c26cff4dc0aa16ac30b)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a9eef36929eda6c26cff4dc0aa16ac30b"></a>
-
-Checks whether LeftMatchTimestamp_Optional has been set.
-
-#### `public inline void `[`SetLeftMatchTimestampToNull`](#structFRHAPI__MatchPlayerResponse_1ae329b63242d91c035f5f8f5a146d0819)`()` <a id="structFRHAPI__MatchPlayerResponse_1ae329b63242d91c035f5f8f5a146d0819"></a>
+#### `public inline FORCEINLINE void `[`SetLeftMatchTimestampToNull`](#structFRHAPI__MatchPlayerResponse_1ad60fbaf5cbea6c91ccc4d643d0a2f7d1)`()` <a id="structFRHAPI__MatchPlayerResponse_1ad60fbaf5cbea6c91ccc4d643d0a2f7d1"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsLeftMatchTimestampNull`](#structFRHAPI__MatchPlayerResponse_1a89264377fd7891ee60fc7e7039b50285)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a89264377fd7891ee60fc7e7039b50285"></a>
+#### `public inline FORCEINLINE bool `[`IsLeftMatchTimestampNull`](#structFRHAPI__MatchPlayerResponse_1a0c660577ff05ddf6b8125ef64d1d3ad4)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a0c660577ff05ddf6b8125ef64d1d3ad4"></a>
 
 Checks whether LeftMatchTimestamp_Optional is set to null.
 
-#### `public inline int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1ac9bdf9c67724ce337a23481f0d17f239)`()` <a id="structFRHAPI__MatchPlayerResponse_1ac9bdf9c67724ce337a23481f0d17f239"></a>
+#### `public inline FORCEINLINE int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a92b734302a4a02f8632a3a98f5feddf1)`()` <a id="structFRHAPI__MatchPlayerResponse_1a92b734302a4a02f8632a3a98f5feddf1"></a>
 
 Gets the value of DurationSeconds_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a23df57b59e651c34e71e7a1f7758c5a5)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a23df57b59e651c34e71e7a1f7758c5a5"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a05b4ef491dcba5e5c0192161952d27b0)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a05b4ef491dcba5e5c0192161952d27b0"></a>
 
 Gets the value of DurationSeconds_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a3a8ceb227118e871016cb31ecb10d9a3)`(const int32 & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a3a8ceb227118e871016cb31ecb10d9a3"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a8a238060d3d01ed13f0308c97c718210)`(const int32 & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a8a238060d3d01ed13f0308c97c718210"></a>
 
 Gets the value of DurationSeconds_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1aac6936555486e01d3a0f42a19ec181ab)`(int32 & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1aac6936555486e01d3a0f42a19ec181ab"></a>
+#### `public inline FORCEINLINE bool `[`GetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a421bcfe88770c04f4b3e957802517188)`(int32 & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a421bcfe88770c04f4b3e957802517188"></a>
 
 Fills OutValue with the value of DurationSeconds_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerResponse_1a17ebe1a0106ab9573fbc2f94c3b10b5b)`()` <a id="structFRHAPI__MatchPlayerResponse_1a17ebe1a0106ab9573fbc2f94c3b10b5b"></a>
+#### `public inline FORCEINLINE int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerResponse_1ab66e355890774e1b6ba6ba32c9d453a7)`()` <a id="structFRHAPI__MatchPlayerResponse_1ab66e355890774e1b6ba6ba32c9d453a7"></a>
 
 Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerResponse_1a3668f20d996ee8345bbe6f08dfd4e228)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a3668f20d996ee8345bbe6f08dfd4e228"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetDurationSecondsOrNull`](#structFRHAPI__MatchPlayerResponse_1a0f9c01755dd1730342e0d5bcf9d2e578)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a0f9c01755dd1730342e0d5bcf9d2e578"></a>
 
 Returns a pointer to DurationSeconds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a5343611a8958a47038796067c3818dd2)`(const int32 & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a5343611a8958a47038796067c3818dd2"></a>
+#### `public inline FORCEINLINE void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1abcd341595912c239c54d00c1f4a9b014)`(const int32 & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1abcd341595912c239c54d00c1f4a9b014"></a>
 
 Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true.
 
-#### `public inline void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1abf434bc02a9705e3b159cefc06db5bcb)`(int32 && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1abf434bc02a9705e3b159cefc06db5bcb"></a>
+#### `public inline FORCEINLINE void `[`SetDurationSeconds`](#structFRHAPI__MatchPlayerResponse_1a5985e4baefa452623a1a0b0c84b4fcba)`(int32 && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a5985e4baefa452623a1a0b0c84b4fcba"></a>
 
 Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet to true using move semantics.
 
@@ -736,55 +686,47 @@ Sets the value of DurationSeconds_Optional and also sets DurationSeconds_IsSet t
 
 Clears the value of DurationSeconds_Optional and sets DurationSeconds_IsSet to false.
 
-#### `public inline bool `[`IsDurationSecondsSet`](#structFRHAPI__MatchPlayerResponse_1a7de4f5e801ee7d195bdfadd46a9e8601)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a7de4f5e801ee7d195bdfadd46a9e8601"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_DurationSeconds`](#structFRHAPI__MatchPlayerResponse_1aa3f971653f4ada2d797e4a3aa36864b2)`()` <a id="structFRHAPI__MatchPlayerResponse_1aa3f971653f4ada2d797e4a3aa36864b2"></a>
 
-Checks whether DurationSeconds_Optional has been set.
+Returns the default value of DurationSeconds.
 
-#### `public inline bool `[`IsDurationSecondsDefaultValue`](#structFRHAPI__MatchPlayerResponse_1ab85eaadfcebeb5f27a16a8910745f152)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ab85eaadfcebeb5f27a16a8910745f152"></a>
-
-Returns true if DurationSeconds_Optional is set and matches the default value.
-
-#### `public inline void `[`SetDurationSecondsToDefault`](#structFRHAPI__MatchPlayerResponse_1af4fc0cde5efe6b7f2efefa650edbb089)`()` <a id="structFRHAPI__MatchPlayerResponse_1af4fc0cde5efe6b7f2efefa650edbb089"></a>
-
-Sets the value of DurationSeconds_Optional to its default and also sets DurationSeconds_IsSet to true.
-
-#### `public inline void `[`SetDurationSecondsToNull`](#structFRHAPI__MatchPlayerResponse_1ae7808d220e7c336521653b99639c6bbb)`()` <a id="structFRHAPI__MatchPlayerResponse_1ae7808d220e7c336521653b99639c6bbb"></a>
+#### `public inline FORCEINLINE void `[`SetDurationSecondsToNull`](#structFRHAPI__MatchPlayerResponse_1a1e05b34ea9f07c15e5e613b0cefbe214)`()` <a id="structFRHAPI__MatchPlayerResponse_1a1e05b34ea9f07c15e5e613b0cefbe214"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsDurationSecondsNull`](#structFRHAPI__MatchPlayerResponse_1a2a67edeb467866fb56528f214db0c3de)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a2a67edeb467866fb56528f214db0c3de"></a>
+#### `public inline FORCEINLINE bool `[`IsDurationSecondsNull`](#structFRHAPI__MatchPlayerResponse_1a0fb327571361f4fea4d87741477aac8f)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a0fb327571361f4fea4d87741477aac8f"></a>
 
 Checks whether DurationSeconds_Optional is set to null.
 
-#### `public inline FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a0c08f28ed5ed0de77d1667bfa4da6e41)`()` <a id="structFRHAPI__MatchPlayerResponse_1a0c08f28ed5ed0de77d1667bfa4da6e41"></a>
+#### `public inline FORCEINLINE FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a1eb29954f120d7edd0b7500c9ca609fc)`()` <a id="structFRHAPI__MatchPlayerResponse_1a1eb29954f120d7edd0b7500c9ca609fc"></a>
 
 Gets the value of StartingRank_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1ae73c84164ee61f24922c31a5c453db70)`() const` <a id="structFRHAPI__MatchPlayerResponse_1ae73c84164ee61f24922c31a5c453db70"></a>
+#### `public inline FORCEINLINE const FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a8b2aa7b67d3d6ff7cd1b0ae7718f5d5d)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a8b2aa7b67d3d6ff7cd1b0ae7718f5d5d"></a>
 
 Gets the value of StartingRank_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a09f0f39ec67e96d9c534589c60ceb303)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a09f0f39ec67e96d9c534589c60ceb303"></a>
+#### `public inline FORCEINLINE const FString & `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a56a02763156065b031dabcde5004334e)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a56a02763156065b031dabcde5004334e"></a>
 
 Gets the value of StartingRank_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a98ab7c5b0d8ca5124ba6305c2732eca3)`(FString & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a98ab7c5b0d8ca5124ba6305c2732eca3"></a>
+#### `public inline FORCEINLINE bool `[`GetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a0a4c2ed7ddb596d1ad11cb0dcf8f60f4)`(FString & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a0a4c2ed7ddb596d1ad11cb0dcf8f60f4"></a>
 
 Fills OutValue with the value of StartingRank_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a89e6ff7281fb601099988b90c5c48c21)`()` <a id="structFRHAPI__MatchPlayerResponse_1a89e6ff7281fb601099988b90c5c48c21"></a>
+#### `public inline FORCEINLINE FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a166922f5a918267fb2124966a91a325c)`()` <a id="structFRHAPI__MatchPlayerResponse_1a166922f5a918267fb2124966a91a325c"></a>
 
 Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a5b39381eb27a445d92189c0cb2eb52e6)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a5b39381eb27a445d92189c0cb2eb52e6"></a>
+#### `public inline FORCEINLINE const FString * `[`GetStartingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a5718f72ebd92c204f92aaa53208babfe)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a5718f72ebd92c204f92aaa53208babfe"></a>
 
 Returns a pointer to StartingRank_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a60a9343d88e5398abc3d641fc32d80b3)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a60a9343d88e5398abc3d641fc32d80b3"></a>
+#### `public inline FORCEINLINE void `[`SetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a6f9869346f4bc3ff9a28c1442b74a97a)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a6f9869346f4bc3ff9a28c1442b74a97a"></a>
 
 Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true.
 
-#### `public inline void `[`SetStartingRank`](#structFRHAPI__MatchPlayerResponse_1ab9b6ca32769b4c713b3b54b58194e275)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1ab9b6ca32769b4c713b3b54b58194e275"></a>
+#### `public inline FORCEINLINE void `[`SetStartingRank`](#structFRHAPI__MatchPlayerResponse_1a6124286321d32401c141197cff665786)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a6124286321d32401c141197cff665786"></a>
 
 Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true using move semantics.
 
@@ -792,47 +734,43 @@ Sets the value of StartingRank_Optional and also sets StartingRank_IsSet to true
 
 Clears the value of StartingRank_Optional and sets StartingRank_IsSet to false.
 
-#### `public inline bool `[`IsStartingRankSet`](#structFRHAPI__MatchPlayerResponse_1a0827e05d0ac4e02954dfe5e45d2f3276)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a0827e05d0ac4e02954dfe5e45d2f3276"></a>
-
-Checks whether StartingRank_Optional has been set.
-
-#### `public inline void `[`SetStartingRankToNull`](#structFRHAPI__MatchPlayerResponse_1a9361815a097a2f79f26d014210f854c2)`()` <a id="structFRHAPI__MatchPlayerResponse_1a9361815a097a2f79f26d014210f854c2"></a>
+#### `public inline FORCEINLINE void `[`SetStartingRankToNull`](#structFRHAPI__MatchPlayerResponse_1af6395759deaf065864e852d63375174c)`()` <a id="structFRHAPI__MatchPlayerResponse_1af6395759deaf065864e852d63375174c"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsStartingRankNull`](#structFRHAPI__MatchPlayerResponse_1afde08bca2ad643b5da2837457319e2af)`() const` <a id="structFRHAPI__MatchPlayerResponse_1afde08bca2ad643b5da2837457319e2af"></a>
+#### `public inline FORCEINLINE bool `[`IsStartingRankNull`](#structFRHAPI__MatchPlayerResponse_1a04d762b7dd9ad96ebf82b1b4d4f1ee81)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a04d762b7dd9ad96ebf82b1b4d4f1ee81"></a>
 
 Checks whether StartingRank_Optional is set to null.
 
-#### `public inline FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a98a8d84d7c56f819cd27ac793925766e)`()` <a id="structFRHAPI__MatchPlayerResponse_1a98a8d84d7c56f819cd27ac793925766e"></a>
+#### `public inline FORCEINLINE FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a1f598d58d9ed9a4cf3c581bb5ba3b1b9)`()` <a id="structFRHAPI__MatchPlayerResponse_1a1f598d58d9ed9a4cf3c581bb5ba3b1b9"></a>
 
 Gets the value of FinishingRank_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a750aea3c9b1e20609705023c7f46833f)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a750aea3c9b1e20609705023c7f46833f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a7476aab8749a23bee23ec3a6adcfd271)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a7476aab8749a23bee23ec3a6adcfd271"></a>
 
 Gets the value of FinishingRank_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1ac84dfb4d8961c581e599e424e65846c9)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1ac84dfb4d8961c581e599e424e65846c9"></a>
+#### `public inline FORCEINLINE const FString & `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a3ca8fd1af5c6b7d3b6aff99916d5e7f2)`(const FString & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a3ca8fd1af5c6b7d3b6aff99916d5e7f2"></a>
 
 Gets the value of FinishingRank_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a1c5702097747a055dbab3fb62b05f3f4)`(FString & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a1c5702097747a055dbab3fb62b05f3f4"></a>
+#### `public inline FORCEINLINE bool `[`GetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a4e5502ed3f1da3addbf90ee9ddece4c4)`(FString & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a4e5502ed3f1da3addbf90ee9ddece4c4"></a>
 
 Fills OutValue with the value of FinishingRank_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a861200669fc65d619cc9eb3c6692cabe)`()` <a id="structFRHAPI__MatchPlayerResponse_1a861200669fc65d619cc9eb3c6692cabe"></a>
+#### `public inline FORCEINLINE FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a9f7d109ccf0ec9cc2a12494e8e1b4d2c)`()` <a id="structFRHAPI__MatchPlayerResponse_1a9f7d109ccf0ec9cc2a12494e8e1b4d2c"></a>
 
 Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a222d1708ea659969957c7ce27bbc1e08)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a222d1708ea659969957c7ce27bbc1e08"></a>
+#### `public inline FORCEINLINE const FString * `[`GetFinishingRankOrNull`](#structFRHAPI__MatchPlayerResponse_1a6875d4d2d2eacc13b5a90ca27ef44ca9)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a6875d4d2d2eacc13b5a90ca27ef44ca9"></a>
 
 Returns a pointer to FinishingRank_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1af9b4b2f54086dc0220c6c6c3fe1d2003)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1af9b4b2f54086dc0220c6c6c3fe1d2003"></a>
+#### `public inline FORCEINLINE void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1adcd04060748aad289c33f752a259ce34)`(const FString & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1adcd04060748aad289c33f752a259ce34"></a>
 
 Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true.
 
-#### `public inline void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1aaf075ae2e6845f38c182d3c458be6216)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1aaf075ae2e6845f38c182d3c458be6216"></a>
+#### `public inline FORCEINLINE void `[`SetFinishingRank`](#structFRHAPI__MatchPlayerResponse_1a60e8fb6305a7ba349fbf3a6071c98993)`(FString && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a60e8fb6305a7ba349fbf3a6071c98993"></a>
 
 Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to true using move semantics.
 
@@ -840,47 +778,43 @@ Sets the value of FinishingRank_Optional and also sets FinishingRank_IsSet to tr
 
 Clears the value of FinishingRank_Optional and sets FinishingRank_IsSet to false.
 
-#### `public inline bool `[`IsFinishingRankSet`](#structFRHAPI__MatchPlayerResponse_1a7ad6fecfed42aa8c2611b6a1fece4cd1)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a7ad6fecfed42aa8c2611b6a1fece4cd1"></a>
-
-Checks whether FinishingRank_Optional has been set.
-
-#### `public inline void `[`SetFinishingRankToNull`](#structFRHAPI__MatchPlayerResponse_1a01b71a2e6aca593d55e6a9e890940950)`()` <a id="structFRHAPI__MatchPlayerResponse_1a01b71a2e6aca593d55e6a9e890940950"></a>
+#### `public inline FORCEINLINE void `[`SetFinishingRankToNull`](#structFRHAPI__MatchPlayerResponse_1a38911f0693fdd6d4be16470ac55c5078)`()` <a id="structFRHAPI__MatchPlayerResponse_1a38911f0693fdd6d4be16470ac55c5078"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsFinishingRankNull`](#structFRHAPI__MatchPlayerResponse_1aaca460d3c33163e4deb900a636b5283e)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aaca460d3c33163e4deb900a636b5283e"></a>
+#### `public inline FORCEINLINE bool `[`IsFinishingRankNull`](#structFRHAPI__MatchPlayerResponse_1adc8eb6bcfe0bc33d4217487a3dc31c1a)`() const` <a id="structFRHAPI__MatchPlayerResponse_1adc8eb6bcfe0bc33d4217487a3dc31c1a"></a>
 
 Checks whether FinishingRank_Optional is set to null.
 
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1aecb9d03b4e41c8df06dc736fe95197d7)`()` <a id="structFRHAPI__MatchPlayerResponse_1aecb9d03b4e41c8df06dc736fe95197d7"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1a211306e5fcd1e145ae24daf6dc3481e3)`()` <a id="structFRHAPI__MatchPlayerResponse_1a211306e5fcd1e145ae24daf6dc3481e3"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1abcf73feba0f5db6dde4a6975c5dbb3d9)`() const` <a id="structFRHAPI__MatchPlayerResponse_1abcf73feba0f5db6dde4a6975c5dbb3d9"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1a2a0e97b16e68cdb6e2a3f413e4e8eeab)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a2a0e97b16e68cdb6e2a3f413e4e8eeab"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1ab2bdd87c4f2aadc6990c3115c9b153bf)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1ab2bdd87c4f2aadc6990c3115c9b153bf"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1a7e15fda200f5a35afc66f3488a712ff5)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a7e15fda200f5a35afc66f3488a712ff5"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1aa4c2a91ba8545575b1d8a37c2f24a15b)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1aa4c2a91ba8545575b1d8a37c2f24a15b"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__MatchPlayerResponse_1a8d3ea710d2c0cf85e78c06b88a5480ea)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__MatchPlayerResponse_1a8d3ea710d2c0cf85e78c06b88a5480ea"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerResponse_1af074dabec0188954777445f738ff59f4)`()` <a id="structFRHAPI__MatchPlayerResponse_1af074dabec0188954777445f738ff59f4"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerResponse_1afa11d3b0100d046eeeec617a0ee4f715)`()` <a id="structFRHAPI__MatchPlayerResponse_1afa11d3b0100d046eeeec617a0ee4f715"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerResponse_1a7e7162f70545c5d89266761944da42ca)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a7e7162f70545c5d89266761944da42ca"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__MatchPlayerResponse_1a826fae960c36cfeeb607bd76f972f234)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a826fae960c36cfeeb607bd76f972f234"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1ad3cd88a1dbf95ea268c270dfc7b5898d)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1ad3cd88a1dbf95ea268c270dfc7b5898d"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1a0eea40f2654e4304f98d8262d52e94ab)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a0eea40f2654e4304f98d8262d52e94ab"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1a8da48ae39780af8516cf0550538dd85b)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1a8da48ae39780af8516cf0550538dd85b"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__MatchPlayerResponse_1ae4c214123762d68d628f2eafa481864c)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__MatchPlayerResponse_1ae4c214123762d68d628f2eafa481864c"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -888,15 +822,11 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__MatchPlayerResponse_1aa9b5b38807512f1d16dc6b132527ebbc)`() const` <a id="structFRHAPI__MatchPlayerResponse_1aa9b5b38807512f1d16dc6b132527ebbc"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline void `[`SetCustomDataToNull`](#structFRHAPI__MatchPlayerResponse_1aa83d0f2f25e5ef7a3d21039174c37950)`()` <a id="structFRHAPI__MatchPlayerResponse_1aa83d0f2f25e5ef7a3d21039174c37950"></a>
+#### `public inline FORCEINLINE void `[`SetCustomDataToNull`](#structFRHAPI__MatchPlayerResponse_1a0192028bf3c9abcb5081b70ec0584482)`()` <a id="structFRHAPI__MatchPlayerResponse_1a0192028bf3c9abcb5081b70ec0584482"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsCustomDataNull`](#structFRHAPI__MatchPlayerResponse_1a0baffefecd769612a4be68b3a3faf2ba)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a0baffefecd769612a4be68b3a3faf2ba"></a>
+#### `public inline FORCEINLINE bool `[`IsCustomDataNull`](#structFRHAPI__MatchPlayerResponse_1a0df5903612a75795be23ccc63e87326f)`() const` <a id="structFRHAPI__MatchPlayerResponse_1a0df5903612a75795be23ccc63e87326f"></a>
 
 Checks whether CustomData_Optional is set to null.
 

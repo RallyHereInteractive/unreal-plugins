@@ -427,6 +427,7 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `public inline FString `[`GetSummaryFilePath`](#classURH__PEXCollector_1a33d74feb6daa05f89c03fe93734dd1b4)`() const` | Get the file path for the summary file, if it was written.
 `public inline FString `[`GetTimelineFilePath`](#classURH__PEXCollector_1af4e9b3118636396e8801ea2c7878a78b)`() const` | Get the file path for the timeline file, if it was written.
 `public TSharedRef< FJsonObject > `[`GetSummaryJson`](#classURH__PEXCollector_1a43bba1442d16336b586269f0551c6e00)`() const` | Retrieves the summary data in Json format.
+`public inline void `[`MarkPEXForUpload`](#classURH__PEXCollector_1a6413c5d13b9209485637a81732789a97)`()` | 
 `protected TWeakInterfacePtr< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > `[`Owner`](#classURH__PEXCollector_1ae8ba839b956c23850efc1549e9d542d4) | Cached owner of the collector
 `protected const `[`URH_PEXCollectorConfig`](PlayerExperience.md#classURH__PEXCollectorConfig)` * `[`CachedConfig`](#classURH__PEXCollector_1a9cf7c881dd3f599b9815556751677d87) | Cached file path for timeline file
 `protected FString `[`CachedMatchId`](#classURH__PEXCollector_1ab69102a0609e5af5bebc4df22b4c16f6) | Cached match id to use for routing the captured data to storage. Cached so it does not change mid-capture
@@ -442,6 +443,7 @@ PlayerExperience Collector class, responsible for collecting and tracking PEX da
 `protected class FArchive * `[`TimelineFileCSV`](#classURH__PEXCollector_1a82fd95d78b4ec189504331f0e8c0ab9d) | Local file archive to write timeline data to
 `protected FString `[`TimelineFilePath`](#classURH__PEXCollector_1a1f032b2d4926fd92ab96ce7f68018fa5) | Cached file path for timeline file
 `protected FString `[`SummaryFilePath`](#classURH__PEXCollector_1ac4cb8e098782eebc4e2cbfbc30927ba2) | Cached file path for summary file
+`protected bool `[`bWantsToUploadStats`](#classURH__PEXCollector_1a492c150bef17bac16c366fadaa914ec2) | 
 `protected void `[`UploadFile`](#classURH__PEXCollector_1a3093ebae2fc7eecb2b495c4b8215b0fe)`(const FString & FilePath,const FString & RemoteFileName) const` | Internal helper to upload a file to remote file storage
 
 ### Members
@@ -497,6 +499,8 @@ Get the file path for the timeline file, if it was written.
 #### `public TSharedRef< FJsonObject > `[`GetSummaryJson`](#classURH__PEXCollector_1a43bba1442d16336b586269f0551c6e00)`() const` <a id="classURH__PEXCollector_1a43bba1442d16336b586269f0551c6e00"></a>
 
 Retrieves the summary data in Json format.
+
+#### `public inline void `[`MarkPEXForUpload`](#classURH__PEXCollector_1a6413c5d13b9209485637a81732789a97)`()` <a id="classURH__PEXCollector_1a6413c5d13b9209485637a81732789a97"></a>
 
 #### `protected TWeakInterfacePtr< `[`IRH_PEXOwnerInterface`](PlayerExperience.md#classIRH__PEXOwnerInterface)` > `[`Owner`](#classURH__PEXCollector_1ae8ba839b956c23850efc1549e9d542d4) <a id="classURH__PEXCollector_1ae8ba839b956c23850efc1549e9d542d4"></a>
 
@@ -555,6 +559,8 @@ Cached file path for timeline file
 #### `protected FString `[`SummaryFilePath`](#classURH__PEXCollector_1ac4cb8e098782eebc4e2cbfbc30927ba2) <a id="classURH__PEXCollector_1ac4cb8e098782eebc4e2cbfbc30927ba2"></a>
 
 Cached file path for summary file
+
+#### `protected bool `[`bWantsToUploadStats`](#classURH__PEXCollector_1a492c150bef17bac16c366fadaa914ec2) <a id="classURH__PEXCollector_1a492c150bef17bac16c366fadaa914ec2"></a>
 
 #### `protected void `[`UploadFile`](#classURH__PEXCollector_1a3093ebae2fc7eecb2b495c4b8215b0fe)`(const FString & FilePath,const FString & RemoteFileName) const` <a id="classURH__PEXCollector_1a3093ebae2fc7eecb2b495c4b8215b0fe"></a>
 
@@ -634,6 +640,7 @@ MemoryWS            |
 MemoryVB            | 
 CPUProcess            | 
 CPUMachine            | 
+MemoryVRAM            | 
 Max            | 
 
 #### `enum `[`ECaptureCounter`](#classURH__PEXPrimaryStats_1a209895a19d0081b1c9a891af140c24cf) <a id="classURH__PEXPrimaryStats_1a209895a19d0081b1c9a891af140c24cf"></a>

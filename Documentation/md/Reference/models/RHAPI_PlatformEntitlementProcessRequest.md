@@ -40,92 +40,82 @@ Request to process a platform entitlement.
 `public bool `[`CheckConsumables_IsSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a07c931992a7402b518ea1f46e8100d10) | true if CheckConsumables_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9e7f9a55d5149972e8d855bc22610868)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlementProcessRequest_1a25af8f210e9fc7d343ef4fd75fb4dcd0)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a992a7252d8e3b2751bec87dcfa9a2475)`()` | Gets the value of TransactionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1afdf670d3828aa77c27554f3d235d07f2)`() const` | Gets the value of TransactionId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1aae5deca7173ff74c903f122620890fe2)`(const FString & DefaultValue) const` | Gets the value of TransactionId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3a798ac706d38a934ab811e7ef320e98)`(FString & OutValue) const` | Fills OutValue with the value of TransactionId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetTransactionIdOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a83dc96210e7b7f74bcc4d9edc6efa72f)`()` | Returns a pointer to TransactionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetTransactionIdOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa7ab7995e23838ff28ce21472bcc3344)`() const` | Returns a pointer to TransactionId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a42684c88f2421073ff3aa5c93a4d92f4)`(const FString & NewValue)` | Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to true.
-`public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae120b13e354eb92730661031c08ed9d5)`(FString && NewValue)` | Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae7ea1c2074a7405cda2bfcfb185539f7)`()` | Gets the value of TransactionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1aff4c70b6187a344958f3cfec1e543a0d)`() const` | Gets the value of TransactionId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a476f464851365888f50eac46d672ac23)`(const FString & DefaultValue) const` | Gets the value of TransactionId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a950c3453706e15beb59e561fb84ab984)`(FString & OutValue) const` | Fills OutValue with the value of TransactionId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetTransactionIdOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a817dc2173c9060144e5548169f71d649)`()` | Returns a pointer to TransactionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetTransactionIdOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac06a148c821e5f601127ccb5f4935a61)`() const` | Returns a pointer to TransactionId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1f501997623d5cae7695ac7da09df22b)`(const FString & NewValue)` | Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to true.
+`public inline FORCEINLINE void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a902d1e1529557a16f1e1bb87bfd9fbce)`(FString && NewValue)` | Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to true using move semantics.
 `public inline void `[`ClearTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae541c025fe3c526a025ec5de27e7a8b5)`()` | Clears the value of TransactionId_Optional and sets TransactionId_IsSet to false.
-`public inline bool `[`IsTransactionIdSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa500b571932b2a7e715a5ac719d054ca)`() const` | Checks whether TransactionId_Optional has been set.
-`public inline bool `[`IsTransactionIdDefaultValue`](#structFRHAPI__PlatformEntitlementProcessRequest_1a297ae4ec15de336e45c4af36d5462aee)`() const` | Returns true if TransactionId_Optional is set and matches the default value.
-`public inline void `[`SetTransactionIdToDefault`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab34e22674633357bbc8364c2682621c1)`()` | Sets the value of TransactionId_Optional to its default and also sets TransactionId_IsSet to true.
-`public inline FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8afef5efd58e5f0225a515b39ae616ba)`()` | Gets the value of PlatformToken.
-`public inline const FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a56a30c95db6545aa2d68bbec3c5cf108)`() const` | Gets the value of PlatformToken.
-`public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a46a0856d880e6cb5940294e9723cd39c)`(const FString & NewValue)` | Sets the value of PlatformToken.
-`public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8e290e471b1cea6865e1fb43ffc445e5)`(FString && NewValue)` | Sets the value of PlatformToken using move semantics.
-`public inline FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad48dfc7a18be585b959a417780a8949b)`()` | Gets the value of PlatformId.
-`public inline const FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3000e479ffe2553f2063117daf384c0e)`() const` | Gets the value of PlatformId.
-`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3884b12d6f59454a08a4453991c7faec)`(const FString & NewValue)` | Sets the value of PlatformId.
-`public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1af3279ab1e4cfd73fe390d096073e8cff)`(FString && NewValue)` | Sets the value of PlatformId using move semantics.
-`public inline FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a65fcb4692cc41fb3323551dc3a0e53ff)`()` | Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1adc888a41162ae681595f04914caa4611)`() const` | Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a114e36dddd11d735ba25b034fb3fe7e6)`(const FString & DefaultValue) const` | Gets the value of PlatformEnvironment_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1af61f37636cae7734b856c1911fd7bbad)`(FString & OutValue) const` | Fills OutValue with the value of PlatformEnvironment_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa273858d6add87c8508d07bce82f91ef)`()` | Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a58a3f22bc8a4762b7a51e0d8b89e0442)`() const` | Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3ca764061dd4d41a38c11b7824f32a0b)`(const FString & NewValue)` | Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true.
-`public inline void `[`SetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac5207e714891e218d1664b904e9348c0)`(FString && NewValue)` | Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true using move semantics.
+`public inline FORCEINLINE FString `[`GetDefaultValue_TransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1aac1dc75efae87df9751bd3a0ed59438c)`()` | Returns the default value of TransactionId.
+`public inline FORCEINLINE FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae5fa6ab5c52602099a1b05c97488354d)`()` | Gets the value of PlatformToken.
+`public inline FORCEINLINE const FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9524f6be03a8b4dc748645dbda630a9a)`() const` | Gets the value of PlatformToken.
+`public inline FORCEINLINE void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1afe76a6860d54c2611cb115e71171aead)`(const FString & NewValue)` | Sets the value of PlatformToken.
+`public inline FORCEINLINE void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1af9845e9b56a73dc35b311f6f70b9a97c)`(FString && NewValue)` | Sets the value of PlatformToken using move semantics.
+`public inline FORCEINLINE FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ace81db8e0a656da6a39ce409c71d4de3)`()` | Gets the value of PlatformId.
+`public inline FORCEINLINE const FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a0c85b40e8985c0dfbe35aabe96a8b7c6)`() const` | Gets the value of PlatformId.
+`public inline FORCEINLINE void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a0fd640089ee8ce4f62b8ca0252b6bdeb)`(const FString & NewValue)` | Sets the value of PlatformId.
+`public inline FORCEINLINE void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1af06afce59f9676d373b79bd2d5b80fe8)`(FString && NewValue)` | Sets the value of PlatformId using move semantics.
+`public inline FORCEINLINE FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a642f6684ba282a133cfb8c55d0ea7455)`()` | Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa876ecdae59410ef82719f0ada643dfa)`() const` | Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a33d3091883c7c26ca0d8c14a2985178d)`(const FString & DefaultValue) const` | Gets the value of PlatformEnvironment_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a884499e1ac0fef64103c3891b5edb1b5)`(FString & OutValue) const` | Fills OutValue with the value of PlatformEnvironment_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2a9e82e585844a042fd779f36dc2efe8)`()` | Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a148164fb1c43112f3b8052ddb78f7ff9)`() const` | Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1aeaf4de3247b59744644967e25f14371f)`(const FString & NewValue)` | Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a63413f7a505720dc05f82637b9027ddb)`(FString && NewValue)` | Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1abd417c939ef64b1ab26305b96912842c)`()` | Clears the value of PlatformEnvironment_Optional and sets PlatformEnvironment_IsSet to false.
-`public inline bool `[`IsPlatformEnvironmentSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a901c50ce60c8b9bfda93fd8d478f6319)`() const` | Checks whether PlatformEnvironment_Optional has been set.
-`public inline void `[`SetPlatformEnvironmentToNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a6f059a8027556a44d5fef6beb6573f69)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPlatformEnvironmentNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a89fe5a8b0ccbcc76cc54dacdf5f979cd)`() const` | Checks whether PlatformEnvironment_Optional is set to null.
-`public inline ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1aad5f28e2e1c77eeab695c1e9cf91cdd8)`()` | Gets the value of PlatformRegion_Optional, regardless of it having been set.
-`public inline const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab4c6bc8b7d5f753cb08e6ebcd2bdc236)`() const` | Gets the value of PlatformRegion_Optional, regardless of it having been set.
-`public inline const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a743fe87aa55991763dde461b0461bf78)`(const ERHAPI_PlatformRegion & DefaultValue) const` | Gets the value of PlatformRegion_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3b73e840c7ffecd2a31457001e27dcdb)`(ERHAPI_PlatformRegion & OutValue) const` | Fills OutValue with the value of PlatformRegion_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_PlatformRegion * `[`GetPlatformRegionOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1af3f57b7d6a4f3814f57fde2b7caa63e9)`()` | Returns a pointer to PlatformRegion_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_PlatformRegion * `[`GetPlatformRegionOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1afd984ce6375ae7895c0b09040c5eaf71)`() const` | Returns a pointer to PlatformRegion_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3b7c18aeb506667a110f623f4c635d9c)`(const ERHAPI_PlatformRegion & NewValue)` | Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to true.
-`public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad5f6b69be825a8ec7f0b1ab9b37d767f)`(ERHAPI_PlatformRegion && NewValue)` | Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetPlatformEnvironmentToNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac3ba3beeb068dc87dc284abd3a72ff46)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPlatformEnvironmentNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9d9543dec47132a843ef520600699106)`() const` | Checks whether PlatformEnvironment_Optional is set to null.
+`public inline FORCEINLINE ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3ddac77d9202b93fa31a8712a62b6bd7)`()` | Gets the value of PlatformRegion_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2dd2fd1c37426beff1030dbfc43ce044)`() const` | Gets the value of PlatformRegion_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa07d5f93206f392157c608b8ca2c91f4)`(const ERHAPI_PlatformRegion & DefaultValue) const` | Gets the value of PlatformRegion_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a4e767e05e61331bc43ef2db4fc914db2)`(ERHAPI_PlatformRegion & OutValue) const` | Fills OutValue with the value of PlatformRegion_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_PlatformRegion * `[`GetPlatformRegionOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a63a2005dada88fe4a6e566944b2fee6a)`()` | Returns a pointer to PlatformRegion_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_PlatformRegion * `[`GetPlatformRegionOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8767a9174485acb840300c6593e48506)`() const` | Returns a pointer to PlatformRegion_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab45951e0ca9be5509784f77813988ab1)`(const ERHAPI_PlatformRegion & NewValue)` | Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a761dfcd268735f31be90cb4cd15b5a4f)`(ERHAPI_PlatformRegion && NewValue)` | Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to true using move semantics.
 `public inline void `[`ClearPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9d5d46e5a022ede16b6731974ccd64a0)`()` | Clears the value of PlatformRegion_Optional and sets PlatformRegion_IsSet to false.
-`public inline bool `[`IsPlatformRegionSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a789c39a64c61c6799b2284c6286b4e97)`() const` | Checks whether PlatformRegion_Optional has been set.
-`public inline ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5c13b4e8b2ecc3d2ad4e6c53d1dc6e84)`()` | Gets the value of ClientType_Optional, regardless of it having been set.
-`public inline const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a35ce6efa5ac1dd2bbe6f829dd97c3d81)`() const` | Gets the value of ClientType_Optional, regardless of it having been set.
-`public inline const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1afdea581e2015e08ed48dc49850a6ec1e)`(const ERHAPI_ClientType & DefaultValue) const` | Gets the value of ClientType_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa7808ded5a26b6d33dbf5e6464783679)`(ERHAPI_ClientType & OutValue) const` | Fills OutValue with the value of ClientType_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_ClientType * `[`GetClientTypeOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a6292fb3dc0813de4bea5fd6497444b37)`()` | Returns a pointer to ClientType_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_ClientType * `[`GetClientTypeOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa648c3b7fe50d74a99174a851a268db0)`() const` | Returns a pointer to ClientType_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2498ca3832ba4e9f44caff3b537a0f17)`(const ERHAPI_ClientType & NewValue)` | Sets the value of ClientType_Optional and also sets ClientType_IsSet to true.
-`public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a06ead50b187f385895d173b50a3692a6)`(ERHAPI_ClientType && NewValue)` | Sets the value of ClientType_Optional and also sets ClientType_IsSet to true using move semantics.
+`public inline FORCEINLINE ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a551c23be707ef4ee52da601e6db66e55)`()` | Gets the value of ClientType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8c54b03695651157104919a1c343d55e)`() const` | Gets the value of ClientType_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a4dce7f37485bfe8223eb668d45814944)`(const ERHAPI_ClientType & DefaultValue) const` | Gets the value of ClientType_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac8229fc2d9b9ed1d8197acdffd19d019)`(ERHAPI_ClientType & OutValue) const` | Fills OutValue with the value of ClientType_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_ClientType * `[`GetClientTypeOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5d2f1ce21d105455fb434b2dbc4cb9ac)`()` | Returns a pointer to ClientType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_ClientType * `[`GetClientTypeOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3e711db3f0232577691869812d04e4a7)`() const` | Returns a pointer to ClientType_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab82af7ef31fea12baafaa9fa27334904)`(const ERHAPI_ClientType & NewValue)` | Sets the value of ClientType_Optional and also sets ClientType_IsSet to true.
+`public inline FORCEINLINE void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1afb84afc1a1dd748880810c868c5a5171)`(ERHAPI_ClientType && NewValue)` | Sets the value of ClientType_Optional and also sets ClientType_IsSet to true using move semantics.
 `public inline void `[`ClearClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a270d4606c85bbaad639211c471534d4d)`()` | Clears the value of ClientType_Optional and sets ClientType_IsSet to false.
-`public inline bool `[`IsClientTypeSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1abd25867244fdd966555ae8a8ecbc37ea)`() const` | Checks whether ClientType_Optional has been set.
-`public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae8ac89c14eccda2158df52a730a0a812)`()` | Gets the value of Entitlements_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a10c1ba14ccd6f05f735d99a4fc0cc8ef)`() const` | Gets the value of Entitlements_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a7d14c9935de5a6d9d6297494fafe6831)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` | Gets the value of Entitlements_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac72ca2c63c2fc3f571fb4475cbd96f82)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & OutValue) const` | Fills OutValue with the value of Entitlements_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1acceebd37fc9629b77f5d07256cf3c874)`()` | Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1af043afc2a44080afbaf389ff16a64a38)`() const` | Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a707f605277c2a1e3ad3b1ac4841dc16f)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true.
-`public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad39bf35d93c1f427798647fba3aed0d8)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a316512547e54d335a79a0a6b7b88e64f)`()` | Gets the value of Entitlements_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa1df0606a6074d3118fa1675fee5c66c)`() const` | Gets the value of Entitlements_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac0c73a2d8ce18c803327dbbb36c4e69a)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` | Gets the value of Entitlements_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a0f5952a93c8c57dd5d208a52c1cd996d)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & OutValue) const` | Fills OutValue with the value of Entitlements_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a098c13b14f58e487f879e8c1ee3b6810)`()` | Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a7fcb4aebe5c4095e692225526063978e)`() const` | Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1ecaafae650a895d9360831357b9946c)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true.
+`public inline FORCEINLINE void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a61c5d5cd50fb039ae45a91fc37cef095)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` | Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics.
 `public inline void `[`ClearEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9493313ad553516ff62bf102065e1344)`()` | Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false.
-`public inline bool `[`IsEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a36806eac5075f88434404615ad626627)`() const` | Checks whether Entitlements_Optional has been set.
-`public inline bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1aafde8f5b1dae1e5214559f50405648fb)`()` | Gets the value of CheckDurables_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1af5a26953f10711d45f5d64f71243eec4)`() const` | Gets the value of CheckDurables_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1aad67654dcc258c5828fa6c1c81867f63)`(const bool & DefaultValue) const` | Gets the value of CheckDurables_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1adb2a3b124930b5e3df33d9f4e3ce7e47)`(bool & OutValue) const` | Fills OutValue with the value of CheckDurables_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetCheckDurablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1aedd31c1c0db8aa4e7ea84002d8e52485)`()` | Returns a pointer to CheckDurables_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetCheckDurablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a7a0ba8fdd889dcc9cebc9bdbea716418)`() const` | Returns a pointer to CheckDurables_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a01f2a90d954cd2230687dd80220ce877)`(const bool & NewValue)` | Sets the value of CheckDurables_Optional and also sets CheckDurables_IsSet to true.
-`public inline void `[`SetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a0da895b8dab1034a53323cacc6532698)`(bool && NewValue)` | Sets the value of CheckDurables_Optional and also sets CheckDurables_IsSet to true using move semantics.
+`public inline FORCEINLINE bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5b18ca3f9f455d5613275137de3dab09)`()` | Gets the value of CheckDurables_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a27c5288dd8961e1be06113f7a2136ac4)`() const` | Gets the value of CheckDurables_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8ac982fa2c58e27efadb389e5675bcf1)`(const bool & DefaultValue) const` | Gets the value of CheckDurables_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a25f6f40463ca39c647855e84f12d4d9b)`(bool & OutValue) const` | Fills OutValue with the value of CheckDurables_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetCheckDurablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5c3253d7c02e008bfce749f4aed49730)`()` | Returns a pointer to CheckDurables_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetCheckDurablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a581cd4f6cd438a0552433d301de9357b)`() const` | Returns a pointer to CheckDurables_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a07345e36bad01ed3587dd96e2c393657)`(const bool & NewValue)` | Sets the value of CheckDurables_Optional and also sets CheckDurables_IsSet to true.
+`public inline FORCEINLINE void `[`SetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1adcc062ed867f6611d8fe9cf75ad9328d)`(bool && NewValue)` | Sets the value of CheckDurables_Optional and also sets CheckDurables_IsSet to true using move semantics.
 `public inline void `[`ClearCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2dc6ea605c6f4e1f3f9ee4f5b190ef23)`()` | Clears the value of CheckDurables_Optional and sets CheckDurables_IsSet to false.
-`public inline bool `[`IsCheckDurablesSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1cba3f1267a03719d10dc40f8b443275)`() const` | Checks whether CheckDurables_Optional has been set.
-`public inline bool `[`IsCheckDurablesDefaultValue`](#structFRHAPI__PlatformEntitlementProcessRequest_1a674875b84a633fe0338336482da09533)`() const` | Returns true if CheckDurables_Optional is set and matches the default value.
-`public inline void `[`SetCheckDurablesToDefault`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab05e4df7bfac9c81aea2d3e42e7e0b33)`()` | Sets the value of CheckDurables_Optional to its default and also sets CheckDurables_IsSet to true.
-`public inline bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1afc48f54fbc69fad2ed1a721d80e7ae66)`()` | Gets the value of CheckConsumables_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a814bdfb787ea1e17641045f533de9374)`() const` | Gets the value of CheckConsumables_Optional, regardless of it having been set.
-`public inline const bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1faf87007ddf2677cb95f311af575960)`(const bool & DefaultValue) const` | Gets the value of CheckConsumables_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5c8dc1056775b2f5083e10f34e476b04)`(bool & OutValue) const` | Fills OutValue with the value of CheckConsumables_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetCheckConsumablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a18f183f9b0fb5c7e2648b204d0291f49)`()` | Returns a pointer to CheckConsumables_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetCheckConsumablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a01284e72e30fa633bbae0a16c8ac31f9)`() const` | Returns a pointer to CheckConsumables_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2742b02be4ab5854a36e1f025ffd9ec9)`(const bool & NewValue)` | Sets the value of CheckConsumables_Optional and also sets CheckConsumables_IsSet to true.
-`public inline void `[`SetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a41cd3dc442269622c259a9ecb49bb963)`(bool && NewValue)` | Sets the value of CheckConsumables_Optional and also sets CheckConsumables_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_CheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1f6c395e8e781421bc6806d8e7b47733)`()` | Returns the default value of CheckDurables.
+`public inline FORCEINLINE bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a98051289bdf2c09ba33ef8259b8fd935)`()` | Gets the value of CheckConsumables_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9115437eefa15feffd07094aa5262ca5)`() const` | Gets the value of CheckConsumables_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a874d0d54b892cff811bf707af1efad71)`(const bool & DefaultValue) const` | Gets the value of CheckConsumables_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3cdc2cc8768abddb40ffb13f8ae00d63)`(bool & OutValue) const` | Fills OutValue with the value of CheckConsumables_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetCheckConsumablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab8cd555173e73bc96d521d3a4c2d578c)`()` | Returns a pointer to CheckConsumables_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetCheckConsumablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3db214e3f34e84ebeed2dc59f51e487f)`() const` | Returns a pointer to CheckConsumables_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa0502669e62dcd1034582b3e92cd68f5)`(const bool & NewValue)` | Sets the value of CheckConsumables_Optional and also sets CheckConsumables_IsSet to true.
+`public inline FORCEINLINE void `[`SetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad2ff76da07b6cbc79a4159f8d481f3ee)`(bool && NewValue)` | Sets the value of CheckConsumables_Optional and also sets CheckConsumables_IsSet to true using move semantics.
 `public inline void `[`ClearCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a004e3e6247808c305a6a66a3b609ff1c)`()` | Clears the value of CheckConsumables_Optional and sets CheckConsumables_IsSet to false.
-`public inline bool `[`IsCheckConsumablesSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1aab7bfb26a202458aabdae51461a98e26)`() const` | Checks whether CheckConsumables_Optional has been set.
-`public inline bool `[`IsCheckConsumablesDefaultValue`](#structFRHAPI__PlatformEntitlementProcessRequest_1a24eaa1538b0f9b86a5d1d15345dee6cd)`() const` | Returns true if CheckConsumables_Optional is set and matches the default value.
-`public inline void `[`SetCheckConsumablesToDefault`](#structFRHAPI__PlatformEntitlementProcessRequest_1a772280c4c0b6170a29c70c9df541702e)`()` | Sets the value of CheckConsumables_Optional to its default and also sets CheckConsumables_IsSet to true.
+`public inline FORCEINLINE bool `[`GetDefaultValue_CheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a97cf247a6a79d5cd7c0e31091b06e88c)`()` | Returns the default value of CheckConsumables.
 
 ### Members
 
@@ -208,35 +198,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a992a7252d8e3b2751bec87dcfa9a2475)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a992a7252d8e3b2751bec87dcfa9a2475"></a>
+#### `public inline FORCEINLINE FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae7ea1c2074a7405cda2bfcfb185539f7)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ae7ea1c2074a7405cda2bfcfb185539f7"></a>
 
 Gets the value of TransactionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1afdf670d3828aa77c27554f3d235d07f2)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1afdf670d3828aa77c27554f3d235d07f2"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1aff4c70b6187a344958f3cfec1e543a0d)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aff4c70b6187a344958f3cfec1e543a0d"></a>
 
 Gets the value of TransactionId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1aae5deca7173ff74c903f122620890fe2)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aae5deca7173ff74c903f122620890fe2"></a>
+#### `public inline FORCEINLINE const FString & `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a476f464851365888f50eac46d672ac23)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a476f464851365888f50eac46d672ac23"></a>
 
 Gets the value of TransactionId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3a798ac706d38a934ab811e7ef320e98)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3a798ac706d38a934ab811e7ef320e98"></a>
+#### `public inline FORCEINLINE bool `[`GetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a950c3453706e15beb59e561fb84ab984)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a950c3453706e15beb59e561fb84ab984"></a>
 
 Fills OutValue with the value of TransactionId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetTransactionIdOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a83dc96210e7b7f74bcc4d9edc6efa72f)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a83dc96210e7b7f74bcc4d9edc6efa72f"></a>
+#### `public inline FORCEINLINE FString * `[`GetTransactionIdOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a817dc2173c9060144e5548169f71d649)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a817dc2173c9060144e5548169f71d649"></a>
 
 Returns a pointer to TransactionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetTransactionIdOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa7ab7995e23838ff28ce21472bcc3344)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa7ab7995e23838ff28ce21472bcc3344"></a>
+#### `public inline FORCEINLINE const FString * `[`GetTransactionIdOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac06a148c821e5f601127ccb5f4935a61)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ac06a148c821e5f601127ccb5f4935a61"></a>
 
 Returns a pointer to TransactionId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a42684c88f2421073ff3aa5c93a4d92f4)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a42684c88f2421073ff3aa5c93a4d92f4"></a>
+#### `public inline FORCEINLINE void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1f501997623d5cae7695ac7da09df22b)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a1f501997623d5cae7695ac7da09df22b"></a>
 
 Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to true.
 
-#### `public inline void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae120b13e354eb92730661031c08ed9d5)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ae120b13e354eb92730661031c08ed9d5"></a>
+#### `public inline FORCEINLINE void `[`SetTransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a902d1e1529557a16f1e1bb87bfd9fbce)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a902d1e1529557a16f1e1bb87bfd9fbce"></a>
 
 Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to true using move semantics.
 
@@ -244,79 +234,71 @@ Sets the value of TransactionId_Optional and also sets TransactionId_IsSet to tr
 
 Clears the value of TransactionId_Optional and sets TransactionId_IsSet to false.
 
-#### `public inline bool `[`IsTransactionIdSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa500b571932b2a7e715a5ac719d054ca)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa500b571932b2a7e715a5ac719d054ca"></a>
+#### `public inline FORCEINLINE FString `[`GetDefaultValue_TransactionId`](#structFRHAPI__PlatformEntitlementProcessRequest_1aac1dc75efae87df9751bd3a0ed59438c)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aac1dc75efae87df9751bd3a0ed59438c"></a>
 
-Checks whether TransactionId_Optional has been set.
+Returns the default value of TransactionId.
 
-#### `public inline bool `[`IsTransactionIdDefaultValue`](#structFRHAPI__PlatformEntitlementProcessRequest_1a297ae4ec15de336e45c4af36d5462aee)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a297ae4ec15de336e45c4af36d5462aee"></a>
-
-Returns true if TransactionId_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTransactionIdToDefault`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab34e22674633357bbc8364c2682621c1)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ab34e22674633357bbc8364c2682621c1"></a>
-
-Sets the value of TransactionId_Optional to its default and also sets TransactionId_IsSet to true.
-
-#### `public inline FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8afef5efd58e5f0225a515b39ae616ba)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a8afef5efd58e5f0225a515b39ae616ba"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae5fa6ab5c52602099a1b05c97488354d)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ae5fa6ab5c52602099a1b05c97488354d"></a>
 
 Gets the value of PlatformToken.
 
-#### `public inline const FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a56a30c95db6545aa2d68bbec3c5cf108)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a56a30c95db6545aa2d68bbec3c5cf108"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9524f6be03a8b4dc748645dbda630a9a)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a9524f6be03a8b4dc748645dbda630a9a"></a>
 
 Gets the value of PlatformToken.
 
-#### `public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a46a0856d880e6cb5940294e9723cd39c)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a46a0856d880e6cb5940294e9723cd39c"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1afe76a6860d54c2611cb115e71171aead)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1afe76a6860d54c2611cb115e71171aead"></a>
 
 Sets the value of PlatformToken.
 
-#### `public inline void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8e290e471b1cea6865e1fb43ffc445e5)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a8e290e471b1cea6865e1fb43ffc445e5"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformToken`](#structFRHAPI__PlatformEntitlementProcessRequest_1af9845e9b56a73dc35b311f6f70b9a97c)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af9845e9b56a73dc35b311f6f70b9a97c"></a>
 
 Sets the value of PlatformToken using move semantics.
 
-#### `public inline FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad48dfc7a18be585b959a417780a8949b)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ad48dfc7a18be585b959a417780a8949b"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1ace81db8e0a656da6a39ce409c71d4de3)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ace81db8e0a656da6a39ce409c71d4de3"></a>
 
 Gets the value of PlatformId.
 
-#### `public inline const FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3000e479ffe2553f2063117daf384c0e)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3000e479ffe2553f2063117daf384c0e"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a0c85b40e8985c0dfbe35aabe96a8b7c6)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a0c85b40e8985c0dfbe35aabe96a8b7c6"></a>
 
 Gets the value of PlatformId.
 
-#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3884b12d6f59454a08a4453991c7faec)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3884b12d6f59454a08a4453991c7faec"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1a0fd640089ee8ce4f62b8ca0252b6bdeb)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a0fd640089ee8ce4f62b8ca0252b6bdeb"></a>
 
 Sets the value of PlatformId.
 
-#### `public inline void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1af3279ab1e4cfd73fe390d096073e8cff)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af3279ab1e4cfd73fe390d096073e8cff"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformId`](#structFRHAPI__PlatformEntitlementProcessRequest_1af06afce59f9676d373b79bd2d5b80fe8)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af06afce59f9676d373b79bd2d5b80fe8"></a>
 
 Sets the value of PlatformId using move semantics.
 
-#### `public inline FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a65fcb4692cc41fb3323551dc3a0e53ff)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a65fcb4692cc41fb3323551dc3a0e53ff"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a642f6684ba282a133cfb8c55d0ea7455)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a642f6684ba282a133cfb8c55d0ea7455"></a>
 
 Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1adc888a41162ae681595f04914caa4611)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1adc888a41162ae681595f04914caa4611"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa876ecdae59410ef82719f0ada643dfa)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa876ecdae59410ef82719f0ada643dfa"></a>
 
 Gets the value of PlatformEnvironment_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a114e36dddd11d735ba25b034fb3fe7e6)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a114e36dddd11d735ba25b034fb3fe7e6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a33d3091883c7c26ca0d8c14a2985178d)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a33d3091883c7c26ca0d8c14a2985178d"></a>
 
 Gets the value of PlatformEnvironment_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1af61f37636cae7734b856c1911fd7bbad)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af61f37636cae7734b856c1911fd7bbad"></a>
+#### `public inline FORCEINLINE bool `[`GetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a884499e1ac0fef64103c3891b5edb1b5)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a884499e1ac0fef64103c3891b5edb1b5"></a>
 
 Fills OutValue with the value of PlatformEnvironment_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa273858d6add87c8508d07bce82f91ef)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa273858d6add87c8508d07bce82f91ef"></a>
+#### `public inline FORCEINLINE FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2a9e82e585844a042fd779f36dc2efe8)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a2a9e82e585844a042fd779f36dc2efe8"></a>
 
 Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a58a3f22bc8a4762b7a51e0d8b89e0442)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a58a3f22bc8a4762b7a51e0d8b89e0442"></a>
+#### `public inline FORCEINLINE const FString * `[`GetPlatformEnvironmentOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a148164fb1c43112f3b8052ddb78f7ff9)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a148164fb1c43112f3b8052ddb78f7ff9"></a>
 
 Returns a pointer to PlatformEnvironment_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3ca764061dd4d41a38c11b7824f32a0b)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3ca764061dd4d41a38c11b7824f32a0b"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1aeaf4de3247b59744644967e25f14371f)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aeaf4de3247b59744644967e25f14371f"></a>
 
 Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true.
 
-#### `public inline void `[`SetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac5207e714891e218d1664b904e9348c0)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ac5207e714891e218d1664b904e9348c0"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformEnvironment`](#structFRHAPI__PlatformEntitlementProcessRequest_1a63413f7a505720dc05f82637b9027ddb)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a63413f7a505720dc05f82637b9027ddb"></a>
 
 Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment_IsSet to true using move semantics.
 
@@ -324,47 +306,43 @@ Sets the value of PlatformEnvironment_Optional and also sets PlatformEnvironment
 
 Clears the value of PlatformEnvironment_Optional and sets PlatformEnvironment_IsSet to false.
 
-#### `public inline bool `[`IsPlatformEnvironmentSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a901c50ce60c8b9bfda93fd8d478f6319)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a901c50ce60c8b9bfda93fd8d478f6319"></a>
-
-Checks whether PlatformEnvironment_Optional has been set.
-
-#### `public inline void `[`SetPlatformEnvironmentToNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a6f059a8027556a44d5fef6beb6573f69)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a6f059a8027556a44d5fef6beb6573f69"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformEnvironmentToNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac3ba3beeb068dc87dc284abd3a72ff46)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ac3ba3beeb068dc87dc284abd3a72ff46"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPlatformEnvironmentNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a89fe5a8b0ccbcc76cc54dacdf5f979cd)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a89fe5a8b0ccbcc76cc54dacdf5f979cd"></a>
+#### `public inline FORCEINLINE bool `[`IsPlatformEnvironmentNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9d9543dec47132a843ef520600699106)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a9d9543dec47132a843ef520600699106"></a>
 
 Checks whether PlatformEnvironment_Optional is set to null.
 
-#### `public inline ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1aad5f28e2e1c77eeab695c1e9cf91cdd8)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aad5f28e2e1c77eeab695c1e9cf91cdd8"></a>
+#### `public inline FORCEINLINE ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3ddac77d9202b93fa31a8712a62b6bd7)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3ddac77d9202b93fa31a8712a62b6bd7"></a>
 
 Gets the value of PlatformRegion_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab4c6bc8b7d5f753cb08e6ebcd2bdc236)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ab4c6bc8b7d5f753cb08e6ebcd2bdc236"></a>
+#### `public inline FORCEINLINE const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2dd2fd1c37426beff1030dbfc43ce044)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a2dd2fd1c37426beff1030dbfc43ce044"></a>
 
 Gets the value of PlatformRegion_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a743fe87aa55991763dde461b0461bf78)`(const ERHAPI_PlatformRegion & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a743fe87aa55991763dde461b0461bf78"></a>
+#### `public inline FORCEINLINE const ERHAPI_PlatformRegion & `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa07d5f93206f392157c608b8ca2c91f4)`(const ERHAPI_PlatformRegion & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa07d5f93206f392157c608b8ca2c91f4"></a>
 
 Gets the value of PlatformRegion_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3b73e840c7ffecd2a31457001e27dcdb)`(ERHAPI_PlatformRegion & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3b73e840c7ffecd2a31457001e27dcdb"></a>
+#### `public inline FORCEINLINE bool `[`GetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a4e767e05e61331bc43ef2db4fc914db2)`(ERHAPI_PlatformRegion & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a4e767e05e61331bc43ef2db4fc914db2"></a>
 
 Fills OutValue with the value of PlatformRegion_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_PlatformRegion * `[`GetPlatformRegionOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1af3f57b7d6a4f3814f57fde2b7caa63e9)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af3f57b7d6a4f3814f57fde2b7caa63e9"></a>
+#### `public inline FORCEINLINE ERHAPI_PlatformRegion * `[`GetPlatformRegionOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a63a2005dada88fe4a6e566944b2fee6a)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a63a2005dada88fe4a6e566944b2fee6a"></a>
 
 Returns a pointer to PlatformRegion_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_PlatformRegion * `[`GetPlatformRegionOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1afd984ce6375ae7895c0b09040c5eaf71)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1afd984ce6375ae7895c0b09040c5eaf71"></a>
+#### `public inline FORCEINLINE const ERHAPI_PlatformRegion * `[`GetPlatformRegionOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8767a9174485acb840300c6593e48506)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a8767a9174485acb840300c6593e48506"></a>
 
 Returns a pointer to PlatformRegion_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3b7c18aeb506667a110f623f4c635d9c)`(const ERHAPI_PlatformRegion & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3b7c18aeb506667a110f623f4c635d9c"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab45951e0ca9be5509784f77813988ab1)`(const ERHAPI_PlatformRegion & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ab45951e0ca9be5509784f77813988ab1"></a>
 
 Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to true.
 
-#### `public inline void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad5f6b69be825a8ec7f0b1ab9b37d767f)`(ERHAPI_PlatformRegion && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ad5f6b69be825a8ec7f0b1ab9b37d767f"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformRegion`](#structFRHAPI__PlatformEntitlementProcessRequest_1a761dfcd268735f31be90cb4cd15b5a4f)`(ERHAPI_PlatformRegion && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a761dfcd268735f31be90cb4cd15b5a4f"></a>
 
 Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to true using move semantics.
 
@@ -372,39 +350,35 @@ Sets the value of PlatformRegion_Optional and also sets PlatformRegion_IsSet to 
 
 Clears the value of PlatformRegion_Optional and sets PlatformRegion_IsSet to false.
 
-#### `public inline bool `[`IsPlatformRegionSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a789c39a64c61c6799b2284c6286b4e97)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a789c39a64c61c6799b2284c6286b4e97"></a>
-
-Checks whether PlatformRegion_Optional has been set.
-
-#### `public inline ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5c13b4e8b2ecc3d2ad4e6c53d1dc6e84)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a5c13b4e8b2ecc3d2ad4e6c53d1dc6e84"></a>
+#### `public inline FORCEINLINE ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a551c23be707ef4ee52da601e6db66e55)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a551c23be707ef4ee52da601e6db66e55"></a>
 
 Gets the value of ClientType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a35ce6efa5ac1dd2bbe6f829dd97c3d81)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a35ce6efa5ac1dd2bbe6f829dd97c3d81"></a>
+#### `public inline FORCEINLINE const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8c54b03695651157104919a1c343d55e)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a8c54b03695651157104919a1c343d55e"></a>
 
 Gets the value of ClientType_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1afdea581e2015e08ed48dc49850a6ec1e)`(const ERHAPI_ClientType & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1afdea581e2015e08ed48dc49850a6ec1e"></a>
+#### `public inline FORCEINLINE const ERHAPI_ClientType & `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a4dce7f37485bfe8223eb668d45814944)`(const ERHAPI_ClientType & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a4dce7f37485bfe8223eb668d45814944"></a>
 
 Gets the value of ClientType_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa7808ded5a26b6d33dbf5e6464783679)`(ERHAPI_ClientType & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa7808ded5a26b6d33dbf5e6464783679"></a>
+#### `public inline FORCEINLINE bool `[`GetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac8229fc2d9b9ed1d8197acdffd19d019)`(ERHAPI_ClientType & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ac8229fc2d9b9ed1d8197acdffd19d019"></a>
 
 Fills OutValue with the value of ClientType_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_ClientType * `[`GetClientTypeOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a6292fb3dc0813de4bea5fd6497444b37)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a6292fb3dc0813de4bea5fd6497444b37"></a>
+#### `public inline FORCEINLINE ERHAPI_ClientType * `[`GetClientTypeOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5d2f1ce21d105455fb434b2dbc4cb9ac)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a5d2f1ce21d105455fb434b2dbc4cb9ac"></a>
 
 Returns a pointer to ClientType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_ClientType * `[`GetClientTypeOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa648c3b7fe50d74a99174a851a268db0)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa648c3b7fe50d74a99174a851a268db0"></a>
+#### `public inline FORCEINLINE const ERHAPI_ClientType * `[`GetClientTypeOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3e711db3f0232577691869812d04e4a7)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3e711db3f0232577691869812d04e4a7"></a>
 
 Returns a pointer to ClientType_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2498ca3832ba4e9f44caff3b537a0f17)`(const ERHAPI_ClientType & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a2498ca3832ba4e9f44caff3b537a0f17"></a>
+#### `public inline FORCEINLINE void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab82af7ef31fea12baafaa9fa27334904)`(const ERHAPI_ClientType & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ab82af7ef31fea12baafaa9fa27334904"></a>
 
 Sets the value of ClientType_Optional and also sets ClientType_IsSet to true.
 
-#### `public inline void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1a06ead50b187f385895d173b50a3692a6)`(ERHAPI_ClientType && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a06ead50b187f385895d173b50a3692a6"></a>
+#### `public inline FORCEINLINE void `[`SetClientType`](#structFRHAPI__PlatformEntitlementProcessRequest_1afb84afc1a1dd748880810c868c5a5171)`(ERHAPI_ClientType && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1afb84afc1a1dd748880810c868c5a5171"></a>
 
 Sets the value of ClientType_Optional and also sets ClientType_IsSet to true using move semantics.
 
@@ -412,39 +386,35 @@ Sets the value of ClientType_Optional and also sets ClientType_IsSet to true usi
 
 Clears the value of ClientType_Optional and sets ClientType_IsSet to false.
 
-#### `public inline bool `[`IsClientTypeSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1abd25867244fdd966555ae8a8ecbc37ea)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1abd25867244fdd966555ae8a8ecbc37ea"></a>
-
-Checks whether ClientType_Optional has been set.
-
-#### `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ae8ac89c14eccda2158df52a730a0a812)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ae8ac89c14eccda2158df52a730a0a812"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a316512547e54d335a79a0a6b7b88e64f)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a316512547e54d335a79a0a6b7b88e64f"></a>
 
 Gets the value of Entitlements_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a10c1ba14ccd6f05f735d99a4fc0cc8ef)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a10c1ba14ccd6f05f735d99a4fc0cc8ef"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa1df0606a6074d3118fa1675fee5c66c)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa1df0606a6074d3118fa1675fee5c66c"></a>
 
 Gets the value of Entitlements_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a7d14c9935de5a6d9d6297494fafe6831)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a7d14c9935de5a6d9d6297494fafe6831"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac0c73a2d8ce18c803327dbbb36c4e69a)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ac0c73a2d8ce18c803327dbbb36c4e69a"></a>
 
 Gets the value of Entitlements_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ac72ca2c63c2fc3f571fb4475cbd96f82)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ac72ca2c63c2fc3f571fb4475cbd96f82"></a>
+#### `public inline FORCEINLINE bool `[`GetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a0f5952a93c8c57dd5d208a52c1cd996d)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a0f5952a93c8c57dd5d208a52c1cd996d"></a>
 
 Fills OutValue with the value of Entitlements_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1acceebd37fc9629b77f5d07256cf3c874)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1acceebd37fc9629b77f5d07256cf3c874"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a098c13b14f58e487f879e8c1ee3b6810)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a098c13b14f58e487f879e8c1ee3b6810"></a>
 
 Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1af043afc2a44080afbaf389ff16a64a38)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af043afc2a44080afbaf389ff16a64a38"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > * `[`GetEntitlementsOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a7fcb4aebe5c4095e692225526063978e)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a7fcb4aebe5c4095e692225526063978e"></a>
 
 Returns a pointer to Entitlements_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a707f605277c2a1e3ad3b1ac4841dc16f)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a707f605277c2a1e3ad3b1ac4841dc16f"></a>
+#### `public inline FORCEINLINE void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1ecaafae650a895d9360831357b9946c)`(const TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a1ecaafae650a895d9360831357b9946c"></a>
 
 Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true.
 
-#### `public inline void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad39bf35d93c1f427798647fba3aed0d8)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ad39bf35d93c1f427798647fba3aed0d8"></a>
+#### `public inline FORCEINLINE void `[`SetEntitlements`](#structFRHAPI__PlatformEntitlementProcessRequest_1a61c5d5cd50fb039ae45a91fc37cef095)`(TArray< `[`FRHAPI_PlatformEntitlement`](RHAPI_PlatformEntitlement.md#structFRHAPI__PlatformEntitlement)` > && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a61c5d5cd50fb039ae45a91fc37cef095"></a>
 
 Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true using move semantics.
 
@@ -452,39 +422,35 @@ Sets the value of Entitlements_Optional and also sets Entitlements_IsSet to true
 
 Clears the value of Entitlements_Optional and sets Entitlements_IsSet to false.
 
-#### `public inline bool `[`IsEntitlementsSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a36806eac5075f88434404615ad626627)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a36806eac5075f88434404615ad626627"></a>
-
-Checks whether Entitlements_Optional has been set.
-
-#### `public inline bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1aafde8f5b1dae1e5214559f50405648fb)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aafde8f5b1dae1e5214559f50405648fb"></a>
+#### `public inline FORCEINLINE bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5b18ca3f9f455d5613275137de3dab09)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a5b18ca3f9f455d5613275137de3dab09"></a>
 
 Gets the value of CheckDurables_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1af5a26953f10711d45f5d64f71243eec4)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1af5a26953f10711d45f5d64f71243eec4"></a>
+#### `public inline FORCEINLINE const bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a27c5288dd8961e1be06113f7a2136ac4)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a27c5288dd8961e1be06113f7a2136ac4"></a>
 
 Gets the value of CheckDurables_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1aad67654dcc258c5828fa6c1c81867f63)`(const bool & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aad67654dcc258c5828fa6c1c81867f63"></a>
+#### `public inline FORCEINLINE const bool & `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a8ac982fa2c58e27efadb389e5675bcf1)`(const bool & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a8ac982fa2c58e27efadb389e5675bcf1"></a>
 
 Gets the value of CheckDurables_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1adb2a3b124930b5e3df33d9f4e3ce7e47)`(bool & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1adb2a3b124930b5e3df33d9f4e3ce7e47"></a>
+#### `public inline FORCEINLINE bool `[`GetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a25f6f40463ca39c647855e84f12d4d9b)`(bool & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a25f6f40463ca39c647855e84f12d4d9b"></a>
 
 Fills OutValue with the value of CheckDurables_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetCheckDurablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1aedd31c1c0db8aa4e7ea84002d8e52485)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aedd31c1c0db8aa4e7ea84002d8e52485"></a>
+#### `public inline FORCEINLINE bool * `[`GetCheckDurablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5c3253d7c02e008bfce749f4aed49730)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a5c3253d7c02e008bfce749f4aed49730"></a>
 
 Returns a pointer to CheckDurables_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetCheckDurablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a7a0ba8fdd889dcc9cebc9bdbea716418)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a7a0ba8fdd889dcc9cebc9bdbea716418"></a>
+#### `public inline FORCEINLINE const bool * `[`GetCheckDurablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a581cd4f6cd438a0552433d301de9357b)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a581cd4f6cd438a0552433d301de9357b"></a>
 
 Returns a pointer to CheckDurables_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a01f2a90d954cd2230687dd80220ce877)`(const bool & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a01f2a90d954cd2230687dd80220ce877"></a>
+#### `public inline FORCEINLINE void `[`SetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a07345e36bad01ed3587dd96e2c393657)`(const bool & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a07345e36bad01ed3587dd96e2c393657"></a>
 
 Sets the value of CheckDurables_Optional and also sets CheckDurables_IsSet to true.
 
-#### `public inline void `[`SetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a0da895b8dab1034a53323cacc6532698)`(bool && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a0da895b8dab1034a53323cacc6532698"></a>
+#### `public inline FORCEINLINE void `[`SetCheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1adcc062ed867f6611d8fe9cf75ad9328d)`(bool && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1adcc062ed867f6611d8fe9cf75ad9328d"></a>
 
 Sets the value of CheckDurables_Optional and also sets CheckDurables_IsSet to true using move semantics.
 
@@ -492,47 +458,39 @@ Sets the value of CheckDurables_Optional and also sets CheckDurables_IsSet to tr
 
 Clears the value of CheckDurables_Optional and sets CheckDurables_IsSet to false.
 
-#### `public inline bool `[`IsCheckDurablesSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1cba3f1267a03719d10dc40f8b443275)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a1cba3f1267a03719d10dc40f8b443275"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_CheckDurables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1f6c395e8e781421bc6806d8e7b47733)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a1f6c395e8e781421bc6806d8e7b47733"></a>
 
-Checks whether CheckDurables_Optional has been set.
+Returns the default value of CheckDurables.
 
-#### `public inline bool `[`IsCheckDurablesDefaultValue`](#structFRHAPI__PlatformEntitlementProcessRequest_1a674875b84a633fe0338336482da09533)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a674875b84a633fe0338336482da09533"></a>
-
-Returns true if CheckDurables_Optional is set and matches the default value.
-
-#### `public inline void `[`SetCheckDurablesToDefault`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab05e4df7bfac9c81aea2d3e42e7e0b33)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ab05e4df7bfac9c81aea2d3e42e7e0b33"></a>
-
-Sets the value of CheckDurables_Optional to its default and also sets CheckDurables_IsSet to true.
-
-#### `public inline bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1afc48f54fbc69fad2ed1a721d80e7ae66)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1afc48f54fbc69fad2ed1a721d80e7ae66"></a>
+#### `public inline FORCEINLINE bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a98051289bdf2c09ba33ef8259b8fd935)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a98051289bdf2c09ba33ef8259b8fd935"></a>
 
 Gets the value of CheckConsumables_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a814bdfb787ea1e17641045f533de9374)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a814bdfb787ea1e17641045f533de9374"></a>
+#### `public inline FORCEINLINE const bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a9115437eefa15feffd07094aa5262ca5)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a9115437eefa15feffd07094aa5262ca5"></a>
 
 Gets the value of CheckConsumables_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a1faf87007ddf2677cb95f311af575960)`(const bool & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a1faf87007ddf2677cb95f311af575960"></a>
+#### `public inline FORCEINLINE const bool & `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a874d0d54b892cff811bf707af1efad71)`(const bool & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a874d0d54b892cff811bf707af1efad71"></a>
 
 Gets the value of CheckConsumables_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a5c8dc1056775b2f5083e10f34e476b04)`(bool & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a5c8dc1056775b2f5083e10f34e476b04"></a>
+#### `public inline FORCEINLINE bool `[`GetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3cdc2cc8768abddb40ffb13f8ae00d63)`(bool & OutValue) const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3cdc2cc8768abddb40ffb13f8ae00d63"></a>
 
 Fills OutValue with the value of CheckConsumables_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetCheckConsumablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a18f183f9b0fb5c7e2648b204d0291f49)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a18f183f9b0fb5c7e2648b204d0291f49"></a>
+#### `public inline FORCEINLINE bool * `[`GetCheckConsumablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1ab8cd555173e73bc96d521d3a4c2d578c)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ab8cd555173e73bc96d521d3a4c2d578c"></a>
 
 Returns a pointer to CheckConsumables_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetCheckConsumablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a01284e72e30fa633bbae0a16c8ac31f9)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a01284e72e30fa633bbae0a16c8ac31f9"></a>
+#### `public inline FORCEINLINE const bool * `[`GetCheckConsumablesOrNull`](#structFRHAPI__PlatformEntitlementProcessRequest_1a3db214e3f34e84ebeed2dc59f51e487f)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a3db214e3f34e84ebeed2dc59f51e487f"></a>
 
 Returns a pointer to CheckConsumables_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a2742b02be4ab5854a36e1f025ffd9ec9)`(const bool & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a2742b02be4ab5854a36e1f025ffd9ec9"></a>
+#### `public inline FORCEINLINE void `[`SetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1aa0502669e62dcd1034582b3e92cd68f5)`(const bool & NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aa0502669e62dcd1034582b3e92cd68f5"></a>
 
 Sets the value of CheckConsumables_Optional and also sets CheckConsumables_IsSet to true.
 
-#### `public inline void `[`SetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a41cd3dc442269622c259a9ecb49bb963)`(bool && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a41cd3dc442269622c259a9ecb49bb963"></a>
+#### `public inline FORCEINLINE void `[`SetCheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1ad2ff76da07b6cbc79a4159f8d481f3ee)`(bool && NewValue)` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1ad2ff76da07b6cbc79a4159f8d481f3ee"></a>
 
 Sets the value of CheckConsumables_Optional and also sets CheckConsumables_IsSet to true using move semantics.
 
@@ -540,15 +498,7 @@ Sets the value of CheckConsumables_Optional and also sets CheckConsumables_IsSet
 
 Clears the value of CheckConsumables_Optional and sets CheckConsumables_IsSet to false.
 
-#### `public inline bool `[`IsCheckConsumablesSet`](#structFRHAPI__PlatformEntitlementProcessRequest_1aab7bfb26a202458aabdae51461a98e26)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1aab7bfb26a202458aabdae51461a98e26"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_CheckConsumables`](#structFRHAPI__PlatformEntitlementProcessRequest_1a97cf247a6a79d5cd7c0e31091b06e88c)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a97cf247a6a79d5cd7c0e31091b06e88c"></a>
 
-Checks whether CheckConsumables_Optional has been set.
-
-#### `public inline bool `[`IsCheckConsumablesDefaultValue`](#structFRHAPI__PlatformEntitlementProcessRequest_1a24eaa1538b0f9b86a5d1d15345dee6cd)`() const` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a24eaa1538b0f9b86a5d1d15345dee6cd"></a>
-
-Returns true if CheckConsumables_Optional is set and matches the default value.
-
-#### `public inline void `[`SetCheckConsumablesToDefault`](#structFRHAPI__PlatformEntitlementProcessRequest_1a772280c4c0b6170a29c70c9df541702e)`()` <a id="structFRHAPI__PlatformEntitlementProcessRequest_1a772280c4c0b6170a29c70c9df541702e"></a>
-
-Sets the value of CheckConsumables_Optional to its default and also sets CheckConsumables_IsSet to true.
+Returns the default value of CheckConsumables.
 

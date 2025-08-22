@@ -27,26 +27,24 @@ Information about all sessions that a player is currently a member of, or invite
 `public bool `[`LastUpdatedTimestamp_IsSet`](#structFRHAPI__PlayerSessions_1acb79f047f9fe82dffe5290d34aa4a750) | true if LastUpdatedTimestamp_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerSessions_1a27d07993c833ae5d62c6279a843d1578)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerSessions_1a18ec33218d00f80592330e547024bec1)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1ac78532aeb1c32334c80060c3f6702faa)`()` | Gets the value of Sessions_Optional, regardless of it having been set.
-`public inline const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1aebb555feba0bb1044b3305ccda7261ee)`() const` | Gets the value of Sessions_Optional, regardless of it having been set.
-`public inline const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a966210d27f3d7c7d0f66e37eb6437bb7)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & DefaultValue) const` | Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetSessions`](#structFRHAPI__PlayerSessions_1ac3bd1f379b91636f171e1fa994082069)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & OutValue) const` | Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__PlayerSessions_1aaa05bdcf6446d33f5f0b3aeca9ce34a3)`()` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__PlayerSessions_1a72c4d3162d4ccbc9f4df434862a18f8e)`() const` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a2d7278304d58641f5a3319db000c8167)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
-`public inline void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a11667546d3715b4e5228ab018cdc00e2)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > && NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a96bcf36d8f9a209167a3e90bd2a55b89)`()` | Gets the value of Sessions_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a5b675ee76ced360ace3fd0753c478d7c)`() const` | Gets the value of Sessions_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a714397178e2e2f86039db0bd04e976e7)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & DefaultValue) const` | Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetSessions`](#structFRHAPI__PlayerSessions_1acee09cb9b23a2549cf37f5d37e9565a1)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & OutValue) const` | Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__PlayerSessions_1a6a65a702733637ab2b7862db81b8b8b7)`()` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__PlayerSessions_1a68ff6f197a07bdb88d9247f2ff14b854)`() const` | Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a2925533fbb391189c65d3ee3a12f261a)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
+`public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a4e4c30b90042149026aae9168ffd243e)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > && NewValue)` | Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
 `public inline void `[`ClearSessions`](#structFRHAPI__PlayerSessions_1a11f4d310ceb782cf2b7912bb7d853910)`()` | Clears the value of Sessions_Optional and sets Sessions_IsSet to false.
-`public inline bool `[`IsSessionsSet`](#structFRHAPI__PlayerSessions_1ae5c31c6ac88da074d0300dabb7bb7add)`() const` | Checks whether Sessions_Optional has been set.
-`public inline FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1abe5dce7fa3ca285bcfb19c4a59a060b8)`()` | Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a8c066a225f83fe99816ee1b4f9fb6fa7)`() const` | Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
-`public inline const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a3ac4511802ba1e3b01df881bf6db4345)`(const FDateTime & DefaultValue) const` | Gets the value of LastUpdatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1af64484360e07e3dbf4c4477b33ac6523)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastUpdatedTimestamp_Optional and returns true if it has been set, otherwise returns false.
-`public inline FDateTime * `[`GetLastUpdatedTimestampOrNull`](#structFRHAPI__PlayerSessions_1a457c56e0bd64ffbbe03a103ed74b9e38)`()` | Returns a pointer to LastUpdatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FDateTime * `[`GetLastUpdatedTimestampOrNull`](#structFRHAPI__PlayerSessions_1afc02ff0693978dafd1c4071e75971958)`() const` | Returns a pointer to LastUpdatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a09e232169df2f6c1e5af94f516c54642)`(const FDateTime & NewValue)` | Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true.
-`public inline void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1afc0df868eb60e73c679e2e5468b5c39b)`(FDateTime && NewValue)` | Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1ae3246d85ac4f880edc04f0ff77f76194)`()` | Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a38910cc29a60514217ac2ea06ea40eb0)`() const` | Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1af526f118162a5a6880b1553583cd7b05)`(const FDateTime & DefaultValue) const` | Gets the value of LastUpdatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a9ced058742f81866293f8f98fee10338)`(FDateTime & OutValue) const` | Fills OutValue with the value of LastUpdatedTimestamp_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FDateTime * `[`GetLastUpdatedTimestampOrNull`](#structFRHAPI__PlayerSessions_1a970e792c1f659195074f0836df3fb145)`()` | Returns a pointer to LastUpdatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FDateTime * `[`GetLastUpdatedTimestampOrNull`](#structFRHAPI__PlayerSessions_1a4a48f04c9cd55dee7d25f3c479d556b2)`() const` | Returns a pointer to LastUpdatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1ac3a856d10d2dd8e9b30a5bd6674b7966)`(const FDateTime & NewValue)` | Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true.
+`public inline FORCEINLINE void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1ad569f29541f4ccbbd9f158fe706961dd)`(FDateTime && NewValue)` | Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true using move semantics.
 `public inline void `[`ClearLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a158685391d310a57b456883520d177d0)`()` | Clears the value of LastUpdatedTimestamp_Optional and sets LastUpdatedTimestamp_IsSet to false.
-`public inline bool `[`IsLastUpdatedTimestampSet`](#structFRHAPI__PlayerSessions_1aed1bda3a496e8de0bb6ed4151949fa38)`() const` | Checks whether LastUpdatedTimestamp_Optional has been set.
 
 ### Members
 
@@ -83,35 +81,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1ac78532aeb1c32334c80060c3f6702faa)`()` <a id="structFRHAPI__PlayerSessions_1ac78532aeb1c32334c80060c3f6702faa"></a>
+#### `public inline FORCEINLINE TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a96bcf36d8f9a209167a3e90bd2a55b89)`()` <a id="structFRHAPI__PlayerSessions_1a96bcf36d8f9a209167a3e90bd2a55b89"></a>
 
 Gets the value of Sessions_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1aebb555feba0bb1044b3305ccda7261ee)`() const` <a id="structFRHAPI__PlayerSessions_1aebb555feba0bb1044b3305ccda7261ee"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a5b675ee76ced360ace3fd0753c478d7c)`() const` <a id="structFRHAPI__PlayerSessions_1a5b675ee76ced360ace3fd0753c478d7c"></a>
 
 Gets the value of Sessions_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a966210d27f3d7c7d0f66e37eb6437bb7)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & DefaultValue) const` <a id="structFRHAPI__PlayerSessions_1a966210d27f3d7c7d0f66e37eb6437bb7"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & `[`GetSessions`](#structFRHAPI__PlayerSessions_1a714397178e2e2f86039db0bd04e976e7)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & DefaultValue) const` <a id="structFRHAPI__PlayerSessions_1a714397178e2e2f86039db0bd04e976e7"></a>
 
 Gets the value of Sessions_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetSessions`](#structFRHAPI__PlayerSessions_1ac3bd1f379b91636f171e1fa994082069)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & OutValue) const` <a id="structFRHAPI__PlayerSessions_1ac3bd1f379b91636f171e1fa994082069"></a>
+#### `public inline FORCEINLINE bool `[`GetSessions`](#structFRHAPI__PlayerSessions_1acee09cb9b23a2549cf37f5d37e9565a1)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & OutValue) const` <a id="structFRHAPI__PlayerSessions_1acee09cb9b23a2549cf37f5d37e9565a1"></a>
 
 Fills OutValue with the value of Sessions_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__PlayerSessions_1aaa05bdcf6446d33f5f0b3aeca9ce34a3)`()` <a id="structFRHAPI__PlayerSessions_1aaa05bdcf6446d33f5f0b3aeca9ce34a3"></a>
+#### `public inline FORCEINLINE TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__PlayerSessions_1a6a65a702733637ab2b7862db81b8b8b7)`()` <a id="structFRHAPI__PlayerSessions_1a6a65a702733637ab2b7862db81b8b8b7"></a>
 
 Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__PlayerSessions_1a72c4d3162d4ccbc9f4df434862a18f8e)`() const` <a id="structFRHAPI__PlayerSessions_1a72c4d3162d4ccbc9f4df434862a18f8e"></a>
+#### `public inline FORCEINLINE const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > * `[`GetSessionsOrNull`](#structFRHAPI__PlayerSessions_1a68ff6f197a07bdb88d9247f2ff14b854)`() const` <a id="structFRHAPI__PlayerSessions_1a68ff6f197a07bdb88d9247f2ff14b854"></a>
 
 Returns a pointer to Sessions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a2d7278304d58641f5a3319db000c8167)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & NewValue)` <a id="structFRHAPI__PlayerSessions_1a2d7278304d58641f5a3319db000c8167"></a>
+#### `public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a2925533fbb391189c65d3ee3a12f261a)`(const TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > & NewValue)` <a id="structFRHAPI__PlayerSessions_1a2925533fbb391189c65d3ee3a12f261a"></a>
 
 Sets the value of Sessions_Optional and also sets Sessions_IsSet to true.
 
-#### `public inline void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a11667546d3715b4e5228ab018cdc00e2)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > && NewValue)` <a id="structFRHAPI__PlayerSessions_1a11667546d3715b4e5228ab018cdc00e2"></a>
+#### `public inline FORCEINLINE void `[`SetSessions`](#structFRHAPI__PlayerSessions_1a4e4c30b90042149026aae9168ffd243e)`(TMap< FString, `[`FRHAPI_PlayerSession`](RHAPI_PlayerSession.md#structFRHAPI__PlayerSession)` > && NewValue)` <a id="structFRHAPI__PlayerSessions_1a4e4c30b90042149026aae9168ffd243e"></a>
 
 Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using move semantics.
 
@@ -119,47 +117,39 @@ Sets the value of Sessions_Optional and also sets Sessions_IsSet to true using m
 
 Clears the value of Sessions_Optional and sets Sessions_IsSet to false.
 
-#### `public inline bool `[`IsSessionsSet`](#structFRHAPI__PlayerSessions_1ae5c31c6ac88da074d0300dabb7bb7add)`() const` <a id="structFRHAPI__PlayerSessions_1ae5c31c6ac88da074d0300dabb7bb7add"></a>
-
-Checks whether Sessions_Optional has been set.
-
-#### `public inline FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1abe5dce7fa3ca285bcfb19c4a59a060b8)`()` <a id="structFRHAPI__PlayerSessions_1abe5dce7fa3ca285bcfb19c4a59a060b8"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1ae3246d85ac4f880edc04f0ff77f76194)`()` <a id="structFRHAPI__PlayerSessions_1ae3246d85ac4f880edc04f0ff77f76194"></a>
 
 Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a8c066a225f83fe99816ee1b4f9fb6fa7)`() const` <a id="structFRHAPI__PlayerSessions_1a8c066a225f83fe99816ee1b4f9fb6fa7"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a38910cc29a60514217ac2ea06ea40eb0)`() const` <a id="structFRHAPI__PlayerSessions_1a38910cc29a60514217ac2ea06ea40eb0"></a>
 
 Gets the value of LastUpdatedTimestamp_Optional, regardless of it having been set.
 
-#### `public inline const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a3ac4511802ba1e3b01df881bf6db4345)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__PlayerSessions_1a3ac4511802ba1e3b01df881bf6db4345"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1af526f118162a5a6880b1553583cd7b05)`(const FDateTime & DefaultValue) const` <a id="structFRHAPI__PlayerSessions_1af526f118162a5a6880b1553583cd7b05"></a>
 
 Gets the value of LastUpdatedTimestamp_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1af64484360e07e3dbf4c4477b33ac6523)`(FDateTime & OutValue) const` <a id="structFRHAPI__PlayerSessions_1af64484360e07e3dbf4c4477b33ac6523"></a>
+#### `public inline FORCEINLINE bool `[`GetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a9ced058742f81866293f8f98fee10338)`(FDateTime & OutValue) const` <a id="structFRHAPI__PlayerSessions_1a9ced058742f81866293f8f98fee10338"></a>
 
 Fills OutValue with the value of LastUpdatedTimestamp_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FDateTime * `[`GetLastUpdatedTimestampOrNull`](#structFRHAPI__PlayerSessions_1a457c56e0bd64ffbbe03a103ed74b9e38)`()` <a id="structFRHAPI__PlayerSessions_1a457c56e0bd64ffbbe03a103ed74b9e38"></a>
+#### `public inline FORCEINLINE FDateTime * `[`GetLastUpdatedTimestampOrNull`](#structFRHAPI__PlayerSessions_1a970e792c1f659195074f0836df3fb145)`()` <a id="structFRHAPI__PlayerSessions_1a970e792c1f659195074f0836df3fb145"></a>
 
 Returns a pointer to LastUpdatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FDateTime * `[`GetLastUpdatedTimestampOrNull`](#structFRHAPI__PlayerSessions_1afc02ff0693978dafd1c4071e75971958)`() const` <a id="structFRHAPI__PlayerSessions_1afc02ff0693978dafd1c4071e75971958"></a>
+#### `public inline FORCEINLINE const FDateTime * `[`GetLastUpdatedTimestampOrNull`](#structFRHAPI__PlayerSessions_1a4a48f04c9cd55dee7d25f3c479d556b2)`() const` <a id="structFRHAPI__PlayerSessions_1a4a48f04c9cd55dee7d25f3c479d556b2"></a>
 
 Returns a pointer to LastUpdatedTimestamp_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a09e232169df2f6c1e5af94f516c54642)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerSessions_1a09e232169df2f6c1e5af94f516c54642"></a>
+#### `public inline FORCEINLINE void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1ac3a856d10d2dd8e9b30a5bd6674b7966)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerSessions_1ac3a856d10d2dd8e9b30a5bd6674b7966"></a>
 
 Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true.
 
-#### `public inline void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1afc0df868eb60e73c679e2e5468b5c39b)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerSessions_1afc0df868eb60e73c679e2e5468b5c39b"></a>
+#### `public inline FORCEINLINE void `[`SetLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1ad569f29541f4ccbbd9f158fe706961dd)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerSessions_1ad569f29541f4ccbbd9f158fe706961dd"></a>
 
 Sets the value of LastUpdatedTimestamp_Optional and also sets LastUpdatedTimestamp_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLastUpdatedTimestamp`](#structFRHAPI__PlayerSessions_1a158685391d310a57b456883520d177d0)`()` <a id="structFRHAPI__PlayerSessions_1a158685391d310a57b456883520d177d0"></a>
 
 Clears the value of LastUpdatedTimestamp_Optional and sets LastUpdatedTimestamp_IsSet to false.
-
-#### `public inline bool `[`IsLastUpdatedTimestampSet`](#structFRHAPI__PlayerSessions_1aed1bda3a496e8de0bb6ed4151949fa38)`() const` <a id="structFRHAPI__PlayerSessions_1aed1bda3a496e8de0bb6ed4151949fa38"></a>
-
-Checks whether LastUpdatedTimestamp_Optional has been set.
 

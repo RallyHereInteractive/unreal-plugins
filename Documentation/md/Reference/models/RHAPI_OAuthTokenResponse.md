@@ -39,92 +39,81 @@ OAuth token exchange response. Successful response will contain an access_token 
 `public bool `[`Restrictions_IsSet`](#structFRHAPI__OAuthTokenResponse_1a98897ae8a23a9041120cc82841ca117d) | true if Restrictions_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__OAuthTokenResponse_1a568e0104dbb8bdeb652426c9a3b4958f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__OAuthTokenResponse_1a4a3a575be8bc37b188be64634c62f830)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a92dabecb88e121e9ad8473ec4a87a266)`()` | Gets the value of AccessToken_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a4544a199638ca5b4c8097d7531b883b7)`() const` | Gets the value of AccessToken_Optional, regardless of it having been set.
-`public inline const FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a8cb4d1c0b82b344019358c5f5c5f87ec)`(const FString & DefaultValue) const` | Gets the value of AccessToken_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1acc34b8247dd59a47d80307d5ba16a403)`(FString & OutValue) const` | Fills OutValue with the value of AccessToken_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetAccessTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1ad150f2029f6dcec428cac455fe39c62c)`()` | Returns a pointer to AccessToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetAccessTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a935f03321a0b85710cf6a48442920bf4)`() const` | Returns a pointer to AccessToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a0b999fdad7a421a779fe675b544cd6bb)`(const FString & NewValue)` | Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true.
-`public inline void `[`SetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a2250495df42a88583c7a3282898c679d)`(FString && NewValue)` | Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a94b59748e09dd6c1b1d4d415f84a56b6)`()` | Gets the value of AccessToken_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a0fa93fb3b13fe6494b3403125336853b)`() const` | Gets the value of AccessToken_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a8ce36776640ea758593f970e3ce35331)`(const FString & DefaultValue) const` | Gets the value of AccessToken_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a7cc9b25d3e4082f2093e38f830e2b277)`(FString & OutValue) const` | Fills OutValue with the value of AccessToken_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetAccessTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a70e03ef65dcf4148c07eb372bae9c6b9)`()` | Returns a pointer to AccessToken_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetAccessTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1ad00933bc403c2718912eeef68b81433b)`() const` | Returns a pointer to AccessToken_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetAccessToken`](#structFRHAPI__OAuthTokenResponse_1ae2dfeea2ff279e98e8f0f908767a905f)`(const FString & NewValue)` | Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true.
+`public inline FORCEINLINE void `[`SetAccessToken`](#structFRHAPI__OAuthTokenResponse_1affebf97931934b11a01a8d652dd1931b)`(FString && NewValue)` | Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true using move semantics.
 `public inline void `[`ClearAccessToken`](#structFRHAPI__OAuthTokenResponse_1ab6549c31b60e4e562658dd43e3378a01)`()` | Clears the value of AccessToken_Optional and sets AccessToken_IsSet to false.
-`public inline bool `[`IsAccessTokenSet`](#structFRHAPI__OAuthTokenResponse_1a5713eecc8d96e10ec99bca32dc84f373)`() const` | Checks whether AccessToken_Optional has been set.
-`public inline FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a7660fcd42f11960cccca2310f6c0c276)`()` | Gets the value of RefreshToken_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a740a036412d72296183bc1ba0043cf2f)`() const` | Gets the value of RefreshToken_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a26a4cdbf705834681471b2c209d13ab5)`(const FString & DefaultValue) const` | Gets the value of RefreshToken_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a81d6ea5e6c84fb138e1b432d4bc2b276)`(FString & OutValue) const` | Fills OutValue with the value of RefreshToken_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a6f92240f4f70f0d84f1859f92d5ae56e)`()` | Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1acff99888ba00a692e42025e057455127)`() const` | Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1aa05bdee824029d4969384d63b60d964b)`(const FString & NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true.
-`public inline void `[`SetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a16e532d1687d669de60cee763ce7d0bd)`(FString && NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a22b17873f0111559e1ad7bad24b8c055)`()` | Gets the value of RefreshToken_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a93e0649e9452509bd67d1dd2f127527a)`() const` | Gets the value of RefreshToken_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a794bf8aef5840159e96b17460b19c2cd)`(const FString & DefaultValue) const` | Gets the value of RefreshToken_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1ae1f0f10932fc6f5ec55339a9b8515371)`(FString & OutValue) const` | Fills OutValue with the value of RefreshToken_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a0de6b7ae11da8ca2fa6008e27c639174)`()` | Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a2800d7b524f94fdc0cea12d232e70d54)`() const` | Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a0c1ebf87399d55370d77ade59712ff1a)`(const FString & NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true.
+`public inline FORCEINLINE void `[`SetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1ab3ebde69af0cdc4e092b197f55969dfb)`(FString && NewValue)` | Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics.
 `public inline void `[`ClearRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a3872fb44c576ce15ca44857c6033665a)`()` | Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false.
-`public inline bool `[`IsRefreshTokenSet`](#structFRHAPI__OAuthTokenResponse_1a2a281b02337f03ca992b519e3856ee07)`() const` | Checks whether RefreshToken_Optional has been set.
-`public inline bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a32ca5184652bb590f9b7ef9ad7d31059)`()` | Gets the value of NeedsEula_Optional, regardless of it having been set.
-`public inline const bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a6deec3c1600ce0dd35518c52ff100d04)`() const` | Gets the value of NeedsEula_Optional, regardless of it having been set.
-`public inline const bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1aa621a33d289d8ecdbefeaf0568b56630)`(const bool & DefaultValue) const` | Gets the value of NeedsEula_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a94c86f1b876bf3a628536c9240ba3079)`(bool & OutValue) const` | Fills OutValue with the value of NeedsEula_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetNeedsEulaOrNull`](#structFRHAPI__OAuthTokenResponse_1ad9d88667f3ef549aaf98b8dd58a20c1a)`()` | Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetNeedsEulaOrNull`](#structFRHAPI__OAuthTokenResponse_1a146d468b19eb57b59f1908df82b3fd20)`() const` | Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a7e7a168b2a90f611d4e732f246d3a5e4)`(const bool & NewValue)` | Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true.
-`public inline void `[`SetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1aeae6aab16a5f128bc870e6da7f0ffa48)`(bool && NewValue)` | Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true using move semantics.
+`public inline FORCEINLINE bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a40eb1974575449515f6aba9934f388ca)`()` | Gets the value of NeedsEula_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1ad9e845c6b7e8c1822ea6f5fd997fe920)`() const` | Gets the value of NeedsEula_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1ae8ff2da1b8c9df8481f14b91bb2a8107)`(const bool & DefaultValue) const` | Gets the value of NeedsEula_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1af4d18212ca1b95636f964a4b56e4f1c1)`(bool & OutValue) const` | Fills OutValue with the value of NeedsEula_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetNeedsEulaOrNull`](#structFRHAPI__OAuthTokenResponse_1a485244b9eddcba04c76470c0d250d2a0)`()` | Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetNeedsEulaOrNull`](#structFRHAPI__OAuthTokenResponse_1a6b6d118293944aa89f4d5812341f3fc6)`() const` | Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a584c923f9f72da05b5262fa18b13dfde)`(const bool & NewValue)` | Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true.
+`public inline FORCEINLINE void `[`SetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1ad7cfa7068d715cb5c44b17232fa57b5c)`(bool && NewValue)` | Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true using move semantics.
 `public inline void `[`ClearNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a26ca325763675827b1ebd81aea63f26a)`()` | Clears the value of NeedsEula_Optional and sets NeedsEula_IsSet to false.
-`public inline bool `[`IsNeedsEulaSet`](#structFRHAPI__OAuthTokenResponse_1aae90f2fafdd986e406e7492ee87eee24)`() const` | Checks whether NeedsEula_Optional has been set.
-`public inline bool `[`IsNeedsEulaDefaultValue`](#structFRHAPI__OAuthTokenResponse_1a3fe4cac97ef77737e6b180bef9d9292f)`() const` | Returns true if NeedsEula_Optional is set and matches the default value.
-`public inline void `[`SetNeedsEulaToDefault`](#structFRHAPI__OAuthTokenResponse_1a15665d390c7aa07289adaecab4a3f54c)`()` | Sets the value of NeedsEula_Optional to its default and also sets NeedsEula_IsSet to true.
-`public inline bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a2e6cf02411a4be38051e3106fcca9f23)`()` | Gets the value of NeedsTos_Optional, regardless of it having been set.
-`public inline const bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a0045a6bd6e09ad317abbea00fdffcdee)`() const` | Gets the value of NeedsTos_Optional, regardless of it having been set.
-`public inline const bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a6c4cc8d577d09e0205290c8e4b5e54cf)`(const bool & DefaultValue) const` | Gets the value of NeedsTos_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1ad43198bdc6ec608f736550210a773b05)`(bool & OutValue) const` | Fills OutValue with the value of NeedsTos_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetNeedsTosOrNull`](#structFRHAPI__OAuthTokenResponse_1a0b0a1ce8b99cecd764e6445c5d813311)`()` | Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetNeedsTosOrNull`](#structFRHAPI__OAuthTokenResponse_1a0d0598df71fe512a0700b908ec992610)`() const` | Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a33ae9b8c805b67a66daf75cc36ad5be4)`(const bool & NewValue)` | Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true.
-`public inline void `[`SetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a7feeeaa560078036777c7142cb92b853)`(bool && NewValue)` | Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_NeedsEula`](#structFRHAPI__OAuthTokenResponse_1ade098dc9613ffdd22879bf37adf9a81e)`()` | Returns the default value of NeedsEula.
+`public inline FORCEINLINE bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a6a8c8fe81e3485be4e97b6baebc312c5)`()` | Gets the value of NeedsTos_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a22789bb241414ed482b0a47c779f8b82)`() const` | Gets the value of NeedsTos_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a2d250fff7ae0549c51fb677ff0832d48)`(const bool & DefaultValue) const` | Gets the value of NeedsTos_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a9d514977d14be13688809298923c2237)`(bool & OutValue) const` | Fills OutValue with the value of NeedsTos_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetNeedsTosOrNull`](#structFRHAPI__OAuthTokenResponse_1ab1309adc45a644977db9c98b4ecb51a8)`()` | Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetNeedsTosOrNull`](#structFRHAPI__OAuthTokenResponse_1a4043ddb20354893bf71e60cf7b87578d)`() const` | Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a08b4f90f45dcdaa32b2bd4cdf73023a5)`(const bool & NewValue)` | Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true.
+`public inline FORCEINLINE void `[`SetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a653f12007deaa3336dbfa166be78e010)`(bool && NewValue)` | Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true using move semantics.
 `public inline void `[`ClearNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a11ea5150a0eb635f4e100fedb07dd1cd)`()` | Clears the value of NeedsTos_Optional and sets NeedsTos_IsSet to false.
-`public inline bool `[`IsNeedsTosSet`](#structFRHAPI__OAuthTokenResponse_1ad145bda6ad4cba61c3530706a13dda82)`() const` | Checks whether NeedsTos_Optional has been set.
-`public inline bool `[`IsNeedsTosDefaultValue`](#structFRHAPI__OAuthTokenResponse_1a8a47b39f4e3957936a62f08f4bd8f65a)`() const` | Returns true if NeedsTos_Optional is set and matches the default value.
-`public inline void `[`SetNeedsTosToDefault`](#structFRHAPI__OAuthTokenResponse_1a015e8453a81e47c94d4a9cfbceb9cc5f)`()` | Sets the value of NeedsTos_Optional to its default and also sets NeedsTos_IsSet to true.
-`public inline bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a050abf784394fe849495b5bc5535cd23)`()` | Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set.
-`public inline const bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ab85ea56478cc10db9110102e62f0d5a9)`() const` | Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set.
-`public inline const bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a2733675ac7ca5bc2cd6025c4e05364ec)`(const bool & DefaultValue) const` | Gets the value of NeedsPrivacyPolicy_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1aa4a3218db67d0728bfa123476c64b96e)`(bool & OutValue) const` | Fills OutValue with the value of NeedsPrivacyPolicy_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetNeedsPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenResponse_1a95ea472ba672cb61c31eb8687478e1c4)`()` | Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetNeedsPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenResponse_1a0da8d6abeed1c6b6a27225a54abd2a60)`() const` | Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a0f98fca320cab4f73fd6879ab3672d9a)`(const bool & NewValue)` | Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true.
-`public inline void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a0f0b56970f2568f231390635cbca781e)`(bool && NewValue)` | Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_NeedsTos`](#structFRHAPI__OAuthTokenResponse_1abec6536a692556dda6ebb6c40ae78ad3)`()` | Returns the default value of NeedsTos.
+`public inline FORCEINLINE bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a18944357af69e3cb9497e06226154a6e)`()` | Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ab679a69e0fc0c35342d9095ef2c198d8)`() const` | Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1aca644d55a1c6d2150951b21ad35099bb)`(const bool & DefaultValue) const` | Gets the value of NeedsPrivacyPolicy_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a7edf339baa10b148801586f3e51b872a)`(bool & OutValue) const` | Fills OutValue with the value of NeedsPrivacyPolicy_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetNeedsPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenResponse_1af0a4d474b1dd6f125099610de1c4a439)`()` | Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetNeedsPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenResponse_1a09093b9a4aff4a3f67992aafb54cba6d)`() const` | Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ac16c68c89910ccb23b6416b2076bbffb)`(const bool & NewValue)` | Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true.
+`public inline FORCEINLINE void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ab8dba215546664e5a802bccbdefd7069)`(bool && NewValue)` | Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true using move semantics.
 `public inline void `[`ClearNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ae51f4ff1afe199ec159f55e49322a640)`()` | Clears the value of NeedsPrivacyPolicy_Optional and sets NeedsPrivacyPolicy_IsSet to false.
-`public inline bool `[`IsNeedsPrivacyPolicySet`](#structFRHAPI__OAuthTokenResponse_1af8f21a661ba2f9d30e6ba6d719209cdf)`() const` | Checks whether NeedsPrivacyPolicy_Optional has been set.
-`public inline bool `[`IsNeedsPrivacyPolicyDefaultValue`](#structFRHAPI__OAuthTokenResponse_1a4ba25f0514ec678fae4446d9bf76a191)`() const` | Returns true if NeedsPrivacyPolicy_Optional is set and matches the default value.
-`public inline void `[`SetNeedsPrivacyPolicyToDefault`](#structFRHAPI__OAuthTokenResponse_1a7f1fa7a80ca6fe68497e004dbae793a0)`()` | Sets the value of NeedsPrivacyPolicy_Optional to its default and also sets NeedsPrivacyPolicy_IsSet to true.
-`public inline FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1aa577ffab22524adbc2e5aaede48848b0)`()` | Gets the value of RegeneratedCode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1ac34ca65261f372e2d3788c0a997ab92d)`() const` | Gets the value of RegeneratedCode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a7d9cd1cd0def9108722ee69ccb57fb25)`(const FString & DefaultValue) const` | Gets the value of RegeneratedCode_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a673e44863aba6ff967ec429d24ce0464)`(FString & OutValue) const` | Fills OutValue with the value of RegeneratedCode_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRegeneratedCodeOrNull`](#structFRHAPI__OAuthTokenResponse_1a5a510d339479c6639790cc940047a187)`()` | Returns a pointer to RegeneratedCode_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRegeneratedCodeOrNull`](#structFRHAPI__OAuthTokenResponse_1adb3d96595aa90a852dbaca687939e26c)`() const` | Returns a pointer to RegeneratedCode_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a17afaac910db72e8e995361ca44d6225)`(const FString & NewValue)` | Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet to true.
-`public inline void `[`SetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1aee2a2870719d79b996220df2014c4b82)`(FString && NewValue)` | Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_NeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1aae59862be3b1185f89a8908a181aa5c3)`()` | Returns the default value of NeedsPrivacyPolicy.
+`public inline FORCEINLINE FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a209c15611f286a185448cfa3ab79289d)`()` | Gets the value of RegeneratedCode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a5b2f85da488b72ec2e75e08ea8fe9071)`() const` | Gets the value of RegeneratedCode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a51c05db6f92a8e9bce2f4feb0ae5ba0e)`(const FString & DefaultValue) const` | Gets the value of RegeneratedCode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a02522fe269d5e69605b48225bc5b5454)`(FString & OutValue) const` | Fills OutValue with the value of RegeneratedCode_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRegeneratedCodeOrNull`](#structFRHAPI__OAuthTokenResponse_1ada45cb8051b6843a79e1a4d2d25e2258)`()` | Returns a pointer to RegeneratedCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRegeneratedCodeOrNull`](#structFRHAPI__OAuthTokenResponse_1a70ea9c8b8fd82a69c4e319bce2b8386b)`() const` | Returns a pointer to RegeneratedCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1acd894217a1455e789b66ced91939a83b)`(const FString & NewValue)` | Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet to true.
+`public inline FORCEINLINE void `[`SetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a802e291b6de1114a43db1439a9cc1fad)`(FString && NewValue)` | Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet to true using move semantics.
 `public inline void `[`ClearRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a61c9903d1213f0d2279b6631edcbf70c)`()` | Clears the value of RegeneratedCode_Optional and sets RegeneratedCode_IsSet to false.
-`public inline bool `[`IsRegeneratedCodeSet`](#structFRHAPI__OAuthTokenResponse_1a0a54f1b2ed2f3c6d5b7920b0441e231f)`() const` | Checks whether RegeneratedCode_Optional has been set.
-`public inline FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a85c1a151fd1f60bc41331b399204886e)`()` | Gets the value of ErrorMessage_Optional, regardless of it having been set.
-`public inline const FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1aa8afba93c56df6c7462810dfee020b9d)`() const` | Gets the value of ErrorMessage_Optional, regardless of it having been set.
-`public inline const FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a7895b04941e8cf97d1c4313778e14553)`(const FString & DefaultValue) const` | Gets the value of ErrorMessage_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a7157d20217a3594b651b42729d60059c)`(FString & OutValue) const` | Fills OutValue with the value of ErrorMessage_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetErrorMessageOrNull`](#structFRHAPI__OAuthTokenResponse_1a86c784557dc4ea4094987fb3df04ff6c)`()` | Returns a pointer to ErrorMessage_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetErrorMessageOrNull`](#structFRHAPI__OAuthTokenResponse_1a73727606d42f6b9378434d512acf256d)`() const` | Returns a pointer to ErrorMessage_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a1779086a426f6d906e925dd65fe150a7)`(const FString & NewValue)` | Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true.
-`public inline void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1adc81862d1923731f3d4404d9d184c49c)`(FString && NewValue)` | Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a61c5b75495052cdbcc61c173ed1295ae)`()` | Gets the value of ErrorMessage_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1ac5b34267dc1528bc9f6a44a88ec108c0)`() const` | Gets the value of ErrorMessage_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1ad3b93244b33213553b3821bbf9d8997c)`(const FString & DefaultValue) const` | Gets the value of ErrorMessage_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1ae957001d1aad3e4db72fe409f559cb37)`(FString & OutValue) const` | Fills OutValue with the value of ErrorMessage_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetErrorMessageOrNull`](#structFRHAPI__OAuthTokenResponse_1a19cb43ac0733a0f1ba62f7d595097e62)`()` | Returns a pointer to ErrorMessage_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetErrorMessageOrNull`](#structFRHAPI__OAuthTokenResponse_1a7d94ca0bab8fdaca18f80d8f5bd88832)`() const` | Returns a pointer to ErrorMessage_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1acdb9fbee42217caf618d52fb4a88dcb2)`(const FString & NewValue)` | Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true.
+`public inline FORCEINLINE void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a9ccfee7ebaf7e5322c92a36cf97b25a4)`(FString && NewValue)` | Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true using move semantics.
 `public inline void `[`ClearErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a80ef23c341b72eb8297c8accfdbc2c91)`()` | Clears the value of ErrorMessage_Optional and sets ErrorMessage_IsSet to false.
-`public inline bool `[`IsErrorMessageSet`](#structFRHAPI__OAuthTokenResponse_1a4bd2721d8ddc393729cf2967697df088)`() const` | Checks whether ErrorMessage_Optional has been set.
-`public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a494cc8bf84de5cd04dc71a881b8eccfd)`()` | Gets the value of Restrictions_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a60c55e5f7836f0df0e7bff46929d4706)`() const` | Gets the value of Restrictions_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a5be510ebd08c1885e21920507876937d)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & DefaultValue) const` | Gets the value of Restrictions_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1af1e16c67902b5ec80cd6bf378ed0e7c2)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & OutValue) const` | Fills OutValue with the value of Restrictions_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1ab81698b816695840043abea39656ee7b)`()` | Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1a19157e69fb7218bfd23c9223379f7a39)`() const` | Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a4ec6f9021c806a7af7dd0a9863e70d52)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & NewValue)` | Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true.
-`public inline void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1ad3f4cee0b888d0872c685cc1eed62893)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > && NewValue)` | Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a25d90dd69df3485c61b2225bedac2b67)`()` | Gets the value of Restrictions_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1ab2a0215d9e03fdd173a47d984305b986)`() const` | Gets the value of Restrictions_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a3c7cff879883ae247e97f6bdcdb04764)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & DefaultValue) const` | Gets the value of Restrictions_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a250c35faf903623a9a1a7195985b6e60)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & OutValue) const` | Fills OutValue with the value of Restrictions_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1aca64b62452b52f970b8dcb7d022bae7a)`()` | Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1a243f7befd6f96a56df572d6460b2b519)`() const` | Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a66f06918f135b0750ffa6131840754b0)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & NewValue)` | Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true.
+`public inline FORCEINLINE void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1ac1400d7b3a72e8298682b42cf71cb99f)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > && NewValue)` | Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true using move semantics.
 `public inline void `[`ClearRestrictions`](#structFRHAPI__OAuthTokenResponse_1a2cc2f58318024fe1815877cb012929be)`()` | Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false.
-`public inline bool `[`IsRestrictionsSet`](#structFRHAPI__OAuthTokenResponse_1a3cc2b9303928cd658394079350169459)`() const` | Checks whether Restrictions_Optional has been set.
 
 ### Members
 
@@ -209,35 +198,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a92dabecb88e121e9ad8473ec4a87a266)`()` <a id="structFRHAPI__OAuthTokenResponse_1a92dabecb88e121e9ad8473ec4a87a266"></a>
+#### `public inline FORCEINLINE FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a94b59748e09dd6c1b1d4d415f84a56b6)`()` <a id="structFRHAPI__OAuthTokenResponse_1a94b59748e09dd6c1b1d4d415f84a56b6"></a>
 
 Gets the value of AccessToken_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a4544a199638ca5b4c8097d7531b883b7)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a4544a199638ca5b4c8097d7531b883b7"></a>
+#### `public inline FORCEINLINE const FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a0fa93fb3b13fe6494b3403125336853b)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a0fa93fb3b13fe6494b3403125336853b"></a>
 
 Gets the value of AccessToken_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a8cb4d1c0b82b344019358c5f5c5f87ec)`(const FString & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a8cb4d1c0b82b344019358c5f5c5f87ec"></a>
+#### `public inline FORCEINLINE const FString & `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a8ce36776640ea758593f970e3ce35331)`(const FString & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a8ce36776640ea758593f970e3ce35331"></a>
 
 Gets the value of AccessToken_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1acc34b8247dd59a47d80307d5ba16a403)`(FString & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1acc34b8247dd59a47d80307d5ba16a403"></a>
+#### `public inline FORCEINLINE bool `[`GetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a7cc9b25d3e4082f2093e38f830e2b277)`(FString & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a7cc9b25d3e4082f2093e38f830e2b277"></a>
 
 Fills OutValue with the value of AccessToken_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetAccessTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1ad150f2029f6dcec428cac455fe39c62c)`()` <a id="structFRHAPI__OAuthTokenResponse_1ad150f2029f6dcec428cac455fe39c62c"></a>
+#### `public inline FORCEINLINE FString * `[`GetAccessTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a70e03ef65dcf4148c07eb372bae9c6b9)`()` <a id="structFRHAPI__OAuthTokenResponse_1a70e03ef65dcf4148c07eb372bae9c6b9"></a>
 
 Returns a pointer to AccessToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetAccessTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a935f03321a0b85710cf6a48442920bf4)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a935f03321a0b85710cf6a48442920bf4"></a>
+#### `public inline FORCEINLINE const FString * `[`GetAccessTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1ad00933bc403c2718912eeef68b81433b)`() const` <a id="structFRHAPI__OAuthTokenResponse_1ad00933bc403c2718912eeef68b81433b"></a>
 
 Returns a pointer to AccessToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a0b999fdad7a421a779fe675b544cd6bb)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a0b999fdad7a421a779fe675b544cd6bb"></a>
+#### `public inline FORCEINLINE void `[`SetAccessToken`](#structFRHAPI__OAuthTokenResponse_1ae2dfeea2ff279e98e8f0f908767a905f)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1ae2dfeea2ff279e98e8f0f908767a905f"></a>
 
 Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true.
 
-#### `public inline void `[`SetAccessToken`](#structFRHAPI__OAuthTokenResponse_1a2250495df42a88583c7a3282898c679d)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a2250495df42a88583c7a3282898c679d"></a>
+#### `public inline FORCEINLINE void `[`SetAccessToken`](#structFRHAPI__OAuthTokenResponse_1affebf97931934b11a01a8d652dd1931b)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1affebf97931934b11a01a8d652dd1931b"></a>
 
 Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true using move semantics.
 
@@ -245,39 +234,35 @@ Sets the value of AccessToken_Optional and also sets AccessToken_IsSet to true u
 
 Clears the value of AccessToken_Optional and sets AccessToken_IsSet to false.
 
-#### `public inline bool `[`IsAccessTokenSet`](#structFRHAPI__OAuthTokenResponse_1a5713eecc8d96e10ec99bca32dc84f373)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a5713eecc8d96e10ec99bca32dc84f373"></a>
-
-Checks whether AccessToken_Optional has been set.
-
-#### `public inline FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a7660fcd42f11960cccca2310f6c0c276)`()` <a id="structFRHAPI__OAuthTokenResponse_1a7660fcd42f11960cccca2310f6c0c276"></a>
+#### `public inline FORCEINLINE FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a22b17873f0111559e1ad7bad24b8c055)`()` <a id="structFRHAPI__OAuthTokenResponse_1a22b17873f0111559e1ad7bad24b8c055"></a>
 
 Gets the value of RefreshToken_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a740a036412d72296183bc1ba0043cf2f)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a740a036412d72296183bc1ba0043cf2f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a93e0649e9452509bd67d1dd2f127527a)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a93e0649e9452509bd67d1dd2f127527a"></a>
 
 Gets the value of RefreshToken_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a26a4cdbf705834681471b2c209d13ab5)`(const FString & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a26a4cdbf705834681471b2c209d13ab5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a794bf8aef5840159e96b17460b19c2cd)`(const FString & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a794bf8aef5840159e96b17460b19c2cd"></a>
 
 Gets the value of RefreshToken_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a81d6ea5e6c84fb138e1b432d4bc2b276)`(FString & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a81d6ea5e6c84fb138e1b432d4bc2b276"></a>
+#### `public inline FORCEINLINE bool `[`GetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1ae1f0f10932fc6f5ec55339a9b8515371)`(FString & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1ae1f0f10932fc6f5ec55339a9b8515371"></a>
 
 Fills OutValue with the value of RefreshToken_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a6f92240f4f70f0d84f1859f92d5ae56e)`()` <a id="structFRHAPI__OAuthTokenResponse_1a6f92240f4f70f0d84f1859f92d5ae56e"></a>
+#### `public inline FORCEINLINE FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a0de6b7ae11da8ca2fa6008e27c639174)`()` <a id="structFRHAPI__OAuthTokenResponse_1a0de6b7ae11da8ca2fa6008e27c639174"></a>
 
 Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1acff99888ba00a692e42025e057455127)`() const` <a id="structFRHAPI__OAuthTokenResponse_1acff99888ba00a692e42025e057455127"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRefreshTokenOrNull`](#structFRHAPI__OAuthTokenResponse_1a2800d7b524f94fdc0cea12d232e70d54)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a2800d7b524f94fdc0cea12d232e70d54"></a>
 
 Returns a pointer to RefreshToken_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1aa05bdee824029d4969384d63b60d964b)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1aa05bdee824029d4969384d63b60d964b"></a>
+#### `public inline FORCEINLINE void `[`SetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a0c1ebf87399d55370d77ade59712ff1a)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a0c1ebf87399d55370d77ade59712ff1a"></a>
 
 Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true.
 
-#### `public inline void `[`SetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1a16e532d1687d669de60cee763ce7d0bd)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a16e532d1687d669de60cee763ce7d0bd"></a>
+#### `public inline FORCEINLINE void `[`SetRefreshToken`](#structFRHAPI__OAuthTokenResponse_1ab3ebde69af0cdc4e092b197f55969dfb)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1ab3ebde69af0cdc4e092b197f55969dfb"></a>
 
 Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true using move semantics.
 
@@ -285,39 +270,35 @@ Sets the value of RefreshToken_Optional and also sets RefreshToken_IsSet to true
 
 Clears the value of RefreshToken_Optional and sets RefreshToken_IsSet to false.
 
-#### `public inline bool `[`IsRefreshTokenSet`](#structFRHAPI__OAuthTokenResponse_1a2a281b02337f03ca992b519e3856ee07)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a2a281b02337f03ca992b519e3856ee07"></a>
-
-Checks whether RefreshToken_Optional has been set.
-
-#### `public inline bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a32ca5184652bb590f9b7ef9ad7d31059)`()` <a id="structFRHAPI__OAuthTokenResponse_1a32ca5184652bb590f9b7ef9ad7d31059"></a>
+#### `public inline FORCEINLINE bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a40eb1974575449515f6aba9934f388ca)`()` <a id="structFRHAPI__OAuthTokenResponse_1a40eb1974575449515f6aba9934f388ca"></a>
 
 Gets the value of NeedsEula_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a6deec3c1600ce0dd35518c52ff100d04)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a6deec3c1600ce0dd35518c52ff100d04"></a>
+#### `public inline FORCEINLINE const bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1ad9e845c6b7e8c1822ea6f5fd997fe920)`() const` <a id="structFRHAPI__OAuthTokenResponse_1ad9e845c6b7e8c1822ea6f5fd997fe920"></a>
 
 Gets the value of NeedsEula_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1aa621a33d289d8ecdbefeaf0568b56630)`(const bool & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1aa621a33d289d8ecdbefeaf0568b56630"></a>
+#### `public inline FORCEINLINE const bool & `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1ae8ff2da1b8c9df8481f14b91bb2a8107)`(const bool & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1ae8ff2da1b8c9df8481f14b91bb2a8107"></a>
 
 Gets the value of NeedsEula_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a94c86f1b876bf3a628536c9240ba3079)`(bool & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a94c86f1b876bf3a628536c9240ba3079"></a>
+#### `public inline FORCEINLINE bool `[`GetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1af4d18212ca1b95636f964a4b56e4f1c1)`(bool & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1af4d18212ca1b95636f964a4b56e4f1c1"></a>
 
 Fills OutValue with the value of NeedsEula_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetNeedsEulaOrNull`](#structFRHAPI__OAuthTokenResponse_1ad9d88667f3ef549aaf98b8dd58a20c1a)`()` <a id="structFRHAPI__OAuthTokenResponse_1ad9d88667f3ef549aaf98b8dd58a20c1a"></a>
+#### `public inline FORCEINLINE bool * `[`GetNeedsEulaOrNull`](#structFRHAPI__OAuthTokenResponse_1a485244b9eddcba04c76470c0d250d2a0)`()` <a id="structFRHAPI__OAuthTokenResponse_1a485244b9eddcba04c76470c0d250d2a0"></a>
 
 Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetNeedsEulaOrNull`](#structFRHAPI__OAuthTokenResponse_1a146d468b19eb57b59f1908df82b3fd20)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a146d468b19eb57b59f1908df82b3fd20"></a>
+#### `public inline FORCEINLINE const bool * `[`GetNeedsEulaOrNull`](#structFRHAPI__OAuthTokenResponse_1a6b6d118293944aa89f4d5812341f3fc6)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a6b6d118293944aa89f4d5812341f3fc6"></a>
 
 Returns a pointer to NeedsEula_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a7e7a168b2a90f611d4e732f246d3a5e4)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a7e7a168b2a90f611d4e732f246d3a5e4"></a>
+#### `public inline FORCEINLINE void `[`SetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1a584c923f9f72da05b5262fa18b13dfde)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a584c923f9f72da05b5262fa18b13dfde"></a>
 
 Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true.
 
-#### `public inline void `[`SetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1aeae6aab16a5f128bc870e6da7f0ffa48)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1aeae6aab16a5f128bc870e6da7f0ffa48"></a>
+#### `public inline FORCEINLINE void `[`SetNeedsEula`](#structFRHAPI__OAuthTokenResponse_1ad7cfa7068d715cb5c44b17232fa57b5c)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1ad7cfa7068d715cb5c44b17232fa57b5c"></a>
 
 Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true using move semantics.
 
@@ -325,47 +306,39 @@ Sets the value of NeedsEula_Optional and also sets NeedsEula_IsSet to true using
 
 Clears the value of NeedsEula_Optional and sets NeedsEula_IsSet to false.
 
-#### `public inline bool `[`IsNeedsEulaSet`](#structFRHAPI__OAuthTokenResponse_1aae90f2fafdd986e406e7492ee87eee24)`() const` <a id="structFRHAPI__OAuthTokenResponse_1aae90f2fafdd986e406e7492ee87eee24"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_NeedsEula`](#structFRHAPI__OAuthTokenResponse_1ade098dc9613ffdd22879bf37adf9a81e)`()` <a id="structFRHAPI__OAuthTokenResponse_1ade098dc9613ffdd22879bf37adf9a81e"></a>
 
-Checks whether NeedsEula_Optional has been set.
+Returns the default value of NeedsEula.
 
-#### `public inline bool `[`IsNeedsEulaDefaultValue`](#structFRHAPI__OAuthTokenResponse_1a3fe4cac97ef77737e6b180bef9d9292f)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a3fe4cac97ef77737e6b180bef9d9292f"></a>
-
-Returns true if NeedsEula_Optional is set and matches the default value.
-
-#### `public inline void `[`SetNeedsEulaToDefault`](#structFRHAPI__OAuthTokenResponse_1a15665d390c7aa07289adaecab4a3f54c)`()` <a id="structFRHAPI__OAuthTokenResponse_1a15665d390c7aa07289adaecab4a3f54c"></a>
-
-Sets the value of NeedsEula_Optional to its default and also sets NeedsEula_IsSet to true.
-
-#### `public inline bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a2e6cf02411a4be38051e3106fcca9f23)`()` <a id="structFRHAPI__OAuthTokenResponse_1a2e6cf02411a4be38051e3106fcca9f23"></a>
+#### `public inline FORCEINLINE bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a6a8c8fe81e3485be4e97b6baebc312c5)`()` <a id="structFRHAPI__OAuthTokenResponse_1a6a8c8fe81e3485be4e97b6baebc312c5"></a>
 
 Gets the value of NeedsTos_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a0045a6bd6e09ad317abbea00fdffcdee)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a0045a6bd6e09ad317abbea00fdffcdee"></a>
+#### `public inline FORCEINLINE const bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a22789bb241414ed482b0a47c779f8b82)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a22789bb241414ed482b0a47c779f8b82"></a>
 
 Gets the value of NeedsTos_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a6c4cc8d577d09e0205290c8e4b5e54cf)`(const bool & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a6c4cc8d577d09e0205290c8e4b5e54cf"></a>
+#### `public inline FORCEINLINE const bool & `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a2d250fff7ae0549c51fb677ff0832d48)`(const bool & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a2d250fff7ae0549c51fb677ff0832d48"></a>
 
 Gets the value of NeedsTos_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1ad43198bdc6ec608f736550210a773b05)`(bool & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1ad43198bdc6ec608f736550210a773b05"></a>
+#### `public inline FORCEINLINE bool `[`GetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a9d514977d14be13688809298923c2237)`(bool & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a9d514977d14be13688809298923c2237"></a>
 
 Fills OutValue with the value of NeedsTos_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetNeedsTosOrNull`](#structFRHAPI__OAuthTokenResponse_1a0b0a1ce8b99cecd764e6445c5d813311)`()` <a id="structFRHAPI__OAuthTokenResponse_1a0b0a1ce8b99cecd764e6445c5d813311"></a>
+#### `public inline FORCEINLINE bool * `[`GetNeedsTosOrNull`](#structFRHAPI__OAuthTokenResponse_1ab1309adc45a644977db9c98b4ecb51a8)`()` <a id="structFRHAPI__OAuthTokenResponse_1ab1309adc45a644977db9c98b4ecb51a8"></a>
 
 Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetNeedsTosOrNull`](#structFRHAPI__OAuthTokenResponse_1a0d0598df71fe512a0700b908ec992610)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a0d0598df71fe512a0700b908ec992610"></a>
+#### `public inline FORCEINLINE const bool * `[`GetNeedsTosOrNull`](#structFRHAPI__OAuthTokenResponse_1a4043ddb20354893bf71e60cf7b87578d)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a4043ddb20354893bf71e60cf7b87578d"></a>
 
 Returns a pointer to NeedsTos_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a33ae9b8c805b67a66daf75cc36ad5be4)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a33ae9b8c805b67a66daf75cc36ad5be4"></a>
+#### `public inline FORCEINLINE void `[`SetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a08b4f90f45dcdaa32b2bd4cdf73023a5)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a08b4f90f45dcdaa32b2bd4cdf73023a5"></a>
 
 Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true.
 
-#### `public inline void `[`SetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a7feeeaa560078036777c7142cb92b853)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a7feeeaa560078036777c7142cb92b853"></a>
+#### `public inline FORCEINLINE void `[`SetNeedsTos`](#structFRHAPI__OAuthTokenResponse_1a653f12007deaa3336dbfa166be78e010)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a653f12007deaa3336dbfa166be78e010"></a>
 
 Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true using move semantics.
 
@@ -373,47 +346,39 @@ Sets the value of NeedsTos_Optional and also sets NeedsTos_IsSet to true using m
 
 Clears the value of NeedsTos_Optional and sets NeedsTos_IsSet to false.
 
-#### `public inline bool `[`IsNeedsTosSet`](#structFRHAPI__OAuthTokenResponse_1ad145bda6ad4cba61c3530706a13dda82)`() const` <a id="structFRHAPI__OAuthTokenResponse_1ad145bda6ad4cba61c3530706a13dda82"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_NeedsTos`](#structFRHAPI__OAuthTokenResponse_1abec6536a692556dda6ebb6c40ae78ad3)`()` <a id="structFRHAPI__OAuthTokenResponse_1abec6536a692556dda6ebb6c40ae78ad3"></a>
 
-Checks whether NeedsTos_Optional has been set.
+Returns the default value of NeedsTos.
 
-#### `public inline bool `[`IsNeedsTosDefaultValue`](#structFRHAPI__OAuthTokenResponse_1a8a47b39f4e3957936a62f08f4bd8f65a)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a8a47b39f4e3957936a62f08f4bd8f65a"></a>
-
-Returns true if NeedsTos_Optional is set and matches the default value.
-
-#### `public inline void `[`SetNeedsTosToDefault`](#structFRHAPI__OAuthTokenResponse_1a015e8453a81e47c94d4a9cfbceb9cc5f)`()` <a id="structFRHAPI__OAuthTokenResponse_1a015e8453a81e47c94d4a9cfbceb9cc5f"></a>
-
-Sets the value of NeedsTos_Optional to its default and also sets NeedsTos_IsSet to true.
-
-#### `public inline bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a050abf784394fe849495b5bc5535cd23)`()` <a id="structFRHAPI__OAuthTokenResponse_1a050abf784394fe849495b5bc5535cd23"></a>
+#### `public inline FORCEINLINE bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a18944357af69e3cb9497e06226154a6e)`()` <a id="structFRHAPI__OAuthTokenResponse_1a18944357af69e3cb9497e06226154a6e"></a>
 
 Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ab85ea56478cc10db9110102e62f0d5a9)`() const` <a id="structFRHAPI__OAuthTokenResponse_1ab85ea56478cc10db9110102e62f0d5a9"></a>
+#### `public inline FORCEINLINE const bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ab679a69e0fc0c35342d9095ef2c198d8)`() const` <a id="structFRHAPI__OAuthTokenResponse_1ab679a69e0fc0c35342d9095ef2c198d8"></a>
 
 Gets the value of NeedsPrivacyPolicy_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a2733675ac7ca5bc2cd6025c4e05364ec)`(const bool & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a2733675ac7ca5bc2cd6025c4e05364ec"></a>
+#### `public inline FORCEINLINE const bool & `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1aca644d55a1c6d2150951b21ad35099bb)`(const bool & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1aca644d55a1c6d2150951b21ad35099bb"></a>
 
 Gets the value of NeedsPrivacyPolicy_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1aa4a3218db67d0728bfa123476c64b96e)`(bool & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1aa4a3218db67d0728bfa123476c64b96e"></a>
+#### `public inline FORCEINLINE bool `[`GetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a7edf339baa10b148801586f3e51b872a)`(bool & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a7edf339baa10b148801586f3e51b872a"></a>
 
 Fills OutValue with the value of NeedsPrivacyPolicy_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetNeedsPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenResponse_1a95ea472ba672cb61c31eb8687478e1c4)`()` <a id="structFRHAPI__OAuthTokenResponse_1a95ea472ba672cb61c31eb8687478e1c4"></a>
+#### `public inline FORCEINLINE bool * `[`GetNeedsPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenResponse_1af0a4d474b1dd6f125099610de1c4a439)`()` <a id="structFRHAPI__OAuthTokenResponse_1af0a4d474b1dd6f125099610de1c4a439"></a>
 
 Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetNeedsPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenResponse_1a0da8d6abeed1c6b6a27225a54abd2a60)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a0da8d6abeed1c6b6a27225a54abd2a60"></a>
+#### `public inline FORCEINLINE const bool * `[`GetNeedsPrivacyPolicyOrNull`](#structFRHAPI__OAuthTokenResponse_1a09093b9a4aff4a3f67992aafb54cba6d)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a09093b9a4aff4a3f67992aafb54cba6d"></a>
 
 Returns a pointer to NeedsPrivacyPolicy_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a0f98fca320cab4f73fd6879ab3672d9a)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a0f98fca320cab4f73fd6879ab3672d9a"></a>
+#### `public inline FORCEINLINE void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ac16c68c89910ccb23b6416b2076bbffb)`(const bool & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1ac16c68c89910ccb23b6416b2076bbffb"></a>
 
 Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true.
 
-#### `public inline void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1a0f0b56970f2568f231390635cbca781e)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a0f0b56970f2568f231390635cbca781e"></a>
+#### `public inline FORCEINLINE void `[`SetNeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1ab8dba215546664e5a802bccbdefd7069)`(bool && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1ab8dba215546664e5a802bccbdefd7069"></a>
 
 Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_IsSet to true using move semantics.
 
@@ -421,47 +386,39 @@ Sets the value of NeedsPrivacyPolicy_Optional and also sets NeedsPrivacyPolicy_I
 
 Clears the value of NeedsPrivacyPolicy_Optional and sets NeedsPrivacyPolicy_IsSet to false.
 
-#### `public inline bool `[`IsNeedsPrivacyPolicySet`](#structFRHAPI__OAuthTokenResponse_1af8f21a661ba2f9d30e6ba6d719209cdf)`() const` <a id="structFRHAPI__OAuthTokenResponse_1af8f21a661ba2f9d30e6ba6d719209cdf"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_NeedsPrivacyPolicy`](#structFRHAPI__OAuthTokenResponse_1aae59862be3b1185f89a8908a181aa5c3)`()` <a id="structFRHAPI__OAuthTokenResponse_1aae59862be3b1185f89a8908a181aa5c3"></a>
 
-Checks whether NeedsPrivacyPolicy_Optional has been set.
+Returns the default value of NeedsPrivacyPolicy.
 
-#### `public inline bool `[`IsNeedsPrivacyPolicyDefaultValue`](#structFRHAPI__OAuthTokenResponse_1a4ba25f0514ec678fae4446d9bf76a191)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a4ba25f0514ec678fae4446d9bf76a191"></a>
-
-Returns true if NeedsPrivacyPolicy_Optional is set and matches the default value.
-
-#### `public inline void `[`SetNeedsPrivacyPolicyToDefault`](#structFRHAPI__OAuthTokenResponse_1a7f1fa7a80ca6fe68497e004dbae793a0)`()` <a id="structFRHAPI__OAuthTokenResponse_1a7f1fa7a80ca6fe68497e004dbae793a0"></a>
-
-Sets the value of NeedsPrivacyPolicy_Optional to its default and also sets NeedsPrivacyPolicy_IsSet to true.
-
-#### `public inline FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1aa577ffab22524adbc2e5aaede48848b0)`()` <a id="structFRHAPI__OAuthTokenResponse_1aa577ffab22524adbc2e5aaede48848b0"></a>
+#### `public inline FORCEINLINE FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a209c15611f286a185448cfa3ab79289d)`()` <a id="structFRHAPI__OAuthTokenResponse_1a209c15611f286a185448cfa3ab79289d"></a>
 
 Gets the value of RegeneratedCode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1ac34ca65261f372e2d3788c0a997ab92d)`() const` <a id="structFRHAPI__OAuthTokenResponse_1ac34ca65261f372e2d3788c0a997ab92d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a5b2f85da488b72ec2e75e08ea8fe9071)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a5b2f85da488b72ec2e75e08ea8fe9071"></a>
 
 Gets the value of RegeneratedCode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a7d9cd1cd0def9108722ee69ccb57fb25)`(const FString & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a7d9cd1cd0def9108722ee69ccb57fb25"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a51c05db6f92a8e9bce2f4feb0ae5ba0e)`(const FString & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a51c05db6f92a8e9bce2f4feb0ae5ba0e"></a>
 
 Gets the value of RegeneratedCode_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a673e44863aba6ff967ec429d24ce0464)`(FString & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a673e44863aba6ff967ec429d24ce0464"></a>
+#### `public inline FORCEINLINE bool `[`GetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a02522fe269d5e69605b48225bc5b5454)`(FString & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a02522fe269d5e69605b48225bc5b5454"></a>
 
 Fills OutValue with the value of RegeneratedCode_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRegeneratedCodeOrNull`](#structFRHAPI__OAuthTokenResponse_1a5a510d339479c6639790cc940047a187)`()` <a id="structFRHAPI__OAuthTokenResponse_1a5a510d339479c6639790cc940047a187"></a>
+#### `public inline FORCEINLINE FString * `[`GetRegeneratedCodeOrNull`](#structFRHAPI__OAuthTokenResponse_1ada45cb8051b6843a79e1a4d2d25e2258)`()` <a id="structFRHAPI__OAuthTokenResponse_1ada45cb8051b6843a79e1a4d2d25e2258"></a>
 
 Returns a pointer to RegeneratedCode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRegeneratedCodeOrNull`](#structFRHAPI__OAuthTokenResponse_1adb3d96595aa90a852dbaca687939e26c)`() const` <a id="structFRHAPI__OAuthTokenResponse_1adb3d96595aa90a852dbaca687939e26c"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRegeneratedCodeOrNull`](#structFRHAPI__OAuthTokenResponse_1a70ea9c8b8fd82a69c4e319bce2b8386b)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a70ea9c8b8fd82a69c4e319bce2b8386b"></a>
 
 Returns a pointer to RegeneratedCode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a17afaac910db72e8e995361ca44d6225)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a17afaac910db72e8e995361ca44d6225"></a>
+#### `public inline FORCEINLINE void `[`SetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1acd894217a1455e789b66ced91939a83b)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1acd894217a1455e789b66ced91939a83b"></a>
 
 Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet to true.
 
-#### `public inline void `[`SetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1aee2a2870719d79b996220df2014c4b82)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1aee2a2870719d79b996220df2014c4b82"></a>
+#### `public inline FORCEINLINE void `[`SetRegeneratedCode`](#structFRHAPI__OAuthTokenResponse_1a802e291b6de1114a43db1439a9cc1fad)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a802e291b6de1114a43db1439a9cc1fad"></a>
 
 Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet to true using move semantics.
 
@@ -469,39 +426,35 @@ Sets the value of RegeneratedCode_Optional and also sets RegeneratedCode_IsSet t
 
 Clears the value of RegeneratedCode_Optional and sets RegeneratedCode_IsSet to false.
 
-#### `public inline bool `[`IsRegeneratedCodeSet`](#structFRHAPI__OAuthTokenResponse_1a0a54f1b2ed2f3c6d5b7920b0441e231f)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a0a54f1b2ed2f3c6d5b7920b0441e231f"></a>
-
-Checks whether RegeneratedCode_Optional has been set.
-
-#### `public inline FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a85c1a151fd1f60bc41331b399204886e)`()` <a id="structFRHAPI__OAuthTokenResponse_1a85c1a151fd1f60bc41331b399204886e"></a>
+#### `public inline FORCEINLINE FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a61c5b75495052cdbcc61c173ed1295ae)`()` <a id="structFRHAPI__OAuthTokenResponse_1a61c5b75495052cdbcc61c173ed1295ae"></a>
 
 Gets the value of ErrorMessage_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1aa8afba93c56df6c7462810dfee020b9d)`() const` <a id="structFRHAPI__OAuthTokenResponse_1aa8afba93c56df6c7462810dfee020b9d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1ac5b34267dc1528bc9f6a44a88ec108c0)`() const` <a id="structFRHAPI__OAuthTokenResponse_1ac5b34267dc1528bc9f6a44a88ec108c0"></a>
 
 Gets the value of ErrorMessage_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a7895b04941e8cf97d1c4313778e14553)`(const FString & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a7895b04941e8cf97d1c4313778e14553"></a>
+#### `public inline FORCEINLINE const FString & `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1ad3b93244b33213553b3821bbf9d8997c)`(const FString & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1ad3b93244b33213553b3821bbf9d8997c"></a>
 
 Gets the value of ErrorMessage_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a7157d20217a3594b651b42729d60059c)`(FString & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a7157d20217a3594b651b42729d60059c"></a>
+#### `public inline FORCEINLINE bool `[`GetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1ae957001d1aad3e4db72fe409f559cb37)`(FString & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1ae957001d1aad3e4db72fe409f559cb37"></a>
 
 Fills OutValue with the value of ErrorMessage_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetErrorMessageOrNull`](#structFRHAPI__OAuthTokenResponse_1a86c784557dc4ea4094987fb3df04ff6c)`()` <a id="structFRHAPI__OAuthTokenResponse_1a86c784557dc4ea4094987fb3df04ff6c"></a>
+#### `public inline FORCEINLINE FString * `[`GetErrorMessageOrNull`](#structFRHAPI__OAuthTokenResponse_1a19cb43ac0733a0f1ba62f7d595097e62)`()` <a id="structFRHAPI__OAuthTokenResponse_1a19cb43ac0733a0f1ba62f7d595097e62"></a>
 
 Returns a pointer to ErrorMessage_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetErrorMessageOrNull`](#structFRHAPI__OAuthTokenResponse_1a73727606d42f6b9378434d512acf256d)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a73727606d42f6b9378434d512acf256d"></a>
+#### `public inline FORCEINLINE const FString * `[`GetErrorMessageOrNull`](#structFRHAPI__OAuthTokenResponse_1a7d94ca0bab8fdaca18f80d8f5bd88832)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a7d94ca0bab8fdaca18f80d8f5bd88832"></a>
 
 Returns a pointer to ErrorMessage_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a1779086a426f6d906e925dd65fe150a7)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a1779086a426f6d906e925dd65fe150a7"></a>
+#### `public inline FORCEINLINE void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1acdb9fbee42217caf618d52fb4a88dcb2)`(const FString & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1acdb9fbee42217caf618d52fb4a88dcb2"></a>
 
 Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true.
 
-#### `public inline void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1adc81862d1923731f3d4404d9d184c49c)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1adc81862d1923731f3d4404d9d184c49c"></a>
+#### `public inline FORCEINLINE void `[`SetErrorMessage`](#structFRHAPI__OAuthTokenResponse_1a9ccfee7ebaf7e5322c92a36cf97b25a4)`(FString && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a9ccfee7ebaf7e5322c92a36cf97b25a4"></a>
 
 Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true using move semantics.
 
@@ -509,47 +462,39 @@ Sets the value of ErrorMessage_Optional and also sets ErrorMessage_IsSet to true
 
 Clears the value of ErrorMessage_Optional and sets ErrorMessage_IsSet to false.
 
-#### `public inline bool `[`IsErrorMessageSet`](#structFRHAPI__OAuthTokenResponse_1a4bd2721d8ddc393729cf2967697df088)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a4bd2721d8ddc393729cf2967697df088"></a>
-
-Checks whether ErrorMessage_Optional has been set.
-
-#### `public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a494cc8bf84de5cd04dc71a881b8eccfd)`()` <a id="structFRHAPI__OAuthTokenResponse_1a494cc8bf84de5cd04dc71a881b8eccfd"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a25d90dd69df3485c61b2225bedac2b67)`()` <a id="structFRHAPI__OAuthTokenResponse_1a25d90dd69df3485c61b2225bedac2b67"></a>
 
 Gets the value of Restrictions_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a60c55e5f7836f0df0e7bff46929d4706)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a60c55e5f7836f0df0e7bff46929d4706"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1ab2a0215d9e03fdd173a47d984305b986)`() const` <a id="structFRHAPI__OAuthTokenResponse_1ab2a0215d9e03fdd173a47d984305b986"></a>
 
 Gets the value of Restrictions_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a5be510ebd08c1885e21920507876937d)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a5be510ebd08c1885e21920507876937d"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a3c7cff879883ae247e97f6bdcdb04764)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & DefaultValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a3c7cff879883ae247e97f6bdcdb04764"></a>
 
 Gets the value of Restrictions_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1af1e16c67902b5ec80cd6bf378ed0e7c2)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1af1e16c67902b5ec80cd6bf378ed0e7c2"></a>
+#### `public inline FORCEINLINE bool `[`GetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a250c35faf903623a9a1a7195985b6e60)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & OutValue) const` <a id="structFRHAPI__OAuthTokenResponse_1a250c35faf903623a9a1a7195985b6e60"></a>
 
 Fills OutValue with the value of Restrictions_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1ab81698b816695840043abea39656ee7b)`()` <a id="structFRHAPI__OAuthTokenResponse_1ab81698b816695840043abea39656ee7b"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1aca64b62452b52f970b8dcb7d022bae7a)`()` <a id="structFRHAPI__OAuthTokenResponse_1aca64b62452b52f970b8dcb7d022bae7a"></a>
 
 Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1a19157e69fb7218bfd23c9223379f7a39)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a19157e69fb7218bfd23c9223379f7a39"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > * `[`GetRestrictionsOrNull`](#structFRHAPI__OAuthTokenResponse_1a243f7befd6f96a56df572d6460b2b519)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a243f7befd6f96a56df572d6460b2b519"></a>
 
 Returns a pointer to Restrictions_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a4ec6f9021c806a7af7dd0a9863e70d52)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a4ec6f9021c806a7af7dd0a9863e70d52"></a>
+#### `public inline FORCEINLINE void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1a66f06918f135b0750ffa6131840754b0)`(const TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > & NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1a66f06918f135b0750ffa6131840754b0"></a>
 
 Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true.
 
-#### `public inline void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1ad3f4cee0b888d0872c685cc1eed62893)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1ad3f4cee0b888d0872c685cc1eed62893"></a>
+#### `public inline FORCEINLINE void `[`SetRestrictions`](#structFRHAPI__OAuthTokenResponse_1ac1400d7b3a72e8298682b42cf71cb99f)`(TArray< `[`FRHAPI_Restriction`](RHAPI_Restriction.md#structFRHAPI__Restriction)` > && NewValue)` <a id="structFRHAPI__OAuthTokenResponse_1ac1400d7b3a72e8298682b42cf71cb99f"></a>
 
 Sets the value of Restrictions_Optional and also sets Restrictions_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearRestrictions`](#structFRHAPI__OAuthTokenResponse_1a2cc2f58318024fe1815877cb012929be)`()` <a id="structFRHAPI__OAuthTokenResponse_1a2cc2f58318024fe1815877cb012929be"></a>
 
 Clears the value of Restrictions_Optional and sets Restrictions_IsSet to false.
-
-#### `public inline bool `[`IsRestrictionsSet`](#structFRHAPI__OAuthTokenResponse_1a3cc2b9303928cd658394079350169459)`() const` <a id="structFRHAPI__OAuthTokenResponse_1a3cc2b9303928cd658394079350169459"></a>
-
-Checks whether Restrictions_Optional has been set.
 

@@ -33,58 +33,52 @@ Entitlement for a platform. This takes in a sku and platform entitlement id and 
 `public bool `[`OrderId_IsSet`](#structFRHAPI__PlatformEntitlement_1a2f2afbbb21016ec66a725cfe7d1406a6) | true if OrderId_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlatformEntitlement_1a4d50c6f627905016240b9c2fa85791af)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlatformEntitlement_1a55ed67228a18e39bbbc3f40ef7a9e44f)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetPlatformSku`](#structFRHAPI__PlatformEntitlement_1a6e883472a27ad2a22c739651340ab3ec)`()` | Gets the value of PlatformSku.
-`public inline const FString & `[`GetPlatformSku`](#structFRHAPI__PlatformEntitlement_1a020f4f837da85878531cd0fac9e1dfb3)`() const` | Gets the value of PlatformSku.
-`public inline void `[`SetPlatformSku`](#structFRHAPI__PlatformEntitlement_1aef9e9b4244aee6974b8374afcbcb6080)`(const FString & NewValue)` | Sets the value of PlatformSku.
-`public inline void `[`SetPlatformSku`](#structFRHAPI__PlatformEntitlement_1a23caff3de089be3f4dc84b0c9996eaf0)`(FString && NewValue)` | Sets the value of PlatformSku using move semantics.
-`public inline FString & `[`GetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a00e5245e1af1bff4fd407840b328731f)`()` | Gets the value of PlatformEntitlementId.
-`public inline const FString & `[`GetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1aeb04516c7e60fe4a9610a444ea783415)`() const` | Gets the value of PlatformEntitlementId.
-`public inline void `[`SetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a33f66eb90570001ef575b5a7d1cd17c9)`(const FString & NewValue)` | Sets the value of PlatformEntitlementId.
-`public inline void `[`SetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1ac87cdfe9a927df24483e7055b354cf00)`(FString && NewValue)` | Sets the value of PlatformEntitlementId using move semantics.
-`public inline int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1a3de5b2cdf0f3aa32c56ac1137a1e8fc9)`()` | Gets the value of Quantity_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1ad62a8884719d4677ece2ddc2138fa0e3)`() const` | Gets the value of Quantity_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1afdb1f5982a384b305ba2145b96b8b0b6)`(const int32 & DefaultValue) const` | Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1adc2c8f58a43f1f99de209a3efb45f0f0)`(int32 & OutValue) const` | Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetQuantityOrNull`](#structFRHAPI__PlatformEntitlement_1a57a12f2a44e26c89d3532ba49204d14c)`()` | Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetQuantityOrNull`](#structFRHAPI__PlatformEntitlement_1a1ab864c8ac287dc57bfc72004a610d8c)`() const` | Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetQuantity`](#structFRHAPI__PlatformEntitlement_1a8e36ac187725537298fa3b60910e5358)`(const int32 & NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true.
-`public inline void `[`SetQuantity`](#structFRHAPI__PlatformEntitlement_1a55ddc557bdf3ef1eeba04314a2ffa8dc)`(int32 && NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetPlatformSku`](#structFRHAPI__PlatformEntitlement_1aeb4376617f4e7bb3340e74ef4a4ec4ff)`()` | Gets the value of PlatformSku.
+`public inline FORCEINLINE const FString & `[`GetPlatformSku`](#structFRHAPI__PlatformEntitlement_1aa0777786322720408cb459be68e7344c)`() const` | Gets the value of PlatformSku.
+`public inline FORCEINLINE void `[`SetPlatformSku`](#structFRHAPI__PlatformEntitlement_1aa354e092a0c0f76d6a93738437d368fb)`(const FString & NewValue)` | Sets the value of PlatformSku.
+`public inline FORCEINLINE void `[`SetPlatformSku`](#structFRHAPI__PlatformEntitlement_1a05110895093d578147a9f4f0b721470c)`(FString && NewValue)` | Sets the value of PlatformSku using move semantics.
+`public inline FORCEINLINE FString & `[`GetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a2695285c0314207ae832ab9ad318fead)`()` | Gets the value of PlatformEntitlementId.
+`public inline FORCEINLINE const FString & `[`GetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a2759fdd70c580bd1b6cc8bef7b26ca84)`() const` | Gets the value of PlatformEntitlementId.
+`public inline FORCEINLINE void `[`SetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a926d7cdc54d9a63a98eb14145632f6a5)`(const FString & NewValue)` | Sets the value of PlatformEntitlementId.
+`public inline FORCEINLINE void `[`SetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a9c28e746e1da0e12d7f743a93b448b3e)`(FString && NewValue)` | Sets the value of PlatformEntitlementId using move semantics.
+`public inline FORCEINLINE int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1a3966cce539a8c54d1959902fa1005bfb)`()` | Gets the value of Quantity_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1adf3572ca6b4b606c4177fc3b7a49b292)`() const` | Gets the value of Quantity_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1ac115d1e5755f46ec35a8a753c93a32d6)`(const int32 & DefaultValue) const` | Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1a7aac0ea315affec06e3cf5c9c2d2a956)`(int32 & OutValue) const` | Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetQuantityOrNull`](#structFRHAPI__PlatformEntitlement_1aebb4a5e5bece823ffb3ae25b9027b249)`()` | Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetQuantityOrNull`](#structFRHAPI__PlatformEntitlement_1ad8f96d30e2dc5a72c24c56ca53ecfa9b)`() const` | Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__PlatformEntitlement_1ab7878306172d7b0f1f1542a1a60c025b)`(const int32 & NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true.
+`public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__PlatformEntitlement_1a8a5a91570e4d4c93406b39ea43eaecdf)`(int32 && NewValue)` | Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics.
 `public inline void `[`ClearQuantity`](#structFRHAPI__PlatformEntitlement_1a0a7253e3dc98331cb4688fadb3d5ba17)`()` | Clears the value of Quantity_Optional and sets Quantity_IsSet to false.
-`public inline bool `[`IsQuantitySet`](#structFRHAPI__PlatformEntitlement_1a91a19cb245b146502ef7e3938bf9bed9)`() const` | Checks whether Quantity_Optional has been set.
-`public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__PlatformEntitlement_1a5dcfd409121d5748761dd5bc2c37ff51)`() const` | Returns true if Quantity_Optional is set and matches the default value.
-`public inline void `[`SetQuantityToDefault`](#structFRHAPI__PlatformEntitlement_1a1cbce8267d138f0f12f14137240d78ac)`()` | Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true.
-`public inline ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a6c00a3a51a8624c126bab0a9e66eeb84)`()` | Gets the value of Status_Optional, regardless of it having been set.
-`public inline const ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a75af06dbd4c902d9cf3fd30c3b938cb8)`() const` | Gets the value of Status_Optional, regardless of it having been set.
-`public inline const ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1aef4367baa8b6b2677746609b0b8b804c)`(const ERHAPI_EntitlementStatus & DefaultValue) const` | Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a20ac5c33deadc2a4890887f370090097)`(ERHAPI_EntitlementStatus & OutValue) const` | Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false.
-`public inline ERHAPI_EntitlementStatus * `[`GetStatusOrNull`](#structFRHAPI__PlatformEntitlement_1a0a5475f8a7b648a710a6e1e5487b0f38)`()` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
-`public inline const ERHAPI_EntitlementStatus * `[`GetStatusOrNull`](#structFRHAPI__PlatformEntitlement_1a0fef143ea57b98c3c99ff0da35f09133)`() const` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetStatus`](#structFRHAPI__PlatformEntitlement_1aa7d15fb2a7eb5af224ea967635a6adff)`(const ERHAPI_EntitlementStatus & NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
-`public inline void `[`SetStatus`](#structFRHAPI__PlatformEntitlement_1ac1bbc48e11051c7a9ae551d1dfd5c9d6)`(ERHAPI_EntitlementStatus && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Quantity`](#structFRHAPI__PlatformEntitlement_1a3c998332f2f0ccdbbb3b13b3ec367801)`()` | Returns the default value of Quantity.
+`public inline FORCEINLINE ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1ac8d37d51830e28e3a66a89be12250bd5)`()` | Gets the value of Status_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1ab4e51d7f83325cc35a0951c361a6aeb6)`() const` | Gets the value of Status_Optional, regardless of it having been set.
+`public inline FORCEINLINE const ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a370181b2fced3b2c7ee6456dacdefe35)`(const ERHAPI_EntitlementStatus & DefaultValue) const` | Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a1f2fe474680352910fe7a98474d002a5)`(ERHAPI_EntitlementStatus & OutValue) const` | Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE ERHAPI_EntitlementStatus * `[`GetStatusOrNull`](#structFRHAPI__PlatformEntitlement_1a66594d575c5a741ef334517eaed26793)`()` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const ERHAPI_EntitlementStatus * `[`GetStatusOrNull`](#structFRHAPI__PlatformEntitlement_1a5272bd7aacbe237e7d512d9632ded1a3)`() const` | Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PlatformEntitlement_1ac9a0a3b6c4517d38a13eee1d397f250b)`(const ERHAPI_EntitlementStatus & NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true.
+`public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PlatformEntitlement_1a18fe6ba267db9b3a6662e036e9f53525)`(ERHAPI_EntitlementStatus && NewValue)` | Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 `public inline void `[`ClearStatus`](#structFRHAPI__PlatformEntitlement_1a557a01818d6f93c0569b40045cc3553a)`()` | Clears the value of Status_Optional and sets Status_IsSet to false.
-`public inline bool `[`IsStatusSet`](#structFRHAPI__PlatformEntitlement_1a2a9abc10eb5335f97678595e891a09e6)`() const` | Checks whether Status_Optional has been set.
-`public inline FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a3ec21295a4cb82b689f7132fb91a330c)`()` | Gets the value of ErrorCode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a4520a78fcb0f554558a612b5ac2a19e3)`() const` | Gets the value of ErrorCode_Optional, regardless of it having been set.
-`public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a47a765293f0b3394cc3dc1ba04f868cb)`(const FString & DefaultValue) const` | Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a6f6dfc69116b1f10822a5605b3bba729)`(FString & OutValue) const` | Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlement_1ab13d9b377ec3cad48352c1a262cddbeb)`()` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlement_1a01a893cdb14ad4ec5e0434a9bb94c5c5)`() const` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlement_1aaa4f205d9c1adfd7386cc716043e0f8f)`(const FString & NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
-`public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlement_1a140fb509eaa8ce1cefc7ed00771f08d4)`(FString && NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1afba8d4b84ef475bab40ef6821d8259fe)`()` | Gets the value of ErrorCode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a7a37f55b5cb9d02b3588ad10d53f4f2b)`() const` | Gets the value of ErrorCode_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a7928454009d0f21a9098994b9abfefb1)`(const FString & DefaultValue) const` | Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1afd6225b0a2ae7b6ecf5976b78d2db3a5)`(FString & OutValue) const` | Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlement_1acdf10e9b36f079982870732b18d431f7)`()` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlement_1a7fc86bfc76ab7d11ce1911ce83664033)`() const` | Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlement_1a1c327e3db4512374a245249c73634f1b)`(const FString & NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
+`public inline FORCEINLINE void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlement_1aaa0a52a13fc1baea8e87904b56c4a9c8)`(FString && NewValue)` | Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
 `public inline void `[`ClearErrorCode`](#structFRHAPI__PlatformEntitlement_1a51228045f457ea6ce4192f90412e9ed5)`()` | Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
-`public inline bool `[`IsErrorCodeSet`](#structFRHAPI__PlatformEntitlement_1aa355b16e9b5981f344f9e1f6568dcd4c)`() const` | Checks whether ErrorCode_Optional has been set.
-`public inline bool `[`IsErrorCodeDefaultValue`](#structFRHAPI__PlatformEntitlement_1adbab446b57214a11c741ede939ca2eee)`() const` | Returns true if ErrorCode_Optional is set and matches the default value.
-`public inline void `[`SetErrorCodeToDefault`](#structFRHAPI__PlatformEntitlement_1a1c7f81dd21acee27bdcbc9d36aa4197e)`()` | Sets the value of ErrorCode_Optional to its default and also sets ErrorCode_IsSet to true.
-`public inline FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1aba3aa0fdece6ca271e36d0528537a428)`()` | Gets the value of OrderId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1afaed0d60abaa4a835d1711f3b73436bd)`() const` | Gets the value of OrderId_Optional, regardless of it having been set.
-`public inline const FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1aafb1f35c6c756ebe6dd4308df58f2bd5)`(const FString & DefaultValue) const` | Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a86aaafe683e1976797b54975c5d5239c)`(FString & OutValue) const` | Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlatformEntitlement_1aa3787e32af2f93d00fe1dc49e317ec6b)`()` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlatformEntitlement_1ab503116967924b7047f9b20c9ed09afd)`() const` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1a7a4d77208d6f2dea58f308f54ba3136c)`(const FString & NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
-`public inline void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1abb47fd5e887abb41baa31daed73ab508)`(FString && NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
+`public inline FORCEINLINE FString `[`GetDefaultValue_ErrorCode`](#structFRHAPI__PlatformEntitlement_1ab5115874773eddc20a4f8115095e7980)`()` | Returns the default value of ErrorCode.
+`public inline FORCEINLINE FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a9ebd718e97e58b3102db5a03b4e2ed6b)`()` | Gets the value of OrderId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a035053e5043c525fd9e8d8b587bbd297)`() const` | Gets the value of OrderId_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a0f7a511abfd662276e3ad6f30976c4e4)`(const FString & DefaultValue) const` | Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a5a64e6c489594e05f0bc42947d10d683)`(FString & OutValue) const` | Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlatformEntitlement_1a1c6c2998b46b6e2a583ca32436b49baf)`()` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlatformEntitlement_1ac4b76ccc9d79076f6b01b2c1a0d01e21)`() const` | Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1aa8f98d936a6ee1a84c5b571cd6fa5d36)`(const FString & NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
+`public inline FORCEINLINE void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1a3824b880bc1439854eef50428d39a9ed)`(FString && NewValue)` | Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 `public inline void `[`ClearOrderId`](#structFRHAPI__PlatformEntitlement_1aced25565f90e25790e543b78dc85432f)`()` | Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
-`public inline bool `[`IsOrderIdSet`](#structFRHAPI__PlatformEntitlement_1afc734865c409610afd60d1c11f4f15bd)`() const` | Checks whether OrderId_Optional has been set.
 
 ### Members
 
@@ -143,67 +137,67 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetPlatformSku`](#structFRHAPI__PlatformEntitlement_1a6e883472a27ad2a22c739651340ab3ec)`()` <a id="structFRHAPI__PlatformEntitlement_1a6e883472a27ad2a22c739651340ab3ec"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatformSku`](#structFRHAPI__PlatformEntitlement_1aeb4376617f4e7bb3340e74ef4a4ec4ff)`()` <a id="structFRHAPI__PlatformEntitlement_1aeb4376617f4e7bb3340e74ef4a4ec4ff"></a>
 
 Gets the value of PlatformSku.
 
-#### `public inline const FString & `[`GetPlatformSku`](#structFRHAPI__PlatformEntitlement_1a020f4f837da85878531cd0fac9e1dfb3)`() const` <a id="structFRHAPI__PlatformEntitlement_1a020f4f837da85878531cd0fac9e1dfb3"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformSku`](#structFRHAPI__PlatformEntitlement_1aa0777786322720408cb459be68e7344c)`() const` <a id="structFRHAPI__PlatformEntitlement_1aa0777786322720408cb459be68e7344c"></a>
 
 Gets the value of PlatformSku.
 
-#### `public inline void `[`SetPlatformSku`](#structFRHAPI__PlatformEntitlement_1aef9e9b4244aee6974b8374afcbcb6080)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1aef9e9b4244aee6974b8374afcbcb6080"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformSku`](#structFRHAPI__PlatformEntitlement_1aa354e092a0c0f76d6a93738437d368fb)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1aa354e092a0c0f76d6a93738437d368fb"></a>
 
 Sets the value of PlatformSku.
 
-#### `public inline void `[`SetPlatformSku`](#structFRHAPI__PlatformEntitlement_1a23caff3de089be3f4dc84b0c9996eaf0)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a23caff3de089be3f4dc84b0c9996eaf0"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformSku`](#structFRHAPI__PlatformEntitlement_1a05110895093d578147a9f4f0b721470c)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a05110895093d578147a9f4f0b721470c"></a>
 
 Sets the value of PlatformSku using move semantics.
 
-#### `public inline FString & `[`GetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a00e5245e1af1bff4fd407840b328731f)`()` <a id="structFRHAPI__PlatformEntitlement_1a00e5245e1af1bff4fd407840b328731f"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a2695285c0314207ae832ab9ad318fead)`()` <a id="structFRHAPI__PlatformEntitlement_1a2695285c0314207ae832ab9ad318fead"></a>
 
 Gets the value of PlatformEntitlementId.
 
-#### `public inline const FString & `[`GetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1aeb04516c7e60fe4a9610a444ea783415)`() const` <a id="structFRHAPI__PlatformEntitlement_1aeb04516c7e60fe4a9610a444ea783415"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a2759fdd70c580bd1b6cc8bef7b26ca84)`() const` <a id="structFRHAPI__PlatformEntitlement_1a2759fdd70c580bd1b6cc8bef7b26ca84"></a>
 
 Gets the value of PlatformEntitlementId.
 
-#### `public inline void `[`SetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a33f66eb90570001ef575b5a7d1cd17c9)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a33f66eb90570001ef575b5a7d1cd17c9"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a926d7cdc54d9a63a98eb14145632f6a5)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a926d7cdc54d9a63a98eb14145632f6a5"></a>
 
 Sets the value of PlatformEntitlementId.
 
-#### `public inline void `[`SetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1ac87cdfe9a927df24483e7055b354cf00)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1ac87cdfe9a927df24483e7055b354cf00"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformEntitlementId`](#structFRHAPI__PlatformEntitlement_1a9c28e746e1da0e12d7f743a93b448b3e)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a9c28e746e1da0e12d7f743a93b448b3e"></a>
 
 Sets the value of PlatformEntitlementId using move semantics.
 
-#### `public inline int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1a3de5b2cdf0f3aa32c56ac1137a1e8fc9)`()` <a id="structFRHAPI__PlatformEntitlement_1a3de5b2cdf0f3aa32c56ac1137a1e8fc9"></a>
+#### `public inline FORCEINLINE int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1a3966cce539a8c54d1959902fa1005bfb)`()` <a id="structFRHAPI__PlatformEntitlement_1a3966cce539a8c54d1959902fa1005bfb"></a>
 
 Gets the value of Quantity_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1ad62a8884719d4677ece2ddc2138fa0e3)`() const` <a id="structFRHAPI__PlatformEntitlement_1ad62a8884719d4677ece2ddc2138fa0e3"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1adf3572ca6b4b606c4177fc3b7a49b292)`() const` <a id="structFRHAPI__PlatformEntitlement_1adf3572ca6b4b606c4177fc3b7a49b292"></a>
 
 Gets the value of Quantity_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1afdb1f5982a384b305ba2145b96b8b0b6)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlement_1afdb1f5982a384b305ba2145b96b8b0b6"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1ac115d1e5755f46ec35a8a753c93a32d6)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlement_1ac115d1e5755f46ec35a8a753c93a32d6"></a>
 
 Gets the value of Quantity_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1adc2c8f58a43f1f99de209a3efb45f0f0)`(int32 & OutValue) const` <a id="structFRHAPI__PlatformEntitlement_1adc2c8f58a43f1f99de209a3efb45f0f0"></a>
+#### `public inline FORCEINLINE bool `[`GetQuantity`](#structFRHAPI__PlatformEntitlement_1a7aac0ea315affec06e3cf5c9c2d2a956)`(int32 & OutValue) const` <a id="structFRHAPI__PlatformEntitlement_1a7aac0ea315affec06e3cf5c9c2d2a956"></a>
 
 Fills OutValue with the value of Quantity_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetQuantityOrNull`](#structFRHAPI__PlatformEntitlement_1a57a12f2a44e26c89d3532ba49204d14c)`()` <a id="structFRHAPI__PlatformEntitlement_1a57a12f2a44e26c89d3532ba49204d14c"></a>
+#### `public inline FORCEINLINE int32 * `[`GetQuantityOrNull`](#structFRHAPI__PlatformEntitlement_1aebb4a5e5bece823ffb3ae25b9027b249)`()` <a id="structFRHAPI__PlatformEntitlement_1aebb4a5e5bece823ffb3ae25b9027b249"></a>
 
 Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetQuantityOrNull`](#structFRHAPI__PlatformEntitlement_1a1ab864c8ac287dc57bfc72004a610d8c)`() const` <a id="structFRHAPI__PlatformEntitlement_1a1ab864c8ac287dc57bfc72004a610d8c"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetQuantityOrNull`](#structFRHAPI__PlatformEntitlement_1ad8f96d30e2dc5a72c24c56ca53ecfa9b)`() const` <a id="structFRHAPI__PlatformEntitlement_1ad8f96d30e2dc5a72c24c56ca53ecfa9b"></a>
 
 Returns a pointer to Quantity_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__PlatformEntitlement_1a8e36ac187725537298fa3b60910e5358)`(const int32 & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a8e36ac187725537298fa3b60910e5358"></a>
+#### `public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__PlatformEntitlement_1ab7878306172d7b0f1f1542a1a60c025b)`(const int32 & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1ab7878306172d7b0f1f1542a1a60c025b"></a>
 
 Sets the value of Quantity_Optional and also sets Quantity_IsSet to true.
 
-#### `public inline void `[`SetQuantity`](#structFRHAPI__PlatformEntitlement_1a55ddc557bdf3ef1eeba04314a2ffa8dc)`(int32 && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a55ddc557bdf3ef1eeba04314a2ffa8dc"></a>
+#### `public inline FORCEINLINE void `[`SetQuantity`](#structFRHAPI__PlatformEntitlement_1a8a5a91570e4d4c93406b39ea43eaecdf)`(int32 && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a8a5a91570e4d4c93406b39ea43eaecdf"></a>
 
 Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using move semantics.
 
@@ -211,47 +205,39 @@ Sets the value of Quantity_Optional and also sets Quantity_IsSet to true using m
 
 Clears the value of Quantity_Optional and sets Quantity_IsSet to false.
 
-#### `public inline bool `[`IsQuantitySet`](#structFRHAPI__PlatformEntitlement_1a91a19cb245b146502ef7e3938bf9bed9)`() const` <a id="structFRHAPI__PlatformEntitlement_1a91a19cb245b146502ef7e3938bf9bed9"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Quantity`](#structFRHAPI__PlatformEntitlement_1a3c998332f2f0ccdbbb3b13b3ec367801)`()` <a id="structFRHAPI__PlatformEntitlement_1a3c998332f2f0ccdbbb3b13b3ec367801"></a>
 
-Checks whether Quantity_Optional has been set.
+Returns the default value of Quantity.
 
-#### `public inline bool `[`IsQuantityDefaultValue`](#structFRHAPI__PlatformEntitlement_1a5dcfd409121d5748761dd5bc2c37ff51)`() const` <a id="structFRHAPI__PlatformEntitlement_1a5dcfd409121d5748761dd5bc2c37ff51"></a>
-
-Returns true if Quantity_Optional is set and matches the default value.
-
-#### `public inline void `[`SetQuantityToDefault`](#structFRHAPI__PlatformEntitlement_1a1cbce8267d138f0f12f14137240d78ac)`()` <a id="structFRHAPI__PlatformEntitlement_1a1cbce8267d138f0f12f14137240d78ac"></a>
-
-Sets the value of Quantity_Optional to its default and also sets Quantity_IsSet to true.
-
-#### `public inline ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a6c00a3a51a8624c126bab0a9e66eeb84)`()` <a id="structFRHAPI__PlatformEntitlement_1a6c00a3a51a8624c126bab0a9e66eeb84"></a>
+#### `public inline FORCEINLINE ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1ac8d37d51830e28e3a66a89be12250bd5)`()` <a id="structFRHAPI__PlatformEntitlement_1ac8d37d51830e28e3a66a89be12250bd5"></a>
 
 Gets the value of Status_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a75af06dbd4c902d9cf3fd30c3b938cb8)`() const` <a id="structFRHAPI__PlatformEntitlement_1a75af06dbd4c902d9cf3fd30c3b938cb8"></a>
+#### `public inline FORCEINLINE const ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1ab4e51d7f83325cc35a0951c361a6aeb6)`() const` <a id="structFRHAPI__PlatformEntitlement_1ab4e51d7f83325cc35a0951c361a6aeb6"></a>
 
 Gets the value of Status_Optional, regardless of it having been set.
 
-#### `public inline const ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1aef4367baa8b6b2677746609b0b8b804c)`(const ERHAPI_EntitlementStatus & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlement_1aef4367baa8b6b2677746609b0b8b804c"></a>
+#### `public inline FORCEINLINE const ERHAPI_EntitlementStatus & `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a370181b2fced3b2c7ee6456dacdefe35)`(const ERHAPI_EntitlementStatus & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlement_1a370181b2fced3b2c7ee6456dacdefe35"></a>
 
 Gets the value of Status_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a20ac5c33deadc2a4890887f370090097)`(ERHAPI_EntitlementStatus & OutValue) const` <a id="structFRHAPI__PlatformEntitlement_1a20ac5c33deadc2a4890887f370090097"></a>
+#### `public inline FORCEINLINE bool `[`GetStatus`](#structFRHAPI__PlatformEntitlement_1a1f2fe474680352910fe7a98474d002a5)`(ERHAPI_EntitlementStatus & OutValue) const` <a id="structFRHAPI__PlatformEntitlement_1a1f2fe474680352910fe7a98474d002a5"></a>
 
 Fills OutValue with the value of Status_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline ERHAPI_EntitlementStatus * `[`GetStatusOrNull`](#structFRHAPI__PlatformEntitlement_1a0a5475f8a7b648a710a6e1e5487b0f38)`()` <a id="structFRHAPI__PlatformEntitlement_1a0a5475f8a7b648a710a6e1e5487b0f38"></a>
+#### `public inline FORCEINLINE ERHAPI_EntitlementStatus * `[`GetStatusOrNull`](#structFRHAPI__PlatformEntitlement_1a66594d575c5a741ef334517eaed26793)`()` <a id="structFRHAPI__PlatformEntitlement_1a66594d575c5a741ef334517eaed26793"></a>
 
 Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const ERHAPI_EntitlementStatus * `[`GetStatusOrNull`](#structFRHAPI__PlatformEntitlement_1a0fef143ea57b98c3c99ff0da35f09133)`() const` <a id="structFRHAPI__PlatformEntitlement_1a0fef143ea57b98c3c99ff0da35f09133"></a>
+#### `public inline FORCEINLINE const ERHAPI_EntitlementStatus * `[`GetStatusOrNull`](#structFRHAPI__PlatformEntitlement_1a5272bd7aacbe237e7d512d9632ded1a3)`() const` <a id="structFRHAPI__PlatformEntitlement_1a5272bd7aacbe237e7d512d9632ded1a3"></a>
 
 Returns a pointer to Status_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__PlatformEntitlement_1aa7d15fb2a7eb5af224ea967635a6adff)`(const ERHAPI_EntitlementStatus & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1aa7d15fb2a7eb5af224ea967635a6adff"></a>
+#### `public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PlatformEntitlement_1ac9a0a3b6c4517d38a13eee1d397f250b)`(const ERHAPI_EntitlementStatus & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1ac9a0a3b6c4517d38a13eee1d397f250b"></a>
 
 Sets the value of Status_Optional and also sets Status_IsSet to true.
 
-#### `public inline void `[`SetStatus`](#structFRHAPI__PlatformEntitlement_1ac1bbc48e11051c7a9ae551d1dfd5c9d6)`(ERHAPI_EntitlementStatus && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1ac1bbc48e11051c7a9ae551d1dfd5c9d6"></a>
+#### `public inline FORCEINLINE void `[`SetStatus`](#structFRHAPI__PlatformEntitlement_1a18fe6ba267db9b3a6662e036e9f53525)`(ERHAPI_EntitlementStatus && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a18fe6ba267db9b3a6662e036e9f53525"></a>
 
 Sets the value of Status_Optional and also sets Status_IsSet to true using move semantics.
 
@@ -259,39 +245,35 @@ Sets the value of Status_Optional and also sets Status_IsSet to true using move 
 
 Clears the value of Status_Optional and sets Status_IsSet to false.
 
-#### `public inline bool `[`IsStatusSet`](#structFRHAPI__PlatformEntitlement_1a2a9abc10eb5335f97678595e891a09e6)`() const` <a id="structFRHAPI__PlatformEntitlement_1a2a9abc10eb5335f97678595e891a09e6"></a>
-
-Checks whether Status_Optional has been set.
-
-#### `public inline FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a3ec21295a4cb82b689f7132fb91a330c)`()` <a id="structFRHAPI__PlatformEntitlement_1a3ec21295a4cb82b689f7132fb91a330c"></a>
+#### `public inline FORCEINLINE FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1afba8d4b84ef475bab40ef6821d8259fe)`()` <a id="structFRHAPI__PlatformEntitlement_1afba8d4b84ef475bab40ef6821d8259fe"></a>
 
 Gets the value of ErrorCode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a4520a78fcb0f554558a612b5ac2a19e3)`() const` <a id="structFRHAPI__PlatformEntitlement_1a4520a78fcb0f554558a612b5ac2a19e3"></a>
+#### `public inline FORCEINLINE const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a7a37f55b5cb9d02b3588ad10d53f4f2b)`() const` <a id="structFRHAPI__PlatformEntitlement_1a7a37f55b5cb9d02b3588ad10d53f4f2b"></a>
 
 Gets the value of ErrorCode_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a47a765293f0b3394cc3dc1ba04f868cb)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlement_1a47a765293f0b3394cc3dc1ba04f868cb"></a>
+#### `public inline FORCEINLINE const FString & `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a7928454009d0f21a9098994b9abfefb1)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlement_1a7928454009d0f21a9098994b9abfefb1"></a>
 
 Gets the value of ErrorCode_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1a6f6dfc69116b1f10822a5605b3bba729)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlement_1a6f6dfc69116b1f10822a5605b3bba729"></a>
+#### `public inline FORCEINLINE bool `[`GetErrorCode`](#structFRHAPI__PlatformEntitlement_1afd6225b0a2ae7b6ecf5976b78d2db3a5)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlement_1afd6225b0a2ae7b6ecf5976b78d2db3a5"></a>
 
 Fills OutValue with the value of ErrorCode_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlement_1ab13d9b377ec3cad48352c1a262cddbeb)`()` <a id="structFRHAPI__PlatformEntitlement_1ab13d9b377ec3cad48352c1a262cddbeb"></a>
+#### `public inline FORCEINLINE FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlement_1acdf10e9b36f079982870732b18d431f7)`()` <a id="structFRHAPI__PlatformEntitlement_1acdf10e9b36f079982870732b18d431f7"></a>
 
 Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlement_1a01a893cdb14ad4ec5e0434a9bb94c5c5)`() const` <a id="structFRHAPI__PlatformEntitlement_1a01a893cdb14ad4ec5e0434a9bb94c5c5"></a>
+#### `public inline FORCEINLINE const FString * `[`GetErrorCodeOrNull`](#structFRHAPI__PlatformEntitlement_1a7fc86bfc76ab7d11ce1911ce83664033)`() const` <a id="structFRHAPI__PlatformEntitlement_1a7fc86bfc76ab7d11ce1911ce83664033"></a>
 
 Returns a pointer to ErrorCode_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlement_1aaa4f205d9c1adfd7386cc716043e0f8f)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1aaa4f205d9c1adfd7386cc716043e0f8f"></a>
+#### `public inline FORCEINLINE void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlement_1a1c327e3db4512374a245249c73634f1b)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a1c327e3db4512374a245249c73634f1b"></a>
 
 Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true.
 
-#### `public inline void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlement_1a140fb509eaa8ce1cefc7ed00771f08d4)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a140fb509eaa8ce1cefc7ed00771f08d4"></a>
+#### `public inline FORCEINLINE void `[`SetErrorCode`](#structFRHAPI__PlatformEntitlement_1aaa0a52a13fc1baea8e87904b56c4a9c8)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1aaa0a52a13fc1baea8e87904b56c4a9c8"></a>
 
 Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using move semantics.
 
@@ -299,55 +281,43 @@ Sets the value of ErrorCode_Optional and also sets ErrorCode_IsSet to true using
 
 Clears the value of ErrorCode_Optional and sets ErrorCode_IsSet to false.
 
-#### `public inline bool `[`IsErrorCodeSet`](#structFRHAPI__PlatformEntitlement_1aa355b16e9b5981f344f9e1f6568dcd4c)`() const` <a id="structFRHAPI__PlatformEntitlement_1aa355b16e9b5981f344f9e1f6568dcd4c"></a>
+#### `public inline FORCEINLINE FString `[`GetDefaultValue_ErrorCode`](#structFRHAPI__PlatformEntitlement_1ab5115874773eddc20a4f8115095e7980)`()` <a id="structFRHAPI__PlatformEntitlement_1ab5115874773eddc20a4f8115095e7980"></a>
 
-Checks whether ErrorCode_Optional has been set.
+Returns the default value of ErrorCode.
 
-#### `public inline bool `[`IsErrorCodeDefaultValue`](#structFRHAPI__PlatformEntitlement_1adbab446b57214a11c741ede939ca2eee)`() const` <a id="structFRHAPI__PlatformEntitlement_1adbab446b57214a11c741ede939ca2eee"></a>
-
-Returns true if ErrorCode_Optional is set and matches the default value.
-
-#### `public inline void `[`SetErrorCodeToDefault`](#structFRHAPI__PlatformEntitlement_1a1c7f81dd21acee27bdcbc9d36aa4197e)`()` <a id="structFRHAPI__PlatformEntitlement_1a1c7f81dd21acee27bdcbc9d36aa4197e"></a>
-
-Sets the value of ErrorCode_Optional to its default and also sets ErrorCode_IsSet to true.
-
-#### `public inline FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1aba3aa0fdece6ca271e36d0528537a428)`()` <a id="structFRHAPI__PlatformEntitlement_1aba3aa0fdece6ca271e36d0528537a428"></a>
+#### `public inline FORCEINLINE FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a9ebd718e97e58b3102db5a03b4e2ed6b)`()` <a id="structFRHAPI__PlatformEntitlement_1a9ebd718e97e58b3102db5a03b4e2ed6b"></a>
 
 Gets the value of OrderId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1afaed0d60abaa4a835d1711f3b73436bd)`() const` <a id="structFRHAPI__PlatformEntitlement_1afaed0d60abaa4a835d1711f3b73436bd"></a>
+#### `public inline FORCEINLINE const FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a035053e5043c525fd9e8d8b587bbd297)`() const` <a id="structFRHAPI__PlatformEntitlement_1a035053e5043c525fd9e8d8b587bbd297"></a>
 
 Gets the value of OrderId_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1aafb1f35c6c756ebe6dd4308df58f2bd5)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlement_1aafb1f35c6c756ebe6dd4308df58f2bd5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a0f7a511abfd662276e3ad6f30976c4e4)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlatformEntitlement_1a0f7a511abfd662276e3ad6f30976c4e4"></a>
 
 Gets the value of OrderId_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a86aaafe683e1976797b54975c5d5239c)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlement_1a86aaafe683e1976797b54975c5d5239c"></a>
+#### `public inline FORCEINLINE bool `[`GetOrderId`](#structFRHAPI__PlatformEntitlement_1a5a64e6c489594e05f0bc42947d10d683)`(FString & OutValue) const` <a id="structFRHAPI__PlatformEntitlement_1a5a64e6c489594e05f0bc42947d10d683"></a>
 
 Fills OutValue with the value of OrderId_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlatformEntitlement_1aa3787e32af2f93d00fe1dc49e317ec6b)`()` <a id="structFRHAPI__PlatformEntitlement_1aa3787e32af2f93d00fe1dc49e317ec6b"></a>
+#### `public inline FORCEINLINE FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlatformEntitlement_1a1c6c2998b46b6e2a583ca32436b49baf)`()` <a id="structFRHAPI__PlatformEntitlement_1a1c6c2998b46b6e2a583ca32436b49baf"></a>
 
 Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlatformEntitlement_1ab503116967924b7047f9b20c9ed09afd)`() const` <a id="structFRHAPI__PlatformEntitlement_1ab503116967924b7047f9b20c9ed09afd"></a>
+#### `public inline FORCEINLINE const FString * `[`GetOrderIdOrNull`](#structFRHAPI__PlatformEntitlement_1ac4b76ccc9d79076f6b01b2c1a0d01e21)`() const` <a id="structFRHAPI__PlatformEntitlement_1ac4b76ccc9d79076f6b01b2c1a0d01e21"></a>
 
 Returns a pointer to OrderId_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1a7a4d77208d6f2dea58f308f54ba3136c)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a7a4d77208d6f2dea58f308f54ba3136c"></a>
+#### `public inline FORCEINLINE void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1aa8f98d936a6ee1a84c5b571cd6fa5d36)`(const FString & NewValue)` <a id="structFRHAPI__PlatformEntitlement_1aa8f98d936a6ee1a84c5b571cd6fa5d36"></a>
 
 Sets the value of OrderId_Optional and also sets OrderId_IsSet to true.
 
-#### `public inline void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1abb47fd5e887abb41baa31daed73ab508)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1abb47fd5e887abb41baa31daed73ab508"></a>
+#### `public inline FORCEINLINE void `[`SetOrderId`](#structFRHAPI__PlatformEntitlement_1a3824b880bc1439854eef50428d39a9ed)`(FString && NewValue)` <a id="structFRHAPI__PlatformEntitlement_1a3824b880bc1439854eef50428d39a9ed"></a>
 
 Sets the value of OrderId_Optional and also sets OrderId_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearOrderId`](#structFRHAPI__PlatformEntitlement_1aced25565f90e25790e543b78dc85432f)`()` <a id="structFRHAPI__PlatformEntitlement_1aced25565f90e25790e543b78dc85432f"></a>
 
 Clears the value of OrderId_Optional and sets OrderId_IsSet to false.
-
-#### `public inline bool `[`IsOrderIdSet`](#structFRHAPI__PlatformEntitlement_1afc734865c409610afd60d1c11f4f15bd)`() const` <a id="structFRHAPI__PlatformEntitlement_1afc734865c409610afd60d1c11f4f15bd"></a>
-
-Checks whether OrderId_Optional has been set.
 

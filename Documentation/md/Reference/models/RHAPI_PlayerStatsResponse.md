@@ -23,18 +23,16 @@ struct FRHAPI_PlayerStatsResponse
 `public bool `[`TotalMatchesPlayed_IsSet`](#structFRHAPI__PlayerStatsResponse_1af3af8d974d758b6d0fc3f6afea81700c) | true if TotalMatchesPlayed_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerStatsResponse_1a8738ea87bdcdd6b59941015ab87b5f7e)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerStatsResponse_1a7f822be32b2b22592d1f2702debba49a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1af59d9f5b841370248c1140d956a3f0fc)`()` | Gets the value of TotalMatchesPlayed_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a06390786a34b0a7332db98f289b65eb6)`() const` | Gets the value of TotalMatchesPlayed_Optional, regardless of it having been set.
-`public inline const int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a8c59a12759c7fdc0652007f00360bd88)`(const int32 & DefaultValue) const` | Gets the value of TotalMatchesPlayed_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a4639c7bbe8e479b4b868d9243b2a5e5b)`(int32 & OutValue) const` | Fills OutValue with the value of TotalMatchesPlayed_Optional and returns true if it has been set, otherwise returns false.
-`public inline int32 * `[`GetTotalMatchesPlayedOrNull`](#structFRHAPI__PlayerStatsResponse_1a9032e21492884cbaf5458aae33de8605)`()` | Returns a pointer to TotalMatchesPlayed_Optional, if it has been set, otherwise returns nullptr.
-`public inline const int32 * `[`GetTotalMatchesPlayedOrNull`](#structFRHAPI__PlayerStatsResponse_1a312e560df0e98823570f3936b00c18cd)`() const` | Returns a pointer to TotalMatchesPlayed_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1aebe98eb70b02d925b6fa30efcc499e03)`(const int32 & NewValue)` | Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_IsSet to true.
-`public inline void `[`SetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ad1f63df6593722b13c300d23d7b835bb)`(int32 && NewValue)` | Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_IsSet to true using move semantics.
+`public inline FORCEINLINE int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ad6058c4b8bd12835f61038cb643f442c)`()` | Gets the value of TotalMatchesPlayed_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a448d75ae883dc0030873d59dcb517970)`() const` | Gets the value of TotalMatchesPlayed_Optional, regardless of it having been set.
+`public inline FORCEINLINE const int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a4ba82ac1a80fcd7bc03ea5bf84824929)`(const int32 & DefaultValue) const` | Gets the value of TotalMatchesPlayed_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a5257e8dc888f2ad2c1d5dc0914106e3b)`(int32 & OutValue) const` | Fills OutValue with the value of TotalMatchesPlayed_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE int32 * `[`GetTotalMatchesPlayedOrNull`](#structFRHAPI__PlayerStatsResponse_1aaf4a97dbbabfb0524fc63bfccb08db22)`()` | Returns a pointer to TotalMatchesPlayed_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const int32 * `[`GetTotalMatchesPlayedOrNull`](#structFRHAPI__PlayerStatsResponse_1ac37dba6f96a3feda9b87d19b207d7233)`() const` | Returns a pointer to TotalMatchesPlayed_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ac5cf94d1d95f3aba59980dc422250e16)`(const int32 & NewValue)` | Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_IsSet to true.
+`public inline FORCEINLINE void `[`SetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ad9a890fd811c215e7a1f8000127fbd8b)`(int32 && NewValue)` | Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_IsSet to true using move semantics.
 `public inline void `[`ClearTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ab31145dc8deb3c74ea7bad46113866ea)`()` | Clears the value of TotalMatchesPlayed_Optional and sets TotalMatchesPlayed_IsSet to false.
-`public inline bool `[`IsTotalMatchesPlayedSet`](#structFRHAPI__PlayerStatsResponse_1adde9f42b8b34b5c9984bbeac90e27034)`() const` | Checks whether TotalMatchesPlayed_Optional has been set.
-`public inline bool `[`IsTotalMatchesPlayedDefaultValue`](#structFRHAPI__PlayerStatsResponse_1adf96be3993b6413657d3f088eba2ec70)`() const` | Returns true if TotalMatchesPlayed_Optional is set and matches the default value.
-`public inline void `[`SetTotalMatchesPlayedToDefault`](#structFRHAPI__PlayerStatsResponse_1aee07f9644993d4b33b4abdc9075f91f5)`()` | Sets the value of TotalMatchesPlayed_Optional to its default and also sets TotalMatchesPlayed_IsSet to true.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_TotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1add05bf8a723f6c77800d4bf830a7fa38)`()` | Returns the default value of TotalMatchesPlayed.
 
 ### Members
 
@@ -61,35 +59,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1af59d9f5b841370248c1140d956a3f0fc)`()` <a id="structFRHAPI__PlayerStatsResponse_1af59d9f5b841370248c1140d956a3f0fc"></a>
+#### `public inline FORCEINLINE int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ad6058c4b8bd12835f61038cb643f442c)`()` <a id="structFRHAPI__PlayerStatsResponse_1ad6058c4b8bd12835f61038cb643f442c"></a>
 
 Gets the value of TotalMatchesPlayed_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a06390786a34b0a7332db98f289b65eb6)`() const` <a id="structFRHAPI__PlayerStatsResponse_1a06390786a34b0a7332db98f289b65eb6"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a448d75ae883dc0030873d59dcb517970)`() const` <a id="structFRHAPI__PlayerStatsResponse_1a448d75ae883dc0030873d59dcb517970"></a>
 
 Gets the value of TotalMatchesPlayed_Optional, regardless of it having been set.
 
-#### `public inline const int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a8c59a12759c7fdc0652007f00360bd88)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerStatsResponse_1a8c59a12759c7fdc0652007f00360bd88"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a4ba82ac1a80fcd7bc03ea5bf84824929)`(const int32 & DefaultValue) const` <a id="structFRHAPI__PlayerStatsResponse_1a4ba82ac1a80fcd7bc03ea5bf84824929"></a>
 
 Gets the value of TotalMatchesPlayed_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a4639c7bbe8e479b4b868d9243b2a5e5b)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerStatsResponse_1a4639c7bbe8e479b4b868d9243b2a5e5b"></a>
+#### `public inline FORCEINLINE bool `[`GetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1a5257e8dc888f2ad2c1d5dc0914106e3b)`(int32 & OutValue) const` <a id="structFRHAPI__PlayerStatsResponse_1a5257e8dc888f2ad2c1d5dc0914106e3b"></a>
 
 Fills OutValue with the value of TotalMatchesPlayed_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline int32 * `[`GetTotalMatchesPlayedOrNull`](#structFRHAPI__PlayerStatsResponse_1a9032e21492884cbaf5458aae33de8605)`()` <a id="structFRHAPI__PlayerStatsResponse_1a9032e21492884cbaf5458aae33de8605"></a>
+#### `public inline FORCEINLINE int32 * `[`GetTotalMatchesPlayedOrNull`](#structFRHAPI__PlayerStatsResponse_1aaf4a97dbbabfb0524fc63bfccb08db22)`()` <a id="structFRHAPI__PlayerStatsResponse_1aaf4a97dbbabfb0524fc63bfccb08db22"></a>
 
 Returns a pointer to TotalMatchesPlayed_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const int32 * `[`GetTotalMatchesPlayedOrNull`](#structFRHAPI__PlayerStatsResponse_1a312e560df0e98823570f3936b00c18cd)`() const` <a id="structFRHAPI__PlayerStatsResponse_1a312e560df0e98823570f3936b00c18cd"></a>
+#### `public inline FORCEINLINE const int32 * `[`GetTotalMatchesPlayedOrNull`](#structFRHAPI__PlayerStatsResponse_1ac37dba6f96a3feda9b87d19b207d7233)`() const` <a id="structFRHAPI__PlayerStatsResponse_1ac37dba6f96a3feda9b87d19b207d7233"></a>
 
 Returns a pointer to TotalMatchesPlayed_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1aebe98eb70b02d925b6fa30efcc499e03)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerStatsResponse_1aebe98eb70b02d925b6fa30efcc499e03"></a>
+#### `public inline FORCEINLINE void `[`SetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ac5cf94d1d95f3aba59980dc422250e16)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerStatsResponse_1ac5cf94d1d95f3aba59980dc422250e16"></a>
 
 Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_IsSet to true.
 
-#### `public inline void `[`SetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ad1f63df6593722b13c300d23d7b835bb)`(int32 && NewValue)` <a id="structFRHAPI__PlayerStatsResponse_1ad1f63df6593722b13c300d23d7b835bb"></a>
+#### `public inline FORCEINLINE void `[`SetTotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1ad9a890fd811c215e7a1f8000127fbd8b)`(int32 && NewValue)` <a id="structFRHAPI__PlayerStatsResponse_1ad9a890fd811c215e7a1f8000127fbd8b"></a>
 
 Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_IsSet to true using move semantics.
 
@@ -97,15 +95,7 @@ Sets the value of TotalMatchesPlayed_Optional and also sets TotalMatchesPlayed_I
 
 Clears the value of TotalMatchesPlayed_Optional and sets TotalMatchesPlayed_IsSet to false.
 
-#### `public inline bool `[`IsTotalMatchesPlayedSet`](#structFRHAPI__PlayerStatsResponse_1adde9f42b8b34b5c9984bbeac90e27034)`() const` <a id="structFRHAPI__PlayerStatsResponse_1adde9f42b8b34b5c9984bbeac90e27034"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_TotalMatchesPlayed`](#structFRHAPI__PlayerStatsResponse_1add05bf8a723f6c77800d4bf830a7fa38)`()` <a id="structFRHAPI__PlayerStatsResponse_1add05bf8a723f6c77800d4bf830a7fa38"></a>
 
-Checks whether TotalMatchesPlayed_Optional has been set.
-
-#### `public inline bool `[`IsTotalMatchesPlayedDefaultValue`](#structFRHAPI__PlayerStatsResponse_1adf96be3993b6413657d3f088eba2ec70)`() const` <a id="structFRHAPI__PlayerStatsResponse_1adf96be3993b6413657d3f088eba2ec70"></a>
-
-Returns true if TotalMatchesPlayed_Optional is set and matches the default value.
-
-#### `public inline void `[`SetTotalMatchesPlayedToDefault`](#structFRHAPI__PlayerStatsResponse_1aee07f9644993d4b33b4abdc9075f91f5)`()` <a id="structFRHAPI__PlayerStatsResponse_1aee07f9644993d4b33b4abdc9075f91f5"></a>
-
-Sets the value of TotalMatchesPlayed_Optional to its default and also sets TotalMatchesPlayed_IsSet to true.
+Returns the default value of TotalMatchesPlayed.
 

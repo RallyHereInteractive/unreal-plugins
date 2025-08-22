@@ -24,18 +24,18 @@ struct FRHAPI_LeaderboardPage
 `public TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > `[`Entries`](#structFRHAPI__LeaderboardPage_1a164b6c65fbb7e4bce037229fb8705db7) | List of leaderboard entries.
 `public virtual bool `[`FromJson`](#structFRHAPI__LeaderboardPage_1a2e4912041f4fc37e5b256dbe1353709f)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__LeaderboardPage_1ac77ed9ba8726d1d370b24fd33a54cb4f)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a0e3dd2646a9aef8309bc0889b15b6391)`()` | Gets the value of LeaderboardId.
-`public inline const FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a140ee7010bf5c7ed92da6b63c08425fc)`() const` | Gets the value of LeaderboardId.
-`public inline void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a91ffe201687ce7eb7ac77231433628f5)`(const FString & NewValue)` | Sets the value of LeaderboardId.
-`public inline void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardPage_1ae144004e115a23b066cbbdc46189dc43)`(FString && NewValue)` | Sets the value of LeaderboardId using move semantics.
-`public inline FString & `[`GetCursor`](#structFRHAPI__LeaderboardPage_1a195e03899b11fca15598d4fc69e2dcec)`()` | Gets the value of Cursor.
-`public inline const FString & `[`GetCursor`](#structFRHAPI__LeaderboardPage_1adf8f8b550d88449fc5b76fb8a29e9566)`() const` | Gets the value of Cursor.
-`public inline void `[`SetCursor`](#structFRHAPI__LeaderboardPage_1ab39d5dc0b7f91c1186c2ea129415c32b)`(const FString & NewValue)` | Sets the value of Cursor.
-`public inline void `[`SetCursor`](#structFRHAPI__LeaderboardPage_1a15f5b1dbe27921e2ccc5030d6480d780)`(FString && NewValue)` | Sets the value of Cursor using move semantics.
-`public inline TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & `[`GetEntries`](#structFRHAPI__LeaderboardPage_1aeab26e6dc4afc9202d821171f14819e2)`()` | Gets the value of Entries.
-`public inline const TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & `[`GetEntries`](#structFRHAPI__LeaderboardPage_1a99b28e5149793d8e988a056a311d5461)`() const` | Gets the value of Entries.
-`public inline void `[`SetEntries`](#structFRHAPI__LeaderboardPage_1a8fb72106916024739747d55409140f0f)`(const TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & NewValue)` | Sets the value of Entries.
-`public inline void `[`SetEntries`](#structFRHAPI__LeaderboardPage_1a88532f26545a5a15fdd96ac4a296e0c8)`(TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > && NewValue)` | Sets the value of Entries using move semantics.
+`public inline FORCEINLINE FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardPage_1aacdbd88abee562d6094d75f91ce39b57)`()` | Gets the value of LeaderboardId.
+`public inline FORCEINLINE const FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardPage_1aaff5eba882d726af80bc5b8bbdef377f)`() const` | Gets the value of LeaderboardId.
+`public inline FORCEINLINE void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a734e4aa38dc383fca4de4b97888e8d6f)`(const FString & NewValue)` | Sets the value of LeaderboardId.
+`public inline FORCEINLINE void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a536715a890d188f9568b307d65b0bcf8)`(FString && NewValue)` | Sets the value of LeaderboardId using move semantics.
+`public inline FORCEINLINE FString & `[`GetCursor`](#structFRHAPI__LeaderboardPage_1a9443d87146130b139f9e43b53be27f2e)`()` | Gets the value of Cursor.
+`public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__LeaderboardPage_1a2b7197522fc58ae8f25c08e72404936d)`() const` | Gets the value of Cursor.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__LeaderboardPage_1a1885834d78882548efc3f4cb6b65b641)`(const FString & NewValue)` | Sets the value of Cursor.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__LeaderboardPage_1ae06f0a2537172b51d1180358ed8e6d92)`(FString && NewValue)` | Sets the value of Cursor using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & `[`GetEntries`](#structFRHAPI__LeaderboardPage_1a37789e0566ed1047c0b86263e5362510)`()` | Gets the value of Entries.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & `[`GetEntries`](#structFRHAPI__LeaderboardPage_1ac4d6736b8d91eecf99d21b4aa25e9276)`() const` | Gets the value of Entries.
+`public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__LeaderboardPage_1aceac824e36613424974487aa5601266e)`(const TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & NewValue)` | Sets the value of Entries.
+`public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__LeaderboardPage_1aa3fbbf1f40033f120d32e60004db36c3)`(TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > && NewValue)` | Sets the value of Entries using move semantics.
 
 ### Members
 
@@ -68,51 +68,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a0e3dd2646a9aef8309bc0889b15b6391)`()` <a id="structFRHAPI__LeaderboardPage_1a0e3dd2646a9aef8309bc0889b15b6391"></a>
+#### `public inline FORCEINLINE FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardPage_1aacdbd88abee562d6094d75f91ce39b57)`()` <a id="structFRHAPI__LeaderboardPage_1aacdbd88abee562d6094d75f91ce39b57"></a>
 
 Gets the value of LeaderboardId.
 
-#### `public inline const FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a140ee7010bf5c7ed92da6b63c08425fc)`() const` <a id="structFRHAPI__LeaderboardPage_1a140ee7010bf5c7ed92da6b63c08425fc"></a>
+#### `public inline FORCEINLINE const FString & `[`GetLeaderboardId`](#structFRHAPI__LeaderboardPage_1aaff5eba882d726af80bc5b8bbdef377f)`() const` <a id="structFRHAPI__LeaderboardPage_1aaff5eba882d726af80bc5b8bbdef377f"></a>
 
 Gets the value of LeaderboardId.
 
-#### `public inline void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a91ffe201687ce7eb7ac77231433628f5)`(const FString & NewValue)` <a id="structFRHAPI__LeaderboardPage_1a91ffe201687ce7eb7ac77231433628f5"></a>
+#### `public inline FORCEINLINE void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a734e4aa38dc383fca4de4b97888e8d6f)`(const FString & NewValue)` <a id="structFRHAPI__LeaderboardPage_1a734e4aa38dc383fca4de4b97888e8d6f"></a>
 
 Sets the value of LeaderboardId.
 
-#### `public inline void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardPage_1ae144004e115a23b066cbbdc46189dc43)`(FString && NewValue)` <a id="structFRHAPI__LeaderboardPage_1ae144004e115a23b066cbbdc46189dc43"></a>
+#### `public inline FORCEINLINE void `[`SetLeaderboardId`](#structFRHAPI__LeaderboardPage_1a536715a890d188f9568b307d65b0bcf8)`(FString && NewValue)` <a id="structFRHAPI__LeaderboardPage_1a536715a890d188f9568b307d65b0bcf8"></a>
 
 Sets the value of LeaderboardId using move semantics.
 
-#### `public inline FString & `[`GetCursor`](#structFRHAPI__LeaderboardPage_1a195e03899b11fca15598d4fc69e2dcec)`()` <a id="structFRHAPI__LeaderboardPage_1a195e03899b11fca15598d4fc69e2dcec"></a>
+#### `public inline FORCEINLINE FString & `[`GetCursor`](#structFRHAPI__LeaderboardPage_1a9443d87146130b139f9e43b53be27f2e)`()` <a id="structFRHAPI__LeaderboardPage_1a9443d87146130b139f9e43b53be27f2e"></a>
 
 Gets the value of Cursor.
 
-#### `public inline const FString & `[`GetCursor`](#structFRHAPI__LeaderboardPage_1adf8f8b550d88449fc5b76fb8a29e9566)`() const` <a id="structFRHAPI__LeaderboardPage_1adf8f8b550d88449fc5b76fb8a29e9566"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__LeaderboardPage_1a2b7197522fc58ae8f25c08e72404936d)`() const` <a id="structFRHAPI__LeaderboardPage_1a2b7197522fc58ae8f25c08e72404936d"></a>
 
 Gets the value of Cursor.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__LeaderboardPage_1ab39d5dc0b7f91c1186c2ea129415c32b)`(const FString & NewValue)` <a id="structFRHAPI__LeaderboardPage_1ab39d5dc0b7f91c1186c2ea129415c32b"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__LeaderboardPage_1a1885834d78882548efc3f4cb6b65b641)`(const FString & NewValue)` <a id="structFRHAPI__LeaderboardPage_1a1885834d78882548efc3f4cb6b65b641"></a>
 
 Sets the value of Cursor.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__LeaderboardPage_1a15f5b1dbe27921e2ccc5030d6480d780)`(FString && NewValue)` <a id="structFRHAPI__LeaderboardPage_1a15f5b1dbe27921e2ccc5030d6480d780"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__LeaderboardPage_1ae06f0a2537172b51d1180358ed8e6d92)`(FString && NewValue)` <a id="structFRHAPI__LeaderboardPage_1ae06f0a2537172b51d1180358ed8e6d92"></a>
 
 Sets the value of Cursor using move semantics.
 
-#### `public inline TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & `[`GetEntries`](#structFRHAPI__LeaderboardPage_1aeab26e6dc4afc9202d821171f14819e2)`()` <a id="structFRHAPI__LeaderboardPage_1aeab26e6dc4afc9202d821171f14819e2"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & `[`GetEntries`](#structFRHAPI__LeaderboardPage_1a37789e0566ed1047c0b86263e5362510)`()` <a id="structFRHAPI__LeaderboardPage_1a37789e0566ed1047c0b86263e5362510"></a>
 
 Gets the value of Entries.
 
-#### `public inline const TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & `[`GetEntries`](#structFRHAPI__LeaderboardPage_1a99b28e5149793d8e988a056a311d5461)`() const` <a id="structFRHAPI__LeaderboardPage_1a99b28e5149793d8e988a056a311d5461"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & `[`GetEntries`](#structFRHAPI__LeaderboardPage_1ac4d6736b8d91eecf99d21b4aa25e9276)`() const` <a id="structFRHAPI__LeaderboardPage_1ac4d6736b8d91eecf99d21b4aa25e9276"></a>
 
 Gets the value of Entries.
 
-#### `public inline void `[`SetEntries`](#structFRHAPI__LeaderboardPage_1a8fb72106916024739747d55409140f0f)`(const TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & NewValue)` <a id="structFRHAPI__LeaderboardPage_1a8fb72106916024739747d55409140f0f"></a>
+#### `public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__LeaderboardPage_1aceac824e36613424974487aa5601266e)`(const TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > & NewValue)` <a id="structFRHAPI__LeaderboardPage_1aceac824e36613424974487aa5601266e"></a>
 
 Sets the value of Entries.
 
-#### `public inline void `[`SetEntries`](#structFRHAPI__LeaderboardPage_1a88532f26545a5a15fdd96ac4a296e0c8)`(TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > && NewValue)` <a id="structFRHAPI__LeaderboardPage_1a88532f26545a5a15fdd96ac4a296e0c8"></a>
+#### `public inline FORCEINLINE void `[`SetEntries`](#structFRHAPI__LeaderboardPage_1aa3fbbf1f40033f120d32e60004db36c3)`(TArray< `[`FRHAPI_LeaderboardEntry`](RHAPI_LeaderboardEntry.md#structFRHAPI__LeaderboardEntry)` > && NewValue)` <a id="structFRHAPI__LeaderboardPage_1aa3fbbf1f40033f120d32e60004db36c3"></a>
 
 Sets the value of Entries using move semantics.
 

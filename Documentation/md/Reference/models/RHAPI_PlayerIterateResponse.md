@@ -27,28 +27,25 @@ Response from the player iteration API.
 `public bool `[`Cursor_IsSet`](#structFRHAPI__PlayerIterateResponse_1af92e8c04e13e466c9bda9f079ec7ab26) | true if Cursor_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerIterateResponse_1ae4d9b3550054892b43cee9a243abf882)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerIterateResponse_1a7a4cc64939d9b34dbe7745c71ae995bc)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a0a11029a0aeb6768040c836578ee12ee)`()` | Gets the value of Players_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a4efceb730d4dbe5a2081954aca55dc62)`() const` | Gets the value of Players_Optional, regardless of it having been set.
-`public inline const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a6ae3fd5758b520e1247e05ba9569cd26)`(const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & DefaultValue) const` | Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1aaaa281609d9815877805502168dda12f)`(TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & OutValue) const` | Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false.
-`public inline TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetPlayersOrNull`](#structFRHAPI__PlayerIterateResponse_1ac387c4177c36edcac586277a5fe98daa)`()` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetPlayersOrNull`](#structFRHAPI__PlayerIterateResponse_1aed1531ebc44873de7f7c2d0ba4a81f86)`() const` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlayers`](#structFRHAPI__PlayerIterateResponse_1a630b3c3c8ec0943ef0ac62a4cf00f75a)`(const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true.
-`public inline void `[`SetPlayers`](#structFRHAPI__PlayerIterateResponse_1aabb0d172f1f4e9e728c3a4e3c1faabe4)`(TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > && NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a621cbb102052b66a55f2cff1260ea3d7)`()` | Gets the value of Players_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a0ccc5db21a845118541eb84f9db251ac)`() const` | Gets the value of Players_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a0e01b0fc126fd63cb990c20415df32e1)`(const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & DefaultValue) const` | Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1ac3e23c7779ec19d15f326f679a8e0120)`(TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & OutValue) const` | Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetPlayersOrNull`](#structFRHAPI__PlayerIterateResponse_1a3da7a1f58d21fd18d35fa1b658489b30)`()` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetPlayersOrNull`](#structFRHAPI__PlayerIterateResponse_1a10f04334325193219ee6eeb30bfee2e6)`() const` | Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__PlayerIterateResponse_1a9f64988d89c0b4557e7b3f234feef0a4)`(const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__PlayerIterateResponse_1abcc2ad81e611c94febac197fe533cd3b)`(TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > && NewValue)` | Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics.
 `public inline void `[`ClearPlayers`](#structFRHAPI__PlayerIterateResponse_1ac6e2054bef4c10cdf439c1341bdbf70c)`()` | Clears the value of Players_Optional and sets Players_IsSet to false.
-`public inline bool `[`IsPlayersSet`](#structFRHAPI__PlayerIterateResponse_1a14e486dfb3331f5578b58ac9ad2d7635)`() const` | Checks whether Players_Optional has been set.
-`public inline FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1aeffb1b0c17ebf8c82f2116354c5d27ae)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a52ba4654aa4f8d5df33ae62a9a368870)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
-`public inline const FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1aab31ae94bf4d14040a97e80e805144fe)`(const FString & DefaultValue) const` | Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a311acdf4347a3bb279f0f4997fa9009f)`(FString & OutValue) const` | Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetCursorOrNull`](#structFRHAPI__PlayerIterateResponse_1a1303ae4eb1916d4f6434f40faf483fe2)`()` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetCursorOrNull`](#structFRHAPI__PlayerIterateResponse_1ab8b9072d6efcd434b282c04aa37c14c3)`() const` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCursor`](#structFRHAPI__PlayerIterateResponse_1ab4a04d20b55f0e14cccb0a708e6f1e23)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
-`public inline void `[`SetCursor`](#structFRHAPI__PlayerIterateResponse_1adafd93e3da55ab51d780dfd9f77c1476)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1af6eb58d25b88fee9920bd32bf798357e)`()` | Gets the value of Cursor_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a8f2cce082e02813a7b0b793dfd313ac2)`() const` | Gets the value of Cursor_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a6f98d1b7e1693727730c54ffd63bbead)`(const FString & DefaultValue) const` | Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a1eae0c78d70f76ae1e96d14d1fd4cf77)`(FString & OutValue) const` | Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetCursorOrNull`](#structFRHAPI__PlayerIterateResponse_1a7633abc73e2b8045fc4dc58ec50acb5f)`()` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetCursorOrNull`](#structFRHAPI__PlayerIterateResponse_1a8a425ac18da7526f8a66f7e4e9055204)`() const` | Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__PlayerIterateResponse_1ab2a26d38f03c9d248a1c33402d2563a2)`(const FString & NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
+`public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__PlayerIterateResponse_1ab374683c59f4f0a73399ef8f5d126eb0)`(FString && NewValue)` | Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 `public inline void `[`ClearCursor`](#structFRHAPI__PlayerIterateResponse_1a920afebebc18c99c7ad22e72330ec806)`()` | Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
-`public inline bool `[`IsCursorSet`](#structFRHAPI__PlayerIterateResponse_1a62f58b9760d776db3e0bd821ef78f0c5)`() const` | Checks whether Cursor_Optional has been set.
-`public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__PlayerIterateResponse_1a676a735136b1e24c677f033f0b39a2ea)`() const` | Returns true if Cursor_Optional is set and matches the default value.
-`public inline void `[`SetCursorToDefault`](#structFRHAPI__PlayerIterateResponse_1aaac64e56a63411ad63385a486d4bf1fa)`()` | Sets the value of Cursor_Optional to its default and also sets Cursor_IsSet to true.
+`public inline FORCEINLINE FString `[`GetDefaultValue_Cursor`](#structFRHAPI__PlayerIterateResponse_1a69f9ac0d8912f44c3e80a4e8577e0ae0)`()` | Returns the default value of Cursor.
 
 ### Members
 
@@ -85,35 +82,35 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a0a11029a0aeb6768040c836578ee12ee)`()` <a id="structFRHAPI__PlayerIterateResponse_1a0a11029a0aeb6768040c836578ee12ee"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a621cbb102052b66a55f2cff1260ea3d7)`()` <a id="structFRHAPI__PlayerIterateResponse_1a621cbb102052b66a55f2cff1260ea3d7"></a>
 
 Gets the value of Players_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a4efceb730d4dbe5a2081954aca55dc62)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a4efceb730d4dbe5a2081954aca55dc62"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a0ccc5db21a845118541eb84f9db251ac)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a0ccc5db21a845118541eb84f9db251ac"></a>
 
 Gets the value of Players_Optional, regardless of it having been set.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a6ae3fd5758b520e1247e05ba9569cd26)`(const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & DefaultValue) const` <a id="structFRHAPI__PlayerIterateResponse_1a6ae3fd5758b520e1247e05ba9569cd26"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1a0e01b0fc126fd63cb990c20415df32e1)`(const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & DefaultValue) const` <a id="structFRHAPI__PlayerIterateResponse_1a0e01b0fc126fd63cb990c20415df32e1"></a>
 
 Gets the value of Players_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1aaaa281609d9815877805502168dda12f)`(TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & OutValue) const` <a id="structFRHAPI__PlayerIterateResponse_1aaaa281609d9815877805502168dda12f"></a>
+#### `public inline FORCEINLINE bool `[`GetPlayers`](#structFRHAPI__PlayerIterateResponse_1ac3e23c7779ec19d15f326f679a8e0120)`(TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & OutValue) const` <a id="structFRHAPI__PlayerIterateResponse_1ac3e23c7779ec19d15f326f679a8e0120"></a>
 
 Fills OutValue with the value of Players_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetPlayersOrNull`](#structFRHAPI__PlayerIterateResponse_1ac387c4177c36edcac586277a5fe98daa)`()` <a id="structFRHAPI__PlayerIterateResponse_1ac387c4177c36edcac586277a5fe98daa"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetPlayersOrNull`](#structFRHAPI__PlayerIterateResponse_1a3da7a1f58d21fd18d35fa1b658489b30)`()` <a id="structFRHAPI__PlayerIterateResponse_1a3da7a1f58d21fd18d35fa1b658489b30"></a>
 
 Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetPlayersOrNull`](#structFRHAPI__PlayerIterateResponse_1aed1531ebc44873de7f7c2d0ba4a81f86)`() const` <a id="structFRHAPI__PlayerIterateResponse_1aed1531ebc44873de7f7c2d0ba4a81f86"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > * `[`GetPlayersOrNull`](#structFRHAPI__PlayerIterateResponse_1a10f04334325193219ee6eeb30bfee2e6)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a10f04334325193219ee6eeb30bfee2e6"></a>
 
 Returns a pointer to Players_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlayers`](#structFRHAPI__PlayerIterateResponse_1a630b3c3c8ec0943ef0ac62a4cf00f75a)`(const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & NewValue)` <a id="structFRHAPI__PlayerIterateResponse_1a630b3c3c8ec0943ef0ac62a4cf00f75a"></a>
+#### `public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__PlayerIterateResponse_1a9f64988d89c0b4557e7b3f234feef0a4)`(const TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > & NewValue)` <a id="structFRHAPI__PlayerIterateResponse_1a9f64988d89c0b4557e7b3f234feef0a4"></a>
 
 Sets the value of Players_Optional and also sets Players_IsSet to true.
 
-#### `public inline void `[`SetPlayers`](#structFRHAPI__PlayerIterateResponse_1aabb0d172f1f4e9e728c3a4e3c1faabe4)`(TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > && NewValue)` <a id="structFRHAPI__PlayerIterateResponse_1aabb0d172f1f4e9e728c3a4e3c1faabe4"></a>
+#### `public inline FORCEINLINE void `[`SetPlayers`](#structFRHAPI__PlayerIterateResponse_1abcc2ad81e611c94febac197fe533cd3b)`(TArray< `[`FRHAPI_PlayerResponse`](RHAPI_PlayerResponse.md#structFRHAPI__PlayerResponse)` > && NewValue)` <a id="structFRHAPI__PlayerIterateResponse_1abcc2ad81e611c94febac197fe533cd3b"></a>
 
 Sets the value of Players_Optional and also sets Players_IsSet to true using move semantics.
 
@@ -121,39 +118,35 @@ Sets the value of Players_Optional and also sets Players_IsSet to true using mov
 
 Clears the value of Players_Optional and sets Players_IsSet to false.
 
-#### `public inline bool `[`IsPlayersSet`](#structFRHAPI__PlayerIterateResponse_1a14e486dfb3331f5578b58ac9ad2d7635)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a14e486dfb3331f5578b58ac9ad2d7635"></a>
-
-Checks whether Players_Optional has been set.
-
-#### `public inline FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1aeffb1b0c17ebf8c82f2116354c5d27ae)`()` <a id="structFRHAPI__PlayerIterateResponse_1aeffb1b0c17ebf8c82f2116354c5d27ae"></a>
+#### `public inline FORCEINLINE FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1af6eb58d25b88fee9920bd32bf798357e)`()` <a id="structFRHAPI__PlayerIterateResponse_1af6eb58d25b88fee9920bd32bf798357e"></a>
 
 Gets the value of Cursor_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a52ba4654aa4f8d5df33ae62a9a368870)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a52ba4654aa4f8d5df33ae62a9a368870"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a8f2cce082e02813a7b0b793dfd313ac2)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a8f2cce082e02813a7b0b793dfd313ac2"></a>
 
 Gets the value of Cursor_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1aab31ae94bf4d14040a97e80e805144fe)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerIterateResponse_1aab31ae94bf4d14040a97e80e805144fe"></a>
+#### `public inline FORCEINLINE const FString & `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a6f98d1b7e1693727730c54ffd63bbead)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerIterateResponse_1a6f98d1b7e1693727730c54ffd63bbead"></a>
 
 Gets the value of Cursor_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a311acdf4347a3bb279f0f4997fa9009f)`(FString & OutValue) const` <a id="structFRHAPI__PlayerIterateResponse_1a311acdf4347a3bb279f0f4997fa9009f"></a>
+#### `public inline FORCEINLINE bool `[`GetCursor`](#structFRHAPI__PlayerIterateResponse_1a1eae0c78d70f76ae1e96d14d1fd4cf77)`(FString & OutValue) const` <a id="structFRHAPI__PlayerIterateResponse_1a1eae0c78d70f76ae1e96d14d1fd4cf77"></a>
 
 Fills OutValue with the value of Cursor_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetCursorOrNull`](#structFRHAPI__PlayerIterateResponse_1a1303ae4eb1916d4f6434f40faf483fe2)`()` <a id="structFRHAPI__PlayerIterateResponse_1a1303ae4eb1916d4f6434f40faf483fe2"></a>
+#### `public inline FORCEINLINE FString * `[`GetCursorOrNull`](#structFRHAPI__PlayerIterateResponse_1a7633abc73e2b8045fc4dc58ec50acb5f)`()` <a id="structFRHAPI__PlayerIterateResponse_1a7633abc73e2b8045fc4dc58ec50acb5f"></a>
 
 Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetCursorOrNull`](#structFRHAPI__PlayerIterateResponse_1ab8b9072d6efcd434b282c04aa37c14c3)`() const` <a id="structFRHAPI__PlayerIterateResponse_1ab8b9072d6efcd434b282c04aa37c14c3"></a>
+#### `public inline FORCEINLINE const FString * `[`GetCursorOrNull`](#structFRHAPI__PlayerIterateResponse_1a8a425ac18da7526f8a66f7e4e9055204)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a8a425ac18da7526f8a66f7e4e9055204"></a>
 
 Returns a pointer to Cursor_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__PlayerIterateResponse_1ab4a04d20b55f0e14cccb0a708e6f1e23)`(const FString & NewValue)` <a id="structFRHAPI__PlayerIterateResponse_1ab4a04d20b55f0e14cccb0a708e6f1e23"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__PlayerIterateResponse_1ab2a26d38f03c9d248a1c33402d2563a2)`(const FString & NewValue)` <a id="structFRHAPI__PlayerIterateResponse_1ab2a26d38f03c9d248a1c33402d2563a2"></a>
 
 Sets the value of Cursor_Optional and also sets Cursor_IsSet to true.
 
-#### `public inline void `[`SetCursor`](#structFRHAPI__PlayerIterateResponse_1adafd93e3da55ab51d780dfd9f77c1476)`(FString && NewValue)` <a id="structFRHAPI__PlayerIterateResponse_1adafd93e3da55ab51d780dfd9f77c1476"></a>
+#### `public inline FORCEINLINE void `[`SetCursor`](#structFRHAPI__PlayerIterateResponse_1ab374683c59f4f0a73399ef8f5d126eb0)`(FString && NewValue)` <a id="structFRHAPI__PlayerIterateResponse_1ab374683c59f4f0a73399ef8f5d126eb0"></a>
 
 Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move semantics.
 
@@ -161,15 +154,7 @@ Sets the value of Cursor_Optional and also sets Cursor_IsSet to true using move 
 
 Clears the value of Cursor_Optional and sets Cursor_IsSet to false.
 
-#### `public inline bool `[`IsCursorSet`](#structFRHAPI__PlayerIterateResponse_1a62f58b9760d776db3e0bd821ef78f0c5)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a62f58b9760d776db3e0bd821ef78f0c5"></a>
+#### `public inline FORCEINLINE FString `[`GetDefaultValue_Cursor`](#structFRHAPI__PlayerIterateResponse_1a69f9ac0d8912f44c3e80a4e8577e0ae0)`()` <a id="structFRHAPI__PlayerIterateResponse_1a69f9ac0d8912f44c3e80a4e8577e0ae0"></a>
 
-Checks whether Cursor_Optional has been set.
-
-#### `public inline bool `[`IsCursorDefaultValue`](#structFRHAPI__PlayerIterateResponse_1a676a735136b1e24c677f033f0b39a2ea)`() const` <a id="structFRHAPI__PlayerIterateResponse_1a676a735136b1e24c677f033f0b39a2ea"></a>
-
-Returns true if Cursor_Optional is set and matches the default value.
-
-#### `public inline void `[`SetCursorToDefault`](#structFRHAPI__PlayerIterateResponse_1aaac64e56a63411ad63385a486d4bf1fa)`()` <a id="structFRHAPI__PlayerIterateResponse_1aaac64e56a63411ad63385a486d4bf1fa"></a>
-
-Sets the value of Cursor_Optional to its default and also sets Cursor_IsSet to true.
+Returns the default value of Cursor.
 

@@ -25,16 +25,15 @@ Response for getting a player&#39;s info.
 `public FGuid `[`PlayerUuid`](#structFRHAPI__PlayerResponse_1adc688a62eabd80c3cfde9688e61bd030) | Player UUID.
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerResponse_1abdc8de1be28e6a8912329133edc90dad)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerResponse_1a7f977d96064f9aa2b98382b8616b1db3)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1a14725836c9d2aa3b0773c05e87b0c324)`()` | Gets the value of PlayerId.
-`public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1a34d098b74f847173f5aa71586608f261)`() const` | Gets the value of PlayerId.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerResponse_1a4ad9baa2ce0a73b6c6857da8d457c78f)`(const int32 & NewValue)` | Sets the value of PlayerId.
-`public inline void `[`SetPlayerId`](#structFRHAPI__PlayerResponse_1aaaaa8a2058e3140b8ebe28172665a034)`(int32 && NewValue)` | Sets the value of PlayerId using move semantics.
-`public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerResponse_1a1e4e3035c00a0707189ce52e4c1f1649)`() const` | Returns true if PlayerId matches the default value.
-`public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlayerResponse_1ae3de40c04341be8f81a980d77123ae55)`()` | Sets the value of PlayerId to its default
-`public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1a7e25faa3b197971e26fe9e5c29cdbb27)`()` | Gets the value of PlayerUuid.
-`public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1a1175abad020d68533a1a77c7d4a7684a)`() const` | Gets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1acd2eae750719d7a1ea45f763b13a259e)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
-`public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1a29d5ef80cd65fdbd55cfe5f6886b997b)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
+`public inline FORCEINLINE int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1aa1da8f9b58cf62662561b002af51db1a)`()` | Gets the value of PlayerId.
+`public inline FORCEINLINE const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1a941db1a7544a492b3d1eafd29bb6bf7f)`() const` | Gets the value of PlayerId.
+`public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PlayerResponse_1a1c24b4e46ac2a0528202e11d1fb6c70c)`(const int32 & NewValue)` | Sets the value of PlayerId.
+`public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PlayerResponse_1afc33c19b050dbb56673f9730e9fdecef)`(int32 && NewValue)` | Sets the value of PlayerId using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PlayerId`](#structFRHAPI__PlayerResponse_1a517d53925bf1c3679bb35d57d37c9d1f)`()` | Returns the default value of PlayerId.
+`public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1aa745a6e525fead994998140f982c9742)`()` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1ac3e7f72c504d847841ccb2c385d59180)`() const` | Gets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1ab8e46f79bc8d1ae46d4f20a7e9ae3cf4)`(const FGuid & NewValue)` | Sets the value of PlayerUuid.
+`public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1afdcf443a5addd5cac5d653808216afa2)`(FGuid && NewValue)` | Sets the value of PlayerUuid using move semantics.
 
 ### Members
 
@@ -63,43 +62,39 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1a14725836c9d2aa3b0773c05e87b0c324)`()` <a id="structFRHAPI__PlayerResponse_1a14725836c9d2aa3b0773c05e87b0c324"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1aa1da8f9b58cf62662561b002af51db1a)`()` <a id="structFRHAPI__PlayerResponse_1aa1da8f9b58cf62662561b002af51db1a"></a>
 
 Gets the value of PlayerId.
 
-#### `public inline const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1a34d098b74f847173f5aa71586608f261)`() const` <a id="structFRHAPI__PlayerResponse_1a34d098b74f847173f5aa71586608f261"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPlayerId`](#structFRHAPI__PlayerResponse_1a941db1a7544a492b3d1eafd29bb6bf7f)`() const` <a id="structFRHAPI__PlayerResponse_1a941db1a7544a492b3d1eafd29bb6bf7f"></a>
 
 Gets the value of PlayerId.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerResponse_1a4ad9baa2ce0a73b6c6857da8d457c78f)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerResponse_1a4ad9baa2ce0a73b6c6857da8d457c78f"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PlayerResponse_1a1c24b4e46ac2a0528202e11d1fb6c70c)`(const int32 & NewValue)` <a id="structFRHAPI__PlayerResponse_1a1c24b4e46ac2a0528202e11d1fb6c70c"></a>
 
 Sets the value of PlayerId.
 
-#### `public inline void `[`SetPlayerId`](#structFRHAPI__PlayerResponse_1aaaaa8a2058e3140b8ebe28172665a034)`(int32 && NewValue)` <a id="structFRHAPI__PlayerResponse_1aaaaa8a2058e3140b8ebe28172665a034"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerId`](#structFRHAPI__PlayerResponse_1afc33c19b050dbb56673f9730e9fdecef)`(int32 && NewValue)` <a id="structFRHAPI__PlayerResponse_1afc33c19b050dbb56673f9730e9fdecef"></a>
 
 Sets the value of PlayerId using move semantics.
 
-#### `public inline bool `[`IsPlayerIdDefaultValue`](#structFRHAPI__PlayerResponse_1a1e4e3035c00a0707189ce52e4c1f1649)`() const` <a id="structFRHAPI__PlayerResponse_1a1e4e3035c00a0707189ce52e4c1f1649"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PlayerId`](#structFRHAPI__PlayerResponse_1a517d53925bf1c3679bb35d57d37c9d1f)`()` <a id="structFRHAPI__PlayerResponse_1a517d53925bf1c3679bb35d57d37c9d1f"></a>
 
-Returns true if PlayerId matches the default value.
+Returns the default value of PlayerId.
 
-#### `public inline void `[`SetPlayerIdToDefault`](#structFRHAPI__PlayerResponse_1ae3de40c04341be8f81a980d77123ae55)`()` <a id="structFRHAPI__PlayerResponse_1ae3de40c04341be8f81a980d77123ae55"></a>
-
-Sets the value of PlayerId to its default
-
-#### `public inline FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1a7e25faa3b197971e26fe9e5c29cdbb27)`()` <a id="structFRHAPI__PlayerResponse_1a7e25faa3b197971e26fe9e5c29cdbb27"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1aa745a6e525fead994998140f982c9742)`()` <a id="structFRHAPI__PlayerResponse_1aa745a6e525fead994998140f982c9742"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1a1175abad020d68533a1a77c7d4a7684a)`() const` <a id="structFRHAPI__PlayerResponse_1a1175abad020d68533a1a77c7d4a7684a"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetPlayerUuid`](#structFRHAPI__PlayerResponse_1ac3e7f72c504d847841ccb2c385d59180)`() const` <a id="structFRHAPI__PlayerResponse_1ac3e7f72c504d847841ccb2c385d59180"></a>
 
 Gets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1acd2eae750719d7a1ea45f763b13a259e)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerResponse_1acd2eae750719d7a1ea45f763b13a259e"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1ab8e46f79bc8d1ae46d4f20a7e9ae3cf4)`(const FGuid & NewValue)` <a id="structFRHAPI__PlayerResponse_1ab8e46f79bc8d1ae46d4f20a7e9ae3cf4"></a>
 
 Sets the value of PlayerUuid.
 
-#### `public inline void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1a29d5ef80cd65fdbd55cfe5f6886b997b)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerResponse_1a29d5ef80cd65fdbd55cfe5f6886b997b"></a>
+#### `public inline FORCEINLINE void `[`SetPlayerUuid`](#structFRHAPI__PlayerResponse_1afdcf443a5addd5cac5d653808216afa2)`(FGuid && NewValue)` <a id="structFRHAPI__PlayerResponse_1afdcf443a5addd5cac5d653808216afa2"></a>
 
 Sets the value of PlayerUuid using move semantics.
 

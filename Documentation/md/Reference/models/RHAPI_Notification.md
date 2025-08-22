@@ -30,48 +30,45 @@ struct FRHAPI_Notification
 `public FDateTime `[`Created`](#structFRHAPI__Notification_1a8af4c0587e0e1ea8402658f2797c848e) | When this notification was added.
 `public virtual bool `[`FromJson`](#structFRHAPI__Notification_1a9bfade40a76c5d37cefda2ec62355e25)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__Notification_1a706e816fd8489fb7f44916423a2d87f4)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetMessage`](#structFRHAPI__Notification_1aeae05376f3d0d9b78f8066c26ae15bc6)`()` | Gets the value of Message.
-`public inline const FString & `[`GetMessage`](#structFRHAPI__Notification_1af55f6f96914bac3d3665290cc5bc6d80)`() const` | Gets the value of Message.
-`public inline void `[`SetMessage`](#structFRHAPI__Notification_1af784e497683ed1f0e63bcf0ecbb16756)`(const FString & NewValue)` | Sets the value of Message.
-`public inline void `[`SetMessage`](#structFRHAPI__Notification_1a5e919cdd4f250d4666e2f7b7caac8aec)`(FString && NewValue)` | Sets the value of Message using move semantics.
-`public inline FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a2ebc45d44459d9be01f48e03eadf43d0)`()` | Gets the value of RhUrl_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a53cb3b025b38099dc900161498894398)`() const` | Gets the value of RhUrl_Optional, regardless of it having been set.
-`public inline const FString & `[`GetRhUrl`](#structFRHAPI__Notification_1aa7f46a7859d4790b81ae9d15a37854e1)`(const FString & DefaultValue) const` | Gets the value of RhUrl_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRhUrl`](#structFRHAPI__Notification_1a4792a5d1eb1f4edd47474f17bac7f073)`(FString & OutValue) const` | Fills OutValue with the value of RhUrl_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetRhUrlOrNull`](#structFRHAPI__Notification_1ad97636adf1daedef604a9b5bdb513e38)`()` | Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetRhUrlOrNull`](#structFRHAPI__Notification_1ac1e393d84c6b2215df8d574d5a1b19de)`() const` | Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRhUrl`](#structFRHAPI__Notification_1a0f04efbc37b00a9d57bba137652d367e)`(const FString & NewValue)` | Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true.
-`public inline void `[`SetRhUrl`](#structFRHAPI__Notification_1af97af8af1dfa08d0104fb62375b47f2a)`(FString && NewValue)` | Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetMessage`](#structFRHAPI__Notification_1a38e35c6d2e18dc54f8e2b10e79983745)`()` | Gets the value of Message.
+`public inline FORCEINLINE const FString & `[`GetMessage`](#structFRHAPI__Notification_1a4a585b80474e96f1c8cc0ee6f9dff315)`() const` | Gets the value of Message.
+`public inline FORCEINLINE void `[`SetMessage`](#structFRHAPI__Notification_1a68c150776099cc2c93c3c357c187b31e)`(const FString & NewValue)` | Sets the value of Message.
+`public inline FORCEINLINE void `[`SetMessage`](#structFRHAPI__Notification_1ad74f5b984058562c372deb6022f718ee)`(FString && NewValue)` | Sets the value of Message using move semantics.
+`public inline FORCEINLINE FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a95548b0620bbd74f252e50fde45a4bc7)`()` | Gets the value of RhUrl_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a6d26349142cd31790c6c4bd496b9559b)`() const` | Gets the value of RhUrl_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a4905bb66da3a4b66d40f8e44385b11d2)`(const FString & DefaultValue) const` | Gets the value of RhUrl_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRhUrl`](#structFRHAPI__Notification_1a383f4e2a2a1594a578b09e49a5203e6c)`(FString & OutValue) const` | Fills OutValue with the value of RhUrl_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetRhUrlOrNull`](#structFRHAPI__Notification_1a52b314a49f6c573da6d11ca254636e4f)`()` | Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetRhUrlOrNull`](#structFRHAPI__Notification_1a7838ac87c7a24df2d932f98530704285)`() const` | Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRhUrl`](#structFRHAPI__Notification_1a60e15d4f407fbadb0f822dc4c6a0663d)`(const FString & NewValue)` | Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true.
+`public inline FORCEINLINE void `[`SetRhUrl`](#structFRHAPI__Notification_1ac18c7302aaa29004b59d82814c81fac9)`(FString && NewValue)` | Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true using move semantics.
 `public inline void `[`ClearRhUrl`](#structFRHAPI__Notification_1abec18e1a52fdb6a0f2f863bd9a2b8c0f)`()` | Clears the value of RhUrl_Optional and sets RhUrl_IsSet to false.
-`public inline bool `[`IsRhUrlSet`](#structFRHAPI__Notification_1a38d9f57dbdbb29cc2b8f5e95b5ba8a40)`() const` | Checks whether RhUrl_Optional has been set.
-`public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1a02cf7e6f33ada172c1ba348860a23865)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1ac8cc9b5c98dc872b35a40c2b53b3b0af)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1a8836f71e973d8667f5d3234ce8d9220f)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetCustomData`](#structFRHAPI__Notification_1a5bf362e8c77d4ef66ad1002a1384c442)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Notification_1afb2f5002f416306cdec8572f66426a2b)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Notification_1ad9a40b3766425dfda4103ce2010b96f9)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetCustomData`](#structFRHAPI__Notification_1aab23cc68c61dabae1439e4ef3de85bb3)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
-`public inline void `[`SetCustomData`](#structFRHAPI__Notification_1ab01e3bf3707e524b4372cd7726b0c44f)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1a0b0009eb70590fef113de0bf3388d03a)`()` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1ae38cc061e1ce8dc6cfce69d3bb73d8ae)`() const` | Gets the value of CustomData_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1ab3791f386ce64cfbe7720d6cecf09d75)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__Notification_1aa69a95b08d61cd06705b61067a5cc6e1)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Notification_1a9bb22b93a219c301d9a576fada30c237)`()` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Notification_1acbadc620f5de5e9c31657aac6c282af6)`() const` | Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Notification_1a3518e8822c13624f9051acdd01fb9a5f)`(const TMap< FString, FString > & NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
+`public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Notification_1abb9f30f076e91fb548d9aa6f32b267b8)`(TMap< FString, FString > && NewValue)` | Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 `public inline void `[`ClearCustomData`](#structFRHAPI__Notification_1a595377476c3814e5d2d628cf20ac2d1d)`()` | Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
-`public inline bool `[`IsCustomDataSet`](#structFRHAPI__Notification_1a455680c2a548cc2d6ba7c62fcbae422c)`() const` | Checks whether CustomData_Optional has been set.
-`public inline FString & `[`GetEtag`](#structFRHAPI__Notification_1a7464862ce438ed186459b7263276b799)`()` | Gets the value of Etag_Optional, regardless of it having been set.
-`public inline const FString & `[`GetEtag`](#structFRHAPI__Notification_1adab8f1fd89278ce76b02114829b98824)`() const` | Gets the value of Etag_Optional, regardless of it having been set.
-`public inline const FString & `[`GetEtag`](#structFRHAPI__Notification_1a18fec996e3e2cd7c3e22cf3421158c72)`(const FString & DefaultValue) const` | Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetEtag`](#structFRHAPI__Notification_1a9e49f93b9c00111bc2226d61cdbe80bc)`(FString & OutValue) const` | Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetEtagOrNull`](#structFRHAPI__Notification_1a7c26061b30f4373efdd88aa53a58d22f)`()` | Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetEtagOrNull`](#structFRHAPI__Notification_1ae97cb7a345cb19dec8249a6c9c2e7874)`() const` | Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetEtag`](#structFRHAPI__Notification_1a927763eedd49af16ab7472ae825a6121)`(const FString & NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true.
-`public inline void `[`SetEtag`](#structFRHAPI__Notification_1abdf91f9fd7636d1561fe77d4ec2cbefa)`(FString && NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetEtag`](#structFRHAPI__Notification_1a1a8290e18d5962b106efb36cd428b3d8)`()` | Gets the value of Etag_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetEtag`](#structFRHAPI__Notification_1a25ec1e8cd16e19961763e7d114aac71d)`() const` | Gets the value of Etag_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetEtag`](#structFRHAPI__Notification_1ab7855f0bc50a5b2c0b0302aa2e27c078)`(const FString & DefaultValue) const` | Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetEtag`](#structFRHAPI__Notification_1a739f12240abc5db42a510e1cb52595ae)`(FString & OutValue) const` | Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetEtagOrNull`](#structFRHAPI__Notification_1a2b7f0c138f876ef2c1b6e81cb47cbba2)`()` | Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetEtagOrNull`](#structFRHAPI__Notification_1adda1102e4f447043283591c0191a7e8a)`() const` | Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetEtag`](#structFRHAPI__Notification_1ad3cb4417e322b0a46e6f6e167e678489)`(const FString & NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true.
+`public inline FORCEINLINE void `[`SetEtag`](#structFRHAPI__Notification_1a05f8d101786ff287f7022f872f5de3d0)`(FString && NewValue)` | Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics.
 `public inline void `[`ClearEtag`](#structFRHAPI__Notification_1a270365c81e422b9cf7497f5ac8db21b7)`()` | Clears the value of Etag_Optional and sets Etag_IsSet to false.
-`public inline bool `[`IsEtagSet`](#structFRHAPI__Notification_1a1fcc4d00b3e231184cdb0f03cd041d7d)`() const` | Checks whether Etag_Optional has been set.
-`public inline FString & `[`GetNotificationId`](#structFRHAPI__Notification_1abe1e7577fd60439c9ce9e10c7a1be3b4)`()` | Gets the value of NotificationId.
-`public inline const FString & `[`GetNotificationId`](#structFRHAPI__Notification_1a0fe291869d3e81f04d9aa5eea5edb6c6)`() const` | Gets the value of NotificationId.
-`public inline void `[`SetNotificationId`](#structFRHAPI__Notification_1a5c118723c634fafbddc710f247e4d9a0)`(const FString & NewValue)` | Sets the value of NotificationId.
-`public inline void `[`SetNotificationId`](#structFRHAPI__Notification_1a7bf9c145d5e811aa86251d65aadbae25)`(FString && NewValue)` | Sets the value of NotificationId using move semantics.
-`public inline FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1a553db4b577f209b37df47db5bb51fe09)`()` | Gets the value of Created.
-`public inline const FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1a4eec26a280f183d7f55819c63344e0c3)`() const` | Gets the value of Created.
-`public inline void `[`SetCreated`](#structFRHAPI__Notification_1acee20f9f1cbfe843e8faecb953788ae1)`(const FDateTime & NewValue)` | Sets the value of Created.
-`public inline void `[`SetCreated`](#structFRHAPI__Notification_1a0cdbe0e2aaa95c595c7c66ed7b07c7b3)`(FDateTime && NewValue)` | Sets the value of Created using move semantics.
+`public inline FORCEINLINE FString & `[`GetNotificationId`](#structFRHAPI__Notification_1ad5fd750157d33d99a21442f943ea0c4b)`()` | Gets the value of NotificationId.
+`public inline FORCEINLINE const FString & `[`GetNotificationId`](#structFRHAPI__Notification_1a87719b006db1c43203ba738e01c4db2f)`() const` | Gets the value of NotificationId.
+`public inline FORCEINLINE void `[`SetNotificationId`](#structFRHAPI__Notification_1a36312ea471785b91e70db6fe5786ac26)`(const FString & NewValue)` | Sets the value of NotificationId.
+`public inline FORCEINLINE void `[`SetNotificationId`](#structFRHAPI__Notification_1abc4ebde55ffd56bfc6259c5ecc97e208)`(FString && NewValue)` | Sets the value of NotificationId using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1a25190bf43911d7a89b389ec1a0a63bbb)`()` | Gets the value of Created.
+`public inline FORCEINLINE const FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1af8c50fe6584139d6a7581e4da8816fd1)`() const` | Gets the value of Created.
+`public inline FORCEINLINE void `[`SetCreated`](#structFRHAPI__Notification_1a56177cb39daa875888598d1bfed64187)`(const FDateTime & NewValue)` | Sets the value of Created.
+`public inline FORCEINLINE void `[`SetCreated`](#structFRHAPI__Notification_1a614948ec894078dc22afdf7bcc96da77)`(FDateTime && NewValue)` | Sets the value of Created using move semantics.
 
 ### Members
 
@@ -128,51 +125,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetMessage`](#structFRHAPI__Notification_1aeae05376f3d0d9b78f8066c26ae15bc6)`()` <a id="structFRHAPI__Notification_1aeae05376f3d0d9b78f8066c26ae15bc6"></a>
+#### `public inline FORCEINLINE FString & `[`GetMessage`](#structFRHAPI__Notification_1a38e35c6d2e18dc54f8e2b10e79983745)`()` <a id="structFRHAPI__Notification_1a38e35c6d2e18dc54f8e2b10e79983745"></a>
 
 Gets the value of Message.
 
-#### `public inline const FString & `[`GetMessage`](#structFRHAPI__Notification_1af55f6f96914bac3d3665290cc5bc6d80)`() const` <a id="structFRHAPI__Notification_1af55f6f96914bac3d3665290cc5bc6d80"></a>
+#### `public inline FORCEINLINE const FString & `[`GetMessage`](#structFRHAPI__Notification_1a4a585b80474e96f1c8cc0ee6f9dff315)`() const` <a id="structFRHAPI__Notification_1a4a585b80474e96f1c8cc0ee6f9dff315"></a>
 
 Gets the value of Message.
 
-#### `public inline void `[`SetMessage`](#structFRHAPI__Notification_1af784e497683ed1f0e63bcf0ecbb16756)`(const FString & NewValue)` <a id="structFRHAPI__Notification_1af784e497683ed1f0e63bcf0ecbb16756"></a>
+#### `public inline FORCEINLINE void `[`SetMessage`](#structFRHAPI__Notification_1a68c150776099cc2c93c3c357c187b31e)`(const FString & NewValue)` <a id="structFRHAPI__Notification_1a68c150776099cc2c93c3c357c187b31e"></a>
 
 Sets the value of Message.
 
-#### `public inline void `[`SetMessage`](#structFRHAPI__Notification_1a5e919cdd4f250d4666e2f7b7caac8aec)`(FString && NewValue)` <a id="structFRHAPI__Notification_1a5e919cdd4f250d4666e2f7b7caac8aec"></a>
+#### `public inline FORCEINLINE void `[`SetMessage`](#structFRHAPI__Notification_1ad74f5b984058562c372deb6022f718ee)`(FString && NewValue)` <a id="structFRHAPI__Notification_1ad74f5b984058562c372deb6022f718ee"></a>
 
 Sets the value of Message using move semantics.
 
-#### `public inline FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a2ebc45d44459d9be01f48e03eadf43d0)`()` <a id="structFRHAPI__Notification_1a2ebc45d44459d9be01f48e03eadf43d0"></a>
+#### `public inline FORCEINLINE FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a95548b0620bbd74f252e50fde45a4bc7)`()` <a id="structFRHAPI__Notification_1a95548b0620bbd74f252e50fde45a4bc7"></a>
 
 Gets the value of RhUrl_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a53cb3b025b38099dc900161498894398)`() const` <a id="structFRHAPI__Notification_1a53cb3b025b38099dc900161498894398"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a6d26349142cd31790c6c4bd496b9559b)`() const` <a id="structFRHAPI__Notification_1a6d26349142cd31790c6c4bd496b9559b"></a>
 
 Gets the value of RhUrl_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetRhUrl`](#structFRHAPI__Notification_1aa7f46a7859d4790b81ae9d15a37854e1)`(const FString & DefaultValue) const` <a id="structFRHAPI__Notification_1aa7f46a7859d4790b81ae9d15a37854e1"></a>
+#### `public inline FORCEINLINE const FString & `[`GetRhUrl`](#structFRHAPI__Notification_1a4905bb66da3a4b66d40f8e44385b11d2)`(const FString & DefaultValue) const` <a id="structFRHAPI__Notification_1a4905bb66da3a4b66d40f8e44385b11d2"></a>
 
 Gets the value of RhUrl_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRhUrl`](#structFRHAPI__Notification_1a4792a5d1eb1f4edd47474f17bac7f073)`(FString & OutValue) const` <a id="structFRHAPI__Notification_1a4792a5d1eb1f4edd47474f17bac7f073"></a>
+#### `public inline FORCEINLINE bool `[`GetRhUrl`](#structFRHAPI__Notification_1a383f4e2a2a1594a578b09e49a5203e6c)`(FString & OutValue) const` <a id="structFRHAPI__Notification_1a383f4e2a2a1594a578b09e49a5203e6c"></a>
 
 Fills OutValue with the value of RhUrl_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetRhUrlOrNull`](#structFRHAPI__Notification_1ad97636adf1daedef604a9b5bdb513e38)`()` <a id="structFRHAPI__Notification_1ad97636adf1daedef604a9b5bdb513e38"></a>
+#### `public inline FORCEINLINE FString * `[`GetRhUrlOrNull`](#structFRHAPI__Notification_1a52b314a49f6c573da6d11ca254636e4f)`()` <a id="structFRHAPI__Notification_1a52b314a49f6c573da6d11ca254636e4f"></a>
 
 Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetRhUrlOrNull`](#structFRHAPI__Notification_1ac1e393d84c6b2215df8d574d5a1b19de)`() const` <a id="structFRHAPI__Notification_1ac1e393d84c6b2215df8d574d5a1b19de"></a>
+#### `public inline FORCEINLINE const FString * `[`GetRhUrlOrNull`](#structFRHAPI__Notification_1a7838ac87c7a24df2d932f98530704285)`() const` <a id="structFRHAPI__Notification_1a7838ac87c7a24df2d932f98530704285"></a>
 
 Returns a pointer to RhUrl_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRhUrl`](#structFRHAPI__Notification_1a0f04efbc37b00a9d57bba137652d367e)`(const FString & NewValue)` <a id="structFRHAPI__Notification_1a0f04efbc37b00a9d57bba137652d367e"></a>
+#### `public inline FORCEINLINE void `[`SetRhUrl`](#structFRHAPI__Notification_1a60e15d4f407fbadb0f822dc4c6a0663d)`(const FString & NewValue)` <a id="structFRHAPI__Notification_1a60e15d4f407fbadb0f822dc4c6a0663d"></a>
 
 Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true.
 
-#### `public inline void `[`SetRhUrl`](#structFRHAPI__Notification_1af97af8af1dfa08d0104fb62375b47f2a)`(FString && NewValue)` <a id="structFRHAPI__Notification_1af97af8af1dfa08d0104fb62375b47f2a"></a>
+#### `public inline FORCEINLINE void `[`SetRhUrl`](#structFRHAPI__Notification_1ac18c7302aaa29004b59d82814c81fac9)`(FString && NewValue)` <a id="structFRHAPI__Notification_1ac18c7302aaa29004b59d82814c81fac9"></a>
 
 Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true using move semantics.
 
@@ -180,39 +177,35 @@ Sets the value of RhUrl_Optional and also sets RhUrl_IsSet to true using move se
 
 Clears the value of RhUrl_Optional and sets RhUrl_IsSet to false.
 
-#### `public inline bool `[`IsRhUrlSet`](#structFRHAPI__Notification_1a38d9f57dbdbb29cc2b8f5e95b5ba8a40)`() const` <a id="structFRHAPI__Notification_1a38d9f57dbdbb29cc2b8f5e95b5ba8a40"></a>
-
-Checks whether RhUrl_Optional has been set.
-
-#### `public inline TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1a02cf7e6f33ada172c1ba348860a23865)`()` <a id="structFRHAPI__Notification_1a02cf7e6f33ada172c1ba348860a23865"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1a0b0009eb70590fef113de0bf3388d03a)`()` <a id="structFRHAPI__Notification_1a0b0009eb70590fef113de0bf3388d03a"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1ac8cc9b5c98dc872b35a40c2b53b3b0af)`() const` <a id="structFRHAPI__Notification_1ac8cc9b5c98dc872b35a40c2b53b3b0af"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1ae38cc061e1ce8dc6cfce69d3bb73d8ae)`() const` <a id="structFRHAPI__Notification_1ae38cc061e1ce8dc6cfce69d3bb73d8ae"></a>
 
 Gets the value of CustomData_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1a8836f71e973d8667f5d3234ce8d9220f)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__Notification_1a8836f71e973d8667f5d3234ce8d9220f"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetCustomData`](#structFRHAPI__Notification_1ab3791f386ce64cfbe7720d6cecf09d75)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__Notification_1ab3791f386ce64cfbe7720d6cecf09d75"></a>
 
 Gets the value of CustomData_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetCustomData`](#structFRHAPI__Notification_1a5bf362e8c77d4ef66ad1002a1384c442)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__Notification_1a5bf362e8c77d4ef66ad1002a1384c442"></a>
+#### `public inline FORCEINLINE bool `[`GetCustomData`](#structFRHAPI__Notification_1aa69a95b08d61cd06705b61067a5cc6e1)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__Notification_1aa69a95b08d61cd06705b61067a5cc6e1"></a>
 
 Fills OutValue with the value of CustomData_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Notification_1afb2f5002f416306cdec8572f66426a2b)`()` <a id="structFRHAPI__Notification_1afb2f5002f416306cdec8572f66426a2b"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Notification_1a9bb22b93a219c301d9a576fada30c237)`()` <a id="structFRHAPI__Notification_1a9bb22b93a219c301d9a576fada30c237"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Notification_1ad9a40b3766425dfda4103ce2010b96f9)`() const` <a id="structFRHAPI__Notification_1ad9a40b3766425dfda4103ce2010b96f9"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetCustomDataOrNull`](#structFRHAPI__Notification_1acbadc620f5de5e9c31657aac6c282af6)`() const` <a id="structFRHAPI__Notification_1acbadc620f5de5e9c31657aac6c282af6"></a>
 
 Returns a pointer to CustomData_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__Notification_1aab23cc68c61dabae1439e4ef3de85bb3)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__Notification_1aab23cc68c61dabae1439e4ef3de85bb3"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Notification_1a3518e8822c13624f9051acdd01fb9a5f)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__Notification_1a3518e8822c13624f9051acdd01fb9a5f"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true.
 
-#### `public inline void `[`SetCustomData`](#structFRHAPI__Notification_1ab01e3bf3707e524b4372cd7726b0c44f)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__Notification_1ab01e3bf3707e524b4372cd7726b0c44f"></a>
+#### `public inline FORCEINLINE void `[`SetCustomData`](#structFRHAPI__Notification_1abb9f30f076e91fb548d9aa6f32b267b8)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__Notification_1abb9f30f076e91fb548d9aa6f32b267b8"></a>
 
 Sets the value of CustomData_Optional and also sets CustomData_IsSet to true using move semantics.
 
@@ -220,39 +213,35 @@ Sets the value of CustomData_Optional and also sets CustomData_IsSet to true usi
 
 Clears the value of CustomData_Optional and sets CustomData_IsSet to false.
 
-#### `public inline bool `[`IsCustomDataSet`](#structFRHAPI__Notification_1a455680c2a548cc2d6ba7c62fcbae422c)`() const` <a id="structFRHAPI__Notification_1a455680c2a548cc2d6ba7c62fcbae422c"></a>
-
-Checks whether CustomData_Optional has been set.
-
-#### `public inline FString & `[`GetEtag`](#structFRHAPI__Notification_1a7464862ce438ed186459b7263276b799)`()` <a id="structFRHAPI__Notification_1a7464862ce438ed186459b7263276b799"></a>
+#### `public inline FORCEINLINE FString & `[`GetEtag`](#structFRHAPI__Notification_1a1a8290e18d5962b106efb36cd428b3d8)`()` <a id="structFRHAPI__Notification_1a1a8290e18d5962b106efb36cd428b3d8"></a>
 
 Gets the value of Etag_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetEtag`](#structFRHAPI__Notification_1adab8f1fd89278ce76b02114829b98824)`() const` <a id="structFRHAPI__Notification_1adab8f1fd89278ce76b02114829b98824"></a>
+#### `public inline FORCEINLINE const FString & `[`GetEtag`](#structFRHAPI__Notification_1a25ec1e8cd16e19961763e7d114aac71d)`() const` <a id="structFRHAPI__Notification_1a25ec1e8cd16e19961763e7d114aac71d"></a>
 
 Gets the value of Etag_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetEtag`](#structFRHAPI__Notification_1a18fec996e3e2cd7c3e22cf3421158c72)`(const FString & DefaultValue) const` <a id="structFRHAPI__Notification_1a18fec996e3e2cd7c3e22cf3421158c72"></a>
+#### `public inline FORCEINLINE const FString & `[`GetEtag`](#structFRHAPI__Notification_1ab7855f0bc50a5b2c0b0302aa2e27c078)`(const FString & DefaultValue) const` <a id="structFRHAPI__Notification_1ab7855f0bc50a5b2c0b0302aa2e27c078"></a>
 
 Gets the value of Etag_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetEtag`](#structFRHAPI__Notification_1a9e49f93b9c00111bc2226d61cdbe80bc)`(FString & OutValue) const` <a id="structFRHAPI__Notification_1a9e49f93b9c00111bc2226d61cdbe80bc"></a>
+#### `public inline FORCEINLINE bool `[`GetEtag`](#structFRHAPI__Notification_1a739f12240abc5db42a510e1cb52595ae)`(FString & OutValue) const` <a id="structFRHAPI__Notification_1a739f12240abc5db42a510e1cb52595ae"></a>
 
 Fills OutValue with the value of Etag_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetEtagOrNull`](#structFRHAPI__Notification_1a7c26061b30f4373efdd88aa53a58d22f)`()` <a id="structFRHAPI__Notification_1a7c26061b30f4373efdd88aa53a58d22f"></a>
+#### `public inline FORCEINLINE FString * `[`GetEtagOrNull`](#structFRHAPI__Notification_1a2b7f0c138f876ef2c1b6e81cb47cbba2)`()` <a id="structFRHAPI__Notification_1a2b7f0c138f876ef2c1b6e81cb47cbba2"></a>
 
 Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetEtagOrNull`](#structFRHAPI__Notification_1ae97cb7a345cb19dec8249a6c9c2e7874)`() const` <a id="structFRHAPI__Notification_1ae97cb7a345cb19dec8249a6c9c2e7874"></a>
+#### `public inline FORCEINLINE const FString * `[`GetEtagOrNull`](#structFRHAPI__Notification_1adda1102e4f447043283591c0191a7e8a)`() const` <a id="structFRHAPI__Notification_1adda1102e4f447043283591c0191a7e8a"></a>
 
 Returns a pointer to Etag_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetEtag`](#structFRHAPI__Notification_1a927763eedd49af16ab7472ae825a6121)`(const FString & NewValue)` <a id="structFRHAPI__Notification_1a927763eedd49af16ab7472ae825a6121"></a>
+#### `public inline FORCEINLINE void `[`SetEtag`](#structFRHAPI__Notification_1ad3cb4417e322b0a46e6f6e167e678489)`(const FString & NewValue)` <a id="structFRHAPI__Notification_1ad3cb4417e322b0a46e6f6e167e678489"></a>
 
 Sets the value of Etag_Optional and also sets Etag_IsSet to true.
 
-#### `public inline void `[`SetEtag`](#structFRHAPI__Notification_1abdf91f9fd7636d1561fe77d4ec2cbefa)`(FString && NewValue)` <a id="structFRHAPI__Notification_1abdf91f9fd7636d1561fe77d4ec2cbefa"></a>
+#### `public inline FORCEINLINE void `[`SetEtag`](#structFRHAPI__Notification_1a05f8d101786ff287f7022f872f5de3d0)`(FString && NewValue)` <a id="structFRHAPI__Notification_1a05f8d101786ff287f7022f872f5de3d0"></a>
 
 Sets the value of Etag_Optional and also sets Etag_IsSet to true using move semantics.
 
@@ -260,39 +249,35 @@ Sets the value of Etag_Optional and also sets Etag_IsSet to true using move sema
 
 Clears the value of Etag_Optional and sets Etag_IsSet to false.
 
-#### `public inline bool `[`IsEtagSet`](#structFRHAPI__Notification_1a1fcc4d00b3e231184cdb0f03cd041d7d)`() const` <a id="structFRHAPI__Notification_1a1fcc4d00b3e231184cdb0f03cd041d7d"></a>
-
-Checks whether Etag_Optional has been set.
-
-#### `public inline FString & `[`GetNotificationId`](#structFRHAPI__Notification_1abe1e7577fd60439c9ce9e10c7a1be3b4)`()` <a id="structFRHAPI__Notification_1abe1e7577fd60439c9ce9e10c7a1be3b4"></a>
+#### `public inline FORCEINLINE FString & `[`GetNotificationId`](#structFRHAPI__Notification_1ad5fd750157d33d99a21442f943ea0c4b)`()` <a id="structFRHAPI__Notification_1ad5fd750157d33d99a21442f943ea0c4b"></a>
 
 Gets the value of NotificationId.
 
-#### `public inline const FString & `[`GetNotificationId`](#structFRHAPI__Notification_1a0fe291869d3e81f04d9aa5eea5edb6c6)`() const` <a id="structFRHAPI__Notification_1a0fe291869d3e81f04d9aa5eea5edb6c6"></a>
+#### `public inline FORCEINLINE const FString & `[`GetNotificationId`](#structFRHAPI__Notification_1a87719b006db1c43203ba738e01c4db2f)`() const` <a id="structFRHAPI__Notification_1a87719b006db1c43203ba738e01c4db2f"></a>
 
 Gets the value of NotificationId.
 
-#### `public inline void `[`SetNotificationId`](#structFRHAPI__Notification_1a5c118723c634fafbddc710f247e4d9a0)`(const FString & NewValue)` <a id="structFRHAPI__Notification_1a5c118723c634fafbddc710f247e4d9a0"></a>
+#### `public inline FORCEINLINE void `[`SetNotificationId`](#structFRHAPI__Notification_1a36312ea471785b91e70db6fe5786ac26)`(const FString & NewValue)` <a id="structFRHAPI__Notification_1a36312ea471785b91e70db6fe5786ac26"></a>
 
 Sets the value of NotificationId.
 
-#### `public inline void `[`SetNotificationId`](#structFRHAPI__Notification_1a7bf9c145d5e811aa86251d65aadbae25)`(FString && NewValue)` <a id="structFRHAPI__Notification_1a7bf9c145d5e811aa86251d65aadbae25"></a>
+#### `public inline FORCEINLINE void `[`SetNotificationId`](#structFRHAPI__Notification_1abc4ebde55ffd56bfc6259c5ecc97e208)`(FString && NewValue)` <a id="structFRHAPI__Notification_1abc4ebde55ffd56bfc6259c5ecc97e208"></a>
 
 Sets the value of NotificationId using move semantics.
 
-#### `public inline FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1a553db4b577f209b37df47db5bb51fe09)`()` <a id="structFRHAPI__Notification_1a553db4b577f209b37df47db5bb51fe09"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1a25190bf43911d7a89b389ec1a0a63bbb)`()` <a id="structFRHAPI__Notification_1a25190bf43911d7a89b389ec1a0a63bbb"></a>
 
 Gets the value of Created.
 
-#### `public inline const FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1a4eec26a280f183d7f55819c63344e0c3)`() const` <a id="structFRHAPI__Notification_1a4eec26a280f183d7f55819c63344e0c3"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetCreated`](#structFRHAPI__Notification_1af8c50fe6584139d6a7581e4da8816fd1)`() const` <a id="structFRHAPI__Notification_1af8c50fe6584139d6a7581e4da8816fd1"></a>
 
 Gets the value of Created.
 
-#### `public inline void `[`SetCreated`](#structFRHAPI__Notification_1acee20f9f1cbfe843e8faecb953788ae1)`(const FDateTime & NewValue)` <a id="structFRHAPI__Notification_1acee20f9f1cbfe843e8faecb953788ae1"></a>
+#### `public inline FORCEINLINE void `[`SetCreated`](#structFRHAPI__Notification_1a56177cb39daa875888598d1bfed64187)`(const FDateTime & NewValue)` <a id="structFRHAPI__Notification_1a56177cb39daa875888598d1bfed64187"></a>
 
 Sets the value of Created.
 
-#### `public inline void `[`SetCreated`](#structFRHAPI__Notification_1a0cdbe0e2aaa95c595c7c66ed7b07c7b3)`(FDateTime && NewValue)` <a id="structFRHAPI__Notification_1a0cdbe0e2aaa95c595c7c66ed7b07c7b3"></a>
+#### `public inline FORCEINLINE void `[`SetCreated`](#structFRHAPI__Notification_1a614948ec894078dc22afdf7bcc96da77)`(FDateTime && NewValue)` <a id="structFRHAPI__Notification_1a614948ec894078dc22afdf7bcc96da77"></a>
 
 Sets the value of Created using move semantics.
 

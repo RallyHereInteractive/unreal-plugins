@@ -29,36 +29,33 @@ V2 Configuration about a specific queue.
 `public bool `[`LegacyConfig_IsSet`](#structFRHAPI__QueueConfigV2_1aac347be9c34c03117f2c1344f07ca866) | true if LegacyConfig_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__QueueConfigV2_1a5420042c67c41721cc92042d7f677b04)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__QueueConfigV2_1a98c3be1541f7ec9148a14eb84e888222)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1ad6239bb2e6eaeccf51b5d6c3ec1912b5)`()` | Gets the value of QueueId.
-`public inline const FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1a269b9194c4960e16baec318973c91f23)`() const` | Gets the value of QueueId.
-`public inline void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1ae97179fc618c3476d0d5346e36e3258f)`(const FString & NewValue)` | Sets the value of QueueId.
-`public inline void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1acac5d6cd186aaa26c629f5ec9b230d12)`(FString && NewValue)` | Sets the value of QueueId using move semantics.
-`public inline bool & `[`GetActive`](#structFRHAPI__QueueConfigV2_1afa4e0eaac91a3835dabe2984abb3f54c)`()` | Gets the value of Active.
-`public inline const bool & `[`GetActive`](#structFRHAPI__QueueConfigV2_1a223df2204aa78dce2af26b6150757148)`() const` | Gets the value of Active.
-`public inline void `[`SetActive`](#structFRHAPI__QueueConfigV2_1acbd74b93b7a9c2a1d79ec67d09ade0fb)`(const bool & NewValue)` | Sets the value of Active.
-`public inline void `[`SetActive`](#structFRHAPI__QueueConfigV2_1a9305d3f0b9806f4f3ad9b24792ce33f7)`(bool && NewValue)` | Sets the value of Active using move semantics.
-`public inline bool `[`IsActiveDefaultValue`](#structFRHAPI__QueueConfigV2_1ad1505f8a82af3ca1e78b9c8f9a9808f7)`() const` | Returns true if Active matches the default value.
-`public inline void `[`SetActiveToDefault`](#structFRHAPI__QueueConfigV2_1afc8df59addb91e29a9f9f21e5f84c622)`()` | Sets the value of Active to its default
-`public inline int32 & `[`GetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1a98b70ca7db5632da80fca6b6e3899dd3)`()` | Gets the value of MaxQueueGroupSize.
-`public inline const int32 & `[`GetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1a8e92e77aea99fd81875f7ad7291b84d4)`() const` | Gets the value of MaxQueueGroupSize.
-`public inline void `[`SetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1aaa2e08bf82aeb7dfaf680dcf62531928)`(const int32 & NewValue)` | Sets the value of MaxQueueGroupSize.
-`public inline void `[`SetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1ab752cd7d72fdddf03ed6d1b64260521b)`(int32 && NewValue)` | Sets the value of MaxQueueGroupSize using move semantics.
-`public inline bool `[`IsMaxQueueGroupSizeDefaultValue`](#structFRHAPI__QueueConfigV2_1afb1913203d4e56acec07a73e80bfee1b)`() const` | Returns true if MaxQueueGroupSize matches the default value.
-`public inline void `[`SetMaxQueueGroupSizeToDefault`](#structFRHAPI__QueueConfigV2_1a96fe278b7a631da8c2cfef3a7e210429)`()` | Sets the value of MaxQueueGroupSize to its default
-`public inline FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1aaae074909c36e526677b8a477eb6f716)`()` | Gets the value of MatchMakingTemplateGroupId.
-`public inline const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a88e4b442f1ea172d015cb8a697afb3c0)`() const` | Gets the value of MatchMakingTemplateGroupId.
-`public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1ad1ec86eed3db61f00428dff17117b700)`(const FGuid & NewValue)` | Sets the value of MatchMakingTemplateGroupId.
-`public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a025e367866ad00450c17672957b9e460)`(FGuid && NewValue)` | Sets the value of MatchMakingTemplateGroupId using move semantics.
-`public inline TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1ac30edd092dd30fb7edb451c350026aa1)`()` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a68d28aa5315f7dbc0dc434d0ee78e8d3)`() const` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
-`public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a5618d9b3f3dc460c2ec1332904ab4c6a)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1aec1c4b98d29ae9984b29fa4c37b785a2)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false.
-`public inline TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__QueueConfigV2_1afc7fbf9afaadd9a16e4b3257cfe0d181)`()` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__QueueConfigV2_1aecd926f8deff9471bbe6f0a59f37320b)`() const` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1ab60ea5313b3877ca0a9b067a617f45dd)`(const TMap< FString, FString > & NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
-`public inline void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a8ff81e03ee4a70c10509402364678d46)`(TMap< FString, FString > && NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics.
+`public inline FORCEINLINE FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1a10c2bcc4ce345b40312dbec3eb2c7c28)`()` | Gets the value of QueueId.
+`public inline FORCEINLINE const FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1a648844382f7c0eab3874869eaea4c478)`() const` | Gets the value of QueueId.
+`public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1a348cb2b79a70ddbe08edb93c04e3a2eb)`(const FString & NewValue)` | Sets the value of QueueId.
+`public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1aede7f0ab1283a4a66a615bda37555ea8)`(FString && NewValue)` | Sets the value of QueueId using move semantics.
+`public inline FORCEINLINE bool & `[`GetActive`](#structFRHAPI__QueueConfigV2_1a91ab89cdf924b429d9f933880d818af2)`()` | Gets the value of Active.
+`public inline FORCEINLINE const bool & `[`GetActive`](#structFRHAPI__QueueConfigV2_1a7b80a37140fb3c02f14ce2b668800ead)`() const` | Gets the value of Active.
+`public inline FORCEINLINE void `[`SetActive`](#structFRHAPI__QueueConfigV2_1a7b5f725ffd88ad94dc57e5bd135f2e52)`(const bool & NewValue)` | Sets the value of Active.
+`public inline FORCEINLINE void `[`SetActive`](#structFRHAPI__QueueConfigV2_1afe3e4834073dd7ead058f7bdef61829f)`(bool && NewValue)` | Sets the value of Active using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_Active`](#structFRHAPI__QueueConfigV2_1a537d8b1e7a405a4d6fb8c995c7ae4e4f)`()` | Returns the default value of Active.
+`public inline FORCEINLINE int32 & `[`GetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1a692a45a5f01c94f4c02121c48b796509)`()` | Gets the value of MaxQueueGroupSize.
+`public inline FORCEINLINE const int32 & `[`GetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1ac9b32acf5a4891b14649a78d38b876ce)`() const` | Gets the value of MaxQueueGroupSize.
+`public inline FORCEINLINE void `[`SetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1acedfa374f478741baca79c57e778c537)`(const int32 & NewValue)` | Sets the value of MaxQueueGroupSize.
+`public inline FORCEINLINE void `[`SetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1ac02bb6e65b5a46dcaec3fb092d3fc0a5)`(int32 && NewValue)` | Sets the value of MaxQueueGroupSize using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_MaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1a5788663fe16340bd0e41525877e64a12)`()` | Returns the default value of MaxQueueGroupSize.
+`public inline FORCEINLINE FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a68bf7ef27cb149b8a89ed8bd814e7db4)`()` | Gets the value of MatchMakingTemplateGroupId.
+`public inline FORCEINLINE const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a4f270d88ee6532ff0685dea24821e8d0)`() const` | Gets the value of MatchMakingTemplateGroupId.
+`public inline FORCEINLINE void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a400a1f78952552f6423fef00ad8d4352)`(const FGuid & NewValue)` | Sets the value of MatchMakingTemplateGroupId.
+`public inline FORCEINLINE void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a6118fc886d8062f7e271e9e791d43540)`(FGuid && NewValue)` | Sets the value of MatchMakingTemplateGroupId using move semantics.
+`public inline FORCEINLINE TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a93e1ce5519b9f228c392c532be386759)`()` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a6e57fad7e7bb8b260487832880df9bea)`() const` | Gets the value of LegacyConfig_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a1a4a8c93c39ef38565e01bfcf4ccabf7)`(const TMap< FString, FString > & DefaultValue) const` | Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1ab29fcf55c4a3d6693e832bef781d61c4)`(TMap< FString, FString > & OutValue) const` | Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__QueueConfigV2_1ad66e85481c8f0d7b8d67047870fed299)`()` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__QueueConfigV2_1a05b3feddf84bf3fa045a8ad6edc47f4f)`() const` | Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a8d3431920d7cbdb353562f30a73eca01)`(const TMap< FString, FString > & NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
+`public inline FORCEINLINE void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a92c65b00e12a172ad949cecec0def39b)`(TMap< FString, FString > && NewValue)` | Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics.
 `public inline void `[`ClearLegacyConfig`](#structFRHAPI__QueueConfigV2_1a704de45777e119ee8c297892b3bfdc32)`()` | Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false.
-`public inline bool `[`IsLegacyConfigSet`](#structFRHAPI__QueueConfigV2_1aed383114ec58ea75db7648a9d68e0e57)`() const` | Checks whether LegacyConfig_Optional has been set.
 
 ### Members
 
@@ -103,123 +100,111 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1ad6239bb2e6eaeccf51b5d6c3ec1912b5)`()` <a id="structFRHAPI__QueueConfigV2_1ad6239bb2e6eaeccf51b5d6c3ec1912b5"></a>
+#### `public inline FORCEINLINE FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1a10c2bcc4ce345b40312dbec3eb2c7c28)`()` <a id="structFRHAPI__QueueConfigV2_1a10c2bcc4ce345b40312dbec3eb2c7c28"></a>
 
 Gets the value of QueueId.
 
-#### `public inline const FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1a269b9194c4960e16baec318973c91f23)`() const` <a id="structFRHAPI__QueueConfigV2_1a269b9194c4960e16baec318973c91f23"></a>
+#### `public inline FORCEINLINE const FString & `[`GetQueueId`](#structFRHAPI__QueueConfigV2_1a648844382f7c0eab3874869eaea4c478)`() const` <a id="structFRHAPI__QueueConfigV2_1a648844382f7c0eab3874869eaea4c478"></a>
 
 Gets the value of QueueId.
 
-#### `public inline void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1ae97179fc618c3476d0d5346e36e3258f)`(const FString & NewValue)` <a id="structFRHAPI__QueueConfigV2_1ae97179fc618c3476d0d5346e36e3258f"></a>
+#### `public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1a348cb2b79a70ddbe08edb93c04e3a2eb)`(const FString & NewValue)` <a id="structFRHAPI__QueueConfigV2_1a348cb2b79a70ddbe08edb93c04e3a2eb"></a>
 
 Sets the value of QueueId.
 
-#### `public inline void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1acac5d6cd186aaa26c629f5ec9b230d12)`(FString && NewValue)` <a id="structFRHAPI__QueueConfigV2_1acac5d6cd186aaa26c629f5ec9b230d12"></a>
+#### `public inline FORCEINLINE void `[`SetQueueId`](#structFRHAPI__QueueConfigV2_1aede7f0ab1283a4a66a615bda37555ea8)`(FString && NewValue)` <a id="structFRHAPI__QueueConfigV2_1aede7f0ab1283a4a66a615bda37555ea8"></a>
 
 Sets the value of QueueId using move semantics.
 
-#### `public inline bool & `[`GetActive`](#structFRHAPI__QueueConfigV2_1afa4e0eaac91a3835dabe2984abb3f54c)`()` <a id="structFRHAPI__QueueConfigV2_1afa4e0eaac91a3835dabe2984abb3f54c"></a>
+#### `public inline FORCEINLINE bool & `[`GetActive`](#structFRHAPI__QueueConfigV2_1a91ab89cdf924b429d9f933880d818af2)`()` <a id="structFRHAPI__QueueConfigV2_1a91ab89cdf924b429d9f933880d818af2"></a>
 
 Gets the value of Active.
 
-#### `public inline const bool & `[`GetActive`](#structFRHAPI__QueueConfigV2_1a223df2204aa78dce2af26b6150757148)`() const` <a id="structFRHAPI__QueueConfigV2_1a223df2204aa78dce2af26b6150757148"></a>
+#### `public inline FORCEINLINE const bool & `[`GetActive`](#structFRHAPI__QueueConfigV2_1a7b80a37140fb3c02f14ce2b668800ead)`() const` <a id="structFRHAPI__QueueConfigV2_1a7b80a37140fb3c02f14ce2b668800ead"></a>
 
 Gets the value of Active.
 
-#### `public inline void `[`SetActive`](#structFRHAPI__QueueConfigV2_1acbd74b93b7a9c2a1d79ec67d09ade0fb)`(const bool & NewValue)` <a id="structFRHAPI__QueueConfigV2_1acbd74b93b7a9c2a1d79ec67d09ade0fb"></a>
+#### `public inline FORCEINLINE void `[`SetActive`](#structFRHAPI__QueueConfigV2_1a7b5f725ffd88ad94dc57e5bd135f2e52)`(const bool & NewValue)` <a id="structFRHAPI__QueueConfigV2_1a7b5f725ffd88ad94dc57e5bd135f2e52"></a>
 
 Sets the value of Active.
 
-#### `public inline void `[`SetActive`](#structFRHAPI__QueueConfigV2_1a9305d3f0b9806f4f3ad9b24792ce33f7)`(bool && NewValue)` <a id="structFRHAPI__QueueConfigV2_1a9305d3f0b9806f4f3ad9b24792ce33f7"></a>
+#### `public inline FORCEINLINE void `[`SetActive`](#structFRHAPI__QueueConfigV2_1afe3e4834073dd7ead058f7bdef61829f)`(bool && NewValue)` <a id="structFRHAPI__QueueConfigV2_1afe3e4834073dd7ead058f7bdef61829f"></a>
 
 Sets the value of Active using move semantics.
 
-#### `public inline bool `[`IsActiveDefaultValue`](#structFRHAPI__QueueConfigV2_1ad1505f8a82af3ca1e78b9c8f9a9808f7)`() const` <a id="structFRHAPI__QueueConfigV2_1ad1505f8a82af3ca1e78b9c8f9a9808f7"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_Active`](#structFRHAPI__QueueConfigV2_1a537d8b1e7a405a4d6fb8c995c7ae4e4f)`()` <a id="structFRHAPI__QueueConfigV2_1a537d8b1e7a405a4d6fb8c995c7ae4e4f"></a>
 
-Returns true if Active matches the default value.
+Returns the default value of Active.
 
-#### `public inline void `[`SetActiveToDefault`](#structFRHAPI__QueueConfigV2_1afc8df59addb91e29a9f9f21e5f84c622)`()` <a id="structFRHAPI__QueueConfigV2_1afc8df59addb91e29a9f9f21e5f84c622"></a>
-
-Sets the value of Active to its default
-
-#### `public inline int32 & `[`GetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1a98b70ca7db5632da80fca6b6e3899dd3)`()` <a id="structFRHAPI__QueueConfigV2_1a98b70ca7db5632da80fca6b6e3899dd3"></a>
+#### `public inline FORCEINLINE int32 & `[`GetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1a692a45a5f01c94f4c02121c48b796509)`()` <a id="structFRHAPI__QueueConfigV2_1a692a45a5f01c94f4c02121c48b796509"></a>
 
 Gets the value of MaxQueueGroupSize.
 
-#### `public inline const int32 & `[`GetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1a8e92e77aea99fd81875f7ad7291b84d4)`() const` <a id="structFRHAPI__QueueConfigV2_1a8e92e77aea99fd81875f7ad7291b84d4"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1ac9b32acf5a4891b14649a78d38b876ce)`() const` <a id="structFRHAPI__QueueConfigV2_1ac9b32acf5a4891b14649a78d38b876ce"></a>
 
 Gets the value of MaxQueueGroupSize.
 
-#### `public inline void `[`SetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1aaa2e08bf82aeb7dfaf680dcf62531928)`(const int32 & NewValue)` <a id="structFRHAPI__QueueConfigV2_1aaa2e08bf82aeb7dfaf680dcf62531928"></a>
+#### `public inline FORCEINLINE void `[`SetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1acedfa374f478741baca79c57e778c537)`(const int32 & NewValue)` <a id="structFRHAPI__QueueConfigV2_1acedfa374f478741baca79c57e778c537"></a>
 
 Sets the value of MaxQueueGroupSize.
 
-#### `public inline void `[`SetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1ab752cd7d72fdddf03ed6d1b64260521b)`(int32 && NewValue)` <a id="structFRHAPI__QueueConfigV2_1ab752cd7d72fdddf03ed6d1b64260521b"></a>
+#### `public inline FORCEINLINE void `[`SetMaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1ac02bb6e65b5a46dcaec3fb092d3fc0a5)`(int32 && NewValue)` <a id="structFRHAPI__QueueConfigV2_1ac02bb6e65b5a46dcaec3fb092d3fc0a5"></a>
 
 Sets the value of MaxQueueGroupSize using move semantics.
 
-#### `public inline bool `[`IsMaxQueueGroupSizeDefaultValue`](#structFRHAPI__QueueConfigV2_1afb1913203d4e56acec07a73e80bfee1b)`() const` <a id="structFRHAPI__QueueConfigV2_1afb1913203d4e56acec07a73e80bfee1b"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_MaxQueueGroupSize`](#structFRHAPI__QueueConfigV2_1a5788663fe16340bd0e41525877e64a12)`()` <a id="structFRHAPI__QueueConfigV2_1a5788663fe16340bd0e41525877e64a12"></a>
 
-Returns true if MaxQueueGroupSize matches the default value.
+Returns the default value of MaxQueueGroupSize.
 
-#### `public inline void `[`SetMaxQueueGroupSizeToDefault`](#structFRHAPI__QueueConfigV2_1a96fe278b7a631da8c2cfef3a7e210429)`()` <a id="structFRHAPI__QueueConfigV2_1a96fe278b7a631da8c2cfef3a7e210429"></a>
-
-Sets the value of MaxQueueGroupSize to its default
-
-#### `public inline FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1aaae074909c36e526677b8a477eb6f716)`()` <a id="structFRHAPI__QueueConfigV2_1aaae074909c36e526677b8a477eb6f716"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a68bf7ef27cb149b8a89ed8bd814e7db4)`()` <a id="structFRHAPI__QueueConfigV2_1a68bf7ef27cb149b8a89ed8bd814e7db4"></a>
 
 Gets the value of MatchMakingTemplateGroupId.
 
-#### `public inline const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a88e4b442f1ea172d015cb8a697afb3c0)`() const` <a id="structFRHAPI__QueueConfigV2_1a88e4b442f1ea172d015cb8a697afb3c0"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a4f270d88ee6532ff0685dea24821e8d0)`() const` <a id="structFRHAPI__QueueConfigV2_1a4f270d88ee6532ff0685dea24821e8d0"></a>
 
 Gets the value of MatchMakingTemplateGroupId.
 
-#### `public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1ad1ec86eed3db61f00428dff17117b700)`(const FGuid & NewValue)` <a id="structFRHAPI__QueueConfigV2_1ad1ec86eed3db61f00428dff17117b700"></a>
+#### `public inline FORCEINLINE void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a400a1f78952552f6423fef00ad8d4352)`(const FGuid & NewValue)` <a id="structFRHAPI__QueueConfigV2_1a400a1f78952552f6423fef00ad8d4352"></a>
 
 Sets the value of MatchMakingTemplateGroupId.
 
-#### `public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a025e367866ad00450c17672957b9e460)`(FGuid && NewValue)` <a id="structFRHAPI__QueueConfigV2_1a025e367866ad00450c17672957b9e460"></a>
+#### `public inline FORCEINLINE void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__QueueConfigV2_1a6118fc886d8062f7e271e9e791d43540)`(FGuid && NewValue)` <a id="structFRHAPI__QueueConfigV2_1a6118fc886d8062f7e271e9e791d43540"></a>
 
 Sets the value of MatchMakingTemplateGroupId using move semantics.
 
-#### `public inline TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1ac30edd092dd30fb7edb451c350026aa1)`()` <a id="structFRHAPI__QueueConfigV2_1ac30edd092dd30fb7edb451c350026aa1"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a93e1ce5519b9f228c392c532be386759)`()` <a id="structFRHAPI__QueueConfigV2_1a93e1ce5519b9f228c392c532be386759"></a>
 
 Gets the value of LegacyConfig_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a68d28aa5315f7dbc0dc434d0ee78e8d3)`() const` <a id="structFRHAPI__QueueConfigV2_1a68d28aa5315f7dbc0dc434d0ee78e8d3"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a6e57fad7e7bb8b260487832880df9bea)`() const` <a id="structFRHAPI__QueueConfigV2_1a6e57fad7e7bb8b260487832880df9bea"></a>
 
 Gets the value of LegacyConfig_Optional, regardless of it having been set.
 
-#### `public inline const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a5618d9b3f3dc460c2ec1332904ab4c6a)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__QueueConfigV2_1a5618d9b3f3dc460c2ec1332904ab4c6a"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > & `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a1a4a8c93c39ef38565e01bfcf4ccabf7)`(const TMap< FString, FString > & DefaultValue) const` <a id="structFRHAPI__QueueConfigV2_1a1a4a8c93c39ef38565e01bfcf4ccabf7"></a>
 
 Gets the value of LegacyConfig_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1aec1c4b98d29ae9984b29fa4c37b785a2)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__QueueConfigV2_1aec1c4b98d29ae9984b29fa4c37b785a2"></a>
+#### `public inline FORCEINLINE bool `[`GetLegacyConfig`](#structFRHAPI__QueueConfigV2_1ab29fcf55c4a3d6693e832bef781d61c4)`(TMap< FString, FString > & OutValue) const` <a id="structFRHAPI__QueueConfigV2_1ab29fcf55c4a3d6693e832bef781d61c4"></a>
 
 Fills OutValue with the value of LegacyConfig_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__QueueConfigV2_1afc7fbf9afaadd9a16e4b3257cfe0d181)`()` <a id="structFRHAPI__QueueConfigV2_1afc7fbf9afaadd9a16e4b3257cfe0d181"></a>
+#### `public inline FORCEINLINE TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__QueueConfigV2_1ad66e85481c8f0d7b8d67047870fed299)`()` <a id="structFRHAPI__QueueConfigV2_1ad66e85481c8f0d7b8d67047870fed299"></a>
 
 Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__QueueConfigV2_1aecd926f8deff9471bbe6f0a59f37320b)`() const` <a id="structFRHAPI__QueueConfigV2_1aecd926f8deff9471bbe6f0a59f37320b"></a>
+#### `public inline FORCEINLINE const TMap< FString, FString > * `[`GetLegacyConfigOrNull`](#structFRHAPI__QueueConfigV2_1a05b3feddf84bf3fa045a8ad6edc47f4f)`() const` <a id="structFRHAPI__QueueConfigV2_1a05b3feddf84bf3fa045a8ad6edc47f4f"></a>
 
 Returns a pointer to LegacyConfig_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1ab60ea5313b3877ca0a9b067a617f45dd)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__QueueConfigV2_1ab60ea5313b3877ca0a9b067a617f45dd"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a8d3431920d7cbdb353562f30a73eca01)`(const TMap< FString, FString > & NewValue)` <a id="structFRHAPI__QueueConfigV2_1a8d3431920d7cbdb353562f30a73eca01"></a>
 
 Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true.
 
-#### `public inline void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a8ff81e03ee4a70c10509402364678d46)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__QueueConfigV2_1a8ff81e03ee4a70c10509402364678d46"></a>
+#### `public inline FORCEINLINE void `[`SetLegacyConfig`](#structFRHAPI__QueueConfigV2_1a92c65b00e12a172ad949cecec0def39b)`(TMap< FString, FString > && NewValue)` <a id="structFRHAPI__QueueConfigV2_1a92c65b00e12a172ad949cecec0def39b"></a>
 
 Sets the value of LegacyConfig_Optional and also sets LegacyConfig_IsSet to true using move semantics.
 
 #### `public inline void `[`ClearLegacyConfig`](#structFRHAPI__QueueConfigV2_1a704de45777e119ee8c297892b3bfdc32)`()` <a id="structFRHAPI__QueueConfigV2_1a704de45777e119ee8c297892b3bfdc32"></a>
 
 Clears the value of LegacyConfig_Optional and sets LegacyConfig_IsSet to false.
-
-#### `public inline bool `[`IsLegacyConfigSet`](#structFRHAPI__QueueConfigV2_1aed383114ec58ea75db7648a9d68e0e57)`() const` <a id="structFRHAPI__QueueConfigV2_1aed383114ec58ea75db7648a9d68e0e57"></a>
-
-Checks whether LegacyConfig_Optional has been set.
 

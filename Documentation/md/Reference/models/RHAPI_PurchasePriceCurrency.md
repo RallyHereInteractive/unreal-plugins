@@ -25,18 +25,16 @@ The purchase price currencies of an Item.
 `public int32 `[`Price`](#structFRHAPI__PurchasePriceCurrency_1a1d3d4f732662736ec75506e9463fd5ac) | The price of the Item.
 `public virtual bool `[`FromJson`](#structFRHAPI__PurchasePriceCurrency_1addcbb4c203e2e0fee540dfc2d31dd9b2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PurchasePriceCurrency_1a0f8463c563417720d17046401c133cf8)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1ad2c06c25985d52157d516bc6a2fef227)`()` | Gets the value of PriceItemId.
-`public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a26ccd5c09739a259f69d2de292b860c4)`() const` | Gets the value of PriceItemId.
-`public inline void `[`SetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a30e27131c940b0c2002312ded1f00eb4)`(const int32 & NewValue)` | Sets the value of PriceItemId.
-`public inline void `[`SetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a54946873b276731bfc7c63b2c659578b)`(int32 && NewValue)` | Sets the value of PriceItemId using move semantics.
-`public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PurchasePriceCurrency_1a7817019fd3e596191cb1a9c691be3875)`() const` | Returns true if PriceItemId matches the default value.
-`public inline void `[`SetPriceItemIdToDefault`](#structFRHAPI__PurchasePriceCurrency_1ab37343e92d4d0056bbedeccc71291f06)`()` | Sets the value of PriceItemId to its default
-`public inline int32 & `[`GetPrice`](#structFRHAPI__PurchasePriceCurrency_1aa75cf58bfe2cdb7798e351b627e07ded)`()` | Gets the value of Price.
-`public inline const int32 & `[`GetPrice`](#structFRHAPI__PurchasePriceCurrency_1aa970e3ba7d6dde1654e4d7c4c558f799)`() const` | Gets the value of Price.
-`public inline void `[`SetPrice`](#structFRHAPI__PurchasePriceCurrency_1a406b226715f43cb9eaa54f2a5796fbc6)`(const int32 & NewValue)` | Sets the value of Price.
-`public inline void `[`SetPrice`](#structFRHAPI__PurchasePriceCurrency_1aefba33266ef59c18f851be05e4235a02)`(int32 && NewValue)` | Sets the value of Price using move semantics.
-`public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PurchasePriceCurrency_1a4609a35bc1d4513fc13a49382fe4ce42)`() const` | Returns true if Price matches the default value.
-`public inline void `[`SetPriceToDefault`](#structFRHAPI__PurchasePriceCurrency_1ab08f1c00d72d433911cd3d74073d7d82)`()` | Sets the value of Price to its default
+`public inline FORCEINLINE int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1aa642e2017a7c68a09197184c5cc4933a)`()` | Gets the value of PriceItemId.
+`public inline FORCEINLINE const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a55199a7a7d279724f445b299ba26dbb8)`() const` | Gets the value of PriceItemId.
+`public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1aeb6e87b2055452be94f229df071178ab)`(const int32 & NewValue)` | Sets the value of PriceItemId.
+`public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1af2ab0af2ea9e78b0aefe31878627ef6f)`(int32 && NewValue)` | Sets the value of PriceItemId using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_PriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a6e8b12f5c39309a22704ddb57f84d2e7)`()` | Returns the default value of PriceItemId.
+`public inline FORCEINLINE int32 & `[`GetPrice`](#structFRHAPI__PurchasePriceCurrency_1acd10a46ab8fc6d12f6bc7fbc072a6411)`()` | Gets the value of Price.
+`public inline FORCEINLINE const int32 & `[`GetPrice`](#structFRHAPI__PurchasePriceCurrency_1a95cccbfdfcc2d6a087b0f458897e8add)`() const` | Gets the value of Price.
+`public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PurchasePriceCurrency_1a0aa7028cf0461cc08777a64c0a938727)`(const int32 & NewValue)` | Sets the value of Price.
+`public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PurchasePriceCurrency_1a593ee6698c8772e831ba5085812cfff7)`(int32 && NewValue)` | Sets the value of Price using move semantics.
+`public inline FORCEINLINE int32 `[`GetDefaultValue_Price`](#structFRHAPI__PurchasePriceCurrency_1ac2a976bd6665b930cddcb4855dc29592)`()` | Returns the default value of Price.
 
 ### Members
 
@@ -65,51 +63,43 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1ad2c06c25985d52157d516bc6a2fef227)`()` <a id="structFRHAPI__PurchasePriceCurrency_1ad2c06c25985d52157d516bc6a2fef227"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1aa642e2017a7c68a09197184c5cc4933a)`()` <a id="structFRHAPI__PurchasePriceCurrency_1aa642e2017a7c68a09197184c5cc4933a"></a>
 
 Gets the value of PriceItemId.
 
-#### `public inline const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a26ccd5c09739a259f69d2de292b860c4)`() const` <a id="structFRHAPI__PurchasePriceCurrency_1a26ccd5c09739a259f69d2de292b860c4"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a55199a7a7d279724f445b299ba26dbb8)`() const` <a id="structFRHAPI__PurchasePriceCurrency_1a55199a7a7d279724f445b299ba26dbb8"></a>
 
 Gets the value of PriceItemId.
 
-#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a30e27131c940b0c2002312ded1f00eb4)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePriceCurrency_1a30e27131c940b0c2002312ded1f00eb4"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1aeb6e87b2055452be94f229df071178ab)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePriceCurrency_1aeb6e87b2055452be94f229df071178ab"></a>
 
 Sets the value of PriceItemId.
 
-#### `public inline void `[`SetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a54946873b276731bfc7c63b2c659578b)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePriceCurrency_1a54946873b276731bfc7c63b2c659578b"></a>
+#### `public inline FORCEINLINE void `[`SetPriceItemId`](#structFRHAPI__PurchasePriceCurrency_1af2ab0af2ea9e78b0aefe31878627ef6f)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePriceCurrency_1af2ab0af2ea9e78b0aefe31878627ef6f"></a>
 
 Sets the value of PriceItemId using move semantics.
 
-#### `public inline bool `[`IsPriceItemIdDefaultValue`](#structFRHAPI__PurchasePriceCurrency_1a7817019fd3e596191cb1a9c691be3875)`() const` <a id="structFRHAPI__PurchasePriceCurrency_1a7817019fd3e596191cb1a9c691be3875"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_PriceItemId`](#structFRHAPI__PurchasePriceCurrency_1a6e8b12f5c39309a22704ddb57f84d2e7)`()` <a id="structFRHAPI__PurchasePriceCurrency_1a6e8b12f5c39309a22704ddb57f84d2e7"></a>
 
-Returns true if PriceItemId matches the default value.
+Returns the default value of PriceItemId.
 
-#### `public inline void `[`SetPriceItemIdToDefault`](#structFRHAPI__PurchasePriceCurrency_1ab37343e92d4d0056bbedeccc71291f06)`()` <a id="structFRHAPI__PurchasePriceCurrency_1ab37343e92d4d0056bbedeccc71291f06"></a>
-
-Sets the value of PriceItemId to its default
-
-#### `public inline int32 & `[`GetPrice`](#structFRHAPI__PurchasePriceCurrency_1aa75cf58bfe2cdb7798e351b627e07ded)`()` <a id="structFRHAPI__PurchasePriceCurrency_1aa75cf58bfe2cdb7798e351b627e07ded"></a>
+#### `public inline FORCEINLINE int32 & `[`GetPrice`](#structFRHAPI__PurchasePriceCurrency_1acd10a46ab8fc6d12f6bc7fbc072a6411)`()` <a id="structFRHAPI__PurchasePriceCurrency_1acd10a46ab8fc6d12f6bc7fbc072a6411"></a>
 
 Gets the value of Price.
 
-#### `public inline const int32 & `[`GetPrice`](#structFRHAPI__PurchasePriceCurrency_1aa970e3ba7d6dde1654e4d7c4c558f799)`() const` <a id="structFRHAPI__PurchasePriceCurrency_1aa970e3ba7d6dde1654e4d7c4c558f799"></a>
+#### `public inline FORCEINLINE const int32 & `[`GetPrice`](#structFRHAPI__PurchasePriceCurrency_1a95cccbfdfcc2d6a087b0f458897e8add)`() const` <a id="structFRHAPI__PurchasePriceCurrency_1a95cccbfdfcc2d6a087b0f458897e8add"></a>
 
 Gets the value of Price.
 
-#### `public inline void `[`SetPrice`](#structFRHAPI__PurchasePriceCurrency_1a406b226715f43cb9eaa54f2a5796fbc6)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePriceCurrency_1a406b226715f43cb9eaa54f2a5796fbc6"></a>
+#### `public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PurchasePriceCurrency_1a0aa7028cf0461cc08777a64c0a938727)`(const int32 & NewValue)` <a id="structFRHAPI__PurchasePriceCurrency_1a0aa7028cf0461cc08777a64c0a938727"></a>
 
 Sets the value of Price.
 
-#### `public inline void `[`SetPrice`](#structFRHAPI__PurchasePriceCurrency_1aefba33266ef59c18f851be05e4235a02)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePriceCurrency_1aefba33266ef59c18f851be05e4235a02"></a>
+#### `public inline FORCEINLINE void `[`SetPrice`](#structFRHAPI__PurchasePriceCurrency_1a593ee6698c8772e831ba5085812cfff7)`(int32 && NewValue)` <a id="structFRHAPI__PurchasePriceCurrency_1a593ee6698c8772e831ba5085812cfff7"></a>
 
 Sets the value of Price using move semantics.
 
-#### `public inline bool `[`IsPriceDefaultValue`](#structFRHAPI__PurchasePriceCurrency_1a4609a35bc1d4513fc13a49382fe4ce42)`() const` <a id="structFRHAPI__PurchasePriceCurrency_1a4609a35bc1d4513fc13a49382fe4ce42"></a>
+#### `public inline FORCEINLINE int32 `[`GetDefaultValue_Price`](#structFRHAPI__PurchasePriceCurrency_1ac2a976bd6665b930cddcb4855dc29592)`()` <a id="structFRHAPI__PurchasePriceCurrency_1ac2a976bd6665b930cddcb4855dc29592"></a>
 
-Returns true if Price matches the default value.
-
-#### `public inline void `[`SetPriceToDefault`](#structFRHAPI__PurchasePriceCurrency_1ab08f1c00d72d433911cd3d74073d7d82)`()` <a id="structFRHAPI__PurchasePriceCurrency_1ab08f1c00d72d433911cd3d74073d7d82"></a>
-
-Sets the value of Price to its default
+Returns the default value of Price.
 

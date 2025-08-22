@@ -24,10 +24,10 @@ Response when a player successfully joins a session.
 `public FString `[`SessionId`](#structFRHAPI__SessionJoinResponse_1a78b2bc9860f7b5620c9968d290884257) | Session ID the player is now a part of.
 `public virtual bool `[`FromJson`](#structFRHAPI__SessionJoinResponse_1a95422a5c1f3c09a209899074243cd6d8)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__SessionJoinResponse_1a94405750f03af6e12c8d3247d876a669)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a95d8d7bd494a9e46bc2392695cb5c9b0)`()` | Gets the value of SessionId.
-`public inline const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1aa5ac7dc919e0f6449f02644e97410fc5)`() const` | Gets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ac73376a9211c0d65dc15ccaf5f96da42)`(const FString & NewValue)` | Sets the value of SessionId.
-`public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ad2a7741d51fb07f0766bab8a202c97a1)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
+`public inline FORCEINLINE FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a03bdc0def03318065468ed30ec7c5c49)`()` | Gets the value of SessionId.
+`public inline FORCEINLINE const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a8d3e779ef07ac232df7fe58ba965828b)`() const` | Gets the value of SessionId.
+`public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1a6a34fb29e588ae9692b1e1ed97f3f854)`(const FString & NewValue)` | Sets the value of SessionId.
+`public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1a0c0841a7bf4b07af43015b6b09ef4d97)`(FString && NewValue)` | Sets the value of SessionId using move semantics.
 
 ### Members
 
@@ -52,19 +52,19 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a95d8d7bd494a9e46bc2392695cb5c9b0)`()` <a id="structFRHAPI__SessionJoinResponse_1a95d8d7bd494a9e46bc2392695cb5c9b0"></a>
+#### `public inline FORCEINLINE FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a03bdc0def03318065468ed30ec7c5c49)`()` <a id="structFRHAPI__SessionJoinResponse_1a03bdc0def03318065468ed30ec7c5c49"></a>
 
 Gets the value of SessionId.
 
-#### `public inline const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1aa5ac7dc919e0f6449f02644e97410fc5)`() const` <a id="structFRHAPI__SessionJoinResponse_1aa5ac7dc919e0f6449f02644e97410fc5"></a>
+#### `public inline FORCEINLINE const FString & `[`GetSessionId`](#structFRHAPI__SessionJoinResponse_1a8d3e779ef07ac232df7fe58ba965828b)`() const` <a id="structFRHAPI__SessionJoinResponse_1a8d3e779ef07ac232df7fe58ba965828b"></a>
 
 Gets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ac73376a9211c0d65dc15ccaf5f96da42)`(const FString & NewValue)` <a id="structFRHAPI__SessionJoinResponse_1ac73376a9211c0d65dc15ccaf5f96da42"></a>
+#### `public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1a6a34fb29e588ae9692b1e1ed97f3f854)`(const FString & NewValue)` <a id="structFRHAPI__SessionJoinResponse_1a6a34fb29e588ae9692b1e1ed97f3f854"></a>
 
 Sets the value of SessionId.
 
-#### `public inline void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1ad2a7741d51fb07f0766bab8a202c97a1)`(FString && NewValue)` <a id="structFRHAPI__SessionJoinResponse_1ad2a7741d51fb07f0766bab8a202c97a1"></a>
+#### `public inline FORCEINLINE void `[`SetSessionId`](#structFRHAPI__SessionJoinResponse_1a0c0841a7bf4b07af43015b6b09ef4d97)`(FString && NewValue)` <a id="structFRHAPI__SessionJoinResponse_1a0c0841a7bf4b07af43015b6b09ef4d97"></a>
 
 Sets the value of SessionId using move semantics.
 

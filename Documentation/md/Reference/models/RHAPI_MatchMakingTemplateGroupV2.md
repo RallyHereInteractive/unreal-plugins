@@ -31,48 +31,43 @@ A collection of MatchMakingTemplates that may be used when a session enters a qu
 `public bool `[`IncludesSessionRule_IsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad85d849ab5f1dd72347a07ce5a706cbe) | true if IncludesSessionRule_Optional has been set to a value
 `public virtual bool `[`FromJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1ab2bd4c99d48b826ea841c97880c250a2)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__MatchMakingTemplateGroupV2_1a42572b3b37c4cce4a1c6fb35d43a34d7)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8bc2d3a8d4f3c4cd3d8dcb5ec6c9870b)`()` | Gets the value of MatchMakingTemplateGroupId.
-`public inline const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1afbff4c47332a4de7d35cb484cdad171e)`() const` | Gets the value of MatchMakingTemplateGroupId.
-`public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a094adccf60c562ee00ee715ce110e2f0)`(const FGuid & NewValue)` | Sets the value of MatchMakingTemplateGroupId.
-`public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a3fec641bccfd13aa3600b515fa4995fa)`(FGuid && NewValue)` | Sets the value of MatchMakingTemplateGroupId using move semantics.
-`public inline TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9573657142ac3522908128ddaf7f8a8b)`()` | Gets the value of TemplateOptions.
-`public inline const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7d96c94a98824c81f614ef874a162cb4)`() const` | Gets the value of TemplateOptions.
-`public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1aabdb7abcf4c672d4fa88ab4a0c5e26a2)`(const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & NewValue)` | Sets the value of TemplateOptions.
-`public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7eddf34d907c66543aa9dd139d5f137e)`(TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > && NewValue)` | Sets the value of TemplateOptions using move semantics.
-`public inline TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a0bd9692c6972585e4db3fa597e6563e7)`()` | Gets the value of RequiredItemIds_Optional, regardless of it having been set.
-`public inline const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1ac3ffe6af66eb1fef9d408613665cf256)`() const` | Gets the value of RequiredItemIds_Optional, regardless of it having been set.
-`public inline const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8ea10f0bdf13b3489dbe7f26c6c440f8)`(const TSet< int32 > & DefaultValue) const` | Gets the value of RequiredItemIds_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2502c85366c9867bc828b58e75b4771b)`(TSet< int32 > & OutValue) const` | Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false.
-`public inline TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2247144b37be05b91a6105192c62f68e)`()` | Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
-`public inline const TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a68ddeccc31b7d700d506916a59664d39)`() const` | Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a6b7152abdcc6bc8f559c78276aaba2c1)`(const TSet< int32 > & NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
-`public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1acef58f4a11f6a0c69b8056554918b7cb)`(TSet< int32 > && NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics.
+`public inline FORCEINLINE FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1acc9141b559df1d0bab879711a6f999c8)`()` | Gets the value of MatchMakingTemplateGroupId.
+`public inline FORCEINLINE const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a04aff27a3f0de3ca9f8c7286cc1ac024)`() const` | Gets the value of MatchMakingTemplateGroupId.
+`public inline FORCEINLINE void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a55799cca5ec95dbfd4c92b8ccbb7c75f)`(const FGuid & NewValue)` | Sets the value of MatchMakingTemplateGroupId.
+`public inline FORCEINLINE void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4ac09a16c5a44c688dc2360a35c19985)`(FGuid && NewValue)` | Sets the value of MatchMakingTemplateGroupId using move semantics.
+`public inline FORCEINLINE TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae9aee2f88d31a57c24662d3cb4157e4a)`()` | Gets the value of TemplateOptions.
+`public inline FORCEINLINE const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad6048f15451018c9e7c55d9c0e6d1e98)`() const` | Gets the value of TemplateOptions.
+`public inline FORCEINLINE void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1ade5d707ac3efa7bae8e579815bb44f05)`(const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & NewValue)` | Sets the value of TemplateOptions.
+`public inline FORCEINLINE void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a81a9c8c104f1f4bd4369680fe9504d54)`(TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > && NewValue)` | Sets the value of TemplateOptions using move semantics.
+`public inline FORCEINLINE TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4d01755a704f13df6e74660857d6ad51)`()` | Gets the value of RequiredItemIds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa44d397336a9ad0c9e3e4dd39ccbcadf)`() const` | Gets the value of RequiredItemIds_Optional, regardless of it having been set.
+`public inline FORCEINLINE const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1abcbebdca1509a24429be9503a46bf392)`(const TSet< int32 > & DefaultValue) const` | Gets the value of RequiredItemIds_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1abe73df1d2d829a379cb87d83e883ac14)`(TSet< int32 > & OutValue) const` | Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a63a7ed0247ba33352482a69d32d8d64a)`()` | Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a6dc8de9baa636da089aef3e1e5e1afe9)`() const` | Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad7c32e9375597e417db45560416d5890)`(const TSet< int32 > & NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
+`public inline FORCEINLINE void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a792ebf024317a826fb4b375386ee8a52)`(TSet< int32 > && NewValue)` | Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics.
 `public inline void `[`ClearRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2cfe134d15ff3ce519d7be4a1a681055)`()` | Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
-`public inline bool `[`IsRequiredItemIdsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1ec1af18752cde6ea5ffb197b32d5427)`() const` | Checks whether RequiredItemIds_Optional has been set.
-`public inline bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a78e0168d02fa3d7035dfa92148d06f28)`()` | Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
-`public inline const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a74155a24257a5c7901c80b89d48aaef4)`() const` | Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
-`public inline const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a6d534317f8f4d3ee1d5c1d29729d5682)`(const bool & DefaultValue) const` | Gets the value of RequiresAllPlayersItems_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1afb54f8bbaf6febe4dac50a375ffeb4a1)`(bool & OutValue) const` | Fills OutValue with the value of RequiresAllPlayersItems_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetRequiresAllPlayersItemsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9b1602d3550a9b10962ad86468c7eb75)`()` | Returns a pointer to RequiresAllPlayersItems_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetRequiresAllPlayersItemsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae7d13ebfbcb9790521405b5ae74eee44)`() const` | Returns a pointer to RequiresAllPlayersItems_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a113333608a253de1488967459a319592)`(const bool & NewValue)` | Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true.
-`public inline void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1c6c9ddc6263db8933ed72fa52af18b6)`(bool && NewValue)` | Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true using move semantics.
+`public inline FORCEINLINE bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a08c7fdc59d3051c68b43cdd2757a4274)`()` | Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1c0f56352c942cc5f1d27def5e6749e1)`() const` | Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a242cd5efbab091dd2792d16e6b210cbf)`(const bool & DefaultValue) const` | Gets the value of RequiresAllPlayersItems_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a491bd4269ed33161bdfd687461fce419)`(bool & OutValue) const` | Fills OutValue with the value of RequiresAllPlayersItems_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetRequiresAllPlayersItemsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1aec82ade0a5f8fe9ceb29c80fe58b162d)`()` | Returns a pointer to RequiresAllPlayersItems_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetRequiresAllPlayersItemsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1adbe5354f5c84a48541642cf048021b50)`() const` | Returns a pointer to RequiresAllPlayersItems_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a15c4a3aed06e037c08e21dc6654f2ddb)`(const bool & NewValue)` | Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true.
+`public inline FORCEINLINE void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1adb9f5762652e775c8f03662293f9926c)`(bool && NewValue)` | Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true using move semantics.
 `public inline void `[`ClearRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a438d6d46a18dafa5a98aa7494af4d712)`()` | Clears the value of RequiresAllPlayersItems_Optional and sets RequiresAllPlayersItems_IsSet to false.
-`public inline bool `[`IsRequiresAllPlayersItemsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a442668f810897c3c52da93a512bb3335)`() const` | Checks whether RequiresAllPlayersItems_Optional has been set.
-`public inline bool `[`IsRequiresAllPlayersItemsDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a630b53fea6154b63951c162e05197d59)`() const` | Returns true if RequiresAllPlayersItems_Optional is set and matches the default value.
-`public inline void `[`SetRequiresAllPlayersItemsToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7a3a20244efffa3ce670adcbd1cce5a7)`()` | Sets the value of RequiresAllPlayersItems_Optional to its default and also sets RequiresAllPlayersItems_IsSet to true.
-`public inline bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1ac1f99f2a6ec3116f370f69d1dd36311e)`()` | Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
-`public inline const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a24a6ca33a84befec21d471e9051125df)`() const` | Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
-`public inline const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a97bbc518f43a19d2a9aef946ed3340b3)`(const bool & DefaultValue) const` | Gets the value of IncludesSessionRule_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1af22836aa626672d2efa665c100ec462c)`(bool & OutValue) const` | Fills OutValue with the value of IncludesSessionRule_Optional and returns true if it has been set, otherwise returns false.
-`public inline bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1ac268b31b7c6ec624d4596fcb1df99163)`()` | Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
-`public inline const bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a5fa62c417aea75257767d93c884fe9e6)`() const` | Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4e56a48fcd09ae47beb71927aa5d1215)`(const bool & NewValue)` | Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true.
-`public inline void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a864b5238fc4f6b3066caf8aab1ebed96)`(bool && NewValue)` | Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true using move semantics.
+`public inline FORCEINLINE bool `[`GetDefaultValue_RequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1aabd880a1694b4b527b42fe7c19f342a0)`()` | Returns the default value of RequiresAllPlayersItems.
+`public inline FORCEINLINE bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1fe412d86967a04c107af9028a30d379)`()` | Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2e5131daba6be9447b0263f6ff737b47)`() const` | Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
+`public inline FORCEINLINE const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1aec192da3387a8c52c272179a9ff7e39d)`(const bool & DefaultValue) const` | Gets the value of IncludesSessionRule_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1aaa6f34f7e8c308d5fa387eef2a22fdec)`(bool & OutValue) const` | Fills OutValue with the value of IncludesSessionRule_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7abb0dcccf987f07ea8c43db5e1925a8)`()` | Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa43161e9ff4504262ace42005814fa11)`() const` | Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1af89034b2fdb234d46048d36791fc6b06)`(const bool & NewValue)` | Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true.
+`public inline FORCEINLINE void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1aba83f5d085d0d776ac5bc281bb6a1735)`(bool && NewValue)` | Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true using move semantics.
 `public inline void `[`ClearIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1afc0e2ee48c73d470d0715723b42efd0b)`()` | Clears the value of IncludesSessionRule_Optional and sets IncludesSessionRule_IsSet to false.
-`public inline bool `[`IsIncludesSessionRuleSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1af0b67de34212a2fceed2d4cde8b6b268)`() const` | Checks whether IncludesSessionRule_Optional has been set.
-`public inline bool `[`IsIncludesSessionRuleDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4b7e04b99038b1c7fae4171cceacc1e0)`() const` | Returns true if IncludesSessionRule_Optional is set and matches the default value.
-`public inline void `[`SetIncludesSessionRuleToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1195134b0e1935ca8ff997dd9bc5a3f9)`()` | Sets the value of IncludesSessionRule_Optional to its default and also sets IncludesSessionRule_IsSet to true.
+`public inline FORCEINLINE bool `[`GetDefaultValue_IncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7ccdcf32ed0dacabe6a76f76fb44dde0)`()` | Returns the default value of IncludesSessionRule.
 
 ### Members
 
@@ -125,67 +120,67 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8bc2d3a8d4f3c4cd3d8dcb5ec6c9870b)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a8bc2d3a8d4f3c4cd3d8dcb5ec6c9870b"></a>
+#### `public inline FORCEINLINE FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1acc9141b559df1d0bab879711a6f999c8)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1acc9141b559df1d0bab879711a6f999c8"></a>
 
 Gets the value of MatchMakingTemplateGroupId.
 
-#### `public inline const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1afbff4c47332a4de7d35cb484cdad171e)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1afbff4c47332a4de7d35cb484cdad171e"></a>
+#### `public inline FORCEINLINE const FGuid & `[`GetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a04aff27a3f0de3ca9f8c7286cc1ac024)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a04aff27a3f0de3ca9f8c7286cc1ac024"></a>
 
 Gets the value of MatchMakingTemplateGroupId.
 
-#### `public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a094adccf60c562ee00ee715ce110e2f0)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a094adccf60c562ee00ee715ce110e2f0"></a>
+#### `public inline FORCEINLINE void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a55799cca5ec95dbfd4c92b8ccbb7c75f)`(const FGuid & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a55799cca5ec95dbfd4c92b8ccbb7c75f"></a>
 
 Sets the value of MatchMakingTemplateGroupId.
 
-#### `public inline void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a3fec641bccfd13aa3600b515fa4995fa)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a3fec641bccfd13aa3600b515fa4995fa"></a>
+#### `public inline FORCEINLINE void `[`SetMatchMakingTemplateGroupId`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4ac09a16c5a44c688dc2360a35c19985)`(FGuid && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a4ac09a16c5a44c688dc2360a35c19985"></a>
 
 Sets the value of MatchMakingTemplateGroupId using move semantics.
 
-#### `public inline TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9573657142ac3522908128ddaf7f8a8b)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a9573657142ac3522908128ddaf7f8a8b"></a>
+#### `public inline FORCEINLINE TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae9aee2f88d31a57c24662d3cb4157e4a)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ae9aee2f88d31a57c24662d3cb4157e4a"></a>
 
 Gets the value of TemplateOptions.
 
-#### `public inline const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7d96c94a98824c81f614ef874a162cb4)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a7d96c94a98824c81f614ef874a162cb4"></a>
+#### `public inline FORCEINLINE const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & `[`GetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad6048f15451018c9e7c55d9c0e6d1e98)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ad6048f15451018c9e7c55d9c0e6d1e98"></a>
 
 Gets the value of TemplateOptions.
 
-#### `public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1aabdb7abcf4c672d4fa88ab4a0c5e26a2)`(const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aabdb7abcf4c672d4fa88ab4a0c5e26a2"></a>
+#### `public inline FORCEINLINE void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1ade5d707ac3efa7bae8e579815bb44f05)`(const TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ade5d707ac3efa7bae8e579815bb44f05"></a>
 
 Sets the value of TemplateOptions.
 
-#### `public inline void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7eddf34d907c66543aa9dd139d5f137e)`(TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a7eddf34d907c66543aa9dd139d5f137e"></a>
+#### `public inline FORCEINLINE void `[`SetTemplateOptions`](#structFRHAPI__MatchMakingTemplateGroupV2_1a81a9c8c104f1f4bd4369680fe9504d54)`(TArray< `[`FRHAPI_MatchMakingTemplateV2`](RHAPI_MatchMakingTemplateV2.md#structFRHAPI__MatchMakingTemplateV2)` > && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a81a9c8c104f1f4bd4369680fe9504d54"></a>
 
 Sets the value of TemplateOptions using move semantics.
 
-#### `public inline TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a0bd9692c6972585e4db3fa597e6563e7)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a0bd9692c6972585e4db3fa597e6563e7"></a>
+#### `public inline FORCEINLINE TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4d01755a704f13df6e74660857d6ad51)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a4d01755a704f13df6e74660857d6ad51"></a>
 
 Gets the value of RequiredItemIds_Optional, regardless of it having been set.
 
-#### `public inline const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1ac3ffe6af66eb1fef9d408613665cf256)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ac3ffe6af66eb1fef9d408613665cf256"></a>
+#### `public inline FORCEINLINE const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa44d397336a9ad0c9e3e4dd39ccbcadf)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aa44d397336a9ad0c9e3e4dd39ccbcadf"></a>
 
 Gets the value of RequiredItemIds_Optional, regardless of it having been set.
 
-#### `public inline const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a8ea10f0bdf13b3489dbe7f26c6c440f8)`(const TSet< int32 > & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a8ea10f0bdf13b3489dbe7f26c6c440f8"></a>
+#### `public inline FORCEINLINE const TSet< int32 > & `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1abcbebdca1509a24429be9503a46bf392)`(const TSet< int32 > & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1abcbebdca1509a24429be9503a46bf392"></a>
 
 Gets the value of RequiredItemIds_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2502c85366c9867bc828b58e75b4771b)`(TSet< int32 > & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a2502c85366c9867bc828b58e75b4771b"></a>
+#### `public inline FORCEINLINE bool `[`GetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1abe73df1d2d829a379cb87d83e883ac14)`(TSet< int32 > & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1abe73df1d2d829a379cb87d83e883ac14"></a>
 
 Fills OutValue with the value of RequiredItemIds_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2247144b37be05b91a6105192c62f68e)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a2247144b37be05b91a6105192c62f68e"></a>
+#### `public inline FORCEINLINE TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a63a7ed0247ba33352482a69d32d8d64a)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a63a7ed0247ba33352482a69d32d8d64a"></a>
 
 Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a68ddeccc31b7d700d506916a59664d39)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a68ddeccc31b7d700d506916a59664d39"></a>
+#### `public inline FORCEINLINE const TSet< int32 > * `[`GetRequiredItemIdsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a6dc8de9baa636da089aef3e1e5e1afe9)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a6dc8de9baa636da089aef3e1e5e1afe9"></a>
 
 Returns a pointer to RequiredItemIds_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a6b7152abdcc6bc8f559c78276aaba2c1)`(const TSet< int32 > & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a6b7152abdcc6bc8f559c78276aaba2c1"></a>
+#### `public inline FORCEINLINE void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1ad7c32e9375597e417db45560416d5890)`(const TSet< int32 > & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ad7c32e9375597e417db45560416d5890"></a>
 
 Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true.
 
-#### `public inline void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1acef58f4a11f6a0c69b8056554918b7cb)`(TSet< int32 > && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1acef58f4a11f6a0c69b8056554918b7cb"></a>
+#### `public inline FORCEINLINE void `[`SetRequiredItemIds`](#structFRHAPI__MatchMakingTemplateGroupV2_1a792ebf024317a826fb4b375386ee8a52)`(TSet< int32 > && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a792ebf024317a826fb4b375386ee8a52"></a>
 
 Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet to true using move semantics.
 
@@ -193,39 +188,35 @@ Sets the value of RequiredItemIds_Optional and also sets RequiredItemIds_IsSet t
 
 Clears the value of RequiredItemIds_Optional and sets RequiredItemIds_IsSet to false.
 
-#### `public inline bool `[`IsRequiredItemIdsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1ec1af18752cde6ea5ffb197b32d5427)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a1ec1af18752cde6ea5ffb197b32d5427"></a>
-
-Checks whether RequiredItemIds_Optional has been set.
-
-#### `public inline bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a78e0168d02fa3d7035dfa92148d06f28)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a78e0168d02fa3d7035dfa92148d06f28"></a>
+#### `public inline FORCEINLINE bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a08c7fdc59d3051c68b43cdd2757a4274)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a08c7fdc59d3051c68b43cdd2757a4274"></a>
 
 Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a74155a24257a5c7901c80b89d48aaef4)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a74155a24257a5c7901c80b89d48aaef4"></a>
+#### `public inline FORCEINLINE const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1c0f56352c942cc5f1d27def5e6749e1)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a1c0f56352c942cc5f1d27def5e6749e1"></a>
 
 Gets the value of RequiresAllPlayersItems_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a6d534317f8f4d3ee1d5c1d29729d5682)`(const bool & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a6d534317f8f4d3ee1d5c1d29729d5682"></a>
+#### `public inline FORCEINLINE const bool & `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a242cd5efbab091dd2792d16e6b210cbf)`(const bool & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a242cd5efbab091dd2792d16e6b210cbf"></a>
 
 Gets the value of RequiresAllPlayersItems_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1afb54f8bbaf6febe4dac50a375ffeb4a1)`(bool & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1afb54f8bbaf6febe4dac50a375ffeb4a1"></a>
+#### `public inline FORCEINLINE bool `[`GetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a491bd4269ed33161bdfd687461fce419)`(bool & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a491bd4269ed33161bdfd687461fce419"></a>
 
 Fills OutValue with the value of RequiresAllPlayersItems_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetRequiresAllPlayersItemsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a9b1602d3550a9b10962ad86468c7eb75)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a9b1602d3550a9b10962ad86468c7eb75"></a>
+#### `public inline FORCEINLINE bool * `[`GetRequiresAllPlayersItemsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1aec82ade0a5f8fe9ceb29c80fe58b162d)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aec82ade0a5f8fe9ceb29c80fe58b162d"></a>
 
 Returns a pointer to RequiresAllPlayersItems_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetRequiresAllPlayersItemsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1ae7d13ebfbcb9790521405b5ae74eee44)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ae7d13ebfbcb9790521405b5ae74eee44"></a>
+#### `public inline FORCEINLINE const bool * `[`GetRequiresAllPlayersItemsOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1adbe5354f5c84a48541642cf048021b50)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1adbe5354f5c84a48541642cf048021b50"></a>
 
 Returns a pointer to RequiresAllPlayersItems_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a113333608a253de1488967459a319592)`(const bool & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a113333608a253de1488967459a319592"></a>
+#### `public inline FORCEINLINE void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a15c4a3aed06e037c08e21dc6654f2ddb)`(const bool & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a15c4a3aed06e037c08e21dc6654f2ddb"></a>
 
 Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true.
 
-#### `public inline void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1c6c9ddc6263db8933ed72fa52af18b6)`(bool && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a1c6c9ddc6263db8933ed72fa52af18b6"></a>
+#### `public inline FORCEINLINE void `[`SetRequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1adb9f5762652e775c8f03662293f9926c)`(bool && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1adb9f5762652e775c8f03662293f9926c"></a>
 
 Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlayersItems_IsSet to true using move semantics.
 
@@ -233,47 +224,39 @@ Sets the value of RequiresAllPlayersItems_Optional and also sets RequiresAllPlay
 
 Clears the value of RequiresAllPlayersItems_Optional and sets RequiresAllPlayersItems_IsSet to false.
 
-#### `public inline bool `[`IsRequiresAllPlayersItemsSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1a442668f810897c3c52da93a512bb3335)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a442668f810897c3c52da93a512bb3335"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_RequiresAllPlayersItems`](#structFRHAPI__MatchMakingTemplateGroupV2_1aabd880a1694b4b527b42fe7c19f342a0)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aabd880a1694b4b527b42fe7c19f342a0"></a>
 
-Checks whether RequiresAllPlayersItems_Optional has been set.
+Returns the default value of RequiresAllPlayersItems.
 
-#### `public inline bool `[`IsRequiresAllPlayersItemsDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a630b53fea6154b63951c162e05197d59)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a630b53fea6154b63951c162e05197d59"></a>
-
-Returns true if RequiresAllPlayersItems_Optional is set and matches the default value.
-
-#### `public inline void `[`SetRequiresAllPlayersItemsToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7a3a20244efffa3ce670adcbd1cce5a7)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a7a3a20244efffa3ce670adcbd1cce5a7"></a>
-
-Sets the value of RequiresAllPlayersItems_Optional to its default and also sets RequiresAllPlayersItems_IsSet to true.
-
-#### `public inline bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1ac1f99f2a6ec3116f370f69d1dd36311e)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ac1f99f2a6ec3116f370f69d1dd36311e"></a>
+#### `public inline FORCEINLINE bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1fe412d86967a04c107af9028a30d379)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a1fe412d86967a04c107af9028a30d379"></a>
 
 Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a24a6ca33a84befec21d471e9051125df)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a24a6ca33a84befec21d471e9051125df"></a>
+#### `public inline FORCEINLINE const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a2e5131daba6be9447b0263f6ff737b47)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a2e5131daba6be9447b0263f6ff737b47"></a>
 
 Gets the value of IncludesSessionRule_Optional, regardless of it having been set.
 
-#### `public inline const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a97bbc518f43a19d2a9aef946ed3340b3)`(const bool & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a97bbc518f43a19d2a9aef946ed3340b3"></a>
+#### `public inline FORCEINLINE const bool & `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1aec192da3387a8c52c272179a9ff7e39d)`(const bool & DefaultValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aec192da3387a8c52c272179a9ff7e39d"></a>
 
 Gets the value of IncludesSessionRule_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1af22836aa626672d2efa665c100ec462c)`(bool & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1af22836aa626672d2efa665c100ec462c"></a>
+#### `public inline FORCEINLINE bool `[`GetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1aaa6f34f7e8c308d5fa387eef2a22fdec)`(bool & OutValue) const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aaa6f34f7e8c308d5fa387eef2a22fdec"></a>
 
 Fills OutValue with the value of IncludesSessionRule_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1ac268b31b7c6ec624d4596fcb1df99163)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1ac268b31b7c6ec624d4596fcb1df99163"></a>
+#### `public inline FORCEINLINE bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7abb0dcccf987f07ea8c43db5e1925a8)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a7abb0dcccf987f07ea8c43db5e1925a8"></a>
 
 Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1a5fa62c417aea75257767d93c884fe9e6)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a5fa62c417aea75257767d93c884fe9e6"></a>
+#### `public inline FORCEINLINE const bool * `[`GetIncludesSessionRuleOrNull`](#structFRHAPI__MatchMakingTemplateGroupV2_1aa43161e9ff4504262ace42005814fa11)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aa43161e9ff4504262ace42005814fa11"></a>
 
 Returns a pointer to IncludesSessionRule_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4e56a48fcd09ae47beb71927aa5d1215)`(const bool & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a4e56a48fcd09ae47beb71927aa5d1215"></a>
+#### `public inline FORCEINLINE void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1af89034b2fdb234d46048d36791fc6b06)`(const bool & NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1af89034b2fdb234d46048d36791fc6b06"></a>
 
 Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true.
 
-#### `public inline void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a864b5238fc4f6b3066caf8aab1ebed96)`(bool && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a864b5238fc4f6b3066caf8aab1ebed96"></a>
+#### `public inline FORCEINLINE void `[`SetIncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1aba83f5d085d0d776ac5bc281bb6a1735)`(bool && NewValue)` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1aba83f5d085d0d776ac5bc281bb6a1735"></a>
 
 Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule_IsSet to true using move semantics.
 
@@ -281,15 +264,7 @@ Sets the value of IncludesSessionRule_Optional and also sets IncludesSessionRule
 
 Clears the value of IncludesSessionRule_Optional and sets IncludesSessionRule_IsSet to false.
 
-#### `public inline bool `[`IsIncludesSessionRuleSet`](#structFRHAPI__MatchMakingTemplateGroupV2_1af0b67de34212a2fceed2d4cde8b6b268)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1af0b67de34212a2fceed2d4cde8b6b268"></a>
+#### `public inline FORCEINLINE bool `[`GetDefaultValue_IncludesSessionRule`](#structFRHAPI__MatchMakingTemplateGroupV2_1a7ccdcf32ed0dacabe6a76f76fb44dde0)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a7ccdcf32ed0dacabe6a76f76fb44dde0"></a>
 
-Checks whether IncludesSessionRule_Optional has been set.
-
-#### `public inline bool `[`IsIncludesSessionRuleDefaultValue`](#structFRHAPI__MatchMakingTemplateGroupV2_1a4b7e04b99038b1c7fae4171cceacc1e0)`() const` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a4b7e04b99038b1c7fae4171cceacc1e0"></a>
-
-Returns true if IncludesSessionRule_Optional is set and matches the default value.
-
-#### `public inline void `[`SetIncludesSessionRuleToDefault`](#structFRHAPI__MatchMakingTemplateGroupV2_1a1195134b0e1935ca8ff997dd9bc5a3f9)`()` <a id="structFRHAPI__MatchMakingTemplateGroupV2_1a1195134b0e1935ca8ff997dd9bc5a3f9"></a>
-
-Sets the value of IncludesSessionRule_Optional to its default and also sets IncludesSessionRule_IsSet to true.
+Returns the default value of IncludesSessionRule.
 

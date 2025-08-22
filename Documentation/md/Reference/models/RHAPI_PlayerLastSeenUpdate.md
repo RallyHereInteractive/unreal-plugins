@@ -28,34 +28,32 @@ struct FRHAPI_PlayerLastSeenUpdate
 `public bool `[`DisplayName_IsNull`](#structFRHAPI__PlayerLastSeenUpdate_1add4f849ba7cc9cdf28e419be00221440) | true if DisplayName_Optional has been explicitly set to null
 `public virtual bool `[`FromJson`](#structFRHAPI__PlayerLastSeenUpdate_1acdff6f30fa41ed2d32f1aef8d5398354)`(const TSharedPtr< FJsonValue > & JsonValue)` | Fills this object with data from the passed in JSON.
 `public virtual void `[`WriteJson`](#structFRHAPI__PlayerLastSeenUpdate_1a0c2d9dd3b7095e1d00a28837ea08ac6a)`(TSharedRef< TJsonWriter<> > & Writer) const` | Writes the data from this object into the specified JSON Writer stream.
-`public inline FDateTime & `[`GetTime`](#structFRHAPI__PlayerLastSeenUpdate_1ac10275c4c37e491c830cb6c97072c80d)`()` | Gets the value of Time.
-`public inline const FDateTime & `[`GetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a660266608163bd8eab594accc2423316)`() const` | Gets the value of Time.
-`public inline void `[`SetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a933b218884e95bbcc4939c866f4b9236)`(const FDateTime & NewValue)` | Sets the value of Time.
-`public inline void `[`SetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a6ea8251247dc65947ff43a4662b85795)`(FDateTime && NewValue)` | Sets the value of Time using move semantics.
-`public inline FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a3d7a160dec6861dae9b2088fc3bb0ebc)`()` | Gets the value of Platform_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a1f9b818fea31a3749b503f160a08f79d)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
-`public inline const FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1abe0df81c3d7201900b6a880c5bad25ad)`(const FString & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a904d2fa8eb892778c6b748195fed4593)`(FString & OutValue) const` | Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetPlatformOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a3c08ed09a2c107edeacfa976a9625f0e)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetPlatformOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1aec287f0c1684e557ad45bf62756538ce)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a2f74200474697172317f73a8d1d239b8)`(const FString & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
-`public inline void `[`SetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a4a304fbedc72ca6af46ac4c8e0ccdcfc)`(FString && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
+`public inline FORCEINLINE FDateTime & `[`GetTime`](#structFRHAPI__PlayerLastSeenUpdate_1aae9d3bdb7abc1bc424dec264aec0d2fd)`()` | Gets the value of Time.
+`public inline FORCEINLINE const FDateTime & `[`GetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a013e1c77437383cb5d02a92ea45486a2)`() const` | Gets the value of Time.
+`public inline FORCEINLINE void `[`SetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a7a2a7b51e0658e9b190a2a5ba36673ba)`(const FDateTime & NewValue)` | Sets the value of Time.
+`public inline FORCEINLINE void `[`SetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a8700f5ad8ccf135877f07d638c3da2e0)`(FDateTime && NewValue)` | Sets the value of Time using move semantics.
+`public inline FORCEINLINE FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1ab457bd464f741d253c95689a50e41cbd)`()` | Gets the value of Platform_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1ae7c2cf50a696a339acdf9b87aa0e28f0)`() const` | Gets the value of Platform_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1ab2ccd443ed421d8a2b77e17cf93fe793)`(const FString & DefaultValue) const` | Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a1f632377c88f917bc29ba62180f7bce7)`(FString & OutValue) const` | Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetPlatformOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a95ff024361b7f650f5b54cebfd7c4d24)`()` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetPlatformOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a9dbca51f08d52c895a4683619e85692c)`() const` | Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a06629b1de6c8d359e2d533f2bc0a5334)`(const FString & NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true.
+`public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a3dba8eed251bfbeb4ac1aa8a22c8a6ca)`(FString && NewValue)` | Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 `public inline void `[`ClearPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1aa3cc09e14a89615c9bbe6c0c8d8fae9b)`()` | Clears the value of Platform_Optional and sets Platform_IsSet to false.
-`public inline bool `[`IsPlatformSet`](#structFRHAPI__PlayerLastSeenUpdate_1a1425f361e296cac6d400c1757d0824a7)`() const` | Checks whether Platform_Optional has been set.
-`public inline void `[`SetPlatformToNull`](#structFRHAPI__PlayerLastSeenUpdate_1ad047b1a0519041ee60a0c46c9e6e6f51)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsPlatformNull`](#structFRHAPI__PlayerLastSeenUpdate_1a365cf9b4a85a1eb3fcba9bfc99c61b55)`() const` | Checks whether Platform_Optional is set to null.
-`public inline FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a11116357e6bf3f94c01bb8fcb5aec09b)`()` | Gets the value of DisplayName_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a312a865ca169003cdcc17dc6a9944ff0)`() const` | Gets the value of DisplayName_Optional, regardless of it having been set.
-`public inline const FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a96978bae16491e5db4624e435ec31b2f)`(const FString & DefaultValue) const` | Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
-`public inline bool `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a7ed6067e479cde3635a48302c86c7db6)`(FString & OutValue) const` | Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false.
-`public inline FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a8a315fc700d8bd2a52d3150127f3629a)`()` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
-`public inline const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a1290607611840c166f4fb4157ecc31fb)`() const` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
-`public inline void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a044d97dcca4d408d3ac08c7f80920ea2)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
-`public inline void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1adca1ce68a1856d916018857a35cc5755)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
+`public inline FORCEINLINE void `[`SetPlatformToNull`](#structFRHAPI__PlayerLastSeenUpdate_1ad8d5d2d764618d40c8fadd90ac5a5261)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsPlatformNull`](#structFRHAPI__PlayerLastSeenUpdate_1a23012d7ee3d497180aaf9122783f920e)`() const` | Checks whether Platform_Optional is set to null.
+`public inline FORCEINLINE FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1ab1adb6b76b604da7585b2770b6fa8382)`()` | Gets the value of DisplayName_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a51907c3cb1147c9a63dea1c7f3dddacd)`() const` | Gets the value of DisplayName_Optional, regardless of it having been set.
+`public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1ac05f16c338b5f1b6653ec7e9269d8b39)`(const FString & DefaultValue) const` | Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
+`public inline FORCEINLINE bool `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a47fb3ecaac3047fd091d749e4e8a9b66)`(FString & OutValue) const` | Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false.
+`public inline FORCEINLINE FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1af8a52cc99eea526be112427619bcdefb)`()` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a31db481e513bc9f4cadb72ec508dc1f8)`() const` | Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
+`public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a8e02c9cd56acf1d2c86e87fc0b3d0ad6)`(const FString & NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
+`public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a0a63e2eb729585068e3af64ab8aa9d50)`(FString && NewValue)` | Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 `public inline void `[`ClearDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a808a56f9cf76cfde9abcf2bb0c5bd9c4)`()` | Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
-`public inline bool `[`IsDisplayNameSet`](#structFRHAPI__PlayerLastSeenUpdate_1a9791205d4eae74a55568f2db4e52a527)`() const` | Checks whether DisplayName_Optional has been set.
-`public inline void `[`SetDisplayNameToNull`](#structFRHAPI__PlayerLastSeenUpdate_1aa7e53c0382cef6b89ca9358736d0d2ec)`()` | Sets the value explicitly to be treated as null.
-`public inline bool `[`IsDisplayNameNull`](#structFRHAPI__PlayerLastSeenUpdate_1abaeaf0a3c2ea8be49ae1ec88310dd618)`() const` | Checks whether DisplayName_Optional is set to null.
+`public inline FORCEINLINE void `[`SetDisplayNameToNull`](#structFRHAPI__PlayerLastSeenUpdate_1ab93b046a817930e72eac4b138a2b6568)`()` | Sets the value explicitly to be treated as null.
+`public inline FORCEINLINE bool `[`IsDisplayNameNull`](#structFRHAPI__PlayerLastSeenUpdate_1a25f1c5fab6e308f8918bcbc0b9ac0ee2)`() const` | Checks whether DisplayName_Optional is set to null.
 
 ### Members
 
@@ -100,51 +98,51 @@ Writes the data from this object into the specified JSON Writer stream.
 #### Parameters
 * `Writer` JSON Writer stream to push .
 
-#### `public inline FDateTime & `[`GetTime`](#structFRHAPI__PlayerLastSeenUpdate_1ac10275c4c37e491c830cb6c97072c80d)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1ac10275c4c37e491c830cb6c97072c80d"></a>
+#### `public inline FORCEINLINE FDateTime & `[`GetTime`](#structFRHAPI__PlayerLastSeenUpdate_1aae9d3bdb7abc1bc424dec264aec0d2fd)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1aae9d3bdb7abc1bc424dec264aec0d2fd"></a>
 
 Gets the value of Time.
 
-#### `public inline const FDateTime & `[`GetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a660266608163bd8eab594accc2423316)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a660266608163bd8eab594accc2423316"></a>
+#### `public inline FORCEINLINE const FDateTime & `[`GetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a013e1c77437383cb5d02a92ea45486a2)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a013e1c77437383cb5d02a92ea45486a2"></a>
 
 Gets the value of Time.
 
-#### `public inline void `[`SetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a933b218884e95bbcc4939c866f4b9236)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a933b218884e95bbcc4939c866f4b9236"></a>
+#### `public inline FORCEINLINE void `[`SetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a7a2a7b51e0658e9b190a2a5ba36673ba)`(const FDateTime & NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a7a2a7b51e0658e9b190a2a5ba36673ba"></a>
 
 Sets the value of Time.
 
-#### `public inline void `[`SetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a6ea8251247dc65947ff43a4662b85795)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a6ea8251247dc65947ff43a4662b85795"></a>
+#### `public inline FORCEINLINE void `[`SetTime`](#structFRHAPI__PlayerLastSeenUpdate_1a8700f5ad8ccf135877f07d638c3da2e0)`(FDateTime && NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a8700f5ad8ccf135877f07d638c3da2e0"></a>
 
 Sets the value of Time using move semantics.
 
-#### `public inline FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a3d7a160dec6861dae9b2088fc3bb0ebc)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1a3d7a160dec6861dae9b2088fc3bb0ebc"></a>
+#### `public inline FORCEINLINE FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1ab457bd464f741d253c95689a50e41cbd)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1ab457bd464f741d253c95689a50e41cbd"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a1f9b818fea31a3749b503f160a08f79d)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a1f9b818fea31a3749b503f160a08f79d"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1ae7c2cf50a696a339acdf9b87aa0e28f0)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1ae7c2cf50a696a339acdf9b87aa0e28f0"></a>
 
 Gets the value of Platform_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1abe0df81c3d7201900b6a880c5bad25ad)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerLastSeenUpdate_1abe0df81c3d7201900b6a880c5bad25ad"></a>
+#### `public inline FORCEINLINE const FString & `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1ab2ccd443ed421d8a2b77e17cf93fe793)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerLastSeenUpdate_1ab2ccd443ed421d8a2b77e17cf93fe793"></a>
 
 Gets the value of Platform_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a904d2fa8eb892778c6b748195fed4593)`(FString & OutValue) const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a904d2fa8eb892778c6b748195fed4593"></a>
+#### `public inline FORCEINLINE bool `[`GetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a1f632377c88f917bc29ba62180f7bce7)`(FString & OutValue) const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a1f632377c88f917bc29ba62180f7bce7"></a>
 
 Fills OutValue with the value of Platform_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetPlatformOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a3c08ed09a2c107edeacfa976a9625f0e)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1a3c08ed09a2c107edeacfa976a9625f0e"></a>
+#### `public inline FORCEINLINE FString * `[`GetPlatformOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a95ff024361b7f650f5b54cebfd7c4d24)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1a95ff024361b7f650f5b54cebfd7c4d24"></a>
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetPlatformOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1aec287f0c1684e557ad45bf62756538ce)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1aec287f0c1684e557ad45bf62756538ce"></a>
+#### `public inline FORCEINLINE const FString * `[`GetPlatformOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a9dbca51f08d52c895a4683619e85692c)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a9dbca51f08d52c895a4683619e85692c"></a>
 
 Returns a pointer to Platform_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a2f74200474697172317f73a8d1d239b8)`(const FString & NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a2f74200474697172317f73a8d1d239b8"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a06629b1de6c8d359e2d533f2bc0a5334)`(const FString & NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a06629b1de6c8d359e2d533f2bc0a5334"></a>
 
 Sets the value of Platform_Optional and also sets Platform_IsSet to true.
 
-#### `public inline void `[`SetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a4a304fbedc72ca6af46ac4c8e0ccdcfc)`(FString && NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a4a304fbedc72ca6af46ac4c8e0ccdcfc"></a>
+#### `public inline FORCEINLINE void `[`SetPlatform`](#structFRHAPI__PlayerLastSeenUpdate_1a3dba8eed251bfbeb4ac1aa8a22c8a6ca)`(FString && NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a3dba8eed251bfbeb4ac1aa8a22c8a6ca"></a>
 
 Sets the value of Platform_Optional and also sets Platform_IsSet to true using move semantics.
 
@@ -152,47 +150,43 @@ Sets the value of Platform_Optional and also sets Platform_IsSet to true using m
 
 Clears the value of Platform_Optional and sets Platform_IsSet to false.
 
-#### `public inline bool `[`IsPlatformSet`](#structFRHAPI__PlayerLastSeenUpdate_1a1425f361e296cac6d400c1757d0824a7)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a1425f361e296cac6d400c1757d0824a7"></a>
-
-Checks whether Platform_Optional has been set.
-
-#### `public inline void `[`SetPlatformToNull`](#structFRHAPI__PlayerLastSeenUpdate_1ad047b1a0519041ee60a0c46c9e6e6f51)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1ad047b1a0519041ee60a0c46c9e6e6f51"></a>
+#### `public inline FORCEINLINE void `[`SetPlatformToNull`](#structFRHAPI__PlayerLastSeenUpdate_1ad8d5d2d764618d40c8fadd90ac5a5261)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1ad8d5d2d764618d40c8fadd90ac5a5261"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsPlatformNull`](#structFRHAPI__PlayerLastSeenUpdate_1a365cf9b4a85a1eb3fcba9bfc99c61b55)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a365cf9b4a85a1eb3fcba9bfc99c61b55"></a>
+#### `public inline FORCEINLINE bool `[`IsPlatformNull`](#structFRHAPI__PlayerLastSeenUpdate_1a23012d7ee3d497180aaf9122783f920e)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a23012d7ee3d497180aaf9122783f920e"></a>
 
 Checks whether Platform_Optional is set to null.
 
-#### `public inline FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a11116357e6bf3f94c01bb8fcb5aec09b)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1a11116357e6bf3f94c01bb8fcb5aec09b"></a>
+#### `public inline FORCEINLINE FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1ab1adb6b76b604da7585b2770b6fa8382)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1ab1adb6b76b604da7585b2770b6fa8382"></a>
 
 Gets the value of DisplayName_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a312a865ca169003cdcc17dc6a9944ff0)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a312a865ca169003cdcc17dc6a9944ff0"></a>
+#### `public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a51907c3cb1147c9a63dea1c7f3dddacd)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a51907c3cb1147c9a63dea1c7f3dddacd"></a>
 
 Gets the value of DisplayName_Optional, regardless of it having been set.
 
-#### `public inline const FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a96978bae16491e5db4624e435ec31b2f)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a96978bae16491e5db4624e435ec31b2f"></a>
+#### `public inline FORCEINLINE const FString & `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1ac05f16c338b5f1b6653ec7e9269d8b39)`(const FString & DefaultValue) const` <a id="structFRHAPI__PlayerLastSeenUpdate_1ac05f16c338b5f1b6653ec7e9269d8b39"></a>
 
 Gets the value of DisplayName_Optional, if it has been set, otherwise it returns DefaultValue.
 
-#### `public inline bool `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a7ed6067e479cde3635a48302c86c7db6)`(FString & OutValue) const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a7ed6067e479cde3635a48302c86c7db6"></a>
+#### `public inline FORCEINLINE bool `[`GetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a47fb3ecaac3047fd091d749e4e8a9b66)`(FString & OutValue) const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a47fb3ecaac3047fd091d749e4e8a9b66"></a>
 
 Fills OutValue with the value of DisplayName_Optional and returns true if it has been set, otherwise returns false.
 
-#### `public inline FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a8a315fc700d8bd2a52d3150127f3629a)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1a8a315fc700d8bd2a52d3150127f3629a"></a>
+#### `public inline FORCEINLINE FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1af8a52cc99eea526be112427619bcdefb)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1af8a52cc99eea526be112427619bcdefb"></a>
 
 Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a1290607611840c166f4fb4157ecc31fb)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a1290607611840c166f4fb4157ecc31fb"></a>
+#### `public inline FORCEINLINE const FString * `[`GetDisplayNameOrNull`](#structFRHAPI__PlayerLastSeenUpdate_1a31db481e513bc9f4cadb72ec508dc1f8)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a31db481e513bc9f4cadb72ec508dc1f8"></a>
 
 Returns a pointer to DisplayName_Optional, if it has been set, otherwise returns nullptr.
 
-#### `public inline void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a044d97dcca4d408d3ac08c7f80920ea2)`(const FString & NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a044d97dcca4d408d3ac08c7f80920ea2"></a>
+#### `public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a8e02c9cd56acf1d2c86e87fc0b3d0ad6)`(const FString & NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a8e02c9cd56acf1d2c86e87fc0b3d0ad6"></a>
 
 Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true.
 
-#### `public inline void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1adca1ce68a1856d916018857a35cc5755)`(FString && NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1adca1ce68a1856d916018857a35cc5755"></a>
+#### `public inline FORCEINLINE void `[`SetDisplayName`](#structFRHAPI__PlayerLastSeenUpdate_1a0a63e2eb729585068e3af64ab8aa9d50)`(FString && NewValue)` <a id="structFRHAPI__PlayerLastSeenUpdate_1a0a63e2eb729585068e3af64ab8aa9d50"></a>
 
 Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true using move semantics.
 
@@ -200,15 +194,11 @@ Sets the value of DisplayName_Optional and also sets DisplayName_IsSet to true u
 
 Clears the value of DisplayName_Optional and sets DisplayName_IsSet to false.
 
-#### `public inline bool `[`IsDisplayNameSet`](#structFRHAPI__PlayerLastSeenUpdate_1a9791205d4eae74a55568f2db4e52a527)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a9791205d4eae74a55568f2db4e52a527"></a>
-
-Checks whether DisplayName_Optional has been set.
-
-#### `public inline void `[`SetDisplayNameToNull`](#structFRHAPI__PlayerLastSeenUpdate_1aa7e53c0382cef6b89ca9358736d0d2ec)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1aa7e53c0382cef6b89ca9358736d0d2ec"></a>
+#### `public inline FORCEINLINE void `[`SetDisplayNameToNull`](#structFRHAPI__PlayerLastSeenUpdate_1ab93b046a817930e72eac4b138a2b6568)`()` <a id="structFRHAPI__PlayerLastSeenUpdate_1ab93b046a817930e72eac4b138a2b6568"></a>
 
 Sets the value explicitly to be treated as null.
 
-#### `public inline bool `[`IsDisplayNameNull`](#structFRHAPI__PlayerLastSeenUpdate_1abaeaf0a3c2ea8be49ae1ec88310dd618)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1abaeaf0a3c2ea8be49ae1ec88310dd618"></a>
+#### `public inline FORCEINLINE bool `[`IsDisplayNameNull`](#structFRHAPI__PlayerLastSeenUpdate_1a25f1c5fab6e308f8918bcbc0b9ac0ee2)`() const` <a id="structFRHAPI__PlayerLastSeenUpdate_1a25f1c5fab6e308f8918bcbc0b9ac0ee2"></a>
 
 Checks whether DisplayName_Optional is set to null.
 
