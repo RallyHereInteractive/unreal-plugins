@@ -86,6 +86,7 @@ Match Subsystem used for match API calls.
 `public virtual void `[`GetMatchTimelinePage`](#classURH__MatchSubsystem_1ad99cb2ab98872018e7547b9597f2ee9f)`(const FString & MatchId,FString Cursor,const FRH_OnMatchTimelineReceivedDelegateBlock & Delegate)` | Get the match timeline for a match.
 `public virtual void `[`UploadMatchTimeline`](#classURH__MatchSubsystem_1a1c762c9ce4b466e4c7632864bb376aac)`(const FString & MatchId,`[`FRHAPI_MatchTimeline`](RHAPI_MatchTimeline.md#structFRHAPI__MatchTimeline)` MatchTimeline,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Upload a match timeline.
 `public virtual void `[`UploadMatchTimelineFromFile`](#classURH__MatchSubsystem_1a3a776dfb7e4e7dd6a987d5aefc42ba28)`(const FString MatchId,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Upload a match timeline from a file.
+`public virtual void `[`GrantMatchRewards`](#classURH__MatchSubsystem_1a1d8b1a2abe75dc5ef95ba0e498a03f28)`(const FString & MatchId,`[`FRHAPI_MatchRewardsBody`](RHAPI_MatchRewardsBody.md#structFRHAPI__MatchRewardsBody)` & Rewards,const FRH_GenericSuccessWithErrorBlock & Delegate)` | Grant rewards for a match.
 `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) | 
 `protected TOptional< FString > `[`ActiveMatchId`](#classURH__MatchSubsystem_1aa6948be8c609b94e612435f7b0767e7b) | The last match created with bSetActive = true, for ease of use.
 
@@ -189,6 +190,10 @@ Upload a match timeline.
 #### `public virtual void `[`UploadMatchTimelineFromFile`](#classURH__MatchSubsystem_1a3a776dfb7e4e7dd6a987d5aefc42ba28)`(const FString MatchId,const FString & LocalFilePath,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__MatchSubsystem_1a3a776dfb7e4e7dd6a987d5aefc42ba28"></a>
 
 Upload a match timeline from a file.
+
+#### `public virtual void `[`GrantMatchRewards`](#classURH__MatchSubsystem_1a1d8b1a2abe75dc5ef95ba0e498a03f28)`(const FString & MatchId,`[`FRHAPI_MatchRewardsBody`](RHAPI_MatchRewardsBody.md#structFRHAPI__MatchRewardsBody)` & Rewards,const FRH_GenericSuccessWithErrorBlock & Delegate)` <a id="classURH__MatchSubsystem_1a1d8b1a2abe75dc5ef95ba0e498a03f28"></a>
+
+Grant rewards for a match.
 
 #### `protected TMap< FString, `[`FRHAPI_MatchWithPlayers`](RHAPI_MatchWithPlayers.md#structFRHAPI__MatchWithPlayers)` > `[`MatchesCache`](#classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a) <a id="classURH__MatchSubsystem_1af6ae949b60bac5983489fe295a5b914a"></a>
 

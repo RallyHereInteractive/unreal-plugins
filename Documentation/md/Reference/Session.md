@@ -485,6 +485,7 @@ Base class providing functionality for viewing session data and interacting with
 `public inline FORCEINLINE const `[`FRH_APISessionWithETag`](Session.md#structTRH__DataWithETagWrapper)` & `[`GetSessionWithETag`](#classURH__SessionView_1ad08943f93d68c193c60050fb9cf67484)`() const` | Gets the Session Data and its ETag.
 `public inline const `[`FRHAPI_Session`](RHAPI_Session.md#structFRHAPI__Session)` & `[`GetSessionData`](#classURH__SessionView_1acd1f548a46835f75cc488bce8c1b871f)`() const` | Gets the Session Data.
 `public inline const `[`FRHAPI_InstanceInfo`](RHAPI_InstanceInfo.md#structFRHAPI__InstanceInfo)` * `[`GetInstanceData`](#classURH__SessionView_1a350668899ab37603d08c5f725413584d)`() const` | Gets the Instance Data.
+`public inline const bool `[`IsInstanceStandalone`](#classURH__SessionView_1a252912f5d95afe6cdf46787967cac336)`() const` | Returns true if the instance in this session is standalone.
 `public inline FORCEINLINE const `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` * `[`GetSessionPlayer`](#classURH__SessionView_1ac546d5e6ed81bed2fd4febca2f017b18)`(const FGuid & PlayerUuid) const` | Gets a session player if they are part of the session.
 `public inline FORCEINLINE bool `[`GetSessionPlayer`](#classURH__SessionView_1abf7a2c182bbf41b82a158fc111598aad)`(const FGuid & PlayerUuid,`[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` & OutPlayer) const` | Gets a session player if they are part of the session.
 `public inline FORCEINLINE const `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` * `[`GetSessionLeader`](#classURH__SessionView_1ae5a65611380499424f451bb9657e7a91)`() const` | Gets the leader of the session if one exists.
@@ -550,6 +551,10 @@ Gets the Session Data.
 #### `public inline const `[`FRHAPI_InstanceInfo`](RHAPI_InstanceInfo.md#structFRHAPI__InstanceInfo)` * `[`GetInstanceData`](#classURH__SessionView_1a350668899ab37603d08c5f725413584d)`() const` <a id="classURH__SessionView_1a350668899ab37603d08c5f725413584d"></a>
 
 Gets the Instance Data.
+
+#### `public inline const bool `[`IsInstanceStandalone`](#classURH__SessionView_1a252912f5d95afe6cdf46787967cac336)`() const` <a id="classURH__SessionView_1a252912f5d95afe6cdf46787967cac336"></a>
+
+Returns true if the instance in this session is standalone.
 
 #### `public inline FORCEINLINE const `[`FRHAPI_SessionPlayer`](RHAPI_SessionPlayer.md#structFRHAPI__SessionPlayer)` * `[`GetSessionPlayer`](#classURH__SessionView_1ac546d5e6ed81bed2fd4febca2f017b18)`(const FGuid & PlayerUuid) const` <a id="classURH__SessionView_1ac546d5e6ed81bed2fd4febca2f017b18"></a>
 
