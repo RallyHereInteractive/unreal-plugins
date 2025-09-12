@@ -255,6 +255,18 @@ public:
 	 */
 	const FRHAPI_InstanceInfo* GetInstanceData() const { return SessionData.Data.GetInstanceOrNull(); }
 	/**
+	 * @brief Returns true if the instance in this session is standalone
+	 */
+	UFUNCTION(BlueprintPure, Category = "Session")
+	const bool IsInstanceStandalone() const {
+		auto data = GetInstanceData();
+		if (data)
+		{
+			return data->GetHostType() == ERHAPI_HostType::Standalone;
+		}
+		return false;
+	}
+	/**
 	 * @brief Gets a session player if they are part of the session.
 	 * @param [in] PlayerUuid The unique Id of the player to get.
 	 * @return The player if they exist in the session, otherwise null.

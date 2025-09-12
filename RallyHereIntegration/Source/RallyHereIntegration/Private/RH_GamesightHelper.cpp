@@ -73,7 +73,7 @@ FString URHGamesightHelper::GetEventName(EGamesightEvent Event)
 		case EGamesightEvent::ESE_LevelChange:
 			return FString("level_change");
 		case EGamesightEvent::ESE_MatchPlayed:
-			return FString("match_playerd");
+			return FString("match_played");
 		default:
 			return FString();
 	}

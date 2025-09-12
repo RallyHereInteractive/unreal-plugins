@@ -63,6 +63,9 @@ Private/EntitlementStatus.cpp
 Private/EntitlementType.cpp
 Private/EntitlementsAPI.cpp
 Private/EntityGuideEngagement.cpp
+Private/EntityMMBucketRunStats.cpp
+Private/EntityMMBucketRunStatsMulti.cpp
+Private/EntityRunCompleteRequest.cpp
 Private/EntityType.cpp
 Private/EnvironmentConfig.cpp
 Private/EpicVoipCredentialsResponse.cpp
@@ -70,6 +73,7 @@ Private/EventList.cpp
 Private/EventParamsSchemaResponse.cpp
 Private/EventsAPI.cpp
 Private/ExternalKeyEntitlement.cpp
+Private/FailedPlayerOrderCreateSingle.cpp
 Private/FastapicommonPlatformsPortal.cpp
 Private/FavoriteGuideRequest.cpp
 Private/FavoriteGuideResponse.cpp
@@ -408,6 +412,15 @@ Private/SettingsAPI.cpp
 Private/SortDirection.cpp
 Private/SortOrder.cpp
 Private/Source.cpp
+Private/Stage.cpp
+Private/StageAPI.cpp
+Private/StageCreate.cpp
+Private/StageCreateRequest.cpp
+Private/StageEntityType.cpp
+Private/StageMatchmakeParams.cpp
+Private/StageSearchResults.cpp
+Private/StageSearchSort.cpp
+Private/StageUpdate.cpp
 Private/StorageInformation.cpp
 Private/SupportAPI.cpp
 Private/SupportLogEntry.cpp
@@ -503,6 +516,9 @@ Public/EntitlementStatus.h
 Public/EntitlementType.h
 Public/EntitlementsAPI.h
 Public/EntityGuideEngagement.h
+Public/EntityMMBucketRunStats.h
+Public/EntityMMBucketRunStatsMulti.h
+Public/EntityRunCompleteRequest.h
 Public/EntityType.h
 Public/EnvironmentConfig.h
 Public/EpicVoipCredentialsResponse.h
@@ -510,6 +526,7 @@ Public/EventList.h
 Public/EventParamsSchemaResponse.h
 Public/EventsAPI.h
 Public/ExternalKeyEntitlement.h
+Public/FailedPlayerOrderCreateSingle.h
 Public/FastapicommonPlatformsPortal.h
 Public/FavoriteGuideRequest.h
 Public/FavoriteGuideResponse.h
@@ -848,6 +865,15 @@ Public/SettingsAPI.h
 Public/SortDirection.h
 Public/SortOrder.h
 Public/Source.h
+Public/Stage.h
+Public/StageAPI.h
+Public/StageCreate.h
+Public/StageCreateRequest.h
+Public/StageEntityType.h
+Public/StageMatchmakeParams.h
+Public/StageSearchResults.h
+Public/StageSearchSort.h
+Public/StageUpdate.h
 Public/StorageInformation.h
 Public/SupportAPI.h
 Public/SupportLogEntry.h

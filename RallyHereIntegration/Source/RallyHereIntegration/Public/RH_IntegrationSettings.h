@@ -631,6 +631,9 @@ public:
 	/** @brief Sets the request priority of Upload MatchTimeline calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
 	int32 MatchTimelineUploadPriority;
+	/** @brief Sets the request priority of Granting Match Reward calls, lower number is higher priority */
+	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
+	int32 MatchGrantRewardPriority;
 	/** @brief Sets the request priority of Player Experience Report calls, lower number is higher priority */
 	UPROPERTY(EditAnywhere, Config, Category = "Matches API Priority", AdvancedDisplay)
 	int32 PexReportPriority;

@@ -27,6 +27,11 @@ void FRHAPI_ManyPlayerOrderResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer
 		Writer->WriteIdentifierPrefix(TEXT("order_ids"));
 		RallyHereAPI::WriteJsonValue(Writer, OrderIds_Optional);
 	}
+	if (FailedOrders_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("failed_orders"));
+		RallyHereAPI::WriteJsonValue(Writer, FailedOrders_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -43,6 +48,12 @@ bool FRHAPI_ManyPlayerOrderResponse::FromJson(const TSharedPtr<FJsonValue>& Json
 	{
 		OrderIds_IsSet = TryGetJsonValue(JsonOrderIdsField, OrderIds_Optional);
 		ParseSuccess &= OrderIds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonFailedOrdersField = (*Object)->TryGetField(TEXT("failed_orders"));
+	if (JsonFailedOrdersField.IsValid())
+	{
+		FailedOrders_IsSet = TryGetJsonValue(JsonFailedOrdersField, FailedOrders_Optional);
+		ParseSuccess &= FailedOrders_IsSet;
 	}
 
 	return ParseSuccess;

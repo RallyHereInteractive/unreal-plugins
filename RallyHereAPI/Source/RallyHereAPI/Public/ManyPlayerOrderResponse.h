@@ -9,6 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "FailedPlayerOrderCreateSingle.h"
 #include "ManyPlayerOrderResponse.generated.h"
 
 /** @defgroup RHAPI_ManyPlayerOrderResponse RallyHere API Model ManyPlayerOrderResponse
@@ -63,6 +64,31 @@ struct RALLYHEREAPI_API FRHAPI_ManyPlayerOrderResponse : public FRHAPI_Model
 	FORCEINLINE void SetOrderIds(TArray<FString>&& NewValue) { OrderIds_Optional = NewValue; OrderIds_IsSet = true;  }
 	/** @brief Clears the value of OrderIds_Optional and sets OrderIds_IsSet to false */
 	void ClearOrderIds() { OrderIds_IsSet = false;  }
+
+	/** @brief List of orders that failed to be submitted.  They may succeed on a retry */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_FailedPlayerOrderCreateSingle> FailedOrders_Optional{  };
+	/** @brief true if FailedOrders_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool FailedOrders_IsSet{ false };
+	/** @brief Gets the value of FailedOrders_Optional, regardless of it having been set */
+	FORCEINLINE TArray<FRHAPI_FailedPlayerOrderCreateSingle>& GetFailedOrders() { return FailedOrders_Optional; }
+	/** @brief Gets the value of FailedOrders_Optional, regardless of it having been set */
+	FORCEINLINE const TArray<FRHAPI_FailedPlayerOrderCreateSingle>& GetFailedOrders() const { return FailedOrders_Optional; }
+	/** @brief Gets the value of FailedOrders_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const TArray<FRHAPI_FailedPlayerOrderCreateSingle>& GetFailedOrders(const TArray<FRHAPI_FailedPlayerOrderCreateSingle>& DefaultValue) const { if (FailedOrders_IsSet) return FailedOrders_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of FailedOrders_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetFailedOrders(TArray<FRHAPI_FailedPlayerOrderCreateSingle>& OutValue) const { if (FailedOrders_IsSet) OutValue = FailedOrders_Optional; return FailedOrders_IsSet; }
+	/** @brief Returns a pointer to FailedOrders_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE TArray<FRHAPI_FailedPlayerOrderCreateSingle>* GetFailedOrdersOrNull() { if (FailedOrders_IsSet) return (&FailedOrders_Optional); return nullptr; }
+	/** @brief Returns a pointer to FailedOrders_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const TArray<FRHAPI_FailedPlayerOrderCreateSingle>* GetFailedOrdersOrNull() const { if (FailedOrders_IsSet) return (&FailedOrders_Optional); return nullptr; }
+	/** @brief Sets the value of FailedOrders_Optional and also sets FailedOrders_IsSet to true */
+	FORCEINLINE void SetFailedOrders(const TArray<FRHAPI_FailedPlayerOrderCreateSingle>& NewValue) { FailedOrders_Optional = NewValue; FailedOrders_IsSet = true;  }
+	/** @brief Sets the value of FailedOrders_Optional and also sets FailedOrders_IsSet to true using move semantics */
+	FORCEINLINE void SetFailedOrders(TArray<FRHAPI_FailedPlayerOrderCreateSingle>&& NewValue) { FailedOrders_Optional = NewValue; FailedOrders_IsSet = true;  }
+	/** @brief Clears the value of FailedOrders_Optional and sets FailedOrders_IsSet to false */
+	void ClearFailedOrders() { FailedOrders_IsSet = false;  }
 };
 
 /** @} */

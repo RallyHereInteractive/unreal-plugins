@@ -124,6 +124,10 @@
     {
       "name": "Leaderboard",
       "description": "\nThis API is for requesting leaderboard data and the configuration around it\n"
+    },
+    {
+      "name": "Stage",
+      "description": ""
     }
   ],
   "paths": {
@@ -29819,7 +29823,7 @@
           "Reports"
         ],
         "summary": "Create Report For Target Player Uuid",
-        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:self`, `sanction:*`, `sanction:report:create:any`\nOtherwise: any of: `sanction:*`, `sanction:report:create:any`",
+        "description": "Create a new report for a target player\nRequired Permissions:\nIf `source_player_uuid` is not provided, or is the same as the active player: any of: `sanction:report:create:any`, `sanction:*`, `sanction:report:create:self`\nOtherwise: any of: `sanction:report:create:any`, `sanction:*`",
         "operationId": "create_report_for_target_player_uuid",
         "security": [
           {
@@ -34797,6 +34801,959 @@
           }
         }
       }
+    },
+    "/stage/v1/stage": {
+      "get": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Search Stages",
+        "description": "Search all stages\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:search`",
+        "operationId": "search_stages",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Page Size"
+            }
+          },
+          {
+            "name": "owner_entity_type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/StageEntityType"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Owner Entity Type"
+            }
+          },
+          {
+            "name": "owner_entity_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Owner Entity Id"
+            }
+          },
+          {
+            "name": "game_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Game Version"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "V"
+            }
+          },
+          {
+            "name": "type_1",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 1"
+            }
+          },
+          {
+            "name": "type_2",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 2"
+            }
+          },
+          {
+            "name": "type_3",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 3"
+            }
+          },
+          {
+            "name": "type_4",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 4"
+            }
+          },
+          {
+            "name": "index",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Index"
+            }
+          },
+          {
+            "name": "match_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Match Id"
+            }
+          },
+          {
+            "name": "stat_1",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Stat 1"
+            }
+          },
+          {
+            "name": "stat_2",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Stat 2"
+            }
+          },
+          {
+            "name": "stat_3",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Stat 3"
+            }
+          },
+          {
+            "name": "stat_4",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Stat 4"
+            }
+          },
+          {
+            "name": "mmr_internal_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "min (inclusive) mmr internal value",
+              "title": "Mmr Internal Min"
+            },
+            "description": "min (inclusive) mmr internal value"
+          },
+          {
+            "name": "mmr_internal_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "max (exclusive) mmr internal value",
+              "title": "Mmr Internal Max"
+            },
+            "description": "max (exclusive) mmr internal value"
+          },
+          {
+            "name": "mmr_vis_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "min (inclusive) mmr visual value",
+              "title": "Mmr Vis Min"
+            },
+            "description": "min (inclusive) mmr visual value"
+          },
+          {
+            "name": "mmr_vis_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "max (exclusive) mmr visual value",
+              "title": "Mmr Vis Max"
+            },
+            "description": "max (exclusive) mmr visual value"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/StageSearchSort"
+              },
+              "default": [
+                "created"
+              ],
+              "title": "Sort By"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SortDirection"
+              },
+              "default": [
+                "desc"
+              ],
+              "title": "Sort"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StageSearchResults"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- `invalid_cursor` - Cursor is invalid or malformed\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Create Stages",
+        "description": "Create many stages\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write:self`",
+        "operationId": "create_stages",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageCreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StageCreateResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- `invalid_owner` - Owner of the requested stage is invalid.  Ensure the type is correct and the id is non-empty\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stage/v1/stage/{stage_id}": {
+      "get": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Get Stage",
+        "description": "Get a stage by stage_id\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:read:any`\n\n- For the player themselves : `stage:read:self`",
+        "operationId": "get_stage",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stage_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Stage Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- `not_found` - No data found\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Update Stage",
+        "description": "Create or Update a stage by ID\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write:self`",
+        "operationId": "update_stage",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stage_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Stage Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Delete Stage",
+        "description": "Create or Update a stage by ID\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:write:any`\n\n- For the player themselves : `stage:write:self`",
+        "operationId": "delete_stage",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "stage_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Stage Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stage/v1/stage-matchmake": {
+      "post": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Matchmake Stage",
+        "description": "Matchmake against the requested parameters to find a stage to play against\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `stage:*`, `stage:matchmake`",
+        "operationId": "matchmake_stage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageMatchmakeParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "\nError Codes:\n- `not_found` - No data found\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/stage/v1/run-complete": {
+      "post": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Submit Completed Run",
+        "description": "Add the stats about this run to the entity's aggregated stats from all runs.\n\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:write:any`\n\n- For the entity themselves : `stage:stats:write:self`\n\nIf explicitly setting the run as a placement or manually changing mmr values, Required Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:fullwrite`",
+        "operationId": "submit_completed_run",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityRunCompleteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityRunCompleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "\nError Codes:\n- `invalid_owner` - Owner of the requested stage is invalid.  Ensure the type is correct and the id is non-empty\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
+    "/stage/v1/run-stats": {
+      "get": {
+        "tags": [
+          "Stage"
+        ],
+        "summary": "Get Entity Run Stats",
+        "description": "Get the aggregated stats about an entity for specific matchmaking bucket(s)\n\nRequired Permissions:\n\n- For any entity (including themselves) any of: `stage:*`, `stage:stats:read:any`\n\n- For the entity themselves : `stage:stats:read:self`\n\nFor forcibly setting the run as a win, placement, or",
+        "operationId": "get_entity_run_stats",
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "entity_type",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/StageEntityType"
+            }
+          },
+          {
+            "name": "entity_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Entity Id"
+            }
+          },
+          {
+            "name": "v",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "V"
+            }
+          },
+          {
+            "name": "type_1",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 1"
+            }
+          },
+          {
+            "name": "type_2",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 2"
+            }
+          },
+          {
+            "name": "type_3",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 3"
+            }
+          },
+          {
+            "name": "type_4",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 256
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type 4"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityMMBucketRunStatsMulti"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "\nError Codes:\n- `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token\n- `auth_invalid_version` - Invalid Authorization - version\n- `auth_malformed_access` - Invalid Authorization - malformed access token\n- `auth_not_jwt` - Invalid Authorization\n- `auth_token_expired` - Token is expired\n- `auth_token_format` - Invalid Authorization - {}\n- `auth_token_invalid_claim` - Token contained invalid claim value: {}\n- `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type\n- `auth_token_sig_invalid` - Token Signature is invalid\n- `auth_token_unknown` - Failed to parse token\n- `insufficient_permissions` - Insufficient Permissions\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -38246,6 +39203,137 @@
         ],
         "title": "ExternalKeyEntitlement"
       },
+      "FailedPlayerOrderCreateSingle": {
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/Source",
+            "description": "The source of the Player Order.",
+            "default": "CLIENT"
+          },
+          "client_order_ref_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Client Order Ref Id",
+            "description": "Arbitrary UUID clients can use to track Orders between request to response."
+          },
+          "portal_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Portal"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Portal of the Portal User the Player Order belongs to.",
+            "deprecated": true
+          },
+          "portal_user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Portal User Id",
+            "description": "Portal User Id for the Player this Player Order belongs to."
+          },
+          "instance_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instance Id",
+            "description": "Instance Id for the Instance who submits the Player Order."
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "Match Id for the Match that generated the Player Order."
+          },
+          "is_transaction": {
+            "type": "boolean",
+            "title": "Is Transaction",
+            "description": "If an order is a transaction, any failed entries will roll back changes from all other entries.",
+            "default": false
+          },
+          "player_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Id",
+            "description": "Player Id of the Player this Player Order belongs to."
+          },
+          "player_uuid": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Uuid",
+            "description": "Player UUID of the Player this Player Order belongs to."
+          },
+          "order_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Order Id",
+            "description": "Unique Identifier for the Order."
+          },
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/PlayerOrderEntryCreate-Output"
+            },
+            "type": "array",
+            "title": "Entries",
+            "description": "List of Player Order Entries for the Player Order."
+          },
+          "error_info": {
+            "type": "string",
+            "title": "Error Info",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "entries"
+        ],
+        "title": "FailedPlayerOrderCreateSingle"
+      },
       "Inventory": {
         "properties": {
           "items": {
@@ -39725,6 +40813,15 @@
             "type": "array",
             "title": "Order Ids",
             "description": "Order IDs submitted in the request.",
+            "default": []
+          },
+          "failed_orders": {
+            "items": {
+              "$ref": "#/components/schemas/FailedPlayerOrderCreateSingle"
+            },
+            "type": "array",
+            "title": "Failed Orders",
+            "description": "List of orders that failed to be submitted.  They may succeed on a retry",
             "default": []
           }
         },
@@ -42592,7 +43689,7 @@
           "Order granted by Amazon.",
           "Order granted by Simulmedia.",
           "Order granted by Luna.",
-          ""
+          "Order granted by Match API"
         ],
         "x-enum-varnames": [
           "UNKNOWN",
@@ -48503,7 +49600,8 @@
           "game_mode": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 128
               },
               {
                 "type": "null"
@@ -55491,13 +56589,13 @@
         ],
         "title": "OffsetReset",
         "description": "An enumeration.",
-        "x-enum-descriptions": [
-          "",
-          ""
-        ],
         "x-enum-varnames": [
           "latest",
           "earliest"
+        ],
+        "x-enum-descriptions": [
+          "",
+          ""
         ]
       },
       "EntityGuideEngagement": {
@@ -58859,6 +59957,1228 @@
           "ASC",
           "DESC"
         ]
+      },
+      "EntityMMBucketRunStats": {
+        "properties": {
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version required to matchmake against"
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1",
+            "description": "Type 1 to matchmake against"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2",
+            "description": "Type 2 to matchmake against"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3",
+            "description": "Type 3 to matchmake against"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4",
+            "description": "Type 4 to matchmake against"
+          },
+          "entity_type": {
+            "$ref": "#/components/schemas/StageEntityType",
+            "description": "Entity type"
+          },
+          "entity_id": {
+            "type": "string",
+            "maxLength": 128,
+            "title": "Entity Id",
+            "description": "Entity ID"
+          },
+          "stage_wins": {
+            "type": "integer",
+            "title": "Stage Wins",
+            "description": "Total number of stages won",
+            "default": 0
+          },
+          "stage_losses": {
+            "type": "integer",
+            "title": "Stage Losses",
+            "description": "Total number of stages lost",
+            "default": 0
+          },
+          "stage_incompletes": {
+            "type": "integer",
+            "title": "Stage Incompletes",
+            "description": "Total number of stages incomplete",
+            "default": 0
+          },
+          "run_wins": {
+            "type": "integer",
+            "title": "Run Wins",
+            "description": "Total number of successful runs",
+            "default": 0
+          },
+          "run_losses": {
+            "type": "integer",
+            "title": "Run Losses",
+            "description": "Total number of failed runs",
+            "default": 0
+          },
+          "run_count": {
+            "type": "integer",
+            "title": "Run Count",
+            "description": "Total number of runs",
+            "default": 0
+          },
+          "placements_complete": {
+            "type": "integer",
+            "title": "Placements Complete",
+            "description": "Total number of placement matches this player has played for this MM bucket",
+            "default": 0
+          },
+          "mmr_internal": {
+            "type": "number",
+            "title": "Mmr Internal",
+            "description": "Internal MMR used for comparison against other players during matchmaking",
+            "default": 0
+          },
+          "mmr_vis": {
+            "type": "number",
+            "title": "Mmr Vis",
+            "description": "Visual MMR used for progression tracking in the matchmaking system",
+            "default": 0
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "When was the first run recorded for this entity/mm bucket?",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "modified": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "When was the last run recorded for this entity/mm bucket?",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id",
+          "created",
+          "modified"
+        ],
+        "title": "EntityMMBucketRunStats"
+      },
+      "EntityMMBucketRunStatsMulti": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/EntityMMBucketRunStats"
+            },
+            "type": "array",
+            "title": "Data",
+            "description": "",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "EntityMMBucketRunStatsMulti"
+      },
+      "EntityRunCompleteRequest": {
+        "properties": {
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version required to matchmake against"
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1",
+            "description": "Type 1 to matchmake against"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2",
+            "description": "Type 2 to matchmake against"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3",
+            "description": "Type 3 to matchmake against"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4",
+            "description": "Type 4 to matchmake against"
+          },
+          "entity_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StageEntityType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": ""
+          },
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Id",
+            "description": ""
+          },
+          "stage_wins": {
+            "type": "integer",
+            "title": "Stage Wins",
+            "description": "",
+            "default": 0
+          },
+          "stage_losses": {
+            "type": "integer",
+            "title": "Stage Losses",
+            "description": "",
+            "default": 0
+          },
+          "stage_incompletes": {
+            "type": "integer",
+            "title": "Stage Incompletes",
+            "description": "",
+            "default": 0
+          },
+          "run_win": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Win",
+            "description": "Was the run a win?  If set to true, `run_wins` will be incremented.  If set to false, `run_losses` will be incremented.  If not set, neither will be changed."
+          },
+          "run_placement": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Placement",
+            "description": "Was the run a placement? If set to true, placement rules are applied.  If set to false, placement rules are skipped.  If not set, placement is determined based on internal configuration"
+          },
+          "mmr_internal_exact": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Internal Exact",
+            "description": "If set, the exact value to set the entity's internal MMR to after this run."
+          },
+          "mmr_internal_delta": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Internal Delta",
+            "description": "If set, the delta to apply to the entity's internal MMR after this run."
+          },
+          "mmr_vis_exact": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Vis Exact",
+            "description": "If set, the exact value to set the entity's visual MMR to after this run."
+          },
+          "mmr_vis_delta": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Vis Delta",
+            "description": "If set, the delta to apply to the entity's visual MMR after this run."
+          }
+        },
+        "type": "object",
+        "required": [
+          "entity_type",
+          "entity_id"
+        ],
+        "title": "EntityRunCompleteRequest",
+        "description": "Request to update entity mm bucket run stats with the info from a specific run.\n\nNOTE:\n    - if `mmr_internal_exact` and `mmr_internal_delta` are not provided, the service will modify MMR using an internal algorithm.\n    - if `mmr_vis_exact` and `mmr_vis_delta` are not provided, the service will modify MMR using an internal algorithm.\n    - To not modify MMR at all, provide `mmr_XXX_delta` equal to `0`.\n\nPlacement matches will not allow the MMR value to be lowered, only increased.  For exact updates, it will take the higher of the current/update values.  If delta changes, only positive changes will be applied."
+      },
+      "EntityRunCompleteResponse": {
+        "properties": {},
+        "type": "object",
+        "title": "EntityRunCompleteResponse"
+      },
+      "StageEntityType": {
+        "type": "string",
+        "enum": [
+          "player"
+        ],
+        "title": "EntityType",
+        "x-enum-descriptions": [
+          ""
+        ],
+        "x-enum-varnames": [
+          "player"
+        ]
+      },
+      "Stage": {
+        "properties": {
+          "blob": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Blob",
+            "description": "",
+            "default": {}
+          },
+          "game_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Version",
+            "description": "Game Version"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version of this stage"
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1",
+            "description": "Stage Type 1"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2",
+            "description": "Stage Type 2"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3",
+            "description": "Stage Type 3"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4",
+            "description": "Stage Type 4"
+          },
+          "index": {
+            "type": "integer",
+            "title": "Index",
+            "description": "Index of the stage relative to other stages in the match",
+            "default": 0
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "The match that this stage was a part of"
+          },
+          "stat_1": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 1",
+            "description": "Custom stat 1 about this stage"
+          },
+          "stat_2": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 2",
+            "description": "Custom stat 2 about this stage"
+          },
+          "stat_3": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 3",
+            "description": "Custom stat 3 about this stage"
+          },
+          "stat_4": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 4",
+            "description": "Custom stat 4 about this stage"
+          },
+          "mmr_internal": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Internal",
+            "description": "Internal MMR used for comparison against other players during matchmaking"
+          },
+          "mmr_vis": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Vis",
+            "description": "Visual MMR used for progression tracking in the matchmaking system"
+          },
+          "stage_id": {
+            "type": "string",
+            "title": "Stage Id",
+            "description": "Unique ID for this stage."
+          },
+          "owner_entity_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StageEntityType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Owner of this stage"
+          },
+          "owner_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Entity Id",
+            "description": "Owner of this stage"
+          },
+          "mm_count": {
+            "type": "integer",
+            "title": "Mm Count",
+            "description": "How many times has this stage been matchmade?",
+            "default": 0
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "When was this stage first created?",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          },
+          "modified": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Zone Aware Datetime",
+            "description": "When was this stage last modified?",
+            "example": "2023-01-23T21:07:02.000000+00:00"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stage_id",
+          "created",
+          "modified"
+        ],
+        "title": "Stage"
+      },
+      "StageCreate": {
+        "properties": {
+          "blob": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Blob",
+            "description": "",
+            "default": {}
+          },
+          "game_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Version",
+            "description": "Game Version"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version of this stage"
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1",
+            "description": "Stage Type 1"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2",
+            "description": "Stage Type 2"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3",
+            "description": "Stage Type 3"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4",
+            "description": "Stage Type 4"
+          },
+          "index": {
+            "type": "integer",
+            "title": "Index",
+            "description": "Index of the stage relative to other stages in the match",
+            "default": 0
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "The match that this stage was a part of"
+          },
+          "stat_1": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 1",
+            "description": "Custom stat 1 about this stage"
+          },
+          "stat_2": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 2",
+            "description": "Custom stat 2 about this stage"
+          },
+          "stat_3": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 3",
+            "description": "Custom stat 3 about this stage"
+          },
+          "stat_4": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 4",
+            "description": "Custom stat 4 about this stage"
+          },
+          "mmr_internal": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Internal",
+            "description": "mmr_internal value for this stage.  If not provided, the value for the given owner entity will be used."
+          },
+          "mmr_vis": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Vis",
+            "description": "mmr_vis value for this stage.  If not provided, the value for the given owner entity will be used."
+          },
+          "owner_entity_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StageEntityType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Owner of this stage.  If not set, the entity from the providing token will be used."
+          },
+          "owner_entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Entity Id",
+            "description": "Owner of this stage.  If not set, the entity from the providing token will be used."
+          }
+        },
+        "type": "object",
+        "title": "StageCreate",
+        "description": "Fields to create a stage with.\n\nNOTE: the fields shared between this and the StageMatchmakeParams are used to determine which\n    matchmaking pool this stage will be placed into"
+      },
+      "StageCreateRequest": {
+        "properties": {
+          "stages": {
+            "items": {
+              "$ref": "#/components/schemas/StageCreate"
+            },
+            "type": "array",
+            "title": "Stages",
+            "description": "Stages to create"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stages"
+        ],
+        "title": "StageCreateRequest"
+      },
+      "StageCreateResult": {
+        "properties": {},
+        "type": "object",
+        "title": "StageCreateResult"
+      },
+      "StageMatchmakeParams": {
+        "properties": {
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version required to matchmake against"
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1",
+            "description": "Type 1 to matchmake against"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2",
+            "description": "Type 2 to matchmake against"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3",
+            "description": "Type 3 to matchmake against"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4",
+            "description": "Type 4 to matchmake against"
+          },
+          "index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Index",
+            "description": "Stage index to matchmake against"
+          },
+          "mmr_internal_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Internal Min",
+            "description": "if provided, the minimum MMR to consider for other players"
+          },
+          "mmr_internal_max": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Internal Max",
+            "description": "if provided, the maximum MMR to consider for other players"
+          },
+          "entity_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StageEntityType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Entity to use for MMR considerations"
+          },
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Entity Id",
+            "description": "Entity to use for MMR considerations"
+          },
+          "mmr_internal_override": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Internal Override",
+            "description": "if provided, override the current entity's MMR to consider when comparing against other players"
+          }
+        },
+        "type": "object",
+        "title": "StageMatchmakeParams",
+        "description": "Parameters used to select a stage to play against.\n\nMMR considerations:\nif `mmr_internal_min` and `mmr_internal_max` are non-empty, a random stage will be returned within the given range.\nif `mmr_internal_min` and `mmr_internal_max` are empty, internally configured MMR ranges will be used to select a stage."
+      },
+      "StageSearchResults": {
+        "properties": {
+          "stages": {
+            "items": {
+              "$ref": "#/components/schemas/Stage"
+            },
+            "type": "array",
+            "title": "Stages"
+          },
+          "cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stages"
+        ],
+        "title": "StageSearchResults"
+      },
+      "StageSearchSort": {
+        "type": "string",
+        "enum": [
+          "created",
+          "modified",
+          "mm_count",
+          "mm_options"
+        ],
+        "title": "StageSearchSort",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "created",
+          "modified",
+          "mm_count",
+          "mm_options"
+        ]
+      },
+      "StageUpdate": {
+        "properties": {
+          "blob": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Blob",
+            "description": "",
+            "default": {}
+          },
+          "game_version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Game Version",
+            "description": "Game Version"
+          },
+          "v": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "V",
+            "description": "Version of this stage"
+          },
+          "type_1": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 1",
+            "description": "Stage Type 1"
+          },
+          "type_2": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 2",
+            "description": "Stage Type 2"
+          },
+          "type_3": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 3",
+            "description": "Stage Type 3"
+          },
+          "type_4": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type 4",
+            "description": "Stage Type 4"
+          },
+          "index": {
+            "type": "integer",
+            "title": "Index",
+            "description": "Index of the stage relative to other stages in the match",
+            "default": 0
+          },
+          "match_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Id",
+            "description": "The match that this stage was a part of"
+          },
+          "stat_1": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 1",
+            "description": "Custom stat 1 about this stage"
+          },
+          "stat_2": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 2",
+            "description": "Custom stat 2 about this stage"
+          },
+          "stat_3": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 3",
+            "description": "Custom stat 3 about this stage"
+          },
+          "stat_4": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stat 4",
+            "description": "Custom stat 4 about this stage"
+          },
+          "mmr_internal": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Internal",
+            "description": "Internal MMR used for comparison against other players during matchmaking"
+          },
+          "mmr_vis": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mmr Vis",
+            "description": "Visual MMR used for progression tracking in the matchmaking system"
+          }
+        },
+        "type": "object",
+        "title": "StageUpdate",
+        "description": "Fields to update a stage with.\n\nNOTE: the fields shared between this and the StageMatchmakeParams are used to determine which\n    matchmaking pool this stage will be placed into"
       }
     }
   }

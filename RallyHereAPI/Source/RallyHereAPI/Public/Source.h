@@ -80,7 +80,7 @@ enum class ERHAPI_Source : uint8
 	Amazon UMETA(ToolTip="Order granted by Amazon."),
 	Simulmedia UMETA(ToolTip="Order granted by Simulmedia."),
 	Luna UMETA(ToolTip="Order granted by Luna."),
-	MatchApi UMETA(ToolTip=""),
+	MatchApi UMETA(ToolTip="Order granted by Match API"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Source& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Source& EnumValue);

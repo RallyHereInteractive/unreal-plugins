@@ -33,6 +33,7 @@
 #include "ReportsAPI.h"
 #include "SessionsAPI.h"
 #include "SettingsAPI.h"
+#include "StageAPI.h"
 #include "SupportAPI.h"
 #include "UsersAPI.h"
 
@@ -121,6 +122,9 @@ public:
 	TSharedRef<FSettingsAPI> GetSettings();
 	const TSharedRef<FSettingsAPI> GetSettings() const;
 
+	TSharedRef<FStageAPI> GetStage();
+	const TSharedRef<FStageAPI> GetStage() const;
+
 	TSharedRef<FSupportAPI> GetSupport();
 	const TSharedRef<FSupportAPI> GetSupport() const;
 
@@ -153,6 +157,7 @@ private:
 	TSharedRef<FReportsAPI> Reports;
 	TSharedRef<FSessionsAPI> Sessions;
 	TSharedRef<FSettingsAPI> Settings;
+	TSharedRef<FStageAPI> Stage;
 	TSharedRef<FSupportAPI> Support;
 	TSharedRef<FUsersAPI> Users;
 };

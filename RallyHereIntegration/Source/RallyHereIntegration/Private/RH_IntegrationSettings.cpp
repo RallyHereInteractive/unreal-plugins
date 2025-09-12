@@ -174,6 +174,7 @@ URH_IntegrationSettings::URH_IntegrationSettings(const FObjectInitializer& Objec
 	MatchesUpdatePlayerPriority = 900000;
 	MatchTimelineGetPriority = 900000;
 	MatchTimelineUploadPriority = 900000;
+	MatchGrantRewardPriority = 50000;
 	PexReportPriority = 500000;
 	GetPlayerReportsSentPriority = 1000000;
 	GetPlayerReportsReceivedPriority = 1000000;

@@ -295,7 +295,7 @@ void FOnlineStoreSteamV2::UpdateInventoryPrices()
 	bool bRequiresPriceInDollars = false;
 
 	// The Japanese Prices from steam come down as SEN, but the FText Currency Code Formatting expects YEN.
-	if (LastKnownCurrencyCode == "JPY")
+	if (LastKnownCurrencyCode == TEXT("JPY") || LastKnownCurrencyCode == TEXT("KWD"))
 	{
 		bRequiresPriceInDollars = true;
 	}

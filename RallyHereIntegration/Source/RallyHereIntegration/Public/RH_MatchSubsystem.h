@@ -332,6 +332,11 @@ public:
 	 * @brief Upload a match timeline from a file
 	 */
 	virtual void UploadMatchTimelineFromFile(const FString MatchId, const FString& LocalFilePath, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
+
+	/**
+	 * @brief Grant rewards for a match
+	 */
+	virtual void GrantMatchRewards(const FString& MatchId, FRHAPI_MatchRewardsBody& Rewards, const FRH_GenericSuccessWithErrorBlock& Delegate = FRH_GenericSuccessWithErrorBlock());
 	
 	// Files
 	/**

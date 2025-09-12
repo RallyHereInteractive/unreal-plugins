@@ -10,7 +10,11 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIBaseModel.h"
 #include "HttpModule.h"
+#if RHAPI_BELOW_ENGINE_VERSION(5, 6)
 #include "Stats/Stats2.h"
+#else
+#include "Stats/Stats.h"
+#endif
 #include "Async/TaskGraphInterfaces.h"
 #include "Tickable.h"
 

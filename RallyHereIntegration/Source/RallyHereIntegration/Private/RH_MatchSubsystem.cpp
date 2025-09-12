@@ -424,6 +424,25 @@ void URH_MatchSubsystem::UploadMatchTimelineFromFile(const FString MatchId, cons
 	Helper->Start(RH_APIs::GetMatchAPI(), Request);
 }
 
+void URH_MatchSubsystem::GrantMatchRewards(const FString& MatchId, FRHAPI_MatchRewardsBody& Rewards, const FRH_GenericSuccessWithErrorBlock& Delegate)
+{
+	UE_LOG(LogRallyHereIntegration, VeryVerbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
+
+	typedef RallyHereAPI::Traits_CreateMatchRewards BaseType;
+
+	BaseType::Request Request;
+	Request.AuthContext = GetAuthContext();
+	Request.MatchId = MatchId;
+	Request.MatchRewardsBody = MoveTemp(Rewards);
+
+	auto Helper = MakeShared<FRH_SimpleQueryHelper<BaseType>>(
+		BaseType::Delegate(),
+		Delegate,
+		GetDefault<URH_IntegrationSettings>()->MatchGrantRewardPriority
+	);
+	Helper->Start(RH_APIs::GetMatchAPI(), Request);
+}
+
 #if WITH_DEV_AUTOMATION_TESTS
 
 #include "RH_AutomationTests.h"
