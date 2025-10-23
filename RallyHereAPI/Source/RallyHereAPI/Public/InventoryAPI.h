@@ -1831,7 +1831,12 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInventory : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	int32 PlayerId = 0;
+	/* Filter the inventory records returned to a list of known item ids.  If not provided, all inventory will be returned */
 	TOptional<TArray<int32>> ItemIds;
+	/* Count the total ownership for all items with a specific tag.  If not provided, no counts will be included in the response */
+	TOptional<TArray<FString>> TagsToCount;
+	/* Item IDs to return with current level information.  If not provided, no level data will be included in the response */
+	TOptional<TArray<int32>> LevelItemIds;
 };
 
 /** The response type for FRequest_GetPlayerInventory */
@@ -2182,6 +2187,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInventorySelf : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	TOptional<TArray<int32>> ItemIds;
+	TOptional<TArray<FString>> TagsToCount;
+	/* Item IDs to return with current level information.  If not provided, no level data will be included in the response */
+	TOptional<TArray<int32>> LevelItemIds;
 };
 
 /** The response type for FRequest_GetPlayerInventorySelf */
@@ -2292,6 +2300,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInventoryUuid : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	FGuid PlayerUuid;
 	TOptional<TArray<int32>> ItemIds;
+	TOptional<TArray<FString>> TagsToCount;
+	/* Item IDs to return with current level information.  If not provided, no level data will be included in the response */
+	TOptional<TArray<int32>> LevelItemIds;
 };
 
 /** The response type for FRequest_GetPlayerInventoryUuid */
@@ -2401,6 +2412,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayerInventoryUuidSelf : public FRequest
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	TOptional<TArray<int32>> ItemIds;
+	TOptional<TArray<FString>> TagsToCount;
+	/* Item IDs to return with current level information.  If not provided, no level data will be included in the response */
+	TOptional<TArray<int32>> LevelItemIds;
 };
 
 /** The response type for FRequest_GetPlayerInventoryUuidSelf */

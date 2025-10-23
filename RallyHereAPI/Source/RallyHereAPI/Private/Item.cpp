@@ -150,6 +150,11 @@ void FRHAPI_Item::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("coupon_discount_loot_uuid"));
 		RallyHereAPI::WriteJsonValue(Writer, CouponDiscountLootUuid_Optional);
 	}
+	if (Tags_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("tags"));
+		RallyHereAPI::WriteJsonValue(Writer, Tags_Optional);
+	}
 	if (CacheInfo_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("cache_info"));
@@ -306,6 +311,12 @@ bool FRHAPI_Item::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		CouponDiscountLootUuid_IsSet = TryGetJsonValue(JsonCouponDiscountLootUuidField, CouponDiscountLootUuid_Optional);
 		ParseSuccess &= CouponDiscountLootUuid_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonTagsField = (*Object)->TryGetField(TEXT("tags"));
+	if (JsonTagsField.IsValid())
+	{
+		Tags_IsSet = TryGetJsonValue(JsonTagsField, Tags_Optional);
+		ParseSuccess &= Tags_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCacheInfoField = (*Object)->TryGetField(TEXT("cache_info"));
 	if (JsonCacheInfoField.IsValid())

@@ -9,7 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "Platform.h"
+#include "SessionPlatform.h"
 #include "PlatformScout.generated.h"
 
 /** @defgroup RHAPI_PlatformScout RallyHere API Model PlatformScout
@@ -54,15 +54,15 @@ struct RALLYHEREAPI_API FRHAPI_PlatformScout : public FRHAPI_Model
 
 	/** @brief Which platform this specified player is a scout for */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_Platform Platform{  };
+	ERHAPI_SessionPlatform Platform{  };
 	/** @brief Gets the value of Platform */
-	FORCEINLINE ERHAPI_Platform& GetPlatform() { return Platform; }
+	FORCEINLINE ERHAPI_SessionPlatform& GetPlatform() { return Platform; }
 	/** @brief Gets the value of Platform */
-	FORCEINLINE const ERHAPI_Platform& GetPlatform() const { return Platform; }
+	FORCEINLINE const ERHAPI_SessionPlatform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	FORCEINLINE void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;   }
+	FORCEINLINE void SetPlatform(const ERHAPI_SessionPlatform& NewValue) { Platform = NewValue;   }
 	/** @brief Sets the value of Platform using move semantics */
-	FORCEINLINE void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;   }
+	FORCEINLINE void SetPlatform(ERHAPI_SessionPlatform&& NewValue) { Platform = NewValue;   }
 };
 
 /** @} */

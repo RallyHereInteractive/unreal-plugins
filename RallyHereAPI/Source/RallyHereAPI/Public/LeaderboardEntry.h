@@ -39,17 +39,69 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardEntry : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief Unique ID for the player in this leaderboard entry */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FGuid PlayerUuid{  };
-	/** @brief Gets the value of PlayerUuid */
-	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid; }
-	/** @brief Gets the value of PlayerUuid */
-	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid; }
-	/** @brief Sets the value of PlayerUuid */
-	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid = NewValue;   }
-	/** @brief Sets the value of PlayerUuid using move semantics */
-	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid = NewValue;   }
+	FGuid PlayerUuid_Optional{  };
+	/** @brief true if PlayerUuid_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayerUuid_IsSet{ false };
+	/** @brief true if PlayerUuid_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PlayerUuid_IsNull{ false };
+	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
+	FORCEINLINE FGuid& GetPlayerUuid() { return PlayerUuid_Optional; }
+	/** @brief Gets the value of PlayerUuid_Optional, regardless of it having been set */
+	FORCEINLINE const FGuid& GetPlayerUuid() const { return PlayerUuid_Optional; }
+	/** @brief Gets the value of PlayerUuid_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const FGuid& GetPlayerUuid(const FGuid& DefaultValue) const { if (PlayerUuid_IsSet) return PlayerUuid_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PlayerUuid_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetPlayerUuid(FGuid& OutValue) const { if (PlayerUuid_IsSet && !PlayerUuid_IsNull) OutValue = PlayerUuid_Optional; return PlayerUuid_IsSet; }
+	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE FGuid* GetPlayerUuidOrNull() { if (PlayerUuid_IsSet) return (PlayerUuid_IsNull ? nullptr : &PlayerUuid_Optional); return nullptr; }
+	/** @brief Returns a pointer to PlayerUuid_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const FGuid* GetPlayerUuidOrNull() const { if (PlayerUuid_IsSet) return (PlayerUuid_IsNull ? nullptr : &PlayerUuid_Optional); return nullptr; }
+	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true */
+	FORCEINLINE void SetPlayerUuid(const FGuid& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; PlayerUuid_IsNull = false; }
+	/** @brief Sets the value of PlayerUuid_Optional and also sets PlayerUuid_IsSet to true using move semantics */
+	FORCEINLINE void SetPlayerUuid(FGuid&& NewValue) { PlayerUuid_Optional = NewValue; PlayerUuid_IsSet = true; PlayerUuid_IsNull = false; }
+	/** @brief Clears the value of PlayerUuid_Optional and sets PlayerUuid_IsSet to false */
+	void ClearPlayerUuid() { PlayerUuid_IsSet = false; PlayerUuid_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetPlayerUuidToNull() { PlayerUuid_IsSet = true; PlayerUuid_IsNull = true; }
+	/** @brief Checks whether PlayerUuid_Optional is set to null */
+	FORCEINLINE bool IsPlayerUuidNull() const { return PlayerUuid_IsSet && PlayerUuid_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 LegacyItemId_Optional{ 0 };
+	/** @brief true if LegacyItemId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LegacyItemId_IsSet{ false };
+	/** @brief true if LegacyItemId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LegacyItemId_IsNull{ false };
+	/** @brief Gets the value of LegacyItemId_Optional, regardless of it having been set */
+	FORCEINLINE int32& GetLegacyItemId() { return LegacyItemId_Optional; }
+	/** @brief Gets the value of LegacyItemId_Optional, regardless of it having been set */
+	FORCEINLINE const int32& GetLegacyItemId() const { return LegacyItemId_Optional; }
+	/** @brief Gets the value of LegacyItemId_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const int32& GetLegacyItemId(const int32& DefaultValue) const { if (LegacyItemId_IsSet) return LegacyItemId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LegacyItemId_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetLegacyItemId(int32& OutValue) const { if (LegacyItemId_IsSet && !LegacyItemId_IsNull) OutValue = LegacyItemId_Optional; return LegacyItemId_IsSet; }
+	/** @brief Returns a pointer to LegacyItemId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE int32* GetLegacyItemIdOrNull() { if (LegacyItemId_IsSet) return (LegacyItemId_IsNull ? nullptr : &LegacyItemId_Optional); return nullptr; }
+	/** @brief Returns a pointer to LegacyItemId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const int32* GetLegacyItemIdOrNull() const { if (LegacyItemId_IsSet) return (LegacyItemId_IsNull ? nullptr : &LegacyItemId_Optional); return nullptr; }
+	/** @brief Sets the value of LegacyItemId_Optional and also sets LegacyItemId_IsSet to true */
+	FORCEINLINE void SetLegacyItemId(const int32& NewValue) { LegacyItemId_Optional = NewValue; LegacyItemId_IsSet = true; LegacyItemId_IsNull = false; }
+	/** @brief Sets the value of LegacyItemId_Optional and also sets LegacyItemId_IsSet to true using move semantics */
+	FORCEINLINE void SetLegacyItemId(int32&& NewValue) { LegacyItemId_Optional = NewValue; LegacyItemId_IsSet = true; LegacyItemId_IsNull = false; }
+	/** @brief Clears the value of LegacyItemId_Optional and sets LegacyItemId_IsSet to false */
+	void ClearLegacyItemId() { LegacyItemId_Optional = 0; LegacyItemId_IsSet = false; LegacyItemId_IsNull = false; }
+	/** @brief Returns the default value of LegacyItemId */
+	FORCEINLINE int32 GetDefaultValue_LegacyItemId() { return 0; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetLegacyItemIdToNull() { LegacyItemId_IsSet = true; LegacyItemId_IsNull = true; }
+	/** @brief Checks whether LegacyItemId_Optional is set to null */
+	FORCEINLINE bool IsLegacyItemIdNull() const { return LegacyItemId_IsSet && LegacyItemId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float StatValue_Optional{  };

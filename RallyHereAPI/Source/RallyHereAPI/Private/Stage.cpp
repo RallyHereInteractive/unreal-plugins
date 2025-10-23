@@ -159,6 +159,22 @@ void FRHAPI_Stage::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("mm_count"));
 		RallyHereAPI::WriteJsonValue(Writer, MmCount_Optional);
 	}
+	if (MmrRangeMin_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("mmr_range_min"));
+		if (MmrRangeMin_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, MmrRangeMin_Optional);
+	}
+	if (MmrRangeMax_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("mmr_range_max"));
+		if (MmrRangeMax_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, MmrRangeMax_Optional);
+	}
 	Writer->WriteIdentifierPrefix(TEXT("created"));
 	RallyHereAPI::WriteJsonValue(Writer, Created);
 	Writer->WriteIdentifierPrefix(TEXT("modified"));
@@ -299,6 +315,20 @@ bool FRHAPI_Stage::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		MmCount_IsSet = TryGetJsonValue(JsonMmCountField, MmCount_Optional);
 		ParseSuccess &= MmCount_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMmrRangeMinField = (*Object)->TryGetField(TEXT("mmr_range_min"));
+	if (JsonMmrRangeMinField.IsValid())
+	{
+		MmrRangeMin_IsNull = JsonMmrRangeMinField->IsNull();
+		MmrRangeMin_IsSet = MmrRangeMin_IsNull || TryGetJsonValue(JsonMmrRangeMinField, MmrRangeMin_Optional);
+		ParseSuccess &= MmrRangeMin_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonMmrRangeMaxField = (*Object)->TryGetField(TEXT("mmr_range_max"));
+	if (JsonMmrRangeMaxField.IsValid())
+	{
+		MmrRangeMax_IsNull = JsonMmrRangeMaxField->IsNull();
+		MmrRangeMax_IsSet = MmrRangeMax_IsNull || TryGetJsonValue(JsonMmrRangeMaxField, MmrRangeMax_Optional);
+		ParseSuccess &= MmrRangeMax_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonCreatedField = (*Object)->TryGetField(TEXT("created"));
 	const bool Created_IsValid = JsonCreatedField.IsValid() && (!JsonCreatedField->IsNull() && TryGetJsonValue(JsonCreatedField, Created));

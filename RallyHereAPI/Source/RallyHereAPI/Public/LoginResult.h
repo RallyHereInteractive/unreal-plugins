@@ -323,6 +323,31 @@ struct RALLYHEREAPI_API FRHAPI_LoginResult : public FRHAPI_Model
 	/** @brief Returns the default value of RoleId */
 	FORCEINLINE int32 GetDefaultValue_RoleId() { return 0; }
 
+	/** @brief If the use has a role assigned, any custom data associated with that role */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_JsonObject RoleCustomData_Optional{  };
+	/** @brief true if RoleCustomData_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool RoleCustomData_IsSet{ false };
+	/** @brief Gets the value of RoleCustomData_Optional, regardless of it having been set */
+	FORCEINLINE FRHAPI_JsonObject& GetRoleCustomData() { return RoleCustomData_Optional; }
+	/** @brief Gets the value of RoleCustomData_Optional, regardless of it having been set */
+	FORCEINLINE const FRHAPI_JsonObject& GetRoleCustomData() const { return RoleCustomData_Optional; }
+	/** @brief Gets the value of RoleCustomData_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const FRHAPI_JsonObject& GetRoleCustomData(const FRHAPI_JsonObject& DefaultValue) const { if (RoleCustomData_IsSet) return RoleCustomData_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of RoleCustomData_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetRoleCustomData(FRHAPI_JsonObject& OutValue) const { if (RoleCustomData_IsSet) OutValue = RoleCustomData_Optional; return RoleCustomData_IsSet; }
+	/** @brief Returns a pointer to RoleCustomData_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE FRHAPI_JsonObject* GetRoleCustomDataOrNull() { if (RoleCustomData_IsSet) return (&RoleCustomData_Optional); return nullptr; }
+	/** @brief Returns a pointer to RoleCustomData_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const FRHAPI_JsonObject* GetRoleCustomDataOrNull() const { if (RoleCustomData_IsSet) return (&RoleCustomData_Optional); return nullptr; }
+	/** @brief Sets the value of RoleCustomData_Optional and also sets RoleCustomData_IsSet to true */
+	FORCEINLINE void SetRoleCustomData(const FRHAPI_JsonObject& NewValue) { RoleCustomData_Optional = NewValue; RoleCustomData_IsSet = true;  }
+	/** @brief Sets the value of RoleCustomData_Optional and also sets RoleCustomData_IsSet to true using move semantics */
+	FORCEINLINE void SetRoleCustomData(FRHAPI_JsonObject&& NewValue) { RoleCustomData_Optional = NewValue; RoleCustomData_IsSet = true;  }
+	/** @brief Clears the value of RoleCustomData_Optional and sets RoleCustomData_IsSet to false */
+	void ClearRoleCustomData() { RoleCustomData_IsSet = false;  }
+
 	/** @brief Person ID */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FGuid PersonId_Optional{  };

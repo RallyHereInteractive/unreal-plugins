@@ -52,6 +52,10 @@ FString EnumToString(const ERHAPI_DependenciesSchemasPortal& Value)
 		return TEXT("28");
 	case ERHAPI_DependenciesSchemasPortal::NintendoPpid:
 		return TEXT("33");
+	case ERHAPI_DependenciesSchemasPortal::AndroidDevice:
+		return TEXT("34");
+	case ERHAPI_DependenciesSchemasPortal::IosDevice:
+		return TEXT("35");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_DependenciesSchemasPortal::Values Value (%d)"), (int)Value);
@@ -75,7 +79,9 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_DependenciesSchemasPorta
 		{ TEXT("26"), ERHAPI_DependenciesSchemasPortal::Nintendo },
 		{ TEXT("27"), ERHAPI_DependenciesSchemasPortal::Legacyname },
 		{ TEXT("28"), ERHAPI_DependenciesSchemasPortal::Epic },
-		{ TEXT("33"), ERHAPI_DependenciesSchemasPortal::NintendoPpid },	};
+		{ TEXT("33"), ERHAPI_DependenciesSchemasPortal::NintendoPpid },
+		{ TEXT("34"), ERHAPI_DependenciesSchemasPortal::AndroidDevice },
+		{ TEXT("35"), ERHAPI_DependenciesSchemasPortal::IosDevice },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

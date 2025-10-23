@@ -10,6 +10,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "Inventory.h"
+#include "InventoryLevel.h"
 #include "InventoryContextResponse.generated.h"
 
 /** @defgroup RHAPI_InventoryContextResponse RallyHere API Model InventoryContextResponse
@@ -63,6 +64,56 @@ struct RALLYHEREAPI_API FRHAPI_InventoryContextResponse : public FRHAPI_Model
 	FORCEINLINE void SetInventory(FRHAPI_Inventory&& NewValue) { Inventory_Optional = NewValue; Inventory_IsSet = true;  }
 	/** @brief Clears the value of Inventory_Optional and sets Inventory_IsSet to false */
 	void ClearInventory() { Inventory_IsSet = false;  }
+
+	/** @brief Number of owned (or rented) count for each requested tag of inventory */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TMap<FString, int32> TagOwnCount_Optional{  };
+	/** @brief true if TagOwnCount_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool TagOwnCount_IsSet{ false };
+	/** @brief Gets the value of TagOwnCount_Optional, regardless of it having been set */
+	FORCEINLINE TMap<FString, int32>& GetTagOwnCount() { return TagOwnCount_Optional; }
+	/** @brief Gets the value of TagOwnCount_Optional, regardless of it having been set */
+	FORCEINLINE const TMap<FString, int32>& GetTagOwnCount() const { return TagOwnCount_Optional; }
+	/** @brief Gets the value of TagOwnCount_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const TMap<FString, int32>& GetTagOwnCount(const TMap<FString, int32>& DefaultValue) const { if (TagOwnCount_IsSet) return TagOwnCount_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of TagOwnCount_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetTagOwnCount(TMap<FString, int32>& OutValue) const { if (TagOwnCount_IsSet) OutValue = TagOwnCount_Optional; return TagOwnCount_IsSet; }
+	/** @brief Returns a pointer to TagOwnCount_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE TMap<FString, int32>* GetTagOwnCountOrNull() { if (TagOwnCount_IsSet) return (&TagOwnCount_Optional); return nullptr; }
+	/** @brief Returns a pointer to TagOwnCount_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const TMap<FString, int32>* GetTagOwnCountOrNull() const { if (TagOwnCount_IsSet) return (&TagOwnCount_Optional); return nullptr; }
+	/** @brief Sets the value of TagOwnCount_Optional and also sets TagOwnCount_IsSet to true */
+	FORCEINLINE void SetTagOwnCount(const TMap<FString, int32>& NewValue) { TagOwnCount_Optional = NewValue; TagOwnCount_IsSet = true;  }
+	/** @brief Sets the value of TagOwnCount_Optional and also sets TagOwnCount_IsSet to true using move semantics */
+	FORCEINLINE void SetTagOwnCount(TMap<FString, int32>&& NewValue) { TagOwnCount_Optional = NewValue; TagOwnCount_IsSet = true;  }
+	/** @brief Clears the value of TagOwnCount_Optional and sets TagOwnCount_IsSet to false */
+	void ClearTagOwnCount() { TagOwnCount_IsSet = false;  }
+
+	/** @brief Inventory Levels for a Player. */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FRHAPI_InventoryLevel> Levels_Optional{  };
+	/** @brief true if Levels_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool Levels_IsSet{ false };
+	/** @brief Gets the value of Levels_Optional, regardless of it having been set */
+	FORCEINLINE TArray<FRHAPI_InventoryLevel>& GetLevels() { return Levels_Optional; }
+	/** @brief Gets the value of Levels_Optional, regardless of it having been set */
+	FORCEINLINE const TArray<FRHAPI_InventoryLevel>& GetLevels() const { return Levels_Optional; }
+	/** @brief Gets the value of Levels_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const TArray<FRHAPI_InventoryLevel>& GetLevels(const TArray<FRHAPI_InventoryLevel>& DefaultValue) const { if (Levels_IsSet) return Levels_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of Levels_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetLevels(TArray<FRHAPI_InventoryLevel>& OutValue) const { if (Levels_IsSet) OutValue = Levels_Optional; return Levels_IsSet; }
+	/** @brief Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE TArray<FRHAPI_InventoryLevel>* GetLevelsOrNull() { if (Levels_IsSet) return (&Levels_Optional); return nullptr; }
+	/** @brief Returns a pointer to Levels_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const TArray<FRHAPI_InventoryLevel>* GetLevelsOrNull() const { if (Levels_IsSet) return (&Levels_Optional); return nullptr; }
+	/** @brief Sets the value of Levels_Optional and also sets Levels_IsSet to true */
+	FORCEINLINE void SetLevels(const TArray<FRHAPI_InventoryLevel>& NewValue) { Levels_Optional = NewValue; Levels_IsSet = true;  }
+	/** @brief Sets the value of Levels_Optional and also sets Levels_IsSet to true using move semantics */
+	FORCEINLINE void SetLevels(TArray<FRHAPI_InventoryLevel>&& NewValue) { Levels_Optional = NewValue; Levels_IsSet = true;  }
+	/** @brief Clears the value of Levels_Optional and sets Levels_IsSet to false */
+	void ClearLevels() { Levels_IsSet = false;  }
 };
 
 /** @} */
