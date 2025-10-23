@@ -152,7 +152,6 @@ Private/LeaderboardMetaData.cpp
 Private/LeaderboardPage.cpp
 Private/LeaderboardSortOrder.cpp
 Private/LeaderboardSource.cpp
-Private/LeaderboardType.cpp
 Private/LinkAction.cpp
 Private/LocationInner.cpp
 Private/LoginCompleteMessage.cpp
@@ -612,7 +611,6 @@ Public/LeaderboardMetaData.h
 Public/LeaderboardPage.h
 Public/LeaderboardSortOrder.h
 Public/LeaderboardSource.h
-Public/LeaderboardType.h
 Public/LinkAction.h
 Public/LocationInner.h
 Public/LoginCompleteMessage.h
