@@ -41,6 +41,37 @@ struct RALLYHEREAPI_API FRHAPI_EntityRunCompleteRequest : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FString V_Optional{  };
+	/** @brief true if V_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool V_IsSet{ false };
+	/** @brief true if V_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool V_IsNull{ false };
+	/** @brief Gets the value of V_Optional, regardless of it having been set */
+	FORCEINLINE FString& GetV() { return V_Optional; }
+	/** @brief Gets the value of V_Optional, regardless of it having been set */
+	FORCEINLINE const FString& GetV() const { return V_Optional; }
+	/** @brief Gets the value of V_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const FString& GetV(const FString& DefaultValue) const { if (V_IsSet) return V_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of V_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetV(FString& OutValue) const { if (V_IsSet && !V_IsNull) OutValue = V_Optional; return V_IsSet; }
+	/** @brief Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE FString* GetVOrNull() { if (V_IsSet) return (V_IsNull ? nullptr : &V_Optional); return nullptr; }
+	/** @brief Returns a pointer to V_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const FString* GetVOrNull() const { if (V_IsSet) return (V_IsNull ? nullptr : &V_Optional); return nullptr; }
+	/** @brief Sets the value of V_Optional and also sets V_IsSet to true */
+	FORCEINLINE void SetV(const FString& NewValue) { V_Optional = NewValue; V_IsSet = true; V_IsNull = false; }
+	/** @brief Sets the value of V_Optional and also sets V_IsSet to true using move semantics */
+	FORCEINLINE void SetV(FString&& NewValue) { V_Optional = NewValue; V_IsSet = true; V_IsNull = false; }
+	/** @brief Clears the value of V_Optional and sets V_IsSet to false */
+	void ClearV() { V_IsSet = false; V_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetVToNull() { V_IsSet = true; V_IsNull = true; }
+	/** @brief Checks whether V_Optional is set to null */
+	FORCEINLINE bool IsVNull() const { return V_IsSet && V_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Type1_Optional{  };
 	/** @brief true if Type1_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

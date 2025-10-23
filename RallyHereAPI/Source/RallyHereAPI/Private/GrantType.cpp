@@ -50,10 +50,6 @@ FString EnumToString(const ERHAPI_GrantType& Value)
 		return TEXT("rallyhere");
 	case ERHAPI_GrantType::ClientCredentials:
 		return TEXT("client_credentials");
-	case ERHAPI_GrantType::AndroidDevice:
-		return TEXT("android_device");
-	case ERHAPI_GrantType::IosDevice:
-		return TEXT("ios_device");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_GrantType::Values Value (%d)"), (int)Value);
@@ -76,9 +72,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& Value)
 		{ TEXT("steam"), ERHAPI_GrantType::Steam },
 		{ TEXT("basic"), ERHAPI_GrantType::Basic },
 		{ TEXT("rallyhere"), ERHAPI_GrantType::Rallyhere },
-		{ TEXT("client_credentials"), ERHAPI_GrantType::ClientCredentials },
-		{ TEXT("android_device"), ERHAPI_GrantType::AndroidDevice },
-		{ TEXT("ios_device"), ERHAPI_GrantType::IosDevice },	};
+		{ TEXT("client_credentials"), ERHAPI_GrantType::ClientCredentials },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

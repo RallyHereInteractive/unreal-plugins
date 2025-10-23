@@ -32,8 +32,6 @@ enum class ERHAPI_GrantType : uint8
 	Basic UMETA(ToolTip="Basic Username/Password authentication"),
 	Rallyhere UMETA(ToolTip="RallyHere Developer authentication"),
 	ClientCredentials UMETA(ToolTip="Authentication that doesn&#39;t require user credentials, only a Client ID/Secret in the Authorization header."),
-	AndroidDevice UMETA(ToolTip="Android Device anonymous authentication"),
-	IosDevice UMETA(ToolTip="iOS Device anonymous authentication"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_GrantType& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_GrantType& EnumValue);

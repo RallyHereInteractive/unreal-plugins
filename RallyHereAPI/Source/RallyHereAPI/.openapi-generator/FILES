@@ -65,7 +65,6 @@ Private/EntitlementsAPI.cpp
 Private/EntityGuideEngagement.cpp
 Private/EntityMMBucketRunStats.cpp
 Private/EntityMMBucketRunStatsMulti.cpp
-Private/EntityMMBucketRunStatsUpdate.cpp
 Private/EntityRunCompleteRequest.cpp
 Private/EntityType.cpp
 Private/EnvironmentConfig.cpp
@@ -132,8 +131,6 @@ Private/InventoryType.cpp
 Private/InviteSource.cpp
 Private/Item.cpp
 Private/ItemInventory.cpp
-Private/ItemTag.cpp
-Private/ItemTags.cpp
 Private/ItemType.cpp
 Private/Items.cpp
 Private/JoinParams.cpp
@@ -170,8 +167,6 @@ Private/LootPriceCurrencies.cpp
 Private/LootPriceCurrency.cpp
 Private/Loots.cpp
 Private/MMRGroupingMethod.cpp
-Private/MMRStatInfo.cpp
-Private/MMRStats.cpp
 Private/ManyEntityGuideEngagement.cpp
 Private/ManyEntityGuideEngagementRequest.cpp
 Private/ManyPlayerOrderCreate.cpp
@@ -398,7 +393,6 @@ Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
 Private/SessionJoinability.cpp
 Private/SessionPermissions.cpp
-Private/SessionPlatform.cpp
 Private/SessionPlayer.cpp
 Private/SessionPlayerStatus.cpp
 Private/SessionPlayerUpdateRequest.cpp
@@ -524,7 +518,6 @@ Public/EntitlementsAPI.h
 Public/EntityGuideEngagement.h
 Public/EntityMMBucketRunStats.h
 Public/EntityMMBucketRunStatsMulti.h
-Public/EntityMMBucketRunStatsUpdate.h
 Public/EntityRunCompleteRequest.h
 Public/EntityType.h
 Public/EnvironmentConfig.h
@@ -591,8 +584,6 @@ Public/InventoryType.h
 Public/InviteSource.h
 Public/Item.h
 Public/ItemInventory.h
-Public/ItemTag.h
-Public/ItemTags.h
 Public/ItemType.h
 Public/Items.h
 Public/JoinParams.h
@@ -629,8 +620,6 @@ Public/LootPriceCurrencies.h
 Public/LootPriceCurrency.h
 Public/Loots.h
 Public/MMRGroupingMethod.h
-Public/MMRStatInfo.h
-Public/MMRStats.h
 Public/ManyEntityGuideEngagement.h
 Public/ManyEntityGuideEngagementRequest.h
 Public/ManyPlayerOrderCreate.h
@@ -857,7 +846,6 @@ Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
 Public/SessionJoinability.h
 Public/SessionPermissions.h
-Public/SessionPlatform.h
 Public/SessionPlayer.h
 Public/SessionPlayerStatus.h
 Public/SessionPlayerUpdateRequest.h

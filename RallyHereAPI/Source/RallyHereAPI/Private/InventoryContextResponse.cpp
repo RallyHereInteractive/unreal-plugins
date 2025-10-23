@@ -27,16 +27,6 @@ void FRHAPI_InventoryContextResponse::WriteJson(TSharedRef<TJsonWriter<>>& Write
 		Writer->WriteIdentifierPrefix(TEXT("inventory"));
 		RallyHereAPI::WriteJsonValue(Writer, Inventory_Optional);
 	}
-	if (TagOwnCount_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("tag_own_count"));
-		RallyHereAPI::WriteJsonValue(Writer, TagOwnCount_Optional);
-	}
-	if (Levels_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("levels"));
-		RallyHereAPI::WriteJsonValue(Writer, Levels_Optional);
-	}
 	Writer->WriteObjectEnd();
 }
 
@@ -53,18 +43,6 @@ bool FRHAPI_InventoryContextResponse::FromJson(const TSharedPtr<FJsonValue>& Jso
 	{
 		Inventory_IsSet = TryGetJsonValue(JsonInventoryField, Inventory_Optional);
 		ParseSuccess &= Inventory_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonTagOwnCountField = (*Object)->TryGetField(TEXT("tag_own_count"));
-	if (JsonTagOwnCountField.IsValid())
-	{
-		TagOwnCount_IsSet = TryGetJsonValue(JsonTagOwnCountField, TagOwnCount_Optional);
-		ParseSuccess &= TagOwnCount_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonLevelsField = (*Object)->TryGetField(TEXT("levels"));
-	if (JsonLevelsField.IsValid())
-	{
-		Levels_IsSet = TryGetJsonValue(JsonLevelsField, Levels_Optional);
-		ParseSuccess &= Levels_IsSet;
 	}
 
 	return ParseSuccess;

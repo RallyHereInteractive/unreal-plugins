@@ -34,8 +34,6 @@ enum class ERHAPI_Platform : uint8
 	Twitch UMETA(ToolTip=""),
 	Rallyhere UMETA(ToolTip=""),
 	Legacyname UMETA(ToolTip=""),
-	AndroidDevice UMETA(ToolTip=""),
-	IosDevice UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_Platform& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Platform& EnumValue);
