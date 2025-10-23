@@ -65,14 +65,6 @@ void FRHAPI_LeaderboardConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 		Writer->WriteIdentifierPrefix(TEXT("expose_players"));
 		RallyHereAPI::WriteJsonValue(Writer, ExposePlayers_Optional);
 	}
-	if (LeaderboardType_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("leaderboard_type"));
-		if (LeaderboardType_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, EnumToString(LeaderboardType_Optional));
-	}
 	if (ValidItemIds_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("valid_item_ids"));
@@ -141,13 +133,6 @@ bool FRHAPI_LeaderboardConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		ExposePlayers_IsSet = TryGetJsonValue(JsonExposePlayersField, ExposePlayers_Optional);
 		ParseSuccess &= ExposePlayers_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonLeaderboardTypeField = (*Object)->TryGetField(TEXT("leaderboard_type"));
-	if (JsonLeaderboardTypeField.IsValid())
-	{
-		LeaderboardType_IsNull = JsonLeaderboardTypeField->IsNull();
-		LeaderboardType_IsSet = LeaderboardType_IsNull || TryGetJsonValue(JsonLeaderboardTypeField, LeaderboardType_Optional);
-		ParseSuccess &= LeaderboardType_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonValidItemIdsField = (*Object)->TryGetField(TEXT("valid_item_ids"));
 	if (JsonValidItemIdsField.IsValid())

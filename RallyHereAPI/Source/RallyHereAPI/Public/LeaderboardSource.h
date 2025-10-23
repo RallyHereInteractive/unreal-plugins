@@ -20,6 +20,7 @@ enum class ERHAPI_LeaderboardSource : uint8
 {
 	Inventory UMETA(ToolTip=""),
 	Rank UMETA(ToolTip=""),
+	ItemCount UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_LeaderboardSource& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_LeaderboardSource& EnumValue);
