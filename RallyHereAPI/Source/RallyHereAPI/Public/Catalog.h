@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "CacheInfo.h"
 #include "InventoryBucketUseRuleSets.h"
+#include "ItemTags.h"
 #include "Items.h"
 #include "Loots.h"
 #include "PlatformSKUs.h"
@@ -327,6 +328,37 @@ struct RALLYHEREAPI_API FRHAPI_Catalog : public FRHAPI_Model
 	FORCEINLINE void SetSkusToNull() { Skus_IsSet = true; Skus_IsNull = true; }
 	/** @brief Checks whether Skus_Optional is set to null */
 	FORCEINLINE bool IsSkusNull() const { return Skus_IsSet && Skus_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_ItemTags ItemTags_Optional{  };
+	/** @brief true if ItemTags_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ItemTags_IsSet{ false };
+	/** @brief true if ItemTags_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ItemTags_IsNull{ false };
+	/** @brief Gets the value of ItemTags_Optional, regardless of it having been set */
+	FORCEINLINE FRHAPI_ItemTags& GetItemTags() { return ItemTags_Optional; }
+	/** @brief Gets the value of ItemTags_Optional, regardless of it having been set */
+	FORCEINLINE const FRHAPI_ItemTags& GetItemTags() const { return ItemTags_Optional; }
+	/** @brief Gets the value of ItemTags_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const FRHAPI_ItemTags& GetItemTags(const FRHAPI_ItemTags& DefaultValue) const { if (ItemTags_IsSet) return ItemTags_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ItemTags_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetItemTags(FRHAPI_ItemTags& OutValue) const { if (ItemTags_IsSet && !ItemTags_IsNull) OutValue = ItemTags_Optional; return ItemTags_IsSet; }
+	/** @brief Returns a pointer to ItemTags_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE FRHAPI_ItemTags* GetItemTagsOrNull() { if (ItemTags_IsSet) return (ItemTags_IsNull ? nullptr : &ItemTags_Optional); return nullptr; }
+	/** @brief Returns a pointer to ItemTags_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const FRHAPI_ItemTags* GetItemTagsOrNull() const { if (ItemTags_IsSet) return (ItemTags_IsNull ? nullptr : &ItemTags_Optional); return nullptr; }
+	/** @brief Sets the value of ItemTags_Optional and also sets ItemTags_IsSet to true */
+	FORCEINLINE void SetItemTags(const FRHAPI_ItemTags& NewValue) { ItemTags_Optional = NewValue; ItemTags_IsSet = true; ItemTags_IsNull = false; }
+	/** @brief Sets the value of ItemTags_Optional and also sets ItemTags_IsSet to true using move semantics */
+	FORCEINLINE void SetItemTags(FRHAPI_ItemTags&& NewValue) { ItemTags_Optional = NewValue; ItemTags_IsSet = true; ItemTags_IsNull = false; }
+	/** @brief Clears the value of ItemTags_Optional and sets ItemTags_IsSet to false */
+	void ClearItemTags() { ItemTags_IsSet = false; ItemTags_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetItemTagsToNull() { ItemTags_IsSet = true; ItemTags_IsNull = true; }
+	/** @brief Checks whether ItemTags_Optional is set to null */
+	FORCEINLINE bool IsItemTagsNull() const { return ItemTags_IsSet && ItemTags_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };

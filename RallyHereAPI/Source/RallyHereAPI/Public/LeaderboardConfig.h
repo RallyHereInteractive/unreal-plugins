@@ -101,17 +101,36 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardConfig : public FRHAPI_Model
 	/** @brief Sets the value of Source using move semantics */
 	FORCEINLINE void SetSource(ERHAPI_LeaderboardSource&& NewValue) { Source = NewValue;   }
 
-	/** @brief Unique Item or Rank ID for the data source of this leaderboard */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString SourceId{  };
-	/** @brief Gets the value of SourceId */
-	FORCEINLINE FString& GetSourceId() { return SourceId; }
-	/** @brief Gets the value of SourceId */
-	FORCEINLINE const FString& GetSourceId() const { return SourceId; }
-	/** @brief Sets the value of SourceId */
-	FORCEINLINE void SetSourceId(const FString& NewValue) { SourceId = NewValue;   }
-	/** @brief Sets the value of SourceId using move semantics */
-	FORCEINLINE void SetSourceId(FString&& NewValue) { SourceId = NewValue;   }
+	FString SourceId_Optional{  };
+	/** @brief true if SourceId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool SourceId_IsSet{ false };
+	/** @brief true if SourceId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool SourceId_IsNull{ false };
+	/** @brief Gets the value of SourceId_Optional, regardless of it having been set */
+	FORCEINLINE FString& GetSourceId() { return SourceId_Optional; }
+	/** @brief Gets the value of SourceId_Optional, regardless of it having been set */
+	FORCEINLINE const FString& GetSourceId() const { return SourceId_Optional; }
+	/** @brief Gets the value of SourceId_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const FString& GetSourceId(const FString& DefaultValue) const { if (SourceId_IsSet) return SourceId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of SourceId_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetSourceId(FString& OutValue) const { if (SourceId_IsSet && !SourceId_IsNull) OutValue = SourceId_Optional; return SourceId_IsSet; }
+	/** @brief Returns a pointer to SourceId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE FString* GetSourceIdOrNull() { if (SourceId_IsSet) return (SourceId_IsNull ? nullptr : &SourceId_Optional); return nullptr; }
+	/** @brief Returns a pointer to SourceId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const FString* GetSourceIdOrNull() const { if (SourceId_IsSet) return (SourceId_IsNull ? nullptr : &SourceId_Optional); return nullptr; }
+	/** @brief Sets the value of SourceId_Optional and also sets SourceId_IsSet to true */
+	FORCEINLINE void SetSourceId(const FString& NewValue) { SourceId_Optional = NewValue; SourceId_IsSet = true; SourceId_IsNull = false; }
+	/** @brief Sets the value of SourceId_Optional and also sets SourceId_IsSet to true using move semantics */
+	FORCEINLINE void SetSourceId(FString&& NewValue) { SourceId_Optional = NewValue; SourceId_IsSet = true; SourceId_IsNull = false; }
+	/** @brief Clears the value of SourceId_Optional and sets SourceId_IsSet to false */
+	void ClearSourceId() { SourceId_IsSet = false; SourceId_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetSourceIdToNull() { SourceId_IsSet = true; SourceId_IsNull = true; }
+	/** @brief Checks whether SourceId_Optional is set to null */
+	FORCEINLINE bool IsSourceIdNull() const { return SourceId_IsSet && SourceId_IsNull; }
 
 	/** @brief Whether or not restricted accounts (eg banned) should be removed from this leaderboard */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
@@ -240,6 +259,37 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardConfig : public FRHAPI_Model
 	void ClearExposePlayers() { ExposePlayers_Optional = true; ExposePlayers_IsSet = false;  }
 	/** @brief Returns the default value of ExposePlayers */
 	FORCEINLINE bool GetDefaultValue_ExposePlayers() { return true; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<int32> ValidItemIds_Optional{  };
+	/** @brief true if ValidItemIds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ValidItemIds_IsSet{ false };
+	/** @brief true if ValidItemIds_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ValidItemIds_IsNull{ false };
+	/** @brief Gets the value of ValidItemIds_Optional, regardless of it having been set */
+	FORCEINLINE TArray<int32>& GetValidItemIds() { return ValidItemIds_Optional; }
+	/** @brief Gets the value of ValidItemIds_Optional, regardless of it having been set */
+	FORCEINLINE const TArray<int32>& GetValidItemIds() const { return ValidItemIds_Optional; }
+	/** @brief Gets the value of ValidItemIds_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const TArray<int32>& GetValidItemIds(const TArray<int32>& DefaultValue) const { if (ValidItemIds_IsSet) return ValidItemIds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ValidItemIds_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetValidItemIds(TArray<int32>& OutValue) const { if (ValidItemIds_IsSet && !ValidItemIds_IsNull) OutValue = ValidItemIds_Optional; return ValidItemIds_IsSet; }
+	/** @brief Returns a pointer to ValidItemIds_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE TArray<int32>* GetValidItemIdsOrNull() { if (ValidItemIds_IsSet) return (ValidItemIds_IsNull ? nullptr : &ValidItemIds_Optional); return nullptr; }
+	/** @brief Returns a pointer to ValidItemIds_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const TArray<int32>* GetValidItemIdsOrNull() const { if (ValidItemIds_IsSet) return (ValidItemIds_IsNull ? nullptr : &ValidItemIds_Optional); return nullptr; }
+	/** @brief Sets the value of ValidItemIds_Optional and also sets ValidItemIds_IsSet to true */
+	FORCEINLINE void SetValidItemIds(const TArray<int32>& NewValue) { ValidItemIds_Optional = NewValue; ValidItemIds_IsSet = true; ValidItemIds_IsNull = false; }
+	/** @brief Sets the value of ValidItemIds_Optional and also sets ValidItemIds_IsSet to true using move semantics */
+	FORCEINLINE void SetValidItemIds(TArray<int32>&& NewValue) { ValidItemIds_Optional = NewValue; ValidItemIds_IsSet = true; ValidItemIds_IsNull = false; }
+	/** @brief Clears the value of ValidItemIds_Optional and sets ValidItemIds_IsSet to false */
+	void ClearValidItemIds() { ValidItemIds_IsSet = false; ValidItemIds_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetValidItemIdsToNull() { ValidItemIds_IsSet = true; ValidItemIds_IsNull = true; }
+	/** @brief Checks whether ValidItemIds_Optional is set to null */
+	FORCEINLINE bool IsValidItemIdsNull() const { return ValidItemIds_IsSet && ValidItemIds_IsNull; }
 };
 
 /** @} */

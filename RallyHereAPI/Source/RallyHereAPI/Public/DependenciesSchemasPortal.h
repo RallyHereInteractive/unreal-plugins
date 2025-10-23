@@ -33,6 +33,8 @@ enum class ERHAPI_DependenciesSchemasPortal : uint8
 	Legacyname UMETA(ToolTip="Legacy name portal"),
 	Epic UMETA(ToolTip="Epic portal"),
 	NintendoPpid UMETA(ToolTip="Nintendo PPID portal"),
+	AndroidDevice UMETA(ToolTip="Android Device Portal"),
+	IosDevice UMETA(ToolTip="iOS Device Portal"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_DependenciesSchemasPortal& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_DependenciesSchemasPortal& EnumValue);

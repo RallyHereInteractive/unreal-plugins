@@ -152,6 +152,14 @@ void FRHAPI_StageCreate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		else
 		RallyHereAPI::WriteJsonValue(Writer, OwnerEntityId_Optional);
 	}
+	if (IsPlacement_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("is_placement"));
+		if (IsPlacement_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, IsPlacement_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -279,6 +287,13 @@ bool FRHAPI_StageCreate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		OwnerEntityId_IsNull = JsonOwnerEntityIdField->IsNull();
 		OwnerEntityId_IsSet = OwnerEntityId_IsNull || TryGetJsonValue(JsonOwnerEntityIdField, OwnerEntityId_Optional);
 		ParseSuccess &= OwnerEntityId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonIsPlacementField = (*Object)->TryGetField(TEXT("is_placement"));
+	if (JsonIsPlacementField.IsValid())
+	{
+		IsPlacement_IsNull = JsonIsPlacementField->IsNull();
+		IsPlacement_IsSet = IsPlacement_IsNull || TryGetJsonValue(JsonIsPlacementField, IsPlacement_Optional);
+		ParseSuccess &= IsPlacement_IsSet;
 	}
 
 	return ParseSuccess;

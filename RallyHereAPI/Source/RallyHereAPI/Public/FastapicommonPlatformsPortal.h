@@ -54,6 +54,8 @@ enum class ERHAPI_FastapicommonPlatformsPortal : uint8
 	Luna UMETA(ToolTip=""),
 	GooglePlay UMETA(ToolTip=""),
 	NintendoPpid UMETA(ToolTip=""),
+	AndroidDevice UMETA(ToolTip=""),
+	IosDevice UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_FastapicommonPlatformsPortal& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_FastapicommonPlatformsPortal& EnumValue);

@@ -604,6 +604,68 @@ struct RALLYHEREAPI_API FRHAPI_Stage : public FRHAPI_Model
 	/** @brief Returns the default value of MmCount */
 	FORCEINLINE int32 GetDefaultValue_MmCount() { return 0; }
 
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float MmrRangeMin_Optional{  };
+	/** @brief true if MmrRangeMin_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MmrRangeMin_IsSet{ false };
+	/** @brief true if MmrRangeMin_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MmrRangeMin_IsNull{ false };
+	/** @brief Gets the value of MmrRangeMin_Optional, regardless of it having been set */
+	FORCEINLINE float& GetMmrRangeMin() { return MmrRangeMin_Optional; }
+	/** @brief Gets the value of MmrRangeMin_Optional, regardless of it having been set */
+	FORCEINLINE const float& GetMmrRangeMin() const { return MmrRangeMin_Optional; }
+	/** @brief Gets the value of MmrRangeMin_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const float& GetMmrRangeMin(const float& DefaultValue) const { if (MmrRangeMin_IsSet) return MmrRangeMin_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of MmrRangeMin_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetMmrRangeMin(float& OutValue) const { if (MmrRangeMin_IsSet && !MmrRangeMin_IsNull) OutValue = MmrRangeMin_Optional; return MmrRangeMin_IsSet; }
+	/** @brief Returns a pointer to MmrRangeMin_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE float* GetMmrRangeMinOrNull() { if (MmrRangeMin_IsSet) return (MmrRangeMin_IsNull ? nullptr : &MmrRangeMin_Optional); return nullptr; }
+	/** @brief Returns a pointer to MmrRangeMin_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const float* GetMmrRangeMinOrNull() const { if (MmrRangeMin_IsSet) return (MmrRangeMin_IsNull ? nullptr : &MmrRangeMin_Optional); return nullptr; }
+	/** @brief Sets the value of MmrRangeMin_Optional and also sets MmrRangeMin_IsSet to true */
+	FORCEINLINE void SetMmrRangeMin(const float& NewValue) { MmrRangeMin_Optional = NewValue; MmrRangeMin_IsSet = true; MmrRangeMin_IsNull = false; }
+	/** @brief Sets the value of MmrRangeMin_Optional and also sets MmrRangeMin_IsSet to true using move semantics */
+	FORCEINLINE void SetMmrRangeMin(float&& NewValue) { MmrRangeMin_Optional = NewValue; MmrRangeMin_IsSet = true; MmrRangeMin_IsNull = false; }
+	/** @brief Clears the value of MmrRangeMin_Optional and sets MmrRangeMin_IsSet to false */
+	void ClearMmrRangeMin() { MmrRangeMin_IsSet = false; MmrRangeMin_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetMmrRangeMinToNull() { MmrRangeMin_IsSet = true; MmrRangeMin_IsNull = true; }
+	/** @brief Checks whether MmrRangeMin_Optional is set to null */
+	FORCEINLINE bool IsMmrRangeMinNull() const { return MmrRangeMin_IsSet && MmrRangeMin_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	float MmrRangeMax_Optional{  };
+	/** @brief true if MmrRangeMax_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MmrRangeMax_IsSet{ false };
+	/** @brief true if MmrRangeMax_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool MmrRangeMax_IsNull{ false };
+	/** @brief Gets the value of MmrRangeMax_Optional, regardless of it having been set */
+	FORCEINLINE float& GetMmrRangeMax() { return MmrRangeMax_Optional; }
+	/** @brief Gets the value of MmrRangeMax_Optional, regardless of it having been set */
+	FORCEINLINE const float& GetMmrRangeMax() const { return MmrRangeMax_Optional; }
+	/** @brief Gets the value of MmrRangeMax_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const float& GetMmrRangeMax(const float& DefaultValue) const { if (MmrRangeMax_IsSet) return MmrRangeMax_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of MmrRangeMax_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetMmrRangeMax(float& OutValue) const { if (MmrRangeMax_IsSet && !MmrRangeMax_IsNull) OutValue = MmrRangeMax_Optional; return MmrRangeMax_IsSet; }
+	/** @brief Returns a pointer to MmrRangeMax_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE float* GetMmrRangeMaxOrNull() { if (MmrRangeMax_IsSet) return (MmrRangeMax_IsNull ? nullptr : &MmrRangeMax_Optional); return nullptr; }
+	/** @brief Returns a pointer to MmrRangeMax_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const float* GetMmrRangeMaxOrNull() const { if (MmrRangeMax_IsSet) return (MmrRangeMax_IsNull ? nullptr : &MmrRangeMax_Optional); return nullptr; }
+	/** @brief Sets the value of MmrRangeMax_Optional and also sets MmrRangeMax_IsSet to true */
+	FORCEINLINE void SetMmrRangeMax(const float& NewValue) { MmrRangeMax_Optional = NewValue; MmrRangeMax_IsSet = true; MmrRangeMax_IsNull = false; }
+	/** @brief Sets the value of MmrRangeMax_Optional and also sets MmrRangeMax_IsSet to true using move semantics */
+	FORCEINLINE void SetMmrRangeMax(float&& NewValue) { MmrRangeMax_Optional = NewValue; MmrRangeMax_IsSet = true; MmrRangeMax_IsNull = false; }
+	/** @brief Clears the value of MmrRangeMax_Optional and sets MmrRangeMax_IsSet to false */
+	void ClearMmrRangeMax() { MmrRangeMax_IsSet = false; MmrRangeMax_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetMmrRangeMaxToNull() { MmrRangeMax_IsSet = true; MmrRangeMax_IsNull = true; }
+	/** @brief Checks whether MmrRangeMax_Optional is set to null */
+	FORCEINLINE bool IsMmrRangeMaxNull() const { return MmrRangeMax_IsSet && MmrRangeMax_IsNull; }
+
 	/** @brief When was this stage first created? */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FDateTime Created{  };
