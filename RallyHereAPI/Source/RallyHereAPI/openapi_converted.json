@@ -60167,6 +60167,18 @@
             "description": "Whether or not individual player stats should be saved in the leaderboard, or if only the metadata can be returned",
             "default": true
           },
+          "leaderboard_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LeaderboardType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "What type of leaderboard this is (player leaderboard, item leaderboard etc.)",
+            "default": "PLAYER"
+          },
           "valid_item_ids": {
             "anyOf": [
               {
@@ -60322,19 +60334,32 @@
         "type": "string",
         "enum": [
           "INVENTORY",
-          "RANK",
-          "ITEM_COUNT"
+          "RANK"
         ],
         "title": "LeaderboardSource",
         "x-enum-descriptions": [
-          "",
           "",
           ""
         ],
         "x-enum-varnames": [
           "INVENTORY",
-          "RANK",
-          "ITEM_COUNT"
+          "RANK"
+        ]
+      },
+      "LeaderboardType": {
+        "type": "string",
+        "enum": [
+          "PLAYER",
+          "ITEM"
+        ],
+        "title": "LeaderboardType",
+        "x-enum-descriptions": [
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "PLAYER",
+          "ITEM"
         ]
       },
       "PlayerListType": {

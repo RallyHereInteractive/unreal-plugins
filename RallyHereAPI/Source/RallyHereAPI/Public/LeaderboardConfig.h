@@ -11,6 +11,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "LeaderboardSortOrder.h"
 #include "LeaderboardSource.h"
+#include "LeaderboardType.h"
 #include "PlayerListType.h"
 #include "LeaderboardConfig.generated.h"
 
@@ -259,6 +260,37 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardConfig : public FRHAPI_Model
 	void ClearExposePlayers() { ExposePlayers_Optional = true; ExposePlayers_IsSet = false;  }
 	/** @brief Returns the default value of ExposePlayers */
 	FORCEINLINE bool GetDefaultValue_ExposePlayers() { return true; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	ERHAPI_LeaderboardType LeaderboardType_Optional{  };
+	/** @brief true if LeaderboardType_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LeaderboardType_IsSet{ false };
+	/** @brief true if LeaderboardType_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool LeaderboardType_IsNull{ false };
+	/** @brief Gets the value of LeaderboardType_Optional, regardless of it having been set */
+	FORCEINLINE ERHAPI_LeaderboardType& GetLeaderboardType() { return LeaderboardType_Optional; }
+	/** @brief Gets the value of LeaderboardType_Optional, regardless of it having been set */
+	FORCEINLINE const ERHAPI_LeaderboardType& GetLeaderboardType() const { return LeaderboardType_Optional; }
+	/** @brief Gets the value of LeaderboardType_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const ERHAPI_LeaderboardType& GetLeaderboardType(const ERHAPI_LeaderboardType& DefaultValue) const { if (LeaderboardType_IsSet) return LeaderboardType_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of LeaderboardType_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetLeaderboardType(ERHAPI_LeaderboardType& OutValue) const { if (LeaderboardType_IsSet && !LeaderboardType_IsNull) OutValue = LeaderboardType_Optional; return LeaderboardType_IsSet; }
+	/** @brief Returns a pointer to LeaderboardType_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE ERHAPI_LeaderboardType* GetLeaderboardTypeOrNull() { if (LeaderboardType_IsSet) return (LeaderboardType_IsNull ? nullptr : &LeaderboardType_Optional); return nullptr; }
+	/** @brief Returns a pointer to LeaderboardType_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const ERHAPI_LeaderboardType* GetLeaderboardTypeOrNull() const { if (LeaderboardType_IsSet) return (LeaderboardType_IsNull ? nullptr : &LeaderboardType_Optional); return nullptr; }
+	/** @brief Sets the value of LeaderboardType_Optional and also sets LeaderboardType_IsSet to true */
+	FORCEINLINE void SetLeaderboardType(const ERHAPI_LeaderboardType& NewValue) { LeaderboardType_Optional = NewValue; LeaderboardType_IsSet = true; LeaderboardType_IsNull = false; }
+	/** @brief Sets the value of LeaderboardType_Optional and also sets LeaderboardType_IsSet to true using move semantics */
+	FORCEINLINE void SetLeaderboardType(ERHAPI_LeaderboardType&& NewValue) { LeaderboardType_Optional = NewValue; LeaderboardType_IsSet = true; LeaderboardType_IsNull = false; }
+	/** @brief Clears the value of LeaderboardType_Optional and sets LeaderboardType_IsSet to false */
+	void ClearLeaderboardType() { LeaderboardType_IsSet = false; LeaderboardType_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetLeaderboardTypeToNull() { LeaderboardType_IsSet = true; LeaderboardType_IsNull = true; }
+	/** @brief Checks whether LeaderboardType_Optional is set to null */
+	FORCEINLINE bool IsLeaderboardTypeNull() const { return LeaderboardType_IsSet && LeaderboardType_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	TArray<int32> ValidItemIds_Optional{  };

@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "LeaderboardSource.h"
+#include "LeaderboardType.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,26 +17,26 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for ERHAPI_LeaderboardSource
-FString EnumToString(const ERHAPI_LeaderboardSource& Value)
+// Implementation for ERHAPI_LeaderboardType
+FString EnumToString(const ERHAPI_LeaderboardType& Value)
 {
 	switch (Value)
 	{
-	case ERHAPI_LeaderboardSource::Inventory:
-		return TEXT("INVENTORY");
-	case ERHAPI_LeaderboardSource::Rank:
-		return TEXT("RANK");
+	case ERHAPI_LeaderboardType::Player:
+		return TEXT("PLAYER");
+	case ERHAPI_LeaderboardType::Item:
+		return TEXT("ITEM");
 	}
 
-	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_LeaderboardSource::Values Value (%d)"), (int)Value);
+	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_LeaderboardType::Values Value (%d)"), (int)Value);
 	return TEXT("");
 }
 
-bool EnumFromString(const FString& EnumAsString, ERHAPI_LeaderboardSource& Value)
+bool EnumFromString(const FString& EnumAsString, ERHAPI_LeaderboardType& Value)
 {
-	static TMap<FString, ERHAPI_LeaderboardSource> StringToEnum = { 
-		{ TEXT("INVENTORY"), ERHAPI_LeaderboardSource::Inventory },
-		{ TEXT("RANK"), ERHAPI_LeaderboardSource::Rank },	};
+	static TMap<FString, ERHAPI_LeaderboardType> StringToEnum = { 
+		{ TEXT("PLAYER"), ERHAPI_LeaderboardType::Player },
+		{ TEXT("ITEM"), ERHAPI_LeaderboardType::Item },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -44,17 +44,17 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_LeaderboardSource& Value
 	return Found != nullptr;
 }
 
-FStringFormatArg ToStringFormatArg(const ERHAPI_LeaderboardSource& Value)
+FStringFormatArg ToStringFormatArg(const ERHAPI_LeaderboardType& Value)
 {
 	return FStringFormatArg(EnumToString(Value));
 }
 
-void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_LeaderboardSource& Value)
+void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_LeaderboardType& Value)
 {
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Value));
 }
 
-bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_LeaderboardSource& Value)
+bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_LeaderboardType& Value)
 {
 	FString TmpValue;
 	if (JsonValue->TryGetString(TmpValue))
