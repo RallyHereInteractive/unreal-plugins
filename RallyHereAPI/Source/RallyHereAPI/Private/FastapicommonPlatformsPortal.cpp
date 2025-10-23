@@ -94,10 +94,6 @@ FString EnumToString(const ERHAPI_FastapicommonPlatformsPortal& Value)
 		return TEXT("32");
 	case ERHAPI_FastapicommonPlatformsPortal::NintendoPpid:
 		return TEXT("33");
-	case ERHAPI_FastapicommonPlatformsPortal::AndroidDevice:
-		return TEXT("34");
-	case ERHAPI_FastapicommonPlatformsPortal::IosDevice:
-		return TEXT("35");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_FastapicommonPlatformsPortal::Values Value (%d)"), (int)Value);
@@ -142,9 +138,7 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_FastapicommonPlatformsPo
 		{ TEXT("30"), ERHAPI_FastapicommonPlatformsPortal::Simulmedia },
 		{ TEXT("31"), ERHAPI_FastapicommonPlatformsPortal::Luna },
 		{ TEXT("32"), ERHAPI_FastapicommonPlatformsPortal::GooglePlay },
-		{ TEXT("33"), ERHAPI_FastapicommonPlatformsPortal::NintendoPpid },
-		{ TEXT("34"), ERHAPI_FastapicommonPlatformsPortal::AndroidDevice },
-		{ TEXT("35"), ERHAPI_FastapicommonPlatformsPortal::IosDevice },	};
+		{ TEXT("33"), ERHAPI_FastapicommonPlatformsPortal::NintendoPpid },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

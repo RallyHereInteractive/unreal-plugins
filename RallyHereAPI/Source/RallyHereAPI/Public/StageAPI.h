@@ -13,13 +13,10 @@
 #include "SortDirection.h"
 #include "StageEntityType.h"
 #include "StageSearchSort.h"
-#include "EntityMMBucketRunStats.h"
 #include "EntityMMBucketRunStatsMulti.h"
-#include "EntityMMBucketRunStatsUpdate.h"
 #include "EntityRunCompleteRequest.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
-#include "MMRStats.h"
 #include "Stage.h"
 #include "StageCreateRequest.h"
 #include "StageMatchmakeParams.h"
@@ -253,6 +250,8 @@ struct RALLYHEREAPI_API Traits_DeleteStage
  * - For any entity (including themselves) any of: `stage:*`, `stage:stats:read:any`
  * 
  * - For the entity themselves : `stage:stats:read:self`
+ * 
+ * For forcibly setting the run as a win, placement, or
 */
 struct RALLYHEREAPI_API FRequest_GetEntityRunStats : public FRequest
 {
@@ -274,6 +273,7 @@ struct RALLYHEREAPI_API FRequest_GetEntityRunStats : public FRequest
 	TSharedPtr<FAuthContext> AuthContext;
 	ERHAPI_StageEntityType EntityType;
 	FString EntityId;
+	TOptional<FString> V;
 	TOptional<FString> Type1;
 	TOptional<FString> Type2;
 	TOptional<FString> Type3;
@@ -341,112 +341,6 @@ struct RALLYHEREAPI_API Traits_GetEntityRunStats
 	typedef FResponse_GetEntityRunStats Response;
 	/** The delegate type, triggered by the response */
 	typedef FDelegate_GetEntityRunStats Delegate;
-	/** The API object that supports this API call */
-	typedef FStageAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
- * @brief Get Mmr Stats
- * Calculate stats about MMR bucket density
- * 
- * Required Permissions:
- * 
- * - For any entity (including themselves) : `stage:*`
-*/
-struct RALLYHEREAPI_API FRequest_GetMmrStats : public FRequest
-{
-	FRequest_GetMmrStats();
-	virtual ~FRequest_GetMmrStats() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-	/** @brief Get the auth context used for this request */
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	/** The specified auth context to use for this request */
-	TSharedPtr<FAuthContext> AuthContext;
-	TOptional<TArray<float>> Buckets;
-};
-
-/** The response type for FRequest_GetMmrStats */
-struct RALLYHEREAPI_API FResponse_GetMmrStats : public FResponseAccessorTemplate<FRHAPI_MMRStats, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_MMRStats, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
-
-	FResponse_GetMmrStats(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_GetMmrStats() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_MMRStats Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_MMRStats& OutContent) const { return TryGetContent<FRHAPI_MMRStats>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_MMRStats>& OutContent) const { return TryGetContent<FRHAPI_MMRStats>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_MMRStats* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_MMRStats>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_MMRStats> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_MMRStats>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_MMRStats& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_GetMmrStats */
-DECLARE_DELEGATE_OneParam(FDelegate_GetMmrStats, const FResponse_GetMmrStats&);
-
-/** @brief A helper metadata object for GetMmrStats that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_GetMmrStats
-{
-	/** The request type */
-	typedef FRequest_GetMmrStats Request;
-	/** The response type */
-	typedef FResponse_GetMmrStats Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_GetMmrStats Delegate;
 	/** The API object that supports this API call */
 	typedef FStageAPI API;
 	/** A human readable name for this API call */
@@ -737,8 +631,6 @@ struct RALLYHEREAPI_API FRequest_SearchStages : public FRequest
 	TOptional<float> MmrVisMin;
 	/* max (exclusive) mmr visual value */
 	TOptional<float> MmrVisMax;
-	/* include blob in the response data.  Results are much quicker without returning the blob */
-	TOptional<bool> IncludeBlob;
 	TOptional<TArray<ERHAPI_StageSearchSort>> SortBy;
 	TOptional<TArray<ERHAPI_SortDirection>> Sort;
 };
@@ -943,117 +835,6 @@ struct RALLYHEREAPI_API Traits_SubmitCompletedRun
 };
 
 /**
- * @brief Update Entity Run Stats
- * Update the aggregated stats about an entity for specific matchmaking bucket
- * 
- * Required Permissions:
- * 
- * - For any entity (including themselves) any of: `stage:*`, `stage:stats:write:any`
- * 
- * - For the entity themselves : `stage:stats:write:self`
- * Required Permissions:
- * 
- * - For any entity (including themselves) any of: `stage:*`, `stage:stats:fullwrite`
-*/
-struct RALLYHEREAPI_API FRequest_UpdateEntityRunStats : public FRequest
-{
-	FRequest_UpdateEntityRunStats();
-	virtual ~FRequest_UpdateEntityRunStats() = default;
-	
-	/** @brief Given a http request, apply data and settings from this request object to it */
-	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
-	/** @brief Compute the URL path for this request instance */
-	FString ComputePath() const override;
-	/** @brief Get the simplified URL path for this request, not including the verb */
-	FName GetSimplifiedPath() const override;
-	/** @brief Get the simplified URL path for this request, including the verb */
-	FName GetSimplifiedPathWithVerb() const override;
-	/** @brief Get the auth context used for this request */
-	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
-
-	/** The specified auth context to use for this request */
-	TSharedPtr<FAuthContext> AuthContext;
-	FRHAPI_EntityMMBucketRunStatsUpdate EntityMMBucketRunStatsUpdate;
-};
-
-/** The response type for FRequest_UpdateEntityRunStats */
-struct RALLYHEREAPI_API FResponse_UpdateEntityRunStats : public FResponseAccessorTemplate<FRHAPI_EntityMMBucketRunStats, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
-{
-	typedef FResponseAccessorTemplate<FRHAPI_EntityMMBucketRunStats, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
-
-	FResponse_UpdateEntityRunStats(FRequestMetadata InRequestMetadata);
-	//virtual ~FResponse_UpdateEntityRunStats() = default;
-	
-	/** @brief Parse out response content into local storage from a given JsonValue */
-	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
-	/** @brief Parse out header information for later usage */
-	virtual bool ParseHeaders() override;
-	/** @brief Gets the description of the response code */
-	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
-
-#if ALLOW_LEGACY_RESPONSE_CONTENT
-	/** Default Response Content */
-	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
-	FRHAPI_EntityMMBucketRunStats Content;
-#endif //ALLOW_LEGACY_RESPONSE_CONTENT
-
-	// Default Response Helpers
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(FRHAPI_EntityMMBucketRunStats& OutContent) const { return TryGetContent<FRHAPI_EntityMMBucketRunStats>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	bool TryGetDefaultContent(TOptional<FRHAPI_EntityMMBucketRunStats>& OutContent) const { return TryGetContent<FRHAPI_EntityMMBucketRunStats>(OutContent); }
-	/** @brief Attempt to retrieve the content in the default response */
-	const FRHAPI_EntityMMBucketRunStats* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_EntityMMBucketRunStats>(); }
-	/** @brief Attempt to retrieve the content in the default response */
-	TOptional<FRHAPI_EntityMMBucketRunStats> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_EntityMMBucketRunStats>(); }
-
-	// Individual Response Helpers	
-	/* Response 200
-	Successful Response
-	*/
-	bool TryGetContentFor200(FRHAPI_EntityMMBucketRunStats& OutContent) const;
-
-	/* Response 403
-	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
-	*/
-	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
-
-	/* Response 422
-	Validation Error
-	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
-
-};
-
-/** The delegate class for FRequest_UpdateEntityRunStats */
-DECLARE_DELEGATE_OneParam(FDelegate_UpdateEntityRunStats, const FResponse_UpdateEntityRunStats&);
-
-/** @brief A helper metadata object for UpdateEntityRunStats that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
-struct RALLYHEREAPI_API Traits_UpdateEntityRunStats
-{
-	/** The request type */
-	typedef FRequest_UpdateEntityRunStats Request;
-	/** The response type */
-	typedef FResponse_UpdateEntityRunStats Response;
-	/** The delegate type, triggered by the response */
-	typedef FDelegate_UpdateEntityRunStats Delegate;
-	/** The API object that supports this API call */
-	typedef FStageAPI API;
-	/** A human readable name for this API call */
-	static FString Name;
-
-	/**
-	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
-	 * @param [in] InAPI The API object the call will be made with
-	 * @param [in] InRequest The request to submit to the API call
-	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
-	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
-	 * @return A http request object, if the call was successfully queued.
-	 */
-	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
-};
-
-/**
  * @brief Update Stage
  * Create or Update a stage by ID
  * 
@@ -1176,8 +957,6 @@ public:
 	void OnDeleteStageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_DeleteStage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetEntityRunStats(const FRequest_GetEntityRunStats& Request, const FDelegate_GetEntityRunStats& Delegate = FDelegate_GetEntityRunStats(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetEntityRunStatsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetEntityRunStats Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr GetMmrStats(const FRequest_GetMmrStats& Request, const FDelegate_GetMmrStats& Delegate = FDelegate_GetMmrStats(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnGetMmrStatsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetMmrStats Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr GetStage(const FRequest_GetStage& Request, const FDelegate_GetStage& Delegate = FDelegate_GetStage(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnGetStageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_GetStage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr MatchmakeStage(const FRequest_MatchmakeStage& Request, const FDelegate_MatchmakeStage& Delegate = FDelegate_MatchmakeStage(), int32 Priority = DefaultRallyHereAPIPriority);
@@ -1186,8 +965,6 @@ public:
 	void OnSearchStagesResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SearchStages Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr SubmitCompletedRun(const FRequest_SubmitCompletedRun& Request, const FDelegate_SubmitCompletedRun& Delegate = FDelegate_SubmitCompletedRun(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnSubmitCompletedRunResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_SubmitCompletedRun Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
-	FHttpRequestPtr UpdateEntityRunStats(const FRequest_UpdateEntityRunStats& Request, const FDelegate_UpdateEntityRunStats& Delegate = FDelegate_UpdateEntityRunStats(), int32 Priority = DefaultRallyHereAPIPriority);
-	void OnUpdateEntityRunStatsResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateEntityRunStats Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr UpdateStage(const FRequest_UpdateStage& Request, const FDelegate_UpdateStage& Delegate = FDelegate_UpdateStage(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnUpdateStageResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_UpdateStage Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 

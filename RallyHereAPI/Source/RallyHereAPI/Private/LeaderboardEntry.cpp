@@ -22,22 +22,8 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_LeaderboardEntry::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	if (PlayerUuid_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
-		if (PlayerUuid_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, PlayerUuid_Optional);
-	}
-	if (LegacyItemId_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("legacy_item_id"));
-		if (LegacyItemId_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, LegacyItemId_Optional);
-	}
+	Writer->WriteIdentifierPrefix(TEXT("player_uuid"));
+	RallyHereAPI::WriteJsonValue(Writer, PlayerUuid);
 	if (StatValue_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("stat_value"));
@@ -60,19 +46,8 @@ bool FRHAPI_LeaderboardEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	bool ParseSuccess = true;
 
 	const TSharedPtr<FJsonValue> JsonPlayerUuidField = (*Object)->TryGetField(TEXT("player_uuid"));
-	if (JsonPlayerUuidField.IsValid())
-	{
-		PlayerUuid_IsNull = JsonPlayerUuidField->IsNull();
-		PlayerUuid_IsSet = PlayerUuid_IsNull || TryGetJsonValue(JsonPlayerUuidField, PlayerUuid_Optional);
-		ParseSuccess &= PlayerUuid_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonLegacyItemIdField = (*Object)->TryGetField(TEXT("legacy_item_id"));
-	if (JsonLegacyItemIdField.IsValid())
-	{
-		LegacyItemId_IsNull = JsonLegacyItemIdField->IsNull();
-		LegacyItemId_IsSet = LegacyItemId_IsNull || TryGetJsonValue(JsonLegacyItemIdField, LegacyItemId_Optional);
-		ParseSuccess &= LegacyItemId_IsSet;
-	}
+	const bool PlayerUuid_IsValid = JsonPlayerUuidField.IsValid() && (!JsonPlayerUuidField->IsNull() && TryGetJsonValue(JsonPlayerUuidField, PlayerUuid));
+	ParseSuccess &= PlayerUuid_IsValid; 
 	const TSharedPtr<FJsonValue> JsonStatValueField = (*Object)->TryGetField(TEXT("stat_value"));
 	if (JsonStatValueField.IsValid())
 	{

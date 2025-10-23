@@ -32,14 +32,8 @@ void FRHAPI_LeaderboardConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(SortOrder));
 	Writer->WriteIdentifierPrefix(TEXT("source"));
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(Source));
-	if (SourceId_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("source_id"));
-		if (SourceId_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, SourceId_Optional);
-	}
+	Writer->WriteIdentifierPrefix(TEXT("source_id"));
+	RallyHereAPI::WriteJsonValue(Writer, SourceId);
 	if (RemoveRestricted_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("remove_restricted"));
@@ -64,22 +58,6 @@ void FRHAPI_LeaderboardConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 	{
 		Writer->WriteIdentifierPrefix(TEXT("expose_players"));
 		RallyHereAPI::WriteJsonValue(Writer, ExposePlayers_Optional);
-	}
-	if (LeaderboardType_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("leaderboard_type"));
-		if (LeaderboardType_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, EnumToString(LeaderboardType_Optional));
-	}
-	if (ValidItemIds_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("valid_item_ids"));
-		if (ValidItemIds_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, ValidItemIds_Optional);
 	}
 	Writer->WriteObjectEnd();
 }
@@ -108,12 +86,8 @@ bool FRHAPI_LeaderboardConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	const bool Source_IsValid = JsonSourceField.IsValid() && (!JsonSourceField->IsNull() && TryGetJsonValue(JsonSourceField, Source));
 	ParseSuccess &= Source_IsValid; 
 	const TSharedPtr<FJsonValue> JsonSourceIdField = (*Object)->TryGetField(TEXT("source_id"));
-	if (JsonSourceIdField.IsValid())
-	{
-		SourceId_IsNull = JsonSourceIdField->IsNull();
-		SourceId_IsSet = SourceId_IsNull || TryGetJsonValue(JsonSourceIdField, SourceId_Optional);
-		ParseSuccess &= SourceId_IsSet;
-	}
+	const bool SourceId_IsValid = JsonSourceIdField.IsValid() && (!JsonSourceIdField->IsNull() && TryGetJsonValue(JsonSourceIdField, SourceId));
+	ParseSuccess &= SourceId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonRemoveRestrictedField = (*Object)->TryGetField(TEXT("remove_restricted"));
 	if (JsonRemoveRestrictedField.IsValid())
 	{
@@ -141,20 +115,6 @@ bool FRHAPI_LeaderboardConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		ExposePlayers_IsSet = TryGetJsonValue(JsonExposePlayersField, ExposePlayers_Optional);
 		ParseSuccess &= ExposePlayers_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonLeaderboardTypeField = (*Object)->TryGetField(TEXT("leaderboard_type"));
-	if (JsonLeaderboardTypeField.IsValid())
-	{
-		LeaderboardType_IsNull = JsonLeaderboardTypeField->IsNull();
-		LeaderboardType_IsSet = LeaderboardType_IsNull || TryGetJsonValue(JsonLeaderboardTypeField, LeaderboardType_Optional);
-		ParseSuccess &= LeaderboardType_IsSet;
-	}
-	const TSharedPtr<FJsonValue> JsonValidItemIdsField = (*Object)->TryGetField(TEXT("valid_item_ids"));
-	if (JsonValidItemIdsField.IsValid())
-	{
-		ValidItemIds_IsNull = JsonValidItemIdsField->IsNull();
-		ValidItemIds_IsSet = ValidItemIds_IsNull || TryGetJsonValue(JsonValidItemIdsField, ValidItemIds_Optional);
-		ParseSuccess &= ValidItemIds_IsSet;
 	}
 
 	return ParseSuccess;

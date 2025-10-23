@@ -564,39 +564,6 @@ struct RALLYHEREAPI_API FRHAPI_StageCreate : public FRHAPI_Model
 	FORCEINLINE void SetOwnerEntityIdToNull() { OwnerEntityId_IsSet = true; OwnerEntityId_IsNull = true; }
 	/** @brief Checks whether OwnerEntityId_Optional is set to null */
 	FORCEINLINE bool IsOwnerEntityIdNull() const { return OwnerEntityId_IsSet && OwnerEntityId_IsNull; }
-
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool IsPlacement_Optional{ false };
-	/** @brief true if IsPlacement_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool IsPlacement_IsSet{ false };
-	/** @brief true if IsPlacement_Optional has been explicitly set to null */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool IsPlacement_IsNull{ false };
-	/** @brief Gets the value of IsPlacement_Optional, regardless of it having been set */
-	FORCEINLINE bool& GetIsPlacement() { return IsPlacement_Optional; }
-	/** @brief Gets the value of IsPlacement_Optional, regardless of it having been set */
-	FORCEINLINE const bool& GetIsPlacement() const { return IsPlacement_Optional; }
-	/** @brief Gets the value of IsPlacement_Optional, if it has been set, otherwise it returns DefaultValue */
-	FORCEINLINE const bool& GetIsPlacement(const bool& DefaultValue) const { if (IsPlacement_IsSet) return IsPlacement_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of IsPlacement_Optional and returns true if it has been set, otherwise returns false */
-	FORCEINLINE bool GetIsPlacement(bool& OutValue) const { if (IsPlacement_IsSet && !IsPlacement_IsNull) OutValue = IsPlacement_Optional; return IsPlacement_IsSet; }
-	/** @brief Returns a pointer to IsPlacement_Optional, if it has been set, otherwise returns nullptr */
-	FORCEINLINE bool* GetIsPlacementOrNull() { if (IsPlacement_IsSet) return (IsPlacement_IsNull ? nullptr : &IsPlacement_Optional); return nullptr; }
-	/** @brief Returns a pointer to IsPlacement_Optional, if it has been set, otherwise returns nullptr */
-	FORCEINLINE const bool* GetIsPlacementOrNull() const { if (IsPlacement_IsSet) return (IsPlacement_IsNull ? nullptr : &IsPlacement_Optional); return nullptr; }
-	/** @brief Sets the value of IsPlacement_Optional and also sets IsPlacement_IsSet to true */
-	FORCEINLINE void SetIsPlacement(const bool& NewValue) { IsPlacement_Optional = NewValue; IsPlacement_IsSet = true; IsPlacement_IsNull = false; }
-	/** @brief Sets the value of IsPlacement_Optional and also sets IsPlacement_IsSet to true using move semantics */
-	FORCEINLINE void SetIsPlacement(bool&& NewValue) { IsPlacement_Optional = NewValue; IsPlacement_IsSet = true; IsPlacement_IsNull = false; }
-	/** @brief Clears the value of IsPlacement_Optional and sets IsPlacement_IsSet to false */
-	void ClearIsPlacement() { IsPlacement_Optional = false; IsPlacement_IsSet = false; IsPlacement_IsNull = false; }
-	/** @brief Returns the default value of IsPlacement */
-	FORCEINLINE bool GetDefaultValue_IsPlacement() { return false; }
-	/** @brief Sets the value explicitly to be treated as null */
-	FORCEINLINE void SetIsPlacementToNull() { IsPlacement_IsSet = true; IsPlacement_IsNull = true; }
-	/** @brief Checks whether IsPlacement_Optional is set to null */
-	FORCEINLINE bool IsIsPlacementNull() const { return IsPlacement_IsSet && IsPlacement_IsNull; }
 };
 
 /** @} */

@@ -4974,14 +4974,6 @@ FString FRequest_GetPlayerInventory::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("item_ids=")) + CollectionToUrlString_multi(ItemIds.GetValue(), TEXT("item_ids")));
 	}
-	if(TagsToCount.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("tags_to_count=")) + CollectionToUrlString_multi(TagsToCount.GetValue(), TEXT("tags_to_count")));
-	}
-	if(LevelItemIds.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("level_item_ids=")) + CollectionToUrlString_multi(LevelItemIds.GetValue(), TEXT("level_item_ids")));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -5984,14 +5976,6 @@ FString FRequest_GetPlayerInventorySelf::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("item_ids=")) + CollectionToUrlString_multi(ItemIds.GetValue(), TEXT("item_ids")));
 	}
-	if(TagsToCount.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("tags_to_count=")) + CollectionToUrlString_multi(TagsToCount.GetValue(), TEXT("tags_to_count")));
-	}
-	if(LevelItemIds.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("level_item_ids=")) + CollectionToUrlString_multi(LevelItemIds.GetValue(), TEXT("level_item_ids")));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -6312,14 +6296,6 @@ FString FRequest_GetPlayerInventoryUuid::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("item_ids=")) + CollectionToUrlString_multi(ItemIds.GetValue(), TEXT("item_ids")));
 	}
-	if(TagsToCount.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("tags_to_count=")) + CollectionToUrlString_multi(TagsToCount.GetValue(), TEXT("tags_to_count")));
-	}
-	if(LevelItemIds.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("level_item_ids=")) + CollectionToUrlString_multi(LevelItemIds.GetValue(), TEXT("level_item_ids")));
-	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));
 
@@ -6634,14 +6610,6 @@ FString FRequest_GetPlayerInventoryUuidSelf::ComputePath() const
 	if(ItemIds.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("item_ids=")) + CollectionToUrlString_multi(ItemIds.GetValue(), TEXT("item_ids")));
-	}
-	if(TagsToCount.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("tags_to_count=")) + CollectionToUrlString_multi(TagsToCount.GetValue(), TEXT("tags_to_count")));
-	}
-	if(LevelItemIds.IsSet())
-	{
-		QueryParams.Add(FString(TEXT("level_item_ids=")) + CollectionToUrlString_multi(LevelItemIds.GetValue(), TEXT("level_item_ids")));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));

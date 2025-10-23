@@ -643,31 +643,6 @@ struct RALLYHEREAPI_API FRHAPI_Item : public FRHAPI_Model
 	/** @brief Clears the value of CouponDiscountLootUuid_Optional and sets CouponDiscountLootUuid_IsSet to false */
 	void ClearCouponDiscountLootUuid() { CouponDiscountLootUuid_IsSet = false;  }
 
-	/** @brief Tags associated with this item */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	TArray<FString> Tags_Optional{  };
-	/** @brief true if Tags_Optional has been set to a value */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	bool Tags_IsSet{ false };
-	/** @brief Gets the value of Tags_Optional, regardless of it having been set */
-	FORCEINLINE TArray<FString>& GetTags() { return Tags_Optional; }
-	/** @brief Gets the value of Tags_Optional, regardless of it having been set */
-	FORCEINLINE const TArray<FString>& GetTags() const { return Tags_Optional; }
-	/** @brief Gets the value of Tags_Optional, if it has been set, otherwise it returns DefaultValue */
-	FORCEINLINE const TArray<FString>& GetTags(const TArray<FString>& DefaultValue) const { if (Tags_IsSet) return Tags_Optional; return DefaultValue; }
-	/** @brief Fills OutValue with the value of Tags_Optional and returns true if it has been set, otherwise returns false */
-	FORCEINLINE bool GetTags(TArray<FString>& OutValue) const { if (Tags_IsSet) OutValue = Tags_Optional; return Tags_IsSet; }
-	/** @brief Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr */
-	FORCEINLINE TArray<FString>* GetTagsOrNull() { if (Tags_IsSet) return (&Tags_Optional); return nullptr; }
-	/** @brief Returns a pointer to Tags_Optional, if it has been set, otherwise returns nullptr */
-	FORCEINLINE const TArray<FString>* GetTagsOrNull() const { if (Tags_IsSet) return (&Tags_Optional); return nullptr; }
-	/** @brief Sets the value of Tags_Optional and also sets Tags_IsSet to true */
-	FORCEINLINE void SetTags(const TArray<FString>& NewValue) { Tags_Optional = NewValue; Tags_IsSet = true;  }
-	/** @brief Sets the value of Tags_Optional and also sets Tags_IsSet to true using move semantics */
-	FORCEINLINE void SetTags(TArray<FString>&& NewValue) { Tags_Optional = NewValue; Tags_IsSet = true;  }
-	/** @brief Clears the value of Tags_Optional and sets Tags_IsSet to false */
-	void ClearTags() { Tags_IsSet = false;  }
-
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FRHAPI_CacheInfo CacheInfo_Optional{  };
 	/** @brief true if CacheInfo_Optional has been set to a value */
