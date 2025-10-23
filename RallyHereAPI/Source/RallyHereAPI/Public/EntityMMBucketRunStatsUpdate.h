@@ -10,9 +10,9 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "StageEntityType.h"
-#include "EntityMMBucketRunStats.generated.h"
+#include "EntityMMBucketRunStatsUpdate.generated.h"
 
-/** @defgroup RHAPI_EntityMMBucketRunStats RallyHere API Model EntityMMBucketRunStats
+/** @defgroup RHAPI_EntityMMBucketRunStatsUpdate RallyHere API Model EntityMMBucketRunStatsUpdate
  *  @{
  */
 
@@ -20,7 +20,7 @@
  * @brief 
  */
 USTRUCT(BlueprintType)
-struct RALLYHEREAPI_API FRHAPI_EntityMMBucketRunStats : public FRHAPI_Model
+struct RALLYHEREAPI_API FRHAPI_EntityMMBucketRunStatsUpdate : public FRHAPI_Model
 {
 	GENERATED_BODY()
 
@@ -425,30 +425,6 @@ struct RALLYHEREAPI_API FRHAPI_EntityMMBucketRunStats : public FRHAPI_Model
 	FORCEINLINE void SetMmrVis(float&& NewValue) { MmrVis_Optional = NewValue; MmrVis_IsSet = true;  }
 	/** @brief Clears the value of MmrVis_Optional and sets MmrVis_IsSet to false */
 	void ClearMmrVis() { MmrVis_IsSet = false;  }
-
-	/** @brief When was the first run recorded for this entity/mm bucket? */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FDateTime Created{  };
-	/** @brief Gets the value of Created */
-	FORCEINLINE FDateTime& GetCreated() { return Created; }
-	/** @brief Gets the value of Created */
-	FORCEINLINE const FDateTime& GetCreated() const { return Created; }
-	/** @brief Sets the value of Created */
-	FORCEINLINE void SetCreated(const FDateTime& NewValue) { Created = NewValue;   }
-	/** @brief Sets the value of Created using move semantics */
-	FORCEINLINE void SetCreated(FDateTime&& NewValue) { Created = NewValue;   }
-
-	/** @brief When was the last run recorded for this entity/mm bucket? */
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FDateTime Modified{  };
-	/** @brief Gets the value of Modified */
-	FORCEINLINE FDateTime& GetModified() { return Modified; }
-	/** @brief Gets the value of Modified */
-	FORCEINLINE const FDateTime& GetModified() const { return Modified; }
-	/** @brief Sets the value of Modified */
-	FORCEINLINE void SetModified(const FDateTime& NewValue) { Modified = NewValue;   }
-	/** @brief Sets the value of Modified using move semantics */
-	FORCEINLINE void SetModified(FDateTime&& NewValue) { Modified = NewValue;   }
 };
 
 /** @} */
