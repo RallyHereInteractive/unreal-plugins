@@ -12,7 +12,7 @@
 #include "RallyHereAPIHelpers.h"
 #include "DeleteTicketReason.h"
 #include "IntraSessionPermissions.h"
-#include "Platform.h"
+#include "SessionPlatform.h"
 #include "VivoxSessionActionSingle.h"
 #include "VoipSessionType.h"
 #include "AcknowledgeBackfillRequest.h"
@@ -219,7 +219,7 @@ struct RALLYHEREAPI_API FRequest_AddPlatformSessionToRallyHereSession : public F
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_Platform Platform;
+	ERHAPI_SessionPlatform Platform;
 	FString PlatformSessionIdBase64;
 	FString SessionId;
 	TOptional<bool> RefreshTtl;
@@ -1137,7 +1137,7 @@ struct RALLYHEREAPI_API FRequest_DeletePlatformSessionFromRallyHereSession : pub
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_Platform Platform;
+	ERHAPI_SessionPlatform Platform;
 	FString PlatformSessionIdBase64;
 	FString SessionId;
 	TOptional<bool> RefreshTtl;
@@ -3224,7 +3224,7 @@ struct RALLYHEREAPI_API FRequest_GetPlatformSessionInfo : public FRequest
 
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
-	ERHAPI_Platform Platform;
+	ERHAPI_SessionPlatform Platform;
 	FString PlatformSessionIdBase64;
 	/* If you provide the ETag that matches the current ETag for this resource, a 304 response will be returned - indicating that the resource has not changed. */
 	TOptional<FString> IfNoneMatch;
@@ -6029,7 +6029,7 @@ struct RALLYHEREAPI_API FRequest_JoinSessionByPlatformSessionByUuid : public FRe
 	TSharedPtr<FAuthContext> AuthContext;
 	FString PlatformSessionIdBase64;
 	FGuid PlayerUuid;
-	ERHAPI_Platform Platform;
+	ERHAPI_SessionPlatform Platform;
 	FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
 };
 
@@ -6169,7 +6169,7 @@ struct RALLYHEREAPI_API FRequest_JoinSessionByPlatformSessionIdSelf : public FRe
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString PlatformSessionIdBase64;
-	ERHAPI_Platform Platform;
+	ERHAPI_SessionPlatform Platform;
 	FRHAPI_SelfSessionPlayerUpdateRequest SelfSessionPlayerUpdateRequest;
 };
 
@@ -6983,7 +6983,7 @@ struct RALLYHEREAPI_API FRequest_LeaveSessionByPlatformSessionByUuid : public FR
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString PlatformSessionIdBase64;
-	ERHAPI_Platform Platform;
+	ERHAPI_SessionPlatform Platform;
 	FGuid PlayerUuid;
 };
 
@@ -7095,7 +7095,7 @@ struct RALLYHEREAPI_API FRequest_LeaveSessionByPlatformSessionSelf : public FReq
 	/** The specified auth context to use for this request */
 	TSharedPtr<FAuthContext> AuthContext;
 	FString PlatformSessionIdBase64;
-	ERHAPI_Platform Platform;
+	ERHAPI_SessionPlatform Platform;
 };
 
 /** The response type for FRequest_LeaveSessionByPlatformSessionSelf */

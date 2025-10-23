@@ -22,14 +22,6 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_EntityMMBucketRunStats::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	if (V_IsSet)
-	{
-		Writer->WriteIdentifierPrefix(TEXT("v"));
-		if (V_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, V_Optional);
-	}
 	if (Type1_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("type_1"));
@@ -126,13 +118,6 @@ bool FRHAPI_EntityMMBucketRunStats::FromJson(const TSharedPtr<FJsonValue>& JsonV
 
 	bool ParseSuccess = true;
 
-	const TSharedPtr<FJsonValue> JsonVField = (*Object)->TryGetField(TEXT("v"));
-	if (JsonVField.IsValid())
-	{
-		V_IsNull = JsonVField->IsNull();
-		V_IsSet = V_IsNull || TryGetJsonValue(JsonVField, V_Optional);
-		ParseSuccess &= V_IsSet;
-	}
 	const TSharedPtr<FJsonValue> JsonType1Field = (*Object)->TryGetField(TEXT("type_1"));
 	if (JsonType1Field.IsValid())
 	{

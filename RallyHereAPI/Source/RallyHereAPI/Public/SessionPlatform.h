@@ -9,14 +9,14 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "Platform.generated.h"
+#include "SessionPlatform.generated.h"
 
 
 /**
  * @brief An enumeration.
  */
 UENUM(BlueprintType)
-enum class ERHAPI_Platform : uint8
+enum class ERHAPI_SessionPlatform : uint8
 {
 	Anon UMETA(ToolTip=""),
 	Basic UMETA(ToolTip=""),
@@ -34,11 +34,9 @@ enum class ERHAPI_Platform : uint8
 	Twitch UMETA(ToolTip=""),
 	Rallyhere UMETA(ToolTip=""),
 	Legacyname UMETA(ToolTip=""),
-	AndroidDevice UMETA(ToolTip=""),
-	IosDevice UMETA(ToolTip=""),
 };
-RALLYHEREAPI_API FString EnumToString(const ERHAPI_Platform& EnumValue);
-RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_Platform& EnumValue);
-RALLYHEREAPI_API FStringFormatArg ToStringFormatArg(const ERHAPI_Platform& Value);
-RALLYHEREAPI_API void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_Platform& Value);
-RALLYHEREAPI_API bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_Platform& Value);
+RALLYHEREAPI_API FString EnumToString(const ERHAPI_SessionPlatform& EnumValue);
+RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_SessionPlatform& EnumValue);
+RALLYHEREAPI_API FStringFormatArg ToStringFormatArg(const ERHAPI_SessionPlatform& Value);
+RALLYHEREAPI_API void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const ERHAPI_SessionPlatform& Value);
+RALLYHEREAPI_API bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, ERHAPI_SessionPlatform& Value);

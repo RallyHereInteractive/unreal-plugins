@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-#include "EntityRunCompleteRequest.h"
+#include "EntityMMBucketRunStatsUpdate.h"
 #include "RallyHereAPIModule.h"
 #include "RallyHereAPIHelpers.h"
 #include "Templates/SharedPointer.h"
@@ -17,9 +17,9 @@ using RallyHereAPI::WriteJsonValue;
 using RallyHereAPI::TryGetJsonValue;
 
 ////////////////////////////////////////////////////
-// Implementation for FRHAPI_EntityRunCompleteRequest
+// Implementation for FRHAPI_EntityMMBucketRunStatsUpdate
 
-void FRHAPI_EntityRunCompleteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
+void FRHAPI_EntityMMBucketRunStatsUpdate::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
 	if (Type1_IsSet)
@@ -55,14 +55,8 @@ void FRHAPI_EntityRunCompleteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Write
 		RallyHereAPI::WriteJsonValue(Writer, Type4_Optional);
 	}
 	Writer->WriteIdentifierPrefix(TEXT("entity_type"));
-	if (EntityType_IsNull)
-		WriteJsonValue(Writer, nullptr);
-	else
 	RallyHereAPI::WriteJsonValue(Writer, EnumToString(EntityType));
 	Writer->WriteIdentifierPrefix(TEXT("entity_id"));
-	if (EntityId_IsNull)
-		WriteJsonValue(Writer, nullptr);
-	else
 	RallyHereAPI::WriteJsonValue(Writer, EntityId);
 	if (StageWins_IsSet)
 	{
@@ -79,58 +73,40 @@ void FRHAPI_EntityRunCompleteRequest::WriteJson(TSharedRef<TJsonWriter<>>& Write
 		Writer->WriteIdentifierPrefix(TEXT("stage_incompletes"));
 		RallyHereAPI::WriteJsonValue(Writer, StageIncompletes_Optional);
 	}
-	if (RunWin_IsSet)
+	if (RunWins_IsSet)
 	{
-		Writer->WriteIdentifierPrefix(TEXT("run_win"));
-		if (RunWin_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, RunWin_Optional);
+		Writer->WriteIdentifierPrefix(TEXT("run_wins"));
+		RallyHereAPI::WriteJsonValue(Writer, RunWins_Optional);
 	}
-	if (RunPlacement_IsSet)
+	if (RunLosses_IsSet)
 	{
-		Writer->WriteIdentifierPrefix(TEXT("run_placement"));
-		if (RunPlacement_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, RunPlacement_Optional);
+		Writer->WriteIdentifierPrefix(TEXT("run_losses"));
+		RallyHereAPI::WriteJsonValue(Writer, RunLosses_Optional);
 	}
-	if (MmrInternalExact_IsSet)
+	if (RunCount_IsSet)
 	{
-		Writer->WriteIdentifierPrefix(TEXT("mmr_internal_exact"));
-		if (MmrInternalExact_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, MmrInternalExact_Optional);
+		Writer->WriteIdentifierPrefix(TEXT("run_count"));
+		RallyHereAPI::WriteJsonValue(Writer, RunCount_Optional);
 	}
-	if (MmrInternalDelta_IsSet)
+	if (PlacementsComplete_IsSet)
 	{
-		Writer->WriteIdentifierPrefix(TEXT("mmr_internal_delta"));
-		if (MmrInternalDelta_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, MmrInternalDelta_Optional);
+		Writer->WriteIdentifierPrefix(TEXT("placements_complete"));
+		RallyHereAPI::WriteJsonValue(Writer, PlacementsComplete_Optional);
 	}
-	if (MmrVisExact_IsSet)
+	if (MmrInternal_IsSet)
 	{
-		Writer->WriteIdentifierPrefix(TEXT("mmr_vis_exact"));
-		if (MmrVisExact_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, MmrVisExact_Optional);
+		Writer->WriteIdentifierPrefix(TEXT("mmr_internal"));
+		RallyHereAPI::WriteJsonValue(Writer, MmrInternal_Optional);
 	}
-	if (MmrVisDelta_IsSet)
+	if (MmrVis_IsSet)
 	{
-		Writer->WriteIdentifierPrefix(TEXT("mmr_vis_delta"));
-		if (MmrVisDelta_IsNull)
-			WriteJsonValue(Writer, nullptr);
-		else
-		RallyHereAPI::WriteJsonValue(Writer, MmrVisDelta_Optional);
+		Writer->WriteIdentifierPrefix(TEXT("mmr_vis"));
+		RallyHereAPI::WriteJsonValue(Writer, MmrVis_Optional);
 	}
 	Writer->WriteObjectEnd();
 }
 
-bool FRHAPI_EntityRunCompleteRequest::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
+bool FRHAPI_EntityMMBucketRunStatsUpdate::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	const TSharedPtr<FJsonObject>* Object;
 	if (!JsonValue->TryGetObject(Object))
@@ -167,12 +143,10 @@ bool FRHAPI_EntityRunCompleteRequest::FromJson(const TSharedPtr<FJsonValue>& Jso
 		ParseSuccess &= Type4_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonEntityTypeField = (*Object)->TryGetField(TEXT("entity_type"));
-	EntityType_IsNull = JsonEntityTypeField != nullptr && JsonEntityTypeField->IsNull();
-	const bool EntityType_IsValid = JsonEntityTypeField.IsValid() && (EntityType_IsNull|| TryGetJsonValue(JsonEntityTypeField, EntityType));
+	const bool EntityType_IsValid = JsonEntityTypeField.IsValid() && (!JsonEntityTypeField->IsNull() && TryGetJsonValue(JsonEntityTypeField, EntityType));
 	ParseSuccess &= EntityType_IsValid; 
 	const TSharedPtr<FJsonValue> JsonEntityIdField = (*Object)->TryGetField(TEXT("entity_id"));
-	EntityId_IsNull = JsonEntityIdField != nullptr && JsonEntityIdField->IsNull();
-	const bool EntityId_IsValid = JsonEntityIdField.IsValid() && (EntityId_IsNull|| TryGetJsonValue(JsonEntityIdField, EntityId));
+	const bool EntityId_IsValid = JsonEntityIdField.IsValid() && (!JsonEntityIdField->IsNull() && TryGetJsonValue(JsonEntityIdField, EntityId));
 	ParseSuccess &= EntityId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonStageWinsField = (*Object)->TryGetField(TEXT("stage_wins"));
 	if (JsonStageWinsField.IsValid())
@@ -192,47 +166,41 @@ bool FRHAPI_EntityRunCompleteRequest::FromJson(const TSharedPtr<FJsonValue>& Jso
 		StageIncompletes_IsSet = TryGetJsonValue(JsonStageIncompletesField, StageIncompletes_Optional);
 		ParseSuccess &= StageIncompletes_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonRunWinField = (*Object)->TryGetField(TEXT("run_win"));
-	if (JsonRunWinField.IsValid())
+	const TSharedPtr<FJsonValue> JsonRunWinsField = (*Object)->TryGetField(TEXT("run_wins"));
+	if (JsonRunWinsField.IsValid())
 	{
-		RunWin_IsNull = JsonRunWinField->IsNull();
-		RunWin_IsSet = RunWin_IsNull || TryGetJsonValue(JsonRunWinField, RunWin_Optional);
-		ParseSuccess &= RunWin_IsSet;
+		RunWins_IsSet = TryGetJsonValue(JsonRunWinsField, RunWins_Optional);
+		ParseSuccess &= RunWins_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonRunPlacementField = (*Object)->TryGetField(TEXT("run_placement"));
-	if (JsonRunPlacementField.IsValid())
+	const TSharedPtr<FJsonValue> JsonRunLossesField = (*Object)->TryGetField(TEXT("run_losses"));
+	if (JsonRunLossesField.IsValid())
 	{
-		RunPlacement_IsNull = JsonRunPlacementField->IsNull();
-		RunPlacement_IsSet = RunPlacement_IsNull || TryGetJsonValue(JsonRunPlacementField, RunPlacement_Optional);
-		ParseSuccess &= RunPlacement_IsSet;
+		RunLosses_IsSet = TryGetJsonValue(JsonRunLossesField, RunLosses_Optional);
+		ParseSuccess &= RunLosses_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonMmrInternalExactField = (*Object)->TryGetField(TEXT("mmr_internal_exact"));
-	if (JsonMmrInternalExactField.IsValid())
+	const TSharedPtr<FJsonValue> JsonRunCountField = (*Object)->TryGetField(TEXT("run_count"));
+	if (JsonRunCountField.IsValid())
 	{
-		MmrInternalExact_IsNull = JsonMmrInternalExactField->IsNull();
-		MmrInternalExact_IsSet = MmrInternalExact_IsNull || TryGetJsonValue(JsonMmrInternalExactField, MmrInternalExact_Optional);
-		ParseSuccess &= MmrInternalExact_IsSet;
+		RunCount_IsSet = TryGetJsonValue(JsonRunCountField, RunCount_Optional);
+		ParseSuccess &= RunCount_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonMmrInternalDeltaField = (*Object)->TryGetField(TEXT("mmr_internal_delta"));
-	if (JsonMmrInternalDeltaField.IsValid())
+	const TSharedPtr<FJsonValue> JsonPlacementsCompleteField = (*Object)->TryGetField(TEXT("placements_complete"));
+	if (JsonPlacementsCompleteField.IsValid())
 	{
-		MmrInternalDelta_IsNull = JsonMmrInternalDeltaField->IsNull();
-		MmrInternalDelta_IsSet = MmrInternalDelta_IsNull || TryGetJsonValue(JsonMmrInternalDeltaField, MmrInternalDelta_Optional);
-		ParseSuccess &= MmrInternalDelta_IsSet;
+		PlacementsComplete_IsSet = TryGetJsonValue(JsonPlacementsCompleteField, PlacementsComplete_Optional);
+		ParseSuccess &= PlacementsComplete_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonMmrVisExactField = (*Object)->TryGetField(TEXT("mmr_vis_exact"));
-	if (JsonMmrVisExactField.IsValid())
+	const TSharedPtr<FJsonValue> JsonMmrInternalField = (*Object)->TryGetField(TEXT("mmr_internal"));
+	if (JsonMmrInternalField.IsValid())
 	{
-		MmrVisExact_IsNull = JsonMmrVisExactField->IsNull();
-		MmrVisExact_IsSet = MmrVisExact_IsNull || TryGetJsonValue(JsonMmrVisExactField, MmrVisExact_Optional);
-		ParseSuccess &= MmrVisExact_IsSet;
+		MmrInternal_IsSet = TryGetJsonValue(JsonMmrInternalField, MmrInternal_Optional);
+		ParseSuccess &= MmrInternal_IsSet;
 	}
-	const TSharedPtr<FJsonValue> JsonMmrVisDeltaField = (*Object)->TryGetField(TEXT("mmr_vis_delta"));
-	if (JsonMmrVisDeltaField.IsValid())
+	const TSharedPtr<FJsonValue> JsonMmrVisField = (*Object)->TryGetField(TEXT("mmr_vis"));
+	if (JsonMmrVisField.IsValid())
 	{
-		MmrVisDelta_IsNull = JsonMmrVisDeltaField->IsNull();
-		MmrVisDelta_IsSet = MmrVisDelta_IsNull || TryGetJsonValue(JsonMmrVisDeltaField, MmrVisDelta_Optional);
-		ParseSuccess &= MmrVisDelta_IsSet;
+		MmrVis_IsSet = TryGetJsonValue(JsonMmrVisField, MmrVis_Optional);
+		ParseSuccess &= MmrVis_IsSet;
 	}
 
 	return ParseSuccess;
