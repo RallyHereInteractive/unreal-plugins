@@ -398,7 +398,6 @@ Private/SessionInviteResponse.cpp
 Private/SessionJoinResponse.cpp
 Private/SessionJoinability.cpp
 Private/SessionPermissions.cpp
-Private/SessionPlatform.cpp
 Private/SessionPlayer.cpp
 Private/SessionPlayerStatus.cpp
 Private/SessionPlayerUpdateRequest.cpp
@@ -857,7 +856,6 @@ Public/SessionInviteResponse.h
 Public/SessionJoinResponse.h
 Public/SessionJoinability.h
 Public/SessionPermissions.h
-Public/SessionPlatform.h
 Public/SessionPlayer.h
 Public/SessionPlayerStatus.h
 Public/SessionPlayerUpdateRequest.h

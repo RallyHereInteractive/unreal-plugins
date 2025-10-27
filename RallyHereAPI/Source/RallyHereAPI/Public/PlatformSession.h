@@ -9,8 +9,8 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
+#include "Platform.h"
 #include "PlatformSessionPlayer.h"
-#include "SessionPlatform.h"
 #include "PlatformSession.generated.h"
 
 /** @defgroup RHAPI_PlatformSession RallyHere API Model PlatformSession
@@ -43,15 +43,15 @@ struct RALLYHEREAPI_API FRHAPI_PlatformSession : public FRHAPI_Model
 
 	/** @brief Platform that this session is for */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	ERHAPI_SessionPlatform Platform{  };
+	ERHAPI_Platform Platform{  };
 	/** @brief Gets the value of Platform */
-	FORCEINLINE ERHAPI_SessionPlatform& GetPlatform() { return Platform; }
+	FORCEINLINE ERHAPI_Platform& GetPlatform() { return Platform; }
 	/** @brief Gets the value of Platform */
-	FORCEINLINE const ERHAPI_SessionPlatform& GetPlatform() const { return Platform; }
+	FORCEINLINE const ERHAPI_Platform& GetPlatform() const { return Platform; }
 	/** @brief Sets the value of Platform */
-	FORCEINLINE void SetPlatform(const ERHAPI_SessionPlatform& NewValue) { Platform = NewValue;   }
+	FORCEINLINE void SetPlatform(const ERHAPI_Platform& NewValue) { Platform = NewValue;   }
 	/** @brief Sets the value of Platform using move semantics */
-	FORCEINLINE void SetPlatform(ERHAPI_SessionPlatform&& NewValue) { Platform = NewValue;   }
+	FORCEINLINE void SetPlatform(ERHAPI_Platform&& NewValue) { Platform = NewValue;   }
 
 	/** @brief Platform-Specific Identifier for the Platform's template */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

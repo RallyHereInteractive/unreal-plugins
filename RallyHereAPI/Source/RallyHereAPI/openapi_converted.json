@@ -17582,7 +17582,7 @@
           {
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SessionPlatform"
+              "$ref": "#/components/schemas/Platform"
             },
             "name": "platform",
             "in": "path"
@@ -17705,7 +17705,7 @@
           {
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SessionPlatform"
+              "$ref": "#/components/schemas/Platform"
             },
             "name": "platform",
             "in": "path"
@@ -17815,7 +17815,7 @@
           {
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SessionPlatform"
+              "$ref": "#/components/schemas/Platform"
             },
             "name": "platform",
             "in": "path"
@@ -17923,7 +17923,7 @@
           {
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SessionPlatform"
+              "$ref": "#/components/schemas/Platform"
             },
             "name": "platform",
             "in": "path"
@@ -18035,7 +18035,7 @@
           {
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SessionPlatform"
+              "$ref": "#/components/schemas/Platform"
             },
             "name": "platform",
             "in": "path"
@@ -18134,7 +18134,7 @@
           {
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SessionPlatform"
+              "$ref": "#/components/schemas/Platform"
             },
             "name": "platform",
             "in": "path"
@@ -18246,7 +18246,7 @@
           {
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/SessionPlatform"
+              "$ref": "#/components/schemas/Platform"
             },
             "name": "platform",
             "in": "path"
@@ -44830,7 +44830,7 @@
           "platform": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/SessionPlatform"
+                "$ref": "#/components/schemas/Platform"
               }
             ],
             "description": "Platform updated as part of this event"
@@ -45207,7 +45207,7 @@
           "platform": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/SessionPlatform"
+                "$ref": "#/components/schemas/Platform"
               }
             ],
             "description": "Which platform this client is on. If one is not provided, will get the platform from the 'platform_id'. Platform is now read from client's authorization claims if available"
@@ -45385,7 +45385,7 @@
           "platform": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/SessionPlatform"
+                "$ref": "#/components/schemas/Platform"
               }
             ],
             "description": "Platform updated as part of this event"
@@ -47286,65 +47286,6 @@
         ],
         "title": "PagedPlayersResponse"
       },
-      "SessionPlatform": {
-        "type": "string",
-        "enum": [
-          "Anon",
-          "Basic",
-          "XboxLive",
-          "PSN",
-          "NintendoNAID",
-          "NintendoSwitch",
-          "NintendoPPID",
-          "Google",
-          "GooglePlay",
-          "Apple",
-          "Epic",
-          "Steam",
-          "Amazon",
-          "Twitch",
-          "RallyHere",
-          "LegacyName"
-        ],
-        "title": "Platform",
-        "description": "An enumeration.",
-        "x-enum-varnames": [
-          "ANON",
-          "BASIC",
-          "XBOX_LIVE",
-          "PSN",
-          "NINTENDO_NAID",
-          "NINTENDO_SWITCH",
-          "NINTENDO_PPID",
-          "GOOGLE",
-          "GOOGLE_PLAY",
-          "APPLE",
-          "EPIC",
-          "STEAM",
-          "AMAZON",
-          "TWITCH",
-          "RALLYHERE",
-          "LEGACYNAME"
-        ],
-        "x-enum-descriptions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ]
-      },
       "PlatformID": {
         "type": "integer",
         "enum": [
@@ -47403,7 +47344,7 @@
           "platform": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/SessionPlatform"
+                "$ref": "#/components/schemas/Platform"
               }
             ],
             "description": "Which platform this specified player is a scout for"
@@ -47421,7 +47362,7 @@
           "platform": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/SessionPlatform"
+                "$ref": "#/components/schemas/Platform"
               }
             ],
             "description": "Platform that this session is for"
@@ -47510,7 +47451,7 @@
           "platform": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/SessionPlatform"
+                "$ref": "#/components/schemas/Platform"
               }
             ],
             "description": "Platform"
