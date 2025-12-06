@@ -217,7 +217,6 @@ bool URH_PlatformSessionSyncer::IsLocalPlayerScout() const
 		{
 			const auto& PlayerUuid = Player.GetPlayerUuid();
 			
-
 			// only consider players that have joined
 			auto JoinedTime = Player.GetJoinedOrNull();
 			if (JoinedTime == nullptr || JoinedTime->GetTicks() == 0)
@@ -979,6 +978,7 @@ void URH_PlatformSessionSyncer::JoinPlatformSession()
 			{
 				UE_LOG(LogRHSession, Log, TEXT("[%s] - Joining via cached session invite %s"), ANSI_TO_TCHAR(__FUNCTION__), *CachedInvitePlatformSessionId->ToString());
 				JoinFoundPlatformSession(CachedSessionInviteCopy);
+				return; //$$P ZTP - Don't search if we attempted join from cached invite
 			}
 			else
 			{
@@ -1120,13 +1120,13 @@ void URH_PlatformSessionSyncer::OnPlatformSessionJoined(EOnJoinSessionCompleteRe
 			}
 			else if (IsLocalPlayerScout())
 			{
-				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session join error %s, local player is scout, trying to rectify"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
+				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session (%s) join error %s, local player is scout, trying to rectify"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
 				OnScoutFailedToJoin();
 				return;
 			}
 			else
 			{
-				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session join error %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
+				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session (%s) join error %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
 			}
 		}
 		else

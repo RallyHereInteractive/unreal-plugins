@@ -289,10 +289,9 @@ bool FOnlineSubsystemSteamV2::Init()
 
 bool FOnlineSubsystemSteamV2::Shutdown()
 {
-	FOnlineSubsystemImpl::Shutdown();
-
 	if (OnlineAsyncTaskThread)
 	{
+		OnlineAsyncTaskThread->Kill(true);	
 		// Destroy the online async task thread
 		delete OnlineAsyncTaskThread;
 		OnlineAsyncTaskThread = nullptr;
@@ -303,6 +302,8 @@ bool FOnlineSubsystemSteamV2::Shutdown()
 		delete OnlineAsyncTaskThreadRunnable;
 		OnlineAsyncTaskThreadRunnable = nullptr;
 	}
+
+	FOnlineSubsystemImpl::Shutdown();
 
 #define DESTRUCT_INTERFACE(Interface) \
 	if (Interface.IsValid()) \

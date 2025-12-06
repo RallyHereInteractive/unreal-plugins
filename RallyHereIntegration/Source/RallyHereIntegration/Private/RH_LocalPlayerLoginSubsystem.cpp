@@ -798,6 +798,15 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSPrivilegeResults(const FUniqueNetId& Us
         PostResults(Req, Result);
         return false;
     }
+    else if (PrivilegeResults & (uint32)IOnlineIdentity::EPrivilegeResults::OnlinePlayRestricted)
+    {
+    	UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] User online play restricted"),
+			   ANSI_TO_TCHAR(__FUNCTION__));
+    	FRH_LoginResult Result = Req.CreateResult(ERHAPI_LoginResult::Fail_OSSOnlinePlayRestriction);
+    	Result.PrivilegeResults = PrivilegeResults;
+    	PostResults(Req, Result);
+    	return false;
+    }
     else
     {
         UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unknown privilege check failure %d"),
@@ -1085,18 +1094,27 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
     else if (Resp.GetHttpResponseCode() == EHttpResponseCodes::Denied || Resp.GetHttpResponseCode() ==
         EHttpResponseCodes::Forbidden)
     {
-		FRHAPI_LoginCompleteMessage Msg;
-		Resp.TryGetContentFor403(Msg);
-		const bool NeedsEula = Msg.GetNeedsEula();
+    	FRHAPI_LoginCompleteMessage Msg;
+    	Resp.TryGetContentFor403(Msg);
+    	const bool NeedsEula = Msg.GetNeedsEula();
     	const bool NeedsTos = Msg.GetNeedsTos();
     	const bool NeedsPrivacyPolicy = Msg.GetNeedsPrivacyPolicy();
-		FRH_LoginResult Result = Req.CreateResult((NeedsEula || NeedsTos || NeedsPrivacyPolicy) ? ERHAPI_LoginResult::Fail_MustAcceptAgreements : ERHAPI_LoginResult::Fail_RHDenied);
-		Result.bMustAcceptEULA = NeedsEula;
-		Result.bMustAcceptTOS = NeedsTos;
-		Result.bMustAcceptPP = NeedsPrivacyPolicy;
-		Result.Restrictions = Msg.GetRestrictions();
-		Result.RallyHereErrorCode = Msg.GetErrorCode();
-		UE_LOG(LogRallyHereIntegration,
+    	ERHAPI_LoginResult APILoginResult = ERHAPI_LoginResult::Fail_RHDenied;
+    	if (Msg.GetErrorCode() == TEXT("does_not_meet_ownership_reqs"))
+    	{
+    		APILoginResult = ERHAPI_LoginResult::Fail_RHOwnershipCheckFailed;
+    	}
+    	else if (NeedsEula || NeedsTos || NeedsPrivacyPolicy)
+    	{
+    		APILoginResult = ERHAPI_LoginResult::Fail_MustAcceptAgreements;
+    	}
+    	FRH_LoginResult Result = Req.CreateResult(APILoginResult);
+    	Result.bMustAcceptEULA = NeedsEula;
+    	Result.bMustAcceptTOS = NeedsTos;
+    	Result.bMustAcceptPP = NeedsPrivacyPolicy;
+    	Result.Restrictions = Msg.GetRestrictions();
+    	Result.RallyHereErrorCode = Msg.GetErrorCode();
+    	UE_LOG(LogRallyHereIntegration,
 			   Log,
 			   TEXT("[%s] Denied Login - eula=%s tos=%s pp=%s restrictions=%d (%s: %s)"),
 			   ANSI_TO_TCHAR(__FUNCTION__),
@@ -1106,7 +1124,7 @@ void URH_LocalPlayerLoginSubsystem::RallyHereLoginComplete(const RallyHereAPI::F
 			   Result.Restrictions.Num(),
 			   *Msg.GetErrorCode(),
 			   *Msg.GetDesc());
-        PostResults(Req, Result);
+    	PostResults(Req, Result);
     }
     else
     {

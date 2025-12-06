@@ -14,6 +14,7 @@
 // RallyHere API types
 #include "ClientType.h"
 #include "RallyHereAPIAuthContext.h"
+#include "PlatformID.h"
 #include "Platform.h"
 #include "InventoryBucket.h"
 #include "GrantType.h"
@@ -128,6 +129,21 @@ public:
 		: UserId(InUserId)
 		, PlatformType(InPlatformType)
 	{}
+
+	// @brief EOS combo Id handling
+	FString GetAPIUserId() const
+	{
+		if (PlatformType == ERHAPI_Platform::Epic)
+		{
+			TArray<FString> UserIdComponents;
+			UserId.ParseIntoArray(UserIdComponents, TEXT("|"), false);
+			if (UserIdComponents.Num() > 0)
+			{
+				return UserIdComponents[0];
+			}
+		}
+		return UserId;
+	}
 
 	static FRH_PlayerPlatformId Invalid;
 };

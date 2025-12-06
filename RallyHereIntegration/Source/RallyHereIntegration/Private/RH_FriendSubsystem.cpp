@@ -52,6 +52,7 @@ void URH_FriendSubsystem::Deinitialize()
 	{
 		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("friends")).RemoveAll(this);
 		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("blocked")).RemoveAll(this);
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("presence")).RemoveAll(this);
 	}
 
 	Super::Deinitialize();
@@ -67,6 +68,7 @@ void URH_FriendSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, class URH_Pl
 	{
 		OldLocalPlayerInfo->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("friends")).RemoveAll(this);
 		OldLocalPlayerInfo->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("blocked")).RemoveAll(this);
+		OldLocalPlayerInfo->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("presence")).RemoveAll(this);
 
 		StopFriendsRefreshTimer();
 		StopBlockedRefreshTimer();
@@ -80,6 +82,7 @@ void URH_FriendSubsystem::OnUserChanged(const FGuid& OldPlayerUuid, class URH_Pl
 	{
 		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("friends")).AddUObject(this, &URH_FriendSubsystem::HandleNotification);
 		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("blocked")).AddUObject(this, &URH_FriendSubsystem::HandleNotification);
+		GetLocalPlayerSubsystem()->GetPlayerNotifications()->OnNotificationStreamedByAPI.FindOrAdd(TEXT("presence")).AddUObject(this, &URH_FriendSubsystem::HandleNotification);
 
 		StartFriendsRefreshTimer();
 		StartBlockedRefreshTimer();
@@ -114,6 +117,20 @@ void URH_FriendSubsystem::HandleNotification(const FRHAPI_Notification& Notifica
 		if (APIParams.Num() >= 2 && APIParams[0] == TEXT("v2") && APIParams[1] == TEXT("player"))
 		{
 			PollBlockedPlayers(FRH_PollCompleteFunc());
+		}
+	}
+	else
+	if (APIName == TEXT("presence"))
+	{
+		if (APIParams.Num() >= 4 && APIParams[0] == TEXT("v1") && APIParams[1] == TEXT("player") && APIParams[2] == TEXT("uuid"))
+		{
+			if (const URH_PlayerInfoSubsystem* PSS = GetRH_PlayerInfoSubsystem())
+			{
+				if (auto PlayerInfo = PSS->GetPlayerInfo(FGuid(APIParams[3])))
+				{
+					PlayerInfo->GetPresence()->RequestUpdate(true);
+				}
+			}
 		}
 	}
 }
@@ -236,6 +253,29 @@ void URH_FriendSubsystem::OnFetchFriendsListResponse(const GetFriendsListType::R
 		}
 
 		RemoveAllFriendsWithNoRelationships(UpdatedFriends);
+
+		if (URH_LocalPlayerSubsystem* LPSS = GetLocalPlayerSubsystem())
+		{
+			if (URH_LocalPlayerPresenceSubsystem* LPPSS = LPSS->GetPresenceSubsystem())
+			{
+				if (LPPSS->GetDesiredDoNotDisturb())
+				{
+					for (int32 i = UpdatedFriends.Num() - 1; i >= 0; i--)
+					{
+						if (UpdatedFriends[i]->GetStatus() == ERHAPI_FriendshipStatus::FriendRequestPending)
+						{
+							if (RemoveFriend(UpdatedFriends[i]->GetRHPlayerUuid()))
+							{
+								UpdatedFriends[i]->RHFriendshipStatus = ERHAPI_FriendshipStatus::None;
+								UpdatedFriends[i]->AcknowledgeFriendUpdate();
+								UpdatedFriends.RemoveAt(i);
+							}
+						}
+					}
+				}
+			}
+		}
+
 		if (!FriendsCached)
 		{
 			SCOPED_NAMED_EVENT(RallyHere_BroadcastFriendListUpdated, FColor::Purple);
@@ -807,7 +847,10 @@ void URH_FriendSubsystem::OSSReadFriendsList(const FString& ListName /* = "Defau
 			OSSFriendsInterface->OnBlockListChangeDelegates[LPSS->GetPlatformUserId()].AddUObject(this, &URH_FriendSubsystem::OnOSSBlockListChanged);
 
 			// Query the block list
-			OSSFriendsInterface->QueryBlockedPlayers(*LPSS->GetOSSUniqueId().GetUniqueNetId());
+			if (FUniqueNetIdWrapper OSSUniqueId = LPSS->GetOSSUniqueId(); OSSUniqueId.IsValid() && OSSUniqueId.IsV1())
+			{
+				OSSFriendsInterface->QueryBlockedPlayers(*OSSUniqueId.GetUniqueNetId());
+			}
 
 			// Listen to presence change to update friends' metadata
 			if (OSSPresenceInterface.IsValid())
@@ -1894,7 +1937,7 @@ void URH_FriendSubsystem::UpdateRecentPlayerForOSS(const URH_LocalPlayerSubsyste
 
 	IOnlineSubsystem* OSS = IOnlineSubsystem::Get();
 	IOnlineFriendsPtr Friends = OSS ? OSS->GetFriendsInterface() : nullptr;
-	if (!Friends.IsValid() || !RH_UseRecentPlayersFromOSSName(OSS->GetSubsystemName()))
+	if (!Friends.IsValid() || !OSS || !RH_UseRecentPlayersFromOSSName(OSS->GetSubsystemName()))
 	{
 		return;
 	}

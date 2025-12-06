@@ -239,6 +239,30 @@ FGuid URH_LocalPlayerSessionSubsystem::GetPlayerUuid() const
 	return GetLocalPlayerSubsystem()->GetPlayerUuid();
 }
 
+// When searching for session by id, also check the short join codes as the backend considers these interchangeable
+URH_SessionView* URH_LocalPlayerSessionSubsystem::GetSessionById(const FString& SessionId) const
+{
+	if (auto SessionPtr = Sessions.Find(SessionId))
+	{
+		return *SessionPtr;
+	}
+
+	TArray<FString> SessionKeys;
+	Sessions.GenerateKeyArray(SessionKeys);
+	for (const FString& SessionKey : SessionKeys)
+	{
+		if (URH_SessionView* Session = Sessions.FindChecked(SessionKey))
+		{
+			if (const FString* SessionShortCode = Session->GetSessionData().GetShortCodeOrNull(); SessionShortCode && SessionId == *SessionShortCode)
+			{
+				return Session;
+			}
+		}
+	}
+	
+	return nullptr;
+}
+
 TArray<URH_SessionView*> URH_LocalPlayerSessionSubsystem::GetSessionsByType(const FString& Type) const
 {
 	TArray<URH_SessionView*> SessionsArray = GetSessions();

@@ -1163,7 +1163,8 @@ void URH_OfflineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle
 	// offline sessions do not support voip
 	Delegate.ExecuteIfBound(false, FRHAPI_VoipTokenResponse(), FRH_ErrorInfo());
 }
-void URH_OfflineSession::GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate)
+
+void URH_OfflineSession::GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const TOptional<FString>& ConnectIdToken, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -1794,7 +1795,7 @@ void URH_OnlineSession::GenerateVoipActionToken(ERHAPI_VivoxSessionActionSingle 
 	Helper->Start(RH_APIs::GetSessionsAPI(), Request);
 }
 
-void URH_OnlineSession::GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate)
+void URH_OnlineSession::GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const TOptional<FString>& ConnectIdToken, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate)
 {
 	UE_LOG(LogRHSession, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 
@@ -1803,6 +1804,7 @@ void URH_OnlineSession::GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSe
 	Request.AuthContext = GetSessionOwner()->GetSessionAuthContext();
 	Request.SessionId = GetSessionId();
 	Request.VoipSessionType = VoipSessionType;
+	Request.ConnectIdToken = ConnectIdToken;
 	
 	if(FModuleManager::Get().IsModuleLoaded("RallyHereIntegration"))
 	{

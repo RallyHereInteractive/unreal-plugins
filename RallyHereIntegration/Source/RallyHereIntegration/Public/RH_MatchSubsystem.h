@@ -67,7 +67,7 @@ struct FRH_MatchSearchParams
 	FString GetDescription() const
 	{
 		return FString::Printf(TEXT("PageSize: %d, InstanceId: %s, AllocationId: %s, SessionId: %s, HostPlayerUuid: %s, RegionId: %s, PlayerUuid: %s, bIncludeSegments: %d, bIncludePlayers: %d, Cursor: %s"),
-						PageSize, *InstanceId, *AllocationId, *SessionId, *HostPlayerUuid, *RegionId, bIncludeSegments ? 1 : 0, bIncludePlayers ? 1 : 0, *Cursor, *PlayerUuid);
+						PageSize, *InstanceId, *AllocationId, *SessionId, *HostPlayerUuid, *RegionId, *PlayerUuid, bIncludeSegments ? 1 : 0, bIncludePlayers ? 1 : 0, *Cursor);
 	}
 
 	bool CanCacheResults() const

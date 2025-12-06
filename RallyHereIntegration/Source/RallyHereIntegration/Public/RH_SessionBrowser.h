@@ -28,32 +28,32 @@ struct RALLYHEREINTEGRATION_API FRH_SessionBrowserSearchParams
 	/**
 	 * @brief The Type of Session to search for.
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Search Params|Session")
 	FString SessionType;
 	/**
 	 * @brief The Region ID of Session to search for.
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Search Params|Session")
 	FString RegionId;
 	/**
 	 * @brief If specified, skip search lookup and instead query these specific session ids
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Search Params|Session")
 	TArray<FString> SessionIds;
 	/**
 	 * @brief The indicator of what page to request of results.
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Search Params|Paging")
 	int32 Cursor;
 	/**
 	 * @brief The size of each page of results.
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Search Params|Paging")
 	int32 PageSize;
 	/**
 	 * @brief Whether to query and cache the session data from the search result
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Search Params|Cache")
 	bool bCacheSessionDetails;
 
 	/**
@@ -84,17 +84,17 @@ struct RALLYHEREINTEGRATION_API FRH_SessionBrowserSearchResult
 	/**
 	 * @brief The paramaters used to make the search.
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category = "Search Result|Search Params")
 	FRH_SessionBrowserSearchParams SearchParams;
 	/**
 	 * @brief Array of session infos found by the search
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category = "Search Result")
 	TArray<FRHAPI_BrowserSessionInfo> SessionInfos;
 	/**
 	 * @brief Array of sessions found by the search if bCacheSessionDetails was true
 	 */
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category = "Search Result")
 	TArray<TWeakObjectPtr<URH_SessionView>> Sessions;
 	/**
 	 * @brief Cursor to use to request the next page of data
@@ -238,11 +238,8 @@ public:
 	 * @return The Session with the given Id.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Session")
-	virtual URH_SessionView* GetSessionById(const FString& SessionId) const override
-	{
-		auto ptr = Sessions.Find(SessionId);
-		return ptr != nullptr ? (*ptr) : nullptr;
-	}
+	virtual URH_SessionView* GetSessionById(const FString& SessionId) const override;
+	
 	// Note - Remove calls will attempt to remove the session without attempting to leave the RH session.  To leave a session, call the LeaveSession variants
 	// uses ID as the primary key rather than the Session object because we may need to remove something that was not fully joined
 	/**

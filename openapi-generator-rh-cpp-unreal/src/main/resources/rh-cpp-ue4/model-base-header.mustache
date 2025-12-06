@@ -78,11 +78,17 @@ namespace {{this}}
 struct FAuthContext;
 using namespace FHttpRetrySystem;
 
+#if (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION < 6) || ENGINE_MAJOR_VERSION == 4
 struct {{dllapi}} FHttpRetryManager : public FManager, public FTSTickerObjectBase
+#else
+struct {{dllapi}} FHttpRetryManager : public FManager
+#endif
 {
 	using FManager::FManager;
 
+#if (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION < 6) || ENGINE_MAJOR_VERSION == 4
 	bool Tick(float DeltaTime) final;
+#endif
 };
 
 #if RHAPI_FROM_ENGINE_VERSION(5,4)

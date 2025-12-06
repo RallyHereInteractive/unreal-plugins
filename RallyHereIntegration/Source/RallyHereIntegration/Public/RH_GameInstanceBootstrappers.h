@@ -224,6 +224,9 @@ public:
 	*/
 	bool DetermineJoinParameters(FString& PublicConnStr, FString& PrivateConnStr);
 
+	void InstanceMigrationRequested();
+	void CompleteInstanceMigration();
+
 protected:
 
 	/** Bootstrap Mode being used */
@@ -246,7 +249,7 @@ protected:
 	virtual void HandleAppTerminatedGameThread();
 
 	/** @brief Fallback routine that does its best to leave the session we have loaded */
-	virtual void BestEffortLeaveSession();
+	virtual void BestEffortLeaveSession(bool bLeaveSession = true);
 
 	/**
 	* @brief Updates the current bootstrapping step, and handles step change logic
@@ -374,6 +377,12 @@ protected:
 	*/
 	virtual void OnSessionNotFound(URH_SessionView* Session);
 
+	bool bRequestingNewInstance = false;
+
+public:
+	void MarkRequestingNewInstance() { bRequestingNewInstance = true; }
+
+protected:
 	/**
 	* @brief Utility function to clean up state after a logout.
 	*/

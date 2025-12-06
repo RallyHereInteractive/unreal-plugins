@@ -88,6 +88,11 @@ public:
 	 */
 	UPROPERTY(Transient)
 	FString OrderId;
+	/**
+	 * @brief Client reference id of the pending order.
+	 */
+	UPROPERTY()
+	FGuid ClientOrderRefId;
 
 protected:
 	/**
@@ -756,7 +761,7 @@ public:
 	/**
 	 * @brief Initialize the subobject.
 	 */
-	void Initialize();
+	virtual void Initialize();
 
 	/**
 	 * @brief Gets the player info set on the subsystem.
@@ -792,6 +797,7 @@ public:
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Get Inventory Count", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetInventoryCount(const int32& ItemId, const FRH_GetInventoryCountDynamicDelegate& Delegate) { GetInventoryCount(ItemId, Delegate); }
+
 	/**
 	* @brief Gets if the player owns at least one of the item for the connected platform, async pulls needed item data if it isn't already cached.
 	* @param [in] ItemId The id of the item requesting count of.
@@ -1001,7 +1007,7 @@ public:
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Inventory Subsystem", meta = (DisplayName = "Redeem Promo Code", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_RedeemPromoCode(const FString& PromoCode, const FRH_PromoCodeResultDynamicDelegate& Delegate) { RedeemPromoCode(PromoCode, Delegate); }
-	
+
 	/**
 	* @brief Sets a watch to start polling for orders for the player.
 	* @param [in] Delegate Callback delegate whenever the player has any orders.
@@ -1059,6 +1065,11 @@ public:
 	{
 		return CreateInventory(ClientOrderReferenceId, CreateInventories, Source, Delegate);
 	};
+
+	// @brief create and update batch order
+	void CreateInventoryOrder(const TOptional<FGuid> ClientOrderReferenceId, const TArray<FRHAPI_PlayerOrderEntryCreateInput>& OrderEntries, const ERHAPI_Source Source = ERHAPI_Source::Client, const FRH_OnInventoryUpdateDelegateBlock& Delegate = FRH_OnInventoryUpdateDelegate());
+	// @brief Client inventory orders (loot claiming)
+	void CreateInventoryOrderSelf(const TOptional<FGuid> ClientOrderReferenceId, const TArray<FRHAPI_PlayerOrderEntryCreateInput>& OrderEntries, const ERHAPI_Source Source = ERHAPI_Source::Client, const FRH_OnInventoryUpdateDelegateBlock& Delegate = FRH_OnInventoryUpdateDelegate());
 
 	/**
 	* @private
@@ -1209,16 +1220,18 @@ protected:
 	 * @brief Helper function to broadcast inventory changes.
 	 * @param ItemIds The item ids that have been updated.
 	 */
-	void BroadcastOnInventoryCacheUpdated(const TArray<int32>& ItemIds)
+	virtual void BroadcastOnInventoryCacheUpdated(const TArray<int32>& ItemIds)
 	{
 		SCOPED_NAMED_EVENT(RallyHere_BroadcastInventoryCacheUpdated, FColor::Purple);
 		OnInventoryCacheUpdated.Broadcast(ItemIds, PlayerInfo);
 		OnInventoryCacheUpdatedBP.Broadcast(ItemIds, PlayerInfo);
 	}
 	/** @brief Callback that occurs whenever the local player this subsystem is associated with changes. */
-	void OnUserChanged();
+	virtual void OnUserChanged();
 	/** @brief Initializes the subsystem with defaults for its cached data. */
 	void InitPropertiesWithDefaultValues();
+	// @brief Notify order has been processed
+	virtual void OnInventoryOrderProcessed(const FGuid& ClientOrderRefId) {}
 	/**
 	 * @brief Adds instance specific data to an Player Order.
 	 * @param PlayerOrderCreate The Player order to add the data to.
@@ -1269,6 +1282,10 @@ protected:
 	* @param [in] Delegate Delegate passed in for original call to respond to when call completes.
 	*/
 	void HandleUpdateInventory(const RallyHereAPI::FResponse_ModifyManyPlayerInventoryUuid& Response, const FRH_OnInventoryUpdateDelegateBlock Delegate);
+	// @brief create and update batch order
+	void HandleCreateInventoryOrder(const RallyHereAPI::FResponse_CreateNewPlayerUuidOrder& Response, const FRH_OnInventoryUpdateDelegateBlock Delegate);
+	// @brief Client inventory orders (loot claiming)
+	void HandleCreateInventoryOrderSelf(const RallyHereAPI::FResponse_CreateNewPlayerUuidOrderSelf& Response, const FRH_OnInventoryUpdateDelegateBlock Delegate);
 	/**
 	 * @brief Converts the class of Order Entries to the struct used by the API system for calls.
 	 * @param [out] Entries Struct based Order entries for submission.
@@ -1279,7 +1296,9 @@ protected:
 	 * @brief Updates the cached inventory with data from an incoming order.
 	 * @param OrderDetails The details of the incoming order.
 	 */
-	void UpdateInventoryFromOrderDetails(const TArray<FRHAPI_PlayerOrderDetail>& OrderDetails);
+	void UpdateInventoryFromOrderDetails(const TArray<FRHAPI_PlayerOrderDetail>& OrderDetails, TArray<int32>& InventoryCacheUpdates);
+	// @brief Optimized retrieval of items using both ids
+	FRH_ItemInventory* GetCachedInventoryItem(const FGuid& InventoryId, const int32 ItemId);
 	/**
 	 * @brief Internal helper function to complete Get Inventory Count.
 	 * @param Item The Item to get the count of.
@@ -1328,6 +1347,8 @@ class RALLYHEREINTEGRATION_API URH_InventoryBlueprintLibrary : public UBlueprint
 {
 	GENERATED_BODY()
 
+public:
+	
 	/**
 	* @brief Checks if the inventory item has an expiration.
 	* @param [in] ItemInventory The item inventory to check.

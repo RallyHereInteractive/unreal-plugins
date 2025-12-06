@@ -9,6 +9,11 @@
 	"Description" : "Extended Steam Subsystem Functionality",
 	"Category" : "RallyHere",
 	"EnabledByDefault" : false,
+	"SupportedTargetPlatforms": [
+		"Win64",
+		"Mac",
+		"Linux"
+	],
 
 	"Modules" : [
 		{

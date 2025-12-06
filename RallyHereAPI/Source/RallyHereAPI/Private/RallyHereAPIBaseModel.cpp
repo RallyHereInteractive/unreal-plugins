@@ -19,6 +19,7 @@
 namespace RallyHereAPI
 {
 
+#if (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION < 6) || ENGINE_MAJOR_VERSION == 4
 bool FHttpRetryManager::Tick(float DeltaTime)
 {
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS
@@ -26,6 +27,7 @@ bool FHttpRetryManager::Tick(float DeltaTime)
 	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	return true;
 }
+#endif
 
 FResponse::JsonPayloadType FResponse::DefaultJsonPayload = FResponse::JsonPayloadType();
 FResponse::StringPayloadType FResponse::DefaultStringPayload = FResponse::StringPayloadType();

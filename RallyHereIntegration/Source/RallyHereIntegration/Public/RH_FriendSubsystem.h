@@ -1085,12 +1085,12 @@ protected:
 	 */
 	virtual void PostReloadConfig(class FProperty* PropertyThatWasLoaded) override;
 
-    /**
-     * @brief Update associations between platform friends and rh friends based on receiving a player's links
-     * @param Platforms Linked platform information about a single player
-     * @param MainFriend Friend object for the single player's uuid
-     */
-    void GetLinkedPlatformInfoHandler(bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms, TWeakObjectPtr<URH_RHFriendAndPlatformFriend> MainFriendWeak);
+	/**
+	 * @brief Update associations between platform friends and rh friends based on receiving a player's links
+	 * @param Platforms Linked platform information about a single player
+	 * @param MainFriend Friend object for the single player's uuid
+	 */
+	void GetLinkedPlatformInfoHandler(bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms, TWeakObjectPtr<URH_RHFriendAndPlatformFriend> MainFriendWeak);
 	void DoCheckPlatformAndUpdateRecentPlayerForOSSFromPresence(bool bSuccess, URH_PlayerInfoSubobject* Subobj);
 	void OnLinksUpdated_UpdateRecentPlayerForOSS(bool bSuccess, const TArray<URH_PlayerPlatformInfo*>& Platforms);
 

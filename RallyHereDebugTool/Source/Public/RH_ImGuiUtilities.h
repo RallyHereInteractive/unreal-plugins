@@ -208,7 +208,7 @@ bool RALLYHEREDEBUGTOOL_API ImGuiDisplayListEnumCombos(const FString& ComboLabel
 
 	ImGui::Text(ComboLabel);
 	ImGui::SameLine();
-
+	
 	for (int32 x = 0; x < CurrentValue.Num(); ++x)
 	{
 		bAnyChanged = ImGuiDisplayEnumCombo(FString::FromInt(x), CurrentValue[x]) || bAnyChanged;

@@ -16,6 +16,7 @@ URH_ConfigSubsystem::URH_ConfigSubsystem(const FObjectInitializer& ObjectInitial
 	: Super(ObjectInitializer)
 {
 	KickBeforeHint = FDateTime::MinValue();
+	bFetchedKVs = false;
 }
 
 void URH_ConfigSubsystem::Initialize()
@@ -99,6 +100,8 @@ void URH_ConfigSubsystem::OnFetchKVs(const GetKVsAPIType::Response& Resp)
 	const auto Content = Resp.TryGetDefaultContentAsPointer();
 	if (Resp.IsSuccessful() && Content != nullptr)
 	{
+		bFetchedKVs = true;
+
 		// clear out old KVs
 		KVs.Reset();
 

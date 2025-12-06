@@ -10,6 +10,7 @@
 #include "Stats/Stats2.h"
 #include "Tickable.h"
 #include "Templates/SharedPointer.h"
+#include "Engine/DeveloperSettings.h"
 
 #include "RH_Polling.generated.h"
 

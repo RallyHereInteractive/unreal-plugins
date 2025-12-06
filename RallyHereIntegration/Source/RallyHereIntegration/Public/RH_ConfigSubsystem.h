@@ -176,6 +176,17 @@ public:
 	* @param [in] Delegate Delegate to call when the request is complete.
 	*/
 	void PollKVs(const FRH_PollCompleteFunc& Delegate);
+
+	/**
+	* @brief Gets whether or not KVs have been fetched. If false, only ini defaults have been loaded.
+	* @return True if KVs have been successfully fetched from the API.
+	*/
+	UFUNCTION(BlueprintGetter, Category = "Config")
+	bool HasFetchedKVs() const
+	{
+		return bFetchedKVs;
+	}
+
 	/**
 	* @brief Gets the map of all the Public KVs and their values.
 	* @return Map of all the Public KVs and their values
@@ -328,6 +339,9 @@ public:
 	bool GetHotfixTestValue() const;
 
 protected:
+	/** @brief Have we ever fetched KVs before?. */
+	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=HasFetchedKVs, Category = "Config")
+	bool bFetchedKVs;
 	/** @brief Map of KVs by Key. */
 	UPROPERTY(VisibleInstanceOnly, BlueprintGetter=GetKVs, Category = "Config")
 	TMap<FString, FString> KVs;

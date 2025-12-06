@@ -436,7 +436,7 @@ public:
 	 * @param [in] Options Options for the generated report.
 	 * @return The generated object
 	 */
-	UFUNCTION(Category = "RallyHere | Diagnostics")
+	UFUNCTION(BlueprintCallable, Category = "RallyHere | Diagnostics")
 	static void GenerateReport(const FRH_DiagnosticReportOptions& Options);
 };
 

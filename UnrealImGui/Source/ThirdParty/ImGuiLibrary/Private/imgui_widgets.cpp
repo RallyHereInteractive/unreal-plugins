@@ -30,6 +30,11 @@ Index of this file:
 
 */
 
+//$$P ARV - BEGIN: Silence SA warning
+#pragma warning(push)
+#pragma warning(disable:6011)
+//$$P ARV - END: Silence SA warning
+
 #if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
 #define _CRT_SECURE_NO_WARNINGS
 #endif
@@ -9088,3 +9093,7 @@ void ImGui::TabItemLabelAndCloseButton(ImDrawList* draw_list, const ImRect& bb, 
 
 
 #endif // #ifndef IMGUI_DISABLE
+
+//$$P ARV - BEGIN: Silence SA warning
+#pragma warning(pop)
+//$$P ARV - END: Silence SA warning

@@ -206,7 +206,7 @@ void URH_PlayerInfoSubsystem::LookupPlayerByPlatformUserId(FRH_PlayerPlatformId 
 
 	Request.Platform = PlayerPlatformId.PlatformType;
 	Request.Identities = TArray<FString>();
-	Request.Identities.GetValue().Push(PlayerPlatformId.UserId);
+	Request.Identities.GetValue().Push(PlayerPlatformId.GetAPIUserId());
 	Request.AuthContext = GetAuthContext();
 	if (!TLookupPlayer::DoCall(RH_APIs::GetUsersAPI(), Request, TLookupPlayer::Delegate::CreateUObject(this, &URH_PlayerInfoSubsystem::OnLookupPlayerByPlatformUserIdResponse, Delegate), GetDefault<URH_IntegrationSettings>()->UsersLookupPlayerPriority))
 	{

@@ -597,6 +597,7 @@ void URH_CatalogSubsystem::OnGetCatalogVendorResponseComplete(bool bSuccess, con
 {
 	// remove from in flight list
 	InFlightVendorRequests.Remove(VendorId);
+
 	// forward on single vendor fetch delegate, as it is now complete
 	Delegate.ExecuteIfBound(bSuccess, ErrorInfo);
 

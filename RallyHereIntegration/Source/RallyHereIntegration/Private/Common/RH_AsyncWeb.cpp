@@ -134,3 +134,10 @@ bool FRH_HttpResponseSerializable::ImportFromFile(const FString& FilePath)
 	
 	return true;
 }
+
+FUtf8StringView FRH_HttpResponseSerializable::GetContentAsUtf8StringView() const
+{
+	// ARV - Copied from FHttpResponseCommon::GetContentAsUtf8StringView
+	const TArray<uint8>& Payload = GetContent();
+	return FUtf8StringView(reinterpret_cast<const UTF8CHAR*>(Payload.GetData()), Payload.Num());
+}

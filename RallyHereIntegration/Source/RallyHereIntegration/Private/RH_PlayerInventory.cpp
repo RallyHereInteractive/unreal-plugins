@@ -551,7 +551,7 @@ void URH_PlayerInventory::HandleGetInventory(const RallyHereAPI::FResponse_GetPl
 			LastAnyInventoryTime = HeaderDateTime;
 		}
 	}
-	
+
 	// partial item updates
 	if (ItemIds.Num() > 0)
 	{
@@ -834,6 +834,115 @@ void URH_PlayerInventory::GetItemLevelsAsync(const TArray<int32>& ItemIdsToCheck
 	Helper->Start(RH_APIs::GetInventoryAPI(), Request);
 }
 
+void URH_PlayerInventory::CreateInventoryOrder(const TOptional<FGuid> ClientOrderReferenceId, const TArray<FRHAPI_PlayerOrderEntryCreateInput>& OrderEntries, const ERHAPI_Source Source, const FRH_OnInventoryUpdateDelegateBlock& Delegate)
+{
+	if (OrderEntries.IsEmpty())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	auto Request = RallyHereAPI::FRequest_CreateNewPlayerUuidOrder();
+
+	Request.PlayerUuid = GetRHPlayerUuid();
+	Request.AuthContext = GetAuthContext();
+	Request.PlayerOrderCreateInput.SetSource(Source);
+	Request.PlayerOrderCreateInput.SetEntries(OrderEntries);
+	Request.PlayerOrderCreateInput.SetIsTransaction(true);
+
+	if (ClientOrderReferenceId.IsSet())
+	{
+		Request.PlayerOrderCreateInput.SetClientOrderRefId(ClientOrderReferenceId.GetValue());
+	}
+
+	if (!TCreateOrder::DoCall(RH_APIs::GetInventoryAPI(), Request, TCreateOrder::Delegate::CreateUObject(this, &URH_PlayerInventory::HandleCreateInventoryOrder, Delegate), GetDefault<URH_IntegrationSettings>()->InventoryCreateOrderPriority))
+	{
+		Delegate.ExecuteIfBound(false);
+	}
+}
+
+void URH_PlayerInventory::HandleCreateInventoryOrder(const RallyHereAPI::FResponse_CreateNewPlayerUuidOrder& Response, FRH_OnInventoryUpdateDelegateBlock Delegate)
+{
+	if (!Response.IsSuccessful())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+	
+	const FRHAPI_PlayerOrder* Content = Response.TryGetDefaultContentAsPointer();
+	if (Content == nullptr || Content->OrderId.IsEmpty())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
+	{
+		auto* NewOrder = NewObject<URH_PendingInventoryUpdateOrder>(this);
+		NewOrder->Init(Content->OrderId, Delegate);
+		PendingOrders.Push(NewOrder);
+	}
+	else
+	{
+		ParseOrderResult(*Content);
+		Delegate.ExecuteIfBound(true);
+	}
+}
+
+void URH_PlayerInventory::CreateInventoryOrderSelf(const TOptional<FGuid> ClientOrderReferenceId, const TArray<FRHAPI_PlayerOrderEntryCreateInput>& OrderEntries, const ERHAPI_Source Source, const FRH_OnInventoryUpdateDelegateBlock& Delegate)
+{
+	if (OrderEntries.IsEmpty())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	auto Request = RallyHereAPI::FRequest_CreateNewPlayerUuidOrderSelf();
+
+	Request.AuthContext = GetAuthContext();
+	Request.PlayerOrderCreateInput.SetSource(Source);
+	Request.PlayerOrderCreateInput.SetEntries(OrderEntries);
+	Request.PlayerOrderCreateInput.SetIsTransaction(true);
+
+	if (ClientOrderReferenceId.IsSet())
+	{
+		Request.PlayerOrderCreateInput.SetClientOrderRefId(ClientOrderReferenceId.GetValue());
+	}
+
+	if (!RallyHereAPI::Traits_CreateNewPlayerUuidOrderSelf::DoCall(RH_APIs::GetInventoryAPI(), Request, RallyHereAPI::Traits_CreateNewPlayerUuidOrderSelf::Delegate::CreateUObject(this, &URH_PlayerInventory::HandleCreateInventoryOrderSelf, Delegate), GetDefault<URH_IntegrationSettings>()->InventoryCreateOrderPriority))
+	{
+		Delegate.ExecuteIfBound(false);
+	}
+}
+
+void URH_PlayerInventory::HandleCreateInventoryOrderSelf(const RallyHereAPI::FResponse_CreateNewPlayerUuidOrderSelf& Response, FRH_OnInventoryUpdateDelegateBlock Delegate)
+{
+	if (!Response.IsSuccessful())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+	
+	const FRHAPI_PlayerOrder* Content = Response.TryGetDefaultContentAsPointer();
+	if (Content == nullptr || Content->OrderId.IsEmpty())
+	{
+		Delegate.ExecuteIfBound(false);
+		return;
+	}
+
+	if (Response.GetHttpResponseCode() == EHttpResponseCodes::Accepted)
+	{
+		auto* NewOrder = NewObject<URH_PendingInventoryUpdateOrder>(this);
+		NewOrder->Init(Content->OrderId, Delegate);
+		PendingOrders.Push(NewOrder);
+	}
+	else
+	{
+		ParseOrderResult(*Content);
+		Delegate.ExecuteIfBound(true);
+	}
+}
+
 void URH_PlayerInventory::CheckPollStatus()
 {
 	if (!ShouldPollInventory())
@@ -1070,11 +1179,13 @@ void URH_PlayerInventory::ParseOrderResult(const FRHAPI_PlayerOrder& Content)
 		pRH_EntitlementSubsystem->GetCachedStoreOffers(StoreOffers);
 	}
 
+	TArray<int32> InventoryCacheUpdates;
+
 	for (auto& OrderEntry : Content.Entries)
 	{
 		if (const auto Details = OrderEntry.GetDetailsOrNull())
 		{
-			UpdateInventoryFromOrderDetails(*Details);
+			UpdateInventoryFromOrderDetails(*Details, InventoryCacheUpdates);
 		}
 		if (!StoreOffers.IsEmpty())
 		{
@@ -1082,13 +1193,22 @@ void URH_PlayerInventory::ParseOrderResult(const FRHAPI_PlayerOrder& Content)
 		}
 	}
 
+	FGuid OrderRefId;
+	if (Content.GetClientOrderRefId(OrderRefId))
+	{
+		OnInventoryOrderProcessed(OrderRefId);
+	}
+
+	if (InventoryCacheUpdates.Num())
+	{
+		BroadcastOnInventoryCacheUpdated(InventoryCacheUpdates);
+	}
+
 	CachedOrderResults.Add(Content);
 }
 
-void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_PlayerOrderDetail>& OrderDetails)
+void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_PlayerOrderDetail>& OrderDetails, TArray<int32>& InventoryCacheUpdates)
 {
-	TArray<int32> InventoryCacheUpdates;
-
 	for (auto& OrderDetail : OrderDetails)
 	{
 		if (const FRHAPI_PlayerInventoryChange* InventoryChangePtr = OrderDetail.GetInvChangeOrNull())
@@ -1185,12 +1305,22 @@ void URH_PlayerInventory::UpdateInventoryFromOrderDetails(const TArray<FRHAPI_Pl
 			InventoryCache.Remove(UpdatedItemId);
 		}
 	}
+}
 
-	// broadcast updates
-	if (InventoryCacheUpdates.Num())
+FRH_ItemInventory* URH_PlayerInventory::GetCachedInventoryItem(const FGuid& InventoryId, const int32 ItemId)
+{
+	if (TArray<FRH_ItemInventory>* InventoryItems = InventoryCache.Find(ItemId))
 	{
-		BroadcastOnInventoryCacheUpdated(InventoryCacheUpdates);
+		for (FRH_ItemInventory& InventoryItem : *InventoryItems)
+		{
+			if (InventoryItem.InventoryId == InventoryId)
+	{
+				return &InventoryItem;
+			}
 	}
+	}
+
+	return nullptr;
 }
 
 void URH_PlayerInventory::PopulateInstanceData(FRHAPI_PlayerOrderCreateInput& PlayerOrderCreate) const

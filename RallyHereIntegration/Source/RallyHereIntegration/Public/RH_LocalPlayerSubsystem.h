@@ -326,6 +326,10 @@ protected:
 
 	/** The start time of the AnalyticsProvider */
 	TOptional<FDateTime> AnalyticsStartTime;
+
+	/** @brief If the Local Player Subsystem is enabled. */
+	UPROPERTY(config)
+	bool bEnabled = true;
 };
 
 /** @} */

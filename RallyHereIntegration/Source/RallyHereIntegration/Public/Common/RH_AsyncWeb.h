@@ -562,6 +562,8 @@ public:
 		FUTF8ToTCHAR TCHARData(reinterpret_cast<const ANSICHAR*>(Content.GetData()), Content.Num());
 		return FString(TCHARData.Length(), TCHARData.Get());
 	}
+
+	virtual FUtf8StringView GetContentAsUtf8StringView() const override;
 	
 	/**
 	 * @brief Get the URL used to send the request.

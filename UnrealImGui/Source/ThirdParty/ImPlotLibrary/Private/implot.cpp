@@ -124,6 +124,11 @@ You can read releases logs https://github.com/epezent/implot/releases for more d
 
 */
 
+//$$P ARV - BEGIN: Silence SA warning
+#pragma warning(push)
+#pragma warning(disable:6011)
+//$$P ARV - END: Silence SA warning
+
 //$$ BEGIN We use a global definition for the module, so the naked define here was causing issues, wrapper it with an ifndef
 #ifndef IMGUI_DEFINE_MATH_OPERATORS
 #define IMGUI_DEFINE_MATH_OPERATORS
@@ -5800,3 +5805,7 @@ bool BeginPlot(const char* title, const char* x_label, const char* y1_label, con
 #endif
 
 }  // namespace ImPlot
+
+//$$P ARV - BEGIN: Silence SA warning
+#pragma warning(pop)
+//$$P ARV - END: Silence SA warning

@@ -24,6 +24,14 @@ void URH_LocalPlayerPresenceSubsystem::Deinitialize()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
 	Super::Deinitialize();
+
+	// When shutting down the presence subsystem, attempt to fire an offline presence update
+	FRHAPI_PlayerPresenceUpdateSelf OfflineUpdate;
+	OfflineUpdate.SetStatus(ERHAPI_OnlineStatus::Offline);
+	OfflineUpdate.SetMessage(FString());
+	OfflineUpdate.SetCustomData(TMap<FString, FString>());
+	SetDesiredPresence(OfflineUpdate);
+	
 	InitPropertiesWithDefaultValues();
 	StopRefreshTimer();
 	Poller.Reset();

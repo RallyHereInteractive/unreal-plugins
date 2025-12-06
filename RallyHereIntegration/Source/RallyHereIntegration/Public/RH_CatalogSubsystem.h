@@ -12,6 +12,7 @@
 #include "RallyHereIntegrationModule.h"
 #include "RH_SubsystemPluginBase.h"
 #include "Tickable.h"
+#include "Misc/Paths.h"
 
 #include "RH_CatalogSubsystem.generated.h"
 

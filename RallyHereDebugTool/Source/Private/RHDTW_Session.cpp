@@ -639,7 +639,33 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 		}
 		else
 		{
-			ImGui::Text("Join Rule: Private");
+			if (Session.Joinability_IsSet)
+			{
+				auto* bJoinabilityOpen = Session.Joinability_Optional.GetOpenOrNull();
+				ImGui::Text("Open Joinability: %s",
+					bJoinabilityOpen != nullptr
+					? (*bJoinabilityOpen ? "true" : "false")
+					: "<UNSET>"
+				);
+
+				auto* bJoinabilityFriends = Session.Joinability_Optional.GetFriendsOrNull();
+				ImGui::Text("Friends Joinability: %s",
+					bJoinabilityFriends != nullptr
+					? (*bJoinabilityFriends ? "true" : "false")
+					: "<UNSET>"
+				);
+
+				auto* bJoinabilityPlatform = Session.Joinability_Optional.GetPlatformOrNull();
+				ImGui::Text("Platform Joinability: %s",
+					bJoinabilityPlatform != nullptr
+					? (*bJoinabilityPlatform ? "true" : "false")
+					: "<UNSET>"
+				);
+			}
+			else
+			{
+				ImGui::Text("Join Rule: Private");
+			}
 		}
 
 		// Instance

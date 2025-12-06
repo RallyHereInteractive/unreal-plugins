@@ -183,8 +183,6 @@ public:
 		LastUpdated = FDateTime();
 	}
 
-	
-
 	/**
 	* @brief Enqueues an update request for the players information from the RallyHere API.
 	* @param [in] bForceUpdate If true, immediately requests an update rather than waiting for the next poll time. WARNING: Use this sparingly
@@ -1116,7 +1114,7 @@ public:
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player Info Subsystem | Player Info")
 	FORCEINLINE URH_PlayerMatches* GetMatches() const { return PlayerMatches; }
-	
+
 	/**
 	* @brief Gets The players recently played with class.
 	* @return The players recently played with class.
@@ -1243,7 +1241,7 @@ public:
 	bool BLUEPRINT_GetLastKnownDisplayName(ERHAPI_Platform PreferredPlatformType, FString& OutDisplayName) const { return GetLastKnownDisplayName(OutDisplayName, PreferredPlatformType); }
 
 	bool IsLinkedPlatformInfoStale(const FTimespan& StaleThreshold = FTimespan()) const;
-	
+
 	/**
 	* @brief Gets the players linked platforms via API call.
 	* @param [in] StaleThreshold If set, will force a re-request of the players information if the last updated time was more than the threshold.
@@ -1282,7 +1280,7 @@ public:
 	/** @private */
 	UFUNCTION(BlueprintCallable, Category = "Player Info Subsystem | Player Info", meta = (DeprecatedFunction, DeprecationMessage = "Please directly call the settings subobject instead.", DisplayName = "Get Player Settings", AutoCreateRefTerm = "Delegate"))
 	void BLUEPRINT_GetPlayerSettingsForKeys(const FString& SettingTypeId, const TArray<FString>& Keys, const FTimespan& StaleThreshold, bool bForceRefresh, const FRH_PlayerInfoGetPlayerSettingsDynamicDelegate& Delegate) { GetSettings()->BLUEPRINT_GetPlayerSettingsForKeys(SettingTypeId, Keys, StaleThreshold, bForceRefresh, Delegate); }
-	
+
 	/**
 	* @brief Sets the players settings information for a given type.
 	* @param [in] SettingTypeId The setting type to update.

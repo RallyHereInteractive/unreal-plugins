@@ -259,12 +259,27 @@ protected:
 		// if caching was requested, add the sessions to the result
 		if (SearchParams.bCacheSessionDetails)
 		{
-			for (auto SessionInfo : SessionInfos)
+			// When searching by session id, SessionInfos will be empty. So cache sessions based on those search ids.
+			if (SearchParams.SessionIds.Num() > 0)
 			{
-				URH_SessionView* RHSession = SessionOwner->GetSessionById(SessionInfo.GetSessionId());
-				if (RHSession != nullptr)
+				for (auto& SessionId : SearchParams.SessionIds)
 				{
-					Result.Sessions.Add(RHSession);
+					URH_SessionView* RHSession = SessionOwner->GetSessionById(SessionId);
+					if (RHSession != nullptr)
+					{
+						Result.Sessions.Add(RHSession);
+					}
+				}
+			}
+			else
+			{
+				for (auto SessionInfo : SessionInfos)
+				{
+					URH_SessionView* RHSession = SessionOwner->GetSessionById(SessionInfo.GetSessionId());
+					if (RHSession != nullptr)
+					{
+						Result.Sessions.Add(RHSession);
+					}
 				}
 			}
 		}
@@ -342,6 +357,30 @@ void URH_SessionBrowserCache::ImportAPITemplate(const FRHAPI_SessionTemplate& Te
 URH_PlayerInfoSubsystem* URH_SessionBrowserCache::GetPlayerInfoSubsystem() const
 {
 	return GetGameInstanceSubsystem()->GetPlayerInfoSubsystem();
+}
+
+// When searching for session by id, also check the short join codes as the backend considers these interchangeable
+URH_SessionView* URH_SessionBrowserCache::GetSessionById(const FString& SessionId) const
+{
+	if (auto SessionPtr = Sessions.Find(SessionId))
+	{
+		return *SessionPtr;
+	}
+
+	TArray<FString> SessionKeys;
+	Sessions.GenerateKeyArray(SessionKeys);
+	for (const FString& SessionKey : SessionKeys)
+	{
+		if (URH_SessionView* Session = Sessions.FindChecked(SessionKey))
+		{
+			if (const FString* SessionShortCode = Session->GetSessionData().GetShortCodeOrNull(); SessionShortCode && SessionId == *SessionShortCode)
+			{
+				return Session;
+			}
+		}
+	}
+	
+	return nullptr;
 }
 
 void URH_SessionBrowserCache::RemoveSessionById(const FString& SessionId)

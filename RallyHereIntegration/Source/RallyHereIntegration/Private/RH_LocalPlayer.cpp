@@ -145,3 +145,10 @@ URH_IpConnection::URH_IpConnection(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
 }
+
+///////////////////////////////////////////////////////////////////////////////
+
+URH_NetConnectionEOS::URH_NetConnectionEOS(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+}

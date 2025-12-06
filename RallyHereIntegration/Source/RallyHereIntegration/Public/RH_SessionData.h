@@ -190,7 +190,7 @@ private:
 	FRH_PollCompleteFunc Delegate;
 	FRH_GenericSuccessWithErrorBlock DelegateWithError;
 public:
-	
+
 	FRH_DeferredSessionPoll(Type InPollType, const FRH_PollCompleteFunc& InDelegate, const TOptional<FString>& InETag = TOptional<FString>())
 		: PollType(InPollType)
 		, ETag(InETag)
@@ -225,11 +225,11 @@ namespace RH_SessionCustomDataKeys
 {
 	// session data keys
 	static constexpr auto OfflineFlag = TEXT("rh.OfflineFlag");
-	static constexpr auto IsSealed = TEXT("rh.IsSealed");
 
 	// instance data keys
 	static constexpr auto SessionSecurityTokenName = TEXT("rh.SessionSecurityToken");
 	static constexpr auto BeaconFlag = TEXT("rh.IsBeacon");
+	static constexpr auto IsSealed = TEXT("rh.IsSealed");
 }
 
 /** @ingroup Session
@@ -254,6 +254,11 @@ public:
 	 * @brief Gets the Instance Data.
 	 */
 	const FRHAPI_InstanceInfo* GetInstanceData() const { return SessionData.Data.GetInstanceOrNull(); }
+	/**
+	 * @brief Gets the Instance Data.
+	 */
+	UFUNCTION(BlueprintPure, Category = "Session")
+	bool GetInstanceData(FRHAPI_InstanceInfo& InstanceInfo) const { return SessionData.Data.GetInstance(InstanceInfo); }
 	/**
 	 * @brief Returns true if the instance in this session is standalone
 	 */
@@ -977,17 +982,19 @@ public:
 	/**
 	* @brief Generate a epic voice join token (room token) 
 	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] ConnectIdToken User's Connect Id token
 	* @param [in] Delegate Callback delegate with the new voip token
 	*/
-	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate) { PURE_VIRTUAL(URH_JoinedSession::GenerateEpicVoiceJoinToken, ); }
+	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const TOptional<FString>& ConnectIdToken, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate) { PURE_VIRTUAL(URH_JoinedSession::GenerateEpicVoiceJoinToken, ); }
 	/**
 	 * @private
 	 * @brief Blueprint compatible version of GenerateVoipActionToken
 	 * @param [in] VoipSessionType The type of voip session to generate a token for
+	 * @param [in] ConnectIdToken User's Connect Id token
 	 * @param [in] Delegate Callback delegate with the new voip token
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Generate Epic Voice Join Token", AutoCreateRefTerm = "Delegate"))
-	void BLUEPRINT_GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDynamicDelegate& Delegate) { GenerateEpicVoiceJoinToken(VoipSessionType, Delegate); }
+	UFUNCTION(BlueprintCallable, Category = "Session", meta = (DisplayName = "Generate Epic Voice Join Token", AutoCreateRefTerm = "ConnectIdToken,Delegate"))
+	void BLUEPRINT_GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FString& ConnectIdToken, const FRH_OnSessionGetEpicVoiceJoinTokenDynamicDelegate& Delegate) { GenerateEpicVoiceJoinToken(VoipSessionType, ConnectIdToken.IsEmpty() ? TOptional<FString>(ConnectIdToken) : TOptional<FString>(), Delegate); }
 
 	/**
 	 * @brief Updates the session info.
@@ -1280,9 +1287,10 @@ public:
 	/**
 	* @brief Generate a epic voice join token (room token) 
 	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] ConnectIdToken User's Connect Id token
 	* @param [in] Delegate Callback delegate with the new voip token
 	*/
-	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate);
+	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const TOptional<FString>& ConnectIdToken, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate);
 
 	// Host only functions
 	/**
@@ -1389,7 +1397,7 @@ public:
 	 * @private
 	 * @brief Blueprint compatible version of GenerateShortCode
 	 * @param [in] Delegate callback on the shortcode being generated
-	*/
+	 */
 	void BLUEPRINT_GenerateShortCode(const FRH_OnSessionUpdatedDynamicDelegate& Delegate) { GenerateShortCode(Delegate); }
 	/**
 	 * @brief Joins a specific queue with the session to be matchmade with others.
@@ -1592,9 +1600,10 @@ public:
 	/**
 	* @brief Generate a epic voice join token (room token) 
 	* @param [in] VoipSessionType The type of voip session to generate a token for
+	* @param [in] ConnectIdToken User's Connect Id token
 	* @param [in] Delegate Callback delegate with the new voip token
 	*/
-	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate);
+	virtual void GenerateEpicVoiceJoinToken(ERHAPI_VoipSessionType VoipSessionType, const TOptional<FString>& ConnectIdToken, const FRH_OnSessionGetEpicVoiceJoinTokenDelegateBlock& Delegate);
 
 	// Host only functions
 	/**

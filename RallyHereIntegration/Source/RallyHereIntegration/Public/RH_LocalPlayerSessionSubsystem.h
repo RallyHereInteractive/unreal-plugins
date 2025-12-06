@@ -64,11 +64,7 @@ public:
 	* @return Session object, if it exists
 	*/
 	UFUNCTION(BlueprintPure, Category = "Session")
-	virtual URH_SessionView* GetSessionById(const FString& SessionId) const override
-	{
-		auto ptr = Sessions.Find(SessionId);
-		return ptr != nullptr ? (*ptr) : nullptr;
-	}
+	virtual URH_SessionView* GetSessionById(const FString& SessionId) const override;
 	/**
 	* @brief Get all joined and invited sessions by SessionType
 	* @param [in] SessionType SessionType to filter for

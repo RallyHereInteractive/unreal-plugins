@@ -964,6 +964,12 @@ CODE
 // [SECTION] INCLUDES
 //-------------------------------------------------------------------------
 
+//$$P ARV - BEGIN: Silence SA warning
+#pragma warning(push)
+#pragma warning(disable:28182)
+#pragma warning(disable:6011)
+//$$P ARV - END: Silence SA warning
+
 #if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
 #define _CRT_SECURE_NO_WARNINGS
 #endif
@@ -21579,3 +21585,7 @@ void ImGui::DebugHookIdInfo(ImGuiID, ImGuiDataType, const void*, const void*) {}
 //-----------------------------------------------------------------------------
 
 #endif // #ifndef IMGUI_DISABLE
+
+//$$P ARV - BEGIN: Silence SA warning
+#pragma warning(pop)
+//$$P ARV - END: Silence SA warning

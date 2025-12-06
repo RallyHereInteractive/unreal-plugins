@@ -220,7 +220,7 @@ public:
 	/**
 	* @brief Gets if the instance has been marked failed.
 	*/
-	UFUNCTION(BlueprintGetter, Category = "Session|Instance")
+	UFUNCTION(BlueprintPure, Category = "Session|Instance")
 	FORCEINLINE bool IsBackfillTerminated() const { return ActiveSessionState.bIsBackfillTerminated; }
 	/**
 	* @brief Checks if the session has all the players and is good to change maps, and conditionally logs errors
@@ -288,10 +288,21 @@ public:
 	virtual void TerminateBackfill();
 
 	/**
+	 * @brief Gets whether backfill acknowledgment is being withheld
+	 */
+	virtual bool IsBackfillAcknowledgeWithheld() const;
+
+	/**
+	 * @brief Sets whether backfill acknowledgment is being withheld
+	 */
+	virtual void SetBackfillAcknowledgeWithheld(bool bWithhold);
+
+	/**
 	 * @brief Set the currently active session as joinable, and do any work necessary to make it so.  Automatically called if bAutoMakeSessionsJoinableOnHostMapLoadComplete is true
 	 * @param [in] pWorld The world that is being hosted
+	 * @param [in] bLeaveOnFailure If true and the session update fails, leave instance flow will be invoked to clean up the bad session.
 	 */
-	virtual bool MakeActiveSessionJoinable(UWorld* pWorld);
+	virtual bool MakeActiveSessionJoinable(UWorld* pWorld, bool bLeaveOnFailure = true);
 
 	/**
 	 * @brief Multicast delegate fired when a beacon is created so that host objects can be registered.
@@ -363,11 +374,17 @@ protected:
 	UPROPERTY(VisibleInstanceOnly, Transient, Category = "Session|Instance")
 	FRH_ActiveSessionState ActiveSessionState;
 	
+	TOptional<FRHAPI_JoinParams> ActiveJoinParams;
+	
 	/** @brief Poller for the host's health check. */
 	FRH_AutoPollerPtr InstanceHealthPoller;
 	
 	/** @brief Poller for the host's health check. */
 	FRH_AutoPollerPtr BackfillPoller;
+
+	/** @brief If set, backfill acknowledgment is currently being withheld. */
+	UPROPERTY(BlueprintReadOnly, Transient, Category = "Session|Instance")
+	bool WithholdBackfillAcknowlede;
 
 	/**
 	 * @brief Sends the Match Played gamesight event

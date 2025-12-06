@@ -98,7 +98,7 @@ public:
 
 	virtual FString GetImportRequestURL() const PURE_VIRTUAL(IRH_IpConnectionInterface::GetImportRequestURL, return FString(););
 
-	FORCEINLINE int32 IsRemoteLoggedIn() const { return bRH_RemoteIsLoggedIn; }
+	FORCEINLINE bool IsRemoteLoggedIn() const { return bRH_RemoteIsLoggedIn; } //$$P ZTP - Fix return type
 	FORCEINLINE const FGuid& GetRHPlayerUuid() const { return RH_PlayerUuid; }
 
 #if WITH_EDITOR
@@ -142,4 +142,18 @@ public:
 
 	UPROPERTY()
 	FOnRHConnectionDestroyed OnConnectionDestroyedDel;
+};
+
+/** @ingroup LocalPlayer
+ * @brief NetConnectionEOS base class (implements the interface)
+ */
+UCLASS(transient, Config = Engine)
+class RALLYHEREINTEGRATION_API URH_NetConnectionEOS : public UNetConnectionEOS, public IRH_IpConnectionInterface
+{
+	GENERATED_BODY()
+
+public:
+	explicit URH_NetConnectionEOS(const FObjectInitializer& ObjectInitializer);
+	
+	virtual FString GetImportRequestURL() const override { return RequestURL; }
 };

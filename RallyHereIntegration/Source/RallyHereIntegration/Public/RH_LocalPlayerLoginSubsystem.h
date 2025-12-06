@@ -59,11 +59,11 @@ enum class ERHAPI_LoginResult : uint8
     /** OSS User was not found, even after OSS Login completed.  This usually means that there is no connection to Xbox Live/PSN/etc */
     Fail_OSSUserNotFound,
 
-	/** OSS User does not meet age requirements for online play */
-	Fail_OSSAgeRestriction,
+    /** OSS User does not meet age requirements for online play */
+    Fail_OSSAgeRestriction,
 
-	/** OSS User does not have online play */
-	Fail_OSSOnlinePlayRestriction,
+    /** OSS User does not have online play */
+    Fail_OSSOnlinePlayRestriction,
 
 	/** OSS User does not meet requirements for online play.  See FRH_LoginResult::PrivilegeResults and IOnlineIdentity::EPrivilegeResults */
     Fail_OSSPrivilegeCheck,
@@ -76,6 +76,9 @@ enum class ERHAPI_LoginResult : uint8
 
     /** RH web login was denied. There are many reasons that can cause this, including misconfiguration of OSS IDs with the Rally Here APIs */
     Fail_RHDenied,
+
+	/** RH web login was denied due to not meeting ownership requirements */
+	Fail_RHOwnershipCheckFailed,
 
 	/** Local player went missing during login process */
 	Fail_LocalPlayerMissing,
@@ -129,50 +132,50 @@ RALLYHEREINTEGRATION_API bool OSSCannotRelogin(FName OSSName);
 USTRUCT(BlueprintType)
 struct RALLYHEREINTEGRATION_API FRH_LoginResult
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 public:
-    /** @brief Login Result. */
-    UPROPERTY()
-    ERHAPI_LoginResult Result;
-    /** @brief Login OSS Type. */
-    UPROPERTY()
-    ERHAPI_LocalPlayerLoginOSS OSSType;
-    /** @brief Login Error Message. */
-    UPROPERTY()
-    FString OSSErrorMessage;
+	/** @brief Login Result. */
+	UPROPERTY()
+	ERHAPI_LoginResult Result;
+	/** @brief Login OSS Type. */
+	UPROPERTY()
+	ERHAPI_LocalPlayerLoginOSS OSSType;
+	/** @brief Login Error Message. */
+	UPROPERTY()
+	FString OSSErrorMessage;
 	/** @brief RallyHere API Auth Error Code */
 	UPROPERTY()
 	FString RallyHereErrorCode;
-    /** @brief Unique Net Id for the player. */
-    TSharedPtr<const FUniqueNetId> OSSUniqueId;
-    /** @brief Unique Net ID for the player when using Nickname Login. */
-    TSharedPtr<const FUniqueNetId> NicknameOSSUniqueId;
-    /** @brief Privilege Result for the login. */
-    UPROPERTY()
-    uint32 PrivilegeResults;
-    /** @brief If true, the user needs to accept the EULA. */
-    UPROPERTY()
-    bool bMustAcceptEULA;
-    /** @brief If true, the user needs to accept the TOS. */
-    UPROPERTY()
-    bool bMustAcceptTOS;
-    /** @brief If true, the user needs to accept the PP. */
-    UPROPERTY()
-    bool bMustAcceptPP;
-    /** @brief Restrictions that prevented the user from successfully completing a login */
+	/** @brief Unique Net Id for the player. */
+	TSharedPtr<const FUniqueNetId> OSSUniqueId;
+	/** @brief Unique Net ID for the player when using Nickname Login. */
+	TSharedPtr<const FUniqueNetId> NicknameOSSUniqueId;
+	/** @brief Privilege Result for the login. */
+	UPROPERTY()
+	uint32 PrivilegeResults;
+	/** @brief If true, the user needs to accept the EULA. */
+	UPROPERTY()
+	bool bMustAcceptEULA;
+	/** @brief If true, the user needs to accept the TOS. */
+	UPROPERTY()
+	bool bMustAcceptTOS;
+	/** @brief If true, the user needs to accept the PP. */
+	UPROPERTY()
+	bool bMustAcceptPP;
+	/** @brief Restrictions that prevented the user from successfully completing a login */
 	UPROPERTY()
 	TArray<FRHAPI_Restriction> Restrictions;
-    /** @brief Default constructor. */
-    FRH_LoginResult() :
-         Result(ERHAPI_LoginResult::Fail_RHUnknown),
-         OSSType(ERHAPI_LocalPlayerLoginOSS::None),
-         PrivilegeResults{},
-         bMustAcceptEULA{},
-         bMustAcceptTOS{},
-         bMustAcceptPP{},
-         Restrictions()
-    {
-    }
+	/** @brief Default constructor. */
+	FRH_LoginResult() :
+		 Result(ERHAPI_LoginResult::Fail_RHUnknown),
+		 OSSType(ERHAPI_LocalPlayerLoginOSS::None),
+		 PrivilegeResults{},
+		 bMustAcceptEULA{},
+		 bMustAcceptTOS{},
+		 bMustAcceptPP{},
+		 Restrictions()
+	{
+	}
 };
 
 DECLARE_DELEGATE_OneParam(FRH_OnLoginComplete, const FRH_LoginResult&);
@@ -385,13 +388,13 @@ public:
     IOnlineSubsystem* GetNicknameOSS() const;
 
     /** @brief Gets if crossplay is enabled */
-    virtual bool IsCrossplayEnabled() const { return bCrossplayEnabled; }
+    virtual bool IsCrossplayEnabled() const { return bCrossplayEnabled || GIsEditor; }
     /** @brief Gets if communication is enabled */
-    virtual bool IsCommunicationEnabled() const { return bCommunicationEnabled; }
+    virtual bool IsCommunicationEnabled() const { return bCommunicationEnabled || GIsEditor; }
     /** @brief Gets if user generated content is enabled */
-    virtual bool IsUserGeneratedContentEnabled() const { return bUserGeneratedContentEnabled; }
+    virtual bool IsUserGeneratedContentEnabled() const { return bUserGeneratedContentEnabled || GIsEditor; }
     /** @brief Gets if player is explicitly blocked from using user generated content */
-    virtual bool HasSpecificUGCRestriction() const { return bHasSpecificUGCRestriction; }
+    virtual bool HasSpecificUGCRestriction() const { return bHasSpecificUGCRestriction || GIsEditor; }
 
 protected:
     /**

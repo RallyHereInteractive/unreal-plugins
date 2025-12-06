@@ -133,6 +133,18 @@ bool URH_GameInstanceServerBootstrapper::DetermineJoinParameters(FString& Public
 	return false;
 }
 
+void URH_GameInstanceServerBootstrapper::InstanceMigrationRequested()
+{
+	BestEffortLeaveSession(false);
+}
+
+void URH_GameInstanceServerBootstrapper::CompleteInstanceMigration()
+{
+	BestEffortLeaveSession(false);
+
+	OnCleanupSessionSyncComplete(RHSession, true, FString());
+}
+
 void URH_GameInstanceServerBootstrapper::Initialize()
 {
 	UE_LOG(LogRallyHereIntegration, Verbose, TEXT("[%s]"), ANSI_TO_TCHAR(__FUNCTION__));
@@ -261,12 +273,14 @@ void URH_GameInstanceServerBootstrapper::Deinitialize()
 	GameHostProvider.Reset();
 }
 
-void URH_GameInstanceServerBootstrapper::BestEffortLeaveSession()
+void URH_GameInstanceServerBootstrapper::BestEffortLeaveSession(bool bLeaveSession /*= true*/)
 {
 	// fire leave and expire on our way out to try to do cleanup, then clear out local pointer
 	if (RHSession != nullptr)
 	{
 		RHSession->StopPolling();
+		if (bLeaveSession)
+		{
 		//RHSession->Leave(false);
 		// rather than leaving via the helper, invoke the API directly.
 		// This is to fix an assert on shutdown where the helper has its callback bindings removed, so it does not complete and release the reference to the http request object
@@ -281,6 +295,7 @@ void URH_GameInstanceServerBootstrapper::BestEffortLeaveSession()
 			Request.SessionId = RHSession->GetSessionId();
 
 			RallyHereAPI::Traits_LeaveSessionByIdSelf::DoCall(RH_APIs::GetSessionsAPI(), Request, RallyHereAPI::Traits_LeaveSessionByIdSelf::Delegate(), GetDefault<URH_IntegrationSettings>()->SessionLeavePriority);
+		}
 		}
 
 		RHSession->Expire(FRH_OnSessionExpiredDelegate());
@@ -1163,7 +1178,7 @@ void URH_GameInstanceServerBootstrapper::OnSyncToSessionComplete(URH_JoinedSessi
 		*Error
 	);
 
-	if (bSuccess && Session == RHSession && RHSession->IsActive())
+	if (bSuccess && Session == RHSession && RHSession != nullptr && RHSession->IsActive())
 	{
 		UE_LOG(LogRallyHereIntegration, Log, TEXT("%s"), *LogString);
 		OnBootstrappingComplete();
@@ -1207,7 +1222,7 @@ void URH_GameInstanceServerBootstrapper::OnSessionUpdated(URH_SessionView* Sessi
 {
 	check(Session == RHSession);
 
-	if (RHSession != nullptr)
+	if (RHSession != nullptr && !bRequestingNewInstance)
 	{
 		bool bNoLongerValidInstance = false;
 
@@ -1589,9 +1604,13 @@ TStatId URH_GameInstanceServerBootstrapper::GetStatId() const
 
 URH_SessionView* URH_GameInstanceServerBootstrapper::GetSessionById(const FString& SessionId) const
 {
-	if (RHSession != nullptr && RHSession->GetSessionId() == SessionId)
+	if (RHSession != nullptr)
 	{
-		return RHSession;
+		if (RHSession->GetSessionId() == SessionId
+		|| (RHSession->GetSessionData().ShortCode_IsSet && RHSession->GetSessionData().ShortCode_Optional == SessionId))
+		{
+			return RHSession;
+		}
 	}
 	return nullptr;
 }
@@ -1812,7 +1831,7 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 				Log->Flush();
 			}
 
-			//$$ JKENKEL - log file named on match ID, if possible
+			// log file named on match ID, if possible
 			if (URH_GameInstanceSessionSubsystem* SessionSubsystem = GISS->GetSessionSubsystem())
 			{
 				const auto MatchId = SessionSubsystem->GetActiveMatchId();
@@ -1821,7 +1840,6 @@ void URH_GameInstanceServerBootstrapper::ConditionalAutoUploadLogFile() const
 					LogFilename = FString::Format(TEXT("Unreal_{0}.log"), {MatchId});
 				}
 			}
-			//$$ JKENKEL - log file named on match ID, if possible
 
 			return GISS->GetRemoteFileSubsystem()->UploadFromFile(Directory, LogFilename, LogSrcAbsolute, true);
 		}
@@ -1955,5 +1973,4 @@ URH_OfflineSession* URH_GameInstanceClientBootstrapper::CreateOfflineSession(con
 
 	return nullptr;
 }
-
 

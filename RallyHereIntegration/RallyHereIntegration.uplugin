@@ -60,6 +60,10 @@
 			"TargetAllowList": [ "Editor" ]
 		},
 		{
+			"Name": "SocketSubsystemEOS",
+			"Enabled": true
+		},
+		{
 			"Name": "RallyHereDeveloperAPI",
 			"Enabled": true,
 			"TargetAllowList": [ "Editor" ]

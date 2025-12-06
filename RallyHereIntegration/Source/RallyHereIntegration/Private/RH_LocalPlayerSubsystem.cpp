@@ -53,6 +53,11 @@ static FAutoConsoleCommandWithWorldArgsAndOutputDevice ConsoleFlushEvents(
 
 bool URH_LocalPlayerSubsystem::ShouldCreateSubsystem(UObject* Outer) const
 {
+	if (!bEnabled)
+	{
+		return false;
+	}
+	
 	TArray<UClass*> ChildClasses;
 	GetDerivedClasses(GetClass(), ChildClasses, false);
 

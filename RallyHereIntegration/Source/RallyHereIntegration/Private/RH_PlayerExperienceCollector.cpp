@@ -20,6 +20,7 @@
 #include "RenderTimer.h"
 #include "GameFramework/GameModeBase.h"
 #include "Serialization/AsyncPackageLoader.h"
+#include "DynamicRHI.h"
 
 FString FRH_StatAccumulator::SummaryFields::Name = TEXT("Name");
 FString FRH_StatAccumulator::SummaryFields::Last = TEXT("Last");
@@ -539,7 +540,7 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 		GetCaptureStat(ECaptureStat::GameThreadTime).CaptureValue(CYCLES_TO_MILLISECONDS(GGameThreadTime));
 		GetCaptureStat(ECaptureStat::RenderThreadTime).CaptureValue(CYCLES_TO_MILLISECONDS(GRenderThreadTime));
 		GetCaptureStat(ECaptureStat::RHIThreadTime).CaptureValue(CYCLES_TO_MILLISECONDS(GRHIThreadTime));
-		GetCaptureStat(ECaptureStat::GPUTime).CaptureValue(CYCLES_TO_MILLISECONDS(GGPUFrameTime));
+		GetCaptureStat(ECaptureStat::GPUTime).CaptureValue(CYCLES_TO_MILLISECONDS(RHIGetGPUFrameCycles()));
 		
 		// calculate overall frametime
 		GetCaptureStat(ECaptureStat::FrameTime).CaptureValue(FMath::Max3(

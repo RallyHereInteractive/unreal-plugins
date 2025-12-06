@@ -15,6 +15,7 @@ public class RallyHereIntegration : ModuleRules
             {
                 "Core",
                 "CoreUObject",
+                "CoreOnline",
                 "HTTP",
                 "Json",
                 "Engine",
@@ -26,6 +27,8 @@ public class RallyHereIntegration : ModuleRules
 				"Sockets",
 				"Networking",
 				"DeveloperSettings",
+				"PacketHandler",
+				"SocketSubsystemEOS",
             }
         );
 
@@ -39,6 +42,8 @@ public class RallyHereIntegration : ModuleRules
 				"PerfCounters",
 				"RenderCore",
 				"RHI",
+				"EOSShared",
+				"EOSSDK"
 			}
 		);
 
