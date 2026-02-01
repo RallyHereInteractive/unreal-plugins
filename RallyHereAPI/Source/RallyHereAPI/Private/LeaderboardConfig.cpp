@@ -40,6 +40,14 @@ void FRHAPI_LeaderboardConfig::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 		else
 		RallyHereAPI::WriteJsonValue(Writer, SourceId_Optional);
 	}
+	if (StageSourceId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("stage_source_id"));
+		if (StageSourceId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, StageSourceId_Optional);
+	}
 	if (RemoveRestricted_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("remove_restricted"));
@@ -105,6 +113,13 @@ bool FRHAPI_LeaderboardConfig::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		SourceId_IsNull = JsonSourceIdField->IsNull();
 		SourceId_IsSet = SourceId_IsNull || TryGetJsonValue(JsonSourceIdField, SourceId_Optional);
 		ParseSuccess &= SourceId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStageSourceIdField = (*Object)->TryGetField(TEXT("stage_source_id"));
+	if (JsonStageSourceIdField.IsValid())
+	{
+		StageSourceId_IsNull = JsonStageSourceIdField->IsNull();
+		StageSourceId_IsSet = StageSourceId_IsNull || TryGetJsonValue(JsonStageSourceIdField, StageSourceId_Optional);
+		ParseSuccess &= StageSourceId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonRemoveRestrictedField = (*Object)->TryGetField(TEXT("remove_restricted"));
 	if (JsonRemoveRestrictedField.IsValid())

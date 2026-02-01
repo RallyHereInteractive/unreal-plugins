@@ -425,6 +425,7 @@ Private/StageEntityType.cpp
 Private/StageMatchmakeParams.cpp
 Private/StageSearchResults.cpp
 Private/StageSearchSort.cpp
+Private/StageSourceFields.cpp
 Private/StageUpdate.cpp
 Private/StorageInformation.cpp
 Private/SupportAPI.cpp
@@ -883,6 +884,7 @@ Public/StageEntityType.h
 Public/StageMatchmakeParams.h
 Public/StageSearchResults.h
 Public/StageSearchSort.h
+Public/StageSourceFields.h
 Public/StageUpdate.h
 Public/StorageInformation.h
 Public/SupportAPI.h

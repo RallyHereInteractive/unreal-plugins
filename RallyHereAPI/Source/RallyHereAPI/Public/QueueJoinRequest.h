@@ -40,17 +40,55 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinRequest : public FRHAPI_Model
 	*/
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
-	/** @brief ID of the queue to join */
+	/** @brief ID of the queue to join. Use queue_ids for multiple queues. */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString QueueId{  };
-	/** @brief Gets the value of QueueId */
-	FORCEINLINE FString& GetQueueId() { return QueueId; }
-	/** @brief Gets the value of QueueId */
-	FORCEINLINE const FString& GetQueueId() const { return QueueId; }
-	/** @brief Sets the value of QueueId */
-	FORCEINLINE void SetQueueId(const FString& NewValue) { QueueId = NewValue;   }
-	/** @brief Sets the value of QueueId using move semantics */
-	FORCEINLINE void SetQueueId(FString&& NewValue) { QueueId = NewValue;   }
+	FString QueueId_Optional{  };
+	/** @brief true if QueueId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool QueueId_IsSet{ false };
+	/** @brief Gets the value of QueueId_Optional, regardless of it having been set */
+	FORCEINLINE FString& GetQueueId() { return QueueId_Optional; }
+	/** @brief Gets the value of QueueId_Optional, regardless of it having been set */
+	FORCEINLINE const FString& GetQueueId() const { return QueueId_Optional; }
+	/** @brief Gets the value of QueueId_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const FString& GetQueueId(const FString& DefaultValue) const { if (QueueId_IsSet) return QueueId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of QueueId_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetQueueId(FString& OutValue) const { if (QueueId_IsSet) OutValue = QueueId_Optional; return QueueId_IsSet; }
+	/** @brief Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE FString* GetQueueIdOrNull() { if (QueueId_IsSet) return (&QueueId_Optional); return nullptr; }
+	/** @brief Returns a pointer to QueueId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const FString* GetQueueIdOrNull() const { if (QueueId_IsSet) return (&QueueId_Optional); return nullptr; }
+	/** @brief Sets the value of QueueId_Optional and also sets QueueId_IsSet to true */
+	FORCEINLINE void SetQueueId(const FString& NewValue) { QueueId_Optional = NewValue; QueueId_IsSet = true;  }
+	/** @brief Sets the value of QueueId_Optional and also sets QueueId_IsSet to true using move semantics */
+	FORCEINLINE void SetQueueId(FString&& NewValue) { QueueId_Optional = NewValue; QueueId_IsSet = true;  }
+	/** @brief Clears the value of QueueId_Optional and sets QueueId_IsSet to false */
+	void ClearQueueId() { QueueId_IsSet = false;  }
+
+	/** @brief List of queue IDs to join */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FString> QueueIds_Optional{  };
+	/** @brief true if QueueIds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool QueueIds_IsSet{ false };
+	/** @brief Gets the value of QueueIds_Optional, regardless of it having been set */
+	FORCEINLINE TArray<FString>& GetQueueIds() { return QueueIds_Optional; }
+	/** @brief Gets the value of QueueIds_Optional, regardless of it having been set */
+	FORCEINLINE const TArray<FString>& GetQueueIds() const { return QueueIds_Optional; }
+	/** @brief Gets the value of QueueIds_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const TArray<FString>& GetQueueIds(const TArray<FString>& DefaultValue) const { if (QueueIds_IsSet) return QueueIds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of QueueIds_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetQueueIds(TArray<FString>& OutValue) const { if (QueueIds_IsSet) OutValue = QueueIds_Optional; return QueueIds_IsSet; }
+	/** @brief Returns a pointer to QueueIds_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE TArray<FString>* GetQueueIdsOrNull() { if (QueueIds_IsSet) return (&QueueIds_Optional); return nullptr; }
+	/** @brief Returns a pointer to QueueIds_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const TArray<FString>* GetQueueIdsOrNull() const { if (QueueIds_IsSet) return (&QueueIds_Optional); return nullptr; }
+	/** @brief Sets the value of QueueIds_Optional and also sets QueueIds_IsSet to true */
+	FORCEINLINE void SetQueueIds(const TArray<FString>& NewValue) { QueueIds_Optional = NewValue; QueueIds_IsSet = true;  }
+	/** @brief Sets the value of QueueIds_Optional and also sets QueueIds_IsSet to true using move semantics */
+	FORCEINLINE void SetQueueIds(TArray<FString>&& NewValue) { QueueIds_Optional = NewValue; QueueIds_IsSet = true;  }
+	/** @brief Clears the value of QueueIds_Optional and sets QueueIds_IsSet to false */
+	void ClearQueueIds() { QueueIds_IsSet = false;  }
 
 	/** @brief Additional fields put on the matchmaking ticket for open match to search with (see https://openmatch.dev/site/docs/reference/api/#searchfields) */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

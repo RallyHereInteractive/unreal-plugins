@@ -104,6 +104,39 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardEntry : public FRHAPI_Model
 	FORCEINLINE bool IsLegacyItemIdNull() const { return LegacyItemId_IsSet && LegacyItemId_IsNull; }
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 StageRunId_Optional{ 0 };
+	/** @brief true if StageRunId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool StageRunId_IsSet{ false };
+	/** @brief true if StageRunId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool StageRunId_IsNull{ false };
+	/** @brief Gets the value of StageRunId_Optional, regardless of it having been set */
+	FORCEINLINE int32& GetStageRunId() { return StageRunId_Optional; }
+	/** @brief Gets the value of StageRunId_Optional, regardless of it having been set */
+	FORCEINLINE const int32& GetStageRunId() const { return StageRunId_Optional; }
+	/** @brief Gets the value of StageRunId_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const int32& GetStageRunId(const int32& DefaultValue) const { if (StageRunId_IsSet) return StageRunId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of StageRunId_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetStageRunId(int32& OutValue) const { if (StageRunId_IsSet && !StageRunId_IsNull) OutValue = StageRunId_Optional; return StageRunId_IsSet; }
+	/** @brief Returns a pointer to StageRunId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE int32* GetStageRunIdOrNull() { if (StageRunId_IsSet) return (StageRunId_IsNull ? nullptr : &StageRunId_Optional); return nullptr; }
+	/** @brief Returns a pointer to StageRunId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const int32* GetStageRunIdOrNull() const { if (StageRunId_IsSet) return (StageRunId_IsNull ? nullptr : &StageRunId_Optional); return nullptr; }
+	/** @brief Sets the value of StageRunId_Optional and also sets StageRunId_IsSet to true */
+	FORCEINLINE void SetStageRunId(const int32& NewValue) { StageRunId_Optional = NewValue; StageRunId_IsSet = true; StageRunId_IsNull = false; }
+	/** @brief Sets the value of StageRunId_Optional and also sets StageRunId_IsSet to true using move semantics */
+	FORCEINLINE void SetStageRunId(int32&& NewValue) { StageRunId_Optional = NewValue; StageRunId_IsSet = true; StageRunId_IsNull = false; }
+	/** @brief Clears the value of StageRunId_Optional and sets StageRunId_IsSet to false */
+	void ClearStageRunId() { StageRunId_Optional = 0; StageRunId_IsSet = false; StageRunId_IsNull = false; }
+	/** @brief Returns the default value of StageRunId */
+	FORCEINLINE int32 GetDefaultValue_StageRunId() { return 0; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetStageRunIdToNull() { StageRunId_IsSet = true; StageRunId_IsNull = true; }
+	/** @brief Checks whether StageRunId_Optional is set to null */
+	FORCEINLINE bool IsStageRunIdNull() const { return StageRunId_IsSet && StageRunId_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	float StatValue_Optional{  };
 	/** @brief true if StatValue_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
