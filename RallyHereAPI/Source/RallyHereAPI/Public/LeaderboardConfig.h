@@ -12,6 +12,7 @@
 #include "LeaderboardSortOrder.h"
 #include "LeaderboardSource.h"
 #include "PlayerListType.h"
+#include "StageSourceFields.h"
 #include "LeaderboardConfig.generated.h"
 
 /** @defgroup RHAPI_LeaderboardConfig RallyHere API Model LeaderboardConfig
@@ -131,6 +132,37 @@ struct RALLYHEREAPI_API FRHAPI_LeaderboardConfig : public FRHAPI_Model
 	FORCEINLINE void SetSourceIdToNull() { SourceId_IsSet = true; SourceId_IsNull = true; }
 	/** @brief Checks whether SourceId_Optional is set to null */
 	FORCEINLINE bool IsSourceIdNull() const { return SourceId_IsSet && SourceId_IsNull; }
+
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	FRHAPI_StageSourceFields StageSourceId_Optional{  };
+	/** @brief true if StageSourceId_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool StageSourceId_IsSet{ false };
+	/** @brief true if StageSourceId_Optional has been explicitly set to null */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool StageSourceId_IsNull{ false };
+	/** @brief Gets the value of StageSourceId_Optional, regardless of it having been set */
+	FORCEINLINE FRHAPI_StageSourceFields& GetStageSourceId() { return StageSourceId_Optional; }
+	/** @brief Gets the value of StageSourceId_Optional, regardless of it having been set */
+	FORCEINLINE const FRHAPI_StageSourceFields& GetStageSourceId() const { return StageSourceId_Optional; }
+	/** @brief Gets the value of StageSourceId_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const FRHAPI_StageSourceFields& GetStageSourceId(const FRHAPI_StageSourceFields& DefaultValue) const { if (StageSourceId_IsSet) return StageSourceId_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of StageSourceId_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetStageSourceId(FRHAPI_StageSourceFields& OutValue) const { if (StageSourceId_IsSet && !StageSourceId_IsNull) OutValue = StageSourceId_Optional; return StageSourceId_IsSet; }
+	/** @brief Returns a pointer to StageSourceId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE FRHAPI_StageSourceFields* GetStageSourceIdOrNull() { if (StageSourceId_IsSet) return (StageSourceId_IsNull ? nullptr : &StageSourceId_Optional); return nullptr; }
+	/** @brief Returns a pointer to StageSourceId_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const FRHAPI_StageSourceFields* GetStageSourceIdOrNull() const { if (StageSourceId_IsSet) return (StageSourceId_IsNull ? nullptr : &StageSourceId_Optional); return nullptr; }
+	/** @brief Sets the value of StageSourceId_Optional and also sets StageSourceId_IsSet to true */
+	FORCEINLINE void SetStageSourceId(const FRHAPI_StageSourceFields& NewValue) { StageSourceId_Optional = NewValue; StageSourceId_IsSet = true; StageSourceId_IsNull = false; }
+	/** @brief Sets the value of StageSourceId_Optional and also sets StageSourceId_IsSet to true using move semantics */
+	FORCEINLINE void SetStageSourceId(FRHAPI_StageSourceFields&& NewValue) { StageSourceId_Optional = NewValue; StageSourceId_IsSet = true; StageSourceId_IsNull = false; }
+	/** @brief Clears the value of StageSourceId_Optional and sets StageSourceId_IsSet to false */
+	void ClearStageSourceId() { StageSourceId_IsSet = false; StageSourceId_IsNull = false; }
+	/** @brief Sets the value explicitly to be treated as null */
+	FORCEINLINE void SetStageSourceIdToNull() { StageSourceId_IsSet = true; StageSourceId_IsNull = true; }
+	/** @brief Checks whether StageSourceId_Optional is set to null */
+	FORCEINLINE bool IsStageSourceIdNull() const { return StageSourceId_IsSet && StageSourceId_IsNull; }
 
 	/** @brief Whether or not restricted accounts (eg banned) should be removed from this leaderboard */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

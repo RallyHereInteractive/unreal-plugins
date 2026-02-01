@@ -38,6 +38,14 @@ void FRHAPI_LeaderboardEntry::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		else
 		RallyHereAPI::WriteJsonValue(Writer, LegacyItemId_Optional);
 	}
+	if (StageRunId_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("stage_run_id"));
+		if (StageRunId_IsNull)
+			WriteJsonValue(Writer, nullptr);
+		else
+		RallyHereAPI::WriteJsonValue(Writer, StageRunId_Optional);
+	}
 	if (StatValue_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("stat_value"));
@@ -72,6 +80,13 @@ bool FRHAPI_LeaderboardEntry::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		LegacyItemId_IsNull = JsonLegacyItemIdField->IsNull();
 		LegacyItemId_IsSet = LegacyItemId_IsNull || TryGetJsonValue(JsonLegacyItemIdField, LegacyItemId_Optional);
 		ParseSuccess &= LegacyItemId_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonStageRunIdField = (*Object)->TryGetField(TEXT("stage_run_id"));
+	if (JsonStageRunIdField.IsValid())
+	{
+		StageRunId_IsNull = JsonStageRunIdField->IsNull();
+		StageRunId_IsSet = StageRunId_IsNull || TryGetJsonValue(JsonStageRunIdField, StageRunId_Optional);
+		ParseSuccess &= StageRunId_IsSet;
 	}
 	const TSharedPtr<FJsonValue> JsonStatValueField = (*Object)->TryGetField(TEXT("stat_value"));
 	if (JsonStatValueField.IsValid())
