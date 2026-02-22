@@ -47154,6 +47154,16 @@
             "type": "array",
             "title": "Queue Ids",
             "description": "List of queue IDs joined"
+          },
+          "profile_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Profile Ids",
+            "description": "List of matchmaking profile IDs the session is eligible for"
           }
         },
         "type": "object",
@@ -47966,6 +47976,16 @@
             "type": "array",
             "title": "Queue Ids",
             "description": "List of queue IDs joined"
+          },
+          "profile_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Profile Ids",
+            "description": "List of matchmaking profile IDs the session is eligible for"
           }
         },
         "type": "object",
@@ -49116,7 +49136,17 @@
             "maxLength": 128,
             "minLength": 1,
             "title": "Queue Id",
-            "description": "Which queue was used to create this ticket"
+            "description": "First queue this ticket was created for"
+          },
+          "queue_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Queue Ids",
+            "description": "All queues this ticket was created for"
           },
           "profile_ids": {
             "items": {

@@ -29,6 +29,11 @@ void FRHAPI_QueueJoinResponse::WriteJson(TSharedRef<TJsonWriter<>>& Writer) cons
 		Writer->WriteIdentifierPrefix(TEXT("queue_ids"));
 		RallyHereAPI::WriteJsonValue(Writer, QueueIds_Optional);
 	}
+	if (ProfileIds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("profile_ids"));
+		RallyHereAPI::WriteJsonValue(Writer, ProfileIds_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -48,6 +53,12 @@ bool FRHAPI_QueueJoinResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		QueueIds_IsSet = TryGetJsonValue(JsonQueueIdsField, QueueIds_Optional);
 		ParseSuccess &= QueueIds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonProfileIdsField = (*Object)->TryGetField(TEXT("profile_ids"));
+	if (JsonProfileIdsField.IsValid())
+	{
+		ProfileIds_IsSet = TryGetJsonValue(JsonProfileIdsField, ProfileIds_Optional);
+		ParseSuccess &= ProfileIds_IsSet;
 	}
 
 	return ParseSuccess;

@@ -75,6 +75,31 @@ struct RALLYHEREAPI_API FRHAPI_QueueJoinResponse : public FRHAPI_Model
 	FORCEINLINE void SetQueueIds(TArray<FString>&& NewValue) { QueueIds_Optional = NewValue; QueueIds_IsSet = true;  }
 	/** @brief Clears the value of QueueIds_Optional and sets QueueIds_IsSet to false */
 	void ClearQueueIds() { QueueIds_IsSet = false;  }
+
+	/** @brief List of matchmaking profile IDs the session is eligible for */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	TArray<FString> ProfileIds_Optional{  };
+	/** @brief true if ProfileIds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool ProfileIds_IsSet{ false };
+	/** @brief Gets the value of ProfileIds_Optional, regardless of it having been set */
+	FORCEINLINE TArray<FString>& GetProfileIds() { return ProfileIds_Optional; }
+	/** @brief Gets the value of ProfileIds_Optional, regardless of it having been set */
+	FORCEINLINE const TArray<FString>& GetProfileIds() const { return ProfileIds_Optional; }
+	/** @brief Gets the value of ProfileIds_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const TArray<FString>& GetProfileIds(const TArray<FString>& DefaultValue) const { if (ProfileIds_IsSet) return ProfileIds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of ProfileIds_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetProfileIds(TArray<FString>& OutValue) const { if (ProfileIds_IsSet) OutValue = ProfileIds_Optional; return ProfileIds_IsSet; }
+	/** @brief Returns a pointer to ProfileIds_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE TArray<FString>* GetProfileIdsOrNull() { if (ProfileIds_IsSet) return (&ProfileIds_Optional); return nullptr; }
+	/** @brief Returns a pointer to ProfileIds_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const TArray<FString>* GetProfileIdsOrNull() const { if (ProfileIds_IsSet) return (&ProfileIds_Optional); return nullptr; }
+	/** @brief Sets the value of ProfileIds_Optional and also sets ProfileIds_IsSet to true */
+	FORCEINLINE void SetProfileIds(const TArray<FString>& NewValue) { ProfileIds_Optional = NewValue; ProfileIds_IsSet = true;  }
+	/** @brief Sets the value of ProfileIds_Optional and also sets ProfileIds_IsSet to true using move semantics */
+	FORCEINLINE void SetProfileIds(TArray<FString>&& NewValue) { ProfileIds_Optional = NewValue; ProfileIds_IsSet = true;  }
+	/** @brief Clears the value of ProfileIds_Optional and sets ProfileIds_IsSet to false */
+	void ClearProfileIds() { ProfileIds_IsSet = false;  }
 };
 
 /** @} */
