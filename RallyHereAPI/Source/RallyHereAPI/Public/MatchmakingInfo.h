@@ -150,6 +150,33 @@ struct RALLYHEREAPI_API FRHAPI_MatchmakingInfo : public FRHAPI_Model
 	FORCEINLINE void SetProfileIds(TArray<FString>&& NewValue) { ProfileIds_Optional = NewValue; ProfileIds_IsSet = true;  }
 	/** @brief Clears the value of ProfileIds_Optional and sets ProfileIds_IsSet to false */
 	void ClearProfileIds() { ProfileIds_IsSet = false;  }
+
+	/** @brief Artificial queue time in seconds that was added to the ticket to simulate higher priority */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	int32 PassedQueueTimeSeconds_Optional{ 0 };
+	/** @brief true if PassedQueueTimeSeconds_Optional has been set to a value */
+	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
+	bool PassedQueueTimeSeconds_IsSet{ false };
+	/** @brief Gets the value of PassedQueueTimeSeconds_Optional, regardless of it having been set */
+	FORCEINLINE int32& GetPassedQueueTimeSeconds() { return PassedQueueTimeSeconds_Optional; }
+	/** @brief Gets the value of PassedQueueTimeSeconds_Optional, regardless of it having been set */
+	FORCEINLINE const int32& GetPassedQueueTimeSeconds() const { return PassedQueueTimeSeconds_Optional; }
+	/** @brief Gets the value of PassedQueueTimeSeconds_Optional, if it has been set, otherwise it returns DefaultValue */
+	FORCEINLINE const int32& GetPassedQueueTimeSeconds(const int32& DefaultValue) const { if (PassedQueueTimeSeconds_IsSet) return PassedQueueTimeSeconds_Optional; return DefaultValue; }
+	/** @brief Fills OutValue with the value of PassedQueueTimeSeconds_Optional and returns true if it has been set, otherwise returns false */
+	FORCEINLINE bool GetPassedQueueTimeSeconds(int32& OutValue) const { if (PassedQueueTimeSeconds_IsSet) OutValue = PassedQueueTimeSeconds_Optional; return PassedQueueTimeSeconds_IsSet; }
+	/** @brief Returns a pointer to PassedQueueTimeSeconds_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE int32* GetPassedQueueTimeSecondsOrNull() { if (PassedQueueTimeSeconds_IsSet) return (&PassedQueueTimeSeconds_Optional); return nullptr; }
+	/** @brief Returns a pointer to PassedQueueTimeSeconds_Optional, if it has been set, otherwise returns nullptr */
+	FORCEINLINE const int32* GetPassedQueueTimeSecondsOrNull() const { if (PassedQueueTimeSeconds_IsSet) return (&PassedQueueTimeSeconds_Optional); return nullptr; }
+	/** @brief Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true */
+	FORCEINLINE void SetPassedQueueTimeSeconds(const int32& NewValue) { PassedQueueTimeSeconds_Optional = NewValue; PassedQueueTimeSeconds_IsSet = true;  }
+	/** @brief Sets the value of PassedQueueTimeSeconds_Optional and also sets PassedQueueTimeSeconds_IsSet to true using move semantics */
+	FORCEINLINE void SetPassedQueueTimeSeconds(int32&& NewValue) { PassedQueueTimeSeconds_Optional = NewValue; PassedQueueTimeSeconds_IsSet = true;  }
+	/** @brief Clears the value of PassedQueueTimeSeconds_Optional and sets PassedQueueTimeSeconds_IsSet to false */
+	void ClearPassedQueueTimeSeconds() { PassedQueueTimeSeconds_Optional = 0; PassedQueueTimeSeconds_IsSet = false;  }
+	/** @brief Returns the default value of PassedQueueTimeSeconds */
+	FORCEINLINE int32 GetDefaultValue_PassedQueueTimeSeconds() { return 0; }
 };
 
 /** @} */

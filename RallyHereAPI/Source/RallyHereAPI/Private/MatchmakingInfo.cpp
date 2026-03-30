@@ -44,6 +44,11 @@ void FRHAPI_MatchmakingInfo::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 		Writer->WriteIdentifierPrefix(TEXT("profile_ids"));
 		RallyHereAPI::WriteJsonValue(Writer, ProfileIds_Optional);
 	}
+	if (PassedQueueTimeSeconds_IsSet)
+	{
+		Writer->WriteIdentifierPrefix(TEXT("passed_queue_time_seconds"));
+		RallyHereAPI::WriteJsonValue(Writer, PassedQueueTimeSeconds_Optional);
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -81,6 +86,12 @@ bool FRHAPI_MatchmakingInfo::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	{
 		ProfileIds_IsSet = TryGetJsonValue(JsonProfileIdsField, ProfileIds_Optional);
 		ParseSuccess &= ProfileIds_IsSet;
+	}
+	const TSharedPtr<FJsonValue> JsonPassedQueueTimeSecondsField = (*Object)->TryGetField(TEXT("passed_queue_time_seconds"));
+	if (JsonPassedQueueTimeSecondsField.IsValid())
+	{
+		PassedQueueTimeSeconds_IsSet = TryGetJsonValue(JsonPassedQueueTimeSecondsField, PassedQueueTimeSeconds_Optional);
+		ParseSuccess &= PassedQueueTimeSeconds_IsSet;
 	}
 
 	return ParseSuccess;
