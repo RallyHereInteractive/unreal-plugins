@@ -1407,7 +1407,7 @@ public:
 	{
 		FRHAPI_QueueJoinRequest Request = {};
 		FRHAPI_AdditionalJoinParams AdditionalParams = {};
-		Request.QueueId = QueueId;
+		Request.SetQueueId(QueueId);
 		AdditionalParams.SetTags(MatchmakingTags);
 		Request.SetAdditionalJoinParams(AdditionalParams);
 		JoinQueue(Request, Delegate);

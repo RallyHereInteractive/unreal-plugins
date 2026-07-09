@@ -744,7 +744,7 @@ void FRHDTW_Session::ImGuiDisplaySession(const FRH_APISessionWithETag& SessionWr
 				if (ImGui::Button("Join Queue"))
 				{
 					FRHAPI_QueueJoinRequest JoinQueueRequest;
-					JoinQueueRequest.QueueId = ImGuiGetStringFromTextInputBuffer(JoinQueueByIdString);
+					JoinQueueRequest.SetQueueId(ImGuiGetStringFromTextInputBuffer(JoinQueueByIdString));
 					RHOnlineSession->JoinQueue(JoinQueueRequest);
 				}
 			}
