@@ -798,7 +798,6 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSPrivilegeResults(const FUniqueNetId& Us
         PostResults(Req, Result);
         return false;
     }
-    //$$ DLF BEGIN - Added 'Online Play Restricted' error to allow specific messaging
     else if (PrivilegeResults & (uint32)IOnlineIdentity::EPrivilegeResults::OnlinePlayRestricted)
     {
         UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] User online play restricted"),
@@ -808,7 +807,6 @@ bool URH_LocalPlayerLoginSubsystem::OnOSSPrivilegeResults(const FUniqueNetId& Us
         PostResults(Req, Result);
         return false;
     }
-    //$$ DLF END - Added 'Online Play Restricted' error to allow specific messaging
     else
     {
         UE_LOG(LogRallyHereIntegration, Error, TEXT("[%s] Unknown privilege check failure %d"),
