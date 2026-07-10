@@ -367,6 +367,14 @@ void PreparePexReportSessionData(T& Report, const FRHAPI_Session& SessionData)
 	{
 		Report.SetGameMode(*GameMode);
 	}
+
+	// Attach GPU brand and RHI name to the report as custom data
+	TMap<FString, FString> CustomData;
+	CustomData.Add(TEXT("GPU"), FPlatformMisc::GetPrimaryGPUBrand());
+	FString RHIName = GDynamicRHI ? GDynamicRHI->GetName() : TEXT("Unknown");
+	CustomData.Add(TEXT("RHI"), RHIName);
+
+	Report.SetCustomData(CustomData);
 }
 
 void URH_GameInstanceSessionSubsystem::ModifyPEXHostSummary(FRHAPI_PexHostRequest& Report) const
