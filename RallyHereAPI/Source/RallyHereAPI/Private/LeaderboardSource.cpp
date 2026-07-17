@@ -30,6 +30,8 @@ FString EnumToString(const ERHAPI_LeaderboardSource& Value)
 		return TEXT("ITEM_COUNT");
 	case ERHAPI_LeaderboardSource::Stage:
 		return TEXT("STAGE");
+	case ERHAPI_LeaderboardSource::RaceToItem:
+		return TEXT("RACE_TO_ITEM");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_LeaderboardSource::Values Value (%d)"), (int)Value);
@@ -42,7 +44,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_LeaderboardSource& Value
 		{ TEXT("INVENTORY"), ERHAPI_LeaderboardSource::Inventory },
 		{ TEXT("RANK"), ERHAPI_LeaderboardSource::Rank },
 		{ TEXT("ITEM_COUNT"), ERHAPI_LeaderboardSource::ItemCount },
-		{ TEXT("STAGE"), ERHAPI_LeaderboardSource::Stage },	};
+		{ TEXT("STAGE"), ERHAPI_LeaderboardSource::Stage },
+		{ TEXT("RACE_TO_ITEM"), ERHAPI_LeaderboardSource::RaceToItem },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

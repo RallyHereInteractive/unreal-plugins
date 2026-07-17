@@ -40,28 +40,6 @@ struct RALLYHEREAPI_API FRHAPI_StageSourceFields : public FRHAPI_Model
 	virtual void WriteJson(TSharedRef<TJsonWriter<>>& Writer) const override final;
 
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString EntityType{  };
-	/** @brief Gets the value of EntityType */
-	FORCEINLINE FString& GetEntityType() { return EntityType; }
-	/** @brief Gets the value of EntityType */
-	FORCEINLINE const FString& GetEntityType() const { return EntityType; }
-	/** @brief Sets the value of EntityType */
-	FORCEINLINE void SetEntityType(const FString& NewValue) { EntityType = NewValue;   }
-	/** @brief Sets the value of EntityType using move semantics */
-	FORCEINLINE void SetEntityType(FString&& NewValue) { EntityType = NewValue;   }
-
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
-	FString EntityId{  };
-	/** @brief Gets the value of EntityId */
-	FORCEINLINE FString& GetEntityId() { return EntityId; }
-	/** @brief Gets the value of EntityId */
-	FORCEINLINE const FString& GetEntityId() const { return EntityId; }
-	/** @brief Sets the value of EntityId */
-	FORCEINLINE void SetEntityId(const FString& NewValue) { EntityId = NewValue;   }
-	/** @brief Sets the value of EntityId using move semantics */
-	FORCEINLINE void SetEntityId(FString&& NewValue) { EntityId = NewValue;   }
-
-	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")
 	FString Type1_Optional{  };
 	/** @brief true if Type1_Optional has been set to a value */
 	UPROPERTY(BlueprintReadWrite, Category = "RallyHere")

@@ -60408,10 +60408,12 @@
           "INVENTORY",
           "RANK",
           "ITEM_COUNT",
-          "STAGE"
+          "STAGE",
+          "RACE_TO_ITEM"
         ],
         "title": "LeaderboardSource",
         "x-enum-descriptions": [
+          "",
           "",
           "",
           "",
@@ -60421,7 +60423,8 @@
           "INVENTORY",
           "RANK",
           "ITEM_COUNT",
-          "STAGE"
+          "STAGE",
+          "RACE_TO_ITEM"
         ]
       },
       "PlayerListType": {
@@ -60458,14 +60461,6 @@
       },
       "StageSourceFields": {
         "properties": {
-          "entity_type": {
-            "type": "string",
-            "title": "Entity Type"
-          },
-          "entity_id": {
-            "type": "string",
-            "title": "Entity Id"
-          },
           "type_1": {
             "anyOf": [
               {
@@ -60512,10 +60507,6 @@
           }
         },
         "type": "object",
-        "required": [
-          "entity_type",
-          "entity_id"
-        ],
         "title": "StageSourceFields"
       },
       "EntityMMBucketRunStats": {

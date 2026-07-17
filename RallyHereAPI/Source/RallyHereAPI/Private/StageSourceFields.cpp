@@ -22,10 +22,6 @@ using RallyHereAPI::TryGetJsonValue;
 void FRHAPI_StageSourceFields::WriteJson(TSharedRef<TJsonWriter<>>& Writer) const
 {
 	Writer->WriteObjectStart();
-	Writer->WriteIdentifierPrefix(TEXT("entity_type"));
-	RallyHereAPI::WriteJsonValue(Writer, EntityType);
-	Writer->WriteIdentifierPrefix(TEXT("entity_id"));
-	RallyHereAPI::WriteJsonValue(Writer, EntityId);
 	if (Type1_IsSet)
 	{
 		Writer->WriteIdentifierPrefix(TEXT("type_1"));
@@ -69,12 +65,6 @@ bool FRHAPI_StageSourceFields::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 
 	bool ParseSuccess = true;
 
-	const TSharedPtr<FJsonValue> JsonEntityTypeField = (*Object)->TryGetField(TEXT("entity_type"));
-	const bool EntityType_IsValid = JsonEntityTypeField.IsValid() && (!JsonEntityTypeField->IsNull() && TryGetJsonValue(JsonEntityTypeField, EntityType));
-	ParseSuccess &= EntityType_IsValid; 
-	const TSharedPtr<FJsonValue> JsonEntityIdField = (*Object)->TryGetField(TEXT("entity_id"));
-	const bool EntityId_IsValid = JsonEntityIdField.IsValid() && (!JsonEntityIdField->IsNull() && TryGetJsonValue(JsonEntityIdField, EntityId));
-	ParseSuccess &= EntityId_IsValid; 
 	const TSharedPtr<FJsonValue> JsonType1Field = (*Object)->TryGetField(TEXT("type_1"));
 	if (JsonType1Field.IsValid())
 	{
