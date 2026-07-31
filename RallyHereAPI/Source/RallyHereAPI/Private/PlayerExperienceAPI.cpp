@@ -215,7 +215,7 @@ bool FResponse_CreatePexHost::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutCon
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreatePexHost::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_CreatePexHost::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -437,7 +437,7 @@ bool FResponse_CreatePexPlayer::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutC
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreatePexPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_CreatePexPlayer::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -768,7 +768,7 @@ bool FResponse_GetAllPexClientRawByFilter::TryGetContentFor404(FRHAPI_HzApiError
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetAllPexClientRawByFilter::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetAllPexClientRawByFilter::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -819,11 +819,11 @@ bool FResponse_GetAllPexClientRawByFilter::FromJson(const TSharedPtr<FJsonValue>
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1137,7 +1137,7 @@ bool FResponse_GetAllPexClientScoresByFilter::TryGetContentFor403(FRHAPI_HzApiEr
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetAllPexClientScoresByFilter::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetAllPexClientScoresByFilter::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1178,11 +1178,11 @@ bool FResponse_GetAllPexClientScoresByFilter::FromJson(const TSharedPtr<FJsonVal
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1508,7 +1508,7 @@ bool FResponse_GetAllPexHostRawByFilter::TryGetContentFor404(FRHAPI_HzApiErrorMo
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetAllPexHostRawByFilter::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetAllPexHostRawByFilter::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1559,11 +1559,11 @@ bool FResponse_GetAllPexHostRawByFilter::FromJson(const TSharedPtr<FJsonValue>& 
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1873,7 +1873,7 @@ bool FResponse_GetAllPexHostScoresByFilter::TryGetContentFor403(FRHAPI_HzApiErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetAllPexHostScoresByFilter::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetAllPexHostScoresByFilter::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1914,11 +1914,11 @@ bool FResponse_GetAllPexHostScoresByFilter::FromJson(const TSharedPtr<FJsonValue
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:

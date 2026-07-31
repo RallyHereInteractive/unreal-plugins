@@ -227,7 +227,7 @@ bool FResponse_CreateMatch::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutConte
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_CreateMatch::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -268,11 +268,11 @@ bool FResponse_CreateMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -527,7 +527,7 @@ bool FResponse_CreateMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_CreateMatchPlayer::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -578,11 +578,11 @@ bool FResponse_CreateMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -852,7 +852,7 @@ bool FResponse_CreateMatchRewards::TryGetContentFor404(FRHAPI_HzApiErrorModel& O
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateMatchRewards::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_CreateMatchRewards::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -913,11 +913,11 @@ bool FResponse_CreateMatchRewards::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1155,7 +1155,7 @@ bool FResponse_CreateMatchSegment::TryGetContentFor403(FRHAPI_HzApiErrorModel& O
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateMatchSegment::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_CreateMatchSegment::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1196,11 +1196,11 @@ bool FResponse_CreateMatchSegment::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -1458,7 +1458,7 @@ bool FResponse_CreateMatchTimeline::TryGetContentFor404(FRHAPI_HzApiErrorModel& 
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_CreateMatchTimeline::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_CreateMatchTimeline::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1690,7 +1690,7 @@ bool FResponse_DeleteMatch::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutConte
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_DeleteMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_DeleteMatch::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -1923,7 +1923,7 @@ bool FResponse_DeleteMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_DeleteMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_DeleteMatchPlayer::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -2156,7 +2156,7 @@ bool FResponse_DeleteMatchSegment::TryGetContentFor404(FRHAPI_HzApiErrorModel& O
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_DeleteMatchSegment::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_DeleteMatchSegment::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -2400,7 +2400,7 @@ bool FResponse_GetMatch::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutContent)
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetMatch::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -2451,11 +2451,11 @@ bool FResponse_GetMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -2699,7 +2699,7 @@ bool FResponse_GetMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutCo
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetMatchPlayer::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -2750,11 +2750,11 @@ bool FResponse_GetMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -2998,7 +2998,7 @@ bool FResponse_GetMatchSegment::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutC
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetMatchSegment::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetMatchSegment::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -3049,11 +3049,11 @@ bool FResponse_GetMatchSegment::FromJson(const TSharedPtr<FJsonValue>& JsonValue
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -3304,7 +3304,7 @@ bool FResponse_GetMatchTimelinePage::TryGetContentFor404(FRHAPI_HzApiErrorModel&
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetMatchTimelinePage::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetMatchTimelinePage::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -3355,11 +3355,11 @@ bool FResponse_GetMatchTimelinePage::FromJson(const TSharedPtr<FJsonValue>& Json
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -3526,6 +3526,34 @@ FString FRequest_GetMatches::ComputePath() const
 	{
 		QueryParams.Add(FString(TEXT("state=")) + ToUrlString(State.GetValue()));
 	}
+	if(Sort.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("sort=")) + ToUrlString(Sort.GetValue()));
+	}
+	if(MinStart.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("min_start=")) + ToUrlString(MinStart.GetValue()));
+	}
+	if(MaxStart.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("max_start=")) + ToUrlString(MaxStart.GetValue()));
+	}
+	if(MinEnd.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("min_end=")) + ToUrlString(MinEnd.GetValue()));
+	}
+	if(MaxEnd.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("max_end=")) + ToUrlString(MaxEnd.GetValue()));
+	}
+	if(MinCreated.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("min_created=")) + ToUrlString(MinCreated.GetValue()));
+	}
+	if(MaxCreated.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("max_created=")) + ToUrlString(MaxCreated.GetValue()));
+	}
 	if(IncludeSegments.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("include_segments=")) + ToUrlString(IncludeSegments.GetValue()));
@@ -3641,7 +3669,7 @@ bool FResponse_GetMatches::TryGetContentFor403(FRHAPI_HzApiErrorModel& OutConten
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetMatches::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetMatches::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -3682,11 +3710,11 @@ bool FResponse_GetMatches::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -3920,7 +3948,7 @@ bool FResponse_GetPlayerMatchesSelf::TryGetContentFor403(FRHAPI_HzApiErrorModel&
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayerMatchesSelf::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetPlayerMatchesSelf::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -3961,11 +3989,11 @@ bool FResponse_GetPlayerMatchesSelf::FromJson(const TSharedPtr<FJsonValue>& Json
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -4256,7 +4284,7 @@ bool FResponse_GetPlayerRecentlyPlayedWith::TryGetContentFor403(FRHAPI_HzApiErro
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayerRecentlyPlayedWith::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetPlayerRecentlyPlayedWith::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -4297,11 +4325,11 @@ bool FResponse_GetPlayerRecentlyPlayedWith::FromJson(const TSharedPtr<FJsonValue
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -4544,7 +4572,7 @@ bool FResponse_GetPlayerStats::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutCo
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayerStats::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetPlayerStats::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -4595,11 +4623,11 @@ bool FResponse_GetPlayerStats::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -4838,7 +4866,7 @@ bool FResponse_GetPlayersMatches::TryGetContentFor403(FRHAPI_HzApiErrorModel& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_GetPlayersMatches::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_GetPlayersMatches::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -4879,11 +4907,11 @@ bool FResponse_GetPlayersMatches::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -5153,7 +5181,7 @@ bool FResponse_PatchMatch::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutConten
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PatchMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PatchMatch::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -5214,11 +5242,11 @@ bool FResponse_PatchMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -5473,7 +5501,7 @@ bool FResponse_PatchMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& Out
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PatchMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PatchMatchPlayer::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -5524,11 +5552,11 @@ bool FResponse_PatchMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonValu
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -5783,7 +5811,7 @@ bool FResponse_PatchMatchSegment::TryGetContentFor404(FRHAPI_HzApiErrorModel& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_PatchMatchSegment::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_PatchMatchSegment::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -5834,11 +5862,11 @@ bool FResponse_PatchMatchSegment::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -6108,7 +6136,7 @@ bool FResponse_UpdateMatch::TryGetContentFor404(FRHAPI_HzApiErrorModel& OutConte
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_UpdateMatch::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_UpdateMatch::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -6169,11 +6197,11 @@ bool FResponse_UpdateMatch::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -6428,7 +6456,7 @@ bool FResponse_UpdateMatchPlayer::TryGetContentFor404(FRHAPI_HzApiErrorModel& Ou
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_UpdateMatchPlayer::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_UpdateMatchPlayer::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -6479,11 +6507,11 @@ bool FResponse_UpdateMatchPlayer::FromJson(const TSharedPtr<FJsonValue>& JsonVal
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:
@@ -6738,7 +6766,7 @@ bool FResponse_UpdateMatchSegment::TryGetContentFor404(FRHAPI_HzApiErrorModel& O
 	return TryGetContent(OutContent);
 }
 
-bool FResponse_UpdateMatchSegment::TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const
+bool FResponse_UpdateMatchSegment::TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 422)
@@ -6789,11 +6817,11 @@ bool FResponse_UpdateMatchSegment::FromJson(const TSharedPtr<FJsonValue>& JsonVa
 		case 422:
 			{
 				// parse into the structured data format from the json object
-				FRHAPI_HTTPValidationError Object;
+				FRHAPI_MatchHTTPValidationError Object;
 				bParsed = TryGetJsonValue(JsonValue, Object);
 				
 				// even if parsing encountered errors, set the object in case parsing was partially successful
-				ParsedContent.Set<FRHAPI_HTTPValidationError>(Object);
+				ParsedContent.Set<FRHAPI_MatchHTTPValidationError>(Object);
 				break;
 			}
 		default:

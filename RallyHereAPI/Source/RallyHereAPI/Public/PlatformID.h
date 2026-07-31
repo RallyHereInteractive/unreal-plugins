@@ -30,6 +30,7 @@ enum class ERHAPI_PlatformID : uint8
 	Apple UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Apple"),
 	Nintendo UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform NintendoNAID"),
 	Epic UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Epic"),
+	Discord UMETA(ToolTip="DEPRECATED. Use platform instead. ID for the platform Discord"),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_PlatformID& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_PlatformID& EnumValue);

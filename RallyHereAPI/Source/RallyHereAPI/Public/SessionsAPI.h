@@ -5489,7 +5489,7 @@ struct RALLYHEREAPI_API Traits_InstanceHealthConfig
  * 
  * 
  * 
- * Required Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin
 */
 struct RALLYHEREAPI_API FRequest_InvitePlayerByUuidV2 : public FRequest
 {
@@ -6289,7 +6289,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
  * - For the player themselves : `session:update-player:self`
  * 
  * Required Session Permissions: None for players operating on themselves.
- * Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin
  * **DEPRECATED** - Use the player endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionById : public FRequest
@@ -6396,7 +6396,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
  * 
  * - For the player themselves : `session:update-player:self`
  * 
- * Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin
  * **DEPRECATED** - Use player/{player_uuid} endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuid : public FRequest
@@ -6520,7 +6520,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
  * - For the player themselves : `session:update-player:self`
  * 
  * Required Session Permissions: None for users operating on themselves. 
- * Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuidV2 : public FRequest
 {
@@ -7185,7 +7185,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
  * 
  * - For the player themselves : `session:update-player:self`
  * 
- * Required Session Permissions: `move` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin
 */
 struct RALLYHEREAPI_API FRequest_MovePlayerByUuidV2 : public FRequest
 {
@@ -8546,7 +8546,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
- * Required Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin
  * 
  * To move players
  * Required Permissions:
@@ -8554,7 +8554,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
- * Required Session Permissions: `move` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin
  * 
  * For all else
  * Required Permissions:

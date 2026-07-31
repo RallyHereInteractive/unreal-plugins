@@ -54,6 +54,7 @@ Private/DeserterConfigResponse.cpp
 Private/DeserterUpdateRequest.cpp
 Private/Determiner.cpp
 Private/DeviceType.cpp
+Private/DiscordProvisionalTokenResponse.cpp
 Private/EntitlementActionType.cpp
 Private/EntitlementEvent.cpp
 Private/EntitlementEventList.cpp
@@ -184,6 +185,7 @@ Private/MarketingCampaign.cpp
 Private/MarketingCampaigns.cpp
 Private/MatchAPI.cpp
 Private/MatchAllocation.cpp
+Private/MatchHTTPValidationError.cpp
 Private/MatchHostType.cpp
 Private/MatchInfo.cpp
 Private/MatchInstance.cpp
@@ -206,11 +208,13 @@ Private/MatchSegmentPatchRequest.cpp
 Private/MatchSegmentRequest.cpp
 Private/MatchSegmentWithPlayers.cpp
 Private/MatchSession.cpp
+Private/MatchSort.cpp
 Private/MatchState.cpp
 Private/MatchTimeline.cpp
 Private/MatchTimelineEvent.cpp
 Private/MatchTimelinePage.cpp
 Private/MatchTimelineProperties.cpp
+Private/MatchValidationError.cpp
 Private/MatchValuesOnly.cpp
 Private/MatchWithPlayers.cpp
 Private/MatchmakingInfo.cpp
@@ -513,6 +517,7 @@ Public/DeserterConfigResponse.h
 Public/DeserterUpdateRequest.h
 Public/Determiner.h
 Public/DeviceType.h
+Public/DiscordProvisionalTokenResponse.h
 Public/EntitlementActionType.h
 Public/EntitlementEvent.h
 Public/EntitlementEventList.h
@@ -643,6 +648,7 @@ Public/MarketingCampaign.h
 Public/MarketingCampaigns.h
 Public/MatchAPI.h
 Public/MatchAllocation.h
+Public/MatchHTTPValidationError.h
 Public/MatchHostType.h
 Public/MatchInfo.h
 Public/MatchInstance.h
@@ -665,11 +671,13 @@ Public/MatchSegmentPatchRequest.h
 Public/MatchSegmentRequest.h
 Public/MatchSegmentWithPlayers.h
 Public/MatchSession.h
+Public/MatchSort.h
 Public/MatchState.h
 Public/MatchTimeline.h
 Public/MatchTimelineEvent.h
 Public/MatchTimelinePage.h
 Public/MatchTimelineProperties.h
+Public/MatchValidationError.h
 Public/MatchValuesOnly.h
 Public/MatchWithPlayers.h
 Public/MatchmakingInfo.h

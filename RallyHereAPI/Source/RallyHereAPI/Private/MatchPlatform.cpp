@@ -54,6 +54,10 @@ FString EnumToString(const ERHAPI_MatchPlatform& Value)
 		return TEXT("RallyHere");
 	case ERHAPI_MatchPlatform::Legacyname:
 		return TEXT("LegacyName");
+	case ERHAPI_MatchPlatform::AndroidDevice:
+		return TEXT("AndroidDevice");
+	case ERHAPI_MatchPlatform::IosDevice:
+		return TEXT("iosDevice");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_MatchPlatform::Values Value (%d)"), (int)Value);
@@ -78,7 +82,9 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_MatchPlatform& Value)
 		{ TEXT("Amazon"), ERHAPI_MatchPlatform::Amazon },
 		{ TEXT("Twitch"), ERHAPI_MatchPlatform::Twitch },
 		{ TEXT("RallyHere"), ERHAPI_MatchPlatform::Rallyhere },
-		{ TEXT("LegacyName"), ERHAPI_MatchPlatform::Legacyname },	};
+		{ TEXT("LegacyName"), ERHAPI_MatchPlatform::Legacyname },
+		{ TEXT("AndroidDevice"), ERHAPI_MatchPlatform::AndroidDevice },
+		{ TEXT("iosDevice"), ERHAPI_MatchPlatform::IosDevice },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
