@@ -11,8 +11,8 @@
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
 #include "MatchPlatform.h"
-#include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
+#include "MatchHTTPValidationError.h"
 #include "PexClientPagedResponse.h"
 #include "PexClientRequest.h"
 #include "PexHostPagedResponse.h"
@@ -57,9 +57,9 @@ struct RALLYHEREAPI_API FRequest_CreatePexHost : public FRequest
 };
 
 /** The response type for FRequest_CreatePexHost */
-struct RALLYHEREAPI_API FResponse_CreatePexHost : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreatePexHost : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_CreatePexHost(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreatePexHost() = default;
@@ -89,7 +89,7 @@ struct RALLYHEREAPI_API FResponse_CreatePexHost : public FResponseAccessorTempla
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -151,9 +151,9 @@ struct RALLYHEREAPI_API FRequest_CreatePexPlayer : public FRequest
 };
 
 /** The response type for FRequest_CreatePexPlayer */
-struct RALLYHEREAPI_API FResponse_CreatePexPlayer : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreatePexPlayer : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_CreatePexPlayer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreatePexPlayer() = default;
@@ -183,7 +183,7 @@ struct RALLYHEREAPI_API FResponse_CreatePexPlayer : public FResponseAccessorTemp
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -267,9 +267,9 @@ struct RALLYHEREAPI_API FRequest_GetAllPexClientRawByFilter : public FRequest
 };
 
 /** The response type for FRequest_GetAllPexClientRawByFilter */
-struct RALLYHEREAPI_API FResponse_GetAllPexClientRawByFilter : public FResponseAccessorTemplate<FRHAPI_PexClientPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetAllPexClientRawByFilter : public FResponseAccessorTemplate<FRHAPI_PexClientPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PexClientPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PexClientPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetAllPexClientRawByFilter(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAllPexClientRawByFilter() = default;
@@ -316,7 +316,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPexClientRawByFilter : public FResponseA
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -400,9 +400,9 @@ struct RALLYHEREAPI_API FRequest_GetAllPexClientScoresByFilter : public FRequest
 };
 
 /** The response type for FRequest_GetAllPexClientScoresByFilter */
-struct RALLYHEREAPI_API FResponse_GetAllPexClientScoresByFilter : public FResponseAccessorTemplate<FRHAPI_PexClientPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetAllPexClientScoresByFilter : public FResponseAccessorTemplate<FRHAPI_PexClientPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PexClientPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PexClientPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetAllPexClientScoresByFilter(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAllPexClientScoresByFilter() = default;
@@ -444,7 +444,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPexClientScoresByFilter : public FRespon
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -527,9 +527,9 @@ struct RALLYHEREAPI_API FRequest_GetAllPexHostRawByFilter : public FRequest
 };
 
 /** The response type for FRequest_GetAllPexHostRawByFilter */
-struct RALLYHEREAPI_API FResponse_GetAllPexHostRawByFilter : public FResponseAccessorTemplate<FRHAPI_PexHostPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetAllPexHostRawByFilter : public FResponseAccessorTemplate<FRHAPI_PexHostPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PexHostPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PexHostPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetAllPexHostRawByFilter(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAllPexHostRawByFilter() = default;
@@ -576,7 +576,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPexHostRawByFilter : public FResponseAcc
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -659,9 +659,9 @@ struct RALLYHEREAPI_API FRequest_GetAllPexHostScoresByFilter : public FRequest
 };
 
 /** The response type for FRequest_GetAllPexHostScoresByFilter */
-struct RALLYHEREAPI_API FResponse_GetAllPexHostScoresByFilter : public FResponseAccessorTemplate<FRHAPI_PexHostPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetAllPexHostScoresByFilter : public FResponseAccessorTemplate<FRHAPI_PexHostPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PexHostPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PexHostPagedResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetAllPexHostScoresByFilter(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetAllPexHostScoresByFilter() = default;
@@ -703,7 +703,7 @@ struct RALLYHEREAPI_API FResponse_GetAllPexHostScoresByFilter : public FResponse
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 

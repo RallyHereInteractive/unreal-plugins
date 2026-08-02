@@ -3898,6 +3898,63 @@
         ]
       }
     },
+    "/users/v1/discord/provisional-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Request Discord Provisional Token",
+        "description": "Request a Discord provisional-account token for the authenticated player. Calls Discord's `POST /api/v10/partner-sdk/token/bot` endpoint with the environment's configured bot token, using the caller's `active_player_uuid` as `external_user_id` and (when present) `display_name` as `preferred_global_name`. The returned token is **not** persisted — every call requests a fresh one from Discord.",
+        "operationId": "request_discord_provisional_token",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscordProvisionalTokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HzApiErrorModel"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearerHeadersOrCookie": []
+          }
+        ]
+      }
+    },
     "/settings/v1/setting_type": {
       "get": {
         "tags": [
@@ -18549,7 +18606,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid V2",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for users operating on themselves. \nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin",
         "operationId": "kick_player_from_session_by_uuid_v2",
         "parameters": [
           {
@@ -19236,7 +19293,7 @@
           "Sessions"
         ],
         "summary": "Invite Player By Uuid V2",
-        "description": "Invite a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin",
+        "description": "Invite a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update:any`, `session:update:self`\n\n\n\nRequired Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin",
         "operationId": "invite_player_by_uuid_v2",
         "parameters": [
           {
@@ -19442,7 +19499,7 @@
           "Sessions"
         ],
         "summary": "Move Player By Uuid V2",
-        "description": "Move a specific player to a different team in a specific session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `move` for users that do not have the above permissions, and are not a session admin",
+        "description": "Move a specific player to a different team in a specific session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin",
         "operationId": "move_player_by_uuid_v2",
         "parameters": [
           {
@@ -19658,7 +19715,7 @@
           "Sessions"
         ],
         "summary": "Update Session Player By Uuid",
-        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nTo promote players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nTo invite players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin\n\nTo move players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `move` for users that do not have the above permissions, and are not a session admin\n\nFor all else\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Add or invite a player to the session, or change the status of a player already in the session\n\nTo promote players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:promote:any`, `session:promote:self`\n\n\n\nTo invite players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin\n\nTo move players\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\nRequired Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin\n\nFor all else\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None if session is publicly joinable or the player has been invited. \n`SessionPermissions.session_admin` for other operations\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "update_session_player_by_uuid",
         "parameters": [
           {
@@ -19765,7 +19822,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Uuid",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use player/{player_uuid} endpoint instead",
         "operationId": "kick_player_from_session_by_uuid",
         "parameters": [
           {
@@ -19966,7 +20023,7 @@
           "Sessions"
         ],
         "summary": "Kick Player From Session By Id",
-        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for players operating on themselves.\nRequired Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use the player endpoint instead",
+        "description": "Kick or Remove a player from a session, or cancel an invite for a player to the session\n\nRequired Permissions:\n\n- For any player (including themselves) any of: `session:*`, `session:update-player:any`\n\n- For the player themselves : `session:update-player:self`\n\nRequired Session Permissions: None for players operating on themselves.\nRequired Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin\n**DEPRECATED** - Use the player endpoint instead",
         "operationId": "kick_player_from_session_by_id",
         "parameters": [
           {
@@ -23895,6 +23952,135 @@
             }
           },
           {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/MatchSort",
+              "default": "created:desc"
+            }
+          },
+          {
+            "name": "min_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Start"
+            }
+          },
+          {
+            "name": "max_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Start"
+            }
+          },
+          {
+            "name": "min_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min End"
+            }
+          },
+          {
+            "name": "max_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max End"
+            }
+          },
+          {
+            "name": "min_created",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Min Created"
+            }
+          },
+          {
+            "name": "max_created",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "title": "Time Zone Aware Datetime",
+                  "description": "Datetime that enforces that a timezone is given. Unix timestamps are allowed and forced into the UTC time zone",
+                  "type": "string",
+                  "format": "date-time",
+                  "example": "2023-01-23T21:07:02.000000+00:00"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Max Created"
+            }
+          },
+          {
             "name": "include_segments",
             "in": "query",
             "required": false,
@@ -23941,7 +24127,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -23996,7 +24182,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24064,7 +24250,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24150,7 +24336,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24236,7 +24422,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24295,7 +24481,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24379,7 +24565,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24458,7 +24644,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24546,7 +24732,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24623,7 +24809,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24692,7 +24878,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24779,7 +24965,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24857,7 +25043,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -24943,7 +25129,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25029,7 +25215,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25115,7 +25301,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25184,7 +25370,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25313,7 +25499,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25390,7 +25576,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25475,7 +25661,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25560,7 +25746,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25628,7 +25814,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -25696,7 +25882,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -26104,7 +26290,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -26502,7 +26688,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -26926,7 +27112,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -27340,7 +27526,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -27385,7 +27571,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -27435,7 +27621,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
+                  "$ref": "#/components/schemas/MatchHTTPValidationError"
                 }
               }
             }
@@ -36110,6 +36296,43 @@
           "web"
         ]
       },
+      "DiscordProvisionalTokenResponse": {
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "title": "Access Token",
+            "description": "Discord provisional access token"
+          },
+          "id_token": {
+            "type": "string",
+            "title": "Id Token",
+            "description": "Discord ID token, if Discord returns one"
+          },
+          "token_type": {
+            "type": "string",
+            "title": "Token Type",
+            "description": "Always \"Bearer\" as of Discord API v10"
+          },
+          "expires_in": {
+            "type": "integer",
+            "title": "Expires In",
+            "description": "Seconds until the access_token expires (Discord currently returns 604800 = 7 days)"
+          },
+          "scope": {
+            "type": "string",
+            "title": "Scope",
+            "description": "Discord OAuth scopes granted on the token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "access_token",
+          "token_type",
+          "expires_in"
+        ],
+        "title": "DiscordProvisionalTokenResponse",
+        "description": "Verbatim response from Discord's bot-token endpoint."
+      },
       "GrantType": {
         "type": "string",
         "enum": [
@@ -36927,11 +37150,13 @@
           "RallyHere",
           "LegacyName",
           "AndroidDevice",
-          "iosDevice"
+          "iosDevice",
+          "Discord"
         ],
         "title": "Platform",
         "description": "An enumeration.",
         "x-enum-descriptions": [
+          "",
           "",
           "",
           "",
@@ -36969,7 +37194,8 @@
           "RALLYHERE",
           "LEGACYNAME",
           "ANDROID_DEVICE",
-          "IOS_DEVICE"
+          "IOS_DEVICE",
+          "DISCORD"
         ]
       },
       "PlatformIdentityLookupResults": {
@@ -47366,7 +47592,8 @@
           22,
           24,
           26,
-          28
+          28,
+          25
         ],
         "title": "PlatformID",
         "description": "DEPRECATED. Use Platform instead. Unique ids for different client platforms",
@@ -47382,7 +47609,8 @@
           "DEPRECATED. Use platform instead. ID for the platform NintendoSwitch",
           "DEPRECATED. Use platform instead. ID for the platform Apple",
           "DEPRECATED. Use platform instead. ID for the platform NintendoNAID",
-          "DEPRECATED. Use platform instead. ID for the platform Epic"
+          "DEPRECATED. Use platform instead. ID for the platform Epic",
+          "DEPRECATED. Use platform instead. ID for the platform Discord"
         ],
         "x-enum-varnames": [
           "ANON",
@@ -47396,7 +47624,8 @@
           "NINTENDO_SWITCH",
           "APPLE",
           "NINTENDO",
-          "EPIC"
+          "EPIC",
+          "DISCORD"
         ]
       },
       "PlatformScout": {
@@ -49933,6 +50162,19 @@
         "title": "RankedTeam",
         "description": "One team of players from a match along with their placement in the match, and previous rank data about all of the players"
       },
+      "MatchHTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/MatchValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
       "MatchHostType": {
         "type": "string",
         "enum": [
@@ -50488,7 +50730,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50675,7 +50918,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50818,7 +51062,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -50971,7 +51216,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -51145,6 +51391,35 @@
           "session_id"
         ],
         "title": "MatchSession"
+      },
+      "MatchSort": {
+        "type": "string",
+        "enum": [
+          "created:asc",
+          "created:desc",
+          "started:asc",
+          "started:desc",
+          "ended:asc",
+          "ended:desc"
+        ],
+        "title": "MatchSort",
+        "description": "Sort order for matches.",
+        "x-enum-descriptions": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "x-enum-varnames": [
+          "created_asc",
+          "created_desc",
+          "started_asc",
+          "started_desc",
+          "ended_asc",
+          "ended_desc"
+        ]
       },
       "MatchState": {
         "type": "string",
@@ -52586,7 +52861,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -52733,7 +53009,8 @@
           "type": {
             "anyOf": [
               {
-                "type": "string"
+                "type": "string",
+                "maxLength": 50
               },
               {
                 "type": "null"
@@ -55936,10 +56213,14 @@
           "Amazon",
           "Twitch",
           "RallyHere",
-          "LegacyName"
+          "LegacyName",
+          "AndroidDevice",
+          "iosDevice"
         ],
         "title": "Platform",
         "x-enum-descriptions": [
+          "",
+          "",
           "",
           "",
           "",
@@ -55973,7 +56254,9 @@
           "AMAZON",
           "TWITCH",
           "RALLYHERE",
-          "LEGACYNAME"
+          "LEGACYNAME",
+          "ANDROID_DEVICE",
+          "IOS_DEVICE"
         ]
       },
       "PlayerMatchReward": {
@@ -56042,6 +56325,46 @@
         "type": "object",
         "title": "RecentlyPlayedWithResponse",
         "description": "List of players that this user recently played with"
+      },
+      "MatchValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
       },
       "Body_create_entity_directory_file": {
         "properties": {
@@ -56478,7 +56801,7 @@
               }
             ],
             "title": "Message",
-            "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value."
+            "description": "Optional custom message to display alongside the user's online status. Leaving this unset will not change the value. Setting this to null or an empty string clears the message."
           },
           "do_not_disturb": {
             "anyOf": [

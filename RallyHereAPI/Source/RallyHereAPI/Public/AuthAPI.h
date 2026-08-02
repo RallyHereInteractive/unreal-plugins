@@ -11,6 +11,7 @@
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
 #include "OAuthPortal.h"
+#include "DiscordProvisionalTokenResponse.h"
 #include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
 #include "LoginCompleteMessage.h"
@@ -844,6 +845,112 @@ struct RALLYHEREAPI_API Traits_OauthTokenExchange
 };
 
 /**
+ * @brief Request Discord Provisional Token
+ * Request a Discord provisional-account token for the authenticated player. Calls Discord's `POST /api/v10/partner-sdk/token/bot` endpoint with the environment's configured bot token, using the caller's `active_player_uuid` as `external_user_id` and (when present) `display_name` as `preferred_global_name`. The returned token is **not** persisted — every call requests a fresh one from Discord.
+*/
+struct RALLYHEREAPI_API FRequest_RequestDiscordProvisionalToken : public FRequest
+{
+	FRequest_RequestDiscordProvisionalToken();
+	virtual ~FRequest_RequestDiscordProvisionalToken() = default;
+	
+	/** @brief Given a http request, apply data and settings from this request object to it */
+	bool SetupHttpRequest(const FHttpRequestRef& HttpRequest) const override;
+	/** @brief Compute the URL path for this request instance */
+	FString ComputePath() const override;
+	/** @brief Get the simplified URL path for this request, not including the verb */
+	FName GetSimplifiedPath() const override;
+	/** @brief Get the simplified URL path for this request, including the verb */
+	FName GetSimplifiedPathWithVerb() const override;
+	/** @brief Get the auth context used for this request */
+	TSharedPtr<FAuthContext> GetAuthContext() const override { return AuthContext; }
+
+	/** The specified auth context to use for this request */
+	TSharedPtr<FAuthContext> AuthContext;
+};
+
+/** The response type for FRequest_RequestDiscordProvisionalToken */
+struct RALLYHEREAPI_API FResponse_RequestDiscordProvisionalToken : public FResponseAccessorTemplate<FRHAPI_DiscordProvisionalTokenResponse, FRHAPI_HzApiErrorModel>
+{
+	typedef FResponseAccessorTemplate<FRHAPI_DiscordProvisionalTokenResponse, FRHAPI_HzApiErrorModel> Super;
+
+	FResponse_RequestDiscordProvisionalToken(FRequestMetadata InRequestMetadata);
+	//virtual ~FResponse_RequestDiscordProvisionalToken() = default;
+	
+	/** @brief Parse out response content into local storage from a given JsonValue */
+	virtual bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) override;
+	/** @brief Parse out header information for later usage */
+	virtual bool ParseHeaders() override;
+	/** @brief Gets the description of the response code */
+	virtual FString GetHttpResponseCodeDescription(EHttpResponseCodes::Type InHttpResponseCode) const override;
+
+#if ALLOW_LEGACY_RESPONSE_CONTENT
+	/** Default Response Content */
+	UE_DEPRECATED(5.0, "Direct use of Content is deprecated, please use TryGetDefaultContent(), TryGetContent(), TryGetResponse<>(), or TryGetContentFor<>() instead.")
+	FRHAPI_DiscordProvisionalTokenResponse Content;
+#endif //ALLOW_LEGACY_RESPONSE_CONTENT
+
+	// Default Response Helpers
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(FRHAPI_DiscordProvisionalTokenResponse& OutContent) const { return TryGetContent<FRHAPI_DiscordProvisionalTokenResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	bool TryGetDefaultContent(TOptional<FRHAPI_DiscordProvisionalTokenResponse>& OutContent) const { return TryGetContent<FRHAPI_DiscordProvisionalTokenResponse>(OutContent); }
+	/** @brief Attempt to retrieve the content in the default response */
+	const FRHAPI_DiscordProvisionalTokenResponse* TryGetDefaultContentAsPointer() const { return TryGetContentAsPointer<FRHAPI_DiscordProvisionalTokenResponse>(); }
+	/** @brief Attempt to retrieve the content in the default response */
+	TOptional<FRHAPI_DiscordProvisionalTokenResponse> TryGetDefaultContentAsOptional() const { return TryGetContentAsOptional<FRHAPI_DiscordProvisionalTokenResponse>(); }
+
+	// Individual Response Helpers	
+	/* Response 200
+	Successful Response
+	*/
+	bool TryGetContentFor200(FRHAPI_DiscordProvisionalTokenResponse& OutContent) const;
+
+	/* Response 400
+	Bad Request
+	*/
+	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 403
+	Forbidden
+	*/
+	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
+
+	/* Response 502
+	Bad Gateway
+	*/
+	bool TryGetContentFor502(FRHAPI_HzApiErrorModel& OutContent) const;
+
+};
+
+/** The delegate class for FRequest_RequestDiscordProvisionalToken */
+DECLARE_DELEGATE_OneParam(FDelegate_RequestDiscordProvisionalToken, const FResponse_RequestDiscordProvisionalToken&);
+
+/** @brief A helper metadata object for RequestDiscordProvisionalToken that defines the relationship between Request, Delegate, API, etc.  Intended for use with templating */
+struct RALLYHEREAPI_API Traits_RequestDiscordProvisionalToken
+{
+	/** The request type */
+	typedef FRequest_RequestDiscordProvisionalToken Request;
+	/** The response type */
+	typedef FResponse_RequestDiscordProvisionalToken Response;
+	/** The delegate type, triggered by the response */
+	typedef FDelegate_RequestDiscordProvisionalToken Delegate;
+	/** The API object that supports this API call */
+	typedef FAuthAPI API;
+	/** A human readable name for this API call */
+	static FString Name;
+
+	/**
+	 * @brief A helper that uses all of the above types to initiate an API call, with a specified priority.
+	 * @param [in] InAPI The API object the call will be made with
+	 * @param [in] InRequest The request to submit to the API call
+	 * @param [in] InDelegate An optional delegate to call when the API call completes, containing the response information
+	 * @param [in] InPriority An optional priority override for the API call, for use when API calls are being throttled
+	 * @return A http request object, if the call was successfully queued.
+	 */
+	static FHttpRequestPtr DoCall(TSharedRef<API> InAPI, const Request& InRequest, Delegate InDelegate = Delegate(), int32 InPriority = DefaultRallyHereAPIPriority);
+};
+
+/**
  * @brief Token
  * OAuth2 Token Endpoint. For more information see: <a href="https://datatracker.ietf.org/doc/html/rfc6749#section-3.2" target="_blank">Token Endpoint Spec</a>.
 */
@@ -1063,6 +1170,8 @@ public:
 	void OnOauthResponseResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthResponse Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr OauthTokenExchange(const FRequest_OauthTokenExchange& Request, const FDelegate_OauthTokenExchange& Delegate = FDelegate_OauthTokenExchange(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnOauthTokenExchangeResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_OauthTokenExchange Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
+	FHttpRequestPtr RequestDiscordProvisionalToken(const FRequest_RequestDiscordProvisionalToken& Request, const FDelegate_RequestDiscordProvisionalToken& Delegate = FDelegate_RequestDiscordProvisionalToken(), int32 Priority = DefaultRallyHereAPIPriority);
+	void OnRequestDiscordProvisionalTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_RequestDiscordProvisionalToken Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr Token(const FRequest_Token& Request, const FDelegate_Token& Delegate = FDelegate_Token(), int32 Priority = DefaultRallyHereAPIPriority);
 	void OnTokenResponse(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSucceeded, FDelegate_Token Delegate, FRequestMetadata RequestMetadata, TSharedPtr<FAuthContext> AuthContextForRetry, int32 Priority);
 	FHttpRequestPtr Verify(const FRequest_Verify& Request, const FDelegate_Verify& Delegate = FDelegate_Verify(), int32 Priority = DefaultRallyHereAPIPriority);

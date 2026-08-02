@@ -10,9 +10,10 @@
 #include "CoreMinimal.h"
 #include "RallyHereAPIAuthContext.h"
 #include "RallyHereAPIHelpers.h"
+#include "MatchSort.h"
 #include "MatchState.h"
-#include "HTTPValidationError.h"
 #include "HzApiErrorModel.h"
+#include "MatchHTTPValidationError.h"
 #include "MatchPlayerRequest.h"
 #include "MatchPlayerWithMatch.h"
 #include "MatchRequest.h"
@@ -69,9 +70,9 @@ struct RALLYHEREAPI_API FRequest_CreateMatch : public FRequest
 };
 
 /** The response type for FRequest_CreateMatch */
-struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_CreateMatch(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateMatch() = default;
@@ -113,7 +114,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatch : public FResponseAccessorTemplate
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -177,9 +178,9 @@ struct RALLYHEREAPI_API FRequest_CreateMatchPlayer : public FRequest
 };
 
 /** The response type for FRequest_CreateMatchPlayer */
-struct RALLYHEREAPI_API FResponse_CreateMatchPlayer : public FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateMatchPlayer : public FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_CreateMatchPlayer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateMatchPlayer() = default;
@@ -226,7 +227,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatchPlayer : public FResponseAccessorTe
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -291,9 +292,9 @@ struct RALLYHEREAPI_API FRequest_CreateMatchRewards : public FRequest
 };
 
 /** The response type for FRequest_CreateMatchRewards */
-struct RALLYHEREAPI_API FResponse_CreateMatchRewards : public FResponseAccessorTemplate<FRHAPI_JsonObject, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateMatchRewards : public FResponseAccessorTemplate<FRHAPI_JsonObject, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_JsonObject, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_JsonObject, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_CreateMatchRewards(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateMatchRewards() = default;
@@ -345,7 +346,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatchRewards : public FResponseAccessorT
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -408,9 +409,9 @@ struct RALLYHEREAPI_API FRequest_CreateMatchSegment : public FRequest
 };
 
 /** The response type for FRequest_CreateMatchSegment */
-struct RALLYHEREAPI_API FResponse_CreateMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_CreateMatchSegment(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateMatchSegment() = default;
@@ -452,7 +453,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatchSegment : public FResponseAccessorT
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -517,9 +518,9 @@ struct RALLYHEREAPI_API FRequest_CreateMatchTimeline : public FRequest
 };
 
 /** The response type for FRequest_CreateMatchTimeline */
-struct RALLYHEREAPI_API FResponse_CreateMatchTimeline : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_CreateMatchTimeline : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_CreateMatchTimeline(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_CreateMatchTimeline() = default;
@@ -559,7 +560,7 @@ struct RALLYHEREAPI_API FResponse_CreateMatchTimeline : public FResponseAccessor
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -621,9 +622,9 @@ struct RALLYHEREAPI_API FRequest_DeleteMatch : public FRequest
 };
 
 /** The response type for FRequest_DeleteMatch */
-struct RALLYHEREAPI_API FResponse_DeleteMatch : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteMatch : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_DeleteMatch(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteMatch() = default;
@@ -658,7 +659,7 @@ struct RALLYHEREAPI_API FResponse_DeleteMatch : public FResponseAccessorTemplate
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -721,9 +722,9 @@ struct RALLYHEREAPI_API FRequest_DeleteMatchPlayer : public FRequest
 };
 
 /** The response type for FRequest_DeleteMatchPlayer */
-struct RALLYHEREAPI_API FResponse_DeleteMatchPlayer : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteMatchPlayer : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_DeleteMatchPlayer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteMatchPlayer() = default;
@@ -758,7 +759,7 @@ struct RALLYHEREAPI_API FResponse_DeleteMatchPlayer : public FResponseAccessorTe
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -821,9 +822,9 @@ struct RALLYHEREAPI_API FRequest_DeleteMatchSegment : public FRequest
 };
 
 /** The response type for FRequest_DeleteMatchSegment */
-struct RALLYHEREAPI_API FResponse_DeleteMatchSegment : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_DeleteMatchSegment : public FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_DeleteMatchSegment(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_DeleteMatchSegment() = default;
@@ -858,7 +859,7 @@ struct RALLYHEREAPI_API FResponse_DeleteMatchSegment : public FResponseAccessorT
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -922,9 +923,9 @@ struct RALLYHEREAPI_API FRequest_GetMatch : public FRequest
 };
 
 /** The response type for FRequest_GetMatch */
-struct RALLYHEREAPI_API FResponse_GetMatch : public FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetMatch : public FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetMatch(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetMatch() = default;
@@ -971,7 +972,7 @@ struct RALLYHEREAPI_API FResponse_GetMatch : public FResponseAccessorTemplate<FR
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1036,9 +1037,9 @@ struct RALLYHEREAPI_API FRequest_GetMatchPlayer : public FRequest
 };
 
 /** The response type for FRequest_GetMatchPlayer */
-struct RALLYHEREAPI_API FResponse_GetMatchPlayer : public FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetMatchPlayer : public FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetMatchPlayer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetMatchPlayer() = default;
@@ -1085,7 +1086,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchPlayer : public FResponseAccessorTempl
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1148,9 +1149,9 @@ struct RALLYHEREAPI_API FRequest_GetMatchSegment : public FRequest
 };
 
 /** The response type for FRequest_GetMatchSegment */
-struct RALLYHEREAPI_API FResponse_GetMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetMatchSegment(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetMatchSegment() = default;
@@ -1197,7 +1198,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchSegment : public FResponseAccessorTemp
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1262,9 +1263,9 @@ struct RALLYHEREAPI_API FRequest_GetMatchTimelinePage : public FRequest
 };
 
 /** The response type for FRequest_GetMatchTimelinePage */
-struct RALLYHEREAPI_API FResponse_GetMatchTimelinePage : public FResponseAccessorTemplate<FRHAPI_MatchTimelinePage, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetMatchTimelinePage : public FResponseAccessorTemplate<FRHAPI_MatchTimelinePage, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchTimelinePage, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchTimelinePage, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetMatchTimelinePage(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetMatchTimelinePage() = default;
@@ -1311,7 +1312,7 @@ struct RALLYHEREAPI_API FResponse_GetMatchTimelinePage : public FResponseAccesso
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1382,14 +1383,21 @@ struct RALLYHEREAPI_API FRequest_GetMatches : public FRequest
 	TOptional<int32> MinDurationSeconds;
 	TOptional<FString> Type;
 	TOptional<ERHAPI_MatchState> State;
+	TOptional<ERHAPI_MatchSort> Sort;
+	TOptional<FDateTime> MinStart;
+	TOptional<FDateTime> MaxStart;
+	TOptional<FDateTime> MinEnd;
+	TOptional<FDateTime> MaxEnd;
+	TOptional<FDateTime> MinCreated;
+	TOptional<FDateTime> MaxCreated;
 	TOptional<bool> IncludeSegments;
 	TOptional<bool> IncludePlayers;
 };
 
 /** The response type for FRequest_GetMatches */
-struct RALLYHEREAPI_API FResponse_GetMatches : public FResponseAccessorTemplate<FRHAPI_PagedMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetMatches : public FResponseAccessorTemplate<FRHAPI_PagedMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PagedMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PagedMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetMatches(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetMatches() = default;
@@ -1431,7 +1439,7 @@ struct RALLYHEREAPI_API FResponse_GetMatches : public FResponseAccessorTemplate<
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1497,9 +1505,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayerMatchesSelf : public FRequest
 };
 
 /** The response type for FRequest_GetPlayerMatchesSelf */
-struct RALLYHEREAPI_API FResponse_GetPlayerMatchesSelf : public FResponseAccessorTemplate<FRHAPI_PagedPlayerMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetPlayerMatchesSelf : public FResponseAccessorTemplate<FRHAPI_PagedPlayerMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PagedPlayerMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PagedPlayerMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetPlayerMatchesSelf(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPlayerMatchesSelf() = default;
@@ -1541,7 +1549,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerMatchesSelf : public FResponseAccesso
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1611,9 +1619,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayerRecentlyPlayedWith : public FRequest
 };
 
 /** The response type for FRequest_GetPlayerRecentlyPlayedWith */
-struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayedWith : public FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayedWith : public FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_RecentlyPlayedWithResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetPlayerRecentlyPlayedWith(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPlayerRecentlyPlayedWith() = default;
@@ -1681,7 +1689,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerRecentlyPlayedWith : public FResponse
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1745,9 +1753,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayerStats : public FRequest
 };
 
 /** The response type for FRequest_GetPlayerStats */
-struct RALLYHEREAPI_API FResponse_GetPlayerStats : public FResponseAccessorTemplate<FRHAPI_PlayerStatsResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetPlayerStats : public FResponseAccessorTemplate<FRHAPI_PlayerStatsResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PlayerStatsResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PlayerStatsResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetPlayerStats(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPlayerStats() = default;
@@ -1794,7 +1802,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayerStats : public FResponseAccessorTempl
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1861,9 +1869,9 @@ struct RALLYHEREAPI_API FRequest_GetPlayersMatches : public FRequest
 };
 
 /** The response type for FRequest_GetPlayersMatches */
-struct RALLYHEREAPI_API FResponse_GetPlayersMatches : public FResponseAccessorTemplate<FRHAPI_PagedPlayerMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_GetPlayersMatches : public FResponseAccessorTemplate<FRHAPI_PagedPlayerMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_PagedPlayerMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_PagedPlayerMatchResponse, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_GetPlayersMatches(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_GetPlayersMatches() = default;
@@ -1905,7 +1913,7 @@ struct RALLYHEREAPI_API FResponse_GetPlayersMatches : public FResponseAccessorTe
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -1972,9 +1980,9 @@ struct RALLYHEREAPI_API FRequest_PatchMatch : public FRequest
 };
 
 /** The response type for FRequest_PatchMatch */
-struct RALLYHEREAPI_API FResponse_PatchMatch : public FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_PatchMatch : public FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_PatchMatch(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_PatchMatch() = default;
@@ -2026,7 +2034,7 @@ struct RALLYHEREAPI_API FResponse_PatchMatch : public FResponseAccessorTemplate<
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -2094,9 +2102,9 @@ struct RALLYHEREAPI_API FRequest_PatchMatchPlayer : public FRequest
 };
 
 /** The response type for FRequest_PatchMatchPlayer */
-struct RALLYHEREAPI_API FResponse_PatchMatchPlayer : public FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_PatchMatchPlayer : public FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_PatchMatchPlayer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_PatchMatchPlayer() = default;
@@ -2143,7 +2151,7 @@ struct RALLYHEREAPI_API FResponse_PatchMatchPlayer : public FResponseAccessorTem
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -2212,9 +2220,9 @@ struct RALLYHEREAPI_API FRequest_PatchMatchSegment : public FRequest
 };
 
 /** The response type for FRequest_PatchMatchSegment */
-struct RALLYHEREAPI_API FResponse_PatchMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_PatchMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_PatchMatchSegment(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_PatchMatchSegment() = default;
@@ -2261,7 +2269,7 @@ struct RALLYHEREAPI_API FResponse_PatchMatchSegment : public FResponseAccessorTe
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -2328,9 +2336,9 @@ struct RALLYHEREAPI_API FRequest_UpdateMatch : public FRequest
 };
 
 /** The response type for FRequest_UpdateMatch */
-struct RALLYHEREAPI_API FResponse_UpdateMatch : public FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdateMatch : public FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_UpdateMatch(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdateMatch() = default;
@@ -2382,7 +2390,7 @@ struct RALLYHEREAPI_API FResponse_UpdateMatch : public FResponseAccessorTemplate
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -2448,9 +2456,9 @@ struct RALLYHEREAPI_API FRequest_UpdateMatchPlayer : public FRequest
 };
 
 /** The response type for FRequest_UpdateMatchPlayer */
-struct RALLYHEREAPI_API FResponse_UpdateMatchPlayer : public FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdateMatchPlayer : public FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchPlayerWithMatch, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_UpdateMatchPlayer(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdateMatchPlayer() = default;
@@ -2497,7 +2505,7 @@ struct RALLYHEREAPI_API FResponse_UpdateMatchPlayer : public FResponseAccessorTe
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
@@ -2565,9 +2573,9 @@ struct RALLYHEREAPI_API FRequest_UpdateMatchSegment : public FRequest
 };
 
 /** The response type for FRequest_UpdateMatchSegment */
-struct RALLYHEREAPI_API FResponse_UpdateMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError>
+struct RALLYHEREAPI_API FResponse_UpdateMatchSegment : public FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError>
 {
-	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_HTTPValidationError> Super;
+	typedef FResponseAccessorTemplate<FRHAPI_MatchSegmentWithPlayers, FRHAPI_HzApiErrorModel, FRHAPI_MatchHTTPValidationError> Super;
 
 	FResponse_UpdateMatchSegment(FRequestMetadata InRequestMetadata);
 	//virtual ~FResponse_UpdateMatchSegment() = default;
@@ -2614,7 +2622,7 @@ struct RALLYHEREAPI_API FResponse_UpdateMatchSegment : public FResponseAccessorT
 	/* Response 422
 	Validation Error
 	*/
-	bool TryGetContentFor422(FRHAPI_HTTPValidationError& OutContent) const;
+	bool TryGetContentFor422(FRHAPI_MatchHTTPValidationError& OutContent) const;
 
 };
 
