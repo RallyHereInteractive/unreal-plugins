@@ -9,7 +9,7 @@
 
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
-#include "Operation.generated.h"
+#include "RHAPI_Operation.generated.h"
 
 
 /**

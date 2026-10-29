@@ -55,6 +55,13 @@ namespace RallyHereDeveloperAPI
 struct FAuthContext;
 using namespace FHttpRetrySystem;
 
+#if ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 6)
+// FManager::Update was removed in 5.6, retries are driven by the request completion callbacks so no tick is needed
+struct RALLYHEREDEVELOPERAPI_API FHttpRetryManager : public FManager
+{
+    using FManager::FManager;
+};
+#else
 #if ENGINE_MAJOR_VERSION >= 5
 struct RALLYHEREDEVELOPERAPI_API FHttpRetryManager : public FManager, public FTSTickerObjectBase
 #else
@@ -65,6 +72,7 @@ struct RALLYHEREDEVELOPERAPI_API FHttpRetryManager : public FManager, public FTi
 
     bool Tick(float DeltaTime) final;
 };
+#endif
 
 struct RALLYHEREDEVELOPERAPI_API FHttpRetryParams
 {

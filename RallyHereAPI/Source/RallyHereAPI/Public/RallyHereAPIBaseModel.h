@@ -60,12 +60,20 @@ namespace RallyHereAPI
 struct FAuthContext;
 using namespace FHttpRetrySystem;
 
+#if RHAPI_BELOW_ENGINE_VERSION(5,6)
 struct RALLYHEREAPI_API FHttpRetryManager : public FManager, public FTSTickerObjectBase
 {
 	using FManager::FManager;
 
 	bool Tick(float DeltaTime) final;
 };
+#else
+// FManager::Update was removed in 5.6, retries are driven by the request completion callbacks so no tick is needed
+struct RALLYHEREAPI_API FHttpRetryManager : public FManager
+{
+	using FManager::FManager;
+};
+#endif
 
 #if RHAPI_FROM_ENGINE_VERSION(5,4)
 struct RALLYHEREAPI_API FHttpRetryParams

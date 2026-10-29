@@ -243,9 +243,18 @@ void FRH_AnalyticsProvider::FlushEventsOnce()
 			QUICK_SCOPE_CYCLE_COUNTER(STAT_FlushEventsHttpRequest);
 
 			// Create/send Http request for an event
-			EventsAPI->ReceiveEventsV1(Request, 
+			FHttpRequestPtr HttpRequest = EventsAPI->ReceiveEventsV1(Request,
 				!bShuttingDown ? BaseReceiveEventsType::Delegate::CreateSP(this, &FRH_AnalyticsProvider::EventRequestComplete) : BaseReceiveEventsType::Delegate(),
 				GetDefault<URH_IntegrationSettings>()->EventsReceiveEventPriority);
+
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 6))
+			// the request is queued by the http requester, so it has not been processed yet
+			if (HttpRequest.IsValid())
+			{
+				TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequestRef = HttpRequest.ToSharedRef();
+				OnPreAnalyticsEventProcessedDelegate.Broadcast(HttpRequestRef);
+			}
+#endif
 		}
 	}
 }
@@ -314,11 +323,37 @@ bool FRH_AnalyticsProvider::ShouldRecordEvent(const FString& EventName) const
 	return (!ShouldRecordEventFunc || ShouldRecordEventFunc(*this, EventName));
 }
 
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 7))
 void FRH_AnalyticsProvider::RecordEvent(FString&& EventName, const TArray<FAnalyticsEventAttribute>& Attributes)
+{
+	RecordEvent(MoveTemp(EventName), Attributes, EAnalyticsRecordEventMode::Cached);
+}
+
+void FRH_AnalyticsProvider::RecordEvent(FString&& EventName, const TArray<FAnalyticsEventAttribute>& Attributes, EAnalyticsRecordEventMode Mode)
+#else
+void FRH_AnalyticsProvider::RecordEvent(FString&& EventName, const TArray<FAnalyticsEventAttribute>& Attributes)
+#endif
 {
 	// let higher level code filter the decision of whether to send the event
 	if (ShouldRecordEvent(EventName))
 	{
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 7))
+		bool bQueueEvent = true;
+		const FAnalyticEventQueuedInfo AnalyticEventInfo =
+		{
+			Mode,
+			EventName,
+			Attributes
+		};
+		OnAnalyticsEventQueuedDelegate.Broadcast(bQueueEvent, AnalyticEventInfo);
+
+		if (!bQueueEvent)
+		{
+			UE_LOG(LogAnalyticsRallyHere, Verbose, TEXT("Ignoring event named '%s' due to OnAnalyticsEventQueued request"), *EventName);
+			return;
+		}
+#endif
+
 		// fire any callbacks
 		for (const auto& Cb : EventRecordedCallbacks)
 		{
@@ -328,7 +363,12 @@ void FRH_AnalyticsProvider::RecordEvent(FString&& EventName, const TArray<FAnaly
 
 		EventCache.AddToCache(EventName, Attributes);
 		// if we aren't caching events, flush immediately. This is really only for debugging as it will significantly affect bandwidth.
-		if (!bShouldCacheEvents)
+		bool bFlushImmediately = !bShouldCacheEvents;
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 7))
+		// immediate events are sent right away, along with anything already in the cache
+		bFlushImmediately |= (Mode == EAnalyticsRecordEventMode::Immediate);
+#endif
+		if (bFlushImmediately)
 		{
 			FlushEvents();
 		}
@@ -370,10 +410,22 @@ bool FRH_AnalyticsProvider::ClearDefaultEventAttribute(const FString& AttributeN
 	return EventCache.ClearDefaultAttribute(AttributeName);
 }
 
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 6))
+void FRH_AnalyticsProvider::SetUrlDomain(const FString& Domain, const TArray<FString>& AltDomains)
+{
+	// note - this domain is ignored, because we are using the RallyHereIntegration module to get the endpoint.
+}
+
+void FRH_AnalyticsProvider::SetUrlPath(const FString& Path)
+{
+	// note - this path is ignored, because we are using the RallyHereIntegration module to get the endpoint.
+}
+#else
 void FRH_AnalyticsProvider::SetURLEndpoint(const FString& UrlEndpoint, const TArray<FString>& AltDomains)
 {
 	// note - this endpoint is ignored, because we are using the RallyHereIntegration module to get the endpoint.
 }
+#endif
 
 void FRH_AnalyticsProvider::SetEventCallback(const OnEventRecorded& Callback)
 {

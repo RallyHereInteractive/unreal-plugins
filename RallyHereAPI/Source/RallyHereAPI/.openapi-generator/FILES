@@ -233,7 +233,6 @@ Private/OAuthTokenExchange.cpp
 Private/OAuthTokenResponse.cpp
 Private/OffsetReset.cpp
 Private/OnlineStatus.cpp
-Private/Operation.cpp
 Private/OpportunityAbortReason.cpp
 Private/OpportunityState.cpp
 Private/PageMeta.cpp
@@ -357,6 +356,7 @@ Private/QueueJoinRequest.cpp
 Private/QueueJoinResponse.cpp
 Private/QueuesResponse.cpp
 Private/QueuesResponseV2.cpp
+Private/RHAPI_Operation.cpp
 Private/RallyHereAPIAll.cpp
 Private/RallyHereAPIAuthContext.cpp
 Private/RallyHereAPIBaseModel.cpp
@@ -696,7 +696,6 @@ Public/OAuthTokenExchange.h
 Public/OAuthTokenResponse.h
 Public/OffsetReset.h
 Public/OnlineStatus.h
-Public/Operation.h
 Public/OpportunityAbortReason.h
 Public/OpportunityState.h
 Public/PageMeta.h
@@ -820,6 +819,7 @@ Public/QueueJoinRequest.h
 Public/QueueJoinResponse.h
 Public/QueuesResponse.h
 Public/QueuesResponseV2.h
+Public/RHAPI_Operation.h
 Public/RallyHereAPIAll.h
 Public/RallyHereAPIAuthContext.h
 Public/RallyHereAPIBaseModel.h

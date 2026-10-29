@@ -19,6 +19,12 @@
 
 #define LOCTEXT_NAMESPACE "RallyHereEditorCustomization"
 
+// UAssetManager::GetPrimaryAssetIdByItemId is not part of the stock engine, so checking for duplicate item ids on deep link configs
+// is only enabled when the engine provides it
+#ifndef RH_ASSET_MANAGER_HAS_ITEM_ID_LOOKUP
+#define RH_ASSET_MANAGER_HAS_ITEM_ID_LOOKUP 0
+#endif
+
 static const FName DeepLinkConfigurationName("Configuration Deep Link"); //$$ MUL - Add configuration deep link check
 
 void FRH_RHLegacyIdToGuidCustomization::CustomizeHeader(TSharedRef<class IPropertyHandle> StructPropertyHandle, class FDetailWidgetRow& HeaderRow, IPropertyTypeCustomizationUtils& StructCustomizationUtils)
@@ -312,6 +318,7 @@ FReply FRH_RHItemIdCustomization::OnEditManuallyClicked()
 		}	
 		else
 		{
+#if RH_ASSET_MANAGER_HAS_ITEM_ID_LOOKUP
 			if(IsDeepLinkConfig)
 			{
 				if (UAssetManager* AssetManager = Cast<UAssetManager>(UAssetManager::GetIfInitialized()))
@@ -328,6 +335,7 @@ FReply FRH_RHItemIdCustomization::OnEditManuallyClicked()
 					FMessageDialog::Open(EAppMsgType::Ok, LOCTEXT("SetItemWarning", "Unable to get Asset Manager to check the item id validation."));
 				}
 			}
+#endif
 
 			OnNewGuidSubmitted(InputGuid);
 		}

@@ -80,6 +80,9 @@ public:
 	virtual bool ShouldRecordEvent(const FString& EventName) const override;
 
 	virtual void RecordEvent(FString&& EventName, const TArray<FAnalyticsEventAttribute>& Attributes) override;
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 7))
+	virtual void RecordEvent(FString&& EventName, const TArray<FAnalyticsEventAttribute>& Attributes, EAnalyticsRecordEventMode Mode) override;
+#endif
 	virtual void SetDefaultEventAttributes(TArray<FAnalyticsEventAttribute>&& Attributes) override;
 	virtual TArray<FAnalyticsEventAttribute> GetDefaultEventAttributesSafe() const override;
 	virtual int32 GetDefaultEventAttributeCount() const override;
@@ -90,7 +93,17 @@ public:
 
 	virtual void SetEventCallback(const OnEventRecorded& Callback) override;
 
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 6))
+	virtual void SetUrlDomain(const FString& Domain, const TArray<FString>& AltDomains) override;
+	virtual void SetUrlPath(const FString& Path) override;
+
+	virtual FOnPreAnalyticsEventProcessed& OnPreAnalyticsEventProcessed() override { return OnPreAnalyticsEventProcessedDelegate; }
+#else
 	virtual void SetURLEndpoint(const FString& UrlEndpoint, const TArray<FString>& AltDomains) override;
+#endif
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 7))
+	virtual FOnAnalyticsEventQueued& OnAnalyticsEventQueued() override { return OnAnalyticsEventQueuedDelegate; }
+#endif
 
 	virtual void BlockUntilFlushed(float InTimeoutSec) override;
 	virtual ~FRH_AnalyticsProvider();
@@ -125,6 +138,15 @@ protected:
 
 	/** Event filter function */
 	ShouldRecordEventFunction ShouldRecordEventFunc;
+
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 6))
+	/** Fired immediately prior to the HTTP request for a batch of events being processed */
+	FOnPreAnalyticsEventProcessed OnPreAnalyticsEventProcessedDelegate;
+#endif
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 7))
+	/** Fired for every event being queued, and can prevent the event from being queued */
+	FOnAnalyticsEventQueued OnAnalyticsEventQueuedDelegate;
+#endif
 
 	/**
 	* Delegate called when an event Http request completes

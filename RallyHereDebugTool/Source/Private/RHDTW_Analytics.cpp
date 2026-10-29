@@ -336,7 +336,7 @@ void FRHDTW_Analytics::DoPlayerExperienceTab()
 					if (InnerValue.Value->TryGetObject(InnerObject)
 						&& InnerObject && InnerObject->IsValid())
 					{
-						DisplayObject(InnerObject->ToSharedRef(), InnerValue.Key);
+						DisplayObject(InnerObject->ToSharedRef(), FString(*InnerValue.Key));
 					}
 				}
 			}

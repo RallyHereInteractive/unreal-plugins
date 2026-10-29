@@ -1120,13 +1120,13 @@ void URH_PlatformSessionSyncer::OnPlatformSessionJoined(EOnJoinSessionCompleteRe
 			}
 			else if (IsLocalPlayerScout())
 			{
-				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session join error %s, local player is scout, trying to rectify"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
+				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session (%s) join error %s, local player is scout, trying to rectify"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
 				OnScoutFailedToJoin();
 				return;
 			}
 			else
 			{
-				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session join error %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
+				UE_LOG(LogRHSession, Warning, TEXT("[%s] - Session (%s) join error %s"), ANSI_TO_TCHAR(__FUNCTION__), *PlatformSession->GetSessionIdStr(), LexToString(Result));
 			}
 		}
 		else

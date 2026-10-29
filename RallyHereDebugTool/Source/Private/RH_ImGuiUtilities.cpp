@@ -394,7 +394,7 @@ void ImGuiDisplayJsonObject(const TSharedPtr<FJsonObject> JsonObject, bool bHasC
 			}
 			else
 			{
-				ImGuiDisplayCopyableValue((*jsonValueIt).Key, (*jsonValueIt).Value->AsString(), ECopyMode::KeyValue);
+				ImGuiDisplayCopyableValue(FString(*(*jsonValueIt).Key), (*jsonValueIt).Value->AsString(), ECopyMode::KeyValue);
 			}
 		}
 	}

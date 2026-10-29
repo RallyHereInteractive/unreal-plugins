@@ -379,7 +379,11 @@ inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const FRHAPI_DevMo
 	Value.WriteJson(Writer);
 }
 
+#if ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4)
+template<typename T, typename std::enable_if<!TIsVariant_V<std::remove_reference_t<T>> && !std::is_base_of<FRHAPI_DevModel, T>::value, int>::type = 0>
+#else
 template<typename T, typename std::enable_if<!TIsVariant<T>::Value && !std::is_base_of<FRHAPI_DevModel, T>::value, int>::type = 0>
+#endif
 inline void WriteJsonValue(TSharedRef<TJsonWriter<>>& Writer, const T& Value)
 {
 	Writer->WriteValue(Value);
@@ -568,19 +572,31 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, FRHAPI_DevM
 	return Value.FromJson(JsonValue);
 }
 
+#if ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4)
+template<typename T, typename std::enable_if<TIsVariant_V<std::remove_reference_t<T>>, bool>::type = true>
+#else
 template<typename T, typename std::enable_if<TIsVariant<T>::Value, bool>::type = true>
+#endif
 inline bool TryGetJsonValue(const TSharedPtr<FJsonObject>& JsonObject, T& Value)
 {
 	return TryGetJsonValueTVariant(JsonObject, Value);
 }
 
+#if ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4)
+template<typename T, typename std::enable_if<TIsVariant_V<std::remove_reference_t<T>>, bool>::type = true>
+#else
 template<typename T, typename std::enable_if<TIsVariant<T>::Value, bool>::type = true>
+#endif
 inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, T& Value)
 {
 	return TryGetJsonValueTVariant(JsonValue, Value);
 }
 
+#if ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4)
+template<typename T, typename std::enable_if<!TIsVariant_V<std::remove_reference_t<T>> && !std::is_base_of<FRHAPI_DevModel, T>::value, int>::type = 0>
+#else
 template<typename T, typename std::enable_if<!TIsVariant<T>::Value && !std::is_base_of<FRHAPI_DevModel, T>::value, int>::type = 0>
+#endif
 inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, T& Value)
 {
 	T TmpValue;

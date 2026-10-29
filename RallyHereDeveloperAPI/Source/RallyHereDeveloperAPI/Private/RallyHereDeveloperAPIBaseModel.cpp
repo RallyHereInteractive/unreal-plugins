@@ -17,11 +17,15 @@
 namespace RallyHereDeveloperAPI
 {
 
+#if !(ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 6))
 bool FHttpRetryManager::Tick(float DeltaTime)
 {
+	PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	FManager::Update();
+	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 	return true;
 }
+#endif
 
 FHttpRetryParams::FHttpRetryParams(const FRetryLimitCountSetting& InRetryLimitCountOverride /*= FRetryLimitCountSetting()*/,
     const FRetryTimeoutRelativeSecondsSetting& InRetryTimeoutRelativeSecondsOverride /*= FRetryTimeoutRelativeSecondsSetting()*/,

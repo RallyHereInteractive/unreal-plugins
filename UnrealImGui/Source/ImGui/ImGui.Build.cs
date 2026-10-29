@@ -30,7 +30,11 @@ public class ImGui : ModuleRules
 
 #if UE_4_24_OR_LATER
 		bLegacyPublicIncludePaths = false;
+#if UE_5_6_OR_LATER
+		CppCompileWarningSettings.ShadowVariableWarningLevel = WarningLevel.Error;
+#else
 		ShadowVariableWarningLevel = WarningLevel.Error;
+#endif
 		bTreatAsEngineModule = true;
 #endif
 		// main imgui and docking branchs upport

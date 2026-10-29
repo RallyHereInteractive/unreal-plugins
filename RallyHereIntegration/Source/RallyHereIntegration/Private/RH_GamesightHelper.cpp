@@ -234,7 +234,7 @@ void URHGamesightHelper::SendEvent(EGamesightEvent Event, const FGamesightEventP
 			Identifiers->SetStringField(TEXT("platform"), TEXT("steam"));
 			break;
 		case ERHAPI_Platform::XboxLive:
-#if PLATFORM_XSX
+#if (defined(PLATFORM_XSX) && PLATFORM_XSX)
 			switch (FXSXPlatformMisc::GetConsoleType())
 			{
 			case EXSXConsoleType::Lockhart:
@@ -258,9 +258,9 @@ void URHGamesightHelper::SendEvent(EGamesightEvent Event, const FGamesightEventP
 			Identifiers->SetStringField(TEXT("platform"), TEXT("nintendo_switch"));
 			break;
 		case ERHAPI_Platform::Psn:
-#if PLATFORM_PS5
+#if (defined(PLATFORM_PS5) && PLATFORM_PS5)
 			Identifiers->SetStringField(TEXT("platform"), TEXT("playstation_5"));
-#elif PLATFORM_PS4
+#elif (defined(PLATFORM_PS4) && PLATFORM_PS4)
 			Identifiers->SetStringField(TEXT("platform"), TEXT("playstation_4"));
 #else
 			Identifiers->SetStringField(TEXT("platform"), EnumToString(LoginResult->GetPlatform()).ToLower());

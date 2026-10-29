@@ -56,6 +56,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
     protected Set<String> prefixedModels = new HashSet<>();
     private Map<String, String> schemaKeyToModelNameCache = new HashMap<>();
     protected Map<String, String> apiNameMapping = new HashMap<>();
+    protected Map<String, String> modelFilenameMapping = new HashMap<>();
 
     public RhCppUe4Generator() {
         super();
@@ -188,6 +189,11 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 
         apiNameMapping = new HashMap<>();
         apiNameMapping.put("File", "RemoteFile");
+
+        // UHT requires the names of headers containing reflected types to be unique across every module in a target,
+        // so rename any model headers that collide with engine headers
+        modelFilenameMapping = new HashMap<>();
+        modelFilenameMapping.put("Operation", "RHAPI_Operation"); // Mutable's MuR/External/Operation.h (UE 5.8+)
 
         namespaces = new HashMap<>();
         prefixedModels = new HashSet<>();
@@ -405,7 +411,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
 					filename = filename.substring(unrealModelPrefix.length());
 				}
 
-				VariantInclude += "\n#include \"" + folder + this.modelNamePrefix + filename + ".h\"";
+				VariantInclude += "\n#include \"" + folder + toMappedModelFilename(this.modelNamePrefix + filename) + ".h\"";
 			}
 			return VariantInclude;
         }
@@ -418,7 +424,7 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
             filename = name.substring(unrealModelPrefix.length());
         }
 
-        return "#include \"" + folder + this.modelNamePrefix + filename + ".h\"";
+        return "#include \"" + folder + toMappedModelFilename(this.modelNamePrefix + filename) + ".h\"";
     }
 
     @Override
@@ -465,7 +471,14 @@ public class RhCppUe4Generator extends AbstractCppCodegen {
     @Override
     public String toModelFilename(String name) {
         name = sanitizeName(name);
-        return this.modelNamePrefix + toUnrealName(camelize(name));
+        return toMappedModelFilename(this.modelNamePrefix + toUnrealName(camelize(name)));
+    }
+
+    protected String toMappedModelFilename(String filename) {
+        if (modelFilenameMapping.containsKey(filename)) {
+            return modelFilenameMapping.get(filename);
+        }
+        return filename;
     }
 
     @Override

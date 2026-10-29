@@ -52,9 +52,9 @@ bool FAuthContext::AuthFromHttpResponse(const FHttpResponsePtr& HttpResponse)
 
 		if (FJsonSerializer::Deserialize(JsonReader, ResponseJsonObj) && ResponseJsonObj.IsValid())
 		{
-			if (ResponseJsonObj->HasField("access_token"))
+			if (ResponseJsonObj->HasField(TEXT("access_token")))
 			{
-				const FString Token = ResponseJsonObj->GetStringField("access_token");
+				const FString Token = ResponseJsonObj->GetStringField(TEXT("access_token"));
 				if (!Token.IsEmpty())
 				{
 					AccessToken = Token;

@@ -7,7 +7,7 @@
 #include "Async/TaskGraphInterfaces.h"
 #include "Engine/DeveloperSettings.h"
 #include "UObject/Object.h"
-#include "Stats/Stats2.h"
+#include "Stats/Stats.h"
 #include "Tickable.h"
 #include "Templates/SharedPointer.h"
 

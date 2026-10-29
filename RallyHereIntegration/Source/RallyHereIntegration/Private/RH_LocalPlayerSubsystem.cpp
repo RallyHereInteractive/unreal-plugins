@@ -529,7 +529,7 @@ URH_PlayerInfo* URH_LocalPlayerSubsystem::GetLocalPlayerInfo() const
 
 	auto LocalPlayerInfo = pRH_PlayerInfoSubsystem->GetOrCreatePlayerInfo(GetPlayerUuid());
 
-#if PLATFORM_WINGDK || PLATFORM_XSX
+#if (defined(PLATFORM_WINGDK) && PLATFORM_WINGDK) || (defined(PLATFORM_XSX) && PLATFORM_XSX)
 	if (LocalPlayerInfo != nullptr)
 	{
 		auto PlayerPlatformId = GetPlayerPlatformId();

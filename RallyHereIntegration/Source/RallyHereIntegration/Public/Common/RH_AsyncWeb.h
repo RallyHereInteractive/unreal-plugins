@@ -562,12 +562,35 @@ public:
 		FUTF8ToTCHAR TCHARData(reinterpret_cast<const ANSICHAR*>(Content.GetData()), Content.Num());
 		return FString(TCHARData.Length(), TCHARData.Get());
 	}
-	
+
+#if RH_FROM_ENGINE_VERSION(5,6)
+	/**
+	 * @brief Returns the payload as a UTF8 string view.
+	 * @return the payload as a string view, only valid while the response is alive and its content is unchanged.
+	 */
+	virtual FUtf8StringView GetContentAsUtf8StringView() const override
+	{
+		return FUtf8StringView(reinterpret_cast<const UTF8CHAR*>(Content.GetData()), Content.Num());
+	}
+#endif
+
+#if RH_FROM_ENGINE_VERSION(5,8)
+	/**
+	 * @brief Returns the content payload, moving it out of the response.
+	 * @return the content array.
+	 */
+	virtual TArray<uint8> TakeContent() override { return MoveTemp(Content); }
+#endif
+
 	/**
 	 * @brief Get the URL used to send the request.
 	 * @return the URL string.
 	 */
+#if RH_FROM_ENGINE_VERSION(5,6)
+	virtual const FString& GetURL() const override { return URL; }
+#else
 	virtual FString GetURL() const override { return URL; }
+#endif
 
 #if RH_FROM_ENGINE_VERSION(5,4)
 	/**

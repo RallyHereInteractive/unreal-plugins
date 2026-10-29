@@ -6,6 +6,7 @@
 #include "Interfaces/OnlinePurchaseInterface.h"
 #include "OnlineSubsystemSteamV2Package.h"
 #include "OnlineError.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 class FOnlineSubsystemSteamV2;
 
@@ -45,6 +46,9 @@ public:
 
 	//~ Begin IOnlinePurchase Interface
 	virtual bool IsAllowedToPurchase(const FUniqueNetId& UserId) override;
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 8))
+	virtual bool IsAllowedToPurchase(const FUniqueNetId& UserId, FOnlineError& Error) override;
+#endif
 	virtual void Checkout(const FUniqueNetId& UserId, const FPurchaseCheckoutRequest& CheckoutRequest, const FOnPurchaseCheckoutComplete& Delegate) override;
 	virtual void Checkout(const FUniqueNetId& UserId, const FPurchaseCheckoutRequest& CheckoutRequest, const FOnPurchaseReceiptlessCheckoutComplete& Delegate) override;
 	virtual void FinalizePurchase(const FUniqueNetId& UserId, const FString& ReceiptId) override;

@@ -403,6 +403,16 @@ bool FOnlinePurchaseSteamV2::IsAllowedToPurchase(const FUniqueNetId& UserId)
 	return true;
 }
 
+#if (ENGINE_MAJOR_VERSION > 5 || (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 8))
+bool FOnlinePurchaseSteamV2::IsAllowedToPurchase(const FUniqueNetId& UserId, FOnlineError& Error)
+{
+	// the reason for a failure is logged by the base check
+	const bool bIsAllowed = IsAllowedToPurchase(UserId);
+	Error = FOnlineError(bIsAllowed ? EOnlineErrorResult::Success : EOnlineErrorResult::AccessDenied);
+	return bIsAllowed;
+}
+#endif
+
 void FOnlinePurchaseSteamV2::Checkout(const FUniqueNetId& UserId, const FPurchaseCheckoutRequest& CheckoutRequest, const FOnPurchaseReceiptlessCheckoutComplete& Delegate)
 {
 

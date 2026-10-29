@@ -11,7 +11,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "HttpModule.h"
 #if RHAPI_BELOW_ENGINE_VERSION(5, 6)
-#include "Stats/Stats2.h"
+#include "Stats/Stats.h"
 #else
 #include "Stats/Stats.h"
 #endif

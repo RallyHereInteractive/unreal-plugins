@@ -805,11 +805,11 @@ void FRHDTW_Friends::HandleFetchBlockedPlayer(bool bSuccessful, const FGuid& Pla
 {
 	if (bSuccessful)
 	{
-		BlockActionResult += FString::Printf(TEXT("Refresh Blocked Player %s succeeded."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
+		BlockActionResult += FString::Printf(TEXT("[%s] Refresh Blocked Player %s succeeded."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	else
 	{
-		BlockActionResult += FString::Printf(TEXT("Refresh Blocked Player %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
+		BlockActionResult += FString::Printf(TEXT("[%s] Refresh Blocked Player %s failed."), *GetShortUuid(InstigatorUuid), *TargetUuid.ToString(EGuidFormats::DigitsWithHyphensLower));
 	}
 	BlockActionResult += LINE_TERMINATOR;
 }

@@ -10,7 +10,7 @@
 #include "RallyHereAPIBaseModel.h"
 #include "RallyHereAPIHelpers.h"
 #include "Containers/Set.h"
-#include "Operation.h"
+#include "RHAPI_Operation.h"
 #include "RuleType.h"
 #include "Rule.generated.h"
 

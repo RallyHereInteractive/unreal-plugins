@@ -354,7 +354,7 @@ URH_PlayerPlatformInfo* URH_PlayerInfo::GetPlayerPlatformInfo(const FRH_PlayerPl
 
 void URH_PlayerInfo::GetLastKnownDisplayNameAsync(const FTimespan& StaleThreshold /* = FTimespan()*/, bool bForceRefresh /*= false*/, ERHAPI_Platform PreferredPlatformType /*= ERHAPI_Platform::Anon*/, const FRH_PlayerInfoGetDisplayNameBlock& Delegate /*= FRH_PlayerInfoGetDisplayNameBlock()*/, const URH_LocalPlayerSubsystem* LocalPlayerSubsystem /*= nullptr*/)
 {
-#if PLATFORM_WINGDK || PLATFORM_XSX
+#if (defined(PLATFORM_WINGDK) && PLATFORM_WINGDK) || (defined(PLATFORM_XSX) && PLATFORM_XSX)
 	if (LocalPlayerSubsystem != nullptr && LocalPlayerSubsystem->GetLocalPlayerInfo() == this)
 	{
 		if (const UWorld* world = GWorld)
@@ -413,7 +413,7 @@ void URH_PlayerInfo::OnGetPlayerLinkedPlatformsForLastKnownDisplayNameResponse(b
 			{
 				if (const IOnlineSubsystem* OSS = IOnlineSubsystem::Get())
 				{
-#if PLATFORM_WINGDK || PLATFORM_XSX
+#if (defined(PLATFORM_WINGDK) && PLATFORM_WINGDK) || (defined(PLATFORM_XSX) && PLATFORM_XSX)
 					if (PlatformInfo->GetPlatform() == ERHAPI_Platform::XboxLive && LocalPlayerSubsystem->GetLocalPlayerInfo() == this)
 					{
 						if (const UWorld* world = GWorld)

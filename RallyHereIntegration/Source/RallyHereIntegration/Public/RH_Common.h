@@ -26,10 +26,17 @@
 	#define ALLOW_RH_COMMANDLINE_ARGS_WITHOUT_PREFIX 1
 #endif
 
+// FindObject's boolean ExactClass parameter was deprecated in favor of EFindObjectFlags in 5.7
+#if RH_FROM_ENGINE_VERSION(5, 7)
+#define RH_FIND_OBJECT_EXACT_CLASS EFindObjectFlags::ExactClass
+#else
+#define RH_FIND_OBJECT_EXACT_CLASS true
+#endif
+
 #ifndef RH_GETENUMSTRING
 #if RH_FROM_ENGINE_VERSION(5, 1)
-#define RH_GETENUMSTRING(package, etype, evalue) ( (FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true) != nullptr) ? FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true)->GetNameStringByValue((int32)evalue) : FString(TEXT("Invalid - are you sure enum uses UENUM() macro?")) )
-#define RH_GETENUMFROMSTRING(package, etype, evalue) ( (FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true) != nullptr) ? FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), true)->GetValueByNameString(evalue) : INDEX_NONE )
+#define RH_GETENUMSTRING(package, etype, evalue) ( (FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), RH_FIND_OBJECT_EXACT_CLASS) != nullptr) ? FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), RH_FIND_OBJECT_EXACT_CLASS)->GetNameStringByValue((int32)evalue) : FString(TEXT("Invalid - are you sure enum uses UENUM() macro?")) )
+#define RH_GETENUMFROMSTRING(package, etype, evalue) ( (FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), RH_FIND_OBJECT_EXACT_CLASS) != nullptr) ? FindObject<UEnum>(nullptr, TEXT(package) TEXT(".") TEXT(etype), RH_FIND_OBJECT_EXACT_CLASS)->GetValueByNameString(evalue) : INDEX_NONE )
 #else
 #define RH_GETENUMSTRING(package, etype, evalue) ( (FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true) != nullptr) ? FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true)->GetNameStringByValue((int32)evalue) : FString(TEXT("Invalid - are you sure enum uses UENUM() macro?")) )
 #define RH_GETENUMFROMSTRING(package, etype, evalue) ( (FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true) != nullptr) ? FindObject<UEnum>(ANY_PACKAGE, TEXT(etype), true)->GetValueByNameString(evalue) : INDEX_NONE )

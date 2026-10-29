@@ -461,7 +461,7 @@ protected:
 		}
 		else if (!AuthTokenWrapper.HasTokenString())
 		{
-			Failed(FString::Printf(TEXT("[%s] Auth token has no token string, and RH bootstrapping does not currently support a binary auth token"), ANSI_TO_TCHAR(__FUNCTION__),
+			Failed(FString::Printf(TEXT("[%s] Auth token from OSS '%s' has no token string, and RH bootstrapping does not currently support a binary auth token"), ANSI_TO_TCHAR(__FUNCTION__),
 				*OSS->GetSubsystemName().ToString()));
 			return;
 		}

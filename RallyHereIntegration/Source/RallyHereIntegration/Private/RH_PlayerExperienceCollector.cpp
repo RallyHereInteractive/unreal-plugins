@@ -539,7 +539,11 @@ void URH_PEXPrimaryStats::CapturePerFrameStats(const TScriptInterface<IRH_PEXOwn
 		GetCaptureStat(ECaptureStat::GameThreadTime).CaptureValue(CYCLES_TO_MILLISECONDS(GGameThreadTime));
 		GetCaptureStat(ECaptureStat::RenderThreadTime).CaptureValue(CYCLES_TO_MILLISECONDS(GRenderThreadTime));
 		GetCaptureStat(ECaptureStat::RHIThreadTime).CaptureValue(CYCLES_TO_MILLISECONDS(GRHIThreadTime));
+#if RH_FROM_ENGINE_VERSION(5, 6)
+		GetCaptureStat(ECaptureStat::GPUTime).CaptureValue(CYCLES_TO_MILLISECONDS(RHIGetGPUFrameCycles()));
+#else
 		GetCaptureStat(ECaptureStat::GPUTime).CaptureValue(CYCLES_TO_MILLISECONDS(GGPUFrameTime));
+#endif
 		
 		// calculate overall frametime
 		GetCaptureStat(ECaptureStat::FrameTime).CaptureValue(FMath::Max3(

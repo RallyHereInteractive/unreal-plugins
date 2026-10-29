@@ -9,6 +9,7 @@
 #include "RallyHereDebugToolSettings.h"
 #include "RallyHereDebugTool.h"
 #include "RH_ImGuiUtilities.h"
+#include "Common/RH_Version.h"
 
 #include "imgui.h"
 
@@ -48,7 +49,9 @@ namespace RH_OutputLog
 
 		UpdateGLogBinding();
 
+#if RH_BELOW_ENGINE_VERSION(5, 7)
 		GLog->SerializeBacklog(this);
+#endif // otherwise, the backlog is serialized by AddOutputDevice when binding to GLog
 	}
 
 	FOutputLogHistory::~FOutputLogHistory()

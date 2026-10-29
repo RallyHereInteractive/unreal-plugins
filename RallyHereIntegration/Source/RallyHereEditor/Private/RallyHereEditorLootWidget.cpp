@@ -452,7 +452,7 @@ TSharedRef<ITableRow> SRallyHereEditorVendorRow::MakeListViewLootWidget(TSharedP
 			.OnGetMenuContent_Lambda([this]() \
 			{ \
 				FMenuBuilder MenuBuilder(true, NULL); \
-				UEnum* EnumType = FindObject<UEnum>(nullptr, TEXT("/Script/RallyHereDeveloperAPI." #EnumName), true); \
+				UEnum* EnumType = FindObject<UEnum>(nullptr, TEXT("/Script/RallyHereDeveloperAPI." #EnumName), RH_FIND_OBJECT_EXACT_CLASS); \
 				int32 EnumCount = EnumType->NumEnums(); \
 				for (int32 EnumIndex = 0; EnumIndex < EnumCount - 1; ++EnumIndex) \
 				{ \
