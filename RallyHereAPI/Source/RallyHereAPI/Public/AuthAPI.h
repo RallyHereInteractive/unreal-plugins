@@ -906,17 +906,22 @@ struct RALLYHEREAPI_API FResponse_RequestDiscordProvisionalToken : public FRespo
 	bool TryGetContentFor200(FRHAPI_DiscordProvisionalTokenResponse& OutContent) const;
 
 	/* Response 400
-	Bad Request
+	The request cannot be fulfilled as sent, or Discord will not issue a provisional token for this player.  Error Codes: - `discord_account_non_provisional` - Player already has a real Discord account - use the standard Discord OAuth2 flow - `discord_id_token_expired` - Discord rejected the identity token as expired - `discord_id_token_too_old` - Discord rejected the identity token as too old (over one week) - `invalid_token_claims` - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? 
 	*/
 	bool TryGetContentFor400(FRHAPI_HzApiErrorModel& OutContent) const;
 
 	/* Response 403
-	Forbidden
+	 Error Codes: - `auth_invalid_key_id` - Invalid Authorization - Invalid Key ID in Access Token - `auth_invalid_version` - Invalid Authorization - version - `auth_malformed_access` - Invalid Authorization - malformed access token - `auth_not_jwt` - Invalid Authorization - `auth_token_expired` - Token is expired - `auth_token_format` - Invalid Authorization - {} - `auth_token_invalid_claim` - Token contained invalid claim value: {} - `auth_token_invalid_type` - Invalid Authorization - Invalid Token Type - `auth_token_sig_invalid` - Token Signature is invalid - `auth_token_unknown` - Failed to parse token - `insufficient_permissions` - Insufficient Permissions 
 	*/
 	bool TryGetContentFor403(FRHAPI_HzApiErrorModel& OutContent) const;
 
+	/* Response 500
+	This environment is not configured to issue Discord provisional tokens. Nothing the caller can do.  Error Codes: - `discord_bot_token_not_configured` - No Discord bot token is configured for this environment - `discord_provisional_tokens_disabled` - Discord provisional-token issuance is not enabled for this environment 
+	*/
+	bool TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const;
+
 	/* Response 502
-	Bad Gateway
+	Discord rejected the request or could not be reached. Retryable for the transient cases.  Error Codes: - `discord_application_not_configured` - Discord has not enabled provisional accounts for this application - `discord_bot_token_rejected` - Discord rejected this environment's configured bot token - `discord_invalid_client_secret` - Discord rejected the configured client secret for this application - `discord_token_request_failed` - Discord rejected the provisional-token request - `discord_username_generation_failed` - Discord could not generate a username for the provisional account - retryable 
 	*/
 	bool TryGetContentFor502(FRHAPI_HzApiErrorModel& OutContent) const;
 

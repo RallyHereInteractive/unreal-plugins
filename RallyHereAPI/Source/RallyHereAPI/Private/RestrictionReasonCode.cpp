@@ -56,6 +56,8 @@ FString EnumToString(const ERHAPI_RestrictionReasonCode& Value)
 		return TEXT("maintenance");
 	case ERHAPI_RestrictionReasonCode::PendingDeletion:
 		return TEXT("pending_deletion");
+	case ERHAPI_RestrictionReasonCode::NameViolation:
+		return TEXT("name_violation");
 	}
 
 	UE_LOG(LogRallyHereAPI, Error, TEXT("Invalid ERHAPI_RestrictionReasonCode::Values Value (%d)"), (int)Value);
@@ -81,7 +83,8 @@ bool EnumFromString(const FString& EnumAsString, ERHAPI_RestrictionReasonCode& V
 		{ TEXT("account_migration"), ERHAPI_RestrictionReasonCode::AccountMigration },
 		{ TEXT("user_request"), ERHAPI_RestrictionReasonCode::UserRequest },
 		{ TEXT("maintenance"), ERHAPI_RestrictionReasonCode::Maintenance },
-		{ TEXT("pending_deletion"), ERHAPI_RestrictionReasonCode::PendingDeletion },	};
+		{ TEXT("pending_deletion"), ERHAPI_RestrictionReasonCode::PendingDeletion },
+		{ TEXT("name_violation"), ERHAPI_RestrictionReasonCode::NameViolation },	};
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

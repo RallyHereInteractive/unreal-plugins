@@ -2212,11 +2212,13 @@ FString FResponse_RequestDiscordProvisionalToken::GetHttpResponseCodeDescription
 	case 200:
 		return TEXT("Successful Response");
 	case 400:
-		return TEXT("Bad Request");
+		return TEXT("The request cannot be fulfilled as sent, or Discord will not issue a provisional token for this player.  Error Codes: - &#x60;discord_account_non_provisional&#x60; - Player already has a real Discord account - use the standard Discord OAuth2 flow - &#x60;discord_id_token_expired&#x60; - Discord rejected the identity token as expired - &#x60;discord_id_token_too_old&#x60; - Discord rejected the identity token as too old (over one week) - &#x60;invalid_token_claims&#x60; - Token has missing/invalid claims.  Are you using a non-user token on a user endpoint? ");
 	case 403:
-		return TEXT("Forbidden");
+		return TEXT(" Error Codes: - &#x60;auth_invalid_key_id&#x60; - Invalid Authorization - Invalid Key ID in Access Token - &#x60;auth_invalid_version&#x60; - Invalid Authorization - version - &#x60;auth_malformed_access&#x60; - Invalid Authorization - malformed access token - &#x60;auth_not_jwt&#x60; - Invalid Authorization - &#x60;auth_token_expired&#x60; - Token is expired - &#x60;auth_token_format&#x60; - Invalid Authorization - {} - &#x60;auth_token_invalid_claim&#x60; - Token contained invalid claim value: {} - &#x60;auth_token_invalid_type&#x60; - Invalid Authorization - Invalid Token Type - &#x60;auth_token_sig_invalid&#x60; - Token Signature is invalid - &#x60;auth_token_unknown&#x60; - Failed to parse token - &#x60;insufficient_permissions&#x60; - Insufficient Permissions ");
+	case 500:
+		return TEXT("This environment is not configured to issue Discord provisional tokens. Nothing the caller can do.  Error Codes: - &#x60;discord_bot_token_not_configured&#x60; - No Discord bot token is configured for this environment - &#x60;discord_provisional_tokens_disabled&#x60; - Discord provisional-token issuance is not enabled for this environment ");
 	case 502:
-		return TEXT("Bad Gateway");
+		return TEXT("Discord rejected the request or could not be reached. Retryable for the transient cases.  Error Codes: - &#x60;discord_application_not_configured&#x60; - Discord has not enabled provisional accounts for this application - &#x60;discord_bot_token_rejected&#x60; - Discord rejected this environment&#39;s configured bot token - &#x60;discord_invalid_client_secret&#x60; - Discord rejected the configured client secret for this application - &#x60;discord_token_request_failed&#x60; - Discord rejected the provisional-token request - &#x60;discord_username_generation_failed&#x60; - Discord could not generate a username for the provisional account - retryable ");
 	}
 	
 	return FResponse::GetHttpResponseCodeDescription(InHttpResponseCode);
@@ -2239,6 +2241,8 @@ bool FResponse_RequestDiscordProvisionalToken::ParseHeaders()
 	case 400:
 		break;
 	case 403:
+		break;
+	case 500:
 		break;
 	case 502:
 		break;
@@ -2277,6 +2281,18 @@ bool FResponse_RequestDiscordProvisionalToken::TryGetContentFor403(FRHAPI_HzApiE
 {
 	// if this is not the correct response code, fail quickly.
 	if ((int)GetHttpResponseCode() != 403)
+	{
+		return false;
+	}
+
+	// forward on to type only handler
+	return TryGetContent(OutContent);
+}
+
+bool FResponse_RequestDiscordProvisionalToken::TryGetContentFor500(FRHAPI_HzApiErrorModel& OutContent) const
+{
+	// if this is not the correct response code, fail quickly.
+	if ((int)GetHttpResponseCode() != 500)
 	{
 		return false;
 	}
@@ -2324,6 +2340,16 @@ bool FResponse_RequestDiscordProvisionalToken::FromJson(const TSharedPtr<FJsonVa
 				break;
 			} 
 		case 403:
+			{
+				// parse into the structured data format from the json object
+				FRHAPI_HzApiErrorModel Object;
+				bParsed = TryGetJsonValue(JsonValue, Object);
+				
+				// even if parsing encountered errors, set the object in case parsing was partially successful
+				ParsedContent.Set<FRHAPI_HzApiErrorModel>(Object);
+				break;
+			} 
+		case 500:
 			{
 				// parse into the structured data format from the json object
 				FRHAPI_HzApiErrorModel Object;
