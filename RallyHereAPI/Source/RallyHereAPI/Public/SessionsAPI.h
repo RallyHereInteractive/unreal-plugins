@@ -199,7 +199,7 @@ struct RALLYHEREAPI_API Traits_AcknowledgeBackfillRequest
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission
+ * Required Session Permissions: `active_in_session` for users that do not have the `session:update:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_AddPlatformSessionToRallyHereSession : public FRequest
 {
@@ -440,7 +440,7 @@ struct RALLYHEREAPI_API Traits_BackfillConfig
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:update:any` auth permission
+ * Required Session Permissions: `session_admin` if user does not have the `session:update:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_CreateInstanceRequest : public FRequest
 {
@@ -1018,7 +1018,7 @@ struct RALLYHEREAPI_API Traits_DeleteBackfillRequest
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission
+ * Required Session Permissions: `session_admin` if user does not have the `session:*` auth permission
 */
 struct RALLYHEREAPI_API FRequest_DeleteBrowserInfo : public FRequest
 {
@@ -1117,7 +1117,7 @@ struct RALLYHEREAPI_API Traits_DeleteBrowserInfo
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:update:any` auth permission
+ * Required Session Permissions: `active_in_session` for users that do not have the `session:update:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_DeletePlatformSessionFromRallyHereSession : public FRequest
 {
@@ -1234,7 +1234,7 @@ struct RALLYHEREAPI_API Traits_DeletePlatformSessionFromRallyHereSession
  * 
  * * Required auth permissions are any of: `session:*`, `session:delete:active`
  * 
- * * Required session permissions are `SessionPermissions.session_admin`
+ * * Required session permissions are `session_admin`
  * 
  * For sessions you are an admin in:
  * 
@@ -1337,7 +1337,7 @@ struct RALLYHEREAPI_API Traits_DeleteSession
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission
+ * Required Session Permissions: `session_host` if user does not have the `session:update:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_EndInstance : public FRequest
 {
@@ -1457,7 +1457,7 @@ struct RALLYHEREAPI_API Traits_EndInstance
  * 
  * * Required auth permissions are : `session:shortcode:active`
  * 
- * * Required session permissions are `SessionPermissions.active_in_session`
+ * * Required session permissions are `active_in_session`
 */
 struct RALLYHEREAPI_API FRequest_GenerateSessionShortCode : public FRequest
 {
@@ -3204,7 +3204,7 @@ struct RALLYHEREAPI_API Traits_GetMatchMakingTemplatesV2
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.active_in_session` for users that do not have the `session:read:any` auth permission
+ * Required Session Permissions: `active_in_session` for users that do not have the `session:read:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_GetPlatformSessionInfo : public FRequest
 {
@@ -3470,7 +3470,7 @@ struct RALLYHEREAPI_API Traits_GetPlayerInSession
  * 
  * * Required auth permissions are any of: `session:*`, `session:read:permission:active`
  * 
- * * Required session permissions are `SessionPermissions.active_in_session`
+ * * Required session permissions are `active_in_session`
  * 
  * For sessions you are an admin in:
  * 
@@ -4491,7 +4491,7 @@ struct RALLYHEREAPI_API Traits_GetSessionByAllocationId
  * 
  * 
  * 
- * Required Session Permissions: None for limited results. `SessionPermissions.active_in_session` to get complete results for users who do not have the `session:read:any` auth permission
+ * Required Session Permissions: None for limited results. `active_in_session` to get complete results for users who do not have the `session:read:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_GetSessionById : public FRequest
 {
@@ -5139,7 +5139,7 @@ struct RALLYHEREAPI_API Traits_GetVivoxLoginToken
  * 
  * * Required auth permissions are any of: `session:*`, `session:give:permission:active`
  * 
- * * Required session permissions are `SessionPermissions.active_in_session`
+ * * Required session permissions are `active_in_session`
  * 
  * For sessions you are an admin in:
  * 
@@ -5489,7 +5489,7 @@ struct RALLYHEREAPI_API Traits_InstanceHealthConfig
  * 
  * 
  * 
- * Required Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin
 */
 struct RALLYHEREAPI_API FRequest_InvitePlayerByUuidV2 : public FRequest
 {
@@ -5762,7 +5762,7 @@ struct RALLYHEREAPI_API Traits_InviteSessionToSession
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.session_admin`
+ * Required Session Permissions: `session_admin`
 */
 struct RALLYHEREAPI_API FRequest_JoinQueue : public FRequest
 {
@@ -6289,7 +6289,7 @@ struct RALLYHEREAPI_API Traits_JoinSessionByPlatformSessionIdSelf
  * - For the player themselves : `session:update-player:self`
  * 
  * Required Session Permissions: None for players operating on themselves.
- * Required Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin
  * **DEPRECATED** - Use the player endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionById : public FRequest
@@ -6396,7 +6396,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionById
  * 
  * - For the player themselves : `session:update-player:self`
  * 
- * Required Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin
  * **DEPRECATED** - Use player/{player_uuid} endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuid : public FRequest
@@ -6520,7 +6520,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuid
  * - For the player themselves : `session:update-player:self`
  * 
  * Required Session Permissions: None for users operating on themselves. 
- * Required Session Permissions: `IntraSessionPermissions.kick` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `kick` for users that do not have the above permissions, and are not a session admin
 */
 struct RALLYHEREAPI_API FRequest_KickPlayerFromSessionByUuidV2 : public FRequest
 {
@@ -6648,7 +6648,7 @@ struct RALLYHEREAPI_API Traits_KickPlayerFromSessionByUuidV2
  * 
  *  to invite a session you are part of
  * 
- * Required Session Permissions: `SessionPermissions.session_admin
+ * Required Session Permissions: `session_admin
 */
 struct RALLYHEREAPI_API FRequest_KickSessionFromSession : public FRequest
 {
@@ -6752,7 +6752,7 @@ struct RALLYHEREAPI_API Traits_KickSessionFromSession
  * 
  * 
  *                
- * Required Session Permissions: `SessionPermissions.session_admin`
+ * Required Session Permissions: `session_admin`
 */
 struct RALLYHEREAPI_API FRequest_LeaveQueue : public FRequest
 {
@@ -7185,7 +7185,7 @@ struct RALLYHEREAPI_API Traits_LeaveSessionByPlatformSessionSelf
  * 
  * - For the player themselves : `session:update-player:self`
  * 
- * Required Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `move` for users that do not have the above permissions, and are not a session admin
 */
 struct RALLYHEREAPI_API FRequest_MovePlayerByUuidV2 : public FRequest
 {
@@ -7319,7 +7319,7 @@ struct RALLYHEREAPI_API Traits_MovePlayerByUuidV2
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission
+ * Required Session Permissions: `session_admin` if user does not have the `session:*` auth permission
 */
 struct RALLYHEREAPI_API FRequest_PostBrowserInfo : public FRequest
 {
@@ -7431,7 +7431,7 @@ struct RALLYHEREAPI_API Traits_PostBrowserInfo
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.session_admin` for users that do not have the `session:promote:any` auth permission
+ * Required Session Permissions: `session_admin` for users that do not have the `session:promote:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_PromotePlayerByUuidV2 : public FRequest
 {
@@ -7568,7 +7568,7 @@ struct RALLYHEREAPI_API Traits_PromotePlayerByUuidV2
  * 
  * * Required auth permissions are any of: `session:*`, `session:remove:permission:active`
  * 
- * * Required session permissions are `SessionPermissions.active_in_session`
+ * * Required session permissions are `active_in_session`
  * 
  * For sessions you are an admin in:
  * 
@@ -7702,7 +7702,7 @@ struct RALLYHEREAPI_API Traits_RemovePlayerPermissionByUuid
  * 
  * * Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`
  * 
- * * Required session permissions are `SessionPermissions.session_admin`
+ * * Required session permissions are `session_admin`
 */
 struct RALLYHEREAPI_API FRequest_SwapPlayersInSession : public FRequest
 {
@@ -7927,7 +7927,7 @@ struct RALLYHEREAPI_API Traits_UpdateBackfillRequest
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.session_admin` if user does not have the `session:*` auth permission
+ * Required Session Permissions: `session_admin` if user does not have the `session:*` auth permission
 */
 struct RALLYHEREAPI_API FRequest_UpdateBrowserInfo : public FRequest
 {
@@ -8040,7 +8040,7 @@ struct RALLYHEREAPI_API Traits_UpdateBrowserInfo
  * 
  * 
  * 
- * Required Session Permissions: `SessionPermissions.session_host` if user does not have the `session:update:any` auth permission
+ * Required Session Permissions: `session_host` if user does not have the `session:update:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_UpdateInstanceInfo : public FRequest
 {
@@ -8152,7 +8152,7 @@ struct RALLYHEREAPI_API Traits_UpdateInstanceInfo
  * 
  * - For the player themselves : `session:update-player:self`
  * 
- * Required Session Permissions: `SessionPermissions.session_admin` for users that do not have the `session:promote:any` auth permission
+ * Required Session Permissions: `session_admin` for users that do not have the `session:promote:any` auth permission
 */
 struct RALLYHEREAPI_API FRequest_UpdatePlayerByUuidV2 : public FRequest
 {
@@ -8290,7 +8290,7 @@ struct RALLYHEREAPI_API Traits_UpdatePlayerByUuidV2
  * 
  * * Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`
  * 
- * * Required session permissions are `SessionPermissions.session_admin`
+ * * Required session permissions are `session_admin`
 */
 struct RALLYHEREAPI_API FRequest_UpdateSessionById : public FRequest
 {
@@ -8419,7 +8419,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionById
  * 
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited.
- * `SessionPermissions.session_admin` for other operations
+ * `session_admin` for other operations
  * 
  * **DEPRECATED** - Use the player endpoint instead
 */
@@ -8546,7 +8546,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
- * Required Session Permissions: `IntraSessionPermissions.invite` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `invite` for users that do not have the above permissions, and are not a session admin
  * 
  * To move players
  * Required Permissions:
@@ -8554,7 +8554,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * - For any player (including themselves) any of: `session:*`, `session:update-player:any`
  * 
  * - For the player themselves : `session:update-player:self`
- * Required Session Permissions: `IntraSessionPermissions.move` for users that do not have the above permissions, and are not a session admin
+ * Required Session Permissions: `move` for users that do not have the above permissions, and are not a session admin
  * 
  * For all else
  * Required Permissions:
@@ -8564,7 +8564,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerById
  * - For the player themselves : `session:update-player:self`
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited. 
- * `SessionPermissions.session_admin` for other operations
+ * `session_admin` for other operations
  * **DEPRECATED** - Use player/{player_uuid} endpoint instead
 */
 struct RALLYHEREAPI_API FRequest_UpdateSessionPlayerByUuid : public FRequest
@@ -8700,7 +8700,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuid
  * 
  * 
  * Required Session Permissions: None if session is publicly joinable or the player has been invited. 
- * `SessionPermissions.session_admin` for other operations
+ * `session_admin` for other operations
  * 
  * **DEPRECATED** - Use the appropriate move, invite, promote, or update V2 endpoint instead
 */
@@ -8840,7 +8840,7 @@ struct RALLYHEREAPI_API Traits_UpdateSessionPlayerByUuidV2
  * 
  * * Required auth permissions are any of: `session:*`, `session:update:any`, `session:update:self`
  * 
- * * Required session permissions are `SessionPermissions.session_admin`
+ * * Required session permissions are `session_admin`
 */
 struct RALLYHEREAPI_API FRequest_UpdateTeamById : public FRequest
 {

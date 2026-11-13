@@ -35,6 +35,7 @@ enum class ERHAPI_RestrictionReasonCode : uint8
 	UserRequest UMETA(ToolTip=""),
 	Maintenance UMETA(ToolTip=""),
 	PendingDeletion UMETA(ToolTip=""),
+	NameViolation UMETA(ToolTip=""),
 };
 RALLYHEREAPI_API FString EnumToString(const ERHAPI_RestrictionReasonCode& EnumValue);
 RALLYHEREAPI_API bool EnumFromString(const FString& EnumAsString, ERHAPI_RestrictionReasonCode& EnumValue);
